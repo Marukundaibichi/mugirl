@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: 雪牛娘 革命军钢盔 -->
+  <MooGirl_ArmorHelmetRecon.label>雪牛娘 侦察头盔 「蝶影谜踪」</MooGirl_ArmorHelmetRecon.label>
+  <!-- EN: 简化设计的雪牛娘特制钢盔，拥有伪装网用于伪装，留有两个凹槽来存放角。搭配蝴蝶结和革命军金属徽章 -->
+  <MooGirl_ArmorHelmetRecon.description>「八重·朱 服装」出品轻量化流线型头盔，暗粉织物勾勒舒适内衬，兼具战术功能与美学，黑暗中蝴蝶结造型凸显精致设计感。</MooGirl_ArmorHelmetRecon.description>
+  
+  <!-- EN: 雪牛娘 兔女郎头饰 「魅夜绒耳」 -->
+  <MooGirl_BunnyGirlHeaddress.label>雪牛娘 兔女郎头饰 「魅夜绒耳」</MooGirl_BunnyGirlHeaddress.label>
+  <!-- EN: 「八重·朱 服装」出品标志性黑色短绒长耳头饰，光洁材质折射出性感俏皮。两只长耳伴随歌舞肆意摇曳，是灯红酒绿之时的风情乍泄。 -->
+  <MooGirl_BunnyGirlHeaddress.description>「八重·朱 服装」出品黑色短绒长耳头饰，光滑材质呈现俏皮感，长耳随动作自然摇曳，适合派对或表演活动佩戴。</MooGirl_BunnyGirlHeaddress.description>
+  
+  <!-- EN: 雪牛娘 战术目镜 -->
+  <MooGirl_RA_MechanicRecon.label>雪牛娘 战术目镜</MooGirl_RA_MechanicRecon.label>
+  <!-- EN: 信息时代的战术护目镜，金属制造可以提供额外防御力 -->
+  <MooGirl_RA_MechanicRecon.description>信息时代的战术护目镜，金属制造可以提供额外防御力.</MooGirl_RA_MechanicRecon.description>
+  
+  <!-- EN: 雪牛娘 墨镜 「霓虹幻镜」 -->
+  <MooGirl_Sunglasses.label>雪牛娘 墨镜 「霓虹幻镜」</MooGirl_Sunglasses.label>
+  <!-- EN: 「八重·朱 服装」出品复古圆框夹鼻墨镜，小巧玲珑遮不住眉目传情。抵御强光时保持时尚气场，是大隐于市的必备潮流单品。 -->
+  <MooGirl_Sunglasses.description>「八重·朱 服装」出品复古圆框夹鼻墨镜，小巧精致，遮挡阳光同时保持时尚感，是日常出行和都市活动的实用潮流单品。</MooGirl_Sunglasses.description>
+  
+</LanguageData>

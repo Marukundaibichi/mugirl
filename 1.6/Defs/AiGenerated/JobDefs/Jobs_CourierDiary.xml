@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <JobDef>
+    <defName>MooGirl_ReadCourierDiary</defName>
+    <driverClass>MooGirl.JobDriver_ReadCourierDiary</driverClass>
+    <reportString>阅读 TargetA。</reportString>
+  </JobDef>
+
+  <JobDef>
+    <defName>MooGirl_TalkCourier</defName>
+    <driverClass>MooGirl.JobDriver_TalkCourier</driverClass>
+    <reportString>与 TargetA 交涉。</reportString>
+  </JobDef>
+
+</Defs>

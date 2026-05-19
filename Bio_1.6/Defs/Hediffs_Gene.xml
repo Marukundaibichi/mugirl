@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Defs>
+ <HediffDef>
+        <defName>MooGirl_Stun</defName>
+		<label>牛牛撞击</label>
+		<description>被雪牛娘创力~口区。</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>30000</disappearsAfterTicks>
+				<showRemainingTime>true</showRemainingTime>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<setMax>0.1</setMax>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef>
+		<defName>MooGirl_Charge</defName>
+		<label>牛牛冲锋</label>
+		<description>冲冲冲！勇敢勇敢我的牛牛！</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<isBad>false</isBad>
+		<stages>
+			<li>
+				<statOffsets>
+					<MoveSpeed>20</MoveSpeed>
+				</statOffsets>
+			</li>
+		</stages>
+		<comps>
+			<li Class="MooGirl.HediffCompProperties_CheckJobOrRemove">
+				<disappearsAfterTicks>1200</disappearsAfterTicks>
+				<requiredJob>Job_Charge</requiredJob>
+			</li>
+		</comps>
+	</HediffDef>
+
+</Defs>

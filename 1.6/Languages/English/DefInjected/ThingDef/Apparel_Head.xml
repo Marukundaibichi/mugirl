@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: 雪牛娘 侦察头盔 「蝶影谜踪」 -->
+  <MooGirl_ArmorHelmetRecon.label>Mugirl Recon Helmet "Énigme de l'Ombre du Papillon"</MooGirl_ArmorHelmetRecon.label>
+  <!-- EN: 「八重·朱 服装」出品轻量化流线型头盔，暗粉织物勾勒舒适内衬。战术功能与美学的完美融合，黑暗中闪过的蝴蝶结绽放出致命引力。 -->
+  <MooGirl_ArmorHelmetRecon.description>"Vache Rousse" presents a lightweight streamlined helmet, with a dusky pink fabric lining for comfort.\nThis piece represents a perfect fusion of tactical functionality and aesthetic appeal.\nA bow, glimpsed in the darkness, blooms with a lethal allure.</MooGirl_ArmorHelmetRecon.description>
+  
+  <!-- EN: 雪牛娘 兔女郎头饰 「魅夜绒耳」 -->
+  <MooGirl_BunnyGirlHeaddress.label>Mugirl Bunny Girl Headdress "Velours Nocturne Envoûtant"</MooGirl_BunnyGirlHeaddress.label>
+  <!-- EN: 「八重·朱 服装」出品标志性黑色短绒长耳头饰，光洁材质折射出性感俏皮。两只长耳伴随歌舞肆意摇曳，是灯红酒绿之时的风情乍泄。 -->
+  <MooGirl_BunnyGirlHeaddress.description>"Vache Rousse" presents its signature black short-pile long ear headdress.\nThe lustrous material reflects a playful yet sensual charm.\nThese long ears sway freely with song and dance, capturing a moment of coquettish allure amidst shimmering lights and flowing wine.</MooGirl_BunnyGirlHeaddress.description>
+  
+  <!-- EN: 雪牛娘 墨镜 「霓虹幻镜」 -->
+  <MooGirl_RA_MechanicRecon.label>Mugirl Tactical Goggles</MooGirl_RA_MechanicRecon.label>
+  <MooGirl_RA_MechanicRecon.description>Tactical goggles of the information age. Their metal construction provides a small amount of additional protection.</MooGirl_RA_MechanicRecon.description>
+
+  <!-- EN: 雪牛娘 墨镜 「霓虹幻镜」 -->
+  <MooGirl_Sunglasses.label>Mugirl Sunglasses "Reflet Néon Illusoire"</MooGirl_Sunglasses.label>
+  <!-- EN: 「八重·朱 服装」出品复古圆框夹鼻墨镜，小巧玲珑遮不住眉目传情。抵御强光时保持时尚气场，是大隐于市的必备潮流单品。 -->
+  <MooGirl_Sunglasses.description>"Vache Rousse" presents retro round-frame pinch-on sunglasses, petite yet unable to conceal expressive glances.\nThey maintain a fashionable poise while shielding against glare, an essential urban accessory for the discerning individual.</MooGirl_Sunglasses.description>
+  
+</LanguageData>

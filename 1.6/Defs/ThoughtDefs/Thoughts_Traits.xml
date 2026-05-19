@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThoughtDef>
+    <defName>MooGirl_SingleshotWeaponAversionUnhappy</defName>
+    <workerClass>MooGirl.ThoughtWorker_SingleshotWeaponAversion</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <requiredTraits>
+      <li>MooGirl_SingleshotWeaponAversion</li>
+    </requiredTraits>
+    <stages>
+      <li>
+        <label>单发武器厌恶</label>
+        <description>快把这东西拿走！拿走！拿走！</description>
+        <baseMoodEffect>-10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>MooGirl_AteHay</defName>
+    <thoughtClass>MooGirl.Thought_MooGirlOnly</thoughtClass>
+    <showBubble>true</showBubble>
+    <icon>Things/Mote/ThoughtSymbol/Food</icon>
+    <durationDays>1</durationDays>
+    <stages>
+      <li>
+        <label>雪牛娘吃了干草</label>
+        <description>干巴巴的...就不能给口水喝吗？</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>MooGirl_AteNutrient</defName>
+    <thoughtClass>MooGirl.Thought_MooGirlOnly</thoughtClass>
+    <durationDays>1</durationDays>
+    <nullifyingTraits>
+      <li>Ascetic</li>
+    </nullifyingTraits>
+    <stages>
+      <li>
+        <label>雪牛娘吃了营养膏</label>
+        <description>口区~黏糊糊的...好恶心~</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>MooGirl_BrainwashHappy</defName>
+    <durationDays>1</durationDays>
+    <stages>
+      <li>
+        <label>洗脑愉悦</label>
+        <description>嘿嘿嘿~虽然不知道为什么，总觉得很开心~</description>
+        <baseMoodEffect>8</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>MooGirl_BrainWashing_End</defName>
+    <durationDays>3</durationDays>
+    <stackLimit>5</stackLimit>
+    <stages>
+      <li>
+        <label>洗脑抵抗</label>
+        <description>呜呜呜呜...对不起...{0}不是故意伤害大家的....都是这个坏头盔...</description>
+        <baseMoodEffect>-10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>MooGirl_Nuzzled</defName>
+    <durationDays>1</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stagesStack>true</stagesStack>
+    <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    <nullifyingTraits>
+      <li>Psychopath</li>
+    </nullifyingTraits>
+    <nullifyingHediffs>
+      <li MayRequire="Ludeon.RimWorld.Anomaly">Inhumanized</li>
+    </nullifyingHediffs>
+    <stages>
+      <li>
+        <label>被依偎</label>
+        <description>雪牛娘用她柔软的毛发轻轻依偎在你身边，温暖而可爱，她轻声告诉你，一切都会好起来的，你觉得眼前的困难似乎没那么难了。</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+      <li>
+        <label>被亲昵</label>
+        <description>雪牛娘轻轻蹭了蹭你，用自己的经历安慰你，仿佛告诉你：即使遇到困境，也总会有人陪伴。你感到心里暖洋洋的，压力减轻了许多。</description>
+        <baseMoodEffect>7</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>MooGirl_Roper</defName>
+    <workerClass>MooGirl.ThoughtWorker_Roper</workerClass>
+    <stages>
+      <li>
+        <label>牵引了一只雪牛娘</label>
+        <description>哈哈、这只可爱的雪牛娘被我牵着到处乱跑，虽然有点恶趣味，但也确实很有趣~</description>
+        <baseMoodEffect>6</baseMoodEffect>
+      </li>
+      <li>
+        <label>牵引了好多只雪牛娘</label>
+        <description>哇！我牵引了好多只可爱的雪牛娘，虽然有点恶趣味，但我感觉我好像一个国王！嘿嘿~</description>
+        <baseMoodEffect>10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>MooGirl_Roped</defName>
+    <workerClass>MooGirl.ThoughtWorker_Roped</workerClass>
+    <stages>
+      <li>
+        <label>正在被牵引</label>
+        <description>呜呜呜~我是雪牛娘！不是雪牛！！不要牵着我到处走呀~(╥﹏╥)</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

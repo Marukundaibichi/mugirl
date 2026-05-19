@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <TraitDef>
+    <defName>MooGirl_SingleshotWeaponAversion</defName>
+    <degreeDatas>
+      <li>
+        <label>单发武器厌恶</label>
+        <description>为什么我要用这种一发、一发、一发的没用的臭东西！</description>
+        <statOffsets>
+          <MeleeHitChance>2</MeleeHitChance>
+        </statOffsets>
+        <skillGains>
+          <Melee>2</Melee>
+        </skillGains>
+        <possessions>
+          <MeleeWeapon_Knife />
+        </possessions>
+      </li>
+    </degreeDatas>
+    <conflictingTraits>
+      <li>Wimp</li>
+    </conflictingTraits>
+    <requiredWorkTags>
+      <li>Violent</li>
+    </requiredWorkTags>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>MooGirl_BrainWashPeace</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>洗脑平静</label>
+        <description>{PAWN_nameDef} 被设备洗脑了，即使再难过的事情也无法令{PAWN_nameDef} 崩溃。</description>
+        <statFactors>
+          <CertaintyLossFactor MayRequire="Ludeon.RimWorld.Ideology">2</CertaintyLossFactor>
+        </statFactors>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>MooGirl_BrainWashObey</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>洗脑服从</label>
+        <description>{PAWN_nameDef} 被设备洗脑了，即使被奴役的生活充满苦难，{PAWN_nameDef} 也会逆来顺受。</description>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+</Defs>

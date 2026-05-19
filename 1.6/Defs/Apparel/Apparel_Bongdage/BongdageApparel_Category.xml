@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingCategoryDef>
+		<defName>MooGirl_Slave</defName>
+		<label>雪牛娘奴隶服装</label>
+		<parent>MooGirl_Apparel</parent>
+	</ThingCategoryDef>
+
+</Defs>

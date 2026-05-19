@@ -1,0 +1,776 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<AlienRace.RaceSettings>
+		<defName>MooGirl_Settings</defName>
+		<pawnKindSettings>
+			<startingColonists>
+				<li>
+					<pawnKindEntries>
+						<li>
+							<kindDefs>
+								<li>MooGirl_Colony</li>
+							</kindDefs>
+							<chance>100</chance>
+						</li>
+					</pawnKindEntries>
+					<factionDefs>
+						<li>MooGirl_Colony</li>
+					</factionDefs>
+				</li>
+			</startingColonists>
+		</pawnKindSettings>
+	</AlienRace.RaceSettings>
+
+	<AlienRace.ThingDef_AlienRace ParentName="BasePawn" Name="MooGirlPawn">
+		<defName>MooGirl</defName>
+		<label>雪牛娘</label>
+		<description>巨型企业基因改造的半人半牛娘种族，拥有柔软的毛发、淡蓝色皮毛和可爱的牛角。她们兼具力量与温顺天性，聪慧而亲人，却被迫忍受奴役生活。即便如此，她们仍会以温柔的举止安慰身边的人，展现出难得的善良本性。</description>
+		<alienRace>
+			<generalSettings>
+				<newbornBackstoryFilter>
+					<li>
+						<categories>
+							<li>MooGirl_Newborn</li>
+						</categories>
+						<commonality>1</commonality>
+					</li>
+				</newbornBackstoryFilter>
+
+				<childBackstoryFilter>
+					<li>
+						<categories>
+							<li>MooGirl_Colony</li>
+							<li>MooGirl_Slave</li>
+						</categories>
+						<commonality>1</commonality>
+					</li>
+				</childBackstoryFilter>
+
+				<adultBackstoryFilter>
+					<li>
+						<categories>
+							<li>MooGirl_Colony</li>
+							<li>MooGirl_Slave</li>
+						</categories>
+						<commonality>1</commonality>
+					</li>
+				</adultBackstoryFilter>
+
+				<humanRecipeImport>true</humanRecipeImport>
+				<maleGenderProbability>0</maleGenderProbability>
+				<immuneToAge>true</immuneToAge>
+				<forcedRaceTraitEntries>
+					<li>
+						<defName>Kind</defName>
+						<chance>100</chance>
+					</li>
+					<li>
+						<defName>Masochist</defName>
+						<chance>100</chance>
+					</li>
+					<li>
+						<defName>MooGirl_SingleshotWeaponAversion</defName>
+						<chance>100</chance>
+					</li>
+					<li>
+						<options>
+							<li>
+								<defName Degree="1">Beauty</defName>
+							</li>
+							<li>
+								<defName Degree="2">Beauty</defName>
+							</li>
+						</options>
+						<count>1</count>
+						<chance>50</chance>
+					</li>
+				</forcedRaceTraitEntries>
+				<disallowedTraits>
+					<li>
+						<defName degree="-1">Beauty</defName>
+						<chance>100</chance>
+					</li>
+					<li>
+						<defName degree="-2">Beauty</defName>
+						<chance>100</chance>
+					</li>
+					<li>
+						<defName>CreepyBreathing</defName>
+						<chance>100</chance>
+					</li>
+				</disallowedTraits>
+				<alienPartGenerator>
+					<headTypes>
+						<li>MooGirl_Female_A</li>
+						<li>MooGirl_Female_B</li>
+						<li>MooGirl_Female_C</li>
+						<li>MooGirl_Female_D</li>
+						<li>MooGirl_Female_E</li>
+						<li>MooGirl_Female_F</li>
+					</headTypes>
+					<bodyTypes>
+						<li MayRequire="Ludeon.RimWorld.Biotech">Baby</li>
+						<li MayRequire="Ludeon.RimWorld.Biotech">Child</li>
+						<li>Female</li>
+					</bodyTypes>
+					<atlasScale>4</atlasScale>
+					<headOffset>(0.0, 0.0)</headOffset>
+					<customDrawSize>(1.5, 1.5)</customDrawSize>
+					<customHeadDrawSize>(1.09, 1.09)</customHeadDrawSize>
+					<customPortraitDrawSize>(1.5, 1.5)</customPortraitDrawSize>
+					<customPortraitHeadDrawSize>(1.09, 1.09)</customPortraitHeadDrawSize>
+					<headOffsetDirectional>
+						<south>
+							<offset>(0,0.09)</offset>
+							<bodyTypes>
+								<Female>(0.0, 0.0)</Female>
+								<Child MayRequire="Ludeon.RimWorld.Biotech">(0.0, -0.09)</Child>
+								<Baby MayRequire="Ludeon.RimWorld.Biotech">(0.0, -0.09)</Baby>
+							</bodyTypes>
+						</south>
+						<north>
+							<offset>(0,0.09)</offset>
+							<bodyTypes>
+								<Female>(0.0, 0.0)</Female>
+								<Child MayRequire="Ludeon.RimWorld.Biotech">(0.0, -0.09)</Child>
+								<Baby MayRequire="Ludeon.RimWorld.Biotech">(0.0, -0.09)</Baby>
+							</bodyTypes>
+						</north>
+						<east>
+							<offset>(-0.03,0.09)</offset>
+							<bodyTypes>
+								<Female>(0.0, 0.0)</Female>
+								<Child MayRequire="Ludeon.RimWorld.Biotech">(0.0, -0.09)</Child>
+								<Baby MayRequire="Ludeon.RimWorld.Biotech">(0.0, -0.09)</Baby>
+							</bodyTypes>
+						</east>
+						<west>
+							<offset>(0.03,0.09)</offset>
+							<bodyTypes>
+								<Female>(0.0, 0.0)</Female>
+								<Child MayRequire="Ludeon.RimWorld.Biotech">(0.0, -0.09)</Child>
+								<Baby MayRequire="Ludeon.RimWorld.Biotech">(0.0, -0.09)</Baby>
+							</bodyTypes>
+						</west>
+					</headOffsetDirectional>
+					<colorChannels>
+						<li>
+							<name>skin</name>
+							<first Class="ColorGenerator_Options">
+								<options>
+									<li>
+										<weight>1</weight>
+										<only>(255,241,231)</only>
+									</li>
+								</options>
+							</first>
+						</li>
+						<li>
+							<name>hair</name>
+							<first Class="ColorGenerator_Options">
+								<options>
+									<li>
+										<weight>1</weight>
+										<only>RGBA(1.0,1.0,1.0,1)</only>
+									</li>
+								</options>
+							</first>
+						</li>
+					</colorChannels>
+					<bodyAddons>
+						<!-- Tail-->
+						<li>
+							<path>MooGirl/Tail/Tail</path>
+							<conditions>
+								<RotStage>Fresh,Rotting</RotStage>
+								<BodyPart>
+									<bodyPart>MooGirl_Tail</bodyPart>
+									<bodyPartLabel>MooGirl Tail</bodyPartLabel>
+									<drawWithoutPart>false</drawWithoutPart>
+								</BodyPart>
+							</conditions>
+							<inFrontOfBody>false</inFrontOfBody>
+							<colorChannel>hair</colorChannel>
+							<drawSize>1</drawSize>
+							<defaultOffset>Center</defaultOffset>
+							<scaleWithPawnDrawsize>true</scaleWithPawnDrawsize>
+							<shaderType>CutoutComplex</shaderType>
+							<offsets>
+								<south>
+									<layerOffset>-0.2</layerOffset>
+								</south>
+								<north>
+									<layerOffset>-0.2</layerOffset>
+								</north>
+								<east>
+									<layerOffset>-0.2</layerOffset>
+								</east>
+							</offsets>
+						</li>
+						<!-- left Horn -->
+						<li>
+							<path>MooGirl/Horn/Left/LeftHorn</path>
+							<drawSize>1</drawSize>
+							<defaultOffset>Center</defaultOffset>
+							<alignWithHead>true</alignWithHead>
+							<scaleWithPawnDrawsize>false</scaleWithPawnDrawsize>
+							<colorChannel>hair</colorChannel>
+							<conditions>
+								<RotStage>Fresh,Rotting</RotStage>
+								<BodyPart>
+									<bodyPart>MooGirl_Horn</bodyPart>
+									<bodyPartLabel>left horn</bodyPartLabel>
+									<drawWithoutPart>true</drawWithoutPart>
+								</BodyPart>
+							</conditions>
+							<offsets>
+								<south>
+									<offset>(0.0,0.01)</offset>
+									<layerOffset>-0.5</layerOffset>
+								</south>
+								<north>
+									<offset>(0.0,0.01)</offset>
+									<layerOffset>0.2</layerOffset>
+								</north>
+								<east>
+									<layerOffset>-0.5</layerOffset>
+								</east>
+								<west>
+									<layerOffset>-0.5</layerOffset>
+								</west>
+							</offsets>
+						</li>
+						<!-- right Horn -->
+						<li>
+							<path>MooGirl/Horn/Right/RightHorn</path>
+							<drawSize>1</drawSize>
+							<defaultOffset>Center</defaultOffset>
+							<alignWithHead>true</alignWithHead>
+							<scaleWithPawnDrawsize>false</scaleWithPawnDrawsize>
+							<colorChannel>hair</colorChannel>
+							<conditions>
+								<RotStage>Fresh,Rotting</RotStage>
+								<BodyPart>
+									<bodyPart>MooGirl_Horn</bodyPart>
+									<bodyPartLabel>right horn</bodyPartLabel>
+									<drawWithoutPart>true</drawWithoutPart>
+								</BodyPart>
+							</conditions>
+							<offsets>
+								<south>
+									<offset>(0.0,0.01)</offset>
+									<layerOffset>-0.5</layerOffset>
+								</south>
+								<north>
+									<offset>(0.0,0.01)</offset>
+									<layerOffset>0.2</layerOffset>
+								</north>
+								<east>
+									<layerOffset>-0.5</layerOffset>
+								</east>
+								<west>
+									<layerOffset>-0.5</layerOffset>
+								</west>
+							</offsets>
+						</li>
+					</bodyAddons>
+				</alienPartGenerator>
+				<reproduction>
+					<femaleFertilityAgeFactor><!--女性生育年龄因素-->
+						<points><!-- 年龄,概率 -->
+							<li>(10, 0)</li>
+							<li>(16, 1)</li>
+							<li>(28, 1)</li>
+							<li>(35, 0.5)</li>
+							<li>(40, 0.1)</li>
+							<li>(45, 0.02)</li>
+							<li>(50, 0)</li>
+						</points>
+					</femaleFertilityAgeFactor>
+				</reproduction>
+			</generalSettings>
+			<graphicPaths>
+				<head>MooGirl/Heads/</head>
+				<body>MooGirl/Bodies/</body>
+			</graphicPaths>
+			<styleSettings>
+				<li>
+					<key>HairDef</key>
+					<value>
+						<hasStyle>true</hasStyle>
+						<styleTagsOverride>
+							<li>MooGirl_Hai</li>
+						</styleTagsOverride>
+					</value>
+				</li>
+				<li>
+					<key>BeardDef</key>
+					<value>
+						<hasStyle>false</hasStyle>
+					</value>
+				</li>
+				<li>
+					<key>TattooDef</key>
+					<value>
+						<hasStyle>false</hasStyle>
+					</value>
+				</li>
+			</styleSettings>
+			<relationSettings>
+				<relationChanceModifierChild>0</relationChanceModifierChild>
+				<relationChanceModifierExLover>0</relationChanceModifierExLover>
+				<relationChanceModifierExSpouse>0</relationChanceModifierExSpouse>
+				<relationChanceModifierFiance>0</relationChanceModifierFiance>
+				<relationChanceModifierLover>0</relationChanceModifierLover>
+				<relationChanceModifierParent>0</relationChanceModifierParent>
+				<relationChanceModifierSibling>0</relationChanceModifierSibling>
+				<relationChanceModifierSpouse>0</relationChanceModifierSpouse>
+			</relationSettings>
+			<thoughtSettings>
+				<cannotReceiveThoughts>
+					<li>Naked</li>
+					<li>AteRawFood</li>
+					<li>SharedBed</li>
+					<li>AteWithoutTable</li>
+					<li>SleptOutside</li>
+					<li>AteWithoutTable</li>
+				</cannotReceiveThoughts>
+			</thoughtSettings>
+			<raceRestriction>
+
+				<!-- 共享服装 -->
+				<whiteApparelList>
+					<!-- 共享束具 -->
+					<li>MooGirl_MagneticShackles</li>
+					<li>MooGirl_ShockCollar</li>
+					<li>MooGirl_BrainwashHelmet</li>
+
+					<!-- 原版道具 -->
+					<li>Apparel_ShieldBelt</li>
+					<li>Apparel_SmokepopBelt</li>
+					<li>Apparel_PsychicShockLance</li>
+					<li>Apparel_PsychicInsanityLance</li>
+					<li>Apparel_FirefoampopPack</li>
+					<li>TornadoGenerator</li>
+					<li>OrbitalTargeterPowerBeam</li>
+					<li>OrbitalTargeterBombardment</li>
+					<li MayRequire="Ludeon.RimWorld.Royalty">Apparel_PackBroadshield</li>
+					<li MayRequire="Ludeon.RimWorld.Royalty">Apparel_PackJump</li>
+					<li MayRequire="Ludeon.RimWorld.Royalty">OrbitalTargeterMechCluster</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">Apparel_HeavyShield</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">Apparel_PackBandwidth</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">Apparel_PackControl</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">Apparel_PackTox</li>
+					<li MayRequire="Ludeon.RimWorld.Anomaly">Apparel_BiomutationLance</li>
+					<li MayRequire="Ludeon.RimWorld.Anomaly">Apparel_ShardPsychicShockLance</li>
+					<li MayRequire="Ludeon.RimWorld.Anomaly">Apparel_ShardPsychicInsanityLance</li>
+					<li MayRequire="Ludeon.RimWorld.Anomaly">Apparel_DeadlifePack</li>
+					<li MayRequire="Ludeon.RimWorld.Anomaly">Apparel_DisruptorFlarePack</li>
+					<li MayRequire="Ludeon.RimWorld.Anomaly">Apparel_PackTurret</li>
+					<li MayRequire="Ludeon.RimWorld.Odyssey">Apparel_CerebrexNode</li>
+					<li MayRequire="Ludeon.RimWorld.Odyssey">Grenade_HunterPack</li>
+				</whiteApparelList>
+
+				<!-- 种族限定服装 -->
+				<apparelList>
+					<!-- 束具 -->
+					<li>MooGirl_Slavegauntlet</li>
+					<li>MooGirl_Slavestockings</li>
+					<li>MooGirl_Boxbinder</li>
+					<li>MooGirl_Slaveboots</li>
+					<li>MooGirl_Handcuffs</li>
+					<li>MooGirl_Armbinder</li>
+					<li>MooGirl_Slaveshackles</li>
+					<li>MooGirl_Blindfold</li>
+					<li>MooGirl_Gagstick</li>
+					<li>MooGirl_Earplugs</li>
+					<li>MooGirl_Straitjacket</li>
+					<li>MooGirl_MilkingDevice</li>
+					<li>MooGirl_MilkingDeviceHidden</li>
+					<!-- 常服 -->
+					<li>MooGirl_Cheongsam</li>
+					<li>MooGirl_Uniform</li>
+					<li>MooGirl_Shirt</li>
+					<li>MooGirl_Hipwrappingskirt</li>
+					<li>MooGirl_BunnyGirlTop</li>
+					<li>MooGirl_ReconArmor</li>
+					<li>MooGirl_Suspenders</li>
+					<li>MooGirl_BunnyGirlStocking</li>
+					<li>MooGirl_Bikini</li>
+					<li>MooGirl_Bikini_Stocking</li>
+					<li>MooGirl_Bar</li>
+					<li>MooGirl_Eroticpanties</li>
+					<li>MooGirl_ImmortalFairy</li>
+					<li>MooGirl_Gambeson</li>
+					<li>MooGirl_PlateArmor</li>
+					<li>MooGirl_KnightlyOrnament</li>
+					<li>MooGirl_RA_Unionary</li>
+					<li>MooGirl_RA_PowerArmor</li>
+					<li>MooGirl_RA_Carrying_Equipment</li>
+					<li>MooGirl_RA_MechanicBackpack</li>
+					<li>MooGirl_RA_MechanicBackpack_B</li>
+					<li>MooGirl_RA_MechanicBackpack_C</li>
+					<li>MooGirl_RA_MechanicBackpack_D</li>
+					<li>MooGirl_WeddingDress</li>
+					<li>MooGirl_OL</li>
+					<li>MooGirl_Coat</li>
+					<li>MooGirl_Bodystocking</li>
+					<li>MooGirl_WhitePanties</li>
+					<li>MooGirl_ReverseBunnySuit</li>
+					<li>MooGirl_ReverseBunnySticker</li>
+					<li>MooGirl_PowerArmor</li>
+					<li MayRequire="Ludeon.RimWorld.Odyssey">MooGirl_Spacesuit</li>
+					<li>MooGirl_WarriorCombatArmor</li>
+					<li>MooGirl_Combatant_BulletproofVest</li>
+					<li>MooGirl_Combatant_Clothes</li>
+					<li>MooGirl_Combatant_Underwear</li>
+					<li>MooGirl_SpeciallyStockings</li>
+					<li>MooGirl_MilitaryDress</li>
+					<li>MooGirl_MilitaryUniform</li>
+
+					<li>MooGirl_Mask</li>
+					<li>MooGirl_Veil</li>
+					<!-- 头部 -->
+					<li>MooGirl_BunnyGirlHeaddress</li>
+
+					<li>MooGirl_Sunglasses</li>
+					<li>MooGirl_ArmorHelmetRecon</li>
+					<li>MooGirl_PowerArmorHelmet</li>
+					<li>MooGirl_KnightHelmet</li>
+					<li>MooGirl_WarriorCombatHelmet</li>
+					<li>MooGirl_Combatant_Helmet</li>
+					<li MayRequire="Ludeon.RimWorld.Odyssey">MooGirl_SpacesuitHeadgear</li>
+					<li>MooGirl_RA_MechanicRecon</li>
+					<!-- 儿童 -->
+					<li>MooGirl_ChildCheongsam</li>
+				</apparelList>
+
+				<!-- 种族限定武器 -->
+				<weaponList>
+					<!-- 雪牛娘自制武器 -->
+					<li>MuGirl_Gun_Support_Assault_Rifle</li>
+					<li>MuGirl_Gun_Machine_Pistol</li>
+					<li>MuGirl_Gun_Defense_Rifle</li>
+					<li>MuGirl_Gun_Flame_Thrower</li>
+
+					<!-- 雪牛娘战斗员专用武器池 -->
+					<li>PMC_Carbine</li>
+					<li>PMC_Assault_Rifle</li>
+					<li>PMC_DMR</li>
+				</weaponList>
+
+				<onlyUseRaceRestrictedApparel>true</onlyUseRaceRestrictedApparel>
+
+				<xenotypeList MayRequire="Ludeon.RimWorld.Biotech">
+					<li MayRequire="Ludeon.RimWorld.Biotech">MooGirl_Xenotype</li>
+				</xenotypeList>
+
+				<blackEndoCategories MayRequire="Ludeon.RimWorld.Biotech">
+					<li MayRequire="Ludeon.RimWorld.Biotech">Melanin</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">HairColor</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">BodyType</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">Ears</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">Nose</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">Voice</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">Headbone</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">Head</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">Jaw</li>
+				</blackEndoCategories>
+
+				<blackGeneList MayRequire="Ludeon.RimWorld.Biotech">
+					<li MayRequire="Ludeon.RimWorld.Biotech">Furskin</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">Brow_Heavy</li>
+				</blackGeneList>
+
+				<blackGeneTags MayRequire="Ludeon.RimWorld.Biotech">
+					<li MayRequire="Ludeon.RimWorld.Biotech">EyeColor</li>
+				</blackGeneTags>
+
+				<blackXenotypeList>
+					<li MayRequire="Ludeon.RimWorld.Biotech">Baseliner</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">Dirtmole</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">Genie</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">Hussar</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">Sanguophage</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">Neanderthal</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">Pigskin</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">Impid</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">Waster</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">Yttakin</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">Highmate</li>
+				</blackXenotypeList>
+
+				<onlyUseRaceRestrictedXenotypes>true</onlyUseRaceRestrictedXenotypes>
+
+				<foodList>
+				</foodList>
+			</raceRestriction>
+		</alienRace>
+		<statBases>
+			<MarketValue>4500</MarketValue> <!-- 市场价值 -->
+			<RoyalFavorValue>3</RoyalFavorValue> <!-- 献给帝国后获得的恩典值 -->
+			<MoveSpeed>4.5</MoveSpeed> <!-- 移动速度（每秒格数） -->
+			<Mass>60</Mass> <!-- 重量 -->
+			<ComfyTemperatureMin>-55</ComfyTemperatureMin> <!-- 舒适温度下限 -->
+			<ComfyTemperatureMax>45</ComfyTemperatureMax> <!-- 舒适温度上限 -->
+			<IncomingDamageFactor>0.65</IncomingDamageFactor> <!-- 所受所有伤害的乘数 -->
+			<RestRateMultiplier>1</RestRateMultiplier> <!-- 休息效率倍率 -->
+			<EatingSpeed>0.85</EatingSpeed> <!-- 进食的速度 -->
+			<MaxNutrition>1.85</MaxNutrition> <!-- 吃饱需要营养值 -->
+			<CarryingCapacity>250</CarryingCapacity> <!-- 最大搬运容量 -->
+			<MeatAmount>85</MeatAmount> <!-- 被屠宰时的肉量 -->
+			<LeatherAmount>105</LeatherAmount> <!-- 被屠宰时的皮革量 -->
+			<PainShockThreshold>0.9</PainShockThreshold> <!-- 疼痛昏迷的阈值-->
+			<PsychicSensitivity>1</PsychicSensitivity> <!-- 心灵敏感度 -->
+			<MentalBreakThreshold>0.2</MentalBreakThreshold> <!-- 精神崩溃阈值-->
+			<ToxicResistance>1</ToxicResistance> <!-- 毒素抗性 -->
+			<ToxicEnvironmentResistance MayRequire="Ludeon.RimWorld.Biotech">1</ToxicEnvironmentResistance> <!--环境毒性抗性 -->
+			<Flammability>0.6</Flammability> <!-- 易燃性 -->
+			<MeleeDodgeChance>0.9</MeleeDodgeChance> <!-- 近战闪避几率 -->
+			<MeleeHitChance>1</MeleeHitChance> <!-- 近战命中几率 -->
+			<AimingDelayFactor>0.8</AimingDelayFactor> <!-- 开火前瞄准的延迟系数 -->
+			<ShootingAccuracyPawn>0.8</ShootingAccuracyPawn> <!-- 射击精度 -->
+			<NegotiationAbility>1.1</NegotiationAbility> <!-- 谈判能力 -->
+			<SellPriceFactor>1</SellPriceFactor> <!-- 出售物品时的价格倍率 -->
+			<SocialImpact>1.2</SocialImpact>	 <!-- 社交影响力 -->
+			<TradePriceImprovement>0.6</TradePriceImprovement> <!-- 交易价格改善值 -->
+			<ButcheryMechanoidEfficiency>0.9</ButcheryMechanoidEfficiency> <!-- 解体机械体效率 -->
+			<ButcheryMechanoidSpeed>0.9</ButcheryMechanoidSpeed> <!-- 机械体拆解速度 -->
+			<SmeltingSpeed>2</SmeltingSpeed> <!-- 熔炼速度 -->
+			<GeneralLaborSpeed>1.2</GeneralLaborSpeed> <!-- 一般劳动速度，比如清洁、搬运、收获等 -->
+			<ConstructionSpeed>1.2</ConstructionSpeed> <!-- 建造速度 -->
+			<ButcheryFleshEfficiency>1.2</ButcheryFleshEfficiency> <!-- 屠宰有机体的效率 -->
+			<ButcheryFleshSpeed>1.2</ButcheryFleshSpeed> <!-- 屠宰速度 -->
+			<FoodPoisonChance>0.1</FoodPoisonChance> <!-- 食物中毒概率-->
+			<CookSpeed>0.2</CookSpeed> <!-- 烹饪速度 -->
+			<PlantWorkSpeed>2</PlantWorkSpeed> <!-- 种植工作速度 -->
+			<PlantHarvestYield>2</PlantHarvestYield> <!-- 种植采集产量 -->
+			<MedicalTendQuality>0.7</MedicalTendQuality> <!-- 医疗包扎效果 -->
+			<DrugSynthesisSpeed>0.2</DrugSynthesisSpeed> <!-- 药物制作速度 -->
+			<MedicalSurgerySuccessChance>0.35</MedicalSurgerySuccessChance> <!-- 外科手术成功率 -->
+			<ImmunityGainSpeed>1.5</ImmunityGainSpeed> <!-- 免疫力增长速度 -->
+			<MiningSpeed>2.5</MiningSpeed> <!-- 挖矿速度 -->
+			<MiningYield>2</MiningYield> <!-- 挖矿产量 -->
+			<ArmorRating_Sharp>1</ArmorRating_Sharp> <!-- 锐器伤害护甲 -->
+			<ArmorRating_Blunt>1</ArmorRating_Blunt> <!-- 钝器伤害护甲 -->
+			<ArmorRating_Heat>1.4</ArmorRating_Heat> <!-- 热能伤害伤害护甲 -->
+			<InjuryHealingFactor>1.2</InjuryHealingFactor> <!-- 受伤自愈速度 -->
+			<MeleeDamageFactor>1.3</MeleeDamageFactor> <!-- 近战伤害乘数 -->
+			<MeleeHitChance>1</MeleeHitChance> <!-- 近战命中系数 -->
+			<Wildness>0.75</Wildness> <!-- Hidden except for wild people -->
+		</statBases>
+		<tools>
+			<li>
+				<label>horn</label>
+				<capacities>
+					<li>Stab</li>
+				</capacities>
+				<power>55</power>
+				<cooldownTime>6</cooldownTime>
+				<linkedBodyPartsGroup>UpperHead</linkedBodyPartsGroup>
+				<surpriseAttack>
+					<extraMeleeDamages>
+						<li>
+							<def>Cut</def>
+							<amount>35</amount>
+						</li>
+					</extraMeleeDamages>
+				</surpriseAttack>
+			</li>
+			<li>
+				<label>left fist</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>35</power>
+				<cooldownTime>4</cooldownTime>
+				<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+				<surpriseAttack>
+					<extraMeleeDamages>
+						<li>
+							<def>Stun</def>
+							<amount>25</amount>
+						</li>
+					</extraMeleeDamages>
+				</surpriseAttack>
+			</li>
+			<li>
+				<label>right fist</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>35</power>
+				<cooldownTime>4</cooldownTime>
+				<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+				<surpriseAttack>
+					<extraMeleeDamages>
+						<li>
+							<def>Stun</def>
+							<amount>25</amount>
+						</li>
+					</extraMeleeDamages>
+				</surpriseAttack>
+			</li>
+		</tools>
+		<race>
+			<thinkTreeMain>MooGirlLike</thinkTreeMain>
+			<thinkTreeConstant>HumanlikeConstant</thinkTreeConstant>
+			<intelligence>Humanlike</intelligence>
+			<renderTree>Humanlike</renderTree>
+			<makesFootprints>true</makesFootprints>
+			<lifeExpectancy>100</lifeExpectancy>
+			<leatherDef>Leather_Bluefur</leatherDef>
+			<nameGenerator>MooGirl_NameUtility</nameGenerator>
+			<body>MooGirlBody</body>
+			<baseBodySize>2.2</baseBodySize>
+			<baseHungerRate>1.1</baseHungerRate>
+			<baseHealthScale>1.75</baseHealthScale>
+			<bloodDef>Filth_Blood</bloodDef>
+			<foodType>OmnivoreHuman, VegetarianRoughAnimal</foodType>
+			<nuzzleMtbHours>3</nuzzleMtbHours>
+			<gestationPeriodDays>18</gestationPeriodDays>
+			<manhunterOnDamageChance>0.50</manhunterOnDamageChance>
+			<manhunterOnTameFailChance>0.10</manhunterOnTameFailChance>
+			<litterSizeCurve><!-- 初生婴儿年龄 -->
+				<points>
+					<li>(0.5, 0)</li>
+					<li>(1, 1)</li>
+					<li>(1.01, 0.02)</li>
+					<li>(3.5, 0)</li>
+				</points>
+			</litterSizeCurve>
+			<lifeStageAges> <!-- 年龄阶段，容易出BUG，别改 -->
+				<li>
+					<def>HumanlikeBaby</def>
+					<minAge>0</minAge>
+				</li>
+				<li>
+					<def>HumanlikeChild</def>
+					<minAge>0.1</minAge>
+				</li>
+				<li MayRequire="Ludeon.RimWorld.Biotech">
+					<def>MooGirl_PreTeenager</def>
+					<minAge>7</minAge>
+				</li>
+				<li>
+					<def>MooGirl_Teenager</def>
+					<minAge>12</minAge>
+				</li>
+				<li>
+					<def>MooGirl_AdultLifeStage</def>
+					<minAge>14</minAge>
+				</li>
+			</lifeStageAges>
+			<lifeStageWorkSettings MayRequire="Ludeon.RimWorld.Biotech">
+				<Firefighter>7</Firefighter>
+				<Patient>0</Patient>
+				<Doctor>10</Doctor>
+				<PatientBedRest>0</PatientBedRest>
+				<Childcare MayRequire="Ludeon.RimWorld.Biotech">0</Childcare>
+				<BasicWorker>3</BasicWorker>
+				<Warden>10</Warden>
+				<Handling>7</Handling>
+				<Cooking>7</Cooking>
+				<Hunting>7</Hunting>
+				<Construction>10</Construction>
+				<Growing>7</Growing>
+				<Mining>7</Mining>
+				<PlantCutting>7</PlantCutting>
+				<Smithing>13</Smithing>
+				<Tailoring>7</Tailoring>
+				<Art>10</Art>
+				<Crafting>7</Crafting>
+				<Hauling>3</Hauling>
+				<Cleaning>3</Cleaning>
+				<Research>13</Research>
+			</lifeStageWorkSettings>
+			<soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
+			<soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
+			<soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
+			<specialShadowData>
+				<volume>(0.3, 0.8, 0.4)</volume>
+				<offset>(0,0,-0.3)</offset>
+			</specialShadowData>
+			<ageGenerationCurve>
+				<points>
+					<li MayRequire="Ludeon.RimWorld.Biotech">(0,0)</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">(0.001,43)</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">(8,86)</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">(12.5,118)</li>  <!-- Exclude 12.5-13
+					years to avoid spawning pawns who are very close to becoming adults -->
+					<li MayRequire="Ludeon.RimWorld.Biotech">(12.51,0)</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">(13,0)</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">(13.001,122)</li><!-- End exclude -->
+					<li MayRequire="Ludeon.RimWorld.Biotech">(13.999,130)</li>
+					<li>(14,0)</li>
+					<li MayRequire="Ludeon.RimWorld.Biotech">(14.001,130)</li>
+					<li>(16,100)</li>
+					<li>(50,100)</li>
+					<li>(60,30)</li>
+					<li>(70,18)</li>
+					<li>(80,10)</li>
+					<li>(90,3)</li>
+					<li>(100,0)</li>
+				</points>
+			</ageGenerationCurve>
+			<hediffGiverSets>
+				<li>OrganicStandard</li>
+				<li>Human</li>
+			</hediffGiverSets>
+		</race>
+		<recipes>
+			<li>ExciseCarcinoma</li>
+			<li>AdministerMechSerumHealer</li>
+			<li>RemoveBodyPart</li>
+			<li>Euthanize</li>
+			<li>Anesthetize</li>
+			<li>CureScaria</li>
+			<li MayRequire="Ludeon.RimWorld.Biotech">Vasectomy</li>
+			<li MayRequire="Ludeon.RimWorld.Biotech">ReverseVasectomy</li>
+			<li MayRequire="Ludeon.RimWorld.Biotech">TubalLigation</li>
+			<li MayRequire="Ludeon.RimWorld.Biotech">ExtractOvum</li>
+			<li MayRequire="Ludeon.RimWorld.Royalty">CureBloodRot</li>
+			<li MayRequire="Ludeon.RimWorld.Royalty">CureAbasia</li>
+			<li MayRequire="Ludeon.RimWorld.Biotech">ExtractHemogenPack</li>
+			<li MayRequire="Ludeon.RimWorld.Biotech">BloodTransfusion</li>
+			<li MayRequire="Ludeon.RimWorld.Biotech">ImplantXenogerm</li>
+			<li MayRequire="Ludeon.RimWorld.Biotech">ImplantIUD</li>
+			<li MayRequire="Ludeon.RimWorld.Biotech">RemoveIUD</li>
+			<li MayRequire="Ludeon.RimWorld.Biotech">TerminatePregnancy</li>
+			<li MayRequire="Ludeon.RimWorld.Anomaly">SurgicalInspection</li>
+			<li MayRequire="Ludeon.RimWorld.Anomaly">BlissLobotomy</li>
+			<li MayRequire="Ludeon.RimWorld.Anomaly">GhoulInfusion</li>
+			<li MayRequire="Ludeon.RimWorld.Odyssey">RemovePorcupineQuill</li>
+		</recipes>
+		<comps>
+			<!-- <li Class="MooGirl.CompProperties_ShowRopedBy" /> -->
+			<li Class="MooGirl.CompProperties_MooGirlMount" />
+			<li Class="MooGirl.CompProperties_MooMilkable">
+				<displayString>雪牛奶</displayString>
+				<milkDef>MooGirl_Milk</milkDef>
+				<milkIntervalDays>1</milkIntervalDays>
+				<milkAmount>11</milkAmount>
+			</li>
+			<li Class="CompProperties_Spawner">
+				<requiresPower>false</requiresPower>
+				<thingToSpawn>MooGirl_Wool</thingToSpawn>
+				<spawnCount>30</spawnCount>
+				<spawnIntervalRange>
+					<min>450000</min>
+					<max>450000</max>
+				</spawnIntervalRange>
+				<writeTimeLeftToSpawn>true</writeTimeLeftToSpawn>
+				<showMessageIfOwned>false</showMessageIfOwned>
+			</li>
+			<li MayRequire="Ludeon.RimWorld.Anomaly" Class="CompProperties_HoldingPlatformTarget">
+				<baseEscapeIntervalMtbDays>120</baseEscapeIntervalMtbDays>
+				<getsColdContainmentBonus>true</getsColdContainmentBonus>
+			</li>
+			<li MayRequire="Ludeon.RimWorld.Anomaly" Class="CompProperties_Studiable">
+				<frequencyTicks>120000</frequencyTicks>
+				<minMonolithLevelForStudy>1</minMonolithLevelForStudy>
+				<requiresImprisonment>true</requiresImprisonment>
+			</li>
+		</comps>
+	</AlienRace.ThingDef_AlienRace>
+</Defs>

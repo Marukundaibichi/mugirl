@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: 洗脑服从 -->
+  <MooGirl_BrainWashObey.degreeDatas.0.label>Brainwashing Obedience</MooGirl_BrainWashObey.degreeDatas.0.label>
+  <!-- EN: {PAWN_nameDef} 被设备洗脑了，即使被奴役的生活充满苦难，{PAWN_nameDef} 也会逆来顺受。 -->
+  <MooGirl_BrainWashObey.degreeDatas.0.description>{PAWN_nameDef} has been brainwashed. Even though life in slavery was full of suffering, {PAWN_nameDef} will submit and endure it all.</MooGirl_BrainWashObey.degreeDatas.0.description>
+  
+  <!-- EN: 洗脑平静 -->
+  <MooGirl_BrainWashPeace.degreeDatas.0.label>Brainwashing Calm</MooGirl_BrainWashPeace.degreeDatas.0.label>
+  <!-- EN: {PAWN_nameDef} 被设备洗脑了，即使再难过的事情也无法令{PAWN_nameDef} 崩溃。 -->
+  <MooGirl_BrainWashPeace.degreeDatas.0.description>{PAWN_nameDef} has been brainwashed. No matter how distressing the situation, nothing can make {PAWN_nameDef} break down.</MooGirl_BrainWashPeace.degreeDatas.0.description>
+  
+  <!-- EN: 单发武器厌恶 -->
+  <MooGirl_SingleshotWeaponAversion.degreeDatas.0.label>Hate Single-Shot Weapons</MooGirl_SingleshotWeaponAversion.degreeDatas.0.label>
+  <!-- EN: 为什么我要用这种一发、一发、一发的没用的臭东西！ -->
+  <MooGirl_SingleshotWeaponAversion.degreeDatas.0.description>Why the hell do I have to use this useless crap, one shot at a time, one shot at a time, one shot at a time!</MooGirl_SingleshotWeaponAversion.degreeDatas.0.description>
+  
+</LanguageData>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <MooGirl_SlaveApperalKey_Advance.label>Restraint Decryptor</MooGirl_SlaveApperalKey_Advance.label>
+  <MooGirl_SlaveApperalKey_Advance.description>A device for decrypting Mugirl's space restraints. Once decrypted, the restraints may be utilised by one's own forces.</MooGirl_SlaveApperalKey_Advance.description>
+  <MooGirl_SlaveApperalKey_Advance.comps.CompUsable.useLabel>Use {0_label}</MooGirl_SlaveApperalKey_Advance.comps.CompUsable.useLabel>
+  
+  <MooGirl_SlaveApperalKey_Industrial.label>Exquisite Restraint Key</MooGirl_SlaveApperalKey_Industrial.label>
+  <MooGirl_SlaveApperalKey_Industrial.description>The key for unlocking Mugirl restraints, exquisitely crafted, is used to release bondage gear featuring more intricate locking mechanisms, such as slave stockings and slave gloves.</MooGirl_SlaveApperalKey_Industrial.description>
+  <MooGirl_SlaveApperalKey_Industrial.comps.CompStampedApparelKey.useLabel>Unlock Restraint</MooGirl_SlaveApperalKey_Industrial.comps.CompStampedApparelKey.useLabel>
+  
+  <MooGirl_SlaveApperalKey_Medieval.label>Rough Restraint Key</MooGirl_SlaveApperalKey_Medieval.label>
+  <MooGirl_SlaveApperalKey_Medieval.description>The key for unlocking Mugirl restraints is rather crudely made and can only be used to unlock lower-grade restraints.</MooGirl_SlaveApperalKey_Medieval.description>
+  <MooGirl_SlaveApperalKey_Medieval.comps.CompStampedApparelKey.useLabel>Unlock Restraint</MooGirl_SlaveApperalKey_Medieval.comps.CompStampedApparelKey.useLabel>
+  
+  <MooGirl_SlaveApperalKey_Spacer.label>Spacer Restraint Key</MooGirl_SlaveApperalKey_Spacer.label>
+  <MooGirl_SlaveApperalKey_Spacer.description>The key to unlocking Mugirl's restraints, containing a spacer level technological key designed to unlock magnetic shackles, electric shock collars, and brainwashing helmets- all restraints of spacer level technology.</MooGirl_SlaveApperalKey_Spacer.description>
+  <MooGirl_SlaveApperalKey_Spacer.comps.CompStampedApparelKey.useLabel>Unlock Restraint</MooGirl_SlaveApperalKey_Spacer.comps.CompStampedApparelKey.useLabel>
+  
+</LanguageData>

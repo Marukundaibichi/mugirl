@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: 解锁 -->
+  <CrackBondageGear.reportString>Unlock Restraints</CrackBondageGear.reportString>
+  
+  <!-- EN: 穿上 -->
+  <GiveSlaveApperalGear.reportString>Put on Restraints</GiveSlaveApperalGear.reportString>
+  
+  <!-- EN: 跟随 TargetA. -->
+  <Job_FollowRoper.reportString>Follow {TargetA}.</Job_FollowRoper.reportString>
+  
+  <!-- EN: 蹭蹭 TargetA. -->
+  <Job_Nuzzle.reportString>Nuzzle {TargetA}.</Job_Nuzzle.reportString>
+  
+  <!-- EN: 解除 TargetA 牵引 -->
+  <JobDriver_RemoveRopeMoo.reportString>Remove {TargetA}'s rope</JobDriver_RemoveRopeMoo.reportString>
+  
+  <!-- EN: 牵引 TargetA. -->
+  <JobDriver_RopeMoo.reportString>Rope {TargetA}.</JobDriver_RopeMoo.reportString>
+  
+  <!-- EN: 解锁 -->
+  <RopeToBuild.reportString>Rope to Building</RopeToBuild.reportString>
+  
+  <!-- EN: 解锁 -->
+  <UnlockSlaveApperal.reportString>Unlock Restraints</UnlockSlaveApperal.reportString>
+  
+</LanguageData>

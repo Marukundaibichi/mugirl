@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingDef Name="MooGirl_ChildBase" ParentName="MooGirl_ApparelBase" Abstract="True">
+    <recipeMaker>
+      <researchPrerequisite>ComplexClothing</researchPrerequisite>
+    </recipeMaker>
+		<apparel>
+			<developmentalStageFilter>Child</developmentalStageFilter>
+			<layers>
+				<li>OnSkin</li>
+			</layers>
+			<tags>
+				<li>MooGirl_OnSkin</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>MooGirl_OnSkin</li>
+		</thingCategories>
+		<recipeMaker>
+			<researchPrerequisite>ComplexClothing</researchPrerequisite>
+		</recipeMaker>
+	</ThingDef>
+
+	<ThingDef ParentName="MooGirl_ChildBase">
+		<defName>MooGirl_ChildCheongsam</defName>
+		<label>雪牛娘 儿童旗袍 「皎月裁云」</label>
+		<description>「八重·朱 服装」出品高开衩真丝旗袍，纷繁花绣衬出超低胸襟。东方美学与现代性感碰撞，化身移动的纯白焦点。</description>
+		<graphicData>
+			<texPath>Things/Apparel/MooGirl_ChildCheongsam/MooGirl_ChildCheongsam</texPath>
+		</graphicData>
+		<costStuffCount>70</costStuffCount>
+		<stuffCategories>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<statBases>
+			<MaxHitPoints>160</MaxHitPoints>
+			<WorkToMake>7000</WorkToMake>
+			<Mass>1.7</Mass>
+			<StuffEffectMultiplierArmor>0.3</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.80</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.30</StuffEffectMultiplierInsulation_Heat>
+			<EquipDelay>1.5</EquipDelay>
+		</statBases>
+		<apparel>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Apparel/MooGirl_ChildCheongsam/MooGirl_ChildCheongsam</wornGraphicPath>
+			<useWornGraphicMask>false</useWornGraphicMask>
+		</apparel>
+	</ThingDef>
+</Defs>

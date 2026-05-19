@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Defs>
+
+	<SoundDef>
+		<defName>MooGirl_EleShock_Sound</defName>
+		<context>MapOnly</context>
+		<subSounds>
+			<li>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>MooGirlEleShockSound</clipPath>
+					</li>
+				</grains>
+				<volumeRange>20</volumeRange>
+				<distRange>10~38</distRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+	<SoundDef>
+		<defName>MooGirl_PowerEleShock_Sound</defName>
+		<context>MapOnly</context>
+		<subSounds>
+			<li>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>MooGirlPowerEleShockSound</clipPath>
+					</li>
+				</grains>
+				<volumeRange>15</volumeRange>
+				<distRange>20~45</distRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+	<SoundDef>
+		<defName>MooGirl_MagneticShackles_Work</defName>
+		<context>MapOnly</context>
+		<subSounds>
+			<li>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>MooGirlMagneticShacklesWork</clipPath>
+					</li>
+				</grains>
+				<volumeRange>500</volumeRange>
+				<distRange>20~45</distRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+	<SoundDef>
+		<defName>MooGirl_Milking_Sound</defName>
+		<context>MapOnly</context>
+		<subSounds>
+			<li>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>milking</clipPath>
+					</li>
+				</grains>
+				<volumeRange>120</volumeRange>
+				<distRange>12~38</distRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+	<SoundDef>
+		<defName>MooGirl_Milking_Power_Sound</defName>
+		<context>MapOnly</context>
+		<subSounds>
+			<li>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>milking(V1)</clipPath>
+					</li>
+				</grains>
+				<volumeRange>120</volumeRange>
+				<distRange>12~38</distRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+	<SoundDef>
+		<defName>MooGirl_BrainWashing_RingLong</defName>
+		<context>MapOnly</context>
+		<subSounds>
+			<li>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>MooGirlRingLong</clipPath>
+					</li>
+				</grains>
+				<volumeRange>80</volumeRange>
+				<distRange>20~45</distRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+	<SoundDef>
+		<defName>MooGirl_BrainWashing_RingShort</defName>
+		<context>MapOnly</context>
+		<subSounds>
+			<li>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>MooGirlRingShort</clipPath>
+					</li>
+				</grains>
+				<volumeRange>80</volumeRange>
+				<distRange>20~45</distRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+	<SoundDef>
+		<defName>MooGirl_BrainWashing_HeartBeat</defName>
+		<context>MapOnly</context>
+		<subSounds>
+			<li>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>MooGirlHeartBeat</clipPath>
+					</li>
+				</grains>
+				<volumeRange>80</volumeRange>
+				<distRange>20~45</distRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+	<SoundDef>
+		<defName>MooGirl_BrainWashing_First</defName>
+		<context>MapOnly</context>
+		<subSounds>
+			<li>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>MooGirlWashMentalFirst</clipPath>
+					</li>
+				</grains>
+				<volumeRange>100</volumeRange>
+				<distRange>20~45</distRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+	<SoundDef>
+		<defName>MooGirl_BrainWashing_Second</defName>
+		<context>MapOnly</context>
+		<subSounds>
+			<li>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>MooGirlWashMentalSecond</clipPath>
+					</li>
+				</grains>
+				<volumeRange>100</volumeRange>
+				<distRange>20~45</distRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+</Defs>

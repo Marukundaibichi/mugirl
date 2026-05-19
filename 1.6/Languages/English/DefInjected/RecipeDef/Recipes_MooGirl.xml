@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+
+  <MooGirl_MakeKey_Advance.label>Make Restraint Decryptor</MooGirl_MakeKey_Advance.label>
+  <MooGirl_MakeKey_Advance.description>Make a restraint decryptor.</MooGirl_MakeKey_Advance.description>
+  <MooGirl_MakeKey_Advance.jobString>Making restraint decryptor</MooGirl_MakeKey_Advance.jobString>
+
+  <!-- EN: 制作精致束具钥匙 -->
+  <MooGirl_MakeKey_Industrial.label>Make Exquisite Restraint Key</MooGirl_MakeKey_Industrial.label>
+  <!-- EN: 制作一把精致束具钥匙 -->
+  <MooGirl_MakeKey_Industrial.description>Make a exquisite key to unlock high-level restraint.</MooGirl_MakeKey_Industrial.description>
+  <!-- EN: 正在制作精致束具钥匙 -->
+  <MooGirl_MakeKey_Industrial.jobString>Making Dedicate Restraint Key</MooGirl_MakeKey_Industrial.jobString>
+
+  <!-- EN: 制作粗糙束具钥匙 -->
+  <MooGirl_MakeKey_Medieval.label>Make Rough Restraint Key</MooGirl_MakeKey_Medieval.label>
+  <!-- EN: 制作一把粗糙束具钥匙 -->
+  <MooGirl_MakeKey_Medieval.description>Make a rough key to unlock low level restraint.</MooGirl_MakeKey_Medieval.description>
+  <!-- EN: 正在制作粗糙束具钥匙 -->
+  <MooGirl_MakeKey_Medieval.jobString>Making Rough Restraint Key</MooGirl_MakeKey_Medieval.jobString>
+
+  <!-- EN: 制作精致束具钥匙 -->
+  <MooGirl_MakeKey_Spacer.label>Make Spacer Restraint Key</MooGirl_MakeKey_Spacer.label>
+  <!-- EN: 制作一把精致束具钥匙 -->
+  <MooGirl_MakeKey_Spacer.description>Make a exquisite key for Spacer restraint.</MooGirl_MakeKey_Spacer.description>
+  <!-- EN: 正在制作精致束具钥匙 -->
+  <MooGirl_MakeKey_Spacer.jobString>Making Spacer Restraint Key</MooGirl_MakeKey_Spacer.jobString>
+
+  <MooGirl_SmeltBondageApparel.label>Smelt restraint apparel</MooGirl_SmeltBondageApparel.label>
+  <MooGirl_SmeltBondageApparel.description>Use high heat and electromagnets to break armored restraint apparel down into useful resources.</MooGirl_SmeltBondageApparel.description>
+  <MooGirl_SmeltBondageApparel.jobString>Smelting restraint apparel</MooGirl_SmeltBondageApparel.jobString>
+
+</LanguageData>

@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Defs>
+	<MooGirl.SlaveApparelDef Name="MooGirl_SlaveApparel_Spacer"
+		ParentName="MooGirl_SlaveApparel_Base" Abstract="True">
+		<thingClass>MooGirl.AdvancedSlaveApparel</thingClass>
+		<descriptionHyperlinks>
+			<ThingDef>MooGirl_SlaveApperalKey_Spacer</ThingDef>
+		</descriptionHyperlinks>		
+		<apparel>
+			<tags>
+				<li>MooGirl_Slave_Spacer</li>
+			</tags>
+		</apparel>
+		<needkeynumber>1</needkeynumber>
+		<keytype>MooGirl_SlaveApperalKey_Spacer</keytype>
+	</MooGirl.SlaveApparelDef>
+
+	<!-- ====================================== 磁力镣铐  =========================================== -->
+
+	<MooGirl.SlaveApparelDef ParentName="MooGirl_SlaveApparel_Spacer">
+		<defName>MooGirl_MagneticShackles</defName>
+		<label>雪牛娘 磁力镣铐</label>
+		<description>由太空巨企开发的高科技束具，结合项圈与手铐组成。其内部磁力装置会不定时启动，将佩戴者的双手吸附到颈部，形成类似枷锁的姿态。这种设计带有明显的恶趣味，用以观赏雪牛娘在突然被束缚时的窘迫反应。解除束缚需要[高科技束具钥匙]，而在解锁后，该装置还可通过[束具破解器]进行破解。破解后的镣铐将不再自动启动，而是可以由控制者手动激活或解除。</description>
+		<graphicData>
+			<texPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_MagneticShackle/MooGirl_MagneticShackle</texPath>
+		</graphicData>
+		<costList>
+			<ComponentSpacer>6</ComponentSpacer>
+			<Plasteel>150</Plasteel>
+			<Uranium>50</Uranium>
+		</costList>
+		<statBases>
+			<MaxHitPoints>80</MaxHitPoints>
+			<WorkToMake>180</WorkToMake>
+			<Mass>0.14</Mass>
+			<EquipDelay>2.0</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">0.15</SlaveSuppressionOffset>
+		</equippedStatOffsets>
+		<apparel>
+			<bodyPartGroups>
+				<li>Neck</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_MagneticShackle/MooGirl_MagneticShackle</wornGraphicPath>
+			<layers>
+				<li>MooGirl_Neck_bondage</li>
+			</layers>
+			<!-- <drawData>
+    		    <dataSouth>
+                    <layer>100</layer>
+       			</dataSouth>
+            </drawData> -->
+		</apparel>
+		<gives_bound_moodlet>true</gives_bound_moodlet>
+		<comps>
+			<li Class="MooGirl.CompProperties_MagneticShackles">
+				<!-- 周期 tick 间隔 范围 -->
+				<cycleInterval>15000~55000</cycleInterval>
+				<!-- 束缚持续时间 范围 -->
+				<bindDurationTicks>10000~20000</bindDurationTicks>
+				<!-- 束缚时添加的 Hediff 列表 -->
+				<bindHediffs>
+					<li>
+						<hediffDef>MooGirl_MagneticShacklesBondage</hediffDef>
+						<!-- bodyPartDef 可选，不填表示全身 -->
+    					<bodyPartDefs>
+							<li>Arm</li>
+  				    	</bodyPartDefs>
+					</li>
+				</bindHediffs>
+				<!-- 束缚的部位 -->
+				<boundBodyPartGroupDefs>
+					<li>Arms</li>
+					<li>LeftHand</li>
+					<li>RightHand</li>
+				</boundBodyPartGroupDefs>
+				<!-- 主动按钮冷却时间 -->
+				<useCooldownTicks>600</useCooldownTicks>
+				<!-- 按钮文本与描述 -->
+				<activateLabel>激活镣铐</activateLabel>
+				<activateDesc>启动磁力镣铐，束缚目标。</activateDesc>
+				<activateIconPath>UI/MagneticShackleLock</activateIconPath>
+				<deactivateLabel>解除镣铐</deactivateLabel>
+				<deactivateDesc>解除磁力镣铐。</deactivateDesc>
+				<deactivateIconPath>UI/MagneticShackleUnLock</deactivateIconPath>
+				<!-- 动态名字显示 -->
+				<labelWhenActive>磁力镣铐（激活）</labelWhenActive>
+				<labelWhenInactive>磁力镣铐（未激活）</labelWhenInactive>
+				<!-- 提示与特效 -->
+				<moteTextOn>磁力手铐启动!</moteTextOn>
+				<moteTextOff>磁力手铐解除!</moteTextOff>
+				<messageOn>{0} 的磁力手铐突然启动了</messageOn>
+				<messageOff>{0} 的磁力手铐被解除</messageOff>
+				<!-- 激活音效  -->
+				<activateSoundDefName>MooGirl_MagneticShackles_Work</activateSoundDefName>
+			</li>
+		</comps>
+	</MooGirl.SlaveApparelDef>
+
+	<!-- ====================================== 电击项圈 =========================================== -->
+
+	<ThingDef ParentName="ApparelMakeableBase">
+		<defName>MooGirl_MilkingDevice</defName>
+		<label>雪牛娘 榨乳器</label>
+		<description>一种面向雪牛娘设计的高科技榨乳设备。它会在雪牛娘产乳进度满时自动截留一次产奶，将其压缩储存在内部容器中。储能满后，可由穿戴者手动释放，集中生成雪牛奶。当前版本以功能优先，不包含按储能变化的专用贴图。</description>
+		<graphicData>
+			<texPath>Things/Apparel/MooGirl_MilkingDevice/MooGirl_MilkingDevice</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<techLevel>Spacer</techLevel>
+		<modExtensions>
+			<li Class="MooGirl.AdultContentExtension">
+				<adultOnly>true</adultOnly>
+			</li>
+		</modExtensions>
+		<thingCategories>
+			<li>ApparelMisc</li>
+		</thingCategories>
+		<costList>
+			<ComponentIndustrial>4</ComponentIndustrial>
+			<Steel>25</Steel>
+		</costList>
+		<statBases>
+			<MaxHitPoints>400</MaxHitPoints>
+			<WorkToMake>4000</WorkToMake>
+			<Mass>0.2</Mass>
+			<StuffEffectMultiplierArmor>0.09</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.60</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.60</StuffEffectMultiplierInsulation_Heat>
+			<EquipDelay>1.6</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+			<SocialImpact>0.2</SocialImpact>
+		</equippedStatOffsets>
+		<recipeMaker>
+			<researchPrerequisite>ComplexClothing</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>3</Crafting>
+			</skillRequirements>
+			<displayPriority>255</displayPriority>
+		</recipeMaker>
+		<apparel>
+			<tags>
+				<li>MooGirl_Shell</li>
+			</tags>
+			<bodyPartGroups>
+				<li>Torso</li>
+			</bodyPartGroups>
+			<countsAsClothingForNudity>false</countsAsClothingForNudity>
+			<wornGraphicPath>Things/Apparel/MooGirl_MilkingDevice/MooGirl_MilkingDevice</wornGraphicPath>
+			<layers>
+				<li>MooGirl_Ornament</li>
+			</layers>
+		</apparel>
+		<comps>
+			<li Class="MooGirl.CompProperties_AdultContentControl" />
+			<li Class="MooGirl.CompProperties_MilkingDeviceReleaseEffect">
+				<durationTicks>30</durationTicks>
+				<sounds>
+					<li>
+						<sound>MooGirl_Milking_Sound</sound>
+						<startTick>0</startTick>
+						<loopInterval>30</loopInterval>
+						<endTick>0</endTick>
+					</li>
+				</sounds>
+			</li>
+			<li Class="MooGirl.CompProperties_MilkingDevice">
+				<maxCharges>3</maxCharges>
+				<releaseLabel>释放储乳</releaseLabel>
+				<releaseDesc></releaseDesc>
+				<releaseIconPath>UI/MooGirl_Charge</releaseIconPath>
+				<inspectLabel>储乳层数</inspectLabel>
+				<noChargeText>当前没有可释放的储乳。</noChargeText>
+				<releaseMessageKey></releaseMessageKey>
+				<storedMessageKey></storedMessageKey>
+				<storedMoteText></storedMoteText>
+				<releaseThingDefName>MooGirl_Milk</releaseThingDefName>
+				<spawnFilthOnRelease>true</spawnFilthOnRelease>
+				<filthDefName>MooGirlMilkFilth</filthDefName>
+				<spawnFilthInFacingDirection>true</spawnFilthInFacingDirection>
+				<filthCountRange>
+					<min>1</min>
+					<max>2</max>
+				</filthCountRange>
+				<releaseSounds>
+					<li>MooGirl_Milking_Sound</li>
+				</releaseSounds>
+				<powerReleaseSounds>
+					<li>MooGirl_Milking_Power_Sound</li>
+				</powerReleaseSounds>
+				<powerFilthDefName></powerFilthDefName>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="ApparelMakeableBase">
+		<defName>MooGirl_MilkingDeviceHidden</defName>
+		<label>雪牛娘 隐藏式榨乳器</label>
+		<description>一款可隐藏在内衣或外层服装下的和谐型榨乳装置。它仍会在雪牛娘产乳进度满时自动截留一次产奶，但更适合在普通穿搭下保持外观低调，仅在需要时再进行控制。</description>
+		<graphicData>
+			<texPath>Things/Apparel/MooGirl_MilkingDeviceHidden/MooGirl_MilkingDeviceHidden</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<techLevel>Spacer</techLevel>
+		<modExtensions>
+			<li Class="MooGirl.AdultContentExtension">
+				<adultOnly>true</adultOnly>
+			</li>
+		</modExtensions>
+		<thingCategories>
+			<li>ApparelMisc</li>
+		</thingCategories>
+		<costList>
+			<ComponentIndustrial>4</ComponentIndustrial>
+			<Steel>25</Steel>
+		</costList>
+		<statBases>
+			<MaxHitPoints>400</MaxHitPoints>
+			<WorkToMake>4000</WorkToMake>
+			<Mass>0.2</Mass>
+			<StuffEffectMultiplierArmor>0.09</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.60</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.60</StuffEffectMultiplierInsulation_Heat>
+			<EquipDelay>1.6</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+			<SocialImpact>0.2</SocialImpact>
+		</equippedStatOffsets>
+		<recipeMaker>
+			<researchPrerequisite>ComplexClothing</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>3</Crafting>
+			</skillRequirements>
+			<displayPriority>254</displayPriority>
+		</recipeMaker>
+		<apparel>
+			<tags>
+				<li>MooGirl_HiddenOrnament</li>
+			</tags>
+			<drawData>
+				<defaultData>
+					<layer>0</layer>
+				</defaultData>
+			</drawData>
+			<bodyPartGroups>
+				<li>Torso</li>
+			</bodyPartGroups>
+			<countsAsClothingForNudity>false</countsAsClothingForNudity>
+			<wornGraphicPath>Things/Apparel/MooGirl_MilkingDeviceHidden/MooGirl_MilkingDeviceHidden</wornGraphicPath>
+			<layers>
+				<li>MooGirl_HiddenOrnament</li>
+			</layers>
+			<canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+		</apparel>
+		<comps>
+			<li Class="MooGirl.CompProperties_MilkingDeviceReleaseEffect">
+				<durationTicks>30</durationTicks>
+				<sounds>
+					<li>
+						<sound>MooGirl_Milking_Sound</sound>
+						<startTick>0</startTick>
+						<loopInterval>30</loopInterval>
+						<endTick>0</endTick>
+					</li>
+				</sounds>
+			</li>
+			<li Class="MooGirl.CompProperties_MilkingDevice">
+				<maxCharges>3</maxCharges>
+				<releaseLabel>释放储乳</releaseLabel>
+				<releaseDesc></releaseDesc>
+				<releaseIconPath>UI/MooGirl_Charge</releaseIconPath>
+				<inspectLabel>储乳层数</inspectLabel>
+				<noChargeText>当前没有可释放的储乳。</noChargeText>
+				<releaseMessageKey></releaseMessageKey>
+				<storedMessageKey></storedMessageKey>
+				<storedMoteText></storedMoteText>
+				<releaseThingDefName>MooGirl_Milk</releaseThingDefName>
+				<spawnFilthOnRelease>true</spawnFilthOnRelease>
+				<filthDefName>MooGirlMilkFilth</filthDefName>
+				<spawnFilthInFacingDirection>true</spawnFilthInFacingDirection>
+				<filthCountRange>
+					<min>1</min>
+					<max>2</max>
+				</filthCountRange>
+				<releaseSounds>
+					<li>MooGirl_Milking_Sound</li>
+				</releaseSounds>
+				<powerReleaseSounds>
+					<li>MooGirl_Milking_Power_Sound</li>
+				</powerReleaseSounds>
+				<powerFilthDefName></powerFilthDefName>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<MooGirl.SlaveApparelDef ParentName="MooGirl_SlaveApparel_Spacer">
+		<defName>MooGirl_ShockCollar</defName>
+		<label>雪牛娘 电击项圈</label>
+		<description>由太空巨企专门设计的控制型束具，外观为紧贴在颈部的金属项圈。其内部电极会不定期释放电流，对佩戴者进行电击，拥有轻度与重度两种模式。这种不可预测的刺激常被用作维持纪律与展示控制。解除束缚需要[高科技束具钥匙]，在解锁后还可通过[束具破解器]进行破解。破解后的项圈将不再随机电击，而是可由控制者手动触发，并自由选择电击模式。</description>
+		<graphicData>
+			<texPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_ShockCollar/MooGirl_ShockCollar</texPath>
+		</graphicData>
+		<costList>
+			<ComponentSpacer>6</ComponentSpacer>
+			<Plasteel>150</Plasteel>
+			<Uranium>50</Uranium>
+		</costList>
+		<statBases>
+			<MaxHitPoints>80</MaxHitPoints>
+			<WorkToMake>180</WorkToMake>
+			<Mass>0.14</Mass>
+			<EquipDelay>2.0</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">0.15</SlaveSuppressionOffset>
+		</equippedStatOffsets>
+		<apparel>
+			<bodyPartGroups>
+				<li>Neck</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_ShockCollar/MooGirl_ShockCollar</wornGraphicPath>
+			<layers>
+				<li>MooGirl_Neck_bondage</li>
+			</layers>
+			<drawData>
+    		    <dataSouth>
+                    <layer>100</layer>
+       			</dataSouth>
+            </drawData>
+		</apparel>
+		<recipeMaker>
+			<displayPriority>260</displayPriority>
+		</recipeMaker>
+		<gives_bound_moodlet>true</gives_bound_moodlet>
+		<blocks_hands>false</blocks_hands>
+		<comps>
+			<li Class="MooGirl.CompProperties_ShockCollar">
+				<commonLabel>普通电击</commonLabel>
+				<commonDesc>激活一次普通电击</commonDesc>
+				<commonIconPath>UI/ShockCollarCommon</commonIconPath>
+				<powerLabel>强力电击</powerLabel>
+				<powerDesc>激活一次强力电击，电死你！</powerDesc>
+				<powerIconPath>UI/ShockCollarPower</powerIconPath>
+				<hediffDefs>
+					<li>MooGirl_EleShock</li>
+				</hediffDefs>
+				<powerhediffDefs>
+					<li>MooGirl_PowerEleShock</li>
+				</powerhediffDefs>
+				<ticks>1200</ticks>
+				<useCooldownTicks>480</useCooldownTicks>
+			</li>
+		</comps>
+	</MooGirl.SlaveApparelDef>
+
+	<!-- ====================================== 洗脑束具 =========================================== -->
+
+	<MooGirl.SlaveApparelDef Name="MooGirl_BrainWashApparel"
+		ParentName="MooGirl_SlaveApparel_Spacer" Abstract="True">
+		<thingClass>MooGirl.BrainWashSlaveApparel</thingClass>
+		<equippedStatOffsets>
+			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">0.15</SlaveSuppressionOffset>
+		</equippedStatOffsets>
+		<apparel>
+			<tags>
+				<li>MooGirl_AdvancedSlave</li>
+				<li>MooGirl_BrainWashSlave</li>
+			</tags>
+		</apparel>
+		<recipeMaker>
+			<displayPriority>260</displayPriority>
+		</recipeMaker>
+		<needkeynumber>1</needkeynumber>
+	</MooGirl.SlaveApparelDef>
+
+	<MooGirl.SlaveApparelDef ParentName="MooGirl_BrainWashApparel">
+		<defName>MooGirl_BrainwashHelmet</defName>
+		<label>雪牛娘 洗脑头盔</label>
+		<description>由太空巨企研发的高级精神控制装置，外观是一款紧贴头部的全封闭头盔。其内部会释放特定光波、影像与音频，对佩戴者进行深层感官刺激与心理暗示，逐步瓦解自我意识并重塑忠诚。在洗脑过程中，雪牛娘的瞳孔会被强光反射，表情僵硬而恍惚，呼吸急促，仿佛陷入一种无法抗拒的快感与恐惧交织的状态。若被强制使用在非巨企派系个体上，他们会因精神崩溃而疯狂攻击附近生物。  解除束缚需要[高科技束具钥匙]，而在解锁后还可通过[束具破解器]进行破解。破解后的头盔会根据佩戴者身份产生不同效果：对于囚犯，每次洗脑都会削弱其逃跑的意志，三次后将被彻底转化为奴隶；对于奴隶，每次洗脑会加深压制感，三次后将完全顺服，不再萌生越狱之心；而对于殖民者，每次洗脑会赋予一种诡异的愉悦情绪，三次后其性格将被永久改变，即便在精神崩溃时也不会再伤害同伴。</description>
+		<graphicData>
+			<texPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_BrainwashHelmet/MooGirl_BrainwashHelmet</texPath>
+		</graphicData>
+		<costList>
+			<ComponentSpacer>6</ComponentSpacer>
+			<Plasteel>150</Plasteel>
+			<Uranium>50</Uranium>
+		</costList>
+		<statBases>
+			<MaxHitPoints>250</MaxHitPoints>
+			<Flammability>0.5</Flammability>
+			<DeteriorationRate>1.0</DeteriorationRate>
+			<Beauty>-6</Beauty>
+			<MarketValue>550</MarketValue>
+			<Mass>4</Mass>
+		</statBases>
+		<apparel>
+			<parentTagDef>ApparelHead</parentTagDef>
+            <useWornGraphicMask>true</useWornGraphicMask>
+			<bodyPartGroups>
+				<li>HeadAttackTool</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_BrainwashHelmet/MooGirl_BrainwashHelmet</wornGraphicPath>
+            <layers>
+                <li>Overhead</li>
+            </layers>
+		</apparel>
+		<BoundBodyPartGroupDefs>
+			<li>HeadAttackTool</li>
+		</BoundBodyPartGroupDefs>
+		<comps>
+			<li Class="MooGirl.CompProperties_BrainwashHelmet">
+				<defaultHediff>MooGirl_BrainWashing_Level1</defaultHediff>
+				<blockHediff>MooGirl_BrainWashing_Level5</blockHediff>
+				<convertList>
+					<li>
+						<hediffToCheck>MooGirl_BrainWashing_Level2</hediffToCheck>
+						<hediffToAdd>MooGirl_BrainWashing_Level3</hediffToAdd>
+					</li>
+					<li>
+						<hediffToCheck>MooGirl_BrainWashing_Level4</hediffToCheck>
+						<hediffToAdd>MooGirl_BrainWashing_Level5</hediffToAdd>
+					</li>
+				</convertList>
+				<ticksToChange>35000~60000</ticksToChange>
+				<!-- 按钮文本与描述 -->
+				<activateLabel>激活洗脑</activateLabel>
+				<activateDesc>激活洗脑头盔，洗脑目标。</activateDesc>
+				<activateIconPath>UI/BrainwashHelmeActivate</activateIconPath>
+			</li>
+		</comps>
+	</MooGirl.SlaveApparelDef>
+</Defs>

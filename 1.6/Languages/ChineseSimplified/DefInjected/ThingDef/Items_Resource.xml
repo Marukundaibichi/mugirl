@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: 雪牛奶 -->
+  <MooGirl_Milk.label>雪牛奶</MooGirl_Milk.label>
+  <!-- EN: 雪牛娘分泌的乳汁，香甜浓郁，呈乳白带淡蓝色光泽。奇迹星基因工程让其营养成分远超普通牛奶，添加到食物中可以大幅提升免疫力，并促进伤口快速愈合。 -->
+  <MooGirl_Milk.description>雪牛娘分泌的乳汁，香甜浓郁，呈乳白带淡蓝色光泽。奇迹星基因工程让其营养成分远超普通牛奶，添加到食物中可以大幅提升免疫力，并促进伤口快速愈合。</MooGirl_Milk.description>
+  
+  <!-- EN: 雪牛娘的毛 -->
+  <MooGirl_Wool.label>雪牛娘毛</MooGirl_Wool.label>
+  <!-- EN: 奇迹星基因工程的副产物之一——雪牛娘的毛发，雪牛一样的淡蓝色，但在质感上远比雪牛毛更柔软。细细嗅闻能闻到淡淡的牛油味 -->
+  <MooGirl_Wool.description>奇迹星基因工程的副产物之一——雪牛娘的毛发，雪牛一样的淡蓝色，但在质感上远比雪牛毛更柔软。细细嗅闻能闻到淡淡的牛油味。</MooGirl_Wool.description>
+  
+</LanguageData>

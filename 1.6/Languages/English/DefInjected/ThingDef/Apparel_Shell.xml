@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <MooGirl_KnightlyOrnament.label>Mugirl Knightly Ornament</MooGirl_KnightlyOrnament.label>
+  <MooGirl_KnightlyOrnament.description>A knightly neck ornament woven from supple leather and polished metal plates, shaped to follow the curve of the throat with both stability and grace. A finely worked heraldic emblem rests at its centre and sways subtly with each motion, its muted sheen declaring honour without ostentation. Soft stitching along the edges keeps it comfortable even while running or fighting. It is both adornment and symbol, a quiet pledge to oath and glory.</MooGirl_KnightlyOrnament.description>
+  
+  <MooGirl_PlateArmor.label>Mugirl Plate Armour</MooGirl_PlateArmor.label>
+  <MooGirl_PlateArmor.description>A heavy medieval cuirass of riveted refined steel plates, built to meet bolts and blades head-on. Its mirror-bright finish belies tremendous weight, and only a strong Mugirl can endure wearing it for long on the battlefield. Mobility is sacrificed, but the protection it offers is so absolute that the wearer becomes a walking bulwark of steel.</MooGirl_PlateArmor.description>
+  
+  <MooGirl_RA_Carrying_Equipment.label>Mugirl Specialised Field Gear</MooGirl_RA_Carrying_Equipment.label>
+  <MooGirl_RA_Carrying_Equipment.description>Field gear widely issued to Mugirl revolutionaries during the Myrick Revolutionary War. Its load-bearing satchels and tactical fittings provide battlefield supplies that help reduce ranged weapon cooldown time.</MooGirl_RA_Carrying_Equipment.description>
+  
+  <MooGirl_RA_MechanicBackpack.label>Mugirl Mechanic Backpack Lv1</MooGirl_RA_MechanicBackpack.label>
+  <MooGirl_RA_MechanicBackpack.description>A mechanic backpack that grants a small increase to a Mugirl's bandwidth.</MooGirl_RA_MechanicBackpack.description>
+  
+  <MooGirl_RA_MechanicBackpack_B.label>Mugirl Mechanic Backpack Lv2</MooGirl_RA_MechanicBackpack_B.label>
+  <MooGirl_RA_MechanicBackpack_B.description>A mechanic backpack that grants a moderate increase to a Mugirl's bandwidth.</MooGirl_RA_MechanicBackpack_B.description>
+  
+  <MooGirl_RA_MechanicBackpack_C.label>Mugirl Mechanic Backpack Lv3</MooGirl_RA_MechanicBackpack_C.label>
+  <MooGirl_RA_MechanicBackpack_C.description>A mechanic backpack that grants a large increase to a Mugirl's bandwidth.</MooGirl_RA_MechanicBackpack_C.description>
+  
+  <MooGirl_RA_MechanicBackpack_D.label>Mugirl Mechanic Backpack Lv4</MooGirl_RA_MechanicBackpack_D.label>
+  <MooGirl_RA_MechanicBackpack_D.description>A mechanic backpack that grants an immense increase to a Mugirl's bandwidth.</MooGirl_RA_MechanicBackpack_D.description>
+  
+  <MooGirl_RA_PowerArmor.label>Mugirl Recon Armour</MooGirl_RA_PowerArmor.label>
+  <MooGirl_RA_PowerArmor.description>Lightweight recon armour that protects the torso's vital areas. A perfect balance of defence and provocation, where distracting the enemy becomes part of the tactic.</MooGirl_RA_PowerArmor.description>
+  
+  <!-- EN: 雪牛娘 侦察装甲 「绯红捷速」 -->
+  <MooGirl_ReconArmor.label>Mugirl Recon Armour "Rapidité Écarlate"</MooGirl_ReconArmor.label>
+  <!-- EN: 「八重·朱 服装」出品轻量化侦察装甲，防护覆盖躯干关键部位。防御与挑逗的完美平衡，让敌人分神即是战术。 -->
+  <MooGirl_ReconArmor.description>Vache Rousse presents lightweight reconnaissance armour, providing protection for the torso's key areas.\nIt achieves a perfect balance between defence and provocation; distracting the enemy is itself a strategy.</MooGirl_ReconArmor.description>
+  
+</LanguageData>

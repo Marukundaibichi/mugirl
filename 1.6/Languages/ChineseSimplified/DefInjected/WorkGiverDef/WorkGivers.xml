@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: 自己挤奶 -->
+  <Work_GatherMilk.label>自己挤奶</Work_GatherMilk.label>
+  <!-- EN: milking -->
+  <Work_GatherMilk.gerund>挤奶中</Work_GatherMilk.gerund>
+  <!-- EN: milk -->
+  <Work_GatherMilk.verb>挤奶</Work_GatherMilk.verb>
+  
+</LanguageData>

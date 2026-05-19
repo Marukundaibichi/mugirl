@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ApparelLayerDef>
+    <defName>MooGirl_SpeciallyStocking</defName>
+    <label>特制丝袜</label>
+    <drawOrder>-5</drawOrder>
+  </ApparelLayerDef>
+
+</Defs>

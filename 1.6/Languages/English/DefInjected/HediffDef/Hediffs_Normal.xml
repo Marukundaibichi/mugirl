@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: 精疲力尽 -->
+  <MooGirl_Abasia.label>Exhausted</MooGirl_Abasia.label>
+
+  <MooGirl_Abasia.description>She appears to have been subjected to unknown torments under the enslavement of a mega corporation. Though she managed to escape, her body remains utterly drained over the coming days, barely able to move.</MooGirl_Abasia.description>
+
+  <MooGirl_Abasia.descriptionShort>After escaping from the mega corporation's enslavement, she is completely exhausted and can scarcely move.</MooGirl_Abasia.descriptionShort>
+  <MooGirl_Abasia.stages.0.label>Narrow Escape</MooGirl_Abasia.stages.0.label>
+  <MooGirl_Abasia.stages.1.label>Stress Recovery</MooGirl_Abasia.stages.1.label>
+  
+</LanguageData>

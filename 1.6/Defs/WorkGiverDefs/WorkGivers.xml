@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<WorkGiverDef>
+		<defName>Work_GatherMilk</defName>
+		<label>自己挤奶</label>
+		<giverClass>MooGirl.WorkGiver_GatherMilk</giverClass>
+		<workType>Handling</workType>
+		<verb>milk</verb>
+		<gerund>milking</gerund>
+		<priorityInType>90</priorityInType>
+		<requiredCapacities>
+			<li>Manipulation</li>
+		</requiredCapacities>
+	</WorkGiverDef>
+
+	<JobDef>
+		<defName>Job_GatherMilk</defName>
+		<driverClass>MooGirl.JobDriver_GatherMilk</driverClass>
+		<reportString>给 TargetA 挤奶.</reportString>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+</Defs>

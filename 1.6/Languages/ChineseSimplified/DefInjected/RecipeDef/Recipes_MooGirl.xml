@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: 制作束具破解器 -->
+  <MooGirl_MakeKey_Advance.label>制作束具破解器</MooGirl_MakeKey_Advance.label>
+  <!-- EN: 制作一个束具破解器 -->
+  <MooGirl_MakeKey_Advance.description>制作一个束具破解器</MooGirl_MakeKey_Advance.description>
+  <!-- EN: 正在制作束具破解器 -->
+  <MooGirl_MakeKey_Advance.jobString>正在制作束具破解器</MooGirl_MakeKey_Advance.jobString>
+  
+  <!-- EN: 制作精致束具钥匙 -->
+  <MooGirl_MakeKey_Industrial.label>制作精致束具钥匙</MooGirl_MakeKey_Industrial.label>
+  <!-- EN: 制作一把精致束具钥匙 -->
+  <MooGirl_MakeKey_Industrial.description>制作一把可解锁高等级束具的精致钥匙。</MooGirl_MakeKey_Industrial.description>
+  <!-- EN: 正在制作精致束具钥匙 -->
+  <MooGirl_MakeKey_Industrial.jobString>正在制作精致束具钥匙</MooGirl_MakeKey_Industrial.jobString>
+  
+  <!-- EN: 制作粗糙束具钥匙 -->
+  <MooGirl_MakeKey_Medieval.label>制作粗糙束具钥匙</MooGirl_MakeKey_Medieval.label>
+  <!-- EN: 制作一把粗糙束具钥匙 -->
+  <MooGirl_MakeKey_Medieval.description>制作一把粗糙钥匙，可用于解锁低级束具。</MooGirl_MakeKey_Medieval.description>
+  <!-- EN: 正在制作粗糙束具钥匙 -->
+  <MooGirl_MakeKey_Medieval.jobString>正在制作粗糙束具钥匙</MooGirl_MakeKey_Medieval.jobString>
+  
+  <!-- EN: 制作精致束具钥匙 -->
+  <MooGirl_MakeKey_Spacer.label>制作太空束具钥匙</MooGirl_MakeKey_Spacer.label>
+  <!-- EN: 制作一把精致束具钥匙 -->
+  <MooGirl_MakeKey_Spacer.description>制作一把适用于太空束具的精致钥匙。</MooGirl_MakeKey_Spacer.description>
+  <!-- EN: 正在制作精致束具钥匙 -->
+  <MooGirl_MakeKey_Spacer.jobString>正在制作太空束具钥匙</MooGirl_MakeKey_Spacer.jobString>
+  
+  <!-- EN: 熔炼束具 -->
+  <MooGirl_SmeltBondageApparel.label>TODO</MooGirl_SmeltBondageApparel.label>
+  <!-- EN: 利用高温和电磁铁将装甲之类的束具衣物分解成有用的资源。 -->
+  <MooGirl_SmeltBondageApparel.description>TODO</MooGirl_SmeltBondageApparel.description>
+  <!-- EN: 正在熔炼衣物。 -->
+  <MooGirl_SmeltBondageApparel.jobString>TODO</MooGirl_SmeltBondageApparel.jobString>
+  
+</LanguageData>

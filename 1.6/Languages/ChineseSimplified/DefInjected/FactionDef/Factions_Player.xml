@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: 雪牛娘殖民者 -->
+  <MooGirl_Colony.label>雪牛娘殖民者</MooGirl_Colony.label>
+  <!-- EN: （文案） -->
+  <MooGirl_Colony.description>一群追求自由的雪牛娘，她们成功逃离奴役，聚集在一起建立属于自己的殖民地。虽然环境恶劣、资源匮乏，但她们依旧努力耕作、战斗、互相扶持，开辟出新的未来。</MooGirl_Colony.description>
+  <!-- EN: leader -->
+  <MooGirl_Colony.leaderTitle>首领</MooGirl_Colony.leaderTitle>
+  <!-- EN: colonist -->
+  <MooGirl_Colony.pawnSingular>殖民者</MooGirl_Colony.pawnSingular>
+  <!-- EN: colonists -->
+  <MooGirl_Colony.pawnsPlural>殖民者们</MooGirl_Colony.pawnsPlural>
+</LanguageData>

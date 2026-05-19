@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+<!-- EN: 雪牛娘 骑士颈饰 -->
+<MooGirl_KnightlyOrnament.label>雪牛娘 骑士颈饰</MooGirl_KnightlyOrnament.label>
+<!-- EN: 骑士颈饰由柔韧皮革与抛光金属片编缀而成，贴合颈部弧线，戴上时既稳固又不失优雅。中央镶嵌一枚细致的纹章徽片，随动作微微晃动，以低调的光泽彰显骑士的身份与荣耀。条带边缘以细线缝合，触感柔和，不会在奔走或战斗时磨损皮肤。它既是装饰，也是象征，代表着骑士对誓言与荣誉的无声守护。 -->
+<MooGirl_KnightlyOrnament.description>骑士颈饰由柔韧皮革与抛光金属片编缀而成，贴合颈部弧线，戴上时既稳固又不失优雅。中央镶嵌一枚细致的纹章徽片，随动作微微晃动，以低调的光泽彰显骑士的身份与荣耀。条带边缘以细线缝合，触感柔和，不会在奔走或战斗时磨损皮肤。它既是装饰，也是象征，代表着骑士对誓言与荣誉的无声守护。</MooGirl_KnightlyOrnament.description>
+  
+<!-- EN: 雪牛娘 中世纪甲胄 -->
+<MooGirl_PlateArmor.label>雪牛娘 中世纪甲胄</MooGirl_PlateArmor.label>
+<!-- EN: 由多片精钢板铆接而成的中世纪重型板甲，能在正面迎击弩箭与刀剑的袭来。表面打磨如镜，重量却惊人，只有体力充沛的雪牛娘才能在战场上长时间穿戴。虽然机动性受到压制，但其提供的绝对防护足以让穿戴者化作钢铁壁垒。 -->
+<MooGirl_PlateArmor.description>由多片精钢板铆接而成的中世纪重型板甲，能在正面迎击弩箭与刀剑的袭来。表面打磨如镜，重量却惊人，只有体力充沛的雪牛娘才能在战场上长时间穿戴。虽然机动性受到压制，但其提供的绝对防护足以让穿戴者化作钢铁壁垒。</MooGirl_PlateArmor.description>
+  
+<!-- EN: 雪牛娘 特化携行具 -->
+<MooGirl_RA_Carrying_Equipment.label>雪牛娘 特化携行具</MooGirl_RA_Carrying_Equipment.label>
+<!-- EN: 迈瑞克革命战争期间，雪牛娘革命者普遍装备的携行具。承重挎包战术挂件可以为穿戴者提供战术补给减少武器远程冷却时间 -->
+<MooGirl_RA_Carrying_Equipment.description>迈瑞克革命战争期间，雪牛娘革命者普遍装备的携行具。承重挎包战术挂件可以为穿戴者提供战术补给减少武器远程冷却时间。</MooGirl_RA_Carrying_Equipment.description>
+  
+<!-- EN: 雪牛娘 Lv1机械师背包 -->
+<MooGirl_RA_MechanicBackpack.label>雪牛娘 Lv1 机械师背包</MooGirl_RA_MechanicBackpack.label>
+<!-- EN: 给雪牛娘增加少量带宽的机械师背包 -->
+<MooGirl_RA_MechanicBackpack.description>给雪牛娘增加少量带宽的机械师背包</MooGirl_RA_MechanicBackpack.description>
+
+<!-- EN: 雪牛娘 Lv2机械师背包 -->
+<MooGirl_RA_MechanicBackpack_B.label>雪牛娘 Lv2 机械师背包</MooGirl_RA_MechanicBackpack_B.label>
+<!-- EN: 给雪牛娘增加中量带宽的机械师背包 -->
+<MooGirl_RA_MechanicBackpack_B.description>给雪牛娘增加中量带宽的机械师背包</MooGirl_RA_MechanicBackpack_B.description>
+
+<!-- EN: 雪牛娘 Lv3机械师背包 -->
+<MooGirl_RA_MechanicBackpack_C.label>雪牛娘 Lv3 机械师背包</MooGirl_RA_MechanicBackpack_C.label>
+<!-- EN: 给雪牛娘增加大量带宽的机械师背包 -->
+<MooGirl_RA_MechanicBackpack_C.description>给雪牛娘增加大量带宽的机械师背包</MooGirl_RA_MechanicBackpack_C.description>
+
+<!-- EN: 雪牛娘 Lv4机械师背包 -->
+<MooGirl_RA_MechanicBackpack_D.label>雪牛娘 Lv4 机械师背包</MooGirl_RA_MechanicBackpack_D.label>
+<!-- EN: 给雪牛娘增加超多量带宽的机械师背包 -->
+<MooGirl_RA_MechanicBackpack_D.description>给雪牛娘增加超多量带宽的机械师背包</MooGirl_RA_MechanicBackpack_D.description>
+
+<!-- EN: 雪牛娘 侦察装甲 -->
+<MooGirl_RA_PowerArmor.label>雪牛娘 侦察装甲</MooGirl_RA_PowerArmor.label>
+<!-- EN: 轻量化侦察装甲，防护覆盖躯干关键部位。防御与挑逗的完美平衡，让敌人分神即是战术。 -->
+<MooGirl_RA_PowerArmor.description>轻量化侦察装甲，防护覆盖躯干关键部位。防御与挑逗的完美平衡，让敌人分神即是战术。</MooGirl_RA_PowerArmor.description>
+
+<!-- EN: 雪牛娘 特化防弹钢甲 -->
+<MooGirl_ReconArmor.label>雪牛娘 斥候装甲 「绯红捷速」</MooGirl_ReconArmor.label>
+<!-- EN: 胸口和背部插有装甲板的背心，对牛娘胸部进行特化。主要保护躯干与主要器官，没有四肢防御能力 -->
+<MooGirl_ReconArmor.description>「八重·朱 服装」出品轻量化侦察装甲，覆盖躯干关键部位提供防护，同时兼顾灵活性，设计精巧，适合执行侦察任务或户外活动。</MooGirl_ReconArmor.description>
+  
+</LanguageData>

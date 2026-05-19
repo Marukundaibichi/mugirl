@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Defs>
+	<MooGirl.SlaveApparelDef Name="MooGirl_SlaveApparel_Base" Abstract="True">
+		<thingClass>MooGirl.SlaveApparel</thingClass> 
+		<category>Item</category> <!-- 属于物品类别 -->
+		<selectable>True</selectable> <!-- 可以被鼠标选中 -->
+		<pathCost>10</pathCost> <!-- 路径代价，AI 寻路会略微避开它 -->
+		<useHitPoints>True</useHitPoints> <!-- 启用耐久度 -->
+		<techLevel>Medieval</techLevel> <!-- 科技水平 -->
+		<graphicData>
+			<onGroundRandomRotateAngle>35</onGroundRandomRotateAngle> <!-- 放在地上时允许有随机角度 -->
+			<graphicClass>Graphic_Single</graphicClass> <!-- 图形渲染类型为单一图片 -->
+		</graphicData>
+		<drawGUIOverlay>true</drawGUIOverlay>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints> <!-- 最大耐久 -->
+			<Flammability>0.4</Flammability> <!-- 易燃性 -->
+			<DeteriorationRate>1</DeteriorationRate> <!-- 老化速度 -->
+			<Beauty>1</Beauty> <!-- 美观值 -->
+		</statBases>
+		<altitudeLayer>Item</altitudeLayer> <!-- 渲染高度层 -->
+		<alwaysHaulable>True</alwaysHaulable> <!-- 总是允许被搬运 -->
+		<tickerType>Normal</tickerType> <!-- Tick 检测频率 -->
+		<burnableByRecipe>true</burnableByRecipe> <!-- 可作为燃料被消耗 -->
+		<smeltable>true</smeltable> <!-- 可被熔化 -->
+		<comps>
+			<li Class="CompProperties_Forbiddable" /> <!-- 可以被禁止搬运 -->
+			<li Class="MooGirl.CompProperties_DevUnlockSlaveApparel" />
+			<li Class="MooGirl.CompProperties_AdultContentControl" />
+			<li Class="CompProperties_UseEffect"> <!-- 使用效果逻辑 -->
+				<compClass>MooGirl.CompGetSlaveApperalGear</compClass>
+			</li>
+			<li> <!-- 支持染色功能 -->
+				<compClass>CompColorable</compClass>
+			</li>
+		</comps>
+		<modExtensions>
+			<li Class="MooGirl.AdultContentExtension">
+				<adultOnly>true</adultOnly>
+			</li>
+		</modExtensions>
+		<thingCategories>
+			<li>MooGirl_Slave</li>
+		</thingCategories> <!-- 分类定义 -->
+		<apparel>
+			<slaveApparel>true</slaveApparel>
+			<canBeDesiredForIdeo>false</canBeDesiredForIdeo> <!-- 意识形态不会“想要”此服装 -->
+			<canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth> <!-- 不作为自动保暖装备生成 -->
+			<canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance> <!--
+			不作为抗毒环境服生成 -->
+		</apparel>
+	</MooGirl.SlaveApparelDef>
+</Defs>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: 雪牛娘 -->
+  <MooGirl.label>Mugirl</MooGirl.label>
+  <MooGirl.description>A half-muffalo race genetically engineered by a mega corporation, possessing soft fur, light blue coats and adorable horns. They combine strength with a gentle nature, being intelligent and affectionate, yet are forced to endure a life of servitude. Despite this, they still comfort those around them with tender gestures, demonstrating a remarkable kindness inherent to their character.</MooGirl.description>
+  
+  <!-- EN: MooGirl Tail -->
+  <MooGirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.0.conditions.1.bodyPartLabel>Mugirl tail</MooGirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.0.conditions.1.bodyPartLabel>
+  <!-- EN: left horn -->
+  <MooGirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.1.conditions.1.bodyPartLabel>left horn</MooGirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.1.conditions.1.bodyPartLabel>
+  <!-- EN: right horn -->
+  <MooGirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.2.conditions.1.bodyPartLabel>right horn</MooGirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.2.conditions.1.bodyPartLabel>
+  <!-- EN: horn -->
+  <MooGirl.tools.horn.label>horn</MooGirl.tools.horn.label>
+  <!-- EN: left fist -->
+  <MooGirl.tools.left_fist.label>left fist</MooGirl.tools.left_fist.label>
+  <!-- EN: right fist -->
+  <MooGirl.tools.right_fist.label>right fist</MooGirl.tools.right_fist.label>
+  
+</LanguageData>

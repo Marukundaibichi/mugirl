@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>MuGirlRace</name>
+	<author>PCR、114、梓磐谷客、伊贝森</author>
+	<supportedVersions>
+		<li>1.6</li>
+	</supportedVersions>
+	<packageId>HAR.MuGirlRace</packageId>
+	<modDependencies>
+		<li>
+			<packageId>brrainz.harmony</packageId>
+			<displayName>Harmony</displayName>
+			<steamWorkshopUrl>https://github.com/pardeike/HarmonyRimWorld</steamWorkshopUrl>
+		</li>
+		<li>
+			<packageId>erdelf.humanoidalienraces</packageId>
+			<displayName>Humanoid Alien Races</displayName>
+		<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=839005762</steamWorkshopUrl>
+		</li>
+	</modDependencies>
+	<loadAfter>
+		<li>brrainz.harmony</li>
+		<li>Ludeon.RimWorld</li>
+		<li>erdelf.HumanoidAlienRaces</li>
+		<li>Nals.FacialAnimation</li>
+	</loadAfter>
+	<incompatibleWith>
+		<li>Luca.MuGirlFacialAnimation</li>
+	</incompatibleWith>
+	<description>
+	
+	添加了雪牛娘物种，很可爱哦~ (◕‿◕✿) 
+	
+	雪牛娘是某个太空财团为太空殖民目的，通过基因改造设计的奴隶种族，她们兼具人类的外形与雪牛的强健体魄，能够适应各类殖民地环境下的高强度劳动。
+	雪牛娘血厚力大，护甲与减伤系数远超一般种族，是优秀的农夫与工匠，擅长种植、建造与生产等基础工作；
+	但在智力劳动上表现迟钝，尤其不擅长医疗与科研。她们既是殖民地的可靠劳力，也是某种意义上令人同情的基因产物。
+	
+	</description>
+</ModMetaData>

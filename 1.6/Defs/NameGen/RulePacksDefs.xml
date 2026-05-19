@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <RulePackDef>
+    <defName>MooGirl_NamerPerson</defName>
+    <rulePack>
+      <rulesFiles>
+        <li>MooGirl_Rev_First_Female->Names/MooGirl_First_Female</li>
+        <li>MooGirl_Rev_Last->Names/MooGirl_Last</li>
+      </rulesFiles>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>MooGirl_NameUtility</defName>
+    <include>
+      <li>MooGirl_NamerPerson</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name->[MooGirl_Rev_Last] [MooGirl_Rev_First_Female]</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+</Defs>

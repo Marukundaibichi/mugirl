@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- 喝奶心情 -->
+  <ThoughtDef>
+    <defName>MooGirl_DrankMilk</defName>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>吸了雪牛娘的奶子</label>
+        <description>这种像是小宝宝一样的心情究竟是...</description>
+        <baseMoodEffect>12</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- 被喂奶心情（倒地时） -->
+  <ThoughtDef>
+    <defName>MooGirl_FedMilk</defName>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>被喂了雪牛奶</label>
+        <description>雪牛娘温柔地将乳汁喂给了我，伤口的疼痛似乎都减轻了...</description>
+        <baseMoodEffect>10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+</Defs>

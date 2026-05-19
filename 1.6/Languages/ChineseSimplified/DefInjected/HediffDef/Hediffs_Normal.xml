@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: 精疲力尽 -->
+  <MooGirl_Abasia.label>精疲力尽</MooGirl_Abasia.label>
+  <!-- EN: 她似乎在巨型企业的奴役下经历了未知的折磨，虽然设法逃脱出来，但在接下来的几天里，身体疲惫至极，几乎无法动弹。 -->
+  <MooGirl_Abasia.description>她似乎在巨型企业的奴役下经历了未知的折磨，虽然设法逃脱出来，但在接下来的几天里，身体疲惫至极，几乎无法动弹。</MooGirl_Abasia.description>
+  <!-- EN: 从巨型企业的奴役下逃脱后，她身体极度疲惫，几乎无法动弹。 -->
+  <MooGirl_Abasia.descriptionShort>从巨型企业的奴役下逃脱后，她身体极度疲惫，几乎无法动弹。</MooGirl_Abasia.descriptionShort>
+  <!-- EN: 死里逃生 -->
+  <MooGirl_Abasia.stages.0.label>死里逃生</MooGirl_Abasia.stages.0.label>
+  <!-- EN: 应激恢复 -->
+  <MooGirl_Abasia.stages.1.label>应激恢复</MooGirl_Abasia.stages.1.label>
+  
+</LanguageData>

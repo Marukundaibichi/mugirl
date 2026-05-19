@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- 哺乳期 Hediff -->
+  <HediffDef>
+    <defName>MooGirl_Lactation</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>哺乳期</label>
+    <description>雪牛娘处于泌乳状态，可以哺育幼崽。乳汁分泌速度受营养状况影响。</description>
+    <isBad>false</isBad>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <comps>
+      <li Class="MooGirl.CompProperties_Lactation">
+        <baseProductionMultiplier>1.0</baseProductionMultiplier>
+        <postpartumBoostDays>7</postpartumBoostDays>
+        <postpartumMultiplier>2.5</postpartumMultiplier>
+        <malnourishedPenalty>0.3</malnourishedPenalty>
+        <breastfedBuff>MooGirl_Breastfed</breastfedBuff>
+      </li>
+    </comps>
+  </HediffDef>
+
+  <!-- 母乳喂养 Buff -->
+  <HediffDef>
+    <defName>MooGirl_Breastfed</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>母乳喂养</label>
+    <description>喝到了雪牛娘妈妈的母乳，学习能力和生长速度都得到了显著提升。</description>
+    <isBad>false</isBad>
+    <defaultLabelColor>(255,192,203)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <stages>
+      <li>
+        <statFactors>
+          <GlobalLearningFactor>2.0</GlobalLearningFactor>
+        </statFactors>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>60000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+  </HediffDef>
+</Defs>

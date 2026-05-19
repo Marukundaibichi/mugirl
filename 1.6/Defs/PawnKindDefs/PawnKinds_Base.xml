@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <PawnKindDef Abstract="True" Name="MooGirl_BaseKind">
+    <race>MooGirl</race>
+    <combatPower>45</combatPower>
+    <isFighter>false</isFighter>
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <forceNormalGearQuality>true</forceNormalGearQuality>
+    <xenotypeSet>
+      <xenotypeChances>
+        <MooGirl_Xenotype MayRequire="Ludeon.RimWorld.Biotech">1</MooGirl_Xenotype>
+        <Baseliner MayRequire="Ludeon.RimWorld.Biotech">0</Baseliner>
+        <Dirtmole MayRequire="Ludeon.RimWorld.Biotech">0</Dirtmole>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0</Genie>
+        <Hussar MayRequire="Ludeon.RimWorld.Biotech">0</Hussar>
+        <Sanguophage MayRequire="Ludeon.RimWorld.Biotech">0</Sanguophage>
+        <Neanderthal MayRequire="Ludeon.RimWorld.Biotech">0</Neanderthal>
+        <Pigskin MayRequire="Ludeon.RimWorld.Biotech">0</Pigskin>
+        <Impid MayRequire="Ludeon.RimWorld.Biotech">0</Impid>
+        <Waster MayRequire="Ludeon.RimWorld.Biotech">0</Waster>
+        <Yttakin MayRequire="Ludeon.RimWorld.Biotech">0</Yttakin>
+        <Highmate MayRequire="Ludeon.RimWorld.Biotech">0</Highmate>
+      </xenotypeChances>
+    </xenotypeSet>
+    <useFactionXenotypes>false</useFactionXenotypes>
+  </PawnKindDef>
+</Defs>

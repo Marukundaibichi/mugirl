@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: 雪牛娘 奴隶手套 -->
+  <MooGirl_Slavegauntlet.label>雪牛娘 奴隶手套</MooGirl_Slavegauntlet.label>
+  <!-- EN: 一种带锁的束缚手套，用于将雪牛娘的手指紧紧固定，显著降低其操作与精细劳动能力。手套配有专用锁具，必须使用[精致束具钥匙]才能解开。 -->
+  <MooGirl_Slavegauntlet.description>一种带锁的束缚手套，用于将雪牛娘的手指紧紧固定，显著降低其操作与精细劳动能力。\n\n手套配有专用锁具，必须使用[精致束具钥匙]才能解开。</MooGirl_Slavegauntlet.description>
+  
+  <!-- EN: 雪牛娘 奴隶袜 -->
+  <MooGirl_Slavestockings.label>雪牛娘 奴隶袜</MooGirl_Slavestockings.label>
+  <!-- EN: 一种特殊的束缚袜，造型类似高跟鞋但缺少后跟，使穿戴者步伐不稳，移动速度明显降低。袜子配有专用锁具，必须使用[精致束具钥匙]才能解开。 -->
+  <MooGirl_Slavestockings.description>一种特殊的束缚袜，造型类似高跟鞋但缺少后跟，使穿戴者步伐不稳，移动速度明显降低。\n\n袜子配有专用锁具，必须使用[精致束具钥匙]才能解开。</MooGirl_Slavestockings.description>
+  
+</LanguageData>

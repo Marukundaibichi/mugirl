@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <AbilityDef>
+        <defName>MooGirl_Charge</defName>
+        <label>雪牛冲锋！</label>
+        <description>冲冲冲！我要创死你！</description>
+        <iconPath>UI/MooGirl_Charge</iconPath>
+        <cooldownTicksRange>6000</cooldownTicksRange>
+        <sendMessageOnCooldownComplete>true</sendMessageOnCooldownComplete>
+        <warmupStartSound>FireSpew_Warmup</warmupStartSound>
+        <verbProperties>
+            <verbClass>Verb_CastAbility</verbClass>
+            <label>冲冲冲</label>
+            <warmupTime>0.5</warmupTime>
+            <range>19.9</range>
+            <requireLineOfSight>true</requireLineOfSight>
+            <soundCast>Longjump_Jump</soundCast>
+            <soundLanding>Longjump_Land</soundLanding>
+            <targetParams>
+                <canTargetLocations>false</canTargetLocations>
+                <canTargetPawns>true</canTargetPawns>
+                <canTargetBuildings>false</canTargetBuildings>
+            </targetParams>
+        </verbProperties>
+        <jobDef>Job_Charge</jobDef>
+    </AbilityDef>
+
+
+    <AbilityDef>
+        <defName>MooGirl_Shout</defName>
+        <label>雪牛大叫！</label>
+        <description>RUAAAAAAAAA！（丢人的叫声）</description>
+        <iconPath>UI/MooGirl_Shout</iconPath>
+        <cooldownTicksRange>6000</cooldownTicksRange>
+        <targetRequired>false</targetRequired>
+        <hostile>false</hostile>
+        <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+        <verbProperties>
+            <verbClass>Verb_CastAbility</verbClass>
+            <warmupTime>2</warmupTime>
+            <warmupEffecter>AnimalWarcall_Warmup</warmupEffecter>
+            <range>6</range>
+            <drawAimPie>false</drawAimPie>
+            <targetParams>
+                <canTargetSelf>true</canTargetSelf>
+            </targetParams>
+        </verbProperties>
+        <comps>
+            <li Class="MooGirl.CompProperties_AbilityEffect_ForceJob">
+                <jobDef>GotoMindControlled</jobDef>
+                <durationTick>240</durationTick>
+                <radius>6</radius>
+            </li>
+        </comps>
+    </AbilityDef>
+
+</Defs>

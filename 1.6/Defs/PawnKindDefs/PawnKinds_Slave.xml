@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <PawnKindDef Name="MooGirl_SlaveBase" ParentName="MooGirl_BaseKind" Abstract="True">
+    <combatPower>30</combatPower>
+    <race>MooGirl</race>
+    <itemQuality>Poor</itemQuality>
+    <chemicalAddictionChance>0.06</chemicalAddictionChance>
+    <backstoryCryptosleepCommonality>0</backstoryCryptosleepCommonality>
+    <backstoryFilters>
+      <li>
+        <categories>
+          <li>MooGirl_Slave</li>
+        </categories>
+      </li>
+    </backstoryFilters>
+    <isFighter>true</isFighter> <!-- 是否具有战斗能力 -->
+    <chemicalAddictionChance>0.01</chemicalAddictionChance> <!-- 生成时有概率有化学成瘾 -->
+    <gearHealthRange>0.8~1</gearHealthRange> <!-- 装备耐久度 -->
+    <apparelMoney>0~1000000</apparelMoney>
+    <apparelAllowHeadgearChance>0.75</apparelAllowHeadgearChance> <!-- 不允许生成头部装备 -->
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons> <!-- 生成服装不受季节影响 -->
+    <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
+    <invNutrition>1</invNutrition> <!-- 初始携带食物总营养值 -->
+    <invFoodDef>Hay</invFoodDef> <!-- 初始携带的食物类型 干草 -->
+    <initialWillRange>0~1</initialWillRange> <!-- 奴隶意志值 -->
+    <initialResistanceRange>10~17</initialResistanceRange> <!-- 招募时的抗拒值范围 -->
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="MooGirl_SlaveBase">
+    <defName>MooGirl_Beginning_Slave</defName>
+    <label>雪牛迫降奴隶</label>
+    <apparelTags> <!-- 服装筛选标签，仅穿戴包含这些标签的装备 -->
+      <li>MooGirl_Slave_Underwear</li>
+      <li>MooGirl_Slave_Shell_Upper</li>
+      <li>MooGirl_Slave_Shell_Lower</li>
+      <li>MooGirl_Slave_Gags</li>
+      <li>MooGirl_Slave_Earplugs</li>
+      <li>MooGirl_Slave_Blinder</li>
+    </apparelTags>
+    <initialWillRange>0~1</initialWillRange> 
+    <initialResistanceRange>10~17</initialResistanceRange> 
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="MooGirl_SlaveBase">
+    <defName>MooGirl_Slave</defName>
+    <label>雪牛奴隶</label>
+    <apparelTags> <!-- 服装筛选标签，仅穿戴包含这些标签的装备 -->
+      <li>MooGirl_Slave_Underwear</li>
+      <li>MooGirl_Slave_Shell_Upper</li>
+      <li>MooGirl_Slave_Shell_Lower</li>
+      <li>MooGirl_Slave_Gags</li>
+      <li>MooGirl_Slave_Earplugs</li>
+      <li>MooGirl_Slave_Blinder</li>
+      <li>MooGirl_Slave_Spacer</li>
+    </apparelTags>
+    <initialWillRange>0~1</initialWillRange> 
+    <initialResistanceRange>10~17</initialResistanceRange> 
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="MooGirl_SlaveBase">
+    <defName>MooGirl_EscapeSpaceSlave</defName>
+    <label>雪牛太空奴隶</label>
+    <apparelTags> <!-- 服装筛选标签，仅穿戴包含这些标签的装备 -->
+      <li>MooGirl_Slave_Underwear</li>
+      <li>MooGirl_Slave_Spacer</li>
+      <li>MooGirl_Slave_OnSkin_Upper</li>
+      <li>MooGirl_Slave_OnSkin_Lower</li>
+    </apparelTags>
+    <initialWillRange>2~40</initialWillRange>
+    <initialResistanceRange>2~40</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="MooGirl_SlaveBase">
+    <defName>MooGirl_EscapeWanderSlave</defName>
+    <label>雪牛逃亡奴隶</label>
+    <apparelTags> <!-- 服装筛选标签，仅穿戴包含这些标签的装备 -->
+      <li>MooGirl_Slave_Underwear</li>
+      <li>MooGirl_Slave_Gags</li>
+      <li>MooGirl_Slave_Earplugs</li>
+      <li>MooGirl_Slave_Blinder</li>
+      <li>MooGirl_Slave_Shell_Upper</li>
+      <li>MooGirl_Slave_Shell_Lower</li>
+    </apparelTags>
+    <gearHealthRange>0.6~0.8</gearHealthRange>
+    <initialWillRange>2~40</initialWillRange>
+    <initialResistanceRange>2~40</initialResistanceRange>
+  </PawnKindDef>
+  
+  <PawnKindDef ParentName="MooGirl_SlaveBase">
+    <defName>MooGirl_EscapeWildSlave</defName>
+    <label>雪牛流浪野人</label>
+    <acceptArrestChanceFactor>0.5</acceptArrestChanceFactor>    
+    <apparelTags> 
+      <li>MooGirl_Slave_Underwear</li>
+      <li>MooGirl_Slave_Shell_Upper</li>
+      <li>MooGirl_Slave_Shell_Lower</li>
+      <li>MooGirl_Slave_Blinder</li>
+    </apparelTags>
+    <gearHealthRange>0.3~0.6</gearHealthRange>
+    <initialWillRange>2~40</initialWillRange>
+    <initialResistanceRange>2~40</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="MooGirl_SlaveBase">
+    <defName>MooGirl_PreEscapeWildSlave</defName>
+    <label>雪牛流浪者</label>
+    <acceptArrestChanceFactor>0.5</acceptArrestChanceFactor>    
+    <apparelTags> 
+      <li>MooGirl_Slave_Underwear</li>
+      <li>MooGirl_Slave_Shell_Upper</li>
+      <li>MooGirl_Slave_Shell_Lower</li>
+      <li>MooGirl_Slave_Blinder</li>
+    </apparelTags>
+    <gearHealthRange>0.3~0.6</gearHealthRange>
+    <initialWillRange>2~40</initialWillRange>
+    <initialResistanceRange>2~40</initialResistanceRange>
+  </PawnKindDef>
+
+</Defs>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: 雪牛娘开局 -->
+  <MooGirl_ColonyStart.label>Mugirl Start</MooGirl_ColonyStart.label>
+  <!-- EN: text。 -->
+  <MooGirl_ColonyStart.description>Several Mugirls who were either slaves of a mega corporation or rescued by an anti-slavery organisation have arrived here. They hope to build their own lives in this new environment, pursuing freedom and dignity.</MooGirl_ColonyStart.description>
+  <!-- EN: text。 -->
+  <MooGirl_ColonyStart.scenario.description>Several Mugirls who were formerly slaves of a mega corporation or rescued by an anti-slavery organisation will begin their new lives as your starting colonists. Having cast off their past restraints, they are gradually establishing a colony belonging to the Mugirls.</MooGirl_ColonyStart.scenario.description>
+  <!-- EN: 雪牛娘开局 -->
+  <MooGirl_ColonyStart.scenario.name>Mugirl Start</MooGirl_ColonyStart.scenario.name>
+  <!-- EN: text。 -->
+  <MooGirl_ColonyStart.scenario.summary>Several escaped slave Mugirls are beginning their new lives in your colony. They need your help to adapt to freedom and the new environment.</MooGirl_ColonyStart.scenario.summary>
+  
+</LanguageData>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: 墙壁栓点 -->
+  <WallRopeHitch.label>Wall Rope Hitch</WallRopeHitch.label>
+  <!-- EN: 被钉在墙上的铁环，可以把雪牛娘拴在上面捏。 -->
+  <WallRopeHitch.description>Wall-mounted iron rings can be used to safely secure Mugirls. They display an instinctive compliance when being led, a result of prolonged modification and domestication.</WallRopeHitch.description>
+  <!-- EN: 栓在建筑上 -->
+  <WallRopeHitch.comps.CompRopeToBuild.useLabel>Rope to Building</WallRopeHitch.comps.CompRopeToBuild.useLabel>
+  
+</LanguageData>

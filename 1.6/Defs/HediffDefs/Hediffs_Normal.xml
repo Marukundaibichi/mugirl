@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Defs>
+
+    <HediffDef ParentName="DiseaseBase">
+        <!-- 定义了一种名为Abasia的疾病（Hediff），继承自DiseaseBase -->
+        <defName>MooGirl_Abasia</defName>
+        <!-- 疾病的内部名称，用于代码引用 -->
+        <label>精疲力尽</label>
+        <!-- 疾病的显示名称，用于用户界面 -->
+        <description>她似乎在巨型企业的奴役下经历了未知的折磨，虽然设法逃脱出来，但在接下来的几天里，身体疲惫至极，几乎无法动弹。</description>
+        <!-- 疾病的详细描述，解释了病因、自然恢复过程及特殊治疗方法 -->
+        <descriptionShort>从巨型企业的奴役下逃脱后，她身体极度疲惫，几乎无法动弹。</descriptionShort>
+        <!-- 疾病的简短描述，概述了主要症状和恢复过程 -->
+        <hediffClass>HediffWithComps</hediffClass>
+        <!-- 指定疾病类，HediffWithComps表示支持附加组件的疾病 -->
+        <preventsCrawling>true</preventsCrawling>
+        <!-- 疾病效果：阻止患者爬行 -->
+
+        <comps>
+            <li Class="HediffCompProperties_SeverityPerDay">
+                <severityPerDay>1.0</severityPerDay>
+            </li>
+            <li Class="HediffCompProperties_Disappears">
+                <!-- 组件：Disappears，表示疾病会在一定时间后自然消失 -->
+                <disappearsAfterTicks>120000</disappearsAfterTicks>
+                <!-- 疾病在1800000到2400000 ticks后消失（约30到45天） -->
+                <showRemainingTime>true</showRemainingTime>
+                <!-- 在用户界面中显示疾病剩余时间 -->
+            </li>
+        </comps>
+
+        <stages>
+            <!-- 定义疾病的阶段，每个阶段有不同的效果 -->
+            <li>
+                <!-- 第一阶段 -->
+                <label>死里逃生</label>
+                <minSeverity>0.0</minSeverity>
+                <capMods>
+                    <!-- 能力修正列表 -->
+                    <li>
+                        <!-- 对移动能力的修正 -->
+                        <capacity>Moving</capacity>
+                        <!-- 移动能力 -->
+                        <setMax>0.1</setMax>
+                        <!-- 将移动能力上限设置为0.1（几乎无法移动） -->
+                    </li>
+                </capMods>
+                <statOffsets>
+                    <ComfyTemperatureMin>-80</ComfyTemperatureMin>
+                    <ComfyTemperatureMax>80</ComfyTemperatureMax>
+                    <VacuumResistance>1</VacuumResistance>
+                </statOffsets>
+            </li>
+            <li>
+                <!-- 第二阶段 -->
+                <label>应激恢复</label>
+                <minSeverity>1</minSeverity>
+                <capMods>
+                    <!-- 能力修正列表 -->
+                    <li>
+                        <!-- 对移动能力的修正 -->
+                        <capacity>Moving</capacity>
+                        <offset>-0.2</offset>
+                    </li>
+                </capMods>
+                <minSeverity>0.5</minSeverity>
+                <statOffsets>
+                    <ComfyTemperatureMin>-80</ComfyTemperatureMin>
+                    <ComfyTemperatureMax>80</ComfyTemperatureMax>
+                    <VacuumResistance>1</VacuumResistance>
+                </statOffsets>
+            </li>
+        </stages>
+    </HediffDef>
+</Defs>

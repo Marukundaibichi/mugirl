@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ============== 奶布丁心情 ============== -->
+  <ThoughtDef>
+    <defName>Consumed_MooGirlPudding</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>美味布丁</label>
+        <description>甜甜的，香浓又入口即化，好吃</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ============== 奶酪心情 ============== -->
+  <ThoughtDef>
+    <defName>Consumed_MooGirlCheese</defName>
+    <durationDays>1</durationDays>
+    <stages>
+      <li>
+        <label>新鲜奶酪</label>
+        <description>有点嚼劲，在嘴里慢慢融化成香浓的液态时，那股奶香会温柔的包裹舌头</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ============== 陈年奶酪心情 ============== -->
+  <ThoughtDef>
+    <defName>Consumed_MooGirlAgedCheese</defName>
+    <durationDays>1</durationDays>
+    <stages>
+      <li>
+        <label>陈年奶酪</label>
+        <description>入口时嚼起来比起新鲜奶酪更硬一点，在口中融化时能尝到那股醇厚香甜的味道缠在舌头上，甜而不腻</description>
+        <baseMoodEffect>6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ============== 共用浓郁奶味心情 ============== -->
+  <ThoughtDef>
+    <defName>Consumed_MooGirlRichMilkFlavor</defName>
+    <durationDays>1</durationDays>
+    <stages>
+      <li>
+        <label>浓郁奶味</label>
+        <description>雪牛娘奶那甜甜的浓郁奶味在口腔内回荡</description>
+        <baseMoodEffect>6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ============== 奶糖心情 ============== -->
+  <ThoughtDef>
+    <defName>Consumed_MooGirlMilkCandy</defName>
+    <durationDays>1</durationDays>
+    <stages>
+      <li>
+        <label>好吃哒奶糖</label>
+        <description>每嚼一下甜甜的奶味就会从齿尖流过，越嚼越甜</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

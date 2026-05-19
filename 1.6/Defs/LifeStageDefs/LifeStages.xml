@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <LifeStageDef ParentName="HumanlikeAdolescent">
+    <defName>MooGirl_HumanlikeBaby</defName>
+    <label>baby</label>
+    <bodySizeFactor>0.2</bodySizeFactor>
+    <bodyWidth>0.95</bodyWidth>
+    <bodyDrawOffset>(0, 0, -0.03)</bodyDrawOffset>
+    <voxPitch>1.6</voxPitch>
+    <headSizeFactor>0.5</headSizeFactor>
+    <eyeSizeFactor>0.7</eyeSizeFactor>
+    <foodMaxFactor>0.625</foodMaxFactor> <!-- bodySizeFactor * foodMaxFactor = maxFood = 0.125 -->
+    <hungerRateFactor>0.125</hungerRateFactor> <!-- consumes 2x maxFood per day -->
+    <healthScaleFactor>0.2</healthScaleFactor>
+    <marketValueFactor>0.5</marketValueFactor>
+    <meleeDamageFactor>0.5</meleeDamageFactor>
+    <developmentalStage>Baby</developmentalStage>
+    <fallAsleepMaxThresholdOverride>.60</fallAsleepMaxThresholdOverride>
+    <naturalWakeThresholdOverride>1.0</naturalWakeThresholdOverride>
+    <alwaysDowned>true</alwaysDowned>
+    <claimable>true</claimable>
+    <involuntarySleepIsNegativeEvent>false</involuntarySleepIsNegativeEvent> <!-- Babies just fall asleep randomly and they're cool with it. -->
+    <thinkTreeMainOverride MayRequire="Ludeon.RimWorld.Biotech">HumanlikeBaby</thinkTreeMainOverride>
+    <thinkTreeConstantOverride MayRequire="Ludeon.RimWorld.Biotech">HumanlikeBabyConstant</thinkTreeConstantOverride>
+    <canDoRandomMentalBreaks>false</canDoRandomMentalBreaks> <!-- Babies have crying/giggling fits instead of mental breaks. -->
+    <canSleepWhileHeld>true</canSleepWhileHeld>
+    <canVoluntarilySleep>false</canVoluntarilySleep> <!-- Babies fall asleep randomly when they're tired. -->
+    <canSleepWhenStarving>false</canSleepWhenStarving>
+    <canInitiateSocialInteraction>false</canInitiateSocialInteraction>
+    <customMoodTipString>Mood represents how happy or stressed someone is. Babies with low mood are more likely to cry, while babies with a high mood are more likely to giggle.</customMoodTipString>
+    <silhouetteGraphicData>
+      <texPath>Things/Pawn/Humanlike/Silhouettes/Silhouette_HumanBaby</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>1</drawSize>
+    </silhouetteGraphicData>
+    <statFactors>
+      <MoveSpeed>0.2</MoveSpeed>
+    </statFactors>
+    <statOffsets>
+      <ComfyTemperatureMin>-46</ComfyTemperatureMin><!--should map to -30C-->
+      <ComfyTemperatureMax>4</ComfyTemperatureMax><!--should map to 30C-->
+    </statOffsets>
+    <involuntarySleepMTBDaysFromRest>
+      <points>
+        <li>(.00, 0)</li>
+        <li>(.01, .01)</li>
+        <li>(.15, .166)</li>
+        <li>(.30, 1)</li>
+        <li>(.59, 10)</li>
+        <li>(.60, Infinity)</li>
+      </points>
+    </involuntarySleepMTBDaysFromRest>
+  </LifeStageDef>
+
+  <LifeStageDef ParentName="LifeStageHumanlikeChild">
+    <defName>MooGirl_PreTeenager</defName>
+    <label>未成年</label>
+    <headSizeFactor>0.8</headSizeFactor>
+    <bodySizeFactor>0.45</bodySizeFactor>
+    <bodyWidth>1.4</bodyWidth>
+    <bodyDrawOffset>(0, 0, -0.05)</bodyDrawOffset>
+    <healthScaleFactor>0.7</healthScaleFactor>
+    <foodMaxFactor>1.552</foodMaxFactor> <!-- bodySizeFactor * foodMaxFactor = maxFood = 0.9 -->
+    <hungerRateFactor>0.9</hungerRateFactor>
+    <marketValueFactor>0.95</marketValueFactor>
+    <meleeDamageFactor>0.725</meleeDamageFactor>
+    <statFactors>
+      <MoveSpeed>0.85</MoveSpeed>
+    </statFactors>
+  </LifeStageDef>
+
+  <LifeStageDef ParentName="HumanlikeAdolescent">
+    <defName>MooGirl_Teenager</defName>
+    <label>青少年</label>
+    <adjective>teenage</adjective>
+    <developmentalStage>Child</developmentalStage>
+    <reproductive>true</reproductive>
+    <headSizeFactor>0.9</headSizeFactor>
+    <bodySizeFactor>0.7</bodySizeFactor>
+    <bodyWidth>1.2</bodyWidth>
+    <healthScaleFactor>0.90</healthScaleFactor>
+    <foodMaxFactor>1.25</foodMaxFactor> <!-- bodySizeFactor * foodMaxFactor = maxFood = 1.0 -->
+    <meleeDamageFactor>0.75</meleeDamageFactor>
+    <equipmentDrawDistanceFactor>0.65</equipmentDrawDistanceFactor>
+    <sittingOffset>0.23</sittingOffset>
+    <silhouetteGraphicData>
+      <texPath>Things/Pawn/Humanlike/Silhouettes/Silhouette_HumanChild</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>1</drawSize>
+    </silhouetteGraphicData>
+    <statFactors>
+      <MoveSpeed>0.95</MoveSpeed>
+    </statFactors>
+  </LifeStageDef>
+
+  <LifeStageDef>
+    <defName>MooGirl_AdultLifeStage</defName>
+    <label>成年</label>
+    <workerClass MayRequire="Ludeon.RimWorld.Biotech">MooGirl.LifeStageWorker_MooGirlAdult</workerClass>
+    <visible>false</visible>
+    <reproductive>true</reproductive>
+    <sittingOffset>0.18</sittingOffset>
+    <silhouetteGraphicData>
+      <texPath>Things/Pawn/Humanlike/Silhouettes/Silhouette_HumanAdult</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>1</drawSize>
+    </silhouetteGraphicData>
+  </LifeStageDef>
+
+</Defs>

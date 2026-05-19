@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Defs>
+	<ThingDef Name="MooGirl_Base_SlaveApperalKey" Abstract="True">
+		<thingClass>ThingWithComps</thingClass>
+		<category>Item</category>
+		<thingCategories>
+			<li>Manufactured</li>
+		</thingCategories>
+		<graphicData>
+			<onGroundRandomRotateAngle>35</onGroundRandomRotateAngle> <!-- 放在地上时允许有随机角度 -->
+			<graphicClass>Graphic_Single</graphicClass> <!-- 图形渲染类型为单一图片 -->
+		</graphicData>
+		<useHitPoints>true</useHitPoints>
+		<selectable>true</selectable>
+		<altitudeLayer>Item</altitudeLayer>
+		<tickerType>Never</tickerType>
+		<alwaysHaulable>true</alwaysHaulable>
+		<tradeTags>
+			<li>Exotic</li>
+		</tradeTags>
+		<tradeability>None</tradeability>
+		<generateCommonality>0.0</generateCommonality>
+		<comps>
+			<li Class="CompProperties_Forbiddable" />
+			<li Class="MooGirl.CompProperties_SlaveApperalKey" />
+			<li Class="CompProperties_Usable">
+				<compClass>MooGirl.CompStampedApparelKey</compClass>
+				<useJob>UnlockSlaveApperal</useJob>
+				<useLabel>解锁束具</useLabel>
+			</li>
+			<li Class="CompProperties_UseEffect">
+				<compClass>MooGirl.CompUnlockBondageGear</compClass>
+			</li>
+		</comps>
+		<pathCost>1</pathCost>
+	</ThingDef>
+
+	<ThingDef ParentName="MooGirl_Base_SlaveApperalKey">
+		<defName>MooGirl_SlaveApperalKey_Medieval</defName>
+		<label>粗糙束具钥匙</label>
+		<description>用于解锁雪牛娘束具的钥匙，加工较粗糙，只能用来解锁较低级的束具。</description>
+		<statBases>
+			<MaxHitPoints>50</MaxHitPoints>
+			<Flammability>0.2</Flammability>
+			<DeteriorationRate>0.5</DeteriorationRate>
+			<Beauty>0</Beauty>
+			<MarketValue>10</MarketValue>
+			<Mass>0.1</Mass>
+		</statBases>
+		<graphicData>
+			<texPath>Things/Item/Keys/SlaveApperalKey_Medieval</texPath>
+		</graphicData>
+		<techLevel>Medieval</techLevel>
+	</ThingDef>
+
+	<ThingDef ParentName="MooGirl_Base_SlaveApperalKey">
+		<defName>MooGirl_SlaveApperalKey_Industrial</defName>
+		<label>精致束具钥匙</label>
+		<description>用于解锁雪牛娘束具的钥匙，加工精致，用来解锁奴隶袜、奴隶手套等拥有较复杂锁具的束具。</description>
+		<statBases>
+			<MaxHitPoints>50</MaxHitPoints>
+			<Flammability>0.2</Flammability>
+			<DeteriorationRate>0.5</DeteriorationRate>
+			<Beauty>0</Beauty>
+			<MarketValue>10</MarketValue>
+			<Mass>0.1</Mass>
+		</statBases>
+		<graphicData>
+			<texPath>Things/Item/Keys/SlaveApperalKey_Industrial</texPath>
+		</graphicData>
+		<techLevel>Industrial</techLevel>
+	</ThingDef>
+	
+	<ThingDef ParentName="MooGirl_Base_SlaveApperalKey">
+		<defName>MooGirl_SlaveApperalKey_Spacer</defName>
+		<label>高科技束具钥匙</label>
+		<description>用于解锁雪牛娘束具的钥匙，内含太空科技密钥，用来解锁磁力镣铐、电击项圈、和洗脑头盔等太空科技级别的束具。</description>
+		<statBases>
+			<MaxHitPoints>50</MaxHitPoints>
+			<Flammability>0.2</Flammability>
+			<DeteriorationRate>0.5</DeteriorationRate>
+			<Beauty>0</Beauty>
+			<MarketValue>10</MarketValue>
+			<Mass>0.1</Mass>
+		</statBases>
+		<graphicData>
+			<texPath>Things/Item/Keys/SlaveApperalKey_Spacer</texPath>
+		</graphicData>
+		<techLevel>Spacer</techLevel>
+	</ThingDef>
+
+
+	<ThingDef>
+		<defName>MooGirl_SlaveApperalKey_Advance</defName>
+		<label>束具破解器</label>
+		<description>用于破解雪牛娘太空束具的破解器，被破解后的束具可以为己方所用。</description>
+		<thingClass>ThingWithComps</thingClass>
+		<graphicData>
+			<texPath>Things/Item/Keys/SlaveApperalKey_Advance</texPath>
+			<graphicClass>Graphic_Single</graphicClass> <!-- 图形渲染类型为单一图片 -->
+		</graphicData>
+		<category>Item</category>
+		<thingCategories>
+			<li>Manufactured</li>
+		</thingCategories>
+		<useHitPoints>true</useHitPoints>
+		<selectable>true</selectable>
+		<statBases>
+			<MaxHitPoints>50</MaxHitPoints>
+			<Flammability>0.2</Flammability>
+			<DeteriorationRate>0.5</DeteriorationRate>
+			<Beauty>0</Beauty>
+			<MarketValue>10</MarketValue>
+			<Mass>0.1</Mass>
+		</statBases>
+		<altitudeLayer>Item</altitudeLayer>
+		<tickerType>Never</tickerType>
+		<alwaysHaulable>true</alwaysHaulable>
+		<tradeTags>
+			<li>Exotic</li>
+		</tradeTags>
+		<tradeability>None</tradeability>
+		<generateCommonality>0.0</generateCommonality>
+		<comps>
+			<li Class="CompProperties_Forbiddable" />
+			<li Class="CompProperties_Usable">
+				<useJob>CrackBondageGear</useJob>
+				<useLabel>使用 {0_label}</useLabel>
+				<useDuration>3</useDuration>
+				<warmupMote>Mote_ResurrectAbility</warmupMote>
+				<showUseGizmo>true</showUseGizmo>
+			</li>
+			<li Class="CompProperties_Targetable">
+				<compClass>MooGirl.CompTargetable_SlaveApparel</compClass>
+			</li>
+			<li Class="MooGirl.CompProperties_TargetEffectCrackBondageGear" />
+		</comps>
+		<pathCost>1</pathCost>
+		<techLevel>Medieval</techLevel>
+	</ThingDef>
+
+</Defs>

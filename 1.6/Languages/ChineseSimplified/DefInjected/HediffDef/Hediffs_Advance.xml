@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: 初次洗脑 -->
+  <MooGirl_BrainWashing_Level1.label>初次洗脑</MooGirl_BrainWashing_Level1.label>
+  <!-- EN: 是...是的...我服从您的命令... -->
+  <MooGirl_BrainWashing_Level1.description>是...是的...我服从您的命令...</MooGirl_BrainWashing_Level1.description>
+  
+  <!-- EN: 洗脑恍惚 -->
+  <MooGirl_BrainWashing_Level2.label>洗脑恍惚</MooGirl_BrainWashing_Level2.label>
+  <!-- EN: 哎？咦？刚才发生了什么，我为什么站在这里.... -->
+  <MooGirl_BrainWashing_Level2.description>哎？咦？刚才发生了什么，我为什么站在这里....</MooGirl_BrainWashing_Level2.description>
+  
+  <!-- EN: 再次洗脑 -->
+  <MooGirl_BrainWashing_Level3.label>再次洗脑</MooGirl_BrainWashing_Level3.label>
+  <!-- EN: 是...是的...嘿嘿...机械大人最棒了~♥ -->
+  <MooGirl_BrainWashing_Level3.description>是...是的...嘿嘿...机械大人最棒了~♥</MooGirl_BrainWashing_Level3.description>
+  
+  <!-- EN: 洗脑晕眩 -->
+  <MooGirl_BrainWashing_Level4.label>洗脑晕眩</MooGirl_BrainWashing_Level4.label>
+  <!-- EN: 呜....头好晕...我又愣神了吗...一定是这个臭头盔，但是为什么...身体感觉好舒服（小声） -->
+  <MooGirl_BrainWashing_Level4.description>呜....头好晕...我又愣神了吗...一定是这个臭头盔，但是为什么...身体感觉好舒服（小声）</MooGirl_BrainWashing_Level4.description>
+  
+  <!-- EN: 洗脑完成 -->
+  <MooGirl_BrainWashing_Level5.label>洗脑完成</MooGirl_BrainWashing_Level5.label>
+  <!-- EN: 明白...我明白了...杀...杀光...把殖民者...一个不剩的...杀光！ -->
+  <MooGirl_BrainWashing_Level5.description>明白...我明白了...杀...杀光...把殖民者...一个不剩的...杀光！</MooGirl_BrainWashing_Level5.description>
+  
+  <!-- EN: 项圈电击 -->
+  <MooGirl_EleShock.label>项圈电击</MooGirl_EleShock.label>
+  <!-- EN: 不知道什么原因，电击项圈开始电击雪牛娘，还好只是轻微的电击。 -->
+  <MooGirl_EleShock.description>不知道什么原因，电击项圈开始电击雪牛娘，还好只是轻微的电击。</MooGirl_EleShock.description>
+  
+  <!-- EN: 磁力镣铐束缚 -->
+  <MooGirl_MagneticShacklesBondage.label>磁力镣铐束缚</MooGirl_MagneticShacklesBondage.label>
+  <!-- EN: 雪牛娘的手臂被突然激活的磁力镣铐严格束缚在脖颈上，无法活动。 -->
+  <MooGirl_MagneticShacklesBondage.description>雪牛娘的手臂被突然激活的磁力镣铐严格束缚在脖颈上，无法活动。</MooGirl_MagneticShacklesBondage.description>
+  <!-- EN: 磁力镣铐束缚 -->
+  <MooGirl_MagneticShacklesBondage.labelNoun>磁力镣铐束缚</MooGirl_MagneticShacklesBondage.labelNoun>
+  
+  <!-- EN: 强力项圈电击 -->
+  <MooGirl_PowerEleShock.label>强力项圈电击</MooGirl_PowerEleShock.label>
+  <!-- EN: 不知道什么原因，电击项圈开始强烈的电击雪牛娘。快停下！真的会出牛命的呀... -->
+  <MooGirl_PowerEleShock.description>不知道什么原因，电击项圈开始强烈的电击雪牛娘。快停下！真的会出牛命的呀...</MooGirl_PowerEleShock.description>
+  
+</LanguageData>

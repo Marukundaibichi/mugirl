@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: 被洗脑 -->
+  <MooGirl_BrainWashing.label>Being Brainwashed</MooGirl_BrainWashing.label>
+  <!-- EN: 精神状态:洗脑 -->
+  <MooGirl_BrainWashing.baseInspectLine>Mental Status: Brainwashed</MooGirl_BrainWashing.baseInspectLine>
+  <!-- EN: {0} 已经被洗脑头盔完全洗脑。\n\n[PAWN_pronoun] 会无差别攻击殖民地任意 [PAWN_pronoun] 。 -->
+  <MooGirl_BrainWashing.beginLetter>{0} has been completely brainwashed by the mind-control helmet.\n\n[PAWN_pronoun] will indiscriminately attack other colonists.</MooGirl_BrainWashing.beginLetter>
+  <!-- EN: {0}已经抵抗了洗脑状态，但如果不摘下头盔 {0} 还会被再次洗脑。 -->
+  <MooGirl_BrainWashing.recoveryMessage>{0} has resisted the brainwashed state, but unless the helmet is removed, {0} will be brainwashed again.</MooGirl_BrainWashing.recoveryMessage>
+  
+</LanguageData>

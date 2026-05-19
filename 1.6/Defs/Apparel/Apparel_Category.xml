@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<ThingCategoryDef>
+		<defName>MooGirl_Apparel</defName>
+		<label>雪牛娘服装</label>
+		<parent>Apparel</parent>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>MooGirl_OnSkin</defName>
+		<label>雪牛娘贴身服装</label>
+		<parent>MooGirl_Apparel</parent>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>MooGirl_Underwear</defName>
+		<label>雪牛娘内衣</label>
+		<parent>MooGirl_Apparel</parent>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>MooGirl_Stocking</defName>
+		<label>雪牛娘丝袜</label>
+		<parent>MooGirl_Apparel</parent>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>MooGirl_SlaveApperal</defName>
+		<label>雪牛娘丝袜</label>
+		<parent>MooGirl_Apparel</parent>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>MooGirl_Head</defName>
+		<label>雪牛娘头饰</label>
+		<parent>MooGirl_Apparel</parent>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>MooGirl_Middle</defName>
+		<label>雪牛娘夹层</label>
+		<parent>MooGirl_Apparel</parent>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>MooGirl_Shell</defName>
+		<label>雪牛娘外套</label>
+		<parent>MooGirl_Apparel</parent>
+	</ThingCategoryDef>
+</Defs>

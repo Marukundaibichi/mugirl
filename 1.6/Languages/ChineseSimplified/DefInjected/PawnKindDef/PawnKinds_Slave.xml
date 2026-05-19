@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: 雪牛迫降奴隶 -->
+  <MooGirl_Beginning_Slave.label>雪牛迫降奴隶</MooGirl_Beginning_Slave.label>
+  
+  <!-- EN: 雪牛太空奴隶 -->
+  <MooGirl_EscapeSpaceSlave.label>逃脱太空奴隶</MooGirl_EscapeSpaceSlave.label>
+  
+  <!-- EN: 雪牛逃亡奴隶 -->
+  <MooGirl_EscapeWanderSlave.label>逃亡奴隶</MooGirl_EscapeWanderSlave.label>
+  
+  <!-- EN: 雪牛流浪野人 -->
+  <MooGirl_EscapeWildSlave.label>逃脱流浪野人</MooGirl_EscapeWildSlave.label>
+  
+  <!-- EN: 雪牛流浪者 -->
+  <MooGirl_PreEscapeWildSlave.label>雪牛流浪者</MooGirl_PreEscapeWildSlave.label>
+  
+  <!-- EN: 雪牛奴隶 -->
+  <MooGirl_Slave.label>奴隶</MooGirl_Slave.label>
+  
+</LanguageData>

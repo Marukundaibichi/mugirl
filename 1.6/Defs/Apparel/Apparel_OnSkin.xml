@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingDef Name="MooGirl_OnSkinBase" ParentName="MooGirl_ApparelBase" Abstract="True">
+		<statBases>
+			<Mass>0.4</Mass>
+			<EquipDelay>2.0</EquipDelay>
+		</statBases>
+		<apparel>
+			<layers>
+				<li>OnSkin</li>
+			</layers>
+			<tags>
+				<li>MooGirl_OnSkin</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>MooGirl_OnSkin</li>
+		</thingCategories>
+		<recipeMaker>
+			<researchPrerequisite>ComplexClothing</researchPrerequisite>
+		</recipeMaker>
+	</ThingDef>
+
+	<ThingDef ParentName="MooGirl_OnSkinBase">
+		<defName>MooGirl_Uniform</defName>
+		<label>雪牛娘 制式服装 「权力禁区」</label>
+		<description>「八重·朱 服装」出品雪牛娘标准制服，收腰西装搭配超短裙尽显窈窕身材，膝上十公分剪裁彰显绝对领域。办公室里的致命武器，每一步都踏在规则与欲望的边界线上，唤醒禁忌幻想。</description>
+		<graphicData>
+			<texPath>Things/Apparel/MooGirl_Uniform/MooGirl_Uniform</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<costStuffCount>70</costStuffCount>
+		<stuffCategories>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<statBases>
+			<MaxHitPoints>300</MaxHitPoints>
+			<WorkToMake>16000</WorkToMake>
+			<StuffEffectMultiplierArmor>0.3</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.40</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.10</StuffEffectMultiplierInsulation_Heat>
+			<ArmorRating_Sharp>0.35</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.10</ArmorRating_Heat>
+		</statBases>
+		<equippedStatOffsets>
+			<SocialImpact>0.1</SocialImpact>
+		</equippedStatOffsets>
+		<apparel>
+			<useWornGraphicMask>false</useWornGraphicMask>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Apparel/MooGirl_Uniform/MooGirl_Uniform</wornGraphicPath>
+		</apparel>
+	</ThingDef>
+
+	<ThingDef ParentName="MooGirl_OnSkinBase">
+		<defName>MooGirl_Hipwrappingskirt</defName>
+		<label>雪牛娘 包臀裙 「黑曜禁锢」</label>
+		<description>「八重·朱 服装」出品液态反光包臀裙，膝上二十厘米剪裁难掩春光。每步皆如律动枷锁，囚禁旁观者的视线。</description>
+		<graphicData>
+			<texPath>Things/Apparel/MooGirl_Hipwrappingskirt/MooGirl_Hipwrappingskirt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<costStuffCount>50</costStuffCount>
+		<stuffCategories>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<equippedStatOffsets>
+			<SocialImpact>0.1</SocialImpact>
+		</equippedStatOffsets>
+		<statBases>
+			<MaxHitPoints>130</MaxHitPoints>
+			<WorkToMake>6000</WorkToMake>
+			<StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.00</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.50</StuffEffectMultiplierInsulation_Heat>
+		</statBases>
+		<apparel>
+			<useWornGraphicMask>false</useWornGraphicMask>
+			<bodyPartGroups>
+				<li>Legs</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Apparel/MooGirl_Hipwrappingskirt/MooGirl_Hipwrappingskirt</wornGraphicPath>
+		</apparel>
+	</ThingDef>
+
+	<ThingDef ParentName="MooGirl_OnSkinBase">
+		<defName>MooGirl_BunnyGirlTop</defName>
+		<label>雪牛娘 兔女郎上衣</label>
+		<description>「八重·朱 服装」出品露背深V光亮胶皮紧身衣，尾部绣有雪绒兔尾球。领结衬出天鹅颈项，胸部曲线如雕塑般呈现，魅惑即是最强武装。</description>
+		<graphicData>
+			<texPath>Things/Apparel/MooGirl_BunnyGirlTop/MooGirl_BunnyGirlTop</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<costStuffCount>50</costStuffCount>
+		<stuffCategories>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<equippedStatOffsets>
+			<SocialImpact>0.2</SocialImpact>
+		</equippedStatOffsets>
+		<statBases>
+			<MaxHitPoints>125</MaxHitPoints>
+			<WorkToMake>6000</WorkToMake>
+			<StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.30</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.20</StuffEffectMultiplierInsulation_Heat>
+		</statBases>
+		<apparel>
+			<useWornGraphicMask>false</useWornGraphicMask>
+			<bodyPartGroups>
+			    <li>Torso</li>
+				<li>Shoulders</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Apparel/MooGirl_BunnyGirlTop/MooGirl_BunnyGirlTop</wornGraphicPath>
+		</apparel>
+	</ThingDef>
+
+	<ThingDef ParentName="MooGirl_OnSkinBase">
+		<defName>MooGirl_ImmortalFairy</defName>
+		<label>雪牛娘 仙女服装</label>
+		<description>「八重·朱 服装」出品云烟缭绕的轻纱羽衣，衣背裁作流瀑般敞开，绛色绸带随步伐微浮。袖口绣有星辰金线，步时如碎光飞落。腰间一抹冰丝流苏衬出纤柔柳腰，胸前曲线若清光勾勒，若隐若现，宛如仙气凝成的弧度。华美非为炫耀，而是修仙者玄力外放的自然流转，美韵本就是最锋利的法器。</description>
+		<graphicData>
+			<texPath>Things/Apparel/MooGirl_ImmortalFairy/MooGirl_ImmortalFairy</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<costStuffCount>50</costStuffCount>
+		<stuffCategories>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<equippedStatOffsets>
+			<SocialImpact>0.35</SocialImpact> <!-- 强化仙女气质，提高社交效果 -->
+			<PsychicSensitivity>0.15</PsychicSensitivity> <!-- 修仙系增加微弱灵感 -->
+		</equippedStatOffsets>
+		<statBases>
+			<MaxHitPoints>140</MaxHitPoints> <!-- 轻型但耐用 -->
+			<WorkToMake>7500</WorkToMake> <!-- 仙衣工艺复杂，制作时间稍高 -->
+			<Mass>0.6</Mass> <!-- 羽衣应非常轻盈 -->
+			<ArmorRating_Sharp>0.08</ArmorRating_Sharp> <!-- 轻度防护 -->
+			<ArmorRating_Blunt>0.02</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.10</ArmorRating_Heat> <!-- 轻度灵力护体效果 -->
+			<StuffEffectMultiplierArmor>0.18</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.40</StuffEffectMultiplierInsulation_Cold> <!--修仙服常给轻薄暖意 -->
+			<StuffEffectMultiplierInsulation_Heat>0.25</StuffEffectMultiplierInsulation_Heat>
+		</statBases>
+		<apparel>
+			<useWornGraphicMask>false</useWornGraphicMask>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Apparel/MooGirl_ImmortalFairy/MooGirl_ImmortalFairy</wornGraphicPath>
+		</apparel>
+	</ThingDef>
+
+	<ThingDef ParentName="MooGirl_OnSkinBase">
+		<defName>MooGirl_RA_Unionary</defName>
+		<label>雪牛娘 革命军作战服</label>
+		<description>迈瑞科革命战争时期革命军为雪牛娘设置的特化战斗军服。</description>
+		<graphicData>
+			<texPath>Things/Apparel/MooGirl_RA_Unionary/MooGirl_RA_Unionary</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<costStuffCount>70</costStuffCount>
+		<stuffCategories>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<statBases>
+			<MaxHitPoints>300</MaxHitPoints>
+			<WorkToMake>16000</WorkToMake>
+			<StuffEffectMultiplierArmor>0.3</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>1.40</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>1.20</StuffEffectMultiplierInsulation_Heat>
+			<ArmorRating_Sharp>0.55</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.10</ArmorRating_Heat>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>2.0</ShootingAccuracyPawn>
+		</equippedStatOffsets>
+		<apparel>
+			<useWornGraphicMask>false</useWornGraphicMask>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Apparel/MooGirl_RA_Unionary/MooGirl_RA_Unionary</wornGraphicPath>
+		</apparel>
+	</ThingDef>
+
+	<ThingDef ParentName="MooGirl_OnSkinBase">
+		<defName>MooGirl_Cheongsam</defName>
+		<label>雪牛娘 旗袍 「皎月裁云」</label>
+		<description>「八重·朱 服装」出品高开衩真丝旗袍，纷繁花绣衬出超低胸襟。东方美学与现代性感碰撞，化身移动的纯白焦点。</description>
+		<graphicData>
+			<texPath>Things/Apparel/MooGirl_Cheongsam/MooGirl_Cheongsam</texPath>
+		</graphicData>
+		<costStuffCount>70</costStuffCount>
+		<stuffCategories>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<statBases>
+			<MaxHitPoints>160</MaxHitPoints>
+			<WorkToMake>7000</WorkToMake>
+			<Mass>1.7</Mass>
+			<StuffEffectMultiplierArmor>0.3</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.80</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.30</StuffEffectMultiplierInsulation_Heat>
+			<EquipDelay>1.5</EquipDelay>
+		</statBases>
+		<apparel>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Apparel/MooGirl_Cheongsam/MooGirl_Cheongsam</wornGraphicPath>
+			<useWornGraphicMask>false</useWornGraphicMask>
+		</apparel>
+	</ThingDef>
+
+	<ThingDef ParentName="MooGirl_OnSkinBase">
+		<defName>MooGirl_WeddingDress</defName>
+		<label>雪牛娘 婚纱</label>
+		<description>「八重·朱 服装」出品曳地真丝婚纱，流线剪裁自肩颈倾泻而下，轻纱层叠映出纯净光泽。利落轮廓勾勒身形比例，低调细节暗藏锋芒，让圣洁与自信并肩而立。不止是仪式的主角，更是步入人群时无法忽视的纯白焦点。</description>
+		<graphicData>
+			<texPath>Things/Apparel/MooGirl_Wedding_Dress/MooGirl_Wedding_Dress</texPath>
+		</graphicData>
+		<costStuffCount>70</costStuffCount>
+		<stuffCategories>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<statBases>
+			<MaxHitPoints>160</MaxHitPoints>
+			<WorkToMake>7000</WorkToMake>
+			<Mass>1.7</Mass>
+			<StuffEffectMultiplierArmor>0.3</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.80</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.30</StuffEffectMultiplierInsulation_Heat>
+			<EquipDelay>1.5</EquipDelay>
+		</statBases>
+		<apparel>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Apparel/MooGirl_Wedding_Dress/MooGirl_Wedding_Dress</wornGraphicPath>
+			<useWornGraphicMask>false</useWornGraphicMask>
+		</apparel>
+	</ThingDef>
+
+	<ThingDef ParentName="MooGirl_OnSkinBase">
+		<defName>MooGirl_OL</defName>
+		<label>雪牛娘 OL套装</label>
+		<description>「八重·朱 服装」出品利落丝质OL套装，修身剪裁自肩颈延展至裙摆，流畅线条勾勒干练身形。细节低调却暗藏精致设计，轻盈面料在光影间闪现职业质感。不仅是办公场合的端庄象征，更在步入人群时彰显自信与优雅气场。</description>
+		<graphicData>
+			<texPath>Things/Apparel/MooGirl_OL/MooGirl_OL</texPath>
+		</graphicData>
+		<costStuffCount>70</costStuffCount>
+		<stuffCategories>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<statBases>
+			<MaxHitPoints>160</MaxHitPoints>
+			<WorkToMake>7000</WorkToMake>
+			<Mass>1.7</Mass>
+			<StuffEffectMultiplierArmor>0.3</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.80</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.30</StuffEffectMultiplierInsulation_Heat>
+			<EquipDelay>1.5</EquipDelay>
+		</statBases>
+		<apparel>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Apparel/MooGirl_OL/MooGirl_OL</wornGraphicPath>
+			<useWornGraphicMask>false</useWornGraphicMask>
+		</apparel>
+	</ThingDef>
+
+</Defs>

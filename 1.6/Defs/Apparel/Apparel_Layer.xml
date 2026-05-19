@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+<ApparelLayerDef>
+	<defName>MooGirl_Underwear</defName>
+	<label>内衣</label>
+	<drawOrder>-4</drawOrder>
+</ApparelLayerDef>
+
+<ApparelLayerDef>
+	<defName>MooGirl_Stocking</defName>
+	<label>丝袜</label>
+	<drawOrder>-6</drawOrder>
+</ApparelLayerDef>
+
+  <ApparelLayerDef>
+    <defName>MooGirl_Ornament</defName>
+    <label>外饰</label>
+    <drawOrder>201</drawOrder>
+  </ApparelLayerDef>
+
+  <ApparelLayerDef>
+    <defName>MooGirl_HiddenOrnament</defName>
+    <label>隐藏外饰</label>
+    <drawOrder>150</drawOrder>
+  </ApparelLayerDef>
+
+</Defs>

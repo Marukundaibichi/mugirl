@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="BaseFilth">
+    <defName>MooGirlMilkFilth</defName>
+    <label>电击产生的喷乳</label>
+    <statBases>
+      <Beauty>-10</Beauty>
+      <Cleanliness>-5</Cleanliness>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Filth/MooGirl_PoolSoft</texPath>
+      <color>(1, 1, 1, 1)</color>
+    </graphicData>
+    <filth>
+      <ignoreFilthMultiplierStat>true</ignoreFilthMultiplierStat>
+      <disappearsInDays>35~40</disappearsInDays>
+      <rainWashes>true</rainWashes>
+      <cleaningWorkToReduceThickness>50</cleaningWorkToReduceThickness>
+      <canFilthAttach>true</canFilthAttach>
+      <cleaningSound>Interact_CleanFilth_Fluid</cleaningSound>
+    </filth>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseFilth">
+    <defName>MooGirlWaterFilth</defName>
+    <label>电击流下的液体</label>
+    <statBases>
+      <Beauty>-30</Beauty>
+      <Cleanliness>-5</Cleanliness>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Filth/MooGirl_PoolSoft</texPath>
+      <color>(200, 200, 140, 50)</color>
+    </graphicData>
+    <filth>
+      <ignoreFilthMultiplierStat>true</ignoreFilthMultiplierStat>
+      <disappearsInDays>35~40</disappearsInDays>
+      <rainWashes>true</rainWashes>
+      <cleaningWorkToReduceThickness>70</cleaningWorkToReduceThickness>
+      <canFilthAttach>true</canFilthAttach>
+      <cleaningSound>Interact_CleanFilth_Fluid</cleaningSound>
+    </filth>
+  </ThingDef>
+
+  <ThingDef ParentName="MoteBase">
+    <defName>MooGirlWashMentalEyesInHead</defName>
+    <thingClass>MoteDualAttached</thingClass>
+    <altitudeLayer>MetaOverlays</altitudeLayer>
+    <graphicData>
+      <texPath>Things/Mote/MooGirl_EyeInHead</texPath>
+      <drawSize>1.2</drawSize>
+      <color>(239, 70, 274, 100)</color>
+    </graphicData>
+    <mote>
+      <solidTime>9999</solidTime>
+      <needsMaintenance>true</needsMaintenance>
+    </mote>
+  </ThingDef>
+
+  <FleckDef ParentName="FleckBase_Thrown">
+    <defName>MooGirlWashMentalEyes</defName>
+    <graphicData>
+      <texPath>Things/Mote/MooGirl_MentalEyes</texPath>
+      <renderInstanced>true</renderInstanced>
+      <drawSize>1.5</drawSize>
+      <color>(239, 70, 274, 100)</color>
+    </graphicData>
+    <altitudeLayer>MetaOverlays</altitudeLayer>
+    <fadeInTime>0.08</fadeInTime>
+    <solidTime>1.4</solidTime>
+    <fadeOutTime>1.5</fadeOutTime>
+    <growthRate>0.20</growthRate>
+  </FleckDef>
+
+  <FleckDef ParentName="FleckBase_Thrown">
+    <defName>MooGirl_MilkSpray</defName>
+    <graphicData>
+      <graphicClass>Graphic_Fleck</graphicClass>
+      <shaderType>Mote</shaderType>
+      <texPath>Things/Mote/WaterSplash</texPath>
+      <drawSize>1.6</drawSize>
+      <color>(1, 1, 1, 0.95)</color>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <fadeInTime>0</fadeInTime>
+    <solidTime>0.08</solidTime>
+    <fadeOutTime>0.55</fadeOutTime>
+    <growthRate>0.35</growthRate>
+  </FleckDef>
+
+</Defs>
