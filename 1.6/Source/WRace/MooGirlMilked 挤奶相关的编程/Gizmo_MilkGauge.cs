@@ -6,6 +6,10 @@ namespace MooGirl
     // 奶量量杯自定义 Gizmo：在选中雪牛娘时显示乳汁饱满度和自动挤奶阈值
     public class Gizmo_MilkGauge : Gizmo
     {
+        private const int MainTooltipSeed = 129734551;
+        private const int IncreaseTooltipSeed = 129734552;
+        private const int DecreaseTooltipSeed = 129734553;
+
         private CompMooHasBodyResource comp;
         private string label;
         private string desc;
@@ -59,7 +63,8 @@ namespace MooGirl
 
             GUI.color = Color.white;
             Rect controlsRect = new Rect(totalRect.x + 101f, totalRect.y + 16f, 26f, 51f);
-            interacted = DrawThresholdControls(controlsRect) || interacted;
+            bool overThresholdControls;
+            interacted = DrawThresholdControls(controlsRect, out overThresholdControls) || interacted;
 
             GUI.color = Color.white;
 
@@ -71,13 +76,10 @@ namespace MooGirl
             Text.Anchor = TextAnchor.UpperLeft;
             Text.Font = GameFont.Small;
 
-            // Tooltip
-            if (Mouse.IsOver(totalRect))
+            // Tooltip must use a stable ID; this text changes while milk is filling.
+            if (!overThresholdControls)
             {
-                TooltipHandler.TipRegion(totalRect, desc + "\n\n当前: " + fullness.ToStringPercent() +
-                    "\n阈值: " + threshold.ToStringPercent() +
-                    "\n鼠标移到右侧按钮可查看阈值调整" +
-                    "\n预估产量: " + comp.GetResourceAmountForCurrentFullness());
+                TooltipHandler.TipRegion(totalRect, new TipSignal(GetMainTooltip, StableTooltipId(MainTooltipSeed)));
             }
 
             if (interacted)
@@ -133,12 +135,13 @@ namespace MooGirl
             }
         }
 
-        private bool DrawThresholdControls(Rect controlsRect)
+        private bool DrawThresholdControls(Rect controlsRect, out bool mouseOverControls)
         {
             bool interacted = false;
 
             Rect plusRect = new Rect(controlsRect.x, controlsRect.y + 3f, 24f, 20f);
             Rect minusRect = new Rect(controlsRect.x, controlsRect.y + 28f, 24f, 20f);
+            mouseOverControls = Mouse.IsOver(plusRect) || Mouse.IsOver(minusRect);
 
             if (DrawThresholdButton(plusRect, true))
             {
@@ -154,19 +157,43 @@ namespace MooGirl
 
             if (Mouse.IsOver(plusRect))
             {
-                TooltipHandler.TipRegion(plusRect, "提高自动挤奶阈值\n当前: " + comp.MilkThreshold.ToStringPercent() +
-                    "\n调整后: " + Mathf.Min(1f, comp.MilkThreshold + 0.1f).ToStringPercent());
+                TooltipHandler.TipRegion(plusRect, new TipSignal(GetIncreaseThresholdTooltip, StableTooltipId(IncreaseTooltipSeed)));
             }
 
             if (Mouse.IsOver(minusRect))
             {
-                TooltipHandler.TipRegion(minusRect, "降低自动挤奶阈值\n当前: " + comp.MilkThreshold.ToStringPercent() +
-                    "\n调整后: " + Mathf.Max(0.1f, comp.MilkThreshold - 0.1f).ToStringPercent());
+                TooltipHandler.TipRegion(minusRect, new TipSignal(GetDecreaseThresholdTooltip, StableTooltipId(DecreaseTooltipSeed)));
             }
 
             Text.Anchor = TextAnchor.UpperLeft;
             Text.Font = GameFont.Small;
             return interacted;
+        }
+
+        private string GetMainTooltip()
+        {
+            return desc + "\n\n当前: " + comp.Fullness.ToStringPercent() +
+                "\n阈值: " + comp.MilkThreshold.ToStringPercent() +
+                "\n鼠标移到右侧按钮可查看阈值调整" +
+                "\n单次榨乳预估: " + comp.GetResourceAmountForNextGather() +
+                "\n泌乳速度: " + comp.GetProductionRateExplanation();
+        }
+
+        private string GetIncreaseThresholdTooltip()
+        {
+            return "提高自动挤奶阈值\n当前: " + comp.MilkThreshold.ToStringPercent() +
+                "\n调整后: " + Mathf.Min(1f, comp.MilkThreshold + 0.1f).ToStringPercent();
+        }
+
+        private string GetDecreaseThresholdTooltip()
+        {
+            return "降低自动挤奶阈值\n当前: " + comp.MilkThreshold.ToStringPercent() +
+                "\n调整后: " + Mathf.Max(0.1f, comp.MilkThreshold - 0.1f).ToStringPercent();
+        }
+
+        private int StableTooltipId(int seed)
+        {
+            return Gen.HashCombineInt(comp.parent.thingIDNumber, seed);
         }
 
         private bool DrawThresholdButton(Rect rect, bool plus)

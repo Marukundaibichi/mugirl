@@ -8,6 +8,7 @@
 		<workType>Handling</workType>
 		<verb>milk</verb>
 		<gerund>milking</gerund>
+		<directOrderable>false</directOrderable>
 		<priorityInType>90</priorityInType>
 		<requiredCapacities>
 			<li>Manipulation</li>

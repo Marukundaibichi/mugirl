@@ -185,7 +185,6 @@
 								<RotStage>Fresh,Rotting</RotStage>
 								<BodyPart>
 									<bodyPart>MooGirl_Tail</bodyPart>
-									<bodyPartLabel>MooGirl Tail</bodyPartLabel>
 									<drawWithoutPart>false</drawWithoutPart>
 								</BodyPart>
 							</conditions>
@@ -230,7 +229,7 @@
 								</south>
 								<north>
 									<offset>(0.0,0.01)</offset>
-									<layerOffset>0.2</layerOffset>
+									<layerOffset>-0.5</layerOffset>
 								</north>
 								<east>
 									<layerOffset>-0.5</layerOffset>
@@ -263,7 +262,7 @@
 								</south>
 								<north>
 									<offset>(0.0,0.01)</offset>
-									<layerOffset>0.2</layerOffset>
+									<layerOffset>-0.5</layerOffset>
 								</north>
 								<east>
 									<layerOffset>-0.5</layerOffset>
@@ -641,7 +640,7 @@
 			</litterSizeCurve>
 			<lifeStageAges> <!-- 年龄阶段，容易出BUG，别改 -->
 				<li>
-					<def>HumanlikeBaby</def>
+					<def>MooGirl_HumanlikeBaby</def>
 					<minAge>0</minAge>
 				</li>
 				<li>
@@ -748,8 +747,8 @@
 			<li Class="MooGirl.CompProperties_MooMilkable">
 				<displayString>雪牛奶</displayString>
 				<milkDef>MooGirl_Milk</milkDef>
-				<milkIntervalDays>1</milkIntervalDays>
-				<milkAmount>11</milkAmount>
+				<milkIntervalDays>0.06</milkIntervalDays>
+				<milkAmount>1</milkAmount>
 			</li>
 			<li Class="CompProperties_Spawner">
 				<requiresPower>false</requiresPower>

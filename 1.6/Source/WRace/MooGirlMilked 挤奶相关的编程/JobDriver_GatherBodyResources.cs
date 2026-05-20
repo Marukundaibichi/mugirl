@@ -63,7 +63,8 @@ namespace MooGirl
                     Pawn actor = wait.actor;
                     TickGatherEffects(actor, targetPawn);
                     actor.skills.Learn(SkillDefOf.Animals, 0.13f, false);  // 增加动物技能经验
-                    gatherProgress += StatExtension.GetStatValue(actor, StatDefOf.AnimalGatherSpeed, true);  // 根据动物采集速度统计进度
+                    CompMooHasBodyResource comp = GetComp(targetPawn);
+                    gatherProgress += GatherProgressPerTick(actor, targetPawn, comp);  // 根据设置统计采集进度
 
                     // 完成采集
                     if (gatherProgress >= WorkTotal)
@@ -125,7 +126,8 @@ namespace MooGirl
                     Pawn actor = wait.actor;
                     TickGatherEffects(actor, targetPawn);
                     actor.skills.Learn(SkillDefOf.Animals, 0.13f, false);  // 增加动物技能经验
-                    gatherProgress += StatExtension.GetStatValue(actor, StatDefOf.AnimalGatherSpeed, true);  // 统计采集进度
+                    CompMooHasBodyResource comp = GetComp(targetPawn);
+                    gatherProgress += GatherProgressPerTick(actor, targetPawn, comp);  // 统计采集进度
 
                     // 完成采集
                     if (gatherProgress >= WorkTotal)
@@ -184,6 +186,11 @@ namespace MooGirl
 
         protected virtual void EndGatherEffects(Pawn doer, Pawn target)
         {
+        }
+
+        protected virtual float GatherProgressPerTick(Pawn actor, Pawn target, CompMooHasBodyResource comp)
+        {
+            return 1f;
         }
 
         private bool CanGather(CompMooHasBodyResource comp)

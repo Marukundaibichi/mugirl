@@ -24,7 +24,7 @@
     <defName>MooGirl_Breastfed</defName>
     <hediffClass>HediffWithComps</hediffClass>
     <label>母乳喂养</label>
-    <description>喝到了雪牛娘妈妈的母乳，学习能力和生长速度都得到了显著提升。</description>
+    <description>喝到了雪牛娘妈妈的母乳，学习能力得到显著提升，成长评级获取速度提高50%。</description>
     <isBad>false</isBad>
     <defaultLabelColor>(255,192,203)</defaultLabelColor>
     <scenarioCanAdd>false</scenarioCanAdd>

@@ -3,6 +3,7 @@
 
   <!-- Milk foods should not inherit MealBase's FoodPoisonable comp. -->
   <ThingDef Name="MooGirl_MilkFoodBase" ParentName="MealBase" Abstract="True">
+    <tradeability>Sellable</tradeability>
     <statBases>
       <FoodPoisonChanceFixedHuman>0</FoodPoisonChanceFixedHuman>
     </statBases>

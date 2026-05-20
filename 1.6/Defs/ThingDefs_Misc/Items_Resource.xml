@@ -8,6 +8,10 @@
 			<texPath>Things/Item/Resource/MooGirl_Milk</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
+		<tradeability>Sellable</tradeability>
+		<tradeTags>
+			<li>MooGirl_MilkFood</li>
+		</tradeTags>
 		<socialPropernessMatters>true</socialPropernessMatters>
 		<statBases>
 			<MarketValue>8</MarketValue>
@@ -27,7 +31,7 @@
 			<preferability>RawTasty</preferability>
 			<foodType>AnimalProduct, Fluid</foodType>
 			<joy>0.25</joy>
-			<maxNumToIngestAtOnce>3</maxNumToIngestAtOnce>
+			<maxNumToIngestAtOnce>10</maxNumToIngestAtOnce>
 			<joyKind>Gluttonous</joyKind>
 			<tasteThought>Consumed_MooGirlMilk</tasteThought>
 			<babiesCanIngest>true</babiesCanIngest>

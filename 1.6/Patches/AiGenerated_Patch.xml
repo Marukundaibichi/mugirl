@@ -3,6 +3,16 @@
 
   <!-- ========== 给商队/贸易船/基地/访客加入雪牛娘食物交易 ========== -->
 
+  <!-- 所有商人都愿意从玩家手里购买雪牛奶与雪牛娘奶制食品。 -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/TraderKindDef/stockGenerators</xpath>
+    <value>
+      <li Class="StockGenerator_BuyTradeTag">
+        <tag>MooGirl_MilkFood</tag>
+      </li>
+    </value>
+  </Operation>
+
   <!-- 派系基地 -->
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/TraderKindDef[defName="Base_Neolithic_Standard"]/stockGenerators</xpath>

@@ -181,6 +181,11 @@ namespace MooGirl
                 return;
             }
 
+            if (parms.pawn?.ageTracker != null && !parms.pawn.ageTracker.Adult)
+            {
+                return;
+            }
+
             if (state.role == MooGirlMilkingVisualRole.Helper)
             {
                 ApplyHelperHeadLift(state, ref offset, ref rotation, ref scale);

@@ -12,13 +12,20 @@ namespace MooGirl  // 定义命名空间MooGirl，用于组织相关类
         // 定义常量，表示当角色对自己挤奶时的工作时间（tick）
         public float WorktickSelf = 600f;
         // 定义常量，表示当角色对其他动物挤奶时的工作时间（tick）
-        public float WorktickOther = 200f;
+        public float WorktickOther = 600f;
+
+        private const float FastMilkingWorkTicks = 60f;
 
         // 重写WorkTotal属性，根据挤奶对象返回不同的总工作时间
         protected override float WorkTotal
         {
             get
             {
+                if (MooGirlMod.settings != null && MooGirlMod.settings.enableFastMilking)
+                {
+                    return FastMilkingWorkTicks;
+                }
+
                 // 判断当前角色是否是挤奶目标（即是否是自己挤奶）
                 if (this.pawn == (Pawn)this.job.GetTarget(TargetIndex.A).Thing)
                 {

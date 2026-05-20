@@ -4,13 +4,13 @@
   <LifeStageDef ParentName="HumanlikeAdolescent">
     <defName>MooGirl_HumanlikeBaby</defName>
     <label>baby</label>
-    <bodySizeFactor>0.2</bodySizeFactor>
+    <bodySizeFactor>0.11</bodySizeFactor>
     <bodyWidth>0.95</bodyWidth>
     <bodyDrawOffset>(0, 0, -0.03)</bodyDrawOffset>
     <voxPitch>1.6</voxPitch>
     <headSizeFactor>0.5</headSizeFactor>
     <eyeSizeFactor>0.7</eyeSizeFactor>
-    <foodMaxFactor>0.625</foodMaxFactor> <!-- bodySizeFactor * foodMaxFactor = maxFood = 0.125 -->
+    <foodMaxFactor>0.625</foodMaxFactor> <!-- baseBodySize * bodySizeFactor * foodMaxFactor ~= maxFood 0.15 -->
     <hungerRateFactor>0.125</hungerRateFactor> <!-- consumes 2x maxFood per day -->
     <healthScaleFactor>0.2</healthScaleFactor>
     <marketValueFactor>0.5</marketValueFactor>

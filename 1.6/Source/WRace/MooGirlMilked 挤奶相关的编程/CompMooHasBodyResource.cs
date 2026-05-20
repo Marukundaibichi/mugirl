@@ -7,6 +7,8 @@ namespace MooGirl
     // 抽象组件类：用于管理具有身体资源的实体（如动物乳房资源收集）
     public abstract class CompMooHasBodyResource : ThingComp
     {
+        private const float GatherFullnessPerUse = 0.2f;
+
         // 抽象属性：资源收集间隔天数（由子类实现）
         protected abstract float GatherResourcesIntervalDays { get; }
 
@@ -116,8 +118,10 @@ namespace MooGirl
 
             lastResourceUpdateTick = currentTick;
 
-            // 每 60 tick 恢复 0.12% 奶量。
-            float increment = 0.0012f / updateInterval;
+            float intervalTicks = Mathf.Max(1f, GatherResourcesIntervalDays * 60000f);
+            float targetFullnessGain = Mathf.Max(0f, ResourceAmount) / 100f;
+            float multiplier = pawn != null ? Mathf.Max(0f, GetProductionMultiplier(pawn)) : 1f;
+            float increment = targetFullnessGain * multiplier / intervalTicks;
             // 增加饱满度并限制最大值
             fullness += increment * elapsedTicks;
             if (fullness > 1f)
@@ -292,6 +296,25 @@ namespace MooGirl
             return GenMath.RoundRandom(fullness * 100f);
         }
 
+        public int GetResourceAmountForNextGather()
+        {
+            return GenMath.RoundRandom(GetNextGatherFullness() * 100f);
+        }
+
+        public float GetNextGatherFullness()
+        {
+            return Mathf.Min(fullness, GatherFullnessPerUse);
+        }
+
+        public string GetProductionRateExplanation()
+        {
+            Pawn pawn = parent as Pawn;
+            float intervalSeconds = Mathf.Max(1f, GatherResourcesIntervalDays * 1000f);
+            float multiplier = pawn != null ? Mathf.Max(0f, GetProductionMultiplier(pawn)) : 1f;
+            float percentGain = Mathf.Max(0f, ResourceAmount) * multiplier;
+            return percentGain.ToString("0.#") + "% / " + intervalSeconds.ToString("0.#") + "秒";
+        }
+
         // 自动挤奶阈值（0-1，默认 0.8 = 80%）
         public float MilkThreshold = 0.8f;
 
@@ -306,7 +329,7 @@ namespace MooGirl
             return true;
         }
 
-        // 按当前奶量百分比榨乳：每 1% 奶量产出 1 份雪牛奶，消耗所有 fullness
+        // 按当前奶量百分比榨乳：每 1% 奶量产出 1 份雪牛奶，每次最多消耗 20% fullness
         public bool GatheredFixed(Pawn doer, out int milkAmount)
         {
             milkAmount = 0;
@@ -315,21 +338,22 @@ namespace MooGirl
                 return false;
             }
 
+            float gatheredFullness = GetNextGatherFullness();
             if (!Rand.Chance(doer.GetStatValue(StatDefOf.AnimalGatherYield, true, -1)))
             {
                 MoteMaker.ThrowText((doer.DrawPos + parent.DrawPos) / 2f, parent.Map, "TextMote_ProductWasted".Translate(), 3.65f);
-                ResetFullness();
+                ConsumeGatheredFullness(gatheredFullness);
                 return true;
             }
 
-            milkAmount = GenMath.RoundRandom(fullness * 100f);
-            ResetFullness();
+            milkAmount = GenMath.RoundRandom(gatheredFullness * 100f);
+            ConsumeGatheredFullness(gatheredFullness);
             return true;
         }
 
-        private void ResetFullness()
+        private void ConsumeGatheredFullness(float gatheredFullness)
         {
-            fullness = 0f;
+            fullness = Mathf.Max(0f, fullness - gatheredFullness);
             fullNotified = false;
             lastFullNotifyTick = -99999;
             lastResourceUpdateTick = Find.TickManager.TicksGame;

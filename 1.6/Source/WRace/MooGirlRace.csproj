@@ -172,6 +172,7 @@
     <Compile Include="MooGirlMilked 挤奶相关的编程\WorkGiver_GatherBodyResources.cs" />
     <Compile Include="MooGirlMilked 挤奶相关的编程\Gizmo_MilkGauge.cs" />
     <Compile Include="MooGirlMilked 挤奶相关的编程\HediffComp_Lactation.cs" />
+    <Compile Include="MooGirlMilked 挤奶相关的编程\Harmony_BreastfedGrowthPoints.cs" />
     <Compile Include="MooGirlMilked 挤奶相关的编程\JobDriver_Breastfeed.cs" />
     <Compile Include="MooGirlMilked 挤奶相关的编程\JobDriver_DrinkMilkFromMooGirl.cs" />
     <Compile Include="MooGirlMilked 挤奶相关的编程\JobDriver_FeedMilkToDowned.cs" />
