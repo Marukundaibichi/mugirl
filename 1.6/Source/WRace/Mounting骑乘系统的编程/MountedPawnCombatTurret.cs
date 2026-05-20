@@ -57,10 +57,13 @@ namespace MooGirl
             }
 
             EnsureVerbCaster(comp, verb);
+            Pawn carrier = comp.MooPawn;
             int ticks = Mathf.Max(1, delta);
             for (int i = 0; i < ticks; i++)
             {
+                Stance originalStance = carrier?.stances?.curStance;
                 verb.VerbTick();
+                RestoreCarrierStanceIfMountedVerbChangedIt(carrier, verb, originalStance);
             }
         }
 
@@ -88,7 +91,8 @@ namespace MooGirl
             }
 
             EnsureVerbCaster(comp, verb);
-            if (verb.state == VerbState.Bursting || verb.WarmingUp)
+            ClearCarrierMountedStance(carrier, verb);
+            if (verb.state == VerbState.Bursting)
             {
                 return;
             }
@@ -109,7 +113,7 @@ namespace MooGirl
             comp.turretAimTicksTotal = GetMountedAimTicks(comp, rider, verb);
             comp.turretAimTicksLeft = comp.turretAimTicksTotal;
             comp.turretCastStartTick = -1;
-            if (!TryStartMountedCast(comp, verb, comp.turretAimTarget))
+            if (comp.turretAimTicksLeft <= 0 && !TryStartMountedCast(comp, verb, comp.turretAimTarget))
             {
                 comp.turretBurstCooldownTicksLeft = Mathf.Max(comp.Props.turretTickInterval, 1);
             }
@@ -134,64 +138,40 @@ namespace MooGirl
             }
 
             EnsureVerbCaster(comp, verb);
+            ClearCarrierMountedStance(carrier, verb);
             if (!comp.turretAimTarget.IsValid)
             {
                 return;
             }
 
-            if (verb.state == VerbState.Bursting || verb.WarmingUp)
+            if (verb.state == VerbState.Bursting)
             {
-                UpdateAimTicksFromWarmup(comp, verb);
                 return;
             }
 
-            if (!WasMountedCastStarted(comp))
+            if (WasMountedCastStarted(comp))
             {
-                if (!IsValidTarget(carrier, verb, comp.turretAimTarget.Thing))
-                {
-                    CancelMountedCast(comp, verb);
-                    ClearAim(comp);
-                    return;
-                }
-
-                TryStartMountedCast(comp, verb, comp.turretAimTarget);
+                FinishMountedCast(comp, verb, comp.turretAimTarget);
                 return;
             }
 
-            if (verb.LastShotTick < comp.turretCastStartTick)
+            if (!IsValidTarget(carrier, verb, comp.turretAimTarget.Thing))
             {
                 CancelMountedCast(comp, verb);
                 ClearAim(comp);
                 return;
             }
 
-            FinishMountedCast(comp, verb, comp.turretAimTarget);
-        }
-
-        public static void DrawAimPie(Comp_MooGirlMount comp)
-        {
-            if (comp == null || !comp.turretAimTarget.IsValid || comp.turretAimTicksLeft <= 0 || comp.turretAimTicksTotal <= 0)
+            comp.turretAimTicksLeft = Mathf.Max(0, comp.turretAimTicksLeft - Mathf.Max(1, delta));
+            if (comp.turretAimTicksLeft > 0)
             {
                 return;
             }
 
-            Verb verb = GetPrimaryRangedVerb(comp);
-            if (verb?.verbProps?.drawAimPie != true)
+            if (!TryStartMountedCast(comp, verb, comp.turretAimTarget))
             {
-                return;
+                comp.turretBurstCooldownTicksLeft = Mathf.Max(comp.Props.turretTickInterval, 1);
             }
-
-            Pawn carrier = comp.MooPawn;
-            Pawn rider = comp.MountedPawn;
-            if (carrier == null || (!Find.Selector.IsSelected(carrier) && !Find.Selector.IsSelected(rider)))
-            {
-                return;
-            }
-
-            Vector3 targetPos = comp.turretAimTarget.HasThing ? comp.turretAimTarget.Thing.DrawPos : comp.turretAimTarget.Cell.ToVector3Shifted();
-            float facing = (targetPos - comp.RiderDrawPos).AngleFlat();
-            int degreesWide = (int)((float)comp.turretAimTicksLeft / Mathf.Max(1, comp.turretAimTicksTotal) * 360f);
-            GenDraw.DrawAimPieRaw(comp.RiderDrawPos + new Vector3(0f, 0.2f, 0f), facing, degreesWide);
         }
 
         private static bool TryStartMountedCast(Comp_MooGirlMount comp, Verb verb, LocalTargetInfo castTarget)
@@ -202,20 +182,22 @@ namespace MooGirl
             }
 
             bool started;
+            Pawn carrier = comp.MooPawn;
+            Stance originalStance = carrier?.stances?.curStance;
             comp.turretCastStartTick = Find.TickManager.TicksGame;
-            using (new MountedWarmupOverride(comp, verb))
+            using (new MountedWarmupOverride(verb, 0f))
             {
                 started = verb.TryStartCastOn(castTarget, surpriseAttack: false, canHitNonTargetPawns: false, preventFriendlyFire: true, nonInterruptingSelfCast: true);
             }
 
+            RestoreCarrierStanceIfMountedVerbChangedIt(carrier, verb, originalStance);
             if (!started)
             {
                 ClearAim(comp);
                 return false;
             }
 
-            UpdateAimTicksFromWarmup(comp, verb);
-            if (!verb.WarmingUp && verb.state != VerbState.Bursting)
+            if (verb.state != VerbState.Bursting)
             {
                 FinishMountedCast(comp, verb, castTarget);
             }
@@ -295,10 +277,10 @@ namespace MooGirl
 
             Vector3 drawPos = comp.WeaponDrawPos;
             LocalTargetInfo aimTarget = comp.turretAimTarget;
-            Stance_Busy busyStance = carrier.stances?.curStance as Stance_Busy;
-            if (busyStance != null && busyStance.verb == GetPrimaryRangedVerb(comp) && busyStance.focusTarg.IsValid)
+            Verb mountedVerb = GetPrimaryRangedVerb(comp);
+            if (!aimTarget.IsValid && mountedVerb?.state == VerbState.Bursting && mountedVerb.CurrentTarget.IsValid)
             {
-                aimTarget = busyStance.focusTarg;
+                aimTarget = mountedVerb.CurrentTarget;
             }
 
             if (aimTarget.IsValid)
@@ -381,25 +363,6 @@ namespace MooGirl
             return Mathf.Max(warmupTime.SecondsToTicks(), comp?.Props?.turretMinAimTicks ?? 0);
         }
 
-        private static float GetMountedWarmupTimeForCaster(Comp_MooGirlMount comp, Verb verb)
-        {
-            Pawn carrier = comp?.MooPawn;
-            Pawn rider = comp?.MountedPawn;
-            if (carrier == null || rider == null || verb == null)
-            {
-                return 0f;
-            }
-
-            int warmupTicks = GetMountedAimTicks(comp, rider, verb);
-            if (warmupTicks <= 0)
-            {
-                return 0f;
-            }
-
-            float carrierAimingFactor = Mathf.Max(0.01f, carrier.GetStatValue(StatDefOf.AimingDelayFactor));
-            return warmupTicks.TicksToSeconds() / carrierAimingFactor;
-        }
-
         private static void CancelMountedCast(Comp_MooGirlMount comp, Verb verb)
         {
             Pawn carrier = comp?.MooPawn;
@@ -413,6 +376,27 @@ namespace MooGirl
             }
 
             verb?.Reset();
+        }
+
+        private static void ClearCarrierMountedStance(Pawn carrier, Verb verb)
+        {
+            if (carrier?.stances?.curStance is Stance_Busy busyStance && busyStance.verb == verb)
+            {
+                carrier.stances.SetStance(new Stance_Mobile());
+            }
+        }
+
+        private static void RestoreCarrierStanceIfMountedVerbChangedIt(Pawn carrier, Verb verb, Stance originalStance)
+        {
+            if (carrier?.stances == null || originalStance == null)
+            {
+                return;
+            }
+
+            if (carrier.stances.curStance != originalStance && carrier.stances.curStance is Stance_Busy busyStance && busyStance.verb == verb)
+            {
+                carrier.stances.SetStance(originalStance);
+            }
         }
 
         private static bool WasMountedCastStarted(Comp_MooGirlMount comp)
@@ -433,30 +417,16 @@ namespace MooGirl
             comp.turretCastStartTick = -1;
         }
 
-        private static void UpdateAimTicksFromWarmup(Comp_MooGirlMount comp, Verb verb)
-        {
-            if (comp == null)
-            {
-                return;
-            }
-
-            if (verb?.WarmupStance != null)
-            {
-                comp.turretAimTicksLeft = Mathf.Max(0, verb.WarmupTicksLeft);
-                comp.turretAimTicksTotal = Mathf.Max(comp.turretAimTicksTotal, verb.WarmupTicksLeft);
-            }
-        }
-
         private struct MountedWarmupOverride : System.IDisposable
         {
             private readonly Verb verb;
 
-            public MountedWarmupOverride(Comp_MooGirlMount comp, Verb verb)
+            public MountedWarmupOverride(Verb verb, float warmupTime)
             {
                 this.verb = verb;
                 if (verb != null)
                 {
-                    WarmupTimeOverrides[verb] = GetMountedWarmupTimeForCaster(comp, verb);
+                    WarmupTimeOverrides[verb] = warmupTime;
                 }
             }
 

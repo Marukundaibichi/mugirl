@@ -16,6 +16,7 @@ namespace MooGirl
         public int courierRaidTimer = CourierRaidInitialDelayTicks;
         public bool courierRaidQuestStarted = false;
         public bool courierRaidLegacyFixApplied = false;
+        public bool legacySaveUpgradeApplied = false;
 
         public MooGirl_GameComp() { }
 
@@ -25,6 +26,11 @@ namespace MooGirl
         {
             base.GameComponentTick();
             if (Current.ProgramState != ProgramState.Playing) return;
+
+            if (!legacySaveUpgradeApplied)
+            {
+                RunLegacySaveUpgradeOnce();
+            }
 
             // --- Structural crash mission timer ---
             if (structuralCrashCheckTimer > 0)
@@ -73,6 +79,104 @@ namespace MooGirl
             }
 
             TryRecoverLegacyCourierRaidQuest();
+        }
+
+        private void RunLegacySaveUpgradeOnce()
+        {
+            int rescuePawnsPrepared = 0;
+            bool migratedLegacyFaction = false;
+            bool createdHostileFaction = false;
+
+            try
+            {
+                Faction legacyFaction = MooGirl_DefOf.MooGirl_GiantCorporations != null
+                    ? Find.FactionManager.FirstFactionOfDef(MooGirl_DefOf.MooGirl_GiantCorporations)
+                    : null;
+                FactionDef hostileFactionDef = AiGenerated_DefOf.MooGirl_GiantCorporations_Hostile;
+                Faction hostileFaction = hostileFactionDef != null
+                    ? Find.FactionManager.FirstFactionOfDef(hostileFactionDef)
+                    : null;
+
+                rescuePawnsPrepared = PrepareLegacyRescuePawns(legacyFaction);
+
+                if (legacyFaction != null && hostileFaction == null && hostileFactionDef != null)
+                {
+                    legacyFaction.def = hostileFactionDef;
+                    legacyFaction.hidden = false;
+                    hostileFaction = legacyFaction;
+                    migratedLegacyFaction = true;
+                }
+
+                if (hostileFaction == null && hostileFactionDef != null)
+                {
+                    FactionGenerator.CreateFactionAndAddToManager(hostileFactionDef);
+                    createdHostileFaction = Find.FactionManager.FirstFactionOfDef(hostileFactionDef) != null;
+                }
+
+                if (migratedLegacyFaction || createdHostileFaction || rescuePawnsPrepared > 0)
+                {
+                    Log.Message("[MooGirl] Applied one-time legacy save upgrade. "
+                        + "Migrated legacy faction: " + migratedLegacyFaction
+                        + ", created hostile faction: " + createdHostileFaction
+                        + ", prepared rescue pawns: " + rescuePawnsPrepared + ".");
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Log.Error("[MooGirl] Error while applying one-time legacy save upgrade:\n" + ex);
+            }
+            finally
+            {
+                legacySaveUpgradeApplied = true;
+            }
+        }
+
+        private int PrepareLegacyRescuePawns(Faction legacyFaction)
+        {
+            int preparedCount = 0;
+            List<Pawn> pawns = PawnsFinder.AllMapsWorldAndTemporary_Alive;
+            for (int i = 0; i < pawns.Count; i++)
+            {
+                Pawn pawn = pawns[i];
+                if (!IsLegacyRescuePawn(pawn))
+                {
+                    continue;
+                }
+
+                if (legacyFaction != null && pawn.Faction == legacyFaction)
+                {
+                    pawn.SetFaction(null);
+                }
+
+                MooGirlRescueJoinUtility.PrepareRescueJoinPawn(pawn);
+                preparedCount++;
+
+                if (pawn.Faction != Faction.OfPlayer
+                    && !pawn.Downed
+                    && pawn.health.CanCrawlOrMove
+                    && (pawn.guest == null || !pawn.guest.IsPrisoner)
+                    && MooGirlRescueJoinUtility.WasRescuedByPlayer(pawn))
+                {
+                    MooGirlRescueJoinUtility.TryJoinPlayer(pawn);
+                }
+            }
+
+            return preparedCount;
+        }
+
+        private static bool IsLegacyRescuePawn(Pawn pawn)
+        {
+            if (pawn == null || pawn.Dead || pawn.health?.hediffSet == null)
+            {
+                return false;
+            }
+
+            if (!pawn.health.hediffSet.HasHediff(MooGirl_DefOf.MooGirl_Abasia))
+            {
+                return false;
+            }
+
+            return pawn.def == MooGirl_DefOf.MooGirl || pawn.RaceProps?.body == MooGirl_DefOf.MooGirlBody;
         }
 
         private void TryRecoverLegacyCourierRaidQuest()
@@ -228,6 +332,63 @@ namespace MooGirl
             Scribe_Values.Look(ref courierRaidTimer, "courierRaidTimer", CourierRaidInitialDelayTicks);
             Scribe_Values.Look(ref courierRaidQuestStarted, "courierRaidQuestStarted", false);
             Scribe_Values.Look(ref courierRaidLegacyFixApplied, "courierRaidLegacyFixApplied", false);
+            Scribe_Values.Look(ref legacySaveUpgradeApplied, "legacySaveUpgradeApplied", false);
+        }
+    }
+
+    public class HediffCompProperties_JoinWhenRescued : HediffCompProperties
+    {
+        public HediffCompProperties_JoinWhenRescued()
+        {
+            compClass = typeof(HediffComp_JoinWhenRescued);
+        }
+    }
+
+    public class HediffComp_JoinWhenRescued : HediffComp
+    {
+        private const int CheckInterval = 240;
+
+        private int ticksUntilNextCheck;
+        private bool joinedAlready;
+
+        public override void CompPostTick(ref float severityAdjustment)
+        {
+            base.CompPostTick(ref severityAdjustment);
+            if (joinedAlready || parent?.pawn == null)
+            {
+                return;
+            }
+
+            Pawn pawn = parent.pawn;
+            if (pawn.Dead || pawn.Faction == Faction.OfPlayer)
+            {
+                joinedAlready = true;
+                return;
+            }
+
+            ticksUntilNextCheck--;
+            if (ticksUntilNextCheck > 0)
+            {
+                return;
+            }
+            ticksUntilNextCheck = CheckInterval;
+
+            MooGirlRescueJoinUtility.PrepareRescueJoinPawn(pawn);
+            if (!pawn.Downed
+                && pawn.health.CanCrawlOrMove
+                && (pawn.guest == null || !pawn.guest.IsPrisoner)
+                && MooGirlRescueJoinUtility.WasRescuedByPlayer(pawn)
+                && MooGirlRescueJoinUtility.TryJoinPlayer(pawn))
+            {
+                joinedAlready = true;
+            }
+        }
+
+        public override void CompExposeData()
+        {
+            base.CompExposeData();
+            Scribe_Values.Look(ref ticksUntilNextCheck, "ticksUntilNextCheck", 0);
+            Scribe_Values.Look(ref joinedAlready, "joinedAlready", false);
         }
     }
 
