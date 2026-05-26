@@ -15,6 +15,7 @@
     <humanlikeFaction>true</humanlikeFaction>
     <hidden>false</hidden>
     <canMakeRandomly>true</canMakeRandomly>
+    <canGenerateQuestSites>false</canGenerateQuestSites>
     <canSiege>true</canSiege>
     <canStageAttacks>true</canStageAttacks>
     <techLevel>Industrial</techLevel>
@@ -104,6 +105,15 @@
           <AI_GC_Sapper>10</AI_GC_Sapper>
           <AI_GC_Elites>24</AI_GC_Elites>
           <AI_GC_MooGirlRaider>1</AI_GC_MooGirlRaider>
+        </options>
+      </li>
+      <li>
+        <kindDef>Settlement</kindDef>
+        <commonality>100</commonality>
+        <options>
+          <AI_GC_Grunts>65</AI_GC_Grunts>
+          <AI_GC_OPC_Enforcers>30</AI_GC_OPC_Enforcers>
+          <AI_GC_OPC_Sapper>5</AI_GC_OPC_Sapper>
         </options>
       </li>
     </pawnGroupMakers>

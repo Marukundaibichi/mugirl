@@ -11,6 +11,8 @@ namespace MooGirl
     public abstract class JobDriver_GatherBodyResources : JobDriver
     {
         private float gatherProgress; // 采集进度
+        private Pawn activeGatherTarget;
+        private bool gatherEffectsActive;
 
         // 目标索引常量：动物目标
         protected const TargetIndex AnimalInd = TargetIndex.A;
@@ -44,6 +46,10 @@ namespace MooGirl
             ToilFailConditions.FailOnDespawnedNullOrForbidden(this, TargetIndex.A);
 
             Pawn targetPawn = (Pawn)this.job.GetTarget(TargetIndex.A).Thing;
+            this.AddFinishAction(delegate (JobCondition condition)
+            {
+                CleanupGatherEffects(targetPawn);
+            });
 
             // 情况1：目标是自己（自采集）
             if (targetPawn == this.pawn)
@@ -55,7 +61,7 @@ namespace MooGirl
                 Toil wait = new Toil();
                 wait.initAction = delegate ()
                 {
-                    StartGatherEffects(wait.actor, targetPawn);
+                    BeginGatherEffects(wait.actor, targetPawn);
                 };
 
                 wait.tickAction = delegate ()
@@ -77,12 +83,7 @@ namespace MooGirl
                 // 工作结束时的清理逻辑
                 wait.AddFinishAction(delegate ()
                 {
-                    EndGatherEffects(wait.actor, targetPawn);
-                    Pawn pawn = (Pawn)job.GetTarget(TargetIndex.A).Thing;
-                    if (pawn != null && pawn.CurJobDef == JobDefOf.Wait_MaintainPosture)
-                    {
-                        pawn.jobs.EndCurrentJob(JobCondition.InterruptForced, true);  // 强制中断目标的等待工作
-                    }
+                    CleanupGatherEffects(targetPawn);
                 });
 
                 // 设置失败条件
@@ -118,7 +119,7 @@ namespace MooGirl
                     Pawn actor = wait.actor;
                     actor.pather.StopDead();  // 立即停止移动
                     PawnUtility.ForceWait(targetPawn, 15000, actor, true);  // 强制目标等待并面向榨乳者
-                    StartGatherEffects(actor, targetPawn);
+                    BeginGatherEffects(actor, targetPawn);
                 };
 
                 wait.tickAction = delegate ()
@@ -140,12 +141,7 @@ namespace MooGirl
                 // 工作结束时的清理逻辑（同自采集情况）
                 wait.AddFinishAction(delegate ()
                 {
-                    EndGatherEffects(wait.actor, targetPawn);
-                    Pawn pawn = (Pawn)job.GetTarget(TargetIndex.A).Thing;
-                    if (pawn != null && pawn.CurJobDef == JobDefOf.Wait_MaintainPosture)
-                    {
-                        pawn.jobs.EndCurrentJob(JobCondition.InterruptForced, true);
-                    }
+                    CleanupGatherEffects(targetPawn);
                 });
 
                 // 设置失败条件（同自采集情况）
@@ -186,6 +182,30 @@ namespace MooGirl
 
         protected virtual void EndGatherEffects(Pawn doer, Pawn target)
         {
+        }
+
+        private void BeginGatherEffects(Pawn doer, Pawn target)
+        {
+            activeGatherTarget = target;
+            gatherEffectsActive = true;
+            StartGatherEffects(doer, target);
+        }
+
+        private void CleanupGatherEffects(Pawn target)
+        {
+            Pawn cleanupTarget = target ?? activeGatherTarget;
+            bool wasActive = gatherEffectsActive;
+            if (gatherEffectsActive)
+            {
+                EndGatherEffects(pawn, cleanupTarget);
+                gatherEffectsActive = false;
+                activeGatherTarget = null;
+            }
+
+            if (wasActive && cleanupTarget != null && cleanupTarget != pawn && cleanupTarget.CurJobDef == JobDefOf.Wait_MaintainPosture)
+            {
+                cleanupTarget.jobs.EndCurrentJob(JobCondition.InterruptForced, true);  // 强制中断目标的等待工作
+            }
         }
 
         protected virtual float GatherProgressPerTick(Pawn actor, Pawn target, CompMooHasBodyResource comp)
