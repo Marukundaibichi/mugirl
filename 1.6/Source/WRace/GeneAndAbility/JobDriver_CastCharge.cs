@@ -176,9 +176,24 @@ namespace MooGirl
 
         public static bool DoJump(Pawn pawn, IntVec3 targetPosition, VerbProperties verbProps, Ability triggeringAbility = null, LocalTargetInfo target = default(LocalTargetInfo), ThingDef pawnFlyerOverride = null)
         {
+            if (pawn == null || pawn.Destroyed || pawn.Dead)
+            {
+                return false;
+            }
+
             // 获取当前Pawn的起始位置
             IntVec3 position = pawn.Position;
             Map map = pawn.Map;
+            if (map == null)
+            {
+                return false;
+            }
+
+            if (!TryDismountMountedRiderBeforeJump(pawn, map))
+            {
+                Log.Warning($"Failed to dismount rider before making Pawn {pawn.Name} jump.");
+                return false;
+            }
 
             // 检查目标位置是否合法
             if (!targetPosition.IsValid || !targetPosition.InBounds(map))
@@ -222,6 +237,22 @@ namespace MooGirl
                 Log.Warning($"Failed to create PawnFlyer for {pawn.Name}.");
                 return false;
             }
+        }
+
+        private static bool TryDismountMountedRiderBeforeJump(Pawn pawn, Map map)
+        {
+            Comp_MooGirlMount comp = MountedPawnUtility.GetMountComp(pawn);
+            if (comp?.MountedPawn == null)
+            {
+                return true;
+            }
+
+            if (comp.TryDismount(sendMessage: false))
+            {
+                return true;
+            }
+
+            return comp.TryEmergencyDismountNear(pawn.Position, map) || comp.MountedPawn == null;
         }
     }
 }

@@ -262,6 +262,37 @@ namespace MooGirl
             return true;
         }
 
+        public bool TryEmergencyDismountNear(IntVec3 cell, Map map)
+        {
+            MakeContainer();
+            Pawn rider = MountedPawn;
+            if (rider == null || map == null)
+            {
+                return false;
+            }
+
+            bool wasSelected = Current.ProgramState == ProgramState.Playing && Find.Selector.IsSelected(rider);
+            if (!innerContainer.TryDrop(rider, cell, map, ThingPlaceMode.Near, out Thing dropped, null, null, playDropSound: false))
+            {
+                return false;
+            }
+
+            MountedPawnCombatTurret.NotifyDismounting(this, rider);
+            Pawn droppedPawn = dropped as Pawn;
+            if (droppedPawn != null && !droppedPawn.Dead && droppedPawn.jobs != null)
+            {
+                PawnUtility.ForceWait(droppedPawn, 60, MooPawn);
+            }
+
+            if (wasSelected && droppedPawn != null)
+            {
+                Find.Selector.ClearSelection();
+                Find.Selector.Select(droppedPawn, playSound: false, forceDesignatorDeselect: false);
+            }
+
+            return true;
+        }
+
         public override void CompTickInterval(int delta)
         {
             base.CompTickInterval(delta);
