@@ -159,11 +159,13 @@
     <Compile Include="Mounting骑乘系统的编程\Comp_MooGirlMount.cs" />
     <Compile Include="Mounting骑乘系统的编程\MountedPawnUtility.cs" />
     <Compile Include="Mounting骑乘系统的编程\MountedPawnCombatTurret.cs" />
+    <Compile Include="Mounting骑乘系统的编程\MountedPawnMeleeSupport.cs" />
     <Compile Include="Mounting骑乘系统的编程\JobDriver_MountMooGirl.cs" />
     <Compile Include="Mounting骑乘系统的编程\JobDriver_DismountMooGirl.cs" />
     <Compile Include="Mounting骑乘系统的编程\FloatMenuProvider_MountMooGirl.cs" />
     <Compile Include="Mounting骑乘系统的编程\Harmony_MountRendering.cs" />
     <Compile Include="Mounting骑乘系统的编程\Harmony_MountedPawnGizmos.cs" />
+    <Compile Include="OtherFunction\Harmony_MooGirlGrazeChain.cs" />
     <Compile Include="MooGirlMilked 挤奶相关的编程\HediffCompProperties_WhileHavingThoughts.cs" />
     <Compile Include="RopingAndRoped牵引系统的编程\JobDriver_FollowRoper.cs" />
     <Compile Include="RopingAndRoped牵引系统的编程\JobGiver_WanderRoped.cs" />

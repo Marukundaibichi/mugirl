@@ -42,5 +42,7 @@
   <MooGirl_PowerEleShock.label>Powerful Collar Electric Shock</MooGirl_PowerEleShock.label>
   <!-- EN: 不知道什么原因，电击项圈开始强烈的电击雪牛娘。快停下！真的会出牛命的呀... -->
   <MooGirl_PowerEleShock.description>For some reason, the electric shock collar started strongly electrocuting the Mugirl. Stop it quickly! It could really kill the Mugirl!</MooGirl_PowerEleShock.description>
-  
+  <MooGirl_PowerEleShock_NoMilk.label>Powerful Collar Electric Shock</MooGirl_PowerEleShock_NoMilk.label>
+  <MooGirl_PowerEleShock_NoMilk.description>For some reason, the electric shock collar started strongly electrocuting the wearer.</MooGirl_PowerEleShock_NoMilk.description>
+
 </LanguageData>

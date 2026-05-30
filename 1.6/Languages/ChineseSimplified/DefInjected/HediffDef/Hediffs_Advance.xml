@@ -42,5 +42,7 @@
   <MooGirl_PowerEleShock.label>强力项圈电击</MooGirl_PowerEleShock.label>
   <!-- EN: 不知道什么原因，电击项圈开始强烈的电击雪牛娘。快停下！真的会出牛命的呀... -->
   <MooGirl_PowerEleShock.description>不知道什么原因，电击项圈开始强烈的电击雪牛娘。快停下！真的会出牛命的呀...</MooGirl_PowerEleShock.description>
-  
+  <MooGirl_PowerEleShock_NoMilk.label>强力项圈电击</MooGirl_PowerEleShock_NoMilk.label>
+  <MooGirl_PowerEleShock_NoMilk.description>不知道什么原因，电击项圈开始强烈地电击佩戴者。</MooGirl_PowerEleShock_NoMilk.description>
+
 </LanguageData>

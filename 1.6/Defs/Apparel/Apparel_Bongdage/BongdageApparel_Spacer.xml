@@ -306,9 +306,8 @@
 			<texPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_ShockCollar/MooGirl_ShockCollar</texPath>
 		</graphicData>
 		<costList>
-			<ComponentSpacer>6</ComponentSpacer>
-			<Plasteel>150</Plasteel>
-			<Uranium>50</Uranium>
+			<ComponentIndustrial>2</ComponentIndustrial>
+			<Steel>5</Steel>
 		</costList>
 		<statBases>
 			<MaxHitPoints>80</MaxHitPoints>
@@ -334,6 +333,11 @@
             </drawData>
 		</apparel>
 		<recipeMaker>
+			<researchPrerequisite>Electricity</researchPrerequisite>
+			<recipeUsers>
+				<li>ElectricTailoringBench</li>
+				<li>CraftingSpot</li>
+			</recipeUsers>
 			<displayPriority>260</displayPriority>
 		</recipeMaker>
 		<gives_bound_moodlet>true</gives_bound_moodlet>
@@ -352,6 +356,9 @@
 				<powerhediffDefs>
 					<li>MooGirl_PowerEleShock</li>
 				</powerhediffDefs>
+				<nonMooGirlPowerHediffDefs>
+					<li>MooGirl_PowerEleShock_NoMilk</li>
+				</nonMooGirlPowerHediffDefs>
 				<ticks>1200</ticks>
 				<useCooldownTicks>480</useCooldownTicks>
 			</li>

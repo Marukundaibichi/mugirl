@@ -138,6 +138,52 @@
 		</comps>
 	</HediffDef>
 
+	<HediffDef>
+		<defName>MooGirl_PowerEleShock_NoMilk</defName>
+		<hediffClass>HediffWithComps</hediffClass>
+		<label>强力项圈电击</label>
+		<description>不知道什么原因，电击项圈开始强烈地电击佩戴者。</description>
+		<defaultLabelColor>(1, 0.752, 0.796)</defaultLabelColor>
+		<scenarioCanAdd>false</scenarioCanAdd>
+		<isBad>false</isBad>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<setMax>0.2</setMax>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_DisappearsOnDeath" />
+			<li Class="HediffCompProperties_Disappears">
+				<showRemainingTime>true</showRemainingTime>
+				<disappearsAfterTicks>360</disappearsAfterTicks>
+			</li>
+			<li Class="MooGirl.CompProperties_EleShock">
+				<effectCycleInterval>10</effectCycleInterval>
+				<maxCycles>20</maxCycles>
+				<stunDuration>5</stunDuration>
+				<jitterMagnitude>0.5</jitterMagnitude>
+				<shockSounds>
+					<li>MooGirl_PowerEleShock_Sound</li>
+				</shockSounds>
+				<hediffsToApplyWithParams>
+					<li>
+						<hediff>Burn</hediff>
+						<bodyPartTarget>Neck</bodyPartTarget>
+						<severity>0.6</severity>
+					</li>
+				</hediffsToApplyWithParams>
+				<hediffsToRemove>
+					<li>MooGirl_EleShock</li>
+				</hediffsToRemove>
+			</li>
+		</comps>
+	</HediffDef>
+
 	<!-- ====================================== 洗脑束具 =========================================== -->
 
 	<HediffDef>

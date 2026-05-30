@@ -103,13 +103,13 @@ namespace MooGirl
                 return;
             }
 
-            IAttackTarget target = FindBestTarget(comp, verb);
-            if (target?.Thing == null)
+            Thing target = FindBestTarget(comp, verb);
+            if (target == null)
             {
                 return;
             }
 
-            comp.turretAimTarget = target.Thing;
+            comp.turretAimTarget = target;
             comp.turretAimTicksTotal = GetMountedAimTicks(comp, rider, verb);
             comp.turretAimTicksLeft = comp.turretAimTicksTotal;
             comp.turretCastStartTick = -1;
@@ -155,7 +155,8 @@ namespace MooGirl
                 return;
             }
 
-            if (!IsValidTarget(carrier, verb, comp.turretAimTarget.Thing))
+            bool pointBlankMeleeTarget = comp.turretAimTarget.HasThing && comp.turretAimTarget.Thing == MountedPawnMeleeSupport.CurrentMeleeTarget(carrier);
+            if (!IsValidTarget(carrier, verb, comp.turretAimTarget.Thing, allowPointBlank: pointBlankMeleeTarget))
             {
                 CancelMountedCast(comp, verb);
                 ClearAim(comp);
@@ -184,9 +185,12 @@ namespace MooGirl
             bool started;
             Pawn carrier = comp.MooPawn;
             Stance originalStance = carrier?.stances?.curStance;
+            bool pointBlankMeleeTarget = castTarget.HasThing && castTarget.Thing == MountedPawnMeleeSupport.CurrentMeleeTarget(carrier);
             comp.turretCastStartTick = Find.TickManager.TicksGame;
             using (new MountedWarmupOverride(verb, 0f))
+            using (new MountedMinRangeOverride(verb, pointBlankMeleeTarget ? 0f : (float?)null))
             {
+                carrier?.stances?.SetStance(new Stance_Mobile());
                 started = verb.TryStartCastOn(castTarget, surpriseAttack: false, canHitNonTargetPawns: false, preventFriendlyFire: true, nonInterruptingSelfCast: true);
             }
 
@@ -244,7 +248,7 @@ namespace MooGirl
                 return false;
             }
 
-            if (rider.Dead || rider.Downed || rider.InMentalState || rider.IsBurning() || carrier.pather?.Moving == true)
+            if (rider.Dead || rider.Downed || rider.InMentalState || rider.IsBurning() || (carrier.pather?.Moving == true && MountedPawnMeleeSupport.CurrentMeleeTarget(carrier) == null))
             {
                 reasonKey = "MooGirl.Mount.ReasonRiderBadState";
                 return false;
@@ -270,7 +274,18 @@ namespace MooGirl
             Pawn rider = comp?.MountedPawn;
             Pawn carrier = comp?.MooPawn;
             ThingWithComps weapon = rider?.equipment?.Primary;
-            if (rider == null || carrier == null || weapon == null || !weapon.def.IsRangedWeapon)
+            if (rider == null || carrier == null || weapon == null)
+            {
+                return;
+            }
+
+            if (weapon.def.IsMeleeWeapon)
+            {
+                MountedPawnMeleeSupport.DrawWeapon(comp);
+                return;
+            }
+
+            if (!weapon.def.IsRangedWeapon)
             {
                 return;
             }
@@ -439,6 +454,32 @@ namespace MooGirl
             }
         }
 
+        private struct MountedMinRangeOverride : System.IDisposable
+        {
+            private readonly Verb verb;
+            private readonly float originalMinRange;
+            private readonly bool active;
+
+            public MountedMinRangeOverride(Verb verb, float? minRange)
+            {
+                this.verb = verb;
+                originalMinRange = verb?.verbProps?.minRange ?? 0f;
+                active = verb?.verbProps != null && minRange.HasValue;
+                if (active)
+                {
+                    verb.verbProps.minRange = minRange.Value;
+                }
+            }
+
+            public void Dispose()
+            {
+                if (active)
+                {
+                    verb.verbProps.minRange = originalMinRange;
+                }
+            }
+        }
+
         private static void EnsureVerbCaster(Comp_MooGirlMount comp, Verb verb)
         {
             Pawn carrier = comp?.MooPawn;
@@ -494,15 +535,21 @@ namespace MooGirl
             }
         }
 
-        private static IAttackTarget FindBestTarget(Comp_MooGirlMount comp, Verb verb)
+        private static Thing FindBestTarget(Comp_MooGirlMount comp, Verb verb)
         {
             Pawn carrier = comp.MooPawn;
+            Thing meleeTarget = MountedPawnMeleeSupport.CurrentMeleeTarget(carrier);
+            if (IsValidTarget(carrier, verb, meleeTarget, allowPointBlank: true))
+            {
+                return meleeTarget;
+            }
+
             MountedAttackTargetSearcher searcher = new MountedAttackTargetSearcher(comp, verb);
             TargetScanFlags flags = TargetScanFlags.NeedThreat | TargetScanFlags.NeedAutoTargetable | TargetScanFlags.NeedLOSToAll | TargetScanFlags.NeedNonBurning;
-            return AttackTargetFinder.BestShootTargetFromCurrentPosition(searcher, flags, thing => IsValidTarget(carrier, verb, thing), 0f, verb.EffectiveRange);
+            return AttackTargetFinder.BestShootTargetFromCurrentPosition(searcher, flags, thing => IsValidTarget(carrier, verb, thing), 0f, verb.EffectiveRange)?.Thing;
         }
 
-        private static bool IsValidTarget(Pawn carrier, Verb verb, Thing target)
+        private static bool IsValidTarget(Pawn carrier, Verb verb, Thing target, bool allowPointBlank = false)
         {
             if (carrier?.Map == null || verb == null || target == null || target.Destroyed || target.Map != carrier.Map)
             {
@@ -517,6 +564,14 @@ namespace MooGirl
             if (target is Pawn pawn && (pawn.Dead || pawn.Downed))
             {
                 return false;
+            }
+
+            if (allowPointBlank && target.Position.AdjacentTo8WayOrInside(carrier.Position))
+            {
+                using (new MountedMinRangeOverride(verb, 0f))
+                {
+                    return verb.TryFindShootLineFromTo(carrier.Position, target, out _);
+                }
             }
 
             return verb.TryFindShootLineFromTo(carrier.Position, target, out _);

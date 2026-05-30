@@ -17,6 +17,8 @@ namespace MooGirl
         public List<HediffDef> hediffDefs = new List<HediffDef>();
         // 强力电击效果列表
         public List<HediffDef> powerhediffDefs = new List<HediffDef>();
+        // 非雪牛娘强力电击效果列表
+        public List<HediffDef> nonMooGirlPowerHediffDefs = new List<HediffDef>();
         // 自动触发间隔时间（tick）
         public int ticks = 60;
         // 自动触发的概率百分比（0-100）
@@ -121,7 +123,7 @@ namespace MooGirl
                     // 随机选择电击类型
                     if (Rand.Chance(Props.powerShockChance / 100f))
                     {
-                        ApplyHediffs(wearer, Props.powerhediffDefs);
+                        ApplyHediffs(wearer, PowerHediffsFor(wearer));
                     }
                     else
                     {
@@ -207,7 +209,7 @@ namespace MooGirl
                 Props.powerIconPath,
                 canUse,
                 cooldownPercent,
-                () => ApplyHediffs(wearer, Props.powerhediffDefs)
+                () => ApplyHediffs(wearer, PowerHediffsFor(wearer))
             );
 
             // 普通电击按钮
@@ -252,6 +254,16 @@ namespace MooGirl
                 Disabled = !enabled,
                 cooldownPercentGetter = () => cooldownPercent
             };
+        }
+
+        private List<HediffDef> PowerHediffsFor(Pawn pawn)
+        {
+            if (pawn != null && !MountedPawnUtility.IsMooGirl(pawn) && Props.nonMooGirlPowerHediffDefs != null && Props.nonMooGirlPowerHediffDefs.Count > 0)
+            {
+                return Props.nonMooGirlPowerHediffDefs;
+            }
+
+            return Props.powerhediffDefs;
         }
     }
 }

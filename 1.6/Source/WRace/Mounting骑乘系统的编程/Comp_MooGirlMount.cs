@@ -14,6 +14,7 @@ namespace MooGirl
         private int physiologicalTickCounter;
         private int safetyTickCounter;
         private int turretTickCounter;
+        private int riderMeleeTickCounter;
         internal int turretBurstCooldownTicksLeft;
         internal LocalTargetInfo turretAimTarget = LocalTargetInfo.Invalid;
         internal int turretAimTicksLeft;
@@ -305,6 +306,7 @@ namespace MooGirl
             physiologicalTickCounter += delta;
             safetyTickCounter += delta;
             turretTickCounter += delta;
+            riderMeleeTickCounter += delta;
             MountedPawnCombatTurret.VerbTick(this, delta);
             MountedPawnCombatTurret.TickAim(this, delta);
 
@@ -340,6 +342,12 @@ namespace MooGirl
                 int tickDelta = turretTickCounter;
                 turretTickCounter = 0;
                 MountedPawnCombatTurret.Tick(this, tickDelta);
+            }
+
+            if (riderMeleeTickCounter >= Props.turretTickInterval)
+            {
+                riderMeleeTickCounter = 0;
+                MountedPawnMeleeSupport.Tick(this);
             }
         }
 
@@ -386,6 +394,7 @@ namespace MooGirl
             Scribe_Values.Look(ref physiologicalTickCounter, "physiologicalTickCounter", 0);
             Scribe_Values.Look(ref safetyTickCounter, "safetyTickCounter", 0);
             Scribe_Values.Look(ref turretTickCounter, "turretTickCounter", 0);
+            Scribe_Values.Look(ref riderMeleeTickCounter, "riderMeleeTickCounter", 0);
             Scribe_Values.Look(ref turretBurstCooldownTicksLeft, "turretBurstCooldownTicksLeft", 0);
             Scribe_TargetInfo.Look(ref turretAimTarget, "turretAimTarget");
             Scribe_Values.Look(ref turretAimTicksLeft, "turretAimTicksLeft", 0);
