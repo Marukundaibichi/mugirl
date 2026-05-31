@@ -89,6 +89,8 @@ namespace MooGirl
             }
 
             baby.needs.food.CurLevel += consumedNutrition;
+            MooGirlNurtureUtility.AddBabyNurtureProgress(baby, feeder, delta);
+
             Caravan caravan = baby.GetCaravan();
             if (caravan != null && feeder.GetCaravan() == caravan)
             {

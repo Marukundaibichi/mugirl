@@ -5,7 +5,7 @@ using Verse.AI;
 
 namespace MooGirl
 {
-    // 为雪牛娘添加右键菜单：榨乳、喝母乳、喝奶、给倒地者喂奶
+    // 为雪牛娘添加右键菜单：榨乳、找奶喝、喝奶、给倒地者喂奶
     public class FloatMenuProvider_MilkMooGirl : FloatMenuOptionProvider
     {
         private const float MinMilkFullnessForMilking = 0.05f;
@@ -67,27 +67,32 @@ namespace MooGirl
                     pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
                 }), pawn, targetPawn);
 
-            // 喝奶
-            JobDef drinkDef = DefDatabase<JobDef>.GetNamedSilentFail("Job_DrinkMilkFromMooGirl");
-            if (drinkDef != null)
+            bool selectedPawnIsChild = !pawn.ageTracker.CurLifeStage.reproductive && pawn.RaceProps.Humanlike;
+
+            // 喝奶：孩子使用“找奶喝”专属互动，避免重复菜单。
+            if (!selectedPawnIsChild)
             {
-                yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(
-                    "喝奶 (" + targetPawn.LabelShortCap + ")",
-                    delegate
-                    {
-                        Job job = JobMaker.MakeJob(drinkDef, targetPawn);
-                        pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-                    }), pawn, targetPawn);
+                JobDef drinkDef = DefDatabase<JobDef>.GetNamedSilentFail("Job_DrinkMilkFromMooGirl");
+                if (drinkDef != null)
+                {
+                    yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(
+                        "喝奶 (" + targetPawn.LabelShortCap + ")",
+                        delegate
+                        {
+                            Job job = JobMaker.MakeJob(drinkDef, targetPawn);
+                            pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+                        }), pawn, targetPawn);
+                }
             }
 
-            // 喝母乳：仅小孩（不可繁殖阶段）
-            if (!pawn.ageTracker.CurLifeStage.reproductive && pawn.RaceProps.Humanlike)
+            // 找奶喝：仅小孩（不可繁殖阶段）
+            if (selectedPawnIsChild)
             {
                 JobDef breastfeedDef = DefDatabase<JobDef>.GetNamedSilentFail("Job_Breastfeed");
                 if (breastfeedDef != null)
                 {
                     yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(
-                        "喝母乳 (" + targetPawn.LabelShortCap + ")",
+                        "找奶喝 (" + targetPawn.LabelShortCap + ")",
                         delegate
                         {
                             Job job = JobMaker.MakeJob(breastfeedDef, targetPawn);

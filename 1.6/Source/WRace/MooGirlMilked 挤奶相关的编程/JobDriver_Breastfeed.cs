@@ -5,7 +5,7 @@ using Verse.AI;
 
 namespace MooGirl
 {
-    // 小孩从雪牛娘处喝母乳：获得学习/生长 buff，消耗牛娘奶量
+    // 小孩从雪牛娘处找奶喝：获得哺育进度，并合并普通喝奶收益。
     public class JobDriver_Breastfeed : JobDriver
     {
         private const TargetIndex MooInd = TargetIndex.A;
@@ -34,12 +34,24 @@ namespace MooGirl
 
         private void ApplyBreastfeedEffects()
         {
-            // 给小孩添加母乳喂养 buff
-            HediffDef fedDef = DefDatabase<HediffDef>.GetNamed("MooGirl_Breastfed");
-            if (fedDef != null && !Child.health.hediffSet.HasHediff(fedDef))
+            if (Child.needs?.food != null)
             {
-                Child.health.AddHediff(fedDef);
+                Child.needs.food.CurLevel += 0.5f;
             }
+
+            ThoughtDef drinkThought = DefDatabase<ThoughtDef>.GetNamedSilentFail("MooGirl_DrankMilk");
+            if (drinkThought != null)
+            {
+                Child.needs.mood?.thoughts?.memories?.TryGainMemory(drinkThought);
+            }
+
+            ThoughtDef milkThought = DefDatabase<ThoughtDef>.GetNamedSilentFail("Consumed_MooGirlMilk");
+            if (milkThought != null)
+            {
+                Child.needs.mood?.thoughts?.memories?.TryGainMemory(milkThought);
+            }
+
+            MooGirlNurtureUtility.AddChildNurtureProgress(Child, MooPawn);
 
             // 消耗雪牛娘 30% 奶量
             CompMooMilkable comp = MooPawn.TryGetComp<CompMooMilkable>();

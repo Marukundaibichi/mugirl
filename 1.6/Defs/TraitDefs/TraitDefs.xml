@@ -50,4 +50,21 @@
       </li>
     </degreeDatas>
   </TraitDef>
+
+  <TraitDef>
+    <defName>MooGirl_NurturedByMooGirl</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>雪牛娘哺育</label>
+        <description>{PAWN_nameDef}在小时候得到了雪牛娘温柔的哺育，拥有更好的成长。</description>
+        <statFactors>
+          <GlobalLearningFactor>1.2</GlobalLearningFactor>
+        </statFactors>
+        <statOffsets>
+          <MoveSpeed>1</MoveSpeed>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
 </Defs>

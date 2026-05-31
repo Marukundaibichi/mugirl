@@ -10,6 +10,7 @@
 
 	<MooGirl.MilkingDevice.StoredMessage>{0} 的榨乳器储存了 1 次产奶（{1}/{2}）</MooGirl.MilkingDevice.StoredMessage>
 	<MooGirl.MilkingDevice.ReleaseMessage>{0} 释放了榨乳器中的储乳，生成了 {1} 份雪牛奶</MooGirl.MilkingDevice.ReleaseMessage>
+    <MooGirl.Nurture.Completed>{PAWN_labelShort}得到了完整的雪牛娘哺育。</MooGirl.Nurture.Completed>
 
     <MooGirl.CrackBondageGear_TargetNotValid>目标不可破解，无法进行破解</MooGirl.CrackBondageGear_TargetNotValid>
     <MooGirl.CrackBondageGear_CrackAdvanced>破解高级束具：{0}</MooGirl.CrackBondageGear_CrackAdvanced>

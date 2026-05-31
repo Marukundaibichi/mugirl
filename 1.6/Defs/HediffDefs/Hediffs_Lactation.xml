@@ -14,30 +14,66 @@
         <postpartumBoostDays>7</postpartumBoostDays>
         <postpartumMultiplier>2.5</postpartumMultiplier>
         <malnourishedPenalty>0.3</malnourishedPenalty>
-        <breastfedBuff>MooGirl_Breastfed</breastfedBuff>
       </li>
     </comps>
   </HediffDef>
 
-  <!-- 母乳喂养 Buff -->
   <HediffDef>
-    <defName>MooGirl_Breastfed</defName>
+    <defName>MooGirl_MotherlyNurture</defName>
     <hediffClass>HediffWithComps</hediffClass>
-    <label>母乳喂养</label>
-    <description>喝到了雪牛娘妈妈的母乳，学习能力得到显著提升，成长评级获取速度提高50%。</description>
+    <label>雪牛娘妈妈的哺育</label>
+    <description>这个孩子正在接受雪牛娘温柔而充足的哺育。进度越高，成长评级和学习能力加成越强。</description>
     <isBad>false</isBad>
     <defaultLabelColor>(255,192,203)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <maxSeverity>1</maxSeverity>
+    <initialSeverity>0.001</initialSeverity>
+    <alwaysShowSeverity>true</alwaysShowSeverity>
+    <stages>
+      <li>
+        <minSeverity>0</minSeverity>
+        <label>萌芽</label>
+        <statFactors>
+          <GlobalLearningFactor>1.5</GlobalLearningFactor>
+        </statFactors>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>充盈</label>
+        <statFactors>
+          <GlobalLearningFactor>2.0</GlobalLearningFactor>
+        </statFactors>
+      </li>
+      <li>
+        <minSeverity>0.7</minSeverity>
+        <label>圆满</label>
+        <statFactors>
+          <GlobalLearningFactor>2.5</GlobalLearningFactor>
+        </statFactors>
+      </li>
+    </stages>
+    <comps>
+      <li Class="MooGirl.HediffCompProperties_MooGirlNurtureProgress" />
+    </comps>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>MooGirl_NurtureAfterglow</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>雪牛娘哺育余韵</label>
+    <description>雪牛娘长期哺育留下的成长余韵仍在这个孩子身上延续。</description>
+    <isBad>false</isBad>
     <scenarioCanAdd>false</scenarioCanAdd>
     <stages>
       <li>
         <statFactors>
-          <GlobalLearningFactor>2.0</GlobalLearningFactor>
+          <GlobalLearningFactor>2.5</GlobalLearningFactor>
         </statFactors>
       </li>
     </stages>
     <comps>
       <li Class="HediffCompProperties_Disappears">
-        <disappearsAfterTicks>60000</disappearsAfterTicks>
+        <disappearsAfterTicks>27000000</disappearsAfterTicks>
         <showRemainingTime>true</showRemainingTime>
       </li>
     </comps>

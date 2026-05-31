@@ -10,6 +10,7 @@
 
 	<MooGirl.MilkingDevice.StoredMessage>{0}'s milking device stored one production charge ({1}/{2}).</MooGirl.MilkingDevice.StoredMessage>
 	<MooGirl.MilkingDevice.ReleaseMessage>{0} released the stored milk and produced {1} MooGirl milk.</MooGirl.MilkingDevice.ReleaseMessage>
+    <MooGirl.Nurture.Completed>{PAWN_labelShort} has received complete Mugirl nurture.</MooGirl.Nurture.Completed>
 
     <MooGirl.CrackBondageGear_TargetNotValid>The target is not decryptable. Decryption is not possible.</MooGirl.CrackBondageGear_TargetNotValid>
     <MooGirl.CrackBondageGear_CrackAdvanced>Decrypting Advanced Restraint: {0}.</MooGirl.CrackBondageGear_CrackAdvanced>
