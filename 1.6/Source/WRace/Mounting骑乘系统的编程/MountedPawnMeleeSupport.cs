@@ -137,7 +137,10 @@ namespace MooGirl
 
             Vector3 drawPos = comp.WeaponDrawPos;
             drawPos += carrier.Rotation.RighthandCell.ToVector3() * 0.12f;
-            PawnRenderUtility.DrawCarriedWeapon(weapon, drawPos, carrier.Rotation, rider.ageTracker.CurLifeStage.equipmentDrawDistanceFactor);
+            using (MeleeAnimationCompat.SuspendIdleWeaponAnimation())
+            {
+                PawnRenderUtility.DrawCarriedWeapon(weapon, drawPos, carrier.Rotation, rider.ageTracker.CurLifeStage.equipmentDrawDistanceFactor);
+            }
         }
 
         public static Thing CurrentMeleeTarget(Pawn carrier)

@@ -1,5 +1,5 @@
 ﻿using RimWorld;
-using System.Linq;
+using System.Collections.Generic;
 using Verse;
 
 namespace MooGirl
@@ -20,19 +20,15 @@ namespace MooGirl
         {
             base.FinalizeInit();
 
-            // 确保转换逻辑只执行一次
-            if (!conversionDone)
-            {
-                ConvertEscapeWildSlaves();  // 执行转换逻辑
-                conversionDone = true;     // 标记转换已完成
-            }
+            ConvertEscapeWildSlaves();  // 执行转换逻辑
+            conversionDone = true;     // 保留旧存档字段，转换本身每次读档都可修复漏网个体
         }
 
         // 静态方法：将所有EscapeWildSlave类型的殖民者转换为PreEscapeWildSlave类型
-        public static void ConvertEscapeWildSlaves()
+        public static int ConvertEscapeWildSlaves()
         {
-            // 获取当前地图上所有属于玩家阵营的自由殖民者
-            var playerPawns = PawnsFinder.AllMaps_FreeColonists.Where(p => p.Faction == Faction.OfPlayer);
+            // 获取当前游戏里所有属于玩家阵营的存活pawn，兼容殖民者、婴儿和临时/世界pawn
+            List<Pawn> playerPawns = PawnsFinder.AllMapsWorldAndTemporary_Alive;
 
             // 记录成功转换的殖民者数量
             int convertedCount = 0;
@@ -40,14 +36,14 @@ namespace MooGirl
             // 遍历所有玩家殖民者
             foreach (var pawn in playerPawns)
             {
-                // 检查是否为需要转换的目标类型
-                if (pawn.kindDef == MooGirl_DefOf.MooGirl_EscapeWildSlave)
+                if (pawn.Faction != Faction.OfPlayer)
                 {
-                    // 执行类型转换
-                    pawn.kindDef = MooGirl_DefOf.MooGirl_PreEscapeWildSlave;
+                    continue;
+                }
+
+                if (MooGirlWildSlaveUtility.NormalizePlayerPawnIfNeeded(pawn))
+                {
                     convertedCount++;
-                    // 记录转换日志（使用短名称或标签）
-                    Log.Message($"[MooGirl] 已将 {pawn.Name?.ToStringShort ?? pawn.LabelShort} 的 kindDef 从 EscapeWildSlave 改为 PreEscapeWildSlave。");
                 }
             }
 
@@ -60,6 +56,8 @@ namespace MooGirl
             {
                 Log.Message("[MooGirl] 未发现需要转换的 MooGirl_EscapeWildSlave。");
             }
+
+            return convertedCount;
         }
 
         // 数据序列化方法，用于保存/加载conversionDone状态

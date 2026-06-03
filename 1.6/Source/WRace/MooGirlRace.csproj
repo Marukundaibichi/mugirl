@@ -114,6 +114,7 @@
     <Compile Include="MooGirlsJoins加入方式的编程\FactionUtility.cs" />
     <Compile Include="MooGirlsJoins加入方式的编程\Harmony_DesignatorTame.cs" />
     <Compile Include="MooGirlsJoins加入方式的编程\Harmony_IsWildMan_WildManUtility.cs" />
+    <Compile Include="MooGirlsJoins加入方式的编程\MooGirlWildSlaveUtility.cs" />
     <Compile Include="MooGirlsJoins加入方式的编程\MooGirlRescueJoinUtility.cs" />
     <Compile Include="MooGirlsJoins加入方式的编程\QuestPart_MooGirlRescueJoin.cs" />
     <Compile Include="MooGirlsJoins加入方式的编程\MooGirl_ConvertComp.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="OtherFunction\Harmoney_AlienRace_ResolveReferences.cs" />
     <Compile Include="OtherFunction\Harmoney_GridsUtility_IsPolluted.cs" />
     <Compile Include="OtherFunction\Harmony_Apparel_DrawColor.cs" />
+    <Compile Include="OtherFunction\Harmony_GhoulRenderingRefresh.cs" />
 
     <Compile Include="NewBron\LifeStageWorker_HumanlikeAdult_MooGirl.cs" />
     <Compile Include="OtherFunction\InteractionWorker_Nuzzle.cs" />
@@ -160,6 +162,7 @@
     <Compile Include="Mounting骑乘系统的编程\MountedPawnUtility.cs" />
     <Compile Include="Mounting骑乘系统的编程\MountedPawnCombatTurret.cs" />
     <Compile Include="Mounting骑乘系统的编程\MountedPawnMeleeSupport.cs" />
+    <Compile Include="Mounting骑乘系统的编程\MeleeAnimationCompat.cs" />
     <Compile Include="Mounting骑乘系统的编程\JobDriver_MountMooGirl.cs" />
     <Compile Include="Mounting骑乘系统的编程\JobDriver_DismountMooGirl.cs" />
     <Compile Include="Mounting骑乘系统的编程\FloatMenuProvider_MountMooGirl.cs" />
@@ -181,15 +184,15 @@
     <Compile Include="MooGirlMilked 挤奶相关的编程\JobDriver_DrinkMilkFromMooGirl.cs" />
     <Compile Include="MooGirlMilked 挤奶相关的编程\JobDriver_FeedMilkToDowned.cs" />
     <Compile Include="MooGirlMilked 挤奶相关的编程\Harmony_FloatMenu_Milk.cs" />
-    <Compile Include="AiGenerated\HediffComp_CureFoodEffects.cs" />
-    <Compile Include="AiGenerated\CompReadableBook.cs" />
-    <Compile Include="AiGenerated\Dialog_ReadBook.cs" />
-    <Compile Include="AiGenerated\IncidentWorker_MooGirl_CourierRaid.cs" />
-    <Compile Include="AiGenerated\Harmony_GiantCorpRaidTiers.cs" />
-    <Compile Include="AiGenerated\QuestNode_Root_MooGirl_CourierRaid.cs" />
-    <Compile Include="AiGenerated\QuestPart_CourierRaid.cs" />
-    <Compile Include="AiGenerated\AiGenerated_DefOf.cs" />
-    <Compile Include="AiGenerated\AiGenerated_Init.cs" />
+    <Compile Include="MooGirlMilked 挤奶相关的编程\HediffComp_CureFoodEffects.cs" />
+    <Compile Include="MooGirlsJoins加入方式的编程\CompReadableBook.cs" />
+    <Compile Include="MooGirlsJoins加入方式的编程\Dialog_ReadBook.cs" />
+    <Compile Include="MooGirlsJoins加入方式的编程\IncidentWorker_MooGirl_CourierRaid.cs" />
+    <Compile Include="MooGirlsJoins加入方式的编程\Harmony_GiantCorpRaidTiers.cs" />
+    <Compile Include="MooGirlsJoins加入方式的编程\QuestNode_Root_MooGirl_CourierRaid.cs" />
+    <Compile Include="MooGirlsJoins加入方式的编程\QuestPart_CourierRaid.cs" />
+    <Compile Include="Defof\AiGenerated_DefOf.cs" />
+    <Compile Include="OtherFunction\AiGenerated_Init.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

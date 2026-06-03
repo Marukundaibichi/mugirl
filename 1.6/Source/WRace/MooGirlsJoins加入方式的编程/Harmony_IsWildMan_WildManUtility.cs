@@ -17,7 +17,7 @@ namespace MooGirl
             if (__result) return;
 
             // 检查pawn是否为逃跑的野生奴隶且不是亚人类
-            if (p.kindDef == MooGirl_DefOf.MooGirl_EscapeWildSlave && !p.IsSubhuman)
+            if (p.kindDef == MooGirl_DefOf.MooGirl_EscapeWildSlave && p.Faction != Faction.OfPlayer && !p.IsSubhuman)
             {
                 __result = true; // 强制认定为野人
             }
@@ -28,16 +28,24 @@ namespace MooGirl
     [HarmonyPatch(typeof(RecruitUtility), "Recruit")]
     public static class RecruitUtility_Recruit_Patch
     {
+        public static void Prefix(Pawn pawn, out bool __state)
+        {
+            __state = MooGirlWildSlaveUtility.IsEscapeWildSlave(pawn);
+        }
+
         // 后置补丁方法：在招募完成后修改pawn属性
-        public static void Postfix(Pawn pawn, Faction faction, Pawn recruiter = null)
+        public static void Postfix(Pawn pawn, Faction faction, bool __state)
         {
             // 空值检查
             if (pawn == null) return;
 
-            // 如果pawn是逃跑的野生奴隶，则将其kindDef改为预设的前逃跑状态
-            if (pawn.kindDef == MooGirl_DefOf.MooGirl_EscapeWildSlave)
+            if (faction == Faction.OfPlayer)
             {
-                pawn.kindDef = MooGirl_DefOf.MooGirl_PreEscapeWildSlave;
+                MooGirlWildSlaveUtility.NormalizeAfterJoiningPlayer(pawn, __state);
+            }
+            else if (__state && pawn.kindDef == MooGirl_DefOf.MooGirl_EscapeWildSlave)
+            {
+                pawn.ChangeKind(MooGirl_DefOf.MooGirl_PreEscapeWildSlave);
             }
         }
     }

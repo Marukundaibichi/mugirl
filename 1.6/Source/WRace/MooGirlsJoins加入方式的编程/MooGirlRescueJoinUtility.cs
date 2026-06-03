@@ -49,6 +49,7 @@ namespace MooGirl
 
             pawn.mindState.WillJoinColonyIfRescued = false;
             MooGirl_IdeoUtility.AdoptPlayerPrimaryIdeo(pawn);
+            bool wasEscapeWildSlave = MooGirlWildSlaveUtility.IsEscapeWildSlave(pawn);
 
             string letterLabel;
             string letterText;
@@ -61,6 +62,10 @@ namespace MooGirl
                 sendLetter: false);
 
             MooGirl_IdeoUtility.AdoptPlayerPrimaryIdeo(pawn);
+            if (pawn.Faction == Faction.OfPlayer)
+            {
+                MooGirlWildSlaveUtility.NormalizeAfterJoiningPlayer(pawn, wasEscapeWildSlave);
+            }
 
             if (pawn.needs?.mood != null)
             {
