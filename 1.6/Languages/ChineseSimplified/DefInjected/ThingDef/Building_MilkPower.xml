@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
+    <!-- Mugirl milk generator -->
     <MooGirl_MilkPoweredGenerator.label>雪牛娘奶发电机</MooGirl_MilkPoweredGenerator.label>
+    <!-- A modified generator that burns Mugirl milk for power. It must be periodically refueled by hand. -->
     <MooGirl_MilkPoweredGenerator.description>使用雪牛娘奶作为燃料发电的改造发电机。必须定期手动补充雪牛娘奶。</MooGirl_MilkPoweredGenerator.description>
 </LanguageData>

@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
+    <!-- A massive corporate consortium controlling countless resources and armed forces, showing no mercy to anyone who obstructs its interests. -->
     <MooGirl_GiantCorporations_Hostile.description>一个庞大的企业联合体，控制着无数资源与武装力量，对任何妨碍其利益者毫不留情。</MooGirl_GiantCorporations_Hostile.description>
+    <!-- Giant Corporation -->
     <MooGirl_GiantCorporations_Hostile.fixedName>巨型企业</MooGirl_GiantCorporations_Hostile.fixedName>
+    <!-- Giant Corporation -->
     <MooGirl_GiantCorporations_Hostile.label>巨型企业</MooGirl_GiantCorporations_Hostile.label>
+    <!-- Corporate Mercenary -->
     <MooGirl_GiantCorporations_Hostile.pawnSingular>巨企佣兵</MooGirl_GiantCorporations_Hostile.pawnSingular>
+    <!-- Corporate Mercenaries -->
     <MooGirl_GiantCorporations_Hostile.pawnsPlural>巨企佣兵</MooGirl_GiantCorporations_Hostile.pawnsPlural>
 </LanguageData>

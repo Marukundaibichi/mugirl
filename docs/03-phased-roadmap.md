@@ -238,7 +238,7 @@
 - 新档开局事件、野人加入、流浪者加入、救援舱、快递任务均可触发。
 - 任务完成/拒绝/战斗分支无红字。
 
-## 阶段 8：Genes、Rendering、OtherFunction 迁移
+## 阶段 8：Genes、Rendering、Misc 迁移
 
 目标：整理横切补丁和 DLC 条件逻辑。
 

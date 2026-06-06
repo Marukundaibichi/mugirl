@@ -1,23 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
+    <!-- A sharply tailored long coat whose draped lines sway lightly with each step, calm and restrained on the outside. It was not made to fend off cold wind, but to conceal the clothing beneath and the intentions within. When the front is closed, it gathers away edges, secrets, and identities yet unseen, showing the world only the side you choose to present. -->
     <MooGirl_Coat.description>剪裁利落的长款大衣，垂坠线条随步伐轻摆，外表从容而克制。它并非为抵御寒风而生，而是用来掩藏内里的装束与真实意图。衣襟合拢之间，将锋芒、秘密与未示人的身份一并收起，只让世界看到你愿意呈现的那一面。</MooGirl_Coat.description>
+    <!-- Mugirl Coat -->
     <MooGirl_Coat.label>雪牛娘 大衣</MooGirl_Coat.label>
+    <!-- A knightly neck ornament woven from supple leather and polished metal plates, shaped to follow the curve of the throat with both stability and grace. A finely worked heraldic emblem rests at its centre and sways subtly with each motion, its muted sheen declaring honour without ostentation. Soft stitching along the edges keeps it comfortable even while running or fighting. It is both adornment and symbol, a quiet pledge to oath and glory. -->
     <MooGirl_KnightlyOrnament.description>骑士颈饰由柔韧皮革与抛光金属片编缀而成，贴合颈部弧线，戴上时既稳固又不失优雅。中央镶嵌一枚细致的纹章徽片，随动作微微晃动，以低调的光泽彰显骑士的身份与荣耀。条带边缘以细线缝合，触感柔和，不会在奔走或战斗时磨损皮肤。它既是装饰，也是象征，代表着骑士对誓言与荣誉的无声守护。</MooGirl_KnightlyOrnament.description>
+    <!-- Mugirl Knightly Ornament -->
     <MooGirl_KnightlyOrnament.label>雪牛娘 骑士颈饰</MooGirl_KnightlyOrnament.label>
+    <!-- A heavy medieval cuirass of riveted refined steel plates, built to meet bolts and blades head-on. Its mirror-bright finish belies tremendous weight, and only a strong Mugirl can endure wearing it for long on the battlefield. Mobility is sacrificed, but the protection it offers is so absolute that the wearer becomes a walking bulwark of steel. -->
     <MooGirl_PlateArmor.description>由多片精钢板铆接而成的中世纪重型板甲，能在正面迎击弩箭与刀剑的袭来。表面打磨如镜，重量却惊人，只有体力充沛的雪牛娘才能在战场上长时间穿戴。虽然机动性受到压制，但其提供的绝对防护足以让穿戴者化作钢铁壁垒。</MooGirl_PlateArmor.description>
+    <!-- Mugirl Plate Armour -->
     <MooGirl_PlateArmor.label>雪牛娘 中世纪甲胄</MooGirl_PlateArmor.label>
+    <!-- Field gear widely issued to Mugirl revolutionaries during the Myrick Revolutionary War. Its load-bearing satchels and tactical fittings provide battlefield supplies that help reduce ranged weapon cooldown time. -->
     <MooGirl_RA_Carrying_Equipment.description>迈瑞克革命战争期间，雪牛娘革命者普遍装备的携行具。承重挎包战术挂件可以为穿戴者提供战术补给减少武器远程冷却时间。</MooGirl_RA_Carrying_Equipment.description>
+    <!-- Mugirl Specialised Field Gear -->
     <MooGirl_RA_Carrying_Equipment.label>雪牛娘 特化携行具</MooGirl_RA_Carrying_Equipment.label>
+    <!-- A mechanic backpack that grants a small increase to a Mugirl's bandwidth. -->
     <MooGirl_RA_MechanicBackpack.description>给雪牛娘增加少量带宽的机械师背包</MooGirl_RA_MechanicBackpack.description>
+    <!-- Mugirl Mechanic Backpack Lv1 -->
     <MooGirl_RA_MechanicBackpack.label>雪牛娘 Lv1 机械师背包</MooGirl_RA_MechanicBackpack.label>
+    <!-- A mechanic backpack that grants a moderate increase to a Mugirl's bandwidth. -->
     <MooGirl_RA_MechanicBackpack_B.description>给雪牛娘增加中量带宽的机械师背包</MooGirl_RA_MechanicBackpack_B.description>
+    <!-- Mugirl Mechanic Backpack Lv2 -->
     <MooGirl_RA_MechanicBackpack_B.label>雪牛娘 Lv2 机械师背包</MooGirl_RA_MechanicBackpack_B.label>
+    <!-- A mechanic backpack that grants a large increase to a Mugirl's bandwidth. -->
     <MooGirl_RA_MechanicBackpack_C.description>给雪牛娘增加大量带宽的机械师背包</MooGirl_RA_MechanicBackpack_C.description>
+    <!-- Mugirl Mechanic Backpack Lv3 -->
     <MooGirl_RA_MechanicBackpack_C.label>雪牛娘 Lv3 机械师背包</MooGirl_RA_MechanicBackpack_C.label>
+    <!-- A mechanic backpack that grants an immense increase to a Mugirl's bandwidth. -->
     <MooGirl_RA_MechanicBackpack_D.description>给雪牛娘增加超多量带宽的机械师背包</MooGirl_RA_MechanicBackpack_D.description>
+    <!-- Mugirl Mechanic Backpack Lv4 -->
     <MooGirl_RA_MechanicBackpack_D.label>雪牛娘 Lv4 机械师背包</MooGirl_RA_MechanicBackpack_D.label>
+    <!-- Lightweight recon armour that protects the torso's vital areas. A perfect balance of defence and provocation, where distracting the enemy becomes part of the tactic. -->
     <MooGirl_RA_PowerArmor.description>轻量化侦察装甲，防护覆盖躯干关键部位。防御与挑逗的完美平衡，让敌人分神即是战术。</MooGirl_RA_PowerArmor.description>
+    <!-- Mugirl Recon Armour -->
     <MooGirl_RA_PowerArmor.label>雪牛娘 侦察装甲</MooGirl_RA_PowerArmor.label>
+    <!-- Vache Rousse presents lightweight reconnaissance armour, providing protection for the torso's key areas.\nIt achieves a perfect balance between defence and provocation; distracting the enemy is itself a strategy. -->
     <MooGirl_ReconArmor.description>「八重·朱 服装」出品轻量化侦察装甲，覆盖躯干关键部位提供防护，同时兼顾灵活性，设计精巧，适合执行侦察任务或户外活动。</MooGirl_ReconArmor.description>
+    <!-- Mugirl Recon Armour "Rapidité Écarlate" -->
     <MooGirl_ReconArmor.label>雪牛娘 斥候装甲 「绯红捷速」</MooGirl_ReconArmor.label>
 </LanguageData>

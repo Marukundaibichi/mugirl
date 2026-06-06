@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
+    <!-- A restraint designed to obstruct a Mugirl's vision; sensory deprivation is said to heighten the victim's sensitivity (๑•̀ㅂ•́)و✧. The blindfold features a dedicated locking mechanism that can only be opened with a [Rough Restraint Key]. -->
     <MooGirl_Blindfold.description>一种用于阻挡雪牛娘的视线的束具，据说感官屏蔽会令受害者更加敏感 (๑•̀ㅂ•́)و✧。\n\n眼罩配有专用锁具，必须使用[粗糙束具钥匙]才能解开。</MooGirl_Blindfold.description>
+    <!-- Mugirl Slave Blindfold -->
     <MooGirl_Blindfold.label>雪牛娘 奴隶眼罩</MooGirl_Blindfold.label>
+    <!-- A fully enclosed restraint device designed to block a Mugirl's hearing entirely. Once fitted, external sounds become almost inaudible, leaving the victim in a silent and isolated environment. The earplugs feature a dedicated locking mechanism that can only be opened with a [Rough Restraint Key]. -->
     <MooGirl_Earplugs.description>一种完全封闭雪牛娘听觉的拘束用具，佩戴后几乎无法听到外界声音，令受害者陷入安静而隔绝的环境。\n\n耳塞配有专用锁具，必须使用[粗糙束具钥匙]才能解开。</MooGirl_Earplugs.description>
+    <!-- Mugirl Slave Earplugs -->
     <MooGirl_Earplugs.label>雪牛娘 奴隶耳塞</MooGirl_Earplugs.label>
+    <!-- A restraint designed to restrict a Mugirl's voice, effectively preventing clear speech and allowing only muffled whimpers. The gagstick features a dedicated locking mechanism that can only be opened with a [Rough Restraint Key]. -->
     <MooGirl_Gagstick.description>一种用于限制雪牛娘发声的束具，能够有效阻止清晰的言语表达，只能发出含混的呜咽声。\n\n口棒配有专用锁具，必须使用[粗糙束具钥匙]才能解开。</MooGirl_Gagstick.description>
+    <!-- Mugirl Slave Gagstick -->
     <MooGirl_Gagstick.label>雪牛娘 奴隶口棒</MooGirl_Gagstick.label>
 </LanguageData>

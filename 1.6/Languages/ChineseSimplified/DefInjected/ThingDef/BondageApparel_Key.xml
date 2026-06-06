@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
+    <!-- Use {0_label} -->
     <MooGirl_SlaveApperalKey_Advance.comps.CompUsable.useLabel>使用 {0_label}</MooGirl_SlaveApperalKey_Advance.comps.CompUsable.useLabel>
+    <!-- A device for decrypting Mugirl's space restraints. Once decrypted, the restraints may be utilised by one's own forces. -->
     <MooGirl_SlaveApperalKey_Advance.description>用于破解雪牛娘太空束具的破解器，被破解后的束具可以为己方所用。</MooGirl_SlaveApperalKey_Advance.description>
+    <!-- Restraint Decryptor -->
     <MooGirl_SlaveApperalKey_Advance.label>束具破解器</MooGirl_SlaveApperalKey_Advance.label>
+    <!-- Unlock Restraint -->
     <MooGirl_SlaveApperalKey_Industrial.comps.CompStampedApparelKey.useLabel>解锁束具</MooGirl_SlaveApperalKey_Industrial.comps.CompStampedApparelKey.useLabel>
+    <!-- The key for unlocking Mugirl restraints, exquisitely crafted, is used to release bondage gear featuring more intricate locking mechanisms, such as slave stockings and slave gloves. -->
     <MooGirl_SlaveApperalKey_Industrial.description>用于解锁雪牛娘束具的钥匙，加工精致，用来解锁奴隶袜、奴隶手套等拥有较复杂锁具的束具。</MooGirl_SlaveApperalKey_Industrial.description>
+    <!-- Exquisite Restraint Key -->
     <MooGirl_SlaveApperalKey_Industrial.label>精致束具钥匙</MooGirl_SlaveApperalKey_Industrial.label>
+    <!-- Unlock Restraint -->
     <MooGirl_SlaveApperalKey_Medieval.comps.CompStampedApparelKey.useLabel>解锁束具</MooGirl_SlaveApperalKey_Medieval.comps.CompStampedApparelKey.useLabel>
+    <!-- The key for unlocking Mugirl restraints is rather crudely made and can only be used to unlock lower-grade restraints. -->
     <MooGirl_SlaveApperalKey_Medieval.description>用于解锁雪牛娘束具的钥匙，加工较粗糙，只能用来解锁较低级的束具。</MooGirl_SlaveApperalKey_Medieval.description>
+    <!-- Rough Restraint Key -->
     <MooGirl_SlaveApperalKey_Medieval.label>粗糙束具钥匙</MooGirl_SlaveApperalKey_Medieval.label>
+    <!-- Unlock Restraint -->
     <MooGirl_SlaveApperalKey_Spacer.comps.CompStampedApparelKey.useLabel>解锁束具</MooGirl_SlaveApperalKey_Spacer.comps.CompStampedApparelKey.useLabel>
+    <!-- The key to unlocking Mugirl's restraints, containing a spacer level technological key designed to unlock magnetic shackles, electric shock collars, and brainwashing helmets- all restraints of spacer level technology. -->
     <MooGirl_SlaveApperalKey_Spacer.description>用于解锁雪牛娘束具的钥匙，内含太空科技密钥，用来解锁磁力镣铐、电击项圈、和洗脑头盔等太空科技级别的束具。</MooGirl_SlaveApperalKey_Spacer.description>
+    <!-- Spacer Restraint Key -->
     <MooGirl_SlaveApperalKey_Spacer.label>高科技束具钥匙</MooGirl_SlaveApperalKey_Spacer.label>
 </LanguageData>

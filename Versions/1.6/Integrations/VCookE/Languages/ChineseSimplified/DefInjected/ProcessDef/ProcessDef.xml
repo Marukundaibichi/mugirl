@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
+    <!-- Turns 50 Mugirl milk into 25 cheese. -->
     <MooGirl_MooGirlMilkIntoCheese.description>把 50 份雪牛奶变成 25 份奶酪。</MooGirl_MooGirlMilkIntoCheese.description>
+    <!-- Add Mugirl milk cheese process -->
     <MooGirl_MooGirlMilkIntoCheese.label>添加雪牛奶制作奶酪</MooGirl_MooGirlMilkIntoCheese.label>
+    <!-- Turns 50 Mugirl milk into 25 cheese. -->
     <MooGirl_MooGirlMilkIntoCheese.labelOverride>把 50 份雪牛奶变成 25 份奶酪。</MooGirl_MooGirlMilkIntoCheese.labelOverride>
 </LanguageData>

@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-<Job_GatherMilk.reportString>给 {TargetA} 挤奶</Job_GatherMilk.reportString>
-
+    <!-- Milk {TargetA}. -->
+    <Job_GatherMilk.reportString>给 {TargetA} 挤奶</Job_GatherMilk.reportString>
 </LanguageData>

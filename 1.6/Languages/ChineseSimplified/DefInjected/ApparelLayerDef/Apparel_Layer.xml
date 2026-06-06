@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
+    <!-- Hidden Ornament -->
     <MooGirl_HiddenOrnament.label>隐藏外饰</MooGirl_HiddenOrnament.label>
+    <!-- Ornament -->
     <MooGirl_Ornament.label>外饰</MooGirl_Ornament.label>
+    <!-- Stockings -->
     <MooGirl_Stocking.label>丝袜</MooGirl_Stocking.label>
+    <!-- Underwear -->
     <MooGirl_Underwear.label>内衣</MooGirl_Underwear.label>
 </LanguageData>

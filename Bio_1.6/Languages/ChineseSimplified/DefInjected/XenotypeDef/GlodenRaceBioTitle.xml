@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
+    <!-- Mugirls are humanoids created by a giant corporation through systematic genetic engineering, blending stable human and bovine traits. They have cold-resistant bodies, thick soft hair, and physiques suited to heavy labor. Their nervous systems were designed toward docility and compliance, giving them stable emotions, easy manageability, and a natural empathy for others. Although they possess solid cognitive potential, their thinking favors long-term memory and accumulated experience over rapid adaptation and abstract reasoning. This makes them excellent at repetitive work and long skill development, but slow when learning new concepts quickly. In many social structures, Mugirls are placed in subordinate roles. Even so, they tend to treat those around them with restraint and gentleness, showing stable, kind, and highly patient behavior. -->
     <MooGirl_Xenotype.description>雪牛种是由巨型企业通过系统性基因工程创造的类人生物，融合了人类与牛科动物的稳定遗传特征。她们拥有耐寒体质、厚实而柔软的毛发，以及适合高负荷劳动的体格结构。其神经系统在设计上偏向温顺与服从，使她们情绪稳定、易于管理，并天然具备对他人情绪的高度共感能力。尽管具备良好的认知潜力与学习能力，雪牛种的思维模式更倾向于长期记忆与经验积累，而非快速适应与抽象推理。这使她们在重复性工作与长期技能沉淀方面表现出色，却在需要迅速学习新知识时显得迟缓。在社会结构中，雪牛种往往被置于从属地位。即便如此，她们仍会以克制而温和的方式对待身边的人，表现出稳定、善意且极具忍耐力的行为特征。</MooGirl_Xenotype.description>
+    <!-- A corporation-engineered half-human, half-bovine xenotype: docile, hardworking, and highly retentive, but slow to learn new things. -->
     <MooGirl_Xenotype.descriptionShort>一种由企业基因工程制造的半人半牛类人种，温顺、耐劳、记忆力极强，但学习新事物较慢。</MooGirl_Xenotype.descriptionShort>
+    <!-- Mugirl Xenotype -->
     <MooGirl_Xenotype.label>雪牛种</MooGirl_Xenotype.label>
 </LanguageData>

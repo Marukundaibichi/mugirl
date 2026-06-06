@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
+    <!-- A slave restraint specifically designed to confine a Mugirl's hands, securing them together behind her back. When combined with specially designed slave gauntlets, even finger movement becomes impossible, rendering her completely helpless against any action taken against her. The restraint features a dedicated locking mechanism that can only be opened with a [Rough Restraint Key]. -->
     <MooGirl_Armbinder.description>一种专门限制雪牛娘双手的奴隶束具，将雪牛娘的双手固定在背后并并拢，配合特质的奴隶手套甚至连手指都无法活动，这下无论对雪牛娘做什么她都无法反抗。\n\n束具配有专用锁具，必须使用[粗糙束具钥匙]才能解开。</MooGirl_Armbinder.description>
+    <!-- Mugirl Armbinder Restraint -->
     <MooGirl_Armbinder.label>雪牛娘 单手套束具</MooGirl_Armbinder.label>
+    <!-- A slave restraint specifically designed to confine a Mugirl's arms, using multiple handcuffs and leather straps to secure her hands behind her back. When combined with specially designed slave gauntlets, even finger movement becomes impossible, rendering her completely helpless against any action taken against her. The restraint features a dedicated locking mechanism that can only be opened with a [Rough Restraint Key]. -->
     <MooGirl_Boxbinder.description>一种专门限制雪牛娘手臂的奴隶束具，多重手铐与皮带将雪牛娘的双手束缚在身后，配合特质的奴隶手套甚至连手指都无法活动，这下无论对雪牛娘做什么她都无法反抗。\n\n束具配有专用锁具，必须使用[粗糙束具钥匙]才能解开。</MooGirl_Boxbinder.description>
+    <!-- Mugirl Arm Restraint -->
     <MooGirl_Boxbinder.label>雪牛娘 手臂束具</MooGirl_Boxbinder.label>
+    <!-- A slave restraint specifically designed to confine a Mugirl's hands, using heavy shackles to secure them in front of her body. When combined with specially designed slave gauntlets, even finger movement becomes impossible, rendering her completely helpless against any action taken against her. The restraint features a dedicated locking mechanism that can only be opened with a [Rough Restraint Key]. -->
     <MooGirl_Handcuffs.description>一种专门限制雪牛娘双手的奴隶束具，笨重的枷锁将雪牛娘的双手束缚在身前，配合特质的奴隶手套甚至连手指都无法活动，这下无论对雪牛娘做什么她都无法反抗。\n\n束具配有专用锁具，必须使用[粗糙束具钥匙]才能解开。</MooGirl_Handcuffs.description>
+    <!-- Mugirl Handcuff Restraint -->
     <MooGirl_Handcuffs.label>雪牛娘 手铐束具</MooGirl_Handcuffs.label>
+    <!-- A high-heeled boot-style restraint that limits movement speed. The wearer cannot remove them independently, though her gait appears to become more graceful. When combined with specially designed slave stockings, the restraint is further enhanced, rendering her completely helpless against any action taken against her. The restraint features a dedicated locking mechanism that can only be opened with a [Rough Restraint Key]. -->
     <MooGirl_Slaveboots.description>一种高跟鞋型的束缚靴，限制其移动速度。穿戴者无法自行脱下，但步态似乎变得更加优雅。配合特质的奴隶袜会进一步强化束缚，这下无论对雪牛娘做什么她都无法反抗。\n\n束具配有专用锁具，必须使用[粗糙束具钥匙]才能解开。</MooGirl_Slaveboots.description>
+    <!-- Mugirl Slave Boots -->
     <MooGirl_Slaveboots.label>雪牛娘 奴隶靴</MooGirl_Slaveboots.label>
+    <!-- Traditional heavy metal leg irons that significantly reduce movement speed. When combined with specially designed slave stockings, the restraint is further enhanced, rendering her completely helpless against any action taken against her. The restraint features a dedicated locking mechanism that can only be opened with a [Rough Restraint Key]. -->
     <MooGirl_Slaveshackles.description>一种传统金属重脚铐，显著降低移动速度。配合特质的奴隶袜会进一步强化束缚，这下无论对雪牛娘做什么她都无法反抗。\n\n束具配有专用锁具，必须使用[粗糙束具钥匙]才能解开。</MooGirl_Slaveshackles.description>
+    <!-- Mugirl Slave Shackles -->
     <MooGirl_Slaveshackles.label>雪牛娘 奴隶脚铐</MooGirl_Slaveshackles.label>
+    <!-- A slave restraint specifically designed to confine a Mugirl. Though straitjackets were originally intended to restrain certain psychiatric patients, this version appears to have been specially tailored in several areas for Mugirls. When combined with specially designed slave gauntlets, even finger movement becomes impossible, leaving her unable to resist whatever is done to her. The restraint features a dedicated locking mechanism that can only be opened with a [Rough Restraint Key]. -->
     <MooGirl_Straitjacket.description>一种专门限制雪牛娘的奴隶束具，拘束衣原本是用来束缚某些精神病患者，但是这款似乎某些方位为雪牛娘做了特殊的裁剪，拘束衣配合特质的奴隶手套甚至连手指都无法活动，这下无论对雪牛娘做什么她都无法反抗力。\n\n束具配有专用锁具，必须使用[粗糙束具钥匙]才能解开。</MooGirl_Straitjacket.description>
+    <!-- Mugirl Straitjacket Restraint -->
     <MooGirl_Straitjacket.label>雪牛娘 拘束衣束具</MooGirl_Straitjacket.label>
 </LanguageData>

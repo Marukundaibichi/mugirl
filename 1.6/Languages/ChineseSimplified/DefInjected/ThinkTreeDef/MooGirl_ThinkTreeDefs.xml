@@ -1,6 +1,7 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-<MooGirlLike.thinkRoot.subNodes.3.subNodes.0.subNodes.0.subNodes.0.subNodes.0.crawlingReportStringOverride>爬到安全地带。</MooGirlLike.thinkRoot.subNodes.3.subNodes.0.subNodes.0.subNodes.0.subNodes.0.crawlingReportStringOverride>
-<MooGirlLike.thinkRoot.subNodes.3.subNodes.0.subNodes.0.subNodes.0.subNodes.1.subNodes.0.crawlingReportStringOverride>爬到床上。</MooGirlLike.thinkRoot.subNodes.3.subNodes.0.subNodes.0.subNodes.0.subNodes.1.subNodes.0.crawlingReportStringOverride>
-
+    <!-- Crawl to safe place. -->
+    <MooGirlLike.thinkRoot.subNodes.3.subNodes.0.subNodes.0.subNodes.0.subNodes.0.crawlingReportStringOverride>爬到安全地带。</MooGirlLike.thinkRoot.subNodes.3.subNodes.0.subNodes.0.subNodes.0.subNodes.0.crawlingReportStringOverride>
+    <!-- Crawl to bed. -->
+    <MooGirlLike.thinkRoot.subNodes.3.subNodes.0.subNodes.0.subNodes.0.subNodes.1.subNodes.0.crawlingReportStringOverride>爬到床上。</MooGirlLike.thinkRoot.subNodes.3.subNodes.0.subNodes.0.subNodes.0.subNodes.1.subNodes.0.crawlingReportStringOverride>
 </LanguageData>

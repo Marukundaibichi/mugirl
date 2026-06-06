@@ -1,6 +1,7 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-<Consumed_MooGirlMilk.stages.0.label>喝了雪牛娘的奶</Consumed_MooGirlMilk.stages.0.label>
-<Consumed_MooGirlMilk.stages.0.description>真好喝!</Consumed_MooGirlMilk.stages.0.description>
-
+    <!-- Drank Mugirl's Milk -->
+    <Consumed_MooGirlMilk.stages.0.label>喝了雪牛娘的奶</Consumed_MooGirlMilk.stages.0.label>
+    <!-- So delicious! -->
+    <Consumed_MooGirlMilk.stages.0.description>真好喝!</Consumed_MooGirlMilk.stages.0.description>
 </LanguageData>

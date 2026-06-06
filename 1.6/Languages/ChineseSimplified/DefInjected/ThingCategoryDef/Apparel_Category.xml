@@ -1,12 +1,19 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-<MooGirl_Apparel.label>雪牛娘服装</MooGirl_Apparel.label>
-<MooGirl_Head.label>雪牛娘头饰</MooGirl_Head.label>
-<MooGirl_Middle.label>雪牛娘夹层</MooGirl_Middle.label>
-<MooGirl_OnSkin.label>雪牛娘贴身服装</MooGirl_OnSkin.label>
-<MooGirl_Shell.label>雪牛娘夹层</MooGirl_Shell.label>
-<MooGirl_SlaveApperal.label>雪牛娘奴隶服装</MooGirl_SlaveApperal.label>
-<MooGirl_Stocking.label>雪牛娘丝袜</MooGirl_Stocking.label>
-<MooGirl_Underwear.label>雪牛娘内衣</MooGirl_Underwear.label>
-
+    <!-- Mugirl Apparel -->
+    <MooGirl_Apparel.label>雪牛娘服装</MooGirl_Apparel.label>
+    <!-- Mugirl Headgear -->
+    <MooGirl_Head.label>雪牛娘头饰</MooGirl_Head.label>
+    <!-- Mugirl Middle Apparel -->
+    <MooGirl_Middle.label>雪牛娘夹层</MooGirl_Middle.label>
+    <!-- Mugirl Skin Apparel -->
+    <MooGirl_OnSkin.label>雪牛娘贴身服装</MooGirl_OnSkin.label>
+    <!-- Mugirl Outer Apparel -->
+    <MooGirl_Shell.label>雪牛娘夹层</MooGirl_Shell.label>
+    <!-- Mugirl Slave Apparel -->
+    <MooGirl_SlaveApperal.label>雪牛娘奴隶服装</MooGirl_SlaveApperal.label>
+    <!-- Mugirl Stockings -->
+    <MooGirl_Stocking.label>雪牛娘丝袜</MooGirl_Stocking.label>
+    <!-- Mugirl Underwear -->
+    <MooGirl_Underwear.label>雪牛娘内衣</MooGirl_Underwear.label>
 </LanguageData>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-<MooGirl_ReadCourierDiary.reportString>阅读 TargetA。</MooGirl_ReadCourierDiary.reportString>
-<MooGirl_TalkCourier.reportString>与 TargetA 交涉。</MooGirl_TalkCourier.reportString>
-
+    <!-- Read TargetA. -->
+    <MooGirl_ReadCourierDiary.reportString>阅读 TargetA。</MooGirl_ReadCourierDiary.reportString>
+    <!-- Negotiate with TargetA. -->
+    <MooGirl_TalkCourier.reportString>与 TargetA 交涉。</MooGirl_TalkCourier.reportString>
 </LanguageData>

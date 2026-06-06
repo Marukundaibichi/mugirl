@@ -1,9 +1,13 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-<MooGirl_Abasia.label>精疲力尽</MooGirl_Abasia.label>
-<MooGirl_Abasia.description>她似乎在巨型企业的奴役下经历了未知的折磨，虽然设法逃脱出来，但在接下来的几天里，身体疲惫至极，几乎无法动弹。</MooGirl_Abasia.description>
-<MooGirl_Abasia.descriptionShort>从巨型企业的奴役下逃脱后，她身体极度疲惫，几乎无法动弹。</MooGirl_Abasia.descriptionShort>
-<MooGirl_Abasia.stages.0.label>死里逃生</MooGirl_Abasia.stages.0.label>
-<MooGirl_Abasia.stages.1.label>应激恢复</MooGirl_Abasia.stages.1.label>
-
+    <!-- Exhausted -->
+    <MooGirl_Abasia.label>精疲力尽</MooGirl_Abasia.label>
+    <!-- She appears to have been subjected to unknown torments under the enslavement of a mega corporation. Though she managed to escape, her body remains utterly drained over the coming days, barely able to move. -->
+    <MooGirl_Abasia.description>她似乎在巨型企业的奴役下经历了未知的折磨，虽然设法逃脱出来，但在接下来的几天里，身体疲惫至极，几乎无法动弹。</MooGirl_Abasia.description>
+    <!-- After escaping from the mega corporation's enslavement, she is completely exhausted and can scarcely move. -->
+    <MooGirl_Abasia.descriptionShort>从巨型企业的奴役下逃脱后，她身体极度疲惫，几乎无法动弹。</MooGirl_Abasia.descriptionShort>
+    <!-- Narrow Escape -->
+    <MooGirl_Abasia.stages.0.label>死里逃生</MooGirl_Abasia.stages.0.label>
+    <!-- Stress Recovery -->
+    <MooGirl_Abasia.stages.1.label>应激恢复</MooGirl_Abasia.stages.1.label>
 </LanguageData>

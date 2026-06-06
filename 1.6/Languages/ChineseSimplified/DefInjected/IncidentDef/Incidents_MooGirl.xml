@@ -1,7 +1,9 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-<MooGirl_WildManWandersIn.label>雪牛娘 野人奴隶</MooGirl_WildManWandersIn.label>
-<MooGirl_WildManWandersIn.letterLabel>{0} 闯入了你的领地</MooGirl_WildManWandersIn.letterLabel>
-<MooGirl_WildManWandersIn.letterText>一名 {1} 从奴隶商队逃脱出来，身上残破的束具仿佛诉说着过去的悲惨经历。{PAWN_pronoun} 名叫 {0}。\n\n你可以尝试驯服 {PAWN_objective}。</MooGirl_WildManWandersIn.letterText>
-
+    <!-- Wild Mugirl Slave -->
+    <MooGirl_WildManWandersIn.label>雪牛娘 野人奴隶</MooGirl_WildManWandersIn.label>
+    <!-- {0} trespassed onto your territory. -->
+    <MooGirl_WildManWandersIn.letterLabel>{0} 闯入了你的领地</MooGirl_WildManWandersIn.letterLabel>
+    <!-- A {1} escaped from a slave caravan, the tattered restraints on [PAWN_possessive] body seeming to tell of a tragic past. [PAWN_pronoun] is named {0}.\n\nYou can attempt to tame [PAWN_objective]. -->
+    <MooGirl_WildManWandersIn.letterText>一名 {1} 从奴隶商队逃脱出来，身上残破的束具仿佛诉说着过去的悲惨经历。{PAWN_pronoun} 名叫 {0}。\n\n你可以尝试驯服 {PAWN_objective}。</MooGirl_WildManWandersIn.letterText>
 </LanguageData>

@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
+    <!-- Bulletproof armor for Mugirl combatants, providing excellent sharp protection. -->
     <MooGirl_Combatant_BulletproofVest.description>雪牛娘战斗员专用的防弹护甲，提供优秀的利器防护。</MooGirl_Combatant_BulletproofVest.description>
+    <!-- Mugirl Combatant Bulletproof Vest -->
     <MooGirl_Combatant_BulletproofVest.label>雪牛娘战斗员防弹衣</MooGirl_Combatant_BulletproofVest.label>
+    <!-- Standard combat clothing for Mugirl combatants, covering the whole body. -->
     <MooGirl_Combatant_Clothes.description>雪牛娘战斗员的标准战斗服装，覆盖全身。</MooGirl_Combatant_Clothes.description>
+    <!-- Mugirl Combatant Clothes -->
     <MooGirl_Combatant_Clothes.label>雪牛娘战斗员服装</MooGirl_Combatant_Clothes.label>
+    <!-- A fully enclosed protective helmet for Mugirl combatants. -->
     <MooGirl_Combatant_Helmet.description>雪牛娘战斗员的全覆盖保护头盔。</MooGirl_Combatant_Helmet.description>
+    <!-- Mugirl Combatant Helmet -->
     <MooGirl_Combatant_Helmet.label>雪牛娘战斗员头盔</MooGirl_Combatant_Helmet.label>
+    <!-- Protective underwear worn close to the body by Mugirl combatants. -->
     <MooGirl_Combatant_Underwear.description>雪牛娘战斗员的贴身穿着的防护内衣。</MooGirl_Combatant_Underwear.description>
+    <!-- Mugirl Combatant Underwear -->
     <MooGirl_Combatant_Underwear.label>雪牛娘战斗员内衣</MooGirl_Combatant_Underwear.label>
+    <!-- A full Mugirl regulation military dress uniform finalized by the Equipment Design Bureau in 5495. Made throughout from advanced military synthetic fibers, it balances durability with a dignified tailored fit and is praised for its excellent windproof warmth. This model covers the whole body, and its memory fabric quickly adapts to body contours to improve appearance. Within Mugirl armed forces, it is gradually replacing older regulations as the standard for formal occasions. -->
     <MooGirl_MilitaryDress.description>装备设计局于5495年定型的全套雪牛娘制式军礼服，通体采用先进军用合成纤维面料加工而成，实现了经久耐用与体面修身的平衡，且因优越的防风保温性能广受称赞。该型军礼服覆盖全身，其附带的记忆面料能快速适应身体曲线，改善外观气质。在雪牛娘武装力量当中，该型军礼服正逐步取代老式条例，成为新时代正式场合的标准配置。</MooGirl_MilitaryDress.description>
+    <!-- Mugirl Full Military Dress Uniform -->
     <MooGirl_MilitaryDress.label>雪牛娘全套军礼服</MooGirl_MilitaryDress.label>
+    <!-- A lightweight Mugirl regulation military dress uniform finalized by the Equipment Design Bureau in 5495. Made throughout from advanced military synthetic fibers, it balances durability with a dignified tailored fit and is praised for its excellent breathability and heat dissipation. To better fit close-worn garments, this model compromises with cutouts around the torso, while its memory fabric quickly adapts to body contours to improve appearance. Within Mugirl armed forces, it is gradually replacing older regulations as the standard for formal occasions. -->
     <MooGirl_MilitaryUniform.description>装备设计局于5495年定型的轻量化雪牛娘制式军礼服，通体采用先进军用合成纤维面料加工而成，实现了经久耐用与体面修身的平衡，且因优越的透气散热性能广受称赞。为与贴身衣物契合，该型军服在躯干处做出镂空妥协，其附带的记忆面料能快速适应身体曲线，改善外观气质。在雪牛娘武装力量当中，该型军礼服正逐步取代老式条例，成为新时代正式场合的标准配置。</MooGirl_MilitaryUniform.description>
+    <!-- Mugirl Lightweight Military Dress Uniform -->
     <MooGirl_MilitaryUniform.label>雪牛娘轻量化军礼服</MooGirl_MilitaryUniform.label>
+    <!-- Special stockings made for Mugirls, combining protection and comfort. -->
     <MooGirl_SpeciallyStockings.description>雪牛娘专用的特制丝袜，兼具防护与舒适。</MooGirl_SpeciallyStockings.description>
+    <!-- Mugirl Special Stockings -->
     <MooGirl_SpeciallyStockings.label>雪牛娘特制丝袜</MooGirl_SpeciallyStockings.label>
 </LanguageData>

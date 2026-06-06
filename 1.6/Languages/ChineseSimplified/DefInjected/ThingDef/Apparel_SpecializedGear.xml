@@ -1,23 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
+    <!-- A knight helmet adapted to a Mugirl head shape and horn position, providing stable full-head protection. -->
     <MooGirl_KnightHelmet.description>适配雪牛娘头型与角位的骑士头盔，提供稳定的全头部防护。</MooGirl_KnightHelmet.description>
+    <!-- Mugirl Knight Helmet -->
     <MooGirl_KnightHelmet.label>雪牛娘 骑士头盔</MooGirl_KnightHelmet.label>
+    <!-- Heavy power armor adjusted for the Mugirl body shape. It strengthens carrying capacity and melee motion while retaining some mobility under full-body protection. -->
     <MooGirl_PowerArmor.description>面向雪牛娘体型调整的重型动力甲，强化负重与近战动作，在全身防护的同时保留一定机动性。</MooGirl_PowerArmor.description>
+    <!-- Mugirl Power Armor -->
     <MooGirl_PowerArmor.label>雪牛娘 动力甲</MooGirl_PowerArmor.label>
+    <!-- A fully enclosed helmet paired with Mugirl power armor, balancing environmental resistance with close- and mid-range shooting support. -->
     <MooGirl_PowerArmorHelmet.description>为雪牛娘动力甲配套的全封闭头盔，兼顾环境耐受与中近距离射击支援。</MooGirl_PowerArmorHelmet.description>
+    <!-- Mugirl Power Armor Helmet -->
     <MooGirl_PowerArmorHelmet.label>雪牛娘 动力甲头盔</MooGirl_PowerArmorHelmet.label>
+    <!-- Three-piece sticker ornaments for the reverse bunny set. They can be worn with underwear as hidden ornaments to complete the overall style. -->
     <MooGirl_ReverseBunnySticker.description>逆兔女郎套装的三点式贴纸装饰件，可与内衣一同穿戴，作为隐藏外饰用于还原整体风格。</MooGirl_ReverseBunnySticker.description>
+    <!-- Mugirl Reverse Bunny Stickers -->
     <MooGirl_ReverseBunnySticker.label>雪牛娘 逆兔女郎贴纸</MooGirl_ReverseBunnySticker.label>
+    <!-- A reverse bunny suit made exclusively for Mugirls, using bolder openings and a close-fitting cut to emphasize charm while retaining light basic protection. -->
     <MooGirl_ReverseBunnySuit.description>雪牛娘专属逆兔女郎装，以更大胆的开口与贴身剪裁强化魅力，同时保留轻度基础防护。</MooGirl_ReverseBunnySuit.description>
+    <!-- Mugirl Reverse Bunny Suit -->
     <MooGirl_ReverseBunnySuit.label>雪牛娘 逆兔女郎装</MooGirl_ReverseBunnySuit.label>
+    <!-- A close-fitting Mugirl-exclusive spacesuit that provides all-weather environmental protection while avoiding interference with outer equipment as much as possible. -->
     <MooGirl_Spacesuit.description>贴身设计的雪牛娘专属太空服，在尽量不干扰外层装备的前提下提供全天候环境防护。</MooGirl_Spacesuit.description>
+    <!-- Mugirl Spacesuit -->
     <MooGirl_Spacesuit.label>雪牛娘 太空服</MooGirl_Spacesuit.label>
+    <!-- Lightweight headgear prepared for the Mugirl spacesuit, built within the existing Mugirl headwear system to complete environmental sealing. -->
     <MooGirl_SpacesuitHeadgear.description>为雪牛娘太空服准备的轻量头部面罩，按现有雪牛娘头饰体系制作，用于补足环境密封。</MooGirl_SpacesuitHeadgear.description>
+    <!-- Mugirl Spacesuit Headgear -->
     <MooGirl_SpacesuitHeadgear.label>雪牛娘 太空面罩</MooGirl_SpacesuitHeadgear.label>
+    <!-- Full protective combat armor optimized for Mugirls, covering the limbs and torso while emphasizing load-bearing and sustained ranged combat capability. -->
     <MooGirl_WarriorCombatArmor.description>为雪牛娘优化的全防护战斗甲，覆盖四肢与躯干，强调负重与持续远程作战能力。</MooGirl_WarriorCombatArmor.description>
+    <!-- Mugirl Warrior Combat Armor -->
     <MooGirl_WarriorCombatArmor.label>雪牛娘 战士全防护服</MooGirl_WarriorCombatArmor.label>
+    <!-- A heavy helmet paired with the warrior full protective suit, emphasizing frontal protection and shooting stability. -->
     <MooGirl_WarriorCombatHelmet.description>战士全防护服配套的重型头盔，强调正面防护与射击稳定性。</MooGirl_WarriorCombatHelmet.description>
+    <!-- Mugirl Warrior Helmet -->
     <MooGirl_WarriorCombatHelmet.label>雪牛娘 战士头盔</MooGirl_WarriorCombatHelmet.label>
+    <!-- Soft white silk underwear made exclusively for Mugirls. Its close-fitting cut forms the base of the white silk outfit, providing basic warmth and a charm bonus. -->
     <MooGirl_WhitePanties.description>轻柔白丝制成的雪牛娘专属内衣，采用贴身剪裁作为白丝套装主体，提供基础保暖与魅力加成。</MooGirl_WhitePanties.description>
+    <!-- Mugirl White Silk Underwear -->
     <MooGirl_WhitePanties.label>雪牛娘 白丝内衣</MooGirl_WhitePanties.label>
 </LanguageData>

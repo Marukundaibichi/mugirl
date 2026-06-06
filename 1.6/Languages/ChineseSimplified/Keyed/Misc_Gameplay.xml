@@ -1,267 +1,421 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-
+    <!-- MooGirl text formatting failed: {ERROR} -->
     <MooGirl.Text.FormatFailedLog>MooGirl 文本格式化失败：{ERROR}</MooGirl.Text.FormatFailedLog>
+    <!-- MooGirl mod control -->
     <MooGirl.Settings.Category>牛牛模组控制</MooGirl.Settings.Category>
+    <!-- Manual patches skipped because the Harmony instance is missing. -->
     <MooGirl.PatchRegistry.NullHarmony>手动补丁已跳过：缺少 Harmony 实例。</MooGirl.PatchRegistry.NullHarmony>
+    <!-- PawnGenerator.GeneratePawn slave apparel lock postfix -->
     <MooGirl.PatchRegistry.PawnGeneratorGeneratePawn>PawnGenerator.GeneratePawn 奴隶束具锁定后置补丁</MooGirl.PatchRegistry.PawnGeneratorGeneratePawn>
+    <!-- AlienRace swaddle GraphicFor prefix -->
     <MooGirl.PatchRegistry.AlienRaceSwaddleGraphicFor>AlienRace 襁褓 GraphicFor 前置补丁</MooGirl.PatchRegistry.AlienRaceSwaddleGraphicFor>
+    <!-- Manual patch target missing: {0} -->
     <MooGirl.PatchRegistry.MissingTarget>手动补丁目标缺失：{0}</MooGirl.PatchRegistry.MissingTarget>
+    <!-- Manual patch method missing: {0} -->
     <MooGirl.PatchRegistry.MissingPatchMethod>手动补丁方法缺失：{0}</MooGirl.PatchRegistry.MissingPatchMethod>
-
+    <!-- Activate shackles -->
     <MooGirl.Restraints.MagneticShackles.ActivateLabel>激活镣铐</MooGirl.Restraints.MagneticShackles.ActivateLabel>
+    <!-- Activate the magnetic shackles, restraining the target. -->
     <MooGirl.Restraints.MagneticShackles.ActivateDesc>启动磁力镣铐，束缚目标。</MooGirl.Restraints.MagneticShackles.ActivateDesc>
+    <!-- Release shackles -->
     <MooGirl.Restraints.MagneticShackles.DeactivateLabel>解除镣铐</MooGirl.Restraints.MagneticShackles.DeactivateLabel>
+    <!-- Release the magnetic shackles. -->
     <MooGirl.Restraints.MagneticShackles.DeactivateDesc>解除磁力镣铐。</MooGirl.Restraints.MagneticShackles.DeactivateDesc>
+    <!-- Magnetic shackles (active) -->
     <MooGirl.Restraints.MagneticShackles.LabelActive>磁力镣铐（激活）</MooGirl.Restraints.MagneticShackles.LabelActive>
+    <!-- Magnetic shackles (inactive) -->
     <MooGirl.Restraints.MagneticShackles.LabelInactive>磁力镣铐（未激活）</MooGirl.Restraints.MagneticShackles.LabelInactive>
+    <!-- Magnetic shackles activated! -->
     <MooGirl.Restraints.MagneticShackles.MoteOn>磁力手铐启动!</MooGirl.Restraints.MagneticShackles.MoteOn>
+    <!-- Magnetic shackles released! -->
     <MooGirl.Restraints.MagneticShackles.MoteOff>磁力手铐解除!</MooGirl.Restraints.MagneticShackles.MoteOff>
+    <!-- {0}'s magnetic shackles suddenly activated. -->
     <MooGirl.Restraints.MagneticShackles.MessageOn>{0} 的磁力手铐突然启动了</MooGirl.Restraints.MagneticShackles.MessageOn>
+    <!-- {0}'s magnetic shackles were released. -->
     <MooGirl.Restraints.MagneticShackles.MessageOff>{0} 的磁力手铐被解除</MooGirl.Restraints.MagneticShackles.MessageOff>
+    <!-- Cooling down: {0} -->
     <MooGirl.Restraints.MagneticShackles.CooldownTicksLeft>冷却中：{0}</MooGirl.Restraints.MagneticShackles.CooldownTicksLeft>
-
+    <!-- Power shock -->
     <MooGirl.Restraints.ShockCollar.PowerLabel>强力电击</MooGirl.Restraints.ShockCollar.PowerLabel>
+    <!-- Trigger one power shock. -->
     <MooGirl.Restraints.ShockCollar.PowerDesc>激活一次强力电击，电死你！</MooGirl.Restraints.ShockCollar.PowerDesc>
+    <!-- Common shock -->
     <MooGirl.Restraints.ShockCollar.CommonLabel>普通电击</MooGirl.Restraints.ShockCollar.CommonLabel>
+    <!-- Trigger one common shock. -->
     <MooGirl.Restraints.ShockCollar.CommonDesc>激活一次普通电击</MooGirl.Restraints.ShockCollar.CommonDesc>
+    <!-- Cooling down: {0} -->
     <MooGirl.Restraints.ShockCollar.PowerCooldownTicksLeft>冷却中：{0}</MooGirl.Restraints.ShockCollar.PowerCooldownTicksLeft>
+    <!-- Cooling down: {0} -->
     <MooGirl.Restraints.ShockCollar.CommonCooldownTicksLeft>冷却中：{0}</MooGirl.Restraints.ShockCollar.CommonCooldownTicksLeft>
-
+    <!-- Dev: unlock {0} -->
     <MooGirl.Restraints.DevUnlock.Label>Dev: 解锁 {0}</MooGirl.Restraints.DevUnlock.Label>
+    <!-- Dev mode: immediately remove the wear lock from {0} for debugging. -->
     <MooGirl.Restraints.DevUnlock.Desc>开发者模式下立即解除 {0} 的穿戴锁定，便于调试。</MooGirl.Restraints.DevUnlock.Desc>
+    <!-- Dev-unlocked {0}'s {1}. -->
     <MooGirl.Restraints.DevUnlock.Message>已开发者解锁：{0} 的 {1}</MooGirl.Restraints.DevUnlock.Message>
-
+    <!-- Activate brainwashing -->
     <MooGirl.Restraints.BrainwashHelmet.ActivateLabel>激活洗脑</MooGirl.Restraints.BrainwashHelmet.ActivateLabel>
+    <!-- Activate the brainwashing helmet and brainwash the target. -->
     <MooGirl.Restraints.BrainwashHelmet.ActivateDesc>激活洗脑头盔，洗脑目标。</MooGirl.Restraints.BrainwashHelmet.ActivateDesc>
+    <!-- {0} activated the brainwashing device. -->
     <MooGirl.Restraints.BrainwashHelmet.ManualTriggerMessage>{0}激活了洗脑装置</MooGirl.Restraints.BrainwashHelmet.ManualTriggerMessage>
+    <!-- Ideology conversion -->
     <MooGirl.Restraints.BrainwashHelmet.IdeoConvertLabel>文化转换</MooGirl.Restraints.BrainwashHelmet.IdeoConvertLabel>
+    <!-- Change the wearer's ideology to the colony's primary ideology. -->
     <MooGirl.Restraints.BrainwashHelmet.IdeoConvertDesc>将穿戴者的文化改变为殖民地的主流文化。</MooGirl.Restraints.BrainwashHelmet.IdeoConvertDesc>
+    <!-- {0}'s ideology has been converted to the colony's primary ideology. -->
     <MooGirl.Restraints.BrainwashHelmet.IdeoConvertMessage>已将{0}的文化转换为殖民地主流文化。</MooGirl.Restraints.BrainwashHelmet.IdeoConvertMessage>
-
+    <!-- {0}'s milking device stored one production charge ({1}/{2}). -->
     <MooGirl.MilkingDevice.StoredMessage>{0} 的榨乳器储存了 1 次产奶（{1}/{2}）</MooGirl.MilkingDevice.StoredMessage>
+    <!-- {0} released the stored milk and produced {1} MooGirl milk. -->
     <MooGirl.MilkingDevice.ReleaseMessage>{0} 释放了榨乳器中的储乳，生成了 {1} 份雪牛奶</MooGirl.MilkingDevice.ReleaseMessage>
+    <!-- Release stored milk -->
     <MooGirl.MilkingDevice.ReleaseLabel>释放储乳</MooGirl.MilkingDevice.ReleaseLabel>
+    <!-- Release all MooGirl milk stored in this device onto the ground. -->
     <MooGirl.MilkingDevice.ReleaseDesc>将设备中储存的雪牛奶一次性释放到地面。</MooGirl.MilkingDevice.ReleaseDesc>
+    <!-- Stored milk -->
     <MooGirl.MilkingDevice.InspectLabel>储乳</MooGirl.MilkingDevice.InspectLabel>
+    <!-- Stored milk charges -->
     <MooGirl.MilkingDevice.InspectLabelWithCharges>储乳层数</MooGirl.MilkingDevice.InspectLabelWithCharges>
+    <!-- {0}: {1}/{2} ({3}x {4}) -->
     <MooGirl.MilkingDevice.Inspect>{0}: {1}/{2} ({3}x {4})</MooGirl.MilkingDevice.Inspect>
+    <!-- There is no stored milk to release. -->
     <MooGirl.MilkingDevice.NoChargeText>当前没有可释放的储乳。</MooGirl.MilkingDevice.NoChargeText>
+    <!-- Stored milk +1 -->
     <MooGirl.MilkingDevice.StoredMoteText>储乳 +1</MooGirl.MilkingDevice.StoredMoteText>
+    <!-- Auto milking: on -->
     <MooGirl.MilkingDevice.AutoReleaseEnabled>自动榨乳: 开</MooGirl.MilkingDevice.AutoReleaseEnabled>
+    <!-- Auto milking: off -->
     <MooGirl.MilkingDevice.AutoReleaseDisabled>自动榨乳: 关</MooGirl.MilkingDevice.AutoReleaseDisabled>
+    <!-- When enabled, the milking device immediately releases milk when its wearer reaches full milk. When disabled, it only releases overflow after storage is already full and another full-milk event is received. -->
     <MooGirl.MilkingDevice.AutoReleaseDesc>开启后，妞妞产奶一满就会由榨乳器立刻自动释放。关闭后，只有在储乳已满且再次接收到满乳时，才会按溢出方式自动释放。</MooGirl.MilkingDevice.AutoReleaseDesc>
+    <!-- Power release: on -->
     <MooGirl.MilkingDevice.PowerReleaseEnabled>强力释放: 开</MooGirl.MilkingDevice.PowerReleaseEnabled>
+    <!-- Power release: off -->
     <MooGirl.MilkingDevice.PowerReleaseDisabled>强力释放: 关</MooGirl.MilkingDevice.PowerReleaseDisabled>
+    <!-- Dev: fill milking progress -->
     <MooGirl.MilkingDevice.DevFill.Label>Dev: 挤奶进度攒满</MooGirl.MilkingDevice.DevFill.Label>
+    <!-- Dev mode: immediately fill the current wearer's milk progress and trigger milking-device logic. -->
     <MooGirl.MilkingDevice.DevFill.Desc>开发者模式下立刻将当前穿戴者的产奶进度充满，并触发榨乳器逻辑。</MooGirl.MilkingDevice.DevFill.Desc>
+    <!-- Filled {0}'s milk progress in dev mode. -->
     <MooGirl.MilkingDevice.DevFill.Success>已将 {0} 的产奶进度开发者充满。</MooGirl.MilkingDevice.DevFill.Success>
+    <!-- {0}'s milk progress cannot be filled in dev mode right now. -->
     <MooGirl.MilkingDevice.DevFill.Failed>{0} 当前无法开发者充满产奶进度。</MooGirl.MilkingDevice.DevFill.Failed>
+    <!-- Milking device could not resolve the release product Def. -->
     <MooGirl.MilkingDevice.ReleaseThingMissing>榨乳器无法解析释放产物 Def。</MooGirl.MilkingDevice.ReleaseThingMissing>
+    <!-- Enable MooGirl crash event -->
     <MooGirl.Settings.StructuralCrashEvent.Label>启用牛牛坠机事件</MooGirl.Settings.StructuralCrashEvent.Label>
+    <!-- Controls whether the MooGirl crash event can trigger. Disable this to prevent the event from firing. -->
     <MooGirl.Settings.StructuralCrashEvent.Desc>控制是否启用牛牛坠机事件。取消勾选将禁用该事件的触发。</MooGirl.Settings.StructuralCrashEvent.Desc>
+    <!-- Fast milking -->
     <MooGirl.Settings.FastMilking.Label>快速榨乳</MooGirl.Settings.FastMilking.Label>
+    <!-- When enabled, self-milking and assisted milking work time for MooGirls is shortened to 1 second. -->
     <MooGirl.Settings.FastMilking.Desc>开启后，雪牛娘的自己榨乳和他人榨乳工作时间都会缩短为 1 秒。</MooGirl.Settings.FastMilking.Desc>
+    <!-- Lactation -->
     <MooGirl.Milk.Gauge.Label>泌乳量</MooGirl.Milk.Gauge.Label>
+    <!-- Current milk fullness for this MooGirl. The red line marks the automatic milking threshold; colonists will automatically milk when it is reached. -->
     <MooGirl.Milk.Gauge.Desc>雪牛娘当前的乳汁饱满度。红线标记为自动挤奶阈值，到达后将由殖民者自动进行挤奶工作。</MooGirl.Milk.Gauge.Desc>
+    <!-- Mugirl milk -->
     <MooGirl.Milk.FullnessDisplay>雪牛奶</MooGirl.Milk.FullnessDisplay>
+    <!-- {0}: {1} -->
     <MooGirl.Milk.FullnessInspect>{0}：{1}</MooGirl.Milk.FullnessInspect>
+    <!-- {0}\n\nCurrent: {1}\nThreshold: {2}\nMove the mouse over the right-side buttons to inspect threshold changes\nEstimated milk per use: {3}\nLactation speed: {4} -->
     <MooGirl.Milk.Gauge.Tooltip>{0}\n\n当前: {1}\n阈值: {2}\n鼠标移到右侧按钮可查看阈值调整\n单次榨乳预估: {3}\n泌乳速度: {4}</MooGirl.Milk.Gauge.Tooltip>
+    <!-- {0}% / {1}s -->
     <MooGirl.Milk.ProductionRate>{0}% / {1}秒</MooGirl.Milk.ProductionRate>
+    <!-- Increase automatic milking threshold\nCurrent: {0}\nAfter adjustment: {1} -->
     <MooGirl.Milk.Gauge.IncreaseThresholdTooltip>提高自动挤奶阈值\n当前: {0}\n调整后: {1}</MooGirl.Milk.Gauge.IncreaseThresholdTooltip>
+    <!-- Decrease automatic milking threshold\nCurrent: {0}\nAfter adjustment: {1} -->
     <MooGirl.Milk.Gauge.DecreaseThresholdTooltip>降低自动挤奶阈值\n当前: {0}\n调整后: {1}</MooGirl.Milk.Gauge.DecreaseThresholdTooltip>
+    <!-- Dev: fill milk -->
     <MooGirl.Milk.DevFill.Label>Dev: 奶量加满</MooGirl.Milk.DevFill.Label>
+    <!-- Dev mode: immediately fill the selected MooGirl's milk amount to maximum. -->
     <MooGirl.Milk.DevFill.Desc>开发者模式下立刻将当前雪牛娘的奶量增加到最大。</MooGirl.Milk.DevFill.Desc>
+    <!-- Filled {0}'s milk amount. -->
     <MooGirl.Milk.DevFill.Success>已将 {0} 的奶量加满。</MooGirl.Milk.DevFill.Success>
+    <!-- {0}'s milk amount cannot be filled right now. -->
     <MooGirl.Milk.DevFill.Failed>{0} 当前无法加满奶量。</MooGirl.Milk.DevFill.Failed>
+    <!-- Milk spray! -->
     <MooGirl.Milk.SprayText>喷乳！</MooGirl.Milk.SprayText>
+    <!-- Milk ({0}) -->
     <MooGirl.Milk.FloatMenu.Gather>榨乳 ({0})</MooGirl.Milk.FloatMenu.Gather>
+    <!-- Drink milk ({0}) -->
     <MooGirl.Milk.FloatMenu.Drink>喝奶 ({0})</MooGirl.Milk.FloatMenu.Drink>
+    <!-- Seek milk ({0}) -->
     <MooGirl.Milk.FloatMenu.ChildDrink>找奶喝 ({0})</MooGirl.Milk.FloatMenu.ChildDrink>
+    <!-- Feed milk ({0}) -->
     <MooGirl.Milk.FloatMenu.Feed>喂奶 ({0})</MooGirl.Milk.FloatMenu.Feed>
+    <!-- {0}: {1} -->
     <MooGirl.Milk.FloatMenu.Disabled>{0}: {1}</MooGirl.Milk.FloatMenu.Disabled>
+    <!-- Job_FeedMilkToDowned missing -->
     <MooGirl.Milk.FloatMenu.FeedJobMissing>缺少 Job_FeedMilkToDowned</MooGirl.Milk.FloatMenu.FeedJobMissing>
+    <!-- Cannot produce milk -->
     <MooGirl.Milk.FloatMenu.NotActive>无法产奶</MooGirl.Milk.FloatMenu.NotActive>
+    <!-- Not enough milk -->
     <MooGirl.Milk.FloatMenu.NotEnoughMilk>奶量不足</MooGirl.Milk.FloatMenu.NotEnoughMilk>
+    <!-- MooGirl: {0} gathered body resources while inactive: {1} -->
     <MooGirl.Milk.GatherInactiveLog>MooGirl：{0} 在未激活状态下收集身体资源：{1}</MooGirl.Milk.GatherInactiveLog>
+    <!-- {PAWN_labelShort} has received complete Mugirl nurture. -->
     <MooGirl.Nurture.Completed>{PAWN_labelShort}得到了完整的雪牛娘哺育。</MooGirl.Nurture.Completed>
-
+    <!-- The target is not decryptable. Decryption is not possible. -->
     <MooGirl.CrackBondageGear_TargetNotValid>目标不可破解，无法进行破解</MooGirl.CrackBondageGear_TargetNotValid>
+    <!-- Decrypting Advanced Restraint: {0}. -->
     <MooGirl.CrackBondageGear_CrackAdvanced>破解高级束具：{0}</MooGirl.CrackBondageGear_CrackAdvanced>
+    <!-- Decrypting Brainwashing Restraint: {0}. -->
     <MooGirl.CrackBondageGear_CrackBrainwash>破解洗脑束具：{0}</MooGirl.CrackBondageGear_CrackBrainwash>
+    <!-- Unknown type, cannot be decrypted. -->
     <MooGirl.CrackBondageGear_NoCrackableType>未知类型，无法破解</MooGirl.CrackBondageGear_NoCrackableType>
-
+    <!-- Self -->
     <MooGirl.SelfLabel>自己</MooGirl.SelfLabel>
+    <!-- Reserved -->
     <MooGirl.Reserved>已被预订</MooGirl.Reserved>
+    <!-- Not wearing locked restraint. -->
     <MooGirl.NotWearingLockedApparel>未穿着锁定束具</MooGirl.NotWearingLockedApparel>
-
+    <!-- This device has been decrypted. -->
     <MooGirl.AlreadyCracked>该装备已破解</MooGirl.AlreadyCracked>
+    <!-- Invalid Target. -->
     <MooGirl.InvalidTarget>选择的目标无效</MooGirl.InvalidTarget>
-
+    <!-- Mugirl Restraint cannot be removed. The restraint requires the corresponding key to unlock. -->
     <MooGirl.SlaveApparelCannotBeRemoved>雪牛娘束具无法脱下，需使用对应钥匙解锁</MooGirl.SlaveApparelCannotBeRemoved>
-
+    <!-- The brainwashing device suddenly activated, {0} is being brainwashed. -->
     <MooGirl.BrainwashStart>洗脑装置突然启动了，{0} 正在被洗脑</MooGirl.BrainwashStart>
+    <!-- {0}'s brainwashing has ended. -->
     <MooGirl.BrainwashEnd>{0} 的洗脑结束了</MooGirl.BrainwashEnd>
-
+    <!-- Suppression +{0} -->
     <MooGirl.SuppressionIncrease>压制度 +{0}</MooGirl.SuppressionIncrease>
-
+    <!-- {0}'s restraint has been completely unlocked. -->
     <MooGirl.SlaveApparelFullyUnlocked>{0} 的束具被完全解锁了</MooGirl.SlaveApparelFullyUnlocked>
+    <!-- Unlocking failed: target pawn or target apparel is missing. -->
     <MooGirl.Restraints.UnlockTargetMissingLog>解锁失败：目标 Pawn 或目标束具缺失。</MooGirl.Restraints.UnlockTargetMissingLog>
+    <!-- Unable to free this pawn's self: hands bound. -->
     <MooGirl.HandsBlocked>无法解锁自己 双手被拘束</MooGirl.HandsBlocked>
+    <!-- {0} unlocks {1}'s restraint. {2} more key(s) are required to completely unlock. -->
     <MooGirl.SlaveApparelUnlockPartial>{0} 解锁了 {1} 的束具，还需要{2}个钥匙来完全解锁</MooGirl.SlaveApparelUnlockPartial>
+    <!-- Unable to unlock: Key type does not match {0} -->
     <MooGirl.WrongKeyType>无法解锁：钥匙类型不匹配 {0}</MooGirl.WrongKeyType>
-
+    <!-- No Path -->
     <MooGirl.NoPath>无路径</MooGirl.NoPath>
+    <!-- Unable to work ({0} has been disabled) -->
     <MooGirl.CannotPrioritizeWorkTypeDisabled>无法进行工作（{0} 已被禁用）</MooGirl.CannotPrioritizeWorkTypeDisabled>
-
+    <!-- {0}'s restraint has been decrypted. -->
     <MooGirl.SlaveApparelCracked>{0} 的束具已被破解</MooGirl.SlaveApparelCracked>
+    <!-- {0} ({1}) -->
     <MooGirl.SlaveApparel.StatusLabel>{0}（{1}）</MooGirl.SlaveApparel.StatusLabel>
+    <!-- Decryption Status -->
     <MooGirl.CrackStatus>破解状态</MooGirl.CrackStatus>
+    <!-- Decrypted -->
     <MooGirl.Cracked>已破解</MooGirl.Cracked>
+    <!-- Not Decrypted -->
     <MooGirl.Uncracked>未破解</MooGirl.Uncracked>
+    <!-- Whether this restraint has been decrypted. -->
     <MooGirl.CrackStatusDesc>这个束具是否被破解</MooGirl.CrackStatusDesc>
-
+    <!-- Rope to Hitch -->
     <MooGirl.RopeToHitch>牵引到固定物上</MooGirl.RopeToHitch>
+    <!-- No valid object to be roped. -->
     <MooGirl.NoValidToRope>没有可以牵引的对象</MooGirl.NoValidToRope>
-
+    <!-- Roped by other pawn -->
     <MooGirl.RopedByPawn>被其他殖民者牵引</MooGirl.RopedByPawn>
+    <!-- Roped to Hitching Post. -->
     <MooGirl.RopedToHitchingPost>被绑在马棚</MooGirl.RopedToHitchingPost>
+    <!-- Roped to A Certain Spot. -->
     <MooGirl.RopedToSpot>被绑在某个地点</MooGirl.RopedToSpot>
-
+    <!-- Rope {0} -->
     <MooGirl.Rope.Target>牵引 {0}</MooGirl.Rope.Target>
+    <!-- Success Rate -->
     <MooGirl.Rope.SuccessChance>成功率</MooGirl.Rope.SuccessChance>
+    <!-- {0} ({1} {2}) -->
     <MooGirl.Rope.TargetWithSuccessChance>{0}（{1} {2}）</MooGirl.Rope.TargetWithSuccessChance>
+    <!-- Unrope {0} -->
     <MooGirl.Unrope.Target>解开牵引 {0}</MooGirl.Unrope.Target>
+    <!-- {0} ({1}) -->
     <MooGirl.FloatMenu.OptionWithReason>{0}（{1}）</MooGirl.FloatMenu.OptionWithReason>
+    <!-- {0} on {1} -->
     <MooGirl.FloatMenu.ActionOnTarget>{0} {1}</MooGirl.FloatMenu.ActionOnTarget>
+    <!-- {0} on ({1}) -->
     <MooGirl.FloatMenu.ActionOnReserved>{0}（{1}）</MooGirl.FloatMenu.ActionOnReserved>
-
+    <!-- The Mugirl is currently being roped by others and cannot be drafted. -->
     <MooGirl.DraftDisabledWhileRoped>雪牛娘正在被其他人牵引，无法征召</MooGirl.DraftDisabledWhileRoped>
-
+    <!-- Mount {0} -->
     <MooGirl.Mount.Target>骑上 {0}</MooGirl.Mount.Target>
+    <!-- Dismount rider -->
     <MooGirl.Mount.DismountRider>让骑乘者下来</MooGirl.Mount.DismountRider>
+    <!-- Drop the current rider from this MooGirl. -->
     <MooGirl.Mount.DismountRiderDesc>让当前骑乘者从雪牛娘身上下来。</MooGirl.Mount.DismountRiderDesc>
+    <!-- Select rider -->
     <MooGirl.Mount.SelectRider>选中骑乘者</MooGirl.Mount.SelectRider>
+    <!-- Select the pawn currently riding this MooGirl. -->
     <MooGirl.Mount.SelectRiderDesc>选中当前由雪牛娘承载的骑乘者。</MooGirl.Mount.SelectRiderDesc>
+    <!-- Select MooGirl -->
     <MooGirl.Mount.SelectCarrier>选中雪牛娘</MooGirl.Mount.SelectCarrier>
+    <!-- Select the MooGirl carrying this rider. -->
     <MooGirl.Mount.SelectCarrierDesc>选中承载该骑乘者的雪牛娘。</MooGirl.Mount.SelectCarrierDesc>
+    <!-- Fire at will -->
     <MooGirl.Mount.FireAtWill>允许射击</MooGirl.Mount.FireAtWill>
+    <!-- Allow the rider to act as an automatic ranged mount weapon. -->
     <MooGirl.Mount.FireAtWillDesc>允许骑乘者作为自动远程炮位开火。</MooGirl.Mount.FireAtWillDesc>
+    <!-- Hold fire -->
     <MooGirl.Mount.HoldFire>停火</MooGirl.Mount.HoldFire>
+    <!-- Prevent the rider from firing automatically. -->
     <MooGirl.Mount.HoldFireDesc>禁止骑乘者自动开火。</MooGirl.Mount.HoldFireDesc>
+    <!-- Cannot mount -->
     <MooGirl.Mount.CannotMount>无法骑乘</MooGirl.Mount.CannotMount>
+    <!-- {0}: {1} -->
     <MooGirl.Mount.LabelWithReason>{0}：{1}</MooGirl.Mount.LabelWithReason>
+    <!-- {0} mounted {1}. -->
     <MooGirl.Mount.MountedMessage>{0} 骑上了 {1}。</MooGirl.Mount.MountedMessage>
+    <!-- {0} dismounted from {1}. -->
     <MooGirl.Mount.DismountedMessage>{0} 从 {1} 身上下来了。</MooGirl.Mount.DismountedMessage>
+    <!-- {0} dismounted automatically: {1}. -->
     <MooGirl.Mount.AutoDismountMessage>{0} 因为{1}而自动下骑。</MooGirl.Mount.AutoDismountMessage>
+    <!-- No valid dismount cell near {0}. -->
     <MooGirl.Mount.NoDismountCell>{0} 附近没有可用的下骑位置。</MooGirl.Mount.NoDismountCell>
+    <!-- Rider: {0} -->
     <MooGirl.Mount.InspectRider>骑乘者：{0}</MooGirl.Mount.InspectRider>
+    <!-- Invalid target -->
     <MooGirl.Mount.ReasonInvalid>目标无效</MooGirl.Mount.ReasonInvalid>
+    <!-- Already has a rider -->
     <MooGirl.Mount.ReasonAlreadyHasRider>已经有骑乘者</MooGirl.Mount.ReasonAlreadyHasRider>
+    <!-- Target is not a MooGirl -->
     <MooGirl.Mount.ReasonTargetNotMooGirl>目标不是雪牛娘</MooGirl.Mount.ReasonTargetNotMooGirl>
+    <!-- The MooGirl is in a bad state -->
     <MooGirl.Mount.ReasonTargetBadState>雪牛娘状态不适合骑乘</MooGirl.Mount.ReasonTargetBadState>
+    <!-- The rider is in a bad state -->
     <MooGirl.Mount.ReasonRiderBadState>骑乘者状态不适合骑乘</MooGirl.Mount.ReasonRiderBadState>
+    <!-- The rider must be a humanlike pawn -->
     <MooGirl.Mount.ReasonRiderNotHumanlike>骑乘者必须是人类或类人 Pawn</MooGirl.Mount.ReasonRiderNotHumanlike>
+    <!-- Already mounted -->
     <MooGirl.Mount.ReasonAlreadyMounted>已经处于骑乘状态</MooGirl.Mount.ReasonAlreadyMounted>
+    <!-- Roped pawns cannot mount -->
     <MooGirl.Mount.ReasonRoped>牵引状态不能骑乘</MooGirl.Mount.ReasonRoped>
+    <!-- Reserved -->
     <MooGirl.Mount.ReasonReserved>已被预订</MooGirl.Mount.ReasonReserved>
+    <!-- No path -->
     <MooGirl.Mount.ReasonNoPath>无路径</MooGirl.Mount.ReasonNoPath>
+    <!-- hungry -->
     <MooGirl.Mount.ReasonRiderHungry>饥饿</MooGirl.Mount.ReasonRiderHungry>
+    <!-- exhausted -->
     <MooGirl.Mount.ReasonRiderTired>过度疲劳</MooGirl.Mount.ReasonRiderTired>
+    <!-- needs medical rest -->
     <MooGirl.Mount.ReasonRiderMedical>需要医疗休息</MooGirl.Mount.ReasonRiderMedical>
+    <!-- Rider is holding fire -->
     <MooGirl.Mount.ReasonTurretHoldFire>骑乘者已停火</MooGirl.Mount.ReasonTurretHoldFire>
+    <!-- Rider has no ranged weapon -->
     <MooGirl.Mount.ReasonNoRangedWeapon>骑乘者没有远程武器</MooGirl.Mount.ReasonNoRangedWeapon>
-<MooGirl.CourierContactLetterLabel>巨企运货员</MooGirl.CourierContactLetterLabel>
+    <!-- Corporate Courier -->
+    <MooGirl.CourierContactLetterLabel>巨企运货员</MooGirl.CourierContactLetterLabel>
+    <!-- A mega corporation courier is approaching from the edge of the map. He has not opened fire, but he looks extremely nervous. You can send a colonist to negotiate with him. -->
     <MooGirl.CourierContactLetterText>一名巨型企业运货员从地图边缘接近殖民地。他没有立刻开火，但看起来非常紧张。你可以派一名殖民者与他交涉。</MooGirl.CourierContactLetterText>
+    <!-- Negotiate with the corporate courier -->
     <MooGirl.CourierTalkOption>与巨企运货员交涉</MooGirl.CourierTalkOption>
+    <!-- cannot reach -->
     <MooGirl.CourierTalkCannotReach>无法到达</MooGirl.CourierTalkCannotReach>
+    <!-- {0} ({1}) -->
     <MooGirl.CourierTalkOptionDisabled>{0}（{1}）</MooGirl.CourierTalkOptionDisabled>
+    <!-- This courier can no longer negotiate. -->
     <MooGirl.CourierAlreadyResolved>这个运货员已经无法交涉。</MooGirl.CourierAlreadyResolved>
+    <!-- Corporate Courier -->
     <MooGirl.CourierDialogTitle>巨企运货员</MooGirl.CourierDialogTitle>
+    <!-- The mega corporation courier watches you nervously, one hand never leaving his weapon.\n\n\"I'm just a delivery worker. The ship went down, the cargo is gone, and the company will not listen to excuses. If you want the goods, let me drop the diary and keys I am carrying, then I leave right now. Do not force me to shoot. I do not want this reaching the company level either.\" -->
     <MooGirl.CourierDialogText>这名巨型企业运货员紧张地看着你们，手一直没有离开武器。\n\n“我只是个送货的。飞船掉了，货也没保住，公司不会听我解释。你们要是想拿东西，就让我把身上的日记和钥匙扔下，然后我立刻离开。别逼我开火，我也不想把事情闹到公司层面。”</MooGirl.CourierDialogText>
+    <!-- Leave the items and go -->
     <MooGirl.CourierDialogLeaveItems>留下物品并离开</MooGirl.CourierDialogLeaveItems>
+    <!-- Open fire now -->
     <MooGirl.CourierDialogFight>立刻开战</MooGirl.CourierDialogFight>
+    <!-- The corporate courier dropped his carried items and is leaving. -->
     <MooGirl.CourierItemsDroppedMessage>巨企运货员丢下了身上的物品，正在离开。</MooGirl.CourierItemsDroppedMessage>
+    <!-- The corporate courier draws his weapon. This clash will not change your relationship with the mega corporation. -->
     <MooGirl.CourierFightMessage>巨企运货员拔出了武器。这次冲突不会改变你与巨型企业的关系。</MooGirl.CourierFightMessage>
+    <!-- Negotiations broke down. -->
     <MooGirl.CourierFightReason>谈判破裂。</MooGirl.CourierFightReason>
+    <!-- CourierRaid quest aborted: no valid map target. -->
     <MooGirl.CourierRaid.Log.NoMap>运货员袭击任务中止：缺少有效地图目标。</MooGirl.CourierRaid.Log.NoMap>
+    <!-- CourierRaid quest aborted: hostile giant corporation faction not found. -->
     <MooGirl.CourierRaid.Log.NoFaction>运货员袭击任务中止：未找到敌对巨型企业派系。</MooGirl.CourierRaid.Log.NoFaction>
+    <!-- CourierRaid quest aborted: no valid spawn cell. -->
     <MooGirl.CourierRaid.Log.NoSpawnCell>运货员袭击任务中止：缺少有效生成位置。</MooGirl.CourierRaid.Log.NoSpawnCell>
+    <!-- CourierRaid spawn aborted: map is null. -->
     <MooGirl.CourierRaid.SpawnLog.NoMap>运货员生成中止：地图为空。</MooGirl.CourierRaid.SpawnLog.NoMap>
+    <!-- CourierRaid spawn aborted: faction is null. -->
     <MooGirl.CourierRaid.SpawnLog.NoFaction>运货员生成中止：派系为空。</MooGirl.CourierRaid.SpawnLog.NoFaction>
+    <!-- CourierRaid spawn aborted: no valid spawn cell. -->
     <MooGirl.CourierRaid.SpawnLog.NoSpawnCell>运货员生成中止：缺少有效生成位置。</MooGirl.CourierRaid.SpawnLog.NoSpawnCell>
+    <!-- Mega Corporation Claim Notice -->
     <MooGirl.CourierDemandTitle>巨型企业索赔通知</MooGirl.CourierDemandTitle>
+    <!-- A mega corporation representative opens a channel:\n\n\"You killed our courier and destroyed our ship. Under corporate regulation 47, you are required to compensate our losses.\n\nCompensation: {0} steel + {1} components.\n\nPay immediately and the mega corporation will suspend further action. Refuse, and the mega corporation will consider you hostile and respond militarily.\" -->
     <MooGirl.CourierDemandDialogText>一位巨型企业代表发来通讯：\n\n“你们杀了我们的运货员，摧毁了我们的飞船。根据企业条例第47条，你们需要赔偿我们的损失。\n\n赔偿金额：{0}钢铁 + {1}零部件。\n\n立即支付赔偿，巨型企业将暂不追究。拒绝赔偿，巨型企业将视你们为敌人并采取军事行动。”</MooGirl.CourierDemandDialogText>
+    <!-- Pay compensation -->
     <MooGirl.CourierDemandPay>支付赔偿</MooGirl.CourierDemandPay>
+    <!-- Refuse compensation -->
     <MooGirl.CourierDemandRefuse>拒绝赔偿</MooGirl.CourierDemandRefuse>
+    <!-- Compensation has been paid to the mega corporation. -->
     <MooGirl.CourierDemandPaid>已向巨型企业支付赔偿。</MooGirl.CourierDemandPaid>
+    <!-- Insufficient compensation supplies. The mega corporation now considers you hostile. -->
     <MooGirl.CourierDemandInsufficient>赔偿物资不足，巨型企业将你们视为敌人。</MooGirl.CourierDemandInsufficient>
+    <!-- Courier diary -->
     <MooGirl.CourierDiary.Title>运货员日记本</MooGirl.CourierDiary.Title>
+    <!-- Read {0} -->
     <MooGirl.CourierDiary.ReadOption>阅读{0}</MooGirl.CourierDiary.ReadOption>
+    <!-- {0} ({1}) -->
     <MooGirl.CourierDiary.OptionDisabled>{0}（{1}）</MooGirl.CourierDiary.OptionDisabled>
+    <!-- cannot reach -->
     <MooGirl.CourierDiary.CannotReach>无法到达</MooGirl.CourierDiary.CannotReach>
+    <!-- Page {0} / {1} -->
     <MooGirl.CourierDiary.PageCounter>第{0}页 / 共{1}页</MooGirl.CourierDiary.PageCounter>
+    <!-- Previous -->
     <MooGirl.CourierDiary.PreviousPage>上一页</MooGirl.CourierDiary.PreviousPage>
+    <!-- Next -->
     <MooGirl.CourierDiary.NextPage>下一页</MooGirl.CourierDiary.NextPage>
+    <!-- Close -->
     <MooGirl.CourierDiary.Close>关闭</MooGirl.CourierDiary.Close>
+    <!-- [Page One]\n\nWelcome to Courier Diary.\n\nThis diary records the experiences of a low-level courier during his time working for the mega corporation. It contains practical advice and survival lessons. -->
     <MooGirl.CourierDiary.Page1>【第一页】\n\n欢迎阅读《运货员日记》！\n\n这本日记记录了一个底层运货员在巨型企业工作期间的种种经历，包含大量实用技巧和生存经验。</MooGirl.CourierDiary.Page1>
+    <!-- [Page Two]\n\nAbout the mega corporation:\n\nThe mega corporation is a vast corporate alliance with armed forces spread across many planets. They field distinctive OPIC and PMC weapon series.\n\nWhen facing a raid, pay attention to enemy equipment tiers. Enemies carrying PMC-prefix weapons are usually more dangerous. -->
     <MooGirl.CourierDiary.Page2>【第二页】\n\n关于巨型企业：\n\n巨型企业是一个庞大的企业联合体，其武装力量遍布各个星球。他们拥有独特的OPIC和PMC系列的武器装备。\n\n遭遇袭击时请注意敌人的装备等级——携带PMC前缀武器的敌人往往更危险。</MooGirl.CourierDiary.Page2>
+    <!-- [Page Three]\n\nAbout MooGirls:\n\nMooGirls are products of genetic engineering. Their milk has exceptional nutritional value, and MooGirl dairy products can provide additional benefits.\n\nMooGirl milk pudding improves mood, cheese can detoxify, and aged cheese and milk tablets can strengthen immunity. -->
     <MooGirl.CourierDiary.Page3>【第三页】\n\n关于雪牛娘：\n\n雪牛娘是基因工程的产物，她们分泌的乳汁具有非凡的营养价值。可以通过制作各种雪牛娘奶制品来获得额外加成。\n\n雪牛娘奶布丁能提升心情，奶酪可以解毒，陈年奶酪和奶片能增强免疫力。</MooGirl.CourierDiary.Page3>
+    <!-- [Page Four]\n\nAbout restraint keys:\n\nCrude restraint keys can be made at machining tables or smithies. Fine restraint keys require more advanced workstations.\n\nIf you find keys carried by a lucky courier, you can use them to unlock restraints on MooGirls. -->
     <MooGirl.CourierDiary.Page4>【第四页】\n\n关于束具钥匙：\n\n粗糙束具钥匙可以在机械加工台或锻造台制作，精致束具钥匙需要更高级的工作台。\n\n如果你捡到了运气好的运货员携带的钥匙，可以用它们来解开雪牛娘身上的束具。</MooGirl.CourierDiary.Page4>
+    <!-- [Page Five]\n\nSurvival advice:\n\n1. Develop MooGirl husbandry for a stable milk supply\n2. Build enough defenses against mega corporation raids\n3. Produce dairy foods to strengthen colonists\n4. Restraint keys can help recruit enslaved MooGirls\n\nGood luck surviving this brutal world. -->
     <MooGirl.CourierDiary.Page5>【第五页】\n\n生存建议：\n\n1. 发展雪牛娘养殖以获得稳定的奶源\n2. 积攒足够的防御力量应对巨型企业袭击\n3. 制作各种奶制品以增强殖民者的能力\n4. 束具钥匙可以用来招募雪牛娘奴隶\n\n祝你在这个残酷的世界中活下来！</MooGirl.CourierDiary.Page5>
-
+    <!-- Wanderer Joins: {PAWN_nameDef} -->
     <MooGirl.LetterLabelWandererJoins>流浪者加入：{PAWN_nameDef}</MooGirl.LetterLabelWandererJoins>
-    <MooGirl.LetterWandererJoins>
-        一位名叫{PAWN_nameDef}的{PAWN_title}来到这里，想要加入殖民地。\n\n[PAWN_pronoun]声称没有地方可去，并且愿意做出贡献。{PAWN_objective}不会主动离开，你可以选择拒绝{PAWN_objective}，把{PAWN_objective}送走。然而，你的殖民者们会对送走一个需要帮助的人而感到不安。</MooGirl.LetterWandererJoins>
-
-<MooGirl.LetterLabelOpeningPodCrash>逃生舱坠毁（雪牛娘奴隶）</MooGirl.LetterLabelOpeningPodCrash>
+    <!-- A {PAWN_title} named {PAWN_nameDef} has arrived here, wishing to join the colony.\n\n[PAWN_pronoun] claims to have nowhere else to go and is willing to contribute. {PAWN_objective} won't leave voluntarily; you can choose to refuse {PAWN_objective} and send {PAWN_objective} away. However, your colonists will feel uneasy about turning away someone in need. -->
+    <MooGirl.LetterWandererJoins>一位名叫{PAWN_nameDef}的{PAWN_title}来到这里，想要加入殖民地。\n\n[PAWN_pronoun]声称没有地方可去，并且愿意做出贡献。{PAWN_objective}不会主动离开，你可以选择拒绝{PAWN_objective}，把{PAWN_objective}送走。然而，你的殖民者们会对送走一个需要帮助的人而感到不安。</MooGirl.LetterWandererJoins>
+    <!-- Transport Pod Crashed (Mugirl Slave) -->
+    <MooGirl.LetterLabelOpeningPodCrash>逃生舱坠毁（雪牛娘奴隶）</MooGirl.LetterLabelOpeningPodCrash>
+    <!-- Transport pods have crashed, carrying multiple escapees. -->
     <MooGirl.OpeningPodCrash_MultipleIntro>逃生舱坠毁，里面载有多位逃亡者。</MooGirl.OpeningPodCrash_MultipleIntro>
-
-    <MooGirl.OpeningPodCrash>
-        两个逃生舱在附近坠毁，每个逃生舱里面载有一名逃脱的雪牛娘奴隶。
-        她俩刚刚从巨型企业的奴隶运输船中逃脱，究竟是飞船故障、遭遇攻击，还是她以其他方式逃脱尚不得而知。逃亡的经历令她俩精疲力尽，紧密捆缚在他们身上的奴隶束具，无声记录着她在巨型企业暴政下的痛苦与屈从。由于撞击{PAWN_pronoun}也受了重伤。
-
-        如今她俩无处可去，如果你选择营救她俩，她俩会加入你的殖民地，你愿意给这两位可爱又可怜的逃亡者一次自由与新生活的机会吗？
-    </MooGirl.OpeningPodCrash>
-
-    <MooGirl.OpeningPodCrash_Child>
-        其中{PAWN_nameDef}是个{AGE}岁的孩子，她刚刚逃离了奴隶商队的控制，孤身无依。
-    </MooGirl.OpeningPodCrash_Child>
-
-    <MooGirl.OpeningPodCrash_Factionless>
-        其中{PAWN_pronoun}不属于任何派系。你可以选择救援{PAWN_objective}，希望{PAWN_pronoun}自由加入你的殖民地，也可以选择俘虏{PAWN_objective}以招募或奴役她。
-    </MooGirl.OpeningPodCrash_Factionless>
-
-    <MooGirl.OpeningPodCrash_Hostile>
-        其中{PAWN_nameDef}来自敌对派系{PAWN_factionName}，你可以俘虏{PAWN_objective}来招募或奴役。
-    </MooGirl.OpeningPodCrash_Hostile>
-
-    <MooGirl.OpeningPodCrash_NonHostile>
-        {PAWN_nameDef}来自{PAWN_factionName}。如果你救援{PAWN_objective}，{PAWN_pronoun}回到派系后会改善双方关系。
-        你也可以俘虏{PAWN_objective}来招募或奴役，但这会激怒{PAWN_possessive}派系。
-    </MooGirl.OpeningPodCrash_NonHostile>
+    <!-- Two transport pods have crash-landed nearby, each carrying an escaped Mugirl slave.\nThey just escaped from a mega corporation's slave transport ship- whether due to ship malfunction, attack, or some other means remains unknown. The escape has left them utterly exhausted, and the tightly bound slave restraints on their bodies silently record the pain and submission they endured under the mega corporation's tyranny. The impact has also left {PAWN_pronoun} severely injured.\n\nNow they have nowhere to go. If you choose to rescue them, they will join your colony. Will you give these two pitiful yet lovely escapees a chance at freedom and a new life? -->
+    <MooGirl.OpeningPodCrash>两个逃生舱在附近坠毁，每个逃生舱里面载有一名逃脱的雪牛娘奴隶。\n她俩刚刚从巨型企业的奴隶运输船中逃脱，究竟是飞船故障、遭遇攻击，还是她以其他方式逃脱尚不得而知。逃亡的经历令她俩精疲力尽，紧密捆缚在他们身上的奴隶束具，无声记录着她在巨型企业暴政下的痛苦与屈从。由于撞击{PAWN_pronoun}也受了重伤。\n\n如今她俩无处可去，如果你选择营救她俩，她俩会加入你的殖民地，你愿意给这两位可爱又可怜的逃亡者一次自由与新生活的机会吗？</MooGirl.OpeningPodCrash>
+    <!-- Among them, {PAWN_nameDef} is a {AGE}-year-old child who has just escaped from a slave caravan and is completely alone. -->
+    <MooGirl.OpeningPodCrash_Child>其中{PAWN_nameDef}是个{AGE}岁的孩子，她刚刚逃离了奴隶商队的控制，孤身无依。</MooGirl.OpeningPodCrash_Child>
+    <!-- Among them, [PAWN_pronoun] doesn't belong to any faction. You can choose to rescue [PAWN_objective], hoping [PAWN_pronoun] will freely join your colony, or you can choose to capture [PAWN_objective] to recruit or enslave [PAWN_objective]. -->
+    <MooGirl.OpeningPodCrash_Factionless>其中{PAWN_pronoun}不属于任何派系。你可以选择救援{PAWN_objective}，希望{PAWN_pronoun}自由加入你的殖民地，也可以选择俘虏{PAWN_objective}以招募或奴役她。</MooGirl.OpeningPodCrash_Factionless>
+    <!-- Among them, {PAWN_nameDef} comes from the hostile faction {PAWN_factionName}. You can capture [PAWN_objective] to recruit or enslave [PAWN_objective]. -->
+    <MooGirl.OpeningPodCrash_Hostile>其中{PAWN_nameDef}来自敌对派系{PAWN_factionName}，你可以俘虏{PAWN_objective}来招募或奴役。</MooGirl.OpeningPodCrash_Hostile>
+    <!-- {PAWN_nameDef} comes from {PAWN_factionName}. If you rescue [PAWN_objective], [PAWN_pronoun] will improve relations between your factions when [PAWN_pronoun] returns.\n\nYou can also capture [PAWN_objective] to recruit or enslave [PAWN_objective], but this will anger [PAWN_possessive] faction. -->
+    <MooGirl.OpeningPodCrash_NonHostile>{PAWN_nameDef}来自{PAWN_factionName}。如果你救援{PAWN_objective}，{PAWN_pronoun}回到派系后会改善双方关系。\n你也可以俘虏{PAWN_objective}来招募或奴役，但这会激怒{PAWN_possessive}派系。</MooGirl.OpeningPodCrash_NonHostile>
+    <!-- Failed to generate a factionless opening pod pawn after {0} attempts. Check PawnKindDef or other pawn generation patches. -->
     <MooGirl.OpeningPodCrash.Log.FactionlessGenerationFailed>尝试 {0} 次后仍无法生成无派系开局逃生舱 Pawn。请检查 PawnKindDef 或其它 Pawn 生成补丁。</MooGirl.OpeningPodCrash.Log.FactionlessGenerationFailed>
+    <!-- MooGirl opening pod pawn must be generated factionless. -->
     <MooGirl.OpeningPodCrash.Exception.MustBeFactionless>MooGirl 开局逃生舱 Pawn 必须以无派系状态生成。</MooGirl.OpeningPodCrash.Exception.MustBeFactionless>
+    <!-- Corrected juvenile MooGirl body types: {0}. -->
     <MooGirl.Newborn.Log.CorrectedBodyTypes>已修正幼年 MooGirl 体型：{0}。</MooGirl.Newborn.Log.CorrectedBodyTypes>
-<MooGirl.LetterLabelRefugeePodCrash>逃生舱坠毁（雪牛娘奴隶）</MooGirl.LetterLabelRefugeePodCrash>
-    <MooGirl.RefugeePodCrash>
-        逃生舱在附近坠毁，里面载有名叫{PAWN_nameDef}的{PAWN_titleIndef}。
-        她刚刚从巨型企业的奴隶运输船中逃脱，究竟是飞船故障、遭遇攻击，还是她以其他方式逃脱尚不得而知。逃亡经历令她精疲力尽，紧密捆缚在身上的奴隶束具，无声记录着她在巨型企业暴政下的痛苦与屈从。由于撞击{PAWN_pronoun}也受了重伤。
-
-        你愿意给这位逃亡者一次自由与新生活的机会吗？
-    </MooGirl.RefugeePodCrash>
+    <!-- Transport Pod Crashed (Mugirl Slave) -->
+    <MooGirl.LetterLabelRefugeePodCrash>逃生舱坠毁（雪牛娘奴隶）</MooGirl.LetterLabelRefugeePodCrash>
+    <!-- An transport pod has crash-landed nearby, carrying a {PAWN_titleIndef} named {PAWN_nameDef}.\nShe just escaped from a mega corporation's slave transport ship - whether due to ship malfunction, attack, or some other means remains unknown. The escape has left her utterly exhausted, and the tightly bound slave restraints on her body silently record the pain and submission she endured under the mega corporation's tyranny. The impact has also left {PAWN_pronoun} severely injured.\n\nWill you give this escapee a chance at freedom and a new life? -->
+    <MooGirl.RefugeePodCrash>逃生舱在附近坠毁，里面载有名叫{PAWN_nameDef}的{PAWN_titleIndef}。\n她刚刚从巨型企业的奴隶运输船中逃脱，究竟是飞船故障、遭遇攻击，还是她以其他方式逃脱尚不得而知。逃亡经历令她精疲力尽，紧密捆缚在身上的奴隶束具，无声记录着她在巨型企业暴政下的痛苦与屈从。由于撞击{PAWN_pronoun}也受了重伤。\n\n你愿意给这位逃亡者一次自由与新生活的机会吗？</MooGirl.RefugeePodCrash>
+    <!-- {PAWN_nameDef} is a {AGE}-year-old child and is completely alone. -->
     <MooGirl.RefugeePodCrash_Child>{PAWN_nameDef}是个{AGE}岁的孩子，同样孤身无依。</MooGirl.RefugeePodCrash_Child>
-    <MooGirl.RefugeePodCrash_Factionless>
-        {PAWN_pronoun}不属于任何派系。你可以选择救援{PAWN_objective}，希望她加入你的殖民地，也可以选择俘虏{PAWN_objective}来招募或奴役。
-    </MooGirl.RefugeePodCrash_Factionless>
-    <MooGirl.RefugeePodCrash_Hostile>
-        {PAWN_nameDef}来自敌对派系{PAWN_factionName}，你可以俘虏{PAWN_objective}来招募或奴役。
-    </MooGirl.RefugeePodCrash_Hostile>
-    <MooGirl.RefugeePodCrash_NonHostile>
-        {PAWN_nameDef}来自{PAWN_factionName}。如果你救援{PAWN_objective}，{PAWN_pronoun}回到派系后会改善双方关系。\n\n你也可以俘虏{PAWN_objective}来招募或奴役，但这会激怒{PAWN_possessive}派系。
-    </MooGirl.RefugeePodCrash_NonHostile>
-<LetterLabelWandererJoins>流浪者加入：{PAWN_nameDef}</LetterLabelWandererJoins>
-    <LetterWandererJoins>
-        一位名叫{PAWN_nameDef}的{PAWN_title}来到这里，她从奴隶商队逃脱，身上破旧的束具仍缠绕着她，诉说着悲惨的遭遇。她无处可去，愿意为你的殖民地贡献力量。{PAWN_objective}不会主动离开，你可以选择拒绝她，把她送走，但你的殖民者们会为送走一个需要帮助的人而感到不安。你是否愿意给这位可怜又坚强的逃亡者一次自由与新生活的机会？
-    </LetterWandererJoins>
+    <!-- [PAWN_pronoun] doesn't belong to any faction. You can choose to rescue [PAWN_objective], hoping [PAWN_pronoun] will freely join your colony, or you can choose to capture [PAWN_objective] to recruit or enslave [PAWN_objective]. -->
+    <MooGirl.RefugeePodCrash_Factionless>{PAWN_pronoun}不属于任何派系。你可以选择救援{PAWN_objective}，希望她加入你的殖民地，也可以选择俘虏{PAWN_objective}来招募或奴役。</MooGirl.RefugeePodCrash_Factionless>
+    <!-- {PAWN_nameDef} comes from the hostile faction {PAWN_factionName}. You can capture [PAWN_objective] to recruit or enslave [PAWN_objective]. -->
+    <MooGirl.RefugeePodCrash_Hostile>{PAWN_nameDef}来自敌对派系{PAWN_factionName}，你可以俘虏{PAWN_objective}来招募或奴役。</MooGirl.RefugeePodCrash_Hostile>
+    <!-- {PAWN_nameDef} comes from {PAWN_factionName}. If you rescue [PAWN_objective], [PAWN_pronoun] will improve relations between your factions when [PAWN_pronoun] returns.\n\nYou can also capture [PAWN_objective] to recruit or enslave [PAWN_objective], but this will anger [PAWN_possessive] faction. -->
+    <MooGirl.RefugeePodCrash_NonHostile>{PAWN_nameDef}来自{PAWN_factionName}。如果你救援{PAWN_objective}，{PAWN_pronoun}回到派系后会改善双方关系。\n\n你也可以俘虏{PAWN_objective}来招募或奴役，但这会激怒{PAWN_possessive}派系。</MooGirl.RefugeePodCrash_NonHostile>
+    <!-- Wanderer Joins: {PAWN_nameDef} -->
+    <LetterLabelWandererJoins>流浪者加入：{PAWN_nameDef}</LetterLabelWandererJoins>
+    <!-- A {PAWN_title} named {PAWN_nameDef} has arrived here; she escaped from a slave caravan, with tattered restraints still bound to [PAWN_objective], telling of [PAWN_possessive] tragic past. With nowhere to go, she is willing to contribute to your colony. {PAWN_objective} won't leave voluntarily; you can choose to refuse [PAWN_objective] and send [PAWN_objective] away, but your colonists will feel uneasy about turning away someone in need.\n\nWill you give this pitiful yet resilient escapee a chance at freedom and a new life? -->
+    <LetterWandererJoins>一位名叫{PAWN_nameDef}的{PAWN_title}来到这里，她从奴隶商队逃脱，身上破旧的束具仍缠绕着她，诉说着悲惨的遭遇。她无处可去，愿意为你的殖民地贡献力量。{PAWN_objective}不会主动离开，你可以选择拒绝她，把她送走，但你的殖民者们会为送走一个需要帮助的人而感到不安。你是否愿意给这位可怜又坚强的逃亡者一次自由与新生活的机会？</LetterWandererJoins>
 </LanguageData>

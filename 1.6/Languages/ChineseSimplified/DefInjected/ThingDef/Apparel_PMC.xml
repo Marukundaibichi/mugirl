@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
+    <!-- An advanced helmet for PMC squad commanders, equipped with communications gear and enhanced armor. -->
     <PMC_CaptainHelmet.description>PMC小队指挥官的高级头盔，配备通讯设备和增强护甲。</PMC_CaptainHelmet.description>
+    <!-- PMC Captain Helmet -->
     <PMC_CaptainHelmet.label>PMC队长头盔</PMC_CaptainHelmet.label>
+    <!-- The standard PMC combat uniform, balancing protection and mobility while covering the whole body. -->
     <PMC_CombatUniform.description>PMC标准作战服，兼顾防护与机动，覆盖全身。</PMC_CombatUniform.description>
+    <!-- PMC Combat Uniform -->
     <PMC_CombatUniform.label>PMC作战服</PMC_CombatUniform.label>
+    <!-- A standard helmet for PMC mercenaries, protecting the head and ears. -->
     <PMC_Helmet.description>PMC佣兵的标准钢盔，保护头部和耳朵。</PMC_Helmet.description>
+    <!-- PMC Helmet -->
     <PMC_Helmet.label>PMC钢盔</PMC_Helmet.label>
 </LanguageData>

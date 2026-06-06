@@ -1,11 +1,6 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-
-    <!-- wild Mugirl slave -->
     <MooGirl_WildManWandersIn.label>Wild Mugirl Slave</MooGirl_WildManWandersIn.label>
-    <!-- {0} trespassed onto your territory -->
     <MooGirl_WildManWandersIn.letterLabel>{0} trespassed onto your territory.</MooGirl_WildManWandersIn.letterLabel>
-    <!-- A {1} escaped from a slave caravan, the tattered restraints on {PAWN_possessive} body seeming to tell of a tragic past. {PAWN_pronoun} is named {0}.\n\nYou can attempt to tame {PAWN_objective}. -->
-    <MooGirl_WildManWandersIn.letterText>A {1} escaped from a slave caravan, the tattered restraints on [PAWN_possessive] body seeming to tell of a tragic past. [PAWN_pronoun] is named {0}.\n\nYou can attempt to tame [PAWN_objective].</MooGirl_WildManWandersIn.letterText>
-
+    <MooGirl_WildManWandersIn.letterText>A {1} who escaped from a slave caravan, the tattered restraints on [PAWN_possessive] body seeming to tell of a tragic past. [PAWN_pronoun] is named {0}.\n\nYou can attempt to recruit [PAWN_objective].</MooGirl_WildManWandersIn.letterText>
 </LanguageData>

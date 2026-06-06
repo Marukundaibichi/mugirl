@@ -1,6 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-<MooGirl_CourierDiary.label>运货员日记本</MooGirl_CourierDiary.label>
-<MooGirl_CourierDiary.description>一个倒霉底层运货员的日记，其中凝结了他这么久以来摸爬滚打的经验</MooGirl_CourierDiary.description>
-<MooGirl_CourierDiary.comps.CompReadableBook.bookTitle>运货员日记本</MooGirl_CourierDiary.comps.CompReadableBook.bookTitle>
+    <!-- courier diary -->
+    <MooGirl_CourierDiary.label>运货员日记本</MooGirl_CourierDiary.label>
+    <!-- A diary kept by an unlucky low-level courier, filled with hard-earned survival experience from years of scraping by. -->
+    <MooGirl_CourierDiary.description>一个倒霉底层运货员的日记，其中凝结了他这么久以来摸爬滚打的经验</MooGirl_CourierDiary.description>
+    <!-- Courier diary -->
+    <MooGirl_CourierDiary.comps.CompReadableBook.bookTitle>运货员日记本</MooGirl_CourierDiary.comps.CompReadableBook.bookTitle>
 </LanguageData>

@@ -4,18 +4,22 @@
 
 ## 模块现状
 
-当前源码主要分散在以下目录：
+当前 C# 源码已经收敛到 `1.6/Source`，主要模块如下：
 
-- `bondageclothes束具的编程`：束具、锁、钥匙、脑控头盔、电击项圈、磁力镣铐、奴隶服装、R18 元数据、束具 hediff 效果。
-- `MooGirlMilked 挤奶相关的编程`：产奶资源、挤奶、自动挤奶设备、奶量 UI、哺乳、奶制品效果、挤奶动画。
-- `MooGirlsJoins加入方式的编程`：开局坠机、逃脱奴隶、野人/流浪者/救援舱加入、巨型企业快递事件、旧档升级。
-- `RopingAndRoped牵引系统的编程`：牵引、拴墙、被牵引 AI、禁止逃跑、约束 UI、牵引绘制。
-- `Mounting骑乘系统的编程`：骑乘容器、骑乘绘制、骑手武器、自动射击、近战支援。
-- `GeneAndAbility`：异种修正、能力强制 job、冲锋能力。
-- `NewBron`、`OtherFunction`：出生/幼年外观、污染、禁用、渲染刷新、药物配方等横切补丁。
-- `Defof`：核心 DefOf 与 AI 生成 DefOf 混杂。
+- `Core`：启动入口、日志、文本翻译、Def 缓存、patch 注册、tick 工具。
+- `DefOf`：核心 DefOf 与内容 DefOf。
+- `Features/Apparel`：服装标签等通用服装工具。
+- `Features/Restraints`：束具、锁、钥匙、脑控头盔、电击项圈、磁力镣铐、奴隶服装、R18 元数据、束具 hediff 效果。
+- `Features/Milk`：产奶资源、挤奶、自动挤奶设备、奶量 UI、哺乳、奶制品效果、挤奶动画。
+- `Features/Incidents`：开局坠机、逃脱奴隶、野人/流浪者/救援舱加入、巨型企业快递事件。
+- `Features/Roping`：牵引、拴墙、被牵引 AI、禁止逃跑、约束 UI、牵引绘制。
+- `Features/Mounting`：骑乘容器、骑乘绘制、骑手武器、自动射击、近战支援。
+- `Features/Genes`：异种修正、能力强制 job、冲锋能力。
+- `Features/Newborn`：出生和幼年外观修正。
+- `Features/Misc`：污染、禁用、渲染刷新、药物配方等横切补丁。
+- `UI`：Mod 设置界面。
 
-这些目录反映了业务域，但没有形成稳定架构边界：同一业务域里混有 UI、存档、patch、状态机、查询、日志和兼容逻辑。
+源码路径应保持纯英文目录和文件名，中文说明保留在中文注释中。
 
 ## 入口与初始化问题
 

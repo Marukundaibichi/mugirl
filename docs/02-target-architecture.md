@@ -4,29 +4,25 @@
 
 ## 顶层目录
 
-建议新源码目录：
+当前源码目录：
 
 ```text
-1.6/Source/MooGirlRace/
+1.6/Source/
+    MooGirlRace.csproj
+    MooGirlRace.sln
     Core/
-    Data/
-    Defs/
-    Patching/
+    DefOf/
     Features/
+        Apparel/
         Milk/
         Restraints/
         Roping/
         Mounting/
         Incidents/
         Genes/
-        Rendering/
-    Compatibility/
-        AlienRace/
-        FacialAnimation/
-        SearchAndDestroy/
-        VCookE/
-        OtherMods/
-    Diagnostics/
+        Newborn/
+        Misc/
+    Properties/
     UI/
 ```
 

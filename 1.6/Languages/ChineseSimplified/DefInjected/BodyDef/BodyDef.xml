@@ -1,56 +1,107 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-<MooGirlBody.label>雪牛娘</MooGirlBody.label>
-<MooGirlBody.corePart.parts.MooGirl_Tail.customLabel>雪牛尾巴</MooGirlBody.corePart.parts.MooGirl_Tail.customLabel>
-<MooGirlBody.corePart.parts.left_lung.customLabel>左肺</MooGirlBody.corePart.parts.left_lung.customLabel>
-<MooGirlBody.corePart.parts.right_lung.customLabel>右肺</MooGirlBody.corePart.parts.right_lung.customLabel>
-<MooGirlBody.corePart.parts.left_kidney.customLabel>左肾</MooGirlBody.corePart.parts.left_kidney.customLabel>
-<MooGirlBody.corePart.parts.right_kidney.customLabel>右肾</MooGirlBody.corePart.parts.right_kidney.customLabel>
-<MooGirlBody.corePart.parts.Neck.parts.Head.parts.left_eye.customLabel>左眼</MooGirlBody.corePart.parts.Neck.parts.Head.parts.left_eye.customLabel>
-<MooGirlBody.corePart.parts.Neck.parts.Head.parts.right_eye.customLabel>右眼</MooGirlBody.corePart.parts.Neck.parts.Head.parts.right_eye.customLabel>
-<MooGirlBody.corePart.parts.Neck.parts.Head.parts.left_horn.customLabel>左角</MooGirlBody.corePart.parts.Neck.parts.Head.parts.left_horn.customLabel>
-<MooGirlBody.corePart.parts.Neck.parts.Head.parts.right_horn.customLabel>右角</MooGirlBody.corePart.parts.Neck.parts.Head.parts.right_horn.customLabel>
-<MooGirlBody.corePart.parts.Neck.parts.Head.parts.left_ear.customLabel>左耳</MooGirlBody.corePart.parts.Neck.parts.Head.parts.left_ear.customLabel>
-<MooGirlBody.corePart.parts.Neck.parts.Head.parts.right_ear.customLabel>右耳</MooGirlBody.corePart.parts.Neck.parts.Head.parts.right_ear.customLabel>
-<MooGirlBody.corePart.parts.left_shoulder.customLabel>左肩</MooGirlBody.corePart.parts.left_shoulder.customLabel>
-<MooGirlBody.corePart.parts.left_shoulder.parts.left_clavicle.customLabel>左锁骨</MooGirlBody.corePart.parts.left_shoulder.parts.left_clavicle.customLabel>
-<MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.customLabel>左臂</MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.customLabel>
-<MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_humerus.customLabel>左肱骨</MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_humerus.customLabel>
-<MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_radius.customLabel>左桡骨</MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_radius.customLabel>
-<MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_hand.customLabel>左手</MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_hand.customLabel>
-<MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_hand.parts.left_pinky.customLabel>左小指</MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_hand.parts.left_pinky.customLabel>
-<MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_hand.parts.left_ring_finger.customLabel>左无名指</MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_hand.parts.left_ring_finger.customLabel>
-<MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_hand.parts.left_middle_finger.customLabel>左中指</MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_hand.parts.left_middle_finger.customLabel>
-<MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_hand.parts.left_index_finger.customLabel>左食指</MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_hand.parts.left_index_finger.customLabel>
-<MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_hand.parts.left_thumb.customLabel>左拇指</MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_hand.parts.left_thumb.customLabel>
-<MooGirlBody.corePart.parts.right_shoulder.customLabel>右肩</MooGirlBody.corePart.parts.right_shoulder.customLabel>
-<MooGirlBody.corePart.parts.right_shoulder.parts.right_clavicle.customLabel>右锁骨</MooGirlBody.corePart.parts.right_shoulder.parts.right_clavicle.customLabel>
-<MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.customLabel>右臂</MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.customLabel>
-<MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_humerus.customLabel>右肱骨</MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_humerus.customLabel>
-<MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_radius.customLabel>右桡骨</MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_radius.customLabel>
-<MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_hand.customLabel>右手</MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_hand.customLabel>
-<MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_hand.parts.right_pinky.customLabel>右小指</MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_hand.parts.right_pinky.customLabel>
-<MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_hand.parts.right_ring_finger.customLabel>右无名指</MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_hand.parts.right_ring_finger.customLabel>
-<MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_hand.parts.right_middle_finger.customLabel>右中指</MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_hand.parts.right_middle_finger.customLabel>
-<MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_hand.parts.right_index_finger.customLabel>右食指</MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_hand.parts.right_index_finger.customLabel>
-<MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_hand.parts.right_thumb.customLabel>右拇指</MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_hand.parts.right_thumb.customLabel>
-<MooGirlBody.corePart.parts.left_leg.customLabel>左腿</MooGirlBody.corePart.parts.left_leg.customLabel>
-<MooGirlBody.corePart.parts.left_leg.parts.left_femur.customLabel>左股骨</MooGirlBody.corePart.parts.left_leg.parts.left_femur.customLabel>
-<MooGirlBody.corePart.parts.left_leg.parts.left_tibia.customLabel>左胫骨</MooGirlBody.corePart.parts.left_leg.parts.left_tibia.customLabel>
-<MooGirlBody.corePart.parts.left_leg.parts.left_foot.customLabel>左脚</MooGirlBody.corePart.parts.left_leg.parts.left_foot.customLabel>
-<MooGirlBody.corePart.parts.left_leg.parts.left_foot.parts.left_little_toe.customLabel>左小趾</MooGirlBody.corePart.parts.left_leg.parts.left_foot.parts.left_little_toe.customLabel>
-<MooGirlBody.corePart.parts.left_leg.parts.left_foot.parts.left_fourth_toe.customLabel>左第四趾</MooGirlBody.corePart.parts.left_leg.parts.left_foot.parts.left_fourth_toe.customLabel>
-<MooGirlBody.corePart.parts.left_leg.parts.left_foot.parts.left_middle_toe.customLabel>左中趾</MooGirlBody.corePart.parts.left_leg.parts.left_foot.parts.left_middle_toe.customLabel>
-<MooGirlBody.corePart.parts.left_leg.parts.left_foot.parts.left_second_toe.customLabel>左第二趾</MooGirlBody.corePart.parts.left_leg.parts.left_foot.parts.left_second_toe.customLabel>
-<MooGirlBody.corePart.parts.left_leg.parts.left_foot.parts.left_big_toe.customLabel>左大趾</MooGirlBody.corePart.parts.left_leg.parts.left_foot.parts.left_big_toe.customLabel>
-<MooGirlBody.corePart.parts.right_leg.customLabel>右腿</MooGirlBody.corePart.parts.right_leg.customLabel>
-<MooGirlBody.corePart.parts.right_leg.parts.right_femur.customLabel>右股骨</MooGirlBody.corePart.parts.right_leg.parts.right_femur.customLabel>
-<MooGirlBody.corePart.parts.right_leg.parts.right_tibia.customLabel>右胫骨</MooGirlBody.corePart.parts.right_leg.parts.right_tibia.customLabel>
-<MooGirlBody.corePart.parts.right_leg.parts.right_foot.customLabel>右脚</MooGirlBody.corePart.parts.right_leg.parts.right_foot.customLabel>
-<MooGirlBody.corePart.parts.right_leg.parts.right_foot.parts.right_little_toe.customLabel>右小趾</MooGirlBody.corePart.parts.right_leg.parts.right_foot.parts.right_little_toe.customLabel>
-<MooGirlBody.corePart.parts.right_leg.parts.right_foot.parts.right_fourth_toe.customLabel>右第四趾</MooGirlBody.corePart.parts.right_leg.parts.right_foot.parts.right_fourth_toe.customLabel>
-<MooGirlBody.corePart.parts.right_leg.parts.right_foot.parts.right_middle_toe.customLabel>右中趾</MooGirlBody.corePart.parts.right_leg.parts.right_foot.parts.right_middle_toe.customLabel>
-<MooGirlBody.corePart.parts.right_leg.parts.right_foot.parts.right_second_toe.customLabel>右第二趾</MooGirlBody.corePart.parts.right_leg.parts.right_foot.parts.right_second_toe.customLabel>
-<MooGirlBody.corePart.parts.right_leg.parts.right_foot.parts.right_big_toe.customLabel>右大趾</MooGirlBody.corePart.parts.right_leg.parts.right_foot.parts.right_big_toe.customLabel>
-
+    <!-- Mugirl -->
+    <MooGirlBody.label>雪牛娘</MooGirlBody.label>
+    <!-- Mugirl tail -->
+    <MooGirlBody.corePart.parts.MooGirl_Tail.customLabel>雪牛尾巴</MooGirlBody.corePart.parts.MooGirl_Tail.customLabel>
+    <!-- left lung -->
+    <MooGirlBody.corePart.parts.left_lung.customLabel>左肺</MooGirlBody.corePart.parts.left_lung.customLabel>
+    <!-- right lung -->
+    <MooGirlBody.corePart.parts.right_lung.customLabel>右肺</MooGirlBody.corePart.parts.right_lung.customLabel>
+    <!-- left kidney -->
+    <MooGirlBody.corePart.parts.left_kidney.customLabel>左肾</MooGirlBody.corePart.parts.left_kidney.customLabel>
+    <!-- right kidney -->
+    <MooGirlBody.corePart.parts.right_kidney.customLabel>右肾</MooGirlBody.corePart.parts.right_kidney.customLabel>
+    <!-- left eye -->
+    <MooGirlBody.corePart.parts.Neck.parts.Head.parts.left_eye.customLabel>左眼</MooGirlBody.corePart.parts.Neck.parts.Head.parts.left_eye.customLabel>
+    <!-- right eye -->
+    <MooGirlBody.corePart.parts.Neck.parts.Head.parts.right_eye.customLabel>右眼</MooGirlBody.corePart.parts.Neck.parts.Head.parts.right_eye.customLabel>
+    <!-- left horn -->
+    <MooGirlBody.corePart.parts.Neck.parts.Head.parts.left_horn.customLabel>左角</MooGirlBody.corePart.parts.Neck.parts.Head.parts.left_horn.customLabel>
+    <!-- right horn -->
+    <MooGirlBody.corePart.parts.Neck.parts.Head.parts.right_horn.customLabel>右角</MooGirlBody.corePart.parts.Neck.parts.Head.parts.right_horn.customLabel>
+    <!-- left ear -->
+    <MooGirlBody.corePart.parts.Neck.parts.Head.parts.left_ear.customLabel>左耳</MooGirlBody.corePart.parts.Neck.parts.Head.parts.left_ear.customLabel>
+    <!-- right ear -->
+    <MooGirlBody.corePart.parts.Neck.parts.Head.parts.right_ear.customLabel>右耳</MooGirlBody.corePart.parts.Neck.parts.Head.parts.right_ear.customLabel>
+    <!-- left shoulder -->
+    <MooGirlBody.corePart.parts.left_shoulder.customLabel>左肩</MooGirlBody.corePart.parts.left_shoulder.customLabel>
+    <!-- left clavicle -->
+    <MooGirlBody.corePart.parts.left_shoulder.parts.left_clavicle.customLabel>左锁骨</MooGirlBody.corePart.parts.left_shoulder.parts.left_clavicle.customLabel>
+    <!-- left arm -->
+    <MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.customLabel>左臂</MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.customLabel>
+    <!-- left humerus -->
+    <MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_humerus.customLabel>左肱骨</MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_humerus.customLabel>
+    <!-- left radius -->
+    <MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_radius.customLabel>左桡骨</MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_radius.customLabel>
+    <!-- left hand -->
+    <MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_hand.customLabel>左手</MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_hand.customLabel>
+    <!-- left pinky -->
+    <MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_hand.parts.left_pinky.customLabel>左小指</MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_hand.parts.left_pinky.customLabel>
+    <!-- left ring finger -->
+    <MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_hand.parts.left_ring_finger.customLabel>左无名指</MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_hand.parts.left_ring_finger.customLabel>
+    <!-- left middle finger -->
+    <MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_hand.parts.left_middle_finger.customLabel>左中指</MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_hand.parts.left_middle_finger.customLabel>
+    <!-- left index finger -->
+    <MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_hand.parts.left_index_finger.customLabel>左食指</MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_hand.parts.left_index_finger.customLabel>
+    <!-- left thumb -->
+    <MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_hand.parts.left_thumb.customLabel>左拇指</MooGirlBody.corePart.parts.left_shoulder.parts.left_arm.parts.left_hand.parts.left_thumb.customLabel>
+    <!-- right shoulder -->
+    <MooGirlBody.corePart.parts.right_shoulder.customLabel>右肩</MooGirlBody.corePart.parts.right_shoulder.customLabel>
+    <!-- right clavicle -->
+    <MooGirlBody.corePart.parts.right_shoulder.parts.right_clavicle.customLabel>右锁骨</MooGirlBody.corePart.parts.right_shoulder.parts.right_clavicle.customLabel>
+    <!-- right arm -->
+    <MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.customLabel>右臂</MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.customLabel>
+    <!-- right humerus -->
+    <MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_humerus.customLabel>右肱骨</MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_humerus.customLabel>
+    <!-- right radius -->
+    <MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_radius.customLabel>右桡骨</MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_radius.customLabel>
+    <!-- right hand -->
+    <MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_hand.customLabel>右手</MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_hand.customLabel>
+    <!-- right pinky -->
+    <MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_hand.parts.right_pinky.customLabel>右小指</MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_hand.parts.right_pinky.customLabel>
+    <!-- right ring finger -->
+    <MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_hand.parts.right_ring_finger.customLabel>右无名指</MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_hand.parts.right_ring_finger.customLabel>
+    <!-- right middle finger -->
+    <MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_hand.parts.right_middle_finger.customLabel>右中指</MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_hand.parts.right_middle_finger.customLabel>
+    <!-- right index finger -->
+    <MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_hand.parts.right_index_finger.customLabel>右食指</MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_hand.parts.right_index_finger.customLabel>
+    <!-- right thumb -->
+    <MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_hand.parts.right_thumb.customLabel>右拇指</MooGirlBody.corePart.parts.right_shoulder.parts.right_arm.parts.right_hand.parts.right_thumb.customLabel>
+    <!-- left leg -->
+    <MooGirlBody.corePart.parts.left_leg.customLabel>左腿</MooGirlBody.corePart.parts.left_leg.customLabel>
+    <!-- left femur -->
+    <MooGirlBody.corePart.parts.left_leg.parts.left_femur.customLabel>左股骨</MooGirlBody.corePart.parts.left_leg.parts.left_femur.customLabel>
+    <!-- left tibia -->
+    <MooGirlBody.corePart.parts.left_leg.parts.left_tibia.customLabel>左胫骨</MooGirlBody.corePart.parts.left_leg.parts.left_tibia.customLabel>
+    <!-- left foot -->
+    <MooGirlBody.corePart.parts.left_leg.parts.left_foot.customLabel>左脚</MooGirlBody.corePart.parts.left_leg.parts.left_foot.customLabel>
+    <!-- left little toe -->
+    <MooGirlBody.corePart.parts.left_leg.parts.left_foot.parts.left_little_toe.customLabel>左小趾</MooGirlBody.corePart.parts.left_leg.parts.left_foot.parts.left_little_toe.customLabel>
+    <!-- left fourth toe -->
+    <MooGirlBody.corePart.parts.left_leg.parts.left_foot.parts.left_fourth_toe.customLabel>左第四趾</MooGirlBody.corePart.parts.left_leg.parts.left_foot.parts.left_fourth_toe.customLabel>
+    <!-- left middle toe -->
+    <MooGirlBody.corePart.parts.left_leg.parts.left_foot.parts.left_middle_toe.customLabel>左中趾</MooGirlBody.corePart.parts.left_leg.parts.left_foot.parts.left_middle_toe.customLabel>
+    <!-- left second toe -->
+    <MooGirlBody.corePart.parts.left_leg.parts.left_foot.parts.left_second_toe.customLabel>左第二趾</MooGirlBody.corePart.parts.left_leg.parts.left_foot.parts.left_second_toe.customLabel>
+    <!-- left big toe -->
+    <MooGirlBody.corePart.parts.left_leg.parts.left_foot.parts.left_big_toe.customLabel>左大趾</MooGirlBody.corePart.parts.left_leg.parts.left_foot.parts.left_big_toe.customLabel>
+    <!-- right leg -->
+    <MooGirlBody.corePart.parts.right_leg.customLabel>右腿</MooGirlBody.corePart.parts.right_leg.customLabel>
+    <!-- right femur -->
+    <MooGirlBody.corePart.parts.right_leg.parts.right_femur.customLabel>右股骨</MooGirlBody.corePart.parts.right_leg.parts.right_femur.customLabel>
+    <!-- right tibia -->
+    <MooGirlBody.corePart.parts.right_leg.parts.right_tibia.customLabel>右胫骨</MooGirlBody.corePart.parts.right_leg.parts.right_tibia.customLabel>
+    <!-- right foot -->
+    <MooGirlBody.corePart.parts.right_leg.parts.right_foot.customLabel>右脚</MooGirlBody.corePart.parts.right_leg.parts.right_foot.customLabel>
+    <!-- right little toe -->
+    <MooGirlBody.corePart.parts.right_leg.parts.right_foot.parts.right_little_toe.customLabel>右小趾</MooGirlBody.corePart.parts.right_leg.parts.right_foot.parts.right_little_toe.customLabel>
+    <!-- right fourth toe -->
+    <MooGirlBody.corePart.parts.right_leg.parts.right_foot.parts.right_fourth_toe.customLabel>右第四趾</MooGirlBody.corePart.parts.right_leg.parts.right_foot.parts.right_fourth_toe.customLabel>
+    <!-- right middle toe -->
+    <MooGirlBody.corePart.parts.right_leg.parts.right_foot.parts.right_middle_toe.customLabel>右中趾</MooGirlBody.corePart.parts.right_leg.parts.right_foot.parts.right_middle_toe.customLabel>
+    <!-- right second toe -->
+    <MooGirlBody.corePart.parts.right_leg.parts.right_foot.parts.right_second_toe.customLabel>右第二趾</MooGirlBody.corePart.parts.right_leg.parts.right_foot.parts.right_second_toe.customLabel>
+    <!-- right big toe -->
+    <MooGirlBody.corePart.parts.right_leg.parts.right_foot.parts.right_big_toe.customLabel>右大趾</MooGirlBody.corePart.parts.right_leg.parts.right_foot.parts.right_big_toe.customLabel>
 </LanguageData>

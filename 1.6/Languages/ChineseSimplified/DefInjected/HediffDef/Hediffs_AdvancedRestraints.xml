@@ -1,62 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-<MooGirl_BrainWashing_Level1.label>初次洗脑</MooGirl_BrainWashing_Level1.label>
-<MooGirl_BrainWashing_Level1.description>是...是的...我服从您的命令...</MooGirl_BrainWashing_Level1.description>
-<MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.0.text>哎？...怎么回事</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.0.text>
-<MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.1.text>身体...为什么动不了</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.1.text>
-<MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.2.text>呜...</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.2.text>
-<MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.3.text>头...好晕...</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.3.text>
-<MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.4.text>...</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.4.text>
-<MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.5.text>...</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.5.text>
-<MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.6.text>...</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.6.text>
-<MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.7.text>呃...咕...</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.7.text>
-<MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.8.text>嗯...啊~♥</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.8.text>
-<MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.9.text>好~好舒服~♥</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.9.text>
-<MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.10.text>呜~♥</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.10.text>
-<MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.11.text>啊~♥</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.11.text>
-<MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.12.text>好的~♥</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.12.text>
-<MooGirl_BrainWashing_Level2.label>洗脑恍惚</MooGirl_BrainWashing_Level2.label>
-<MooGirl_BrainWashing_Level2.description>哎？咦？刚才发生了什么，我为什么站在这里....</MooGirl_BrainWashing_Level2.description>
-<MooGirl_BrainWashing_Level3.label>再次洗脑</MooGirl_BrainWashing_Level3.label>
-<MooGirl_BrainWashing_Level3.description>是...是的...嘿嘿...机械大人最棒了~♥</MooGirl_BrainWashing_Level3.description>
-<MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.0.text>哎？...怎么回事</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.0.text>
-<MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.1.text>又来了吗...</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.1.text>
-<MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.2.text>哦...</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.2.text>
-<MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.3.text>我...我不要输给机械呀...</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.3.text>
-<MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.4.text>...</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.4.text>
-<MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.5.text>噢...</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.5.text>
-<MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.6.text>...</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.6.text>
-<MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.7.text>呃...咕...</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.7.text>
-<MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.8.text>嗯...啊~♥</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.8.text>
-<MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.9.text>身体~好舒服~♥</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.9.text>
-<MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.10.text>呜~♥</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.10.text>
-<MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.11.text>啊~机械大人最棒了~♥</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.11.text>
-<MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.12.text>好的~♥</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.12.text>
-<MooGirl_BrainWashing_Level4.label>洗脑晕眩</MooGirl_BrainWashing_Level4.label>
-<MooGirl_BrainWashing_Level4.description>呜....头好晕...我又愣神了吗...一定是这个臭头盔，但是为什么...身体感觉好舒服（小声）</MooGirl_BrainWashing_Level4.description>
-<MooGirl_BrainWashing_Level5.label>洗脑完成</MooGirl_BrainWashing_Level5.label>
-<MooGirl_BrainWashing_Level5.description>明白...我明白了...杀...杀光...把殖民者...一个不剩的...杀光！</MooGirl_BrainWashing_Level5.description>
-<MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.0.text>齁？~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.0.text>
-<MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.1.text>这种感觉~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.1.text>
-<MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.2.text>呜~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.2.text>
-<MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.3.text>机械大人~♥机械大人~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.3.text>
-<MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.4.text>好舒服~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.4.text>
-<MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.5.text>噢~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.5.text>
-<MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.6.text>嘿嘿~</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.6.text>
-<MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.7.text>身体~好舒服~</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.7.text>
-<MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.8.text>嗯...啊~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.8.text>
-<MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.9.text>好舒服~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.9.text>
-<MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.10.text>啊~机械大人最棒了~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.10.text>
-<MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.11.text>嘿嘿~最喜欢机械大人了~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.11.text>
-<MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.12.text>嗯，我知道了~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.12.text>
-<MooGirl_EleShock.label>项圈电击</MooGirl_EleShock.label>
-<MooGirl_EleShock.description>不知道什么原因，电击项圈开始电击雪牛娘，还好只是轻微的电击。</MooGirl_EleShock.description>
-<MooGirl_MagneticShacklesBondage.label>磁力镣铐束缚</MooGirl_MagneticShacklesBondage.label>
-<MooGirl_MagneticShacklesBondage.description>雪牛娘的手臂被突然激活的磁力镣铐严格束缚在脖颈上，无法活动。</MooGirl_MagneticShacklesBondage.description>
-<MooGirl_MagneticShacklesBondage.labelNoun>磁力镣铐束缚</MooGirl_MagneticShacklesBondage.labelNoun>
-<MooGirl_PowerEleShock.label>强力项圈电击</MooGirl_PowerEleShock.label>
-<MooGirl_PowerEleShock.description>不知道什么原因，电击项圈开始强烈的电击雪牛娘。快停下！真的会出牛命的呀...</MooGirl_PowerEleShock.description>
-<MooGirl_PowerEleShock_NoMilk.label>强力项圈电击</MooGirl_PowerEleShock_NoMilk.label>
-<MooGirl_PowerEleShock_NoMilk.description>不知道什么原因，电击项圈开始强烈地电击佩戴者。</MooGirl_PowerEleShock_NoMilk.description>
-
+    <!-- Brainwashing Lv. 1 (First Brainwashing) -->
+    <MooGirl_BrainWashing_Level1.label>初次洗脑</MooGirl_BrainWashing_Level1.label>
+    <!-- Yes... yes... I obey your command... -->
+    <MooGirl_BrainWashing_Level1.description>是...是的...我服从您的命令...</MooGirl_BrainWashing_Level1.description>
+    <!-- Huh?... what's going on -->
+    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.0.text>哎？...怎么回事</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.0.text>
+    <!-- My body... why can't it move -->
+    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.1.text>身体...为什么动不了</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.1.text>
+    <!-- Ugh... -->
+    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.2.text>呜...</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.2.text>
+    <!-- My head... so dizzy... -->
+    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.3.text>头...好晕...</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.3.text>
+    <!-- ... -->
+    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.4.text>...</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.4.text>
+    <!-- ... -->
+    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.5.text>...</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.5.text>
+    <!-- ... -->
+    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.6.text>...</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.6.text>
+    <!-- Ugh... ngh... -->
+    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.7.text>呃...咕...</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.7.text>
+    <!-- Mm... ah~♥ -->
+    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.8.text>嗯...啊~♥</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.8.text>
+    <!-- S-so comfortable~♥ -->
+    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.9.text>好~好舒服~♥</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.9.text>
+    <!-- Ngh~♥ -->
+    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.10.text>呜~♥</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.10.text>
+    <!-- Ah~♥ -->
+    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.11.text>啊~♥</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.11.text>
+    <!-- Okay~♥ -->
+    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.12.text>好的~♥</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.12.text>
+    <!-- Brainwashing Lv. 2 (Brainwashing Trance) -->
+    <MooGirl_BrainWashing_Level2.label>洗脑恍惚</MooGirl_BrainWashing_Level2.label>
+    <!-- Huh? Eh? What just happened, why am I standing here... -->
+    <MooGirl_BrainWashing_Level2.description>哎？咦？刚才发生了什么，我为什么站在这里....</MooGirl_BrainWashing_Level2.description>
+    <!-- Brainwashing Lv. 3 (Brainwashing Again) -->
+    <MooGirl_BrainWashing_Level3.label>再次洗脑</MooGirl_BrainWashing_Level3.label>
+    <!-- Yes... yes... hehe... Mechanical-sama is the best~♥ -->
+    <MooGirl_BrainWashing_Level3.description>是...是的...嘿嘿...机械大人最棒了~♥</MooGirl_BrainWashing_Level3.description>
+    <!-- Huh?... what's going on -->
+    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.0.text>哎？...怎么回事</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.0.text>
+    <!-- Is it happening again... -->
+    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.1.text>又来了吗...</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.1.text>
+    <!-- Oh... -->
+    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.2.text>哦...</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.2.text>
+    <!-- I... I won't lose to the machine... -->
+    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.3.text>我...我不要输给机械呀...</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.3.text>
+    <!-- ... -->
+    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.4.text>...</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.4.text>
+    <!-- Oh... -->
+    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.5.text>噢...</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.5.text>
+    <!-- ... -->
+    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.6.text>...</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.6.text>
+    <!-- Ugh... ngh... -->
+    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.7.text>呃...咕...</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.7.text>
+    <!-- Mm... ah~♥ -->
+    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.8.text>嗯...啊~♥</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.8.text>
+    <!-- My body feels so good~♥ -->
+    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.9.text>身体~好舒服~♥</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.9.text>
+    <!-- Ngh~♥ -->
+    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.10.text>呜~♥</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.10.text>
+    <!-- Ah~ Mechanical-sama is the best~♥ -->
+    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.11.text>啊~机械大人最棒了~♥</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.11.text>
+    <!-- Okay~♥ -->
+    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.12.text>好的~♥</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.12.text>
+    <!-- Brainwashing Lv. 4 (Brainwashing Dizziness) -->
+    <MooGirl_BrainWashing_Level4.label>洗脑晕眩</MooGirl_BrainWashing_Level4.label>
+    <!-- Ugh.... my head is so dizzy... did I space out again... it must be this damn helmet, but why... my body feels so comfortable (whisper) -->
+    <MooGirl_BrainWashing_Level4.description>呜....头好晕...我又愣神了吗...一定是这个臭头盔，但是为什么...身体感觉好舒服（小声）</MooGirl_BrainWashing_Level4.description>
+    <!-- Brainwashing Lv. 5 (Brainwashing Complete) -->
+    <MooGirl_BrainWashing_Level5.label>洗脑完成</MooGirl_BrainWashing_Level5.label>
+    <!-- Understand... I understand... kill... kill them all... the colonists... not a single one left... kill them all! -->
+    <MooGirl_BrainWashing_Level5.description>明白...我明白了...杀...杀光...把殖民者...一个不剩的...杀光！</MooGirl_BrainWashing_Level5.description>
+    <!-- Huh?~♥ -->
+    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.0.text>齁？~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.0.text>
+    <!-- This feeling~♥ -->
+    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.1.text>这种感觉~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.1.text>
+    <!-- Ngh~♥ -->
+    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.2.text>呜~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.2.text>
+    <!-- Mechanical-sama~♥ Mechanical-sama~♥ -->
+    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.3.text>机械大人~♥机械大人~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.3.text>
+    <!-- So comfortable~♥ -->
+    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.4.text>好舒服~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.4.text>
+    <!-- Oh~♥ -->
+    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.5.text>噢~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.5.text>
+    <!-- Hehe~ -->
+    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.6.text>嘿嘿~</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.6.text>
+    <!-- My body~ feels so good~ -->
+    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.7.text>身体~好舒服~</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.7.text>
+    <!-- Mm... ah~♥ -->
+    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.8.text>嗯...啊~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.8.text>
+    <!-- So comfortable~♥ -->
+    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.9.text>好舒服~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.9.text>
+    <!-- Ah~ Mechanical-sama is the best~♥ -->
+    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.10.text>啊~机械大人最棒了~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.10.text>
+    <!-- Hehe~ I love Mechanical-sama the most~♥ -->
+    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.11.text>嘿嘿~最喜欢机械大人了~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.11.text>
+    <!-- Mm, I understand~♥ -->
+    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.12.text>嗯，我知道了~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.12.text>
+    <!-- Collar Electric Shock -->
+    <MooGirl_EleShock.label>项圈电击</MooGirl_EleShock.label>
+    <!-- For some reason, the electric shock collar started electrocuting the Mugirl, fortunately it was only a mild shock. -->
+    <MooGirl_EleShock.description>不知道什么原因，电击项圈开始电击雪牛娘，还好只是轻微的电击。</MooGirl_EleShock.description>
+    <!-- Magnetic Shackles Bondage -->
+    <MooGirl_MagneticShacklesBondage.label>磁力镣铐束缚</MooGirl_MagneticShacklesBondage.label>
+    <!-- The Mugirl's arms were strictly restrained to the Mugirl's neck by the suddenly activated magnetic shackles, unable to move. -->
+    <MooGirl_MagneticShacklesBondage.description>雪牛娘的手臂被突然激活的磁力镣铐严格束缚在脖颈上，无法活动。</MooGirl_MagneticShacklesBondage.description>
+    <!-- Magnetic Shackles Bondage -->
+    <MooGirl_MagneticShacklesBondage.labelNoun>磁力镣铐束缚</MooGirl_MagneticShacklesBondage.labelNoun>
+    <!-- Powerful Collar Electric Shock -->
+    <MooGirl_PowerEleShock.label>强力项圈电击</MooGirl_PowerEleShock.label>
+    <!-- For some reason, the electric shock collar started strongly electrocuting the Mugirl. Stop it quickly! It could really kill the Mugirl! -->
+    <MooGirl_PowerEleShock.description>不知道什么原因，电击项圈开始强烈的电击雪牛娘。快停下！真的会出牛命的呀...</MooGirl_PowerEleShock.description>
+    <!-- Powerful Collar Electric Shock -->
+    <MooGirl_PowerEleShock_NoMilk.label>强力项圈电击</MooGirl_PowerEleShock_NoMilk.label>
+    <!-- For some reason, the electric shock collar started strongly electrocuting the wearer. -->
+    <MooGirl_PowerEleShock_NoMilk.description>不知道什么原因，电击项圈开始强烈地电击佩戴者。</MooGirl_PowerEleShock_NoMilk.description>
 </LanguageData>

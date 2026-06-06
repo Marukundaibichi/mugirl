@@ -1,6 +1,5 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-
     <MooGirl.Text.FormatFailedLog>MooGirl text formatting failed: {ERROR}</MooGirl.Text.FormatFailedLog>
     <MooGirl.Settings.Category>MooGirl mod control</MooGirl.Settings.Category>
     <MooGirl.PatchRegistry.NullHarmony>Manual patches skipped because the Harmony instance is missing.</MooGirl.PatchRegistry.NullHarmony>
@@ -8,7 +7,6 @@
     <MooGirl.PatchRegistry.AlienRaceSwaddleGraphicFor>AlienRace swaddle GraphicFor prefix</MooGirl.PatchRegistry.AlienRaceSwaddleGraphicFor>
     <MooGirl.PatchRegistry.MissingTarget>Manual patch target missing: {0}</MooGirl.PatchRegistry.MissingTarget>
     <MooGirl.PatchRegistry.MissingPatchMethod>Manual patch method missing: {0}</MooGirl.PatchRegistry.MissingPatchMethod>
-
     <MooGirl.Restraints.MagneticShackles.ActivateLabel>Activate shackles</MooGirl.Restraints.MagneticShackles.ActivateLabel>
     <MooGirl.Restraints.MagneticShackles.ActivateDesc>Activate the magnetic shackles, restraining the target.</MooGirl.Restraints.MagneticShackles.ActivateDesc>
     <MooGirl.Restraints.MagneticShackles.DeactivateLabel>Release shackles</MooGirl.Restraints.MagneticShackles.DeactivateLabel>
@@ -20,25 +18,21 @@
     <MooGirl.Restraints.MagneticShackles.MessageOn>{0}'s magnetic shackles suddenly activated.</MooGirl.Restraints.MagneticShackles.MessageOn>
     <MooGirl.Restraints.MagneticShackles.MessageOff>{0}'s magnetic shackles were released.</MooGirl.Restraints.MagneticShackles.MessageOff>
     <MooGirl.Restraints.MagneticShackles.CooldownTicksLeft>Cooling down: {0}</MooGirl.Restraints.MagneticShackles.CooldownTicksLeft>
-
     <MooGirl.Restraints.ShockCollar.PowerLabel>Power shock</MooGirl.Restraints.ShockCollar.PowerLabel>
     <MooGirl.Restraints.ShockCollar.PowerDesc>Trigger one power shock.</MooGirl.Restraints.ShockCollar.PowerDesc>
     <MooGirl.Restraints.ShockCollar.CommonLabel>Common shock</MooGirl.Restraints.ShockCollar.CommonLabel>
     <MooGirl.Restraints.ShockCollar.CommonDesc>Trigger one common shock.</MooGirl.Restraints.ShockCollar.CommonDesc>
     <MooGirl.Restraints.ShockCollar.PowerCooldownTicksLeft>Cooling down: {0}</MooGirl.Restraints.ShockCollar.PowerCooldownTicksLeft>
     <MooGirl.Restraints.ShockCollar.CommonCooldownTicksLeft>Cooling down: {0}</MooGirl.Restraints.ShockCollar.CommonCooldownTicksLeft>
-
     <MooGirl.Restraints.DevUnlock.Label>Dev: unlock {0}</MooGirl.Restraints.DevUnlock.Label>
     <MooGirl.Restraints.DevUnlock.Desc>Dev mode: immediately remove the wear lock from {0} for debugging.</MooGirl.Restraints.DevUnlock.Desc>
     <MooGirl.Restraints.DevUnlock.Message>Dev-unlocked {0}'s {1}.</MooGirl.Restraints.DevUnlock.Message>
-
     <MooGirl.Restraints.BrainwashHelmet.ActivateLabel>Activate brainwashing</MooGirl.Restraints.BrainwashHelmet.ActivateLabel>
     <MooGirl.Restraints.BrainwashHelmet.ActivateDesc>Activate the brainwashing helmet and brainwash the target.</MooGirl.Restraints.BrainwashHelmet.ActivateDesc>
     <MooGirl.Restraints.BrainwashHelmet.ManualTriggerMessage>{0} activated the brainwashing device.</MooGirl.Restraints.BrainwashHelmet.ManualTriggerMessage>
     <MooGirl.Restraints.BrainwashHelmet.IdeoConvertLabel>Ideology conversion</MooGirl.Restraints.BrainwashHelmet.IdeoConvertLabel>
     <MooGirl.Restraints.BrainwashHelmet.IdeoConvertDesc>Change the wearer's ideology to the colony's primary ideology.</MooGirl.Restraints.BrainwashHelmet.IdeoConvertDesc>
     <MooGirl.Restraints.BrainwashHelmet.IdeoConvertMessage>{0}'s ideology has been converted to the colony's primary ideology.</MooGirl.Restraints.BrainwashHelmet.IdeoConvertMessage>
-
     <MooGirl.MilkingDevice.StoredMessage>{0}'s milking device stored one production charge ({1}/{2}).</MooGirl.MilkingDevice.StoredMessage>
     <MooGirl.MilkingDevice.ReleaseMessage>{0} released the stored milk and produced {1} MooGirl milk.</MooGirl.MilkingDevice.ReleaseMessage>
     <MooGirl.MilkingDevice.ReleaseLabel>Release stored milk</MooGirl.MilkingDevice.ReleaseLabel>
@@ -85,49 +79,37 @@
     <MooGirl.Milk.FloatMenu.NotEnoughMilk>Not enough milk</MooGirl.Milk.FloatMenu.NotEnoughMilk>
     <MooGirl.Milk.GatherInactiveLog>MooGirl: {0} gathered body resources while inactive: {1}</MooGirl.Milk.GatherInactiveLog>
     <MooGirl.Nurture.Completed>{PAWN_labelShort} has received complete Mugirl nurture.</MooGirl.Nurture.Completed>
-
     <MooGirl.CrackBondageGear_TargetNotValid>The target is not decryptable. Decryption is not possible.</MooGirl.CrackBondageGear_TargetNotValid>
     <MooGirl.CrackBondageGear_CrackAdvanced>Decrypting Advanced Restraint: {0}.</MooGirl.CrackBondageGear_CrackAdvanced>
     <MooGirl.CrackBondageGear_CrackBrainwash>Decrypting Brainwashing Restraint: {0}.</MooGirl.CrackBondageGear_CrackBrainwash>
     <MooGirl.CrackBondageGear_NoCrackableType>Unknown type, cannot be decrypted.</MooGirl.CrackBondageGear_NoCrackableType>
-
     <MooGirl.SelfLabel>Self</MooGirl.SelfLabel>
     <MooGirl.Reserved>Reserved</MooGirl.Reserved>
     <MooGirl.NotWearingLockedApparel>Not wearing locked restraint.</MooGirl.NotWearingLockedApparel>
-
     <MooGirl.AlreadyCracked>This device has been decrypted.</MooGirl.AlreadyCracked>
     <MooGirl.InvalidTarget>Invalid Target.</MooGirl.InvalidTarget>
-
     <MooGirl.SlaveApparelCannotBeRemoved>Mugirl Restraint cannot be removed. The restraint requires the corresponding key to unlock.</MooGirl.SlaveApparelCannotBeRemoved>
-
     <MooGirl.BrainwashStart>The brainwashing device suddenly activated, {0} is being brainwashed.</MooGirl.BrainwashStart>
     <MooGirl.BrainwashEnd>{0}'s brainwashing has ended.</MooGirl.BrainwashEnd>
-
     <MooGirl.SuppressionIncrease>Suppression +{0}</MooGirl.SuppressionIncrease>
-
     <MooGirl.SlaveApparelFullyUnlocked>{0}'s restraint has been completely unlocked.</MooGirl.SlaveApparelFullyUnlocked>
     <MooGirl.Restraints.UnlockTargetMissingLog>Unlocking failed: target pawn or target apparel is missing.</MooGirl.Restraints.UnlockTargetMissingLog>
     <MooGirl.HandsBlocked>Unable to free this pawn's self: hands bound.</MooGirl.HandsBlocked>
     <MooGirl.SlaveApparelUnlockPartial>{0} unlocks {1}'s restraint. {2} more key(s) are required to completely unlock.</MooGirl.SlaveApparelUnlockPartial>
     <MooGirl.WrongKeyType>Unable to unlock: Key type does not match {0}</MooGirl.WrongKeyType>
-
     <MooGirl.NoPath>No Path</MooGirl.NoPath>
     <MooGirl.CannotPrioritizeWorkTypeDisabled>Unable to work ({0} has been disabled)</MooGirl.CannotPrioritizeWorkTypeDisabled>
-
     <MooGirl.SlaveApparelCracked>{0}'s restraint has been decrypted.</MooGirl.SlaveApparelCracked>
     <MooGirl.SlaveApparel.StatusLabel>{0} ({1})</MooGirl.SlaveApparel.StatusLabel>
     <MooGirl.CrackStatus>Decryption Status</MooGirl.CrackStatus>
     <MooGirl.Cracked>Decrypted</MooGirl.Cracked>
     <MooGirl.Uncracked>Not Decrypted</MooGirl.Uncracked>
     <MooGirl.CrackStatusDesc>Whether this restraint has been decrypted.</MooGirl.CrackStatusDesc>
-
     <MooGirl.RopeToHitch>Rope to Hitch</MooGirl.RopeToHitch>
     <MooGirl.NoValidToRope>No valid object to be roped.</MooGirl.NoValidToRope>
-
     <MooGirl.RopedByPawn>Roped by other pawn</MooGirl.RopedByPawn>
     <MooGirl.RopedToHitchingPost>Roped to Hitching Post.</MooGirl.RopedToHitchingPost>
     <MooGirl.RopedToSpot>Roped to A Certain Spot.</MooGirl.RopedToSpot>
-
     <MooGirl.Rope.Target>Rope {0}</MooGirl.Rope.Target>
     <MooGirl.Rope.SuccessChance>Success Rate</MooGirl.Rope.SuccessChance>
     <MooGirl.Rope.TargetWithSuccessChance>{0} ({1} {2})</MooGirl.Rope.TargetWithSuccessChance>
@@ -135,9 +117,7 @@
     <MooGirl.FloatMenu.OptionWithReason>{0} ({1})</MooGirl.FloatMenu.OptionWithReason>
     <MooGirl.FloatMenu.ActionOnTarget>{0} on {1}</MooGirl.FloatMenu.ActionOnTarget>
     <MooGirl.FloatMenu.ActionOnReserved>{0} on ({1})</MooGirl.FloatMenu.ActionOnReserved>
-
     <MooGirl.DraftDisabledWhileRoped>The Mugirl is currently being roped by others and cannot be drafted.</MooGirl.DraftDisabledWhileRoped>
-
     <MooGirl.Mount.Target>Mount {0}</MooGirl.Mount.Target>
     <MooGirl.Mount.DismountRider>Dismount rider</MooGirl.Mount.DismountRider>
     <MooGirl.Mount.DismountRiderDesc>Drop the current rider from this MooGirl.</MooGirl.Mount.DismountRiderDesc>
@@ -171,8 +151,6 @@
     <MooGirl.Mount.ReasonRiderMedical>needs medical rest</MooGirl.Mount.ReasonRiderMedical>
     <MooGirl.Mount.ReasonTurretHoldFire>Rider is holding fire</MooGirl.Mount.ReasonTurretHoldFire>
     <MooGirl.Mount.ReasonNoRangedWeapon>Rider has no ranged weapon</MooGirl.Mount.ReasonNoRangedWeapon>
-
-    <!-- Giant corporation courier contact -->
     <MooGirl.CourierContactLetterLabel>Corporate Courier</MooGirl.CourierContactLetterLabel>
     <MooGirl.CourierContactLetterText>A mega corporation courier is approaching from the edge of the map. He has not opened fire, but he looks extremely nervous. You can send a colonist to negotiate with him.</MooGirl.CourierContactLetterText>
     <MooGirl.CourierTalkOption>Negotiate with the corporate courier</MooGirl.CourierTalkOption>
@@ -211,63 +189,24 @@
     <MooGirl.CourierDiary.Page3>[Page Three]\n\nAbout MooGirls:\n\nMooGirls are products of genetic engineering. Their milk has exceptional nutritional value, and MooGirl dairy products can provide additional benefits.\n\nMooGirl milk pudding improves mood, cheese can detoxify, and aged cheese and milk tablets can strengthen immunity.</MooGirl.CourierDiary.Page3>
     <MooGirl.CourierDiary.Page4>[Page Four]\n\nAbout restraint keys:\n\nCrude restraint keys can be made at machining tables or smithies. Fine restraint keys require more advanced workstations.\n\nIf you find keys carried by a lucky courier, you can use them to unlock restraints on MooGirls.</MooGirl.CourierDiary.Page4>
     <MooGirl.CourierDiary.Page5>[Page Five]\n\nSurvival advice:\n\n1. Develop MooGirl husbandry for a stable milk supply\n2. Build enough defenses against mega corporation raids\n3. Produce dairy foods to strengthen colonists\n4. Restraint keys can help recruit enslaved MooGirls\n\nGood luck surviving this brutal world.</MooGirl.CourierDiary.Page5>
-
     <MooGirl.LetterLabelWandererJoins>Wanderer Joins: {PAWN_nameDef}</MooGirl.LetterLabelWandererJoins>
-    <MooGirl.LetterWandererJoins>
-        A {PAWN_title} named {PAWN_nameDef} has arrived here, wishing to join the colony.\n\n[PAWN_pronoun] claims to have nowhere else to go and is willing to contribute. {PAWN_objective} won't leave voluntarily; you can choose to refuse {PAWN_objective} and send {PAWN_objective} away. However, your colonists will feel uneasy about turning away someone in need.</MooGirl.LetterWandererJoins>
-
-    <!-- <MooGirl.RopeRoperStateInvalid>牵引者状态异常，已断开绳索</MooGirl.RopeRoperStateInvalid>
-    <MooGirl.RopeRopeeStateInvalid>被牵引者状态异常，已断开绳索</MooGirl.RopeRopeeStateInvalid>
-    <MooGirl.RopeCannotReachTarget>目标无法到达，已断开绳索</MooGirl.RopeCannotReachTarget>
-    <MooGirl.RopeHitchingPostLost>栓点丢失，已断开绳索</MooGirl.RopeHitchingPostLost> -->
-
-    <!-- 开局逃生舱坠毁 -->
+    <MooGirl.LetterWandererJoins>A {PAWN_title} named {PAWN_nameDef} has arrived here, wishing to join the colony.\n\n[PAWN_pronoun] claims to have nowhere else to go and is willing to contribute. {PAWN_objective} won't leave voluntarily; you can choose to refuse {PAWN_objective} and send {PAWN_objective} away. However, your colonists will feel uneasy about turning away someone in need.</MooGirl.LetterWandererJoins>
     <MooGirl.LetterLabelOpeningPodCrash>Transport Pod Crashed (Mugirl Slave)</MooGirl.LetterLabelOpeningPodCrash>
     <MooGirl.OpeningPodCrash_MultipleIntro>Transport pods have crashed, carrying multiple escapees.</MooGirl.OpeningPodCrash_MultipleIntro>
-
-    <MooGirl.OpeningPodCrash>
-        Two transport pods have crash-landed nearby, each carrying an escaped Mugirl slave.\nThey just escaped from a mega corporation's slave transport ship- whether due to ship malfunction, attack, or some other means remains unknown. The escape has left them utterly exhausted, and the tightly bound slave restraints on their bodies silently record the pain and submission they endured under the mega corporation's tyranny. The impact has also left {PAWN_pronoun} severely injured.\n\nNow they have nowhere to go. If you choose to rescue them, they will join your colony. Will you give these two pitiful yet lovely escapees a chance at freedom and a new life?
-    </MooGirl.OpeningPodCrash>
-
-    <MooGirl.OpeningPodCrash_Child>
-        Among them, {PAWN_nameDef} is a {AGE}-year-old child who has just escaped from a slave caravan and is completely alone.
-    </MooGirl.OpeningPodCrash_Child>
-
-    <MooGirl.OpeningPodCrash_Factionless>
-        Among them, [PAWN_pronoun] doesn't belong to any faction. You can choose to rescue [PAWN_objective], hoping [PAWN_pronoun] will freely join your colony, or you can choose to capture [PAWN_objective] to recruit or enslave [PAWN_objective].
-    </MooGirl.OpeningPodCrash_Factionless>
-
-    <MooGirl.OpeningPodCrash_Hostile>
-        Among them, {PAWN_nameDef} comes from the hostile faction {PAWN_factionName}. You can capture [PAWN_objective] to recruit or enslave [PAWN_objective].
-    </MooGirl.OpeningPodCrash_Hostile>
-
-    <MooGirl.OpeningPodCrash_NonHostile>
-        {PAWN_nameDef} comes from {PAWN_factionName}. If you rescue [PAWN_objective], [PAWN_pronoun] will improve relations between your factions when [PAWN_pronoun] returns.\n\nYou can also capture [PAWN_objective] to recruit or enslave [PAWN_objective], but this will anger [PAWN_possessive] faction.
-    </MooGirl.OpeningPodCrash_NonHostile>
+    <MooGirl.OpeningPodCrash>Two transport pods have crash-landed nearby, each carrying an escaped Mugirl slave.\nThey just escaped from a mega corporation's slave transport ship- whether due to ship malfunction, attack, or some other means remains unknown. The escape has left them utterly exhausted, and the tightly bound slave restraints on their bodies silently record the pain and submission they endured under the mega corporation's tyranny. The impact has also left {PAWN_pronoun} severely injured.\n\nNow they have nowhere to go. If you choose to rescue them, they will join your colony. Will you give these two pitiful yet lovely escapees a chance at freedom and a new life?</MooGirl.OpeningPodCrash>
+    <MooGirl.OpeningPodCrash_Child>Among them, {PAWN_nameDef} is a {AGE}-year-old child who has just escaped from a slave caravan and is completely alone.</MooGirl.OpeningPodCrash_Child>
+    <MooGirl.OpeningPodCrash_Factionless>Among them, [PAWN_pronoun] doesn't belong to any faction. You can choose to rescue [PAWN_objective], hoping [PAWN_pronoun] will freely join your colony, or you can choose to capture [PAWN_objective] to recruit or enslave [PAWN_objective].</MooGirl.OpeningPodCrash_Factionless>
+    <MooGirl.OpeningPodCrash_Hostile>Among them, {PAWN_nameDef} comes from the hostile faction {PAWN_factionName}. You can capture [PAWN_objective] to recruit or enslave [PAWN_objective].</MooGirl.OpeningPodCrash_Hostile>
+    <MooGirl.OpeningPodCrash_NonHostile>{PAWN_nameDef} comes from {PAWN_factionName}. If you rescue [PAWN_objective], [PAWN_pronoun] will improve relations between your factions when [PAWN_pronoun] returns.\n\nYou can also capture [PAWN_objective] to recruit or enslave [PAWN_objective], but this will anger [PAWN_possessive] faction.</MooGirl.OpeningPodCrash_NonHostile>
     <MooGirl.OpeningPodCrash.Log.FactionlessGenerationFailed>Failed to generate a factionless opening pod pawn after {0} attempts. Check PawnKindDef or other pawn generation patches.</MooGirl.OpeningPodCrash.Log.FactionlessGenerationFailed>
     <MooGirl.OpeningPodCrash.Exception.MustBeFactionless>MooGirl opening pod pawn must be generated factionless.</MooGirl.OpeningPodCrash.Exception.MustBeFactionless>
     <MooGirl.Newborn.Log.CorrectedBodyTypes>Corrected juvenile MooGirl body types: {0}.</MooGirl.Newborn.Log.CorrectedBodyTypes>
-
-
-    <!-- 通常逃生舱坠毁 -->
     <MooGirl.LetterLabelRefugeePodCrash>Transport Pod Crashed (Mugirl Slave)</MooGirl.LetterLabelRefugeePodCrash>
-    <MooGirl.RefugeePodCrash>
-        An transport pod has crash-landed nearby, carrying a {PAWN_titleIndef} named {PAWN_nameDef}.\nShe just escaped from a mega corporation's slave transport ship - whether due to ship malfunction, attack, or some other means remains unknown. The escape has left her utterly exhausted, and the tightly bound slave restraints on her body silently record the pain and submission she endured under the mega corporation's tyranny. The impact has also left {PAWN_pronoun} severely injured.\n\nWill you give this escapee a chance at freedom and a new life?
-    </MooGirl.RefugeePodCrash>
+    <MooGirl.RefugeePodCrash>An transport pod has crash-landed nearby, carrying a {PAWN_titleIndef} named {PAWN_nameDef}.\nShe just escaped from a mega corporation's slave transport ship - whether due to ship malfunction, attack, or some other means remains unknown. The escape has left her utterly exhausted, and the tightly bound slave restraints on her body silently record the pain and submission she endured under the mega corporation's tyranny. The impact has also left {PAWN_pronoun} severely injured.\n\nWill you give this escapee a chance at freedom and a new life?</MooGirl.RefugeePodCrash>
     <MooGirl.RefugeePodCrash_Child>{PAWN_nameDef} is a {AGE}-year-old child and is completely alone.</MooGirl.RefugeePodCrash_Child>
-    <MooGirl.RefugeePodCrash_Factionless>
-        [PAWN_pronoun] doesn't belong to any faction. You can choose to rescue [PAWN_objective], hoping [PAWN_pronoun] will freely join your colony, or you can choose to capture [PAWN_objective] to recruit or enslave [PAWN_objective].
-    </MooGirl.RefugeePodCrash_Factionless>
-    <MooGirl.RefugeePodCrash_Hostile>
-        {PAWN_nameDef} comes from the hostile faction {PAWN_factionName}. You can capture [PAWN_objective] to recruit or enslave [PAWN_objective].
-    </MooGirl.RefugeePodCrash_Hostile>
-    <MooGirl.RefugeePodCrash_NonHostile>
-        {PAWN_nameDef} comes from {PAWN_factionName}. If you rescue [PAWN_objective], [PAWN_pronoun] will improve relations between your factions when [PAWN_pronoun] returns.\n\nYou can also capture [PAWN_objective] to recruit or enslave [PAWN_objective], but this will anger [PAWN_possessive] faction.
-    </MooGirl.RefugeePodCrash_NonHostile>
-
-    <!-- 流浪雪牛加入 -->
+    <MooGirl.RefugeePodCrash_Factionless>[PAWN_pronoun] doesn't belong to any faction. You can choose to rescue [PAWN_objective], hoping [PAWN_pronoun] will freely join your colony, or you can choose to capture [PAWN_objective] to recruit or enslave [PAWN_objective].</MooGirl.RefugeePodCrash_Factionless>
+    <MooGirl.RefugeePodCrash_Hostile>{PAWN_nameDef} comes from the hostile faction {PAWN_factionName}. You can capture [PAWN_objective] to recruit or enslave [PAWN_objective].</MooGirl.RefugeePodCrash_Hostile>
+    <MooGirl.RefugeePodCrash_NonHostile>{PAWN_nameDef} comes from {PAWN_factionName}. If you rescue [PAWN_objective], [PAWN_pronoun] will improve relations between your factions when [PAWN_pronoun] returns.\n\nYou can also capture [PAWN_objective] to recruit or enslave [PAWN_objective], but this will anger [PAWN_possessive] faction.</MooGirl.RefugeePodCrash_NonHostile>
     <LetterLabelWandererJoins>Wanderer Joins: {PAWN_nameDef}</LetterLabelWandererJoins>
-    <LetterWandererJoins>
-        A {PAWN_title} named {PAWN_nameDef} has arrived here; she escaped from a slave caravan, with tattered restraints still bound to [PAWN_objective], telling of [PAWN_possessive] tragic past. With nowhere to go, she is willing to contribute to your colony. {PAWN_objective} won't leave voluntarily; you can choose to refuse [PAWN_objective] and send [PAWN_objective] away, but your colonists will feel uneasy about turning away someone in need.\n\nWill you give this pitiful yet resilient escapee a chance at freedom and a new life?
-    </LetterWandererJoins>
+    <LetterWandererJoins>A {PAWN_title} named {PAWN_nameDef} has arrived here; she escaped from a slave caravan, with tattered restraints still bound to [PAWN_objective], telling of [PAWN_possessive] tragic past. With nowhere to go, she is willing to contribute to your colony. {PAWN_objective} won't leave voluntarily; you can choose to refuse [PAWN_objective] and send [PAWN_objective] away, but your colonists will feel uneasy about turning away someone in need.\n\nWill you give this pitiful yet resilient escapee a chance at freedom and a new life?</LetterWandererJoins>
 </LanguageData>

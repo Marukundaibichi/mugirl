@@ -1,21 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
+    <!-- Mugirl milk pudding -->
     <MooGirl_MilkPudding.label>雪牛娘奶布丁</MooGirl_MilkPudding.label>
+    <!-- Soft like a delicate jelly, rich and quick to melt in the mouth. One serving can linger in a child's memory for days, and many adults love it too. -->
     <MooGirl_MilkPudding.description>口感像更柔软的果冻，香浓而又入口即化，吃上一份就能让孩子们回味上好几天，很多大人也非常爱吃</MooGirl_MilkPudding.description>
+    <!-- Mugirl cheese -->
     <MooGirl_Cheese.label>雪牛娘奶酪</MooGirl_Cheese.label>
+    <!-- A classic food with a very long shelf life and enough nutrition to fill you up, like an upgraded survival meal. -->
     <MooGirl_Cheese.description>很经典的食物，同时保存期极长而且管饱，是高级干肉饼</MooGirl_Cheese.description>
+    <!-- Aged Mugirl cheese -->
     <MooGirl_AgedCheese.label>雪牛娘陈年奶酪</MooGirl_AgedCheese.label>
+    <!-- A fine cheese made with longer fermentation than ordinary cheese. After full fermentation, microorganisms react with Mugirl milk and hops to produce a special amino acid that greatly improves the activity of the liver and other organs, making it a staple for people worried about cardiovascular illness.\n\nRemember to prepare more for elders with family medical histories, especially grandparents. Melted aged cheese is low in sugar, easy to digest, and easy to break down, according to food inspection certification. -->
     <MooGirl_AgedCheese.description>精品制作的奶酪，使用了比普通奶酪更长的发酵时间，充分发酵过后微生物与雪牛娘奶和啤酒花的混合成分发生了复杂的化学反应，产生出一种神奇的氨基酸，这种氨基酸能使体内肝脏等器官活性大幅提高，是心脑血管疾病患者的必备食品。\n\n请记得多为家中有遗传病史的长辈准备，尤其是爷爷奶奶之类的老人，加热融化后的陈年奶酪蕴含的糖含量低，脂肪易消化和分解——源自食品检验检测部门的认证</MooGirl_AgedCheese.description>
+    <!-- Mugirl milk baota candy -->
     <MooGirl_BaotaSugar.label>雪牛娘奶宝塔糖</MooGirl_BaotaSugar.label>
+    <!-- A popular candy dewormer once invented by food production departments. -->
     <MooGirl_BaotaSugar.description>过去由食品生产部门发明，广受好评的糖果打虫药</MooGirl_BaotaSugar.description>
+    <!-- Big cow milk candy -->
     <MooGirl_MilkCandy.label>大肥牛奶糖</MooGirl_MilkCandy.label>
+    <!-- No description yet. -->
     <MooGirl_MilkCandy.description>暂无</MooGirl_MilkCandy.description>
+    <!-- Mugirl milk cake -->
     <MooGirl_CowCake.label>雪牛娘牛乳蛋糕</MooGirl_CowCake.label>
+    <!-- No description yet. -->
     <MooGirl_CowCake.description>暂无</MooGirl_CowCake.description>
+    <!-- Mugirl milk powder -->
     <MooGirl_MilkPowder.label>雪牛娘奶粉</MooGirl_MilkPowder.label>
+    <!-- No description yet. -->
     <MooGirl_MilkPowder.description>暂无</MooGirl_MilkPowder.description>
+    <!-- Mugirl milk tablet -->
     <MooGirl_MilkTablet.label>雪牛娘奶片</MooGirl_MilkTablet.label>
+    <!-- No description yet. -->
     <MooGirl_MilkTablet.description>暂无</MooGirl_MilkTablet.description>
+    <!-- Milk cream apple -->
     <MooGirl_MilkCreamApple.label>奶霜苹果</MooGirl_MilkCreamApple.label>
+    <!-- No description yet. -->
     <MooGirl_MilkCreamApple.description>暂无</MooGirl_MilkCreamApple.description>
 </LanguageData>
