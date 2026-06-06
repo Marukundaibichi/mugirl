@@ -1,10 +1,14 @@
+using HarmonyLib;
 using RimWorld;
+using System.Reflection;
 using Verse;
 
 namespace MooGirl
 {
     internal static class MooGirlJuvenileGraphicUtility
     {
+        private const string TeenagerLifeStageDefName = "MooGirl_Teenager";
+
         public static bool NormalizeBodyType(Pawn pawn)
         {
             if (!ModsConfig.BiotechActive || pawn?.story == null || !IsMooGirl(pawn))
@@ -17,9 +21,17 @@ namespace MooGirl
             {
                 expectedBodyType = BodyTypeDefOf.Baby;
             }
+            else if (IsTeenagerLifeStage(pawn))
+            {
+                expectedBodyType = BodyTypeDefOf.Female;
+            }
             else if (pawn.DevelopmentalStage.Child())
             {
                 expectedBodyType = BodyTypeDefOf.Child;
+            }
+            else if (pawn.DevelopmentalStage.Adult())
+            {
+                expectedBodyType = BodyTypeDefOf.Female;
             }
 
             if (expectedBodyType == null || pawn.story.bodyType == expectedBodyType)
@@ -51,6 +63,23 @@ namespace MooGirl
         private static bool IsMooGirl(Pawn pawn)
         {
             return pawn?.def == MooGirl_DefOf.MooGirl || pawn?.RaceProps?.body == MooGirl_DefOf.MooGirlBody;
+        }
+
+        private static bool IsTeenagerLifeStage(Pawn pawn)
+        {
+            return pawn?.ageTracker?.CurLifeStage?.defName == TeenagerLifeStageDefName;
+        }
+    }
+
+    [HarmonyPatch(typeof(Pawn_AgeTracker), "RecalculateLifeStageIndex")]
+    internal static class Harmony_PawnAgeTracker_RecalculateLifeStageIndex_MooGirlBodyType
+    {
+        private static readonly FieldInfo PawnField = AccessTools.Field(typeof(Pawn_AgeTracker), "pawn");
+
+        public static void Postfix(Pawn_AgeTracker __instance)
+        {
+            Pawn pawn = PawnField?.GetValue(__instance) as Pawn;
+            MooGirlJuvenileGraphicUtility.NormalizeBodyType(pawn);
         }
     }
 }
