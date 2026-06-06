@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  <InteractionDef>
+    <InteractionDef>
     <defName>MooGirl_Nuzzle</defName>
     <!-- 蹭蹭 -->
     <label>Nuzzle</label>
@@ -8,7 +8,7 @@
     <symbol>Things/Mote/SpeechSymbols/Nuzzle</symbol>
     <workerClass>MooGirl.InteractionWorker_Nuzzle</workerClass>
     <logRulesInitiator>
-      <rulesStrings>
+        <rulesStrings>
         <li>r_logentry(p=2)->[INITIATOR_nameDef] [nuzzleadverb] [nuzzled] [RECIPIENT_nameDef].</li>
         <li>r_logentry->[INITIATOR_nameDef] [nuzzleadverb] rubbed [INITIATOR_possessive] nose against [RECIPIENT_nameDef]'s [rubbedpart].</li>
 
@@ -36,7 +36,7 @@
         <li>rubbedpart->hand</li>
         <li>rubbedpart->side</li>
         <li>rubbedpart->arm</li>
-      </rulesStrings>
+        </rulesStrings>
     </logRulesInitiator>
-  </InteractionDef>
+    </InteractionDef>
 </Defs>

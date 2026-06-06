@@ -24,7 +24,7 @@ namespace MooGirl
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             return pawn.Reserve(item, job, 1, -1, null, errorOnFailed) &&
-                   pawn.Reserve(targetApparel, job, 1, -1, null, errorOnFailed);
+                    pawn.Reserve(targetApparel, job, 1, -1, null, errorOnFailed);
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
@@ -65,7 +65,7 @@ namespace MooGirl
             // 等待和进度条
             yield return Toils_General.Wait(60)
                 .WithProgressBarToilDelay(appear)
-                .FailOnDespawnedNullOrForbidden(appear); 
+                .FailOnDespawnedNullOrForbidden(appear);
 
             // 获取目标装备的破解效果并执行
             yield return new Toil

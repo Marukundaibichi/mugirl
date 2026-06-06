@@ -7,14 +7,14 @@
 - 补齐英文与简中 `DefInjected`，覆盖所有源 Def 玩家文本键，包括 backstory `baseDesc`、武器 projectile label、工具 label 和自定义 comp `useLabel`。
 - 清理中文语言文件中的 TODO 与注释残留，简中翻译文件只保留节点正文。
 - 将生产路径中的生成式/错误命名改为业务命名：
-  - `AiGenerated_DefOf.cs` -> `MooGirlContentDefOf.cs`
-  - `AiGenerated_Patch.xml` -> `MilkFood_TraderStock_Patch.xml`
-  - `Apparel_NewAdded.xml` -> `Apparel_SpecializedGear.xml`
-  - `Apparel_Stcoking.xml` -> `Apparel_Stockings.xml`
-  - `Apparel_Layer_MooGirl_New.xml` -> `Apparel_Layer_Stockings.xml`
-  - `Hediffs_Advance.xml` -> `Hediffs_AdvancedRestraints.xml`
-  - `Apparel_Bongdage/BongdageApparel_*.xml` -> `Apparel_Bondage/BondageApparel_*.xml`
-  - `NewBron` 源码目录 -> `Newborn`
+    - `AiGenerated_DefOf.cs` -> `MooGirlContentDefOf.cs`
+    - `AiGenerated_Patch.xml` -> `MilkFood_TraderStock_Patch.xml`
+    - `Apparel_NewAdded.xml` -> `Apparel_SpecializedGear.xml`
+    - `Apparel_Stcoking.xml` -> `Apparel_Stockings.xml`
+    - `Apparel_Layer_MooGirl_New.xml` -> `Apparel_Layer_Stockings.xml`
+    - `Hediffs_Advance.xml` -> `Hediffs_AdvancedRestraints.xml`
+    - `Apparel_Bongdage/BongdageApparel_*.xml` -> `Apparel_Bondage/BondageApparel_*.xml`
+    - `NewBron` 源码目录 -> `Newborn`
 
 ## 行为保护
 

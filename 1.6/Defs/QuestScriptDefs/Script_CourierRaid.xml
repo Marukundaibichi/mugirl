@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <QuestScriptDef>
+    <QuestScriptDef>
     <defName>MooGirl_CourierRaid</defName>
     <autoAccept>true</autoAccept>
     <questNameRules>
-      <rulesStrings>
+        <rulesStrings>
         <!-- 运货员接触 -->
         <li>questName->Courier contact</li>
-      </rulesStrings>
+        </rulesStrings>
     </questNameRules>
     <questDescriptionRules>
-      <rulesStrings>
+        <rulesStrings>
         <!-- 一名巨型企业的运货员携带重要物品来到你的殖民地附近。你可以派殖民者与他交涉。 -->
         <li>questDescription->A mega corporation courier carrying important items has arrived near your colony. You can send a colonist to negotiate with him.</li>
-      </rulesStrings>
+        </rulesStrings>
     </questDescriptionRules>
     <root Class="MooGirl.QuestNode_Root_MooGirl_CourierRaid" />
-  </QuestScriptDef>
+    </QuestScriptDef>
 
 </Defs>

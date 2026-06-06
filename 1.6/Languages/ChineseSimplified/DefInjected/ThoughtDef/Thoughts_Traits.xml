@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-  <MooGirl_AteHay.stages.0.description>干巴巴的...就不能给口水喝吗？</MooGirl_AteHay.stages.0.description>
-  <MooGirl_AteHay.stages.0.label>吃了干草</MooGirl_AteHay.stages.0.label>
-  <MooGirl_AteNutrient.stages.0.description>口区~黏糊糊的...好恶心~</MooGirl_AteNutrient.stages.0.description>
-  <MooGirl_AteNutrient.stages.0.label>吃了营养膏</MooGirl_AteNutrient.stages.0.label>
-  <MooGirl_BrainWashing_End.stages.0.description>呜呜呜呜...对不起...{0}不是故意伤害大家的....都是这个坏头盔...</MooGirl_BrainWashing_End.stages.0.description>
-  <MooGirl_BrainWashing_End.stages.0.label>洗脑抵抗</MooGirl_BrainWashing_End.stages.0.label>
-  <MooGirl_BrainwashHappy.stages.0.description>嘿嘿嘿~虽然不知道为什么，总觉得很开心~</MooGirl_BrainwashHappy.stages.0.description>
-  <MooGirl_BrainwashHappy.stages.0.label>洗脑愉悦</MooGirl_BrainwashHappy.stages.0.label>
-  <MooGirl_Nuzzled.stages.0.description>雪牛娘用她柔软的毛发轻轻依偎在你身边，温暖而可爱，她轻声告诉你，一切都会好起来的，你觉得眼前的困难似乎没那么难了。</MooGirl_Nuzzled.stages.0.description>
-  <MooGirl_Nuzzled.stages.0.label>被依偎</MooGirl_Nuzzled.stages.0.label>
-  <MooGirl_Nuzzled.stages.1.description>雪牛娘轻轻蹭了蹭你，用自己的经历安慰你，仿佛告诉你：即使遇到困境，也总会有人陪伴。你感到心里暖洋洋的，压力减轻了许多。</MooGirl_Nuzzled.stages.1.description>
-  <MooGirl_Nuzzled.stages.1.label>被亲昵</MooGirl_Nuzzled.stages.1.label>
-  <MooGirl_Roped.stages.0.description>呜呜呜~我是雪牛娘！不是雪牛！！不要牵着我到处走呀~(╥﹏╥)。</MooGirl_Roped.stages.0.description>
-  <MooGirl_Roped.stages.0.label>正在被牵引</MooGirl_Roped.stages.0.label>
-  <MooGirl_Roper.stages.0.description>哈哈、这只可爱的雪牛娘被我牵着到处乱跑，虽然有点恶趣味，但也确实很有趣~</MooGirl_Roper.stages.0.description>
-  <MooGirl_Roper.stages.0.label>牵引了一只雪牛娘</MooGirl_Roper.stages.0.label>
-  <MooGirl_Roper.stages.1.description>哇！我牵引了好多只可爱的雪牛娘，虽然有点恶趣味，但我感觉我好像一个国王！嘿嘿~</MooGirl_Roper.stages.1.description>
-  <MooGirl_Roper.stages.1.label>牵引了好多只雪牛娘</MooGirl_Roper.stages.1.label>
-  <MooGirl_SingleshotWeaponAversionUnhappy.stages.0.description>快把这东西拿走！拿走！拿走！</MooGirl_SingleshotWeaponAversionUnhappy.stages.0.description>
-  <MooGirl_SingleshotWeaponAversionUnhappy.stages.0.label>厌恶单发武器</MooGirl_SingleshotWeaponAversionUnhappy.stages.0.label>
+    <MooGirl_AteHay.stages.0.description>干巴巴的...就不能给口水喝吗？</MooGirl_AteHay.stages.0.description>
+    <MooGirl_AteHay.stages.0.label>吃了干草</MooGirl_AteHay.stages.0.label>
+    <MooGirl_AteNutrient.stages.0.description>口区~黏糊糊的...好恶心~</MooGirl_AteNutrient.stages.0.description>
+    <MooGirl_AteNutrient.stages.0.label>吃了营养膏</MooGirl_AteNutrient.stages.0.label>
+    <MooGirl_BrainWashing_End.stages.0.description>呜呜呜呜...对不起...{0}不是故意伤害大家的....都是这个坏头盔...</MooGirl_BrainWashing_End.stages.0.description>
+    <MooGirl_BrainWashing_End.stages.0.label>洗脑抵抗</MooGirl_BrainWashing_End.stages.0.label>
+    <MooGirl_BrainwashHappy.stages.0.description>嘿嘿嘿~虽然不知道为什么，总觉得很开心~</MooGirl_BrainwashHappy.stages.0.description>
+    <MooGirl_BrainwashHappy.stages.0.label>洗脑愉悦</MooGirl_BrainwashHappy.stages.0.label>
+    <MooGirl_Nuzzled.stages.0.description>雪牛娘用她柔软的毛发轻轻依偎在你身边，温暖而可爱，她轻声告诉你，一切都会好起来的，你觉得眼前的困难似乎没那么难了。</MooGirl_Nuzzled.stages.0.description>
+    <MooGirl_Nuzzled.stages.0.label>被依偎</MooGirl_Nuzzled.stages.0.label>
+    <MooGirl_Nuzzled.stages.1.description>雪牛娘轻轻蹭了蹭你，用自己的经历安慰你，仿佛告诉你：即使遇到困境，也总会有人陪伴。你感到心里暖洋洋的，压力减轻了许多。</MooGirl_Nuzzled.stages.1.description>
+    <MooGirl_Nuzzled.stages.1.label>被亲昵</MooGirl_Nuzzled.stages.1.label>
+    <MooGirl_Roped.stages.0.description>呜呜呜~我是雪牛娘！不是雪牛！！不要牵着我到处走呀~(╥﹏╥)。</MooGirl_Roped.stages.0.description>
+    <MooGirl_Roped.stages.0.label>正在被牵引</MooGirl_Roped.stages.0.label>
+    <MooGirl_Roper.stages.0.description>哈哈、这只可爱的雪牛娘被我牵着到处乱跑，虽然有点恶趣味，但也确实很有趣~</MooGirl_Roper.stages.0.description>
+    <MooGirl_Roper.stages.0.label>牵引了一只雪牛娘</MooGirl_Roper.stages.0.label>
+    <MooGirl_Roper.stages.1.description>哇！我牵引了好多只可爱的雪牛娘，虽然有点恶趣味，但我感觉我好像一个国王！嘿嘿~</MooGirl_Roper.stages.1.description>
+    <MooGirl_Roper.stages.1.label>牵引了好多只雪牛娘</MooGirl_Roper.stages.1.label>
+    <MooGirl_SingleshotWeaponAversionUnhappy.stages.0.description>快把这东西拿走！拿走！拿走！</MooGirl_SingleshotWeaponAversionUnhappy.stages.0.description>
+    <MooGirl_SingleshotWeaponAversionUnhappy.stages.0.label>厌恶单发武器</MooGirl_SingleshotWeaponAversionUnhappy.stages.0.label>
 </LanguageData>

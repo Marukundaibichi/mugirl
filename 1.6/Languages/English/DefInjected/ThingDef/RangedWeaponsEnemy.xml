@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-  <Bullet_OPC_Assault_Rifle.label>OPC assault rifle round</Bullet_OPC_Assault_Rifle.label>
-  <Bullet_OPC_Defense_Rifle.label>OPC defense rifle round</Bullet_OPC_Defense_Rifle.label>
-  <Bullet_OPC_Tactical_Shotgun.label>OPC tactical shotgun blast</Bullet_OPC_Tactical_Shotgun.label>
-  <Bullet_OPC_Tranquilizer_Pistol.label>OPC tranquilizer round</Bullet_OPC_Tranquilizer_Pistol.label>
-  <Bullet_PMC_Assault_Rifle.label>PMC assault rifle round</Bullet_PMC_Assault_Rifle.label>
-  <Bullet_PMC_Carbine.label>PMC carbine round</Bullet_PMC_Carbine.label>
-  <Bullet_PMC_DMR.label>PMC DMR round</Bullet_PMC_DMR.label>
-  <Bullet_PMC_LMG.label>PMC LMG round</Bullet_PMC_LMG.label>
-  <OPC_Assault_Rifle.description>The standard OPC automatic rifle, with a firepower profile biased toward stability and control.</OPC_Assault_Rifle.description>
-  <OPC_Assault_Rifle.label>OPC Assault Rifle</OPC_Assault_Rifle.label>
-  <OPC_Assault_Rifle.tools.0.label>stock</OPC_Assault_Rifle.tools.0.label>
-  <OPC_Assault_Rifle.tools.1.label>barrel</OPC_Assault_Rifle.tools.1.label>
-  <OPC_Defense_Rifle.description>An OPC security rifle focused on stopping power and positional defense.</OPC_Defense_Rifle.description>
-  <OPC_Defense_Rifle.label>OPC Defense Rifle</OPC_Defense_Rifle.label>
-  <OPC_Defense_Rifle.tools.0.label>stock</OPC_Defense_Rifle.tools.0.label>
-  <OPC_Defense_Rifle.tools.1.label>barrel</OPC_Defense_Rifle.tools.1.label>
-  <OPC_Tactical_Shotgun.description>The OPC primary riot-control close-combat weapon, emphasizing immediate stopping effect at short range.</OPC_Tactical_Shotgun.description>
-  <OPC_Tactical_Shotgun.label>OPC Tactical Shotgun</OPC_Tactical_Shotgun.label>
-  <OPC_Tactical_Shotgun.tools.0.label>stock</OPC_Tactical_Shotgun.tools.0.label>
-  <OPC_Tactical_Shotgun.tools.1.label>barrel</OPC_Tactical_Shotgun.tools.1.label>
-  <OPC_Tranquilizer_Pistol.description>A low-lethality suppression pistol issued by the OPC, emphasizing control and close-range self-defense.</OPC_Tranquilizer_Pistol.description>
-  <OPC_Tranquilizer_Pistol.label>OPC Tranquilizer Pistol</OPC_Tranquilizer_Pistol.label>
-  <OPC_Tranquilizer_Pistol.tools.0.label>grip</OPC_Tranquilizer_Pistol.tools.0.label>
-  <OPC_Tranquilizer_Pistol.tools.1.label>barrel</OPC_Tranquilizer_Pistol.tools.1.label>
-  <PMC_Assault_Rifle.description>The standard PMC assault rifle, balancing firepower, mobility, and range.</PMC_Assault_Rifle.description>
-  <PMC_Assault_Rifle.label>PMC Assault Rifle</PMC_Assault_Rifle.label>
-  <PMC_Assault_Rifle.tools.0.label>stock</PMC_Assault_Rifle.tools.0.label>
-  <PMC_Assault_Rifle.tools.1.label>barrel</PMC_Assault_Rifle.tools.1.label>
-  <PMC_Carbine.description>A compact carbine commonly used by PMC forces, emphasizing sustained suppression at close to medium range.</PMC_Carbine.description>
-  <PMC_Carbine.label>PMC Carbine</PMC_Carbine.label>
-  <PMC_Carbine.tools.0.label>grip</PMC_Carbine.tools.0.label>
-  <PMC_Carbine.tools.1.label>barrel</PMC_Carbine.tools.1.label>
-  <PMC_DMR.description>A rifle for PMC squad designated marksmen, reinforced for medium- to long-range engagements.</PMC_DMR.description>
-  <PMC_DMR.label>PMC Designated Marksman Rifle</PMC_DMR.label>
-  <PMC_DMR.tools.0.label>stock</PMC_DMR.tools.0.label>
-  <PMC_DMR.tools.1.label>barrel</PMC_DMR.tools.1.label>
-  <PMC_LMG.description>The core of PMC suppressive firepower, suited for sustained suppression and area denial.</PMC_LMG.description>
-  <PMC_LMG.label>PMC Light Machine Gun</PMC_LMG.label>
-  <PMC_LMG.tools.0.label>stock</PMC_LMG.tools.0.label>
-  <PMC_LMG.tools.1.label>barrel</PMC_LMG.tools.1.label>
+    <Bullet_OPC_Assault_Rifle.label>OPC assault rifle round</Bullet_OPC_Assault_Rifle.label>
+    <Bullet_OPC_Defense_Rifle.label>OPC defense rifle round</Bullet_OPC_Defense_Rifle.label>
+    <Bullet_OPC_Tactical_Shotgun.label>OPC tactical shotgun blast</Bullet_OPC_Tactical_Shotgun.label>
+    <Bullet_OPC_Tranquilizer_Pistol.label>OPC tranquilizer round</Bullet_OPC_Tranquilizer_Pistol.label>
+    <Bullet_PMC_Assault_Rifle.label>PMC assault rifle round</Bullet_PMC_Assault_Rifle.label>
+    <Bullet_PMC_Carbine.label>PMC carbine round</Bullet_PMC_Carbine.label>
+    <Bullet_PMC_DMR.label>PMC DMR round</Bullet_PMC_DMR.label>
+    <Bullet_PMC_LMG.label>PMC LMG round</Bullet_PMC_LMG.label>
+    <OPC_Assault_Rifle.description>The standard OPC automatic rifle, with a firepower profile biased toward stability and control.</OPC_Assault_Rifle.description>
+    <OPC_Assault_Rifle.label>OPC Assault Rifle</OPC_Assault_Rifle.label>
+    <OPC_Assault_Rifle.tools.0.label>stock</OPC_Assault_Rifle.tools.0.label>
+    <OPC_Assault_Rifle.tools.1.label>barrel</OPC_Assault_Rifle.tools.1.label>
+    <OPC_Defense_Rifle.description>An OPC security rifle focused on stopping power and positional defense.</OPC_Defense_Rifle.description>
+    <OPC_Defense_Rifle.label>OPC Defense Rifle</OPC_Defense_Rifle.label>
+    <OPC_Defense_Rifle.tools.0.label>stock</OPC_Defense_Rifle.tools.0.label>
+    <OPC_Defense_Rifle.tools.1.label>barrel</OPC_Defense_Rifle.tools.1.label>
+    <OPC_Tactical_Shotgun.description>The OPC primary riot-control close-combat weapon, emphasizing immediate stopping effect at short range.</OPC_Tactical_Shotgun.description>
+    <OPC_Tactical_Shotgun.label>OPC Tactical Shotgun</OPC_Tactical_Shotgun.label>
+    <OPC_Tactical_Shotgun.tools.0.label>stock</OPC_Tactical_Shotgun.tools.0.label>
+    <OPC_Tactical_Shotgun.tools.1.label>barrel</OPC_Tactical_Shotgun.tools.1.label>
+    <OPC_Tranquilizer_Pistol.description>A low-lethality suppression pistol issued by the OPC, emphasizing control and close-range self-defense.</OPC_Tranquilizer_Pistol.description>
+    <OPC_Tranquilizer_Pistol.label>OPC Tranquilizer Pistol</OPC_Tranquilizer_Pistol.label>
+    <OPC_Tranquilizer_Pistol.tools.0.label>grip</OPC_Tranquilizer_Pistol.tools.0.label>
+    <OPC_Tranquilizer_Pistol.tools.1.label>barrel</OPC_Tranquilizer_Pistol.tools.1.label>
+    <PMC_Assault_Rifle.description>The standard PMC assault rifle, balancing firepower, mobility, and range.</PMC_Assault_Rifle.description>
+    <PMC_Assault_Rifle.label>PMC Assault Rifle</PMC_Assault_Rifle.label>
+    <PMC_Assault_Rifle.tools.0.label>stock</PMC_Assault_Rifle.tools.0.label>
+    <PMC_Assault_Rifle.tools.1.label>barrel</PMC_Assault_Rifle.tools.1.label>
+    <PMC_Carbine.description>A compact carbine commonly used by PMC forces, emphasizing sustained suppression at close to medium range.</PMC_Carbine.description>
+    <PMC_Carbine.label>PMC Carbine</PMC_Carbine.label>
+    <PMC_Carbine.tools.0.label>grip</PMC_Carbine.tools.0.label>
+    <PMC_Carbine.tools.1.label>barrel</PMC_Carbine.tools.1.label>
+    <PMC_DMR.description>A rifle for PMC squad designated marksmen, reinforced for medium- to long-range engagements.</PMC_DMR.description>
+    <PMC_DMR.label>PMC Designated Marksman Rifle</PMC_DMR.label>
+    <PMC_DMR.tools.0.label>stock</PMC_DMR.tools.0.label>
+    <PMC_DMR.tools.1.label>barrel</PMC_DMR.tools.1.label>
+    <PMC_LMG.description>The core of PMC suppressive firepower, suited for sustained suppression and area denial.</PMC_LMG.description>
+    <PMC_LMG.label>PMC Light Machine Gun</PMC_LMG.label>
+    <PMC_LMG.tools.0.label>stock</PMC_LMG.tools.0.label>
+    <PMC_LMG.tools.1.label>barrel</PMC_LMG.tools.1.label>
 </LanguageData>

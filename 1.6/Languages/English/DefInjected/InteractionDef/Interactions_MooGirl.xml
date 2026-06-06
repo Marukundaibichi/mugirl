@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-  
-  <!-- EN: 蹭蹭 -->
-  <MooGirl_Nuzzle.label>Nuzzle</MooGirl_Nuzzle.label>
-  <!-- EN:
+
+    <!-- EN: 蹭蹭 -->
+    <MooGirl_Nuzzle.label>Nuzzle</MooGirl_Nuzzle.label>
+    <!-- EN:
     <li>r_logentry(p=2)->[INITIATOR_nameDef] [nuzzleadverb] [nuzzled] [RECIPIENT_nameDef].</li>
     <li>r_logentry->[INITIATOR_nameDef] [nuzzleadverb] rubbed [INITIATOR_possessive] nose against [RECIPIENT_nameDef]'s [rubbedpart].</li>
     <li>nuzzled(p=2)->nuzzled</li>
@@ -28,7 +28,7 @@
     <li>rubbedpart->hand</li>
     <li>rubbedpart->side</li>
     <li>rubbedpart->arm</li>
-  -->
-  <MooGirl_Nuzzle.logRulesInitiator.rulesStrings>&lt;li&gt;r_logentry(p=2)-&gt;[INITIATOR_nameDef] [nuzzleadverb] [nuzzled] [RECIPIENT_nameDef].&lt;/li&gt;&lt;li&gt;r_logentry-&gt;[INITIATOR_nameDef] [nuzzleadverb] rubbed [INITIATOR_possessive] nose against [RECIPIENT_nameDef]'s [rubbedpart].&lt;/li&gt;&lt;li&gt;nuzzled(p=2)-&gt;nuzzled&lt;/li&gt;&lt;li&gt;nuzzled-&gt;snuggled up to&lt;/li&gt;&lt;li&gt;nuzzleadverb(p=4)-&gt;&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;gently&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;encouragingly&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;happily&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;softly&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;supportively&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;lightly&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;warmly&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;plaintively&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;lovingly&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;affectionately&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;leg&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;knee&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;foot&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;elbow&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;hip&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;shoulder&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;hand&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;side&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;arm&lt;/li&gt;</MooGirl_Nuzzle.logRulesInitiator.rulesStrings>
-  
+    -->
+    <MooGirl_Nuzzle.logRulesInitiator.rulesStrings>&lt;li&gt;r_logentry(p=2)-&gt;[INITIATOR_nameDef] [nuzzleadverb] [nuzzled] [RECIPIENT_nameDef].&lt;/li&gt;&lt;li&gt;r_logentry-&gt;[INITIATOR_nameDef] [nuzzleadverb] rubbed [INITIATOR_possessive] nose against [RECIPIENT_nameDef]'s [rubbedpart].&lt;/li&gt;&lt;li&gt;nuzzled(p=2)-&gt;nuzzled&lt;/li&gt;&lt;li&gt;nuzzled-&gt;snuggled up to&lt;/li&gt;&lt;li&gt;nuzzleadverb(p=4)-&gt;&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;gently&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;encouragingly&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;happily&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;softly&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;supportively&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;lightly&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;warmly&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;plaintively&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;lovingly&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;affectionately&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;leg&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;knee&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;foot&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;elbow&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;hip&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;shoulder&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;hand&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;side&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;arm&lt;/li&gt;</MooGirl_Nuzzle.logRulesInitiator.rulesStrings>
+
 </LanguageData>

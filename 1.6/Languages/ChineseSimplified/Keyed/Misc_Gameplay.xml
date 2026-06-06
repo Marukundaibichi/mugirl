@@ -39,8 +39,8 @@
     <MooGirl.Restraints.BrainwashHelmet.IdeoConvertDesc>将穿戴者的文化改变为殖民地的主流文化。</MooGirl.Restraints.BrainwashHelmet.IdeoConvertDesc>
     <MooGirl.Restraints.BrainwashHelmet.IdeoConvertMessage>已将{0}的文化转换为殖民地主流文化。</MooGirl.Restraints.BrainwashHelmet.IdeoConvertMessage>
 
-	<MooGirl.MilkingDevice.StoredMessage>{0} 的榨乳器储存了 1 次产奶（{1}/{2}）</MooGirl.MilkingDevice.StoredMessage>
-	<MooGirl.MilkingDevice.ReleaseMessage>{0} 释放了榨乳器中的储乳，生成了 {1} 份雪牛奶</MooGirl.MilkingDevice.ReleaseMessage>
+    <MooGirl.MilkingDevice.StoredMessage>{0} 的榨乳器储存了 1 次产奶（{1}/{2}）</MooGirl.MilkingDevice.StoredMessage>
+    <MooGirl.MilkingDevice.ReleaseMessage>{0} 释放了榨乳器中的储乳，生成了 {1} 份雪牛奶</MooGirl.MilkingDevice.ReleaseMessage>
     <MooGirl.MilkingDevice.ReleaseLabel>释放储乳</MooGirl.MilkingDevice.ReleaseLabel>
     <MooGirl.MilkingDevice.ReleaseDesc>将设备中储存的雪牛奶一次性释放到地面。</MooGirl.MilkingDevice.ReleaseDesc>
     <MooGirl.MilkingDevice.InspectLabel>储乳</MooGirl.MilkingDevice.InspectLabel>

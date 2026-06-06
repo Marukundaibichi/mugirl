@@ -8551,11 +8551,11 @@
 "About\About.xml","ElementText","","","li","/MuGirlRace[1]/loadAfter[1]/li[3]","False","erdelf.HumanoidAlienRaces"
 "About\About.xml","ElementText","","","li","/MuGirlRace[1]/loadAfter[1]/li[4]","False","Nals.FacialAnimation"
 "About\About.xml","ElementText","","","li","/MuGirlRace[1]/incompatibleWith[1]/li[1]","False","Luca.MuGirlFacialAnimation"
-"About\About.xml","ElementText","","","description","/MuGirlRace[1]/description[1]","False","添加了雪牛娘物种，很可爱哦~ (◕‿◕✿) 
-	
-	雪牛娘是某个太空财团为太空殖民目的，通过基因改造设计的奴隶种族，她们兼具人类的外形与雪牛的强健体魄，能够适应各类殖民地环境下的高强度劳动。
-	雪牛娘血厚力大，护甲与减伤系数远超一般种族，是优秀的农夫与工匠，擅长种植、建造与生产等基础工作；
-	但在智力劳动上表现迟钝，尤其不擅长医疗与科研。她们既是殖民地的可靠劳力，也是某种意义上令人同情的基因产物。"
+"About\About.xml","ElementText","","","description","/MuGirlRace[1]/description[1]","False","添加了雪牛娘物种，很可爱哦~ (◕‿◕✿)
+
+    雪牛娘是某个太空财团为太空殖民目的，通过基因改造设计的奴隶种族，她们兼具人类的外形与雪牛的强健体魄，能够适应各类殖民地环境下的高强度劳动。
+    雪牛娘血厚力大，护甲与减伤系数远超一般种族，是优秀的农夫与工匠，擅长种植、建造与生产等基础工作；
+    但在智力劳动上表现迟钝，尤其不擅长医疗与科研。她们既是殖民地的可靠劳力，也是某种意义上令人同情的基因产物。"
 "Bio_1.6\Defs\AbilityDef.xml","ElementText","AbilityDef","MooGirl_Charge","defName","/Defs[1]/AbilityDef[1]/defName[1]","False","MooGirl_Charge"
 "Bio_1.6\Defs\AbilityDef.xml","ElementText","AbilityDef","MooGirl_Charge","label","/Defs[1]/AbilityDef[1]/label[1]","False","雪牛冲锋！"
 "Bio_1.6\Defs\AbilityDef.xml","ElementText","AbilityDef","MooGirl_Charge","description","/Defs[1]/AbilityDef[1]/description[1]","False","冲冲冲！我要创死你！"

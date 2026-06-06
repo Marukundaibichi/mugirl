@@ -2,31 +2,31 @@
 <Defs>
 
 <ApparelLayerDef>
-	<defName>MooGirl_Underwear</defName>
-	<!-- 内衣 -->
-	<label>Underwear</label>
-	<drawOrder>-4</drawOrder>
+    <defName>MooGirl_Underwear</defName>
+    <!-- 内衣 -->
+    <label>Underwear</label>
+    <drawOrder>-4</drawOrder>
 </ApparelLayerDef>
 
 <ApparelLayerDef>
-	<defName>MooGirl_Stocking</defName>
-	<!-- 丝袜 -->
-	<label>Stockings</label>
-	<drawOrder>-6</drawOrder>
+    <defName>MooGirl_Stocking</defName>
+    <!-- 丝袜 -->
+    <label>Stockings</label>
+    <drawOrder>-6</drawOrder>
 </ApparelLayerDef>
 
-  <ApparelLayerDef>
+    <ApparelLayerDef>
     <defName>MooGirl_Ornament</defName>
     <!-- 外饰 -->
     <label>Ornament</label>
     <drawOrder>201</drawOrder>
-  </ApparelLayerDef>
+    </ApparelLayerDef>
 
-  <ApparelLayerDef>
+    <ApparelLayerDef>
     <defName>MooGirl_HiddenOrnament</defName>
     <!-- 隐藏外饰 -->
     <label>Hidden Ornament</label>
     <drawOrder>150</drawOrder>
-  </ApparelLayerDef>
+    </ApparelLayerDef>
 
 </Defs>

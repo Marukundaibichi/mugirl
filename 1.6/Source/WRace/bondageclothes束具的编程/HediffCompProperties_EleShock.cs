@@ -8,10 +8,10 @@ namespace MooGirl
 {
     public class CompProperties_EleShock : HediffCompProperties
     {
-        public List<SoundDef> shockSounds; 
-        public List<HediffDef> hediffsToRemove; 
-        public List<HediffWithParams> hediffsToApplyWithParams; 
-        public List<FilthEntry> filthSpawnEntries; 
+        public List<SoundDef> shockSounds;
+        public List<HediffDef> hediffsToRemove;
+        public List<HediffWithParams> hediffsToApplyWithParams;
+        public List<FilthEntry> filthSpawnEntries;
         public float stunDuration = 2f; // 电击晕厥时间
         public float hostileStunDuration = 4f; // 敌对单位的电击晕厥时间
         public float jitterMagnitude = 0.3f; // 震动幅度
@@ -77,7 +77,7 @@ namespace MooGirl
         {
             base.CompPostTick(ref severityAdjustment);
 
-            currentTickCount--; 
+            currentTickCount--;
             if (currentTickCount <= 0 && remainingCycles > 0)
             {
                 remainingCycles--; // 剩余周期

@@ -39,8 +39,8 @@
     <MooGirl.Restraints.BrainwashHelmet.IdeoConvertDesc>Change the wearer's ideology to the colony's primary ideology.</MooGirl.Restraints.BrainwashHelmet.IdeoConvertDesc>
     <MooGirl.Restraints.BrainwashHelmet.IdeoConvertMessage>{0}'s ideology has been converted to the colony's primary ideology.</MooGirl.Restraints.BrainwashHelmet.IdeoConvertMessage>
 
-	<MooGirl.MilkingDevice.StoredMessage>{0}'s milking device stored one production charge ({1}/{2}).</MooGirl.MilkingDevice.StoredMessage>
-	<MooGirl.MilkingDevice.ReleaseMessage>{0} released the stored milk and produced {1} MooGirl milk.</MooGirl.MilkingDevice.ReleaseMessage>
+    <MooGirl.MilkingDevice.StoredMessage>{0}'s milking device stored one production charge ({1}/{2}).</MooGirl.MilkingDevice.StoredMessage>
+    <MooGirl.MilkingDevice.ReleaseMessage>{0} released the stored milk and produced {1} MooGirl milk.</MooGirl.MilkingDevice.ReleaseMessage>
     <MooGirl.MilkingDevice.ReleaseLabel>Release stored milk</MooGirl.MilkingDevice.ReleaseLabel>
     <MooGirl.MilkingDevice.ReleaseDesc>Release all MooGirl milk stored in this device onto the ground.</MooGirl.MilkingDevice.ReleaseDesc>
     <MooGirl.MilkingDevice.InspectLabel>Stored milk</MooGirl.MilkingDevice.InspectLabel>

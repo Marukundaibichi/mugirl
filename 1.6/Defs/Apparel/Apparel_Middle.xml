@@ -1,97 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-	<ThingDef Name="MooGirl_MiddleBase" ParentName="MooGirl_ApparelBase" Abstract="True">
-		<graphicData>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<statBases>
-			<Mass>0.4</Mass>
-			<EquipDelay>2.0</EquipDelay>
-		</statBases>
-		<apparel>
-			<layers>
-				<li>Middle</li>
-			</layers>
-			<tags>
-				<li>MooGirl_Middle</li>
-			</tags>
-			<useWornGraphicMask>true</useWornGraphicMask>
-		</apparel>
-		<thingCategories>
-			<li>MooGirl_Middle</li>
-		</thingCategories>
-		<recipeMaker>
-			<researchPrerequisite>ComplexClothing</researchPrerequisite>
-		</recipeMaker>
-	</ThingDef>
+    <ThingDef Name="MooGirl_MiddleBase" ParentName="MooGirl_ApparelBase" Abstract="True">
+        <graphicData>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <statBases>
+            <Mass>0.4</Mass>
+            <EquipDelay>2.0</EquipDelay>
+        </statBases>
+        <apparel>
+            <layers>
+                <li>Middle</li>
+            </layers>
+            <tags>
+                <li>MooGirl_Middle</li>
+            </tags>
+            <useWornGraphicMask>true</useWornGraphicMask>
+        </apparel>
+        <thingCategories>
+            <li>MooGirl_Middle</li>
+        </thingCategories>
+        <recipeMaker>
+            <researchPrerequisite>ComplexClothing</researchPrerequisite>
+        </recipeMaker>
+    </ThingDef>
 
-	<ThingDef ParentName="MooGirl_MiddleBase">
-		<defName>MooGirl_Shirt</defName>
-		<!-- 雪牛娘 衬衫 「惑光半透」 -->
-		<label>Mugirl Shirt "Lumière Trompeuse Translucide"</label>
-		<!-- 「八重·朱 服装」出品珍珠光泽雪纺深V无领条纹衬衫，第三颗纽扣故意留空。若隐若现的肌肤暗示，钢铁丛林中的心机武器。 -->
-		<description>"Vache Rousse" presents a chiffon shirt with a soft lustre and fine striped detailing. Its poised, elegant cut makes it well suited for everyday wear or office settings while preserving a refined sense of fashion.</description>
-		<graphicData>
-			<texPath>Things/Apparel/MooGirl_Shirt/MooGirl_Shirt</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<costStuffCount>40</costStuffCount>
-		<stuffCategories>
-			<li>Fabric</li>
-			<li>Leathery</li>
-		</stuffCategories>
-		<statBases>
-			<MaxHitPoints>100</MaxHitPoints>
-			<WorkToMake>4000</WorkToMake>
-			<StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
-			<StuffEffectMultiplierInsulation_Cold>0.30</StuffEffectMultiplierInsulation_Cold>
-			<StuffEffectMultiplierInsulation_Heat>0.10</StuffEffectMultiplierInsulation_Heat>
-		</statBases>
-		<apparel>
-			<useWornGraphicMask>false</useWornGraphicMask>
-			<bodyPartGroups>
-				<li>Torso</li>
-				<li>Shoulders</li>
-			</bodyPartGroups>
-			<wornGraphicPath>Things/Apparel/MooGirl_Shirt/MooGirl_Shirt</wornGraphicPath>
-		</apparel>
-	</ThingDef>
+    <ThingDef ParentName="MooGirl_MiddleBase">
+        <defName>MooGirl_Shirt</defName>
+        <!-- 雪牛娘 衬衫 「惑光半透」 -->
+        <label>Mugirl Shirt "Lumière Trompeuse Translucide"</label>
+        <!-- 「八重·朱 服装」出品珍珠光泽雪纺深V无领条纹衬衫，第三颗纽扣故意留空。若隐若现的肌肤暗示，钢铁丛林中的心机武器。 -->
+        <description>"Vache Rousse" presents a chiffon shirt with a soft lustre and fine striped detailing. Its poised, elegant cut makes it well suited for everyday wear or office settings while preserving a refined sense of fashion.</description>
+        <graphicData>
+            <texPath>Things/Apparel/MooGirl_Shirt/MooGirl_Shirt</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <costStuffCount>40</costStuffCount>
+        <stuffCategories>
+            <li>Fabric</li>
+            <li>Leathery</li>
+        </stuffCategories>
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <WorkToMake>4000</WorkToMake>
+            <StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
+            <StuffEffectMultiplierInsulation_Cold>0.30</StuffEffectMultiplierInsulation_Cold>
+            <StuffEffectMultiplierInsulation_Heat>0.10</StuffEffectMultiplierInsulation_Heat>
+        </statBases>
+        <apparel>
+            <useWornGraphicMask>false</useWornGraphicMask>
+            <bodyPartGroups>
+                <li>Torso</li>
+                <li>Shoulders</li>
+            </bodyPartGroups>
+            <wornGraphicPath>Things/Apparel/MooGirl_Shirt/MooGirl_Shirt</wornGraphicPath>
+        </apparel>
+    </ThingDef>
 
-	<ThingDef ParentName="MooGirl_MiddleBase">
-		<defName>MooGirl_Gambeson</defName>
-		<!-- 雪牛娘 骑士甲胄内衬 -->
-		<label>Mugirl Knightly Gambeson</label>
-		<!-- 「八重·朱 服装」中世纪裁缝手法缝制的柔韧内衬，以绵羽层层叠压，贴身却不失轻盈。为雪牛娘的甲胄量身定制，能在穿戴重甲时缓冲冲击、稳定体态，亦能单独作为轻装战衣穿着。绣纹隐隐散发暖意，使穿戴者在寒风中依旧保持从容优雅。 -->
-		<description>"Vache Rousse" presents a supple padded underlayer tailored with medieval craftsmanship, built from overlapping quilting that sits close to the body without losing its lightness. Made to fit Mugirl armour, it cushions impacts and stabilises the wearer beneath heavy plate, yet can also be worn alone as a light battle garment. Its stitched patterns seem to carry a gentle warmth, allowing elegance to endure even in the cold wind.</description>
-		<graphicData>
-			<texPath>Things/Apparel/MooGirl_Gambeson/MooGirl_Gambeson</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<costStuffCount>50</costStuffCount>
-		<stuffCategories>
-			<li>Fabric</li>
-			<li>Leathery</li>
-		</stuffCategories>
-		<statBases>
-			<MaxHitPoints>160</MaxHitPoints> <!-- 内衬耐久比轻纱服高，耐磨耐压 -->
-			<WorkToMake>5000</WorkToMake> <!-- 中等工艺 -->
-			<Mass>1.2</Mass> <!-- 棉甲内衬比仙衣更厚重一些 -->
-			<ArmorRating_Sharp>0.18</ArmorRating_Sharp>  <!-- 经典 gambeson 的轻量穿刺防护 -->
-			<ArmorRating_Blunt>0.25</ArmorRating_Blunt> <!-- 棉甲天然抗钝击 -->
-			<ArmorRating_Heat>0.06</ArmorRating_Heat>
-			<StuffEffectMultiplierArmor>0.30</StuffEffectMultiplierArmor> <!-- 布料材质对防护影响更明显 -->
-			<StuffEffectMultiplierInsulation_Cold>0.55</StuffEffectMultiplierInsulation_Cold> <!-- 厚实保暖 -->
-			<StuffEffectMultiplierInsulation_Heat>0.20</StuffEffectMultiplierInsulation_Heat>
-		</statBases>
-		<apparel>
-			<useWornGraphicMask>false</useWornGraphicMask>
-			<bodyPartGroups>
-				<li>Torso</li>
-				<li>Shoulders</li>
-				<li>Legs</li>
-			</bodyPartGroups>
-			<wornGraphicPath>Things/Apparel/MooGirl_Gambeson/MooGirl_Gambeson</wornGraphicPath>
-		</apparel>
-	</ThingDef>
+    <ThingDef ParentName="MooGirl_MiddleBase">
+        <defName>MooGirl_Gambeson</defName>
+        <!-- 雪牛娘 骑士甲胄内衬 -->
+        <label>Mugirl Knightly Gambeson</label>
+        <!-- 「八重·朱 服装」中世纪裁缝手法缝制的柔韧内衬，以绵羽层层叠压，贴身却不失轻盈。为雪牛娘的甲胄量身定制，能在穿戴重甲时缓冲冲击、稳定体态，亦能单独作为轻装战衣穿着。绣纹隐隐散发暖意，使穿戴者在寒风中依旧保持从容优雅。 -->
+        <description>"Vache Rousse" presents a supple padded underlayer tailored with medieval craftsmanship, built from overlapping quilting that sits close to the body without losing its lightness. Made to fit Mugirl armour, it cushions impacts and stabilises the wearer beneath heavy plate, yet can also be worn alone as a light battle garment. Its stitched patterns seem to carry a gentle warmth, allowing elegance to endure even in the cold wind.</description>
+        <graphicData>
+            <texPath>Things/Apparel/MooGirl_Gambeson/MooGirl_Gambeson</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <costStuffCount>50</costStuffCount>
+        <stuffCategories>
+            <li>Fabric</li>
+            <li>Leathery</li>
+        </stuffCategories>
+        <statBases>
+            <MaxHitPoints>160</MaxHitPoints> <!-- 内衬耐久比轻纱服高，耐磨耐压 -->
+            <WorkToMake>5000</WorkToMake> <!-- 中等工艺 -->
+            <Mass>1.2</Mass> <!-- 棉甲内衬比仙衣更厚重一些 -->
+            <ArmorRating_Sharp>0.18</ArmorRating_Sharp>  <!-- 经典 gambeson 的轻量穿刺防护 -->
+            <ArmorRating_Blunt>0.25</ArmorRating_Blunt> <!-- 棉甲天然抗钝击 -->
+            <ArmorRating_Heat>0.06</ArmorRating_Heat>
+            <StuffEffectMultiplierArmor>0.30</StuffEffectMultiplierArmor> <!-- 布料材质对防护影响更明显 -->
+            <StuffEffectMultiplierInsulation_Cold>0.55</StuffEffectMultiplierInsulation_Cold> <!-- 厚实保暖 -->
+            <StuffEffectMultiplierInsulation_Heat>0.20</StuffEffectMultiplierInsulation_Heat>
+        </statBases>
+        <apparel>
+            <useWornGraphicMask>false</useWornGraphicMask>
+            <bodyPartGroups>
+                <li>Torso</li>
+                <li>Shoulders</li>
+                <li>Legs</li>
+            </bodyPartGroups>
+            <wornGraphicPath>Things/Apparel/MooGirl_Gambeson/MooGirl_Gambeson</wornGraphicPath>
+        </apparel>
+    </ThingDef>
 </Defs>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-  <MooGirl_Charge.description>冲冲冲！我要创死你！</MooGirl_Charge.description>
-  <MooGirl_Charge.label>雪牛冲锋！</MooGirl_Charge.label>
-  <MooGirl_Charge.verbProperties.label>冲冲冲</MooGirl_Charge.verbProperties.label>
-  <MooGirl_Shout.description>RUAAAAAAAAA！（丢人的叫声）</MooGirl_Shout.description>
-  <MooGirl_Shout.label>雪牛大叫！</MooGirl_Shout.label>
+    <MooGirl_Charge.description>冲冲冲！我要创死你！</MooGirl_Charge.description>
+    <MooGirl_Charge.label>雪牛冲锋！</MooGirl_Charge.label>
+    <MooGirl_Charge.verbProperties.label>冲冲冲</MooGirl_Charge.verbProperties.label>
+    <MooGirl_Shout.description>RUAAAAAAAAA！（丢人的叫声）</MooGirl_Shout.description>
+    <MooGirl_Shout.label>雪牛大叫！</MooGirl_Shout.label>
 </LanguageData>

@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  <IncidentDef>
+    <IncidentDef>
     <defName>MooGirl_WildManWandersIn</defName>
     <!-- 雪牛娘 野人奴隶 -->
     <label>wild Mugirl slave</label>
     <category>Misc</category>
     <targetTags>
-      <li>Map_PlayerHome</li>
+        <li>Map_PlayerHome</li>
     </targetTags>
     <workerClass>MooGirl.IncidentWorker_MooGirl_WildManWandersIn</workerClass>
     <baseChance>1.0</baseChance>
@@ -16,5 +16,5 @@
     <!-- 一名 {1} 从奴隶商队逃脱出来，身上残破的束具仿佛诉说着过去的悲惨经历。{PAWN_pronoun} 名叫 {0}。\n\n你可以尝试驯服 {PAWN_objective}。 -->
     <letterText>A {1} escaped from a slave caravan, the tattered restraints on {PAWN_possessive} body seeming to tell of a tragic past. {PAWN_pronoun} is named {0}.\n\nYou can attempt to tame {PAWN_objective}.</letterText>
     <letterDef>NeutralEvent</letterDef>
-  </IncidentDef>
+    </IncidentDef>
 </Defs>

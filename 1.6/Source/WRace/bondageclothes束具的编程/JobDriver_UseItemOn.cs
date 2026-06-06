@@ -14,7 +14,7 @@ namespace MooGirl
                 initAction = delegate
                 {
                     p.carryTracker.TryStartCarry(item, 1);
-                    if (item.Spawned) 
+                    if (item.Spawned)
                         p.jobs.curDriver.EndJobWith(JobCondition.Incompletable);
                 },
                 defaultCompleteMode = ToilCompleteMode.Instant

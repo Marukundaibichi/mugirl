@@ -1,138 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <!-- ============== 陈年奶酪Hediff - 防感染+去毒素+解食物中毒 +1.5免疫速度，+0.15毒素抗性 ============== -->
-  <HediffDef>
-    <defName>Hediff_MooGirlAgedCheese</defName>
-    <!-- 陈年奶酪效果 -->
-    <label>aged cheese effect</label>
-    <!-- 陈年奶酪的特殊成分在体内发挥作用：防止伤口感染、提高血液过滤清除毒素、并加快免疫速度 -->
-    <description>Special compounds from aged cheese are active in the body, preventing wound infection, improving blood filtration, clearing toxins, and speeding immunity.</description>
-    <hediffClass>HediffWithComps</hediffClass>
-    <isBad>false</isBad>
-    <defaultLabelColor>(0,200,255)</defaultLabelColor>
-    <tendable>false</tendable>
-    <initialSeverity>1.0</initialSeverity>
-    <maxSeverity>1.0</maxSeverity>
-    <stages>
-      <li>
-        <statFactors>
-          <ImmunityGainSpeed>1.5</ImmunityGainSpeed>
-        </statFactors>
-        <statOffsets>
-          <ToxicResistance>0.15</ToxicResistance>
-        </statOffsets>
-        <capMods>
-          <li>
-            <capacity>BloodFiltration</capacity>
-            <offset>0.25</offset>
-          </li>
-        </capMods>
-      </li>
-    </stages>
-    <comps>
-      <li Class="HediffCompProperties_Disappears">
-        <disappearsAfterTicks>60000</disappearsAfterTicks>
-        <showRemainingTime>true</showRemainingTime>
-      </li>
-      <li Class="MooGirl.HediffCompProperties_CureFoodEffects">
-        <removeHediffs>
-          <li>FoodPoisoning</li>
-          <li>ToxicBuildup</li>
-          <li>WoundInfection</li>
-        </removeHediffs>
-      </li>
-    </comps>
-  </HediffDef>
+    <!-- ============== 陈年奶酪Hediff - 防感染+去毒素+解食物中毒 +1.5免疫速度，+0.15毒素抗性 ============== -->
+    <HediffDef>
+        <defName>Hediff_MooGirlAgedCheese</defName>
+        <!-- 陈年奶酪效果 -->
+        <label>aged cheese effect</label>
+        <!-- 陈年奶酪的特殊成分在体内发挥作用：防止伤口感染、提高血液过滤清除毒素、并加快免疫速度 -->
+        <description>Special compounds from aged cheese are active in the body, preventing wound infection, improving blood filtration, clearing toxins, and speeding immunity.</description>
+        <hediffClass>HediffWithComps</hediffClass>
+        <isBad>false</isBad>
+        <defaultLabelColor>(0,200,255)</defaultLabelColor>
+        <tendable>false</tendable>
+        <initialSeverity>1.0</initialSeverity>
+        <maxSeverity>1.0</maxSeverity>
+        <stages>
+            <li>
+                <statFactors>
+                    <ImmunityGainSpeed>1.5</ImmunityGainSpeed>
+                </statFactors>
+                <statOffsets>
+                    <ToxicResistance>0.15</ToxicResistance>
+                </statOffsets>
+                <capMods>
+                    <li>
+                        <capacity>BloodFiltration</capacity>
+                        <offset>0.25</offset>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+        <comps>
+            <li Class="HediffCompProperties_Disappears">
+                <disappearsAfterTicks>60000</disappearsAfterTicks>
+                <showRemainingTime>true</showRemainingTime>
+            </li>
+            <li Class="MooGirl.HediffCompProperties_CureFoodEffects">
+                <removeHediffs>
+                    <li>FoodPoisoning</li>
+                    <li>ToxicBuildup</li>
+                    <li>WoundInfection</li>
+                </removeHediffs>
+            </li>
+        </comps>
+    </HediffDef>
 
-  <!-- ============== 蛋糕Hediff - 饥饿速率70% ============== -->
-  <HediffDef>
-    <defName>Hediff_MooGirlCowCake</defName>
-    <!-- 奶香蛋糕 -->
-    <label>milky cake</label>
-    <!-- 吃了块奶香浓郁的美味蛋糕 -->
-    <description>Ate a delicious cake with a rich milk fragrance.</description>
-    <hediffClass>HediffWithComps</hediffClass>
-    <isBad>false</isBad>
-    <defaultLabelColor>(255,192,128)</defaultLabelColor>
-    <tendable>false</tendable>
-    <initialSeverity>1.0</initialSeverity>
-    <maxSeverity>1.0</maxSeverity>
-    <comps>
-      <li Class="HediffCompProperties_Disappears">
-        <disappearsAfterTicks>60000</disappearsAfterTicks>
-        <showRemainingTime>true</showRemainingTime>
-      </li>
-    </comps>
-    <stages>
-      <li>
-        <hungerRateFactor>0.7</hungerRateFactor>
-      </li>
-    </stages>
-  </HediffDef>
+    <!-- ============== 蛋糕Hediff - 饥饿速率70% ============== -->
+    <HediffDef>
+        <defName>Hediff_MooGirlCowCake</defName>
+        <!-- 奶香蛋糕 -->
+        <label>milky cake</label>
+        <!-- 吃了块奶香浓郁的美味蛋糕 -->
+        <description>Ate a delicious cake with a rich milk fragrance.</description>
+        <hediffClass>HediffWithComps</hediffClass>
+        <isBad>false</isBad>
+        <defaultLabelColor>(255,192,128)</defaultLabelColor>
+        <tendable>false</tendable>
+        <initialSeverity>1.0</initialSeverity>
+        <maxSeverity>1.0</maxSeverity>
+        <comps>
+            <li Class="HediffCompProperties_Disappears">
+                <disappearsAfterTicks>60000</disappearsAfterTicks>
+                <showRemainingTime>true</showRemainingTime>
+            </li>
+        </comps>
+        <stages>
+            <li>
+                <hungerRateFactor>0.7</hungerRateFactor>
+            </li>
+        </stages>
+    </HediffDef>
 
-  <!-- ============== 奶粉Hediff - 免疫+30%, 意识+10%, 全局学习系数+30% ============== -->
-  <HediffDef>
-    <defName>Hediff_MooGirlMilkPowder</defName>
-    <!-- 健康奶粉 -->
-    <label>healthy milk powder</label>
-    <!-- 雪牛娘奶粉提供全面的营养加成 -->
-    <description>Mugirl milk powder provides comprehensive nutrition bonuses.</description>
-    <hediffClass>HediffWithComps</hediffClass>
-    <isBad>false</isBad>
-    <defaultLabelColor>(128,255,255)</defaultLabelColor>
-    <tendable>false</tendable>
-    <initialSeverity>1.0</initialSeverity>
-    <maxSeverity>1.0</maxSeverity>
-    <comps>
-      <li Class="HediffCompProperties_Disappears">
-        <disappearsAfterTicks>60000</disappearsAfterTicks>
-        <showRemainingTime>true</showRemainingTime>
-      </li>
-    </comps>
-    <stages>
-      <li>
-        <statFactors>
-          <GlobalLearningFactor>1.3</GlobalLearningFactor>
-          <ImmunityGainSpeed>1.3</ImmunityGainSpeed>
-        </statFactors>
-        <capMods>
-          <li>
-            <capacity>Consciousness</capacity>
-            <offset>0.1</offset>
-          </li>
-        </capMods>
-      </li>
-    </stages>
-  </HediffDef>
+    <!-- ============== 奶粉Hediff - 免疫+30%, 意识+10%, 全局学习系数+30% ============== -->
+    <HediffDef>
+        <defName>Hediff_MooGirlMilkPowder</defName>
+        <!-- 健康奶粉 -->
+        <label>healthy milk powder</label>
+        <!-- 雪牛娘奶粉提供全面的营养加成 -->
+        <description>Mugirl milk powder provides comprehensive nutrition bonuses.</description>
+        <hediffClass>HediffWithComps</hediffClass>
+        <isBad>false</isBad>
+        <defaultLabelColor>(128,255,255)</defaultLabelColor>
+        <tendable>false</tendable>
+        <initialSeverity>1.0</initialSeverity>
+        <maxSeverity>1.0</maxSeverity>
+        <comps>
+            <li Class="HediffCompProperties_Disappears">
+                <disappearsAfterTicks>60000</disappearsAfterTicks>
+                <showRemainingTime>true</showRemainingTime>
+            </li>
+        </comps>
+        <stages>
+            <li>
+                <statFactors>
+                    <GlobalLearningFactor>1.3</GlobalLearningFactor>
+                    <ImmunityGainSpeed>1.3</ImmunityGainSpeed>
+                </statFactors>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>0.1</offset>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
 
-  <!-- ============== 奶片Hediff - 免疫+60%, 愈合+20% ============== -->
-  <HediffDef>
-    <defName>Hediff_MooGirlMilkTablet</defName>
-    <!-- 健康奶片 -->
-    <label>healthy milk tablet</label>
-    <!-- 雪牛娘奶片提供营养加成 -->
-    <description>Mugirl milk tablets provide nutrition bonuses.</description>
-    <hediffClass>HediffWithComps</hediffClass>
-    <isBad>false</isBad>
-    <defaultLabelColor>(128,255,255)</defaultLabelColor>
-    <tendable>false</tendable>
-    <initialSeverity>1.0</initialSeverity>
-    <maxSeverity>1.0</maxSeverity>
-    <comps>
-      <li Class="HediffCompProperties_Disappears">
-        <disappearsAfterTicks>60000</disappearsAfterTicks>
-        <showRemainingTime>true</showRemainingTime>
-      </li>
-    </comps>
-    <stages>
-      <li>
-        <statFactors>
-          <ImmunityGainSpeed>1.6</ImmunityGainSpeed>
-          <InjuryHealingFactor>1.2</InjuryHealingFactor>
-        </statFactors>
-      </li>
-    </stages>
-  </HediffDef>
+    <!-- ============== 奶片Hediff - 免疫+60%, 愈合+20% ============== -->
+    <HediffDef>
+        <defName>Hediff_MooGirlMilkTablet</defName>
+        <!-- 健康奶片 -->
+        <label>healthy milk tablet</label>
+        <!-- 雪牛娘奶片提供营养加成 -->
+        <description>Mugirl milk tablets provide nutrition bonuses.</description>
+        <hediffClass>HediffWithComps</hediffClass>
+        <isBad>false</isBad>
+        <defaultLabelColor>(128,255,255)</defaultLabelColor>
+        <tendable>false</tendable>
+        <initialSeverity>1.0</initialSeverity>
+        <maxSeverity>1.0</maxSeverity>
+        <comps>
+            <li Class="HediffCompProperties_Disappears">
+                <disappearsAfterTicks>60000</disappearsAfterTicks>
+                <showRemainingTime>true</showRemainingTime>
+            </li>
+        </comps>
+        <stages>
+            <li>
+                <statFactors>
+                    <ImmunityGainSpeed>1.6</ImmunityGainSpeed>
+                    <InjuryHealingFactor>1.2</InjuryHealingFactor>
+                </statFactors>
+            </li>
+        </stages>
+    </HediffDef>
 
 </Defs>

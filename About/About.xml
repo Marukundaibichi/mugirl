@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<name>MooGirl Race</name>
-	<author>PCR、114、梓磐谷客、伊贝森</author>
-	<supportedVersions>
-		<li>1.6</li>
-	</supportedVersions>
-	<packageId>HAR.MuGirlRace</packageId>
-	<modDependencies>
-		<li>
-			<packageId>brrainz.harmony</packageId>
-			<displayName>Harmony</displayName>
-			<steamWorkshopUrl>https://github.com/pardeike/HarmonyRimWorld</steamWorkshopUrl>
-		</li>
-		<li>
-			<packageId>erdelf.humanoidalienraces</packageId>
-			<displayName>Humanoid Alien Races</displayName>
-		<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=839005762</steamWorkshopUrl>
-		</li>
-	</modDependencies>
-	<loadAfter>
-		<li>brrainz.harmony</li>
-		<li>Ludeon.RimWorld</li>
-		<li>erdelf.HumanoidAlienRaces</li>
-		<li>Nals.FacialAnimation</li>
-	</loadAfter>
-	<incompatibleWith>
-		<li>Luca.MuGirlFacialAnimation</li>
-	</incompatibleWith>
-	<description>
-	Adds the Mugirl species.
+    <name>MooGirl Race</name>
+    <author>PCR、114、梓磐谷客、伊贝森</author>
+    <supportedVersions>
+        <li>1.6</li>
+    </supportedVersions>
+    <packageId>HAR.MuGirlRace</packageId>
+    <modDependencies>
+        <li>
+            <packageId>brrainz.harmony</packageId>
+            <displayName>Harmony</displayName>
+            <steamWorkshopUrl>https://github.com/pardeike/HarmonyRimWorld</steamWorkshopUrl>
+        </li>
+        <li>
+            <packageId>erdelf.humanoidalienraces</packageId>
+            <displayName>Humanoid Alien Races</displayName>
+        <steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=839005762</steamWorkshopUrl>
+        </li>
+    </modDependencies>
+    <loadAfter>
+        <li>brrainz.harmony</li>
+        <li>Ludeon.RimWorld</li>
+        <li>erdelf.HumanoidAlienRaces</li>
+        <li>Nals.FacialAnimation</li>
+    </loadAfter>
+    <incompatibleWith>
+        <li>Luca.MuGirlFacialAnimation</li>
+    </incompatibleWith>
+    <description>
+    Adds the Mugirl species.
 
-	Mugirls are a slave race designed through genetic engineering by a spacefaring megacorporation for colonial labor. They combine a humanlike appearance with the strength and endurance of bovine gene stock, allowing them to handle demanding work across many colony environments.
-	They are tough, strong, and naturally suited to planting, construction, crafting, and other physical labor.
-	However, they are slower in intellectual work and are especially poor at medicine and research. They are reliable colony laborers, but also sympathetic products of corporate genetic design.
-	</description>
+    Mugirls are a slave race designed through genetic engineering by a spacefaring megacorporation for colonial labor. They combine a humanlike appearance with the strength and endurance of bovine gene stock, allowing them to handle demanding work across many colony environments.
+    They are tough, strong, and naturally suited to planting, construction, crafting, and other physical labor.
+    However, they are slower in intellectual work and are especially poor at medicine and research. They are reliable colony laborers, but also sympathetic products of corporate genetic design.
+    </description>
 </ModMetaData>

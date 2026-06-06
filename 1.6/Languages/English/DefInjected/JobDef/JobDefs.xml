@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
 
-  <!-- Unlock Restraints -->
-  <CrackBondageGear.reportString>Unlock Restraints</CrackBondageGear.reportString>
+    <!-- Unlock Restraints -->
+    <CrackBondageGear.reportString>Unlock Restraints</CrackBondageGear.reportString>
 
-  <!-- Put on Restraints -->
-  <GiveSlaveApperalGear.reportString>Put on Restraints</GiveSlaveApperalGear.reportString>
+    <!-- Put on Restraints -->
+    <GiveSlaveApperalGear.reportString>Put on Restraints</GiveSlaveApperalGear.reportString>
 
-  <!-- Follow {TargetA}. -->
-  <Job_FollowRoper.reportString>Follow {TargetA}.</Job_FollowRoper.reportString>
+    <!-- Follow {TargetA}. -->
+    <Job_FollowRoper.reportString>Follow {TargetA}.</Job_FollowRoper.reportString>
 
-  <!-- Feed milk to {TargetA}. -->
-  <Job_Breastfeed.reportString>Feed milk to {TargetA}.</Job_Breastfeed.reportString>
+    <!-- Feed milk to {TargetA}. -->
+    <Job_Breastfeed.reportString>Feed milk to {TargetA}.</Job_Breastfeed.reportString>
 
-  <!-- Drink milk from {TargetA}. -->
-  <Job_DrinkMilkFromMooGirl.reportString>Drink milk from {TargetA}.</Job_DrinkMilkFromMooGirl.reportString>
+    <!-- Drink milk from {TargetA}. -->
+    <Job_DrinkMilkFromMooGirl.reportString>Drink milk from {TargetA}.</Job_DrinkMilkFromMooGirl.reportString>
 
-  <!-- Feed milk to {TargetA}. -->
-  <Job_FeedMilkToDowned.reportString>Feed milk to {TargetA}.</Job_FeedMilkToDowned.reportString>
+    <!-- Feed milk to {TargetA}. -->
+    <Job_FeedMilkToDowned.reportString>Feed milk to {TargetA}.</Job_FeedMilkToDowned.reportString>
 
-  <!-- Nuzzle {TargetA}. -->
-  <Job_Nuzzle.reportString>Nuzzle {TargetA}.</Job_Nuzzle.reportString>
+    <!-- Nuzzle {TargetA}. -->
+    <Job_Nuzzle.reportString>Nuzzle {TargetA}.</Job_Nuzzle.reportString>
 
-  <!-- Remove {TargetA}'s rope -->
-  <JobDriver_RemoveRopeMoo.reportString>Remove {TargetA}'s rope</JobDriver_RemoveRopeMoo.reportString>
+    <!-- Remove {TargetA}'s rope -->
+    <JobDriver_RemoveRopeMoo.reportString>Remove {TargetA}'s rope</JobDriver_RemoveRopeMoo.reportString>
 
-  <!-- Rope {TargetA}. -->
-  <JobDriver_RopeMoo.reportString>Rope {TargetA}.</JobDriver_RopeMoo.reportString>
+    <!-- Rope {TargetA}. -->
+    <JobDriver_RopeMoo.reportString>Rope {TargetA}.</JobDriver_RopeMoo.reportString>
 
-  <!-- Rope to Building -->
-  <RopeToBuild.reportString>Rope to Building</RopeToBuild.reportString>
+    <!-- Rope to Building -->
+    <RopeToBuild.reportString>Rope to Building</RopeToBuild.reportString>
 
-  <!-- Unlock Restraints -->
-  <UnlockSlaveApperal.reportString>Unlock Restraints</UnlockSlaveApperal.reportString>
+    <!-- Unlock Restraints -->
+    <UnlockSlaveApperal.reportString>Unlock Restraints</UnlockSlaveApperal.reportString>
 
 </LanguageData>

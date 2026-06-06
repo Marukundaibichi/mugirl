@@ -1,78 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <TraitDef>
-    <defName>MooGirl_SingleshotWeaponAversion</defName>
-    <degreeDatas>
-      <li>
-        <!-- 单发武器厌恶 -->
-        <label>single-shot weapon aversion</label>
-        <!-- 为什么我要用这种一发、一发、一发的没用的臭东西！ -->
-        <description>Why do I have to use this useless junk that fires one shot, one shot, one shot at a time!</description>
-        <statOffsets>
-          <MeleeHitChance>2</MeleeHitChance>
-        </statOffsets>
-        <skillGains>
-          <Melee>2</Melee>
-        </skillGains>
-        <possessions>
-          <MeleeWeapon_Knife />
-        </possessions>
-      </li>
-    </degreeDatas>
-    <conflictingTraits>
-      <li>Wimp</li>
-    </conflictingTraits>
-    <requiredWorkTags>
-      <li>Violent</li>
-    </requiredWorkTags>
-  </TraitDef>
+    <TraitDef>
+        <defName>MooGirl_SingleshotWeaponAversion</defName>
+        <degreeDatas>
+            <li>
+                <!-- 单发武器厌恶 -->
+                <label>single-shot weapon aversion</label>
+                <!-- 为什么我要用这种一发、一发、一发的没用的臭东西！ -->
+                <description>Why do I have to use this useless junk that fires one shot, one shot, one shot at a time!</description>
+                <statOffsets>
+                    <MeleeHitChance>2</MeleeHitChance>
+                </statOffsets>
+                <skillGains>
+                    <Melee>2</Melee>
+                </skillGains>
+                <possessions>
+                    <MeleeWeapon_Knife />
+                </possessions>
+            </li>
+        </degreeDatas>
+        <conflictingTraits>
+            <li>Wimp</li>
+        </conflictingTraits>
+        <requiredWorkTags>
+            <li>Violent</li>
+        </requiredWorkTags>
+    </TraitDef>
 
-  <TraitDef>
-    <defName>MooGirl_BrainWashPeace</defName>
-    <commonality>0</commonality>
-    <degreeDatas>
-      <li>
-        <!-- 洗脑平静 -->
-        <label>brainwashed calm</label>
-        <!-- {PAWN_nameDef} 被设备洗脑了，即使再难过的事情也无法令{PAWN_nameDef} 崩溃。 -->
-        <description>{PAWN_nameDef} has been brainwashed by the device, and even the saddest events can no longer break {PAWN_nameDef}.</description>
-        <statFactors>
-          <CertaintyLossFactor MayRequire="Ludeon.RimWorld.Ideology">2</CertaintyLossFactor>
-        </statFactors>
-      </li>
-    </degreeDatas>
-  </TraitDef>
+    <TraitDef>
+        <defName>MooGirl_BrainWashPeace</defName>
+        <commonality>0</commonality>
+        <degreeDatas>
+            <li>
+                <!-- 洗脑平静 -->
+                <label>brainwashed calm</label>
+                <!-- {PAWN_nameDef} 被设备洗脑了，即使再难过的事情也无法令{PAWN_nameDef} 崩溃。 -->
+                <description>{PAWN_nameDef} has been brainwashed by the device, and even the saddest events can no longer break {PAWN_nameDef}.</description>
+                <statFactors>
+                    <CertaintyLossFactor MayRequire="Ludeon.RimWorld.Ideology">2</CertaintyLossFactor>
+                </statFactors>
+            </li>
+        </degreeDatas>
+    </TraitDef>
 
-  <TraitDef>
-    <defName>MooGirl_BrainWashObey</defName>
-    <commonality>0</commonality>
-    <degreeDatas>
-      <li>
-        <!-- 洗脑服从 -->
-        <label>brainwashed obedience</label>
-        <!-- {PAWN_nameDef} 被设备洗脑了，即使被奴役的生活充满苦难，{PAWN_nameDef} 也会逆来顺受。 -->
-        <description>{PAWN_nameDef} has been brainwashed by the device, and even if enslaved life is full of suffering, {PAWN_nameDef} will submit without resistance.</description>
-      </li>
-    </degreeDatas>
-  </TraitDef>
+    <TraitDef>
+        <defName>MooGirl_BrainWashObey</defName>
+        <commonality>0</commonality>
+        <degreeDatas>
+            <li>
+                <!-- 洗脑服从 -->
+                <label>brainwashed obedience</label>
+                <!-- {PAWN_nameDef} 被设备洗脑了，即使被奴役的生活充满苦难，{PAWN_nameDef} 也会逆来顺受。 -->
+                <description>{PAWN_nameDef} has been brainwashed by the device, and even if enslaved life is full of suffering, {PAWN_nameDef} will submit without resistance.</description>
+            </li>
+        </degreeDatas>
+    </TraitDef>
 
-  <TraitDef>
-    <defName>MooGirl_NurturedByMooGirl</defName>
-    <commonality>0</commonality>
-    <degreeDatas>
-      <li>
-        <!-- 雪牛娘哺育 -->
-        <label>Mugirl nurtured</label>
-        <!-- {PAWN_nameDef}在小时候得到了雪牛娘温柔的哺育，拥有更好的成长。 -->
-        <description>{PAWN_nameDef} was gently nurtured by a Mugirl during childhood and grew up stronger for it.</description>
-        <statFactors>
-          <GlobalLearningFactor>1.2</GlobalLearningFactor>
-        </statFactors>
-        <statOffsets>
-          <MoveSpeed>1</MoveSpeed>
-        </statOffsets>
-      </li>
-    </degreeDatas>
-  </TraitDef>
+    <TraitDef>
+        <defName>MooGirl_NurturedByMooGirl</defName>
+        <commonality>0</commonality>
+        <degreeDatas>
+            <li>
+                <!-- 雪牛娘哺育 -->
+                <label>Mugirl nurtured</label>
+                <!-- {PAWN_nameDef}在小时候得到了雪牛娘温柔的哺育，拥有更好的成长。 -->
+                <description>{PAWN_nameDef} was gently nurtured by a Mugirl during childhood and grew up stronger for it.</description>
+                <statFactors>
+                    <GlobalLearningFactor>1.2</GlobalLearningFactor>
+                </statFactors>
+                <statOffsets>
+                    <MoveSpeed>1</MoveSpeed>
+                </statOffsets>
+            </li>
+        </degreeDatas>
+    </TraitDef>
 </Defs>

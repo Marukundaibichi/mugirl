@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <PawnKindDef Abstract="True" Name="MooGirl_BaseKind">
+    <PawnKindDef Abstract="True" Name="MooGirl_BaseKind">
     <race>MooGirl</race>
     <combatPower>45</combatPower>
     <isFighter>false</isFighter>
     <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
     <forceNormalGearQuality>true</forceNormalGearQuality>
     <xenotypeSet>
-      <xenotypeChances>
+        <xenotypeChances>
         <MooGirl_Xenotype MayRequire="Ludeon.RimWorld.Biotech">1</MooGirl_Xenotype>
         <Baseliner MayRequire="Ludeon.RimWorld.Biotech">0</Baseliner>
         <Dirtmole MayRequire="Ludeon.RimWorld.Biotech">0</Dirtmole>
@@ -21,8 +21,8 @@
         <Waster MayRequire="Ludeon.RimWorld.Biotech">0</Waster>
         <Yttakin MayRequire="Ludeon.RimWorld.Biotech">0</Yttakin>
         <Highmate MayRequire="Ludeon.RimWorld.Biotech">0</Highmate>
-      </xenotypeChances>
+        </xenotypeChances>
     </xenotypeSet>
     <useFactionXenotypes>false</useFactionXenotypes>
-  </PawnKindDef>
+    </PawnKindDef>
 </Defs>

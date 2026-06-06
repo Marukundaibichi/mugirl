@@ -1,90 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <!-- 哺乳期 Hediff -->
-  <HediffDef>
-    <defName>MooGirl_Lactation</defName>
-    <hediffClass>HediffWithComps</hediffClass>
-    <!-- 哺乳期 -->
-    <label>lactating</label>
-    <!-- 雪牛娘处于泌乳状态，可以哺育幼崽。乳汁分泌速度受营养状况影响。 -->
-    <description>This Mugirl is lactating and can nurse children. Milk production is affected by nutrition.</description>
-    <isBad>false</isBad>
-    <scenarioCanAdd>false</scenarioCanAdd>
-    <comps>
-      <li Class="MooGirl.CompProperties_Lactation">
-        <baseProductionMultiplier>1.0</baseProductionMultiplier>
-        <postpartumBoostDays>7</postpartumBoostDays>
-        <postpartumMultiplier>2.5</postpartumMultiplier>
-        <malnourishedPenalty>0.3</malnourishedPenalty>
-      </li>
-    </comps>
-  </HediffDef>
+    <!-- 哺乳期 Hediff -->
+    <HediffDef>
+        <defName>MooGirl_Lactation</defName>
+        <hediffClass>HediffWithComps</hediffClass>
+        <!-- 哺乳期 -->
+        <label>lactating</label>
+        <!-- 雪牛娘处于泌乳状态，可以哺育幼崽。乳汁分泌速度受营养状况影响。 -->
+        <description>This Mugirl is lactating and can nurse children. Milk production is affected by nutrition.</description>
+        <isBad>false</isBad>
+        <scenarioCanAdd>false</scenarioCanAdd>
+        <comps>
+            <li Class="MooGirl.CompProperties_Lactation">
+                <baseProductionMultiplier>1.0</baseProductionMultiplier>
+                <postpartumBoostDays>7</postpartumBoostDays>
+                <postpartumMultiplier>2.5</postpartumMultiplier>
+                <malnourishedPenalty>0.3</malnourishedPenalty>
+            </li>
+        </comps>
+    </HediffDef>
 
-  <HediffDef>
-    <defName>MooGirl_MotherlyNurture</defName>
-    <hediffClass>HediffWithComps</hediffClass>
-    <!-- 雪牛娘妈妈的哺育 -->
-    <label>Mugirl mother's nurture</label>
-    <!-- 这个孩子正在接受雪牛娘温柔而充足的哺育。进度越高，成长评级和学习能力加成越强。 -->
-    <description>This child is being gently and richly nurtured by a Mugirl. Higher progress gives stronger growth tier and learning bonuses.</description>
-    <isBad>false</isBad>
-    <defaultLabelColor>(255,192,203)</defaultLabelColor>
-    <scenarioCanAdd>false</scenarioCanAdd>
-    <maxSeverity>1</maxSeverity>
-    <initialSeverity>0.001</initialSeverity>
-    <alwaysShowSeverity>true</alwaysShowSeverity>
-    <stages>
-      <li>
-        <minSeverity>0</minSeverity>
-        <!-- 萌芽 -->
-        <label>budding</label>
-        <statFactors>
-          <GlobalLearningFactor>1.5</GlobalLearningFactor>
-        </statFactors>
-      </li>
-      <li>
-        <minSeverity>0.4</minSeverity>
-        <!-- 充盈 -->
-        <label>full</label>
-        <statFactors>
-          <GlobalLearningFactor>2.0</GlobalLearningFactor>
-        </statFactors>
-      </li>
-      <li>
-        <minSeverity>0.7</minSeverity>
-        <!-- 圆满 -->
-        <label>complete</label>
-        <statFactors>
-          <GlobalLearningFactor>2.5</GlobalLearningFactor>
-        </statFactors>
-      </li>
-    </stages>
-    <comps>
-      <li Class="MooGirl.HediffCompProperties_MooGirlNurtureProgress" />
-    </comps>
-  </HediffDef>
+    <HediffDef>
+        <defName>MooGirl_MotherlyNurture</defName>
+        <hediffClass>HediffWithComps</hediffClass>
+        <!-- 雪牛娘妈妈的哺育 -->
+        <label>Mugirl mother's nurture</label>
+        <!-- 这个孩子正在接受雪牛娘温柔而充足的哺育。进度越高，成长评级和学习能力加成越强。 -->
+        <description>This child is being gently and richly nurtured by a Mugirl. Higher progress gives stronger growth tier and learning bonuses.</description>
+        <isBad>false</isBad>
+        <defaultLabelColor>(255,192,203)</defaultLabelColor>
+        <scenarioCanAdd>false</scenarioCanAdd>
+        <maxSeverity>1</maxSeverity>
+        <initialSeverity>0.001</initialSeverity>
+        <alwaysShowSeverity>true</alwaysShowSeverity>
+        <stages>
+            <li>
+                <minSeverity>0</minSeverity>
+                <!-- 萌芽 -->
+                <label>budding</label>
+                <statFactors>
+                    <GlobalLearningFactor>1.5</GlobalLearningFactor>
+                </statFactors>
+            </li>
+            <li>
+                <minSeverity>0.4</minSeverity>
+                <!-- 充盈 -->
+                <label>full</label>
+                <statFactors>
+                    <GlobalLearningFactor>2.0</GlobalLearningFactor>
+                </statFactors>
+            </li>
+            <li>
+                <minSeverity>0.7</minSeverity>
+                <!-- 圆满 -->
+                <label>complete</label>
+                <statFactors>
+                    <GlobalLearningFactor>2.5</GlobalLearningFactor>
+                </statFactors>
+            </li>
+        </stages>
+        <comps>
+            <li Class="MooGirl.HediffCompProperties_MooGirlNurtureProgress" />
+        </comps>
+    </HediffDef>
 
-  <HediffDef>
-    <defName>MooGirl_NurtureAfterglow</defName>
-    <hediffClass>HediffWithComps</hediffClass>
-    <!-- 雪牛娘哺育余韵 -->
-    <label>Mugirl nurture afterglow</label>
-    <!-- 雪牛娘长期哺育留下的成长余韵仍在这个孩子身上延续。 -->
-    <description>The lasting benefits of long Mugirl nurture continue to support this child.</description>
-    <isBad>false</isBad>
-    <scenarioCanAdd>false</scenarioCanAdd>
-    <stages>
-      <li>
-        <statFactors>
-          <GlobalLearningFactor>2.5</GlobalLearningFactor>
-        </statFactors>
-      </li>
-    </stages>
-    <comps>
-      <li Class="HediffCompProperties_Disappears">
-        <disappearsAfterTicks>27000000</disappearsAfterTicks>
-        <showRemainingTime>true</showRemainingTime>
-      </li>
-    </comps>
-  </HediffDef>
+    <HediffDef>
+        <defName>MooGirl_NurtureAfterglow</defName>
+        <hediffClass>HediffWithComps</hediffClass>
+        <!-- 雪牛娘哺育余韵 -->
+        <label>Mugirl nurture afterglow</label>
+        <!-- 雪牛娘长期哺育留下的成长余韵仍在这个孩子身上延续。 -->
+        <description>The lasting benefits of long Mugirl nurture continue to support this child.</description>
+        <isBad>false</isBad>
+        <scenarioCanAdd>false</scenarioCanAdd>
+        <stages>
+            <li>
+                <statFactors>
+                    <GlobalLearningFactor>2.5</GlobalLearningFactor>
+                </statFactors>
+            </li>
+        </stages>
+        <comps>
+            <li Class="HediffCompProperties_Disappears">
+                <disappearsAfterTicks>27000000</disappearsAfterTicks>
+                <showRemainingTime>true</showRemainingTime>
+            </li>
+        </comps>
+    </HediffDef>
 </Defs>

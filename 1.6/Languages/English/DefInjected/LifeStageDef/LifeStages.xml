@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-  
-  <MooGirl_HumanlikeBaby.label>baby</MooGirl_HumanlikeBaby.label>
-  <MooGirl_HumanlikeBaby.customMoodTipString>Mood represents how happy or stressed someone is. Babies with low mood are more likely to cry, while babies with a high mood are more likely to giggle.</MooGirl_HumanlikeBaby.customMoodTipString>
-  
-  <MooGirl_PreTeenager.label>Pre-Teen</MooGirl_PreTeenager.label>
-  
-  <MooGirl_Teenager.label>Teenager</MooGirl_Teenager.label>
-  <MooGirl_Teenager.adjective>teenage</MooGirl_Teenager.adjective>
 
-  <MooGirl_AdultLifeStage.label>Adult</MooGirl_AdultLifeStage.label>
-  
+    <MooGirl_HumanlikeBaby.label>baby</MooGirl_HumanlikeBaby.label>
+    <MooGirl_HumanlikeBaby.customMoodTipString>Mood represents how happy or stressed someone is. Babies with low mood are more likely to cry, while babies with a high mood are more likely to giggle.</MooGirl_HumanlikeBaby.customMoodTipString>
+
+    <MooGirl_PreTeenager.label>Pre-Teen</MooGirl_PreTeenager.label>
+
+    <MooGirl_Teenager.label>Teenager</MooGirl_Teenager.label>
+    <MooGirl_Teenager.adjective>teenage</MooGirl_Teenager.adjective>
+
+    <MooGirl_AdultLifeStage.label>Adult</MooGirl_AdultLifeStage.label>
+
 </LanguageData>

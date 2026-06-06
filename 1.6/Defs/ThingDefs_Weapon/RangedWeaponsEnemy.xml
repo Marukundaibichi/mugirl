@@ -1,756 +1,756 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <!-- PMC 卡宾枪弹药（基于 Heavy SMG） -->
-  <ThingDef ParentName="BaseBullet">
-    <defName>Bullet_PMC_Carbine</defName>
-    <!-- PMC 卡宾枪弹 -->
-    <label>PMC carbine round</label>
-    <graphicData>
-      <texPath>Things/Projectile/Bullet_Small</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-      <damageDef>Bullet</damageDef>
-      <damageAmountBase>16</damageAmountBase>
-      <speed>48</speed>
-    </projectile>
-  </ThingDef>
+    <!-- PMC 卡宾枪弹药（基于 Heavy SMG） -->
+    <ThingDef ParentName="BaseBullet">
+        <defName>Bullet_PMC_Carbine</defName>
+        <!-- PMC 卡宾枪弹 -->
+        <label>PMC carbine round</label>
+        <graphicData>
+            <texPath>Things/Projectile/Bullet_Small</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <projectile>
+            <damageDef>Bullet</damageDef>
+            <damageAmountBase>16</damageAmountBase>
+            <speed>48</speed>
+        </projectile>
+    </ThingDef>
 
-  <!-- PMC 卡宾枪：1.3x 重型冲锋枪 -->
-  <ThingDef ParentName="BaseHumanMakeableGun">
-    <defName>PMC_Carbine</defName>
-    <!-- PMC卡宾枪 -->
-    <label>PMC Carbine</label>
-    <!-- PMC 常用的紧凑型卡宾枪，强调中近距离持续压制能力。 -->
-    <description>A compact carbine commonly used by PMC forces, emphasizing sustained suppression at close to medium range.</description>
-    <graphicData>
-      <texPath>Things/Item/Equipment/EnemyWeapon/PMC_Carbine</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>1.2</drawSize>
-    </graphicData>
-    <soundInteract>Interact_SMG</soundInteract>
-    <weaponClasses>
-      <li>ShortShots</li>
-      <li>RangedHeavy</li>
-    </weaponClasses>
-    <recipeMaker>
-      <researchPrerequisite>GasOperation</researchPrerequisite>
-      <skillRequirements>
-        <Crafting>5</Crafting>
-      </skillRequirements>
-      <displayPriority>440</displayPriority>
-    </recipeMaker>
-    <statBases>
-      <WorkToMake>31200</WorkToMake>
-      <Mass>3.5</Mass>
-      <AccuracyTouch>0.98</AccuracyTouch>
-      <AccuracyShort>0.82</AccuracyShort>
-      <AccuracyMedium>0.40</AccuracyMedium>
-      <AccuracyLong>0.21</AccuracyLong>
-      <RangedWeapon_Cooldown>1.65</RangedWeapon_Cooldown>
-    </statBases>
-    <costList>
-      <Steel>100</Steel>
-      <ComponentIndustrial>6</ComponentIndustrial>
-    </costList>
-    <verbs>
-      <li>
-        <verbClass>Verb_Shoot</verbClass>
-        <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>Bullet_PMC_Carbine</defaultProjectile>
-        <warmupTime>0.9</warmupTime>
-        <range>29.77</range>
-        <burstShotCount>3</burstShotCount>
-        <ticksBetweenBurstShots>11</ticksBetweenBurstShots>
-        <soundCast>Shot_HeavySMG</soundCast>
-        <soundCastTail>GunTail_Heavy</soundCastTail>
-        <muzzleFlashScale>9</muzzleFlashScale>
-      </li>
-    </verbs>
-    <weaponTags>
-      <li>IndustrialGunAdvanced</li>
-      <li>PMC</li>
-      <li>GC_Weapon_Tier2</li>
-      <li>GC_Weapon_Tier3</li>
-      <li>GC_Weapon_MooGirl</li>
-      <li>ShortShots</li>
-    </weaponTags>
-    <tools>
-      <li>
-        <!-- 握把 -->
-        <label>grip</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-      <li>
-        <!-- 枪管 -->
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-    </tools>
-  </ThingDef>
+    <!-- PMC 卡宾枪：1.3x 重型冲锋枪 -->
+    <ThingDef ParentName="BaseHumanMakeableGun">
+        <defName>PMC_Carbine</defName>
+        <!-- PMC卡宾枪 -->
+        <label>PMC Carbine</label>
+        <!-- PMC 常用的紧凑型卡宾枪，强调中近距离持续压制能力。 -->
+        <description>A compact carbine commonly used by PMC forces, emphasizing sustained suppression at close to medium range.</description>
+        <graphicData>
+            <texPath>Things/Item/Equipment/EnemyWeapon/PMC_Carbine</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>1.2</drawSize>
+        </graphicData>
+        <soundInteract>Interact_SMG</soundInteract>
+        <weaponClasses>
+            <li>ShortShots</li>
+            <li>RangedHeavy</li>
+        </weaponClasses>
+        <recipeMaker>
+            <researchPrerequisite>GasOperation</researchPrerequisite>
+            <skillRequirements>
+                <Crafting>5</Crafting>
+            </skillRequirements>
+            <displayPriority>440</displayPriority>
+        </recipeMaker>
+        <statBases>
+            <WorkToMake>31200</WorkToMake>
+            <Mass>3.5</Mass>
+            <AccuracyTouch>0.98</AccuracyTouch>
+            <AccuracyShort>0.82</AccuracyShort>
+            <AccuracyMedium>0.40</AccuracyMedium>
+            <AccuracyLong>0.21</AccuracyLong>
+            <RangedWeapon_Cooldown>1.65</RangedWeapon_Cooldown>
+        </statBases>
+        <costList>
+            <Steel>100</Steel>
+            <ComponentIndustrial>6</ComponentIndustrial>
+        </costList>
+        <verbs>
+            <li>
+                <verbClass>Verb_Shoot</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>Bullet_PMC_Carbine</defaultProjectile>
+                <warmupTime>0.9</warmupTime>
+                <range>29.77</range>
+                <burstShotCount>3</burstShotCount>
+                <ticksBetweenBurstShots>11</ticksBetweenBurstShots>
+                <soundCast>Shot_HeavySMG</soundCast>
+                <soundCastTail>GunTail_Heavy</soundCastTail>
+                <muzzleFlashScale>9</muzzleFlashScale>
+            </li>
+        </verbs>
+        <weaponTags>
+            <li>IndustrialGunAdvanced</li>
+            <li>PMC</li>
+            <li>GC_Weapon_Tier2</li>
+            <li>GC_Weapon_Tier3</li>
+            <li>GC_Weapon_MooGirl</li>
+            <li>ShortShots</li>
+        </weaponTags>
+        <tools>
+            <li>
+                <!-- 握把 -->
+                <label>grip</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+            <li>
+                <!-- 枪管 -->
+                <label>barrel</label>
+                <capacities>
+                    <li>Blunt</li>
+                    <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+        </tools>
+    </ThingDef>
 
-  <!-- PMC 突击步枪弹药（基于 Assault Rifle） -->
-  <ThingDef ParentName="BaseBullet">
-    <defName>Bullet_PMC_Assault_Rifle</defName>
-    <!-- PMC 突击步枪弹 -->
-    <label>PMC assault rifle round</label>
-    <graphicData>
-      <texPath>Things/Projectile/Bullet_Small</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-      <damageDef>Bullet</damageDef>
-      <damageAmountBase>14</damageAmountBase>
-      <speed>70</speed>
-    </projectile>
-  </ThingDef>
+    <!-- PMC 突击步枪弹药（基于 Assault Rifle） -->
+    <ThingDef ParentName="BaseBullet">
+        <defName>Bullet_PMC_Assault_Rifle</defName>
+        <!-- PMC 突击步枪弹 -->
+        <label>PMC assault rifle round</label>
+        <graphicData>
+            <texPath>Things/Projectile/Bullet_Small</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <projectile>
+            <damageDef>Bullet</damageDef>
+            <damageAmountBase>14</damageAmountBase>
+            <speed>70</speed>
+        </projectile>
+    </ThingDef>
 
-  <!-- PMC 突击步枪：1.3x 突击步枪 -->
-  <ThingDef ParentName="BaseHumanMakeableGun">
-    <defName>PMC_Assault_Rifle</defName>
-    <!-- PMC突击步枪 -->
-    <label>PMC Assault Rifle</label>
-    <!-- PMC 标准制式突击步枪，兼顾火力、机动与射程。 -->
-    <description>The standard PMC assault rifle, balancing firepower, mobility, and range.</description>
-    <graphicData>
-      <texPath>Things/Item/Equipment/EnemyWeapon/PMC_Assault_Rifle</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>1.8</drawSize>
-    </graphicData>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <recipeMaker>
-      <researchPrerequisite>PrecisionRifling</researchPrerequisite>
-      <skillRequirements>
-        <Crafting>6</Crafting>
-      </skillRequirements>
-      <displayPriority>420</displayPriority>
-    </recipeMaker>
-    <statBases>
-      <WorkToMake>52000</WorkToMake>
-      <Mass>3.5</Mass>
-      <AccuracyTouch>0.75</AccuracyTouch>
-      <AccuracyShort>0.90</AccuracyShort>
-      <AccuracyMedium>0.82</AccuracyMedium>
-      <AccuracyLong>0.68</AccuracyLong>
-      <RangedWeapon_Cooldown>1.70</RangedWeapon_Cooldown>
-    </statBases>
-    <costList>
-      <Steel>80</Steel>
-      <ComponentIndustrial>10</ComponentIndustrial>
-    </costList>
-    <verbs>
-      <li>
-        <verbClass>Verb_Shoot</verbClass>
-        <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>Bullet_PMC_Assault_Rifle</defaultProjectile>
-        <warmupTime>1.0</warmupTime>
-        <range>40.17</range>
-        <burstShotCount>3</burstShotCount>
-        <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-        <soundCast>Shot_AssaultRifle</soundCast>
-        <soundCastTail>GunTail_Medium</soundCastTail>
-        <muzzleFlashScale>9</muzzleFlashScale>
-      </li>
-    </verbs>
-    <weaponTags>
-      <li>IndustrialGunAdvanced</li>
-      <li>PMC</li>
-      <li>GC_Weapon_Tier2</li>
-      <li>GC_Weapon_Tier3</li>
-      <li>GC_Weapon_MooGirl</li>
-      <li>AssaultRifle</li>
-    </weaponTags>
-    <tools>
-      <li>
-        <!-- 枪托 -->
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-      <li>
-        <!-- 枪管 -->
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-    </tools>
-  </ThingDef>
+    <!-- PMC 突击步枪：1.3x 突击步枪 -->
+    <ThingDef ParentName="BaseHumanMakeableGun">
+        <defName>PMC_Assault_Rifle</defName>
+        <!-- PMC突击步枪 -->
+        <label>PMC Assault Rifle</label>
+        <!-- PMC 标准制式突击步枪，兼顾火力、机动与射程。 -->
+        <description>The standard PMC assault rifle, balancing firepower, mobility, and range.</description>
+        <graphicData>
+            <texPath>Things/Item/Equipment/EnemyWeapon/PMC_Assault_Rifle</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>1.8</drawSize>
+        </graphicData>
+        <soundInteract>Interact_Rifle</soundInteract>
+        <recipeMaker>
+            <researchPrerequisite>PrecisionRifling</researchPrerequisite>
+            <skillRequirements>
+                <Crafting>6</Crafting>
+            </skillRequirements>
+            <displayPriority>420</displayPriority>
+        </recipeMaker>
+        <statBases>
+            <WorkToMake>52000</WorkToMake>
+            <Mass>3.5</Mass>
+            <AccuracyTouch>0.75</AccuracyTouch>
+            <AccuracyShort>0.90</AccuracyShort>
+            <AccuracyMedium>0.82</AccuracyMedium>
+            <AccuracyLong>0.68</AccuracyLong>
+            <RangedWeapon_Cooldown>1.70</RangedWeapon_Cooldown>
+        </statBases>
+        <costList>
+            <Steel>80</Steel>
+            <ComponentIndustrial>10</ComponentIndustrial>
+        </costList>
+        <verbs>
+            <li>
+                <verbClass>Verb_Shoot</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>Bullet_PMC_Assault_Rifle</defaultProjectile>
+                <warmupTime>1.0</warmupTime>
+                <range>40.17</range>
+                <burstShotCount>3</burstShotCount>
+                <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+                <soundCast>Shot_AssaultRifle</soundCast>
+                <soundCastTail>GunTail_Medium</soundCastTail>
+                <muzzleFlashScale>9</muzzleFlashScale>
+            </li>
+        </verbs>
+        <weaponTags>
+            <li>IndustrialGunAdvanced</li>
+            <li>PMC</li>
+            <li>GC_Weapon_Tier2</li>
+            <li>GC_Weapon_Tier3</li>
+            <li>GC_Weapon_MooGirl</li>
+            <li>AssaultRifle</li>
+        </weaponTags>
+        <tools>
+            <li>
+                <!-- 枪托 -->
+                <label>stock</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+            <li>
+                <!-- 枪管 -->
+                <label>barrel</label>
+                <capacities>
+                    <li>Blunt</li>
+                    <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+        </tools>
+    </ThingDef>
 
-  <!-- PMC 射手步枪弹药（基于 Assault Rifle） -->
-  <ThingDef ParentName="BaseBullet">
-    <defName>Bullet_PMC_DMR</defName>
-    <!-- PMC 射手步枪弹 -->
-    <label>PMC DMR round</label>
-    <graphicData>
-      <texPath>Things/Projectile/Bullet_Small</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-      <damageDef>Bullet</damageDef>
-      <damageAmountBase>19</damageAmountBase>
-      <speed>70</speed>
-    </projectile>
-  </ThingDef>
+    <!-- PMC 射手步枪弹药（基于 Assault Rifle） -->
+    <ThingDef ParentName="BaseBullet">
+        <defName>Bullet_PMC_DMR</defName>
+        <!-- PMC 射手步枪弹 -->
+        <label>PMC DMR round</label>
+        <graphicData>
+            <texPath>Things/Projectile/Bullet_Small</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <projectile>
+            <damageDef>Bullet</damageDef>
+            <damageAmountBase>19</damageAmountBase>
+            <speed>70</speed>
+        </projectile>
+    </ThingDef>
 
-  <!-- PMC 射手步枪：1.7x 突击步枪 -->
-  <ThingDef ParentName="BaseHumanMakeableGun">
-    <defName>PMC_DMR</defName>
-    <!-- PMC射手步枪 -->
-    <label>PMC Designated Marksman Rifle</label>
-    <!-- PMC 班组精确射手用步枪，针对中远距离交战强化。 -->
-    <description>A rifle for PMC squad designated marksmen, reinforced for medium- to long-range engagements.</description>
-    <graphicData>
-      <texPath>Things/Item/Equipment/EnemyWeapon/PMC_DMR</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>1.8</drawSize>
-    </graphicData>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <recipeMaker>
-      <researchPrerequisite>PrecisionRifling</researchPrerequisite>
-      <skillRequirements>
-        <Crafting>6</Crafting>
-      </skillRequirements>
-      <displayPriority>421</displayPriority>
-    </recipeMaker>
-    <statBases>
-      <WorkToMake>68000</WorkToMake>
-      <Mass>3.5</Mass>
-      <AccuracyTouch>0.98</AccuracyTouch>
-      <AccuracyShort>0.98</AccuracyShort>
-      <AccuracyMedium>0.98</AccuracyMedium>
-      <AccuracyLong>0.93</AccuracyLong>
-      <RangedWeapon_Cooldown>1.30</RangedWeapon_Cooldown>
-    </statBases>
-    <costList>
-      <Steel>110</Steel>
-      <ComponentIndustrial>12</ComponentIndustrial>
-    </costList>
-    <verbs>
-      <li>
-        <verbClass>Verb_Shoot</verbClass>
-        <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>Bullet_PMC_DMR</defaultProjectile>
-        <warmupTime>1.0</warmupTime>
-        <range>52.53</range>
-        <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-        <soundCast>Shot_AssaultRifle</soundCast>
-        <soundCastTail>GunTail_Medium</soundCastTail>
-        <muzzleFlashScale>9</muzzleFlashScale>
-      </li>
-    </verbs>
-    <weaponTags>
-      <li>IndustrialGunAdvanced</li>
-      <li>PMC</li>
-      <li>GC_Weapon_Tier2</li>
-      <li>GC_Weapon_Tier3</li>
-      <li>GC_Weapon_MooGirl</li>
-      <li>AssaultRifle</li>
-    </weaponTags>
-    <tools>
-      <li>
-        <!-- 枪托 -->
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-      <li>
-        <!-- 枪管 -->
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-    </tools>
-  </ThingDef>
+    <!-- PMC 射手步枪：1.7x 突击步枪 -->
+    <ThingDef ParentName="BaseHumanMakeableGun">
+        <defName>PMC_DMR</defName>
+        <!-- PMC射手步枪 -->
+        <label>PMC Designated Marksman Rifle</label>
+        <!-- PMC 班组精确射手用步枪，针对中远距离交战强化。 -->
+        <description>A rifle for PMC squad designated marksmen, reinforced for medium- to long-range engagements.</description>
+        <graphicData>
+            <texPath>Things/Item/Equipment/EnemyWeapon/PMC_DMR</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>1.8</drawSize>
+        </graphicData>
+        <soundInteract>Interact_Rifle</soundInteract>
+        <recipeMaker>
+            <researchPrerequisite>PrecisionRifling</researchPrerequisite>
+            <skillRequirements>
+                <Crafting>6</Crafting>
+            </skillRequirements>
+            <displayPriority>421</displayPriority>
+        </recipeMaker>
+        <statBases>
+            <WorkToMake>68000</WorkToMake>
+            <Mass>3.5</Mass>
+            <AccuracyTouch>0.98</AccuracyTouch>
+            <AccuracyShort>0.98</AccuracyShort>
+            <AccuracyMedium>0.98</AccuracyMedium>
+            <AccuracyLong>0.93</AccuracyLong>
+            <RangedWeapon_Cooldown>1.30</RangedWeapon_Cooldown>
+        </statBases>
+        <costList>
+            <Steel>110</Steel>
+            <ComponentIndustrial>12</ComponentIndustrial>
+        </costList>
+        <verbs>
+            <li>
+                <verbClass>Verb_Shoot</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>Bullet_PMC_DMR</defaultProjectile>
+                <warmupTime>1.0</warmupTime>
+                <range>52.53</range>
+                <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+                <soundCast>Shot_AssaultRifle</soundCast>
+                <soundCastTail>GunTail_Medium</soundCastTail>
+                <muzzleFlashScale>9</muzzleFlashScale>
+            </li>
+        </verbs>
+        <weaponTags>
+            <li>IndustrialGunAdvanced</li>
+            <li>PMC</li>
+            <li>GC_Weapon_Tier2</li>
+            <li>GC_Weapon_Tier3</li>
+            <li>GC_Weapon_MooGirl</li>
+            <li>AssaultRifle</li>
+        </weaponTags>
+        <tools>
+            <li>
+                <!-- 枪托 -->
+                <label>stock</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+            <li>
+                <!-- 枪管 -->
+                <label>barrel</label>
+                <capacities>
+                    <li>Blunt</li>
+                    <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+        </tools>
+    </ThingDef>
 
-  <!-- PMC 轻机枪弹药（基于 LMG） -->
-  <ThingDef ParentName="BaseBullet">
-    <defName>Bullet_PMC_LMG</defName>
-    <!-- PMC 轻机枪弹 -->
-    <label>PMC LMG round</label>
-    <graphicData>
-      <texPath>Things/Projectile/Bullet_Small</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-      <damageDef>Bullet</damageDef>
-      <damageAmountBase>16</damageAmountBase>
-      <stoppingPower>1</stoppingPower>
-      <speed>46</speed>
-    </projectile>
-  </ThingDef>
+    <!-- PMC 轻机枪弹药（基于 LMG） -->
+    <ThingDef ParentName="BaseBullet">
+        <defName>Bullet_PMC_LMG</defName>
+        <!-- PMC 轻机枪弹 -->
+        <label>PMC LMG round</label>
+        <graphicData>
+            <texPath>Things/Projectile/Bullet_Small</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <projectile>
+            <damageDef>Bullet</damageDef>
+            <damageAmountBase>16</damageAmountBase>
+            <stoppingPower>1</stoppingPower>
+            <speed>46</speed>
+        </projectile>
+    </ThingDef>
 
-  <!-- PMC 轻机枪：1.3x 轻机枪 -->
-  <ThingDef ParentName="BaseHumanMakeableGun">
-    <defName>PMC_LMG</defName>
-    <!-- PMC轻机枪 -->
-    <label>PMC Light Machine Gun</label>
-    <!-- PMC 压制火力核心，适合持续压制与区域封锁。 -->
-    <description>The core of PMC suppressive firepower, suited for sustained suppression and area denial.</description>
-    <graphicData>
-      <texPath>Things/Item/Equipment/EnemyWeapon/PMC_LMG</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>1.8</drawSize>
-    </graphicData>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <weaponClasses>
-      <li>RangedHeavy</li>
-    </weaponClasses>
-    <recipeMaker>
-      <researchPrerequisite>GasOperation</researchPrerequisite>
-      <skillRequirements>
-        <Crafting>6</Crafting>
-      </skillRequirements>
-      <displayPriority>445</displayPriority>
-    </recipeMaker>
-    <statBases>
-      <WorkToMake>44200</WorkToMake>
-      <Mass>8.5</Mass>
-      <AccuracyTouch>0.47</AccuracyTouch>
-      <AccuracyShort>0.58</AccuracyShort>
-      <AccuracyMedium>0.40</AccuracyMedium>
-      <AccuracyLong>0.29</AccuracyLong>
-      <RangedWeapon_Cooldown>1.6</RangedWeapon_Cooldown>
-    </statBases>
-    <costList>
-      <Steel>100</Steel>
-      <ComponentIndustrial>7</ComponentIndustrial>
-    </costList>
-    <verbs>
-      <li>
-        <verbClass>Verb_Shoot</verbClass>
-        <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>Bullet_PMC_LMG</defaultProjectile>
-        <warmupTime>1.8</warmupTime>
-        <range>33.67</range>
-        <ticksBetweenBurstShots>7</ticksBetweenBurstShots>
-        <burstShotCount>6</burstShotCount>
-        <soundCast>Shot_Minigun</soundCast>
-        <soundCastTail>GunTail_Medium</soundCastTail>
-        <muzzleFlashScale>9</muzzleFlashScale>
-      </li>
-    </verbs>
-    <weaponTags>
-      <li>IndustrialGunAdvanced</li>
-      <li>PMC</li>
-      <li>GC_Weapon_Tier2</li>
-      <li>GC_Weapon_Tier3</li>
-    </weaponTags>
-    <tools>
-      <li>
-        <!-- 枪托 -->
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-      <li>
-        <!-- 枪管 -->
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-    </tools>
-  </ThingDef>
+    <!-- PMC 轻机枪：1.3x 轻机枪 -->
+    <ThingDef ParentName="BaseHumanMakeableGun">
+        <defName>PMC_LMG</defName>
+        <!-- PMC轻机枪 -->
+        <label>PMC Light Machine Gun</label>
+        <!-- PMC 压制火力核心，适合持续压制与区域封锁。 -->
+        <description>The core of PMC suppressive firepower, suited for sustained suppression and area denial.</description>
+        <graphicData>
+            <texPath>Things/Item/Equipment/EnemyWeapon/PMC_LMG</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>1.8</drawSize>
+        </graphicData>
+        <soundInteract>Interact_Rifle</soundInteract>
+        <weaponClasses>
+            <li>RangedHeavy</li>
+        </weaponClasses>
+        <recipeMaker>
+            <researchPrerequisite>GasOperation</researchPrerequisite>
+            <skillRequirements>
+                <Crafting>6</Crafting>
+            </skillRequirements>
+            <displayPriority>445</displayPriority>
+        </recipeMaker>
+        <statBases>
+            <WorkToMake>44200</WorkToMake>
+            <Mass>8.5</Mass>
+            <AccuracyTouch>0.47</AccuracyTouch>
+            <AccuracyShort>0.58</AccuracyShort>
+            <AccuracyMedium>0.40</AccuracyMedium>
+            <AccuracyLong>0.29</AccuracyLong>
+            <RangedWeapon_Cooldown>1.6</RangedWeapon_Cooldown>
+        </statBases>
+        <costList>
+            <Steel>100</Steel>
+            <ComponentIndustrial>7</ComponentIndustrial>
+        </costList>
+        <verbs>
+            <li>
+                <verbClass>Verb_Shoot</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>Bullet_PMC_LMG</defaultProjectile>
+                <warmupTime>1.8</warmupTime>
+                <range>33.67</range>
+                <ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+                <burstShotCount>6</burstShotCount>
+                <soundCast>Shot_Minigun</soundCast>
+                <soundCastTail>GunTail_Medium</soundCastTail>
+                <muzzleFlashScale>9</muzzleFlashScale>
+            </li>
+        </verbs>
+        <weaponTags>
+            <li>IndustrialGunAdvanced</li>
+            <li>PMC</li>
+            <li>GC_Weapon_Tier2</li>
+            <li>GC_Weapon_Tier3</li>
+        </weaponTags>
+        <tools>
+            <li>
+                <!-- 枪托 -->
+                <label>stock</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+            <li>
+                <!-- 枪管 -->
+                <label>barrel</label>
+                <capacities>
+                    <li>Blunt</li>
+                    <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+        </tools>
+    </ThingDef>
 
-  <!-- OPC 麻醉手枪弹药（基于 Autopistol） -->
-  <ThingDef ParentName="BaseBullet">
-    <defName>Bullet_OPC_Tranquilizer_Pistol</defName>
-    <!-- OPC 麻醉弹 -->
-    <label>OPC tranquilizer round</label>
-    <graphicData>
-      <texPath>Things/Projectile/Bullet_Small</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-      <damageDef>Bullet</damageDef>
-      <damageAmountBase>10</damageAmountBase>
-      <speed>55</speed>
-    </projectile>
-  </ThingDef>
+    <!-- OPC 麻醉手枪弹药（基于 Autopistol） -->
+    <ThingDef ParentName="BaseBullet">
+        <defName>Bullet_OPC_Tranquilizer_Pistol</defName>
+        <!-- OPC 麻醉弹 -->
+        <label>OPC tranquilizer round</label>
+        <graphicData>
+            <texPath>Things/Projectile/Bullet_Small</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <projectile>
+            <damageDef>Bullet</damageDef>
+            <damageAmountBase>10</damageAmountBase>
+            <speed>55</speed>
+        </projectile>
+    </ThingDef>
 
-  <!-- OPC 麻醉手枪：1.0x 自动手枪（材料 1.5x） -->
-  <ThingDef ParentName="BaseHumanMakeableGun">
-    <defName>OPC_Tranquilizer_Pistol</defName>
-    <!-- OPC麻醉手枪 -->
-    <label>OPC Tranquilizer Pistol</label>
-    <!-- OPC 配发的低致死压制手枪，强调控制与近距自卫。 -->
-    <description>A low-lethality suppression pistol issued by the OPC, emphasizing control and close-range self-defense.</description>
-    <graphicData>
-      <texPath>Things/Item/Equipment/EnemyWeapon/OPC_Tranquilizer_Pistol</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>0.7</drawSize>
-    </graphicData>
-    <uiIconScale>1.5</uiIconScale>
-    <soundInteract>Interact_Autopistol</soundInteract>
-    <recipeMaker>
-      <researchPrerequisite>BlowbackOperation</researchPrerequisite>
-      <skillRequirements>
-        <Crafting>4</Crafting>
-      </skillRequirements>
-      <displayPriority>405</displayPriority>
-    </recipeMaker>
-    <weaponTags>
-      <li>OPC</li>
-      <li>GC_Weapon_Tier1</li>
-      <li>SimpleGun</li>
-      <li>Autopistol</li>
-    </weaponTags>
-    <weaponClasses>
-      <li>RangedLight</li>
-    </weaponClasses>
-    <statBases>
-      <WorkToMake>5000</WorkToMake>
-      <Mass>1.2</Mass>
-      <AccuracyTouch>0.77</AccuracyTouch>
-      <AccuracyShort>0.66</AccuracyShort>
-      <AccuracyMedium>0.35</AccuracyMedium>
-      <AccuracyLong>0.25</AccuracyLong>
-      <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
-    </statBases>
-    <costList>
-      <Steel>50</Steel>
-      <ComponentIndustrial>3</ComponentIndustrial>
-    </costList>
-    <verbs>
-      <li>
-        <verbClass>Verb_Shoot</verbClass>
-        <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>Bullet_OPC_Tranquilizer_Pistol</defaultProjectile>
-        <warmupTime>0.3</warmupTime>
-        <range>25.9</range>
-        <soundCast>Shot_Autopistol</soundCast>
-        <soundCastTail>GunTail_Light</soundCastTail>
-        <muzzleFlashScale>9</muzzleFlashScale>
-      </li>
-    </verbs>
-    <tools>
-      <li>
-        <!-- 握把 -->
-        <label>grip</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-      <li>
-        <!-- 枪管 -->
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-    </tools>
-  </ThingDef>
+    <!-- OPC 麻醉手枪：1.0x 自动手枪（材料 1.5x） -->
+    <ThingDef ParentName="BaseHumanMakeableGun">
+        <defName>OPC_Tranquilizer_Pistol</defName>
+        <!-- OPC麻醉手枪 -->
+        <label>OPC Tranquilizer Pistol</label>
+        <!-- OPC 配发的低致死压制手枪，强调控制与近距自卫。 -->
+        <description>A low-lethality suppression pistol issued by the OPC, emphasizing control and close-range self-defense.</description>
+        <graphicData>
+            <texPath>Things/Item/Equipment/EnemyWeapon/OPC_Tranquilizer_Pistol</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>0.7</drawSize>
+        </graphicData>
+        <uiIconScale>1.5</uiIconScale>
+        <soundInteract>Interact_Autopistol</soundInteract>
+        <recipeMaker>
+            <researchPrerequisite>BlowbackOperation</researchPrerequisite>
+            <skillRequirements>
+                <Crafting>4</Crafting>
+            </skillRequirements>
+            <displayPriority>405</displayPriority>
+        </recipeMaker>
+        <weaponTags>
+            <li>OPC</li>
+            <li>GC_Weapon_Tier1</li>
+            <li>SimpleGun</li>
+            <li>Autopistol</li>
+        </weaponTags>
+        <weaponClasses>
+            <li>RangedLight</li>
+        </weaponClasses>
+        <statBases>
+            <WorkToMake>5000</WorkToMake>
+            <Mass>1.2</Mass>
+            <AccuracyTouch>0.77</AccuracyTouch>
+            <AccuracyShort>0.66</AccuracyShort>
+            <AccuracyMedium>0.35</AccuracyMedium>
+            <AccuracyLong>0.25</AccuracyLong>
+            <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+        </statBases>
+        <costList>
+            <Steel>50</Steel>
+            <ComponentIndustrial>3</ComponentIndustrial>
+        </costList>
+        <verbs>
+            <li>
+                <verbClass>Verb_Shoot</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>Bullet_OPC_Tranquilizer_Pistol</defaultProjectile>
+                <warmupTime>0.3</warmupTime>
+                <range>25.9</range>
+                <soundCast>Shot_Autopistol</soundCast>
+                <soundCastTail>GunTail_Light</soundCastTail>
+                <muzzleFlashScale>9</muzzleFlashScale>
+            </li>
+        </verbs>
+        <tools>
+            <li>
+                <!-- 握把 -->
+                <label>grip</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+            <li>
+                <!-- 枪管 -->
+                <label>barrel</label>
+                <capacities>
+                    <li>Blunt</li>
+                    <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+        </tools>
+    </ThingDef>
 
-  <!-- OPC 防卫步枪弹药（基于 Bolt-action Rifle） -->
-  <ThingDef ParentName="BaseBullet">
-    <defName>Bullet_OPC_Defense_Rifle</defName>
-    <!-- OPC 防卫步枪弹 -->
-    <label>OPC defense rifle round</label>
-    <projectile>
-      <damageDef>Bullet</damageDef>
-      <damageAmountBase>19</damageAmountBase>
-      <stoppingPower>1.95</stoppingPower>
-      <armorPenetrationBase>0.21</armorPenetrationBase>
-      <speed>70</speed>
-    </projectile>
-    <graphicData>
-      <texPath>Things/Projectile/Bullet_Big</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-  </ThingDef>
+    <!-- OPC 防卫步枪弹药（基于 Bolt-action Rifle） -->
+    <ThingDef ParentName="BaseBullet">
+        <defName>Bullet_OPC_Defense_Rifle</defName>
+        <!-- OPC 防卫步枪弹 -->
+        <label>OPC defense rifle round</label>
+        <projectile>
+            <damageDef>Bullet</damageDef>
+            <damageAmountBase>19</damageAmountBase>
+            <stoppingPower>1.95</stoppingPower>
+            <armorPenetrationBase>0.21</armorPenetrationBase>
+            <speed>70</speed>
+        </projectile>
+        <graphicData>
+            <texPath>Things/Projectile/Bullet_Big</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+    </ThingDef>
 
-  <!-- OPC 防卫步枪：1.3x 栓动步枪（穿甲 0.7x） -->
-  <ThingDef ParentName="BaseHumanMakeableGun">
-    <defName>OPC_Defense_Rifle</defName>
-    <!-- OPC防卫步枪 -->
-    <label>OPC Defense Rifle</label>
-    <!-- OPC 警戒步枪，偏重制止能力与阵地防御。 -->
-    <description>An OPC security rifle focused on stopping power and positional defense.</description>
-    <graphicData>
-      <texPath>Things/Item/Equipment/EnemyWeapon/OPC_Defense_Rifle</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>1.3</drawSize>
-    </graphicData>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <weaponClasses>
-      <li>LongShots</li>
-    </weaponClasses>
-    <weaponTags>
-      <li>OPC</li>
-      <li>GC_Weapon_Tier1</li>
-      <li>LongShots</li>
-    </weaponTags>
-    <statBases>
-      <WorkToMake>15600</WorkToMake>
-      <Mass>3.5</Mass>
-      <AccuracyTouch>0.68</AccuracyTouch>
-      <AccuracyShort>0.82</AccuracyShort>
-      <AccuracyMedium>0.84</AccuracyMedium>
-      <AccuracyLong>0.80</AccuracyLong>
-      <RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
-    </statBases>
-    <costList>
-      <Steel>80</Steel>
-      <ComponentIndustrial>4</ComponentIndustrial>
-    </costList>
-    <recipeMaker>
-      <skillRequirements>
-        <Crafting>5</Crafting>
-      </skillRequirements>
-      <displayPriority>415</displayPriority>
-    </recipeMaker>
-    <verbs>
-      <li>
-        <verbClass>Verb_Shoot</verbClass>
-        <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>Bullet_OPC_Defense_Rifle</defaultProjectile>
-        <warmupTime>1.7</warmupTime>
-        <range>47.97</range>
-        <soundCast>Shot_BoltActionRifle</soundCast>
-        <soundCastTail>GunTail_Heavy</soundCastTail>
-        <muzzleFlashScale>9</muzzleFlashScale>
-      </li>
-    </verbs>
-    <tools>
-      <li>
-        <!-- 枪托 -->
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-      <li>
-        <!-- 枪管 -->
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-    </tools>
-  </ThingDef>
+    <!-- OPC 防卫步枪：1.3x 栓动步枪（穿甲 0.7x） -->
+    <ThingDef ParentName="BaseHumanMakeableGun">
+        <defName>OPC_Defense_Rifle</defName>
+        <!-- OPC防卫步枪 -->
+        <label>OPC Defense Rifle</label>
+        <!-- OPC 警戒步枪，偏重制止能力与阵地防御。 -->
+        <description>An OPC security rifle focused on stopping power and positional defense.</description>
+        <graphicData>
+            <texPath>Things/Item/Equipment/EnemyWeapon/OPC_Defense_Rifle</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>1.3</drawSize>
+        </graphicData>
+        <soundInteract>Interact_Rifle</soundInteract>
+        <weaponClasses>
+            <li>LongShots</li>
+        </weaponClasses>
+        <weaponTags>
+            <li>OPC</li>
+            <li>GC_Weapon_Tier1</li>
+            <li>LongShots</li>
+        </weaponTags>
+        <statBases>
+            <WorkToMake>15600</WorkToMake>
+            <Mass>3.5</Mass>
+            <AccuracyTouch>0.68</AccuracyTouch>
+            <AccuracyShort>0.82</AccuracyShort>
+            <AccuracyMedium>0.84</AccuracyMedium>
+            <AccuracyLong>0.80</AccuracyLong>
+            <RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+        </statBases>
+        <costList>
+            <Steel>80</Steel>
+            <ComponentIndustrial>4</ComponentIndustrial>
+        </costList>
+        <recipeMaker>
+            <skillRequirements>
+                <Crafting>5</Crafting>
+            </skillRequirements>
+            <displayPriority>415</displayPriority>
+        </recipeMaker>
+        <verbs>
+            <li>
+                <verbClass>Verb_Shoot</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>Bullet_OPC_Defense_Rifle</defaultProjectile>
+                <warmupTime>1.7</warmupTime>
+                <range>47.97</range>
+                <soundCast>Shot_BoltActionRifle</soundCast>
+                <soundCastTail>GunTail_Heavy</soundCastTail>
+                <muzzleFlashScale>9</muzzleFlashScale>
+            </li>
+        </verbs>
+        <tools>
+            <li>
+                <!-- 枪托 -->
+                <label>stock</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+            <li>
+                <!-- 枪管 -->
+                <label>barrel</label>
+                <capacities>
+                    <li>Blunt</li>
+                    <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+        </tools>
+    </ThingDef>
 
-  <!-- OPC 防卫霰弹枪弹药（基于 Pump Shotgun） -->
-  <ThingDef ParentName="BaseBullet">
-    <defName>Bullet_OPC_Tactical_Shotgun</defName>
-    <!-- OPC 防卫霰弹 -->
-    <label>OPC tactical shotgun blast</label>
-    <graphicData>
-      <texPath>Things/Projectile/Bullet_Shotgun</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-      <damageDef>Bullet</damageDef>
-      <damageAmountBase>23</damageAmountBase>
-      <stoppingPower>3.9</stoppingPower>
-      <armorPenetrationBase>0.18</armorPenetrationBase>
-      <speed>55</speed>
-    </projectile>
-  </ThingDef>
+    <!-- OPC 防卫霰弹枪弹药（基于 Pump Shotgun） -->
+    <ThingDef ParentName="BaseBullet">
+        <defName>Bullet_OPC_Tactical_Shotgun</defName>
+        <!-- OPC 防卫霰弹 -->
+        <label>OPC tactical shotgun blast</label>
+        <graphicData>
+            <texPath>Things/Projectile/Bullet_Shotgun</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <projectile>
+            <damageDef>Bullet</damageDef>
+            <damageAmountBase>23</damageAmountBase>
+            <stoppingPower>3.9</stoppingPower>
+            <armorPenetrationBase>0.18</armorPenetrationBase>
+            <speed>55</speed>
+        </projectile>
+    </ThingDef>
 
-  <!-- OPC 防卫霰弹枪：1.3x 泵动霰弹枪 -->
-  <ThingDef ParentName="BaseHumanMakeableGun">
-    <defName>OPC_Tactical_Shotgun</defName>
-    <!-- OPC防卫霰弹枪 -->
-    <label>OPC Tactical Shotgun</label>
-    <!-- OPC 防暴近战主武器，强调短距瞬时制止效果。 -->
-    <description>The OPC primary riot-control close-combat weapon, emphasizing immediate stopping effect at short range.</description>
-    <possessionCount>1</possessionCount>
-    <graphicData>
-      <texPath>Things/Item/Equipment/EnemyWeapon/OPC_Tactical_Shotgun</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>1.3</drawSize>
-    </graphicData>
-    <soundInteract>Interact_Shotgun</soundInteract>
-    <weaponClasses>
-      <li>ShortShots</li>
-    </weaponClasses>
-    <weaponTags>
-      <li>OPC</li>
-      <li>GC_Weapon_Tier1</li>
-      <li>ShortShots</li>
-      <li>PumpShotgun</li>
-    </weaponTags>
-    <statBases>
-      <WorkToMake>15600</WorkToMake>
-      <Mass>3.4</Mass>
-      <AccuracyTouch>0.98</AccuracyTouch>
-      <AccuracyShort>0.68</AccuracyShort>
-      <AccuracyMedium>0.42</AccuracyMedium>
-      <AccuracyLong>0.24</AccuracyLong>
-      <RangedWeapon_Cooldown>1.25</RangedWeapon_Cooldown>
-    </statBases>
-    <costList>
-      <Steel>80</Steel>
-      <ComponentIndustrial>4</ComponentIndustrial>
-    </costList>
-    <recipeMaker>
-      <skillRequirements>
-        <Crafting>5</Crafting>
-      </skillRequirements>
-      <displayPriority>430</displayPriority>
-    </recipeMaker>
-    <verbs>
-      <li>
-        <verbClass>Verb_Shoot</verbClass>
-        <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>Bullet_OPC_Tactical_Shotgun</defaultProjectile>
-        <warmupTime>0.9</warmupTime>
-        <range>14.9</range>
-        <soundCast>Shot_Shotgun</soundCast>
-        <soundCastTail>GunTail_Heavy</soundCastTail>
-        <muzzleFlashScale>9</muzzleFlashScale>
-      </li>
-    </verbs>
-    <tools>
-      <li>
-        <!-- 枪托 -->
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-      <li>
-        <!-- 枪管 -->
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-    </tools>
-  </ThingDef>
+    <!-- OPC 防卫霰弹枪：1.3x 泵动霰弹枪 -->
+    <ThingDef ParentName="BaseHumanMakeableGun">
+        <defName>OPC_Tactical_Shotgun</defName>
+        <!-- OPC防卫霰弹枪 -->
+        <label>OPC Tactical Shotgun</label>
+        <!-- OPC 防暴近战主武器，强调短距瞬时制止效果。 -->
+        <description>The OPC primary riot-control close-combat weapon, emphasizing immediate stopping effect at short range.</description>
+        <possessionCount>1</possessionCount>
+        <graphicData>
+            <texPath>Things/Item/Equipment/EnemyWeapon/OPC_Tactical_Shotgun</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>1.3</drawSize>
+        </graphicData>
+        <soundInteract>Interact_Shotgun</soundInteract>
+        <weaponClasses>
+            <li>ShortShots</li>
+        </weaponClasses>
+        <weaponTags>
+            <li>OPC</li>
+            <li>GC_Weapon_Tier1</li>
+            <li>ShortShots</li>
+            <li>PumpShotgun</li>
+        </weaponTags>
+        <statBases>
+            <WorkToMake>15600</WorkToMake>
+            <Mass>3.4</Mass>
+            <AccuracyTouch>0.98</AccuracyTouch>
+            <AccuracyShort>0.68</AccuracyShort>
+            <AccuracyMedium>0.42</AccuracyMedium>
+            <AccuracyLong>0.24</AccuracyLong>
+            <RangedWeapon_Cooldown>1.25</RangedWeapon_Cooldown>
+        </statBases>
+        <costList>
+            <Steel>80</Steel>
+            <ComponentIndustrial>4</ComponentIndustrial>
+        </costList>
+        <recipeMaker>
+            <skillRequirements>
+                <Crafting>5</Crafting>
+            </skillRequirements>
+            <displayPriority>430</displayPriority>
+        </recipeMaker>
+        <verbs>
+            <li>
+                <verbClass>Verb_Shoot</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>Bullet_OPC_Tactical_Shotgun</defaultProjectile>
+                <warmupTime>0.9</warmupTime>
+                <range>14.9</range>
+                <soundCast>Shot_Shotgun</soundCast>
+                <soundCastTail>GunTail_Heavy</soundCastTail>
+                <muzzleFlashScale>9</muzzleFlashScale>
+            </li>
+        </verbs>
+        <tools>
+            <li>
+                <!-- 枪托 -->
+                <label>stock</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+            <li>
+                <!-- 枪管 -->
+                <label>barrel</label>
+                <capacities>
+                    <li>Blunt</li>
+                    <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+        </tools>
+    </ThingDef>
 
-  <!-- OPC 自动步枪弹药（基于 Assault Rifle） -->
-  <ThingDef ParentName="BaseBullet">
-    <defName>Bullet_OPC_Assault_Rifle</defName>
-    <!-- OPC 自动步枪弹 -->
-    <label>OPC assault rifle round</label>
-    <graphicData>
-      <texPath>Things/Projectile/Bullet_Small</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-      <damageDef>Bullet</damageDef>
-      <damageAmountBase>12</damageAmountBase>
-      <speed>70</speed>
-    </projectile>
-  </ThingDef>
+    <!-- OPC 自动步枪弹药（基于 Assault Rifle） -->
+    <ThingDef ParentName="BaseBullet">
+        <defName>Bullet_OPC_Assault_Rifle</defName>
+        <!-- OPC 自动步枪弹 -->
+        <label>OPC assault rifle round</label>
+        <graphicData>
+            <texPath>Things/Projectile/Bullet_Small</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <projectile>
+            <damageDef>Bullet</damageDef>
+            <damageAmountBase>12</damageAmountBase>
+            <speed>70</speed>
+        </projectile>
+    </ThingDef>
 
-  <!-- OPC 自动步枪：1.1x 突击步枪 -->
-  <ThingDef ParentName="BaseHumanMakeableGun">
-    <defName>OPC_Assault_Rifle</defName>
-    <!-- OPC自动步枪 -->
-    <label>OPC Assault Rifle</label>
-    <!-- OPC 标准自动步枪，火力配置偏向稳定与可控。 -->
-    <description>The standard OPC automatic rifle, with a firepower profile biased toward stability and control.</description>
-    <graphicData>
-      <texPath>Things/Item/Equipment/EnemyWeapon/OPC_Assault_Rifle</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <recipeMaker>
-      <researchPrerequisite>PrecisionRifling</researchPrerequisite>
-      <skillRequirements>
-        <Crafting>6</Crafting>
-      </skillRequirements>
-      <displayPriority>422</displayPriority>
-    </recipeMaker>
-    <statBases>
-      <WorkToMake>44000</WorkToMake>
-      <Mass>3.5</Mass>
-      <AccuracyTouch>0.62</AccuracyTouch>
-      <AccuracyShort>0.74</AccuracyShort>
-      <AccuracyMedium>0.68</AccuracyMedium>
-      <AccuracyLong>0.56</AccuracyLong>
-      <RangedWeapon_Cooldown>1.70</RangedWeapon_Cooldown>
-    </statBases>
-    <costList>
-      <Steel>70</Steel>
-      <ComponentIndustrial>8</ComponentIndustrial>
-    </costList>
-    <verbs>
-      <li>
-        <verbClass>Verb_Shoot</verbClass>
-        <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>Bullet_OPC_Assault_Rifle</defaultProjectile>
-        <warmupTime>1.0</warmupTime>
-        <range>33.99</range>
-        <burstShotCount>3</burstShotCount>
-        <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-        <soundCast>Shot_AssaultRifle</soundCast>
-        <soundCastTail>GunTail_Medium</soundCastTail>
-        <muzzleFlashScale>9</muzzleFlashScale>
-      </li>
-    </verbs>
-    <weaponTags>
-      <li>IndustrialGunAdvanced</li>
-      <li>OPC</li>
-      <li>GC_Weapon_Tier1</li>
-      <li>AssaultRifle</li>
-    </weaponTags>
-    <tools>
-      <li>
-        <!-- 枪托 -->
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-      <li>
-        <!-- 枪管 -->
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-    </tools>
-  </ThingDef>
+    <!-- OPC 自动步枪：1.1x 突击步枪 -->
+    <ThingDef ParentName="BaseHumanMakeableGun">
+        <defName>OPC_Assault_Rifle</defName>
+        <!-- OPC自动步枪 -->
+        <label>OPC Assault Rifle</label>
+        <!-- OPC 标准自动步枪，火力配置偏向稳定与可控。 -->
+        <description>The standard OPC automatic rifle, with a firepower profile biased toward stability and control.</description>
+        <graphicData>
+            <texPath>Things/Item/Equipment/EnemyWeapon/OPC_Assault_Rifle</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <soundInteract>Interact_Rifle</soundInteract>
+        <recipeMaker>
+            <researchPrerequisite>PrecisionRifling</researchPrerequisite>
+            <skillRequirements>
+                <Crafting>6</Crafting>
+            </skillRequirements>
+            <displayPriority>422</displayPriority>
+        </recipeMaker>
+        <statBases>
+            <WorkToMake>44000</WorkToMake>
+            <Mass>3.5</Mass>
+            <AccuracyTouch>0.62</AccuracyTouch>
+            <AccuracyShort>0.74</AccuracyShort>
+            <AccuracyMedium>0.68</AccuracyMedium>
+            <AccuracyLong>0.56</AccuracyLong>
+            <RangedWeapon_Cooldown>1.70</RangedWeapon_Cooldown>
+        </statBases>
+        <costList>
+            <Steel>70</Steel>
+            <ComponentIndustrial>8</ComponentIndustrial>
+        </costList>
+        <verbs>
+            <li>
+                <verbClass>Verb_Shoot</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>Bullet_OPC_Assault_Rifle</defaultProjectile>
+                <warmupTime>1.0</warmupTime>
+                <range>33.99</range>
+                <burstShotCount>3</burstShotCount>
+                <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+                <soundCast>Shot_AssaultRifle</soundCast>
+                <soundCastTail>GunTail_Medium</soundCastTail>
+                <muzzleFlashScale>9</muzzleFlashScale>
+            </li>
+        </verbs>
+        <weaponTags>
+            <li>IndustrialGunAdvanced</li>
+            <li>OPC</li>
+            <li>GC_Weapon_Tier1</li>
+            <li>AssaultRifle</li>
+        </weaponTags>
+        <tools>
+            <li>
+                <!-- 枪托 -->
+                <label>stock</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+            <li>
+                <!-- 枪管 -->
+                <label>barrel</label>
+                <capacities>
+                    <li>Blunt</li>
+                    <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+        </tools>
+    </ThingDef>
 </Defs>

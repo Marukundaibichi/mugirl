@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-  
-  <!-- Mugirl -->
-  <MooGirl.label>Mugirl</MooGirl.label>
-  <!-- A half-muffalo race genetically engineered by a mega corporation, possessing soft fur, light blue coats and adorable horns. They combine strength with a gentle nature, being intelligent and affectionate, yet are forced to endure a life of servitude. Despite this, they still comfort those around them with tender gestures, demonstrating a remarkable kindness inherent to their character. -->
-  <MooGirl.description>A half-muffalo race genetically engineered by a mega corporation, possessing soft fur, light blue coats and adorable horns. They combine strength with a gentle nature, being intelligent and affectionate, yet are forced to endure a life of servitude. Despite this, they still comfort those around them with tender gestures, demonstrating a remarkable kindness inherent to their character.</MooGirl.description>
-  <!-- Mugirl milk -->
-  <MooGirl.comps.CompMooMilkable.displayString>Mugirl milk</MooGirl.comps.CompMooMilkable.displayString>
-  
-  <!-- left horn -->
-  <MooGirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.1.conditions.1.bodyPartLabel>left horn</MooGirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.1.conditions.1.bodyPartLabel>
-  <!-- right horn -->
-  <MooGirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.2.conditions.1.bodyPartLabel>right horn</MooGirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.2.conditions.1.bodyPartLabel>
-  <!-- horn -->
-  <MooGirl.tools.0.label>horn</MooGirl.tools.0.label>
-  <!-- left fist -->
-  <MooGirl.tools.1.label>left fist</MooGirl.tools.1.label>
-  <!-- right fist -->
-  <MooGirl.tools.2.label>right fist</MooGirl.tools.2.label>
-  
+
+    <!-- Mugirl -->
+    <MooGirl.label>Mugirl</MooGirl.label>
+    <!-- A half-muffalo race genetically engineered by a mega corporation, possessing soft fur, light blue coats and adorable horns. They combine strength with a gentle nature, being intelligent and affectionate, yet are forced to endure a life of servitude. Despite this, they still comfort those around them with tender gestures, demonstrating a remarkable kindness inherent to their character. -->
+    <MooGirl.description>A half-muffalo race genetically engineered by a mega corporation, possessing soft fur, light blue coats and adorable horns. They combine strength with a gentle nature, being intelligent and affectionate, yet are forced to endure a life of servitude. Despite this, they still comfort those around them with tender gestures, demonstrating a remarkable kindness inherent to their character.</MooGirl.description>
+    <!-- Mugirl milk -->
+    <MooGirl.comps.CompMooMilkable.displayString>Mugirl milk</MooGirl.comps.CompMooMilkable.displayString>
+
+    <!-- left horn -->
+    <MooGirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.1.conditions.1.bodyPartLabel>left horn</MooGirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.1.conditions.1.bodyPartLabel>
+    <!-- right horn -->
+    <MooGirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.2.conditions.1.bodyPartLabel>right horn</MooGirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.2.conditions.1.bodyPartLabel>
+    <!-- horn -->
+    <MooGirl.tools.0.label>horn</MooGirl.tools.0.label>
+    <!-- left fist -->
+    <MooGirl.tools.1.label>left fist</MooGirl.tools.1.label>
+    <!-- right fist -->
+    <MooGirl.tools.2.label>right fist</MooGirl.tools.2.label>
+
 </LanguageData>

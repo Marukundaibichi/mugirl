@@ -7,25 +7,25 @@
             <li>Leathery</li>
             <li>Metallic</li>
         </stuffCategories>
-		<recipeMaker>
-			<researchPrerequisite>FlakArmor</researchPrerequisite>
-			<displayPriority>260</displayPriority> <!-- 配方显示优先级 -->
-			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-      		<workSkill>Crafting</workSkill>
-     		<recipeUsers>
-        		<li>ElectricTailoringBench</li>
-        		<li>HandTailoringBench</li>
-     		</recipeUsers>
-     	 	<skillRequirements>
-        		<Crafting>6</Crafting>
-      		</skillRequirements>
-			<effectWorking>Smelt</effectWorking>
-			<soundWorking>Recipe_Smith</soundWorking>
-			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-  		</recipeMaker>
+        <recipeMaker>
+            <researchPrerequisite>FlakArmor</researchPrerequisite>
+            <displayPriority>260</displayPriority> <!-- 配方显示优先级 -->
+            <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+            <workSkill>Crafting</workSkill>
+            <recipeUsers>
+                <li>ElectricTailoringBench</li>
+                <li>HandTailoringBench</li>
+            </recipeUsers>
+            <skillRequirements>
+                <Crafting>6</Crafting>
+            </skillRequirements>
+            <effectWorking>Smelt</effectWorking>
+            <soundWorking>Recipe_Smith</soundWorking>
+            <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+        </recipeMaker>
         <descriptionHyperlinks>
-			<ThingDef>MooGirl_SlaveApperalKey_Medieval</ThingDef>
-		</descriptionHyperlinks>
+            <ThingDef>MooGirl_SlaveApperalKey_Medieval</ThingDef>
+        </descriptionHyperlinks>
         <apparel>
             <parentTagDef>ApparelHead</parentTagDef>
             <useWornGraphicMask>true</useWornGraphicMask>
@@ -44,8 +44,8 @@
         <!-- 一种用于阻挡雪牛娘的视线的束具，据说感官屏蔽会令受害者更加敏感 (๑•̀ㅂ•́)و✧。眼罩配有专用锁具，必须使用[粗糙束具钥匙]才能解开。 -->
         <description>A restraint designed to obstruct a Mugirl's vision; sensory deprivation is said to heighten the victim's sensitivity (๑•̀ㅂ•́)و✧. The blindfold features a dedicated locking mechanism that can only be opened with a [Rough Restraint Key].</description>
         <!-- <descriptionHyperlinks>
-			<HediffDef>MooGirl_Blindfold</HediffDef>
-		</descriptionHyperlinks>            -->
+            <HediffDef>MooGirl_Blindfold</HediffDef>
+        </descriptionHyperlinks>            -->
         <graphicData>
             <texPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slaveblindfold/MooGirl_Slaveblindfold</texPath>
         </graphicData>
@@ -111,8 +111,8 @@
             </tags>
         </apparel>
         <!-- <descriptionHyperlinks>
-			<HediffDef>MooGirl_Gagstick</HediffDef>
-		</descriptionHyperlinks> -->
+            <HediffDef>MooGirl_Gagstick</HediffDef>
+        </descriptionHyperlinks> -->
         <equipped_hediff>MooGirl_Gagstick</equipped_hediff>
         <gives_gagged_moodlet>true</gives_gagged_moodlet>
         <blocks_oral>true</blocks_oral>
@@ -163,8 +163,8 @@
         <!-- 一种完全封闭雪牛娘听觉的拘束用具，佩戴后几乎无法听到外界声音，令受害者陷入安静而隔绝的环境。耳塞配有专用锁具，必须使用[粗糙束具钥匙]才能解开。 -->
         <description>A fully enclosed restraint device designed to block a Mugirl's hearing entirely. Once fitted, external sounds become almost inaudible, leaving the victim in a silent and isolated environment. The earplugs feature a dedicated locking mechanism that can only be opened with a [Rough Restraint Key].</description>
         <!-- <descriptionHyperlinks>
-			<HediffDef>MooGirl_Earplugs</HediffDef>
-		</descriptionHyperlinks>         -->
+            <HediffDef>MooGirl_Earplugs</HediffDef>
+        </descriptionHyperlinks>         -->
         <graphicData>
             <texPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slaveearplugs/MooGirl_Slaveearplugs</texPath>
         </graphicData>

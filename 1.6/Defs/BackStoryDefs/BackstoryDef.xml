@@ -1,346 +1,346 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-	<AlienRace.AlienBackstoryDef Name="MooGirl_BaseBackStory" Abstract="True">
-		<maleCommonality>0</maleCommonality>
-	</AlienRace.AlienBackstoryDef>
+    <AlienRace.AlienBackstoryDef Name="MooGirl_BaseBackStory" Abstract="True">
+        <maleCommonality>0</maleCommonality>
+    </AlienRace.AlienBackstoryDef>
 
-	<AlienRace.AlienBackstoryDef ParentName="MooGirl_BaseBackStory">
-		<defName>MooGirl_Newborn</defName>
-		<bodyTypeGlobal MayRequire="Ludeon.RimWorld.Biotech">Baby</bodyTypeGlobal>
-		<!-- 雪牛娘新生儿 -->
-		<title>Mugirl newborn</title>
-		<!-- 新生儿 -->
-		<titleShort>newborn</titleShort>
-		<!-- [PAWN_nameDef]是一个新生儿。[PAWN_possessive] 的生活围绕着喝奶和睡觉。 -->
-		<baseDesc>[PAWN_nameDef] is a newborn. [PAWN_possessive] life revolves around drinking milk and sleeping.</baseDesc>
-		<slot>Childhood</slot>
-		<spawnCategories>
-			<li>MooGirl_Newborn</li>
-		</spawnCategories>
-		<requiresSpawnCategory>true</requiresSpawnCategory>
-	</AlienRace.AlienBackstoryDef>
+    <AlienRace.AlienBackstoryDef ParentName="MooGirl_BaseBackStory">
+        <defName>MooGirl_Newborn</defName>
+        <bodyTypeGlobal MayRequire="Ludeon.RimWorld.Biotech">Baby</bodyTypeGlobal>
+        <!-- 雪牛娘新生儿 -->
+        <title>Mugirl newborn</title>
+        <!-- 新生儿 -->
+        <titleShort>newborn</titleShort>
+        <!-- [PAWN_nameDef]是一个新生儿。[PAWN_possessive] 的生活围绕着喝奶和睡觉。 -->
+        <baseDesc>[PAWN_nameDef] is a newborn. [PAWN_possessive] life revolves around drinking milk and sleeping.</baseDesc>
+        <slot>Childhood</slot>
+        <spawnCategories>
+            <li>MooGirl_Newborn</li>
+        </spawnCategories>
+        <requiresSpawnCategory>true</requiresSpawnCategory>
+    </AlienRace.AlienBackstoryDef>
 
-	<!--儿童背景-->
-	<AlienRace.AlienBackstoryDef ParentName="MooGirl_BaseBackStory">
-		<defName>MooGirl_Child</defName>
-		<bodyTypeGlobal MayRequire="Ludeon.RimWorld.Biotech">Child</bodyTypeGlobal>
-		<!-- 被解救的雪牛娘 -->
-		<title>The Rescued Mugirl</title>
-		<!-- 被解救的雪牛娘 -->
-		<titleShort>Little Mugirl</titleShort>
-		<!-- [PAWN_nameDef]在年幼时便被某个反奴役组织解救，得以逃脱与同胞们相同的奴役命运。她被安置在隐匿于群山深处的营地中，度过了幸福的童年—————对这个种族而言，这样的经历无疑是一种奢望。 -->
-		<baseDesc>[PAWN_nameDef] was rescued by an anti-slavery organisation at a young age, allowing [PAWN_pronoun] to escape the same fate of enslavement as [PAWN_possessive] compatriots. [PAWN_pronoun] was placed in a camp hidden deep in the mountains, where [PAWN_pronoun] spent a happy childhood— for this race, such an experience was undoubtedly a luxury.</baseDesc>
-		<slot>Childhood</slot>
-		<skillGains>
-			<Construction>5</Construction>
-			<Intellectual>3</Intellectual>
-			<Mining>2</Mining>
-			<Social>5</Social>
-		</skillGains>
-		<spawnCategories>
-			<li>MooGirl_Colony</li>
-		</spawnCategories>
-	</AlienRace.AlienBackstoryDef>
+    <!--儿童背景-->
+    <AlienRace.AlienBackstoryDef ParentName="MooGirl_BaseBackStory">
+        <defName>MooGirl_Child</defName>
+        <bodyTypeGlobal MayRequire="Ludeon.RimWorld.Biotech">Child</bodyTypeGlobal>
+        <!-- 被解救的雪牛娘 -->
+        <title>The Rescued Mugirl</title>
+        <!-- 被解救的雪牛娘 -->
+        <titleShort>Little Mugirl</titleShort>
+        <!-- [PAWN_nameDef]在年幼时便被某个反奴役组织解救，得以逃脱与同胞们相同的奴役命运。她被安置在隐匿于群山深处的营地中，度过了幸福的童年—————对这个种族而言，这样的经历无疑是一种奢望。 -->
+        <baseDesc>[PAWN_nameDef] was rescued by an anti-slavery organisation at a young age, allowing [PAWN_pronoun] to escape the same fate of enslavement as [PAWN_possessive] compatriots. [PAWN_pronoun] was placed in a camp hidden deep in the mountains, where [PAWN_pronoun] spent a happy childhood— for this race, such an experience was undoubtedly a luxury.</baseDesc>
+        <slot>Childhood</slot>
+        <skillGains>
+            <Construction>5</Construction>
+            <Intellectual>3</Intellectual>
+            <Mining>2</Mining>
+            <Social>5</Social>
+        </skillGains>
+        <spawnCategories>
+            <li>MooGirl_Colony</li>
+        </spawnCategories>
+    </AlienRace.AlienBackstoryDef>
 
-	<AlienRace.AlienBackstoryDef ParentName="MooGirl_BaseBackStory" Name="MooGirl_ChildSlaveBackStory" Abstract="True">
-		<bodyTypeGlobal MayRequire="Ludeon.RimWorld.Biotech">Child</bodyTypeGlobal>
-		<slot>Childhood</slot>
-		<spawnCategories>
-			<li>MooGirl_Slave</li>
-		</spawnCategories>
-	</AlienRace.AlienBackstoryDef>
+    <AlienRace.AlienBackstoryDef ParentName="MooGirl_BaseBackStory" Name="MooGirl_ChildSlaveBackStory" Abstract="True">
+        <bodyTypeGlobal MayRequire="Ludeon.RimWorld.Biotech">Child</bodyTypeGlobal>
+        <slot>Childhood</slot>
+        <spawnCategories>
+            <li>MooGirl_Slave</li>
+        </spawnCategories>
+    </AlienRace.AlienBackstoryDef>
 
-	<!--儿童劳工+手+矿
-	-社 禁智-->
-	<AlienRace.AlienBackstoryDef ParentName="MooGirl_ChildSlaveBackStory">
-		<defName>MooGirl_ChildWorker</defName>
-		<!-- 儿童劳工 -->
-		<title>Child Labour</title>
-		<!-- 童工 -->
-		<titleShort>Child Labour</titleShort>
-		<!-- [PAWN_nameDef] 已不记得自己是什么时候开始参与繁重体力劳动的了。作为儿童劳工，[PAWN_nameDef]充当工厂或矿井当中的廉价劳动力，整日在恶劣的生产条件下挥洒汗水。为了最大限度地压榨 [PAWN_nameDef]的剩余价值，她被禁止休息十分钟以上，更不用说获得最基本的文化教育了。 -->
-		<baseDesc>[PAWN_nameDef] no longer remembers when [PAWN_pronoun] started engaging in heavy physical labour. As a child labourer, [PAWN_nameDef] served as cheap labour in factories or mines, sweating all day under harsh production conditions. To maximise the exploitation of [PAWN_nameDef]'s surplus value, [PAWN_pronoun] was forbidden from resting for more than ten minutes, let alone receiving basic cultural education.</baseDesc>
-		<skillGains>
-			<Mining>3</Mining>
-			<Crafting>1</Crafting>
-			<Social>-2</Social>
-		</skillGains>
-		<workDisables>
-			<li>Intellectual</li>
-		</workDisables>
-	</AlienRace.AlienBackstoryDef>
+    <!--儿童劳工+手+矿
+    -社 禁智-->
+    <AlienRace.AlienBackstoryDef ParentName="MooGirl_ChildSlaveBackStory">
+        <defName>MooGirl_ChildWorker</defName>
+        <!-- 儿童劳工 -->
+        <title>Child Labour</title>
+        <!-- 童工 -->
+        <titleShort>Child Labour</titleShort>
+        <!-- [PAWN_nameDef] 已不记得自己是什么时候开始参与繁重体力劳动的了。作为儿童劳工，[PAWN_nameDef]充当工厂或矿井当中的廉价劳动力，整日在恶劣的生产条件下挥洒汗水。为了最大限度地压榨 [PAWN_nameDef]的剩余价值，她被禁止休息十分钟以上，更不用说获得最基本的文化教育了。 -->
+        <baseDesc>[PAWN_nameDef] no longer remembers when [PAWN_pronoun] started engaging in heavy physical labour. As a child labourer, [PAWN_nameDef] served as cheap labour in factories or mines, sweating all day under harsh production conditions. To maximise the exploitation of [PAWN_nameDef]'s surplus value, [PAWN_pronoun] was forbidden from resting for more than ten minutes, let alone receiving basic cultural education.</baseDesc>
+        <skillGains>
+            <Mining>3</Mining>
+            <Crafting>1</Crafting>
+            <Social>-2</Social>
+        </skillGains>
+        <workDisables>
+            <li>Intellectual</li>
+        </workDisables>
+    </AlienRace.AlienBackstoryDef>
 
-	<!--农场奴隶+种+驯
-	-艺 禁烹-->
-	<AlienRace.AlienBackstoryDef ParentName="MooGirl_ChildSlaveBackStory">
-		<defName>MooGirl_FarmSlave</defName>
-		<!-- 农场奴隶 -->
-		<title>Farm Slave</title>
-		<!-- 农场奴隶 -->
-		<titleShort>Farm Slave</titleShort>
-		<!-- [PAWN_nameDef] 从有记忆起就生存在一座乡村农场，受主人驱使而任劳任怨地工作。[PAWN_nameDef]的童年在照顾庄稼和牲畜当中度过，手上的水泡总是长了又破。多年来，她在农场只能得到最低限度的食物。[PAWN_nameDef] 不知道这些难以下咽的糊糊究竟从何而来，因为[PAWN_pronoun] 始终被禁止进入厨房。 -->
-		<baseDesc>[PAWN_nameDef] has lived on a rural farm since [PAWN_possessive] earliest memories, driven by the owner to work diligently and without complaint. [PAWN_nameDef]'s childhood was spent tending crops and livestock, with blisters on [PAWN_possessive] hands always forming and breaking. For years, [PAWN_pronoun] only received the minimum amount of food on the farm. [PAWN_nameDef] does not know where this unpalatable paste comes from, because [PAWN_pronoun] has always been forbidden from entering the kitchen.</baseDesc>
-		<skillGains>
-			<Animals>2</Animals>
-			<Plants>3</Plants>
-			<Artistic>-2</Artistic>
-		</skillGains>
-		<workDisables>
-			<li>Cooking</li>
-		</workDisables>
-	</AlienRace.AlienBackstoryDef>
+    <!--农场奴隶+种+驯
+    -艺 禁烹-->
+    <AlienRace.AlienBackstoryDef ParentName="MooGirl_ChildSlaveBackStory">
+        <defName>MooGirl_FarmSlave</defName>
+        <!-- 农场奴隶 -->
+        <title>Farm Slave</title>
+        <!-- 农场奴隶 -->
+        <titleShort>Farm Slave</titleShort>
+        <!-- [PAWN_nameDef] 从有记忆起就生存在一座乡村农场，受主人驱使而任劳任怨地工作。[PAWN_nameDef]的童年在照顾庄稼和牲畜当中度过，手上的水泡总是长了又破。多年来，她在农场只能得到最低限度的食物。[PAWN_nameDef] 不知道这些难以下咽的糊糊究竟从何而来，因为[PAWN_pronoun] 始终被禁止进入厨房。 -->
+        <baseDesc>[PAWN_nameDef] has lived on a rural farm since [PAWN_possessive] earliest memories, driven by the owner to work diligently and without complaint. [PAWN_nameDef]'s childhood was spent tending crops and livestock, with blisters on [PAWN_possessive] hands always forming and breaking. For years, [PAWN_pronoun] only received the minimum amount of food on the farm. [PAWN_nameDef] does not know where this unpalatable paste comes from, because [PAWN_pronoun] has always been forbidden from entering the kitchen.</baseDesc>
+        <skillGains>
+            <Animals>2</Animals>
+            <Plants>3</Plants>
+            <Artistic>-2</Artistic>
+        </skillGains>
+        <workDisables>
+            <li>Cooking</li>
+        </workDisables>
+    </AlienRace.AlienBackstoryDef>
 
-	<!--家庭仆人+社+烹-驯
-	无暴力-->
-	<AlienRace.AlienBackstoryDef ParentName="MooGirl_ChildSlaveBackStory">
-		<defName>MooGirl_HouseServant</defName>
-		<!-- 家庭仆人 -->
-		<title>Domestic Servant</title>
-		<!-- 家庭仆人 -->
-		<titleShort>Domestic Servant</titleShort>
-		<!-- [PAWN_nameDef] 是一个殷实家庭的佣人，在管家的严苛训练下很早就掌握了家务服务技巧，负责解决主人一家的衣食住行。[PAWN_nameDef]年龄尚小就承担起了繁重的家务，却缺乏照顾宠物的经验，毕竟很可能 [PAWN_nameDef] 已经挤占了它们的生态位。 -->
-		<baseDesc>[PAWN_nameDef] served as a domestic servant in a wealthy household, mastering household service skills under the butler's strict training and being responsible for addressing all daily needs of the master's family. [PAWN_nameDef] undertook heavy household chores from a young age, yet lacked experience in pet care- after all, [PAWN_nameDef] had likely already occupied their ecological niche.</baseDesc>
-		<skillGains>
-			<Social>3</Social>
-			<Cooking>2</Cooking>
-			<Animals>-2</Animals>
-		</skillGains>
-		<workDisables>
-			<li>Violent</li>
-		</workDisables>
-	</AlienRace.AlienBackstoryDef>
+    <!--家庭仆人+社+烹-驯
+    无暴力-->
+    <AlienRace.AlienBackstoryDef ParentName="MooGirl_ChildSlaveBackStory">
+        <defName>MooGirl_HouseServant</defName>
+        <!-- 家庭仆人 -->
+        <title>Domestic Servant</title>
+        <!-- 家庭仆人 -->
+        <titleShort>Domestic Servant</titleShort>
+        <!-- [PAWN_nameDef] 是一个殷实家庭的佣人，在管家的严苛训练下很早就掌握了家务服务技巧，负责解决主人一家的衣食住行。[PAWN_nameDef]年龄尚小就承担起了繁重的家务，却缺乏照顾宠物的经验，毕竟很可能 [PAWN_nameDef] 已经挤占了它们的生态位。 -->
+        <baseDesc>[PAWN_nameDef] served as a domestic servant in a wealthy household, mastering household service skills under the butler's strict training and being responsible for addressing all daily needs of the master's family. [PAWN_nameDef] undertook heavy household chores from a young age, yet lacked experience in pet care- after all, [PAWN_nameDef] had likely already occupied their ecological niche.</baseDesc>
+        <skillGains>
+            <Social>3</Social>
+            <Cooking>2</Cooking>
+            <Animals>-2</Animals>
+        </skillGains>
+        <workDisables>
+            <li>Violent</li>
+        </workDisables>
+    </AlienRace.AlienBackstoryDef>
 
-	<!--增产实验对象
-	+医 +智 -种 禁社-->
-	<AlienRace.AlienBackstoryDef ParentName="MooGirl_ChildSlaveBackStory">
-		<defName>MooGirl_ExperimentalChild</defName>
-		<!-- 增产实验对象 -->
-		<title>Yield Enhancement Experiment Subject</title>
-		<!-- 实验对象 -->
-		<titleShort>Yield Enhancement Experiment Subject</titleShort>
-		<!-- [PAWN_nameDef] 在某个农业研究所作为实验对象长大，接受了许多长期医疗观察和试验，对不少医学术语耳熟能详。管理者告诉[PAWN_nameDef]，研究所外面危机四伏，一旦离开随时有丧命的风险。在童年期间，[PAWN_pronoun] 从未见过饲料的原貌，也从未见过自己的同类。 -->
-		<baseDesc>[PAWN_nameDef] grew up as an experiment subject in an agricultural research institute, undergoing many long-term medical observations and experiments, and became familiar with numerous medical terms. The managers told [PAWN_nameDef] that outside the institute, dangers lurked everywhere, and if [PAWN_pronoun] left, there was a risk of death at any time. During childhood, [PAWN_pronoun] never saw the true form of feed, nor did [PAWN_pronoun] ever see [PAWN_possessive] own kind.</baseDesc>
-		<skillGains>
-			<Medicine>3</Medicine>
-			<Intellectual>3</Intellectual>
-			<Plants>-2</Plants>
-		</skillGains>
-		<workDisables>
-			<li>Social</li>
-		</workDisables>
-	</AlienRace.AlienBackstoryDef>
+    <!--增产实验对象
+    +医 +智 -种 禁社-->
+    <AlienRace.AlienBackstoryDef ParentName="MooGirl_ChildSlaveBackStory">
+        <defName>MooGirl_ExperimentalChild</defName>
+        <!-- 增产实验对象 -->
+        <title>Yield Enhancement Experiment Subject</title>
+        <!-- 实验对象 -->
+        <titleShort>Yield Enhancement Experiment Subject</titleShort>
+        <!-- [PAWN_nameDef] 在某个农业研究所作为实验对象长大，接受了许多长期医疗观察和试验，对不少医学术语耳熟能详。管理者告诉[PAWN_nameDef]，研究所外面危机四伏，一旦离开随时有丧命的风险。在童年期间，[PAWN_pronoun] 从未见过饲料的原貌，也从未见过自己的同类。 -->
+        <baseDesc>[PAWN_nameDef] grew up as an experiment subject in an agricultural research institute, undergoing many long-term medical observations and experiments, and became familiar with numerous medical terms. The managers told [PAWN_nameDef] that outside the institute, dangers lurked everywhere, and if [PAWN_pronoun] left, there was a risk of death at any time. During childhood, [PAWN_pronoun] never saw the true form of feed, nor did [PAWN_pronoun] ever see [PAWN_possessive] own kind.</baseDesc>
+        <skillGains>
+            <Medicine>3</Medicine>
+            <Intellectual>3</Intellectual>
+            <Plants>-2</Plants>
+        </skillGains>
+        <workDisables>
+            <li>Social</li>
+        </workDisables>
+    </AlienRace.AlienBackstoryDef>
 
-	<!--成年背景-->
-	<AlienRace.AlienBackstoryDef ParentName="MooGirl_BaseBackStory">
-		<defName>MooGirl_Adult</defName>
-		<bodyTypeFemale>Female</bodyTypeFemale>
-		<bodyTypeMale>Female</bodyTypeMale>
-		<!-- 雪牛娘解放者 -->
-		<title>Mugirls' Liberator</title>
-		<!-- 雪牛娘解放者 -->
-		<titleShort>Great Mugirl</titleShort>
-		<!-- [PAWN_nameDef]因被反奴役组织解救而拥有了难得幸福的童年，在营地的那段时光里，她掌握了不少战斗技巧。成年之后，她将一生奉献于解放更多同胞，最终成为了一名坚定的反奴役组织战士。 -->
-		<baseDesc>[PAWN_nameDef] had a rare and happy childhood after being rescued by an anti-slavery organisation. During that time in the camp, [PAWN_pronoun] mastered many combat skills. After reaching adulthood, [PAWN_pronoun] devoted [PAWN_possessive] life to liberating more compatriots, eventually becoming a steadfast anti-slavery organisation fighter.</baseDesc>
-		<slot>Adulthood</slot>
-		<skillGains>
-			<Construction>4</Construction>
-			<Intellectual>5</Intellectual>
-			<Shooting>9</Shooting>
-			<Melee>7</Melee>
-			<Cooking>3</Cooking>
-			<Crafting>5</Crafting>
-		</skillGains>
-		<spawnCategories>
-			<li>MooGirl_Colony</li>
-		</spawnCategories>
-	</AlienRace.AlienBackstoryDef>
+    <!--成年背景-->
+    <AlienRace.AlienBackstoryDef ParentName="MooGirl_BaseBackStory">
+        <defName>MooGirl_Adult</defName>
+        <bodyTypeFemale>Female</bodyTypeFemale>
+        <bodyTypeMale>Female</bodyTypeMale>
+        <!-- 雪牛娘解放者 -->
+        <title>Mugirls' Liberator</title>
+        <!-- 雪牛娘解放者 -->
+        <titleShort>Great Mugirl</titleShort>
+        <!-- [PAWN_nameDef]因被反奴役组织解救而拥有了难得幸福的童年，在营地的那段时光里，她掌握了不少战斗技巧。成年之后，她将一生奉献于解放更多同胞，最终成为了一名坚定的反奴役组织战士。 -->
+        <baseDesc>[PAWN_nameDef] had a rare and happy childhood after being rescued by an anti-slavery organisation. During that time in the camp, [PAWN_pronoun] mastered many combat skills. After reaching adulthood, [PAWN_pronoun] devoted [PAWN_possessive] life to liberating more compatriots, eventually becoming a steadfast anti-slavery organisation fighter.</baseDesc>
+        <slot>Adulthood</slot>
+        <skillGains>
+            <Construction>4</Construction>
+            <Intellectual>5</Intellectual>
+            <Shooting>9</Shooting>
+            <Melee>7</Melee>
+            <Cooking>3</Cooking>
+            <Crafting>5</Crafting>
+        </skillGains>
+        <spawnCategories>
+            <li>MooGirl_Colony</li>
+        </spawnCategories>
+    </AlienRace.AlienBackstoryDef>
 
-	<AlienRace.AlienBackstoryDef ParentName="MooGirl_BaseBackStory" Name="MooGirl_AdultSlaveBackStory" Abstract="True">
-		<bodyTypeFemale>Female</bodyTypeFemale>
-		<bodyTypeMale>Female</bodyTypeMale>
-		<slot>Adulthood</slot>
-		<spawnCategories>
-			<li>MooGirl_Slave</li>
-		</spawnCategories>
-	</AlienRace.AlienBackstoryDef>
+    <AlienRace.AlienBackstoryDef ParentName="MooGirl_BaseBackStory" Name="MooGirl_AdultSlaveBackStory" Abstract="True">
+        <bodyTypeFemale>Female</bodyTypeFemale>
+        <bodyTypeMale>Female</bodyTypeMale>
+        <slot>Adulthood</slot>
+        <spawnCategories>
+            <li>MooGirl_Slave</li>
+        </spawnCategories>
+    </AlienRace.AlienBackstoryDef>
 
-	<AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
-		<defName>MooGirl_Colonist</defName>
-		<!-- 雪牛娘殖民者 -->
-		<title>Mugirl Colonist</title>
-		<!-- 殖民者 -->
-		<titleShort>Colonist</titleShort>
-		<!-- [PAWN_nameDef] 在我们的殖民地成年了。[PAWN_possessive] 的故事仍在继续。 -->
-		<baseDesc>[PAWN_nameDef] came of age in our colony. [PAWN_possessive] story continues.</baseDesc>
-		<requiresSpawnCategory>true</requiresSpawnCategory>
-	</AlienRace.AlienBackstoryDef>
+    <AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
+        <defName>MooGirl_Colonist</defName>
+        <!-- 雪牛娘殖民者 -->
+        <title>Mugirl Colonist</title>
+        <!-- 殖民者 -->
+        <titleShort>Colonist</titleShort>
+        <!-- [PAWN_nameDef] 在我们的殖民地成年了。[PAWN_possessive] 的故事仍在继续。 -->
+        <baseDesc>[PAWN_nameDef] came of age in our colony. [PAWN_possessive] story continues.</baseDesc>
+        <requiresSpawnCategory>true</requiresSpawnCategory>
+    </AlienRace.AlienBackstoryDef>
 
-	<AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
-		<defName>MooGirl_MineWorker</defName>
-		<!-- 矿井劳工 -->
-		<title>Mine Labour</title>
-		<!-- 矿井劳工 -->
-		<titleShort>Mine Labour</titleShort>
-		<!-- [PAWN_nameDef] 凭借过硬的体格找到了一份地下矿井的工作，依靠微薄的薪水艰难度日。在暗无天日、粉尘弥漫的矿道中，[PAWN_nameDef]整天整夜挥动镐头，推动矿车，完成越来越高的指标要求。捉襟见肘的钱包和几乎没有的休假，使她讳疾忌医，不愿接受体检而耽误工作。 -->
-		<baseDesc>[PAWN_nameDef] secured work in an underground mine thanks to [PAWN_possessive] robust physique, barely scraping by on meager wages. In the pitch-black, dust-filled mine shafts, [PAWN_nameDef] swung picks and pushed mine carts day and night, meeting increasingly demanding quotas. With [PAWN_possessive] strained finances and virtually no leave, [PAWN_pronoun] avoided medical care, unwilling to undergo health checks that would disrupt [PAWN_possessive] work.</baseDesc>
-		<skillGains>
-			<Mining>7</Mining>
-			<Melee>5</Melee>
-			<Medicine>-4</Medicine>
-		</skillGains>
-	</AlienRace.AlienBackstoryDef>
+    <AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
+        <defName>MooGirl_MineWorker</defName>
+        <!-- 矿井劳工 -->
+        <title>Mine Labour</title>
+        <!-- 矿井劳工 -->
+        <titleShort>Mine Labour</titleShort>
+        <!-- [PAWN_nameDef] 凭借过硬的体格找到了一份地下矿井的工作，依靠微薄的薪水艰难度日。在暗无天日、粉尘弥漫的矿道中，[PAWN_nameDef]整天整夜挥动镐头，推动矿车，完成越来越高的指标要求。捉襟见肘的钱包和几乎没有的休假，使她讳疾忌医，不愿接受体检而耽误工作。 -->
+        <baseDesc>[PAWN_nameDef] secured work in an underground mine thanks to [PAWN_possessive] robust physique, barely scraping by on meager wages. In the pitch-black, dust-filled mine shafts, [PAWN_nameDef] swung picks and pushed mine carts day and night, meeting increasingly demanding quotas. With [PAWN_possessive] strained finances and virtually no leave, [PAWN_pronoun] avoided medical care, unwilling to undergo health checks that would disrupt [PAWN_possessive] work.</baseDesc>
+        <skillGains>
+            <Mining>7</Mining>
+            <Melee>5</Melee>
+            <Medicine>-4</Medicine>
+        </skillGains>
+    </AlienRace.AlienBackstoryDef>
 
-	<AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
-		<defName>MooGirl_ConstructionWorker</defName>
-		<!-- 工地劳工 -->
-		<title>Construction Site Labour</title>
-		<!-- 工地劳工 -->
-		<titleShort>Construction Site Labour</titleShort>
-		<!-- [PAWN_nameDef] 是一名水平不错的建筑工人。从工地上的杂活开始，[PAWN_nameDef]逐渐积累了各种操作经验，能胜任管道、泥瓦、粉刷等多种角色。[PAWN_nameDef]尤其喜爱使用射钉枪发射钉子的美妙感觉，那种短促有力的气体喷发声格外悦耳。工地上的巨大体能消耗令她养成了去附近小食堂吃饭的习惯，毕竟谁能在连轴转的工作后还有体力亲自下厨呢？ -->
-		<baseDesc>[PAWN_nameDef] is a fairly skilled construction labour. Starting with miscellaneous tasks on construction sites, [PAWN_nameDef] gradually accumulated various operational experiences, capable of taking on roles such as plumbing, bricklaying, and painting. [PAWN_nameDef] particularly enjoys the wonderful feeling of using a nail gun to shoot nails, that short and powerful gas ejection sound is especially pleasing to the ear. The immense physical exertion on the site led [PAWN_objective] to develop a habit of eating at a nearby small canteen, after all, who has the energy to cook for themselves after working non-stop?</baseDesc>
-		<skillGains>
-			<Construction>9</Construction>
-			<Shooting>5</Shooting>
-			<Cooking>-4</Cooking>
-		</skillGains>
-	</AlienRace.AlienBackstoryDef>
+    <AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
+        <defName>MooGirl_ConstructionWorker</defName>
+        <!-- 工地劳工 -->
+        <title>Construction Site Labour</title>
+        <!-- 工地劳工 -->
+        <titleShort>Construction Site Labour</titleShort>
+        <!-- [PAWN_nameDef] 是一名水平不错的建筑工人。从工地上的杂活开始，[PAWN_nameDef]逐渐积累了各种操作经验，能胜任管道、泥瓦、粉刷等多种角色。[PAWN_nameDef]尤其喜爱使用射钉枪发射钉子的美妙感觉，那种短促有力的气体喷发声格外悦耳。工地上的巨大体能消耗令她养成了去附近小食堂吃饭的习惯，毕竟谁能在连轴转的工作后还有体力亲自下厨呢？ -->
+        <baseDesc>[PAWN_nameDef] is a fairly skilled construction labour. Starting with miscellaneous tasks on construction sites, [PAWN_nameDef] gradually accumulated various operational experiences, capable of taking on roles such as plumbing, bricklaying, and painting. [PAWN_nameDef] particularly enjoys the wonderful feeling of using a nail gun to shoot nails, that short and powerful gas ejection sound is especially pleasing to the ear. The immense physical exertion on the site led [PAWN_objective] to develop a habit of eating at a nearby small canteen, after all, who has the energy to cook for themselves after working non-stop?</baseDesc>
+        <skillGains>
+            <Construction>9</Construction>
+            <Shooting>5</Shooting>
+            <Cooking>-4</Cooking>
+        </skillGains>
+    </AlienRace.AlienBackstoryDef>
 
-	<AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
-		<defName>MooGirl_FarmWorker</defName>
-		<!-- 农场劳工 -->
-		<title>Farm Labour</title>
-		<!-- 农场劳工 -->
-		<titleShort>Farm Labour</titleShort>
-		<!-- [PAWN_nameDef] 在大型农场长期从事作物种植和牲畜管理工作。[PAWN_nameDef]身上带着泥土与干草的香气，日复一日的田间劳作让她熟谙各类农作物的生长周期和动物习性。农闲时，[PAWN_nameDef]时常从农场主那里获悉附近农场的消息。据说有一个豢养大批雪牛娘的残忍农场主经常派人四处烧杀抢劫，她很庆幸自己不用拿起武器保卫农场。 -->
-		<baseDesc>[PAWN_nameDef] has long been engaged in crop cultivation and livestock management on a large farm. [PAWN_nameDef] carries the scent of soil and hay, and the daily fieldwork has made [PAWN_objective] familiar with the growth cycles of various crops and animal habits. During the off-season, [PAWN_nameDef] often hears news about nearby farms from the farm owner. It is said that a cruel farm owner who keeps a large number of Mugirls often sends people to burn, kill, and rob everywhere, and [PAWN_pronoun] is glad that [PAWN_pronoun] does not have to take up arms to defend the farm.</baseDesc>
-		<skillGains>
-			<Plants>10</Plants>
-			<Animals>5</Animals>
-			<Shooting>-3</Shooting>
-		</skillGains>
-		<workDisables>
-			<li>Shooting</li>
-		</workDisables>
-	</AlienRace.AlienBackstoryDef>
+    <AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
+        <defName>MooGirl_FarmWorker</defName>
+        <!-- 农场劳工 -->
+        <title>Farm Labour</title>
+        <!-- 农场劳工 -->
+        <titleShort>Farm Labour</titleShort>
+        <!-- [PAWN_nameDef] 在大型农场长期从事作物种植和牲畜管理工作。[PAWN_nameDef]身上带着泥土与干草的香气，日复一日的田间劳作让她熟谙各类农作物的生长周期和动物习性。农闲时，[PAWN_nameDef]时常从农场主那里获悉附近农场的消息。据说有一个豢养大批雪牛娘的残忍农场主经常派人四处烧杀抢劫，她很庆幸自己不用拿起武器保卫农场。 -->
+        <baseDesc>[PAWN_nameDef] has long been engaged in crop cultivation and livestock management on a large farm. [PAWN_nameDef] carries the scent of soil and hay, and the daily fieldwork has made [PAWN_objective] familiar with the growth cycles of various crops and animal habits. During the off-season, [PAWN_nameDef] often hears news about nearby farms from the farm owner. It is said that a cruel farm owner who keeps a large number of Mugirls often sends people to burn, kill, and rob everywhere, and [PAWN_pronoun] is glad that [PAWN_pronoun] does not have to take up arms to defend the farm.</baseDesc>
+        <skillGains>
+            <Plants>10</Plants>
+            <Animals>5</Animals>
+            <Shooting>-3</Shooting>
+        </skillGains>
+        <workDisables>
+            <li>Shooting</li>
+        </workDisables>
+    </AlienRace.AlienBackstoryDef>
 
-	<AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
-		<defName>MooGirl_FactoryWorker</defName>
-		<!-- 工厂劳工 -->
-		<title>Factory Worker</title>
-		<!-- 工厂劳工 -->
-		<titleShort>Factory Worker</titleShort>
-		<!-- [PAWN_nameDef]常年在工业园区的各大流水线工厂之间寻找谋生机会，试图用双手创造更好的生活条件。若不是劳动成果得不到法律保障，她也许还会在同一家血汗工厂继续工作。[PAWN_nameDef]干过装配、质检、装卸、安保等多种工作，每个岗位上都留下了辛劳汗水。尽管因生活所迫未能接受太多教育，她仍对校园心存向往。 -->
-		<baseDesc>[PAWN_nameDef] spent years seeking livelihood opportunities among various assembly line factories in industrial parks, trying to create better living conditions with [PAWN_possessive] hands. If the fruits of [PAWN_possessive] labour were not legally unprotected, [PAWN_pronoun] might have continued working in the same sweatshop. [PAWN_nameDef] has worked in various jobs such as assembly, quality inspection, loading and unloading, and security, leaving sweat and toil in every position. Although forced by life circumstances to receive little education, [PAWN_pronoun] still harbours a longing for school.</baseDesc>
-		<skillGains>
-			<Crafting>7</Crafting>
-			<Melee>4</Melee>
-			<Intellectual>-4</Intellectual>
-		</skillGains>
-	</AlienRace.AlienBackstoryDef>
+    <AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
+        <defName>MooGirl_FactoryWorker</defName>
+        <!-- 工厂劳工 -->
+        <title>Factory Worker</title>
+        <!-- 工厂劳工 -->
+        <titleShort>Factory Worker</titleShort>
+        <!-- [PAWN_nameDef]常年在工业园区的各大流水线工厂之间寻找谋生机会，试图用双手创造更好的生活条件。若不是劳动成果得不到法律保障，她也许还会在同一家血汗工厂继续工作。[PAWN_nameDef]干过装配、质检、装卸、安保等多种工作，每个岗位上都留下了辛劳汗水。尽管因生活所迫未能接受太多教育，她仍对校园心存向往。 -->
+        <baseDesc>[PAWN_nameDef] spent years seeking livelihood opportunities among various assembly line factories in industrial parks, trying to create better living conditions with [PAWN_possessive] hands. If the fruits of [PAWN_possessive] labour were not legally unprotected, [PAWN_pronoun] might have continued working in the same sweatshop. [PAWN_nameDef] has worked in various jobs such as assembly, quality inspection, loading and unloading, and security, leaving sweat and toil in every position. Although forced by life circumstances to receive little education, [PAWN_pronoun] still harbours a longing for school.</baseDesc>
+        <skillGains>
+            <Crafting>7</Crafting>
+            <Melee>4</Melee>
+            <Intellectual>-4</Intellectual>
+        </skillGains>
+    </AlienRace.AlienBackstoryDef>
 
-	<AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
-		<defName>MooGirl_CattleSlave</defName>
-		<!-- 牛场奴隶 -->
-		<title>Cattle Ranch Slave</title>
-		<!-- 牛场奴隶 -->
-		<titleShort>Cattle Ranch Slave</titleShort>
-		<!-- [PAWN_nameDef]作为养“牛”场的产奶奴隶历尽艰辛，始终未能获得成为“人”的资格。起初只是被关在狭窄的畜栏中受牧场主榨取，当人手不足时，她则从“奶牛”摇身一变成为协助主人管理牲畜的奴隶，操作机器并处理鲜奶。但她有时难以驾驭脾气古怪的牛群，屡屡受到攻击。 -->
-		<baseDesc>[PAWN_nameDef] endured immense hardship as a milking slave on a "cattle" farm, never qualifying to be treated as a human. Initially confined to narrow pens and exploited by the farm owner, [PAWN_pronoun] later transitioned from being a "dairy cow" to managing livestock for [PAWN_possessive] master when labour was short, operating machinery and processing fresh milk. However, [PAWN_pronoun] often struggled to handle the temperamental cattle and was frequently attacked by the herd.</baseDesc>
-		<skillGains>
-			<Animals>9</Animals>
-			<Cooking>5</Cooking>
-			<Melee>-3</Melee>
-		</skillGains>
-	</AlienRace.AlienBackstoryDef>
+    <AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
+        <defName>MooGirl_CattleSlave</defName>
+        <!-- 牛场奴隶 -->
+        <title>Cattle Ranch Slave</title>
+        <!-- 牛场奴隶 -->
+        <titleShort>Cattle Ranch Slave</titleShort>
+        <!-- [PAWN_nameDef]作为养“牛”场的产奶奴隶历尽艰辛，始终未能获得成为“人”的资格。起初只是被关在狭窄的畜栏中受牧场主榨取，当人手不足时，她则从“奶牛”摇身一变成为协助主人管理牲畜的奴隶，操作机器并处理鲜奶。但她有时难以驾驭脾气古怪的牛群，屡屡受到攻击。 -->
+        <baseDesc>[PAWN_nameDef] endured immense hardship as a milking slave on a "cattle" farm, never qualifying to be treated as a human. Initially confined to narrow pens and exploited by the farm owner, [PAWN_pronoun] later transitioned from being a "dairy cow" to managing livestock for [PAWN_possessive] master when labour was short, operating machinery and processing fresh milk. However, [PAWN_pronoun] often struggled to handle the temperamental cattle and was frequently attacked by the herd.</baseDesc>
+        <skillGains>
+            <Animals>9</Animals>
+            <Cooking>5</Cooking>
+            <Melee>-3</Melee>
+        </skillGains>
+    </AlienRace.AlienBackstoryDef>
 
-	<AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
-		<defName>MooGirl_Merchant</defName>
-		<!-- 行商小贩 -->
-		<title>Pedlar</title>
-		<!-- 行商小贩 -->
-		<titleShort>Pedlar</titleShort>
-		<!-- [PAWN_nameDef]靠经营小商品零售维持生计，凭借商业眼光一度发财，拥有自己的铺面。但经济危机、瘟疫与战乱接踵而至，她在几场大规模“零元购”中试图用武器保卫生意，财产最终仍被疯狂人群洗劫一空。重整旗鼓后，她动用所有社会关系筹借资金，再次开始游街串巷、吆喝叫卖的生活。 -->
-		<baseDesc>[PAWN_nameDef] made a living running small goods retail, once prospering through business acumen and owning [PAWN_possessive] own shop. However, economic crisis, plague and warfare followed in quick succession. When [PAWN_pronoun] tried to defend [PAWN_possessive] business with weapons during several large-scale looting events, [PAWN_possessive] property was ultimately plundered by frenzied crowds. After regrouping, [PAWN_pronoun] mobilized all social connections to borrow funds and resumed [PAWN_possessive] life of hawking wares while travelling through streets and alleys.</baseDesc>
-		<skillGains>
-			<Social>8</Social>
-			<Shooting>4</Shooting>
-			<Crafting>5</Crafting>
-		</skillGains>
-	</AlienRace.AlienBackstoryDef>
+    <AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
+        <defName>MooGirl_Merchant</defName>
+        <!-- 行商小贩 -->
+        <title>Pedlar</title>
+        <!-- 行商小贩 -->
+        <titleShort>Pedlar</titleShort>
+        <!-- [PAWN_nameDef]靠经营小商品零售维持生计，凭借商业眼光一度发财，拥有自己的铺面。但经济危机、瘟疫与战乱接踵而至，她在几场大规模“零元购”中试图用武器保卫生意，财产最终仍被疯狂人群洗劫一空。重整旗鼓后，她动用所有社会关系筹借资金，再次开始游街串巷、吆喝叫卖的生活。 -->
+        <baseDesc>[PAWN_nameDef] made a living running small goods retail, once prospering through business acumen and owning [PAWN_possessive] own shop. However, economic crisis, plague and warfare followed in quick succession. When [PAWN_pronoun] tried to defend [PAWN_possessive] business with weapons during several large-scale looting events, [PAWN_possessive] property was ultimately plundered by frenzied crowds. After regrouping, [PAWN_pronoun] mobilized all social connections to borrow funds and resumed [PAWN_possessive] life of hawking wares while travelling through streets and alleys.</baseDesc>
+        <skillGains>
+            <Social>8</Social>
+            <Shooting>4</Shooting>
+            <Crafting>5</Crafting>
+        </skillGains>
+    </AlienRace.AlienBackstoryDef>
 
-	<AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
-		<defName>MooGirl_Housekeeper</defName>
-		<!-- 家庭保姆 -->
-		<title>Household Carer</title>
-		<!-- 家庭保姆 -->
-		<titleShort>Household Carer</titleShort>
-		<!-- [PAWN_nameDef]拥有在多个家庭做保姆的经验，对儿童保育和烹饪情有独钟。天不亮就起床准备早餐，处理家务到深夜。她在钻研烹饪技巧和学习育儿心得上下了不少功夫，却仍难以满足刁钻雇主吹毛求疵的期望，也常想起自己未能实践的艺术梦想。 -->
-		<baseDesc>[PAWN_nameDef] has experience working as a household carer for multiple families, developing a particular fondness for child care and cooking. [PAWN_pronoun] would rise before dawn to prepare breakfast and handle household chores until late at night. Although [PAWN_pronoun] put considerable effort into refining culinary techniques and studying childcare knowledge, [PAWN_pronoun] still struggled to meet the nitpicking expectations of demanding employers, often reminiscing about [PAWN_possessive] own unrealized artistic dreams.</baseDesc>
-		<skillGains>
-			<Cooking>8</Cooking>
-			<Social>6</Social>
-			<Artistic>-5</Artistic>
-		</skillGains>
-	</AlienRace.AlienBackstoryDef>
+    <AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
+        <defName>MooGirl_Housekeeper</defName>
+        <!-- 家庭保姆 -->
+        <title>Household Carer</title>
+        <!-- 家庭保姆 -->
+        <titleShort>Household Carer</titleShort>
+        <!-- [PAWN_nameDef]拥有在多个家庭做保姆的经验，对儿童保育和烹饪情有独钟。天不亮就起床准备早餐，处理家务到深夜。她在钻研烹饪技巧和学习育儿心得上下了不少功夫，却仍难以满足刁钻雇主吹毛求疵的期望，也常想起自己未能实践的艺术梦想。 -->
+        <baseDesc>[PAWN_nameDef] has experience working as a household carer for multiple families, developing a particular fondness for child care and cooking. [PAWN_pronoun] would rise before dawn to prepare breakfast and handle household chores until late at night. Although [PAWN_pronoun] put considerable effort into refining culinary techniques and studying childcare knowledge, [PAWN_pronoun] still struggled to meet the nitpicking expectations of demanding employers, often reminiscing about [PAWN_possessive] own unrealized artistic dreams.</baseDesc>
+        <skillGains>
+            <Cooking>8</Cooking>
+            <Social>6</Social>
+            <Artistic>-5</Artistic>
+        </skillGains>
+    </AlienRace.AlienBackstoryDef>
 
-	<AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
-		<defName>MooGirl_UndergroundIdol</defName>
-		<!-- 地下偶像 -->
-		<title>Underground Idol</title>
-		<!-- 地下偶像 -->
-		<titleShort>Underground Idol</titleShort>
-		<!-- [PAWN_nameDef]是都市地下俱乐部的表演偶像。作为雪牛娘，她天生拥有出色外貌，很早被经纪公司选拔为练习生。但几年后未能在偶像道路上走到最后，被淘汰出局。随后，她在地下俱乐部继续表演，拼命吸引观众目光，维持生计。 -->
-		<baseDesc>[PAWN_nameDef] is a performance idol in urban underground clubs. As a Mugirl, [PAWN_pronoun] naturally possesses an excellent appearance and was selected by a talent agency as a trainee at a young age. However, after a few years, [PAWN_pronoun] failed to make it to the end on the idol path and was eliminated. Subsequently, [PAWN_pronoun] continued performing in underground clubs, desperately attracting audience attention to make a living.</baseDesc>
-		<skillGains>
-			<Social>10</Social>
-			<Artistic>6</Artistic>
-			<Animals>-4</Animals>
-		</skillGains>
-	</AlienRace.AlienBackstoryDef>
+    <AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
+        <defName>MooGirl_UndergroundIdol</defName>
+        <!-- 地下偶像 -->
+        <title>Underground Idol</title>
+        <!-- 地下偶像 -->
+        <titleShort>Underground Idol</titleShort>
+        <!-- [PAWN_nameDef]是都市地下俱乐部的表演偶像。作为雪牛娘，她天生拥有出色外貌，很早被经纪公司选拔为练习生。但几年后未能在偶像道路上走到最后，被淘汰出局。随后，她在地下俱乐部继续表演，拼命吸引观众目光，维持生计。 -->
+        <baseDesc>[PAWN_nameDef] is a performance idol in urban underground clubs. As a Mugirl, [PAWN_pronoun] naturally possesses an excellent appearance and was selected by a talent agency as a trainee at a young age. However, after a few years, [PAWN_pronoun] failed to make it to the end on the idol path and was eliminated. Subsequently, [PAWN_pronoun] continued performing in underground clubs, desperately attracting audience attention to make a living.</baseDesc>
+        <skillGains>
+            <Social>10</Social>
+            <Artistic>6</Artistic>
+            <Animals>-4</Animals>
+        </skillGains>
+    </AlienRace.AlienBackstoryDef>
 
-	<AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
-		<defName>MooGirl_NightclubStaff</defName>
-		<!-- 夜场员工 -->
-		<title>Nightclub Staff</title>
-		<!-- 夜场员工 -->
-		<titleShort>Nightclub Staff</titleShort>
-		<!-- [PAWN_nameDef]辍学后浪迹于都市夜场，在高薪诱惑下成为员工，负责检查顾客年龄并维持秩序。接受了基本枪械训练，偶尔需要亮出家伙震慑酒后闹事的人。然而昼夜颠倒的生活打乱了作息，她一心扑在“搞钱”上，无暇顾及身体健康。 -->
-		<baseDesc>[PAWN_nameDef] dropped out of school and wandered into urban nightlife, becoming an employee under the lure of high salaries, responsible for checking customers' ages and maintaining order. [PAWN_nameDef] received basic firearms training and occasionally needed to show the weapon to intimidate drunk troublemakers. However, the inverted day-night schedule disrupted [PAWN_pronoun] routine, and [PAWN_pronoun] was solely focused on "making money", with no time to care for [PAWN_possessive] health.</baseDesc>
-		<skillGains>
-			<Shooting>7</Shooting>
-			<Social>4</Social>
-			<Medicine>-5</Medicine>
-		</skillGains>
-	</AlienRace.AlienBackstoryDef>
+    <AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
+        <defName>MooGirl_NightclubStaff</defName>
+        <!-- 夜场员工 -->
+        <title>Nightclub Staff</title>
+        <!-- 夜场员工 -->
+        <titleShort>Nightclub Staff</titleShort>
+        <!-- [PAWN_nameDef]辍学后浪迹于都市夜场，在高薪诱惑下成为员工，负责检查顾客年龄并维持秩序。接受了基本枪械训练，偶尔需要亮出家伙震慑酒后闹事的人。然而昼夜颠倒的生活打乱了作息，她一心扑在“搞钱”上，无暇顾及身体健康。 -->
+        <baseDesc>[PAWN_nameDef] dropped out of school and wandered into urban nightlife, becoming an employee under the lure of high salaries, responsible for checking customers' ages and maintaining order. [PAWN_nameDef] received basic firearms training and occasionally needed to show the weapon to intimidate drunk troublemakers. However, the inverted day-night schedule disrupted [PAWN_pronoun] routine, and [PAWN_pronoun] was solely focused on "making money", with no time to care for [PAWN_possessive] health.</baseDesc>
+        <skillGains>
+            <Shooting>7</Shooting>
+            <Social>4</Social>
+            <Medicine>-5</Medicine>
+        </skillGains>
+    </AlienRace.AlienBackstoryDef>
 
-	<AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
-		<defName>MooGirl_Gladiator</defName>
-		<!-- 角斗战士 -->
-		<title>Gladiator</title>
-		<!-- 角斗战士 -->
-		<titleShort>Gladiator</titleShort>
-		<!-- [PAWN_nameDef]是经验丰富的角斗战士，以参加角斗赚取高额奖励维持生计。多年苦练格斗本领，掌握多种武器使用方式，希望在竞技场残酷血腥的角斗中胜出。医疗条件有限，她不得不学习土法偏方处理伤病。 -->
-		<baseDesc>[PAWN_nameDef] is an experienced gladiator, making a living by participating in arena fights for substantial rewards. Through years of rigorous training in combat skills, [PAWN_pronoun] has mastered various weapons, hoping to prevail in the cruel and bloody contests of the arena. With limited medical facilities available, [PAWN_pronoun] had to learn folk remedies to treat injuries and illnesses.</baseDesc>
-		<skillGains>
-			<Melee>10</Melee>
-			<Medicine>2</Medicine>
-			<Mining>-5</Mining>
-		</skillGains>
-	</AlienRace.AlienBackstoryDef>
+    <AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
+        <defName>MooGirl_Gladiator</defName>
+        <!-- 角斗战士 -->
+        <title>Gladiator</title>
+        <!-- 角斗战士 -->
+        <titleShort>Gladiator</titleShort>
+        <!-- [PAWN_nameDef]是经验丰富的角斗战士，以参加角斗赚取高额奖励维持生计。多年苦练格斗本领，掌握多种武器使用方式，希望在竞技场残酷血腥的角斗中胜出。医疗条件有限，她不得不学习土法偏方处理伤病。 -->
+        <baseDesc>[PAWN_nameDef] is an experienced gladiator, making a living by participating in arena fights for substantial rewards. Through years of rigorous training in combat skills, [PAWN_pronoun] has mastered various weapons, hoping to prevail in the cruel and bloody contests of the arena. With limited medical facilities available, [PAWN_pronoun] had to learn folk remedies to treat injuries and illnesses.</baseDesc>
+        <skillGains>
+            <Melee>10</Melee>
+            <Medicine>2</Medicine>
+            <Mining>-5</Mining>
+        </skillGains>
+    </AlienRace.AlienBackstoryDef>
 
-	<AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
-		<defName>MooGirl_GangMember</defName>
-		<!-- 黑道成员 -->
-		<title>Gang Member</title>
-		<!-- 黑道成员 -->
-		<titleShort>Gang Member</titleShort>
-		<!-- [PAWN_nameDef]成年后过上刀尖舔血的犯罪生涯，街头火并、聚众斗殴成日常。在缺乏治安的社会边缘，她为地头蛇效力，追逐一夜暴富梦想。因经验不足，帮派内斗中站队失误，被排挤，只能过上东躲西藏的逃亡生活。 -->
-		<baseDesc>[PAWN_nameDef] embarked on a life of crime as an adult, living on the edge with street fights and gang brawls becoming daily occurrences. On the lawless fringes of society, [PAWN_pronoun] served local crime bosses, chasing dreams of getting rich overnight. Due to [PAWN_possessive] inexperience, [PAWN_pronoun] backed the wrong side in internal gang conflicts, became ostracized, and was forced into a life on the run, constantly moving to avoid detection.</baseDesc>
-		<skillGains>
-			<Shooting>8</Shooting>
-			<Melee>8</Melee>
-			<Social>-5</Social>
-		</skillGains>
-	</AlienRace.AlienBackstoryDef>
+    <AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
+        <defName>MooGirl_GangMember</defName>
+        <!-- 黑道成员 -->
+        <title>Gang Member</title>
+        <!-- 黑道成员 -->
+        <titleShort>Gang Member</titleShort>
+        <!-- [PAWN_nameDef]成年后过上刀尖舔血的犯罪生涯，街头火并、聚众斗殴成日常。在缺乏治安的社会边缘，她为地头蛇效力，追逐一夜暴富梦想。因经验不足，帮派内斗中站队失误，被排挤，只能过上东躲西藏的逃亡生活。 -->
+        <baseDesc>[PAWN_nameDef] embarked on a life of crime as an adult, living on the edge with street fights and gang brawls becoming daily occurrences. On the lawless fringes of society, [PAWN_pronoun] served local crime bosses, chasing dreams of getting rich overnight. Due to [PAWN_possessive] inexperience, [PAWN_pronoun] backed the wrong side in internal gang conflicts, became ostracized, and was forced into a life on the run, constantly moving to avoid detection.</baseDesc>
+        <skillGains>
+            <Shooting>8</Shooting>
+            <Melee>8</Melee>
+            <Social>-5</Social>
+        </skillGains>
+    </AlienRace.AlienBackstoryDef>
 
 </Defs>

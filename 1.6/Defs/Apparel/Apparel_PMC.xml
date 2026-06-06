@@ -1,190 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <!-- PMC钢盔 -->
-  <ThingDef ParentName="ApparelMakeableBase">
-    <defName>PMC_Helmet</defName>
     <!-- PMC钢盔 -->
-    <label>PMC Helmet</label>
-    <!-- PMC佣兵的标准钢盔，保护头部和耳朵。 -->
-    <description>A standard helmet for PMC mercenaries, protecting the head and ears.</description>
-    <graphicData>
-      <texPath>Things/Item/Equipment/Enemyarmor/pmc_helmet/pmc_helmet</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <costStuffCount>30</costStuffCount>
-    <stuffCategories Inherit="False">
-      <li>Metallic</li>
-    </stuffCategories>
-    <costList>
-      <Steel>100</Steel>
-      <ComponentIndustrial>7</ComponentIndustrial>
-    </costList>
-    <statBases>
-      <MaxHitPoints>110</MaxHitPoints>
-      <MarketValue>500</MarketValue>
-      <WorkToMake>567</WorkToMake>
-      <Mass>2</Mass>
-      <Flammability>0.5</Flammability>
-      <Beauty>-3</Beauty>
-      <DeteriorationRate>2.0</DeteriorationRate>
-      <ArmorRating_Sharp>1.0</ArmorRating_Sharp>
-      <ArmorRating_Blunt>0.4</ArmorRating_Blunt>
-      <ArmorRating_Heat>0.3</ArmorRating_Heat>
-      <Insulation_Cold>-5</Insulation_Cold>
-      <Insulation_Heat>5</Insulation_Heat>
-      <EquipDelay>5</EquipDelay>
-      <SellPriceFactor>0.2</SellPriceFactor>
-    </statBases>
-    <apparel>
-      <layers>
-        <li>Overhead</li>
-      </layers>
-      <bodyPartGroups>
-        <li>FullHead</li>
-      </bodyPartGroups>
-      <wornGraphicPath>Things/Item/Equipment/Enemyarmor/pmc_helmet/pmc_helmet</wornGraphicPath>
-      <tags>
-        <li>PMC</li>
-        <li>IndustrialMilitaryBasic</li>
-      </tags>
-    </apparel>
-    <recipeMaker>
-      <researchPrerequisite>FlakArmor</researchPrerequisite>
-      <recipeUsers>
-        <li>TableMachining</li>
-        <li>ElectricTailoringBench</li>
-        <li>HandTailoringBench</li>
-      </recipeUsers>
-    </recipeMaker>
-    <thingCategories>
-      <li>ArmorHeadgear</li>
-    </thingCategories>
-  </ThingDef>
+    <ThingDef ParentName="ApparelMakeableBase">
+        <defName>PMC_Helmet</defName>
+        <!-- PMC钢盔 -->
+        <label>PMC Helmet</label>
+        <!-- PMC佣兵的标准钢盔，保护头部和耳朵。 -->
+        <description>A standard helmet for PMC mercenaries, protecting the head and ears.</description>
+        <graphicData>
+            <texPath>Things/Item/Equipment/Enemyarmor/pmc_helmet/pmc_helmet</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <costStuffCount>30</costStuffCount>
+        <stuffCategories Inherit="False">
+            <li>Metallic</li>
+        </stuffCategories>
+        <costList>
+            <Steel>100</Steel>
+            <ComponentIndustrial>7</ComponentIndustrial>
+        </costList>
+        <statBases>
+            <MaxHitPoints>110</MaxHitPoints>
+            <MarketValue>500</MarketValue>
+            <WorkToMake>567</WorkToMake>
+            <Mass>2</Mass>
+            <Flammability>0.5</Flammability>
+            <Beauty>-3</Beauty>
+            <DeteriorationRate>2.0</DeteriorationRate>
+            <ArmorRating_Sharp>1.0</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.4</ArmorRating_Blunt>
+            <ArmorRating_Heat>0.3</ArmorRating_Heat>
+            <Insulation_Cold>-5</Insulation_Cold>
+            <Insulation_Heat>5</Insulation_Heat>
+            <EquipDelay>5</EquipDelay>
+            <SellPriceFactor>0.2</SellPriceFactor>
+        </statBases>
+        <apparel>
+            <layers>
+                <li>Overhead</li>
+            </layers>
+            <bodyPartGroups>
+                <li>FullHead</li>
+            </bodyPartGroups>
+            <wornGraphicPath>Things/Item/Equipment/Enemyarmor/pmc_helmet/pmc_helmet</wornGraphicPath>
+            <tags>
+                <li>PMC</li>
+                <li>IndustrialMilitaryBasic</li>
+            </tags>
+        </apparel>
+        <recipeMaker>
+            <researchPrerequisite>FlakArmor</researchPrerequisite>
+            <recipeUsers>
+                <li>TableMachining</li>
+                <li>ElectricTailoringBench</li>
+                <li>HandTailoringBench</li>
+            </recipeUsers>
+        </recipeMaker>
+        <thingCategories>
+            <li>ArmorHeadgear</li>
+        </thingCategories>
+    </ThingDef>
 
-  <!-- PMC队长头盔 -->
-  <ThingDef ParentName="ApparelMakeableBase">
-    <defName>PMC_CaptainHelmet</defName>
     <!-- PMC队长头盔 -->
-    <label>PMC Captain Helmet</label>
-    <!-- PMC小队指挥官的高级头盔，配备通讯设备和增强护甲。 -->
-    <description>An advanced helmet for PMC squad commanders, equipped with communications gear and enhanced armor.</description>
-    <graphicData>
-      <texPath>Things/Item/Equipment/Enemyarmor/pmc_captainhelmet/pmc_captainhelmet</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <costStuffCount>30</costStuffCount>
-    <stuffCategories Inherit="False">
-      <li>Metallic</li>
-    </stuffCategories>
-    <costList>
-      <Steel>100</Steel>
-      <ComponentIndustrial>7</ComponentIndustrial>
-    </costList>
-    <statBases>
-      <MaxHitPoints>110</MaxHitPoints>
-      <MarketValue>500</MarketValue>
-      <WorkToMake>567</WorkToMake>
-      <Mass>2</Mass>
-      <Flammability>0.5</Flammability>
-      <Beauty>-3</Beauty>
-      <DeteriorationRate>2.0</DeteriorationRate>
-      <ArmorRating_Sharp>1.0</ArmorRating_Sharp>
-      <ArmorRating_Blunt>0.4</ArmorRating_Blunt>
-      <ArmorRating_Heat>0.3</ArmorRating_Heat>
-      <Insulation_Cold>-5</Insulation_Cold>
-      <Insulation_Heat>5</Insulation_Heat>
-      <EquipDelay>5</EquipDelay>
-      <SellPriceFactor>0.2</SellPriceFactor>
-    </statBases>
-    <apparel>
-      <layers>
-        <li>Overhead</li>
-      </layers>
-      <bodyPartGroups>
-        <li>FullHead</li>
-      </bodyPartGroups>
-      <wornGraphicPath>Things/Item/Equipment/Enemyarmor/pmc_captainhelmet/pmc_captainhelmet</wornGraphicPath>
-      <tags>
-        <li>PMC</li>
-        <li>IndustrialMilitaryAdvanced</li>
-      </tags>
-    </apparel>
-    <recipeMaker>
-      <researchPrerequisite>FlakArmor</researchPrerequisite>
-      <recipeUsers>
-        <li>TableMachining</li>
-        <li>ElectricTailoringBench</li>
-        <li>HandTailoringBench</li>
-      </recipeUsers>
-    </recipeMaker>
-    <thingCategories>
-      <li>ArmorHeadgear</li>
-    </thingCategories>
-  </ThingDef>
+    <ThingDef ParentName="ApparelMakeableBase">
+        <defName>PMC_CaptainHelmet</defName>
+        <!-- PMC队长头盔 -->
+        <label>PMC Captain Helmet</label>
+        <!-- PMC小队指挥官的高级头盔，配备通讯设备和增强护甲。 -->
+        <description>An advanced helmet for PMC squad commanders, equipped with communications gear and enhanced armor.</description>
+        <graphicData>
+            <texPath>Things/Item/Equipment/Enemyarmor/pmc_captainhelmet/pmc_captainhelmet</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <costStuffCount>30</costStuffCount>
+        <stuffCategories Inherit="False">
+            <li>Metallic</li>
+        </stuffCategories>
+        <costList>
+            <Steel>100</Steel>
+            <ComponentIndustrial>7</ComponentIndustrial>
+        </costList>
+        <statBases>
+            <MaxHitPoints>110</MaxHitPoints>
+            <MarketValue>500</MarketValue>
+            <WorkToMake>567</WorkToMake>
+            <Mass>2</Mass>
+            <Flammability>0.5</Flammability>
+            <Beauty>-3</Beauty>
+            <DeteriorationRate>2.0</DeteriorationRate>
+            <ArmorRating_Sharp>1.0</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.4</ArmorRating_Blunt>
+            <ArmorRating_Heat>0.3</ArmorRating_Heat>
+            <Insulation_Cold>-5</Insulation_Cold>
+            <Insulation_Heat>5</Insulation_Heat>
+            <EquipDelay>5</EquipDelay>
+            <SellPriceFactor>0.2</SellPriceFactor>
+        </statBases>
+        <apparel>
+            <layers>
+                <li>Overhead</li>
+            </layers>
+            <bodyPartGroups>
+                <li>FullHead</li>
+            </bodyPartGroups>
+            <wornGraphicPath>Things/Item/Equipment/Enemyarmor/pmc_captainhelmet/pmc_captainhelmet</wornGraphicPath>
+            <tags>
+                <li>PMC</li>
+                <li>IndustrialMilitaryAdvanced</li>
+            </tags>
+        </apparel>
+        <recipeMaker>
+            <researchPrerequisite>FlakArmor</researchPrerequisite>
+            <recipeUsers>
+                <li>TableMachining</li>
+                <li>ElectricTailoringBench</li>
+                <li>HandTailoringBench</li>
+            </recipeUsers>
+        </recipeMaker>
+        <thingCategories>
+            <li>ArmorHeadgear</li>
+        </thingCategories>
+    </ThingDef>
 
-  <!-- PMC作战服 - Middle + Shell layers, multi body type -->
-  <ThingDef ParentName="ApparelMakeableBase">
-    <defName>PMC_CombatUniform</defName>
-    <!-- PMC作战服 -->
-    <label>PMC Combat Uniform</label>
-    <!-- PMC标准作战服，兼顾防护与机动，覆盖全身。 -->
-    <description>The standard PMC combat uniform, balancing protection and mobility while covering the whole body.</description>
-    <graphicData>
-      <texPath>Things/Item/Equipment/Enemyarmor/pmc_combatuniform/pmc_combatuniform</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <costStuffCount>30</costStuffCount>
-    <stuffCategories Inherit="False">
-      <li>Metallic</li>
-      <li>Fabric</li>
-      <li>Leathery</li>
-    </stuffCategories>
-    <costList>
-      <Steel>100</Steel>
-      <ComponentIndustrial>7</ComponentIndustrial>
-    </costList>
-    <statBases>
-      <MaxHitPoints>110</MaxHitPoints>
-      <MarketValue>500</MarketValue>
-      <WorkToMake>567</WorkToMake>
-      <Mass>2</Mass>
-      <Flammability>0.5</Flammability>
-      <Beauty>-3</Beauty>
-      <DeteriorationRate>2.0</DeteriorationRate>
-      <ArmorRating_Sharp>1.0</ArmorRating_Sharp>
-      <ArmorRating_Blunt>0.4</ArmorRating_Blunt>
-      <ArmorRating_Heat>0.3</ArmorRating_Heat>
-      <Insulation_Cold>-5</Insulation_Cold>
-      <Insulation_Heat>5</Insulation_Heat>
-      <EquipDelay>5</EquipDelay>
-      <SellPriceFactor>0.2</SellPriceFactor>
-    </statBases>
-    <apparel>
-      <layers>
-        <li>Middle</li>
-        <li>Shell</li>
-      </layers>
-      <bodyPartGroups>
-        <li>Torso</li>
-        <li>Shoulders</li>
-        <li>Arms</li>
-        <li>Legs</li>
-      </bodyPartGroups>
-      <wornGraphicPath>Things/Item/Equipment/Enemyarmor/pmc_combatuniform/pmc_combatuniform</wornGraphicPath>
-      <tags>
-        <li>PMC</li>
-        <li>IndustrialMilitaryAdvanced</li>
-      </tags>
-    </apparel>
-    <recipeMaker>
-      <researchPrerequisite>FlakArmor</researchPrerequisite>
-      <recipeUsers>
-        <li>TableMachining</li>
-        <li>ElectricTailoringBench</li>
-        <li>HandTailoringBench</li>
-      </recipeUsers>
-    </recipeMaker>
-  </ThingDef>
+    <!-- PMC作战服 - Middle + Shell layers, multi body type -->
+    <ThingDef ParentName="ApparelMakeableBase">
+        <defName>PMC_CombatUniform</defName>
+        <!-- PMC作战服 -->
+        <label>PMC Combat Uniform</label>
+        <!-- PMC标准作战服，兼顾防护与机动，覆盖全身。 -->
+        <description>The standard PMC combat uniform, balancing protection and mobility while covering the whole body.</description>
+        <graphicData>
+            <texPath>Things/Item/Equipment/Enemyarmor/pmc_combatuniform/pmc_combatuniform</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <costStuffCount>30</costStuffCount>
+        <stuffCategories Inherit="False">
+            <li>Metallic</li>
+            <li>Fabric</li>
+            <li>Leathery</li>
+        </stuffCategories>
+        <costList>
+            <Steel>100</Steel>
+            <ComponentIndustrial>7</ComponentIndustrial>
+        </costList>
+        <statBases>
+            <MaxHitPoints>110</MaxHitPoints>
+            <MarketValue>500</MarketValue>
+            <WorkToMake>567</WorkToMake>
+            <Mass>2</Mass>
+            <Flammability>0.5</Flammability>
+            <Beauty>-3</Beauty>
+            <DeteriorationRate>2.0</DeteriorationRate>
+            <ArmorRating_Sharp>1.0</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.4</ArmorRating_Blunt>
+            <ArmorRating_Heat>0.3</ArmorRating_Heat>
+            <Insulation_Cold>-5</Insulation_Cold>
+            <Insulation_Heat>5</Insulation_Heat>
+            <EquipDelay>5</EquipDelay>
+            <SellPriceFactor>0.2</SellPriceFactor>
+        </statBases>
+        <apparel>
+            <layers>
+                <li>Middle</li>
+                <li>Shell</li>
+            </layers>
+            <bodyPartGroups>
+                <li>Torso</li>
+                <li>Shoulders</li>
+                <li>Arms</li>
+                <li>Legs</li>
+            </bodyPartGroups>
+            <wornGraphicPath>Things/Item/Equipment/Enemyarmor/pmc_combatuniform/pmc_combatuniform</wornGraphicPath>
+            <tags>
+                <li>PMC</li>
+                <li>IndustrialMilitaryAdvanced</li>
+            </tags>
+        </apparel>
+        <recipeMaker>
+            <researchPrerequisite>FlakArmor</researchPrerequisite>
+            <recipeUsers>
+                <li>TableMachining</li>
+                <li>ElectricTailoringBench</li>
+                <li>HandTailoringBench</li>
+            </recipeUsers>
+        </recipeMaker>
+    </ThingDef>
 
 </Defs>

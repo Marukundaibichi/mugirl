@@ -18,7 +18,7 @@ namespace MooGirl
 
         public class PawnTypeTraitEntry
         {
-            public string pawnType;  
+            public string pawnType;
             public TraitDef trait;
         }
     }

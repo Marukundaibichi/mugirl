@@ -1,86 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-	<JobDef>
-		<defName>JobDriver_RopeMoo</defName>
-		<driverClass>MooGirl.JobDriver_RopeMoo</driverClass>
-		<!-- 牵引 TargetA. -->
-		<reportString>Rope {TargetA}.</reportString>
-		<suspendable>false</suspendable>
-	</JobDef>
+    <JobDef>
+        <defName>JobDriver_RopeMoo</defName>
+        <driverClass>MooGirl.JobDriver_RopeMoo</driverClass>
+        <!-- 牵引 TargetA. -->
+        <reportString>Rope {TargetA}.</reportString>
+        <suspendable>false</suspendable>
+    </JobDef>
 
-	<JobDef>
-		<defName>JobDriver_RemoveRopeMoo</defName>
-		<driverClass>MooGirl.JobDriver_RemoveRopeMoo</driverClass>
-		<!-- 解除 TargetA 牵引 -->
-		<reportString>Remove {TargetA}'s rope</reportString>
-		<suspendable>false</suspendable>
-	</JobDef>
+    <JobDef>
+        <defName>JobDriver_RemoveRopeMoo</defName>
+        <driverClass>MooGirl.JobDriver_RemoveRopeMoo</driverClass>
+        <!-- 解除 TargetA 牵引 -->
+        <reportString>Remove {TargetA}'s rope</reportString>
+        <suspendable>false</suspendable>
+    </JobDef>
 
-	<JobDef>
-		<defName>GiveSlaveApperalGear</defName>
-		<driverClass>MooGirl.JobDriver_UseItemOn</driverClass>
-		<!-- 穿上 -->
-		<reportString>Put on Restraints</reportString>
-	</JobDef>
+    <JobDef>
+        <defName>GiveSlaveApperalGear</defName>
+        <driverClass>MooGirl.JobDriver_UseItemOn</driverClass>
+        <!-- 穿上 -->
+        <reportString>Put on Restraints</reportString>
+    </JobDef>
 
-	<JobDef>
-		<defName>UnlockSlaveApperal</defName>
-		<driverClass>MooGirl.JobDriver_UnlockSlaveApperalGear</driverClass>
-		<!-- 解锁 -->
-		<reportString>Unlock Restraints</reportString>
-	</JobDef>
+    <JobDef>
+        <defName>UnlockSlaveApperal</defName>
+        <driverClass>MooGirl.JobDriver_UnlockSlaveApperalGear</driverClass>
+        <!-- 解锁 -->
+        <reportString>Unlock Restraints</reportString>
+    </JobDef>
 
-	<JobDef>
-		<defName>CrackBondageGear</defName>
-		<driverClass>MooGirl.JobDriver_CrackBondageGear</driverClass>
-		<!-- 解锁 -->
-		<reportString>Unlock Restraints</reportString>
-	</JobDef>
+    <JobDef>
+        <defName>CrackBondageGear</defName>
+        <driverClass>MooGirl.JobDriver_CrackBondageGear</driverClass>
+        <!-- 解锁 -->
+        <reportString>Unlock Restraints</reportString>
+    </JobDef>
 
-	<JobDef>
-		<defName>RopeToBuild</defName>
-		<driverClass>MooGirl.JobDriver_RopeToWallRopeHitch</driverClass>
-		<!-- 解锁 -->
-		<reportString>Rope to Building</reportString>
-	</JobDef>
+    <JobDef>
+        <defName>RopeToBuild</defName>
+        <driverClass>MooGirl.JobDriver_RopeToWallRopeHitch</driverClass>
+        <!-- 解锁 -->
+        <reportString>Rope to Building</reportString>
+    </JobDef>
 
-	<JobDef>
-		<defName>Job_Nuzzle</defName>
-		<driverClass>MooGirl.JobDriver_Nuzzle</driverClass>
-		<!-- 蹭蹭 TargetA. -->
-		<reportString>Nuzzle {TargetA}.</reportString>
-		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
-	</JobDef>
+    <JobDef>
+        <defName>Job_Nuzzle</defName>
+        <driverClass>MooGirl.JobDriver_Nuzzle</driverClass>
+        <!-- 蹭蹭 TargetA. -->
+        <reportString>Nuzzle {TargetA}.</reportString>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
 
-	<JobDef>
-		<defName>Job_FollowRoper</defName>
-		<driverClass>MooGirl.JobDriver_FollowRoper</driverClass>
-		<!-- 跟随 TargetA. -->
-		<reportString>Follow {TargetA}.</reportString>
-		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
-	</JobDef>
+    <JobDef>
+        <defName>Job_FollowRoper</defName>
+        <driverClass>MooGirl.JobDriver_FollowRoper</driverClass>
+        <!-- 跟随 TargetA. -->
+        <reportString>Follow {TargetA}.</reportString>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
 
 
-	<JobDef>
-		<defName>Job_Breastfeed</defName>
-		<driverClass>MooGirl.JobDriver_Breastfeed</driverClass>
-		<!-- 给 TargetA 喂奶 -->
-		<reportString>Feed milk to {TargetA}.</reportString>
-	</JobDef>
+    <JobDef>
+        <defName>Job_Breastfeed</defName>
+        <driverClass>MooGirl.JobDriver_Breastfeed</driverClass>
+        <!-- 给 TargetA 喂奶 -->
+        <reportString>Feed milk to {TargetA}.</reportString>
+    </JobDef>
 
-	<JobDef>
-		<defName>Job_DrinkMilkFromMooGirl</defName>
-		<driverClass>MooGirl.JobDriver_DrinkMilkFromMooGirl</driverClass>
-		<!-- 从 TargetA 喝奶 -->
-		<reportString>Drink milk from {TargetA}.</reportString>
-	</JobDef>
+    <JobDef>
+        <defName>Job_DrinkMilkFromMooGirl</defName>
+        <driverClass>MooGirl.JobDriver_DrinkMilkFromMooGirl</driverClass>
+        <!-- 从 TargetA 喝奶 -->
+        <reportString>Drink milk from {TargetA}.</reportString>
+    </JobDef>
 
-	<JobDef>
-		<defName>Job_FeedMilkToDowned</defName>
-		<driverClass>MooGirl.JobDriver_FeedMilkToDowned</driverClass>
-		<!-- 给 TargetA 喂奶 -->
-		<reportString>Feed milk to {TargetA}.</reportString>
-	</JobDef>
+    <JobDef>
+        <defName>Job_FeedMilkToDowned</defName>
+        <driverClass>MooGirl.JobDriver_FeedMilkToDowned</driverClass>
+        <!-- 给 TargetA 喂奶 -->
+        <reportString>Feed milk to {TargetA}.</reportString>
+    </JobDef>
 
 </Defs>

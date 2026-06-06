@@ -2,45 +2,45 @@
 <Defs>
 
 <ApparelLayerDef>
-	<defName>MooGirl_Body_bondage</defName>
-	<!-- 身体束缚 -->
-	<label>Body's Bondage</label>
-	<drawOrder>-5</drawOrder>
+    <defName>MooGirl_Body_bondage</defName>
+    <!-- 身体束缚 -->
+    <label>Body's Bondage</label>
+    <drawOrder>-5</drawOrder>
 </ApparelLayerDef>
 
 <ApparelLayerDef>
-	<defName>MooGirl_Waist_bondage</defName>
-	<!-- 腰部束缚 -->
-	<label>Waist's Bondage</label>
-	<drawOrder>-7</drawOrder>
+    <defName>MooGirl_Waist_bondage</defName>
+    <!-- 腰部束缚 -->
+    <label>Waist's Bondage</label>
+    <drawOrder>-7</drawOrder>
 </ApparelLayerDef>
 
 <ApparelLayerDef>
-	<defName>MooGirl_Underwear_bondage</defName>
-	<!-- 私处束缚 -->
-	<label>Underwear Bondage</label>
-	<drawOrder>-8</drawOrder>
+    <defName>MooGirl_Underwear_bondage</defName>
+    <!-- 私处束缚 -->
+    <label>Underwear Bondage</label>
+    <drawOrder>-8</drawOrder>
 </ApparelLayerDef>
 
 <ApparelLayerDef>
-	<defName>MooGirl_Neck_bondage</defName>
-	<!-- 颈部束缚 -->
-	<label>Neck's Bondage</label>
-	<drawOrder>600</drawOrder>
+    <defName>MooGirl_Neck_bondage</defName>
+    <!-- 颈部束缚 -->
+    <label>Neck's Bondage</label>
+    <drawOrder>600</drawOrder>
 </ApparelLayerDef>
 
 <ApparelLayerDef>
-	<defName>MooGirl_Arm_bondage</defName>
-	<!-- 手臂束缚 -->
-	<label>Arms' Bondage</label>
-	<drawOrder>50</drawOrder>
+    <defName>MooGirl_Arm_bondage</defName>
+    <!-- 手臂束缚 -->
+    <label>Arms' Bondage</label>
+    <drawOrder>50</drawOrder>
 </ApparelLayerDef>
 
 <ApparelLayerDef>
-	<defName>MooGirl_Leg_bondage</defName>
-	<!-- 腿部束缚 -->
-	<label>Legs' Bondage</label>
-	<drawOrder>50</drawOrder>
+    <defName>MooGirl_Leg_bondage</defName>
+    <!-- 腿部束缚 -->
+    <label>Legs' Bondage</label>
+    <drawOrder>50</drawOrder>
 </ApparelLayerDef>
 
 </Defs>

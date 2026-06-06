@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-  <CaravanPackingSpot.comps.CompRopeToBuild.useLabel>Rope to Building</CaravanPackingSpot.comps.CompRopeToBuild.useLabel>
-  <WallRopeHitch.comps.CompRopeToBuild.useLabel>Rope to Building</WallRopeHitch.comps.CompRopeToBuild.useLabel>
-  <WallRopeHitch.description>Wall-mounted iron rings can be used to safely secure Mugirls. They display an instinctive compliance when being led, a result of prolonged modification and domestication.</WallRopeHitch.description>
-  <WallRopeHitch.label>Wall Rope Hitch</WallRopeHitch.label>
+    <CaravanPackingSpot.comps.CompRopeToBuild.useLabel>Rope to Building</CaravanPackingSpot.comps.CompRopeToBuild.useLabel>
+    <WallRopeHitch.comps.CompRopeToBuild.useLabel>Rope to Building</WallRopeHitch.comps.CompRopeToBuild.useLabel>
+    <WallRopeHitch.description>Wall-mounted iron rings can be used to safely secure Mugirls. They display an instinctive compliance when being led, a result of prolonged modification and domestication.</WallRopeHitch.description>
+    <WallRopeHitch.label>Wall Rope Hitch</WallRopeHitch.label>
 </LanguageData>

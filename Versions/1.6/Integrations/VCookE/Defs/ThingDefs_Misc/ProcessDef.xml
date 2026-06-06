@@ -1,39 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-	<PipeSystem.ProcessDef>
-		<defName>MooGirl_MooGirlMilkIntoCheese</defName>
-		<!-- 添加雪牛奶制作奶酪 -->
-		<label>Add Mugirl milk cheese process</label>
-		<!-- 把 50 份雪牛奶变成 25 份奶酪。 -->
-		<description>Turns 50 Mugirl milk into 25 cheese.</description>
-		<!-- 把 50 份雪牛奶变成 25 份奶酪。 -->
-		<labelOverride>Turns 50 Mugirl milk into 25 cheese.</labelOverride>
-		<priorityInBillList>1</priorityInBillList>
-		<spawnOnInteractionCell>true</spawnOnInteractionCell>
-		<useIngredients>true</useIngredients>
-		<ingredients>
-			<li>
-				<thing>MooGirl_Milk</thing>
-				<countNeeded>50</countNeeded>
-			</li>
-		</ingredients>
-		<ticksQuality>
-			<li>600000</li>
-			<li>900000</li>
-			<li>1500000</li>
-			<li>2100000</li>
-			<li>2400000</li>
-			<li>2700000</li>
-			<li>4500000</li>
-		</ticksQuality>
-		<results>
-			<li>
-				<thing>VCE_Cheese</thing>
-				<count>25</count>
-			</li>
-		</results>
-		<stopAtQuality>true</stopAtQuality>
-		<allowExtractAtCurrentQuality>true</allowExtractAtCurrentQuality>
-		<autoExtract>false</autoExtract>
-	</PipeSystem.ProcessDef>
+    <PipeSystem.ProcessDef>
+        <defName>MooGirl_MooGirlMilkIntoCheese</defName>
+        <!-- 添加雪牛奶制作奶酪 -->
+        <label>Add Mugirl milk cheese process</label>
+        <!-- 把 50 份雪牛奶变成 25 份奶酪。 -->
+        <description>Turns 50 Mugirl milk into 25 cheese.</description>
+        <!-- 把 50 份雪牛奶变成 25 份奶酪。 -->
+        <labelOverride>Turns 50 Mugirl milk into 25 cheese.</labelOverride>
+        <priorityInBillList>1</priorityInBillList>
+        <spawnOnInteractionCell>true</spawnOnInteractionCell>
+        <useIngredients>true</useIngredients>
+        <ingredients>
+            <li>
+                <thing>MooGirl_Milk</thing>
+                <countNeeded>50</countNeeded>
+            </li>
+        </ingredients>
+        <ticksQuality>
+            <li>600000</li>
+            <li>900000</li>
+            <li>1500000</li>
+            <li>2100000</li>
+            <li>2400000</li>
+            <li>2700000</li>
+            <li>4500000</li>
+        </ticksQuality>
+        <results>
+            <li>
+                <thing>VCE_Cheese</thing>
+                <count>25</count>
+            </li>
+        </results>
+        <stopAtQuality>true</stopAtQuality>
+        <allowExtractAtCurrentQuality>true</allowExtractAtCurrentQuality>
+        <autoExtract>false</autoExtract>
+    </PipeSystem.ProcessDef>
 </Defs>

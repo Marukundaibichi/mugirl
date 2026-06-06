@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
 
-  <!-- Read TargetA. -->
-  <MooGirl_ReadCourierDiary.reportString>Read TargetA.</MooGirl_ReadCourierDiary.reportString>
+    <!-- Read TargetA. -->
+    <MooGirl_ReadCourierDiary.reportString>Read TargetA.</MooGirl_ReadCourierDiary.reportString>
 
-  <!-- Negotiate with TargetA. -->
-  <MooGirl_TalkCourier.reportString>Negotiate with TargetA.</MooGirl_TalkCourier.reportString>
+    <!-- Negotiate with TargetA. -->
+    <MooGirl_TalkCourier.reportString>Negotiate with TargetA.</MooGirl_TalkCourier.reportString>
 
 </LanguageData>

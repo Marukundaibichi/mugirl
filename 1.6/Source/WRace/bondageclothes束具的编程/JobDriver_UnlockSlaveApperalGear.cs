@@ -43,7 +43,7 @@ namespace MooGirl
             bool reservePawn = targetPawn != pawn ? pawn.Reserve(targetPawn, job, 1, -1, null, errorOnFailed) : true;
 
             return reservePawn &&
-                   (targetApparel != null ? pawn.Reserve(targetApparel, job, 1, -1, null, errorOnFailed) : true);
+                    (targetApparel != null ? pawn.Reserve(targetApparel, job, 1, -1, null, errorOnFailed) : true);
         }
 
         protected override IEnumerable<Toil> MakeNewToils()

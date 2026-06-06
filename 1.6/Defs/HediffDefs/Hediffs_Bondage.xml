@@ -2,352 +2,352 @@
 
 <Defs>
 
-	<HediffDef Name="MooGirl_BondageBase" Abstract="True">
-		<hediffClass>Hediff</hediffClass>
-		<defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
-		<makesSickThought>false</makesSickThought>
-		<isBad>false</isBad>
-		<tendable>false</tendable>
-		<scenarioCanAdd>false</scenarioCanAdd>
-	</HediffDef>
+    <HediffDef Name="MooGirl_BondageBase" Abstract="True">
+        <hediffClass>Hediff</hediffClass>
+        <defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
+        <makesSickThought>false</makesSickThought>
+        <isBad>false</isBad>
+        <tendable>false</tendable>
+        <scenarioCanAdd>false</scenarioCanAdd>
+    </HediffDef>
 
-	<HediffDef ParentName="MooGirl_BondageBase">
-		<defName>MooGirl_Armbinder</defName>
-		<!-- 单手套束缚 -->
-		<label>Arm Restraints</label>
-		<!-- 单手套束缚 -->
-		<labelNoun>Arm Restraints</labelNoun>
-		<!-- 雪牛娘的手臂被束具严格束缚在身后，无法活动。 -->
-		<description>The Mugirl's arms are strictly restrained behind her back by bondage gear, unable to move.</description>
-		<renderNodeProperties>
-			<li>
-				<workerClass>PawnRenderNodeWorker_AttachmentBody</workerClass>
-				<bodyTypeGraphicPaths>
-					<Female>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slavesarmbinder/Skin/MooGirl_Slavesarmbinder_Female</Female>
-				</bodyTypeGraphicPaths>
-				<baseLayer>49</baseLayer>
-				<texSeed>1</texSeed>
-				<useGraphic>true</useGraphic>
-				<side>Center</side>
-				<colorType>Skin</colorType>
-				<rotDrawMode>Fresh,Rotting,Dessicated</rotDrawMode>
-				<pawnType>HumanlikeOnly</pawnType>
-				<linkedBodyPartsGroup>Waist</linkedBodyPartsGroup>
-				<visibleFacing>
-					<li>North</li>
-					<li>South</li>
-					<li>East</li>
-					<li>West</li>
-				</visibleFacing>
-				<useSkinShader>true</useSkinShader>
-			</li>
-		</renderNodeProperties>		
-		<stages>
-			<li>
-				<capMods>
-					<li>
-						<capacity>Manipulation</capacity>
-						<setMax>0.00</setMax>
-					</li>
-				</capMods>
-			</li>
-		</stages>
-	</HediffDef>
+    <HediffDef ParentName="MooGirl_BondageBase">
+        <defName>MooGirl_Armbinder</defName>
+        <!-- 单手套束缚 -->
+        <label>Arm Restraints</label>
+        <!-- 单手套束缚 -->
+        <labelNoun>Arm Restraints</labelNoun>
+        <!-- 雪牛娘的手臂被束具严格束缚在身后，无法活动。 -->
+        <description>The Mugirl's arms are strictly restrained behind her back by bondage gear, unable to move.</description>
+        <renderNodeProperties>
+            <li>
+                <workerClass>PawnRenderNodeWorker_AttachmentBody</workerClass>
+                <bodyTypeGraphicPaths>
+                    <Female>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slavesarmbinder/Skin/MooGirl_Slavesarmbinder_Female</Female>
+                </bodyTypeGraphicPaths>
+                <baseLayer>49</baseLayer>
+                <texSeed>1</texSeed>
+                <useGraphic>true</useGraphic>
+                <side>Center</side>
+                <colorType>Skin</colorType>
+                <rotDrawMode>Fresh,Rotting,Dessicated</rotDrawMode>
+                <pawnType>HumanlikeOnly</pawnType>
+                <linkedBodyPartsGroup>Waist</linkedBodyPartsGroup>
+                <visibleFacing>
+                    <li>North</li>
+                    <li>South</li>
+                    <li>East</li>
+                    <li>West</li>
+                </visibleFacing>
+                <useSkinShader>true</useSkinShader>
+            </li>
+        </renderNodeProperties>
+        <stages>
+            <li>
+                <capMods>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <setMax>0.00</setMax>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
 
-	<HediffDef ParentName="MooGirl_BondageBase">
-		<defName>MooGirl_Handcuffs</defName>
-		<!-- 手铐束缚 -->
-		<label>Handcuff Restraints</label>
-		<!-- 手铐束缚 -->
-		<labelNoun>Handcuff Restraints</labelNoun>
-		<!-- 雪牛娘的手臂被束具严格束缚在身后，无法活动。 -->
-		<description>The Mugirl's arms are strictly restrained behind her back by restraint gear, unable to move.</description>
-		<renderNodeProperties>
-			<li>
-				<workerClass>PawnRenderNodeWorker_AttachmentBody</workerClass>
-				<bodyTypeGraphicPaths>
-					<Female>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slavehandcuffs/Skin/MooGirl_Slavehandcuffs_Female</Female>
-				</bodyTypeGraphicPaths>
-				<baseLayer>49</baseLayer>
-				<texSeed>1</texSeed>
-				<useGraphic>true</useGraphic>
-				<side>Center</side>
-				<colorType>Skin</colorType>
-				<drawSize>
-					<x>1</x>
-					<y>1</y>
-				</drawSize>
-				<rotDrawMode>Fresh,Rotting,Dessicated</rotDrawMode>
-				<pawnType>HumanlikeOnly</pawnType>
-				<linkedBodyPartsGroup>Waist</linkedBodyPartsGroup>
-				<visibleFacing>
-					<li>North</li>
-					<li>South</li>
-					<li>East</li>
-					<li>West</li>
-				</visibleFacing>
-				<useSkinShader>true</useSkinShader>
-			</li>
-		</renderNodeProperties>			
-		<stages>
-			<li>
-				<capMods>
-					<li>
-						<capacity>Manipulation</capacity>
-						<setMax>0.00</setMax>
-					</li>
-				</capMods>
-			</li>
-		</stages>
-	</HediffDef>
+    <HediffDef ParentName="MooGirl_BondageBase">
+        <defName>MooGirl_Handcuffs</defName>
+        <!-- 手铐束缚 -->
+        <label>Handcuff Restraints</label>
+        <!-- 手铐束缚 -->
+        <labelNoun>Handcuff Restraints</labelNoun>
+        <!-- 雪牛娘的手臂被束具严格束缚在身后，无法活动。 -->
+        <description>The Mugirl's arms are strictly restrained behind her back by restraint gear, unable to move.</description>
+        <renderNodeProperties>
+            <li>
+                <workerClass>PawnRenderNodeWorker_AttachmentBody</workerClass>
+                <bodyTypeGraphicPaths>
+                    <Female>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slavehandcuffs/Skin/MooGirl_Slavehandcuffs_Female</Female>
+                </bodyTypeGraphicPaths>
+                <baseLayer>49</baseLayer>
+                <texSeed>1</texSeed>
+                <useGraphic>true</useGraphic>
+                <side>Center</side>
+                <colorType>Skin</colorType>
+                <drawSize>
+                    <x>1</x>
+                    <y>1</y>
+                </drawSize>
+                <rotDrawMode>Fresh,Rotting,Dessicated</rotDrawMode>
+                <pawnType>HumanlikeOnly</pawnType>
+                <linkedBodyPartsGroup>Waist</linkedBodyPartsGroup>
+                <visibleFacing>
+                    <li>North</li>
+                    <li>South</li>
+                    <li>East</li>
+                    <li>West</li>
+                </visibleFacing>
+                <useSkinShader>true</useSkinShader>
+            </li>
+        </renderNodeProperties>
+        <stages>
+            <li>
+                <capMods>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <setMax>0.00</setMax>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
 
-	<HediffDef ParentName="MooGirl_BondageBase">
-		<defName>MooGirl_Boxbinder</defName>
-		<!-- 多重束缚 -->
-		<label>Multiple Restraints</label>
-		<!-- 多重束缚 -->
-		<labelNoun>Multiple Restraints</labelNoun>
-		<!-- 雪牛娘的手臂被束具严格束缚在身后，无法活动。 -->
-		<description>The Mugirl's arms are strictly restrained behind her back by restraint gear, unable to move.</description>
-		<renderNodeProperties>
-			<li>
-				<workerClass>PawnRenderNodeWorker_AttachmentBody</workerClass>
-				<bodyTypeGraphicPaths>
-					<Female>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slaveclothes/Skin/MooGirl_Slaveclothes_Female</Female>
-				</bodyTypeGraphicPaths>
-				<baseLayer>49</baseLayer>
-				<texSeed>1</texSeed>
-				<useGraphic>true</useGraphic>
-				<side>Center</side>
-				<colorType>Skin</colorType>
-				<drawSize>
-					<x>1</x>
-					<y>1</y>
-				</drawSize>
-				<rotDrawMode>Fresh,Rotting,Dessicated</rotDrawMode>
-				<pawnType>HumanlikeOnly</pawnType>
-				<linkedBodyPartsGroup>Waist</linkedBodyPartsGroup>
-				<visibleFacing>
-					<li>North</li>
-					<li>South</li>
-					<li>East</li>
-					<li>West</li>
-				</visibleFacing>
-				<useSkinShader>true</useSkinShader>
-			</li>
-		</renderNodeProperties>	
-		<stages>
-			<li>
-				<capMods>
-					<li>
-						<capacity>Manipulation</capacity>
-						<setMax>0.00</setMax>
-					</li>
-				</capMods>
-			</li>
-		</stages>
-	</HediffDef>
+    <HediffDef ParentName="MooGirl_BondageBase">
+        <defName>MooGirl_Boxbinder</defName>
+        <!-- 多重束缚 -->
+        <label>Multiple Restraints</label>
+        <!-- 多重束缚 -->
+        <labelNoun>Multiple Restraints</labelNoun>
+        <!-- 雪牛娘的手臂被束具严格束缚在身后，无法活动。 -->
+        <description>The Mugirl's arms are strictly restrained behind her back by restraint gear, unable to move.</description>
+        <renderNodeProperties>
+            <li>
+                <workerClass>PawnRenderNodeWorker_AttachmentBody</workerClass>
+                <bodyTypeGraphicPaths>
+                    <Female>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slaveclothes/Skin/MooGirl_Slaveclothes_Female</Female>
+                </bodyTypeGraphicPaths>
+                <baseLayer>49</baseLayer>
+                <texSeed>1</texSeed>
+                <useGraphic>true</useGraphic>
+                <side>Center</side>
+                <colorType>Skin</colorType>
+                <drawSize>
+                    <x>1</x>
+                    <y>1</y>
+                </drawSize>
+                <rotDrawMode>Fresh,Rotting,Dessicated</rotDrawMode>
+                <pawnType>HumanlikeOnly</pawnType>
+                <linkedBodyPartsGroup>Waist</linkedBodyPartsGroup>
+                <visibleFacing>
+                    <li>North</li>
+                    <li>South</li>
+                    <li>East</li>
+                    <li>West</li>
+                </visibleFacing>
+                <useSkinShader>true</useSkinShader>
+            </li>
+        </renderNodeProperties>
+        <stages>
+            <li>
+                <capMods>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <setMax>0.00</setMax>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
 
-	<HediffDef ParentName="MooGirl_BondageBase">
-		<defName>MooGirl_Straitjacket</defName>
-		<!-- 拘束衣束缚 -->
-		<label>Straitjacket Restraints</label>
-		<!-- 拘束衣束缚 -->
-		<labelNoun>Straitjacket Restraints</labelNoun>
-		<!-- 雪牛娘的手臂被束具严格束缚在身后，无法活动。 -->
-		<description>The Mugirl's arms are strictly restrained behind her back by restraint gear, unable to move.</description>
-		<stages>
-			<li>
-				<capMods>
-					<li>
-						<capacity>Manipulation</capacity>
-						<setMax>0.00</setMax>
-					</li>
-				</capMods>
-			</li>
-		</stages>
-	</HediffDef>
+    <HediffDef ParentName="MooGirl_BondageBase">
+        <defName>MooGirl_Straitjacket</defName>
+        <!-- 拘束衣束缚 -->
+        <label>Straitjacket Restraints</label>
+        <!-- 拘束衣束缚 -->
+        <labelNoun>Straitjacket Restraints</labelNoun>
+        <!-- 雪牛娘的手臂被束具严格束缚在身后，无法活动。 -->
+        <description>The Mugirl's arms are strictly restrained behind her back by restraint gear, unable to move.</description>
+        <stages>
+            <li>
+                <capMods>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <setMax>0.00</setMax>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
 
-	<HediffDef ParentName="MooGirl_BondageBase">
-		<defName>MooGirl_Legbinder</defName>
-		<!-- 双腿束缚 -->
-		<label>Leg Restraints</label>
-		<!-- 双腿束缚 -->
-		<labelNoun>Leg Restraints</labelNoun>
-		<!-- 雪牛娘的双腿被束具严格束缚，难以移动。 -->
-		<description>The Mugirl's legs are strictly restrained by bondage gear, making movement difficult.</description>
-		<stages>
-			<li>
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<setMax>0.60</setMax>
-					</li>
-				</capMods>
-			</li>
-		</stages>
-	</HediffDef>
+    <HediffDef ParentName="MooGirl_BondageBase">
+        <defName>MooGirl_Legbinder</defName>
+        <!-- 双腿束缚 -->
+        <label>Leg Restraints</label>
+        <!-- 双腿束缚 -->
+        <labelNoun>Leg Restraints</labelNoun>
+        <!-- 雪牛娘的双腿被束具严格束缚，难以移动。 -->
+        <description>The Mugirl's legs are strictly restrained by bondage gear, making movement difficult.</description>
+        <stages>
+            <li>
+                <capMods>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <setMax>0.60</setMax>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
 
-	<HediffDef ParentName="MooGirl_BondageBase">
-		<defName>MooGirl_Gauntlet</defName>
-		<!-- 奴隶手套束缚 -->
-		<label>Slave Gauntlets Restraints</label>
-		<!-- 手套束缚 -->
-		<labelNoun>Gauntlet Restraints</labelNoun>
-		<!-- 雪牛娘的手臂被连指手套束缚，手指无法活动，大幅降低操作能力。 -->
-		<description>The Mugirl's arms are restrained by gauntlets, fingers immobile, significantly reducing manipulation ability.</description>
-		<renderNodeProperties>
-			<li>
-				<workerClass>PawnRenderNodeWorker_AttachmentBody</workerClass>
-				<bodyTypeGraphicPaths>
-					<Female>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slavegauntlet/Skin/MooGirl_Slavegauntlet_Female</Female>
-				</bodyTypeGraphicPaths>
-				<baseLayer>49</baseLayer>
-				<texSeed>1</texSeed>
-				<useGraphic>true</useGraphic>
-				<side>Center</side>
-				<colorType>Skin</colorType>
-				<drawSize>
-					<x>1</x>
-					<y>1</y>
-				</drawSize>
-				<rotDrawMode>Fresh,Rotting,Dessicated</rotDrawMode>
-				<pawnType>HumanlikeOnly</pawnType>
-				<linkedBodyPartsGroup>Waist</linkedBodyPartsGroup>
-				<visibleFacing>
-					<li>North</li>
-					<li>South</li>
-					<li>East</li>
-					<li>West</li>
-				</visibleFacing>
-				<useSkinShader>true</useSkinShader>
-			</li>
-		</renderNodeProperties>				
-		<stages>
-			<li>
-				<capMods>
-					<li>
-						<capacity>Manipulation</capacity>
-						<offset>-0.25</offset>
-					</li>
-				</capMods>
-			</li>
-		</stages>
-	</HediffDef>
+    <HediffDef ParentName="MooGirl_BondageBase">
+        <defName>MooGirl_Gauntlet</defName>
+        <!-- 奴隶手套束缚 -->
+        <label>Slave Gauntlets Restraints</label>
+        <!-- 手套束缚 -->
+        <labelNoun>Gauntlet Restraints</labelNoun>
+        <!-- 雪牛娘的手臂被连指手套束缚，手指无法活动，大幅降低操作能力。 -->
+        <description>The Mugirl's arms are restrained by gauntlets, fingers immobile, significantly reducing manipulation ability.</description>
+        <renderNodeProperties>
+            <li>
+                <workerClass>PawnRenderNodeWorker_AttachmentBody</workerClass>
+                <bodyTypeGraphicPaths>
+                    <Female>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slavegauntlet/Skin/MooGirl_Slavegauntlet_Female</Female>
+                </bodyTypeGraphicPaths>
+                <baseLayer>49</baseLayer>
+                <texSeed>1</texSeed>
+                <useGraphic>true</useGraphic>
+                <side>Center</side>
+                <colorType>Skin</colorType>
+                <drawSize>
+                    <x>1</x>
+                    <y>1</y>
+                </drawSize>
+                <rotDrawMode>Fresh,Rotting,Dessicated</rotDrawMode>
+                <pawnType>HumanlikeOnly</pawnType>
+                <linkedBodyPartsGroup>Waist</linkedBodyPartsGroup>
+                <visibleFacing>
+                    <li>North</li>
+                    <li>South</li>
+                    <li>East</li>
+                    <li>West</li>
+                </visibleFacing>
+                <useSkinShader>true</useSkinShader>
+            </li>
+        </renderNodeProperties>
+        <stages>
+            <li>
+                <capMods>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <offset>-0.25</offset>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
 
-	<HediffDef ParentName="MooGirl_BondageBase">
-		<defName>MooGirl_Stockings</defName>
-		<!-- 奴隶袜束缚 -->
-		<label>Slave Sock Restraints</label>
-		<!-- 奴隶袜束缚 -->
-		<labelNoun>Slave Sock Restraints</labelNoun>
-		<!-- 雪牛娘的双腿被奴隶袜束缚，略微减低移动速度。 -->
-		<description>The Mugirl's legs are restrained by slave socks, slightly reducing movement speed.</description>
-		<stages>
-			<li>
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>-0.1</offset>
-					</li>
-				</capMods>
-			</li>
-		</stages>
-	</HediffDef>
+    <HediffDef ParentName="MooGirl_BondageBase">
+        <defName>MooGirl_Stockings</defName>
+        <!-- 奴隶袜束缚 -->
+        <label>Slave Sock Restraints</label>
+        <!-- 奴隶袜束缚 -->
+        <labelNoun>Slave Sock Restraints</labelNoun>
+        <!-- 雪牛娘的双腿被奴隶袜束缚，略微减低移动速度。 -->
+        <description>The Mugirl's legs are restrained by slave socks, slightly reducing movement speed.</description>
+        <stages>
+            <li>
+                <capMods>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <offset>-0.1</offset>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
 
-	<HediffDef ParentName="MooGirl_BondageBase">
-		<defName>MooGirl_FullHeadCovering</defName>
-		<!-- 全包头套 -->
-		<label>Full Head Covering</label>
-		<!-- 一个全包头套 -->
-		<labelNoun>A Full Head Covering</labelNoun>
-		<!-- 呜呜呜，呜呜！ 我整个脑袋都被包裹起来了，什么也感觉不到~♥ -->
-		<description>Mmph, mmph! My entire head is wrapped up, can't feel anything~♥</description>
-		<stages>
-			<li>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<setMax>0.00</setMax>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<setMax>0.00</setMax>
-					</li>
-					<li>
-						<capacity>Sight</capacity>
-						<setMax>0.00</setMax>
-					</li>
-				</capMods>
-			</li>
-		</stages>
-	</HediffDef>
+    <HediffDef ParentName="MooGirl_BondageBase">
+        <defName>MooGirl_FullHeadCovering</defName>
+        <!-- 全包头套 -->
+        <label>Full Head Covering</label>
+        <!-- 一个全包头套 -->
+        <labelNoun>A Full Head Covering</labelNoun>
+        <!-- 呜呜呜，呜呜！ 我整个脑袋都被包裹起来了，什么也感觉不到~♥ -->
+        <description>Mmph, mmph! My entire head is wrapped up, can't feel anything~♥</description>
+        <stages>
+            <li>
+                <capMods>
+                    <li>
+                        <capacity>Talking</capacity>
+                        <setMax>0.00</setMax>
+                    </li>
+                    <li>
+                        <capacity>Eating</capacity>
+                        <setMax>0.00</setMax>
+                    </li>
+                    <li>
+                        <capacity>Sight</capacity>
+                        <setMax>0.00</setMax>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
 
-	<HediffDef ParentName="MooGirl_BondageBase">
-		<defName>MooGirl_Blindfold</defName>
-		<!-- 蒙眼 -->
-		<label>Blindfold</label>
-		<!-- 一副眼罩 -->
-		<labelNoun>A Pair of Blindfolds</labelNoun>
-		<!-- 眼睛被蒙上了，什么也看不见...呀！谁碰我？ -->
-		<description>My eyes are covered... can't see anything... Eek! Who's touching me?</description>
-		<stages>
-			<li>
-				<capMods>
-					<li>
-						<capacity>Sight</capacity>
-						<setMax>0.00</setMax>
-					</li>
-				</capMods>
-			</li>
-		</stages>
-	</HediffDef>
+    <HediffDef ParentName="MooGirl_BondageBase">
+        <defName>MooGirl_Blindfold</defName>
+        <!-- 蒙眼 -->
+        <label>Blindfold</label>
+        <!-- 一副眼罩 -->
+        <labelNoun>A Pair of Blindfolds</labelNoun>
+        <!-- 眼睛被蒙上了，什么也看不见...呀！谁碰我？ -->
+        <description>My eyes are covered... can't see anything... Eek! Who's touching me?</description>
+        <stages>
+            <li>
+                <capMods>
+                    <li>
+                        <capacity>Sight</capacity>
+                        <setMax>0.00</setMax>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
 
-	<HediffDef ParentName="MooGirl_BondageBase">
-		<defName>MooGirl_Gagstick</defName>
-		<!-- 口棒 -->
-		<label>Gagstick</label>
-		<!-- 一副口棒 -->
-		<labelNoun>A Gagstick</labelNoun>
-		<!-- 嘴巴被戴上了一副口棒，只能发出呜呜呜的声音了 -->
-		<description>My mouth is fitted with a gagstick, only able to make muffled sounds.</description>
-		<stages>
-			<li>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<setMax>0.00</setMax>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<setMax>0.00</setMax>
-					</li>
-				</capMods>
-			</li>
-		</stages>
-	</HediffDef>
+    <HediffDef ParentName="MooGirl_BondageBase">
+        <defName>MooGirl_Gagstick</defName>
+        <!-- 口棒 -->
+        <label>Gagstick</label>
+        <!-- 一副口棒 -->
+        <labelNoun>A Gagstick</labelNoun>
+        <!-- 嘴巴被戴上了一副口棒，只能发出呜呜呜的声音了 -->
+        <description>My mouth is fitted with a gagstick, only able to make muffled sounds.</description>
+        <stages>
+            <li>
+                <capMods>
+                    <li>
+                        <capacity>Talking</capacity>
+                        <setMax>0.00</setMax>
+                    </li>
+                    <li>
+                        <capacity>Eating</capacity>
+                        <setMax>0.00</setMax>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
 
-	<HediffDef ParentName="MooGirl_BondageBase">
-		<defName>MooGirl_Earplugs</defName>
-		<!-- 耳塞 -->
-		<label>Earplugs</label>
-		<!-- 一对耳塞 -->
-		<labelNoun>A Pair of Earplugs</labelNoun>
-		<!-- 耳朵被堵上了...什么都听不到...好可怕...呜呜 -->
-		<description>My ears are blocked... can't hear anything... so scary... whimper.</description>
-		<stages>
-			<li>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.25</offset>
-					</li>
-					<li>
-						<capacity>Hearing</capacity>
-						<setMax>0.00</setMax>
-					</li>
-				</capMods>
-			</li>
-		</stages>
-	</HediffDef>
+    <HediffDef ParentName="MooGirl_BondageBase">
+        <defName>MooGirl_Earplugs</defName>
+        <!-- 耳塞 -->
+        <label>Earplugs</label>
+        <!-- 一对耳塞 -->
+        <labelNoun>A Pair of Earplugs</labelNoun>
+        <!-- 耳朵被堵上了...什么都听不到...好可怕...呜呜 -->
+        <description>My ears are blocked... can't hear anything... so scary... whimper.</description>
+        <stages>
+            <li>
+                <capMods>
+                    <li>
+                        <capacity>Talking</capacity>
+                        <offset>-0.25</offset>
+                    </li>
+                    <li>
+                        <capacity>Hearing</capacity>
+                        <setMax>0.00</setMax>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
 </Defs>

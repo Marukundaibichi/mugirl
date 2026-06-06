@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <ApparelLayerDef>
+    <ApparelLayerDef>
     <defName>MooGirl_SpeciallyStocking</defName>
     <!-- 特制丝袜 -->
     <label>Special Stockings</label>
     <drawOrder>-5</drawOrder>
-  </ApparelLayerDef>
+    </ApparelLayerDef>
 
 </Defs>

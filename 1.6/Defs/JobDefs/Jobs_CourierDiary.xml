@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <JobDef>
+    <JobDef>
     <defName>MooGirl_ReadCourierDiary</defName>
     <driverClass>MooGirl.JobDriver_ReadCourierDiary</driverClass>
     <!-- 阅读 TargetA。 -->
     <reportString>Read TargetA.</reportString>
-  </JobDef>
+    </JobDef>
 
-  <JobDef>
+    <JobDef>
     <defName>MooGirl_TalkCourier</defName>
     <driverClass>MooGirl.JobDriver_TalkCourier</driverClass>
     <!-- 与 TargetA 交涉。 -->
     <reportString>Negotiate with TargetA.</reportString>
-  </JobDef>
+    </JobDef>
 
 </Defs>

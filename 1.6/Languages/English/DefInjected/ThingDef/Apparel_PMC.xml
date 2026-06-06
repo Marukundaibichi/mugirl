@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-  <PMC_CaptainHelmet.description>An advanced helmet for PMC squad commanders, equipped with communications gear and enhanced armor.</PMC_CaptainHelmet.description>
-  <PMC_CaptainHelmet.label>PMC Captain Helmet</PMC_CaptainHelmet.label>
-  <PMC_CombatUniform.description>The standard PMC combat uniform, balancing protection and mobility while covering the whole body.</PMC_CombatUniform.description>
-  <PMC_CombatUniform.label>PMC Combat Uniform</PMC_CombatUniform.label>
-  <PMC_Helmet.description>A standard helmet for PMC mercenaries, protecting the head and ears.</PMC_Helmet.description>
-  <PMC_Helmet.label>PMC Helmet</PMC_Helmet.label>
+    <PMC_CaptainHelmet.description>An advanced helmet for PMC squad commanders, equipped with communications gear and enhanced armor.</PMC_CaptainHelmet.description>
+    <PMC_CaptainHelmet.label>PMC Captain Helmet</PMC_CaptainHelmet.label>
+    <PMC_CombatUniform.description>The standard PMC combat uniform, balancing protection and mobility while covering the whole body.</PMC_CombatUniform.description>
+    <PMC_CombatUniform.label>PMC Combat Uniform</PMC_CombatUniform.label>
+    <PMC_Helmet.description>A standard helmet for PMC mercenaries, protecting the head and ears.</PMC_Helmet.description>
+    <PMC_Helmet.label>PMC Helmet</PMC_Helmet.label>
 </LanguageData>

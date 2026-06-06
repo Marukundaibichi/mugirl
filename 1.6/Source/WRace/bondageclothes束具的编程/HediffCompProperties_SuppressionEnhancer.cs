@@ -39,7 +39,7 @@ namespace MooGirl
             age++;
             if (age < Props.triggerTicks) return;
 
-            age = 0; 
+            age = 0;
 
             if (Pawn.IsSlaveOfColony && Pawn.IsWearingCrackedBrainwashApparel())
             {

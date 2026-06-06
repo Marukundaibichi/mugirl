@@ -8,26 +8,26 @@
 
 ```text
 1.6/Source/MooGirlRace/
-  Core/
-  Data/
-  Defs/
-  Patching/
-  Features/
-    Milk/
-    Restraints/
-    Roping/
-    Mounting/
-    Incidents/
-    Genes/
-    Rendering/
-  Compatibility/
-    AlienRace/
-    FacialAnimation/
-    SearchAndDestroy/
-    VCookE/
-    OtherMods/
-  Diagnostics/
-  UI/
+    Core/
+    Data/
+    Defs/
+    Patching/
+    Features/
+        Milk/
+        Restraints/
+        Roping/
+        Mounting/
+        Incidents/
+        Genes/
+        Rendering/
+    Compatibility/
+        AlienRace/
+        FacialAnimation/
+        SearchAndDestroy/
+        VCookE/
+        OtherMods/
+    Diagnostics/
+    UI/
 ```
 
 建议命名空间：
@@ -56,13 +56,13 @@ MooGirl.UI
 
 ```text
 MooGirlMod
-  -> MooGirlSettings.Load
-  -> MooGirlBootstrap.Initialize
-      -> ModEnvironment.Scan
-      -> MooGirlDefCache.Initialize
-      -> FeatureRegistry.RegisterAll
-      -> PatchRegistry.ApplyEnabledPatches
-      -> Diagnostics.ReportOnce
+    -> MooGirlSettings.Load
+    -> MooGirlBootstrap.Initialize
+            -> ModEnvironment.Scan
+            -> MooGirlDefCache.Initialize
+            -> FeatureRegistry.RegisterAll
+            -> PatchRegistry.ApplyEnabledPatches
+            -> Diagnostics.ReportOnce
 ```
 
 要求：
@@ -277,27 +277,27 @@ Patch 注册由模块集中声明，避免全项目盲目 `PatchAll()`。
 
 ```text
 1.6/Defs/
-  Core/
-    Bodies/
-    Race/
-    LifeStages/
-    Xenotypes/
-  Features/
-    Milk/
-    Restraints/
-    Roping/
-    Mounting/
-    Incidents/
-    Factions/
-    Apparel/
-    Weapons/
-  UI/
-  Sounds/
-  Thoughts/
-  Hediffs/
-  Recipes/
-  Work/
-  Compatibility/
+    Core/
+        Bodies/
+        Race/
+        LifeStages/
+        Xenotypes/
+    Features/
+        Milk/
+        Restraints/
+        Roping/
+        Mounting/
+        Incidents/
+        Factions/
+        Apparel/
+        Weapons/
+    UI/
+    Sounds/
+    Thoughts/
+    Hediffs/
+    Recipes/
+    Work/
+    Compatibility/
 ```
 
 原则：

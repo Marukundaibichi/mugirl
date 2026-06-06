@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-  
-  <!-- EN: 爬到安全地带。 -->
-  <MooGirlLike.thinkRoot.subNodes.3.subNodes.0.subNodes.0.subNodes.0.subNodes.0.crawlingReportStringOverride>Crawl to safe place.</MooGirlLike.thinkRoot.subNodes.3.subNodes.0.subNodes.0.subNodes.0.subNodes.0.crawlingReportStringOverride>
-  <!-- EN: 爬到床上。 -->
-  <MooGirlLike.thinkRoot.subNodes.3.subNodes.0.subNodes.0.subNodes.0.subNodes.1.subNodes.0.crawlingReportStringOverride>Crawl to bed.</MooGirlLike.thinkRoot.subNodes.3.subNodes.0.subNodes.0.subNodes.0.subNodes.1.subNodes.0.crawlingReportStringOverride>
-  
+
+    <!-- EN: 爬到安全地带。 -->
+    <MooGirlLike.thinkRoot.subNodes.3.subNodes.0.subNodes.0.subNodes.0.subNodes.0.crawlingReportStringOverride>Crawl to safe place.</MooGirlLike.thinkRoot.subNodes.3.subNodes.0.subNodes.0.subNodes.0.subNodes.0.crawlingReportStringOverride>
+    <!-- EN: 爬到床上。 -->
+    <MooGirlLike.thinkRoot.subNodes.3.subNodes.0.subNodes.0.subNodes.0.subNodes.1.subNodes.0.crawlingReportStringOverride>Crawl to bed.</MooGirlLike.thinkRoot.subNodes.3.subNodes.0.subNodes.0.subNodes.0.subNodes.1.subNodes.0.crawlingReportStringOverride>
+
 </LanguageData>

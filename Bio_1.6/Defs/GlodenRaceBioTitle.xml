@@ -25,8 +25,8 @@
             <li>MinTemp_LargeDecrease</li>
             <li>MaxTemp_SmallDecrease</li>
             <li>Aggression_DeadCalm</li>
-			<li>Unstoppable</li>
-			<li>Nearsighted</li>
-		</genes>
-	</XenotypeDef>
+            <li>Unstoppable</li>
+            <li>Nearsighted</li>
+        </genes>
+    </XenotypeDef>
 </Defs>

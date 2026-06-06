@@ -12,10 +12,10 @@ namespace MooGirl
             if (pawn.story?.traits.HasTrait(MooGirl_DefOf.MooGirl_BrainWashObey) == true)
             {
                 __result = -1f; // 叛乱时间
-                return false; 
+                return false;
             }
 
-            return true; 
+            return true;
         }
     }
 }

@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
 
-  <!-- single-shot weapon aversion -->
-  <MooGirl_SingleshotWeaponAversion.degreeDatas.0.label>single-shot weapon aversion</MooGirl_SingleshotWeaponAversion.degreeDatas.0.label>
-  <!-- Why do I have to use this useless junk that fires one shot, one shot, one shot at a time! -->
-  <MooGirl_SingleshotWeaponAversion.degreeDatas.0.description>Why do I have to use this useless junk that fires one shot, one shot, one shot at a time!</MooGirl_SingleshotWeaponAversion.degreeDatas.0.description>
+    <!-- single-shot weapon aversion -->
+    <MooGirl_SingleshotWeaponAversion.degreeDatas.0.label>single-shot weapon aversion</MooGirl_SingleshotWeaponAversion.degreeDatas.0.label>
+    <!-- Why do I have to use this useless junk that fires one shot, one shot, one shot at a time! -->
+    <MooGirl_SingleshotWeaponAversion.degreeDatas.0.description>Why do I have to use this useless junk that fires one shot, one shot, one shot at a time!</MooGirl_SingleshotWeaponAversion.degreeDatas.0.description>
 
-  <!-- brainwashed calm -->
-  <MooGirl_BrainWashPeace.degreeDatas.0.label>brainwashed calm</MooGirl_BrainWashPeace.degreeDatas.0.label>
-  <!-- {PAWN_nameDef} has been brainwashed by the device, and even the saddest events can no longer break {PAWN_nameDef}. -->
-  <MooGirl_BrainWashPeace.degreeDatas.0.description>{PAWN_nameDef} has been brainwashed by the device, and even the saddest events can no longer break {PAWN_nameDef}.</MooGirl_BrainWashPeace.degreeDatas.0.description>
+    <!-- brainwashed calm -->
+    <MooGirl_BrainWashPeace.degreeDatas.0.label>brainwashed calm</MooGirl_BrainWashPeace.degreeDatas.0.label>
+    <!-- {PAWN_nameDef} has been brainwashed by the device, and even the saddest events can no longer break {PAWN_nameDef}. -->
+    <MooGirl_BrainWashPeace.degreeDatas.0.description>{PAWN_nameDef} has been brainwashed by the device, and even the saddest events can no longer break {PAWN_nameDef}.</MooGirl_BrainWashPeace.degreeDatas.0.description>
 
-  <!-- brainwashed obedience -->
-  <MooGirl_BrainWashObey.degreeDatas.0.label>brainwashed obedience</MooGirl_BrainWashObey.degreeDatas.0.label>
-  <!-- {PAWN_nameDef} has been brainwashed by the device, and even if enslaved life is full of suffering, {PAWN_nameDef} will submit without resistance. -->
-  <MooGirl_BrainWashObey.degreeDatas.0.description>{PAWN_nameDef} has been brainwashed by the device, and even if enslaved life is full of suffering, {PAWN_nameDef} will submit without resistance.</MooGirl_BrainWashObey.degreeDatas.0.description>
+    <!-- brainwashed obedience -->
+    <MooGirl_BrainWashObey.degreeDatas.0.label>brainwashed obedience</MooGirl_BrainWashObey.degreeDatas.0.label>
+    <!-- {PAWN_nameDef} has been brainwashed by the device, and even if enslaved life is full of suffering, {PAWN_nameDef} will submit without resistance. -->
+    <MooGirl_BrainWashObey.degreeDatas.0.description>{PAWN_nameDef} has been brainwashed by the device, and even if enslaved life is full of suffering, {PAWN_nameDef} will submit without resistance.</MooGirl_BrainWashObey.degreeDatas.0.description>
 
-  <!-- Mugirl nurtured -->
-  <MooGirl_NurturedByMooGirl.degreeDatas.0.label>Mugirl nurtured</MooGirl_NurturedByMooGirl.degreeDatas.0.label>
-  <!-- {PAWN_nameDef} was gently nurtured by a Mugirl during childhood and grew up stronger for it. -->
-  <MooGirl_NurturedByMooGirl.degreeDatas.0.description>{PAWN_nameDef} was gently nurtured by a Mugirl during childhood and grew up stronger for it.</MooGirl_NurturedByMooGirl.degreeDatas.0.description>
+    <!-- Mugirl nurtured -->
+    <MooGirl_NurturedByMooGirl.degreeDatas.0.label>Mugirl nurtured</MooGirl_NurturedByMooGirl.degreeDatas.0.label>
+    <!-- {PAWN_nameDef} was gently nurtured by a Mugirl during childhood and grew up stronger for it. -->
+    <MooGirl_NurturedByMooGirl.degreeDatas.0.description>{PAWN_nameDef} was gently nurtured by a Mugirl during childhood and grew up stronger for it.</MooGirl_NurturedByMooGirl.degreeDatas.0.description>
 
 </LanguageData>

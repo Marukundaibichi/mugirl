@@ -13,7 +13,7 @@ namespace MooGirl
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             return pawn.Reserve(WallRopeHitch, job, 1, -1, null) &&
-                   pawn.Reserve(RopeePawn, job, 1, -1, null, errorOnFailed);
+                    pawn.Reserve(RopeePawn, job, 1, -1, null, errorOnFailed);
         }
 
         protected override IEnumerable<Toil> MakeNewToils()

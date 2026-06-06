@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-	<JobDef>
-		<defName>Job_MountMooGirl</defName>
-		<driverClass>MooGirl.JobDriver_MountMooGirl</driverClass>
-		<reportString>mounting TargetA.</reportString> <!-- 骑上 TargetA。 -->
-		<suspendable>false</suspendable>
-	</JobDef>
+    <JobDef>
+        <defName>Job_MountMooGirl</defName>
+        <driverClass>MooGirl.JobDriver_MountMooGirl</driverClass>
+        <reportString>mounting TargetA.</reportString> <!-- 骑上 TargetA。 -->
+        <suspendable>false</suspendable>
+    </JobDef>
 
-	<JobDef>
-		<defName>Job_DismountMooGirl</defName>
-		<driverClass>MooGirl.JobDriver_DismountMooGirl</driverClass>
-		<reportString>dismounting the rider from TargetA.</reportString> <!-- 让 TargetA 上的骑乘者下来。 -->
-		<suspendable>false</suspendable>
-	</JobDef>
+    <JobDef>
+        <defName>Job_DismountMooGirl</defName>
+        <driverClass>MooGirl.JobDriver_DismountMooGirl</driverClass>
+        <reportString>dismounting the rider from TargetA.</reportString> <!-- 让 TargetA 上的骑乘者下来。 -->
+        <suspendable>false</suspendable>
+    </JobDef>
 
 </Defs>

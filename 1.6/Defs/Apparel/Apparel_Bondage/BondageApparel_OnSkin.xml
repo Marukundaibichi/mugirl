@@ -1,169 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <Defs>
-	<MooGirl.SlaveApparelDef Name="MooGirl_OnSkin_SlaveApparel" ParentName="MooGirl_SlaveApparel_Base" Abstract="True">
-		<stuffCategories>
-			<li>Leathery</li>
-			<li>Metallic</li>
-		</stuffCategories>
+    <MooGirl.SlaveApparelDef Name="MooGirl_OnSkin_SlaveApparel" ParentName="MooGirl_SlaveApparel_Base" Abstract="True">
+        <stuffCategories>
+            <li>Leathery</li>
+            <li>Metallic</li>
+        </stuffCategories>
         <descriptionHyperlinks>
-			<ThingDef>MooGirl_SlaveApperalKey_Industrial</ThingDef>
-		</descriptionHyperlinks>		
-		<recipeMaker>
-			<researchPrerequisite>FlakArmor</researchPrerequisite>
-			<displayPriority>260</displayPriority> <!-- 配方显示优先级 -->
-			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-      		<workSkill>Crafting</workSkill>
-     		<recipeUsers>
-        		<li>ElectricTailoringBench</li>
-        		<li>HandTailoringBench</li>
-     		</recipeUsers>
-     	 	<skillRequirements>
-        		<Crafting>6</Crafting>
-      		</skillRequirements>
-			<effectWorking>Smelt</effectWorking>
-			<soundWorking>Recipe_Smith</soundWorking>
-			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-  		</recipeMaker>
-		<graphicData>
-			<shaderType>CutoutComplex</shaderType>
-		</graphicData>
-		<apparel>
-			<useWornGraphicMask>true</useWornGraphicMask>
-		</apparel>
-		<needkeynumber>2</needkeynumber> <!-- 解锁需求钥匙数量 -->
-		<keytype>MooGirl_SlaveApperalKey_Industrial</keytype> <!-- 钥匙类型 -->
-		<gives_bound_moodlet>true</gives_bound_moodlet>
-	</MooGirl.SlaveApparelDef>
+            <ThingDef>MooGirl_SlaveApperalKey_Industrial</ThingDef>
+        </descriptionHyperlinks>
+        <recipeMaker>
+            <researchPrerequisite>FlakArmor</researchPrerequisite>
+            <displayPriority>260</displayPriority> <!-- 配方显示优先级 -->
+            <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+            <workSkill>Crafting</workSkill>
+            <recipeUsers>
+                <li>ElectricTailoringBench</li>
+                <li>HandTailoringBench</li>
+            </recipeUsers>
+            <skillRequirements>
+                <Crafting>6</Crafting>
+            </skillRequirements>
+            <effectWorking>Smelt</effectWorking>
+            <soundWorking>Recipe_Smith</soundWorking>
+            <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+        </recipeMaker>
+        <graphicData>
+            <shaderType>CutoutComplex</shaderType>
+        </graphicData>
+        <apparel>
+            <useWornGraphicMask>true</useWornGraphicMask>
+        </apparel>
+        <needkeynumber>2</needkeynumber> <!-- 解锁需求钥匙数量 -->
+        <keytype>MooGirl_SlaveApperalKey_Industrial</keytype> <!-- 钥匙类型 -->
+        <gives_bound_moodlet>true</gives_bound_moodlet>
+    </MooGirl.SlaveApparelDef>
 
-	<!-- ====================================== 上半身束具 =========================================== -->
+    <!-- ====================================== 上半身束具 =========================================== -->
 
-	<MooGirl.SlaveApparelDef Name="MooGirl_OnSkin_Upper_SlaveApparel"
-		ParentName="MooGirl_OnSkin_SlaveApparel" Abstract="True">
-		<apparel>
-			<bodyPartGroups>
-				<li>Arms</li>
-				<li>LeftHand</li>
-				<li>RightHand</li>
-			</bodyPartGroups>
-			<layers>
-				<li>MooGirl_Arm_bondage</li>
-			</layers>
-			<tags> <!-- 自定义标签，可用于pankind生成 -->
-				<li>MooGirl_Slave_OnSkin_Upper</li>
-			</tags>
-		</apparel>
+    <MooGirl.SlaveApparelDef Name="MooGirl_OnSkin_Upper_SlaveApparel"
+        ParentName="MooGirl_OnSkin_SlaveApparel" Abstract="True">
+        <apparel>
+            <bodyPartGroups>
+                <li>Arms</li>
+                <li>LeftHand</li>
+                <li>RightHand</li>
+            </bodyPartGroups>
+            <layers>
+                <li>MooGirl_Arm_bondage</li>
+            </layers>
+            <tags> <!-- 自定义标签，可用于pankind生成 -->
+                <li>MooGirl_Slave_OnSkin_Upper</li>
+            </tags>
+        </apparel>
         <!-- <descriptionHyperlinks>
-			<HediffDef>MooGirl_Gauntlet</HediffDef>
-		</descriptionHyperlinks>  		 -->
-		<equippedStatOffsets>
-			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">0.35</SlaveSuppressionOffset>
-		</equippedStatOffsets>
-		<equipped_hediff>MooGirl_Gauntlet</equipped_hediff>
-		<blocks_hands>false</blocks_hands>
-		<HediffTargetBodyPartDefs>
-			<li>Arm</li>
-		</HediffTargetBodyPartDefs>
-		<BoundBodyPartGroupDefs>
-			<li>LeftHand</li>
-			<li>RightHand</li>
-		</BoundBodyPartGroupDefs>
-	</MooGirl.SlaveApparelDef>
+            <HediffDef>MooGirl_Gauntlet</HediffDef>
+        </descriptionHyperlinks>  		 -->
+        <equippedStatOffsets>
+            <SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">0.35</SlaveSuppressionOffset>
+        </equippedStatOffsets>
+        <equipped_hediff>MooGirl_Gauntlet</equipped_hediff>
+        <blocks_hands>false</blocks_hands>
+        <HediffTargetBodyPartDefs>
+            <li>Arm</li>
+        </HediffTargetBodyPartDefs>
+        <BoundBodyPartGroupDefs>
+            <li>LeftHand</li>
+            <li>RightHand</li>
+        </BoundBodyPartGroupDefs>
+    </MooGirl.SlaveApparelDef>
 
-	<MooGirl.SlaveApparelDef ParentName="MooGirl_OnSkin_Upper_SlaveApparel">
-		<defName>MooGirl_Slavegauntlet</defName>
-		<!-- 雪牛娘 奴隶手套 -->
-		<label>Mugirl Slave Gauntlets</label>
-		<!-- 一种带锁的束缚手套，用于将雪牛娘的手指紧紧固定，显著降低其操作与精细劳动能力。手套配有专用锁具，必须使用[精致束具钥匙]才能解开。 -->
-		<description>A locking restraint glove used to secure a Mugirl's fingers tightly, significantly reducing manipulation and fine motor ability. The gloves are equipped with a dedicated locking mechanism that can only be opened with an [Exquisite Restraint Key].</description>
-		<graphicData>
-			<texPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slavegauntlet/MooGirl_Slavegauntlet</texPath>
-		</graphicData>
-		<costStuffCount>180</costStuffCount>
-		<statBases>
-			<WorkToMake>9000</WorkToMake>
-			<MaxHitPoints>200</MaxHitPoints>
-			<Mass>4</Mass>
-			<Flammability>0.6</Flammability>
-			<ArmorRating_Sharp>0.55</ArmorRating_Sharp>
-			<ArmorRating_Blunt>0.08</ArmorRating_Blunt>
-			<ArmorRating_Heat>0.10</ArmorRating_Heat>
-			<Insulation_Cold>3.5</Insulation_Cold>
-			<Insulation_Heat>1</Insulation_Heat>
-			<EquipDelay>5</EquipDelay>
-		</statBases>
-		<apparel>
-			<wornGraphicPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slavegauntlet/MooGirl_Slavegauntlet</wornGraphicPath>
-			<drawData>
-				<dataEast>
-					<layer>201</layer>
-				</dataEast>
-				<dataWest>
-					<layer>201</layer>
-				</dataWest>
-				<dataNorth>
-					<layer>201</layer>
-				</dataNorth>
-			</drawData>
-		</apparel>
-		<keytype>MooGirl_SlaveApperalKey_Industrial</keytype> <!-- 钥匙类型 -->
-	</MooGirl.SlaveApparelDef>
+    <MooGirl.SlaveApparelDef ParentName="MooGirl_OnSkin_Upper_SlaveApparel">
+        <defName>MooGirl_Slavegauntlet</defName>
+        <!-- 雪牛娘 奴隶手套 -->
+        <label>Mugirl Slave Gauntlets</label>
+        <!-- 一种带锁的束缚手套，用于将雪牛娘的手指紧紧固定，显著降低其操作与精细劳动能力。手套配有专用锁具，必须使用[精致束具钥匙]才能解开。 -->
+        <description>A locking restraint glove used to secure a Mugirl's fingers tightly, significantly reducing manipulation and fine motor ability. The gloves are equipped with a dedicated locking mechanism that can only be opened with an [Exquisite Restraint Key].</description>
+        <graphicData>
+            <texPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slavegauntlet/MooGirl_Slavegauntlet</texPath>
+        </graphicData>
+        <costStuffCount>180</costStuffCount>
+        <statBases>
+            <WorkToMake>9000</WorkToMake>
+            <MaxHitPoints>200</MaxHitPoints>
+            <Mass>4</Mass>
+            <Flammability>0.6</Flammability>
+            <ArmorRating_Sharp>0.55</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.08</ArmorRating_Blunt>
+            <ArmorRating_Heat>0.10</ArmorRating_Heat>
+            <Insulation_Cold>3.5</Insulation_Cold>
+            <Insulation_Heat>1</Insulation_Heat>
+            <EquipDelay>5</EquipDelay>
+        </statBases>
+        <apparel>
+            <wornGraphicPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slavegauntlet/MooGirl_Slavegauntlet</wornGraphicPath>
+            <drawData>
+                <dataEast>
+                    <layer>201</layer>
+                </dataEast>
+                <dataWest>
+                    <layer>201</layer>
+                </dataWest>
+                <dataNorth>
+                    <layer>201</layer>
+                </dataNorth>
+            </drawData>
+        </apparel>
+        <keytype>MooGirl_SlaveApperalKey_Industrial</keytype> <!-- 钥匙类型 -->
+    </MooGirl.SlaveApparelDef>
 
-	<!-- ====================================== 下半身束具 =========================================== -->
+    <!-- ====================================== 下半身束具 =========================================== -->
 
-	<MooGirl.SlaveApparelDef Name="MooGirl_OnSkin_Lower_SlaveApparel"
-		ParentName="MooGirl_OnSkin_SlaveApparel" Abstract="True">
-		<equippedStatOffsets>
-			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">0.25</SlaveSuppressionOffset>
-		</equippedStatOffsets>
+    <MooGirl.SlaveApparelDef Name="MooGirl_OnSkin_Lower_SlaveApparel"
+        ParentName="MooGirl_OnSkin_SlaveApparel" Abstract="True">
+        <equippedStatOffsets>
+            <SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">0.25</SlaveSuppressionOffset>
+        </equippedStatOffsets>
         <!-- <descriptionHyperlinks>
-			<HediffDef>MooGirl_Stockings</HediffDef>
-		</descriptionHyperlinks> 		 -->
-		<apparel>
-			<bodyPartGroups>
-				<li>Waist</li>
-			</bodyPartGroups>
-			<layers>
-				<li>MooGirl_Leg_bondage</li>
-			</layers>
-			<tags> <!-- 自定义标签，可用于pankind生成 -->
-				<li>MooGirl_Slave_OnSkin_Lower</li>
-			</tags>
-		</apparel>
-		<equipped_hediff>MooGirl_Stockings</equipped_hediff>
-		<HediffTargetBodyPartDefs>
-			<li>Leg</li>
-		</HediffTargetBodyPartDefs>
-		<BoundBodyPartGroupDefs>
-			<li>Feet</li>
-		</BoundBodyPartGroupDefs>
-	</MooGirl.SlaveApparelDef>
+            <HediffDef>MooGirl_Stockings</HediffDef>
+        </descriptionHyperlinks> 		 -->
+        <apparel>
+            <bodyPartGroups>
+                <li>Waist</li>
+            </bodyPartGroups>
+            <layers>
+                <li>MooGirl_Leg_bondage</li>
+            </layers>
+            <tags> <!-- 自定义标签，可用于pankind生成 -->
+                <li>MooGirl_Slave_OnSkin_Lower</li>
+            </tags>
+        </apparel>
+        <equipped_hediff>MooGirl_Stockings</equipped_hediff>
+        <HediffTargetBodyPartDefs>
+            <li>Leg</li>
+        </HediffTargetBodyPartDefs>
+        <BoundBodyPartGroupDefs>
+            <li>Feet</li>
+        </BoundBodyPartGroupDefs>
+    </MooGirl.SlaveApparelDef>
 
-	<MooGirl.SlaveApparelDef ParentName="MooGirl_OnSkin_Lower_SlaveApparel">
-		<defName>MooGirl_Slavestockings</defName>
-		<!-- 雪牛娘 奴隶袜 -->
-		<label>Mugirl Slave Stockings</label>
-		<!-- 一种特殊的束缚袜，造型类似高跟鞋但缺少后跟，使穿戴者步伐不稳，移动速度明显降低。袜子配有专用锁具，必须使用[精致束具钥匙]才能解开。 -->
-		<description>A special type of restraint stockings shaped similarly to high heels but without heels, making the wearer walk unsteadily with noticeably reduced movement speed. The stockings are equipped with a dedicated locking mechanism that can only be opened with an [Exquisite Restraint Key].</description>
-		<graphicData>
-			<texPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slavestocking/MooGirl_Slavestocking</texPath>
-		</graphicData>
-		<costStuffCount>180</costStuffCount>
-		<statBases>
-			<WorkToMake>9000</WorkToMake>
-			<MaxHitPoints>200</MaxHitPoints>
-			<Mass>4</Mass>
-			<Flammability>0.6</Flammability>
-			<ArmorRating_Sharp>0.55</ArmorRating_Sharp>
-			<ArmorRating_Blunt>0.08</ArmorRating_Blunt>
-			<ArmorRating_Heat>0.10</ArmorRating_Heat>
-			<Insulation_Cold>3.5</Insulation_Cold>
-			<Insulation_Heat>1</Insulation_Heat>
-			<EquipDelay>5</EquipDelay>
-		</statBases>
-		<apparel>
-			<wornGraphicPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slavestocking/MooGirl_Slavestocking</wornGraphicPath>
-		</apparel>
-	</MooGirl.SlaveApparelDef>
+    <MooGirl.SlaveApparelDef ParentName="MooGirl_OnSkin_Lower_SlaveApparel">
+        <defName>MooGirl_Slavestockings</defName>
+        <!-- 雪牛娘 奴隶袜 -->
+        <label>Mugirl Slave Stockings</label>
+        <!-- 一种特殊的束缚袜，造型类似高跟鞋但缺少后跟，使穿戴者步伐不稳，移动速度明显降低。袜子配有专用锁具，必须使用[精致束具钥匙]才能解开。 -->
+        <description>A special type of restraint stockings shaped similarly to high heels but without heels, making the wearer walk unsteadily with noticeably reduced movement speed. The stockings are equipped with a dedicated locking mechanism that can only be opened with an [Exquisite Restraint Key].</description>
+        <graphicData>
+            <texPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slavestocking/MooGirl_Slavestocking</texPath>
+        </graphicData>
+        <costStuffCount>180</costStuffCount>
+        <statBases>
+            <WorkToMake>9000</WorkToMake>
+            <MaxHitPoints>200</MaxHitPoints>
+            <Mass>4</Mass>
+            <Flammability>0.6</Flammability>
+            <ArmorRating_Sharp>0.55</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.08</ArmorRating_Blunt>
+            <ArmorRating_Heat>0.10</ArmorRating_Heat>
+            <Insulation_Cold>3.5</Insulation_Cold>
+            <Insulation_Heat>1</Insulation_Heat>
+            <EquipDelay>5</EquipDelay>
+        </statBases>
+        <apparel>
+            <wornGraphicPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slavestocking/MooGirl_Slavestocking</wornGraphicPath>
+        </apparel>
+    </MooGirl.SlaveApparelDef>
 
 </Defs>

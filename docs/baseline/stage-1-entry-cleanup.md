@@ -19,36 +19,36 @@ This file records the first Stage 1 refactoring pass. The pass focused on projec
 ### Removed Duplicate/Dead Initialization
 
 - Deleted `1.6/Source/WRace/RopingAndRoped牵引系统的编程/Harmoney_Mod.cs`.
-  - It declared a second `Mod` subclass, `RopedMooMod`.
-  - It called `new Harmony("RopedMoo").PatchAll()`.
-  - It logged `Roped loaded`.
-  - It was not included in the project file, but keeping it in source risked future accidental recompilation.
+    - It declared a second `Mod` subclass, `RopedMooMod`.
+    - It called `new Harmony("RopedMoo").PatchAll()`.
+    - It logged `Roped loaded`.
+    - It was not included in the project file, but keeping it in source risked future accidental recompilation.
 - Deleted `1.6/Source/WRace/OtherFunction/AiGenerated_Init.cs`.
-  - It only emitted a load log and had no gameplay responsibility.
+    - It only emitted a load log and had no gameplay responsibility.
 
 ### Removed Backup Source From Production
 
 - Removed from `.csproj` and deleted:
-  - `电击项圈备份(不能用,太难特有的条件判断方法几乎不工作，只能自己用计时器检查)CompProperties_ShockCollar.cs`
-  - `电击项圈备份备份CompProperties_ShockCollar.cs`
+    - `电击项圈备份(不能用,太难特有的条件判断方法几乎不工作，只能自己用计时器检查)CompProperties_ShockCollar.cs`
+    - `电击项圈备份备份CompProperties_ShockCollar.cs`
 - The active shock collar implementation remains compiled:
-  - `电击项圈CompProperties_ShockCollar.cs`
+    - `电击项圈CompProperties_ShockCollar.cs`
 
 ### Removed Old-Save Repair Paths
 
 - Removed legacy-save upgrade state from `MooGirl_GameComp`:
-  - `courierRaidLegacyFixApplied`
-  - `legacySaveUpgradeApplied`
+    - `courierRaidLegacyFixApplied`
+    - `legacySaveUpgradeApplied`
 - Removed old-save repair methods:
-  - `RunLegacySaveUpgradeOnce`
-  - `PrepareLegacyRescuePawns`
-  - `IsLegacyRescuePawn`
-  - `TryRecoverLegacyCourierRaidQuest`
-  - `RepairCourierRaidQuestSignals`
-  - related quest signal helper methods used only by legacy recovery
+    - `RunLegacySaveUpgradeOnce`
+    - `PrepareLegacyRescuePawns`
+    - `IsLegacyRescuePawn`
+    - `TryRecoverLegacyCourierRaidQuest`
+    - `RepairCourierRaidQuestSignals`
+    - related quest signal helper methods used only by legacy recovery
 - Removed `MooGirl_ConvertComp.cs`.
-  - It existed to repeatedly normalize old-save `MooGirl_EscapeWildSlave` player pawns.
-  - Old-save compatibility is explicitly out of scope.
+    - It existed to repeatedly normalize old-save `MooGirl_EscapeWildSlave` player pawns.
+    - Old-save compatibility is explicitly out of scope.
 
 ## Behavior Preserved
 

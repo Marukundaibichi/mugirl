@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-  <CaravanPackingSpot.comps.CompRopeToBuild.useLabel>栓到建筑上</CaravanPackingSpot.comps.CompRopeToBuild.useLabel>
-  <WallRopeHitch.comps.CompRopeToBuild.useLabel>栓到建筑上</WallRopeHitch.comps.CompRopeToBuild.useLabel>
-  <WallRopeHitch.description>墙上的铁环，可用来将雪牛娘安全固定。她们在被牵引时会表现出一种本能的顺从，这是长期改造与驯化的结果。</WallRopeHitch.description>
-  <WallRopeHitch.label>墙壁栓点</WallRopeHitch.label>
+    <CaravanPackingSpot.comps.CompRopeToBuild.useLabel>栓到建筑上</CaravanPackingSpot.comps.CompRopeToBuild.useLabel>
+    <WallRopeHitch.comps.CompRopeToBuild.useLabel>栓到建筑上</WallRopeHitch.comps.CompRopeToBuild.useLabel>
+    <WallRopeHitch.description>墙上的铁环，可用来将雪牛娘安全固定。她们在被牵引时会表现出一种本能的顺从，这是长期改造与驯化的结果。</WallRopeHitch.description>
+    <WallRopeHitch.label>墙壁栓点</WallRopeHitch.label>
 </LanguageData>

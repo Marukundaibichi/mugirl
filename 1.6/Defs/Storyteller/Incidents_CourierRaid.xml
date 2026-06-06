@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <IncidentDef>
+    <IncidentDef>
     <defName>MooGirl_CourierRaid</defName>
     <!-- 运货员接触 -->
     <label>courier contact</label>
     <targetTags>
-      <li>Map_PlayerHome</li>
+        <li>Map_PlayerHome</li>
     </targetTags>
     <workerClass>MooGirl.IncidentWorker_MooGirl_CourierRaid</workerClass>
     <letterDef>ThreatSmall</letterDef>
     <category>ThreatSmall</category>
     <baseChance>0</baseChance>
     <pointsScaleable>true</pointsScaleable>
-  </IncidentDef>
+    </IncidentDef>
 
 </Defs>

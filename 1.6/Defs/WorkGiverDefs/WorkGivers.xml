@@ -1,28 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-	<WorkGiverDef>
-		<defName>Work_GatherMilk</defName>
-		<!-- 自己挤奶 -->
-		<label>milk on her own</label>
-		<giverClass>MooGirl.WorkGiver_GatherMilk</giverClass>
-		<workType>Handling</workType>
-		<!-- 挤奶 -->
-		<verb>milk</verb>
-		<!-- 挤奶中 -->
-		<gerund>milking</gerund>
-		<directOrderable>false</directOrderable>
-		<priorityInType>90</priorityInType>
-		<requiredCapacities>
-			<li>Manipulation</li>
-		</requiredCapacities>
-	</WorkGiverDef>
+    <WorkGiverDef>
+        <defName>Work_GatherMilk</defName>
+        <!-- 自己挤奶 -->
+        <label>milk on her own</label>
+        <giverClass>MooGirl.WorkGiver_GatherMilk</giverClass>
+        <workType>Handling</workType>
+        <!-- 挤奶 -->
+        <verb>milk</verb>
+        <!-- 挤奶中 -->
+        <gerund>milking</gerund>
+        <directOrderable>false</directOrderable>
+        <priorityInType>90</priorityInType>
+        <requiredCapacities>
+            <li>Manipulation</li>
+        </requiredCapacities>
+    </WorkGiverDef>
 
-	<JobDef>
-		<defName>Job_GatherMilk</defName>
-		<driverClass>MooGirl.JobDriver_GatherMilk</driverClass>
-		<!-- 给 TargetA 挤奶 -->
-		<reportString>Milk {TargetA}.</reportString>
-		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
-	</JobDef>
+    <JobDef>
+        <defName>Job_GatherMilk</defName>
+        <driverClass>MooGirl.JobDriver_GatherMilk</driverClass>
+        <!-- 给 TargetA 挤奶 -->
+        <reportString>Milk {TargetA}.</reportString>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
 </Defs>

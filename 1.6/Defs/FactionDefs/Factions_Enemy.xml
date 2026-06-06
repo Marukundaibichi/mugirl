@@ -1,127 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <FactionDef ParentName="FactionBase">
-    <defName>MooGirl_GiantCorporations_Hostile</defName>
-    <!-- 巨型企业 -->
-    <label>Giant Corporation</label>
-    <!-- 一个庞大的企业联合体，控制着无数资源与武装力量，对任何妨碍其利益者毫不留情。 -->
-    <description>A massive corporate consortium controlling countless resources and armed forces, showing no mercy to anyone who obstructs its interests.</description>
-    <!-- 巨企佣兵 -->
-    <pawnSingular>Corporate Mercenary</pawnSingular>
-    <!-- 巨企佣兵 -->
-    <pawnsPlural>Corporate Mercenaries</pawnsPlural>
-    <categoryTag>GiantCorporations</categoryTag>
-    <requiredCountAtGameStart>1</requiredCountAtGameStart>
-    <maxConfigurableAtWorldCreation>1</maxConfigurableAtWorldCreation>
-    <configurationListOrderPriority>2000</configurationListOrderPriority>
-    <!-- 巨型企业 -->
-    <fixedName>Giant Corporation</fixedName>
-    <humanlikeFaction>true</humanlikeFaction>
-    <hidden>false</hidden>
-    <canMakeRandomly>true</canMakeRandomly>
-    <canGenerateQuestSites>false</canGenerateQuestSites>
-    <canSiege>true</canSiege>
-    <canStageAttacks>true</canStageAttacks>
-    <techLevel>Industrial</techLevel>
-    <fixedLeaderKinds>
-      <li>AI_GC_Elites</li>
-    </fixedLeaderKinds>
-    <factionNameMaker>NamerFactionOutlander</factionNameMaker>
-    <settlementNameMaker>NamerSettlementOutlander</settlementNameMaker>
-    <settlementTexturePath>World/GiantCorporations</settlementTexturePath>
-    <factionIconPath>World/GiantCorporations</factionIconPath>
-    <colorSpectrum>
-      <li>(0.3,0.3,0.4)</li>
-    </colorSpectrum>
-    <backstoryFilters>
-      <li>
-        <categories>
-          <li>Outlander</li>
-        </categories>
-        <commonality>0.95</commonality>
-      </li>
-      <li>
-        <categories>
-          <li>Offworld</li>
-        </categories>
-        <commonality>0.05</commonality>
-      </li>
-    </backstoryFilters>
-    <raidLootValueFromPointsCurve>
-      <points>
-        <li>(35,15)</li>
-        <li>(100,120)</li>
-        <li>(1000,500)</li>
-        <li>(2000,800)</li>
-        <li>(4000,1000)</li>
-      </points>
-    </raidLootValueFromPointsCurve>
-    <maxPawnCostPerTotalPointsCurve>
-      <points>
-        <li>(0,     0.5)</li>
-        <li>(100,   1000)</li>
-        <li>(10000, 10000)</li>
-      </points>
-    </maxPawnCostPerTotalPointsCurve>
-    <pawnGroupMakers>
-      <li>
-        <kindDef>Combat</kindDef>
-        <commonality>100</commonality>
-        <maxTotalPoints>2000</maxTotalPoints>
-        <options>
-          <AI_GC_Grunts>65</AI_GC_Grunts>
-          <AI_GC_OPC_Enforcers>30</AI_GC_OPC_Enforcers>
-          <AI_GC_OPC_Sapper>5</AI_GC_OPC_Sapper>
-        </options>
-      </li>
-      <li>
-        <kindDef>Combat</kindDef>
-        <commonality>100</commonality>
-        <maxTotalPoints>4000</maxTotalPoints>
-        <options>
-          <AI_GC_Grunts>25</AI_GC_Grunts>
-          <AI_GC_OPC_Enforcers>45</AI_GC_OPC_Enforcers>
-          <AI_GC_OPC_Sapper>8</AI_GC_OPC_Sapper>
-          <AI_GC_PMC_Recruits>22</AI_GC_PMC_Recruits>
-        </options>
-      </li>
-      <li>
-        <kindDef>Combat</kindDef>
-        <commonality>100</commonality>
-        <maxTotalPoints>6500</maxTotalPoints>
-        <options>
-          <AI_GC_OPC_Enforcers>20</AI_GC_OPC_Enforcers>
-          <AI_GC_OPC_Sapper>5</AI_GC_OPC_Sapper>
-          <AI_GC_PMC_Recruits>35</AI_GC_PMC_Recruits>
-          <AI_GC_Soldiers>30</AI_GC_Soldiers>
-          <AI_GC_Sapper>7</AI_GC_Sapper>
-          <AI_GC_Elites>3</AI_GC_Elites>
-          <AI_GC_MooGirlRaider>1</AI_GC_MooGirlRaider>
-        </options>
-      </li>
-      <li>
-        <kindDef>Combat</kindDef>
-        <commonality>100</commonality>
-        <maxTotalPoints>10000</maxTotalPoints>
-        <options>
-          <AI_GC_PMC_Recruits>15</AI_GC_PMC_Recruits>
-          <AI_GC_Soldiers>50</AI_GC_Soldiers>
-          <AI_GC_Sapper>10</AI_GC_Sapper>
-          <AI_GC_Elites>24</AI_GC_Elites>
-          <AI_GC_MooGirlRaider>1</AI_GC_MooGirlRaider>
-        </options>
-      </li>
-      <li>
-        <kindDef>Settlement</kindDef>
-        <commonality>100</commonality>
-        <options>
-          <AI_GC_Grunts>65</AI_GC_Grunts>
-          <AI_GC_OPC_Enforcers>30</AI_GC_OPC_Enforcers>
-          <AI_GC_OPC_Sapper>5</AI_GC_OPC_Sapper>
-        </options>
-      </li>
-    </pawnGroupMakers>
-  </FactionDef>
+    <FactionDef ParentName="FactionBase">
+        <defName>MooGirl_GiantCorporations_Hostile</defName>
+        <!-- 巨型企业 -->
+        <label>Giant Corporation</label>
+        <!-- 一个庞大的企业联合体，控制着无数资源与武装力量，对任何妨碍其利益者毫不留情。 -->
+        <description>A massive corporate consortium controlling countless resources and armed forces, showing no mercy to anyone who obstructs its interests.</description>
+        <!-- 巨企佣兵 -->
+        <pawnSingular>Corporate Mercenary</pawnSingular>
+        <!-- 巨企佣兵 -->
+        <pawnsPlural>Corporate Mercenaries</pawnsPlural>
+        <categoryTag>GiantCorporations</categoryTag>
+        <requiredCountAtGameStart>1</requiredCountAtGameStart>
+        <maxConfigurableAtWorldCreation>1</maxConfigurableAtWorldCreation>
+        <configurationListOrderPriority>2000</configurationListOrderPriority>
+        <!-- 巨型企业 -->
+        <fixedName>Giant Corporation</fixedName>
+        <humanlikeFaction>true</humanlikeFaction>
+        <hidden>false</hidden>
+        <canMakeRandomly>true</canMakeRandomly>
+        <canGenerateQuestSites>false</canGenerateQuestSites>
+        <canSiege>true</canSiege>
+        <canStageAttacks>true</canStageAttacks>
+        <techLevel>Industrial</techLevel>
+        <fixedLeaderKinds>
+            <li>AI_GC_Elites</li>
+        </fixedLeaderKinds>
+        <factionNameMaker>NamerFactionOutlander</factionNameMaker>
+        <settlementNameMaker>NamerSettlementOutlander</settlementNameMaker>
+        <settlementTexturePath>World/GiantCorporations</settlementTexturePath>
+        <factionIconPath>World/GiantCorporations</factionIconPath>
+        <colorSpectrum>
+            <li>(0.3,0.3,0.4)</li>
+        </colorSpectrum>
+        <backstoryFilters>
+            <li>
+                <categories>
+                    <li>Outlander</li>
+                </categories>
+                <commonality>0.95</commonality>
+            </li>
+            <li>
+                <categories>
+                    <li>Offworld</li>
+                </categories>
+                <commonality>0.05</commonality>
+            </li>
+        </backstoryFilters>
+        <raidLootValueFromPointsCurve>
+            <points>
+                <li>(35,15)</li>
+                <li>(100,120)</li>
+                <li>(1000,500)</li>
+                <li>(2000,800)</li>
+                <li>(4000,1000)</li>
+            </points>
+        </raidLootValueFromPointsCurve>
+        <maxPawnCostPerTotalPointsCurve>
+            <points>
+                <li>(0,     0.5)</li>
+                <li>(100,   1000)</li>
+                <li>(10000, 10000)</li>
+            </points>
+        </maxPawnCostPerTotalPointsCurve>
+        <pawnGroupMakers>
+            <li>
+                <kindDef>Combat</kindDef>
+                <commonality>100</commonality>
+                <maxTotalPoints>2000</maxTotalPoints>
+                <options>
+                    <AI_GC_Grunts>65</AI_GC_Grunts>
+                    <AI_GC_OPC_Enforcers>30</AI_GC_OPC_Enforcers>
+                    <AI_GC_OPC_Sapper>5</AI_GC_OPC_Sapper>
+                </options>
+            </li>
+            <li>
+                <kindDef>Combat</kindDef>
+                <commonality>100</commonality>
+                <maxTotalPoints>4000</maxTotalPoints>
+                <options>
+                    <AI_GC_Grunts>25</AI_GC_Grunts>
+                    <AI_GC_OPC_Enforcers>45</AI_GC_OPC_Enforcers>
+                    <AI_GC_OPC_Sapper>8</AI_GC_OPC_Sapper>
+                    <AI_GC_PMC_Recruits>22</AI_GC_PMC_Recruits>
+                </options>
+            </li>
+            <li>
+                <kindDef>Combat</kindDef>
+                <commonality>100</commonality>
+                <maxTotalPoints>6500</maxTotalPoints>
+                <options>
+                    <AI_GC_OPC_Enforcers>20</AI_GC_OPC_Enforcers>
+                    <AI_GC_OPC_Sapper>5</AI_GC_OPC_Sapper>
+                    <AI_GC_PMC_Recruits>35</AI_GC_PMC_Recruits>
+                    <AI_GC_Soldiers>30</AI_GC_Soldiers>
+                    <AI_GC_Sapper>7</AI_GC_Sapper>
+                    <AI_GC_Elites>3</AI_GC_Elites>
+                    <AI_GC_MooGirlRaider>1</AI_GC_MooGirlRaider>
+                </options>
+            </li>
+            <li>
+                <kindDef>Combat</kindDef>
+                <commonality>100</commonality>
+                <maxTotalPoints>10000</maxTotalPoints>
+                <options>
+                    <AI_GC_PMC_Recruits>15</AI_GC_PMC_Recruits>
+                    <AI_GC_Soldiers>50</AI_GC_Soldiers>
+                    <AI_GC_Sapper>10</AI_GC_Sapper>
+                    <AI_GC_Elites>24</AI_GC_Elites>
+                    <AI_GC_MooGirlRaider>1</AI_GC_MooGirlRaider>
+                </options>
+            </li>
+            <li>
+                <kindDef>Settlement</kindDef>
+                <commonality>100</commonality>
+                <options>
+                    <AI_GC_Grunts>65</AI_GC_Grunts>
+                    <AI_GC_OPC_Enforcers>30</AI_GC_OPC_Enforcers>
+                    <AI_GC_OPC_Sapper>5</AI_GC_OPC_Sapper>
+                </options>
+            </li>
+        </pawnGroupMakers>
+    </FactionDef>
 
 </Defs>

@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <ThingDef Name="MooGirl_ApparelBase" ParentName="ApparelBase" Abstract="True">
+    <ThingDef Name="MooGirl_ApparelBase" ParentName="ApparelBase" Abstract="True">
     <thingClass>Apparel</thingClass>
     <category>Item</category>
     <selectable>True</selectable>
     <pathCost>10</pathCost>
     <useHitPoints>True</useHitPoints>
-	<techLevel>Industrial</techLevel>
+    <techLevel>Industrial</techLevel>
     <graphicData>
-      <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
-	  <graphicClass>Graphic_Single</graphicClass>	  
+        <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
+        <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <drawGUIOverlay>true</drawGUIOverlay>
     <statBases>
-      <MaxHitPoints>100</MaxHitPoints>
-	  <Flammability>0.4</Flammability>
-	  <DeteriorationRate>1</DeteriorationRate>
-	  <Beauty>1</Beauty>
+        <MaxHitPoints>100</MaxHitPoints>
+        <Flammability>0.4</Flammability>
+        <DeteriorationRate>1</DeteriorationRate>
+        <Beauty>1</Beauty>
     </statBases>
     <altitudeLayer>Item</altitudeLayer>
     <alwaysHaulable>True</alwaysHaulable>
@@ -25,41 +25,41 @@
     <burnableByRecipe>true</burnableByRecipe>
     <smeltable>true</smeltable>
     <comps>
-      <li Class="CompProperties_Forbiddable"/>
-      <li>
+        <li Class="CompProperties_Forbiddable"/>
+        <li>
         <compClass>CompColorable</compClass>
-      </li>
+        </li>
     </comps>
-	<apparel>
-		<useWornGraphicMask>true</useWornGraphicMask>
-	</apparel>
-	<tradeability>Sellable</tradeability>
-	<tradeTags>
-      <li>MooGirl_Apparel</li>
+    <apparel>
+        <useWornGraphicMask>true</useWornGraphicMask>
+    </apparel>
+    <tradeability>Sellable</tradeability>
+    <tradeTags>
+        <li>MooGirl_Apparel</li>
     </tradeTags>
-	<recipeMaker>
-		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-		<workSkill>Crafting</workSkill>
-		<effectWorking>Tailor</effectWorking>
-		<soundWorking>Recipe_Tailor</soundWorking>
-		<recipeUsers>
-           <li>ElectricTailoringBench</li>
-           <li>HandTailoringBench</li>
-		</recipeUsers>
-		<unfinishedThingDef>UnfinishedApparel</unfinishedThingDef>
-		<defaultIngredientFilter>
-			<categories>
-				<li>Root</li>
-			</categories>
-			<disallowedThingDefs>
-				<li>Gold</li>
-				<li>Silver</li>
-				<li>Plasteel</li>
-				<li>Jade</li>
-				<li>Uranium</li>
-			</disallowedThingDefs>
-		</defaultIngredientFilter>
-	</recipeMaker>
+    <recipeMaker>
+        <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+        <workSkill>Crafting</workSkill>
+        <effectWorking>Tailor</effectWorking>
+        <soundWorking>Recipe_Tailor</soundWorking>
+        <recipeUsers>
+            <li>ElectricTailoringBench</li>
+            <li>HandTailoringBench</li>
+        </recipeUsers>
+        <unfinishedThingDef>UnfinishedApparel</unfinishedThingDef>
+        <defaultIngredientFilter>
+            <categories>
+                <li>Root</li>
+            </categories>
+            <disallowedThingDefs>
+                <li>Gold</li>
+                <li>Silver</li>
+                <li>Plasteel</li>
+                <li>Jade</li>
+                <li>Uranium</li>
+            </disallowedThingDefs>
+        </defaultIngredientFilter>
+    </recipeMaker>
 </ThingDef>
 
 </Defs>

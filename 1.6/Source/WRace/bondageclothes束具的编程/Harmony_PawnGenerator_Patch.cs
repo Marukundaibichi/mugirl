@@ -13,7 +13,7 @@ namespace MooGirl
 
             foreach (var apparel in __result.apparel.WornApparel)
             {
-                if (apparel is SlaveApparel) 
+                if (apparel is SlaveApparel)
                 {
                     __result.apparel.Lock(apparel);
                 }

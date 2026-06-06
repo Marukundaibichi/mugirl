@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <PawnKindDef ParentName="MooGirl_BaseKind">
-    <defName>MooGirl_Colony</defName>
-    <!-- 雪牛娘殖民者 -->
-    <label>Mugirl Colonist</label>
-    <defaultFactionType>MooGirl_Colony</defaultFactionType>
-    <chemicalAddictionChance>0.06</chemicalAddictionChance>
-    <backstoryFilters>
-      <li>
-        <categories>
-          <li>MooGirl_Colony</li>
-        </categories>
-      </li>
-    </backstoryFilters>
-    <apparelTags>
-      <li>MooGirl</li>
-      <li>MooGirl_OnSkin</li>
-      <li>MooGirl_Stocking</li>
-      <li>MooGirl_Underwear</li>
-    </apparelTags>
-    <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
-    <apparelMoney>400~900</apparelMoney>
-    <initialWillRange>2~40</initialWillRange>
-    <initialResistanceRange>2~40</initialResistanceRange>
-  </PawnKindDef>
+    <PawnKindDef ParentName="MooGirl_BaseKind">
+        <defName>MooGirl_Colony</defName>
+        <!-- 雪牛娘殖民者 -->
+        <label>Mugirl Colonist</label>
+        <defaultFactionType>MooGirl_Colony</defaultFactionType>
+        <chemicalAddictionChance>0.06</chemicalAddictionChance>
+        <backstoryFilters>
+            <li>
+                <categories>
+                    <li>MooGirl_Colony</li>
+                </categories>
+            </li>
+        </backstoryFilters>
+        <apparelTags>
+            <li>MooGirl</li>
+            <li>MooGirl_OnSkin</li>
+            <li>MooGirl_Stocking</li>
+            <li>MooGirl_Underwear</li>
+        </apparelTags>
+        <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+        <apparelMoney>400~900</apparelMoney>
+        <initialWillRange>2~40</initialWillRange>
+        <initialResistanceRange>2~40</initialResistanceRange>
+    </PawnKindDef>
 
 </Defs>

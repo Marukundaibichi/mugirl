@@ -6,13 +6,13 @@ namespace MooGirl
 {
     public class CompTargetable_SlaveApparel : CompTargetable
     {
-		protected override bool PlayerChoosesTarget
-		{
-			get
-			{
-				return true;
-			}
-		}
+        protected override bool PlayerChoosesTarget
+        {
+            get
+            {
+                return true;
+            }
+        }
 
         // 目标选择参数
         protected override TargetingParameters GetTargetingParameters()
@@ -23,7 +23,7 @@ namespace MooGirl
                 canTargetBuildings = false,
                 canTargetAnimals = false,
                 canTargetMechs = false,
-                canTargetItems = true, 
+                canTargetItems = true,
                 mapObjectTargetsMustBeAutoAttackable = false,
                 validator = delegate (TargetInfo target)
                 {

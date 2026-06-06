@@ -77,8 +77,8 @@ public class StockGenerator_MooGirl_Slaves : StockGenerator
     public override bool HandlesThingDef(ThingDef thingDef)
     {
         return thingDef.category == ThingCategory.Pawn &&
-               thingDef.race.Humanlike &&
-               thingDef.tradeability > Tradeability.None;
+                thingDef.race.Humanlike &&
+                thingDef.tradeability > Tradeability.None;
     }
 
     private static bool AllIdeosApproveSlavery(Faction faction)
