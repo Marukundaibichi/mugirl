@@ -73,32 +73,9 @@ namespace MooGirl
             if (pawn != null)
             {
                 // 根据角色拥有的乳房相关Hediff（健康状态）设置资源增长速度系数
-                if (pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("HugeBreasts"), false) ||
-                    pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("BionicBreasts"), false) ||
-                    pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("SlimeBreasts"), false) ||
-                    pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("GR_MuffaloMammaries"), false))
+                if (MooGirlBreastProfileUtility.TryGetProductionDays(pawn, out float productionDays))
                 {
-                    BreastSizeDays = 3f; // 大型/特殊乳房生长速度
-                }
-                else if (pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("Breasts"), false) ||
-                         pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("HydraulicBreasts"), false) ||
-                         (pawn.gender == Gender.Female && DefDatabase<HediffDef>.GetNamedSilentFail("Breasts") == null))
-                {
-                    BreastSizeDays = 1.2f; // 普通女性乳房生长速度
-                }
-                else if (pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("SmallBreasts"), false))
-                {
-                    BreastSizeDays = 1f; // 小型乳房生长速度
-                }
-                else if (pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("LargeBreasts"), false) ||
-                         pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("ArchotechBreasts"), false))
-                {
-                    BreastSizeDays = 1.5f; // 大型乳房生长速度
-                }
-                else if (pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("FlatBreasts"), false) ||
-                         pawn.gender == Gender.Male)
-                {
-                    BreastSizeDays = 0.85f; // 男性/平胸生长速度
+                    BreastSizeDays = productionDays;
                 }
             }
 
@@ -155,7 +132,7 @@ namespace MooGirl
             // 如果未激活则记录错误并返回
             if (!Active)
             {
-                Log.Error($"MooGil. {doer} gathered body resources while not Active: {parent}");
+                Log.Error("MooGirl.Milk.GatherInactiveLog".Translate(doer, parent).ToString());
                 return;
             }
 
@@ -171,56 +148,20 @@ namespace MooGirl
                 Pawn pawn = parent as Pawn;
                 if (pawn != null)
                 {
-                    if (pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("HugeBreasts"), false) ||
-                        pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("BionicBreasts"), false) ||
-                        pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("SlimeBreasts"), false) ||
-                        pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("GR_MuffaloMammaries"), false))
+                    if (MooGirlBreastProfileUtility.TryGetYieldMultiplier(pawn, out float yieldMultiplier))
                     {
-                        BreastSize = 1.5f; // 大型乳房产量系数
-                    }
-                    else if (pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("Breasts"), false) ||
-                             pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("HydraulicBreasts"), false) ||
-                             (pawn.gender == Gender.Female && DefDatabase<HediffDef>.GetNamedSilentFail("Breasts") == null))
-                    {
-                        BreastSize = 1f; // 普通乳房产量系数
-                    }
-                    else if (pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("SmallBreasts"), false))
-                    {
-                        BreastSize = 0.75f; // 小型乳房产量系数
-                    }
-                    else if (pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("LargeBreasts"), false) ||
-                             pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("ArchotechBreasts"), false))
-                    {
-                        BreastSize = 1.25f; // 大型乳房产量系数
-                    }
-                    else if (pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("FlatBreasts"), false) ||
-                             pawn.gender == Gender.Male)
-                    {
-                        BreastSize = 0.5f; // 男性/平胸产量系数
+                        BreastSize = yieldMultiplier;
                     }
                 }
 
                 // 计算实际收集数量：每 1% 奶量产出 1 份雪牛奶
                 int amount = GenMath.RoundRandom(fullness * 100f);
 
-                // 分批生成资源物品
-                while (amount > 0)
-                {
-                    // 计算当前批次数量（不超过物品堆叠上限）
-                    int stack = Mathf.Clamp(amount, 1, ResourceDef.stackLimit);
-                    amount -= stack;
-
-                    // 创建物品并尝试放置到世界中
-                    Thing thing = ThingMaker.MakeThing(ResourceDef);
-                    thing.stackCount = stack;
-                    GenPlace.TryPlaceThing(thing, doer.Position, doer.Map, ThingPlaceMode.Near);
-                }
+                MooGirlMilkOutputUtility.SpawnStacksNear(ResourceDef, amount, doer.Position, doer.Map);
             }
             // 重置饱满度
             fullness = 0f;
-            fullNotified = false;
-            lastFullNotifyTick = -99999;
-            lastResourceUpdateTick = Find.TickManager.TicksGame;
+            ResetManualChangeTracking();
         }
 
         public bool TryConsumeFullness()
@@ -231,9 +172,7 @@ namespace MooGirl
             }
 
             fullness = 0f;
-            fullNotified = false;
-            lastFullNotifyTick = -99999;
-            lastResourceUpdateTick = Find.TickManager.TicksGame;
+            ResetManualChangeTracking();
             return true;
         }
 
@@ -245,9 +184,7 @@ namespace MooGirl
             }
 
             fullness = 1f;
-            fullNotified = false;
-            lastFullNotifyTick = -99999;
-            lastResourceUpdateTick = Find.TickManager.TicksGame;
+            ResetManualChangeTracking();
 
             if (triggerNotify)
             {
@@ -264,32 +201,9 @@ namespace MooGirl
             Pawn pawn = parent as Pawn;
             if (pawn != null)
             {
-                if (pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("HugeBreasts"), false) ||
-                    pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("BionicBreasts"), false) ||
-                    pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("SlimeBreasts"), false) ||
-                    pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("GR_MuffaloMammaries"), false))
+                if (MooGirlBreastProfileUtility.TryGetYieldMultiplier(pawn, out float yieldMultiplier))
                 {
-                    BreastSize = 1.5f;
-                }
-                else if (pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("Breasts"), false) ||
-                         pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("HydraulicBreasts"), false) ||
-                         (pawn.gender == Gender.Female && DefDatabase<HediffDef>.GetNamedSilentFail("Breasts") == null))
-                {
-                    BreastSize = 1f;
-                }
-                else if (pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("SmallBreasts"), false))
-                {
-                    BreastSize = 0.75f;
-                }
-                else if (pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("LargeBreasts"), false) ||
-                         pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("ArchotechBreasts"), false))
-                {
-                    BreastSize = 1.25f;
-                }
-                else if (pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("FlatBreasts"), false) ||
-                         pawn.gender == Gender.Male)
-                {
-                    BreastSize = 0.5f;
+                    BreastSize = yieldMultiplier;
                 }
             }
 
@@ -312,7 +226,7 @@ namespace MooGirl
             float intervalSeconds = Mathf.Max(1f, GatherResourcesIntervalDays * 1000f);
             float multiplier = pawn != null ? Mathf.Max(0f, GetProductionMultiplier(pawn)) : 1f;
             float percentGain = Mathf.Max(0f, ResourceAmount) * multiplier;
-            return percentGain.ToString("0.#") + "% / " + intervalSeconds.ToString("0.#") + "秒";
+            return "MooGirl.Milk.ProductionRate".Translate(percentGain.ToString("0.#"), intervalSeconds.ToString("0.#"));
         }
 
         // 自动挤奶阈值（0-1，默认 0.8 = 80%）
@@ -323,9 +237,7 @@ namespace MooGirl
         {
             if (fullness <= 0f || percentage <= 0f) return false;
             fullness = Mathf.Max(0f, fullness - percentage);
-            fullNotified = false;
-            lastFullNotifyTick = -99999;
-            lastResourceUpdateTick = Find.TickManager.TicksGame;
+            ResetManualChangeTracking();
             return true;
         }
 
@@ -354,6 +266,11 @@ namespace MooGirl
         private void ConsumeGatheredFullness(float gatheredFullness)
         {
             fullness = Mathf.Max(0f, fullness - gatheredFullness);
+            ResetManualChangeTracking();
+        }
+
+        private void ResetManualChangeTracking()
+        {
             fullNotified = false;
             lastFullNotifyTick = -99999;
             lastResourceUpdateTick = Find.TickManager.TicksGame;
@@ -368,32 +285,9 @@ namespace MooGirl
         // 提取乳房大小判断逻辑为独立方法
         private void UpdateBreastSize(Pawn pawn)
         {
-            if (pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("HugeBreasts"), false) ||
-                pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("BionicBreasts"), false) ||
-                pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("SlimeBreasts"), false) ||
-                pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("GR_MuffaloMammaries"), false))
+            if (MooGirlBreastProfileUtility.TryGetYieldMultiplier(pawn, out float yieldMultiplier))
             {
-                BreastSize = 1.5f;
-            }
-            else if (pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("Breasts"), false) ||
-                     pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("HydraulicBreasts"), false) ||
-                     (pawn.gender == Gender.Female && DefDatabase<HediffDef>.GetNamedSilentFail("Breasts") == null))
-            {
-                BreastSize = 1f;
-            }
-            else if (pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("SmallBreasts"), false))
-            {
-                BreastSize = 0.75f;
-            }
-            else if (pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("LargeBreasts"), false) ||
-                     pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("ArchotechBreasts"), false))
-            {
-                BreastSize = 1.25f;
-            }
-            else if (pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamedSilentFail("FlatBreasts"), false) ||
-                     pawn.gender == Gender.Male)
-            {
-                BreastSize = 0.5f;
+                BreastSize = yieldMultiplier;
             }
         }
 

@@ -14,6 +14,12 @@
   <MooGirl_MagneticShackles.comps.Comp_MagneticShackles.messageOff>{0} 的磁力手铐被解除</MooGirl_MagneticShackles.comps.Comp_MagneticShackles.messageOff>
   <!-- EN: {0} 的磁力手铐突然启动了 -->
   <MooGirl_MagneticShackles.comps.Comp_MagneticShackles.messageOn>{0} 的磁力手铐突然启动了</MooGirl_MagneticShackles.comps.Comp_MagneticShackles.messageOn>
+
+  <MooGirl_MilkingDevice.label>雪牛娘 榨乳器</MooGirl_MilkingDevice.label>
+  <MooGirl_MilkingDevice.description>一种面向雪牛娘设计的高科技榨乳设备。它会在雪牛娘产乳进度满时自动截留一次产奶，将其压缩储存在内部容器中。储能满后，可由穿戴者手动释放，集中生成雪牛奶。当前版本以功能优先，不包含按储能变化的专用贴图。</MooGirl_MilkingDevice.description>
+
+  <MooGirl_MilkingDeviceHidden.label>雪牛娘 隐藏式榨乳器</MooGirl_MilkingDeviceHidden.label>
+  <MooGirl_MilkingDeviceHidden.description>一款可隐藏在内衣或外层服装下的和谐型榨乳装置。它仍会在雪牛娘产乳进度满时自动截留一次产奶，但更适合在普通穿搭下保持外观低调，仅在需要时再进行控制。</MooGirl_MilkingDeviceHidden.description>
   
   <!-- EN: 雪牛娘 电击项圈 -->
   <MooGirl_ShockCollar.label>雪牛娘 电击项圈</MooGirl_ShockCollar.label>

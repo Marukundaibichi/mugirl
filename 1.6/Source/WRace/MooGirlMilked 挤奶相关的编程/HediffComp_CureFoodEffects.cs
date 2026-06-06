@@ -85,54 +85,7 @@ namespace MooGirl
 
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested, int ingestedCount)
         {
-            if (pawn == null || hediffDef == null) return;
-
-            Hediff hediff = pawn.health.hediffSet.GetFirstHediffOfDef(hediffDef);
-            if (hediff == null)
-            {
-                hediff = HediffMaker.MakeHediff(hediffDef, pawn);
-                if (severity > 0f)
-                {
-                    hediff.Severity = severity;
-                }
-                pawn.health.AddHediff(hediff);
-            }
-            else if (severity > 0f && hediff.Severity < severity)
-            {
-                hediff.Severity = severity;
-            }
-
-            HediffComp_Disappears disappears = hediff.TryGetComp<HediffComp_Disappears>();
-            if (disappears != null)
-            {
-                disappears.ResetElapsedTicks();
-            }
-
-            HediffComp_CureFoodEffects cure = hediff.TryGetComp<HediffComp_CureFoodEffects>();
-            if (cure != null)
-            {
-                cure.ReapplyCure();
-            }
-        }
-    }
-
-    internal static class MooGirlFoodEffectUtility
-    {
-        public static void RemoveHediffs(Pawn pawn, List<string> removeHediffs)
-        {
-            if (pawn == null || removeHediffs == null || removeHediffs.Count == 0) return;
-
-            for (int i = 0; i < removeHediffs.Count; i++)
-            {
-                HediffDef hediffDef = DefDatabase<HediffDef>.GetNamedSilentFail(removeHediffs[i]);
-                if (hediffDef == null) continue;
-
-                Hediff hediff;
-                while ((hediff = pawn.health.hediffSet.GetFirstHediffOfDef(hediffDef)) != null)
-                {
-                    pawn.health.RemoveHediff(hediff);
-                }
-            }
+            MooGirlFoodEffectUtility.AddOrRefreshHediff(pawn, hediffDef, severity);
         }
     }
 }

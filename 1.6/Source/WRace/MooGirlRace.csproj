@@ -62,8 +62,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\MooGirlBootstrap.cs" />
+    <Compile Include="Core\MooGirlFeatureRegistry.cs" />
+    <Compile Include="Core\MooGirlIdentity.cs" />
+    <Compile Include="Core\MooGirlLog.cs" />
+    <Compile Include="Core\MooGirlOptionalDefs.cs" />
+    <Compile Include="Core\MooGirlPatchRegistry.cs" />
+    <Compile Include="Core\MooGirlRequiredDefs.cs" />
+    <Compile Include="Core\MooGirlTickUtility.cs" />
+    <Compile Include="Features\Apparel\MooGirlApparelTagUtility.cs" />
+    <Compile Include="Features\Milk\MooGirlBreastProfileUtility.cs" />
+    <Compile Include="Features\Milk\MooGirlFoodEffectUtility.cs" />
+    <Compile Include="Features\Milk\MooGirlMilkEffectUtility.cs" />
+    <Compile Include="Features\Milk\MooGirlMilkInteractionUtility.cs" />
+    <Compile Include="Features\Milk\MooGirlMilkOutputUtility.cs" />
+    <Compile Include="UI\MooGirlSettingsWindow.cs" />
     <Compile Include="bondageclothes束具的编程\comp\电击项圈CompProperties_ShockCollar.cs" />
-    <Compile Include="bondageclothes束具的编程\comp\电击项圈备份%28不能用,太难特有的条件判断方法几乎不工作，只能自己用计时器检查%29CompProperties_ShockCollar.cs" />
     <Compile Include="bondageclothes束具的编程\comp\CompProperties_AdvancedSlaveApparel.cs" />
     <Compile Include="bondageclothes束具的编程\comp\CompProperties_DevUnlockSlaveApparel.cs" />
     <Compile Include="bondageclothes束具的编程\comp\磁力镣铐CompProperties_MagneticShackles.cs" />
@@ -74,7 +88,6 @@
     <Compile Include="bondageclothes束具的编程\comp\CompProperties_TargetEffectCrackBondageGear.cs" />
     <Compile Include="bondageclothes束具的编程\comp\CompUnlockBondageGear.cs" />
     <Compile Include="bondageclothes束具的编程\comp\CompStampedApparelKey.cs" />
-    <Compile Include="bondageclothes束具的编程\comp\电击项圈备份备份CompProperties_ShockCollar.cs" />
     <Compile Include="bondageclothes束具的编程\comp\脑控头盔组件的属性类CompProperties_BrainwashHelmet.cs" />
     <Compile Include="bondageclothes束具的编程\Harmony_PawnStoryTracker_SkinColor.cs" />
     <Compile Include="bondageclothes束具的编程\HediffCompProperties_DisappearsAndAddHeiffs.cs" />
@@ -102,6 +115,7 @@
     <Compile Include="GeneAndAbility\JobDriver_CastCharge.cs" />
     <Compile Include="MooGirlMilked 挤奶相关的编程\CompMooMilkable.cs" />
     <Compile Include="MooGirlMilked 挤奶相关的编程\Harmony_Apparel_PawnCanWear_MilkingDevice.cs" />
+    <Compile Include="MooGirlMilked 挤奶相关的编程\Comp_MilkingDevice.cs" />
     <Compile Include="MooGirlMilked 挤奶相关的编程\CompProperties_MilkingDevice.cs" />
     <Compile Include="MooGirlMilked 挤奶相关的编程\CompProperties_MilkingDeviceReleaseEffect.cs" />
     <Compile Include="MooGirlMilked 挤奶相关的编程\CompMooHasBodyResource.cs" />
@@ -117,7 +131,6 @@
     <Compile Include="MooGirlsJoins加入方式的编程\MooGirlWildSlaveUtility.cs" />
     <Compile Include="MooGirlsJoins加入方式的编程\MooGirlRescueJoinUtility.cs" />
     <Compile Include="MooGirlsJoins加入方式的编程\QuestPart_MooGirlRescueJoin.cs" />
-    <Compile Include="MooGirlsJoins加入方式的编程\MooGirl_ConvertComp.cs" />
     <Compile Include="MooGirlsJoins加入方式的编程\MooGirl_IdeoUtility.cs" />
     <Compile Include="MooGirlsJoins加入方式的编程\用于管理与坠机任务相关的游戏状态和逻辑MooGirl_GameCom.cs" />
     <Compile Include="MooGirlsJoins加入方式的编程\QuestNode_Root_MooGirl_OpeningPodCrash.cs" />
@@ -179,6 +192,9 @@
     <Compile Include="MooGirlMilked 挤奶相关的编程\Gizmo_MilkGauge.cs" />
     <Compile Include="MooGirlMilked 挤奶相关的编程\HediffComp_Lactation.cs" />
     <Compile Include="MooGirlMilked 挤奶相关的编程\MooGirlNurtureUtility.cs" />
+    <Compile Include="MooGirlMilked 挤奶相关的编程\HediffComp_MooGirlNurtureProgress.cs" />
+    <Compile Include="MooGirlMilked 挤奶相关的编程\Harmony_MooGirlNurtureGrowthPoints.cs" />
+    <Compile Include="MooGirlMilked 挤奶相关的编程\Harmony_MooGirlNurturedSkillLearnCap.cs" />
     <Compile Include="MooGirlMilked 挤奶相关的编程\Harmony_BreastfedGrowthPoints.cs" />
     <Compile Include="MooGirlMilked 挤奶相关的编程\Harmony_MooGirlBabyFeeding.cs" />
     <Compile Include="MooGirlMilked 挤奶相关的编程\JobDriver_Breastfeed.cs" />
@@ -193,7 +209,6 @@
     <Compile Include="MooGirlsJoins加入方式的编程\QuestNode_Root_MooGirl_CourierRaid.cs" />
     <Compile Include="MooGirlsJoins加入方式的编程\QuestPart_CourierRaid.cs" />
     <Compile Include="Defof\AiGenerated_DefOf.cs" />
-    <Compile Include="OtherFunction\AiGenerated_Init.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

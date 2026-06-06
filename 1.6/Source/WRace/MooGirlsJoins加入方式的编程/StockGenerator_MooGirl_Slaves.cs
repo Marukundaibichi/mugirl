@@ -71,67 +71,9 @@ public class StockGenerator_MooGirl_Slaves : StockGenerator
             Pawn pawn = PawnGenerator.GeneratePawn(request);
 
             // 只有当 Ideo 中存在 preventApparelRequirements 的 meme 时才再穿一次服装
-            ApplyApparelTagsIfMemeAllows(pawn);
+            MooGirlApparelTagUtility.TryWearIdeoSuppressedKindApparel(pawn);
 
             yield return pawn;
-        }
-    }
-
-    // 检测 preventApparelRequirements 并穿上 PawnKindDef.apparelTags
-    private void ApplyApparelTagsIfMemeAllows(Pawn pawn)
-    {
-        if (pawn.kindDef.apparelTags == null || pawn.kindDef.apparelTags.Count == 0)
-            return;
-
-        bool hasPreventMeme = false;
-
-        if (pawn.Ideo != null)
-        {
-            foreach (var meme in pawn.Ideo.memes)
-            {
-                if (meme.preventApparelRequirements)
-                {
-                    hasPreventMeme = true;
-                    break;
-                }
-            }
-        }
-
-        if (!hasPreventMeme)
-            return; // 没有 preventApparelRequirements，不穿额外服装
-
-        List<string> apparelTags = pawn.kindDef.apparelTags.ToList();
-
-        foreach (var tag in apparelTags)
-        {
-            var candidates = DefDatabase<ThingDef>.AllDefsListForReading
-                .Where(td => td.IsApparel
-                             && td.apparel != null
-                             && td.apparel.tags != null
-                             && td.apparel.tags.Contains(tag)
-                             && AdultContentUtility.IsAllowed(td))
-                .ToList();
-
-            if (candidates.Count > 0)
-            {
-                ThingDef chosenDef = candidates.RandomElement();
-                Apparel newApparel;
-
-                if (chosenDef.MadeFromStuff)
-                {
-                    ThingDef stuff = GenStuff.RandomStuffFor(chosenDef);
-                    newApparel = (Apparel)ThingMaker.MakeThing(chosenDef, stuff);
-                }
-                else
-                {
-                    newApparel = (Apparel)ThingMaker.MakeThing(chosenDef, null);
-                }
-
-                // 只给特定类上锁
-                bool shouldLock = newApparel is AdvancedSlaveApparel || newApparel is BrainWashSlaveApparel;
-
-                pawn.apparel.Wear(newApparel, dropReplacedApparel: true, locked: shouldLock);
-            }
         }
     }
 

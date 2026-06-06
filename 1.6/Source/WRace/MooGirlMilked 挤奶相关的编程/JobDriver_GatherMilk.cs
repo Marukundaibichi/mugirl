@@ -69,14 +69,7 @@ namespace MooGirl  // 定义命名空间MooGirl，用于组织相关类
             if (comp.GatheredFixed(doer, out int milkAmount) && milkAmount > 0)
             {
                 ThingDef milkDef = MooGirl_DefOf.MooGirl_Milk;
-                while (milkAmount > 0)
-                {
-                    int stack = Mathf.Clamp(milkAmount, 1, milkDef.stackLimit);
-                    milkAmount -= stack;
-                    Thing thing = ThingMaker.MakeThing(milkDef);
-                    thing.stackCount = stack;
-                    GenPlace.TryPlaceThing(thing, doer.Position, doer.Map, ThingPlaceMode.Near);
-                }
+                MooGirlMilkOutputUtility.SpawnStacksNear(milkDef, milkAmount, doer.Position, doer.Map);
             }
 
             comp.SpawnMilkEffect();

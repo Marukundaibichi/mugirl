@@ -57,19 +57,19 @@
 	<JobDef>
 		<defName>Job_Breastfeed</defName>
 		<driverClass>MooGirl.JobDriver_Breastfeed</driverClass>
-		<reportString>给 TargetA 喂奶.</reportString>
+		<reportString>Job_Breastfeed.reportString</reportString>
 	</JobDef>
 
 	<JobDef>
 		<defName>Job_DrinkMilkFromMooGirl</defName>
 		<driverClass>MooGirl.JobDriver_DrinkMilkFromMooGirl</driverClass>
-		<reportString>从 TargetA 喝奶.</reportString>
+		<reportString>Job_DrinkMilkFromMooGirl.reportString</reportString>
 	</JobDef>
 
 	<JobDef>
 		<defName>Job_FeedMilkToDowned</defName>
 		<driverClass>MooGirl.JobDriver_FeedMilkToDowned</driverClass>
-		<reportString>给 TargetA 喂奶.</reportString>
+		<reportString>Job_FeedMilkToDowned.reportString</reportString>
 	</JobDef>
 
 </Defs>

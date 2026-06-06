@@ -56,8 +56,8 @@
     <commonality>0</commonality>
     <degreeDatas>
       <li>
-        <label>雪牛娘哺育</label>
-        <description>{PAWN_nameDef}在小时候得到了雪牛娘温柔的哺育，拥有更好的成长。</description>
+        <label>MooGirl_NurturedByMooGirl.degreeDatas.0.label</label>
+        <description>MooGirl_NurturedByMooGirl.degreeDatas.0.description</description>
         <statFactors>
           <GlobalLearningFactor>1.2</GlobalLearningFactor>
         </statFactors>

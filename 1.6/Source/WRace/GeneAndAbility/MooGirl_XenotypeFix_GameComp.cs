@@ -61,7 +61,7 @@ namespace MooGirl
 
         private static bool IsMooGirlPawn(Pawn pawn)
         {
-            return pawn != null && (pawn.def == MooGirl_DefOf.MooGirl || pawn.RaceProps?.body == MooGirl_DefOf.MooGirlBody);
+            return MooGirlIdentity.IsMooGirlPawn(pawn);
         }
     }
 

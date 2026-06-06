@@ -11,7 +11,7 @@ namespace MooGirl
 
         public static bool NormalizeBodyType(Pawn pawn)
         {
-            if (!ModsConfig.BiotechActive || pawn?.story == null || !IsMooGirl(pawn))
+            if (!ModsConfig.BiotechActive || pawn?.story == null || !MooGirlIdentity.IsMooGirlPawn(pawn))
             {
                 return false;
             }
@@ -58,11 +58,6 @@ namespace MooGirl
             }
 
             return changed;
-        }
-
-        private static bool IsMooGirl(Pawn pawn)
-        {
-            return pawn?.def == MooGirl_DefOf.MooGirl || pawn?.RaceProps?.body == MooGirl_DefOf.MooGirlBody;
         }
 
         private static bool IsTeenagerLifeStage(Pawn pawn)

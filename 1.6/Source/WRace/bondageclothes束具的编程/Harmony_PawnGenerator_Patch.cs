@@ -5,17 +5,8 @@ using Verse;
 namespace MooGirl
 {
 
-    [StaticConstructorOnStartup]
     public static class PawnGenerator_GeneratePawn_Patch
     {
-        static PawnGenerator_GeneratePawn_Patch()
-        {
-            MooGirlMod.harmony.Patch(
-                AccessTools.Method(typeof(PawnGenerator), "GeneratePawn", new Type[] { typeof(PawnGenerationRequest) }),
-                postfix: new HarmonyMethod(typeof(PawnGenerator_GeneratePawn_Patch), nameof(Postfix))
-            );
-        }
-
         public static void Postfix(Pawn __result)
         {
             if (__result == null || __result.apparel == null) return;

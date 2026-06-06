@@ -10,8 +10,8 @@ namespace MooGirl
     {
         public MooGirlMod(ModContentPack modContentPack) : base(modContentPack)
         {
-            harmony = new Harmony("MooGirlMod.Mod");
-            harmony.PatchAll();
+            MooGirlBootstrap.Initialize();
+            harmony = MooGirlBootstrap.Harmony;
             settings = GetSettings<MechanoidWorkControlSettings>();
         }
 
@@ -35,34 +35,8 @@ namespace MooGirl
 
         public override void DoSettingsWindowContents(Rect inRect)
         {
-            settings.DoWindowContents(inRect);
-            Listing_Standard listingStandard = new Listing_Standard();
-            listingStandard.Begin(inRect);
-
-            listingStandard.Gap(12f);
-
-            // 添加事件开关选项
-            listingStandard.CheckboxLabeled("启用牛牛坠机事件", ref settings.enableStructuralCrashEvent,
-                "控制是否启用牛牛坠机事件。取消勾选将禁用该事件的触发。");
-
-            listingStandard.Gap(12f);
-            listingStandard.CheckboxLabeled("快速榨乳", ref settings.enableFastMilking,
-                "开启后，雪牛娘的自己榨乳和他人榨乳工作时间都会缩短为 1 秒。");
-
-            listingStandard.Gap(12f);
-            bool oldAdultContent = settings.enableAdultContent;
-            bool enableAdultContent = settings.enableAdultContent;
-            listingStandard.CheckboxLabeled("启用18禁内容", ref enableAdultContent,
-                "关闭后，18禁服装与道具不会继续生成，地图、商队、商人库存以及角色身上的相关物品会被直接清除。");
-            settings.enableAdultContent = enableAdultContent;
-            if (oldAdultContent && !enableAdultContent)
-            {
-                AdultContentUtility.CleanupAllAdultContent(removeWornApparel: true);
-            }
-            listingStandard.End();
-            // 确保设置保存
+            MooGirlSettingsWindow.Draw(inRect, settings);
             base.DoSettingsWindowContents(inRect);
-
         }
 
     }
@@ -76,7 +50,6 @@ namespace MooGirl
 
             // 保存和加载牛牛坠机事件是否启用 的值
             Scribe_Values.Look(ref enableStructuralCrashEvent, "enableStructuralCrashEvent", true);
-            Scribe_Values.Look(ref enableAdultContent, "enableAdultContent", false);
             Scribe_Values.Look(ref enableFastMilking, "enableFastMilking", false);
         }
 
@@ -89,8 +62,6 @@ namespace MooGirl
         }
         // 控制牛牛坠机事件事件是否启用的开关
         public bool enableStructuralCrashEvent = true;
-
-        public bool enableAdultContent = false;
 
         public bool enableFastMilking = false;
     }

@@ -3,11 +3,11 @@
 
 	<WorkGiverDef>
 		<defName>Work_GatherMilk</defName>
-		<label>自己挤奶</label>
+		<label>Work_GatherMilk.label</label>
 		<giverClass>MooGirl.WorkGiver_GatherMilk</giverClass>
 		<workType>Handling</workType>
-		<verb>milk</verb>
-		<gerund>milking</gerund>
+		<verb>Work_GatherMilk.verb</verb>
+		<gerund>Work_GatherMilk.gerund</gerund>
 		<directOrderable>false</directOrderable>
 		<priorityInType>90</priorityInType>
 		<requiredCapacities>
@@ -18,7 +18,7 @@
 	<JobDef>
 		<defName>Job_GatherMilk</defName>
 		<driverClass>MooGirl.JobDriver_GatherMilk</driverClass>
-		<reportString>给 TargetA 挤奶.</reportString>
+		<reportString>Job_GatherMilk.reportString</reportString>
 		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
 	</JobDef>
 </Defs>

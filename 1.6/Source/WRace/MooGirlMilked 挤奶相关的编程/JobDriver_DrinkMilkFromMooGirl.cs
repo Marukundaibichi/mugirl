@@ -24,7 +24,7 @@ namespace MooGirl
 
             yield return Toils_Goto.GotoThing(MooInd, PathEndMode.Touch);
 
-            Toil drink = Toils_General.Wait(400, MooInd);
+            Toil drink = Toils_General.Wait(MooGirlMilkInteractionUtility.DirectMilkInteractionTicks, MooInd);
             drink.WithProgressBarToilDelay(MooInd);
             drink.FailOnCannotTouch(MooInd, PathEndMode.Touch);
             yield return drink;
@@ -34,39 +34,7 @@ namespace MooGirl
 
         private void ApplyDrinkEffects()
         {
-            // 补满饱食度
-            if (Drinker.needs?.food != null)
-            {
-                Drinker.needs.food.CurLevel += 0.5f;
-            }
-
-            // 添加喝奶心情（+12 mood）
-            ThoughtDef drinkThought = DefDatabase<ThoughtDef>.GetNamed("MooGirl_DrankMilk");
-            if (drinkThought != null)
-            {
-                Drinker.needs.mood?.thoughts?.memories?.TryGainMemory(drinkThought);
-            }
-
-            // 添加 Consumed_MooGirlMilk 想法（+8 mood，自动添加疗愈 hediff）
-            ThoughtDef milkThought = DefDatabase<ThoughtDef>.GetNamed("Consumed_MooGirlMilk");
-            if (milkThought != null)
-            {
-                Drinker.needs.mood?.thoughts?.memories?.TryGainMemory(milkThought);
-            }
-
-            // 如果雪牛娘倒地，额外添加强化疗愈效果
-            if (MooPawn.Downed)
-            {
-                HediffDef healingDef = DefDatabase<HediffDef>.GetNamed("MooGirl_MilkHealing");
-                if (healingDef != null && !Drinker.health.hediffSet.HasHediff(healingDef))
-                {
-                    Drinker.health.AddHediff(healingDef);
-                }
-            }
-
-            // 消耗雪牛娘 5% 奶量
-            CompMooMilkable comp = MooPawn.TryGetComp<CompMooMilkable>();
-            comp?.ConsumePercentage(0.05f);
+            MooGirlMilkInteractionUtility.ApplyAdultDrink(Drinker, MooPawn);
         }
     }
 }

@@ -4,8 +4,8 @@
   <HediffDef>
     <defName>MooGirl_Lactation</defName>
     <hediffClass>HediffWithComps</hediffClass>
-    <label>哺乳期</label>
-    <description>雪牛娘处于泌乳状态，可以哺育幼崽。乳汁分泌速度受营养状况影响。</description>
+    <label>MooGirl_Lactation.label</label>
+    <description>MooGirl_Lactation.description</description>
     <isBad>false</isBad>
     <scenarioCanAdd>false</scenarioCanAdd>
     <comps>
@@ -21,8 +21,8 @@
   <HediffDef>
     <defName>MooGirl_MotherlyNurture</defName>
     <hediffClass>HediffWithComps</hediffClass>
-    <label>雪牛娘妈妈的哺育</label>
-    <description>这个孩子正在接受雪牛娘温柔而充足的哺育。进度越高，成长评级和学习能力加成越强。</description>
+    <label>MooGirl_MotherlyNurture.label</label>
+    <description>MooGirl_MotherlyNurture.description</description>
     <isBad>false</isBad>
     <defaultLabelColor>(255,192,203)</defaultLabelColor>
     <scenarioCanAdd>false</scenarioCanAdd>
@@ -32,21 +32,21 @@
     <stages>
       <li>
         <minSeverity>0</minSeverity>
-        <label>萌芽</label>
+        <label>MooGirl_MotherlyNurture.stages.0.label</label>
         <statFactors>
           <GlobalLearningFactor>1.5</GlobalLearningFactor>
         </statFactors>
       </li>
       <li>
         <minSeverity>0.4</minSeverity>
-        <label>充盈</label>
+        <label>MooGirl_MotherlyNurture.stages.1.label</label>
         <statFactors>
           <GlobalLearningFactor>2.0</GlobalLearningFactor>
         </statFactors>
       </li>
       <li>
         <minSeverity>0.7</minSeverity>
-        <label>圆满</label>
+        <label>MooGirl_MotherlyNurture.stages.2.label</label>
         <statFactors>
           <GlobalLearningFactor>2.5</GlobalLearningFactor>
         </statFactors>
@@ -60,8 +60,8 @@
   <HediffDef>
     <defName>MooGirl_NurtureAfterglow</defName>
     <hediffClass>HediffWithComps</hediffClass>
-    <label>雪牛娘哺育余韵</label>
-    <description>雪牛娘长期哺育留下的成长余韵仍在这个孩子身上延续。</description>
+    <label>MooGirl_NurtureAfterglow.label</label>
+    <description>MooGirl_NurtureAfterglow.description</description>
     <isBad>false</isBad>
     <scenarioCanAdd>false</scenarioCanAdd>
     <stages>

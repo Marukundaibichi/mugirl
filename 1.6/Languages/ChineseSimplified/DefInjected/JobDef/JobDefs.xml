@@ -9,6 +9,12 @@
   
   <!-- EN: 跟随 TargetA. -->
   <Job_FollowRoper.reportString>跟随 {TargetA}</Job_FollowRoper.reportString>
+
+  <Job_Breastfeed.reportString>给 {TargetA} 喂奶</Job_Breastfeed.reportString>
+
+  <Job_DrinkMilkFromMooGirl.reportString>从 {TargetA} 喝奶</Job_DrinkMilkFromMooGirl.reportString>
+
+  <Job_FeedMilkToDowned.reportString>给 {TargetA} 喂奶</Job_FeedMilkToDowned.reportString>
   
   <!-- EN: 蹭蹭 TargetA. -->
   <Job_Nuzzle.reportString>蹭蹭 {TargetA}</Job_Nuzzle.reportString>

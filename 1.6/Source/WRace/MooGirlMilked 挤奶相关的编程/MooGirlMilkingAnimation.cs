@@ -343,9 +343,9 @@ namespace MooGirl
                 return;
             }
 
-            FleckDef foamSpray = DefDatabase<FleckDef>.GetNamedSilentFail("FoamSpray");
-            FleckDef fallbackSplash = DefDatabase<FleckDef>.GetNamedSilentFail("MooGirl_MilkSpray")
-                ?? DefDatabase<FleckDef>.GetNamedSilentFail("GroundWaterSplash");
+            FleckDef foamSpray = MooGirlOptionalDefs.FleckDefs.FoamSpray;
+            FleckDef fallbackSplash = MooGirlOptionalDefs.FleckDefs.MooGirlMilkSpray
+                ?? MooGirlOptionalDefs.FleckDefs.GroundWaterSplash;
 
             FleckDef mainFleck = foamSpray ?? fallbackSplash;
             if (mainFleck == null)

@@ -748,7 +748,7 @@
 			<!-- <li Class="MooGirl.CompProperties_ShowRopedBy" /> -->
 			<li Class="MooGirl.CompProperties_MooGirlMount" />
 			<li Class="MooGirl.CompProperties_MooMilkable">
-				<displayString>雪牛奶</displayString>
+				<displayString>MooGirl.Milk.FullnessDisplay</displayString>
 				<milkDef>MooGirl_Milk</milkDef>
 				<milkIntervalDays>0.06</milkIntervalDays>
 				<milkAmount>1</milkAmount>

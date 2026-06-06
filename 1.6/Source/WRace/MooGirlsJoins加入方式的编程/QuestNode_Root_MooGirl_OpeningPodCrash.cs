@@ -4,7 +4,6 @@ using RimWorld;
 using RimWorld.Planet;
 using System;
 using Verse.AI;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace MooGirl
@@ -49,60 +48,7 @@ namespace MooGirl
 
             MooGirl_IdeoUtility.AdoptPlayerPrimaryIdeo(pawn);
 
-            // 检查是否允许服装要求（根据信仰系统）
-            bool allowApparelRequirements = false;
-            if (pawn.Ideo != null)
-            {
-                foreach (var meme in pawn.Ideo.memes)
-                {
-                    if (meme.preventApparelRequirements)
-                    {
-                        allowApparelRequirements = true;
-                        break;
-                    }
-                }
-            }
-
-            // 如果允许服装要求且角色定义包含服装标签，则生成对应服装
-            if (allowApparelRequirements && pawn.kindDef.apparelTags != null && pawn.kindDef.apparelTags.Count > 0)
-            {
-                List<string> apparelTags = pawn.kindDef.apparelTags.ToList();
-
-                foreach (var tag in apparelTags)
-                {
-                    // 查找匹配标签的服装定义
-                    var candidates = DefDatabase<ThingDef>.AllDefsListForReading
-                        .Where(td => td.IsApparel
-                                     && td.apparel != null
-                                     && td.apparel.tags != null
-                                     && td.apparel.tags.Contains(tag)
-                                     && AdultContentUtility.IsAllowed(td))
-                        .ToList();
-
-                    if (candidates.Count > 0)
-                    {
-                        // 随机选择服装并实例化
-                        ThingDef chosenDef = candidates.RandomElement();
-                        Apparel newApparel;
-
-                        if (chosenDef.MadeFromStuff)
-                        {
-                            ThingDef stuff = GenStuff.RandomStuffFor(chosenDef);
-                            newApparel = (Apparel)ThingMaker.MakeThing(chosenDef, stuff);
-                        }
-                        else
-                        {
-                            newApparel = (Apparel)ThingMaker.MakeThing(chosenDef, null);
-                        }
-
-                        // 判断是否需要锁定服装（特殊类型）
-                        bool shouldLock = newApparel is AdvancedSlaveApparel || newApparel is BrainWashSlaveApparel;
-
-                        // 穿戴服装
-                        pawn.apparel.Wear(newApparel, dropReplacedApparel: true, locked: shouldLock);
-                    }
-                }
-            }
+            MooGirlApparelTagUtility.TryWearIdeoSuppressedKindApparel(pawn);
 
             // 添加自定义健康状态：行动不能症
             pawn.health.AddHediff(MooGirl_DefOf.MooGirl_Abasia);

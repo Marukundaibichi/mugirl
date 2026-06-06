@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <MooGirl_MakeMilkPudding.label>make Mugirl milk pudding</MooGirl_MakeMilkPudding.label>
+  <MooGirl_MakeMilkPudding.description>Make milk pudding with Mugirl milk and vegetarian ingredients.</MooGirl_MakeMilkPudding.description>
+  <MooGirl_MakeMilkPudding.jobString>Making Mugirl milk pudding.</MooGirl_MakeMilkPudding.jobString>
+  <MooGirl_MakeCheese.label>make Mugirl cheese</MooGirl_MakeCheese.label>
+  <MooGirl_MakeCheese.description>Make cheese with Mugirl milk.</MooGirl_MakeCheese.description>
+  <MooGirl_MakeCheese.jobString>Making Mugirl cheese.</MooGirl_MakeCheese.jobString>
+  <MooGirl_MakeAgedCheese.label>make aged Mugirl cheese</MooGirl_MakeAgedCheese.label>
+  <MooGirl_MakeAgedCheese.description>Make aged cheese with Mugirl milk and hops.</MooGirl_MakeAgedCheese.description>
+  <MooGirl_MakeAgedCheese.jobString>Making aged Mugirl cheese.</MooGirl_MakeAgedCheese.jobString>
+  <MooGirl_MakeBaotaSugar.label>make Mugirl milk baota candy</MooGirl_MakeBaotaSugar.label>
+  <MooGirl_MakeBaotaSugar.description>Make candy dewormer with Mugirl milk and herbal medicine.</MooGirl_MakeBaotaSugar.description>
+  <MooGirl_MakeBaotaSugar.jobString>Making Mugirl milk baota candy.</MooGirl_MakeBaotaSugar.jobString>
+  <MooGirl_MakeMilkCandy.label>make big cow milk candy</MooGirl_MakeMilkCandy.label>
+  <MooGirl_MakeMilkCandy.description>Make milk candy with Mugirl milk.</MooGirl_MakeMilkCandy.description>
+  <MooGirl_MakeMilkCandy.jobString>Making big cow milk candy.</MooGirl_MakeMilkCandy.jobString>
+  <MooGirl_MakeCowCake.label>make Mugirl milk cake</MooGirl_MakeCowCake.label>
+  <MooGirl_MakeCowCake.description>Make cake with Mugirl milk and vegetarian ingredients.</MooGirl_MakeCowCake.description>
+  <MooGirl_MakeCowCake.jobString>Making Mugirl milk cake.</MooGirl_MakeCowCake.jobString>
+  <MooGirl_MakeMilkPowder.label>make Mugirl milk powder</MooGirl_MakeMilkPowder.label>
+  <MooGirl_MakeMilkPowder.description>Make milk powder with Mugirl milk.</MooGirl_MakeMilkPowder.description>
+  <MooGirl_MakeMilkPowder.jobString>Making Mugirl milk powder.</MooGirl_MakeMilkPowder.jobString>
+  <MooGirl_MakeMilkTablet.label>make Mugirl milk tablets</MooGirl_MakeMilkTablet.label>
+  <MooGirl_MakeMilkTablet.description>Make milk tablets with Mugirl milk and herbal medicine.</MooGirl_MakeMilkTablet.description>
+  <MooGirl_MakeMilkTablet.jobString>Making Mugirl milk tablets.</MooGirl_MakeMilkTablet.jobString>
+  <MooGirl_MakeMilkCreamApple.label>make milk cream apple</MooGirl_MakeMilkCreamApple.label>
+  <MooGirl_MakeMilkCreamApple.description>Make milk cream apple with Mugirl milk and vegetarian ingredients.</MooGirl_MakeMilkCreamApple.description>
+  <MooGirl_MakeMilkCreamApple.jobString>Making milk cream apple.</MooGirl_MakeMilkCreamApple.jobString>
+</LanguageData>

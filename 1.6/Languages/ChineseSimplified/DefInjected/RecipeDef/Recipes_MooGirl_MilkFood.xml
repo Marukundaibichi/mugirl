@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <MooGirl_MakeMilkPudding.label>制作雪牛娘奶布丁</MooGirl_MakeMilkPudding.label>
+  <MooGirl_MakeMilkPudding.description>用雪牛娘奶和素食制作奶布丁</MooGirl_MakeMilkPudding.description>
+  <MooGirl_MakeMilkPudding.jobString>正在制作雪牛娘奶布丁</MooGirl_MakeMilkPudding.jobString>
+  <MooGirl_MakeCheese.label>制作雪牛娘奶酪</MooGirl_MakeCheese.label>
+  <MooGirl_MakeCheese.description>用雪牛娘奶制作奶酪</MooGirl_MakeCheese.description>
+  <MooGirl_MakeCheese.jobString>正在制作雪牛娘奶酪</MooGirl_MakeCheese.jobString>
+  <MooGirl_MakeAgedCheese.label>制作雪牛娘陈年奶酪</MooGirl_MakeAgedCheese.label>
+  <MooGirl_MakeAgedCheese.description>用雪牛娘奶和啤酒花制作陈年奶酪</MooGirl_MakeAgedCheese.description>
+  <MooGirl_MakeAgedCheese.jobString>正在制作雪牛娘陈年奶酪</MooGirl_MakeAgedCheese.jobString>
+  <MooGirl_MakeBaotaSugar.label>制作雪牛娘奶宝塔糖</MooGirl_MakeBaotaSugar.label>
+  <MooGirl_MakeBaotaSugar.description>用雪牛娘奶和草药制作糖果打虫药</MooGirl_MakeBaotaSugar.description>
+  <MooGirl_MakeBaotaSugar.jobString>正在制作雪牛娘奶宝塔糖</MooGirl_MakeBaotaSugar.jobString>
+  <MooGirl_MakeMilkCandy.label>制作大肥牛奶糖</MooGirl_MakeMilkCandy.label>
+  <MooGirl_MakeMilkCandy.description>用雪牛娘奶制作奶糖</MooGirl_MakeMilkCandy.description>
+  <MooGirl_MakeMilkCandy.jobString>正在制作大肥牛奶糖</MooGirl_MakeMilkCandy.jobString>
+  <MooGirl_MakeCowCake.label>制作雪牛娘牛乳蛋糕</MooGirl_MakeCowCake.label>
+  <MooGirl_MakeCowCake.description>用雪牛娘奶和素食制作蛋糕</MooGirl_MakeCowCake.description>
+  <MooGirl_MakeCowCake.jobString>正在制作雪牛娘牛乳蛋糕</MooGirl_MakeCowCake.jobString>
+  <MooGirl_MakeMilkPowder.label>制作雪牛娘奶粉</MooGirl_MakeMilkPowder.label>
+  <MooGirl_MakeMilkPowder.description>用雪牛娘奶制作奶粉</MooGirl_MakeMilkPowder.description>
+  <MooGirl_MakeMilkPowder.jobString>正在制作雪牛娘奶粉</MooGirl_MakeMilkPowder.jobString>
+  <MooGirl_MakeMilkTablet.label>制作雪牛娘奶片</MooGirl_MakeMilkTablet.label>
+  <MooGirl_MakeMilkTablet.description>用雪牛娘奶和药草制作奶片</MooGirl_MakeMilkTablet.description>
+  <MooGirl_MakeMilkTablet.jobString>正在制作雪牛娘奶片</MooGirl_MakeMilkTablet.jobString>
+  <MooGirl_MakeMilkCreamApple.label>制作奶霜苹果</MooGirl_MakeMilkCreamApple.label>
+  <MooGirl_MakeMilkCreamApple.description>用雪牛娘奶和素食制作奶霜苹果</MooGirl_MakeMilkCreamApple.description>
+  <MooGirl_MakeMilkCreamApple.jobString>正在制作奶霜苹果</MooGirl_MakeMilkCreamApple.jobString>
+</LanguageData>

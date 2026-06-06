@@ -1,9 +1,6 @@
 ﻿using RimWorld;
 using System.Collections.Generic;
-using UnityEngine;
 using Verse;
-using Verse.AI;
-using Verse.Sound;
 
 namespace MooGirl
 {
@@ -16,8 +13,10 @@ namespace MooGirl
             this.compClass = typeof(CompMooMilkable);
         }
 
-        // 显示字符串键名，用于本地化显示
-        public string displayString = "MilkFullness";
+        // 显示翻译键，仅用于玩家可见文本。
+        public string displayString = "MooGirl.Milk.FullnessDisplay";
+        // 存档字段名必须与显示文本解耦，避免翻译调整影响存档结构。
+        public string saveKey = "milkFullness";
         // 每次产奶的量
         public float milkAmount = 1f;
         // 是否仅限女性可产奶
@@ -65,7 +64,7 @@ namespace MooGirl
         {
             get
             {
-                return "milkFullness" + this.Props.displayString;
+                return Props.saveKey;
             }
         }
 
@@ -136,26 +135,12 @@ namespace MooGirl
         {
             get
             {
-                // 先检查基类激活状态
                 if (!base.Active)
                 {
                     return false;
                 }
 
-                // 尝试将父对象转换为Pawn（角色）
-                Pawn pawn = this.parent as Pawn;
-                if (pawn == null)
-                {
-                    return false;
-                }
-
-                // 检查条件：
-                // 1. 如果限制女性则检查性别
-                // 2. 检查是否处于可繁殖生命周期阶段
-                // 3. 检查是否是人类like种族
-                return (!this.Props.milkFemaleOnly || pawn.gender == Gender.Female) &&
-                       pawn.ageTracker.CurLifeStage.reproductive &&
-                       pawn.RaceProps.Humanlike;
+                return CanProduceMilk(MooPawn);
             }
         }
 
@@ -178,7 +163,7 @@ namespace MooGirl
         {
             float multiplier = base.GetProductionMultiplier(pawn);
 
-            HediffDef lactationDef = DefDatabase<HediffDef>.GetNamedSilentFail("MooGirl_Lactation");
+            HediffDef lactationDef = MooGirlOptionalDefs.Hediffs.MooGirlLactation;
             if (lactationDef != null)
             {
                 Hediff lactationHediff = pawn.health.hediffSet.GetFirstHediffOfDef(lactationDef);
@@ -199,14 +184,31 @@ namespace MooGirl
         public override void CompTick()
         {
             base.CompTick();
+            EnsureLactationHediff();
+        }
 
-            if (Active && MooPawn != null)
+        private bool CanProduceMilk(Pawn pawn)
+        {
+            return pawn != null
+                && (!Props.milkFemaleOnly || pawn.gender == Gender.Female)
+                && pawn.ageTracker.CurLifeStage.reproductive
+                && pawn.RaceProps.Humanlike;
+        }
+
+        private void EnsureLactationHediff()
+        {
+            // 当前行为是在 comp 激活后尽快添加哺乳期 hediff。
+            // 改为事件驱动或低频检查会改变添加时机。
+            Pawn pawn = MooPawn;
+            if (!Active || pawn == null)
             {
-                HediffDef lactationDef = DefDatabase<HediffDef>.GetNamedSilentFail("MooGirl_Lactation");
-                if (lactationDef != null && !MooPawn.health.hediffSet.HasHediff(lactationDef))
-                {
-                    MooPawn.health.AddHediff(lactationDef);
-                }
+                return;
+            }
+
+            HediffDef lactationDef = MooGirlOptionalDefs.Hediffs.MooGirlLactation;
+            if (lactationDef != null && !pawn.health.hediffSet.HasHediff(lactationDef))
+            {
+                pawn.health.AddHediff(lactationDef);
             }
         }
 
@@ -219,25 +221,26 @@ namespace MooGirl
             }
 
             // 奶量槽
-            yield return new Gizmo_MilkGauge(this, "泌乳量",
-                "雪牛娘当前的乳汁饱满度。红线标记为自动挤奶阈值，到达后将由殖民者自动进行挤奶工作。");
+            yield return new Gizmo_MilkGauge(this,
+                "MooGirl.Milk.Gauge.Label".Translate(),
+                "MooGirl.Milk.Gauge.Desc".Translate());
 
             if (Prefs.DevMode)
             {
                 yield return new Command_Action
                 {
-                    defaultLabel = "Dev: 奶量加满",
-                    defaultDesc = "开发者模式下立刻将当前雪牛娘的奶量增加到最大。",
+                    defaultLabel = "MooGirl.Milk.DevFill.Label".Translate(),
+                    defaultDesc = "MooGirl.Milk.DevFill.Desc".Translate(),
                     icon = TexCommand.DesirePower,
                     action = () =>
                     {
                         if (DevFillToFull(triggerNotify: false))
                         {
-                            Messages.Message($"已将 {MooPawn.LabelShortCap} 的奶量加满。", MooPawn, MessageTypeDefOf.PositiveEvent);
+                            Messages.Message("MooGirl.Milk.DevFill.Success".Translate(MooPawn.LabelShortCap), MooPawn, MessageTypeDefOf.PositiveEvent);
                         }
                         else
                         {
-                            Messages.Message($"{MooPawn.LabelShortCap} 当前无法加满奶量。", MooPawn, MessageTypeDefOf.RejectInput);
+                            Messages.Message("MooGirl.Milk.DevFill.Failed".Translate(MooPawn.LabelShortCap), MooPawn, MessageTypeDefOf.RejectInput);
                         }
                     }
                 };
@@ -247,30 +250,7 @@ namespace MooGirl
         // 喷乳特效：污物 + 文字提示 + 音效
         public void SpawnMilkEffect()
         {
-            if (MooPawn?.Map == null) return;
-
-            // 生成 MilkFilth 污物（朝前方喷出）
-            ThingDef milkFilth = DefDatabase<ThingDef>.GetNamedSilentFail("MooGirlMilkFilth");
-            if (milkFilth != null)
-            {
-                for (int i = 0; i < Rand.RangeInclusive(1, 3); i++)
-                {
-                    IntVec3 pos = MooPawn.Position + MooPawn.Rotation.FacingCell
-                        + new IntVec3(Rand.RangeInclusive(-1, 1), 0, Rand.RangeInclusive(0, 1));
-                    if (pos.InBounds(MooPawn.Map))
-                    {
-                        Thing filth = ThingMaker.MakeThing(milkFilth);
-                        GenPlace.TryPlaceThing(filth, pos, MooPawn.Map, ThingPlaceMode.Near);
-                    }
-                }
-            }
-
-            // 文字提示
-            MoteMaker.ThrowText(MooPawn.DrawPos, MooPawn.Map, "喷乳！", Color.cyan, 3f);
-
-            // 播放音效
-            SoundDef sound = DefDatabase<SoundDef>.GetNamedSilentFail("MooGirl_Milking_Sound");
-            sound?.PlayOneShot(new TargetInfo(MooPawn.Position, MooPawn.Map));
+            MooGirlMilkEffectUtility.SpawnMilkSpray(MooPawn);
         }
 
     }

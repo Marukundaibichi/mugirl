@@ -4,6 +4,9 @@
   <MooGirl_Lactation.description>雪牛娘处于泌乳状态，可以哺育幼崽。乳汁分泌速度受营养状况影响。</MooGirl_Lactation.description>
   <MooGirl_MotherlyNurture.label>雪牛娘妈妈的哺育</MooGirl_MotherlyNurture.label>
   <MooGirl_MotherlyNurture.description>这个孩子正在接受雪牛娘温柔而充足的哺育。进度越高，成长评级和学习能力加成越强。</MooGirl_MotherlyNurture.description>
+  <MooGirl_MotherlyNurture.stages.0.label>萌芽</MooGirl_MotherlyNurture.stages.0.label>
+  <MooGirl_MotherlyNurture.stages.1.label>充盈</MooGirl_MotherlyNurture.stages.1.label>
+  <MooGirl_MotherlyNurture.stages.2.label>圆满</MooGirl_MotherlyNurture.stages.2.label>
   <MooGirl_NurtureAfterglow.label>雪牛娘哺育余韵</MooGirl_NurtureAfterglow.label>
   <MooGirl_NurtureAfterglow.description>雪牛娘长期哺育留下的成长余韵仍在这个孩子身上延续。</MooGirl_NurtureAfterglow.description>
 </LanguageData>

@@ -76,7 +76,7 @@ namespace MooGirl
             Text.Anchor = TextAnchor.UpperLeft;
             Text.Font = GameFont.Small;
 
-            // Tooltip must use a stable ID; this text changes while milk is filling.
+            // Tooltip 文本会随奶量变化，必须使用稳定 ID 避免悬浮提示闪烁。
             if (!overThresholdControls)
             {
                 TooltipHandler.TipRegion(totalRect, new TipSignal(GetMainTooltip, StableTooltipId(MainTooltipSeed)));
@@ -172,23 +172,26 @@ namespace MooGirl
 
         private string GetMainTooltip()
         {
-            return desc + "\n\n当前: " + comp.Fullness.ToStringPercent() +
-                "\n阈值: " + comp.MilkThreshold.ToStringPercent() +
-                "\n鼠标移到右侧按钮可查看阈值调整" +
-                "\n单次榨乳预估: " + comp.GetResourceAmountForNextGather() +
-                "\n泌乳速度: " + comp.GetProductionRateExplanation();
+            return "MooGirl.Milk.Gauge.Tooltip".Translate(
+                desc,
+                comp.Fullness.ToStringPercent(),
+                comp.MilkThreshold.ToStringPercent(),
+                comp.GetResourceAmountForNextGather(),
+                comp.GetProductionRateExplanation());
         }
 
         private string GetIncreaseThresholdTooltip()
         {
-            return "提高自动挤奶阈值\n当前: " + comp.MilkThreshold.ToStringPercent() +
-                "\n调整后: " + Mathf.Min(1f, comp.MilkThreshold + 0.1f).ToStringPercent();
+            return "MooGirl.Milk.Gauge.IncreaseThresholdTooltip".Translate(
+                comp.MilkThreshold.ToStringPercent(),
+                Mathf.Min(1f, comp.MilkThreshold + 0.1f).ToStringPercent());
         }
 
         private string GetDecreaseThresholdTooltip()
         {
-            return "降低自动挤奶阈值\n当前: " + comp.MilkThreshold.ToStringPercent() +
-                "\n调整后: " + Mathf.Max(0.1f, comp.MilkThreshold - 0.1f).ToStringPercent();
+            return "MooGirl.Milk.Gauge.DecreaseThresholdTooltip".Translate(
+                comp.MilkThreshold.ToStringPercent(),
+                Mathf.Max(0.1f, comp.MilkThreshold - 0.1f).ToStringPercent());
         }
 
         private int StableTooltipId(int seed)

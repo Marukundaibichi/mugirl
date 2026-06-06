@@ -1,6 +1,5 @@
 using RimWorld;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
@@ -102,17 +101,76 @@ namespace MooGirl
             Scribe_Collections.Look(ref nextTextTicks, "nextTextTicks", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                if (nextSoundTicks == null) nextSoundTicks = new List<int>();
-                if (nextFleckTicks == null) nextFleckTicks = new List<int>();
-                if (nextTextTicks == null) nextTextTicks = new List<int>();
+                if (nextSoundTicks == null)
+                {
+                    nextSoundTicks = new List<int>();
+                }
+
+                if (nextFleckTicks == null)
+                {
+                    nextFleckTicks = new List<int>();
+                }
+
+                if (nextTextTicks == null)
+                {
+                    nextTextTicks = new List<int>();
+                }
             }
         }
 
         private void InitializeSchedules()
         {
-            nextSoundTicks = Props.sounds?.Select(s => s.startTick).ToList() ?? new List<int>();
-            nextFleckTicks = Props.flecks?.Select(f => f.startTick).ToList() ?? new List<int>();
-            nextTextTicks = Props.texts?.Select(t => t.startTick).ToList() ?? new List<int>();
+            nextSoundTicks = BuildSoundSchedule(Props.sounds);
+            nextFleckTicks = BuildFleckSchedule(Props.flecks);
+            nextTextTicks = BuildTextSchedule(Props.texts);
+        }
+
+        private static List<int> BuildSoundSchedule(List<CompProperties_MilkingDeviceReleaseEffect.SoundWithParams> sounds)
+        {
+            List<int> ticks = new List<int>();
+            if (sounds == null)
+            {
+                return ticks;
+            }
+
+            for (int i = 0; i < sounds.Count; i++)
+            {
+                ticks.Add(sounds[i].startTick);
+            }
+
+            return ticks;
+        }
+
+        private static List<int> BuildFleckSchedule(List<CompProperties_MilkingDeviceReleaseEffect.FleckWithParams> flecks)
+        {
+            List<int> ticks = new List<int>();
+            if (flecks == null)
+            {
+                return ticks;
+            }
+
+            for (int i = 0; i < flecks.Count; i++)
+            {
+                ticks.Add(flecks[i].startTick);
+            }
+
+            return ticks;
+        }
+
+        private static List<int> BuildTextSchedule(List<CompProperties_MilkingDeviceReleaseEffect.TextWithParams> texts)
+        {
+            List<int> ticks = new List<int>();
+            if (texts == null)
+            {
+                return ticks;
+            }
+
+            for (int i = 0; i < texts.Count; i++)
+            {
+                ticks.Add(texts[i].startTick);
+            }
+
+            return ticks;
         }
 
         private void RunEffectFrame(Pawn wearer)

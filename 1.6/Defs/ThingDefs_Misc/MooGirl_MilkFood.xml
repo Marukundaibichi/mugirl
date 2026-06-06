@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <!-- Milk foods should not inherit MealBase's FoodPoisonable comp. -->
+  <!-- 奶制食物不继承 MealBase 的食物中毒组件。 -->
   <ThingDef Name="MooGirl_MilkFoodBase" ParentName="MealBase" Abstract="True">
     <tradeability>Sellable</tradeability>
     <statBases>
@@ -19,8 +19,8 @@
   <!-- ============== 雪牛娘奶布丁 ============== -->
   <ThingDef ParentName="MooGirl_MilkFoodBase">
     <defName>MooGirl_MilkPudding</defName>
-    <label>雪牛娘奶布丁</label>
-    <description>口感像更柔软的果冻，香浓而又入口即化，吃上一份就能让孩子们回味上好几天，很多大人也非常爱吃</description>
+    <label>MooGirl_MilkPudding.label</label>
+    <description>MooGirl_MilkPudding.description</description>
     <graphicData>
       <texPath>Things/milkfood/milkfood_pudding</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -47,8 +47,8 @@
   <!-- ============== 雪牛娘奶酪 ============== -->
   <ThingDef ParentName="MooGirl_MilkFoodBase">
     <defName>MooGirl_Cheese</defName>
-    <label>雪牛娘奶酪</label>
-    <description>很经典的食物，同时保存期极长而且管饱，是高级干肉饼</description>
+    <label>MooGirl_Cheese.label</label>
+    <description>MooGirl_Cheese.description</description>
     <graphicData>
       <texPath>Things/milkfood/milkfood_cheese</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -89,8 +89,8 @@
   <!-- ============== 雪牛娘陈年奶酪 ============== -->
   <ThingDef ParentName="MooGirl_MilkFoodBase">
     <defName>MooGirl_AgedCheese</defName>
-    <label>雪牛娘陈年奶酪</label>
-    <description>精品制作的奶酪，使用了比普通奶酪更长的发酵时间，充分发酵过后微生物与雪牛娘奶和啤酒花的混合成分发生了复杂的化学反应，产生出一种神奇的氨基酸，这种氨基酸能使体内肝脏等器官活性大幅提高，是心脑血管疾病患者的必备食品。\n\n请记得多为家中有遗传病史的长辈准备，尤其是爷爷奶奶之类的老人，加热融化后的陈年奶酪蕴含的糖含量低，脂肪易消化和分解——源自食品检验检测部门的认证</description>
+    <label>MooGirl_AgedCheese.label</label>
+    <description>MooGirl_AgedCheese.description</description>
     <graphicData>
       <texPath>Things/milkfood/milkfood_Agedcheese</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -123,8 +123,8 @@
   <!-- ============== 雪牛娘奶宝塔糖 ============== -->
   <ThingDef ParentName="MooGirl_MilkFoodBase">
     <defName>MooGirl_BaotaSugar</defName>
-    <label>雪牛娘奶宝塔糖</label>
-    <description>过去由食品生产部门发明，广受好评的糖果打虫药</description>
+    <label>MooGirl_BaotaSugar.label</label>
+    <description>MooGirl_BaotaSugar.description</description>
     <graphicData>
       <texPath>Things/milkfood/milkfood_BaotaSugar</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -159,8 +159,8 @@
   <!-- ============== 大肥牛奶糖 ============== -->
   <ThingDef ParentName="MooGirl_MilkFoodBase">
     <defName>MooGirl_MilkCandy</defName>
-    <label>大肥牛奶糖</label>
-    <description>暂无</description>
+    <label>MooGirl_MilkCandy.label</label>
+    <description>MooGirl_MilkCandy.description</description>
     <graphicData>
       <texPath>Things/milkfood/milkfood_milkcandy</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -187,8 +187,8 @@
   <!-- ============== 雪牛娘牛乳蛋糕 ============== -->
   <ThingDef ParentName="MooGirl_MilkFoodBase">
     <defName>MooGirl_CowCake</defName>
-    <label>雪牛娘牛乳蛋糕</label>
-    <description>暂无</description>
+    <label>MooGirl_CowCake.label</label>
+    <description>MooGirl_CowCake.description</description>
     <graphicData>
       <texPath>Things/milkfood/milkfood_CowCake</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -221,8 +221,8 @@
   <!-- ============== 雪牛娘奶粉 ============== -->
   <ThingDef ParentName="MooGirl_MilkFoodBase">
     <defName>MooGirl_MilkPowder</defName>
-    <label>雪牛娘奶粉</label>
-    <description>暂无</description>
+    <label>MooGirl_MilkPowder.label</label>
+    <description>MooGirl_MilkPowder.description</description>
     <graphicData>
       <texPath>Things/milkfood/milkfood_milkpowder</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -255,8 +255,8 @@
   <!-- ============== 雪牛娘奶片 ============== -->
   <ThingDef ParentName="MooGirl_MilkFoodBase">
     <defName>MooGirl_MilkTablet</defName>
-    <label>雪牛娘奶片</label>
-    <description>暂无</description>
+    <label>MooGirl_MilkTablet.label</label>
+    <description>MooGirl_MilkTablet.description</description>
     <graphicData>
       <texPath>Things/milkfood/milkfood_milktablet</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -289,8 +289,8 @@
   <!-- ============== 奶霜苹果 ============== -->
   <ThingDef ParentName="MooGirl_MilkFoodBase">
     <defName>MooGirl_MilkCreamApple</defName>
-    <label>奶霜苹果</label>
-    <description>暂无</description>
+    <label>MooGirl_MilkCreamApple.label</label>
+    <description>MooGirl_MilkCreamApple.description</description>
     <graphicData>
       <texPath>Things/milkfood/milkfood_Milkcreamapple</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>

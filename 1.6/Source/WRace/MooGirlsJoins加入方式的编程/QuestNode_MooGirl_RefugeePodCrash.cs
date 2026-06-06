@@ -2,9 +2,6 @@
 using RimWorld.QuestGen;
 using RimWorld;
 using RimWorld.Planet;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace MooGirl
 {
@@ -63,60 +60,7 @@ namespace MooGirl
                 HealthUtility.DamageUntilDowned(pawn, true);
             }
 
-            // 检查 Ideo 中所有 meme 是否阻止服装要求
-            bool allowApparelRequirements = false;
-            if (pawn.Ideo != null)
-            {
-                foreach (var meme in pawn.Ideo.memes)
-                {
-                    if (meme.preventApparelRequirements)
-                    {
-                        allowApparelRequirements = true;
-                        break;
-                    }
-                }
-            }
-
-            if (allowApparelRequirements && pawn.kindDef.apparelTags != null && pawn.kindDef.apparelTags.Count > 0)
-            {
-                List<string> apparelTags = pawn.kindDef.apparelTags.ToList();
-
-                foreach (var tag in apparelTags)
-                {
-                    // 从所有服装里挑选一个匹配这个 tag 的 ThingDef
-                    var candidates = DefDatabase<ThingDef>.AllDefsListForReading
-                        .Where(td => td.IsApparel
-                                     && td.apparel != null
-                                     && td.apparel.tags != null
-                                     && td.apparel.tags.Contains(tag)
-                                     && AdultContentUtility.IsAllowed(td))
-                        .ToList();
-
-                    if (candidates.Count > 0)
-                    {
-                        ThingDef chosenDef = candidates.RandomElement();
-
-                        Apparel newApparel;
-                        if (chosenDef.MadeFromStuff)
-                        {
-                            ThingDef stuff = GenStuff.RandomStuffFor(chosenDef);
-                            newApparel = (Apparel)ThingMaker.MakeThing(chosenDef, stuff);
-                        }
-                        else
-                        {
-                            newApparel = (Apparel)ThingMaker.MakeThing(chosenDef, null);
-                        }
-
-                        // 判断是否属于需要上锁的特定类
-                        bool shouldLock = newApparel is AdvancedSlaveApparel || newApparel is BrainWashSlaveApparel;
-
-                        // 穿上服装，只有特定类才上锁
-                        pawn.apparel.Wear(newApparel, dropReplacedApparel: true, locked: shouldLock);
-                    }
-                }
-            }
-
-
+            MooGirlApparelTagUtility.TryWearIdeoSuppressedKindApparel(pawn);
 
             // 如果生成的pawn不是世界pawn，则将其传递到世界pawn管理中。
             if (!pawn.IsWorldPawn())

@@ -10,6 +10,48 @@
 
 	<MooGirl.MilkingDevice.StoredMessage>{0}'s milking device stored one production charge ({1}/{2}).</MooGirl.MilkingDevice.StoredMessage>
 	<MooGirl.MilkingDevice.ReleaseMessage>{0} released the stored milk and produced {1} MooGirl milk.</MooGirl.MilkingDevice.ReleaseMessage>
+    <MooGirl.MilkingDevice.ReleaseLabel>Release stored milk</MooGirl.MilkingDevice.ReleaseLabel>
+    <MooGirl.MilkingDevice.ReleaseDesc>Release all MooGirl milk stored in this device onto the ground.</MooGirl.MilkingDevice.ReleaseDesc>
+    <MooGirl.MilkingDevice.InspectLabel>Stored milk</MooGirl.MilkingDevice.InspectLabel>
+    <MooGirl.MilkingDevice.InspectLabelWithCharges>Stored milk charges</MooGirl.MilkingDevice.InspectLabelWithCharges>
+    <MooGirl.MilkingDevice.Inspect>{0}: {1}/{2} ({3}x {4})</MooGirl.MilkingDevice.Inspect>
+    <MooGirl.MilkingDevice.NoChargeText>There is no stored milk to release.</MooGirl.MilkingDevice.NoChargeText>
+    <MooGirl.MilkingDevice.StoredMoteText>Stored milk +1</MooGirl.MilkingDevice.StoredMoteText>
+    <MooGirl.MilkingDevice.AutoReleaseEnabled>Auto milking: on</MooGirl.MilkingDevice.AutoReleaseEnabled>
+    <MooGirl.MilkingDevice.AutoReleaseDisabled>Auto milking: off</MooGirl.MilkingDevice.AutoReleaseDisabled>
+    <MooGirl.MilkingDevice.AutoReleaseDesc>When enabled, the milking device immediately releases milk when its wearer reaches full milk. When disabled, it only releases overflow after storage is already full and another full-milk event is received.</MooGirl.MilkingDevice.AutoReleaseDesc>
+    <MooGirl.MilkingDevice.PowerReleaseEnabled>Power release: on</MooGirl.MilkingDevice.PowerReleaseEnabled>
+    <MooGirl.MilkingDevice.PowerReleaseDisabled>Power release: off</MooGirl.MilkingDevice.PowerReleaseDisabled>
+    <MooGirl.MilkingDevice.DevFill.Label>Dev: fill milking progress</MooGirl.MilkingDevice.DevFill.Label>
+    <MooGirl.MilkingDevice.DevFill.Desc>Dev mode: immediately fill the current wearer's milk progress and trigger milking-device logic.</MooGirl.MilkingDevice.DevFill.Desc>
+    <MooGirl.MilkingDevice.DevFill.Success>Filled {0}'s milk progress in dev mode.</MooGirl.MilkingDevice.DevFill.Success>
+    <MooGirl.MilkingDevice.DevFill.Failed>{0}'s milk progress cannot be filled in dev mode right now.</MooGirl.MilkingDevice.DevFill.Failed>
+    <MooGirl.MilkingDevice.ReleaseThingMissing>Milking device could not resolve the release product Def.</MooGirl.MilkingDevice.ReleaseThingMissing>
+    <MooGirl.Settings.StructuralCrashEvent.Label>Enable MooGirl crash event</MooGirl.Settings.StructuralCrashEvent.Label>
+    <MooGirl.Settings.StructuralCrashEvent.Desc>Controls whether the MooGirl crash event can trigger. Disable this to prevent the event from firing.</MooGirl.Settings.StructuralCrashEvent.Desc>
+    <MooGirl.Settings.FastMilking.Label>Fast milking</MooGirl.Settings.FastMilking.Label>
+    <MooGirl.Settings.FastMilking.Desc>When enabled, self-milking and assisted milking work time for MooGirls is shortened to 1 second.</MooGirl.Settings.FastMilking.Desc>
+    <MooGirl.Milk.Gauge.Label>Lactation</MooGirl.Milk.Gauge.Label>
+    <MooGirl.Milk.Gauge.Desc>Current milk fullness for this MooGirl. The red line marks the automatic milking threshold; colonists will automatically milk when it is reached.</MooGirl.Milk.Gauge.Desc>
+    <MooGirl.Milk.FullnessDisplay>Mugirl milk</MooGirl.Milk.FullnessDisplay>
+    <MooGirl.Milk.Gauge.Tooltip>{0}\n\nCurrent: {1}\nThreshold: {2}\nMove the mouse over the right-side buttons to inspect threshold changes\nEstimated milk per use: {3}\nLactation speed: {4}</MooGirl.Milk.Gauge.Tooltip>
+    <MooGirl.Milk.ProductionRate>{0}% / {1}s</MooGirl.Milk.ProductionRate>
+    <MooGirl.Milk.Gauge.IncreaseThresholdTooltip>Increase automatic milking threshold\nCurrent: {0}\nAfter adjustment: {1}</MooGirl.Milk.Gauge.IncreaseThresholdTooltip>
+    <MooGirl.Milk.Gauge.DecreaseThresholdTooltip>Decrease automatic milking threshold\nCurrent: {0}\nAfter adjustment: {1}</MooGirl.Milk.Gauge.DecreaseThresholdTooltip>
+    <MooGirl.Milk.DevFill.Label>Dev: fill milk</MooGirl.Milk.DevFill.Label>
+    <MooGirl.Milk.DevFill.Desc>Dev mode: immediately fill the selected MooGirl's milk amount to maximum.</MooGirl.Milk.DevFill.Desc>
+    <MooGirl.Milk.DevFill.Success>Filled {0}'s milk amount.</MooGirl.Milk.DevFill.Success>
+    <MooGirl.Milk.DevFill.Failed>{0}'s milk amount cannot be filled right now.</MooGirl.Milk.DevFill.Failed>
+    <MooGirl.Milk.SprayText>Milk spray!</MooGirl.Milk.SprayText>
+    <MooGirl.Milk.FloatMenu.Gather>Milk ({0})</MooGirl.Milk.FloatMenu.Gather>
+    <MooGirl.Milk.FloatMenu.Drink>Drink milk ({0})</MooGirl.Milk.FloatMenu.Drink>
+    <MooGirl.Milk.FloatMenu.ChildDrink>Seek milk ({0})</MooGirl.Milk.FloatMenu.ChildDrink>
+    <MooGirl.Milk.FloatMenu.Feed>Feed milk ({0})</MooGirl.Milk.FloatMenu.Feed>
+    <MooGirl.Milk.FloatMenu.Disabled>{0}: {1}</MooGirl.Milk.FloatMenu.Disabled>
+    <MooGirl.Milk.FloatMenu.FeedJobMissing>Job_FeedMilkToDowned missing</MooGirl.Milk.FloatMenu.FeedJobMissing>
+    <MooGirl.Milk.FloatMenu.NotActive>Cannot produce milk</MooGirl.Milk.FloatMenu.NotActive>
+    <MooGirl.Milk.FloatMenu.NotEnoughMilk>Not enough milk</MooGirl.Milk.FloatMenu.NotEnoughMilk>
+    <MooGirl.Milk.GatherInactiveLog>MooGirl: {0} gathered body resources while inactive: {1}</MooGirl.Milk.GatherInactiveLog>
     <MooGirl.Nurture.Completed>{PAWN_labelShort} has received complete Mugirl nurture.</MooGirl.Nurture.Completed>
 
     <MooGirl.CrackBondageGear_TargetNotValid>The target is not decryptable. Decryption is not possible.</MooGirl.CrackBondageGear_TargetNotValid>

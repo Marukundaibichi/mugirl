@@ -8,9 +8,6 @@ namespace MooGirl
     // 为雪牛娘添加右键菜单：榨乳、找奶喝、喝奶、给倒地者喂奶
     public class FloatMenuProvider_MilkMooGirl : FloatMenuOptionProvider
     {
-        private const float MinMilkFullnessForMilking = 0.05f;
-        private const float MinMilkFullnessForFeeding = 0.05f;
-
         protected override bool Drafted => true;
         protected override bool Undrafted => true;
         protected override bool Multiselect => true;
@@ -27,7 +24,7 @@ namespace MooGirl
                 return true;
 
             CompMooMilkable comp = target.TryGetComp<CompMooMilkable>();
-            if (comp != null && comp.Active && comp.Fullness > MinMilkFullnessForMilking)
+            if (MooGirlMilkInteractionUtility.HasEnoughForDirectMilkInteraction(comp))
                 return true;
 
             return false;
@@ -48,18 +45,19 @@ namespace MooGirl
             }
 
             CompMooMilkable comp = targetPawn.TryGetComp<CompMooMilkable>();
-            if (comp == null || !comp.Active || comp.Fullness <= MinMilkFullnessForMilking)
+            if (!MooGirlMilkInteractionUtility.HasEnoughForDirectMilkInteraction(comp))
                 yield break;
 
-            // 榨乳（forced 强制挤奶，任意饱满度 > 5%）
+            // 榨乳：玩家强制挤奶，任意饱满度大于 5% 即可显示。
+            string gatherLabel = "MooGirl.Milk.FloatMenu.Gather".Translate(targetPawn.LabelShortCap);
             if (!pawn.CanReach(targetPawn, PathEndMode.Touch, Danger.Deadly))
             {
-                yield return new FloatMenuOption("榨乳 (" + targetPawn.LabelShortCap + "): " + "NoPath".Translate().CapitalizeFirst(), null);
+                yield return DisabledOption(gatherLabel, "NoPath".Translate().CapitalizeFirst());
                 yield break;
             }
 
             yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(
-                "榨乳 (" + targetPawn.LabelShortCap + ")",
+                gatherLabel,
                 delegate
                 {
                     Job job = JobMaker.MakeJob(MooGirl_DefOf.Job_GatherMilk, targetPawn);
@@ -72,11 +70,11 @@ namespace MooGirl
             // 喝奶：孩子使用“找奶喝”专属互动，避免重复菜单。
             if (!selectedPawnIsChild)
             {
-                JobDef drinkDef = DefDatabase<JobDef>.GetNamedSilentFail("Job_DrinkMilkFromMooGirl");
+                JobDef drinkDef = MooGirlOptionalDefs.JobDefs.DrinkMilkFromMooGirl;
                 if (drinkDef != null)
                 {
                     yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(
-                        "喝奶 (" + targetPawn.LabelShortCap + ")",
+                        "MooGirl.Milk.FloatMenu.Drink".Translate(targetPawn.LabelShortCap),
                         delegate
                         {
                             Job job = JobMaker.MakeJob(drinkDef, targetPawn);
@@ -88,11 +86,11 @@ namespace MooGirl
             // 找奶喝：仅小孩（不可繁殖阶段）
             if (selectedPawnIsChild)
             {
-                JobDef breastfeedDef = DefDatabase<JobDef>.GetNamedSilentFail("Job_Breastfeed");
+                JobDef breastfeedDef = MooGirlOptionalDefs.JobDefs.Breastfeed;
                 if (breastfeedDef != null)
                 {
                     yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(
-                        "找奶喝 (" + targetPawn.LabelShortCap + ")",
+                        "MooGirl.Milk.FloatMenu.ChildDrink".Translate(targetPawn.LabelShortCap),
                         delegate
                         {
                             Job job = JobMaker.MakeJob(breastfeedDef, targetPawn);
@@ -104,23 +102,23 @@ namespace MooGirl
 
         private static FloatMenuOption GetFeedMilkOption(Pawn feeder, Pawn target, CompMooMilkable milkComp)
         {
-            string label = "喂奶 (" + target.LabelShortCap + ")";
+            string label = "MooGirl.Milk.FloatMenu.Feed".Translate(target.LabelShortCap);
 
-            JobDef feedJobDef = DefDatabase<JobDef>.GetNamedSilentFail("Job_FeedMilkToDowned");
+            JobDef feedJobDef = MooGirlOptionalDefs.JobDefs.FeedMilkToDowned;
             if (feedJobDef == null)
-                return new FloatMenuOption(label + ": Job_FeedMilkToDowned missing", null);
+                return DisabledOption(label, "MooGirl.Milk.FloatMenu.FeedJobMissing".Translate());
 
             if (!milkComp.Active)
-                return new FloatMenuOption(label + ": 无法产奶", null);
+                return DisabledOption(label, "MooGirl.Milk.FloatMenu.NotActive".Translate());
 
-            if (milkComp.Fullness <= MinMilkFullnessForFeeding)
-                return new FloatMenuOption(label + ": 奶量不足", null);
+            if (!MooGirlMilkInteractionUtility.HasEnoughForDirectMilkInteraction(milkComp))
+                return DisabledOption(label, "MooGirl.Milk.FloatMenu.NotEnoughMilk".Translate());
 
             if (!feeder.CanReach(target, PathEndMode.Touch, Danger.Deadly))
-                return new FloatMenuOption(label + ": " + "NoPath".Translate().CapitalizeFirst(), null);
+                return DisabledOption(label, "NoPath".Translate().CapitalizeFirst());
 
             if (!feeder.CanReserve(target))
-                return new FloatMenuOption(label + ": " + "Reserved".Translate().CapitalizeFirst(), null);
+                return DisabledOption(label, "Reserved".Translate().CapitalizeFirst());
 
             return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(
                 label,
@@ -133,6 +131,11 @@ namespace MooGirl
                 MenuOptionPriority.High,
                 null,
                 target), feeder, target);
+        }
+
+        private static FloatMenuOption DisabledOption(string label, string reason)
+        {
+            return new FloatMenuOption("MooGirl.Milk.FloatMenu.Disabled".Translate(label, reason), null);
         }
 
         private static bool SelectedPawnHasMilkSource(FloatMenuContext context)

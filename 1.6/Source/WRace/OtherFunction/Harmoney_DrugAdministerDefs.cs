@@ -18,7 +18,7 @@ namespace MooGirl
             var list = __result.ToList();
 
             // 查找 ThingDef
-            ThingDef milkDef = DefDatabase<ThingDef>.GetNamedSilentFail("MooGirl_Milk");
+            ThingDef milkDef = MooGirlOptionalDefs.ThingDefs.MooGirlMilk;
             if (milkDef != null)
             {
                 string defName = "Administer_" + milkDef.defName;

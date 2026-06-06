@@ -4,8 +4,8 @@
   <HediffDef>
     <defName>MooGirl_MilkHealing</defName>
     <hediffClass>HediffWithComps</hediffClass>
-    <label>雪牛奶疗愈</label>
-    <description>雪牛娘的乳汁中含有特殊的愈合因子，正在加速伤势恢复、增强免疫并减轻疼痛。</description>
+    <label>MooGirl_MilkHealing.label</label>
+    <description>MooGirl_MilkHealing.description</description>
     <isBad>false</isBad>
     <defaultLabelColor>(255,192,203)</defaultLabelColor>
     <scenarioCanAdd>false</scenarioCanAdd>

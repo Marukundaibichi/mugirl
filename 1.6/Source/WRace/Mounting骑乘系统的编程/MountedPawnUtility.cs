@@ -10,7 +10,7 @@ namespace MooGirl
     {
         public static bool IsMooGirl(Pawn pawn)
         {
-            return pawn != null && (pawn.def == MooGirl_DefOf.MooGirl || pawn.RaceProps?.body == MooGirl_DefOf.MooGirlBody);
+            return MooGirlIdentity.IsMooGirlPawn(pawn);
         }
 
         public static Comp_MooGirlMount GetMountComp(Pawn pawn)

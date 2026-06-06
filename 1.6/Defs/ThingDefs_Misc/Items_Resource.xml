@@ -2,8 +2,8 @@
 <Defs>
 	<ThingDef ParentName="OrganicProductBase">
 		<defName>MooGirl_Milk</defName>
-		<label>雪牛奶</label>
-		<description>雪牛娘分泌的乳汁，香甜浓郁，呈乳白带淡蓝色光泽。奇迹星基因工程让其营养成分远超普通牛奶，添加到食物中可以大幅提升免疫力，并促进伤口快速愈合。</description>
+		<label>MooGirl_Milk.label</label>
+		<description>MooGirl_Milk.description</description>
 		<graphicData>
 			<texPath>Things/Item/Resource/MooGirl_Milk</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -50,8 +50,8 @@
 		<durationDays>1</durationDays>
 		<stages>
 			<li>
-				<label>喝了雪牛娘的奶</label>
-				<description>真好喝!</description>
+				<label>Consumed_MooGirlMilk.stages.0.label</label>
+				<description>Consumed_MooGirlMilk.stages.0.description</description>
 				<baseMoodEffect>8</baseMoodEffect>
 			</li>
 		</stages>
@@ -59,9 +59,9 @@
 
 	<HediffDef>
 		<defName>Consumed_MooGirlMilk</defName>
-		<label>强身健体！</label>
+		<label>Consumed_MooGirlMilk.label</label>
 		<makesSickThought>false</makesSickThought>
-		<description>雪牛娘的奶富含修复因子，可以极大的提高伤口修复效率。</description>
+		<description>Consumed_MooGirlMilk.description</description>
 		<tendable>false</tendable>
 		<isBad>false</isBad>
 		<defaultLabelColor>(255,242,0)</defaultLabelColor>
@@ -88,8 +88,8 @@
 
 	<ThingDef ParentName="WoolBase">
 		<defName>MooGirl_Wool</defName>
-		<label>雪牛娘的毛</label>
-		<description>奇迹星基因工程的副产物之一——雪牛娘的毛发，雪牛一样的淡蓝色，但在质感上远比雪牛毛更柔软。细细嗅闻能闻到淡淡的牛油味</description>
+		<label>MooGirl_Wool.label</label>
+		<description>MooGirl_Wool.description</description>
 		<graphicData>
 			<texPath>Things/Item/Resource/MooGirl_Wool</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>

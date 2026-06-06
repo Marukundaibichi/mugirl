@@ -2,8 +2,8 @@
 <Defs>
   <ThingDef ParentName="BuildingBase">
     <defName>MooGirl_MilkPoweredGenerator</defName>
-    <label>雪牛娘奶发电机</label>
-    <description>使用雪牛娘奶作为燃料发电的改造发电机。必须定期手动补充雪牛娘奶。</description>
+    <label>MooGirl_MilkPoweredGenerator.label</label>
+    <description>MooGirl_MilkPoweredGenerator.description</description>
     <thingClass>Building</thingClass>
     <drawerType>MapMeshAndRealTime</drawerType>
     <graphicData>

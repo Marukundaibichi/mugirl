@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using HarmonyLib;
 using RimWorld;
@@ -15,6 +13,7 @@ namespace MooGirl
         public const float ChildInteractionProgressMax = 0.10f;
         public const float BabyFullFeedProgress = 0.04f;
         public const int AfterglowTicks = 27000000;
+        private const int CompletedNurturePassionGainCount = 2;
 
         private static readonly FieldInfo SkillPassionField = AccessTools.Field(typeof(SkillRecord), "passion");
 
@@ -119,129 +118,68 @@ namespace MooGirl
                 return;
             }
 
-            IEnumerable<SkillRecord> candidates = pawn.skills.skills
-                .Where(skill => skill != null && !skill.TotallyDisabled && skill.passion < Passion.Major)
-                .OrderByDescending(skill => skill.Level)
-                .ThenByDescending(skill => skill.XpTotalEarned)
-                .Take(2);
-
-            foreach (SkillRecord skill in candidates)
+            SkillRecord first = null;
+            SkillRecord second = null;
+            for (int i = 0; i < pawn.skills.skills.Count; i++)
             {
-                Passion next = skill.passion == Passion.None ? Passion.Minor : Passion.Major;
-                SkillPassionField.SetValue(skill, next);
+                SkillRecord skill = pawn.skills.skills[i];
+                if (!CanImprovePassion(skill))
+                {
+                    continue;
+                }
+
+                if (IsBetterSkillCandidate(skill, first))
+                {
+                    second = first;
+                    first = skill;
+                }
+                else if (IsBetterSkillCandidate(skill, second))
+                {
+                    second = skill;
+                }
             }
-        }
-    }
 
-    public class HediffCompProperties_MooGirlNurtureProgress : HediffCompProperties
-    {
-        public HediffCompProperties_MooGirlNurtureProgress()
-        {
-            compClass = typeof(HediffComp_MooGirlNurtureProgress);
-        }
-    }
-
-    public class HediffComp_MooGirlNurtureProgress : HediffComp
-    {
-        private bool completed;
-
-        public override void CompPostTick(ref float severityAdjustment)
-        {
-            base.CompPostTick(ref severityAdjustment);
-
-            if (!completed && parent.Severity >= parent.def.maxSeverity)
+            ImprovePassion(first);
+            if (CompletedNurturePassionGainCount > 1)
             {
-                TryComplete();
+                ImprovePassion(second);
             }
         }
 
-        public void TryComplete(Pawn feeder = null)
+        private static bool CanImprovePassion(SkillRecord skill)
         {
-            if (completed || parent.Severity < parent.def.maxSeverity)
+            return skill != null && !skill.TotallyDisabled && skill.passion < Passion.Major;
+        }
+
+        private static bool IsBetterSkillCandidate(SkillRecord candidate, SkillRecord current)
+        {
+            if (candidate == null)
+            {
+                return false;
+            }
+
+            if (current == null)
+            {
+                return true;
+            }
+
+            if (candidate.Level != current.Level)
+            {
+                return candidate.Level > current.Level;
+            }
+
+            return candidate.XpTotalEarned > current.XpTotalEarned;
+        }
+
+        private static void ImprovePassion(SkillRecord skill)
+        {
+            if (skill == null)
             {
                 return;
             }
 
-            completed = true;
-            MooGirlNurtureUtility.CompleteNurture(Pawn, parent, feeder);
-        }
-
-        public override void CompExposeData()
-        {
-            base.CompExposeData();
-            Scribe_Values.Look(ref completed, "completed", false);
-        }
-    }
-
-    [HarmonyPatch(typeof(Pawn_AgeTracker), nameof(Pawn_AgeTracker.GrowthPointsPerDay), MethodType.Getter)]
-    public static class Harmony_MooGirlNurtureGrowthPoints
-    {
-        private static readonly FieldInfo PawnField = AccessTools.Field(typeof(Pawn_AgeTracker), "pawn");
-
-        public static void Postfix(Pawn_AgeTracker __instance, ref float __result)
-        {
-            if (__result <= 0f)
-            {
-                return;
-            }
-
-            Pawn pawn = PawnField?.GetValue(__instance) as Pawn;
-            if (pawn?.health?.hediffSet?.HasHediff(MooGirlNurtureUtility.NurtureAfterglowDef) == true)
-            {
-                __result *= 2.5f;
-                return;
-            }
-
-            Hediff nurture = pawn?.health?.hediffSet?.GetFirstHediffOfDef(MooGirlNurtureUtility.MotherlyNurtureDef);
-            if (nurture == null)
-            {
-                return;
-            }
-
-            __result *= GrowthFactorForSeverity(nurture.Severity);
-        }
-
-        private static float GrowthFactorForSeverity(float severity)
-        {
-            if (severity >= 0.70f)
-            {
-                return 2.5f;
-            }
-            if (severity >= 0.40f)
-            {
-                return 2f;
-            }
-            return 1.5f;
-        }
-    }
-
-    [HarmonyPatch(typeof(SkillRecord), nameof(SkillRecord.Learn))]
-    public static class Harmony_MooGirlNurturedSkillLearnCap
-    {
-        private static readonly FieldInfo PawnField = AccessTools.Field(typeof(SkillRecord), "pawn");
-        private static readonly FieldInfo XpSinceMidnightField = AccessTools.Field(typeof(SkillRecord), "xpSinceMidnight");
-        private static readonly FieldInfo MaxFullRateXpPerDayField = AccessTools.Field(typeof(SkillRecord), "MaxFullRateXpPerDay");
-
-        public static void Prefix(SkillRecord __instance)
-        {
-            Pawn pawn = PawnField?.GetValue(__instance) as Pawn;
-            if (pawn?.story?.traits == null || !pawn.story.traits.HasTrait(MooGirlNurtureUtility.NurturedTraitDef))
-            {
-                return;
-            }
-
-            if (XpSinceMidnightField == null || MaxFullRateXpPerDayField == null)
-            {
-                return;
-            }
-
-            float xpSinceMidnight = (float)XpSinceMidnightField.GetValue(__instance);
-            int baseCap = (int)MaxFullRateXpPerDayField.GetValue(null);
-            float extraCap = baseCap * 1.5f;
-            if (xpSinceMidnight > baseCap)
-            {
-                XpSinceMidnightField.SetValue(__instance, Mathf.Max(baseCap, xpSinceMidnight - extraCap));
-            }
+            Passion next = skill.passion == Passion.None ? Passion.Minor : Passion.Major;
+            SkillPassionField.SetValue(skill, next);
         }
     }
 }

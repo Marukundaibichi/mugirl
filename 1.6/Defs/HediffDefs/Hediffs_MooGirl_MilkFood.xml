@@ -4,8 +4,8 @@
   <!-- ============== 陈年奶酪Hediff - 防感染+去毒素+解食物中毒 +1.5免疫速度，+0.15毒素抗性 ============== -->
   <HediffDef>
     <defName>Hediff_MooGirlAgedCheese</defName>
-    <label>陈年奶酪效果</label>
-    <description>陈年奶酪的特殊成分在体内发挥作用：防止伤口感染、提高血液过滤清除毒素、并加快免疫速度</description>
+    <label>Hediff_MooGirlAgedCheese.label</label>
+    <description>Hediff_MooGirlAgedCheese.description</description>
     <hediffClass>HediffWithComps</hediffClass>
     <isBad>false</isBad>
     <defaultLabelColor>(0,200,255)</defaultLabelColor>
@@ -46,8 +46,8 @@
   <!-- ============== 蛋糕Hediff - 饥饿速率70% ============== -->
   <HediffDef>
     <defName>Hediff_MooGirlCowCake</defName>
-    <label>奶香蛋糕</label>
-    <description>吃了块奶香浓郁的美味蛋糕</description>
+    <label>Hediff_MooGirlCowCake.label</label>
+    <description>Hediff_MooGirlCowCake.description</description>
     <hediffClass>HediffWithComps</hediffClass>
     <isBad>false</isBad>
     <defaultLabelColor>(255,192,128)</defaultLabelColor>
@@ -70,8 +70,8 @@
   <!-- ============== 奶粉Hediff - 免疫+30%, 意识+10%, 全局学习系数+30% ============== -->
   <HediffDef>
     <defName>Hediff_MooGirlMilkPowder</defName>
-    <label>健康奶粉</label>
-    <description>雪牛娘奶粉提供全面的营养加成</description>
+    <label>Hediff_MooGirlMilkPowder.label</label>
+    <description>Hediff_MooGirlMilkPowder.description</description>
     <hediffClass>HediffWithComps</hediffClass>
     <isBad>false</isBad>
     <defaultLabelColor>(128,255,255)</defaultLabelColor>
@@ -103,8 +103,8 @@
   <!-- ============== 奶片Hediff - 免疫+60%, 愈合+20% ============== -->
   <HediffDef>
     <defName>Hediff_MooGirlMilkTablet</defName>
-    <label>健康奶片</label>
-    <description>雪牛娘奶片提供营养加成</description>
+    <label>Hediff_MooGirlMilkTablet.label</label>
+    <description>Hediff_MooGirlMilkTablet.description</description>
     <hediffClass>HediffWithComps</hediffClass>
     <isBad>false</isBad>
     <defaultLabelColor>(128,255,255)</defaultLabelColor>

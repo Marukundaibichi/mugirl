@@ -303,18 +303,16 @@ namespace MooGirl
                 return;
             }
 
-            physiologicalTickCounter += delta;
-            safetyTickCounter += delta;
-            turretTickCounter += delta;
-            riderMeleeTickCounter += delta;
+            MooGirlTickUtility.Add(ref physiologicalTickCounter, delta);
+            MooGirlTickUtility.Add(ref safetyTickCounter, delta);
+            MooGirlTickUtility.Add(ref turretTickCounter, delta);
+            MooGirlTickUtility.Add(ref riderMeleeTickCounter, delta);
             MountedPawnCombatTurret.VerbTick(this, delta);
             MountedPawnCombatTurret.TickAim(this, delta);
 
-            if (Props.tickPhysiology && physiologicalTickCounter >= Props.physiologicalTickInterval)
+            if (Props.tickPhysiology && MooGirlTickUtility.ConsumeReady(ref physiologicalTickCounter, Props.physiologicalTickInterval, out int physiologicalDelta))
             {
-                int tickDelta = physiologicalTickCounter;
-                physiologicalTickCounter = 0;
-                MountedPawnUtility.PhysiologyTick(rider, tickDelta);
+                MountedPawnUtility.PhysiologyTick(rider, physiologicalDelta);
                 if (rider.Dead)
                 {
                     TryDismount(sendMessage: false);
@@ -322,9 +320,8 @@ namespace MooGirl
                 }
             }
 
-            if (Props.autoDismount && safetyTickCounter >= Props.safetyCheckInterval)
+            if (Props.autoDismount && MooGirlTickUtility.ConsumeReady(ref safetyTickCounter, Props.safetyCheckInterval, out _))
             {
-                safetyTickCounter = 0;
                 if (MountedPawnUtility.ShouldAutoDismount(rider, MooPawn, out string reasonKey))
                 {
                     string reason = reasonKey.NullOrEmpty() ? "MooGirl.Mount.ReasonInvalid".Translate().ToString() : reasonKey.Translate().ToString();
@@ -337,16 +334,13 @@ namespace MooGirl
                 }
             }
 
-            if (turretTickCounter >= Props.turretTickInterval)
+            if (MooGirlTickUtility.ConsumeReady(ref turretTickCounter, Props.turretTickInterval, out int turretDelta))
             {
-                int tickDelta = turretTickCounter;
-                turretTickCounter = 0;
-                MountedPawnCombatTurret.Tick(this, tickDelta);
+                MountedPawnCombatTurret.Tick(this, turretDelta);
             }
 
-            if (riderMeleeTickCounter >= Props.turretTickInterval)
+            if (MooGirlTickUtility.ConsumeReady(ref riderMeleeTickCounter, Props.turretTickInterval, out _))
             {
-                riderMeleeTickCounter = 0;
                 MountedPawnMeleeSupport.Tick(this);
             }
         }

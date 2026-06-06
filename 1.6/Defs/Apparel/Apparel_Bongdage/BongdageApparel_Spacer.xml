@@ -99,12 +99,12 @@
 		</comps>
 	</MooGirl.SlaveApparelDef>
 
-	<!-- ====================================== 电击项圈 =========================================== -->
+	<!-- ====================================== 榨乳器 =========================================== -->
 
 	<ThingDef ParentName="ApparelMakeableBase">
 		<defName>MooGirl_MilkingDevice</defName>
-		<label>雪牛娘 榨乳器</label>
-		<description>一种面向雪牛娘设计的高科技榨乳设备。它会在雪牛娘产乳进度满时自动截留一次产奶，将其压缩储存在内部容器中。储能满后，可由穿戴者手动释放，集中生成雪牛奶。当前版本以功能优先，不包含按储能变化的专用贴图。</description>
+		<label>MooGirl_MilkingDevice.label</label>
+		<description>MooGirl_MilkingDevice.description</description>
 		<graphicData>
 			<texPath>Things/Apparel/MooGirl_MilkingDevice/MooGirl_MilkingDevice</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -170,11 +170,11 @@
 			</li>
 			<li Class="MooGirl.CompProperties_MilkingDevice">
 				<maxCharges>3</maxCharges>
-				<releaseLabel>释放储乳</releaseLabel>
+				<releaseLabel>MooGirl.MilkingDevice.ReleaseLabel</releaseLabel>
 				<releaseDesc></releaseDesc>
 				<releaseIconPath>UI/MooGirl_Charge</releaseIconPath>
-				<inspectLabel>储乳层数</inspectLabel>
-				<noChargeText>当前没有可释放的储乳。</noChargeText>
+				<inspectLabel>MooGirl.MilkingDevice.InspectLabelWithCharges</inspectLabel>
+				<noChargeText>MooGirl.MilkingDevice.NoChargeText</noChargeText>
 				<releaseMessageKey></releaseMessageKey>
 				<storedMessageKey></storedMessageKey>
 				<storedMoteText></storedMoteText>
@@ -199,8 +199,8 @@
 
 	<ThingDef ParentName="ApparelMakeableBase">
 		<defName>MooGirl_MilkingDeviceHidden</defName>
-		<label>雪牛娘 隐藏式榨乳器</label>
-		<description>一款可隐藏在内衣或外层服装下的和谐型榨乳装置。它仍会在雪牛娘产乳进度满时自动截留一次产奶，但更适合在普通穿搭下保持外观低调，仅在需要时再进行控制。</description>
+		<label>MooGirl_MilkingDeviceHidden.label</label>
+		<description>MooGirl_MilkingDeviceHidden.description</description>
 		<graphicData>
 			<texPath>Things/Apparel/MooGirl_MilkingDeviceHidden/MooGirl_MilkingDeviceHidden</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -271,11 +271,11 @@
 			</li>
 			<li Class="MooGirl.CompProperties_MilkingDevice">
 				<maxCharges>3</maxCharges>
-				<releaseLabel>释放储乳</releaseLabel>
+				<releaseLabel>MooGirl.MilkingDevice.ReleaseLabel</releaseLabel>
 				<releaseDesc></releaseDesc>
 				<releaseIconPath>UI/MooGirl_Charge</releaseIconPath>
-				<inspectLabel>储乳层数</inspectLabel>
-				<noChargeText>当前没有可释放的储乳。</noChargeText>
+				<inspectLabel>MooGirl.MilkingDevice.InspectLabelWithCharges</inspectLabel>
+				<noChargeText>MooGirl.MilkingDevice.NoChargeText</noChargeText>
 				<releaseMessageKey></releaseMessageKey>
 				<storedMessageKey></storedMessageKey>
 				<storedMoteText></storedMoteText>

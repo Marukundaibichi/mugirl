@@ -2,8 +2,6 @@
 using RimWorld.QuestGen;
 using RimWorld;
 using RimWorld.Planet;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace MooGirl
 {
@@ -42,62 +40,7 @@ namespace MooGirl
             // 生成Pawn实例
             Pawn pawn = PawnGenerator.GeneratePawn(request);
 
-            // 检查是否允许服装要求（根据信仰系统）
-            bool allowApparelRequirements = false;
-            if (pawn.Ideo != null)
-            {
-                // 遍历信仰的所有meme，检查是否阻止服装要求
-                foreach (var meme in pawn.Ideo.memes)
-                {
-                    if (meme.preventApparelRequirements)
-                    {
-                        allowApparelRequirements = true;
-                        break;
-                    }
-                }
-            }
-
-            // 如果允许服装要求且Pawn种类有服装标签，则生成对应服装
-            if (allowApparelRequirements && pawn.kindDef.apparelTags != null && pawn.kindDef.apparelTags.Count > 0)
-            {
-                List<string> apparelTags = pawn.kindDef.apparelTags.ToList();
-
-                foreach (var tag in apparelTags)
-                {
-                    // 查找符合标签的服装定义
-                    var candidates = DefDatabase<ThingDef>.AllDefsListForReading
-                        .Where(td => td.IsApparel
-                                     && td.apparel != null
-                                     && td.apparel.tags != null
-                                     && td.apparel.tags.Contains(tag)
-                                     && AdultContentUtility.IsAllowed(td))
-                        .ToList();
-
-                    if (candidates.Count > 0)
-                    {
-                        // 随机选择一个服装定义
-                        ThingDef chosenDef = candidates.RandomElement();
-
-                        Apparel newApparel;
-                        // 根据是否需要材料生成服装
-                        if (chosenDef.MadeFromStuff)
-                        {
-                            ThingDef stuff = GenStuff.RandomStuffFor(chosenDef);
-                            newApparel = (Apparel)ThingMaker.MakeThing(chosenDef, stuff);
-                        }
-                        else
-                        {
-                            newApparel = (Apparel)ThingMaker.MakeThing(chosenDef, null);
-                        }
-
-                        // 检查是否需要锁定服装（特殊类型）
-                        bool shouldLock = newApparel is AdvancedSlaveApparel || newApparel is BrainWashSlaveApparel;
-
-                        // 装备服装（根据类型决定是否锁定）
-                        pawn.apparel.Wear(newApparel, dropReplacedApparel: true, locked: shouldLock);
-                    }
-                }
-            }
+            MooGirlApparelTagUtility.TryWearIdeoSuppressedKindApparel(pawn);
 
             // 直接将Pawn生成到地图指定位置
             GenSpawn.Spawn(pawn, loc, map, WipeMode.Vanish);

@@ -24,7 +24,7 @@ namespace MooGirl
 
             yield return Toils_Goto.GotoThing(MooInd, PathEndMode.Touch);
 
-            Toil feed = Toils_General.Wait(500, MooInd);
+            Toil feed = Toils_General.Wait(MooGirlMilkInteractionUtility.ChildBreastfeedInteractionTicks, MooInd);
             feed.WithProgressBarToilDelay(MooInd);
             feed.FailOnCannotTouch(MooInd, PathEndMode.Touch);
             yield return feed;
@@ -34,28 +34,7 @@ namespace MooGirl
 
         private void ApplyBreastfeedEffects()
         {
-            if (Child.needs?.food != null)
-            {
-                Child.needs.food.CurLevel += 0.5f;
-            }
-
-            ThoughtDef drinkThought = DefDatabase<ThoughtDef>.GetNamedSilentFail("MooGirl_DrankMilk");
-            if (drinkThought != null)
-            {
-                Child.needs.mood?.thoughts?.memories?.TryGainMemory(drinkThought);
-            }
-
-            ThoughtDef milkThought = DefDatabase<ThoughtDef>.GetNamedSilentFail("Consumed_MooGirlMilk");
-            if (milkThought != null)
-            {
-                Child.needs.mood?.thoughts?.memories?.TryGainMemory(milkThought);
-            }
-
-            MooGirlNurtureUtility.AddChildNurtureProgress(Child, MooPawn);
-
-            // 消耗雪牛娘 30% 奶量
-            CompMooMilkable comp = MooPawn.TryGetComp<CompMooMilkable>();
-            comp?.ConsumePercentage(0.3f);
+            MooGirlMilkInteractionUtility.ApplyChildBreastfeed(Child, MooPawn);
         }
     }
 }

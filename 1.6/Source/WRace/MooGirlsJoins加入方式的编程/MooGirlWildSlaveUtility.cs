@@ -19,10 +19,9 @@ namespace MooGirl
                 return false;
             }
 
-            return pawn.def == MooGirl_DefOf.MooGirl
+            return MooGirlIdentity.IsMooGirlPawn(pawn)
                 || pawn.kindDef == MooGirl_DefOf.MooGirl_EscapeWildSlave
-                || pawn.kindDef == MooGirl_DefOf.MooGirl_PreEscapeWildSlave
-                || pawn.RaceProps?.body == MooGirl_DefOf.MooGirlBody;
+                || pawn.kindDef == MooGirl_DefOf.MooGirl_PreEscapeWildSlave;
         }
 
         public static bool NormalizeAfterJoiningPlayer(Pawn pawn, bool wasEscapeWildSlave = false)

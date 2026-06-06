@@ -1,0 +1,179 @@
+# Harmony Patch Baseline
+
+Generated: 2026-06-06 23:46:51 +08:00
+
+- C# files scanned: 143
+- Captured Harmony/reflection entries: 141
+
+Primary machine-readable snapshot: `harmony-patches.csv`.
+
+## Entries By Kind
+
+| Kind | Count |
+| --- | ---: |
+| AccessToolsReflection | 26 |
+| HarmonyInstance | 3 |
+| HarmonyPatchAttribute | 51 |
+| HarmonyPostfixAttribute | 3 |
+| HarmonyPrefixAttribute | 2 |
+| PatchAllCall | 1 |
+| PostfixMethod | 27 |
+| PrefixMethod | 23 |
+| TargetMethod | 4 |
+| TranspilerMethod | 1 |
+
+## PatchAll And Harmony Instances
+
+| File | Line | Class | Kind | Text |
+| --- | ---: | --- | --- | --- |
+| `1.6\Source\WRace\bondageclothes束具的编程\Mod.cs` | 13 | `MooGirlMod` | HarmonyInstance | `harmony = new Harmony("MooGirlMod.Mod");` |
+| `1.6\Source\WRace\bondageclothes束具的编程\Mod.cs` | 14 | `MooGirlMod` | PatchAllCall | `harmony.PatchAll();` |
+| `1.6\Source\WRace\OtherFunction\Harmoney_PawnRenderNodeWorker_Swaddle_ShouldListOnGraph.cs` | 22 | `Patch_AlienPawnRenderNode_Swaddle_GraphicFor` | HarmonyInstance | `new Harmony("MooGirl.SwaddlePatch").Patch(target, prefix: new HarmonyMethod(prefix));` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmoney_Mod.cs` | 17 | `RopedMooMod` | HarmonyInstance | `new Harmony("RopedMoo").PatchAll();` |
+
+## Patch Attributes And Methods
+
+| File | Line | Class | Kind | Text |
+| --- | ---: | --- | --- | --- |
+| `1.6\Source\WRace\bondageclothes束具的编程\AdultContentControl.cs` | 294 | `AdultContentCleanupGameComponent` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(ThingSetMaker_TraderStock), "Generate")]` |
+| `1.6\Source\WRace\bondageclothes束具的编程\AdultContentControl.cs` | 297 | `Patch_ThingSetMaker_TraderStock_Generate` | PostfixMethod | `public static void Postfix(List<Thing> outThings)` |
+| `1.6\Source\WRace\bondageclothes束具的编程\Harmony_ApparelTracker_Unlock.cs` | 10 | `` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(Pawn_ApparelTracker), "Unlock")]` |
+| `1.6\Source\WRace\bondageclothes束具的编程\Harmony_ApparelTracker_Unlock.cs` | 13 | `Pawn_ApparelTracker_Unlock_Patch` | PrefixMethod | `public static bool Prefix(Apparel apparel)` |
+| `1.6\Source\WRace\bondageclothes束具的编程\Harmony_DropThingTooltip.cs` | 11 | `` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(ITab_Pawn_Gear), "DrawThingRow")]` |
+| `1.6\Source\WRace\bondageclothes束具的编程\Harmony_DropThingTooltip.cs` | 14 | `ITab_Pawn_Gear_DrawThingRow_Transpiler` | TranspilerMethod | `public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)` |
+| `1.6\Source\WRace\bondageclothes束具的编程\Harmony_InitiateSlaveRebellionMtbDays.cs` | 7 | `` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(SlaveRebellionUtility), "InitiateSlaveRebellionMtbDays")]` |
+| `1.6\Source\WRace\bondageclothes束具的编程\Harmony_InitiateSlaveRebellionMtbDays.cs` | 10 | `Patch_SlaveRebellionUtility_InitiateSlaveRebellionMtbDays` | PrefixMethod | `public static bool Prefix(Pawn pawn, ref float __result)` |
+| `1.6\Source\WRace\bondageclothes束具的编程\Harmony_PawnGenerator_Patch.cs` | 19 | `PawnGenerator_GeneratePawn_Patch` | PostfixMethod | `public static void Postfix(Pawn __result)` |
+| `1.6\Source\WRace\bondageclothes束具的编程\Harmony_PawnStoryTracker_SkinColor.cs` | 23 | `GameComponent_MooGirlSkinOnce` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(Pawn_StoryTracker), nameof(Pawn_StoryTracker.SkinColor), MethodType.Getter)]` |
+| `1.6\Source\WRace\bondageclothes束具的编程\Harmony_PawnStoryTracker_SkinColor.cs` | 29 | `Patch_PawnStoryTracker_SkinColor` | PostfixMethod | `public static void Postfix(` |
+| `1.6\Source\WRace\GeneAndAbility\MooGirl_XenotypeFix_GameComp.cs` | 68 | `MooGirlBirthXenotypeUtility` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(PawnUtility), nameof(PawnUtility.TrySpawnHatchedOrBornPawn))]` |
+| `1.6\Source\WRace\GeneAndAbility\MooGirl_XenotypeFix_GameComp.cs` | 71 | `Harmony_PawnUtility_TrySpawnHatchedOrBornPawn_MooGirlXenotype` | PrefixMethod | `public static void Prefix(Pawn pawn, Thing motherOrEgg)` |
+| `1.6\Source\WRace\GeneAndAbility\MooGirl_XenotypeFix_GameComp.cs` | 76 | `Harmony_PawnUtility_TrySpawnHatchedOrBornPawn_MooGirlXenotype` | PostfixMethod | `public static void Postfix(Pawn pawn, Thing motherOrEgg)` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\Harmony_Apparel_PawnCanWear_MilkingDevice.cs` | 7 | `` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(Apparel), nameof(Apparel.PawnCanWear))]` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\Harmony_Apparel_PawnCanWear_MilkingDevice.cs` | 10 | `Harmony_Apparel_PawnCanWear_MilkingDevice` | PostfixMethod | `public static void Postfix(Apparel __instance, Pawn pawn, ref bool __result)` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\Harmony_MooGirlBabyFeeding.cs` | 138 | `MooGirlBabyFeedingUtility` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(ChildcareUtility), nameof(ChildcareUtility.CanBreastfeed))]` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\Harmony_MooGirlBabyFeeding.cs` | 141 | `Harmony_ChildcareUtility_CanBreastfeed_MooGirl` | PostfixMethod | `public static void Postfix(Pawn mom, ref ChildcareUtility.BreastfeedFailReason? reason, ref bool __result)` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\Harmony_MooGirlBabyFeeding.cs` | 156 | `Harmony_ChildcareUtility_CanBreastfeed_MooGirl` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(ChildcareUtility), nameof(ChildcareUtility.CanBreastfeedNow))]` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\Harmony_MooGirlBabyFeeding.cs` | 159 | `Harmony_ChildcareUtility_CanBreastfeedNow_MooGirl` | PostfixMethod | `public static void Postfix(Pawn mom, ref ChildcareUtility.BreastfeedFailReason? reason, ref bool __result)` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\Harmony_MooGirlBabyFeeding.cs` | 178 | `Harmony_ChildcareUtility_CanBreastfeedNow_MooGirl` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(ChildcareUtility), nameof(ChildcareUtility.SuckleFromLactatingPawn))]` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\Harmony_MooGirlBabyFeeding.cs` | 181 | `Harmony_ChildcareUtility_SuckleFromLactatingPawn_MooGirl` | PrefixMethod | `public static bool Prefix(Pawn baby, Pawn feeder, int delta, ref bool __result)` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\MooGirlMilkingAnimation.cs` | 463 | `MilkingVisualState` | HarmonyPatchAttribute | `[HarmonyPatch]` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\MooGirlMilkingAnimation.cs` | 468 | `Harmony_MooGirlMilkingAnimation_DisableCachedPawnRender` | TargetMethod | `private static MethodBase TargetMethod()` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\MooGirlMilkingAnimation.cs` | 473 | `Harmony_MooGirlMilkingAnimation_DisableCachedPawnRender` | PrefixMethod | `private static void Prefix(PawnRenderer __instance, ref bool disableCache)` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\MooGirlMilkingAnimation.cs` | 483 | `Harmony_MooGirlMilkingAnimation_DisableCachedPawnRender` | HarmonyPatchAttribute | `[HarmonyPatch]` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\MooGirlMilkingAnimation.cs` | 488 | `Harmony_MooGirlMilkingAnimation_PawnMatrix` | TargetMethod | `private static MethodBase TargetMethod()` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\MooGirlMilkingAnimation.cs` | 493 | `Harmony_MooGirlMilkingAnimation_PawnMatrix` | PrefixMethod | `private static void Prefix(PawnRenderer __instance, PawnRenderFlags flags, ref Rot4 bodyFacing)` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\MooGirlMilkingAnimation.cs` | 498 | `Harmony_MooGirlMilkingAnimation_PawnMatrix` | PostfixMethod | `private static void Postfix(ref PawnDrawParms __result)` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\MooGirlMilkingAnimation.cs` | 507 | `Harmony_MooGirlMilkingAnimation_PawnMatrix` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(PawnRenderNode), nameof(PawnRenderNode.GetTransform))]` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\MooGirlMilkingAnimation.cs` | 510 | `Harmony_MooGirlMilkingAnimation_NodeTransform` | PostfixMethod | `private static void Postfix(PawnRenderNode __instance, PawnDrawParms parms, ref Vector3 offset, ref Vector3 pivot, ref Quaternion rotation, ref Vector3 scale)` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\MooGirlNurtureUtility.cs` | 176 | `HediffComp_MooGirlNurtureProgress` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(Pawn_AgeTracker), nameof(Pawn_AgeTracker.GrowthPointsPerDay), MethodType.Getter)]` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\MooGirlNurtureUtility.cs` | 181 | `Harmony_MooGirlNurtureGrowthPoints` | PostfixMethod | `public static void Postfix(Pawn_AgeTracker __instance, ref float __result)` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\MooGirlNurtureUtility.cs` | 218 | `Harmony_MooGirlNurtureGrowthPoints` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(SkillRecord), nameof(SkillRecord.Learn))]` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\MooGirlNurtureUtility.cs` | 225 | `Harmony_MooGirlNurturedSkillLearnCap` | PrefixMethod | `public static void Prefix(SkillRecord __instance)` |
+| `1.6\Source\WRace\MooGirlsJoins加入方式的编程\Harmony_DesignatorTame.cs` | 9 | `` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(TameUtility), nameof(TameUtility.CanTame))]` |
+| `1.6\Source\WRace\MooGirlsJoins加入方式的编程\Harmony_DesignatorTame.cs` | 13 | `TameUtility_CanTame_Patch` | PostfixMethod | `public static void Postfix(Pawn pawn, ref bool __result)` |
+| `1.6\Source\WRace\MooGirlsJoins加入方式的编程\Harmony_DesignatorTame.cs` | 25 | `TameUtility_CanTame_Patch` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(Designator_Tame), nameof(Designator_Tame.CanDesignateThing))]` |
+| `1.6\Source\WRace\MooGirlsJoins加入方式的编程\Harmony_DesignatorTame.cs` | 29 | `DesignatorTame_CanDesignateThing_Patch` | PostfixMethod | `public static void Postfix(Thing t, ref AcceptanceReport __result)` |
+| `1.6\Source\WRace\MooGirlsJoins加入方式的编程\Harmony_GiantCorpRaidTiers.cs` | 6 | `` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(PawnGroupMaker), nameof(PawnGroupMaker.CanGenerateFrom))]` |
+| `1.6\Source\WRace\MooGirlsJoins加入方式的编程\Harmony_GiantCorpRaidTiers.cs` | 14 | `Harmony_GiantCorpRaidTiers` | PostfixMethod | `public static void Postfix(PawnGroupMaker __instance, PawnGroupMakerParms parms, ref bool __result)` |
+| `1.6\Source\WRace\MooGirlsJoins加入方式的编程\Harmony_IsWildMan_WildManUtility.cs` | 9 | `` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(WildManUtility), "IsWildMan")]` |
+| `1.6\Source\WRace\MooGirlsJoins加入方式的编程\Harmony_IsWildMan_WildManUtility.cs` | 13 | `IsWildMan_WildManUtility_Patch` | PostfixMethod | `public static void Postfix(Pawn p, ref bool __result)` |
+| `1.6\Source\WRace\MooGirlsJoins加入方式的编程\Harmony_IsWildMan_WildManUtility.cs` | 27 | `IsWildMan_WildManUtility_Patch` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(RecruitUtility), "Recruit")]` |
+| `1.6\Source\WRace\MooGirlsJoins加入方式的编程\Harmony_IsWildMan_WildManUtility.cs` | 30 | `RecruitUtility_Recruit_Patch` | PrefixMethod | `public static void Prefix(Pawn pawn, out bool __state)` |
+| `1.6\Source\WRace\MooGirlsJoins加入方式的编程\Harmony_IsWildMan_WildManUtility.cs` | 36 | `RecruitUtility_Recruit_Patch` | PostfixMethod | `public static void Postfix(Pawn pawn, Faction faction, bool __state)` |
+| `1.6\Source\WRace\MooGirlsJoins加入方式的编程\MooGirlWildSlaveUtility.cs` | 125 | `MooGirlWildSlaveUtility` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(Pawn), nameof(Pawn.SetFaction))]` |
+| `1.6\Source\WRace\MooGirlsJoins加入方式的编程\MooGirlWildSlaveUtility.cs` | 128 | `Pawn_SetFaction_MooGirlWildSlaveCleanup_Patch` | PrefixMethod | `public static void Prefix(Pawn __instance, out bool __state)` |
+| `1.6\Source\WRace\MooGirlsJoins加入方式的编程\MooGirlWildSlaveUtility.cs` | 133 | `Pawn_SetFaction_MooGirlWildSlaveCleanup_Patch` | PostfixMethod | `public static void Postfix(Pawn __instance, Faction newFaction, bool __state)` |
+| `1.6\Source\WRace\MooGirlsJoins加入方式的编程\MooGirlWildSlaveUtility.cs` | 142 | `Pawn_SetFaction_MooGirlWildSlaveCleanup_Patch` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(PawnGenerator), nameof(PawnGenerator.GeneratePawn), new Type[] { typeof(PawnGenerationRequest) })]` |
+| `1.6\Source\WRace\MooGirlsJoins加入方式的编程\MooGirlWildSlaveUtility.cs` | 145 | `PawnGenerator_GeneratePawn_MooGirlWildSlaveBirth_Patch` | PrefixMethod | `public static void Prefix(ref PawnGenerationRequest request)` |
+| `1.6\Source\WRace\MooGirlsJoins加入方式的编程\MooGirlWildSlaveUtility.cs` | 156 | `PawnGenerator_GeneratePawn_MooGirlWildSlaveBirth_Patch` | PostfixMethod | `public static void Postfix(Pawn __result, PawnGenerationRequest request)` |
+| `1.6\Source\WRace\Mounting骑乘系统的编程\Harmony_MountedPawnGizmos.cs` | 7 | `` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(Pawn), nameof(Pawn.GetGizmos))]` |
+| `1.6\Source\WRace\Mounting骑乘系统的编程\Harmony_MountedPawnGizmos.cs` | 10 | `Harmony_MountedPawnGizmos` | PostfixMethod | `public static void Postfix(Pawn __instance, ref IEnumerable<Gizmo> __result)` |
+| `1.6\Source\WRace\Mounting骑乘系统的编程\Harmony_MountRendering.cs` | 7 | `` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(Pawn), nameof(Pawn.DynamicDrawPhaseAt))]` |
+| `1.6\Source\WRace\Mounting骑乘系统的编程\Harmony_MountRendering.cs` | 10 | `Harmony_MountRendering` | PrefixMethod | `public static void Prefix(Pawn __instance, DrawPhase phase, Vector3 drawLoc, bool flip = false)` |
+| `1.6\Source\WRace\Mounting骑乘系统的编程\Harmony_MountRendering.cs` | 18 | `Harmony_MountRendering` | PostfixMethod | `public static void Postfix(Pawn __instance, DrawPhase phase, Vector3 drawLoc, bool flip = false)` |
+| `1.6\Source\WRace\Mounting骑乘系统的编程\MountedPawnCombatTurret.cs` | 601 | `MountedAttackTargetSearcher` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(Verb), nameof(Verb.WarmupTime), MethodType.Getter)]` |
+| `1.6\Source\WRace\Mounting骑乘系统的编程\MountedPawnCombatTurret.cs` | 604 | `Harmony_MountedPawnCombatTurret_WarmupTime` | PostfixMethod | `public static void Postfix(Verb __instance, ref float __result)` |
+| `1.6\Source\WRace\Mounting骑乘系统的编程\MountedPawnCombatTurret.cs` | 610 | `Harmony_MountedPawnCombatTurret_WarmupTime` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(Stance_Warmup), nameof(Stance_Warmup.StanceDraw))]` |
+| `1.6\Source\WRace\Mounting骑乘系统的编程\MountedPawnCombatTurret.cs` | 613 | `Harmony_MountedPawnCombatTurret_StanceWarmupDraw` | PrefixMethod | `public static bool Prefix(Stance_Warmup __instance)` |
+| `1.6\Source\WRace\NewBron\Harmoney_AlienRace_ResolveReferences.cs` | 9 | `` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(PawnGenerator))]` |
+| `1.6\Source\WRace\NewBron\Harmoney_AlienRace_ResolveReferences.cs` | 10 | `` | HarmonyPatchAttribute | `[HarmonyPatch("GeneratePawn")]` |
+| `1.6\Source\WRace\NewBron\Harmoney_AlienRace_ResolveReferences.cs` | 11 | `` | HarmonyPatchAttribute | `[HarmonyPatch(new Type[] { typeof(PawnGenerationRequest) })] // 指定签名` |
+| `1.6\Source\WRace\NewBron\Harmoney_AlienRace_ResolveReferences.cs` | 14 | `PawnGenerator_GeneratePawn_Patch` | PostfixMethod | `public static void Postfix(Pawn __result)` |
+| `1.6\Source\WRace\NewBron\MooGirlJuvenileGraphicUtility.cs` | 74 | `MooGirlJuvenileGraphicUtility` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(Pawn_AgeTracker), "RecalculateLifeStageIndex")]` |
+| `1.6\Source\WRace\NewBron\MooGirlJuvenileGraphicUtility.cs` | 79 | `Harmony_PawnAgeTracker_RecalculateLifeStageIndex_MooGirlBodyType` | PostfixMethod | `public static void Postfix(Pawn_AgeTracker __instance)` |
+| `1.6\Source\WRace\OtherFunction\Harmoney_AlienRace_ResolveReferences.cs` | 10 | `` | HarmonyPatchAttribute | `//    [HarmonyPatch(typeof(ThingDef_AlienRace))]` |
+| `1.6\Source\WRace\OtherFunction\Harmoney_AlienRace_ResolveReferences.cs` | 14 | `ThingDef_AlienRace_ResolveReferences_Patch` | HarmonyPatchAttribute | `//        [HarmonyPatch("<ResolveReferences>b__1_2")]` |
+| `1.6\Source\WRace\OtherFunction\Harmoney_AlienRace_ResolveReferences.cs` | 15 | `ThingDef_AlienRace_ResolveReferences_Patch` | HarmonyPrefixAttribute | `//        [HarmonyPrefix]` |
+| `1.6\Source\WRace\OtherFunction\Harmoney_DrugAdministerDefs.cs` | 10 | `` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(RecipeDefGenerator))]` |
+| `1.6\Source\WRace\OtherFunction\Harmoney_DrugAdministerDefs.cs` | 11 | `` | HarmonyPatchAttribute | `[HarmonyPatch("DrugAdministerDefs")]` |
+| `1.6\Source\WRace\OtherFunction\Harmoney_DrugAdministerDefs.cs` | 15 | `Patch_DrugAdministerDefs` | PostfixMethod | `public static void Postfix(ref IEnumerable<RecipeDef> __result, bool hotReload)` |
+| `1.6\Source\WRace\OtherFunction\Harmoney_GridsUtility_IsPolluted.cs` | 8 | `` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(GridsUtility), nameof(GridsUtility.IsPolluted))]` |
+| `1.6\Source\WRace\OtherFunction\Harmoney_GridsUtility_IsPolluted.cs` | 11 | `GridsUtility_IsPolluted_Patch` | PrefixMethod | `public static bool Prefix(IntVec3 c, Map map, ref bool __result)` |
+| `1.6\Source\WRace\OtherFunction\Harmoney_GridsUtility_IsPolluted.cs` | 22 | `GridsUtility_IsPolluted_Patch` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(Plant), nameof(Plant.TickLong))]` |
+| `1.6\Source\WRace\OtherFunction\Harmoney_GridsUtility_IsPolluted.cs` | 25 | `Plant_TickLong_Patch` | PrefixMethod | `public static bool Prefix(Plant __instance)` |
+| `1.6\Source\WRace\OtherFunction\Harmoney_PawnRenderNodeWorker_Swaddle_ShouldListOnGraph.cs` | 25 | `Patch_AlienPawnRenderNode_Swaddle_GraphicFor` | PrefixMethod | `static bool Prefix(Pawn pawn, ref Graphic __result)` |
+| `1.6\Source\WRace\OtherFunction\Harmoney_SetForbidden.cs` | 7 | `` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(ForbidUtility))]` |
+| `1.6\Source\WRace\OtherFunction\Harmoney_SetForbidden.cs` | 8 | `` | HarmonyPatchAttribute | `[HarmonyPatch("SetForbidden")]` |
+| `1.6\Source\WRace\OtherFunction\Harmoney_SetForbidden.cs` | 11 | `FobidPatch` | HarmonyPrefixAttribute | `[HarmonyPrefix]` |
+| `1.6\Source\WRace\OtherFunction\Harmoney_SetForbidden.cs` | 12 | `FobidPatch` | PrefixMethod | `private static bool Prefix(this Thing t, bool value, bool warnOnFail = true)` |
+| `1.6\Source\WRace\OtherFunction\Harmony_Apparel_DrawColor.cs` | 8 | `` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(Apparel), nameof(Apparel.DrawColor), MethodType.Getter)]` |
+| `1.6\Source\WRace\OtherFunction\Harmony_Apparel_DrawColor.cs` | 11 | `Harmony_Apparel_DrawColor` | PrefixMethod | `public static bool Prefix(Apparel __instance, ref Color __result)` |
+| `1.6\Source\WRace\OtherFunction\Harmony_GhoulRenderingRefresh.cs` | 6 | `` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(Hediff), nameof(Hediff.PostAdd))]` |
+| `1.6\Source\WRace\OtherFunction\Harmony_GhoulRenderingRefresh.cs` | 9 | `Harmony_GhoulRenderingRefresh_PostAdd` | PostfixMethod | `public static void Postfix(Hediff __instance)` |
+| `1.6\Source\WRace\OtherFunction\Harmony_GhoulRenderingRefresh.cs` | 20 | `Harmony_GhoulRenderingRefresh_PostAdd` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(Hediff), nameof(Hediff.Tick))]` |
+| `1.6\Source\WRace\OtherFunction\Harmony_GhoulRenderingRefresh.cs` | 23 | `Harmony_GhoulRenderingRefresh_Tick` | PostfixMethod | `public static void Postfix(Hediff __instance)` |
+| `1.6\Source\WRace\OtherFunction\Harmony_MooGirlGrazeChain.cs` | 9 | `` | HarmonyPatchAttribute | `[HarmonyPatch]` |
+| `1.6\Source\WRace\OtherFunction\Harmony_MooGirlGrazeChain.cs` | 14 | `Harmony_MooGirlGrazeChain` | TargetMethod | `public static MethodBase TargetMethod()` |
+| `1.6\Source\WRace\OtherFunction\Harmony_MooGirlGrazeChain.cs` | 19 | `Harmony_MooGirlGrazeChain` | PrefixMethod | `public static void Prefix(JobDriver __instance, JobCondition condition)` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmony_CanTakeOrder.cs` | 14 | `` | HarmonyPatchAttribute | `//[HarmonyPatch(typeof(FloatMenuMakerMap), "CanTakeOrder")]` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmony_CanTakeOrder.cs` | 17 | `FloatMenuMakerMap_CanTakeOrder_Patch` | PostfixMethod | `//    public static void Postfix(Pawn pawn, ref bool __result)` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmony_Door_PawnCanOpen.cs` | 8 | `` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(Building_Door), nameof(Building_Door.PawnCanOpen))]` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmony_Door_PawnCanOpen.cs` | 11 | `Building_Door_PawnCanOpen_Patch` | HarmonyPostfixAttribute | `[HarmonyPostfix]` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmony_PawnDraftController.cs` | 8 | `` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(Pawn_DraftController), "GetGizmos")]` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmony_PawnDraftController.cs` | 11 | `Patch_PawnDraftController_GetGizmos` | HarmonyPostfixAttribute | `[HarmonyPostfix]` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmony_PreventEscape.cs` | 10 | `` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(JobGiver_PrisonerEscape), "TryGiveJob")]` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmony_PreventEscape.cs` | 13 | `JobGiver_PrisonerEscape_RopedBlock_Patch` | PrefixMethod | `public static bool Prefix(Pawn pawn)` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmony_RopingDraw.cs` | 10 | `` | HarmonyPatchAttribute | `[HarmonyPatch]` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmony_RopingDraw.cs` | 22 | `Harmony_Patch_RopingDraw` | TargetMethod | `static MethodBase TargetMethod()` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmony_RopingDraw.cs` | 27 | `Harmony_Patch_RopingDraw` | PrefixMethod | `public static bool Prefix(Pawn_RopeTracker __instance)` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmony_RopingTick.cs` | 11 | `` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(Pawn_RopeTracker), "RopingTick")]` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmony_RopingTick.cs` | 39 | `Patch_RopingTick` | PrefixMethod | `public static bool Prefix(Pawn_RopeTracker __instance)` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmony_ShouldShowRestraintsInfo.cs` | 8 | `` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(RestraintsUtility), nameof(RestraintsUtility.InRestraints))]` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmony_ShouldShowRestraintsInfo.cs` | 11 | `Patch_RestraintsUtility_InRestraints` | PrefixMethod | `public static bool Prefix(Pawn pawn, ref bool __result)` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmony_ShouldShowRestraintsInfo.cs` | 25 | `Patch_RestraintsUtility_InRestraints` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(RestraintsUtility), nameof(RestraintsUtility.ShouldShowRestraintsInfo))]` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmony_ShouldShowRestraintsInfo.cs` | 28 | `RestraintsUtility_ShouldShowRestraintsInfo_Patch` | PrefixMethod | `static bool Prefix(Pawn pawn, ref bool __result)` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmony_TakeToPreferredBedJob.cs` | 8 | `` | HarmonyPatchAttribute | `[HarmonyPatch(typeof(WorkGiver_Warden_TakeToBed), "TakeToPreferredBedJob")]` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmony_TakeToPreferredBedJob.cs` | 12 | `TakeToPreferredBedJob_Patch` | HarmonyPostfixAttribute | `[HarmonyPostfix]` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmony_TakeToPreferredBedJob.cs` | 13 | `TakeToPreferredBedJob_Patch` | PostfixMethod | `public static void Postfix(ref Job __result, Pawn prisoner, Pawn warden)` |
+
+## Reflection Access
+
+| File | Line | Class | Text |
+| --- | ---: | --- | --- |
+| `1.6\Source\WRace\bondageclothes束具的编程\Harmony_DropThingTooltip.cs` | 34 | `ITab_Pawn_Gear_DrawThingRow_Transpiler` | `AccessTools.Method(` |
+| `1.6\Source\WRace\bondageclothes束具的编程\Harmony_PawnGenerator_Patch.cs` | 14 | `PawnGenerator_GeneratePawn_Patch` | `AccessTools.Method(typeof(PawnGenerator), "GeneratePawn", new Type[] { typeof(PawnGenerationRequest) }),` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\MooGirlMilkingAnimation.cs` | 466 | `Harmony_MooGirlMilkingAnimation_DisableCachedPawnRender` | `private static readonly FieldInfo PawnField = AccessTools.Field(typeof(PawnRenderer), "pawn");` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\MooGirlMilkingAnimation.cs` | 470 | `Harmony_MooGirlMilkingAnimation_DisableCachedPawnRender` | `return AccessTools.Method(typeof(PawnRenderer), "ParallelGetPreRenderResults");` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\MooGirlMilkingAnimation.cs` | 486 | `Harmony_MooGirlMilkingAnimation_PawnMatrix` | `private static readonly FieldInfo PawnField = AccessTools.Field(typeof(PawnRenderer), "pawn");` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\MooGirlMilkingAnimation.cs` | 490 | `Harmony_MooGirlMilkingAnimation_PawnMatrix` | `return AccessTools.Method(typeof(PawnRenderer), "GetDrawParms");` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\MooGirlNurtureUtility.cs` | 19 | `MooGirlNurtureUtility` | `private static readonly FieldInfo SkillPassionField = AccessTools.Field(typeof(SkillRecord), "passion");` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\MooGirlNurtureUtility.cs` | 179 | `Harmony_MooGirlNurtureGrowthPoints` | `private static readonly FieldInfo PawnField = AccessTools.Field(typeof(Pawn_AgeTracker), "pawn");` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\MooGirlNurtureUtility.cs` | 221 | `Harmony_MooGirlNurturedSkillLearnCap` | `private static readonly FieldInfo PawnField = AccessTools.Field(typeof(SkillRecord), "pawn");` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\MooGirlNurtureUtility.cs` | 222 | `Harmony_MooGirlNurturedSkillLearnCap` | `private static readonly FieldInfo XpSinceMidnightField = AccessTools.Field(typeof(SkillRecord), "xpSinceMidnight");` |
+| `1.6\Source\WRace\MooGirlMilked 挤奶相关的编程\MooGirlNurtureUtility.cs` | 223 | `Harmony_MooGirlNurturedSkillLearnCap` | `private static readonly FieldInfo MaxFullRateXpPerDayField = AccessTools.Field(typeof(SkillRecord), "MaxFullRateXpPerDay");` |
+| `1.6\Source\WRace\Mounting骑乘系统的编程\MountedPawnMeleeSupport.cs` | 13 | `MountedPawnMeleeSupport` | `private static readonly MethodInfo GetNonMissChanceMethod = AccessTools.Method(typeof(Verb_MeleeAttack), "GetNonMissChance");` |
+| `1.6\Source\WRace\Mounting骑乘系统的编程\MountedPawnMeleeSupport.cs` | 14 | `MountedPawnMeleeSupport` | `private static readonly MethodInfo GetDodgeChanceMethod = AccessTools.Method(typeof(Verb_MeleeAttack), "GetDodgeChance");` |
+| `1.6\Source\WRace\Mounting骑乘系统的编程\MountedPawnMeleeSupport.cs` | 15 | `MountedPawnMeleeSupport` | `private static readonly MethodInfo SoundHitPawnMethod = AccessTools.Method(typeof(Verb_MeleeAttack), "SoundHitPawn");` |
+| `1.6\Source\WRace\Mounting骑乘系统的编程\MountedPawnMeleeSupport.cs` | 16 | `MountedPawnMeleeSupport` | `private static readonly MethodInfo SoundHitBuildingMethod = AccessTools.Method(typeof(Verb_MeleeAttack), "SoundHitBuilding");` |
+| `1.6\Source\WRace\Mounting骑乘系统的编程\MountedPawnMeleeSupport.cs` | 17 | `MountedPawnMeleeSupport` | `private static readonly MethodInfo SoundMissMethod = AccessTools.Method(typeof(Verb_MeleeAttack), "SoundMiss");` |
+| `1.6\Source\WRace\Mounting骑乘系统的编程\MountedPawnMeleeSupport.cs` | 18 | `MountedPawnMeleeSupport` | `private static readonly MethodInfo SoundDodgeMethod = AccessTools.Method(typeof(Verb_MeleeAttack), "SoundDodge");` |
+| `1.6\Source\WRace\Mounting骑乘系统的编程\MountedPawnMeleeSupport.cs` | 19 | `MountedPawnMeleeSupport` | `private static readonly FieldInfo LastShotTickField = AccessTools.Field(typeof(Verb), "lastShotTick");` |
+| `1.6\Source\WRace\NewBron\MooGirlJuvenileGraphicUtility.cs` | 77 | `Harmony_PawnAgeTracker_RecalculateLifeStageIndex_MooGirlBodyType` | `private static readonly FieldInfo PawnField = AccessTools.Field(typeof(Pawn_AgeTracker), "pawn");` |
+| `1.6\Source\WRace\OtherFunction\Harmoney_PawnRenderNodeWorker_Swaddle_ShouldListOnGraph.cs` | 16 | `Patch_AlienPawnRenderNode_Swaddle_GraphicFor` | `var target = AccessTools.Method(swaddleType, "GraphicFor", new[] { typeof(Pawn) });` |
+| `1.6\Source\WRace\OtherFunction\Harmoney_PawnRenderNodeWorker_Swaddle_ShouldListOnGraph.cs` | 19 | `Patch_AlienPawnRenderNode_Swaddle_GraphicFor` | `var prefix = AccessTools.Method(typeof(Patch_AlienPawnRenderNode_Swaddle_GraphicFor), nameof(Prefix));` |
+| `1.6\Source\WRace\OtherFunction\Harmony_MooGirlGrazeChain.cs` | 16 | `Harmony_MooGirlGrazeChain` | `return AccessTools.Method(typeof(JobDriver), "Cleanup");` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmony_RopingDraw.cs` | 18 | `Harmony_Patch_RopingDraw` | `fieldPawn = AccessTools.Field(typeof(Pawn_RopeTracker), "pawn");` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmony_RopingDraw.cs` | 19 | `Harmony_Patch_RopingDraw` | `fieldRopeLineMat = AccessTools.Field(typeof(Pawn_RopeTracker), "RopeLineMat");` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmony_RopingDraw.cs` | 24 | `Harmony_Patch_RopingDraw` | `return AccessTools.Method(typeof(Pawn_RopeTracker), "RopingDraw");` |
+| `1.6\Source\WRace\RopingAndRoped牵引系统的编程\Harmony_RopingTick.cs` | 15 | `Patch_RopingTick` | `private static readonly FieldInfo pawnField = AccessTools.Field(typeof(Pawn_RopeTracker), "pawn");` |
