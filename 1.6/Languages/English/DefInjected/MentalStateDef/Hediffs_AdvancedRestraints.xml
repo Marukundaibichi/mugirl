@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+
+  <!-- Being Brainwashed -->
+  <MooGirl_BrainWashing.label>Being Brainwashed</MooGirl_BrainWashing.label>
+  <!-- Mental Status: Brainwashed -->
+  <MooGirl_BrainWashing.baseInspectLine>Mental Status: Brainwashed</MooGirl_BrainWashing.baseInspectLine>
+  <!-- {0} has been completely brainwashed by the brainwashing helmet.\n\n[PAWN_pronoun] will attack any [PAWN_pronoun] in the colony indiscriminately. -->
+  <MooGirl_BrainWashing.beginLetter>{0} has been completely brainwashed by the brainwashing helmet.\n\n[PAWN_pronoun] will attack any [PAWN_pronoun] in the colony indiscriminately.</MooGirl_BrainWashing.beginLetter>
+  <!-- {0} has resisted the brainwashing state, but if the helmet is not removed, {0} will be brainwashed again. -->
+  <MooGirl_BrainWashing.recoveryMessage>{0} has resisted the brainwashing state, but if the helmet is not removed, {0} will be brainwashed again.</MooGirl_BrainWashing.recoveryMessage>
+
+</LanguageData>

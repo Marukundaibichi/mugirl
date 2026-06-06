@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <Bullet_MooGirl_AR_Standard.label>雪牛娘突击步枪弹</Bullet_MooGirl_AR_Standard.label>
+  <Bullet_MooGirl_MP_Standard.label>雪牛娘手枪弹</Bullet_MooGirl_MP_Standard.label>
+  <Bullet_MooGirl_Militia_Rifle.label>民兵步枪弹</Bullet_MooGirl_Militia_Rifle.label>
+  <MuGirl_Gun_Defense_Rifle.description>雪牛娘使用的长射程步枪，尽管只是普通的火药步枪，但基于雪牛娘那强大的体格进行设计，这把枪拥有着强于普通步枪的性能</MuGirl_Gun_Defense_Rifle.description>
+  <MuGirl_Gun_Defense_Rifle.label>雪牛娘防卫步枪</MuGirl_Gun_Defense_Rifle.label>
+  <MuGirl_Gun_Defense_Rifle.tools.0.label>刺刀</MuGirl_Gun_Defense_Rifle.tools.0.label>
+  <MuGirl_Gun_Flame_Thrower.description>这个武器先复用原版迷你火焰冲击枪的代码，后续修改。</MuGirl_Gun_Flame_Thrower.description>
+  <MuGirl_Gun_Flame_Thrower.label>雪牛娘火焰喷射器</MuGirl_Gun_Flame_Thrower.label>
+  <MuGirl_Gun_Machine_Pistol.description>雪牛娘使用的基础手枪，尽管用的只是普通的火药，但基于雪牛娘那强大的体格进行设计，这把枪拥有着远强于普通自动手枪的火力</MuGirl_Gun_Machine_Pistol.description>
+  <MuGirl_Gun_Machine_Pistol.label>雪牛娘冲锋手枪</MuGirl_Gun_Machine_Pistol.label>
+  <MuGirl_Gun_Machine_Pistol.tools.0.label>握把</MuGirl_Gun_Machine_Pistol.tools.0.label>
+  <MuGirl_Gun_Machine_Pistol.tools.1.label>枪管</MuGirl_Gun_Machine_Pistol.tools.1.label>
+  <MuGirl_Gun_Support_Assault_Rifle.description>雪牛娘使用的大火力步枪，尽管只是普通的火药步枪，但基于雪牛娘那强大的体格进行设计，这把枪拥有着远强于普通轻机枪的火力</MuGirl_Gun_Support_Assault_Rifle.description>
+  <MuGirl_Gun_Support_Assault_Rifle.label>雪牛娘支援突击步枪</MuGirl_Gun_Support_Assault_Rifle.label>
+  <MuGirl_Gun_Support_Assault_Rifle.tools.0.label>枪托</MuGirl_Gun_Support_Assault_Rifle.tools.0.label>
+  <MuGirl_Gun_Support_Assault_Rifle.tools.1.label>枪管</MuGirl_Gun_Support_Assault_Rifle.tools.1.label>
+</LanguageData>

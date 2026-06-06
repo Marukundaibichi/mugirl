@@ -23,8 +23,10 @@
 
 	<AlienRace.ThingDef_AlienRace ParentName="BasePawn" Name="MooGirlPawn">
 		<defName>MooGirl</defName>
-		<label>雪牛娘</label>
-		<description>巨型企业基因改造的半人半牛娘种族，拥有柔软的毛发、淡蓝色皮毛和可爱的牛角。她们兼具力量与温顺天性，聪慧而亲人，却被迫忍受奴役生活。即便如此，她们仍会以温柔的举止安慰身边的人，展现出难得的善良本性。</description>
+		<!-- 雪牛娘 -->
+		<label>Mugirl</label>
+		<!-- 由巨型企业以智人种为蓝本，通过基因工程改造的半人半牛娘种族，拥有淡淡牛油香气的柔软毛发，淡蓝色皮毛和可爱牛角等特征。她们身体机能的各项强度都达到大型动物水准，身材高大，普遍身高在两米以上，兼具力量与温顺天性，聪慧而亲人，却被迫忍受奴役生活。即便如此，她们仍会以温柔的举止安慰身边的人，展现出难得的善良本性。 -->
+		<description>A half-muffalo race genetically engineered by a mega corporation, possessing soft fur, light blue coats and adorable horns. They combine strength with a gentle nature, being intelligent and affectionate, yet are forced to endure a life of servitude. Despite this, they still comfort those around them with tender gestures, demonstrating a remarkable kindness inherent to their character.</description>
 		<alienRace>
 			<generalSettings>
 				<newbornBackstoryFilter>
@@ -563,6 +565,7 @@
 		</statBases>
 		<tools>
 			<li>
+				<!-- 牛角 -->
 				<label>horn</label>
 				<capacities>
 					<li>Stab</li>
@@ -580,6 +583,7 @@
 				</surpriseAttack>
 			</li>
 			<li>
+				<!-- 左拳 -->
 				<label>left fist</label>
 				<capacities>
 					<li>Blunt</li>
@@ -597,6 +601,7 @@
 				</surpriseAttack>
 			</li>
 			<li>
+				<!-- 右拳 -->
 				<label>right fist</label>
 				<capacities>
 					<li>Blunt</li>
@@ -748,7 +753,8 @@
 			<!-- <li Class="MooGirl.CompProperties_ShowRopedBy" /> -->
 			<li Class="MooGirl.CompProperties_MooGirlMount" />
 			<li Class="MooGirl.CompProperties_MooMilkable">
-				<displayString>MooGirl.Milk.FullnessDisplay</displayString>
+				<!-- 雪牛奶 -->
+				<displayString>Mugirl milk</displayString>
 				<milkDef>MooGirl_Milk</milkDef>
 				<milkIntervalDays>0.06</milkIntervalDays>
 				<milkAmount>1</milkAmount>

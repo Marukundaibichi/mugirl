@@ -38,7 +38,7 @@ namespace MooGirl
             }
 
             rider.Drawer.renderer.DynamicDrawPhaseAt(phase, comp.RiderDrawPos, pawn.Rotation, neverAimWeapon: true);
-            MountedPawnCombatTurret.DrawWeapon(comp);
+            MountedCombatController.DrawWeapon(comp);
         }
     }
 }

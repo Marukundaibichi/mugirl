@@ -1,17 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-  
-  <!-- EN: baby -->
-  <MooGirl_HumanlikeBaby.label>TODO</MooGirl_HumanlikeBaby.label>
-  <!-- EN: Mood represents how happy or stressed someone is. Babies with low mood are more likely to cry, while babies with a high mood are more likely to giggle. -->
-  <MooGirl_HumanlikeBaby.customMoodTipString>TODO</MooGirl_HumanlikeBaby.customMoodTipString>
-  
-  <!-- EN: 未成年 -->
-  <MooGirl_PreTeenager.label>TODO</MooGirl_PreTeenager.label>
-  
-  <!-- EN: 青少年 -->
-  <MooGirl_Teenager.label>TODO</MooGirl_Teenager.label>
-  <!-- EN: teenage -->
-  <MooGirl_Teenager.adjective>TODO</MooGirl_Teenager.adjective>
+<MooGirl_HumanlikeBaby.label>婴儿</MooGirl_HumanlikeBaby.label>
+<MooGirl_HumanlikeBaby.customMoodTipString>心情代表一个人有多快乐或压力多大。心情低的婴儿更容易哭，心情高的婴儿更容易咯咯笑。</MooGirl_HumanlikeBaby.customMoodTipString>
+<MooGirl_PreTeenager.label>未成年</MooGirl_PreTeenager.label>
+<MooGirl_Teenager.label>青少年</MooGirl_Teenager.label>
+<MooGirl_Teenager.adjective>青少年</MooGirl_Teenager.adjective>
+<MooGirl_AdultLifeStage.label>成年</MooGirl_AdultLifeStage.label>
   
 </LanguageData>

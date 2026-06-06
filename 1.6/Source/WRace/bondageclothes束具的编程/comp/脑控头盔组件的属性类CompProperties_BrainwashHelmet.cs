@@ -18,8 +18,8 @@ namespace MooGirl
         public int useCooldownTicks = 480;
 
         // 激活按钮的显示文字、描述和图标路径
-        public string activateLabel = "主动洗脑";
-        public string activateDesc = "";
+        public string activateLabel = "MooGirl.Restraints.BrainwashHelmet.ActivateLabel";
+        public string activateDesc = "MooGirl.Restraints.BrainwashHelmet.ActivateDesc";
         public string activateIconPath = "UI/Commands/DesirePower";
 
         // Hediff转换触发的周期，改为范围形式，随机选择
@@ -119,8 +119,8 @@ namespace MooGirl
                 // 返回带冷却效果的按钮
                 yield return new Command_ActionWithCooldown
                 {
-                    defaultLabel = Props.activateLabel,
-                    defaultDesc = Props.activateDesc,
+                    defaultLabel = MooGirlText.Resolve(Props.activateLabel),
+                    defaultDesc = MooGirlText.Resolve(Props.activateDesc),
                     icon = ContentFinder<Texture2D>.Get(Props.activateIconPath),
                     action = () =>
                     {
@@ -131,7 +131,7 @@ namespace MooGirl
                         lastManualUseTick = Find.TickManager.TicksGame;
 
                         // 显示消息提示
-                        Messages.Message("MooGirl.BrainwashHelmet_ManualTrigger_Message".Translate(slave.Wearer.LabelShortCap), MessageTypeDefOf.PositiveEvent);
+                        Messages.Message("MooGirl.Restraints.BrainwashHelmet.ManualTriggerMessage".Translate(slave.Wearer.LabelShortCap), MessageTypeDefOf.PositiveEvent);
                     },
                     Disabled = !canUse,
                     cooldownPercentGetter = () => Mathf.Clamp01(cooldownPercent)
@@ -142,14 +142,14 @@ namespace MooGirl
                 {
                     yield return new Command_Action
                     {
-                        defaultLabel = "文化转换",
-                        defaultDesc = "将穿戴者的文化改变为殖民地的主流文化。",
+                        defaultLabel = "MooGirl.Restraints.BrainwashHelmet.IdeoConvertLabel".Translate(),
+                        defaultDesc = "MooGirl.Restraints.BrainwashHelmet.IdeoConvertDesc".Translate(),
                         icon = ContentFinder<Texture2D>.Get(Props.activateIconPath),
                         action = () =>
                         {
                             GameComponent_BrainwashPerformance.StartFor(Wearer, GetBrainwashPerformanceHediffDefFor(Wearer));
                             MooGirl_IdeoUtility.AdoptPlayerPrimaryIdeo(Wearer);
-                            Messages.Message("已将" + Wearer.LabelShortCap + "的文化转换为殖民地主流文化。", Wearer, MessageTypeDefOf.PositiveEvent);
+                            Messages.Message("MooGirl.Restraints.BrainwashHelmet.IdeoConvertMessage".Translate(Wearer.LabelShortCap), Wearer, MessageTypeDefOf.PositiveEvent);
                         }
                     };
                 }

@@ -38,7 +38,6 @@ namespace MooGirl
 
                 if (pawn != null)
                 {
-                    bool isColonist = pawn.IsColonistPlayerControlled;
                     bool isSlaveOrPrisoner = pawn.IsSlave || pawn.IsPrisonerOfColony;
 
                     // 只有当目标是殖民者且非奴隶非囚犯时才进行拒绝牵引判断
@@ -57,7 +56,13 @@ namespace MooGirl
                         pawn.roping = new Pawn_RopeTracker(pawn);
                     }
 
+                    if (actor.roping == null)
+                    {
+                        actor.roping = new Pawn_RopeTracker(actor);
+                    }
+
                     actor.roping.RopePawn(pawn);
+                    RopingService.RegisterPawnRope(actor, pawn);
 
                     Pawn_CallTracker caller = pawn.caller;
                     if (caller != null)
@@ -78,7 +83,7 @@ namespace MooGirl
 
         private static bool CheckAcceptRope(Pawn ropee, Pawn roper)
         {
-            if (ropee.RaceProps?.body == MooGirl_DefOf.MooGirlBody)
+            if (RopingService.IsMooGirlRopee(ropee))
             {
                 foreach (var comp in ropee.AllComps)
                 {
@@ -87,37 +92,34 @@ namespace MooGirl
                 return true;
             }
 
-            // 1. 计算接受牵引概率（这里直接用 Arrest 公式，你也可以自定义）
-            float acceptChance = ropee.GetAcceptArrestChance(roper); // 可复用原版公式
+            // 接受概率沿用原版逮捕公式，避免改变既有数值。
+            float acceptChance = ropee.GetAcceptArrestChance(roper);
 
-            // 2. 派系通知（可选）
             Faction homeFaction = ropee.HomeFaction;
             if (homeFaction != null && homeFaction != roper.Faction)
             {
-                // 如果你想加派系反应，可以在这里处理
                 homeFaction.Notify_MemberCaptured(ropee, roper.Faction);
             }
 
             List<ThingComp> comps = ropee.AllComps;
 
-            // 3. 接受牵引条件：倒地、不能打架 或 概率成功
+            // 接受条件保持旧逻辑：不能暴力或概率成功。
             if (ropee.WorkTagIsDisabled(WorkTags.Violent) || Rand.Value < acceptChance)
             {
                 foreach (var comp in comps)
                 {
-                    comp.Notify_Arrested(true); // 暂时沿用逮捕的通知
+                    comp.Notify_Arrested(true);
                 }
-                return true; // 接受牵引
+                return true;
             }
 
-            // 4. 拒绝牵引
             Messages.Message("MessageRefusedRope".Translate(ropee.LabelShort, ropee), ropee, MessageTypeDefOf.ThreatSmall, true);
             foreach (var comp in comps)
             {
-                comp.Notify_Arrested(false); // 暂时沿用逮捕的通知
+                comp.Notify_Arrested(false);
             }
 
-            // 5. 如果不是敌人 → 进入狂暴并攻击牵引者
+            // 拒绝牵引后的狂暴逻辑保持旧行为。
             if (ropee.Faction == null || !roper.HostileTo(ropee))
             {
                 bool startedBerserk = ropee.mindState.mentalStateHandler.TryStartMentalState(

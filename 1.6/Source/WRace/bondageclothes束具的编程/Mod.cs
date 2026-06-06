@@ -30,7 +30,7 @@ namespace MooGirl
 
         public override string SettingsCategory()
         {
-            return "牛牛模组控制";
+            return "MooGirl.Settings.Category".Translate().ToString();
         }
 
         public override void DoSettingsWindowContents(Rect inRect)

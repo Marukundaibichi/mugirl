@@ -1,9 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <ThingDef ParentName="NonBuildableLampBase">
     <defName>WallRopeHitch</defName>
-    <label>墙壁栓点</label>
-    <description>墙上的铁环，可用来将雪牛娘安全固定。她们在被牵引时会表现出一种本能的顺从，这是长期改造与驯化的结果。</description>
+    <!-- 墙壁栓点 -->
+    <label>Wall Rope Hitch</label>
+    <!-- 墙上的铁环，可用来将雪牛娘安全固定。她们在被牵引时会表现出一种本能的顺从，这是长期改造与驯化的结果。 -->
+    <description>Wall-mounted iron rings can be used to safely secure Mugirls. They display an instinctive compliance when being led, a result of prolonged modification and domestication.</description>
     <designationCategory>Furniture</designationCategory>
     <minifiedDef>MinifiedThing</minifiedDef>
     <uiOrder>2800</uiOrder>
@@ -54,7 +56,8 @@
       <li Class="CompProperties_Usable">
         <compClass>MooGirl.CompRopeToBuild</compClass>
         <useJob>RopeToBuild</useJob>
-        <useLabel>栓在建筑上</useLabel>
+        <!-- 栓在建筑上 -->
+        <useLabel>Rope to Building</useLabel>
       </li>
     </comps>
   </ThingDef>

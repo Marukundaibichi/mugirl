@@ -4,14 +4,14 @@
 	<JobDef>
 		<defName>Job_MountMooGirl</defName>
 		<driverClass>MooGirl.JobDriver_MountMooGirl</driverClass>
-		<reportString>骑上 TargetA.</reportString>
+		<reportString>mounting TargetA.</reportString> <!-- 骑上 TargetA。 -->
 		<suspendable>false</suspendable>
 	</JobDef>
 
 	<JobDef>
 		<defName>Job_DismountMooGirl</defName>
 		<driverClass>MooGirl.JobDriver_DismountMooGirl</driverClass>
-		<reportString>让 TargetA 上的骑乘者下来.</reportString>
+		<reportString>dismounting the rider from TargetA.</reportString> <!-- 让 TargetA 上的骑乘者下来。 -->
 		<suspendable>false</suspendable>
 	</JobDef>
 

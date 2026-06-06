@@ -1,60 +1,33 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-  
-  <!-- EN: 手臂束缚 -->
-  <MooGirl_Armbinder.label>Arm Restraints</MooGirl_Armbinder.label>
-  <!-- EN: 雪牛娘的手臂被束具严格束缚在身后，无法活动。 -->
   <MooGirl_Armbinder.description>The Mugirl's arms are strictly restrained behind her back by bondage gear, unable to move.</MooGirl_Armbinder.description>
-  <!-- EN: 手臂束缚 -->
+  <MooGirl_Armbinder.label>Arm Restraints</MooGirl_Armbinder.label>
   <MooGirl_Armbinder.labelNoun>Arm Restraints</MooGirl_Armbinder.labelNoun>
-  
-  <!-- EN: 蒙眼 -->
-  <MooGirl_Blindfold.label>Blindfold</MooGirl_Blindfold.label>
-  <!-- EN: 眼睛被蒙上了，什么也看不见...呀！谁碰我？ -->
   <MooGirl_Blindfold.description>My eyes are covered... can't see anything... Eek! Who's touching me?</MooGirl_Blindfold.description>
-  <!-- EN: 一副眼罩 -->
+  <MooGirl_Blindfold.label>Blindfold</MooGirl_Blindfold.label>
   <MooGirl_Blindfold.labelNoun>A Pair of Blindfold</MooGirl_Blindfold.labelNoun>
-  
-  <!-- EN: 耳塞 -->
-  <MooGirl_Earplugs.label>Earplugs</MooGirl_Earplugs.label>
-  <!-- EN: 耳朵被堵上了...什么都听不到...好可怕...呜呜 -->
+  <MooGirl_Boxbinder.description>The Mugirl's arms are strictly restrained behind her back by restraint gear, unable to move.</MooGirl_Boxbinder.description>
+  <MooGirl_Boxbinder.label>Multiple Restraints</MooGirl_Boxbinder.label>
   <MooGirl_Earplugs.description>My ears are blocked... can't hear anything... so scary... whimper.</MooGirl_Earplugs.description>
-  <!-- EN: 一对耳塞 -->
+  <MooGirl_Earplugs.label>Earplugs</MooGirl_Earplugs.label>
   <MooGirl_Earplugs.labelNoun>A Pair of Earplugs</MooGirl_Earplugs.labelNoun>
-  
-  <!-- EN: 全包头套 -->
-  <MooGirl_FullHeadCovering.label>Full Head Covering</MooGirl_FullHeadCovering.label>
-  <!-- EN: 呜呜呜，呜呜！ 我整个脑袋都被包裹起来了，什么也感觉不到~♥ -->
   <MooGirl_FullHeadCovering.description>Mmph, mmph! My entire head is wrapped up, can't feel anything~♥</MooGirl_FullHeadCovering.description>
-  <!-- EN: 一个全包头套 -->
+  <MooGirl_FullHeadCovering.label>Full Head Covering</MooGirl_FullHeadCovering.label>
   <MooGirl_FullHeadCovering.labelNoun>A Full Head Covering</MooGirl_FullHeadCovering.labelNoun>
-  
-  <!-- EN: 口棒 -->
-  <MooGirl_Gagstick.label>Gagstick</MooGirl_Gagstick.label>
-  <!-- EN: 嘴巴被戴上了一副口棒，只能发出呜呜呜的声音了 -->
   <MooGirl_Gagstick.description>My mouth is fitted with a gagstick, only able to make muffled sounds.</MooGirl_Gagstick.description>
-  <!-- EN: 一副口棒 -->
+  <MooGirl_Gagstick.label>Gagstick</MooGirl_Gagstick.label>
   <MooGirl_Gagstick.labelNoun>A Pair of Gagstick</MooGirl_Gagstick.labelNoun>
-  
-  <!-- EN: 奴隶手套束缚 -->
-  <MooGirl_Gauntlet.label>Slave Gauntlets Restraints</MooGirl_Gauntlet.label>
-  <!-- EN: 雪牛娘的手臂被连指手套束缚，手指无法活动，大幅降低操作能力。 -->
   <MooGirl_Gauntlet.description>The Mugirl's arms are restrained by gauntlets, fingers immobile, significantly reducing manipulation ability.</MooGirl_Gauntlet.description>
-  <!-- EN: 手套束缚 -->
+  <MooGirl_Gauntlet.label>Slave Gauntlets Restraints</MooGirl_Gauntlet.label>
   <MooGirl_Gauntlet.labelNoun>Gauntlets Restraints</MooGirl_Gauntlet.labelNoun>
-  
-  <!-- EN: 双腿束缚 -->
-  <MooGirl_Legbinder.label>Leg Restraints</MooGirl_Legbinder.label>
-  <!-- EN: 雪牛娘的双腿被束具严格束缚，难以移动。 -->
+  <MooGirl_Handcuffs.description>The Mugirl's arms are strictly restrained behind her back by restraint gear, unable to move.</MooGirl_Handcuffs.description>
+  <MooGirl_Handcuffs.label>Handcuff Restraints</MooGirl_Handcuffs.label>
   <MooGirl_Legbinder.description>The Mugirl's legs are strictly restrained by bondage gear, making movement difficult.</MooGirl_Legbinder.description>
-  <!-- EN: 双腿束缚 -->
+  <MooGirl_Legbinder.label>Leg Restraints</MooGirl_Legbinder.label>
   <MooGirl_Legbinder.labelNoun>Legs Restraints</MooGirl_Legbinder.labelNoun>
-  
-  <!-- EN: 奴隶袜束缚 -->
-  <MooGirl_Stockings.label>Slave Sock Restraints</MooGirl_Stockings.label>
-  <!-- EN: 雪牛娘的双腿被奴隶袜束缚，略微减低移动速度。 -->
   <MooGirl_Stockings.description>The Mugirl's legs are restrained by slave socks, slightly reducing movement speed.</MooGirl_Stockings.description>
-  <!-- EN: 奴隶袜束缚 -->
+  <MooGirl_Stockings.label>Slave Sock Restraints</MooGirl_Stockings.label>
   <MooGirl_Stockings.labelNoun>Slave Sock Restraints</MooGirl_Stockings.labelNoun>
-  
+  <MooGirl_Straitjacket.description>The Mugirl's arms are strictly restrained behind her back by restraint gear, unable to move.</MooGirl_Straitjacket.description>
+  <MooGirl_Straitjacket.label>Straitjacket Restraints</MooGirl_Straitjacket.label>
 </LanguageData>

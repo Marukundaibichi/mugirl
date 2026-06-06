@@ -1,19 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-  
-  <!-- EN: 雪牛娘 旗袍 「皎月裁云」 -->
-  <MooGirl_Cheongsam.label>雪牛娘 旗袍 「皎月裁云」</MooGirl_Cheongsam.label>
-  <!-- EN: 「八重·朱 服装」出品高开衩真丝旗袍，纷繁花绣衬出超低胸襟。东方美学与现代性感碰撞，化身移动的纯白焦点。 -->
-  <MooGirl_Cheongsam.description>「八重·朱 服装」出品高开衩真丝旗袍，精致花绣装饰，结合东方美学与现代设计感，优雅而吸引目光，适合正式或社交场合穿着。</MooGirl_Cheongsam.description>
-  
-  <!-- EN: 雪牛娘 骑士甲胄内衬 -->
-  <MooGirl_Gambeson.label>雪牛娘 骑士甲胄内衬</MooGirl_Gambeson.label>
-  <!-- EN: 「八重·朱 服装」中世纪裁缝手法缝制的柔韧内衬，以绵羽层层叠压，贴身却不失轻盈。为雪牛娘的甲胄量身定制，能在穿戴重甲时缓冲冲击、稳定体态，亦能单独作为轻装战衣穿着。绣纹隐隐散发暖意，使穿戴者在寒风中依旧保持从容优雅。 -->
-  <MooGirl_Gambeson.description>「八重·朱 服装」中世纪裁缝手法缝制的柔韧内衬，以绵羽层层叠压，贴身却不失轻盈。为雪牛娘的甲胄量身定制，能在穿戴重甲时缓冲冲击、稳定体态，亦能单独作为轻装战衣穿着。绣纹隐隐散发暖意，使穿戴者在寒风中依旧保持从容优雅。</MooGirl_Gambeson.description>
-  
-  <!-- EN: 雪牛娘 衬衫 「惑光半透」 -->
-  <MooGirl_Shirt.label>雪牛娘 衬衫 「惑光半透」</MooGirl_Shirt.label>
-  <!-- EN: 「八重·朱 服装」出品珍珠光泽雪纺深V无领条纹衬衫，第三颗纽扣故意留空。若隐若现的肌肤暗示，钢铁丛林中的心机武器。 -->
-  <MooGirl_Shirt.description>「八重·朱 服装」出品雪纺衬衫，带有轻微光泽和条纹设计，剪裁合理优雅，适合日常或办公穿着，凸显时尚感。</MooGirl_Shirt.description>
+<MooGirl_Cheongsam.label>雪牛娘 旗袍 「皎月裁云」</MooGirl_Cheongsam.label>
+<MooGirl_Cheongsam.description>「八重·朱 服装」出品高开衩真丝旗袍，精致花绣装饰，结合东方美学与现代设计感，优雅而吸引目光，适合正式或社交场合穿着。</MooGirl_Cheongsam.description>
+<MooGirl_Gambeson.label>雪牛娘 骑士甲胄内衬</MooGirl_Gambeson.label>
+<MooGirl_Gambeson.description>「八重·朱 服装」中世纪裁缝手法缝制的柔韧内衬，以绵羽层层叠压，贴身却不失轻盈。为雪牛娘的甲胄量身定制，能在穿戴重甲时缓冲冲击、稳定体态，亦能单独作为轻装战衣穿着。绣纹隐隐散发暖意，使穿戴者在寒风中依旧保持从容优雅。</MooGirl_Gambeson.description>
+<MooGirl_Shirt.label>雪牛娘 衬衫 「惑光半透」</MooGirl_Shirt.label>
+<MooGirl_Shirt.description>「八重·朱 服装」出品雪纺衬衫，带有轻微光泽和条纹设计，剪裁合理优雅，适合日常或办公穿着，凸显时尚感。</MooGirl_Shirt.description>
   
 </LanguageData>

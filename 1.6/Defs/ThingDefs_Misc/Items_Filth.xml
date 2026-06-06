@@ -2,7 +2,8 @@
 <Defs>
   <ThingDef ParentName="BaseFilth">
     <defName>MooGirlMilkFilth</defName>
-    <label>电击产生的喷乳</label>
+    <!-- 电击产生的喷乳 -->
+    <label>Electrocution Milk Spray</label>
     <statBases>
       <Beauty>-10</Beauty>
       <Cleanliness>-5</Cleanliness>
@@ -23,7 +24,8 @@
 
   <ThingDef ParentName="BaseFilth">
     <defName>MooGirlWaterFilth</defName>
-    <label>电击流下的液体</label>
+    <!-- 电击流下的液体 -->
+    <label>The liquid flowing down from electrocution.</label>
     <statBases>
       <Beauty>-30</Beauty>
       <Cleanliness>-5</Cleanliness>

@@ -34,8 +34,10 @@
 
 	<ThingDef ParentName="MooGirl_HeadBase">
 		<defName>MooGirl_BunnyGirlHeaddress</defName>
-		<label>雪牛娘 兔女郎头饰 「魅夜绒耳」</label>
-		<description>「八重·朱 服装」出品标志性黑色短绒长耳头饰，光洁材质折射出性感俏皮。两只长耳伴随歌舞肆意摇曳，是灯红酒绿之时的风情乍泄。</description>
+		<!-- 雪牛娘 兔女郎头饰 「魅夜绒耳」 -->
+		<label>Mugirl Bunny Girl Headdress "Velours Nocturne Envoûtant"</label>
+		<!-- 「八重·朱 服装」出品标志性黑色短绒长耳头饰，光洁材质折射出性感俏皮。两只长耳伴随歌舞肆意摇曳，是灯红酒绿之时的风情乍泄。 -->
+		<description>"Vache Rousse" presents its signature black short-pile long ear headdress.\nThe lustrous material reflects a playful yet sensual charm.\nThese long ears sway freely with song and dance, capturing a moment of coquettish allure amidst shimmering lights and flowing wine.</description>
 		<graphicData>
 			<texPath>Things/Apparel/MooGirl_BunnyGirlHeaddress/MooGirl_BunnyGirlHeaddress</texPath>
 		</graphicData>
@@ -66,8 +68,10 @@
 
 	<ThingDef ParentName="MooGirl_HeadBase">
 		<defName>MooGirl_Sunglasses</defName>
-		<label>雪牛娘 墨镜 「霓虹幻镜」</label>
-		<description>「八重·朱 服装」出品复古圆框夹鼻墨镜，小巧玲珑遮不住眉目传情。抵御强光时保持时尚气场，是大隐于市的必备潮流单品。</description>
+		<!-- 雪牛娘 墨镜 「霓虹幻镜」 -->
+		<label>Mugirl Sunglasses "Reflet Néon Illusoire"</label>
+		<!-- 「八重·朱 服装」出品复古圆框夹鼻墨镜，小巧玲珑遮不住眉目传情。抵御强光时保持时尚气场，是大隐于市的必备潮流单品。 -->
+		<description>"Vache Rousse" presents retro round-frame pinch-on sunglasses, petite yet unable to conceal expressive glances.\nThey maintain a fashionable poise while shielding against glare, an essential urban accessory for the discerning individual.</description>
 		<graphicData>
 			<texPath>Things/Apparel/MooGirl_Sunglasses/MooGirl_Sunglasses</texPath>
 		</graphicData>
@@ -93,8 +97,10 @@
 
 	<ThingDef ParentName="MooGirl_HeadBase">
 		<defName>MooGirl_Veil</defName>
-		<label>雪牛娘 面纱</label>
-		<description>「八重·朱 服装」复古轻纱面纱，薄若晨雾，垂落生姿，若隐若现却不掩眉眼风情。在遮挡目光与保留魅力之间取得微妙平衡，行走于人群中自成气场。不张扬，却自带故事感，是大隐于市、低调出挑的风格点睛之物。</description>
+		<!-- 雪牛娘 面纱 -->
+		<label>Mugirl Veil</label>
+		<!-- 「八重·朱 服装」复古轻纱面纱，薄若晨雾，垂落生姿，若隐若现却不掩眉眼风情。在遮挡目光与保留魅力之间取得微妙平衡，行走于人群中自成气场。不张扬，却自带故事感，是大隐于市、低调出挑的风格点睛之物。 -->
+		<description>A retro light-gauze veil from "Vache Rousse", as thin as morning mist and falling with graceful poise. It hints without hiding the charm of the eyes, striking a subtle balance between concealment and allure. In a crowd it carries its own quiet presence, understated yet full of story, a finishing touch for standing out while staying discreet.</description>
 		<graphicData>
 			<texPath>Things/Apparel/MooGirl_Veil/MooGirl_Veil</texPath>
 		</graphicData>
@@ -122,8 +128,10 @@
 
 	<ThingDef ParentName="MooGirl_HeadBase">
 		<defName>MooGirl_Mask</defName>
-		<label>雪牛娘 口罩</label>
-		<description>「八重·朱 服装」轻纱口罩，轻覆唇颌，似遮非遮。它并非为了隔绝世界，而是为隐藏未被言说的表情与秘密。在人群之中保留分寸感，让真正的意图只留给懂的人。</description>
+		<!-- 雪牛娘 口罩 -->
+		<label>Mugirl Gauze Mask</label>
+		<!-- 「八重·朱 服装」轻纱口罩，轻覆唇颌，似遮非遮。它并非为了隔绝世界，而是为隐藏未被言说的表情与秘密。在人群之中保留分寸感，让真正的意图只留给懂的人。 -->
+		<description>A light-gauze mask from "Vache Rousse", resting gently over the lips and jaw as if both concealing and revealing. It is not meant to shut the world out, but to hide unspoken expressions and secrets. Among a crowd it preserves a measured distance, leaving true intentions only for those who understand.</description>
 		<graphicData>
 			<texPath>Things/Apparel/MooGirl_Mask/MooGirl_Mask</texPath>
 		</graphicData>
@@ -238,8 +246,10 @@
 
 	<ThingDef ParentName="MooGirl_ArmorHelmetBase">
 		<defName>MooGirl_ArmorHelmetRecon</defName>
-		<label>雪牛娘 革命军钢盔</label>
-		<description>简化设计的雪牛娘特制钢盔，拥有伪装网用于伪装，留有两个凹槽来存放角。搭配蝴蝶结和革命军金属徽章</description>
+		<!-- 雪牛娘 革命军钢盔 -->
+		<label>Mugirl Recon Helmet "Énigme de l'Ombre du Papillon"</label>
+		<!-- 简化设计的雪牛娘特制钢盔，拥有伪装网用于伪装，留有两个凹槽来存放角。搭配蝴蝶结和革命军金属徽章 -->
+		<description>"Vache Rousse" presents a lightweight streamlined helmet, with a dusky pink fabric lining for comfort.\nThis piece represents a perfect fusion of tactical functionality and aesthetic appeal.\nA bow, glimpsed in the darkness, blooms with a lethal allure.</description>
 		<graphicData>
 			<texPath>Things/Apparel/MooGirl_ArmorHelmetRecon/MooGirl_ArmorHelmetRecon</texPath>
 		</graphicData>
@@ -334,8 +344,10 @@
 
 	<ThingDef ParentName="MooGirl_TacticalGoggles">
 		<defName>MooGirl_RA_MechanicRecon</defName>
-		<label>雪牛娘 战术目镜</label>
-		<description>信息时代的战术护目镜，金属制造可以提供额外防御力</description>
+		<!-- 雪牛娘 战术目镜 -->
+		<label>Mugirl Tactical Goggles</label>
+		<!-- 信息时代的战术护目镜，金属制造可以提供额外防御力 -->
+		<description>Tactical goggles of the information age. Their metal construction provides a small amount of additional protection.</description>
 		<graphicData>
 			<texPath>Things/Apparel/MooGirl_RA_MechanicRecon/MooGirl_RA_MechanicRecon</texPath>
 		</graphicData>

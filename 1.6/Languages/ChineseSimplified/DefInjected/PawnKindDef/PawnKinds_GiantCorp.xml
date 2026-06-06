@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <AI_GC_Courier.label>巨企运货员</AI_GC_Courier.label>
+  <AI_GC_Elites.label>巨企精英</AI_GC_Elites.label>
+  <AI_GC_Grunts.label>巨企佣兵</AI_GC_Grunts.label>
+  <AI_GC_MooGirlRaider.label>雪牛娘战斗员</AI_GC_MooGirlRaider.label>
+  <AI_GC_OPC_Enforcers.label>巨企安保员</AI_GC_OPC_Enforcers.label>
+  <AI_GC_OPC_Sapper.label>巨企OPC爆破员</AI_GC_OPC_Sapper.label>
+  <AI_GC_PMC_Recruits.label>巨企PMC新兵</AI_GC_PMC_Recruits.label>
+  <AI_GC_Sapper.label>巨企爆破员</AI_GC_Sapper.label>
+  <AI_GC_Soldiers.label>巨企PMC士兵</AI_GC_Soldiers.label>
+</LanguageData>

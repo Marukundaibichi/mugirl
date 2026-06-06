@@ -1,19 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-  
-  <!-- EN: 雪牛娘 -->
-  <MooGirl.label>雪牛娘</MooGirl.label>
-  <!-- EN: 巨型企业基因改造的半人半牛娘种族，拥有柔软的毛发、淡蓝色皮毛和可爱的牛角。她们兼具力量与温顺天性，聪慧而亲人，却被迫忍受奴役生活。即便如此，她们仍会以温柔的举止安慰身边的人，展现出难得的善良本性。 -->
-  <MooGirl.description>由巨型企业以智人种为蓝本，通过基因工程改造的半人半牛娘种族，拥有淡淡牛油香气的柔软毛发，淡蓝色皮毛和可爱牛角等特征。她们身体机能的各项强度都达到大型动物水准，身材高大，普遍身高在两米以上，兼具力量与温顺天性，聪慧而亲人，却被迫忍受奴役生活。即便如此，她们仍会以温柔的举止安慰身边的人，展现出难得的善良本性。\n由于基因工程产生的某种遗传物质，雪牛娘胎儿的最后一对“性染色体”总是保持XX染色体，因此雪牛娘的子嗣仍然是雪牛娘。\n这种遗传物质也使雪牛娘汗液散发出一股清爽、柔和、温和甜蜜的乳香，类似于淡牛油的气味。</MooGirl.description>
-  <!-- EN: left horn -->
-  <MooGirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.1.conditions.1.bodyPartLabel>左牛角</MooGirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.1.conditions.1.bodyPartLabel>
-  <!-- EN: right horn -->
-  <MooGirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.2.conditions.1.bodyPartLabel>右牛角</MooGirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.2.conditions.1.bodyPartLabel>
-  <!-- EN: horn -->
-  <MooGirl.tools.0.label>牛角</MooGirl.tools.0.label>
-  <!-- EN: left fist -->
-  <MooGirl.tools.1.label>左拳</MooGirl.tools.1.label>
-  <!-- EN: right fist -->
-  <MooGirl.tools.2.label>右拳</MooGirl.tools.2.label>
+<MooGirl.label>雪牛娘</MooGirl.label>
+<MooGirl.description>由巨型企业以智人种为蓝本，通过基因工程改造的半人半牛娘种族，拥有淡淡牛油香气的柔软毛发，淡蓝色皮毛和可爱牛角等特征。她们身体机能的各项强度都达到大型动物水准，身材高大，普遍身高在两米以上，兼具力量与温顺天性，聪慧而亲人，却被迫忍受奴役生活。即便如此，她们仍会以温柔的举止安慰身边的人，展现出难得的善良本性。\n由于基因工程产生的某种遗传物质，雪牛娘胎儿的最后一对“性染色体”总是保持XX染色体，因此雪牛娘的子嗣仍然是雪牛娘。\n这种遗传物质也使雪牛娘汗液散发出一股清爽、柔和、温和甜蜜的乳香，类似于淡牛油的气味。</MooGirl.description>
+<MooGirl.comps.CompMooMilkable.displayString>雪牛奶</MooGirl.comps.CompMooMilkable.displayString>
+<MooGirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.1.conditions.1.bodyPartLabel>左牛角</MooGirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.1.conditions.1.bodyPartLabel>
+<MooGirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.2.conditions.1.bodyPartLabel>右牛角</MooGirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.2.conditions.1.bodyPartLabel>
+<MooGirl.tools.0.label>牛角</MooGirl.tools.0.label>
+<MooGirl.tools.1.label>左拳</MooGirl.tools.1.label>
+<MooGirl.tools.2.label>右拳</MooGirl.tools.2.label>
   
 </LanguageData>

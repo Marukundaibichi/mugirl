@@ -3,8 +3,8 @@
 
   <ThingDef>
     <defName>MooGirl_CourierDiary</defName>
-    <label>运货员日记本</label>
-    <description>一个倒霉底层运货员的日记，其中凝结了他这么久以来摸爬滚打的经验</description>
+    <label>courier diary</label> <!-- 运货员日记本 -->
+    <description>A diary kept by an unlucky low-level courier, filled with hard-earned survival experience from years of scraping by.</description> <!-- 一个倒霉底层运货员的日记，其中凝结了他这么久以来摸爬滚打的经验 -->
     <thingClass>ThingWithComps</thingClass>
     <category>Item</category>
     <selectable>true</selectable>
@@ -31,7 +31,7 @@
     </statBases>
     <comps>
       <li Class="MooGirl.CompProperties_ReadableBook">
-        <bookTitle>运货员日记本</bookTitle>
+        <bookTitle>Courier diary</bookTitle> <!-- 运货员日记本 -->
       </li>
       <li Class="CompProperties_Forbiddable" />
     </comps>

@@ -7,7 +7,7 @@ namespace MooGirl
 {
     public class CompProperties_ReadableBook : CompProperties
     {
-        public string bookTitle = "日记本";
+        public string bookTitle = "MooGirl.CourierDiary.Title";
 
         public CompProperties_ReadableBook()
         {
@@ -21,16 +21,17 @@ namespace MooGirl
 
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
         {
-            FloatMenuOption option = FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("阅读" + Props.bookTitle, () =>
+            string title = MooGirlText.Resolve(Props.bookTitle);
+            FloatMenuOption option = FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("MooGirl.CourierDiary.ReadOption".Translate(title), () =>
             {
-                Job job = JobMaker.MakeJob(AiGenerated_DefOf.MooGirl_ReadCourierDiary, parent);
+                Job job = JobMaker.MakeJob(MooGirlContentDefOf.MooGirl_ReadCourierDiary, parent);
                 selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
             }), selPawn, parent);
 
             if (!selPawn.CanReserveAndReach(parent, PathEndMode.Touch, Danger.Deadly))
             {
                 option.Disabled = true;
-                option.Label = option.Label + " (无法到达)";
+                option.Label = "MooGirl.CourierDiary.OptionDisabled".Translate(option.Label, "MooGirl.CourierDiary.CannotReach".Translate());
             }
 
             yield return option;
@@ -58,7 +59,7 @@ namespace MooGirl
                 CompReadableBook comp = Diary.TryGetComp<CompReadableBook>();
                 if (comp != null)
                 {
-                    Find.WindowStack.Add(new Dialog_ReadBook(comp.Props.bookTitle, Diary));
+                    Find.WindowStack.Add(new Dialog_ReadBook(MooGirlText.Resolve(comp.Props.bookTitle), Diary));
                 }
             });
         }

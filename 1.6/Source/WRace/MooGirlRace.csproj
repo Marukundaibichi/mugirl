@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -69,6 +69,7 @@
     <Compile Include="Core\MooGirlOptionalDefs.cs" />
     <Compile Include="Core\MooGirlPatchRegistry.cs" />
     <Compile Include="Core\MooGirlRequiredDefs.cs" />
+    <Compile Include="Core\MooGirlText.cs" />
     <Compile Include="Core\MooGirlTickUtility.cs" />
     <Compile Include="Features\Apparel\MooGirlApparelTagUtility.cs" />
     <Compile Include="Features\Milk\MooGirlBreastProfileUtility.cs" />
@@ -138,16 +139,15 @@
     <Compile Include="MooGirlsJoins加入方式的编程\IncidentWorker_MooGirl_WildManWandersIn.cs" />
     <Compile Include="MooGirlsJoins加入方式的编程\QuestNode_Root_MooGirl_WandererJoin_WalkIn.cs" />
     <Compile Include="MooGirlsJoins加入方式的编程\QuestNode_MooGirl_RefugeePodCrash.cs" />
-    <Compile Include="NewBron\Harmoney_AlienRace_ResolveReferences.cs" />
-    <Compile Include="NewBron\MooGirlJuvenileGraphicUtility.cs" />
+    <Compile Include="Newborn\Harmony_PawnGenerator_NewbornVisuals.cs" />
+    <Compile Include="Newborn\LifeStageVisualService.cs" />
     <Compile Include="OtherFunction\Harmoney_PawnRenderNodeWorker_Swaddle_ShouldListOnGraph.cs" />
     <Compile Include="OtherFunction\Harmoney_DrugAdministerDefs.cs" />
-    <Compile Include="OtherFunction\Harmoney_AlienRace_ResolveReferences.cs" />
     <Compile Include="OtherFunction\Harmoney_GridsUtility_IsPolluted.cs" />
     <Compile Include="OtherFunction\Harmony_Apparel_DrawColor.cs" />
     <Compile Include="OtherFunction\Harmony_GhoulRenderingRefresh.cs" />
 
-    <Compile Include="NewBron\LifeStageWorker_HumanlikeAdult_MooGirl.cs" />
+    <Compile Include="Newborn\LifeStageWorker_HumanlikeAdult_MooGirl.cs" />
     <Compile Include="OtherFunction\InteractionWorker_Nuzzle.cs" />
     <Compile Include="OtherFunction\JobGiver_Nuzzle.cs" />
     <Compile Include="OtherFunction\JobDriver_Nuzzle.cs" />
@@ -157,13 +157,14 @@
     <Compile Include="RopingAndRoped牵引系统的编程\ThoughtWorker_Roped.cs" />
     <Compile Include="RopingAndRoped牵引系统的编程\ThoughtWorker_Roper.cs" />
     <Compile Include="RopingAndRoped牵引系统的编程\Harmony_TakeToPreferredBedJob.cs" />
-    <Compile Include="RopingAndRoped牵引系统的编程\RopeStateTracker.cs" />
+    <Compile Include="RopingAndRoped牵引系统的编程\RopeLink.cs" />
+    <Compile Include="RopingAndRoped牵引系统的编程\MapRopingIndex.cs" />
+    <Compile Include="RopingAndRoped牵引系统的编程\RopingService.cs" />
     <Compile Include="RopingAndRoped牵引系统的编程\Comp_ShowRopedBy.cs" />
     <Compile Include="RopingAndRoped牵引系统的编程\Harmony_PreventEscape.cs" />
     <Compile Include="RopingAndRoped牵引系统的编程\Harmony_Door_PawnCanOpen.cs" />
     <Compile Include="RopingAndRoped牵引系统的编程\Harmony_ShouldShowRestraintsInfo.cs" />
     <Compile Include="RopingAndRoped牵引系统的编程\Comp_RopeToBuild.cs" />
-    <Compile Include="RopingAndRoped牵引系统的编程\Harmony_CanTakeOrder.cs" />
     <Compile Include="RopingAndRoped牵引系统的编程\Harmony_PawnDraftController.cs" />
     <Compile Include="RopingAndRoped牵引系统的编程\Harmony_RopingDraw.cs" />
     <Compile Include="RopingAndRoped牵引系统的编程\JobDriver_RemoveRopeMoo.cs" />
@@ -173,6 +174,8 @@
     <Compile Include="RopingAndRoped牵引系统的编程\Harmony_RopingTick.cs" />
     <Compile Include="Mounting骑乘系统的编程\CompProperties_MooGirlMount.cs" />
     <Compile Include="Mounting骑乘系统的编程\Comp_MooGirlMount.cs" />
+    <Compile Include="Mounting骑乘系统的编程\MountEligibilityService.cs" />
+    <Compile Include="Mounting骑乘系统的编程\MountedVerbScope.cs" />
     <Compile Include="Mounting骑乘系统的编程\MountedPawnUtility.cs" />
     <Compile Include="Mounting骑乘系统的编程\MountedPawnCombatTurret.cs" />
     <Compile Include="Mounting骑乘系统的编程\MountedPawnMeleeSupport.cs" />
@@ -208,7 +211,7 @@
     <Compile Include="MooGirlsJoins加入方式的编程\Harmony_GiantCorpRaidTiers.cs" />
     <Compile Include="MooGirlsJoins加入方式的编程\QuestNode_Root_MooGirl_CourierRaid.cs" />
     <Compile Include="MooGirlsJoins加入方式的编程\QuestPart_CourierRaid.cs" />
-    <Compile Include="Defof\AiGenerated_DefOf.cs" />
+    <Compile Include="Defof\MooGirlContentDefOf.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

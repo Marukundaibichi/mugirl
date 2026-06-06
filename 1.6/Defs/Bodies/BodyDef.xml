@@ -4,7 +4,8 @@
 
   <BodyDef>
     <defName>MooGirlBody</defName>
-    <label>雪牛娘</label>
+    <!-- 雪牛娘 -->
+    <label>Mugirl</label>
     <corePart>
       <def>Torso</def>
       <height>Middle</height>

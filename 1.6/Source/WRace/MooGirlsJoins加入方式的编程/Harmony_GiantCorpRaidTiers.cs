@@ -13,7 +13,7 @@ namespace MooGirl
 
         public static void Postfix(PawnGroupMaker __instance, PawnGroupMakerParms parms, ref bool __result)
         {
-            if (!__result || __instance == null || parms?.faction?.def != AiGenerated_DefOf.MooGirl_GiantCorporations_Hostile)
+            if (!__result || __instance == null || parms?.faction?.def != MooGirlContentDefOf.MooGirl_GiantCorporations_Hostile)
             {
                 return;
             }

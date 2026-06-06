@@ -62,19 +62,19 @@ namespace MooGirl
             string label = "MooGirl.Mount.Target".Translate(moo.LabelShort);
             if (!comp.CanMount(actor, out string reasonKey))
             {
-                yield return new FloatMenuOption(label + ": " + reasonKey.Translate(), null, MenuOptionPriority.High, null, moo);
+                yield return new FloatMenuOption("MooGirl.Mount.LabelWithReason".Translate(label, reasonKey.Translate()), null, MenuOptionPriority.High, null, moo);
                 yield break;
             }
 
             if (!actor.CanReserve(moo))
             {
-                yield return new FloatMenuOption(label + ": " + "MooGirl.Mount.ReasonReserved".Translate(), null, MenuOptionPriority.High, null, moo);
+                yield return new FloatMenuOption("MooGirl.Mount.LabelWithReason".Translate(label, "MooGirl.Mount.ReasonReserved".Translate()), null, MenuOptionPriority.High, null, moo);
                 yield break;
             }
 
             if (!actor.CanReach(moo, PathEndMode.Touch, Danger.Deadly))
             {
-                yield return new FloatMenuOption(label + ": " + "MooGirl.Mount.ReasonNoPath".Translate(), null, MenuOptionPriority.High, null, moo);
+                yield return new FloatMenuOption("MooGirl.Mount.LabelWithReason".Translate(label, "MooGirl.Mount.ReasonNoPath".Translate()), null, MenuOptionPriority.High, null, moo);
                 yield break;
             }
 

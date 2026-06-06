@@ -93,11 +93,11 @@
 
 已按新增规则完成第一批处理：
 
-- 新增 `docs/06-localization-and-comments.md`，明确所有注释必须使用中文、所有玩家可见字符串必须使用翻译键。
+- 新增 `docs/06-localization-and-comments.md`，明确 C# 玩家可见字符串使用 Keyed；源 Def XML 使用英文原文、中文注释和 DefInjected；中文翻译文件注释使用英文原文。
 - 将近期新增的英文源码注释改为中文。
 - 将设置窗口、Milk 量杯、FloatMenu、DevMode 填满奶量消息、喷乳文字、榨乳器 gizmo/消息/检查文本迁移为翻译键。
 - 在 `ChineseSimplified/Keyed/Misc_Gameplay.xml` 与 `English/Keyed/Misc_Gameplay.xml` 补齐对应键。
-- 将 Milk 相关 Def 的 `label`、`description`、`jobString`、`reportString`、`verb`、`gerund` 改为 DefInjected 占位，并补齐中英文 DefInjected 文件。
+- 将 Milk 相关 Def 的 `label`、`description`、`jobString`、`reportString`、`verb`、`gerund` 迁移到 DefInjected，并补齐中英文 DefInjected 文件。后续需按最新规则把源 Def 占位改为英文原文加中文注释。
 - 已迁移范围包括：奶、奶制食物、奶制食物配方、奶制品 Thought/Hediff、喝奶/喂奶 Thought、哺乳 Hediff/Trait、奶发电机、挤奶 WorkGiver/JobDef、榨乳器服装本体。
 
 本批迁移保持原中文显示含义；英文翻译作为语言文件补充，不改变数值或玩法逻辑。`CompMooMilkable.displayString` 改为 `MooGirl.Milk.FullnessDisplay`，并将存档键独立为 `saveKey = milkFullness`；这会放弃旧存档字段兼容，但符合“不保证旧档兼容”的重构前提，且避免翻译文本影响存档结构。
@@ -177,7 +177,7 @@ MSBuild 1.6/Source/WRace/MooGirlRace.csproj /t:Rebuild /p:Configuration=Debug /p
 - R18 常驻后，Milk 模块已无 `AdultContentUtility` 运行时门禁依赖。
 - 奶制品 hediff 添加/刷新/移除逻辑集中到 `MooGirlFoodEffectUtility`。
 - 删除未编译的根目录旧副本 `1.6/Source/WRace/Thought_Hediff.cs`；保留并继续迁移 csproj 中实际编译的 Milk 目录版本。
-- 第一批 Milk/UI 硬编码文本已迁移到翻译键或 DefInjected，占位源 Def 已通过 XML 解析。
+- 第一批 Milk/UI 硬编码文本已迁移到翻译键或 DefInjected；后续按最新规则清理源 Def 中的翻译键占位。
 - Milk 模块 C# 已移除 LINQ 使用。
 - 榨乳器组件和哺育组件拆分后 Debug 重建通过。
 
@@ -188,4 +188,4 @@ MSBuild 1.6/Source/WRace/MooGirlRace.csproj /t:Rebuild /p:Configuration=Debug /p
 - `CompMooHasBodyResource` 会根据乳房 Hediff 更新 `BreastSize` / `BreastSizeDays`，但当前若干产出路径仍直接按 `fullness * 100f` 计算产量。修正可能改变实际产出，需要确认。
 - `CompMooMilkable.CompTick()` 自动添加 `MooGirl_Lactation` hediff。若改为事件驱动，会改变添加时机，需要确认。
 - `Comp_MilkingDevice` 暴露了 `powerFilthDefName` 与 `powerFilthCountRange`，但当前释放流程未实际使用强力释放专用污物。启用它会改变地图污物结果，需要确认。
-- `CompProperties_MilkingDeviceReleaseEffect.TextWithParams.text` 当前直接作为文字显示。如果后续 XML 使用该字段，必须改为翻译键并在显示时翻译。
+- `CompProperties_MilkingDeviceReleaseEffect.TextWithParams.text` 当前直接作为文字显示。如果后续 XML 使用该字段，源 XML 应写英文原文并配中文注释，语言文件通过 DefInjected 注入实际翻译，C# 侧不得把 XML 文本当作 Keyed 强制翻译。

@@ -3,8 +3,10 @@
 
   <FactionDef ParentName="FactionBase">
     <defName>MooGirl_GiantCorporations_Hostile</defName>
-    <label>巨型企业</label>
-    <description>一个庞大的企业联合体，控制着无数资源与武装力量，对任何妨碍其利益者毫不留情。</description>
+    <!-- 巨型企业 -->
+    <label>Giant Corporation</label>
+    <!-- 一个庞大的企业联合体，控制着无数资源与武装力量，对任何妨碍其利益者毫不留情。 -->
+    <description>A massive corporate consortium controlling countless resources and armed forces, showing no mercy to anyone who obstructs its interests.</description>
     <pawnSingular>巨企佣兵</pawnSingular>
     <pawnsPlural>巨企佣兵</pawnsPlural>
     <categoryTag>GiantCorporations</categoryTag>

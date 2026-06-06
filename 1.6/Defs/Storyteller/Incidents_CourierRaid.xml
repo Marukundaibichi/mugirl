@@ -3,7 +3,8 @@
 
   <IncidentDef>
     <defName>MooGirl_CourierRaid</defName>
-    <label>运货员接触</label>
+    <!-- 运货员接触 -->
+    <label>courier contact</label>
     <targetTags>
       <li>Map_PlayerHome</li>
     </targetTags>

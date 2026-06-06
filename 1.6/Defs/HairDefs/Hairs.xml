@@ -1,14 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Defs>	
 
     <StyleItemCategoryDef>
     <defName>MooGirl_Hai</defName>
-    <label>雪牛娘的发型</label>
+    <!-- 雪牛娘的发型 -->
+    <label>Moogirl Hair</label>
     </StyleItemCategoryDef>
 
 	<HairDef>
 		<defName>MooGirl_Base</defName>
-		<label>雪牛娘 短发</label>
+		<!-- 雪牛娘 短发 -->
+		<label>Mugirl Short Hair</label>
 		<hairGender>Female</hairGender>
         <category>MooGirl_Hai</category>
 		<texPath>MooGirl/Hair/MooGirl_Base</texPath>
@@ -19,7 +21,8 @@
 	
 	<HairDef>
 		<defName>MooGirl_Hightail</defName>
-		<label>雪牛娘 高马尾</label>
+		<!-- 雪牛娘 高马尾 -->
+		<label>Mugirl High Ponytail</label>
 		<hairGender>Female</hairGender>
         <category>MooGirl_Hai</category>
 		<texPath>MooGirl/Hair/MooGirl_Hightail</texPath>
@@ -30,7 +33,8 @@
 	
 	<HairDef>
 		<defName>MooGirl_EyeCovering</defName>
-		<label>雪牛娘 遮眼发</label>
+		<!-- 雪牛娘 遮眼发 -->
+		<label>Mugirl Eye Covering Hair</label>
 		<hairGender>Female</hairGender>
         <category>MooGirl_Hai</category>
 		<texPath>MooGirl/Hair/MooGirl_SheSmiledAndIHard</texPath>
@@ -41,7 +45,8 @@
 	
 	<HairDef>
 		<defName>MooGirl_ShoulderLength</defName>
-		<label>雪牛娘 披肩发</label>
+		<!-- 雪牛娘 披肩发 -->
+		<label>Mugirl Shoulder-length Hair</label>
 		<hairGender>Female</hairGender>
         <category>MooGirl_Hai</category>
 		<texPath>MooGirl/Hair/MooGirl_SeeHerLikerSeePussy</texPath>
@@ -52,7 +57,8 @@
 
 	<HairDef>
 		<defName>MooGirl_GloomHair6</defName>
-		<label>雪牛娘 丧女发型 6</label>
+		<!-- 雪牛娘 丧女发型 6 -->
+		<label>Mugirl Gloom Hair 6</label>
 		<hairGender>Female</hairGender>
         <category>MooGirl_Hai</category>
 		<texPath>MooGirl/Hair/MooGirl_GloomHair6</texPath>
@@ -63,7 +69,8 @@
 
 	<HairDef>
 		<defName>MooGirl_GloomHair7</defName>
-		<label>雪牛娘 丧女发型 7</label>
+		<!-- 雪牛娘 丧女发型 7 -->
+		<label>Mugirl Gloom Hair 7</label>
 		<hairGender>Female</hairGender>
         <category>MooGirl_Hai</category>
 		<texPath>MooGirl/Hair/MooGirl_GloomHair7</texPath>

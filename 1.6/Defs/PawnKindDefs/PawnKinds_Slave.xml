@@ -28,7 +28,8 @@
 
   <PawnKindDef ParentName="MooGirl_SlaveBase">
     <defName>MooGirl_Beginning_Slave</defName>
-    <label>雪牛迫降奴隶</label>
+    <!-- 雪牛迫降奴隶 -->
+    <label>Crashlanded Mugirl Slave</label>
     <apparelTags> <!-- 服装筛选标签，仅穿戴包含这些标签的装备 -->
       <li>MooGirl_Slave_Underwear</li>
       <li>MooGirl_Slave_Shell_Upper</li>
@@ -43,7 +44,8 @@
 
   <PawnKindDef ParentName="MooGirl_SlaveBase">
     <defName>MooGirl_Slave</defName>
-    <label>雪牛奴隶</label>
+    <!-- 雪牛奴隶 -->
+    <label>Slave</label>
     <apparelTags> <!-- 服装筛选标签，仅穿戴包含这些标签的装备 -->
       <li>MooGirl_Slave_Underwear</li>
       <li>MooGirl_Slave_Shell_Upper</li>
@@ -59,7 +61,8 @@
 
   <PawnKindDef ParentName="MooGirl_SlaveBase">
     <defName>MooGirl_EscapeSpaceSlave</defName>
-    <label>雪牛太空奴隶</label>
+    <!-- 雪牛太空奴隶 -->
+    <label>Escaped Mugirl Space Slave</label>
     <apparelTags> <!-- 服装筛选标签，仅穿戴包含这些标签的装备 -->
       <li>MooGirl_Slave_Underwear</li>
       <li>MooGirl_Slave_Spacer</li>
@@ -72,7 +75,8 @@
 
   <PawnKindDef ParentName="MooGirl_SlaveBase">
     <defName>MooGirl_EscapeWanderSlave</defName>
-    <label>雪牛逃亡奴隶</label>
+    <!-- 雪牛逃亡奴隶 -->
+    <label>Escaped Mugirl Slave</label>
     <apparelTags> <!-- 服装筛选标签，仅穿戴包含这些标签的装备 -->
       <li>MooGirl_Slave_Underwear</li>
       <li>MooGirl_Slave_Gags</li>
@@ -88,7 +92,8 @@
   
   <PawnKindDef ParentName="MooGirl_SlaveBase">
     <defName>MooGirl_EscapeWildSlave</defName>
-    <label>雪牛流浪野人</label>
+    <!-- 雪牛流浪野人 -->
+    <label>Escaped Wild Mugirl</label>
     <acceptArrestChanceFactor>0.5</acceptArrestChanceFactor>    
     <apparelTags> 
       <li>MooGirl_Slave_Underwear</li>
@@ -103,7 +108,8 @@
 
   <PawnKindDef ParentName="MooGirl_SlaveBase">
     <defName>MooGirl_PreEscapeWildSlave</defName>
-    <label>雪牛流浪者</label>
+    <!-- 雪牛流浪者 -->
+    <label>Mugirl Wanderer</label>
     <acceptArrestChanceFactor>0.5</acceptArrestChanceFactor>    
     <apparelTags> 
       <li>MooGirl_Slave_Underwear</li>

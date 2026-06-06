@@ -1,7 +1,6 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using RimWorld;
 using Verse;
-using Verse.AI;
 
 namespace MooGirl
 {
@@ -11,12 +10,13 @@ namespace MooGirl
         [HarmonyPostfix]
         public static void AllowFollowRoperJob(Pawn p, ref bool __result)
         {
-            // 如果已经允许开门，则不做处理
             if (__result)
+            {
                 return;
+            }
 
-            // 如果 pawn 正在执行 Job_FollowRoper，则允许开门
-            if (p.CurJobDef == MooGirl_DefOf.Job_FollowRoper)
+            // 跟随牵引者时保持旧行为：即使门原本拒绝，也允许打开。
+            if (RopingService.IsFollowingRoper(p))
             {
                 __result = true;
             }

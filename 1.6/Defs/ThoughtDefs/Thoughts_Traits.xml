@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <ThoughtDef>
     <defName>MooGirl_SingleshotWeaponAversionUnhappy</defName>
@@ -9,8 +9,10 @@
     </requiredTraits>
     <stages>
       <li>
-        <label>单发武器厌恶</label>
-        <description>快把这东西拿走！拿走！拿走！</description>
+        <!-- 单发武器厌恶 -->
+        <label>Hate Single-Shot Weapons</label>
+        <!-- 快把这东西拿走！拿走！拿走！ -->
+        <description>Get this thing away from me! Away! Away!</description>
         <baseMoodEffect>-10</baseMoodEffect>
       </li>
     </stages>
@@ -24,8 +26,10 @@
     <durationDays>1</durationDays>
     <stages>
       <li>
-        <label>雪牛娘吃了干草</label>
-        <description>干巴巴的...就不能给口水喝吗？</description>
+        <!-- 雪牛娘吃了干草 -->
+        <label>Mugirl Ate Hay</label>
+        <!-- 干巴巴的...就不能给口水喝吗？ -->
+        <description>So dry... couldn't you give me some water?</description>
         <baseMoodEffect>-3</baseMoodEffect>
       </li>
     </stages>
@@ -40,8 +44,10 @@
     </nullifyingTraits>
     <stages>
       <li>
-        <label>雪牛娘吃了营养膏</label>
-        <description>口区~黏糊糊的...好恶心~</description>
+        <!-- 雪牛娘吃了营养膏 -->
+        <label>Mugirl Ate Nutrient Paste</label>
+        <!-- 口区~黏糊糊的...好恶心~ -->
+        <description>Eww~ slimy... so disgusting...</description>
         <baseMoodEffect>-5</baseMoodEffect>
       </li>
     </stages>
@@ -52,8 +58,10 @@
     <durationDays>1</durationDays>
     <stages>
       <li>
-        <label>洗脑愉悦</label>
-        <description>嘿嘿嘿~虽然不知道为什么，总觉得很开心~</description>
+        <!-- 洗脑愉悦 -->
+        <label>Brainwashing Happiness</label>
+        <!-- 嘿嘿嘿~虽然不知道为什么，总觉得很开心~ -->
+        <description>Hehehe~ though I don't know why, I feel so happy~</description>
         <baseMoodEffect>8</baseMoodEffect>
       </li>
     </stages>
@@ -65,8 +73,10 @@
     <stackLimit>5</stackLimit>
     <stages>
       <li>
-        <label>洗脑抵抗</label>
-        <description>呜呜呜呜...对不起...{0}不是故意伤害大家的....都是这个坏头盔...</description>
+        <!-- 洗脑抵抗 -->
+        <label>Brainwashing Resistance</label>
+        <!-- 呜呜呜呜...对不起...{0}不是故意伤害大家的....都是这个坏头盔... -->
+        <description>Wahhh... sorry... {0} didn't mean to hurt everyone... it's all this bad helmet's fault...</description>
         <baseMoodEffect>-10</baseMoodEffect>
       </li>
     </stages>
@@ -87,13 +97,17 @@
     </nullifyingHediffs>
     <stages>
       <li>
-        <label>被依偎</label>
-        <description>雪牛娘用她柔软的毛发轻轻依偎在你身边，温暖而可爱，她轻声告诉你，一切都会好起来的，你觉得眼前的困难似乎没那么难了。</description>
+        <!-- 被依偎 -->
+        <label>Being Snuggled</label>
+        <!-- 雪牛娘用她柔软的毛发轻轻依偎在你身边，温暖而可爱，她轻声告诉你，一切都会好起来的，你觉得眼前的困难似乎没那么难了。 -->
+        <description>The Mugirl gently nestles against you with her soft fur, warm and adorable. She whispers that everything will be alright, making you feel the current difficulties aren't so overwhelming anymore.</description>
         <baseMoodEffect>5</baseMoodEffect>
       </li>
       <li>
-        <label>被亲昵</label>
-        <description>雪牛娘轻轻蹭了蹭你，用自己的经历安慰你，仿佛告诉你：即使遇到困境，也总会有人陪伴。你感到心里暖洋洋的，压力减轻了许多。</description>
+        <!-- 被亲昵 -->
+        <label>Being Affectionate</label>
+        <!-- 雪牛娘轻轻蹭了蹭你，用自己的经历安慰你，仿佛告诉你：即使遇到困境，也总会有人陪伴。你感到心里暖洋洋的，压力减轻了许多。 -->
+        <description>The Mugirl lightly nuzzles against you, comforting you with her own experiences as if to say: even when facing hardships, there will always be someone by your side. You feel warmth in your heart and the pressure eases considerably.</description>
         <baseMoodEffect>7</baseMoodEffect>
       </li>
     </stages>
@@ -104,13 +118,17 @@
     <workerClass>MooGirl.ThoughtWorker_Roper</workerClass>
     <stages>
       <li>
-        <label>牵引了一只雪牛娘</label>
-        <description>哈哈、这只可爱的雪牛娘被我牵着到处乱跑，虽然有点恶趣味，但也确实很有趣~</description>
+        <!-- 牵引了一只雪牛娘 -->
+        <label>Roped a Mugirl</label>
+        <!-- 哈哈、这只可爱的雪牛娘被我牵着到处乱跑，虽然有点恶趣味，但也确实很有趣~ -->
+        <description>Hehe, leading this cute Mugirl around is a little mean-spirited, but it really is kind of fun~</description>
         <baseMoodEffect>6</baseMoodEffect>
       </li>
       <li>
-        <label>牵引了好多只雪牛娘</label>
-        <description>哇！我牵引了好多只可爱的雪牛娘，虽然有点恶趣味，但我感觉我好像一个国王！嘿嘿~</description>
+        <!-- 牵引了好多只雪牛娘 -->
+        <label>Roped a Lot of Mugirls</label>
+        <!-- 哇！我牵引了好多只可爱的雪牛娘，虽然有点恶趣味，但我感觉我好像一个国王！嘿嘿~ -->
+        <description>Wow! I've got so many cute Mugirls on ropes. It's a little perverse, but I feel almost like a king! Hehe~</description>
         <baseMoodEffect>10</baseMoodEffect>
       </li>
     </stages>
@@ -121,8 +139,10 @@
     <workerClass>MooGirl.ThoughtWorker_Roped</workerClass>
     <stages>
       <li>
-        <label>正在被牵引</label>
-        <description>呜呜呜~我是雪牛娘！不是雪牛！！不要牵着我到处走呀~(╥﹏╥)</description>
+        <!-- 正在被牵引 -->
+        <label>Being Roped Along</label>
+        <!-- 呜呜呜~我是雪牛娘！不是雪牛！！不要牵着我到处走呀~(╥﹏╥) -->
+        <description>Waaah~ I'm a Mugirl, not a muffalo! Please stop leading me around on a rope~ (T_T)</description>
         <baseMoodEffect>-3</baseMoodEffect>
       </li>
     </stages>

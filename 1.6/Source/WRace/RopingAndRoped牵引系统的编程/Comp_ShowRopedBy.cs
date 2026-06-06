@@ -1,9 +1,5 @@
-﻿using HarmonyLib;
 using RimWorld;
-using System.Collections.Generic;
-using UnityEngine;
 using Verse;
-using Verse.Noise;
 
 namespace MooGirl
 {
@@ -22,29 +18,31 @@ namespace MooGirl
         public override string CompInspectStringExtra()
         {
             if (Pawn == null || Pawn.roping == null)
+            {
                 return null;
+            }
 
             Pawn_RopeTracker roping = Pawn.roping;
 
-
-            // 1. 被其他 Pawn 牵引
+            // 被其他角色牵引。
             if (roping.IsRopedByPawn)
             {
                 return "MooGirl.RopedByPawn".Translate();
             }
-            // 2. 被建筑物牵引（比如马棚）
-            else if (roping.IsRopedToHitchingPost)
+
+            // 被原版拴点牵引。
+            if (roping.IsRopedToHitchingPost)
             {
                 return "MooGirl.RopedToHitchingPost".Translate();
             }
-            // 3. 被地面某点牵引
-            else if (roping.IsRopedToSpot)
+
+            // 被地图坐标牵引。
+            if (roping.IsRopedToSpot)
             {
                 return "MooGirl.RopedToSpot".Translate();
             }
 
             return null;
         }
-
     }
 }

@@ -30,13 +30,13 @@ namespace MooGirl
         public int useCooldownTicks = 480;
 
         // 强力电击按钮显示文本
-        public string powerLabel = "Power Shock";
-        public string powerDesc = "";
+        public string powerLabel = "MooGirl.Restraints.ShockCollar.PowerLabel";
+        public string powerDesc = "MooGirl.Restraints.ShockCollar.PowerDesc";
         public string powerIconPath = "UI/Commands/DesirePower";
 
         // 普通电击按钮显示文本
-        public string commonLabel = "Common Shock";
-        public string commonDesc = "";
+        public string commonLabel = "MooGirl.Restraints.ShockCollar.CommonLabel";
+        public string commonDesc = "MooGirl.Restraints.ShockCollar.CommonDesc";
         public string commonIconPath = "UI/Commands/DesirePower";
 
         // 是否只对玩家控制的单位生效（殖民者、囚犯、奴隶），避免访客模组冲突
@@ -194,17 +194,17 @@ namespace MooGirl
 
             // 提前计算描述文本，避免类型混淆
             string powerDesc = canUse
-                ? Props.powerDesc
-                : ((string)"MooGirl.ShockCollar.Power.CooldownTicksLeft".Translate(cdLeft));
+                ? MooGirlText.Resolve(Props.powerDesc)
+                : MooGirlText.Resolve("MooGirl.Restraints.ShockCollar.PowerCooldownTicksLeft", cdLeft);
 
             string commonDesc = canUse
-                ? Props.commonDesc
-                : ((string)"MooGirl.ShockCollar.Common.CooldownTicksLeft".Translate(cdLeft));
+                ? MooGirlText.Resolve(Props.commonDesc)
+                : MooGirlText.Resolve("MooGirl.Restraints.ShockCollar.CommonCooldownTicksLeft", cdLeft);
 
             // 强力电击按钮
             yield return CreateShockCommand(
                 wearer,
-                Props.powerLabel,
+                MooGirlText.Resolve(Props.powerLabel),
                 powerDesc,
                 Props.powerIconPath,
                 canUse,
@@ -215,7 +215,7 @@ namespace MooGirl
             // 普通电击按钮
             yield return CreateShockCommand(
                 wearer,
-                Props.commonLabel,
+                MooGirlText.Resolve(Props.commonLabel),
                 commonDesc,
                 Props.commonIconPath,
                 canUse,

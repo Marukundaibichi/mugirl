@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+<MooGirl_BrainWashing.label>被洗脑</MooGirl_BrainWashing.label>
+<MooGirl_BrainWashing.baseInspectLine>精神状态：洗脑</MooGirl_BrainWashing.baseInspectLine>
+<MooGirl_BrainWashing.beginLetter>{0} 已经被洗脑头盔完全洗脑。\n\n[PAWN_pronoun] 会无差别攻击殖民地中的任意 [PAWN_pronoun]。</MooGirl_BrainWashing.beginLetter>
+<MooGirl_BrainWashing.recoveryMessage>{0} 已经抵抗了洗脑状态，但如果不摘下头盔，{0} 还会再次被洗脑。</MooGirl_BrainWashing.recoveryMessage>
+
+</LanguageData>

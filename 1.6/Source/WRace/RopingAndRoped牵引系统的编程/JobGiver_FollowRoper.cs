@@ -1,4 +1,4 @@
-﻿using RimWorld;
+using RimWorld;
 using Verse;
 using Verse.AI;
 
@@ -13,7 +13,6 @@ namespace MooGirl
                 return null;
             }
 
-            // 防止 roping 为 null
             Pawn_RopeTracker roping = pawn.roping;
             if (roping == null || !roping.IsRoped)
             {
@@ -36,8 +35,8 @@ namespace MooGirl
                 pawn.drafter.Drafted = false;
             }
 
+            RopingService.RegisterPawnRope(roper, pawn);
             return JobMaker.MakeJob(MooGirl_DefOf.Job_FollowRoper, roper);
         }
     }
-
 }

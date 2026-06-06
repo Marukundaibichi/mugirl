@@ -26,15 +26,19 @@ namespace MooGirl
             {
                 initAction = () =>
                 {
-                    Pawn roper = Target.roping?.RopedByPawn;
-                    if (roper != null)
+                    Pawn target = Target;
+                    if (target == null)
                     {
-                        roper.roping?.BreakAllRopes();
+                        return;
                     }
-                    Target.roping?.BreakAllRopes();
 
-                    Target.jobs.ClearQueuedJobs();
-                    Target.jobs.EndCurrentJob(JobCondition.InterruptForced);
+                    Pawn roper = RopingService.RoperFor(target);
+                    RopingService.BreakAllRopesAndNotify(roper);
+                    RopingService.BreakAllRopesAndNotify(target);
+                    RopingService.ClearPendingSpotRope(target);
+
+                    target.jobs.ClearQueuedJobs();
+                    target.jobs.EndCurrentJob(JobCondition.InterruptForced);
 
                 }
             };

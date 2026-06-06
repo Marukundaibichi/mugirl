@@ -1,6 +1,5 @@
 ﻿using RimWorld;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
@@ -27,21 +26,21 @@ namespace MooGirl
 
         public int useCooldownTicks = 600;
 
-        public string activateLabel = "激活镣铐";
-        public string activateDesc = "启动磁力镣铐，束缚目标。";
+        public string activateLabel = "MooGirl.Restraints.MagneticShackles.ActivateLabel";
+        public string activateDesc = "MooGirl.Restraints.MagneticShackles.ActivateDesc";
         public string activateIconPath = "UI/Commands/DesirePower";
 
-        public string deactivateLabel = "解除镣铐";
-        public string deactivateDesc = "解除磁力镣铐。";
+        public string deactivateLabel = "MooGirl.Restraints.MagneticShackles.DeactivateLabel";
+        public string deactivateDesc = "MooGirl.Restraints.MagneticShackles.DeactivateDesc";
         public string deactivateIconPath = "UI/Commands/DesirePower";
 
-        public string labelWhenActive = "磁力镣铐（激活）";
-        public string labelWhenInactive = "磁力镣铐（未激活）";
+        public string labelWhenActive = "MooGirl.Restraints.MagneticShackles.LabelActive";
+        public string labelWhenInactive = "MooGirl.Restraints.MagneticShackles.LabelInactive";
 
-        public string moteTextOn = "磁力手铐启动!";
-        public string moteTextOff = "磁力手铐解除!";
-        public string messageOn = "{0} 的磁力手铐突然启动了";
-        public string messageOff = "{0} 的磁力手铐被解除";
+        public string moteTextOn = "MooGirl.Restraints.MagneticShackles.MoteOn";
+        public string moteTextOff = "MooGirl.Restraints.MagneticShackles.MoteOff";
+        public string messageOn = "MooGirl.Restraints.MagneticShackles.MessageOn";
+        public string messageOff = "MooGirl.Restraints.MagneticShackles.MessageOff";
 
         public List<BodyPartGroupDef> boundBodyPartGroupDefs = new List<BodyPartGroupDef>();
 
@@ -144,12 +143,18 @@ namespace MooGirl
                     {
                         if (bodyPartDef == null) continue;
 
-                        var parts = Wearer.RaceProps.body.AllParts.Where(p => p.def == bodyPartDef);
-                        foreach (var part in parts)
+                        List<BodyPartRecord> parts = Wearer.RaceProps.body.AllParts;
+                        for (int i = 0; i < parts.Count; i++)
                         {
-                            if (!Wearer.health.hediffSet.hediffs.Any(h => h.def == entry.hediffDef && h.Part == part))
+                            BodyPartRecord part = parts[i];
+                            if (part.def != bodyPartDef)
                             {
-                                var hd = HediffMaker.MakeHediff(entry.hediffDef, Wearer, part);
+                                continue;
+                            }
+
+                            if (!HasHediffOnPart(Wearer, entry.hediffDef, part))
+                            {
+                                Hediff hd = HediffMaker.MakeHediff(entry.hediffDef, Wearer, part);
                                 Wearer.health.AddHediff(hd);
                             }
                         }
@@ -158,9 +163,9 @@ namespace MooGirl
                 else
                 {
                     // 绑定全身/无部位
-                    if (!Wearer.health.hediffSet.hediffs.Any(h => h.def == entry.hediffDef && h.Part == null))
+                    if (!HasHediffOnPart(Wearer, entry.hediffDef, null))
                     {
-                        var hd = HediffMaker.MakeHediff(entry.hediffDef, Wearer, null);
+                        Hediff hd = HediffMaker.MakeHediff(entry.hediffDef, Wearer, null);
                         Wearer.health.AddHediff(hd);
                     }
                 }
@@ -173,8 +178,8 @@ namespace MooGirl
                     soundDef.PlayOneShot(Wearer);
             }
 
-            MoteMaker.ThrowText(Wearer.DrawPos, Wearer.Map, Props.moteTextOn, Color.cyan);
-            Messages.Message(string.Format(Props.messageOn, Wearer.LabelShortCap), Wearer, MessageTypeDefOf.NegativeEvent);
+            MoteMaker.ThrowText(Wearer.DrawPos, Wearer.Map, MooGirlText.Resolve(Props.moteTextOn), Color.cyan);
+            Messages.Message(MooGirlText.Resolve(Props.messageOn, Wearer.LabelShortCap), Wearer, MessageTypeDefOf.NegativeEvent);
         }
 
         // 解除逻辑（彻底移除 Hediff）
@@ -188,33 +193,19 @@ namespace MooGirl
             {
                 if (entry == null || entry.hediffDef == null) continue;
 
-                // 收集要移除的 Hediff（无论部位是否为空）
-                List<Hediff> hediffsToRemove = new List<Hediff>();
-
-                if (entry.bodyPartDefs == null || entry.bodyPartDefs.Count == 0)
+                List<Hediff> hediffs = Wearer.health.hediffSet.hediffs;
+                for (int i = hediffs.Count - 1; i >= 0; i--)
                 {
-                    // 全身 / 无部位
-                    hediffsToRemove.AddRange(Wearer.health.hediffSet.hediffs.Where(h => h.def == entry.hediffDef && h.Part == null));
-                }
-                else
-                {
-                    foreach (var bodyPartDef in entry.bodyPartDefs)
+                    Hediff hediff = hediffs[i];
+                    if (ShouldRemoveBoundHediff(entry, hediff))
                     {
-                        if (bodyPartDef == null) continue;
-                        hediffsToRemove.AddRange(
-                            Wearer.health.hediffSet.hediffs
-                                .Where(h => h.def == entry.hediffDef && h.Part != null && h.Part.def == bodyPartDef)
-                        );
+                        Wearer.health.RemoveHediff(hediff);
                     }
                 }
-
-                // 移除 Hediff
-                foreach (var h in hediffsToRemove)
-                    Wearer.health.RemoveHediff(h);
             }
 
-            MoteMaker.ThrowText(Wearer.DrawPos, Wearer.Map, Props.moteTextOff, Color.green);
-            Messages.Message(string.Format(Props.messageOff, Wearer.LabelShortCap), Wearer, MessageTypeDefOf.PositiveEvent);
+            MoteMaker.ThrowText(Wearer.DrawPos, Wearer.Map, MooGirlText.Resolve(Props.moteTextOff), Color.green);
+            Messages.Message(MooGirlText.Resolve(Props.messageOff, Wearer.LabelShortCap), Wearer, MessageTypeDefOf.PositiveEvent);
         }
 
         // Verb 限制
@@ -246,8 +237,8 @@ namespace MooGirl
                 {
                     yield return new Command_ActionWithCooldown
                     {
-                        defaultLabel = Props.activateLabel,
-                        defaultDesc = canUse ? Props.activateDesc : ((string)"MooGirl.MagneticShackles.CooldownTicksLeft".Translate(cdLeft)),
+                        defaultLabel = MooGirlText.Resolve(Props.activateLabel),
+                        defaultDesc = canUse ? MooGirlText.Resolve(Props.activateDesc) : MooGirlText.Resolve("MooGirl.Restraints.MagneticShackles.CooldownTicksLeft", cdLeft),
                         icon = ContentFinder<Texture2D>.Get(Props.activateIconPath),
                         action = () =>
                         {
@@ -263,8 +254,8 @@ namespace MooGirl
                 {
                     yield return new Command_ActionWithCooldown
                     {
-                        defaultLabel = Props.deactivateLabel,
-                        defaultDesc = Props.deactivateDesc,
+                        defaultLabel = MooGirlText.Resolve(Props.deactivateLabel),
+                        defaultDesc = MooGirlText.Resolve(Props.deactivateDesc),
                         icon = ContentFinder<Texture2D>.Get(Props.deactivateIconPath),
                         action = () =>
                         {
@@ -277,6 +268,50 @@ namespace MooGirl
                     };
                 }
             }
+        }
+
+        private static bool HasHediffOnPart(Pawn pawn, HediffDef hediffDef, BodyPartRecord part)
+        {
+            List<Hediff> hediffs = pawn.health.hediffSet.hediffs;
+            for (int i = 0; i < hediffs.Count; i++)
+            {
+                Hediff hediff = hediffs[i];
+                if (hediff.def == hediffDef && hediff.Part == part)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool ShouldRemoveBoundHediff(CompProperties_MagneticShackles.BindHediffEntry entry, Hediff hediff)
+        {
+            if (hediff.def != entry.hediffDef)
+            {
+                return false;
+            }
+
+            if (entry.bodyPartDefs == null || entry.bodyPartDefs.Count == 0)
+            {
+                return hediff.Part == null;
+            }
+
+            if (hediff.Part == null)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < entry.bodyPartDefs.Count; i++)
+            {
+                BodyPartDef bodyPartDef = entry.bodyPartDefs[i];
+                if (bodyPartDef != null && hediff.Part.def == bodyPartDef)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public override void PostExposeData()

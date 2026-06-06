@@ -7,7 +7,7 @@ using Verse.AI;
 
 namespace MooGirl
 {
-    public static class MountedPawnCombatTurret
+    public static class MountedCombatController
     {
         private static readonly Dictionary<Verb, Thing> OriginalCasters = new Dictionary<Verb, Thing>();
         private static readonly Dictionary<Verb, float> WarmupTimeOverrides = new Dictionary<Verb, float>();
@@ -62,8 +62,11 @@ namespace MooGirl
             for (int i = 0; i < ticks; i++)
             {
                 Stance originalStance = carrier?.stances?.curStance;
-                verb.VerbTick();
-                RestoreCarrierStanceIfMountedVerbChangedIt(carrier, verb, originalStance);
+                using (MountedCasterScope(comp, verb))
+                {
+                    verb.VerbTick();
+                    RestoreCarrierStanceIfMountedVerbChangedIt(carrier, verb, originalStance);
+                }
             }
         }
 
@@ -187,6 +190,7 @@ namespace MooGirl
             Stance originalStance = carrier?.stances?.curStance;
             bool pointBlankMeleeTarget = castTarget.HasThing && castTarget.Thing == MountedPawnMeleeSupport.CurrentMeleeTarget(carrier);
             comp.turretCastStartTick = Find.TickManager.TicksGame;
+            using (MountedCasterScope(comp, verb))
             using (new MountedWarmupOverride(verb, 0f))
             using (new MountedMinRangeOverride(verb, pointBlankMeleeTarget ? 0f : (float?)null))
             {
@@ -493,11 +497,24 @@ namespace MooGirl
             {
                 OriginalCasters.Add(verb, verb.caster == carrier && rider != null ? rider : verb.caster);
             }
+        }
 
-            if (verb.caster != carrier)
+        private static MountedVerbScope MountedCasterScope(Comp_MooGirlMount comp, Verb verb)
+        {
+            EnsureVerbCaster(comp, verb);
+            Pawn carrier = comp?.MooPawn;
+            Pawn rider = comp?.MountedPawn;
+            return new MountedVerbScope(verb, carrier, OriginalCasterFor(verb, rider));
+        }
+
+        private static Thing OriginalCasterFor(Verb verb, Pawn fallback)
+        {
+            if (verb == null)
             {
-                verb.caster = carrier;
+                return fallback;
             }
+
+            return OriginalCasters.TryGetValue(verb, out Thing originalCaster) ? originalCaster ?? fallback : fallback ?? verb.caster;
         }
 
         private static void RestoreVerbCaster(Pawn rider)
@@ -546,7 +563,10 @@ namespace MooGirl
 
             MountedAttackTargetSearcher searcher = new MountedAttackTargetSearcher(comp, verb);
             TargetScanFlags flags = TargetScanFlags.NeedThreat | TargetScanFlags.NeedAutoTargetable | TargetScanFlags.NeedLOSToAll | TargetScanFlags.NeedNonBurning;
-            return AttackTargetFinder.BestShootTargetFromCurrentPosition(searcher, flags, thing => IsValidTarget(carrier, verb, thing), 0f, verb.EffectiveRange)?.Thing;
+            using (MountedCasterScope(comp, verb))
+            {
+                return AttackTargetFinder.BestShootTargetFromCurrentPosition(searcher, flags, thing => IsValidTarget(carrier, verb, thing), 0f, verb.EffectiveRange)?.Thing;
+            }
         }
 
         private static bool IsValidTarget(Pawn carrier, Verb verb, Thing target, bool allowPointBlank = false)
@@ -568,13 +588,17 @@ namespace MooGirl
 
             if (allowPointBlank && target.Position.AdjacentTo8WayOrInside(carrier.Position))
             {
+                using (new MountedVerbScope(verb, carrier, OriginalCasterFor(verb, null)))
                 using (new MountedMinRangeOverride(verb, 0f))
                 {
                     return verb.TryFindShootLineFromTo(carrier.Position, target, out _);
                 }
             }
 
-            return verb.TryFindShootLineFromTo(carrier.Position, target, out _);
+            using (new MountedVerbScope(verb, carrier, OriginalCasterFor(verb, null)))
+            {
+                return verb.TryFindShootLineFromTo(carrier.Position, target, out _);
+            }
         }
 
         private class MountedAttackTargetSearcher : IAttackTargetSearcher
@@ -599,20 +623,20 @@ namespace MooGirl
     }
 
     [HarmonyPatch(typeof(Verb), nameof(Verb.WarmupTime), MethodType.Getter)]
-    public static class Harmony_MountedPawnCombatTurret_WarmupTime
+    public static class Harmony_MountedCombatController_WarmupTime
     {
         public static void Postfix(Verb __instance, ref float __result)
         {
-            MountedPawnCombatTurret.TryGetWarmupTimeOverride(__instance, ref __result);
+            MountedCombatController.TryGetWarmupTimeOverride(__instance, ref __result);
         }
     }
 
     [HarmonyPatch(typeof(Stance_Warmup), nameof(Stance_Warmup.StanceDraw))]
-    public static class Harmony_MountedPawnCombatTurret_StanceWarmupDraw
+    public static class Harmony_MountedCombatController_StanceWarmupDraw
     {
         public static bool Prefix(Stance_Warmup __instance)
         {
-            return !MountedPawnCombatTurret.IsMountedVerb(__instance?.verb);
+            return !MountedCombatController.IsMountedVerb(__instance?.verb);
         }
     }
 }

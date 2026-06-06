@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <!-- 雪牛娘支援突击步枪弹药（复用 MooGirl_Assault_Rifle） -->
   <ThingDef ParentName="BaseBullet">
     <defName>Bullet_MooGirl_AR_Standard</defName>
+    <!-- 雪牛娘突击步枪弹 -->
     <label>MooGirl assault round</label>
     <graphicData>
       <texPath>Things/Projectile/Bullet_Small</texPath>
@@ -20,8 +21,10 @@
   <!-- 雪牛娘支援突击步枪 -->
   <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>MuGirl_Gun_Support_Assault_Rifle</defName>
-    <label>雪牛娘支援突击步枪</label>
-    <description>雪牛娘使用的大火力步枪，尽管只是普通的火药步枪，但基于雪牛娘那强大的体格进行设计，这把枪拥有着远强于普通轻机枪的火力</description>
+    <!-- 雪牛娘支援突击步枪 -->
+    <label>Mugirl Support Assault Rifle</label>
+    <!-- 雪牛娘使用的大火力步枪，尽管只是普通的火药步枪，但基于雪牛娘那强大的体格进行设计，这把枪拥有着远强于普通轻机枪的火力 -->
+    <description>A heavy-firepower rifle used by Mugirls. Although it is only an ordinary gunpowder rifle, it is designed around the powerful Mugirl physique and has firepower far beyond a standard light machine gun.</description>
     <graphicData>
       <texPath>Things/Item/Equipment/MuGirlWeapon/Support_Assault_Rifle</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -67,6 +70,7 @@
     </verbs>
     <tools>
       <li>
+        <!-- 枪托 -->
         <label>stock</label>
         <capacities>
           <li>Blunt</li>
@@ -75,6 +79,7 @@
         <cooldownTime>2</cooldownTime>
       </li>
       <li>
+        <!-- 枪管 -->
         <label>barrel</label>
         <capacities>
           <li>Blunt</li>
@@ -92,6 +97,7 @@
   <!-- 雪牛娘冲锋手枪弹药（复用 MooGirl_Machine_Pistol） -->
   <ThingDef ParentName="BaseBullet">
     <defName>Bullet_MooGirl_MP_Standard</defName>
+    <!-- 雪牛娘手枪弹 -->
     <label>MooGirl pistol round</label>
     <graphicData>
       <texPath>Things/Projectile/Bullet_Small</texPath>
@@ -109,8 +115,10 @@
   <!-- 雪牛娘冲锋手枪 -->
   <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>MuGirl_Gun_Machine_Pistol</defName>
-    <label>雪牛娘冲锋手枪</label>
-    <description>雪牛娘使用的基础手枪，尽管用的只是普通的火药，但基于雪牛娘那强大的体格进行设计，这把枪拥有着远强于普通自动手枪的火力</description>
+    <!-- 雪牛娘冲锋手枪 -->
+    <label>Mugirl Machine Pistol</label>
+    <!-- 雪牛娘使用的基础手枪，尽管用的只是普通的火药，但基于雪牛娘那强大的体格进行设计，这把枪拥有着远强于普通自动手枪的火力 -->
+    <description>A basic pistol used by Mugirls. Although it uses ordinary gunpowder, it is designed around the powerful Mugirl physique and has firepower far beyond a standard autopistol.</description>
     <graphicData>
       <texPath>Things/Item/Equipment/MuGirlWeapon/Machine_Pistol</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -156,6 +164,7 @@
     </verbs>
     <tools>
       <li>
+        <!-- 握把 -->
         <label>grip</label>
         <capacities>
           <li>Blunt</li>
@@ -164,6 +173,7 @@
         <cooldownTime>1.6</cooldownTime>
       </li>
       <li>
+        <!-- 枪管 -->
         <label>barrel</label>
         <capacities>
           <li>Blunt</li>
@@ -181,6 +191,7 @@
   <!-- 雪牛娘防卫步枪弹药（复用 MooGirl_Militia_Rifle） -->
   <ThingDef ParentName="BaseBullet">
     <defName>Bullet_MooGirl_Militia_Rifle</defName>
+    <!-- 民兵步枪弹 -->
     <label>militia rifle cartridge</label>
     <graphicData>
       <texPath>Things/Projectile/Bullet_Big</texPath>
@@ -198,8 +209,10 @@
   <!-- 雪牛娘防卫步枪 -->
   <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>MuGirl_Gun_Defense_Rifle</defName>
-    <label>雪牛娘防卫步枪</label>
-    <description>雪牛娘使用的长射程步枪，尽管只是普通的火药步枪，但基于雪牛娘那强大的体格进行设计，这把枪拥有着强于普通步枪的性能</description>
+    <!-- 雪牛娘防卫步枪 -->
+    <label>Mugirl Defense Rifle</label>
+    <!-- 雪牛娘使用的长射程步枪，尽管只是普通的火药步枪，但基于雪牛娘那强大的体格进行设计，这把枪拥有着强于普通步枪的性能 -->
+    <description>A long-range rifle used by Mugirls. Although it is only an ordinary gunpowder rifle, it is designed around the powerful Mugirl physique and performs better than a standard rifle.</description>
     <graphicData>
       <texPath>Things/Item/Equipment/MuGirlWeapon/Defense_Rifle</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -241,6 +254,7 @@
     </verbs>
     <tools>
       <li>
+        <!-- 刺刀 -->
         <label>bayonet</label>
         <capacities>
           <li>Stab</li>
@@ -258,8 +272,10 @@
   <!-- 雪牛娘火焰喷射器（复用原版迷你火焰冲击枪） -->
   <ThingDef ParentName="LightMechanoidGunRanged">
     <defName>MuGirl_Gun_Flame_Thrower</defName>
-    <label>雪牛娘火焰喷射器</label>
-    <description>这个武器先复用原版迷你火焰冲击枪的代码，后续修改。</description>
+    <!-- 雪牛娘火焰喷射器 -->
+    <label>Mugirl Flame Thrower</label>
+    <!-- 这个武器先复用原版迷你火焰冲击枪的代码，后续修改。 -->
+    <description>This weapon currently reuses the base game mini flamethrower code and will be revised later.</description>
     <graphicData>
       <texPath>Things/Item/Equipment/MuGirlWeapon/Flame_Thrower</texPath>
       <graphicClass>Graphic_Single</graphicClass>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+<MooGirl_BrainwashHelmet.label>雪牛娘 洗脑头盔</MooGirl_BrainwashHelmet.label>
+<MooGirl_BrainwashHelmet.description>由太空巨企研发的高级精神控制装置，外观是一款紧贴头部的全封闭头盔。其内部会释放特定光波、影像与音频，对佩戴者进行深层感官刺激与心理暗示，逐步瓦解自我意识并重塑忠诚。在洗脑过程中，雪牛娘的瞳孔会被强光反射，表情僵硬而恍惚，呼吸急促，仿佛陷入一种无法抗拒的快感与恐惧交织的状态。\n\n若被强制使用在非巨企派系个体上，他们会因精神崩溃而疯狂攻击附近生物。\n\n解除束缚需要[高科技束具钥匙]，而在解锁后还可通过[束具破解器]进行破解。\n\n破解后的头盔会根据佩戴者身份产生不同效果：对于囚犯，每次洗脑都会削弱其逃跑的意志，三次后将被彻底转化为奴隶；对于奴隶，每次洗脑会加深压制感，三次后将完全顺服，不再萌生越狱之心；而对于殖民者，每次洗脑会赋予一种诡异的愉悦情绪，三次后其性格将被永久改变，即便在精神崩溃时也不会再伤害同伴。</MooGirl_BrainwashHelmet.description>
+  <MooGirl_BrainwashHelmet.comps.Comp_BrainwashHelmet.activateLabel>激活洗脑</MooGirl_BrainwashHelmet.comps.Comp_BrainwashHelmet.activateLabel>
+  <MooGirl_BrainwashHelmet.comps.Comp_BrainwashHelmet.activateDesc>激活洗脑头盔，洗脑目标。</MooGirl_BrainwashHelmet.comps.Comp_BrainwashHelmet.activateDesc>
+<MooGirl_MagneticShackles.label>雪牛娘 磁力镣铐</MooGirl_MagneticShackles.label>
+<MooGirl_MagneticShackles.description>由太空巨企开发的高科技束具，结合项圈与手铐组成。其内部磁力装置会不定时启动，将佩戴者的双手吸附到颈部，形成类似枷锁的姿态。这种设计带有明显的恶趣味，用以观赏雪牛娘在突然被束缚时的窘迫反应。\n\n解除束缚需要[高科技束具钥匙]，而在解锁后，该装置还可通过[束具破解器]进行破解。\n\n破解后的镣铐将不再自动启动，而是可以由控制者手动激活或解除。</MooGirl_MagneticShackles.description>
+  <MooGirl_MagneticShackles.comps.Comp_MagneticShackles.activateLabel>激活镣铐</MooGirl_MagneticShackles.comps.Comp_MagneticShackles.activateLabel>
+  <MooGirl_MagneticShackles.comps.Comp_MagneticShackles.activateDesc>启动磁力镣铐，束缚目标。</MooGirl_MagneticShackles.comps.Comp_MagneticShackles.activateDesc>
+  <MooGirl_MagneticShackles.comps.Comp_MagneticShackles.deactivateLabel>解除镣铐</MooGirl_MagneticShackles.comps.Comp_MagneticShackles.deactivateLabel>
+  <MooGirl_MagneticShackles.comps.Comp_MagneticShackles.deactivateDesc>解除磁力镣铐。</MooGirl_MagneticShackles.comps.Comp_MagneticShackles.deactivateDesc>
+  <MooGirl_MagneticShackles.comps.Comp_MagneticShackles.labelWhenActive>磁力镣铐（激活）</MooGirl_MagneticShackles.comps.Comp_MagneticShackles.labelWhenActive>
+  <MooGirl_MagneticShackles.comps.Comp_MagneticShackles.labelWhenInactive>磁力镣铐（未激活）</MooGirl_MagneticShackles.comps.Comp_MagneticShackles.labelWhenInactive>
+  <MooGirl_MagneticShackles.comps.Comp_MagneticShackles.moteTextOn>磁力手铐启动!</MooGirl_MagneticShackles.comps.Comp_MagneticShackles.moteTextOn>
+  <MooGirl_MagneticShackles.comps.Comp_MagneticShackles.moteTextOff>磁力手铐解除!</MooGirl_MagneticShackles.comps.Comp_MagneticShackles.moteTextOff>
+  <MooGirl_MagneticShackles.comps.Comp_MagneticShackles.messageOn>{0} 的磁力手铐突然启动了</MooGirl_MagneticShackles.comps.Comp_MagneticShackles.messageOn>
+  <MooGirl_MagneticShackles.comps.Comp_MagneticShackles.messageOff>{0} 的磁力手铐被解除</MooGirl_MagneticShackles.comps.Comp_MagneticShackles.messageOff>
+  <MooGirl_MilkingDevice.label>雪牛娘 榨乳器</MooGirl_MilkingDevice.label>
+  <MooGirl_MilkingDevice.description>一种面向雪牛娘设计的高科技榨乳设备。它会在雪牛娘产乳进度满时自动截留一次产奶，将其压缩储存在内部容器中。储能满后，可由穿戴者手动释放，集中生成雪牛奶。当前版本以功能优先，不包含按储能变化的专用贴图。</MooGirl_MilkingDevice.description>
+  <MooGirl_MilkingDevice.comps.Comp_MilkingDevice.releaseLabel>释放储乳</MooGirl_MilkingDevice.comps.Comp_MilkingDevice.releaseLabel>
+  <MooGirl_MilkingDevice.comps.Comp_MilkingDevice.inspectLabel>储乳层数</MooGirl_MilkingDevice.comps.Comp_MilkingDevice.inspectLabel>
+  <MooGirl_MilkingDevice.comps.Comp_MilkingDevice.noChargeText>当前没有可释放的储乳。</MooGirl_MilkingDevice.comps.Comp_MilkingDevice.noChargeText>
+
+  <MooGirl_MilkingDeviceHidden.label>雪牛娘 隐藏式榨乳器</MooGirl_MilkingDeviceHidden.label>
+  <MooGirl_MilkingDeviceHidden.description>一款可隐藏在内衣或外层服装下的和谐型榨乳装置。它仍会在雪牛娘产乳进度满时自动截留一次产奶，但更适合在普通穿搭下保持外观低调，仅在需要时再进行控制。</MooGirl_MilkingDeviceHidden.description>
+  <MooGirl_MilkingDeviceHidden.comps.Comp_MilkingDevice.releaseLabel>释放储乳</MooGirl_MilkingDeviceHidden.comps.Comp_MilkingDevice.releaseLabel>
+  <MooGirl_MilkingDeviceHidden.comps.Comp_MilkingDevice.inspectLabel>储乳层数</MooGirl_MilkingDeviceHidden.comps.Comp_MilkingDevice.inspectLabel>
+  <MooGirl_MilkingDeviceHidden.comps.Comp_MilkingDevice.noChargeText>当前没有可释放的储乳。</MooGirl_MilkingDeviceHidden.comps.Comp_MilkingDevice.noChargeText>
+<MooGirl_ShockCollar.label>雪牛娘 电击项圈</MooGirl_ShockCollar.label>
+<MooGirl_ShockCollar.description>由太空巨企专门设计的控制型束具，外观为紧贴在颈部的金属项圈。其内部电极会不定期释放电流，对佩戴者进行电击，拥有轻度与重度两种模式。这种不可预测的刺激常被用作维持纪律与展示控制。 \n\n解除束缚需要[高科技束具钥匙]，在解锁后还可通过[束具破解器]进行破解。\n\n破解后的项圈将不再随机电击，而是可由控制者手动触发，并自由选择电击模式。</MooGirl_ShockCollar.description>
+  <MooGirl_ShockCollar.comps.Comp_ShockCollar.commonLabel>普通电击</MooGirl_ShockCollar.comps.Comp_ShockCollar.commonLabel>
+  <MooGirl_ShockCollar.comps.Comp_ShockCollar.commonDesc>激活一次普通电击</MooGirl_ShockCollar.comps.Comp_ShockCollar.commonDesc>
+  <MooGirl_ShockCollar.comps.Comp_ShockCollar.powerLabel>强力电击</MooGirl_ShockCollar.comps.Comp_ShockCollar.powerLabel>
+  <MooGirl_ShockCollar.comps.Comp_ShockCollar.powerDesc>激活一次强力电击，电死你！</MooGirl_ShockCollar.comps.Comp_ShockCollar.powerDesc>
+  
+</LanguageData>

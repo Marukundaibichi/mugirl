@@ -1,11 +1,6 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-  
-  <!-- EN: 墙壁栓点 -->
-  <WallRopeHitch.label>墙壁栓点</WallRopeHitch.label>
-  <!-- EN: 墙上的铁环，可用来将雪牛娘安全固定。她们在被牵引时会表现出一种本能的顺从，这是长期改造与驯化的结果。 -->
-  <WallRopeHitch.description>墙上的铁环，可用来将雪牛娘安全固定。她们在被牵引时会表现出一种本能的顺从，这是长期改造与驯化的结果。</WallRopeHitch.description>
-  <!-- EN: 栓在建筑上 -->
   <WallRopeHitch.comps.CompRopeToBuild.useLabel>栓到建筑上</WallRopeHitch.comps.CompRopeToBuild.useLabel>
-  
+  <WallRopeHitch.description>墙上的铁环，可用来将雪牛娘安全固定。她们在被牵引时会表现出一种本能的顺从，这是长期改造与驯化的结果。</WallRopeHitch.description>
+  <WallRopeHitch.label>墙壁栓点</WallRopeHitch.label>
 </LanguageData>

@@ -1,12 +1,38 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
 
-    <MooGirl.BrainwashHelmet_ManualTrigger_Message>{0}激活了洗脑装置</MooGirl.BrainwashHelmet_ManualTrigger_Message>
+    <MooGirl.Text.FormatFailedLog>MooGirl 文本格式化失败：{ERROR}</MooGirl.Text.FormatFailedLog>
+    <MooGirl.Settings.Category>牛牛模组控制</MooGirl.Settings.Category>
 
-    <MooGirl.MagneticShackles.CooldownTicksLeft>冷却中：{0}</MooGirl.MagneticShackles.CooldownTicksLeft>
+    <MooGirl.Restraints.MagneticShackles.ActivateLabel>激活镣铐</MooGirl.Restraints.MagneticShackles.ActivateLabel>
+    <MooGirl.Restraints.MagneticShackles.ActivateDesc>启动磁力镣铐，束缚目标。</MooGirl.Restraints.MagneticShackles.ActivateDesc>
+    <MooGirl.Restraints.MagneticShackles.DeactivateLabel>解除镣铐</MooGirl.Restraints.MagneticShackles.DeactivateLabel>
+    <MooGirl.Restraints.MagneticShackles.DeactivateDesc>解除磁力镣铐。</MooGirl.Restraints.MagneticShackles.DeactivateDesc>
+    <MooGirl.Restraints.MagneticShackles.LabelActive>磁力镣铐（激活）</MooGirl.Restraints.MagneticShackles.LabelActive>
+    <MooGirl.Restraints.MagneticShackles.LabelInactive>磁力镣铐（未激活）</MooGirl.Restraints.MagneticShackles.LabelInactive>
+    <MooGirl.Restraints.MagneticShackles.MoteOn>磁力手铐启动!</MooGirl.Restraints.MagneticShackles.MoteOn>
+    <MooGirl.Restraints.MagneticShackles.MoteOff>磁力手铐解除!</MooGirl.Restraints.MagneticShackles.MoteOff>
+    <MooGirl.Restraints.MagneticShackles.MessageOn>{0} 的磁力手铐突然启动了</MooGirl.Restraints.MagneticShackles.MessageOn>
+    <MooGirl.Restraints.MagneticShackles.MessageOff>{0} 的磁力手铐被解除</MooGirl.Restraints.MagneticShackles.MessageOff>
+    <MooGirl.Restraints.MagneticShackles.CooldownTicksLeft>冷却中：{0}</MooGirl.Restraints.MagneticShackles.CooldownTicksLeft>
 
-    <MooGirl.ShockCollar.Power.CooldownTicksLeft>冷却中：{0}</MooGirl.ShockCollar.Power.CooldownTicksLeft>
-    <MooGirl.ShockCollar.Common.CooldownTicksLeft>冷却中：{0}</MooGirl.ShockCollar.Common.CooldownTicksLeft>
+    <MooGirl.Restraints.ShockCollar.PowerLabel>强力电击</MooGirl.Restraints.ShockCollar.PowerLabel>
+    <MooGirl.Restraints.ShockCollar.PowerDesc>激活一次强力电击，电死你！</MooGirl.Restraints.ShockCollar.PowerDesc>
+    <MooGirl.Restraints.ShockCollar.CommonLabel>普通电击</MooGirl.Restraints.ShockCollar.CommonLabel>
+    <MooGirl.Restraints.ShockCollar.CommonDesc>激活一次普通电击</MooGirl.Restraints.ShockCollar.CommonDesc>
+    <MooGirl.Restraints.ShockCollar.PowerCooldownTicksLeft>冷却中：{0}</MooGirl.Restraints.ShockCollar.PowerCooldownTicksLeft>
+    <MooGirl.Restraints.ShockCollar.CommonCooldownTicksLeft>冷却中：{0}</MooGirl.Restraints.ShockCollar.CommonCooldownTicksLeft>
+
+    <MooGirl.Restraints.DevUnlock.Label>Dev: 解锁 {0}</MooGirl.Restraints.DevUnlock.Label>
+    <MooGirl.Restraints.DevUnlock.Desc>开发者模式下立即解除 {0} 的穿戴锁定，便于调试。</MooGirl.Restraints.DevUnlock.Desc>
+    <MooGirl.Restraints.DevUnlock.Message>已开发者解锁：{0} 的 {1}</MooGirl.Restraints.DevUnlock.Message>
+
+    <MooGirl.Restraints.BrainwashHelmet.ActivateLabel>激活洗脑</MooGirl.Restraints.BrainwashHelmet.ActivateLabel>
+    <MooGirl.Restraints.BrainwashHelmet.ActivateDesc>激活洗脑头盔，洗脑目标。</MooGirl.Restraints.BrainwashHelmet.ActivateDesc>
+    <MooGirl.Restraints.BrainwashHelmet.ManualTriggerMessage>{0}激活了洗脑装置</MooGirl.Restraints.BrainwashHelmet.ManualTriggerMessage>
+    <MooGirl.Restraints.BrainwashHelmet.IdeoConvertLabel>文化转换</MooGirl.Restraints.BrainwashHelmet.IdeoConvertLabel>
+    <MooGirl.Restraints.BrainwashHelmet.IdeoConvertDesc>将穿戴者的文化改变为殖民地的主流文化。</MooGirl.Restraints.BrainwashHelmet.IdeoConvertDesc>
+    <MooGirl.Restraints.BrainwashHelmet.IdeoConvertMessage>已将{0}的文化转换为殖民地主流文化。</MooGirl.Restraints.BrainwashHelmet.IdeoConvertMessage>
 
 	<MooGirl.MilkingDevice.StoredMessage>{0} 的榨乳器储存了 1 次产奶（{1}/{2}）</MooGirl.MilkingDevice.StoredMessage>
 	<MooGirl.MilkingDevice.ReleaseMessage>{0} 释放了榨乳器中的储乳，生成了 {1} 份雪牛奶</MooGirl.MilkingDevice.ReleaseMessage>
@@ -78,7 +104,6 @@
     <MooGirl.SlaveApparelUnlockPartial>{0} 解锁了 {1} 的束具，还需要{2}个钥匙来完全解锁</MooGirl.SlaveApparelUnlockPartial>
     <MooGirl.WrongKeyType>无法解锁：钥匙类型不匹配 {0}</MooGirl.WrongKeyType>
 
-    <MooGirl.Reserved>已被预订</MooGirl.Reserved>
     <MooGirl.NoPath>无路径</MooGirl.NoPath>
     <MooGirl.CannotPrioritizeWorkTypeDisabled>无法进行工作（{0} 已被禁用）</MooGirl.CannotPrioritizeWorkTypeDisabled>
 
@@ -113,6 +138,7 @@
     <MooGirl.Mount.HoldFire>停火</MooGirl.Mount.HoldFire>
     <MooGirl.Mount.HoldFireDesc>禁止骑乘者自动开火。</MooGirl.Mount.HoldFireDesc>
     <MooGirl.Mount.CannotMount>无法骑乘</MooGirl.Mount.CannotMount>
+    <MooGirl.Mount.LabelWithReason>{0}：{1}</MooGirl.Mount.LabelWithReason>
     <MooGirl.Mount.MountedMessage>{0} 骑上了 {1}。</MooGirl.Mount.MountedMessage>
     <MooGirl.Mount.DismountedMessage>{0} 从 {1} 身上下来了。</MooGirl.Mount.DismountedMessage>
     <MooGirl.Mount.AutoDismountMessage>{0} 因为{1}而自动下骑。</MooGirl.Mount.AutoDismountMessage>
@@ -133,12 +159,11 @@
     <MooGirl.Mount.ReasonRiderMedical>需要医疗休息</MooGirl.Mount.ReasonRiderMedical>
     <MooGirl.Mount.ReasonTurretHoldFire>骑乘者已停火</MooGirl.Mount.ReasonTurretHoldFire>
     <MooGirl.Mount.ReasonNoRangedWeapon>骑乘者没有远程武器</MooGirl.Mount.ReasonNoRangedWeapon>
-
-    <!-- 巨企运货员接触 -->
-    <MooGirl.CourierContactLetterLabel>巨企运货员</MooGirl.CourierContactLetterLabel>
+<MooGirl.CourierContactLetterLabel>巨企运货员</MooGirl.CourierContactLetterLabel>
     <MooGirl.CourierContactLetterText>一名巨型企业运货员从地图边缘接近殖民地。他没有立刻开火，但看起来非常紧张。你可以派一名殖民者与他交涉。</MooGirl.CourierContactLetterText>
     <MooGirl.CourierTalkOption>与巨企运货员交涉</MooGirl.CourierTalkOption>
     <MooGirl.CourierTalkCannotReach>无法到达</MooGirl.CourierTalkCannotReach>
+    <MooGirl.CourierTalkOptionDisabled>{0}（{1}）</MooGirl.CourierTalkOptionDisabled>
     <MooGirl.CourierAlreadyResolved>这个运货员已经无法交涉。</MooGirl.CourierAlreadyResolved>
     <MooGirl.CourierDialogTitle>巨企运货员</MooGirl.CourierDialogTitle>
     <MooGirl.CourierDialogText>这名巨型企业运货员紧张地看着你们，手一直没有离开武器。\n\n“我只是个送货的。飞船掉了，货也没保住，公司不会听我解释。你们要是想拿东西，就让我把身上的日记和钥匙扔下，然后我立刻离开。别逼我开火，我也不想把事情闹到公司层面。”</MooGirl.CourierDialogText>
@@ -147,18 +172,32 @@
     <MooGirl.CourierItemsDroppedMessage>巨企运货员丢下了身上的物品，正在离开。</MooGirl.CourierItemsDroppedMessage>
     <MooGirl.CourierFightMessage>巨企运货员拔出了武器。这次冲突不会改变你与巨型企业的关系。</MooGirl.CourierFightMessage>
     <MooGirl.CourierFightReason>谈判破裂。</MooGirl.CourierFightReason>
+    <MooGirl.CourierDemandTitle>巨型企业索赔通知</MooGirl.CourierDemandTitle>
+    <MooGirl.CourierDemandDialogText>一位巨型企业代表发来通讯：\n\n“你们杀了我们的运货员，摧毁了我们的飞船。根据企业条例第47条，你们需要赔偿我们的损失。\n\n赔偿金额：{0}钢铁 + {1}零部件。\n\n立即支付赔偿，巨型企业将暂不追究。拒绝赔偿，巨型企业将视你们为敌人并采取军事行动。”</MooGirl.CourierDemandDialogText>
+    <MooGirl.CourierDemandPay>支付赔偿</MooGirl.CourierDemandPay>
+    <MooGirl.CourierDemandRefuse>拒绝赔偿</MooGirl.CourierDemandRefuse>
+    <MooGirl.CourierDemandPaid>已向巨型企业支付赔偿。</MooGirl.CourierDemandPaid>
+    <MooGirl.CourierDemandInsufficient>赔偿物资不足，巨型企业将你们视为敌人。</MooGirl.CourierDemandInsufficient>
+    <MooGirl.CourierDiary.Title>运货员日记本</MooGirl.CourierDiary.Title>
+    <MooGirl.CourierDiary.ReadOption>阅读{0}</MooGirl.CourierDiary.ReadOption>
+    <MooGirl.CourierDiary.OptionDisabled>{0}（{1}）</MooGirl.CourierDiary.OptionDisabled>
+    <MooGirl.CourierDiary.CannotReach>无法到达</MooGirl.CourierDiary.CannotReach>
+    <MooGirl.CourierDiary.PageCounter>第{0}页 / 共{1}页</MooGirl.CourierDiary.PageCounter>
+    <MooGirl.CourierDiary.PreviousPage>上一页</MooGirl.CourierDiary.PreviousPage>
+    <MooGirl.CourierDiary.NextPage>下一页</MooGirl.CourierDiary.NextPage>
+    <MooGirl.CourierDiary.Close>关闭</MooGirl.CourierDiary.Close>
+    <MooGirl.CourierDiary.Page1>【第一页】\n\n欢迎阅读《运货员日记》！\n\n这本日记记录了一个底层运货员在巨型企业工作期间的种种经历，包含大量实用技巧和生存经验。</MooGirl.CourierDiary.Page1>
+    <MooGirl.CourierDiary.Page2>【第二页】\n\n关于巨型企业：\n\n巨型企业是一个庞大的企业联合体，其武装力量遍布各个星球。他们拥有独特的OPIC和PMC系列的武器装备。\n\n遭遇袭击时请注意敌人的装备等级——携带PMC前缀武器的敌人往往更危险。</MooGirl.CourierDiary.Page2>
+    <MooGirl.CourierDiary.Page3>【第三页】\n\n关于雪牛娘：\n\n雪牛娘是基因工程的产物，她们分泌的乳汁具有非凡的营养价值。可以通过制作各种雪牛娘奶制品来获得额外加成。\n\n雪牛娘奶布丁能提升心情，奶酪可以解毒，陈年奶酪和奶片能增强免疫力。</MooGirl.CourierDiary.Page3>
+    <MooGirl.CourierDiary.Page4>【第四页】\n\n关于束具钥匙：\n\n粗糙束具钥匙可以在机械加工台或锻造台制作，精致束具钥匙需要更高级的工作台。\n\n如果你捡到了运气好的运货员携带的钥匙，可以用它们来解开雪牛娘身上的束具。</MooGirl.CourierDiary.Page4>
+    <MooGirl.CourierDiary.Page5>【第五页】\n\n生存建议：\n\n1. 发展雪牛娘养殖以获得稳定的奶源\n2. 积攒足够的防御力量应对巨型企业袭击\n3. 制作各种奶制品以增强殖民者的能力\n4. 束具钥匙可以用来招募雪牛娘奴隶\n\n祝你在这个残酷的世界中活下来！</MooGirl.CourierDiary.Page5>
 
     <MooGirl.LetterLabelWandererJoins>流浪者加入：{PAWN_nameDef}</MooGirl.LetterLabelWandererJoins>
     <MooGirl.LetterWandererJoins>
         一位名叫{PAWN_nameDef}的{PAWN_title}来到这里，想要加入殖民地。\n\n[PAWN_pronoun]声称没有地方可去，并且愿意做出贡献。{PAWN_objective}不会主动离开，你可以选择拒绝{PAWN_objective}，把{PAWN_objective}送走。然而，你的殖民者们会对送走一个需要帮助的人而感到不安。</MooGirl.LetterWandererJoins>
 
-    <!-- <MooGirl.RopeRoperStateInvalid>牵引者状态异常，已断开绳索</MooGirl.RopeRoperStateInvalid>
-    <MooGirl.RopeRopeeStateInvalid>被牵引者状态异常，已断开绳索</MooGirl.RopeRopeeStateInvalid>
-    <MooGirl.RopeCannotReachTarget>目标无法到达，已断开绳索</MooGirl.RopeCannotReachTarget>
-    <MooGirl.RopeHitchingPostLost>栓点丢失，已断开绳索</MooGirl.RopeHitchingPostLost> -->
-
-    <!-- 开局逃生舱坠毁 -->
-    <MooGirl.LetterLabelOpeningPodCrash>逃生舱坠毁（雪牛娘奴隶）</MooGirl.LetterLabelOpeningPodCrash>
+<MooGirl.LetterLabelOpeningPodCrash>逃生舱坠毁（雪牛娘奴隶）</MooGirl.LetterLabelOpeningPodCrash>
+    <MooGirl.OpeningPodCrash_MultipleIntro>逃生舱坠毁，里面载有多位逃亡者。</MooGirl.OpeningPodCrash_MultipleIntro>
 
     <MooGirl.OpeningPodCrash>
         两个逃生舱在附近坠毁，每个逃生舱里面载有一名逃脱的雪牛娘奴隶。
@@ -183,10 +222,7 @@
         {PAWN_nameDef}来自{PAWN_factionName}。如果你救援{PAWN_objective}，{PAWN_pronoun}回到派系后会改善双方关系。
         你也可以俘虏{PAWN_objective}来招募或奴役，但这会激怒{PAWN_possessive}派系。
     </MooGirl.OpeningPodCrash_NonHostile>
-
-
-    <!-- 通常逃生舱坠毁 -->
-    <MooGirl.LetterLabelRefugeePodCrash>逃生舱坠毁（雪牛娘奴隶）</MooGirl.LetterLabelRefugeePodCrash>
+<MooGirl.LetterLabelRefugeePodCrash>逃生舱坠毁（雪牛娘奴隶）</MooGirl.LetterLabelRefugeePodCrash>
     <MooGirl.RefugeePodCrash>
         逃生舱在附近坠毁，里面载有名叫{PAWN_nameDef}的{PAWN_titleIndef}。
         她刚刚从巨型企业的奴隶运输船中逃脱，究竟是飞船故障、遭遇攻击，还是她以其他方式逃脱尚不得而知。逃亡经历令她精疲力尽，紧密捆缚在身上的奴隶束具，无声记录着她在巨型企业暴政下的痛苦与屈从。由于撞击{PAWN_pronoun}也受了重伤。
@@ -203,9 +239,7 @@
     <MooGirl.RefugeePodCrash_NonHostile>
         {PAWN_nameDef}来自{PAWN_factionName}。如果你救援{PAWN_objective}，{PAWN_pronoun}回到派系后会改善双方关系。\n\n你也可以俘虏{PAWN_objective}来招募或奴役，但这会激怒{PAWN_possessive}派系。
     </MooGirl.RefugeePodCrash_NonHostile>
-
-    <!-- 流浪雪牛加入 -->
-    <LetterLabelWandererJoins>流浪者加入：{PAWN_nameDef}</LetterLabelWandererJoins>
+<LetterLabelWandererJoins>流浪者加入：{PAWN_nameDef}</LetterLabelWandererJoins>
     <LetterWandererJoins>
         一位名叫{PAWN_nameDef}的{PAWN_title}来到这里，她从奴隶商队逃脱，身上破旧的束具仍缠绕着她，诉说着悲惨的遭遇。她无处可去，愿意为你的殖民地贡献力量。{PAWN_objective}不会主动离开，你可以选择拒绝她，把她送走，但你的殖民者们会为送走一个需要帮助的人而感到不安。你是否愿意给这位可怜又坚强的逃亡者一次自由与新生活的机会？
     </LetterWandererJoins>

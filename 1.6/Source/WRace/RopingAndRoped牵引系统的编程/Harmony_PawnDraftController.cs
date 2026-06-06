@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using RimWorld;
 using System.Collections.Generic;
 using Verse;
@@ -13,19 +13,19 @@ namespace MooGirl
         {
             if (__result == null) return;
 
-            var pawn = __instance.pawn;
-            if (pawn?.RaceProps?.body != MooGirl_DefOf.MooGirlBody) return;
-            if (pawn.jobs.curJob?.def != MooGirl_DefOf.Job_FollowRoper && pawn.roping?.IsRopedToSpot != true) return;
+            Pawn pawn = __instance.pawn;
+            if (!RopingService.IsMooGirlRopee(pawn)) return;
+            if (!RopingService.IsFollowingRoper(pawn) && !RopingService.IsRopedToSpot(pawn)) return;
 
-            // 转成列表，保证可以修改并保持 Disable 功能
-            var gizmoList = new List<Gizmo>();
-            foreach (var g in __result)
+            // 转成列表后再禁用征召按钮，避免延迟枚举时修改原序列。
+            List<Gizmo> gizmoList = new List<Gizmo>();
+            foreach (Gizmo gizmo in __result)
             {
-                if (g is Command_Toggle toggle && toggle.icon == TexCommand.Draft)
+                if (gizmo is Command_Toggle toggle && toggle.icon == TexCommand.Draft)
                 {
                     toggle.Disable("MooGirl.DraftDisabledWhileRoped".Translate());
                 }
-                gizmoList.Add(g);
+                gizmoList.Add(gizmo);
             }
 
             __result = gizmoList;

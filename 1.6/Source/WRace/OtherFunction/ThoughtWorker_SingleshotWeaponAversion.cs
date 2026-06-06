@@ -1,5 +1,4 @@
 ﻿using RimWorld;
-using System.Linq;
 using Verse;
 
 namespace MooGirl
@@ -8,8 +7,21 @@ namespace MooGirl
     {
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
-            var weaponDef = p.equipment?.Primary?.def;
-            return weaponDef?.Verbs?.Any(v => v.burstShotCount == 1) ?? false;
+            ThingDef weaponDef = p.equipment?.Primary?.def;
+            if (weaponDef?.Verbs == null)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < weaponDef.Verbs.Count; i++)
+            {
+                if (weaponDef.Verbs[i].burstShotCount == 1)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

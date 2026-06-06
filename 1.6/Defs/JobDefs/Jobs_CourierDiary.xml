@@ -4,13 +4,15 @@
   <JobDef>
     <defName>MooGirl_ReadCourierDiary</defName>
     <driverClass>MooGirl.JobDriver_ReadCourierDiary</driverClass>
-    <reportString>阅读 TargetA。</reportString>
+    <!-- 阅读 TargetA。 -->
+    <reportString>Read TargetA.</reportString>
   </JobDef>
 
   <JobDef>
     <defName>MooGirl_TalkCourier</defName>
     <driverClass>MooGirl.JobDriver_TalkCourier</driverClass>
-    <reportString>与 TargetA 交涉。</reportString>
+    <!-- 与 TargetA 交涉。 -->
+    <reportString>Negotiate with TargetA.</reportString>
   </JobDef>
 
 </Defs>

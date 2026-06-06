@@ -34,20 +34,20 @@ namespace MooGirl
                 return;
             }
 
-            Thing originalCaster = verb.caster;
             Stance originalStance = carrier.stances?.curStance;
             try
             {
-                verb.caster = carrier;
-                if (verb.Available())
+                using (new MountedVerbScope(verb, carrier, rider))
                 {
-                    carrier.stances?.SetStance(new Stance_Mobile());
-                    TryMountedMeleeAttack(rider, carrier, target, verb);
+                    if (verb.Available())
+                    {
+                        carrier.stances?.SetStance(new Stance_Mobile());
+                        TryMountedMeleeAttack(rider, carrier, target, verb);
+                    }
                 }
             }
             finally
             {
-                verb.caster = originalCaster ?? rider;
                 if (carrier.stances != null && carrier.stances.curStance != originalStance)
                 {
                     carrier.stances.SetStance(originalStance ?? new Stance_Mobile());

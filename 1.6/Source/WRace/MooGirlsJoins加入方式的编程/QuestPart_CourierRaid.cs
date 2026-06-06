@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using RimWorld;
 using RimWorld.QuestGen;
 using Verse;
@@ -51,7 +50,7 @@ namespace MooGirl
 
             Faction courierFaction = faction != null && !faction.HostileTo(Faction.OfPlayer) ? faction : null;
             PawnGenerationRequest request = new PawnGenerationRequest(
-                AiGenerated_DefOf.AI_GC_Courier,
+                MooGirlContentDefOf.AI_GC_Courier,
                 courierFaction,
                 PawnGenerationContext.NonPlayer,
                 map.Tile,
@@ -61,9 +60,9 @@ namespace MooGirl
                 allowFood: false);
             courier = PawnGenerator.GeneratePawn(request);
 
-            AddToInventory(courier, AiGenerated_DefOf.MooGirl_CourierDiary, 1);
-            AddToInventory(courier, AiGenerated_DefOf.MooGirl_SlaveApperalKey_Medieval, 6);
-            AddToInventory(courier, AiGenerated_DefOf.MooGirl_SlaveApperalKey_Industrial, 4);
+            AddToInventory(courier, MooGirlContentDefOf.MooGirl_CourierDiary, 1);
+            AddToInventory(courier, MooGirlContentDefOf.MooGirl_SlaveApperalKey_Medieval, 6);
+            AddToInventory(courier, MooGirlContentDefOf.MooGirl_SlaveApperalKey_Industrial, 4);
 
             GenSpawn.Spawn(courier, spawnCell, map);
             LordMaker.MakeNewLord(
@@ -117,7 +116,7 @@ namespace MooGirl
                 && !courier.Dead
                 && !courier.Downed
                 && !courier.InAggroMentalState
-                && courier.kindDef == AiGenerated_DefOf.AI_GC_Courier
+                && courier.kindDef == MooGirlContentDefOf.AI_GC_Courier
                 && HasCourierPayload(courier);
         }
 
@@ -147,10 +146,19 @@ namespace MooGirl
                 return false;
             }
 
-            return courier.inventory.innerContainer.Any(thing =>
-                thing.def == AiGenerated_DefOf.MooGirl_CourierDiary
-                || thing.def == AiGenerated_DefOf.MooGirl_SlaveApperalKey_Medieval
-                || thing.def == AiGenerated_DefOf.MooGirl_SlaveApperalKey_Industrial);
+            ThingOwner<Thing> inventory = courier.inventory.innerContainer;
+            for (int i = 0; i < inventory.Count; i++)
+            {
+                Thing thing = inventory[i];
+                if (thing.def == MooGirlContentDefOf.MooGirl_CourierDiary
+                    || thing.def == MooGirlContentDefOf.MooGirl_SlaveApperalKey_Medieval
+                    || thing.def == MooGirlContentDefOf.MooGirl_SlaveApperalKey_Industrial)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private static void DropItemsAndLeave(Pawn courier)
@@ -212,7 +220,7 @@ namespace MooGirl
             for (int i = 0; i < quests.Count; i++)
             {
                 Quest quest = quests[i];
-                if (quest == null || quest.root != AiGenerated_DefOf.MooGirl_CourierRaid || quest.State != QuestState.Ongoing)
+                if (quest == null || quest.root != MooGirlContentDefOf.MooGirl_CourierRaid || quest.State != QuestState.Ongoing)
                 {
                     continue;
                 }
@@ -253,7 +261,7 @@ namespace MooGirl
             FloatMenuOption option = FloatMenuUtility.DecoratePrioritizedTask(
                 new FloatMenuOption("MooGirl.CourierTalkOption".Translate(clickedPawn.Named("COURIER")), () =>
                 {
-                    Job job = JobMaker.MakeJob(AiGenerated_DefOf.MooGirl_TalkCourier, clickedPawn);
+                    Job job = JobMaker.MakeJob(MooGirlContentDefOf.MooGirl_TalkCourier, clickedPawn);
                     actor.jobs.TryTakeOrderedJob(job, JobTag.Misc);
                 }, MenuOptionPriority.High),
                 actor,
@@ -262,7 +270,7 @@ namespace MooGirl
             if (!actor.CanReserveAndReach(clickedPawn, PathEndMode.Touch, Danger.Deadly))
             {
                 option.Disabled = true;
-                option.Label = option.Label + " (" + "MooGirl.CourierTalkCannotReach".Translate() + ")";
+                option.Label = "MooGirl.CourierTalkOptionDisabled".Translate(option.Label, "MooGirl.CourierTalkCannotReach".Translate());
             }
 
             yield return option;
@@ -307,17 +315,17 @@ namespace MooGirl
 
         private void ShowDemandDialog()
         {
-            Faction resolvedFaction = faction ?? (AiGenerated_DefOf.MooGirl_GiantCorporations_Hostile != null
-                ? Find.FactionManager.FirstFactionOfDef(AiGenerated_DefOf.MooGirl_GiantCorporations_Hostile)
+            Faction resolvedFaction = faction ?? (MooGirlContentDefOf.MooGirl_GiantCorporations_Hostile != null
+                ? Find.FactionManager.FirstFactionOfDef(MooGirlContentDefOf.MooGirl_GiantCorporations_Hostile)
                 : null);
 
             Dialog_MessageBox dialog = new Dialog_MessageBox(
-                "一位巨型企业代表发来通讯：\n\n\"你们杀了我们的运货员，摧毁了我们的飞船。根据企业条例第47条，你们需要赔偿我们的损失。\n\n赔偿金额：6000钢铁 + 300零部件\n\n立即支付赔偿，巨型企业将暂不追究。拒绝赔偿，巨型企业将视你们为敌人并采取军事行动。\"",
-                "支付赔偿",
+                "MooGirl.CourierDemandDialogText".Translate(SteelDemand, ComponentDemand),
+                "MooGirl.CourierDemandPay".Translate(),
                 () => PayDemand(resolvedFaction),
-                "拒绝赔偿",
+                "MooGirl.CourierDemandRefuse".Translate(),
                 () => MakeHostile(resolvedFaction),
-                "巨型企业索赔通知",
+                "MooGirl.CourierDemandTitle".Translate(),
                 buttonADestructive: false);
             Find.WindowStack.Add(dialog);
         }
@@ -328,10 +336,10 @@ namespace MooGirl
             {
                 ConsumeFromPlayerMaps(ThingDefOf.Steel, SteelDemand);
                 ConsumeFromPlayerMaps(ThingDefOf.ComponentIndustrial, ComponentDemand);
-                Messages.Message("已向巨型企业支付赔偿。", MessageTypeDefOf.PositiveEvent);
+                Messages.Message("MooGirl.CourierDemandPaid".Translate(), MessageTypeDefOf.PositiveEvent);
                 return;
             }
-            Messages.Message("赔偿物资不足，巨型企业将你们视为敌人。", MessageTypeDefOf.NegativeEvent);
+            Messages.Message("MooGirl.CourierDemandInsufficient".Translate(), MessageTypeDefOf.NegativeEvent);
             MakeHostile(faction);
         }
 

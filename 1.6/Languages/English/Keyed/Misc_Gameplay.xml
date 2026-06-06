@@ -1,12 +1,38 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
 
-    <MooGirl.BrainwashHelmet_ManualTrigger_Message>{0} activated the brainwashing device.</MooGirl.BrainwashHelmet_ManualTrigger_Message>
+    <MooGirl.Text.FormatFailedLog>MooGirl text formatting failed: {ERROR}</MooGirl.Text.FormatFailedLog>
+    <MooGirl.Settings.Category>MooGirl mod control</MooGirl.Settings.Category>
 
-    <MooGirl.MagneticShackles.CooldownTicksLeft>Cooling down: {0}</MooGirl.MagneticShackles.CooldownTicksLeft>
+    <MooGirl.Restraints.MagneticShackles.ActivateLabel>Activate shackles</MooGirl.Restraints.MagneticShackles.ActivateLabel>
+    <MooGirl.Restraints.MagneticShackles.ActivateDesc>Activate the magnetic shackles, restraining the target.</MooGirl.Restraints.MagneticShackles.ActivateDesc>
+    <MooGirl.Restraints.MagneticShackles.DeactivateLabel>Release shackles</MooGirl.Restraints.MagneticShackles.DeactivateLabel>
+    <MooGirl.Restraints.MagneticShackles.DeactivateDesc>Release the magnetic shackles.</MooGirl.Restraints.MagneticShackles.DeactivateDesc>
+    <MooGirl.Restraints.MagneticShackles.LabelActive>Magnetic shackles (active)</MooGirl.Restraints.MagneticShackles.LabelActive>
+    <MooGirl.Restraints.MagneticShackles.LabelInactive>Magnetic shackles (inactive)</MooGirl.Restraints.MagneticShackles.LabelInactive>
+    <MooGirl.Restraints.MagneticShackles.MoteOn>Magnetic shackles activated!</MooGirl.Restraints.MagneticShackles.MoteOn>
+    <MooGirl.Restraints.MagneticShackles.MoteOff>Magnetic shackles released!</MooGirl.Restraints.MagneticShackles.MoteOff>
+    <MooGirl.Restraints.MagneticShackles.MessageOn>{0}'s magnetic shackles suddenly activated.</MooGirl.Restraints.MagneticShackles.MessageOn>
+    <MooGirl.Restraints.MagneticShackles.MessageOff>{0}'s magnetic shackles were released.</MooGirl.Restraints.MagneticShackles.MessageOff>
+    <MooGirl.Restraints.MagneticShackles.CooldownTicksLeft>Cooling down: {0}</MooGirl.Restraints.MagneticShackles.CooldownTicksLeft>
 
-    <MooGirl.ShockCollar.Power.CooldownTicksLeft>Cooling down: {0}</MooGirl.ShockCollar.Power.CooldownTicksLeft>
-    <MooGirl.ShockCollar.Common.CooldownTicksLeft>Cooling down: {0}</MooGirl.ShockCollar.Common.CooldownTicksLeft>
+    <MooGirl.Restraints.ShockCollar.PowerLabel>Power shock</MooGirl.Restraints.ShockCollar.PowerLabel>
+    <MooGirl.Restraints.ShockCollar.PowerDesc>Trigger one power shock.</MooGirl.Restraints.ShockCollar.PowerDesc>
+    <MooGirl.Restraints.ShockCollar.CommonLabel>Common shock</MooGirl.Restraints.ShockCollar.CommonLabel>
+    <MooGirl.Restraints.ShockCollar.CommonDesc>Trigger one common shock.</MooGirl.Restraints.ShockCollar.CommonDesc>
+    <MooGirl.Restraints.ShockCollar.PowerCooldownTicksLeft>Cooling down: {0}</MooGirl.Restraints.ShockCollar.PowerCooldownTicksLeft>
+    <MooGirl.Restraints.ShockCollar.CommonCooldownTicksLeft>Cooling down: {0}</MooGirl.Restraints.ShockCollar.CommonCooldownTicksLeft>
+
+    <MooGirl.Restraints.DevUnlock.Label>Dev: unlock {0}</MooGirl.Restraints.DevUnlock.Label>
+    <MooGirl.Restraints.DevUnlock.Desc>Dev mode: immediately remove the wear lock from {0} for debugging.</MooGirl.Restraints.DevUnlock.Desc>
+    <MooGirl.Restraints.DevUnlock.Message>Dev-unlocked {0}'s {1}.</MooGirl.Restraints.DevUnlock.Message>
+
+    <MooGirl.Restraints.BrainwashHelmet.ActivateLabel>Activate brainwashing</MooGirl.Restraints.BrainwashHelmet.ActivateLabel>
+    <MooGirl.Restraints.BrainwashHelmet.ActivateDesc>Activate the brainwashing helmet and brainwash the target.</MooGirl.Restraints.BrainwashHelmet.ActivateDesc>
+    <MooGirl.Restraints.BrainwashHelmet.ManualTriggerMessage>{0} activated the brainwashing device.</MooGirl.Restraints.BrainwashHelmet.ManualTriggerMessage>
+    <MooGirl.Restraints.BrainwashHelmet.IdeoConvertLabel>Ideology conversion</MooGirl.Restraints.BrainwashHelmet.IdeoConvertLabel>
+    <MooGirl.Restraints.BrainwashHelmet.IdeoConvertDesc>Change the wearer's ideology to the colony's primary ideology.</MooGirl.Restraints.BrainwashHelmet.IdeoConvertDesc>
+    <MooGirl.Restraints.BrainwashHelmet.IdeoConvertMessage>{0}'s ideology has been converted to the colony's primary ideology.</MooGirl.Restraints.BrainwashHelmet.IdeoConvertMessage>
 
 	<MooGirl.MilkingDevice.StoredMessage>{0}'s milking device stored one production charge ({1}/{2}).</MooGirl.MilkingDevice.StoredMessage>
 	<MooGirl.MilkingDevice.ReleaseMessage>{0} released the stored milk and produced {1} MooGirl milk.</MooGirl.MilkingDevice.ReleaseMessage>
@@ -78,7 +104,6 @@
     <MooGirl.SlaveApparelUnlockPartial>{0} unlocks {1}'s restraint. {2} more key(s) are required to completely unlock.</MooGirl.SlaveApparelUnlockPartial>
     <MooGirl.WrongKeyType>Unable to unlock: Key type does not match {0}</MooGirl.WrongKeyType>
 
-    <MooGirl.Reserved>Reserved</MooGirl.Reserved>
     <MooGirl.NoPath>No Path</MooGirl.NoPath>
     <MooGirl.CannotPrioritizeWorkTypeDisabled>Unable to work ({0} has been disabled)</MooGirl.CannotPrioritizeWorkTypeDisabled>
 
@@ -113,6 +138,7 @@
     <MooGirl.Mount.HoldFire>Hold fire</MooGirl.Mount.HoldFire>
     <MooGirl.Mount.HoldFireDesc>Prevent the rider from firing automatically.</MooGirl.Mount.HoldFireDesc>
     <MooGirl.Mount.CannotMount>Cannot mount</MooGirl.Mount.CannotMount>
+    <MooGirl.Mount.LabelWithReason>{0}: {1}</MooGirl.Mount.LabelWithReason>
     <MooGirl.Mount.MountedMessage>{0} mounted {1}.</MooGirl.Mount.MountedMessage>
     <MooGirl.Mount.DismountedMessage>{0} dismounted from {1}.</MooGirl.Mount.DismountedMessage>
     <MooGirl.Mount.AutoDismountMessage>{0} dismounted automatically: {1}.</MooGirl.Mount.AutoDismountMessage>
@@ -139,6 +165,7 @@
     <MooGirl.CourierContactLetterText>A mega corporation courier is approaching from the edge of the map. He has not opened fire, but he looks extremely nervous. You can send a colonist to negotiate with him.</MooGirl.CourierContactLetterText>
     <MooGirl.CourierTalkOption>Negotiate with the corporate courier</MooGirl.CourierTalkOption>
     <MooGirl.CourierTalkCannotReach>cannot reach</MooGirl.CourierTalkCannotReach>
+    <MooGirl.CourierTalkOptionDisabled>{0} ({1})</MooGirl.CourierTalkOptionDisabled>
     <MooGirl.CourierAlreadyResolved>This courier can no longer negotiate.</MooGirl.CourierAlreadyResolved>
     <MooGirl.CourierDialogTitle>Corporate Courier</MooGirl.CourierDialogTitle>
     <MooGirl.CourierDialogText>The mega corporation courier watches you nervously, one hand never leaving his weapon.\n\n\"I'm just a delivery worker. The ship went down, the cargo is gone, and the company will not listen to excuses. If you want the goods, let me drop the diary and keys I am carrying, then I leave right now. Do not force me to shoot. I do not want this reaching the company level either.\"</MooGirl.CourierDialogText>
@@ -147,6 +174,25 @@
     <MooGirl.CourierItemsDroppedMessage>The corporate courier dropped his carried items and is leaving.</MooGirl.CourierItemsDroppedMessage>
     <MooGirl.CourierFightMessage>The corporate courier draws his weapon. This clash will not change your relationship with the mega corporation.</MooGirl.CourierFightMessage>
     <MooGirl.CourierFightReason>Negotiations broke down.</MooGirl.CourierFightReason>
+    <MooGirl.CourierDemandTitle>Mega Corporation Claim Notice</MooGirl.CourierDemandTitle>
+    <MooGirl.CourierDemandDialogText>A mega corporation representative opens a channel:\n\n\"You killed our courier and destroyed our ship. Under corporate regulation 47, you are required to compensate our losses.\n\nCompensation: {0} steel + {1} components.\n\nPay immediately and the mega corporation will suspend further action. Refuse, and the mega corporation will consider you hostile and respond militarily.\"</MooGirl.CourierDemandDialogText>
+    <MooGirl.CourierDemandPay>Pay compensation</MooGirl.CourierDemandPay>
+    <MooGirl.CourierDemandRefuse>Refuse compensation</MooGirl.CourierDemandRefuse>
+    <MooGirl.CourierDemandPaid>Compensation has been paid to the mega corporation.</MooGirl.CourierDemandPaid>
+    <MooGirl.CourierDemandInsufficient>Insufficient compensation supplies. The mega corporation now considers you hostile.</MooGirl.CourierDemandInsufficient>
+    <MooGirl.CourierDiary.Title>Courier diary</MooGirl.CourierDiary.Title>
+    <MooGirl.CourierDiary.ReadOption>Read {0}</MooGirl.CourierDiary.ReadOption>
+    <MooGirl.CourierDiary.OptionDisabled>{0} ({1})</MooGirl.CourierDiary.OptionDisabled>
+    <MooGirl.CourierDiary.CannotReach>cannot reach</MooGirl.CourierDiary.CannotReach>
+    <MooGirl.CourierDiary.PageCounter>Page {0} / {1}</MooGirl.CourierDiary.PageCounter>
+    <MooGirl.CourierDiary.PreviousPage>Previous</MooGirl.CourierDiary.PreviousPage>
+    <MooGirl.CourierDiary.NextPage>Next</MooGirl.CourierDiary.NextPage>
+    <MooGirl.CourierDiary.Close>Close</MooGirl.CourierDiary.Close>
+    <MooGirl.CourierDiary.Page1>[Page One]\n\nWelcome to Courier Diary.\n\nThis diary records the experiences of a low-level courier during his time working for the mega corporation. It contains practical advice and survival lessons.</MooGirl.CourierDiary.Page1>
+    <MooGirl.CourierDiary.Page2>[Page Two]\n\nAbout the mega corporation:\n\nThe mega corporation is a vast corporate alliance with armed forces spread across many planets. They field distinctive OPIC and PMC weapon series.\n\nWhen facing a raid, pay attention to enemy equipment tiers. Enemies carrying PMC-prefix weapons are usually more dangerous.</MooGirl.CourierDiary.Page2>
+    <MooGirl.CourierDiary.Page3>[Page Three]\n\nAbout MooGirls:\n\nMooGirls are products of genetic engineering. Their milk has exceptional nutritional value, and MooGirl dairy products can provide additional benefits.\n\nMooGirl milk pudding improves mood, cheese can detoxify, and aged cheese and milk tablets can strengthen immunity.</MooGirl.CourierDiary.Page3>
+    <MooGirl.CourierDiary.Page4>[Page Four]\n\nAbout restraint keys:\n\nCrude restraint keys can be made at machining tables or smithies. Fine restraint keys require more advanced workstations.\n\nIf you find keys carried by a lucky courier, you can use them to unlock restraints on MooGirls.</MooGirl.CourierDiary.Page4>
+    <MooGirl.CourierDiary.Page5>[Page Five]\n\nSurvival advice:\n\n1. Develop MooGirl husbandry for a stable milk supply\n2. Build enough defenses against mega corporation raids\n3. Produce dairy foods to strengthen colonists\n4. Restraint keys can help recruit enslaved MooGirls\n\nGood luck surviving this brutal world.</MooGirl.CourierDiary.Page5>
 
     <MooGirl.LetterLabelWandererJoins>Wanderer Joins: {PAWN_nameDef}</MooGirl.LetterLabelWandererJoins>
     <MooGirl.LetterWandererJoins>
@@ -159,6 +205,7 @@
 
     <!-- 开局逃生舱坠毁 -->
     <MooGirl.LetterLabelOpeningPodCrash>Transport Pod Crashed (Mugirl Slave)</MooGirl.LetterLabelOpeningPodCrash>
+    <MooGirl.OpeningPodCrash_MultipleIntro>Transport pods have crashed, carrying multiple escapees.</MooGirl.OpeningPodCrash_MultipleIntro>
 
     <MooGirl.OpeningPodCrash>
         Two transport pods have crash-landed nearby, each carrying an escaped Mugirl slave.\nThey just escaped from a mega corporation's slave transport ship- whether due to ship malfunction, attack, or some other means remains unknown. The escape has left them utterly exhausted, and the tightly bound slave restraints on their bodies silently record the pain and submission they endured under the mega corporation's tyranny. The impact has also left {PAWN_pronoun} severely injured.\n\nNow they have nowhere to go. If you choose to rescue them, they will join your colony. Will you give these two pitiful yet lovely escapees a chance at freedom and a new life?

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <Bullet_MooGirl_AR_Standard.label>MooGirl assault round</Bullet_MooGirl_AR_Standard.label>
+  <Bullet_MooGirl_MP_Standard.label>MooGirl pistol round</Bullet_MooGirl_MP_Standard.label>
+  <Bullet_MooGirl_Militia_Rifle.label>militia rifle cartridge</Bullet_MooGirl_Militia_Rifle.label>
+  <MuGirl_Gun_Defense_Rifle.description>A long-range rifle used by Mugirls. Although it is only an ordinary gunpowder rifle, it is designed around the powerful Mugirl physique and performs better than a standard rifle.</MuGirl_Gun_Defense_Rifle.description>
+  <MuGirl_Gun_Defense_Rifle.label>Mugirl Defense Rifle</MuGirl_Gun_Defense_Rifle.label>
+  <MuGirl_Gun_Defense_Rifle.tools.0.label>bayonet</MuGirl_Gun_Defense_Rifle.tools.0.label>
+  <MuGirl_Gun_Flame_Thrower.description>This weapon currently reuses the base game mini flamethrower code and will be revised later.</MuGirl_Gun_Flame_Thrower.description>
+  <MuGirl_Gun_Flame_Thrower.label>Mugirl Flame Thrower</MuGirl_Gun_Flame_Thrower.label>
+  <MuGirl_Gun_Machine_Pistol.description>A basic pistol used by Mugirls. Although it uses ordinary gunpowder, it is designed around the powerful Mugirl physique and has firepower far beyond a standard autopistol.</MuGirl_Gun_Machine_Pistol.description>
+  <MuGirl_Gun_Machine_Pistol.label>Mugirl Machine Pistol</MuGirl_Gun_Machine_Pistol.label>
+  <MuGirl_Gun_Machine_Pistol.tools.0.label>grip</MuGirl_Gun_Machine_Pistol.tools.0.label>
+  <MuGirl_Gun_Machine_Pistol.tools.1.label>barrel</MuGirl_Gun_Machine_Pistol.tools.1.label>
+  <MuGirl_Gun_Support_Assault_Rifle.description>A heavy-firepower rifle used by Mugirls. Although it is only an ordinary gunpowder rifle, it is designed around the powerful Mugirl physique and has firepower far beyond a standard light machine gun.</MuGirl_Gun_Support_Assault_Rifle.description>
+  <MuGirl_Gun_Support_Assault_Rifle.label>Mugirl Support Assault Rifle</MuGirl_Gun_Support_Assault_Rifle.label>
+  <MuGirl_Gun_Support_Assault_Rifle.tools.0.label>stock</MuGirl_Gun_Support_Assault_Rifle.tools.0.label>
+  <MuGirl_Gun_Support_Assault_Rifle.tools.1.label>barrel</MuGirl_Gun_Support_Assault_Rifle.tools.1.label>
+</LanguageData>

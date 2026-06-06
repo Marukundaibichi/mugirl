@@ -6,9 +6,11 @@
         <!-- 定义了一种名为Abasia的疾病（Hediff），继承自DiseaseBase -->
         <defName>MooGirl_Abasia</defName>
         <!-- 疾病的内部名称，用于代码引用 -->
-        <label>精疲力尽</label>
+        <!-- 精疲力尽 -->
+        <label>Exhausted</label>
         <!-- 疾病的显示名称，用于用户界面 -->
-        <description>她似乎在巨型企业的奴役下经历了未知的折磨，虽然设法逃脱出来，但在接下来的几天里，身体疲惫至极，几乎无法动弹。</description>
+        <!-- 她似乎在巨型企业的奴役下经历了未知的折磨，虽然设法逃脱出来，但在接下来的几天里，身体疲惫至极，几乎无法动弹。 -->
+        <description>She appears to have been subjected to unknown torments under the enslavement of a mega corporation. Though she managed to escape, her body remains utterly drained over the coming days, barely able to move.</description>
         <!-- 疾病的详细描述，解释了病因、自然恢复过程及特殊治疗方法 -->
         <descriptionShort>从巨型企业的奴役下逃脱后，她身体极度疲惫，几乎无法动弹。</descriptionShort>
         <!-- 疾病的简短描述，概述了主要症状和恢复过程 -->
@@ -34,7 +36,8 @@
             <!-- 定义疾病的阶段，每个阶段有不同的效果 -->
             <li>
                 <!-- 第一阶段 -->
-                <label>死里逃生</label>
+                <!-- 死里逃生 -->
+                <label>Exhausted</label>
                 <minSeverity>0.0</minSeverity>
                 <capMods>
                     <!-- 能力修正列表 -->
@@ -54,7 +57,8 @@
             </li>
             <li>
                 <!-- 第二阶段 -->
-                <label>应激恢复</label>
+                <!-- 应激恢复 -->
+                <label>Exhausted</label>
                 <minSeverity>1</minSeverity>
                 <capMods>
                     <!-- 能力修正列表 -->

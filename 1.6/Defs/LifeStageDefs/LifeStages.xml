@@ -3,6 +3,7 @@
 
   <LifeStageDef ParentName="HumanlikeAdolescent">
     <defName>MooGirl_HumanlikeBaby</defName>
+    <!-- 婴儿 -->
     <label>baby</label>
     <bodySizeFactor>0.11</bodySizeFactor>
     <bodyWidth>0.95</bodyWidth>
@@ -28,6 +29,7 @@
     <canVoluntarilySleep>false</canVoluntarilySleep> <!-- Babies fall asleep randomly when they're tired. -->
     <canSleepWhenStarving>false</canSleepWhenStarving>
     <canInitiateSocialInteraction>false</canInitiateSocialInteraction>
+    <!-- 心情代表一个人有多快乐或压力多大。心情低的婴儿更容易哭，心情高的婴儿更容易咯咯笑。 -->
     <customMoodTipString>Mood represents how happy or stressed someone is. Babies with low mood are more likely to cry, while babies with a high mood are more likely to giggle.</customMoodTipString>
     <silhouetteGraphicData>
       <texPath>Things/Pawn/Humanlike/Silhouettes/Silhouette_HumanBaby</texPath>
@@ -55,7 +57,8 @@
 
   <LifeStageDef ParentName="LifeStageHumanlikeChild">
     <defName>MooGirl_PreTeenager</defName>
-    <label>未成年</label>
+    <!-- 未成年 -->
+    <label>pre-teen</label>
     <headSizeFactor>0.8</headSizeFactor>
     <bodySizeFactor>0.45</bodySizeFactor>
     <bodyWidth>1.4</bodyWidth>
@@ -72,7 +75,9 @@
 
   <LifeStageDef ParentName="HumanlikeAdolescent">
     <defName>MooGirl_Teenager</defName>
-    <label>青少年</label>
+    <!-- 青少年 -->
+    <label>teenager</label>
+    <!-- 青少年的 -->
     <adjective>teenage</adjective>
     <developmentalStage>Child</developmentalStage>
     <reproductive>true</reproductive>
@@ -96,7 +101,8 @@
 
   <LifeStageDef>
     <defName>MooGirl_AdultLifeStage</defName>
-    <label>成年</label>
+    <!-- 成年 -->
+    <label>adult</label>
     <workerClass MayRequire="Ludeon.RimWorld.Biotech">MooGirl.LifeStageWorker_MooGirlAdult</workerClass>
     <visible>false</visible>
     <reproductive>true</reproductive>

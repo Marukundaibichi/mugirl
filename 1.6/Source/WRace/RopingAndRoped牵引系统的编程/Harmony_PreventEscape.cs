@@ -1,9 +1,6 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using RimWorld;
-using System.Collections.Generic;
-using UnityEngine;
 using Verse;
-using Verse.Noise;
 
 namespace MooGirl
 {
@@ -12,12 +9,8 @@ namespace MooGirl
     {
         public static bool Prefix(Pawn pawn)
         {
-            Pawn_RopeTracker roping = pawn.roping;
-
-            bool isRoped = roping.IsRopedToSpot || RopeStateTracker.IsPendingRope(pawn);
-
-            // 返回 false 表示阻止执行原方法
-            return !isRoped;
+            // 被拴点或正在拴点中的囚犯不触发逃跑任务。
+            return !RopingService.IsBlockedFromEscape(pawn);
         }
     }
 }

@@ -2,49 +2,57 @@
 <Defs>
 	<ThingCategoryDef>
 		<defName>MooGirl_Apparel</defName>
-		<label>雪牛娘服装</label>
+		<!-- 雪牛娘服装 -->
+		<label>Mugirl Apparel</label>
 		<parent>Apparel</parent>
 	</ThingCategoryDef>
 
 	<ThingCategoryDef>
 		<defName>MooGirl_OnSkin</defName>
-		<label>雪牛娘贴身服装</label>
+		<!-- 雪牛娘贴身服装 -->
+		<label>Mugirl Skin Apparel</label>
 		<parent>MooGirl_Apparel</parent>
 	</ThingCategoryDef>
 
 	<ThingCategoryDef>
 		<defName>MooGirl_Underwear</defName>
-		<label>雪牛娘内衣</label>
+		<!-- 雪牛娘内衣 -->
+		<label>Mugirl Underwear</label>
 		<parent>MooGirl_Apparel</parent>
 	</ThingCategoryDef>
 
 	<ThingCategoryDef>
 		<defName>MooGirl_Stocking</defName>
-		<label>雪牛娘丝袜</label>
+		<!-- 雪牛娘丝袜 -->
+		<label>Mugirl Stockings</label>
 		<parent>MooGirl_Apparel</parent>
 	</ThingCategoryDef>
 
 	<ThingCategoryDef>
 		<defName>MooGirl_SlaveApperal</defName>
-		<label>雪牛娘丝袜</label>
+		<!-- 雪牛娘丝袜 -->
+		<label>Mugirl Slave Apparel</label>
 		<parent>MooGirl_Apparel</parent>
 	</ThingCategoryDef>
 
 	<ThingCategoryDef>
 		<defName>MooGirl_Head</defName>
-		<label>雪牛娘头饰</label>
+		<!-- 雪牛娘头饰 -->
+		<label>Mugirl Headgear</label>
 		<parent>MooGirl_Apparel</parent>
 	</ThingCategoryDef>
 
 	<ThingCategoryDef>
 		<defName>MooGirl_Middle</defName>
-		<label>雪牛娘夹层</label>
+		<!-- 雪牛娘夹层 -->
+		<label>Mugirl Middle Apparel</label>
 		<parent>MooGirl_Apparel</parent>
 	</ThingCategoryDef>
 
 	<ThingCategoryDef>
 		<defName>MooGirl_Shell</defName>
-		<label>雪牛娘外套</label>
+		<!-- 雪牛娘外套 -->
+		<label>Mugirl Outer Apparel</label>
 		<parent>MooGirl_Apparel</parent>
 	</ThingCategoryDef>
 </Defs>

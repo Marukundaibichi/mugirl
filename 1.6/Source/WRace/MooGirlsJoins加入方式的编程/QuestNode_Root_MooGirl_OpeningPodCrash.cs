@@ -3,8 +3,8 @@ using RimWorld.QuestGen;
 using RimWorld;
 using RimWorld.Planet;
 using System;
+using System.Collections.Generic;
 using Verse.AI;
-using System.Linq;
 
 namespace MooGirl
 {
@@ -17,7 +17,7 @@ namespace MooGirl
         // 生成自定义逃生者角色
         public override Pawn GeneratePawn()
         {
-            // Escaped slaves are factionless; the hostile corporation faction is reserved for raids.
+            // 逃亡奴隶保持无派系；敌对巨企派系只用于袭击与索赔分支。
             Faction faction = null;
 
             // 配置角色生成参数
@@ -178,7 +178,7 @@ namespace MooGirl
                 inSignalRescued = inSignalRescued,
                 inSignalRecruited = inSignalRecruited,
                 signalListenMode = QuestPart.SignalListenMode.OngoingOnly,
-                pawns = pawns.ToList()
+                pawns = new List<Pawn>(pawns)
             });
 
             // 角色死亡处理
@@ -197,7 +197,8 @@ namespace MooGirl
             // 多角色情况说明
             if (pawns.Length > 1)
             {
-                text += "逃生舱坠毁，里面载有多位逃亡者。\n\n";
+                text += "MooGirl.OpeningPodCrash_MultipleIntro".Translate();
+                text += "\n\n";
             }
 
             // 为每个角色生成描述文本

@@ -13,9 +13,11 @@
 
 	<HediffDef ParentName="MooGirl_BondageBase">
 		<defName>MooGirl_Armbinder</defName>
-		<label>单手套束缚</label>
+		<!-- 单手套束缚 -->
+		<label>Arm Restraints</label>
 		<labelNoun>单手套束缚</labelNoun>
-		<description>雪牛娘的手臂被束具严格束缚在身后，无法活动。</description>
+		<!-- 雪牛娘的手臂被束具严格束缚在身后，无法活动。 -->
+		<description>The Mugirl's arms are strictly restrained behind her back by bondage gear, unable to move.</description>
 		<renderNodeProperties>
 			<li>
 				<workerClass>PawnRenderNodeWorker_AttachmentBody</workerClass>
@@ -53,9 +55,11 @@
 
 	<HediffDef ParentName="MooGirl_BondageBase">
 		<defName>MooGirl_Handcuffs</defName>
-		<label>手铐束缚</label>
+		<!-- 手铐束缚 -->
+		<label>Handcuff Restraints</label>
 		<labelNoun>手铐束缚</labelNoun>
-		<description>雪牛娘的手臂被束具严格束缚在身后，无法活动。</description>
+		<!-- 雪牛娘的手臂被束具严格束缚在身后，无法活动。 -->
+		<description>The Mugirl's arms are strictly restrained behind her back by restraint gear, unable to move.</description>
 		<renderNodeProperties>
 			<li>
 				<workerClass>PawnRenderNodeWorker_AttachmentBody</workerClass>
@@ -97,9 +101,11 @@
 
 	<HediffDef ParentName="MooGirl_BondageBase">
 		<defName>MooGirl_Boxbinder</defName>
-		<label>多重束缚</label>
+		<!-- 多重束缚 -->
+		<label>Multiple Restraints</label>
 		<labelNoun>多重束缚</labelNoun>
-		<description>雪牛娘的手臂被束具严格束缚在身后，无法活动。</description>
+		<!-- 雪牛娘的手臂被束具严格束缚在身后，无法活动。 -->
+		<description>The Mugirl's arms are strictly restrained behind her back by restraint gear, unable to move.</description>
 		<renderNodeProperties>
 			<li>
 				<workerClass>PawnRenderNodeWorker_AttachmentBody</workerClass>
@@ -141,9 +147,11 @@
 
 	<HediffDef ParentName="MooGirl_BondageBase">
 		<defName>MooGirl_Straitjacket</defName>
-		<label>拘束衣束缚</label>
+		<!-- 拘束衣束缚 -->
+		<label>Straitjacket Restraints</label>
 		<labelNoun>拘束衣束缚</labelNoun>
-		<description>雪牛娘的手臂被束具严格束缚在身后，无法活动。</description>
+		<!-- 雪牛娘的手臂被束具严格束缚在身后，无法活动。 -->
+		<description>The Mugirl's arms are strictly restrained behind her back by restraint gear, unable to move.</description>
 		<stages>
 			<li>
 				<capMods>
@@ -158,9 +166,11 @@
 
 	<HediffDef ParentName="MooGirl_BondageBase">
 		<defName>MooGirl_Legbinder</defName>
-		<label>双腿束缚</label>
+		<!-- 双腿束缚 -->
+		<label>Leg Restraints</label>
 		<labelNoun>双腿束缚</labelNoun>
-		<description>雪牛娘的双腿被束具严格束缚，难以移动。</description>
+		<!-- 雪牛娘的双腿被束具严格束缚，难以移动。 -->
+		<description>The Mugirl's legs are strictly restrained by bondage gear, making movement difficult.</description>
 		<stages>
 			<li>
 				<capMods>
@@ -175,9 +185,11 @@
 
 	<HediffDef ParentName="MooGirl_BondageBase">
 		<defName>MooGirl_Gauntlet</defName>
-		<label>奴隶手套束缚</label>
+		<!-- 奴隶手套束缚 -->
+		<label>Slave Gauntlets Restraints</label>
 		<labelNoun>手套束缚</labelNoun>
-		<description>雪牛娘的手臂被连指手套束缚，手指无法活动，大幅降低操作能力。</description>
+		<!-- 雪牛娘的手臂被连指手套束缚，手指无法活动，大幅降低操作能力。 -->
+		<description>The Mugirl's arms are restrained by gauntlets, fingers immobile, significantly reducing manipulation ability.</description>
 		<renderNodeProperties>
 			<li>
 				<workerClass>PawnRenderNodeWorker_AttachmentBody</workerClass>
@@ -219,9 +231,11 @@
 
 	<HediffDef ParentName="MooGirl_BondageBase">
 		<defName>MooGirl_Stockings</defName>
-		<label>奴隶袜束缚</label>
+		<!-- 奴隶袜束缚 -->
+		<label>Slave Sock Restraints</label>
 		<labelNoun>奴隶袜束缚</labelNoun>
-		<description>雪牛娘的双腿被奴隶袜束缚，略微减低移动速度。</description>
+		<!-- 雪牛娘的双腿被奴隶袜束缚，略微减低移动速度。 -->
+		<description>The Mugirl's legs are restrained by slave socks, slightly reducing movement speed.</description>
 		<stages>
 			<li>
 				<capMods>
@@ -236,9 +250,11 @@
 
 	<HediffDef ParentName="MooGirl_BondageBase">
 		<defName>MooGirl_FullHeadCovering</defName>
-		<label>全包头套</label>
+		<!-- 全包头套 -->
+		<label>Full Head Covering</label>
 		<labelNoun>一个全包头套</labelNoun>
-		<description>呜呜呜，呜呜！ 我整个脑袋都被包裹起来了，什么也感觉不到~♥</description>
+		<!-- 呜呜呜，呜呜！ 我整个脑袋都被包裹起来了，什么也感觉不到~♥ -->
+		<description>Mmph, mmph! My entire head is wrapped up, can't feel anything~♥</description>
 		<stages>
 			<li>
 				<capMods>
@@ -261,9 +277,11 @@
 
 	<HediffDef ParentName="MooGirl_BondageBase">
 		<defName>MooGirl_Blindfold</defName>
-		<label>蒙眼</label>
+		<!-- 蒙眼 -->
+		<label>Blindfold</label>
 		<labelNoun>一副眼罩</labelNoun>
-		<description>眼睛被蒙上了，什么也看不见...呀！谁碰我？</description>
+		<!-- 眼睛被蒙上了，什么也看不见...呀！谁碰我？ -->
+		<description>My eyes are covered... can't see anything... Eek! Who's touching me?</description>
 		<stages>
 			<li>
 				<capMods>
@@ -278,9 +296,11 @@
 
 	<HediffDef ParentName="MooGirl_BondageBase">
 		<defName>MooGirl_Gagstick</defName>
-		<label>口棒</label>
+		<!-- 口棒 -->
+		<label>Gagstick</label>
 		<labelNoun>一副口棒</labelNoun>
-		<description>嘴巴被戴上了一副口棒，只能发出呜呜呜的声音了</description>
+		<!-- 嘴巴被戴上了一副口棒，只能发出呜呜呜的声音了 -->
+		<description>My mouth is fitted with a gagstick, only able to make muffled sounds.</description>
 		<stages>
 			<li>
 				<capMods>
@@ -299,9 +319,11 @@
 
 	<HediffDef ParentName="MooGirl_BondageBase">
 		<defName>MooGirl_Earplugs</defName>
-		<label>耳塞</label>
+		<!-- 耳塞 -->
+		<label>Earplugs</label>
 		<labelNoun>一对耳塞</labelNoun>
-		<description>耳朵被堵上了...什么都听不到...好可怕...呜呜</description>
+		<!-- 耳朵被堵上了...什么都听不到...好可怕...呜呜 -->
+		<description>My ears are blocked... can't hear anything... so scary... whimper.</description>
 		<stages>
 			<li>
 				<capMods>

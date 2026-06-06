@@ -156,7 +156,7 @@ namespace MooGirl
             isLocked = false;
             lockCount = 0;
             Wearer.apparel?.Unlock(this);
-            Messages.Message($"已开发者解锁：{Wearer.LabelShortCap} 的 {LabelCap}", Wearer, MessageTypeDefOf.PositiveEvent);
+            Messages.Message("MooGirl.Restraints.DevUnlock.Message".Translate(Wearer.LabelShortCap, LabelCap), Wearer, MessageTypeDefOf.PositiveEvent);
         }
     }
 

@@ -41,8 +41,6 @@ namespace MooGirl
 
         public static FleckDef MooGirlWashMentalEyes;
 
-        public static FactionDef MooGirl_GiantCorporations;
-
         public static TraitDef MooGirl_BrainWashObey;
 
         public static PawnKindDef MooGirl_Slave;

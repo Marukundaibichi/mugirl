@@ -7,8 +7,10 @@
     <stackLimit>1</stackLimit>
     <stages>
       <li>
-        <label>MooGirl_DrankMilk.stages.0.label</label>
-        <description>MooGirl_DrankMilk.stages.0.description</description>
+        <!-- 吸了雪牛娘的奶子 -->
+        <label>Nursed from a Mugirl</label>
+        <!-- 这种像是小宝宝一样的心情究竟是... -->
+        <description>Why does this feel so strangely babyish...</description>
         <baseMoodEffect>12</baseMoodEffect>
       </li>
     </stages>
@@ -21,8 +23,10 @@
     <stackLimit>1</stackLimit>
     <stages>
       <li>
-        <label>MooGirl_FedMilk.stages.0.label</label>
-        <description>MooGirl_FedMilk.stages.0.description</description>
+        <!-- 被喂了雪牛奶 -->
+        <label>Fed Mugirl milk</label>
+        <!-- 雪牛娘温柔地将乳汁喂给了我，伤口的疼痛似乎都减轻了... -->
+        <description>A Mugirl gently fed me her milk, and even the pain from my wounds seems to have eased...</description>
         <baseMoodEffect>10</baseMoodEffect>
       </li>
     </stages>

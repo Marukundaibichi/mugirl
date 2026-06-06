@@ -4,9 +4,12 @@
   <!-- ============== 雪牛娘奶布丁配方 ============== -->
   <RecipeDef ParentName="CookMealBase">
     <defName>MooGirl_MakeMilkPudding</defName>
-    <label>MooGirl_MakeMilkPudding.label</label>
-    <description>MooGirl_MakeMilkPudding.description</description>
-    <jobString>MooGirl_MakeMilkPudding.jobString</jobString>
+    <!-- 制作雪牛娘奶布丁 -->
+    <label>make Mugirl milk pudding</label>
+    <!-- 用雪牛娘奶和素食制作奶布丁 -->
+    <description>Make milk pudding with Mugirl milk and vegetarian ingredients.</description>
+    <!-- 正在制作雪牛娘奶布丁 -->
+    <jobString>Making Mugirl milk pudding.</jobString>
     <workAmount>300</workAmount>
     <recipeUsers>
       <li>ElectricStove</li>
@@ -46,9 +49,12 @@
   <!-- ============== 雪牛娘奶酪配方 ============== -->
   <RecipeDef ParentName="CookMealBase">
     <defName>MooGirl_MakeCheese</defName>
-    <label>MooGirl_MakeCheese.label</label>
-    <description>MooGirl_MakeCheese.description</description>
-    <jobString>MooGirl_MakeCheese.jobString</jobString>
+    <!-- 制作雪牛娘奶酪 -->
+    <label>make Mugirl cheese</label>
+    <!-- 用雪牛娘奶制作奶酪 -->
+    <description>Make cheese with Mugirl milk.</description>
+    <!-- 正在制作雪牛娘奶酪 -->
+    <jobString>Making Mugirl cheese.</jobString>
     <workAmount>300</workAmount>
     <recipeUsers>
       <li>ElectricStove</li>
@@ -77,9 +83,12 @@
   <!-- ============== 雪牛娘陈年奶酪配方 ============== -->
   <RecipeDef ParentName="CookMealBase">
     <defName>MooGirl_MakeAgedCheese</defName>
-    <label>MooGirl_MakeAgedCheese.label</label>
-    <description>MooGirl_MakeAgedCheese.description</description>
-    <jobString>MooGirl_MakeAgedCheese.jobString</jobString>
+    <!-- 制作雪牛娘陈年奶酪 -->
+    <label>make aged Mugirl cheese</label>
+    <!-- 用雪牛娘奶和啤酒花制作陈年奶酪 -->
+    <description>Make aged cheese with Mugirl milk and hops.</description>
+    <!-- 正在制作雪牛娘陈年奶酪 -->
+    <jobString>Making aged Mugirl cheese.</jobString>
     <workAmount>600</workAmount>
     <recipeUsers>
       <li>ElectricStove</li>
@@ -117,9 +126,12 @@
   <!-- ============== 雪牛娘奶宝塔糖配方 ============== -->
   <RecipeDef ParentName="CookMealBase">
     <defName>MooGirl_MakeBaotaSugar</defName>
-    <label>MooGirl_MakeBaotaSugar.label</label>
-    <description>MooGirl_MakeBaotaSugar.description</description>
-    <jobString>MooGirl_MakeBaotaSugar.jobString</jobString>
+    <!-- 制作雪牛娘奶宝塔糖 -->
+    <label>make Mugirl milk baota candy</label>
+    <!-- 用雪牛娘奶和草药制作糖果打虫药 -->
+    <description>Make candy dewormer with Mugirl milk and herbal medicine.</description>
+    <!-- 正在制作雪牛娘奶宝塔糖 -->
+    <jobString>Making Mugirl milk baota candy.</jobString>
     <workAmount>300</workAmount>
     <recipeUsers>
       <li>DrugLab</li>
@@ -156,9 +168,12 @@
   <!-- ============== 大肥牛奶糖配方 ============== -->
   <RecipeDef ParentName="CookMealBase">
     <defName>MooGirl_MakeMilkCandy</defName>
-    <label>MooGirl_MakeMilkCandy.label</label>
-    <description>MooGirl_MakeMilkCandy.description</description>
-    <jobString>MooGirl_MakeMilkCandy.jobString</jobString>
+    <!-- 制作大肥牛奶糖 -->
+    <label>make big cow milk candy</label>
+    <!-- 用雪牛娘奶制作奶糖 -->
+    <description>Make milk candy with Mugirl milk.</description>
+    <!-- 正在制作大肥牛奶糖 -->
+    <jobString>Making big cow milk candy.</jobString>
     <workAmount>300</workAmount>
     <recipeUsers>
       <li>ElectricStove</li>
@@ -187,9 +202,12 @@
   <!-- ============== 雪牛娘牛乳蛋糕配方 ============== -->
   <RecipeDef ParentName="CookMealBase">
     <defName>MooGirl_MakeCowCake</defName>
-    <label>MooGirl_MakeCowCake.label</label>
-    <description>MooGirl_MakeCowCake.description</description>
-    <jobString>MooGirl_MakeCowCake.jobString</jobString>
+    <!-- 制作雪牛娘牛乳蛋糕 -->
+    <label>make Mugirl milk cake</label>
+    <!-- 用雪牛娘奶和素食制作蛋糕 -->
+    <description>Make cake with Mugirl milk and vegetarian ingredients.</description>
+    <!-- 正在制作雪牛娘牛乳蛋糕 -->
+    <jobString>Making Mugirl milk cake.</jobString>
     <workAmount>300</workAmount>
     <recipeUsers>
       <li>ElectricStove</li>
@@ -229,9 +247,12 @@
   <!-- ============== 雪牛娘奶粉配方 ============== -->
   <RecipeDef ParentName="CookMealBase">
     <defName>MooGirl_MakeMilkPowder</defName>
-    <label>MooGirl_MakeMilkPowder.label</label>
-    <description>MooGirl_MakeMilkPowder.description</description>
-    <jobString>MooGirl_MakeMilkPowder.jobString</jobString>
+    <!-- 制作雪牛娘奶粉 -->
+    <label>make Mugirl milk powder</label>
+    <!-- 用雪牛娘奶制作奶粉 -->
+    <description>Make milk powder with Mugirl milk.</description>
+    <!-- 正在制作雪牛娘奶粉 -->
+    <jobString>Making Mugirl milk powder.</jobString>
     <workAmount>300</workAmount>
     <recipeUsers>
       <li>ElectricStove</li>
@@ -260,9 +281,12 @@
   <!-- ============== 雪牛娘奶片配方 ============== -->
   <RecipeDef ParentName="CookMealBase">
     <defName>MooGirl_MakeMilkTablet</defName>
-    <label>MooGirl_MakeMilkTablet.label</label>
-    <description>MooGirl_MakeMilkTablet.description</description>
-    <jobString>MooGirl_MakeMilkTablet.jobString</jobString>
+    <!-- 制作雪牛娘奶片 -->
+    <label>make Mugirl milk tablets</label>
+    <!-- 用雪牛娘奶和药草制作奶片 -->
+    <description>Make milk tablets with Mugirl milk and herbal medicine.</description>
+    <!-- 正在制作雪牛娘奶片 -->
+    <jobString>Making Mugirl milk tablets.</jobString>
     <workAmount>300</workAmount>
     <recipeUsers>
       <li>ElectricStove</li>
@@ -300,9 +324,12 @@
   <!-- ============== 奶霜苹果配方 ============== -->
   <RecipeDef ParentName="CookMealBase">
     <defName>MooGirl_MakeMilkCreamApple</defName>
-    <label>MooGirl_MakeMilkCreamApple.label</label>
-    <description>MooGirl_MakeMilkCreamApple.description</description>
-    <jobString>MooGirl_MakeMilkCreamApple.jobString</jobString>
+    <!-- 制作奶霜苹果 -->
+    <label>make milk cream apple</label>
+    <!-- 用雪牛娘奶和素食制作奶霜苹果 -->
+    <description>Make milk cream apple with Mugirl milk and vegetarian ingredients.</description>
+    <!-- 正在制作奶霜苹果 -->
+    <jobString>Making milk cream apple.</jobString>
     <workAmount>300</workAmount>
     <recipeUsers>
       <li>ElectricStove</li>

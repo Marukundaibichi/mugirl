@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -29,7 +28,26 @@ namespace MooGirl
 
         public Pawn MooPawn => parent as Pawn;
 
-        public Pawn MountedPawn => innerContainer?.FirstOrDefault(thing => thing is Pawn) as Pawn;
+        public Pawn MountedPawn
+        {
+            get
+            {
+                if (innerContainer == null)
+                {
+                    return null;
+                }
+
+                for (int i = 0; i < innerContainer.Count; i++)
+                {
+                    if (innerContainer[i] is Pawn pawn)
+                    {
+                        return pawn;
+                    }
+                }
+
+                return null;
+            }
+        }
 
         public bool HasMountedPawn => MountedPawn != null;
 
@@ -111,57 +129,7 @@ namespace MooGirl
 
         public bool CanMount(Pawn rider, out string reasonKey)
         {
-            reasonKey = null;
-            Pawn carrier = MooPawn;
-            if (rider == null || carrier == null || rider == carrier)
-            {
-                reasonKey = "MooGirl.Mount.ReasonInvalid";
-                return false;
-            }
-
-            if (!MountedPawnUtility.IsMooGirl(carrier))
-            {
-                reasonKey = "MooGirl.Mount.ReasonTargetNotMooGirl";
-                return false;
-            }
-
-            if (HasMountedPawn)
-            {
-                reasonKey = "MooGirl.Mount.ReasonAlreadyHasRider";
-                return false;
-            }
-
-            if (!carrier.Spawned || carrier.Dead || carrier.Downed || carrier.Destroyed || carrier.IsBurning() || carrier.InMentalState || !carrier.health.capacities.CapableOf(PawnCapacityDefOf.Moving))
-            {
-                reasonKey = "MooGirl.Mount.ReasonTargetBadState";
-                return false;
-            }
-
-            if (!rider.Spawned || rider.Dead || rider.Downed || rider.Destroyed || rider.IsBurning() || rider.InMentalState || !rider.health.capacities.CapableOf(PawnCapacityDefOf.Moving))
-            {
-                reasonKey = "MooGirl.Mount.ReasonRiderBadState";
-                return false;
-            }
-
-            if (rider.RaceProps?.Humanlike != true)
-            {
-                reasonKey = "MooGirl.Mount.ReasonRiderNotHumanlike";
-                return false;
-            }
-
-            if (MountedPawnUtility.IsMounted(rider, out _))
-            {
-                reasonKey = "MooGirl.Mount.ReasonAlreadyMounted";
-                return false;
-            }
-
-            if (MountedPawnUtility.HasAnyRope(rider) || MountedPawnUtility.HasAnyRope(carrier))
-            {
-                reasonKey = "MooGirl.Mount.ReasonRoped";
-                return false;
-            }
-
-            return true;
+            return MountEligibilityService.CanMount(this, rider, out reasonKey);
         }
 
         public bool TryMount(Pawn rider)
@@ -169,7 +137,7 @@ namespace MooGirl
             MakeContainer();
             if (!CanMount(rider, out string reasonKey))
             {
-                Messages.Message(("MooGirl.Mount.CannotMount".Translate() + ": " + reasonKey.Translate()).CapitalizeFirst(), rider ?? MooPawn, MessageTypeDefOf.RejectInput, historical: false);
+                Messages.Message("MooGirl.Mount.LabelWithReason".Translate("MooGirl.Mount.CannotMount".Translate(), reasonKey.Translate()).CapitalizeFirst(), rider ?? MooPawn, MessageTypeDefOf.RejectInput, historical: false);
                 return false;
             }
 
@@ -189,12 +157,12 @@ namespace MooGirl
                     Find.Selector.Select(rider);
                 }
 
-                Messages.Message(("MooGirl.Mount.CannotMount".Translate() + ": " + "MooGirl.Mount.ReasonInvalid".Translate()).CapitalizeFirst(), carrier, MessageTypeDefOf.RejectInput, historical: false);
+                Messages.Message("MooGirl.Mount.LabelWithReason".Translate("MooGirl.Mount.CannotMount".Translate(), "MooGirl.Mount.ReasonInvalid".Translate()).CapitalizeFirst(), carrier, MessageTypeDefOf.RejectInput, historical: false);
                 return false;
             }
 
             MountedPawnUtility.ClearHiddenJobs(rider);
-            MountedPawnCombatTurret.NotifyMounted(this);
+            MountedCombatController.NotifyMounted(this);
             if (wasSelected)
             {
                 Find.Selector.ClearSelection();
@@ -242,7 +210,7 @@ namespace MooGirl
                 return false;
             }
 
-            MountedPawnCombatTurret.NotifyDismounting(this, rider);
+            MountedCombatController.NotifyDismounting(this, rider);
             Pawn droppedPawn = dropped as Pawn;
             if (droppedPawn != null && !droppedPawn.Dead && droppedPawn.jobs != null)
             {
@@ -278,7 +246,7 @@ namespace MooGirl
                 return false;
             }
 
-            MountedPawnCombatTurret.NotifyDismounting(this, rider);
+            MountedCombatController.NotifyDismounting(this, rider);
             Pawn droppedPawn = dropped as Pawn;
             if (droppedPawn != null && !droppedPawn.Dead && droppedPawn.jobs != null)
             {
@@ -307,8 +275,8 @@ namespace MooGirl
             MooGirlTickUtility.Add(ref safetyTickCounter, delta);
             MooGirlTickUtility.Add(ref turretTickCounter, delta);
             MooGirlTickUtility.Add(ref riderMeleeTickCounter, delta);
-            MountedPawnCombatTurret.VerbTick(this, delta);
-            MountedPawnCombatTurret.TickAim(this, delta);
+            MountedCombatController.VerbTick(this, delta);
+            MountedCombatController.TickAim(this, delta);
 
             if (Props.tickPhysiology && MooGirlTickUtility.ConsumeReady(ref physiologicalTickCounter, Props.physiologicalTickInterval, out int physiologicalDelta))
             {
@@ -322,7 +290,7 @@ namespace MooGirl
 
             if (Props.autoDismount && MooGirlTickUtility.ConsumeReady(ref safetyTickCounter, Props.safetyCheckInterval, out _))
             {
-                if (MountedPawnUtility.ShouldAutoDismount(rider, MooPawn, out string reasonKey))
+                if (MountEligibilityService.ShouldAutoDismount(rider, MooPawn, out string reasonKey))
                 {
                     string reason = reasonKey.NullOrEmpty() ? "MooGirl.Mount.ReasonInvalid".Translate().ToString() : reasonKey.Translate().ToString();
                     if (TryDismount(sendMessage: false))
@@ -336,7 +304,7 @@ namespace MooGirl
 
             if (MooGirlTickUtility.ConsumeReady(ref turretTickCounter, Props.turretTickInterval, out int turretDelta))
             {
-                MountedPawnCombatTurret.Tick(this, turretDelta);
+                MountedCombatController.Tick(this, turretDelta);
             }
 
             if (MooGirlTickUtility.ConsumeReady(ref riderMeleeTickCounter, Props.turretTickInterval, out _))
@@ -363,7 +331,7 @@ namespace MooGirl
             }
             else if (HasMountedPawn)
             {
-                MountedPawnCombatTurret.NotifyDismounting(this);
+                MountedCombatController.NotifyDismounting(this);
                 innerContainer.ClearAndDestroyContentsOrPassToWorld(mode);
             }
         }
@@ -376,7 +344,7 @@ namespace MooGirl
                 return;
             }
 
-            MountedPawnCombatTurret.NotifyDismounting(this);
+            MountedCombatController.NotifyDismounting(this);
             innerContainer.TryDrop(rider, cell, map, ThingPlaceMode.Near, out Thing _);
         }
 
@@ -407,7 +375,7 @@ namespace MooGirl
             base.PostSpawnSetup(respawningAfterLoad);
             if (HasMountedPawn)
             {
-                MountedPawnCombatTurret.NotifyMounted(this);
+                MountedCombatController.NotifyMounted(this);
             }
         }
 

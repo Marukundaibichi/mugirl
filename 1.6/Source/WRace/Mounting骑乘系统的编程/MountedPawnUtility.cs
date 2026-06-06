@@ -36,12 +36,12 @@ namespace MooGirl
 
         public static bool HasAnyRope(Pawn pawn)
         {
-            return pawn?.roping?.HasAnyRope == true;
+            return RopingService.HasAnyRope(pawn);
         }
 
         public static void BreakRopes(Pawn pawn)
         {
-            pawn?.roping?.BreakAllRopes();
+            RopingService.BreakAllRopesAndNotify(pawn);
         }
 
         public static bool TryFindDismountCell(Pawn carrier, Pawn rider, IntVec3? preferredCell, out IntVec3 cell)
@@ -162,52 +162,7 @@ namespace MooGirl
 
         public static bool ShouldAutoDismount(Pawn rider, Pawn carrier, out string reasonKey)
         {
-            reasonKey = null;
-            if (rider == null || carrier == null)
-            {
-                reasonKey = "MooGirl.Mount.ReasonInvalid";
-                return true;
-            }
-
-            if (!carrier.Spawned || carrier.Destroyed || carrier.Dead || carrier.Downed || carrier.IsBurning() || carrier.InMentalState)
-            {
-                reasonKey = "MooGirl.Mount.ReasonTargetBadState";
-                return true;
-            }
-
-            if (rider.Destroyed || rider.Dead || rider.Downed || rider.IsBurning() || rider.InMentalState)
-            {
-                reasonKey = "MooGirl.Mount.ReasonRiderBadState";
-                return true;
-            }
-
-            Need_Food food = rider.needs?.food;
-            if (food != null && (food.Starving || food.CurLevelPercentage <= food.PercentageThreshUrgentlyHungry))
-            {
-                reasonKey = "MooGirl.Mount.ReasonRiderHungry";
-                return true;
-            }
-
-            Need_Rest rest = rider.needs?.rest;
-            if (rest != null && rest.CurLevel < Need_Rest.ThreshVeryTired)
-            {
-                reasonKey = "MooGirl.Mount.ReasonRiderTired";
-                return true;
-            }
-
-            if (HealthAIUtility.ShouldSeekMedicalRest(rider))
-            {
-                reasonKey = "MooGirl.Mount.ReasonRiderMedical";
-                return true;
-            }
-
-            if (HasAnyRope(rider) || HasAnyRope(carrier))
-            {
-                reasonKey = "MooGirl.Mount.ReasonRoped";
-                return true;
-            }
-
-            return false;
+            return MountEligibilityService.ShouldAutoDismount(rider, carrier, out reasonKey);
         }
 
         public static IEnumerable<Gizmo> GetMountedPawnGizmos(Pawn rider, Comp_MooGirlMount comp)

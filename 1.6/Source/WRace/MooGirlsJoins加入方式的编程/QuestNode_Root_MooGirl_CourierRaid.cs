@@ -1,6 +1,6 @@
 using RimWorld;
 using RimWorld.QuestGen;
-using System.Linq;
+using System.Collections.Generic;
 using Verse;
 
 namespace MooGirl
@@ -20,7 +20,7 @@ namespace MooGirl
                 return;
             }
 
-            Faction faction = Find.FactionManager.FirstFactionOfDef(AiGenerated_DefOf.MooGirl_GiantCorporations_Hostile);
+            Faction faction = Find.FactionManager.FirstFactionOfDef(MooGirlContentDefOf.MooGirl_GiantCorporations_Hostile);
             if (faction == null)
             {
                 Log.Warning("[MooGirl] CourierRaid quest aborted: hostile giant corporation faction not found.");
@@ -35,14 +35,12 @@ namespace MooGirl
 
             string spawnSignal = QuestGenUtility.HardcodedSignalWithQuestID("CourierRaid_Spawn");
 
-            // The game component starts this quest after its timer elapses, so the courier should spawn immediately.
             QuestPart_Delay raidDelay = new QuestPart_Delay();
             raidDelay.inSignalEnable = quest.InitiateSignal;
             raidDelay.delayTicks = RaidDelayTicks;
             raidDelay.outSignalsCompleted.Add(spawnSignal);
             quest.AddPart(raidDelay);
 
-            // Spawn specific courier with diary and keys
             QuestPart_SpawnCourier spawnPart = new QuestPart_SpawnCourier();
             spawnPart.inSignal = spawnSignal;
             spawnPart.map = map;
@@ -54,16 +52,23 @@ namespace MooGirl
         protected override bool TestRunInt(Slate slate)
         {
             Map map = ResolveTargetMap(slate);
-            return map != null && Find.FactionManager.FirstFactionOfDef(AiGenerated_DefOf.MooGirl_GiantCorporations_Hostile) != null;
+            return map != null && Find.FactionManager.FirstFactionOfDef(MooGirlContentDefOf.MooGirl_GiantCorporations_Hostile) != null;
         }
 
         private static Map ResolveTargetMap(Slate slate)
         {
             if (slate != null && slate.TryGet("map", out Map mapFromSlate) && mapFromSlate != null)
+            {
                 return mapFromSlate;
+            }
+
             if (Find.AnyPlayerHomeMap != null)
+            {
                 return Find.AnyPlayerHomeMap;
-            return Find.Maps?.FirstOrDefault();
+            }
+
+            List<Map> maps = Find.Maps;
+            return maps != null && maps.Count > 0 ? maps[0] : null;
         }
     }
 }

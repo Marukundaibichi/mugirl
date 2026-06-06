@@ -2,7 +2,8 @@
 <Defs>
   <InteractionDef>
     <defName>MooGirl_Nuzzle</defName>
-    <label>蹭蹭</label>
+    <!-- 蹭蹭 -->
+    <label>Nuzzle</label>
     <interactionMote>Mote_Thought</interactionMote>
     <symbol>Things/Mote/SpeechSymbols/Nuzzle</symbol>
     <workerClass>MooGirl.InteractionWorker_Nuzzle</workerClass>

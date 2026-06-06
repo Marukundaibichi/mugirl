@@ -1,5 +1,4 @@
 ﻿using RimWorld;
-using System.Linq;
 using Verse;
 using Verse.AI;
 
@@ -9,21 +8,55 @@ namespace MooGirl
     {
         protected override Job TryGiveJob(Pawn pawn)
         {
-            if (NuzzleUtility.GetNuzzleMTBHours(pawn) <= 0f)
+            if (pawn.Map == null || NuzzleUtility.GetNuzzleMTBHours(pawn) <= 0f)
             {
                 return null;
             }
-            Pawn t;
-            if (!(from p in pawn.Map.mapPawns.SpawnedPawnsInFaction(pawn.Faction)
-                  where !p.NonHumanlikeOrWildMan() && p != pawn && p.Position.InHorDistOf(pawn.Position, 40f) && pawn.GetRoom(RegionType.Set_All) == p.GetRoom(RegionType.Set_All) && !p.Position.IsForbidden(pawn) && p.CanCasuallyInteractNow(false, false, false, false)
-                  select p).TryRandomElement(out t))
+
+            if (!TryFindNuzzleTarget(pawn, out Pawn target))
             {
                 return null;
             }
-            Job job = JobMaker.MakeJob(MooGirl_DefOf.Job_Nuzzle, t);
+
+            Job job = JobMaker.MakeJob(MooGirl_DefOf.Job_Nuzzle, target);
             job.locomotionUrgency = LocomotionUrgency.Walk;
             job.expiryInterval = 3000;
             return job;
+        }
+
+        private static bool TryFindNuzzleTarget(Pawn pawn, out Pawn target)
+        {
+            target = null;
+            int candidateCount = 0;
+            Room pawnRoom = pawn.GetRoom(RegionType.Set_All);
+            var spawnedPawns = pawn.Map.mapPawns.SpawnedPawnsInFaction(pawn.Faction);
+
+            for (int i = 0; i < spawnedPawns.Count; i++)
+            {
+                Pawn candidate = spawnedPawns[i];
+                if (!IsValidNuzzleTarget(pawn, candidate, pawnRoom))
+                {
+                    continue;
+                }
+
+                candidateCount++;
+                if (Rand.RangeInclusive(1, candidateCount) == 1)
+                {
+                    target = candidate;
+                }
+            }
+
+            return target != null;
+        }
+
+        private static bool IsValidNuzzleTarget(Pawn pawn, Pawn candidate, Room pawnRoom)
+        {
+            return candidate != pawn
+                && !candidate.NonHumanlikeOrWildMan()
+                && candidate.Position.InHorDistOf(pawn.Position, MaxNuzzleDistance)
+                && pawnRoom == candidate.GetRoom(RegionType.Set_All)
+                && !candidate.Position.IsForbidden(pawn)
+                && candidate.CanCasuallyInteractNow(false, false, false, false);
         }
 
         private const float MaxNuzzleDistance = 40f;

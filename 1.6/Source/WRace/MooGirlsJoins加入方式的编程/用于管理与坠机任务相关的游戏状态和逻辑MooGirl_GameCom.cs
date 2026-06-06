@@ -3,21 +3,21 @@ using Verse;
 
 namespace MooGirl
 {
-    public class MooGirl_GameComp : GameComponent
+    public class MooGirlStoryState : GameComponent
     {
-        private const int CourierRaidInitialDelayTicks = 5 * 60000;
+        public const int OpeningCrashInitialCheckTicks = 360;
+        public const int CourierRaidInitialDelayTicks = 5 * 60000;
 
-        public bool MooGirl_Structural_crash_mission_variables = false;
-        public int structuralCrashCheckTimer = 360;
+        public bool openingCrashStarted;
+        public int openingCrashCheckTimer = OpeningCrashInitialCheckTicks;
 
-        // Courier raid state
-        public bool courierRaidTriggered = false;
+        public bool courierRaidTriggered;
         public int courierRaidTimer = CourierRaidInitialDelayTicks;
-        public bool courierRaidQuestStarted = false;
+        public bool courierRaidQuestStarted;
 
-        public MooGirl_GameComp() { }
+        public MooGirlStoryState() { }
 
-        public MooGirl_GameComp(Game game) { }
+        public MooGirlStoryState(Game game) { }
 
         public override void FinalizeInit()
         {
@@ -40,58 +40,12 @@ namespace MooGirl
         public override void GameComponentTick()
         {
             base.GameComponentTick();
-            if (Current.ProgramState != ProgramState.Playing) return;
-
-            // --- Structural crash mission timer ---
-            if (structuralCrashCheckTimer > 0)
-            {
-                structuralCrashCheckTimer--;
-            }
-            else if (structuralCrashCheckTimer == 0)
-            {
-                Faction giantCorpFaction = Find.FactionManager.FirstFactionOfDef(AiGenerated_DefOf.MooGirl_GiantCorporations_Hostile);
-                if (giantCorpFaction != null && !MooGirl_Structural_crash_mission_variables)
-                {
-                    if (MooGirl_Structural_crash_missiont.ShouldExecute())
-                    {
-                        QuestScriptDef questDef = MooGirl_DefOf.MooGirl_SlaveOpeningPodCrash;
-                        QuestUtility.GenerateQuestAndMakeAvailable(questDef, 10000.0f);
-                        MooGirl_Structural_crash_mission_variables = true;
-                    }
-                }
-                if (!MooGirl_Structural_crash_mission_variables)
-                    structuralCrashCheckTimer = 1000;
-                else
-                    structuralCrashCheckTimer = -1;
-            }
-
-            // --- Courier raid timer ---
-            if (!courierRaidTriggered)
-            {
-                if (courierRaidTimer > CourierRaidInitialDelayTicks)
-                {
-                    courierRaidTimer = CourierRaidInitialDelayTicks;
-                }
-                courierRaidTimer--;
-                if (courierRaidTimer <= 0)
-                {
-                    courierRaidTriggered = true;
-                    if (!courierRaidQuestStarted)
-                    {
-                        Faction giantCorp = Find.FactionManager.FirstFactionOfDef(AiGenerated_DefOf.MooGirl_GiantCorporations_Hostile);
-                        if (giantCorp != null)
-                        {
-                            QuestUtility.GenerateQuestAndMakeAvailable(AiGenerated_DefOf.MooGirl_CourierRaid, 200f);
-                            courierRaidQuestStarted = true;
-                        }
-                    }
-                }
-            }
+            MooGirlStoryService.Tick(this);
         }
 
         private static void NormalizeJuvenileGraphics()
         {
-            int changed = MooGirlJuvenileGraphicUtility.NormalizeLoadedPawns();
+            int changed = LifeStageVisualService.NormalizeLoadedPawns();
             if (changed > 0)
             {
                 Log.Message("[MooGirl] Corrected juvenile MooGirl body types: " + changed + ".");
@@ -101,10 +55,87 @@ namespace MooGirl
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look(ref MooGirl_Structural_crash_mission_variables, "MooGirl_Structural_crash_mission_variables");
+            Scribe_Values.Look(ref openingCrashStarted, "openingCrashStarted", false);
+            Scribe_Values.Look(ref openingCrashCheckTimer, "openingCrashCheckTimer", OpeningCrashInitialCheckTicks);
             Scribe_Values.Look(ref courierRaidTriggered, "courierRaidTriggered", false);
             Scribe_Values.Look(ref courierRaidTimer, "courierRaidTimer", CourierRaidInitialDelayTicks);
             Scribe_Values.Look(ref courierRaidQuestStarted, "courierRaidQuestStarted", false);
+        }
+    }
+
+    public static class MooGirlStoryService
+    {
+        private const int OpeningCrashRetryTicks = 1000;
+        private const float OpeningCrashQuestPoints = 10000f;
+        private const float CourierRaidQuestPoints = 200f;
+
+        public static void Tick(MooGirlStoryState state)
+        {
+            if (state == null || Current.ProgramState != ProgramState.Playing)
+            {
+                return;
+            }
+
+            TickOpeningCrash(state);
+            TickCourierRaid(state);
+        }
+
+        private static void TickOpeningCrash(MooGirlStoryState state)
+        {
+            if (state.openingCrashStarted)
+            {
+                state.openingCrashCheckTimer = -1;
+                return;
+            }
+
+            if (state.openingCrashCheckTimer > 0)
+            {
+                state.openingCrashCheckTimer--;
+                return;
+            }
+
+            Faction giantCorpFaction = Find.FactionManager.FirstFactionOfDef(MooGirlContentDefOf.MooGirl_GiantCorporations_Hostile);
+            if (giantCorpFaction != null && IncidentWorker_MooGirlStructuralCrashMission.ShouldExecute())
+            {
+                QuestUtility.GenerateQuestAndMakeAvailable(MooGirl_DefOf.MooGirl_SlaveOpeningPodCrash, OpeningCrashQuestPoints);
+                state.openingCrashStarted = true;
+                state.openingCrashCheckTimer = -1;
+                return;
+            }
+
+            state.openingCrashCheckTimer = OpeningCrashRetryTicks;
+        }
+
+        private static void TickCourierRaid(MooGirlStoryState state)
+        {
+            if (state.courierRaidTriggered)
+            {
+                return;
+            }
+
+            if (state.courierRaidTimer > MooGirlStoryState.CourierRaidInitialDelayTicks)
+            {
+                state.courierRaidTimer = MooGirlStoryState.CourierRaidInitialDelayTicks;
+            }
+
+            state.courierRaidTimer--;
+            if (state.courierRaidTimer > 0)
+            {
+                return;
+            }
+
+            state.courierRaidTriggered = true;
+            if (state.courierRaidQuestStarted)
+            {
+                return;
+            }
+
+            Faction giantCorp = Find.FactionManager.FirstFactionOfDef(MooGirlContentDefOf.MooGirl_GiantCorporations_Hostile);
+            if (giantCorp != null)
+            {
+                QuestUtility.GenerateQuestAndMakeAvailable(MooGirlContentDefOf.MooGirl_CourierRaid, CourierRaidQuestPoints);
+                state.courierRaidQuestStarted = true;
+            }
         }
     }
 
@@ -164,15 +195,15 @@ namespace MooGirl
         }
     }
 
-    public class MooGirl_Structural_crash_missiont : IncidentWorker
+    public class IncidentWorker_MooGirlStructuralCrashMission : IncidentWorker
     {
         public static bool ShouldExecute()
         {
             if (MooGirlMod.settings?.enableStructuralCrashEvent != true)
                 return false;
-            var comp = Current.Game.GetComponent<MooGirl_GameComp>();
+            var comp = Current.Game.GetComponent<MooGirlStoryState>();
             if (GenDate.DaysPassedFloat < 1f) return false;
-            if (comp?.MooGirl_Structural_crash_mission_variables == true) return false;
+            if (comp?.openingCrashStarted == true) return false;
             return true;
         }
     }

@@ -13,7 +13,7 @@ namespace MooGirl
             this.compClass = typeof(CompMooMilkable);
         }
 
-        // 显示翻译键，仅用于玩家可见文本。
+        // 显示名可能来自 XML 实际文本，也可能使用默认 Keyed。
         public string displayString = "MooGirl.Milk.FullnessDisplay";
         // 存档字段名必须与显示文本解耦，避免翻译调整影响存档结构。
         public string saveKey = "milkFullness";
@@ -153,7 +153,7 @@ namespace MooGirl
                 return null;
             }
             // 返回本地化的显示字符串和当前饱满度百分比
-            return this.Props.displayString.Translate() + ": " + base.Fullness.ToStringPercent();
+            return MooGirlText.Resolve(this.Props.displayString) + ": " + base.Fullness.ToStringPercent();
         }
 
         private Pawn MooPawn => parent as Pawn;

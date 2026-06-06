@@ -1,9 +1,8 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using RimWorld;
-using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using Verse;
-using System.Reflection;
 
 namespace MooGirl
 {
@@ -27,13 +26,19 @@ namespace MooGirl
         public static bool Prefix(Pawn_RopeTracker __instance)
         {
             Pawn pawn = (Pawn)fieldPawn.GetValue(__instance);
-            if (pawn?.Map == null) return true;
+            if (pawn?.Map == null)
+            {
+                return true;
+            }
 
             Material ropeLineMat = (Material)fieldRopeLineMat.GetValue(null);
-            if (ropeLineMat == null) return true;
+            if (ropeLineMat == null)
+            {
+                return true;
+            }
 
-            // 绘制拴在墙上的绳索
-            if (pawn.roping?.IsRopedToSpot == true)
+            // 墙栓绘制只读取当前绳索状态，不扫描地图角色。
+            if (RopingService.IsRopedToSpot(pawn) && pawn.roping?.RopedTo.IsValid == true)
             {
                 IntVec3 ropeCell = pawn.roping.RopedTo.Cell;
                 if (ropeCell.IsValid)
@@ -43,19 +48,19 @@ namespace MooGirl
                     {
                         Vector3 targetWithOffset = hitch.Position.ToVector3Shifted();
 
-                        // 根据朝向加偏移
+                        // 墙面栓点的贴图中心不等于挂绳点，按朝向修正视觉终点。
                         switch (hitch.Rotation.AsInt)
                         {
-                            case 0: // North
+                            case 0:
                                 targetWithOffset += new Vector3(0f, 0f, -0.4f);
                                 break;
-                            case 1: // East
+                            case 1:
                                 targetWithOffset += new Vector3(-0.5f, 0f, 0f);
                                 break;
-                            case 2: // South
+                            case 2:
                                 targetWithOffset += new Vector3(0f, 0f, 0.5f);
                                 break;
-                            case 3: // West
+                            case 3:
                                 targetWithOffset += new Vector3(0.4f, 0f, 0f);
                                 break;
                         }
@@ -67,33 +72,10 @@ namespace MooGirl
                             ropeLineMat,
                             0.2f);
 
-                        return false; // 拴墙时，不再执行原逻辑
+                        return false;
                     }
                 }
             }
-
-            //// 绘制跟随者之间的绳索
-            //List<Pawn> allPawns = pawn.Map.mapPawns.AllPawns;
-            //for (int i = 0; i < allPawns.Count; i++)
-            //{
-            //    Pawn follower = allPawns[i];
-            //    if (!follower.Spawned) continue;
-
-            //    if (follower.RaceProps.body == MooGirl_DefOf.MooGirlBody &&
-            //        follower.CurJob?.def == MooGirl_DefOf.Job_FollowRoper)
-            //    {
-            //        if (follower.CurJob.targetA.Thing is Pawn targetPawn && targetPawn.Spawned)
-            //        {
-            //            GenDraw.DrawLineBetween(
-            //                follower.DrawPos.Yto0(),
-            //                targetPawn.DrawPos.Yto0(),
-            //                AltitudeLayer.PawnRope.AltitudeFor(),
-            //                ropeLineMat,
-            //                0.2f);
-            //        }
-            //    }
-            //}
-
 
             return true;
         }

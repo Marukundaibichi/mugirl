@@ -19,8 +19,10 @@
   <!-- ============== 雪牛娘奶布丁 ============== -->
   <ThingDef ParentName="MooGirl_MilkFoodBase">
     <defName>MooGirl_MilkPudding</defName>
-    <label>MooGirl_MilkPudding.label</label>
-    <description>MooGirl_MilkPudding.description</description>
+    <!-- 雪牛娘奶布丁 -->
+    <label>Mugirl milk pudding</label>
+    <!-- 口感像更柔软的果冻，香浓而又入口即化，吃上一份就能让孩子们回味上好几天，很多大人也非常爱吃 -->
+    <description>Soft like a delicate jelly, rich and quick to melt in the mouth. One serving can linger in a child's memory for days, and many adults love it too.</description>
     <graphicData>
       <texPath>Things/milkfood/milkfood_pudding</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -47,8 +49,10 @@
   <!-- ============== 雪牛娘奶酪 ============== -->
   <ThingDef ParentName="MooGirl_MilkFoodBase">
     <defName>MooGirl_Cheese</defName>
-    <label>MooGirl_Cheese.label</label>
-    <description>MooGirl_Cheese.description</description>
+    <!-- 雪牛娘奶酪 -->
+    <label>Mugirl cheese</label>
+    <!-- 很经典的食物，同时保存期极长而且管饱，是高级干肉饼 -->
+    <description>A classic food with a very long shelf life and enough nutrition to fill you up, like an upgraded survival meal.</description>
     <graphicData>
       <texPath>Things/milkfood/milkfood_cheese</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -89,8 +93,10 @@
   <!-- ============== 雪牛娘陈年奶酪 ============== -->
   <ThingDef ParentName="MooGirl_MilkFoodBase">
     <defName>MooGirl_AgedCheese</defName>
-    <label>MooGirl_AgedCheese.label</label>
-    <description>MooGirl_AgedCheese.description</description>
+    <!-- 雪牛娘陈年奶酪 -->
+    <label>Aged Mugirl cheese</label>
+    <!-- 精品制作的奶酪，使用了比普通奶酪更长的发酵时间，充分发酵过后微生物与雪牛娘奶和啤酒花的混合成分发生了复杂的化学反应，产生出一种神奇的氨基酸，这种氨基酸能使体内肝脏等器官活性大幅提高，是心脑血管疾病患者的必备食品。请记得多为家中有遗传病史的长辈准备，尤其是爷爷奶奶之类的老人，加热融化后的陈年奶酪蕴含的糖含量低，脂肪易消化和分解——源自食品检验检测部门的认证 -->
+    <description>A fine cheese made with longer fermentation than ordinary cheese. After full fermentation, microorganisms react with Mugirl milk and hops to produce a special amino acid that greatly improves the activity of the liver and other organs, making it a staple for people worried about cardiovascular illness.\n\nRemember to prepare more for elders with family medical histories, especially grandparents. Melted aged cheese is low in sugar, easy to digest, and easy to break down, according to food inspection certification.</description>
     <graphicData>
       <texPath>Things/milkfood/milkfood_Agedcheese</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -123,8 +129,10 @@
   <!-- ============== 雪牛娘奶宝塔糖 ============== -->
   <ThingDef ParentName="MooGirl_MilkFoodBase">
     <defName>MooGirl_BaotaSugar</defName>
-    <label>MooGirl_BaotaSugar.label</label>
-    <description>MooGirl_BaotaSugar.description</description>
+    <!-- 雪牛娘奶宝塔糖 -->
+    <label>Mugirl milk baota candy</label>
+    <!-- 过去由食品生产部门发明，广受好评的糖果打虫药 -->
+    <description>A popular candy dewormer once invented by food production departments.</description>
     <graphicData>
       <texPath>Things/milkfood/milkfood_BaotaSugar</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -159,8 +167,10 @@
   <!-- ============== 大肥牛奶糖 ============== -->
   <ThingDef ParentName="MooGirl_MilkFoodBase">
     <defName>MooGirl_MilkCandy</defName>
-    <label>MooGirl_MilkCandy.label</label>
-    <description>MooGirl_MilkCandy.description</description>
+    <!-- 大肥牛奶糖 -->
+    <label>Big cow milk candy</label>
+    <!-- 暂无 -->
+    <description>No description yet.</description>
     <graphicData>
       <texPath>Things/milkfood/milkfood_milkcandy</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -187,8 +197,10 @@
   <!-- ============== 雪牛娘牛乳蛋糕 ============== -->
   <ThingDef ParentName="MooGirl_MilkFoodBase">
     <defName>MooGirl_CowCake</defName>
-    <label>MooGirl_CowCake.label</label>
-    <description>MooGirl_CowCake.description</description>
+    <!-- 雪牛娘牛乳蛋糕 -->
+    <label>Mugirl milk cake</label>
+    <!-- 暂无 -->
+    <description>No description yet.</description>
     <graphicData>
       <texPath>Things/milkfood/milkfood_CowCake</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -221,8 +233,10 @@
   <!-- ============== 雪牛娘奶粉 ============== -->
   <ThingDef ParentName="MooGirl_MilkFoodBase">
     <defName>MooGirl_MilkPowder</defName>
-    <label>MooGirl_MilkPowder.label</label>
-    <description>MooGirl_MilkPowder.description</description>
+    <!-- 雪牛娘奶粉 -->
+    <label>Mugirl milk powder</label>
+    <!-- 暂无 -->
+    <description>No description yet.</description>
     <graphicData>
       <texPath>Things/milkfood/milkfood_milkpowder</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -255,8 +269,10 @@
   <!-- ============== 雪牛娘奶片 ============== -->
   <ThingDef ParentName="MooGirl_MilkFoodBase">
     <defName>MooGirl_MilkTablet</defName>
-    <label>MooGirl_MilkTablet.label</label>
-    <description>MooGirl_MilkTablet.description</description>
+    <!-- 雪牛娘奶片 -->
+    <label>Mugirl milk tablet</label>
+    <!-- 暂无 -->
+    <description>No description yet.</description>
     <graphicData>
       <texPath>Things/milkfood/milkfood_milktablet</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -289,8 +305,10 @@
   <!-- ============== 奶霜苹果 ============== -->
   <ThingDef ParentName="MooGirl_MilkFoodBase">
     <defName>MooGirl_MilkCreamApple</defName>
-    <label>MooGirl_MilkCreamApple.label</label>
-    <description>MooGirl_MilkCreamApple.description</description>
+    <!-- 奶霜苹果 -->
+    <label>Milk cream apple</label>
+    <!-- 暂无 -->
+    <description>No description yet.</description>
     <graphicData>
       <texPath>Things/milkfood/milkfood_Milkcreamapple</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>

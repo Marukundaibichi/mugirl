@@ -29,8 +29,8 @@ namespace MooGirl
 
             yield return new Command_Action
             {
-                defaultLabel = $"Dev: 解锁 {apparel.LabelCap}",
-                defaultDesc = $"开发者模式下立即解除 {apparel.LabelCap} 的穿戴锁定，便于调试。",
+                defaultLabel = "MooGirl.Restraints.DevUnlock.Label".Translate(apparel.LabelCap),
+                defaultDesc = "MooGirl.Restraints.DevUnlock.Desc".Translate(apparel.LabelCap),
                 icon = TexCommand.ClearPrioritizedWork,
                 action = () => DevUnlock(apparel)
             };
@@ -47,7 +47,7 @@ namespace MooGirl
             apparel.isLocked = false;
             apparel.lockCount = 0;
             wearer.apparel?.Unlock(apparel);
-            Messages.Message($"已开发者解锁：{wearer.LabelShortCap} 的 {apparel.LabelCap}", wearer, MessageTypeDefOf.PositiveEvent);
+            Messages.Message("MooGirl.Restraints.DevUnlock.Message".Translate(wearer.LabelShortCap, apparel.LabelCap), wearer, MessageTypeDefOf.PositiveEvent);
         }
     }
 }

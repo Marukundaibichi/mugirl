@@ -4,8 +4,10 @@
   <!-- PMC钢盔 -->
   <ThingDef ParentName="ApparelMakeableBase">
     <defName>PMC_Helmet</defName>
-    <label>PMC钢盔</label>
-    <description>PMC佣兵的标准钢盔，保护头部和耳朵。</description>
+    <!-- PMC钢盔 -->
+    <label>PMC Helmet</label>
+    <!-- PMC佣兵的标准钢盔，保护头部和耳朵。 -->
+    <description>A standard helmet for PMC mercenaries, protecting the head and ears.</description>
     <graphicData>
       <texPath>Things/Item/Equipment/Enemyarmor/pmc_helmet/pmc_helmet</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -63,8 +65,10 @@
   <!-- PMC队长头盔 -->
   <ThingDef ParentName="ApparelMakeableBase">
     <defName>PMC_CaptainHelmet</defName>
-    <label>PMC队长头盔</label>
-    <description>PMC小队指挥官的高级头盔，配备通讯设备和增强护甲。</description>
+    <!-- PMC队长头盔 -->
+    <label>PMC Captain Helmet</label>
+    <!-- PMC小队指挥官的高级头盔，配备通讯设备和增强护甲。 -->
+    <description>An advanced helmet for PMC squad commanders, equipped with communications gear and enhanced armor.</description>
     <graphicData>
       <texPath>Things/Item/Equipment/Enemyarmor/pmc_captainhelmet/pmc_captainhelmet</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -122,8 +126,10 @@
   <!-- PMC作战服 - Middle + Shell layers, multi body type -->
   <ThingDef ParentName="ApparelMakeableBase">
     <defName>PMC_CombatUniform</defName>
-    <label>PMC作战服</label>
-    <description>PMC标准作战服，兼顾防护与机动，覆盖全身。</description>
+    <!-- PMC作战服 -->
+    <label>PMC Combat Uniform</label>
+    <!-- PMC标准作战服，兼顾防护与机动，覆盖全身。 -->
+    <description>The standard PMC combat uniform, balancing protection and mobility while covering the whole body.</description>
     <graphicData>
       <texPath>Things/Item/Equipment/Enemyarmor/pmc_combatuniform/pmc_combatuniform</texPath>
       <graphicClass>Graphic_Single</graphicClass>

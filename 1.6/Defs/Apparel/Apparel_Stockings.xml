@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingDef Name="MooGirl_Stocking" ParentName="MooGirl_ApparelBase" Abstract="True">
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<statBases>
+			<Mass>0.1</Mass>
+			<EquipDelay>1.0</EquipDelay>
+			<MaxHitPoints>100</MaxHitPoints>
+			<WorkToMake>2000</WorkToMake>
+			<StuffEffectMultiplierArmor>0.05</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.10</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.00</StuffEffectMultiplierInsulation_Heat>
+		</statBases>
+		<apparel>
+			<layers>
+				<li>MooGirl_Stocking</li>
+			</layers>
+			<tags>
+				<li>MooGirl_Stocking</li>
+			</tags>
+			<useWornGraphicMask>true</useWornGraphicMask>
+		</apparel>
+		<thingCategories>
+			<li>MooGirl_Stocking</li>
+		</thingCategories>
+		<recipeMaker>
+			<researchPrerequisite>ComplexClothing</researchPrerequisite>
+		</recipeMaker>
+	</ThingDef>
+
+	<ThingDef ParentName="MooGirl_Stocking">
+		<defName>MooGirl_Suspenders</defName>
+		<!-- 雪牛娘 吊带袜 「欲望蛛网」 -->
+		<label>Mugirl Suspenders "Toile du Désir"</label>
+		<!-- 「八重·朱 服装」出品低丹尼尔黑丝吊带袜，蕾丝点缀诱人边缘。用丝线编织陷阱，俘获所有凝视者。 -->
+		<description>"Vache Rousse" presents low-denier black silk suspenders, adorned with enticing lace edging.\nA trap woven from silk threads, designed to captivate all who gaze upon them.</description>
+		<graphicData>
+			<texPath>Things/Apparel/MooGirl_Suspenders/MooGirl_Suspenders</texPath>
+		</graphicData>
+		<costStuffCount>50</costStuffCount>
+		<stuffCategories>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<equippedStatOffsets>
+			<SocialImpact>0.2</SocialImpact>
+		</equippedStatOffsets>
+		<apparel>
+			<bodyPartGroups>
+				<li>Legs</li>
+				<li>Feet</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Apparel/MooGirl_Suspenders/MooGirl_Suspenders</wornGraphicPath>
+		</apparel>
+	</ThingDef>
+
+	<ThingDef ParentName="MooGirl_Stocking">
+		<defName>MooGirl_BunnyGirlStocking</defName>
+		<!-- 雪牛娘 兔女郎连裤袜 「银河丝缚」 -->
+		<label>Mugirl Bunny Girl Stockings "Lien de Soie Galactique"</label>
+		<!-- 透肉渐变网格裤袜，足尖心形透肤设计。从腿到趾的致命包裹，令性感无死角延伸。 -->
+		<description>"Vache Rousse" presents sheer gradient fishnet tights, featuring a heart-shaped toe window.\nThis lethal encasement from leg to toe ensures allure is conveyed without compromise.</description>
+		<graphicData>
+			<texPath>Things/Apparel/MooGirl_BunnyGirlStocking/MooGirl_BunnyGirlStocking</texPath>
+		</graphicData>
+		<costStuffCount>50</costStuffCount>
+		<stuffCategories>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<equippedStatOffsets>
+			<SocialImpact>0.2</SocialImpact>
+		</equippedStatOffsets>
+		<apparel>
+			<bodyPartGroups>
+				<li>Legs</li>
+				<li>Feet</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Apparel/MooGirl_BunnyGirlStocking/MooGirl_BunnyGirlStocking</wornGraphicPath>
+		</apparel>
+	</ThingDef>
+
+	<ThingDef ParentName="MooGirl_Stocking">
+		<defName>MooGirl_Bodystocking</defName>
+		<!-- 雪牛娘 连体丝袜 -->
+		<label>Mugirl Bodystocking</label>
+		<!-- 「八重·朱 服装」出品连体光感丝袜，一体成型贴合身线，自肩至踝如流光包覆。轻薄却不失张力，拉伸之间勾勒比例美学，让肌理与曲线自然呼吸。不喧哗、不退场，行走即是姿态——柔韧与魅力并存的隐秘武装。 -->
+		<description>A glossy bodystocking from "Vache Rousse", seamless and close to the body, wrapping from shoulder to ankle like flowing light. Thin yet resilient, it traces proportion and movement through every stretch, letting texture and curves breathe naturally. Quiet but unmistakable, every step becomes posture: a hidden armament of flexibility and charm.</description>
+		<graphicData>
+			<texPath>Things/Apparel/MooGirl_Bodystocking/MooGirl_Bodystocking</texPath>
+		</graphicData>
+		<costStuffCount>50</costStuffCount>
+		<stuffCategories>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<equippedStatOffsets>
+			<SocialImpact>0.1</SocialImpact> <!-- 强化仙女气质，提高社交效果 -->
+		</equippedStatOffsets>
+		<statBases>
+			<MaxHitPoints>40</MaxHitPoints> <!-- 轻型但耐用 -->
+			<WorkToMake>2500</WorkToMake> <!-- 仙衣工艺复杂，制作时间稍高 -->
+			<Mass>0.1</Mass> <!-- 羽衣应非常轻盈 -->
+			<StuffEffectMultiplierInsulation_Cold>0.1</StuffEffectMultiplierInsulation_Cold> <!--修仙服常给轻薄暖意 -->
+			<StuffEffectMultiplierInsulation_Heat>0.1</StuffEffectMultiplierInsulation_Heat>
+		</statBases>
+		<apparel>
+			<useWornGraphicMask>false</useWornGraphicMask>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Legs</li>
+				<li>Feet</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Apparel/MooGirl_Bodystocking/MooGirl_Bodystocking</wornGraphicPath>
+			<tags>
+				<li>MooGirl_Stocking</li>
+				<li>MooGirl_Combatant_Legwear</li>
+			</tags>
+		</apparel>
+	</ThingDef>
+
+</Defs>

@@ -2,7 +2,8 @@
 <Defs>
   <PawnKindDef ParentName="MooGirl_BaseKind">
     <defName>MooGirl_Colony</defName>
-    <label>雪牛娘殖民者</label>
+    <!-- 雪牛娘殖民者 -->
+    <label>Mugirl Colonist</label>
     <defaultFactionType>MooGirl_Colony</defaultFactionType>
     <chemicalAddictionChance>0.06</chemicalAddictionChance>
     <backstoryFilters>

@@ -11,9 +11,12 @@
 
   <RecipeDef ParentName="Make_MooGirlKeys">
     <defName>MooGirl_MakeKey_Medieval</defName>
-    <label>制作粗糙束具钥匙</label>
-    <description>制作一把粗糙束具钥匙</description>
-    <jobString>正在制作粗糙束具钥匙</jobString>
+    <!-- 制作粗糙束具钥匙 -->
+    <label>Make Rough Restraint Key</label>
+    <!-- 制作一把粗糙束具钥匙 -->
+    <description>Make a rough key to unlock low level restraint.</description>
+    <!-- 正在制作粗糙束具钥匙 -->
+    <jobString>Making Rough Restraint Key</jobString>
     <workAmount>1000</workAmount>
     <recipeUsers>
       <li>ElectricSmithy</li>
@@ -54,9 +57,12 @@
 
   <RecipeDef ParentName="Make_MooGirlKeys">
     <defName>MooGirl_MakeKey_Industrial</defName>
-    <label>制作精致束具钥匙</label>
-    <description>制作一把精致束具钥匙</description>
-    <jobString>正在制作精致束具钥匙</jobString>
+    <!-- 制作精致束具钥匙 -->
+    <label>Make Exquisite Restraint Key</label>
+    <!-- 制作一把精致束具钥匙 -->
+    <description>Make a exquisite key to unlock high-level restraint.</description>
+    <!-- 正在制作精致束具钥匙 -->
+    <jobString>Making Dedicate Restraint Key</jobString>
     <workAmount>1500</workAmount>
     <recipeUsers>
       <li>TableMachining</li>
@@ -104,9 +110,12 @@
 
   <RecipeDef ParentName="Make_MooGirlKeys">
     <defName>MooGirl_MakeKey_Spacer</defName>
-    <label>制作精致束具钥匙</label>
-    <description>制作一把精致束具钥匙</description>
-    <jobString>正在制作精致束具钥匙</jobString>
+    <!-- 制作精致束具钥匙 -->
+    <label>Make Spacer Restraint Key</label>
+    <!-- 制作一把精致束具钥匙 -->
+    <description>Make a exquisite key for Spacer restraint.</description>
+    <!-- 正在制作精致束具钥匙 -->
+    <jobString>Making Spacer Restraint Key</jobString>
     <workAmount>2000</workAmount>
     <recipeUsers>
       <li>FabricationBench</li>
@@ -154,9 +163,12 @@
 
   <RecipeDef ParentName="Make_MooGirlKeys">
     <defName>MooGirl_MakeKey_Advance</defName>
-    <label>制作束具破解器</label>
-    <description>制作一个束具破解器</description>
-    <jobString>正在制作束具破解器</jobString>
+    <!-- 制作束具破解器 -->
+    <label>Make Restraint Decryptor</label>
+    <!-- 制作一个束具破解器 -->
+    <description>Make a restraint decryptor.</description>
+    <!-- 正在制作束具破解器 -->
+    <jobString>Making restraint decryptor</jobString>
     <workAmount>4000</workAmount>
     <recipeUsers>
       <li>FabricationBench</li>
@@ -205,9 +217,12 @@
 
   <RecipeDef>
     <defName>MooGirl_SmeltBondageApparel</defName>
-    <label>熔炼束具</label>
-    <description>利用高温和电磁铁将装甲之类的束具衣物分解成有用的资源。</description>
-    <jobString>正在熔炼衣物。</jobString>
+    <!-- 熔炼束具 -->
+    <label>Smelt restraint apparel</label>
+    <!-- 利用高温和电磁铁将装甲之类的束具衣物分解成有用的资源。 -->
+    <description>Use high heat and electromagnets to break armored restraint apparel down into useful resources.</description>
+    <!-- 正在熔炼衣物。 -->
+    <jobString>Smelting restraint apparel</jobString>
     <workAmount>1600</workAmount>
     <workSpeedStat>SmeltingSpeed</workSpeedStat>
     <effectWorking>Smelt</effectWorking>

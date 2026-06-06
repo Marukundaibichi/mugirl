@@ -13,10 +13,6 @@ namespace MooGirl
         {
             if (t == null)
             {
-                if (warnOnFail)
-                {
-                    //Log.Error("MooGil.Tried to SetForbidden on null Thing.");
-                }
                 return false;
             }
             ThingWithComps thingWithComps = t as ThingWithComps;

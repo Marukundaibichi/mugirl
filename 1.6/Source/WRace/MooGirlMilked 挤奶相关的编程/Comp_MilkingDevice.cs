@@ -228,7 +228,7 @@ namespace MooGirl
 
         private static string TranslateProp(string textOrKey)
         {
-            return string.IsNullOrEmpty(textOrKey) ? string.Empty : textOrKey.Translate().ToString();
+            return MooGirlText.Resolve(textOrKey);
         }
 
         private static ThingDef GetCachedThingDef(string defName, ref string cachedDefName, ref ThingDef cachedDef)

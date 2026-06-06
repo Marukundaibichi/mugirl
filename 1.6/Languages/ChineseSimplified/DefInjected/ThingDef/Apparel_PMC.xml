@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <PMC_CaptainHelmet.description>PMC小队指挥官的高级头盔，配备通讯设备和增强护甲。</PMC_CaptainHelmet.description>
+  <PMC_CaptainHelmet.label>PMC队长头盔</PMC_CaptainHelmet.label>
+  <PMC_CombatUniform.description>PMC标准作战服，兼顾防护与机动，覆盖全身。</PMC_CombatUniform.description>
+  <PMC_CombatUniform.label>PMC作战服</PMC_CombatUniform.label>
+  <PMC_Helmet.description>PMC佣兵的标准钢盔，保护头部和耳朵。</PMC_Helmet.description>
+  <PMC_Helmet.label>PMC钢盔</PMC_Helmet.label>
+</LanguageData>

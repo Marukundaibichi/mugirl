@@ -26,7 +26,6 @@ namespace MooGirl
         {
             if (__instance.Map == null)
             {
-                //Log.Warning($"MooGil.TickLong called on Plant {__instance} with null Map. Skipping TickLong.");
                 return false; // 跳过原方法
             }
             return true; // 继续执行原方法

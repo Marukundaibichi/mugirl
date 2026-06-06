@@ -4,8 +4,10 @@
   <!-- 雪牛娘战斗员防弹衣 - Shell -->
   <ThingDef ParentName="MooGirl_ArmorBase">
     <defName>MooGirl_Combatant_BulletproofVest</defName>
-    <label>雪牛娘战斗员防弹衣</label>
-    <description>雪牛娘战斗员专用的防弹护甲，提供优秀的利器防护。</description>
+    <!-- 雪牛娘战斗员防弹衣 -->
+    <label>Mugirl Combatant Bulletproof Vest</label>
+    <!-- 雪牛娘战斗员专用的防弹护甲，提供优秀的利器防护。 -->
+    <description>Bulletproof armor for Mugirl combatants, providing excellent sharp protection.</description>
     <graphicData>
       <texPath>Things/Apparel/MooGirl_combatant_bulletproofvest/MooGirl_combatant_bulletproofvest</texPath>
     </graphicData>
@@ -60,8 +62,10 @@
   <!-- 雪牛娘战斗员服装 - Middle -->
   <ThingDef ParentName="MooGirl_MiddleBase">
     <defName>MooGirl_Combatant_Clothes</defName>
-    <label>雪牛娘战斗员服装</label>
-    <description>雪牛娘战斗员的标准战斗服装，覆盖全身。</description>
+    <!-- 雪牛娘战斗员服装 -->
+    <label>Mugirl Combatant Clothes</label>
+    <!-- 雪牛娘战斗员的标准战斗服装，覆盖全身。 -->
+    <description>Standard combat clothing for Mugirl combatants, covering the whole body.</description>
     <graphicData>
       <texPath>Things/Apparel/MooGirl_combatant_clothes/MooGirl_combatant_clothes</texPath>
     </graphicData>
@@ -115,8 +119,10 @@
   <!-- 雪牛娘战斗员头盔 -->
   <ThingDef ParentName="MooGirl_ArmorHelmetBase">
     <defName>MooGirl_Combatant_Helmet</defName>
-    <label>雪牛娘战斗员头盔</label>
-    <description>雪牛娘战斗员的全覆盖保护头盔。</description>
+    <!-- 雪牛娘战斗员头盔 -->
+    <label>Mugirl Combatant Helmet</label>
+    <!-- 雪牛娘战斗员的全覆盖保护头盔。 -->
+    <description>A fully enclosed protective helmet for Mugirl combatants.</description>
     <graphicData>
       <texPath>Things/Apparel/MooGirl_combatant_helmet/MooGirl_combatant_helmet</texPath>
     </graphicData>
@@ -163,8 +169,10 @@
   <!-- 雪牛娘战斗员内衣 -->
   <ThingDef ParentName="MooGirl_UnderwearBase">
     <defName>MooGirl_Combatant_Underwear</defName>
-    <label>雪牛娘战斗员内衣</label>
-    <description>雪牛娘战斗员的贴身穿着的防护内衣。</description>
+    <!-- 雪牛娘战斗员内衣 -->
+    <label>Mugirl Combatant Underwear</label>
+    <!-- 雪牛娘战斗员的贴身穿着的防护内衣。 -->
+    <description>Protective underwear worn close to the body by Mugirl combatants.</description>
     <graphicData>
       <texPath>Things/Apparel/MooGirl_combatant_underwear/MooGirl_combatant_underwear</texPath>
     </graphicData>
@@ -211,8 +219,10 @@
   <!-- 雪牛娘特制丝袜 - 自定义层 -->
   <ThingDef ParentName="MooGirl_Stocking">
     <defName>MooGirl_SpeciallyStockings</defName>
-    <label>雪牛娘特制丝袜</label>
-    <description>雪牛娘专用的特制丝袜，兼具防护与舒适。</description>
+    <!-- 雪牛娘特制丝袜 -->
+    <label>Mugirl Special Stockings</label>
+    <!-- 雪牛娘专用的特制丝袜，兼具防护与舒适。 -->
+    <description>Special stockings made for Mugirls, combining protection and comfort.</description>
     <graphicData>
       <texPath>Things/Apparel/MooGirl_speciallystockings/MooGirl_speciallystockings</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -271,8 +281,10 @@
   <!-- 雪牛娘全套军礼服 - OnSkin -->
   <ThingDef ParentName="MooGirl_OnSkinBase">
     <defName>MooGirl_MilitaryDress</defName>
-    <label>雪牛娘全套军礼服</label>
-    <description>装备设计局于5495年定型的全套雪牛娘制式军礼服，通体采用先进军用合成纤维面料加工而成，实现了经久耐用与体面修身的平衡，且因优越的防风保温性能广受称赞。该型军礼服覆盖全身，其附带的记忆面料能快速适应身体曲线，改善外观气质。在雪牛娘武装力量当中，该型军礼服正逐步取代老式条例，成为新时代正式场合的标准配置。</description>
+    <!-- 雪牛娘全套军礼服 -->
+    <label>Mugirl Full Military Dress Uniform</label>
+    <!-- 装备设计局于5495年定型的全套雪牛娘制式军礼服，通体采用先进军用合成纤维面料加工而成，实现了经久耐用与体面修身的平衡，且因优越的防风保温性能广受称赞。该型军礼服覆盖全身，其附带的记忆面料能快速适应身体曲线，改善外观气质。在雪牛娘武装力量当中，该型军礼服正逐步取代老式条例，成为新时代正式场合的标准配置。 -->
+    <description>A full Mugirl regulation military dress uniform finalized by the Equipment Design Bureau in 5495. Made throughout from advanced military synthetic fibers, it balances durability with a dignified tailored fit and is praised for its excellent windproof warmth. This model covers the whole body, and its memory fabric quickly adapts to body contours to improve appearance. Within Mugirl armed forces, it is gradually replacing older regulations as the standard for formal occasions.</description>
     <graphicData>
       <texPath>Things/Apparel/MooGirl_Militarydress/MooGirl_Militarydress</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -324,8 +336,10 @@
   <!-- 雪牛娘轻量化军礼服 - OnSkin -->
   <ThingDef ParentName="MooGirl_OnSkinBase">
     <defName>MooGirl_MilitaryUniform</defName>
-    <label>雪牛娘轻量化军礼服</label>
-    <description>装备设计局于5495年定型的轻量化雪牛娘制式军礼服，通体采用先进军用合成纤维面料加工而成，实现了经久耐用与体面修身的平衡，且因优越的透气散热性能广受称赞。为与贴身衣物契合，该型军服在躯干处做出镂空妥协，其附带的记忆面料能快速适应身体曲线，改善外观气质。在雪牛娘武装力量当中，该型军礼服正逐步取代老式条例，成为新时代正式场合的标准配置。</description>
+    <!-- 雪牛娘轻量化军礼服 -->
+    <label>Mugirl Lightweight Military Dress Uniform</label>
+    <!-- 装备设计局于5495年定型的轻量化雪牛娘制式军礼服，通体采用先进军用合成纤维面料加工而成，实现了经久耐用与体面修身的平衡，且因优越的透气散热性能广受称赞。为与贴身衣物契合，该型军服在躯干处做出镂空妥协，其附带的记忆面料能快速适应身体曲线，改善外观气质。在雪牛娘武装力量当中，该型军礼服正逐步取代老式条例，成为新时代正式场合的标准配置。 -->
+    <description>A lightweight Mugirl regulation military dress uniform finalized by the Equipment Design Bureau in 5495. Made throughout from advanced military synthetic fibers, it balances durability with a dignified tailored fit and is praised for its excellent breathability and heat dissipation. To better fit close-worn garments, this model compromises with cutouts around the torso, while its memory fabric quickly adapts to body contours to improve appearance. Within Mugirl armed forces, it is gradually replacing older regulations as the standard for formal occasions.</description>
     <graphicData>
       <texPath>Things/Apparel/MooGirl_militaryuniform/MooGirl_militaryuniform</texPath>
       <graphicClass>Graphic_Single</graphicClass>

@@ -1,4 +1,4 @@
-﻿using Verse;
+using Verse;
 using Verse.AI;
 
 namespace MooGirl
@@ -13,15 +13,16 @@ namespace MooGirl
 
         protected override IntVec3 GetWanderRoot(Pawn pawn)
         {
-            return pawn.roping.RopedTo.Cell;
+            return pawn.roping?.RopedTo.Cell ?? IntVec3.Invalid;
         }
 
         protected override Job TryGiveJob(Pawn pawn)
         {
-            if (!pawn.roping.IsRoped || pawn.roping.IsRopedByPawn)
+            if (pawn?.roping?.IsRoped != true || pawn.roping.IsRopedByPawn)
             {
                 return null;
             }
+
             return base.TryGiveJob(pawn);
         }
     }

@@ -6,12 +6,14 @@
     <autoAccept>true</autoAccept>
     <questNameRules>
       <rulesStrings>
-        <li>questName->运货员接触</li>
+        <!-- 运货员接触 -->
+        <li>questName->Courier contact</li>
       </rulesStrings>
     </questNameRules>
     <questDescriptionRules>
       <rulesStrings>
-        <li>questDescription->一名巨型企业的运货员携带重要物品来到你的殖民地附近。你可以派殖民者与他交涉。</li>
+        <!-- 一名巨型企业的运货员携带重要物品来到你的殖民地附近。你可以派殖民者与他交涉。 -->
+        <li>questDescription->A mega corporation courier carrying important items has arrived near your colony. You can send a colonist to negotiate with him.</li>
       </rulesStrings>
     </questDescriptionRules>
     <root Class="MooGirl.QuestNode_Root_MooGirl_CourierRaid" />

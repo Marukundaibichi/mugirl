@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Verse;
 using RimWorld;
 using RimWorld.Planet;
@@ -16,11 +15,9 @@ public class StockGenerator_MooGirl_Slaves : StockGenerator
     public override IEnumerable<Thing> GenerateThings(PlanetTile forTile, Faction faction = null)
     {
         // 如果派系有思想体系，并且不接受奴隶制，则不生成任何奴隶
-        if (faction != null && faction.ideos != null)
+        if (faction != null && faction.ideos != null && !AllIdeosApproveSlavery(faction))
         {
-            bool approved = faction.ideos.AllIdeos.All(ideo => ideo.IdeoApprovesOfSlavery());
-            if (!approved)
-                yield break;
+            yield break;
         }
 
         // 在设定的范围内随机决定生成多少个奴隶
@@ -82,5 +79,19 @@ public class StockGenerator_MooGirl_Slaves : StockGenerator
         return thingDef.category == ThingCategory.Pawn &&
                thingDef.race.Humanlike &&
                thingDef.tradeability > Tradeability.None;
+    }
+
+    private static bool AllIdeosApproveSlavery(Faction faction)
+    {
+        // 保留旧版 All() 语义：只要任一 Ideo 不接受奴隶制，就不生成奴隶库存。
+        foreach (Ideo ideo in faction.ideos.AllIdeos)
+        {
+            if (!ideo.IdeoApprovesOfSlavery())
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

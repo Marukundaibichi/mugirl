@@ -3,6 +3,7 @@
   <!-- PMC 卡宾枪弹药（基于 Heavy SMG） -->
   <ThingDef ParentName="BaseBullet">
     <defName>Bullet_PMC_Carbine</defName>
+    <!-- PMC 卡宾枪弹 -->
     <label>PMC carbine round</label>
     <graphicData>
       <texPath>Things/Projectile/Bullet_Small</texPath>
@@ -18,8 +19,10 @@
   <!-- PMC 卡宾枪：1.3x 重型冲锋枪 -->
   <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>PMC_Carbine</defName>
-    <label>PMC卡宾枪</label>
-    <description>PMC 常用的紧凑型卡宾枪，强调中近距离持续压制能力。</description>
+    <!-- PMC卡宾枪 -->
+    <label>PMC Carbine</label>
+    <!-- PMC 常用的紧凑型卡宾枪，强调中近距离持续压制能力。 -->
+    <description>A compact carbine commonly used by PMC forces, emphasizing sustained suppression at close to medium range.</description>
     <graphicData>
       <texPath>Things/Item/Equipment/EnemyWeapon/PMC_Carbine</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -74,6 +77,7 @@
     </weaponTags>
     <tools>
       <li>
+        <!-- 握把 -->
         <label>grip</label>
         <capacities>
           <li>Blunt</li>
@@ -82,6 +86,7 @@
         <cooldownTime>2</cooldownTime>
       </li>
       <li>
+        <!-- 枪管 -->
         <label>barrel</label>
         <capacities>
           <li>Blunt</li>
@@ -96,6 +101,7 @@
   <!-- PMC 突击步枪弹药（基于 Assault Rifle） -->
   <ThingDef ParentName="BaseBullet">
     <defName>Bullet_PMC_Assault_Rifle</defName>
+    <!-- PMC 突击步枪弹 -->
     <label>PMC assault rifle round</label>
     <graphicData>
       <texPath>Things/Projectile/Bullet_Small</texPath>
@@ -111,8 +117,10 @@
   <!-- PMC 突击步枪：1.3x 突击步枪 -->
   <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>PMC_Assault_Rifle</defName>
-    <label>PMC突击步枪</label>
-    <description>PMC 标准制式突击步枪，兼顾火力、机动与射程。</description>
+    <!-- PMC突击步枪 -->
+    <label>PMC Assault Rifle</label>
+    <!-- PMC 标准制式突击步枪，兼顾火力、机动与射程。 -->
+    <description>The standard PMC assault rifle, balancing firepower, mobility, and range.</description>
     <graphicData>
       <texPath>Things/Item/Equipment/EnemyWeapon/PMC_Assault_Rifle</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -163,6 +171,7 @@
     </weaponTags>
     <tools>
       <li>
+        <!-- 枪托 -->
         <label>stock</label>
         <capacities>
           <li>Blunt</li>
@@ -171,6 +180,7 @@
         <cooldownTime>2</cooldownTime>
       </li>
       <li>
+        <!-- 枪管 -->
         <label>barrel</label>
         <capacities>
           <li>Blunt</li>
@@ -185,6 +195,7 @@
   <!-- PMC 射手步枪弹药（基于 Assault Rifle） -->
   <ThingDef ParentName="BaseBullet">
     <defName>Bullet_PMC_DMR</defName>
+    <!-- PMC 射手步枪弹 -->
     <label>PMC DMR round</label>
     <graphicData>
       <texPath>Things/Projectile/Bullet_Small</texPath>
@@ -200,8 +211,10 @@
   <!-- PMC 射手步枪：1.7x 突击步枪 -->
   <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>PMC_DMR</defName>
-    <label>PMC射手步枪</label>
-    <description>PMC 班组精确射手用步枪，针对中远距离交战强化。</description>
+    <!-- PMC射手步枪 -->
+    <label>PMC Designated Marksman Rifle</label>
+    <!-- PMC 班组精确射手用步枪，针对中远距离交战强化。 -->
+    <description>A rifle for PMC squad designated marksmen, reinforced for medium- to long-range engagements.</description>
     <graphicData>
       <texPath>Things/Item/Equipment/EnemyWeapon/PMC_DMR</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -251,6 +264,7 @@
     </weaponTags>
     <tools>
       <li>
+        <!-- 枪托 -->
         <label>stock</label>
         <capacities>
           <li>Blunt</li>
@@ -259,6 +273,7 @@
         <cooldownTime>2</cooldownTime>
       </li>
       <li>
+        <!-- 枪管 -->
         <label>barrel</label>
         <capacities>
           <li>Blunt</li>
@@ -273,6 +288,7 @@
   <!-- PMC 轻机枪弹药（基于 LMG） -->
   <ThingDef ParentName="BaseBullet">
     <defName>Bullet_PMC_LMG</defName>
+    <!-- PMC 轻机枪弹 -->
     <label>PMC LMG round</label>
     <graphicData>
       <texPath>Things/Projectile/Bullet_Small</texPath>
@@ -289,8 +305,10 @@
   <!-- PMC 轻机枪：1.3x 轻机枪 -->
   <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>PMC_LMG</defName>
-    <label>PMC轻机枪</label>
-    <description>PMC 压制火力核心，适合持续压制与区域封锁。</description>
+    <!-- PMC轻机枪 -->
+    <label>PMC Light Machine Gun</label>
+    <!-- PMC 压制火力核心，适合持续压制与区域封锁。 -->
+    <description>The core of PMC suppressive firepower, suited for sustained suppression and area denial.</description>
     <graphicData>
       <texPath>Things/Item/Equipment/EnemyWeapon/PMC_LMG</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -342,6 +360,7 @@
     </weaponTags>
     <tools>
       <li>
+        <!-- 枪托 -->
         <label>stock</label>
         <capacities>
           <li>Blunt</li>
@@ -350,6 +369,7 @@
         <cooldownTime>2</cooldownTime>
       </li>
       <li>
+        <!-- 枪管 -->
         <label>barrel</label>
         <capacities>
           <li>Blunt</li>
@@ -364,6 +384,7 @@
   <!-- OPC 麻醉手枪弹药（基于 Autopistol） -->
   <ThingDef ParentName="BaseBullet">
     <defName>Bullet_OPC_Tranquilizer_Pistol</defName>
+    <!-- OPC 麻醉弹 -->
     <label>OPC tranquilizer round</label>
     <graphicData>
       <texPath>Things/Projectile/Bullet_Small</texPath>
@@ -379,8 +400,10 @@
   <!-- OPC 麻醉手枪：1.0x 自动手枪（材料 1.5x） -->
   <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>OPC_Tranquilizer_Pistol</defName>
-    <label>OPC麻醉手枪</label>
-    <description>OPC 配发的低致死压制手枪，强调控制与近距自卫。</description>
+    <!-- OPC麻醉手枪 -->
+    <label>OPC Tranquilizer Pistol</label>
+    <!-- OPC 配发的低致死压制手枪，强调控制与近距自卫。 -->
+    <description>A low-lethality suppression pistol issued by the OPC, emphasizing control and close-range self-defense.</description>
     <graphicData>
       <texPath>Things/Item/Equipment/EnemyWeapon/OPC_Tranquilizer_Pistol</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -431,6 +454,7 @@
     </verbs>
     <tools>
       <li>
+        <!-- 握把 -->
         <label>grip</label>
         <capacities>
           <li>Blunt</li>
@@ -439,6 +463,7 @@
         <cooldownTime>2</cooldownTime>
       </li>
       <li>
+        <!-- 枪管 -->
         <label>barrel</label>
         <capacities>
           <li>Blunt</li>
@@ -453,6 +478,7 @@
   <!-- OPC 防卫步枪弹药（基于 Bolt-action Rifle） -->
   <ThingDef ParentName="BaseBullet">
     <defName>Bullet_OPC_Defense_Rifle</defName>
+    <!-- OPC 防卫步枪弹 -->
     <label>OPC defense rifle round</label>
     <projectile>
       <damageDef>Bullet</damageDef>
@@ -470,8 +496,10 @@
   <!-- OPC 防卫步枪：1.3x 栓动步枪（穿甲 0.7x） -->
   <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>OPC_Defense_Rifle</defName>
-    <label>OPC防卫步枪</label>
-    <description>OPC 警戒步枪，偏重制止能力与阵地防御。</description>
+    <!-- OPC防卫步枪 -->
+    <label>OPC Defense Rifle</label>
+    <!-- OPC 警戒步枪，偏重制止能力与阵地防御。 -->
+    <description>An OPC security rifle focused on stopping power and positional defense.</description>
     <graphicData>
       <texPath>Things/Item/Equipment/EnemyWeapon/OPC_Defense_Rifle</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -519,6 +547,7 @@
     </verbs>
     <tools>
       <li>
+        <!-- 枪托 -->
         <label>stock</label>
         <capacities>
           <li>Blunt</li>
@@ -527,6 +556,7 @@
         <cooldownTime>2</cooldownTime>
       </li>
       <li>
+        <!-- 枪管 -->
         <label>barrel</label>
         <capacities>
           <li>Blunt</li>
@@ -541,6 +571,7 @@
   <!-- OPC 防卫霰弹枪弹药（基于 Pump Shotgun） -->
   <ThingDef ParentName="BaseBullet">
     <defName>Bullet_OPC_Tactical_Shotgun</defName>
+    <!-- OPC 防卫霰弹 -->
     <label>OPC tactical shotgun blast</label>
     <graphicData>
       <texPath>Things/Projectile/Bullet_Shotgun</texPath>
@@ -558,8 +589,10 @@
   <!-- OPC 防卫霰弹枪：1.3x 泵动霰弹枪 -->
   <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>OPC_Tactical_Shotgun</defName>
-    <label>OPC防卫霰弹枪</label>
-    <description>OPC 防暴近战主武器，强调短距瞬时制止效果。</description>
+    <!-- OPC防卫霰弹枪 -->
+    <label>OPC Tactical Shotgun</label>
+    <!-- OPC 防暴近战主武器，强调短距瞬时制止效果。 -->
+    <description>The OPC primary riot-control close-combat weapon, emphasizing immediate stopping effect at short range.</description>
     <possessionCount>1</possessionCount>
     <graphicData>
       <texPath>Things/Item/Equipment/EnemyWeapon/OPC_Tactical_Shotgun</texPath>
@@ -609,6 +642,7 @@
     </verbs>
     <tools>
       <li>
+        <!-- 枪托 -->
         <label>stock</label>
         <capacities>
           <li>Blunt</li>
@@ -617,6 +651,7 @@
         <cooldownTime>2</cooldownTime>
       </li>
       <li>
+        <!-- 枪管 -->
         <label>barrel</label>
         <capacities>
           <li>Blunt</li>
@@ -631,6 +666,7 @@
   <!-- OPC 自动步枪弹药（基于 Assault Rifle） -->
   <ThingDef ParentName="BaseBullet">
     <defName>Bullet_OPC_Assault_Rifle</defName>
+    <!-- OPC 自动步枪弹 -->
     <label>OPC assault rifle round</label>
     <graphicData>
       <texPath>Things/Projectile/Bullet_Small</texPath>
@@ -646,8 +682,10 @@
   <!-- OPC 自动步枪：1.1x 突击步枪 -->
   <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>OPC_Assault_Rifle</defName>
-    <label>OPC自动步枪</label>
-    <description>OPC 标准自动步枪，火力配置偏向稳定与可控。</description>
+    <!-- OPC自动步枪 -->
+    <label>OPC Assault Rifle</label>
+    <!-- OPC 标准自动步枪，火力配置偏向稳定与可控。 -->
+    <description>The standard OPC automatic rifle, with a firepower profile biased toward stability and control.</description>
     <graphicData>
       <texPath>Things/Item/Equipment/EnemyWeapon/OPC_Assault_Rifle</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -695,6 +733,7 @@
     </weaponTags>
     <tools>
       <li>
+        <!-- 枪托 -->
         <label>stock</label>
         <capacities>
           <li>Blunt</li>
@@ -703,6 +742,7 @@
         <cooldownTime>2</cooldownTime>
       </li>
       <li>
+        <!-- 枪管 -->
         <label>barrel</label>
         <capacities>
           <li>Blunt</li>

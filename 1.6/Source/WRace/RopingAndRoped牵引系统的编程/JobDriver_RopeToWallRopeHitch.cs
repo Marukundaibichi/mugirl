@@ -35,17 +35,13 @@ namespace MooGirl
             {
                 initAction = () =>
                 {
-                    RopeStateTracker.MarkPendingRope(ropee);
+                    RopingService.MarkPendingSpotRope(ropee);
 
                     if (ropee.roping != null)
                     {
-                        Pawn roper = ropee.roping?.RopedByPawn;
-                        if (roper != null)
-                        {
-                            roper.roping?.BreakAllRopes();
-                        }
-
-                        ropee.roping?.BreakAllRopes();
+                        Pawn roper = RopingService.RoperFor(ropee);
+                        RopingService.BreakAllRopesAndNotify(roper);
+                        RopingService.BreakAllRopesAndNotify(ropee);
 
                         if (ropee.jobs != null)
                         {
@@ -72,10 +68,11 @@ namespace MooGirl
                     if (ropee.roping != null)
                     {
                         ropee.roping.RopeToSpot(hitch.Position);
+                        RopingService.RegisterRopedToSpot(ropee);
                     }
 
                     // 绑定完成后清除状态
-                    RopeStateTracker.ClearPendingRope(ropee);
+                    RopingService.ClearPendingSpotRope(ropee);
                 },
                 defaultCompleteMode = ToilCompleteMode.Instant
             };

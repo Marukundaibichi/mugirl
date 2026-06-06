@@ -1,4 +1,3 @@
-﻿using RimWorld;
 using Verse;
 using Verse.AI;
 
@@ -8,8 +7,7 @@ namespace MooGirl
     {
         protected override bool Satisfied(Pawn pawn)
         {
-            Pawn_RopeTracker roping = pawn.roping;
-            return roping != null && roping.IsRoped;
+            return pawn?.roping?.IsRoped == true;
         }
     }
 }
