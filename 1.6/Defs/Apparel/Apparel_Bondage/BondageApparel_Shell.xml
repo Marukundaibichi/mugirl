@@ -20,7 +20,7 @@
             <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
         </recipeMaker>
         <descriptionHyperlinks>
-            <ThingDef>MooGirl_SlaveApperalKey_Medieval</ThingDef>
+            <ThingDef>MooGirl_SlaveApparelKey_Medieval</ThingDef>
         </descriptionHyperlinks>
         <graphicData>
             <shaderType>CutoutComplex</shaderType>
@@ -29,7 +29,7 @@
             <useWornGraphicMask>true</useWornGraphicMask>
         </apparel>
         <needkeynumber>2</needkeynumber> <!-- 解锁需求钥匙数量 -->
-        <keytype>MooGirl_SlaveApperalKey_Medieval</keytype> <!-- 钥匙类型 -->
+        <keytype>MooGirl_SlaveApparelKey_Medieval</keytype> <!-- 钥匙类型 -->
         <gives_bound_moodlet>true</gives_bound_moodlet>
     </MooGirl.SlaveApparelDef>
 
@@ -69,9 +69,9 @@
             <li>LeftHand</li>
             <li>RightHand</li>
         </BoundBodyPartGroupDefs>
-        <NextSlaveApperalDefs>
+        <NextSlaveApparelDefs>
             <li>MooGirl_Slavegauntlet</li>
-        </NextSlaveApperalDefs>
+        </NextSlaveApparelDefs>
     </MooGirl.SlaveApparelDef>
 
     <MooGirl.SlaveApparelDef ParentName="MooGirl_SlaveApparel_Shell_Upper">
@@ -222,9 +222,9 @@
             <li>Legs</li>
             <li>Feet</li>
         </BoundBodyPartGroupDefs>
-        <NextSlaveApperalDefs>
+        <NextSlaveApparelDefs>
             <li>MooGirl_Slavestockings</li>
-        </NextSlaveApperalDefs>
+        </NextSlaveApparelDefs>
     </MooGirl.SlaveApparelDef>
 
     <MooGirl.SlaveApparelDef ParentName="MooGirl_SlaveApparel_Shell_Lower">

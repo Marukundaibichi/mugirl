@@ -73,7 +73,7 @@
             <li>
                 <grains>
                     <li Class="AudioGrain_Clip">
-                        <clipPath>milking(V1)</clipPath>
+                        <clipPath>milking_V1</clipPath>
                     </li>
                 </grains>
                 <volumeRange>120</volumeRange>

@@ -24,14 +24,14 @@
             <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
         </recipeMaker>
         <descriptionHyperlinks>
-            <ThingDef>MooGirl_SlaveApperalKey_Medieval</ThingDef>
+            <ThingDef>MooGirl_SlaveApparelKey_Medieval</ThingDef>
         </descriptionHyperlinks>
         <apparel>
             <parentTagDef>ApparelHead</parentTagDef>
             <useWornGraphicMask>true</useWornGraphicMask>
         </apparel>
         <needkeynumber>1</needkeynumber> <!-- 解锁需求钥匙数量 -->
-        <keytype>MooGirl_SlaveApperalKey_Medieval</keytype> <!-- 钥匙类型 -->
+        <keytype>MooGirl_SlaveApparelKey_Medieval</keytype> <!-- 钥匙类型 -->
         <gives_bound_moodlet>true</gives_bound_moodlet>
     </MooGirl.SlaveApparelDef>
 

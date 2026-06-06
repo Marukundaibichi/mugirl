@@ -1,44 +1,110 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
-    <Operation Class="PatchOperationSequence">
-        <success>Always</success>
-        <operations>
-            <li Class="PatchOperationTest">
-                <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]</xpath>
-            </li>
-            <li Class="PatchOperationConditional">
-                <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]/comps</xpath>
-                <nomatch Class="PatchOperationAdd">
-                    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]</xpath>
-                    <value>
-                        <comps>
-                            <li><compClass>FacialAnimation.DrawFaceGraphicsComp</compClass></li>
-                            <li><compClass>FacialAnimation.HeadControllerComp</compClass></li>
-                            <li><compClass>FacialAnimation.EyeballControllerComp</compClass></li>
-                            <li><compClass>FacialAnimation.LidControllerComp</compClass></li>
-                            <li><compClass>FacialAnimation.BrowControllerComp</compClass></li>
-                            <li><compClass>FacialAnimation.MouthControllerComp</compClass></li>
-                            <li><compClass>FacialAnimation.LidOptionControllerComp</compClass></li>
-                            <li><compClass>FacialAnimation.EmotionControllerComp</compClass></li>
-                            <li><compClass>FacialAnimation.FacialAnimationControllerComp</compClass></li>
-                        </comps>
-                    </value>
-                </nomatch>
-                <match Class="PatchOperationAdd">
+    <!-- Facial Animation folder only loads when the mod is active; still gate on the MooGirl race Def. 即使目录已按 FA 启用，也只在雪牛娘种族 Def 存在时补丁。 -->
+    <Operation Class="PatchOperationConditional">
+        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]</xpath>
+        <match Class="PatchOperationSequence">
+            <operations>
+                <li Class="PatchOperationConditional">
                     <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]/comps</xpath>
-                    <value>
-                        <li><compClass>FacialAnimation.DrawFaceGraphicsComp</compClass></li>
-                        <li><compClass>FacialAnimation.HeadControllerComp</compClass></li>
-                        <li><compClass>FacialAnimation.EyeballControllerComp</compClass></li>
-                        <li><compClass>FacialAnimation.LidControllerComp</compClass></li>
-                        <li><compClass>FacialAnimation.BrowControllerComp</compClass></li>
-                        <li><compClass>FacialAnimation.MouthControllerComp</compClass></li>
-                        <li><compClass>FacialAnimation.LidOptionControllerComp</compClass></li>
-                        <li><compClass>FacialAnimation.EmotionControllerComp</compClass></li>
-                        <li><compClass>FacialAnimation.FacialAnimationControllerComp</compClass></li>
-                    </value>
-                </match>
-            </li>
-        </operations>
+                    <nomatch Class="PatchOperationAdd">
+                        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]</xpath>
+                        <value>
+                            <comps/>
+                        </value>
+                    </nomatch>
+                </li>
+
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]/comps/li/compClass[text()="FacialAnimation.DrawFaceGraphicsComp"]</xpath>
+                    <nomatch Class="PatchOperationAdd">
+                        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]/comps</xpath>
+                        <value>
+                            <li><compClass>FacialAnimation.DrawFaceGraphicsComp</compClass></li>
+                        </value>
+                    </nomatch>
+                </li>
+
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]/comps/li/compClass[text()="FacialAnimation.HeadControllerComp"]</xpath>
+                    <nomatch Class="PatchOperationAdd">
+                        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]/comps</xpath>
+                        <value>
+                            <li><compClass>FacialAnimation.HeadControllerComp</compClass></li>
+                        </value>
+                    </nomatch>
+                </li>
+
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]/comps/li/compClass[text()="FacialAnimation.EyeballControllerComp"]</xpath>
+                    <nomatch Class="PatchOperationAdd">
+                        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]/comps</xpath>
+                        <value>
+                            <li><compClass>FacialAnimation.EyeballControllerComp</compClass></li>
+                        </value>
+                    </nomatch>
+                </li>
+
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]/comps/li/compClass[text()="FacialAnimation.LidControllerComp"]</xpath>
+                    <nomatch Class="PatchOperationAdd">
+                        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]/comps</xpath>
+                        <value>
+                            <li><compClass>FacialAnimation.LidControllerComp</compClass></li>
+                        </value>
+                    </nomatch>
+                </li>
+
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]/comps/li/compClass[text()="FacialAnimation.BrowControllerComp"]</xpath>
+                    <nomatch Class="PatchOperationAdd">
+                        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]/comps</xpath>
+                        <value>
+                            <li><compClass>FacialAnimation.BrowControllerComp</compClass></li>
+                        </value>
+                    </nomatch>
+                </li>
+
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]/comps/li/compClass[text()="FacialAnimation.MouthControllerComp"]</xpath>
+                    <nomatch Class="PatchOperationAdd">
+                        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]/comps</xpath>
+                        <value>
+                            <li><compClass>FacialAnimation.MouthControllerComp</compClass></li>
+                        </value>
+                    </nomatch>
+                </li>
+
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]/comps/li/compClass[text()="FacialAnimation.LidOptionControllerComp"]</xpath>
+                    <nomatch Class="PatchOperationAdd">
+                        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]/comps</xpath>
+                        <value>
+                            <li><compClass>FacialAnimation.LidOptionControllerComp</compClass></li>
+                        </value>
+                    </nomatch>
+                </li>
+
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]/comps/li/compClass[text()="FacialAnimation.EmotionControllerComp"]</xpath>
+                    <nomatch Class="PatchOperationAdd">
+                        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]/comps</xpath>
+                        <value>
+                            <li><compClass>FacialAnimation.EmotionControllerComp</compClass></li>
+                        </value>
+                    </nomatch>
+                </li>
+
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]/comps/li/compClass[text()="FacialAnimation.FacialAnimationControllerComp"]</xpath>
+                    <nomatch Class="PatchOperationAdd">
+                        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]/comps</xpath>
+                        <value>
+                            <li><compClass>FacialAnimation.FacialAnimationControllerComp</compClass></li>
+                        </value>
+                    </nomatch>
+                </li>
+            </operations>
+        </match>
     </Operation>
 </Patch>

@@ -1,11 +1,11 @@
-﻿using RimWorld;
+using RimWorld;
 using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
 namespace MooGirl
 {
-    public class CompSlaveApperalGear : CompUsable
+    public class CompSlaveApparelGear : CompUsable
     {
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn pawn)
         {

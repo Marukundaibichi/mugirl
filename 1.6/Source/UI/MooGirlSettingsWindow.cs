@@ -6,9 +6,8 @@ namespace MooGirl
 {
     internal static class MooGirlSettingsWindow
     {
-        internal static void Draw(Rect inRect, MechanoidWorkControlSettings settings)
+        internal static void Draw(Rect inRect, MooGirlSettings settings)
         {
-            settings.DoWindowContents(inRect);
             Listing_Standard listingStandard = new Listing_Standard();
             listingStandard.Begin(inRect);
 

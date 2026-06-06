@@ -48,6 +48,8 @@
 - `04-value-and-behavior-lock.md`：数值冻结、行为变更审批、回归对照。
 - `05-line-review-checklist.md`：逐行审查方法和文件级检查清单。
 - `06-localization-and-comments.md`：中文注释与翻译键规则。
+- `07-second-round-refactor-plan.md`：重构后快照审查发现的问题、第二轮重构优先级、验收标准和回归清单。
+- `08-game-validation-runbook.md`：第二轮后游戏内加载、功能、日志和回归验证执行清单；该清单由用户手动执行。
 
 ## 推荐执行顺序
 

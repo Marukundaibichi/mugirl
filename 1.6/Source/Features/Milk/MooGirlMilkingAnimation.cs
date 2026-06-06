@@ -120,6 +120,44 @@ namespace MooGirl
             }
         }
 
+        public static void NotifyPawnLifecycleEnded(Pawn pawn)
+        {
+            if (pawn == null || states.Count == 0)
+            {
+                return;
+            }
+
+            List<int> keysToRemove = null;
+            foreach (KeyValuePair<int, MilkingVisualState> entry in states)
+            {
+                MilkingVisualState state = entry.Value;
+                if (state.pawn == pawn || state.partner == pawn)
+                {
+                    if (keysToRemove == null)
+                    {
+                        keysToRemove = new List<int>();
+                    }
+
+                    keysToRemove.Add(entry.Key);
+                }
+            }
+
+            if (keysToRemove == null)
+            {
+                return;
+            }
+
+            for (int i = 0; i < keysToRemove.Count; i++)
+            {
+                states.Remove(keysToRemove[i]);
+            }
+        }
+
+        public static void ResetTransientState()
+        {
+            states.Clear();
+        }
+
         public static bool HasActiveAnimation(Pawn pawn)
         {
             return TryGetState(pawn, out _);
@@ -510,6 +548,24 @@ namespace MooGirl
         private static void Postfix(PawnRenderNode __instance, PawnDrawParms parms, ref Vector3 offset, ref Vector3 pivot, ref Quaternion rotation, ref Vector3 scale)
         {
             MooGirlMilkingAnimation.ModifyNodeTransform(__instance, parms, ref offset, ref pivot, ref rotation, ref scale);
+        }
+    }
+
+    [HarmonyPatch(typeof(Pawn), nameof(Pawn.DeSpawn))]
+    public static class Harmony_MooGirlMilkingAnimation_PawnDeSpawn
+    {
+        private static void Prefix(Pawn __instance)
+        {
+            MooGirlMilkingAnimation.NotifyPawnLifecycleEnded(__instance);
+        }
+    }
+
+    [HarmonyPatch(typeof(Pawn), nameof(Pawn.Destroy))]
+    public static class Harmony_MooGirlMilkingAnimation_PawnDestroy
+    {
+        private static void Prefix(Pawn __instance)
+        {
+            MooGirlMilkingAnimation.NotifyPawnLifecycleEnded(__instance);
         }
     }
 }

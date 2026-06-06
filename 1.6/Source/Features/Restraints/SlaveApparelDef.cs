@@ -33,7 +33,7 @@ namespace MooGirl
         public ThingDef keytype = null;
 
         // 下一阶段可升级的奴隶服装列表
-        public List<ThingDef> NextSlaveApperalDefs;
+        public List<ThingDef> NextSlaveApparelDefs;
         // Hediff作用的目标身体部位列表
         public List<BodyPartDef> HediffTargetBodyPartDefs;
         // 被束缚的身体部位组列表
@@ -142,9 +142,9 @@ namespace MooGirl
             }
 
             // 自动装备下一阶段服装（如果存在）
-            if (def.NextSlaveApperalDefs != null)
+            if (def.NextSlaveApparelDefs != null)
             {
-                foreach (var nextDef in def.NextSlaveApperalDefs)
+                foreach (var nextDef in def.NextSlaveApparelDefs)
                 {
                     ThingDef stuff = this.Stuff ?? GenStuff.DefaultStuffFor(nextDef);
                     Apparel nextApparel = (Apparel)ThingMaker.MakeThing(nextDef, stuff);

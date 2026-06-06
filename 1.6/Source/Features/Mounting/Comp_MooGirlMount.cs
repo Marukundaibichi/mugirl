@@ -318,7 +318,7 @@ namespace MooGirl
             base.PostDeSpawn(map, mode);
             if (HasMountedPawn && mode != DestroyMode.WillReplace && map != null)
             {
-                TryDropAt(parent.PositionHeld, map);
+                TryDropAt(parent.PositionHeld, map, mode);
             }
         }
 
@@ -327,7 +327,7 @@ namespace MooGirl
             base.PostDestroy(mode, previousMap);
             if (HasMountedPawn && previousMap != null)
             {
-                TryDropAt(parent.PositionHeld, previousMap);
+                TryDropAt(parent.PositionHeld, previousMap, mode);
             }
             else if (HasMountedPawn)
             {
@@ -336,7 +336,7 @@ namespace MooGirl
             }
         }
 
-        private void TryDropAt(IntVec3 cell, Map map)
+        private void TryDropAt(IntVec3 cell, Map map, DestroyMode fallbackMode = DestroyMode.Vanish)
         {
             Pawn rider = MountedPawn;
             if (rider == null || map == null)
@@ -345,7 +345,28 @@ namespace MooGirl
             }
 
             MountedCombatController.NotifyDismounting(this);
-            innerContainer.TryDrop(rider, cell, map, ThingPlaceMode.Near, out Thing _);
+            if (innerContainer.TryDrop(rider, cell, map, ThingPlaceMode.Near, out Thing _))
+            {
+                return;
+            }
+
+            IntVec3 fallbackCell;
+            bool foundFallback = CellFinder.TryFindRandomCellNear(
+                cell,
+                map,
+                5,
+                c => c.InBounds(map) && c.Walkable(map) && !c.Fogged(map),
+                out fallbackCell);
+
+            if (foundFallback && innerContainer.TryDrop(rider, fallbackCell, map, ThingPlaceMode.Near, out Thing _))
+            {
+                return;
+            }
+
+            MooGirlLog.WarningOnce(
+                "Mount.DropAtFailed",
+                "MooGirl.Mount.DropAtFailed".Translate(rider.LabelShortCap, parent.LabelShortCap).ToString());
+            innerContainer.ClearAndDestroyContentsOrPassToWorld(fallbackMode);
         }
 
         public override void PostExposeData()

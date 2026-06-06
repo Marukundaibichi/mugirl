@@ -7,6 +7,9 @@
     <MooGirl.PatchRegistry.AlienRaceSwaddleGraphicFor>AlienRace swaddle GraphicFor prefix</MooGirl.PatchRegistry.AlienRaceSwaddleGraphicFor>
     <MooGirl.PatchRegistry.MissingTarget>Manual patch target missing: {0}</MooGirl.PatchRegistry.MissingTarget>
     <MooGirl.PatchRegistry.MissingPatchMethod>Manual patch method missing: {0}</MooGirl.PatchRegistry.MissingPatchMethod>
+    <MooGirl.DropThingTooltip.TranspilerNotApplied>Gear drop tooltip patch was skipped because the expected vanilla IL pattern was not found.</MooGirl.DropThingTooltip.TranspilerNotApplied>
+    <MooGirl.RopingTick.BreakRopeWithRoperMissing>Roping tick fallback used BreakAllRopes because the vanilla BreakRopeWithRoper method was not found.</MooGirl.RopingTick.BreakRopeWithRoperMissing>
+    <MooGirl.Mount.DropAtFailed>Mounted rider {0} could not be dropped from {1}; the rider was passed to world storage as a fallback.</MooGirl.Mount.DropAtFailed>
     <MooGirl.Restraints.MagneticShackles.ActivateLabel>Activate shackles</MooGirl.Restraints.MagneticShackles.ActivateLabel>
     <MooGirl.Restraints.MagneticShackles.ActivateDesc>Activate the magnetic shackles, restraining the target.</MooGirl.Restraints.MagneticShackles.ActivateDesc>
     <MooGirl.Restraints.MagneticShackles.DeactivateLabel>Release shackles</MooGirl.Restraints.MagneticShackles.DeactivateLabel>
@@ -201,6 +204,9 @@
     <MooGirl.OpeningPodCrash.Log.FactionlessGenerationFailed>Failed to generate a factionless opening pod pawn after {0} attempts. Check PawnKindDef or other pawn generation patches.</MooGirl.OpeningPodCrash.Log.FactionlessGenerationFailed>
     <MooGirl.OpeningPodCrash.Exception.MustBeFactionless>MooGirl opening pod pawn must be generated factionless.</MooGirl.OpeningPodCrash.Exception.MustBeFactionless>
     <MooGirl.Newborn.Log.CorrectedBodyTypes>Corrected juvenile MooGirl body types: {0}.</MooGirl.Newborn.Log.CorrectedBodyTypes>
+    <MooGirl.FeralChild>feral child</MooGirl.FeralChild>
+    <MooGirl.Child>child</MooGirl.Child>
+    <MooGirl.Person>person</MooGirl.Person>
     <MooGirl.LetterLabelRefugeePodCrash>Transport Pod Crashed (Mugirl Slave)</MooGirl.LetterLabelRefugeePodCrash>
     <MooGirl.RefugeePodCrash>An transport pod has crash-landed nearby, carrying a {PAWN_titleIndef} named {PAWN_nameDef}.\nShe just escaped from a mega corporation's slave transport ship - whether due to ship malfunction, attack, or some other means remains unknown. The escape has left her utterly exhausted, and the tightly bound slave restraints on her body silently record the pain and submission she endured under the mega corporation's tyranny. The impact has also left {PAWN_pronoun} severely injured.\n\nWill you give this escapee a chance at freedom and a new life?</MooGirl.RefugeePodCrash>
     <MooGirl.RefugeePodCrash_Child>{PAWN_nameDef} is a {AGE}-year-old child and is completely alone.</MooGirl.RefugeePodCrash_Child>

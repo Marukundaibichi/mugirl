@@ -3,7 +3,7 @@
     <!-- Unlock Restraints -->
     <CrackBondageGear.reportString>解锁束具</CrackBondageGear.reportString>
     <!-- Put on Restraints -->
-    <GiveSlaveApperalGear.reportString>穿上束具</GiveSlaveApperalGear.reportString>
+    <GiveSlaveApparelGear.reportString>穿上束具</GiveSlaveApparelGear.reportString>
     <!-- Follow {TargetA}. -->
     <Job_FollowRoper.reportString>跟随 {TargetA}</Job_FollowRoper.reportString>
     <!-- Feed milk to {TargetA}. -->
@@ -21,5 +21,5 @@
     <!-- Rope to Building -->
     <RopeToBuild.reportString>解锁到建筑</RopeToBuild.reportString>
     <!-- Unlock Restraints -->
-    <UnlockSlaveApperal.reportString>解锁束具</UnlockSlaveApperal.reportString>
+    <UnlockSlaveApparel.reportString>解锁束具</UnlockSlaveApparel.reportString>
 </LanguageData>

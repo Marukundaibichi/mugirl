@@ -1,280 +1,326 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-
-    <!-- ========== 给商队/贸易船/基地/访客加入雪牛娘食物交易 ========== -->
-
-    <!-- 所有商人都愿意从玩家手里购买雪牛奶与雪牛娘奶制食品。 -->
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/TraderKindDef/stockGenerators</xpath>
-        <value>
-            <li Class="StockGenerator_BuyTradeTag">
-                <tag>MooGirl_MilkFood</tag>
-            </li>
-        </value>
+    <!-- Add buy support to traders that do not already buy MooGirl milk food. 让尚未收购雪牛娘奶制食品的商人收购该标签。 -->
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/TraderKindDef/stockGenerators[not(li[@Class="StockGenerator_BuyTradeTag"]/tag[text()="MooGirl_MilkFood"])]</xpath>
+        <match Class="PatchOperationAdd">
+            <xpath>Defs/TraderKindDef/stockGenerators[not(li[@Class="StockGenerator_BuyTradeTag"]/tag[text()="MooGirl_MilkFood"])]</xpath>
+            <value>
+                <li Class="StockGenerator_BuyTradeTag">
+                    <tag>MooGirl_MilkFood</tag>
+                </li>
+            </value>
+        </match>
     </Operation>
 
-    <!-- 派系基地 -->
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/TraderKindDef[defName="Base_Neolithic_Standard"]/stockGenerators</xpath>
-        <value>
-            <li Class="StockGenerator_BuyTradeTag">
-                <tag>MooGirl_MilkFood</tag>
-            </li>
-            <li Class="StockGenerator_Tag">
-                <tradeTag>MooGirl_MilkFood</tradeTag>
-                <countRange>1~3</countRange>
-            </li>
-        </value>
-    </Operation>
-
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/TraderKindDef[defName="Base_Outlander_Standard"]/stockGenerators</xpath>
-        <value>
-            <li Class="StockGenerator_BuyTradeTag">
-                <tag>MooGirl_MilkFood</tag>
-            </li>
-            <li Class="StockGenerator_Tag">
-                <tradeTag>MooGirl_MilkFood</tradeTag>
-                <countRange>2~6</countRange>
-            </li>
-        </value>
+    <!-- Faction bases. 派系基地。 -->
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/TraderKindDef[defName="Base_Neolithic_Standard"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
+        <nomatch Class="PatchOperationConditional">
+            <xpath>Defs/TraderKindDef[defName="Base_Neolithic_Standard"]/stockGenerators</xpath>
+            <match Class="PatchOperationAdd">
+                <xpath>Defs/TraderKindDef[defName="Base_Neolithic_Standard"]/stockGenerators</xpath>
+                <value>
+                    <li Class="StockGenerator_Tag">
+                        <tradeTag>MooGirl_MilkFood</tradeTag>
+                        <countRange>1~3</countRange>
+                    </li>
+                </value>
+            </match>
+        </nomatch>
     </Operation>
 
     <Operation Class="PatchOperationConditional">
-        <xpath>Defs/TraderKindDef[defName="Base_Empire_Standard"]/stockGenerators</xpath>
-        <match Class="PatchOperationAdd">
+        <xpath>Defs/TraderKindDef[defName="Base_Outlander_Standard"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
+        <nomatch Class="PatchOperationConditional">
+            <xpath>Defs/TraderKindDef[defName="Base_Outlander_Standard"]/stockGenerators</xpath>
+            <match Class="PatchOperationAdd">
+                <xpath>Defs/TraderKindDef[defName="Base_Outlander_Standard"]/stockGenerators</xpath>
+                <value>
+                    <li Class="StockGenerator_Tag">
+                        <tradeTag>MooGirl_MilkFood</tradeTag>
+                        <countRange>2~6</countRange>
+                    </li>
+                </value>
+            </match>
+        </nomatch>
+    </Operation>
+
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/TraderKindDef[defName="Base_Empire_Standard"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
+        <nomatch Class="PatchOperationConditional">
             <xpath>Defs/TraderKindDef[defName="Base_Empire_Standard"]/stockGenerators</xpath>
-            <value>
-                <li Class="StockGenerator_BuyTradeTag">
-                    <tag>MooGirl_MilkFood</tag>
-                </li>
-                <li Class="StockGenerator_Tag">
-                    <tradeTag>MooGirl_MilkFood</tradeTag>
-                    <countRange>2~6</countRange>
-                </li>
-            </value>
-        </match>
+            <match Class="PatchOperationAdd">
+                <xpath>Defs/TraderKindDef[defName="Base_Empire_Standard"]/stockGenerators</xpath>
+                <value>
+                    <li Class="StockGenerator_Tag">
+                        <tradeTag>MooGirl_MilkFood</tradeTag>
+                        <countRange>2~6</countRange>
+                    </li>
+                </value>
+            </match>
+        </nomatch>
     </Operation>
 
-    <!-- 访客 -->
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/TraderKindDef[defName="Visitor_Neolithic_Standard"]/stockGenerators</xpath>
-        <value>
-            <li Class="StockGenerator_BuyTradeTag">
-                <tag>MooGirl_MilkFood</tag>
-            </li>
-            <li Class="StockGenerator_Tag">
-                <tradeTag>MooGirl_MilkFood</tradeTag>
-                <countRange>1~3</countRange>
-            </li>
-        </value>
-    </Operation>
-
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/TraderKindDef[defName="Visitor_Outlander_Standard"]/stockGenerators</xpath>
-        <value>
-            <li Class="StockGenerator_BuyTradeTag">
-                <tag>MooGirl_MilkFood</tag>
-            </li>
-            <li Class="StockGenerator_Tag">
-                <tradeTag>MooGirl_MilkFood</tradeTag>
-                <countRange>2~5</countRange>
-            </li>
-        </value>
-    </Operation>
-
-    <!-- 海盗贸易船 - already patched by base mod, adding food -->
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/TraderKindDef[defName="Orbital_PirateMerchant"]/stockGenerators</xpath>
-        <value>
-            <li Class="StockGenerator_BuyTradeTag">
-                <tag>MooGirl_MilkFood</tag>
-            </li>
-            <li Class="StockGenerator_Tag">
-                <tradeTag>MooGirl_MilkFood</tradeTag>
-                <countRange>2~8</countRange>
-            </li>
-        </value>
-    </Operation>
-
-    <!-- 海盗商队 - already patched by base mod, adding food -->
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_PirateMerchant"]/stockGenerators</xpath>
-        <value>
-            <li Class="StockGenerator_BuyTradeTag">
-                <tag>MooGirl_MilkFood</tag>
-            </li>
-            <li Class="StockGenerator_Tag">
-                <tradeTag>MooGirl_MilkFood</tradeTag>
-                <countRange>2~8</countRange>
-            </li>
-        </value>
-    </Operation>
-
-    <!-- 外来者商队 -->
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_BulkGoods"]/stockGenerators</xpath>
-        <value>
-            <li Class="StockGenerator_BuyTradeTag">
-                <tag>MooGirl_MilkFood</tag>
-            </li>
-            <li Class="StockGenerator_Tag">
-                <tradeTag>MooGirl_MilkFood</tradeTag>
-                <countRange>2~5</countRange>
-            </li>
-        </value>
-    </Operation>
-
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_CombatSupplier"]/stockGenerators</xpath>
-        <value>
-            <li Class="StockGenerator_BuyTradeTag">
-                <tag>MooGirl_MilkFood</tag>
-            </li>
-            <li Class="StockGenerator_Tag">
-                <tradeTag>MooGirl_MilkFood</tradeTag>
-                <countRange>2~5</countRange>
-            </li>
-        </value>
-    </Operation>
-
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_Exotic"]/stockGenerators</xpath>
-        <value>
-            <li Class="StockGenerator_BuyTradeTag">
-                <tag>MooGirl_MilkFood</tag>
-            </li>
-            <li Class="StockGenerator_Tag">
-                <tradeTag>MooGirl_MilkFood</tradeTag>
-                <countRange>2~5</countRange>
-            </li>
-        </value>
-    </Operation>
-
-    <!-- 帝国商队/贸易船 (Royalty DLC) -->
+    <!-- Visitors. 访客。 -->
     <Operation Class="PatchOperationConditional">
-        <xpath>Defs/TraderKindDef[defName="Empire_Caravan_TraderGeneral"]/stockGenerators</xpath>
-        <match Class="PatchOperationAdd">
+        <xpath>Defs/TraderKindDef[defName="Visitor_Neolithic_Standard"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
+        <nomatch Class="PatchOperationConditional">
+            <xpath>Defs/TraderKindDef[defName="Visitor_Neolithic_Standard"]/stockGenerators</xpath>
+            <match Class="PatchOperationAdd">
+                <xpath>Defs/TraderKindDef[defName="Visitor_Neolithic_Standard"]/stockGenerators</xpath>
+                <value>
+                    <li Class="StockGenerator_Tag">
+                        <tradeTag>MooGirl_MilkFood</tradeTag>
+                        <countRange>1~3</countRange>
+                    </li>
+                </value>
+            </match>
+        </nomatch>
+    </Operation>
+
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/TraderKindDef[defName="Visitor_Outlander_Standard"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
+        <nomatch Class="PatchOperationConditional">
+            <xpath>Defs/TraderKindDef[defName="Visitor_Outlander_Standard"]/stockGenerators</xpath>
+            <match Class="PatchOperationAdd">
+                <xpath>Defs/TraderKindDef[defName="Visitor_Outlander_Standard"]/stockGenerators</xpath>
+                <value>
+                    <li Class="StockGenerator_Tag">
+                        <tradeTag>MooGirl_MilkFood</tradeTag>
+                        <countRange>2~5</countRange>
+                    </li>
+                </value>
+            </match>
+        </nomatch>
+    </Operation>
+
+    <!-- Pirate traders. 海盗商人。 -->
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/TraderKindDef[defName="Orbital_PirateMerchant"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
+        <nomatch Class="PatchOperationConditional">
+            <xpath>Defs/TraderKindDef[defName="Orbital_PirateMerchant"]/stockGenerators</xpath>
+            <match Class="PatchOperationAdd">
+                <xpath>Defs/TraderKindDef[defName="Orbital_PirateMerchant"]/stockGenerators</xpath>
+                <value>
+                    <li Class="StockGenerator_Tag">
+                        <tradeTag>MooGirl_MilkFood</tradeTag>
+                        <countRange>2~8</countRange>
+                    </li>
+                </value>
+            </match>
+        </nomatch>
+    </Operation>
+
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_PirateMerchant"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
+        <nomatch Class="PatchOperationConditional">
+            <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_PirateMerchant"]/stockGenerators</xpath>
+            <match Class="PatchOperationAdd">
+                <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_PirateMerchant"]/stockGenerators</xpath>
+                <value>
+                    <li Class="StockGenerator_Tag">
+                        <tradeTag>MooGirl_MilkFood</tradeTag>
+                        <countRange>2~8</countRange>
+                    </li>
+                </value>
+            </match>
+        </nomatch>
+    </Operation>
+
+    <!-- Outlander caravans. 外来者商队。 -->
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_BulkGoods"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
+        <nomatch Class="PatchOperationConditional">
+            <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_BulkGoods"]/stockGenerators</xpath>
+            <match Class="PatchOperationAdd">
+                <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_BulkGoods"]/stockGenerators</xpath>
+                <value>
+                    <li Class="StockGenerator_Tag">
+                        <tradeTag>MooGirl_MilkFood</tradeTag>
+                        <countRange>2~5</countRange>
+                    </li>
+                </value>
+            </match>
+        </nomatch>
+    </Operation>
+
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_CombatSupplier"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
+        <nomatch Class="PatchOperationConditional">
+            <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_CombatSupplier"]/stockGenerators</xpath>
+            <match Class="PatchOperationAdd">
+                <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_CombatSupplier"]/stockGenerators</xpath>
+                <value>
+                    <li Class="StockGenerator_Tag">
+                        <tradeTag>MooGirl_MilkFood</tradeTag>
+                        <countRange>2~5</countRange>
+                    </li>
+                </value>
+            </match>
+        </nomatch>
+    </Operation>
+
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_Exotic"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
+        <nomatch Class="PatchOperationConditional">
+            <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_Exotic"]/stockGenerators</xpath>
+            <match Class="PatchOperationAdd">
+                <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_Exotic"]/stockGenerators</xpath>
+                <value>
+                    <li Class="StockGenerator_Tag">
+                        <tradeTag>MooGirl_MilkFood</tradeTag>
+                        <countRange>2~5</countRange>
+                    </li>
+                </value>
+            </match>
+        </nomatch>
+    </Operation>
+
+    <!-- Royalty traders. Royalty DLC 商人。 -->
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/TraderKindDef[defName="Empire_Caravan_TraderGeneral"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
+        <nomatch Class="PatchOperationConditional">
             <xpath>Defs/TraderKindDef[defName="Empire_Caravan_TraderGeneral"]/stockGenerators</xpath>
-            <value>
-                <li Class="StockGenerator_BuyTradeTag">
-                    <tag>MooGirl_MilkFood</tag>
-                </li>
-                <li Class="StockGenerator_Tag">
-                    <tradeTag>MooGirl_MilkFood</tradeTag>
-                    <countRange>2~6</countRange>
-                </li>
-            </value>
-        </match>
+            <match Class="PatchOperationAdd">
+                <xpath>Defs/TraderKindDef[defName="Empire_Caravan_TraderGeneral"]/stockGenerators</xpath>
+                <value>
+                    <li Class="StockGenerator_Tag">
+                        <tradeTag>MooGirl_MilkFood</tradeTag>
+                        <countRange>2~6</countRange>
+                    </li>
+                </value>
+            </match>
+        </nomatch>
     </Operation>
 
-    <!-- 外来者贸易船 -->
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/TraderKindDef[defName="Orbital_BulkGoods"]/stockGenerators</xpath>
-        <value>
-            <li Class="StockGenerator_BuyTradeTag">
-                <tag>MooGirl_MilkFood</tag>
-            </li>
-            <li Class="StockGenerator_Tag">
-                <tradeTag>MooGirl_MilkFood</tradeTag>
-                <countRange>2~6</countRange>
-            </li>
-        </value>
-    </Operation>
-
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/TraderKindDef[defName="Orbital_CombatSupplier"]/stockGenerators</xpath>
-        <value>
-            <li Class="StockGenerator_BuyTradeTag">
-                <tag>MooGirl_MilkFood</tag>
-            </li>
-            <li Class="StockGenerator_Tag">
-                <tradeTag>MooGirl_MilkFood</tradeTag>
-                <countRange>2~6</countRange>
-            </li>
-        </value>
-    </Operation>
-
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/TraderKindDef[defName="Orbital_Exotic"]/stockGenerators</xpath>
-        <value>
-            <li Class="StockGenerator_BuyTradeTag">
-                <tag>MooGirl_MilkFood</tag>
-            </li>
-            <li Class="StockGenerator_Tag">
-                <tradeTag>MooGirl_MilkFood</tradeTag>
-                <countRange>2~6</countRange>
-            </li>
-        </value>
+    <!-- Outlander orbital traders. 外来者贸易船。 -->
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/TraderKindDef[defName="Orbital_BulkGoods"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
+        <nomatch Class="PatchOperationConditional">
+            <xpath>Defs/TraderKindDef[defName="Orbital_BulkGoods"]/stockGenerators</xpath>
+            <match Class="PatchOperationAdd">
+                <xpath>Defs/TraderKindDef[defName="Orbital_BulkGoods"]/stockGenerators</xpath>
+                <value>
+                    <li Class="StockGenerator_Tag">
+                        <tradeTag>MooGirl_MilkFood</tradeTag>
+                        <countRange>2~6</countRange>
+                    </li>
+                </value>
+            </match>
+        </nomatch>
     </Operation>
 
     <Operation Class="PatchOperationConditional">
-        <xpath>Defs/TraderKindDef[defName="Orbital_Empire"]/stockGenerators</xpath>
-        <match Class="PatchOperationAdd">
+        <xpath>Defs/TraderKindDef[defName="Orbital_CombatSupplier"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
+        <nomatch Class="PatchOperationConditional">
+            <xpath>Defs/TraderKindDef[defName="Orbital_CombatSupplier"]/stockGenerators</xpath>
+            <match Class="PatchOperationAdd">
+                <xpath>Defs/TraderKindDef[defName="Orbital_CombatSupplier"]/stockGenerators</xpath>
+                <value>
+                    <li Class="StockGenerator_Tag">
+                        <tradeTag>MooGirl_MilkFood</tradeTag>
+                        <countRange>2~6</countRange>
+                    </li>
+                </value>
+            </match>
+        </nomatch>
+    </Operation>
+
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/TraderKindDef[defName="Orbital_Exotic"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
+        <nomatch Class="PatchOperationConditional">
+            <xpath>Defs/TraderKindDef[defName="Orbital_Exotic"]/stockGenerators</xpath>
+            <match Class="PatchOperationAdd">
+                <xpath>Defs/TraderKindDef[defName="Orbital_Exotic"]/stockGenerators</xpath>
+                <value>
+                    <li Class="StockGenerator_Tag">
+                        <tradeTag>MooGirl_MilkFood</tradeTag>
+                        <countRange>2~6</countRange>
+                    </li>
+                </value>
+            </match>
+        </nomatch>
+    </Operation>
+
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/TraderKindDef[defName="Orbital_Empire"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
+        <nomatch Class="PatchOperationConditional">
             <xpath>Defs/TraderKindDef[defName="Orbital_Empire"]/stockGenerators</xpath>
-            <value>
-                <li Class="StockGenerator_BuyTradeTag">
-                    <tag>MooGirl_MilkFood</tag>
-                </li>
-                <li Class="StockGenerator_Tag">
-                    <tradeTag>MooGirl_MilkFood</tradeTag>
-                    <countRange>2~6</countRange>
-                </li>
-            </value>
-        </match>
+            <match Class="PatchOperationAdd">
+                <xpath>Defs/TraderKindDef[defName="Orbital_Empire"]/stockGenerators</xpath>
+                <value>
+                    <li Class="StockGenerator_Tag">
+                        <tradeTag>MooGirl_MilkFood</tradeTag>
+                        <countRange>2~6</countRange>
+                    </li>
+                </value>
+            </match>
+        </nomatch>
     </Operation>
 
-    <!-- 部落商队 -->
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/TraderKindDef[defName="Caravan_Neolithic_BulkGoods"]/stockGenerators</xpath>
-        <value>
-            <li Class="StockGenerator_BuyTradeTag">
-                <tag>MooGirl_MilkFood</tag>
-            </li>
-            <li Class="StockGenerator_Tag">
-                <tradeTag>MooGirl_MilkFood</tradeTag>
-                <countRange>1~3</countRange>
-            </li>
-        </value>
+    <!-- Neolithic caravans. 部落商队。 -->
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/TraderKindDef[defName="Caravan_Neolithic_BulkGoods"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
+        <nomatch Class="PatchOperationConditional">
+            <xpath>Defs/TraderKindDef[defName="Caravan_Neolithic_BulkGoods"]/stockGenerators</xpath>
+            <match Class="PatchOperationAdd">
+                <xpath>Defs/TraderKindDef[defName="Caravan_Neolithic_BulkGoods"]/stockGenerators</xpath>
+                <value>
+                    <li Class="StockGenerator_Tag">
+                        <tradeTag>MooGirl_MilkFood</tradeTag>
+                        <countRange>1~3</countRange>
+                    </li>
+                </value>
+            </match>
+        </nomatch>
     </Operation>
 
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/TraderKindDef[defName="Caravan_Neolithic_WarMerchant"]/stockGenerators</xpath>
-        <value>
-            <li Class="StockGenerator_BuyTradeTag">
-                <tag>MooGirl_MilkFood</tag>
-            </li>
-            <li Class="StockGenerator_Tag">
-                <tradeTag>MooGirl_MilkFood</tradeTag>
-                <countRange>1~3</countRange>
-            </li>
-        </value>
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/TraderKindDef[defName="Caravan_Neolithic_WarMerchant"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
+        <nomatch Class="PatchOperationConditional">
+            <xpath>Defs/TraderKindDef[defName="Caravan_Neolithic_WarMerchant"]/stockGenerators</xpath>
+            <match Class="PatchOperationAdd">
+                <xpath>Defs/TraderKindDef[defName="Caravan_Neolithic_WarMerchant"]/stockGenerators</xpath>
+                <value>
+                    <li Class="StockGenerator_Tag">
+                        <tradeTag>MooGirl_MilkFood</tradeTag>
+                        <countRange>1~3</countRange>
+                    </li>
+                </value>
+            </match>
+        </nomatch>
     </Operation>
 
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/TraderKindDef[defName="Caravan_Neolithic_Slaver"]/stockGenerators</xpath>
-        <value>
-            <li Class="StockGenerator_BuyTradeTag">
-                <tag>MooGirl_MilkFood</tag>
-            </li>
-            <li Class="StockGenerator_Tag">
-                <tradeTag>MooGirl_MilkFood</tradeTag>
-                <countRange>1~3</countRange>
-            </li>
-        </value>
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/TraderKindDef[defName="Caravan_Neolithic_Slaver"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
+        <nomatch Class="PatchOperationConditional">
+            <xpath>Defs/TraderKindDef[defName="Caravan_Neolithic_Slaver"]/stockGenerators</xpath>
+            <match Class="PatchOperationAdd">
+                <xpath>Defs/TraderKindDef[defName="Caravan_Neolithic_Slaver"]/stockGenerators</xpath>
+                <value>
+                    <li Class="StockGenerator_Tag">
+                        <tradeTag>MooGirl_MilkFood</tradeTag>
+                        <countRange>1~3</countRange>
+                    </li>
+                </value>
+            </match>
+        </nomatch>
     </Operation>
 
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/TraderKindDef[defName="Caravan_Neolithic_ShamanMerchant"]/stockGenerators</xpath>
-        <value>
-            <li Class="StockGenerator_BuyTradeTag">
-                <tag>MooGirl_MilkFood</tag>
-            </li>
-            <li Class="StockGenerator_Tag">
-                <tradeTag>MooGirl_MilkFood</tradeTag>
-                <countRange>1~3</countRange>
-            </li>
-        </value>
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/TraderKindDef[defName="Caravan_Neolithic_ShamanMerchant"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
+        <nomatch Class="PatchOperationConditional">
+            <xpath>Defs/TraderKindDef[defName="Caravan_Neolithic_ShamanMerchant"]/stockGenerators</xpath>
+            <match Class="PatchOperationAdd">
+                <xpath>Defs/TraderKindDef[defName="Caravan_Neolithic_ShamanMerchant"]/stockGenerators</xpath>
+                <value>
+                    <li Class="StockGenerator_Tag">
+                        <tradeTag>MooGirl_MilkFood</tradeTag>
+                        <countRange>1~3</countRange>
+                    </li>
+                </value>
+            </match>
+        </nomatch>
     </Operation>
-
 </Patch>

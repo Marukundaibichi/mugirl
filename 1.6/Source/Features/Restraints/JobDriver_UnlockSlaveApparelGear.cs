@@ -1,11 +1,11 @@
-﻿using RimWorld;
+using RimWorld;
 using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
 namespace MooGirl
 {
-    public class JobDriver_UnlockSlaveApperalGear : JobDriver
+    public class JobDriver_UnlockSlaveApparelGear : JobDriver
     {
         protected TargetIndex iitem = TargetIndex.A;
         protected TargetIndex itar = TargetIndex.B;

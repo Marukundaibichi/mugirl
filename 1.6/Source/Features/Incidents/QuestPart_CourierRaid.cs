@@ -61,8 +61,8 @@ namespace MooGirl
             courier = PawnGenerator.GeneratePawn(request);
 
             AddToInventory(courier, MooGirlContentDefOf.MooGirl_CourierDiary, 1);
-            AddToInventory(courier, MooGirlContentDefOf.MooGirl_SlaveApperalKey_Medieval, 6);
-            AddToInventory(courier, MooGirlContentDefOf.MooGirl_SlaveApperalKey_Industrial, 4);
+            AddToInventory(courier, MooGirlContentDefOf.MooGirl_SlaveApparelKey_Medieval, 6);
+            AddToInventory(courier, MooGirlContentDefOf.MooGirl_SlaveApparelKey_Industrial, 4);
 
             GenSpawn.Spawn(courier, spawnCell, map);
             LordMaker.MakeNewLord(
@@ -151,8 +151,8 @@ namespace MooGirl
             {
                 Thing thing = inventory[i];
                 if (thing.def == MooGirlContentDefOf.MooGirl_CourierDiary
-                    || thing.def == MooGirlContentDefOf.MooGirl_SlaveApperalKey_Medieval
-                    || thing.def == MooGirlContentDefOf.MooGirl_SlaveApperalKey_Industrial)
+                    || thing.def == MooGirlContentDefOf.MooGirl_SlaveApparelKey_Medieval
+                    || thing.def == MooGirlContentDefOf.MooGirl_SlaveApparelKey_Industrial)
                 {
                     return true;
                 }

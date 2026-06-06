@@ -14,6 +14,12 @@
     <MooGirl.PatchRegistry.MissingTarget>手动补丁目标缺失：{0}</MooGirl.PatchRegistry.MissingTarget>
     <!-- Manual patch method missing: {0} -->
     <MooGirl.PatchRegistry.MissingPatchMethod>手动补丁方法缺失：{0}</MooGirl.PatchRegistry.MissingPatchMethod>
+    <!-- Gear drop tooltip patch was skipped because the expected vanilla IL pattern was not found. -->
+    <MooGirl.DropThingTooltip.TranspilerNotApplied>装备丢弃提示补丁已跳过：未找到预期的原版 IL 模式。</MooGirl.DropThingTooltip.TranspilerNotApplied>
+    <!-- Roping tick fallback used BreakAllRopes because the vanilla BreakRopeWithRoper method was not found. -->
+    <MooGirl.RopingTick.BreakRopeWithRoperMissing>牵引 tick 使用了 BreakAllRopes 兜底：未找到原版 BreakRopeWithRoper 方法。</MooGirl.RopingTick.BreakRopeWithRoperMissing>
+    <!-- Mounted rider {0} could not be dropped from {1}; the rider was passed to world storage as a fallback. -->
+    <MooGirl.Mount.DropAtFailed>骑手 {0} 无法从 {1} 掉落；已将骑手转入 world pawn 作为兜底。</MooGirl.Mount.DropAtFailed>
     <!-- Activate shackles -->
     <MooGirl.Restraints.MagneticShackles.ActivateLabel>激活镣铐</MooGirl.Restraints.MagneticShackles.ActivateLabel>
     <!-- Activate the magnetic shackles, restraining the target. -->
@@ -402,6 +408,12 @@
     <MooGirl.OpeningPodCrash.Exception.MustBeFactionless>MooGirl 开局逃生舱 Pawn 必须以无派系状态生成。</MooGirl.OpeningPodCrash.Exception.MustBeFactionless>
     <!-- Corrected juvenile MooGirl body types: {0}. -->
     <MooGirl.Newborn.Log.CorrectedBodyTypes>已修正幼年 MooGirl 体型：{0}。</MooGirl.Newborn.Log.CorrectedBodyTypes>
+    <!-- feral child -->
+    <MooGirl.FeralChild>野性儿童</MooGirl.FeralChild>
+    <!-- child -->
+    <MooGirl.Child>儿童</MooGirl.Child>
+    <!-- person -->
+    <MooGirl.Person>人</MooGirl.Person>
     <!-- Transport Pod Crashed (Mugirl Slave) -->
     <MooGirl.LetterLabelRefugeePodCrash>逃生舱坠毁（雪牛娘奴隶）</MooGirl.LetterLabelRefugeePodCrash>
     <!-- An transport pod has crash-landed nearby, carrying a {PAWN_titleIndef} named {PAWN_nameDef}.\nShe just escaped from a mega corporation's slave transport ship - whether due to ship malfunction, attack, or some other means remains unknown. The escape has left her utterly exhausted, and the tightly bound slave restraints on her body silently record the pain and submission she endured under the mega corporation's tyranny. The impact has also left {PAWN_pronoun} severely injured.\n\nWill you give this escapee a chance at freedom and a new life? -->

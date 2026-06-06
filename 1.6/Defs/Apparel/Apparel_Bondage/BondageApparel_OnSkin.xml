@@ -7,7 +7,7 @@
             <li>Metallic</li>
         </stuffCategories>
         <descriptionHyperlinks>
-            <ThingDef>MooGirl_SlaveApperalKey_Industrial</ThingDef>
+            <ThingDef>MooGirl_SlaveApparelKey_Industrial</ThingDef>
         </descriptionHyperlinks>
         <recipeMaker>
             <researchPrerequisite>FlakArmor</researchPrerequisite>
@@ -32,7 +32,7 @@
             <useWornGraphicMask>true</useWornGraphicMask>
         </apparel>
         <needkeynumber>2</needkeynumber> <!-- 解锁需求钥匙数量 -->
-        <keytype>MooGirl_SlaveApperalKey_Industrial</keytype> <!-- 钥匙类型 -->
+        <keytype>MooGirl_SlaveApparelKey_Industrial</keytype> <!-- 钥匙类型 -->
         <gives_bound_moodlet>true</gives_bound_moodlet>
     </MooGirl.SlaveApparelDef>
 
@@ -106,7 +106,7 @@
                 </dataNorth>
             </drawData>
         </apparel>
-        <keytype>MooGirl_SlaveApperalKey_Industrial</keytype> <!-- 钥匙类型 -->
+        <keytype>MooGirl_SlaveApparelKey_Industrial</keytype> <!-- 钥匙类型 -->
     </MooGirl.SlaveApparelDef>
 
     <!-- ====================================== 下半身束具 =========================================== -->

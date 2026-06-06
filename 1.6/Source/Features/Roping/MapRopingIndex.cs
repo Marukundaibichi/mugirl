@@ -113,6 +113,18 @@ namespace MooGirl
             }
         }
 
+        public void RemovePawnAsRopee(Pawn pawn)
+        {
+            if (pawn == null)
+            {
+                return;
+            }
+
+            pendingSpotRope.Remove(pawn);
+            ropedToSpot.Remove(pawn);
+            RemoveRopeeLink(pawn);
+        }
+
         public List<Pawn> RopeesFor(Pawn roper)
         {
             if (roper == null)

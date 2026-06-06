@@ -2,7 +2,7 @@
 <Defs>
 
     <StyleItemCategoryDef>
-    <defName>MooGirl_Hai</defName>
+    <defName>MooGirl_Hair</defName>
     <!-- 雪牛娘的发型 -->
     <label>Moogirl Hair</label>
     </StyleItemCategoryDef>
@@ -12,10 +12,10 @@
         <!-- 雪牛娘 短发 -->
         <label>Mugirl Short Hair</label>
         <hairGender>Female</hairGender>
-        <category>MooGirl_Hai</category>
+        <category>MooGirl_Hair</category>
         <texPath>MooGirl/Hair/MooGirl_Base</texPath>
         <styleTags>
-            <li>MooGirl_Hai</li>
+            <li>MooGirl_Hair</li>
         </styleTags>
     </HairDef>
 
@@ -24,10 +24,10 @@
         <!-- 雪牛娘 高马尾 -->
         <label>Mugirl High Ponytail</label>
         <hairGender>Female</hairGender>
-        <category>MooGirl_Hai</category>
+        <category>MooGirl_Hair</category>
         <texPath>MooGirl/Hair/MooGirl_Hightail</texPath>
         <styleTags>
-            <li>MooGirl_Hai</li>
+            <li>MooGirl_Hair</li>
         </styleTags>
     </HairDef>
 
@@ -36,10 +36,10 @@
         <!-- 雪牛娘 遮眼发 -->
         <label>Mugirl Eye Covering Hair</label>
         <hairGender>Female</hairGender>
-        <category>MooGirl_Hai</category>
+        <category>MooGirl_Hair</category>
         <texPath>MooGirl/Hair/MooGirl_SheSmiledAndIHard</texPath>
         <styleTags>
-            <li>MooGirl_Hai</li>
+            <li>MooGirl_Hair</li>
         </styleTags>
     </HairDef>
 
@@ -48,10 +48,10 @@
         <!-- 雪牛娘 披肩发 -->
         <label>Mugirl Shoulder-length Hair</label>
         <hairGender>Female</hairGender>
-        <category>MooGirl_Hai</category>
+        <category>MooGirl_Hair</category>
         <texPath>MooGirl/Hair/MooGirl_SeeHerLikerSeePussy</texPath>
         <styleTags>
-            <li>MooGirl_Hai</li>
+            <li>MooGirl_Hair</li>
         </styleTags>
     </HairDef>
 
@@ -60,10 +60,10 @@
         <!-- 雪牛娘 丧女发型 6 -->
         <label>Mugirl Gloom Hair 6</label>
         <hairGender>Female</hairGender>
-        <category>MooGirl_Hai</category>
+        <category>MooGirl_Hair</category>
         <texPath>MooGirl/Hair/MooGirl_GloomHair6</texPath>
         <styleTags>
-            <li>MooGirl_Hai</li>
+            <li>MooGirl_Hair</li>
         </styleTags>
     </HairDef>
 
@@ -72,10 +72,10 @@
         <!-- 雪牛娘 丧女发型 7 -->
         <label>Mugirl Gloom Hair 7</label>
         <hairGender>Female</hairGender>
-        <category>MooGirl_Hai</category>
+        <category>MooGirl_Hair</category>
         <texPath>MooGirl/Hair/MooGirl_GloomHair7</texPath>
         <styleTags>
-            <li>MooGirl_Hai</li>
+            <li>MooGirl_Hair</li>
         </styleTags>
     </HairDef>
 

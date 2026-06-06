@@ -76,7 +76,7 @@ namespace MooGirl
         public static RecipeDef MooGirl_MakeMilkCreamApple;
 
         // 快递事件战利品使用既有钥匙 Def，不改 defName 以保护数值与掉落配置。
-        public static ThingDef MooGirl_SlaveApperalKey_Medieval;
-        public static ThingDef MooGirl_SlaveApperalKey_Industrial;
+        public static ThingDef MooGirl_SlaveApparelKey_Medieval;
+        public static ThingDef MooGirl_SlaveApparelKey_Industrial;
     }
 }

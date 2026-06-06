@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <Defs>
-    <ThingDef Name="MooGirl_Base_SlaveApperalKey" Abstract="True">
+    <ThingDef Name="MooGirl_Base_SlaveApparelKey" Abstract="True">
         <thingClass>ThingWithComps</thingClass>
         <category>Item</category>
         <thingCategories>
@@ -23,10 +23,10 @@
         <generateCommonality>0.0</generateCommonality>
         <comps>
             <li Class="CompProperties_Forbiddable" />
-            <li Class="MooGirl.CompProperties_SlaveApperalKey" />
+            <li Class="MooGirl.CompProperties_SlaveApparelKey" />
             <li Class="CompProperties_Usable">
                 <compClass>MooGirl.CompStampedApparelKey</compClass>
-                <useJob>UnlockSlaveApperal</useJob>
+                <useJob>UnlockSlaveApparel</useJob>
                 <!-- 解锁束具 -->
                 <useLabel>Unlock Restraint</useLabel>
             </li>
@@ -37,8 +37,8 @@
         <pathCost>1</pathCost>
     </ThingDef>
 
-    <ThingDef ParentName="MooGirl_Base_SlaveApperalKey">
-        <defName>MooGirl_SlaveApperalKey_Medieval</defName>
+    <ThingDef ParentName="MooGirl_Base_SlaveApparelKey">
+        <defName>MooGirl_SlaveApparelKey_Medieval</defName>
         <!-- 粗糙束具钥匙 -->
         <label>Rough Restraint Key</label>
         <!-- 用于解锁雪牛娘束具的钥匙，加工较粗糙，只能用来解锁较低级的束具。 -->
@@ -52,13 +52,13 @@
             <Mass>0.1</Mass>
         </statBases>
         <graphicData>
-            <texPath>Things/Item/Keys/SlaveApperalKey_Medieval</texPath>
+            <texPath>Things/Item/Keys/SlaveApparelKey_Medieval</texPath>
         </graphicData>
         <techLevel>Medieval</techLevel>
     </ThingDef>
 
-    <ThingDef ParentName="MooGirl_Base_SlaveApperalKey">
-        <defName>MooGirl_SlaveApperalKey_Industrial</defName>
+    <ThingDef ParentName="MooGirl_Base_SlaveApparelKey">
+        <defName>MooGirl_SlaveApparelKey_Industrial</defName>
         <!-- 精致束具钥匙 -->
         <label>Exquisite Restraint Key</label>
         <!-- 用于解锁雪牛娘束具的钥匙，加工精致，用来解锁奴隶袜、奴隶手套等拥有较复杂锁具的束具。 -->
@@ -72,13 +72,13 @@
             <Mass>0.1</Mass>
         </statBases>
         <graphicData>
-            <texPath>Things/Item/Keys/SlaveApperalKey_Industrial</texPath>
+            <texPath>Things/Item/Keys/SlaveApparelKey_Industrial</texPath>
         </graphicData>
         <techLevel>Industrial</techLevel>
     </ThingDef>
 
-    <ThingDef ParentName="MooGirl_Base_SlaveApperalKey">
-        <defName>MooGirl_SlaveApperalKey_Spacer</defName>
+    <ThingDef ParentName="MooGirl_Base_SlaveApparelKey">
+        <defName>MooGirl_SlaveApparelKey_Spacer</defName>
         <!-- 高科技束具钥匙 -->
         <label>Spacer Restraint Key</label>
         <!-- 用于解锁雪牛娘束具的钥匙，内含太空科技密钥，用来解锁磁力镣铐、电击项圈、和洗脑头盔等太空科技级别的束具。 -->
@@ -92,21 +92,21 @@
             <Mass>0.1</Mass>
         </statBases>
         <graphicData>
-            <texPath>Things/Item/Keys/SlaveApperalKey_Spacer</texPath>
+            <texPath>Things/Item/Keys/SlaveApparelKey_Spacer</texPath>
         </graphicData>
         <techLevel>Spacer</techLevel>
     </ThingDef>
 
 
     <ThingDef>
-        <defName>MooGirl_SlaveApperalKey_Advance</defName>
+        <defName>MooGirl_SlaveApparelKey_Advance</defName>
         <!-- 束具破解器 -->
         <label>Restraint Decryptor</label>
         <!-- 用于破解雪牛娘太空束具的破解器，被破解后的束具可以为己方所用。 -->
         <description>A device for decrypting Mugirl's space restraints. Once decrypted, the restraints may be utilised by one's own forces.</description>
         <thingClass>ThingWithComps</thingClass>
         <graphicData>
-            <texPath>Things/Item/Keys/SlaveApperalKey_Advance</texPath>
+            <texPath>Things/Item/Keys/SlaveApparelKey_Advance</texPath>
             <graphicClass>Graphic_Single</graphicClass> <!-- 图形渲染类型为单一图片 -->
         </graphicData>
         <category>Item</category>

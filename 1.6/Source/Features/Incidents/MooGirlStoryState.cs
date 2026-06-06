@@ -22,18 +22,21 @@ namespace MooGirl
         public override void FinalizeInit()
         {
             base.FinalizeInit();
+            ResetTransientRuntimeState();
             NormalizeJuvenileGraphics();
         }
 
         public override void StartedNewGame()
         {
             base.StartedNewGame();
+            ResetTransientRuntimeState();
             NormalizeJuvenileGraphics();
         }
 
         public override void LoadedGame()
         {
             base.LoadedGame();
+            ResetTransientRuntimeState();
             NormalizeJuvenileGraphics();
         }
 
@@ -50,6 +53,12 @@ namespace MooGirl
             {
                 MooGirlLog.Message("MooGirl.Newborn.Log.CorrectedBodyTypes".Translate(changed).ToString());
             }
+        }
+
+        private static void ResetTransientRuntimeState()
+        {
+            MooGirlMilkingAnimation.ResetTransientState();
+            MountedCombatController.ResetTransientState();
         }
 
         public override void ExposeData()

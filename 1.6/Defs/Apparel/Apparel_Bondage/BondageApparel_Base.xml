@@ -29,7 +29,7 @@
             <li Class="MooGirl.CompProperties_DevUnlockSlaveApparel" />
             <li Class="MooGirl.CompProperties_AdultContentControl" />
             <li Class="CompProperties_UseEffect"> <!-- 使用效果逻辑 -->
-                <compClass>MooGirl.CompGetSlaveApperalGear</compClass>
+                <compClass>MooGirl.CompGetSlaveApparelGear</compClass>
             </li>
             <li> <!-- 支持染色功能 -->
                 <compClass>CompColorable</compClass>

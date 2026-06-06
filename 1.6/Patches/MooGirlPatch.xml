@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-    <Operation Class="PatchOperationAdd">
+    <!-- Ideology is optional. 缺少 Ideology 时该 PreceptDef 不存在，必须静默跳过。 -->
+    <Operation Class="PatchOperationConditional">
         <xpath>/Defs/PreceptDef[defName="NutrientPasteEating_Disgusting"]/comps</xpath>
-        <value>
-            <li Class="PreceptComp_SelfTookMemoryThought">
-                <eventDef>AteNutrientPaste</eventDef>
-                <thought>MooGirl_AteNutrient</thought>
-            </li>
-        </value>
+        <match Class="PatchOperationAdd">
+            <xpath>/Defs/PreceptDef[defName="NutrientPasteEating_Disgusting"]/comps</xpath>
+            <value>
+                <li Class="PreceptComp_SelfTookMemoryThought">
+                    <eventDef>AteNutrientPaste</eventDef>
+                    <thought>MooGirl_AteNutrient</thought>
+                </li>
+            </value>
+        </match>
     </Operation>
 
     <Operation Class="PatchOperationAdd">
@@ -23,43 +27,46 @@
             <li Class="CompProperties_Usable">
                 <compClass>MooGirl.CompRopeToBuild</compClass>
                 <useJob>RopeToBuild</useJob>
-                <!-- 栓在建筑上 -->
+                <!-- Rope to building. 栓在建筑上。 -->
                 <useLabel>Rope to Building</useLabel>
             </li>
         </value>
     </Operation>
 
-    <!-- 奴隶船 -->
+    <!-- Slave orbital trader. 奴隶船。 -->
     <Operation Class="PatchOperationAdd">
         <xpath>Defs/TraderKindDef[defName="Orbital_PirateMerchant"]/stockGenerators</xpath>
         <value>
             <li Class="StockGenerator_MooGirl_Slaves">
-                <slaveCountRange>0~6</slaveCountRange> <!-- 生成奴隶的数量范围 -->
+                <!-- Slave count range. 生成奴隶的数量范围。 -->
+                <slaveCountRange>0~6</slaveCountRange>
             </li>
         </value>
     </Operation>
 
-    <!-- 海盗大篷车 -->
+    <!-- Pirate caravan. 海盗大篷车。 -->
     <Operation Class="PatchOperationAdd">
         <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_PirateMerchant"]/stockGenerators</xpath>
         <value>
             <li Class="StockGenerator_MooGirl_Slaves">
-                <slaveCountRange>0~2</slaveCountRange> <!-- 生成奴隶的数量范围 -->
+                <!-- Slave count range. 生成奴隶的数量范围。 -->
+                <slaveCountRange>0~2</slaveCountRange>
             </li>
         </value>
     </Operation>
 
-    <!-- 其他派系基地 -->
+    <!-- Other faction bases. 其他派系基地。 -->
     <Operation Class="PatchOperationAdd">
         <xpath>Defs/TraderKindDef[defName="Base_Outlander_Standard"]/stockGenerators</xpath>
         <value>
             <li Class="StockGenerator_MooGirl_Slaves">
-                <slaveCountRange>0~2</slaveCountRange> <!-- 生成奴隶的数量范围 -->
+                <!-- Slave count range. 生成奴隶的数量范围。 -->
+                <slaveCountRange>0~2</slaveCountRange>
             </li>
         </value>
     </Operation>
 
-    <!-- 熔炼束具 -->
+    <!-- Smelt restraints. 熔炼束具。 -->
     <Operation Class="PatchOperationAdd">
         <xpath>Defs/ThingDef[defName="ElectricSmelter"]/recipes</xpath>
         <value>

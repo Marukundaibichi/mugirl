@@ -359,7 +359,7 @@
                 <thoughtDef>MooGirl_BrainwashHappy</thoughtDef>
             </li>
             <li Class="HediffCompProperties_DisappearsOnDeath" />
-            <li Class="MooGirl.CompProperties_DisappearsAndAddHeiffs">
+            <li Class="MooGirl.CompProperties_DisappearsAndAddHediffs">
                 <disappearsAfterTicks>5000</disappearsAfterTicks>
                 <showRemainingTime>true</showRemainingTime>
                 <hediffToAddOnDisappear>MooGirl_BrainWashing_Level2</hediffToAddOnDisappear>
@@ -543,7 +543,7 @@
                 <thoughtDef>MooGirl_BrainwashHappy</thoughtDef>
             </li>
             <li Class="HediffCompProperties_DisappearsOnDeath" />
-            <li Class="MooGirl.CompProperties_DisappearsAndAddHeiffs">
+            <li Class="MooGirl.CompProperties_DisappearsAndAddHediffs">
                 <disappearsAfterTicks>5000</disappearsAfterTicks>
                 <showRemainingTime>true</showRemainingTime>
                 <hediffToAddOnDisappear>MooGirl_BrainWashing_Level4</hediffToAddOnDisappear>
@@ -735,7 +735,7 @@
                 <makeSlave>true</makeSlave>
             </li>
             <li Class="HediffCompProperties_DisappearsOnDeath" />
-            <li Class="MooGirl.CompProperties_DisappearsAndAddHeiffs">
+            <li Class="MooGirl.CompProperties_DisappearsAndAddHediffs">
                 <disappearsAfterTicks>5000</disappearsAfterTicks>
                 <showRemainingTime>true</showRemainingTime>
                 <hediffToAddOnDisappear>MooGirl_BrainWashing_Level2</hediffToAddOnDisappear>

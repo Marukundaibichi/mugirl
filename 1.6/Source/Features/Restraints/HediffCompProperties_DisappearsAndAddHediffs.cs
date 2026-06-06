@@ -1,22 +1,22 @@
-﻿using Verse;
+using Verse;
 
 namespace MooGirl
 {
     // 新的 HediffComp 属性类，继承消失组件的属性类（可复用）
-    public class CompProperties_DisappearsAndAddHeiffs : HediffCompProperties_Disappears
+    public class CompProperties_DisappearsAndAddHediffs : HediffCompProperties_Disappears
     {
         public HediffDef hediffToAddOnDisappear; // 消失时添加的新Hediff
 
-        public CompProperties_DisappearsAndAddHeiffs()
+        public CompProperties_DisappearsAndAddHediffs()
         {
-            compClass = typeof(HediffComp__DisappearsAndAddHeiffs);
+            compClass = typeof(HediffComp_DisappearsAndAddHediffs);
         }
     }
 
     // 继承自 HediffComp_Disappears，增加消失时添加新 Hediff 的功能
-    public class HediffComp__DisappearsAndAddHeiffs : HediffComp_Disappears
+    public class HediffComp_DisappearsAndAddHediffs : HediffComp_Disappears
     {
-        public new CompProperties_DisappearsAndAddHeiffs Props => (CompProperties_DisappearsAndAddHeiffs)props;
+        public new CompProperties_DisappearsAndAddHediffs Props => (CompProperties_DisappearsAndAddHediffs)props;
 
         // 重写消失后调用函数
         public override void CompPostPostRemoved()

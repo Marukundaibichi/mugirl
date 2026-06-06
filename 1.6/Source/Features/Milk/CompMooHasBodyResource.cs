@@ -68,17 +68,6 @@ namespace MooGirl
                 return;
             }
 
-            // 尝试将父对象转换为Pawn类型
-            Pawn pawn = parent as Pawn;
-            if (pawn != null)
-            {
-                // 根据角色拥有的乳房相关Hediff（健康状态）设置资源增长速度系数
-                if (MooGirlBreastProfileUtility.TryGetProductionDays(pawn, out float productionDays))
-                {
-                    BreastSizeDays = productionDays;
-                }
-            }
-
             int currentTick = Find.TickManager.TicksGame;
             int updateInterval = Mathf.Max(1, ResourceUpdateIntervalTicks);
             if (lastResourceUpdateTick < 0)
@@ -95,6 +84,8 @@ namespace MooGirl
 
             lastResourceUpdateTick = currentTick;
 
+            // 乳房 profile 查询会访问 hediffSet，只在资源更新窗口内执行，避免每 tick 做无意义热路径查询。
+            Pawn pawn = parent as Pawn;
             float intervalTicks = Mathf.Max(1f, GatherResourcesIntervalDays * 60000f);
             float targetFullnessGain = Mathf.Max(0f, ResourceAmount) / 100f;
             float multiplier = pawn != null ? Mathf.Max(0f, GetProductionMultiplier(pawn)) : 1f;
@@ -282,18 +273,7 @@ namespace MooGirl
             return 1f;
         }
 
-        // 提取乳房大小判断逻辑为独立方法
-        private void UpdateBreastSize(Pawn pawn)
-        {
-            if (MooGirlBreastProfileUtility.TryGetYieldMultiplier(pawn, out float yieldMultiplier))
-            {
-                BreastSize = yieldMultiplier;
-            }
-        }
-
         // 保护字段：乳房产量系数（影响收集数量）
         protected float BreastSize = 1f;
-        // 保护字段：乳房生长速度系数（影响饱满度增长速度）
-        protected float BreastSizeDays = 1f;
     }
 }

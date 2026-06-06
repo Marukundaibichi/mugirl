@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Defs>
     <ThingCategoryDef>
         <defName>MooGirl_Apparel</defName>
@@ -29,7 +29,7 @@
     </ThingCategoryDef>
 
     <ThingCategoryDef>
-        <defName>MooGirl_SlaveApperal</defName>
+        <defName>MooGirl_SlaveApparel</defName>
         <!-- 雪牛娘丝袜 -->
         <label>Mugirl Slave Apparel</label>
         <parent>MooGirl_Apparel</parent>

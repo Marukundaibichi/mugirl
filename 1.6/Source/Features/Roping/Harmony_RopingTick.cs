@@ -12,16 +12,16 @@ namespace MooGirl
     {
         // 反射字段只缓存一次，所有绳索 tracker patch 共用。
         private static readonly FieldInfo pawnField = AccessTools.Field(typeof(Pawn_RopeTracker), "pawn");
+        private static readonly MethodInfo breakRopeWithRoperMethod =
+            AccessTools.Method(typeof(Pawn_RopeTracker), "BreakRopeWithRoper");
 
         internal static Pawn PawnFor(Pawn_RopeTracker tracker)
         {
             return tracker == null ? null : (Pawn)pawnField.GetValue(tracker);
         }
 
-        private static void EndRopingJobs(Pawn owner, List<Pawn> ropees)
+        private static void EndCustomFollowJobs(Pawn owner, List<Pawn> ropees)
         {
-            owner?.jobs?.EndCurrentJob(JobCondition.InterruptForced);
-
             if (ropees == null)
             {
                 return;
@@ -29,7 +29,13 @@ namespace MooGirl
 
             for (int i = 0; i < ropees.Count; i++)
             {
-                ropees[i]?.jobs?.EndCurrentJob(JobCondition.InterruptForced);
+                Pawn ropee = ropees[i];
+                if (RopingService.IsMooGirlRopee(ropee) &&
+                    RopingService.IsFollowingRoper(ropee) &&
+                    ropee.CurJob.targetA.Thing == owner)
+                {
+                    ropee.jobs.EndCurrentJob(JobCondition.InterruptForced);
+                }
             }
         }
 
@@ -40,7 +46,36 @@ namespace MooGirl
 
             tracker.BreakAllRopes();
             RopingService.NotifyBreakAllRopes(owner);
-            EndRopingJobs(owner, ropees);
+            EndCustomFollowJobs(owner, ropees);
+        }
+
+        private static void BreakRopeWithRoper(Pawn_RopeTracker tracker)
+        {
+            if (breakRopeWithRoperMethod == null)
+            {
+                MooGirlLog.WarningOnce(
+                    "RopingTick.BreakRopeWithRoperMissing",
+                    "MooGirl.RopingTick.BreakRopeWithRoperMissing".Translate().ToString());
+                tracker.BreakAllRopes();
+                return;
+            }
+
+            breakRopeWithRoperMethod.Invoke(tracker, null);
+        }
+
+        private static bool ShouldBreakAllRopes(Pawn pawn, Pawn_RopeTracker tracker)
+        {
+            return pawn.Dead ||
+                pawn.Downed ||
+                pawn.Drafted ||
+                (!pawn.Awake() && tracker.IsRopedByPawn) ||
+                ShouldDropRopesDueToMentalState(pawn) ||
+                pawn.IsBurning();
+        }
+
+        private static bool ShouldDropRopesDueToMentalState(Pawn pawn)
+        {
+            return pawn.InMentalState && pawn.MentalStateDef != MentalStateDefOf.Roaming;
         }
 
         public static bool Prefix(Pawn_RopeTracker __instance)
@@ -51,68 +86,33 @@ namespace MooGirl
                 return true;
             }
 
-            if (!RopingService.AnyMooGirlRopee(__instance))
+            if (!RopingService.HasOnlyMooGirlRopees(__instance))
             {
                 return true;
             }
 
             RopingService.RefreshRoperFromTracker(pawn);
 
-            // 牵引者异常的检查间隔沿用旧逻辑。
-            if (Find.TickManager.TicksGame % 10 == 0)
+            // 这是本 patch 唯一替代原版 RopingTick 的场景：牵引者只牵着雪牛娘时，
+            // 自定义跟随允许牵引者继续普通工作，因此不能沿用原版 IsStillDoingRopingJob
+            // 断绳检查。混合牵引普通 pawn 时交回原版，避免自定义行为外溢。
+            if (ShouldBreakAllRopes(pawn, __instance))
             {
-                if (pawn.Dead || pawn.Downed || pawn.IsBurning() ||
-                    (pawn.InMentalState && pawn.MentalStateDef != MentalStateDefOf.Roaming))
-                {
-                    ForceUnrope(__instance);
-                    return false;
-                }
+                ForceUnrope(__instance);
+                return false;
             }
 
-            List<Pawn> ropees = __instance.Ropees;
-            if (ropees != null)
+            if (__instance.RopedTo.IsValid &&
+                !pawn.CanReach(__instance.RopedTo, PathEndMode.Touch, Danger.Deadly))
             {
-                for (int i = 0; i < ropees.Count; i++)
-                {
-                    Pawn follower = ropees[i];
-                    if (!RopingService.IsMooGirlRopee(follower) || !RopingService.IsFollowingRoper(follower))
-                    {
-                        continue;
-                    }
-
-                    if (follower.CurJob.targetA.Thing != pawn)
-                    {
-                        continue;
-                    }
-
-                    if (pawn.Dead || pawn.Downed || !pawn.Awake() || pawn.IsBurning() ||
-                        (pawn.InMentalState && pawn.MentalStateDef != MentalStateDefOf.Roaming))
-                    {
-                        ForceUnrope(__instance);
-                        follower.jobs?.EndCurrentJob(JobCondition.InterruptForced);
-                        pawn.jobs?.EndCurrentJob(JobCondition.InterruptForced);
-                        return false;
-                    }
-                }
-            }
-
-            // 距离检查间隔沿用旧逻辑。
-            if (Find.TickManager.TicksGame % 30 == 0)
-            {
-                if (__instance.RopedTo.IsValid &&
-                    !pawn.CanReach(__instance.RopedTo, PathEndMode.Touch, Danger.Deadly))
-                {
-                    ForceUnrope(__instance);
-                    return false;
-                }
+                BreakRopeWithRoper(__instance);
+                RopingService.NotifyPawnNoLongerRopedToTarget(pawn);
             }
 
             if (__instance.IsRopedToHitchingPost && !__instance.RopedToHitchingSpot.Spawned)
             {
                 __instance.UnropeFromSpot();
-                RopingService.NotifyBreakAllRopes(pawn);
-                EndRopingJobs(pawn, ropees);
-                return false;
+                RopingService.NotifyPawnNoLongerRopedToTarget(pawn);
             }
 
             return false;
@@ -149,13 +149,23 @@ namespace MooGirl
         }
     }
 
+    [HarmonyPatch(typeof(Pawn_RopeTracker), nameof(Pawn_RopeTracker.DropRope))]
+    public static class Patch_RopeTracker_DropRope
+    {
+        [HarmonyPostfix]
+        public static void Postfix(Pawn ropee)
+        {
+            RopingService.NotifyPawnNoLongerRopedToTarget(ropee);
+        }
+    }
+
     [HarmonyPatch(typeof(Pawn_RopeTracker), nameof(Pawn_RopeTracker.UnropeFromSpot))]
     public static class Patch_RopeTracker_UnropeFromSpot
     {
         [HarmonyPostfix]
         public static void Postfix(Pawn_RopeTracker __instance)
         {
-            RopingService.NotifyBreakAllRopes(Patch_RopingTick.PawnFor(__instance));
+            RopingService.NotifyPawnNoLongerRopedToTarget(Patch_RopingTick.PawnFor(__instance));
         }
     }
 }

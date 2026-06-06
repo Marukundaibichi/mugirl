@@ -5,7 +5,7 @@
         ParentName="MooGirl_SlaveApparel_Base" Abstract="True">
         <thingClass>MooGirl.AdvancedSlaveApparel</thingClass>
         <descriptionHyperlinks>
-            <ThingDef>MooGirl_SlaveApperalKey_Spacer</ThingDef>
+            <ThingDef>MooGirl_SlaveApparelKey_Spacer</ThingDef>
         </descriptionHyperlinks>
         <apparel>
             <tags>
@@ -13,7 +13,7 @@
             </tags>
         </apparel>
         <needkeynumber>1</needkeynumber>
-        <keytype>MooGirl_SlaveApperalKey_Spacer</keytype>
+        <keytype>MooGirl_SlaveApparelKey_Spacer</keytype>
     </MooGirl.SlaveApparelDef>
 
     <!-- ====================================== 磁力镣铐  =========================================== -->

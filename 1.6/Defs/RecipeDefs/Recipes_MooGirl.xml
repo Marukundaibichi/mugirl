@@ -48,7 +48,7 @@
             </thingDefs>
         </fixedIngredientFilter>
         <products>
-            <MooGirl_SlaveApperalKey_Medieval>1</MooGirl_SlaveApperalKey_Medieval>
+            <MooGirl_SlaveApparelKey_Medieval>1</MooGirl_SlaveApparelKey_Medieval>
         </products>
         <skillRequirements>
             <Crafting>6</Crafting>
@@ -101,7 +101,7 @@
             </thingDefs>
         </fixedIngredientFilter>
         <products>
-            <MooGirl_SlaveApperalKey_Industrial>1</MooGirl_SlaveApperalKey_Industrial>
+            <MooGirl_SlaveApparelKey_Industrial>1</MooGirl_SlaveApparelKey_Industrial>
         </products>
         <skillRequirements>
             <Crafting>8</Crafting>
@@ -154,7 +154,7 @@
             </thingDefs>
         </fixedIngredientFilter>
         <products>
-            <MooGirl_SlaveApperalKey_Spacer>1</MooGirl_SlaveApperalKey_Spacer>
+            <MooGirl_SlaveApparelKey_Spacer>1</MooGirl_SlaveApparelKey_Spacer>
         </products>
         <skillRequirements>
             <Crafting>10</Crafting>
@@ -207,7 +207,7 @@
             </thingDefs>
         </fixedIngredientFilter>
         <products>
-            <MooGirl_SlaveApperalKey_Advance>1</MooGirl_SlaveApperalKey_Advance>
+            <MooGirl_SlaveApparelKey_Advance>1</MooGirl_SlaveApparelKey_Advance>
         </products>
         <skillRequirements>
             <Crafting>14</Crafting>

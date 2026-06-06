@@ -18,15 +18,15 @@
     </JobDef>
 
     <JobDef>
-        <defName>GiveSlaveApperalGear</defName>
+        <defName>GiveSlaveApparelGear</defName>
         <driverClass>MooGirl.JobDriver_UseItemOn</driverClass>
         <!-- 穿上 -->
         <reportString>Put on Restraints</reportString>
     </JobDef>
 
     <JobDef>
-        <defName>UnlockSlaveApperal</defName>
-        <driverClass>MooGirl.JobDriver_UnlockSlaveApperalGear</driverClass>
+        <defName>UnlockSlaveApparel</defName>
+        <driverClass>MooGirl.JobDriver_UnlockSlaveApparelGear</driverClass>
         <!-- 解锁 -->
         <reportString>Unlock Restraints</reportString>
     </JobDef>

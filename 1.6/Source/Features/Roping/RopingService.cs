@@ -82,6 +82,15 @@ namespace MooGirl
             }
         }
 
+        public static void NotifyPawnNoLongerRopedToTarget(Pawn pawn)
+        {
+            MapRopingIndex index = IndexFor(pawn);
+            if (index != null)
+            {
+                index.RemovePawnAsRopee(pawn);
+            }
+        }
+
         public static void BreakAllRopesAndNotify(Pawn pawn)
         {
             if (pawn == null)
@@ -164,9 +173,9 @@ namespace MooGirl
             return count;
         }
 
-        public static bool AnyMooGirlRopee(Pawn_RopeTracker tracker)
+        public static bool HasOnlyMooGirlRopees(Pawn_RopeTracker tracker)
         {
-            if (tracker == null || tracker.Ropees == null)
+            if (tracker == null || tracker.Ropees == null || tracker.Ropees.Count == 0)
             {
                 return false;
             }
@@ -174,13 +183,13 @@ namespace MooGirl
             List<Pawn> ropees = tracker.Ropees;
             for (int i = 0; i < ropees.Count; i++)
             {
-                if (IsMooGirlRopee(ropees[i]))
+                if (!IsMooGirlRopee(ropees[i]))
                 {
-                    return true;
+                    return false;
                 }
             }
 
-            return false;
+            return true;
         }
 
         public static void RefreshRoperFromTracker(Pawn roper)

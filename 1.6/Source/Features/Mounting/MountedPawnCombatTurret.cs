@@ -12,6 +12,25 @@ namespace MooGirl
         private static readonly Dictionary<Verb, Thing> OriginalCasters = new Dictionary<Verb, Thing>();
         private static readonly Dictionary<Verb, float> WarmupTimeOverrides = new Dictionary<Verb, float>();
 
+        public static void ResetTransientState()
+        {
+            foreach (KeyValuePair<Verb, Thing> entry in OriginalCasters)
+            {
+                Verb verb = entry.Key;
+                if (verb != null)
+                {
+                    verb.Reset();
+                    if (entry.Value != null)
+                    {
+                        verb.caster = entry.Value;
+                    }
+                }
+            }
+
+            OriginalCasters.Clear();
+            WarmupTimeOverrides.Clear();
+        }
+
         public static void NotifyMounted(Comp_MooGirlMount comp)
         {
             Verb verb = GetPrimaryRangedVerb(comp);
@@ -45,6 +64,21 @@ namespace MooGirl
                 comp.turretBurstCooldownTicksLeft = 0;
                 ClearAim(comp);
                 comp.turretLastAttackedTarget = LocalTargetInfo.Invalid;
+            }
+        }
+
+        public static void NotifyEquipmentRemoved(ThingWithComps equipment)
+        {
+            CompEquippable comp = equipment?.GetComp<CompEquippable>();
+            List<Verb> verbs = comp?.AllVerbs;
+            if (verbs == null)
+            {
+                return;
+            }
+
+            for (int i = 0; i < verbs.Count; i++)
+            {
+                ForgetVerb(verbs[i]);
             }
         }
 
@@ -541,7 +575,7 @@ namespace MooGirl
                     {
                         verb.Reset();
                         verb.caster = originalCaster ?? rider;
-                        OriginalCasters.Remove(verb);
+                        ForgetVerb(verb, removeWarmupOverride: true, resetVerb: false);
                     }
                     else if (verb.caster != rider)
                     {
@@ -549,6 +583,34 @@ namespace MooGirl
                         verb.caster = rider;
                     }
                 }
+            }
+        }
+
+        private static void ForgetVerb(Verb verb, bool removeWarmupOverride = true, bool resetVerb = true)
+        {
+            if (verb == null)
+            {
+                return;
+            }
+
+            if (OriginalCasters.TryGetValue(verb, out Thing originalCaster))
+            {
+                if (resetVerb)
+                {
+                    verb.Reset();
+                }
+
+                if (originalCaster != null)
+                {
+                    verb.caster = originalCaster;
+                }
+
+                OriginalCasters.Remove(verb);
+            }
+
+            if (removeWarmupOverride)
+            {
+                WarmupTimeOverrides.Remove(verb);
             }
         }
 
@@ -637,6 +699,15 @@ namespace MooGirl
         public static bool Prefix(Stance_Warmup __instance)
         {
             return !MountedCombatController.IsMountedVerb(__instance?.verb);
+        }
+    }
+
+    [HarmonyPatch(typeof(Pawn_EquipmentTracker), nameof(Pawn_EquipmentTracker.Notify_EquipmentRemoved))]
+    public static class Harmony_MountedCombatController_EquipmentRemoved
+    {
+        public static void Prefix(ThingWithComps eq)
+        {
+            MountedCombatController.NotifyEquipmentRemoved(eq);
         }
     }
 }

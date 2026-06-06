@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
     <MooGirl_NameUtility.rulePack.rulesStrings>[MooGirl_Rev_Last] [MooGirl_Rev_First_Female]</MooGirl_NameUtility.rulePack.rulesStrings>
-    <MooGirl_Namers_Person.rulePack.rulesStrings>[MooGirl_Rev_Last] [MooGirl_Rev_First_Female]</MooGirl_Namers_Person.rulePack.rulesStrings>
+    <MooGirl_NamerPerson.rulePack.rulesStrings>[MooGirl_Rev_Last] [MooGirl_Rev_First_Female]</MooGirl_NamerPerson.rulePack.rulesStrings>
 </LanguageData>
