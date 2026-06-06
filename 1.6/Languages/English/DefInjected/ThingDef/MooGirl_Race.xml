@@ -10,10 +10,10 @@
   <!-- EN: right horn -->
   <MooGirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.2.conditions.1.bodyPartLabel>right horn</MooGirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.2.conditions.1.bodyPartLabel>
   <!-- EN: horn -->
-  <MooGirl.tools.horn.label>horn</MooGirl.tools.horn.label>
+  <MooGirl.tools.0.label>horn</MooGirl.tools.0.label>
   <!-- EN: left fist -->
-  <MooGirl.tools.left_fist.label>left fist</MooGirl.tools.left_fist.label>
+  <MooGirl.tools.1.label>left fist</MooGirl.tools.1.label>
   <!-- EN: right fist -->
-  <MooGirl.tools.right_fist.label>right fist</MooGirl.tools.right_fist.label>
+  <MooGirl.tools.2.label>right fist</MooGirl.tools.2.label>
   
 </LanguageData>

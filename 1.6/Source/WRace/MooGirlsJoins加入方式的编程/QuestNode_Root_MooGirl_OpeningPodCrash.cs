@@ -13,6 +13,7 @@ namespace MooGirl
     public class QuestNode_Root_MooGirl_OpeningPodCrash : QuestNode_Root_RefugeePodCrash
     {
         private const int MaxFactionlessGenerationAttempts = 20;
+        private const float OpeningPodPawnAgeYears = 18f;
 
         // 生成自定义逃生者角色
         public override Pawn GeneratePawn()
@@ -25,7 +26,7 @@ namespace MooGirl
                 MooGirl_DefOf.MooGirl_Beginning_Slave,  // 自定义角色定义
                 faction,                                // 所属派系
                 PawnGenerationContext.NonPlayer,        // 生成上下文
-                -1,                                     // 固定生物年龄（-1表示随机）
+                -1,                                     // 地图 tile（-1 表示无固定 tile）
                 forceGenerateNewPawn: true,             // 强制生成新角色
                 allowDead: false,                       // 不允许死亡
                 allowDowned: true,                      // 允许倒地状态
@@ -35,12 +36,15 @@ namespace MooGirl
                 allowGay: true,                         // 允许同性恋
                 allowPregnant: false,                   // 不允许怀孕
                 forceRecruitable: true,                 // 强制可招募
-                validatorPostGear: p => p.Faction == null,
+                validatorPostGear: IsValidOpeningPodPawn,
+                fixedBiologicalAge: OpeningPodPawnAgeYears,
+                fixedChronologicalAge: OpeningPodPawnAgeYears,
                 fixedGender: Gender.Female,             // 固定女性
                 developmentalStages: DevelopmentalStage.Adult // 成年阶段
             );
 
             Pawn pawn = GenerateFactionlessPawn(request);
+            ForceOpeningPodPawnAge(pawn);
             MooGirlRescueJoinUtility.PrepareRescueJoinPawn(pawn);
 
             MooGirl_IdeoUtility.AdoptPlayerPrimaryIdeo(pawn);
@@ -107,12 +111,31 @@ namespace MooGirl
             return pawn;
         }
 
+        private static bool IsValidOpeningPodPawn(Pawn pawn)
+        {
+            return pawn != null
+                && pawn.Faction == null
+                && !pawn.WorkTagIsDisabled(WorkTags.Violent);
+        }
+
+        private static void ForceOpeningPodPawnAge(Pawn pawn)
+        {
+            if (pawn?.ageTracker == null)
+            {
+                return;
+            }
+
+            long fixedAgeTicks = (long)(OpeningPodPawnAgeYears * GenDate.TicksPerYear);
+            pawn.ageTracker.AgeBiologicalTicks = fixedAgeTicks;
+            pawn.ageTracker.AgeChronologicalTicks = fixedAgeTicks;
+        }
+
         private Pawn GenerateFactionlessPawn(PawnGenerationRequest request)
         {
             for (int i = 0; i < MaxFactionlessGenerationAttempts; i++)
             {
                 Pawn pawn = PawnGenerator.GeneratePawn(request);
-                if (pawn != null && pawn.Faction == null)
+                if (IsValidOpeningPodPawn(pawn))
                 {
                     return pawn;
                 }

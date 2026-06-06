@@ -78,6 +78,15 @@ namespace MooGirl
 
         private static bool CheckAcceptRope(Pawn ropee, Pawn roper)
         {
+            if (ropee.RaceProps?.body == MooGirl_DefOf.MooGirlBody)
+            {
+                foreach (var comp in ropee.AllComps)
+                {
+                    comp.Notify_Arrested(true);
+                }
+                return true;
+            }
+
             // 1. 计算接受牵引概率（这里直接用 Arrest 公式，你也可以自定义）
             float acceptChance = ropee.GetAcceptArrestChance(roper); // 可复用原版公式
 

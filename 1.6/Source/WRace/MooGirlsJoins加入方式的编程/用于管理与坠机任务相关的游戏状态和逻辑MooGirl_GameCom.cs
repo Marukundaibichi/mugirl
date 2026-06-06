@@ -22,6 +22,24 @@ namespace MooGirl
 
         public MooGirl_GameComp(Game game) { }
 
+        public override void FinalizeInit()
+        {
+            base.FinalizeInit();
+            NormalizeJuvenileGraphics();
+        }
+
+        public override void StartedNewGame()
+        {
+            base.StartedNewGame();
+            NormalizeJuvenileGraphics();
+        }
+
+        public override void LoadedGame()
+        {
+            base.LoadedGame();
+            NormalizeJuvenileGraphics();
+        }
+
         public override void GameComponentTick()
         {
             base.GameComponentTick();
@@ -79,6 +97,15 @@ namespace MooGirl
             }
 
             TryRecoverLegacyCourierRaidQuest();
+        }
+
+        private static void NormalizeJuvenileGraphics()
+        {
+            int changed = MooGirlJuvenileGraphicUtility.NormalizeLoadedPawns();
+            if (changed > 0)
+            {
+                Log.Message("[MooGirl] Corrected juvenile MooGirl body types: " + changed + ".");
+            }
         }
 
         private void RunLegacySaveUpgradeOnce()

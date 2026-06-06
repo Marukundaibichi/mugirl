@@ -44,11 +44,15 @@ namespace MooGirl
             {
                 EnsureState(target, null, MooGirlMilkingVisualRole.SelfMilking, now);
             }
-            else
+            else if (CanAnimateHelper(doer))
             {
                 EnsureState(target, doer, MooGirlMilkingVisualRole.AssistedTarget, now);
                 EnsureState(doer, target, MooGirlMilkingVisualRole.Helper, now);
                 FaceEachOther(doer, target);
+            }
+            else
+            {
+                EnsureState(target, null, MooGirlMilkingVisualRole.SelfMilking, now);
             }
         }
 
@@ -70,7 +74,7 @@ namespace MooGirl
                     state.nextPulseTick = now + Rand.RangeInclusive(65, 120);
                 }
             }
-            else
+            else if (CanAnimateHelper(doer))
             {
                 FaceEachOther(doer, target);
                 MilkingVisualState targetState = EnsureState(target, doer, MooGirlMilkingVisualRole.AssistedTarget, now);
@@ -87,6 +91,16 @@ namespace MooGirl
                     helperState.nextPulseTick = next;
                 }
             }
+            else
+            {
+                MilkingVisualState state = EnsureState(target, null, MooGirlMilkingVisualRole.SelfMilking, now);
+                state.lastTick = now;
+                if (now >= state.nextPulseTick)
+                {
+                    TriggerPulse(state, spawnMilkSpray: true);
+                    state.nextPulseTick = now + Rand.RangeInclusive(65, 120);
+                }
+            }
         }
 
         public static void End(Pawn doer, Pawn target)
@@ -95,10 +109,14 @@ namespace MooGirl
             {
                 RemoveIfMatches(doer, null);
             }
-            else
+            else if (CanAnimateHelper(doer))
             {
                 RemoveIfMatches(doer, target);
                 RemoveIfMatches(target, doer);
+            }
+            else
+            {
+                RemoveIfMatches(target, null);
             }
         }
 
@@ -434,6 +452,11 @@ namespace MooGirl
         private static bool Valid(Pawn pawn)
         {
             return pawn != null && !pawn.Destroyed && pawn.Spawned && pawn.Map != null;
+        }
+
+        private static bool CanAnimateHelper(Pawn pawn)
+        {
+            return pawn?.RaceProps?.Humanlike == true && !pawn.RaceProps.IsMechanoid;
         }
     }
 

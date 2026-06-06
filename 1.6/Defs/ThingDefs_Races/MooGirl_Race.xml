@@ -187,6 +187,7 @@
 									<bodyPart>MooGirl_Tail</bodyPart>
 									<drawWithoutPart>false</drawWithoutPart>
 								</BodyPart>
+								<BodyType>Female</BodyType>
 							</conditions>
 							<inFrontOfBody>false</inFrontOfBody>
 							<colorChannel>hair</colorChannel>
@@ -221,6 +222,7 @@
 									<bodyPartLabel>left horn</bodyPartLabel>
 									<drawWithoutPart>true</drawWithoutPart>
 								</BodyPart>
+								<BodyType>Female</BodyType>
 							</conditions>
 							<offsets>
 								<south>
@@ -254,6 +256,7 @@
 									<bodyPartLabel>right horn</bodyPartLabel>
 									<drawWithoutPart>true</drawWithoutPart>
 								</BodyPart>
+								<BodyType>Female</BodyType>
 							</conditions>
 							<offsets>
 								<south>

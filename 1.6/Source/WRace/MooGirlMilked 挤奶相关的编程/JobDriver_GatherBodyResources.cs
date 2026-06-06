@@ -33,10 +33,15 @@ namespace MooGirl
         // 尝试进行前置预订（确保目标可用）
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            Pawn pawn = this.pawn;
+            Pawn actor = this.pawn;
+            if (!CanDoGatherWork(actor))
+            {
+                return false;
+            }
+
             LocalTargetInfo target = this.job.GetTarget(TargetIndex.A);
             Job job = this.job;
-            return ReservationUtility.Reserve(pawn, target, job, 1, 1, null, errorOnFailed);
+            return ReservationUtility.Reserve(actor, target, job, 1, 1, null, errorOnFailed);
         }
 
         // 创建新的工作步骤（Toils）
@@ -44,6 +49,7 @@ namespace MooGirl
         {
             // 设置失败条件：目标消失/禁用/不可交互
             ToilFailConditions.FailOnDespawnedNullOrForbidden(this, TargetIndex.A);
+            this.FailOn(() => !CanDoGatherWork(pawn));
 
             Pawn targetPawn = (Pawn)this.job.GetTarget(TargetIndex.A).Thing;
             this.AddFinishAction(delegate (JobCondition condition)
@@ -67,6 +73,12 @@ namespace MooGirl
                 wait.tickAction = delegate ()
                 {
                     Pawn actor = wait.actor;
+                    if (!CanDoGatherWork(actor))
+                    {
+                        actor.jobs.EndCurrentJob(JobCondition.Incompletable, true);
+                        return;
+                    }
+
                     TickGatherEffects(actor, targetPawn);
                     actor.skills.Learn(SkillDefOf.Animals, 0.13f, false);  // 增加动物技能经验
                     CompMooHasBodyResource comp = GetComp(targetPawn);
@@ -125,6 +137,12 @@ namespace MooGirl
                 wait.tickAction = delegate ()
                 {
                     Pawn actor = wait.actor;
+                    if (!CanDoGatherWork(actor))
+                    {
+                        actor.jobs.EndCurrentJob(JobCondition.Incompletable, true);
+                        return;
+                    }
+
                     TickGatherEffects(actor, targetPawn);
                     actor.skills.Learn(SkillDefOf.Animals, 0.13f, false);  // 增加动物技能经验
                     CompMooHasBodyResource comp = GetComp(targetPawn);
@@ -226,6 +244,11 @@ namespace MooGirl
             }
 
             return comp.Fullness >= comp.MilkThreshold;
+        }
+
+        protected virtual bool CanDoGatherWork(Pawn gatherer)
+        {
+            return gatherer?.RaceProps?.Humanlike == true && !gatherer.RaceProps.IsMechanoid && gatherer.skills != null;
         }
     }
 }

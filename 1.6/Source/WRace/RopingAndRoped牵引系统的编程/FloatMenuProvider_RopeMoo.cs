@@ -67,7 +67,13 @@ namespace MooGirl
                 };
 
                 string label;
-                if (target.IsPrisonerOfColony || target.IsSlave)
+                if (target.RaceProps?.body == MooGirl_DefOf.MooGirlBody)
+                {
+                    label = "MooGirl.Rope.Target".Translate(target)
+                            + " (100% "
+                            + "MooGirl.Rope.SuccessChance".Translate() + ")";
+                }
+                else if (target.IsPrisonerOfColony || target.IsSlave)
                 {
                     // 目标是囚犯或奴隶，显示简单标签
                     label = "MooGirl.Rope.Target".Translate(target);

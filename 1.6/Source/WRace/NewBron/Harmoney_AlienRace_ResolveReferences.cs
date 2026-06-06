@@ -22,6 +22,8 @@ namespace MooGirlMod
                 __result.story.Childhood = MooGirl_DefOf.MooGirl_Newborn;
                 __result.story.Adulthood = null;
             }
+
+            MooGirlJuvenileGraphicUtility.NormalizeBodyType(__result);
         }
     }
 }

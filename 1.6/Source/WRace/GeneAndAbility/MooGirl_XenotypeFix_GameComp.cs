@@ -1,9 +1,84 @@
 ﻿using RimWorld;
+using HarmonyLib;
+using System.Collections.Generic;
 using System.Linq;
 using Verse;
 
 namespace MooGirl
 {
+    public static class MooGirlBirthXenotypeUtility
+    {
+        private static List<Pawn> tmpParents = new List<Pawn>();
+
+        public static void ForceFemaleMooGirlXenotypeIfNeeded(Pawn child, Pawn geneticMother = null, Pawn father = null, Thing birtherThing = null)
+        {
+            if (!ModsConfig.BiotechActive || child == null || child.gender != Gender.Female || child.genes == null)
+            {
+                return;
+            }
+
+            XenotypeDef targetXenotype = MooGirl_DefOf.MooGirl_Xenotype;
+            if (targetXenotype == null)
+            {
+                return;
+            }
+
+            if (!IsMooGirlRelatedBirth(child, geneticMother, father, birtherThing))
+            {
+                return;
+            }
+
+            if (child.genes.Xenotype != targetXenotype)
+            {
+                child.genes.SetXenotypeDirect(targetXenotype);
+            }
+
+            child.genes.hybrid = false;
+
+            foreach (GeneDef geneDef in targetXenotype.genes)
+            {
+                if (!child.genes.HasEndogene(geneDef) && !child.genes.HasXenogene(geneDef))
+                {
+                    child.genes.AddGene(geneDef, xenogene: false);
+                }
+            }
+        }
+
+        private static bool IsMooGirlRelatedBirth(Pawn child, Pawn geneticMother, Pawn father, Thing birtherThing)
+        {
+            if (IsMooGirlPawn(child) || IsMooGirlPawn(geneticMother) || IsMooGirlPawn(father) || IsMooGirlPawn(birtherThing as Pawn))
+            {
+                return true;
+            }
+
+            tmpParents.Clear();
+            child.relations?.GetDirectRelations(PawnRelationDefOf.Parent, ref tmpParents);
+            child.relations?.GetDirectRelations(PawnRelationDefOf.ParentBirth, ref tmpParents);
+            bool hasMooGirlParent = tmpParents.Any(IsMooGirlPawn);
+            tmpParents.Clear();
+            return hasMooGirlParent;
+        }
+
+        private static bool IsMooGirlPawn(Pawn pawn)
+        {
+            return pawn != null && (pawn.def == MooGirl_DefOf.MooGirl || pawn.RaceProps?.body == MooGirl_DefOf.MooGirlBody);
+        }
+    }
+
+    [HarmonyPatch(typeof(PawnUtility), nameof(PawnUtility.TrySpawnHatchedOrBornPawn))]
+    public static class Harmony_PawnUtility_TrySpawnHatchedOrBornPawn_MooGirlXenotype
+    {
+        public static void Prefix(Pawn pawn, Thing motherOrEgg)
+        {
+            MooGirlBirthXenotypeUtility.ForceFemaleMooGirlXenotypeIfNeeded(pawn, birtherThing: motherOrEgg);
+        }
+
+        public static void Postfix(Pawn pawn, Thing motherOrEgg)
+        {
+            MooGirlBirthXenotypeUtility.ForceFemaleMooGirlXenotypeIfNeeded(pawn, birtherThing: motherOrEgg);
+        }
+    }
+
     // 游戏组件：用于统一修正雪牛体型 Pawn 的 Xenotype（仅在 Biotech 启用时）
     public class MooGirl_XenotypeFix_GameComp : GameComponent
     {

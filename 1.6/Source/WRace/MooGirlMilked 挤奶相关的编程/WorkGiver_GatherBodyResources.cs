@@ -42,6 +42,11 @@ namespace MooGirl
         // 检查指定事物是否可执行工作
         public override bool HasJobOnThing(Pawn pawn, Thing thing, bool forced = false)
         {
+            if (!CanDoGatherWork(pawn))
+            {
+                return false;
+            }
+
             // 尝试将事物转换为Pawn类型
             Pawn pawn2 = thing as Pawn;
             // 如果转换失败或目标不是类人生物，则返回false
@@ -87,6 +92,11 @@ namespace MooGirl
             }
 
             return false;
+        }
+
+        protected virtual bool CanDoGatherWork(Pawn pawn)
+        {
+            return pawn?.RaceProps?.Humanlike == true && !pawn.RaceProps.IsMechanoid && pawn.skills != null;
         }
 
         // 创建具体的工作任务

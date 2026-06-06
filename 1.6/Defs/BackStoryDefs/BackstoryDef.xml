@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 	<AlienRace.AlienBackstoryDef Name="MooGirl_BaseBackStory" Abstract="True">
-		<bodyTypeFemale>Female</bodyTypeFemale>
-		<bodyTypeMale>Female</bodyTypeMale>
 		<maleCommonality>0</maleCommonality>
 	</AlienRace.AlienBackstoryDef>
 
 	<AlienRace.AlienBackstoryDef ParentName="MooGirl_BaseBackStory">
 		<defName>MooGirl_Newborn</defName>
+		<bodyTypeGlobal MayRequire="Ludeon.RimWorld.Biotech">Baby</bodyTypeGlobal>
 		<title>雪牛娘新生儿</title>
 		<titleShort>新生儿</titleShort>
 		<baseDesc>[PAWN_nameDef]是一个新生儿。[PAWN_possessive] 的生活围绕着喝奶和睡觉。</baseDesc>
@@ -21,6 +20,7 @@
 	<!--儿童背景-->
 	<AlienRace.AlienBackstoryDef ParentName="MooGirl_BaseBackStory">
 		<defName>MooGirl_Child</defName>
+		<bodyTypeGlobal MayRequire="Ludeon.RimWorld.Biotech">Child</bodyTypeGlobal>
 		<title>被解救的雪牛娘</title>
 		<titleShort>被解救的雪牛娘</titleShort>
 		<baseDesc>[PAWN_nameDef]在年幼时便被某个反奴役组织解救，得以逃脱与同胞们相同的奴役命运。她被安置在隐匿于群山深处的营地中，度过了幸福的童年—————对这个种族而言，这样的经历无疑是一种奢望。</baseDesc>
@@ -37,6 +37,7 @@
 	</AlienRace.AlienBackstoryDef>
 
 	<AlienRace.AlienBackstoryDef ParentName="MooGirl_BaseBackStory" Name="MooGirl_ChildSlaveBackStory" Abstract="True">
+		<bodyTypeGlobal MayRequire="Ludeon.RimWorld.Biotech">Child</bodyTypeGlobal>
 		<slot>Childhood</slot>
 		<spawnCategories>
 			<li>MooGirl_Slave</li>
@@ -114,6 +115,8 @@
 	<!--成年背景-->
 	<AlienRace.AlienBackstoryDef ParentName="MooGirl_BaseBackStory">
 		<defName>MooGirl_Adult</defName>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Female</bodyTypeMale>
 		<title>雪牛娘解放者</title>
 		<titleShort>雪牛娘解放者</titleShort>
 		<baseDesc>[PAWN_nameDef]因被反奴役组织解救而拥有了难得幸福的童年，在营地的那段时光里，她掌握了不少战斗技巧。成年之后，她将一生奉献于解放更多同胞，最终成为了一名坚定的反奴役组织战士。</baseDesc>
@@ -132,6 +135,8 @@
 	</AlienRace.AlienBackstoryDef>
 
 	<AlienRace.AlienBackstoryDef ParentName="MooGirl_BaseBackStory" Name="MooGirl_AdultSlaveBackStory" Abstract="True">
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Female</bodyTypeMale>
 		<slot>Adulthood</slot>
 		<spawnCategories>
 			<li>MooGirl_Slave</li>

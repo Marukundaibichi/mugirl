@@ -126,6 +126,7 @@
     <Compile Include="MooGirlsJoins加入方式的编程\QuestNode_Root_MooGirl_WandererJoin_WalkIn.cs" />
     <Compile Include="MooGirlsJoins加入方式的编程\QuestNode_MooGirl_RefugeePodCrash.cs" />
     <Compile Include="NewBron\Harmoney_AlienRace_ResolveReferences.cs" />
+    <Compile Include="NewBron\MooGirlJuvenileGraphicUtility.cs" />
     <Compile Include="OtherFunction\Harmoney_PawnRenderNodeWorker_Swaddle_ShouldListOnGraph.cs" />
     <Compile Include="OtherFunction\Harmoney_DrugAdministerDefs.cs" />
     <Compile Include="OtherFunction\Harmoney_AlienRace_ResolveReferences.cs" />
