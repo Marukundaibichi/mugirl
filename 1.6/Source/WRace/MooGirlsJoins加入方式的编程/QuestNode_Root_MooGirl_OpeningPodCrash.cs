@@ -89,10 +89,8 @@ namespace MooGirl
                 DiscardGeneratedPawn(pawn);
             }
 
-            Log.Error("[MooGirl] Failed to generate a factionless opening pod pawn after "
-                + MaxFactionlessGenerationAttempts
-                + " attempts. Check PawnKindDef or other pawn generation patches.");
-            throw new InvalidOperationException("MooGirl opening pod pawn must be generated factionless.");
+            MooGirlLog.Error("MooGirl.OpeningPodCrash.Log.FactionlessGenerationFailed".Translate(MaxFactionlessGenerationAttempts).ToString());
+            throw new InvalidOperationException("MooGirl.OpeningPodCrash.Exception.MustBeFactionless".Translate().ToString());
         }
 
         private void DiscardGeneratedPawn(Pawn pawn)

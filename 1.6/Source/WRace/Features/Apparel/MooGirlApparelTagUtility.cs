@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using RimWorld;
 using Verse;
 
@@ -15,7 +14,7 @@ namespace MooGirl
             }
 
             bool wornAny = false;
-            List<string> apparelTags = pawn.kindDef.apparelTags.ToList();
+            List<string> apparelTags = pawn.kindDef.apparelTags;
             for (int i = 0; i < apparelTags.Count; i++)
             {
                 ThingDef chosenDef = TryChooseAllowedApparel(apparelTags[i]);
@@ -54,12 +53,18 @@ namespace MooGirl
         {
             // R18 内容已常驻。此处暂不做全局缓存；后续缓存必须围绕
             // Def 加载和可选 mod 条件设计失效时机。
-            List<ThingDef> candidates = DefDatabase<ThingDef>.AllDefsListForReading
-                .Where(td => td.IsApparel
-                    && td.apparel != null
-                    && td.apparel.tags != null
-                    && td.apparel.tags.Contains(tag))
-                .ToList();
+            List<ThingDef> candidates = new List<ThingDef>();
+            List<ThingDef> allDefs = DefDatabase<ThingDef>.AllDefsListForReading;
+            for (int i = 0; i < allDefs.Count; i++)
+            {
+                ThingDef thingDef = allDefs[i];
+                if (!thingDef.IsApparel || thingDef.apparel?.tags == null || !thingDef.apparel.tags.Contains(tag))
+                {
+                    continue;
+                }
+
+                candidates.Add(thingDef);
+            }
 
             return candidates.Count > 0 ? candidates.RandomElement() : null;
         }

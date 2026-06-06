@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationInsert">
-		<xpath>Defs/ThinkTreeDef[defName = "MooGirlLike"]/thinkRoot[@Class = "ThinkNode_Priority"]/subNodes/li[@Class="ThinkNode_ConditionalColonist"]</xpath> <!--Priority is important here, hence the insert after this specific subNode--> 
+		<xpath>Defs/ThinkTreeDef[defName = "MooGirlLike"]/thinkRoot[@Class = "ThinkNode_Priority"]/subNodes/li[@Class="ThinkNode_ConditionalColonist"]</xpath> <!-- Priority is important here, so this inserts after the specific colonist subNode. 优先级在这里很重要，因此插入到指定殖民者节点之后。 --> 
 		<value> 
-			 <!-- Do search and destroy instead of waiting -->
+			 <!-- Do search and destroy instead of waiting. 执行主动搜索歼灭，而不是原地等待。 -->
 			<li Class="SearchAndDestroy.ThinkNode_ConditionalSearchAndDestroy">
 			  <subNodes>
 				<li Class="ThinkNode_Priority">
 				  <subNodes>
-				    <!-- <li Class="JobGiver_MoveToStandable"/> -->
 					<li Class="SearchAndDestroy.JobGiver_AIFightEnemiesShortExp">
 					  <targetAcquireRadius>200</targetAcquireRadius>
 					  <targetKeepRadius>72</targetKeepRadius>

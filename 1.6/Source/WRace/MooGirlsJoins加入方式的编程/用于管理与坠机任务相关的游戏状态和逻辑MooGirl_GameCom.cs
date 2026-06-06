@@ -48,7 +48,7 @@ namespace MooGirl
             int changed = LifeStageVisualService.NormalizeLoadedPawns();
             if (changed > 0)
             {
-                Log.Message("[MooGirl] Corrected juvenile MooGirl body types: " + changed + ".");
+                MooGirlLog.Message("MooGirl.Newborn.Log.CorrectedBodyTypes".Translate(changed).ToString());
             }
         }
 

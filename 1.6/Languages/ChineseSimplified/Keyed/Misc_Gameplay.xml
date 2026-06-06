@@ -3,6 +3,11 @@
 
     <MooGirl.Text.FormatFailedLog>MooGirl 文本格式化失败：{ERROR}</MooGirl.Text.FormatFailedLog>
     <MooGirl.Settings.Category>牛牛模组控制</MooGirl.Settings.Category>
+    <MooGirl.PatchRegistry.NullHarmony>手动补丁已跳过：缺少 Harmony 实例。</MooGirl.PatchRegistry.NullHarmony>
+    <MooGirl.PatchRegistry.PawnGeneratorGeneratePawn>PawnGenerator.GeneratePawn 奴隶束具锁定后置补丁</MooGirl.PatchRegistry.PawnGeneratorGeneratePawn>
+    <MooGirl.PatchRegistry.AlienRaceSwaddleGraphicFor>AlienRace 襁褓 GraphicFor 前置补丁</MooGirl.PatchRegistry.AlienRaceSwaddleGraphicFor>
+    <MooGirl.PatchRegistry.MissingTarget>手动补丁目标缺失：{0}</MooGirl.PatchRegistry.MissingTarget>
+    <MooGirl.PatchRegistry.MissingPatchMethod>手动补丁方法缺失：{0}</MooGirl.PatchRegistry.MissingPatchMethod>
 
     <MooGirl.Restraints.MagneticShackles.ActivateLabel>激活镣铐</MooGirl.Restraints.MagneticShackles.ActivateLabel>
     <MooGirl.Restraints.MagneticShackles.ActivateDesc>启动磁力镣铐，束缚目标。</MooGirl.Restraints.MagneticShackles.ActivateDesc>
@@ -60,6 +65,7 @@
     <MooGirl.Milk.Gauge.Label>泌乳量</MooGirl.Milk.Gauge.Label>
     <MooGirl.Milk.Gauge.Desc>雪牛娘当前的乳汁饱满度。红线标记为自动挤奶阈值，到达后将由殖民者自动进行挤奶工作。</MooGirl.Milk.Gauge.Desc>
     <MooGirl.Milk.FullnessDisplay>雪牛奶</MooGirl.Milk.FullnessDisplay>
+    <MooGirl.Milk.FullnessInspect>{0}：{1}</MooGirl.Milk.FullnessInspect>
     <MooGirl.Milk.Gauge.Tooltip>{0}\n\n当前: {1}\n阈值: {2}\n鼠标移到右侧按钮可查看阈值调整\n单次榨乳预估: {3}\n泌乳速度: {4}</MooGirl.Milk.Gauge.Tooltip>
     <MooGirl.Milk.ProductionRate>{0}% / {1}秒</MooGirl.Milk.ProductionRate>
     <MooGirl.Milk.Gauge.IncreaseThresholdTooltip>提高自动挤奶阈值\n当前: {0}\n调整后: {1}</MooGirl.Milk.Gauge.IncreaseThresholdTooltip>
@@ -100,6 +106,7 @@
     <MooGirl.SuppressionIncrease>压制度 +{0}</MooGirl.SuppressionIncrease>
 
     <MooGirl.SlaveApparelFullyUnlocked>{0} 的束具被完全解锁了</MooGirl.SlaveApparelFullyUnlocked>
+    <MooGirl.Restraints.UnlockTargetMissingLog>解锁失败：目标 Pawn 或目标束具缺失。</MooGirl.Restraints.UnlockTargetMissingLog>
     <MooGirl.HandsBlocked>无法解锁自己 双手被拘束</MooGirl.HandsBlocked>
     <MooGirl.SlaveApparelUnlockPartial>{0} 解锁了 {1} 的束具，还需要{2}个钥匙来完全解锁</MooGirl.SlaveApparelUnlockPartial>
     <MooGirl.WrongKeyType>无法解锁：钥匙类型不匹配 {0}</MooGirl.WrongKeyType>
@@ -108,6 +115,7 @@
     <MooGirl.CannotPrioritizeWorkTypeDisabled>无法进行工作（{0} 已被禁用）</MooGirl.CannotPrioritizeWorkTypeDisabled>
 
     <MooGirl.SlaveApparelCracked>{0} 的束具已被破解</MooGirl.SlaveApparelCracked>
+    <MooGirl.SlaveApparel.StatusLabel>{0}（{1}）</MooGirl.SlaveApparel.StatusLabel>
     <MooGirl.CrackStatus>破解状态</MooGirl.CrackStatus>
     <MooGirl.Cracked>已破解</MooGirl.Cracked>
     <MooGirl.Uncracked>未破解</MooGirl.Uncracked>
@@ -122,7 +130,11 @@
 
     <MooGirl.Rope.Target>牵引 {0}</MooGirl.Rope.Target>
     <MooGirl.Rope.SuccessChance>成功率</MooGirl.Rope.SuccessChance>
+    <MooGirl.Rope.TargetWithSuccessChance>{0}（{1} {2}）</MooGirl.Rope.TargetWithSuccessChance>
     <MooGirl.Unrope.Target>解开牵引 {0}</MooGirl.Unrope.Target>
+    <MooGirl.FloatMenu.OptionWithReason>{0}（{1}）</MooGirl.FloatMenu.OptionWithReason>
+    <MooGirl.FloatMenu.ActionOnTarget>{0} {1}</MooGirl.FloatMenu.ActionOnTarget>
+    <MooGirl.FloatMenu.ActionOnReserved>{0}（{1}）</MooGirl.FloatMenu.ActionOnReserved>
 
     <MooGirl.DraftDisabledWhileRoped>雪牛娘正在被其他人牵引，无法征召</MooGirl.DraftDisabledWhileRoped>
 
@@ -172,6 +184,12 @@
     <MooGirl.CourierItemsDroppedMessage>巨企运货员丢下了身上的物品，正在离开。</MooGirl.CourierItemsDroppedMessage>
     <MooGirl.CourierFightMessage>巨企运货员拔出了武器。这次冲突不会改变你与巨型企业的关系。</MooGirl.CourierFightMessage>
     <MooGirl.CourierFightReason>谈判破裂。</MooGirl.CourierFightReason>
+    <MooGirl.CourierRaid.Log.NoMap>运货员袭击任务中止：缺少有效地图目标。</MooGirl.CourierRaid.Log.NoMap>
+    <MooGirl.CourierRaid.Log.NoFaction>运货员袭击任务中止：未找到敌对巨型企业派系。</MooGirl.CourierRaid.Log.NoFaction>
+    <MooGirl.CourierRaid.Log.NoSpawnCell>运货员袭击任务中止：缺少有效生成位置。</MooGirl.CourierRaid.Log.NoSpawnCell>
+    <MooGirl.CourierRaid.SpawnLog.NoMap>运货员生成中止：地图为空。</MooGirl.CourierRaid.SpawnLog.NoMap>
+    <MooGirl.CourierRaid.SpawnLog.NoFaction>运货员生成中止：派系为空。</MooGirl.CourierRaid.SpawnLog.NoFaction>
+    <MooGirl.CourierRaid.SpawnLog.NoSpawnCell>运货员生成中止：缺少有效生成位置。</MooGirl.CourierRaid.SpawnLog.NoSpawnCell>
     <MooGirl.CourierDemandTitle>巨型企业索赔通知</MooGirl.CourierDemandTitle>
     <MooGirl.CourierDemandDialogText>一位巨型企业代表发来通讯：\n\n“你们杀了我们的运货员，摧毁了我们的飞船。根据企业条例第47条，你们需要赔偿我们的损失。\n\n赔偿金额：{0}钢铁 + {1}零部件。\n\n立即支付赔偿，巨型企业将暂不追究。拒绝赔偿，巨型企业将视你们为敌人并采取军事行动。”</MooGirl.CourierDemandDialogText>
     <MooGirl.CourierDemandPay>支付赔偿</MooGirl.CourierDemandPay>
@@ -222,6 +240,9 @@
         {PAWN_nameDef}来自{PAWN_factionName}。如果你救援{PAWN_objective}，{PAWN_pronoun}回到派系后会改善双方关系。
         你也可以俘虏{PAWN_objective}来招募或奴役，但这会激怒{PAWN_possessive}派系。
     </MooGirl.OpeningPodCrash_NonHostile>
+    <MooGirl.OpeningPodCrash.Log.FactionlessGenerationFailed>尝试 {0} 次后仍无法生成无派系开局逃生舱 Pawn。请检查 PawnKindDef 或其它 Pawn 生成补丁。</MooGirl.OpeningPodCrash.Log.FactionlessGenerationFailed>
+    <MooGirl.OpeningPodCrash.Exception.MustBeFactionless>MooGirl 开局逃生舱 Pawn 必须以无派系状态生成。</MooGirl.OpeningPodCrash.Exception.MustBeFactionless>
+    <MooGirl.Newborn.Log.CorrectedBodyTypes>已修正幼年 MooGirl 体型：{0}。</MooGirl.Newborn.Log.CorrectedBodyTypes>
 <MooGirl.LetterLabelRefugeePodCrash>逃生舱坠毁（雪牛娘奴隶）</MooGirl.LetterLabelRefugeePodCrash>
     <MooGirl.RefugeePodCrash>
         逃生舱在附近坠毁，里面载有名叫{PAWN_nameDef}的{PAWN_titleIndef}。

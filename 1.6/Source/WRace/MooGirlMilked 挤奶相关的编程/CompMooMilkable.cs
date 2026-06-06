@@ -152,8 +152,8 @@ namespace MooGirl
             {
                 return null;
             }
-            // 返回本地化的显示字符串和当前饱满度百分比
-            return MooGirlText.Resolve(this.Props.displayString) + ": " + base.Fullness.ToStringPercent();
+            // 显示格式进入翻译键，避免不同语言下冒号和空格规则固定在 C# 中。
+            return "MooGirl.Milk.FullnessInspect".Translate(MooGirlText.Resolve(this.Props.displayString), base.Fullness.ToStringPercent()).ToString();
         }
 
         private Pawn MooPawn => parent as Pawn;

@@ -5,11 +5,10 @@ using Verse;
 
 namespace MooGirl
 {
-    // ---------------- Patch TameUtility.CanTame ----------------
+    // 逃亡野生奴隶不是普通动物，但沿用驯服指令作为“接触并收编”的入口。
     [HarmonyPatch(typeof(TameUtility), nameof(TameUtility.CanTame))]
     public static class TameUtility_CanTame_Patch
     {
-        // 后置补丁：如果pawn是逃跑野生奴隶，则返回true
         public static void Postfix(Pawn pawn, ref bool __result)
         {
             if (pawn == null) return;
@@ -21,11 +20,10 @@ namespace MooGirl
         }
     }
 
-    // ---------------- Patch Designator_Tame.CanDesignateThing ----------------
+    // Designator 单独控制 UI 可见性，必须与 CanTame 结果保持一致。
     [HarmonyPatch(typeof(Designator_Tame), nameof(Designator_Tame.CanDesignateThing))]
     public static class DesignatorTame_CanDesignateThing_Patch
     {
-        // 后置补丁：如果pawn是逃跑野生奴隶，则允许Tame UI显示
         public static void Postfix(Thing t, ref AcceptanceReport __result)
         {
             if (t == null) return;

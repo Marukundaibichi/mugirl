@@ -15,7 +15,7 @@ namespace MooGirl
     {
         public override void DoEffectOn(Pawn user, Thing target)
         {
-            if (target is Apparel apparel && apparel.IsAdvancedApperal() && !apparel.IsUnlockAdvancedApperal())
+            if (target is Apparel apparel && apparel.IsAdvancedApparel() && !apparel.IsUnlockAdvancedApparel())
             {
                 TryCrackGroundApparel(apparel, user);
             }

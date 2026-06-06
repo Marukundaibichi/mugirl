@@ -7,13 +7,16 @@
     <label>Giant Corporation</label>
     <!-- 一个庞大的企业联合体，控制着无数资源与武装力量，对任何妨碍其利益者毫不留情。 -->
     <description>A massive corporate consortium controlling countless resources and armed forces, showing no mercy to anyone who obstructs its interests.</description>
-    <pawnSingular>巨企佣兵</pawnSingular>
-    <pawnsPlural>巨企佣兵</pawnsPlural>
+    <!-- 巨企佣兵 -->
+    <pawnSingular>Corporate Mercenary</pawnSingular>
+    <!-- 巨企佣兵 -->
+    <pawnsPlural>Corporate Mercenaries</pawnsPlural>
     <categoryTag>GiantCorporations</categoryTag>
     <requiredCountAtGameStart>1</requiredCountAtGameStart>
     <maxConfigurableAtWorldCreation>1</maxConfigurableAtWorldCreation>
     <configurationListOrderPriority>2000</configurationListOrderPriority>
-    <fixedName>巨型企业</fixedName>
+    <!-- 巨型企业 -->
+    <fixedName>Giant Corporation</fixedName>
     <humanlikeFaction>true</humanlikeFaction>
     <hidden>false</hidden>
     <canMakeRandomly>true</canMakeRandomly>

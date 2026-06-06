@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Assemblies\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -25,9 +25,10 @@
     <LangVersion>7.2</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\Assemblies\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -63,7 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\MooGirlBootstrap.cs" />
-    <Compile Include="Core\MooGirlFeatureRegistry.cs" />
     <Compile Include="Core\MooGirlIdentity.cs" />
     <Compile Include="Core\MooGirlLog.cs" />
     <Compile Include="Core\MooGirlOptionalDefs.cs" />
@@ -92,7 +92,7 @@
     <Compile Include="bondageclothes束具的编程\comp\脑控头盔组件的属性类CompProperties_BrainwashHelmet.cs" />
     <Compile Include="bondageclothes束具的编程\Harmony_PawnStoryTracker_SkinColor.cs" />
     <Compile Include="bondageclothes束具的编程\HediffCompProperties_DisappearsAndAddHeiffs.cs" />
-    <Compile Include="bondageclothes束具的编程\SlaveApperal_extensions.cs" />
+    <Compile Include="bondageclothes束具的编程\SlaveApparelExtensions.cs" />
     <Compile Include="bondageclothes束具的编程\Harmony_InitiateSlaveRebellionMtbDays.cs" />
     <Compile Include="bondageclothes束具的编程\HediffCompProperties_AddTrait.cs" />
     <Compile Include="bondageclothes束具的编程\HediffCompProperties_AddThoughts.cs" />
@@ -125,7 +125,7 @@
     <Compile Include="MooGirlMilked 挤奶相关的编程\WorkGiver_GatherMilk.cs" />
     <Compile Include="MooGirlMilked 挤奶相关的编程\JobDriver_GatherBodyResources.cs" />
     <Compile Include="MooGirlMilked 挤奶相关的编程\MooGirlMilkingAnimation.cs" />
-    <Compile Include="Defof\MooGirl_DefOf.cs" />
+    <Compile Include="DefOf\MooGirl_DefOf.cs" />
     <Compile Include="MooGirlsJoins加入方式的编程\FactionUtility.cs" />
     <Compile Include="MooGirlsJoins加入方式的编程\Harmony_DesignatorTame.cs" />
     <Compile Include="MooGirlsJoins加入方式的编程\Harmony_IsWildMan_WildManUtility.cs" />
@@ -141,9 +141,9 @@
     <Compile Include="MooGirlsJoins加入方式的编程\QuestNode_MooGirl_RefugeePodCrash.cs" />
     <Compile Include="Newborn\Harmony_PawnGenerator_NewbornVisuals.cs" />
     <Compile Include="Newborn\LifeStageVisualService.cs" />
-    <Compile Include="OtherFunction\Harmoney_PawnRenderNodeWorker_Swaddle_ShouldListOnGraph.cs" />
-    <Compile Include="OtherFunction\Harmoney_DrugAdministerDefs.cs" />
-    <Compile Include="OtherFunction\Harmoney_GridsUtility_IsPolluted.cs" />
+    <Compile Include="OtherFunction\Harmony_AlienPawnRenderNode_Swaddle_GraphicFor.cs" />
+    <Compile Include="OtherFunction\Harmony_DrugAdministerDefs.cs" />
+    <Compile Include="OtherFunction\Harmony_GridsUtility_IsPolluted.cs" />
     <Compile Include="OtherFunction\Harmony_Apparel_DrawColor.cs" />
     <Compile Include="OtherFunction\Harmony_GhoulRenderingRefresh.cs" />
 
@@ -151,7 +151,7 @@
     <Compile Include="OtherFunction\InteractionWorker_Nuzzle.cs" />
     <Compile Include="OtherFunction\JobGiver_Nuzzle.cs" />
     <Compile Include="OtherFunction\JobDriver_Nuzzle.cs" />
-    <Compile Include="OtherFunction\Harmoney_SetForbidden.cs" />
+    <Compile Include="OtherFunction\Harmony_ForbidUtility_SetForbidden.cs" />
     <Compile Include="OtherFunction\Thought_MooGirlOnly.cs" />
     <Compile Include="OtherFunction\ThoughtWorker_SingleshotWeaponAversion.cs" />
     <Compile Include="RopingAndRoped牵引系统的编程\ThoughtWorker_Roped.cs" />
@@ -211,7 +211,7 @@
     <Compile Include="MooGirlsJoins加入方式的编程\Harmony_GiantCorpRaidTiers.cs" />
     <Compile Include="MooGirlsJoins加入方式的编程\QuestNode_Root_MooGirl_CourierRaid.cs" />
     <Compile Include="MooGirlsJoins加入方式的编程\QuestPart_CourierRaid.cs" />
-    <Compile Include="Defof\MooGirlContentDefOf.cs" />
+    <Compile Include="DefOf\MooGirlContentDefOf.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -34,17 +34,17 @@ namespace MooGirl
             }
             if (map == null)
             {
-                Log.Warning("[MooGirl] CourierRaid spawn aborted: map is null.");
+                MooGirlLog.Warning("MooGirl.CourierRaid.SpawnLog.NoMap".Translate().ToString());
                 return;
             }
             if (faction == null)
             {
-                Log.Warning("[MooGirl] CourierRaid spawn aborted: faction is null.");
+                MooGirlLog.Warning("MooGirl.CourierRaid.SpawnLog.NoFaction".Translate().ToString());
                 return;
             }
             if (!spawnCell.IsValid && !RCellFinder.TryFindRandomPawnEntryCell(out spawnCell, map, 0f))
             {
-                Log.Warning("[MooGirl] CourierRaid spawn aborted: no valid spawn cell.");
+                MooGirlLog.Warning("MooGirl.CourierRaid.SpawnLog.NoSpawnCell".Translate().ToString());
                 return;
             }
 

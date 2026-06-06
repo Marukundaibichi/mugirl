@@ -16,7 +16,7 @@ namespace MooGirl
             if (!TryFindEntryCell(map, out var loc))
                 return false;
 
-            // Escaped slaves are factionless; the hostile corporation faction is reserved for raids.
+            // 逃亡奴隶保持无派系；敌对巨企派系只用于袭击，避免事件生成即敌对。
             Faction faction = null;
 
             // 配置Pawn生成请求

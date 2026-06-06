@@ -99,11 +99,11 @@ namespace MooGirl
                 initAction = () =>
                 {
                     // 修改4：安全检查
-                    if (targetPawn == null || targetApparel == null)
-                    {
-                        Log.Warning("Unlocking failed: targetPawn or targetApparel is null");
-                        return;
-                    }
+            if (targetPawn == null || targetApparel == null)
+            {
+                MooGirlLog.Warning("MooGirl.Restraints.UnlockTargetMissingLog".Translate().ToString());
+                return;
+            }
 
                     apparel.lockCount--;
                     if (apparel.lockCount <= 0)

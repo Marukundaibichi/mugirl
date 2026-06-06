@@ -69,7 +69,7 @@ namespace MooGirl
                 }
                 catch
                 {
-                    // Compatibility should never break rendering if the other mod changes internals.
+                    // 兼容层不能因为对方 mod 内部字段变化而打断渲染流程。
                 }
             }
         }

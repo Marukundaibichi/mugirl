@@ -2,9 +2,12 @@
 <Defs>
 	<PipeSystem.ProcessDef>
 		<defName>MooGirl_MooGirlMilkIntoCheese</defName>
-		<label>添加雪牛奶制作奶酪</label>
-		<description>把 50 份雪牛奶变成 25 份奶酪。</description>
-		<labelOverride>把 50 份雪牛奶变成 25 份奶酪。</labelOverride>
+		<!-- 添加雪牛奶制作奶酪 -->
+		<label>Add Mugirl milk cheese process</label>
+		<!-- 把 50 份雪牛奶变成 25 份奶酪。 -->
+		<description>Turns 50 Mugirl milk into 25 cheese.</description>
+		<!-- 把 50 份雪牛奶变成 25 份奶酪。 -->
+		<labelOverride>Turns 50 Mugirl milk into 25 cheese.</labelOverride>
 		<priorityInBillList>1</priorityInBillList>
 		<spawnOnInteractionCell>true</spawnOnInteractionCell>
 		<useIngredients>true</useIngredients>

@@ -46,7 +46,7 @@ namespace BondageToys
 
         public static TaggedString DropThingTooltip(Apparel apparel)
         {
-            if (apparel.IsAdvancedApperal() || apparel.IsSlaveApparel())
+            if (apparel.IsAdvancedApparel() || apparel.IsSlaveApparel())
             {
                 return "MooGirl.SlaveApparelCannotBeRemoved".Translate();
             }

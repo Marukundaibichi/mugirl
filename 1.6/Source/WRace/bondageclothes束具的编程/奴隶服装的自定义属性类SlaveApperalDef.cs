@@ -1,7 +1,6 @@
 using RimWorld;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Verse;
 using Verse.AI;
 
@@ -98,10 +97,13 @@ namespace MooGirl
             {
                 foreach (BodyPartDef partDef in def.HediffTargetBodyPartDefs)
                 {
-                    List<BodyPartRecord> bodyParts = pawn.RaceProps.body.AllParts.FindAll(part => part.def == partDef);
-                    foreach (BodyPartRecord bodyPart in bodyParts)
+                    List<BodyPartRecord> bodyParts = pawn.RaceProps.body.AllParts;
+                    for (int i = 0; i < bodyParts.Count; i++)
                     {
-                        pawn.health.AddHediff(def.equipped_hediff, bodyPart);
+                        if (bodyParts[i].def == partDef)
+                        {
+                            pawn.health.AddHediff(def.equipped_hediff, bodyParts[i]);
+                        }
                     }
                 }
             }
@@ -122,13 +124,20 @@ namespace MooGirl
             // 移除装备特定的Hediff效果
             if (def.equipped_hediff != null && def.HediffTargetBodyPartDefs != null)
             {
-                var hediffsToRemove = pawn.health.hediffSet.hediffs
-                    .Where(h => h.def == def.equipped_hediff && def.HediffTargetBodyPartDefs.Contains(h.Part?.def))
-                    .ToList();
-
-                foreach (var hediff in hediffsToRemove)
+                List<Hediff> hediffsToRemove = new List<Hediff>();
+                List<Hediff> hediffs = pawn.health.hediffSet.hediffs;
+                for (int i = 0; i < hediffs.Count; i++)
                 {
-                    pawn.health.RemoveHediff(hediff);
+                    Hediff hediff = hediffs[i];
+                    if (hediff.def == def.equipped_hediff && def.HediffTargetBodyPartDefs.Contains(hediff.Part?.def))
+                    {
+                        hediffsToRemove.Add(hediff);
+                    }
+                }
+
+                for (int i = 0; i < hediffsToRemove.Count; i++)
+                {
+                    pawn.health.RemoveHediff(hediffsToRemove[i]);
                 }
             }
 
@@ -177,7 +186,7 @@ namespace MooGirl
             // 显示破解消息并选中角色
             if (this.Wearer != null)
             {
-                Messages.Message($"{this.Wearer.LabelShortCap} {"MooGirl.SlaveApparelCracked".Translate()}", this.Wearer, MessageTypeDefOf.PositiveEvent);
+                Messages.Message("MooGirl.SlaveApparelCracked".Translate(this.Wearer.LabelShortCap), this.Wearer, MessageTypeDefOf.PositiveEvent);
                 Find.Selector.Select(this.Wearer);
             }
         }
@@ -195,8 +204,8 @@ namespace MooGirl
             get
             {
                 string label = base.LabelNoCount;
-                label += IsCracked() ? $"（{"MooGirl.Cracked".Translate()}）" : $"（{"MooGirl.Uncracked".Translate()}）";
-                return label;
+                string status = IsCracked() ? "MooGirl.Cracked".Translate().ToString() : "MooGirl.Uncracked".Translate().ToString();
+                return "MooGirl.SlaveApparel.StatusLabel".Translate(label, status).ToString();
             }
         }
 
@@ -224,10 +233,13 @@ namespace MooGirl
             {
                 foreach (BodyPartDef partDef in def.HediffTargetBodyPartDefs)
                 {
-                    List<BodyPartRecord> bodyParts = pawn.RaceProps.body.AllParts.FindAll(part => part.def == partDef);
-                    foreach (BodyPartRecord bodyPart in bodyParts)
+                    List<BodyPartRecord> bodyParts = pawn.RaceProps.body.AllParts;
+                    for (int i = 0; i < bodyParts.Count; i++)
                     {
-                        pawn.health.AddHediff(def.equipped_hediff, bodyPart);
+                        if (bodyParts[i].def == partDef)
+                        {
+                            pawn.health.AddHediff(def.equipped_hediff, bodyParts[i]);
+                        }
                     }
                 }
             }

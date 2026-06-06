@@ -15,7 +15,8 @@
 		<defName>MooGirl_Armbinder</defName>
 		<!-- 单手套束缚 -->
 		<label>Arm Restraints</label>
-		<labelNoun>单手套束缚</labelNoun>
+		<!-- 单手套束缚 -->
+		<labelNoun>Arm Restraints</labelNoun>
 		<!-- 雪牛娘的手臂被束具严格束缚在身后，无法活动。 -->
 		<description>The Mugirl's arms are strictly restrained behind her back by bondage gear, unable to move.</description>
 		<renderNodeProperties>
@@ -57,7 +58,8 @@
 		<defName>MooGirl_Handcuffs</defName>
 		<!-- 手铐束缚 -->
 		<label>Handcuff Restraints</label>
-		<labelNoun>手铐束缚</labelNoun>
+		<!-- 手铐束缚 -->
+		<labelNoun>Handcuff Restraints</labelNoun>
 		<!-- 雪牛娘的手臂被束具严格束缚在身后，无法活动。 -->
 		<description>The Mugirl's arms are strictly restrained behind her back by restraint gear, unable to move.</description>
 		<renderNodeProperties>
@@ -103,7 +105,8 @@
 		<defName>MooGirl_Boxbinder</defName>
 		<!-- 多重束缚 -->
 		<label>Multiple Restraints</label>
-		<labelNoun>多重束缚</labelNoun>
+		<!-- 多重束缚 -->
+		<labelNoun>Multiple Restraints</labelNoun>
 		<!-- 雪牛娘的手臂被束具严格束缚在身后，无法活动。 -->
 		<description>The Mugirl's arms are strictly restrained behind her back by restraint gear, unable to move.</description>
 		<renderNodeProperties>
@@ -149,7 +152,8 @@
 		<defName>MooGirl_Straitjacket</defName>
 		<!-- 拘束衣束缚 -->
 		<label>Straitjacket Restraints</label>
-		<labelNoun>拘束衣束缚</labelNoun>
+		<!-- 拘束衣束缚 -->
+		<labelNoun>Straitjacket Restraints</labelNoun>
 		<!-- 雪牛娘的手臂被束具严格束缚在身后，无法活动。 -->
 		<description>The Mugirl's arms are strictly restrained behind her back by restraint gear, unable to move.</description>
 		<stages>
@@ -168,7 +172,8 @@
 		<defName>MooGirl_Legbinder</defName>
 		<!-- 双腿束缚 -->
 		<label>Leg Restraints</label>
-		<labelNoun>双腿束缚</labelNoun>
+		<!-- 双腿束缚 -->
+		<labelNoun>Leg Restraints</labelNoun>
 		<!-- 雪牛娘的双腿被束具严格束缚，难以移动。 -->
 		<description>The Mugirl's legs are strictly restrained by bondage gear, making movement difficult.</description>
 		<stages>
@@ -187,7 +192,8 @@
 		<defName>MooGirl_Gauntlet</defName>
 		<!-- 奴隶手套束缚 -->
 		<label>Slave Gauntlets Restraints</label>
-		<labelNoun>手套束缚</labelNoun>
+		<!-- 手套束缚 -->
+		<labelNoun>Gauntlet Restraints</labelNoun>
 		<!-- 雪牛娘的手臂被连指手套束缚，手指无法活动，大幅降低操作能力。 -->
 		<description>The Mugirl's arms are restrained by gauntlets, fingers immobile, significantly reducing manipulation ability.</description>
 		<renderNodeProperties>
@@ -233,7 +239,8 @@
 		<defName>MooGirl_Stockings</defName>
 		<!-- 奴隶袜束缚 -->
 		<label>Slave Sock Restraints</label>
-		<labelNoun>奴隶袜束缚</labelNoun>
+		<!-- 奴隶袜束缚 -->
+		<labelNoun>Slave Sock Restraints</labelNoun>
 		<!-- 雪牛娘的双腿被奴隶袜束缚，略微减低移动速度。 -->
 		<description>The Mugirl's legs are restrained by slave socks, slightly reducing movement speed.</description>
 		<stages>
@@ -252,7 +259,8 @@
 		<defName>MooGirl_FullHeadCovering</defName>
 		<!-- 全包头套 -->
 		<label>Full Head Covering</label>
-		<labelNoun>一个全包头套</labelNoun>
+		<!-- 一个全包头套 -->
+		<labelNoun>A Full Head Covering</labelNoun>
 		<!-- 呜呜呜，呜呜！ 我整个脑袋都被包裹起来了，什么也感觉不到~♥ -->
 		<description>Mmph, mmph! My entire head is wrapped up, can't feel anything~♥</description>
 		<stages>
@@ -279,7 +287,8 @@
 		<defName>MooGirl_Blindfold</defName>
 		<!-- 蒙眼 -->
 		<label>Blindfold</label>
-		<labelNoun>一副眼罩</labelNoun>
+		<!-- 一副眼罩 -->
+		<labelNoun>A Pair of Blindfolds</labelNoun>
 		<!-- 眼睛被蒙上了，什么也看不见...呀！谁碰我？ -->
 		<description>My eyes are covered... can't see anything... Eek! Who's touching me?</description>
 		<stages>
@@ -298,7 +307,8 @@
 		<defName>MooGirl_Gagstick</defName>
 		<!-- 口棒 -->
 		<label>Gagstick</label>
-		<labelNoun>一副口棒</labelNoun>
+		<!-- 一副口棒 -->
+		<labelNoun>A Gagstick</labelNoun>
 		<!-- 嘴巴被戴上了一副口棒，只能发出呜呜呜的声音了 -->
 		<description>My mouth is fitted with a gagstick, only able to make muffled sounds.</description>
 		<stages>
@@ -321,7 +331,8 @@
 		<defName>MooGirl_Earplugs</defName>
 		<!-- 耳塞 -->
 		<label>Earplugs</label>
-		<labelNoun>一对耳塞</labelNoun>
+		<!-- 一对耳塞 -->
+		<labelNoun>A Pair of Earplugs</labelNoun>
 		<!-- 耳朵被堵上了...什么都听不到...好可怕...呜呜 -->
 		<description>My ears are blocked... can't hear anything... so scary... whimper.</description>
 		<stages>

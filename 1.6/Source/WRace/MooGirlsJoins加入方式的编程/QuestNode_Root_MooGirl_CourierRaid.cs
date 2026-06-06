@@ -16,20 +16,20 @@ namespace MooGirl
             Map map = ResolveTargetMap(slate);
             if (map == null)
             {
-                Log.Warning("[MooGirl] CourierRaid quest aborted: no valid map target.");
+                MooGirlLog.Warning("MooGirl.CourierRaid.Log.NoMap".Translate().ToString());
                 return;
             }
 
             Faction faction = Find.FactionManager.FirstFactionOfDef(MooGirlContentDefOf.MooGirl_GiantCorporations_Hostile);
             if (faction == null)
             {
-                Log.Warning("[MooGirl] CourierRaid quest aborted: hostile giant corporation faction not found.");
+                MooGirlLog.Warning("MooGirl.CourierRaid.Log.NoFaction".Translate().ToString());
                 return;
             }
 
             if (!RCellFinder.TryFindRandomPawnEntryCell(out IntVec3 spawnCell, map, 0f))
             {
-                Log.Warning("[MooGirl] CourierRaid quest aborted: no valid spawn cell.");
+                MooGirlLog.Warning("MooGirl.CourierRaid.Log.NoSpawnCell".Translate().ToString());
                 return;
             }
 

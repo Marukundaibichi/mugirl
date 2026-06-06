@@ -51,7 +51,7 @@ namespace MooGirl
         // 校验目标是否有效
         public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true)
         {
-            if (target.Thing is Apparel apparel && apparel.IsAdvancedApperal())
+            if (target.Thing is Apparel apparel && apparel.IsAdvancedApparel())
             {
                 if (apparel is AdvancedSlaveApparel slaveApparel && slaveApparel.IsCracked())
                 {

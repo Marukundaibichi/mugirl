@@ -14,7 +14,7 @@ namespace MooGirl
         // 重写生成Pawn的方法，创建符合特定条件的角色
         public override Pawn GeneratePawn()
         {
-            // Escaped slaves are factionless; the hostile corporation faction is reserved for raids.
+            // 逃亡奴隶保持无派系；敌对巨企派系只用于袭击，避免流浪者加入事件附带敌对关系。
             Faction faction = null;
 
             // 构造Pawn生成请求，定义角色生成参数

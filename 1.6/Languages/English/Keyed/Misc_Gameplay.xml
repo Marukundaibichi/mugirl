@@ -3,6 +3,11 @@
 
     <MooGirl.Text.FormatFailedLog>MooGirl text formatting failed: {ERROR}</MooGirl.Text.FormatFailedLog>
     <MooGirl.Settings.Category>MooGirl mod control</MooGirl.Settings.Category>
+    <MooGirl.PatchRegistry.NullHarmony>Manual patches skipped because the Harmony instance is missing.</MooGirl.PatchRegistry.NullHarmony>
+    <MooGirl.PatchRegistry.PawnGeneratorGeneratePawn>PawnGenerator.GeneratePawn slave apparel lock postfix</MooGirl.PatchRegistry.PawnGeneratorGeneratePawn>
+    <MooGirl.PatchRegistry.AlienRaceSwaddleGraphicFor>AlienRace swaddle GraphicFor prefix</MooGirl.PatchRegistry.AlienRaceSwaddleGraphicFor>
+    <MooGirl.PatchRegistry.MissingTarget>Manual patch target missing: {0}</MooGirl.PatchRegistry.MissingTarget>
+    <MooGirl.PatchRegistry.MissingPatchMethod>Manual patch method missing: {0}</MooGirl.PatchRegistry.MissingPatchMethod>
 
     <MooGirl.Restraints.MagneticShackles.ActivateLabel>Activate shackles</MooGirl.Restraints.MagneticShackles.ActivateLabel>
     <MooGirl.Restraints.MagneticShackles.ActivateDesc>Activate the magnetic shackles, restraining the target.</MooGirl.Restraints.MagneticShackles.ActivateDesc>
@@ -60,6 +65,7 @@
     <MooGirl.Milk.Gauge.Label>Lactation</MooGirl.Milk.Gauge.Label>
     <MooGirl.Milk.Gauge.Desc>Current milk fullness for this MooGirl. The red line marks the automatic milking threshold; colonists will automatically milk when it is reached.</MooGirl.Milk.Gauge.Desc>
     <MooGirl.Milk.FullnessDisplay>Mugirl milk</MooGirl.Milk.FullnessDisplay>
+    <MooGirl.Milk.FullnessInspect>{0}: {1}</MooGirl.Milk.FullnessInspect>
     <MooGirl.Milk.Gauge.Tooltip>{0}\n\nCurrent: {1}\nThreshold: {2}\nMove the mouse over the right-side buttons to inspect threshold changes\nEstimated milk per use: {3}\nLactation speed: {4}</MooGirl.Milk.Gauge.Tooltip>
     <MooGirl.Milk.ProductionRate>{0}% / {1}s</MooGirl.Milk.ProductionRate>
     <MooGirl.Milk.Gauge.IncreaseThresholdTooltip>Increase automatic milking threshold\nCurrent: {0}\nAfter adjustment: {1}</MooGirl.Milk.Gauge.IncreaseThresholdTooltip>
@@ -100,6 +106,7 @@
     <MooGirl.SuppressionIncrease>Suppression +{0}</MooGirl.SuppressionIncrease>
 
     <MooGirl.SlaveApparelFullyUnlocked>{0}'s restraint has been completely unlocked.</MooGirl.SlaveApparelFullyUnlocked>
+    <MooGirl.Restraints.UnlockTargetMissingLog>Unlocking failed: target pawn or target apparel is missing.</MooGirl.Restraints.UnlockTargetMissingLog>
     <MooGirl.HandsBlocked>Unable to free this pawn's self: hands bound.</MooGirl.HandsBlocked>
     <MooGirl.SlaveApparelUnlockPartial>{0} unlocks {1}'s restraint. {2} more key(s) are required to completely unlock.</MooGirl.SlaveApparelUnlockPartial>
     <MooGirl.WrongKeyType>Unable to unlock: Key type does not match {0}</MooGirl.WrongKeyType>
@@ -108,6 +115,7 @@
     <MooGirl.CannotPrioritizeWorkTypeDisabled>Unable to work ({0} has been disabled)</MooGirl.CannotPrioritizeWorkTypeDisabled>
 
     <MooGirl.SlaveApparelCracked>{0}'s restraint has been decrypted.</MooGirl.SlaveApparelCracked>
+    <MooGirl.SlaveApparel.StatusLabel>{0} ({1})</MooGirl.SlaveApparel.StatusLabel>
     <MooGirl.CrackStatus>Decryption Status</MooGirl.CrackStatus>
     <MooGirl.Cracked>Decrypted</MooGirl.Cracked>
     <MooGirl.Uncracked>Not Decrypted</MooGirl.Uncracked>
@@ -122,7 +130,11 @@
 
     <MooGirl.Rope.Target>Rope {0}</MooGirl.Rope.Target>
     <MooGirl.Rope.SuccessChance>Success Rate</MooGirl.Rope.SuccessChance>
+    <MooGirl.Rope.TargetWithSuccessChance>{0} ({1} {2})</MooGirl.Rope.TargetWithSuccessChance>
     <MooGirl.Unrope.Target>Unrope {0}</MooGirl.Unrope.Target>
+    <MooGirl.FloatMenu.OptionWithReason>{0} ({1})</MooGirl.FloatMenu.OptionWithReason>
+    <MooGirl.FloatMenu.ActionOnTarget>{0} on {1}</MooGirl.FloatMenu.ActionOnTarget>
+    <MooGirl.FloatMenu.ActionOnReserved>{0} on ({1})</MooGirl.FloatMenu.ActionOnReserved>
 
     <MooGirl.DraftDisabledWhileRoped>The Mugirl is currently being roped by others and cannot be drafted.</MooGirl.DraftDisabledWhileRoped>
 
@@ -174,6 +186,12 @@
     <MooGirl.CourierItemsDroppedMessage>The corporate courier dropped his carried items and is leaving.</MooGirl.CourierItemsDroppedMessage>
     <MooGirl.CourierFightMessage>The corporate courier draws his weapon. This clash will not change your relationship with the mega corporation.</MooGirl.CourierFightMessage>
     <MooGirl.CourierFightReason>Negotiations broke down.</MooGirl.CourierFightReason>
+    <MooGirl.CourierRaid.Log.NoMap>CourierRaid quest aborted: no valid map target.</MooGirl.CourierRaid.Log.NoMap>
+    <MooGirl.CourierRaid.Log.NoFaction>CourierRaid quest aborted: hostile giant corporation faction not found.</MooGirl.CourierRaid.Log.NoFaction>
+    <MooGirl.CourierRaid.Log.NoSpawnCell>CourierRaid quest aborted: no valid spawn cell.</MooGirl.CourierRaid.Log.NoSpawnCell>
+    <MooGirl.CourierRaid.SpawnLog.NoMap>CourierRaid spawn aborted: map is null.</MooGirl.CourierRaid.SpawnLog.NoMap>
+    <MooGirl.CourierRaid.SpawnLog.NoFaction>CourierRaid spawn aborted: faction is null.</MooGirl.CourierRaid.SpawnLog.NoFaction>
+    <MooGirl.CourierRaid.SpawnLog.NoSpawnCell>CourierRaid spawn aborted: no valid spawn cell.</MooGirl.CourierRaid.SpawnLog.NoSpawnCell>
     <MooGirl.CourierDemandTitle>Mega Corporation Claim Notice</MooGirl.CourierDemandTitle>
     <MooGirl.CourierDemandDialogText>A mega corporation representative opens a channel:\n\n\"You killed our courier and destroyed our ship. Under corporate regulation 47, you are required to compensate our losses.\n\nCompensation: {0} steel + {1} components.\n\nPay immediately and the mega corporation will suspend further action. Refuse, and the mega corporation will consider you hostile and respond militarily.\"</MooGirl.CourierDemandDialogText>
     <MooGirl.CourierDemandPay>Pay compensation</MooGirl.CourierDemandPay>
@@ -226,6 +244,9 @@
     <MooGirl.OpeningPodCrash_NonHostile>
         {PAWN_nameDef} comes from {PAWN_factionName}. If you rescue [PAWN_objective], [PAWN_pronoun] will improve relations between your factions when [PAWN_pronoun] returns.\n\nYou can also capture [PAWN_objective] to recruit or enslave [PAWN_objective], but this will anger [PAWN_possessive] faction.
     </MooGirl.OpeningPodCrash_NonHostile>
+    <MooGirl.OpeningPodCrash.Log.FactionlessGenerationFailed>Failed to generate a factionless opening pod pawn after {0} attempts. Check PawnKindDef or other pawn generation patches.</MooGirl.OpeningPodCrash.Log.FactionlessGenerationFailed>
+    <MooGirl.OpeningPodCrash.Exception.MustBeFactionless>MooGirl opening pod pawn must be generated factionless.</MooGirl.OpeningPodCrash.Exception.MustBeFactionless>
+    <MooGirl.Newborn.Log.CorrectedBodyTypes>Corrected juvenile MooGirl body types: {0}.</MooGirl.Newborn.Log.CorrectedBodyTypes>
 
 
     <!-- 通常逃生舱坠毁 -->

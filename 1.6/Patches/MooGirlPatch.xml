@@ -23,7 +23,8 @@
                   <li Class="CompProperties_Usable">
                         <compClass>MooGirl.CompRopeToBuild</compClass>
                         <useJob>RopeToBuild</useJob>
-                        <useLabel>栓在建筑上</useLabel>
+                        <!-- 栓在建筑上 -->
+                        <useLabel>Rope to Building</useLabel>
                   </li>
             </value>
       </Operation>

@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
@@ -123,8 +122,15 @@ namespace MooGirl
             BodyPartRecord part = null;
             if (!string.IsNullOrEmpty(item.bodyPartTarget))
             {
-                part = Pawn.RaceProps.body.AllParts
-                    .FirstOrDefault(p => p.def.defName == item.bodyPartTarget);
+                List<BodyPartRecord> allParts = Pawn.RaceProps.body.AllParts;
+                for (int i = 0; i < allParts.Count; i++)
+                {
+                    if (allParts[i].def.defName == item.bodyPartTarget)
+                    {
+                        part = allParts[i];
+                        break;
+                    }
+                }
             }
 
             var h = Pawn.health.AddHediff(item.hediff, part);

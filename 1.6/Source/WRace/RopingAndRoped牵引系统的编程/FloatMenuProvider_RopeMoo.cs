@@ -79,19 +79,19 @@ namespace MooGirl
                 string label;
                 if (RopingService.IsMooGirlRopee(target))
                 {
-                    label = "MooGirl.Rope.Target".Translate(target)
-                            + " (100% "
-                            + "MooGirl.Rope.SuccessChance".Translate() + ")";
+                    label = RopeLabelWithSuccessChance(
+                        "MooGirl.Rope.Target".Translate(target).ToString(),
+                        1f.ToStringPercent());
                 }
                 else if (target.IsPrisonerOfColony || target.IsSlave)
                 {
-                    label = "MooGirl.Rope.Target".Translate(target);
+                    label = "MooGirl.Rope.Target".Translate(target).ToString();
                 }
                 else
                 {
-                    label = "MooGirl.Rope.Target".Translate(target)
-                            + " (" + target.GetAcceptArrestChance(pawn).ToStringPercent() + " "
-                            + "MooGirl.Rope.SuccessChance".Translate() + ")";
+                    label = RopeLabelWithSuccessChance(
+                        "MooGirl.Rope.Target".Translate(target).ToString(),
+                        target.GetAcceptArrestChance(pawn).ToStringPercent());
                 }
 
                 yield return FloatMenuUtility.DecoratePrioritizedTask(
@@ -111,6 +111,14 @@ namespace MooGirl
                     pawn.jobs.TryTakeOrderedJob(new Job(MooGirl_DefOf.JobDriver_RemoveRopeMoo, target), JobTag.Misc);
                 });
             }
+        }
+
+        private static string RopeLabelWithSuccessChance(string baseLabel, string chance)
+        {
+            return "MooGirl.Rope.TargetWithSuccessChance".Translate(
+                baseLabel,
+                chance,
+                "MooGirl.Rope.SuccessChance".Translate()).ToString();
         }
     }
 

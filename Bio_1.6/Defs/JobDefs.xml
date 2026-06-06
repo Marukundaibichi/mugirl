@@ -4,7 +4,8 @@
 	<JobDef>
 		<defName>Job_Charge</defName>
 		<driverClass>MooGirl.JobDriver_CastCharge</driverClass>
-		<reportString>冲锋 TargetA.</reportString>
+		<!-- 冲锋 TargetA. -->
+		<reportString>Charging TargetA.</reportString>
 		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
 	</JobDef>
 

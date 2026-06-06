@@ -21,13 +21,6 @@ namespace MooGirl
 
         public static MechanoidWorkControlSettings settings;
 
-        // 构造函数
-        //public MooGirlMod(ModContentPack content) : base(content)
-        //{
-        //    settings = GetSettings<MechanoidWorkControlSettings>();
-
-        //}
-
         public override string SettingsCategory()
         {
             return "MooGirl.Settings.Category".Translate().ToString();

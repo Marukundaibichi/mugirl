@@ -1,5 +1,4 @@
 ﻿using RimWorld;
-using System.Linq;
 using Verse;
 
 namespace MooGirl
@@ -16,7 +15,15 @@ namespace MooGirl
             if (p.MapHeld == null || p.apparel == null)
                 return;
 
-            Apparel lockedApparel = p.apparel.WornApparel.FirstOrDefault(a => a.IsSlaveApparel());
+            Apparel lockedApparel = null;
+            for (int i = 0; i < p.apparel.WornApparel.Count; i++)
+            {
+                if (p.apparel.WornApparel[i].IsSlaveApparel())
+                {
+                    lockedApparel = p.apparel.WornApparel[i];
+                    break;
+                }
+            }
 
             if (lockedApparel is SlaveApparel apparel)
             {

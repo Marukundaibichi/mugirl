@@ -3,8 +3,10 @@
 <Defs>
  <HediffDef>
         <defName>MooGirl_Stun</defName>
-		<label>牛牛撞击</label>
-		<description>被雪牛娘创力~口区。</description>
+		<!-- 牛牛撞击 -->
+		<label>Mugirl Impact</label>
+		<!-- 被雪牛娘创力~口区。 -->
+		<description>Knocked senseless by a charging Mugirl.</description>
 		<hediffClass>HediffWithComps</hediffClass>
 		<comps>
 			<li Class="HediffCompProperties_Disappears">
@@ -26,8 +28,10 @@
 
 	<HediffDef>
 		<defName>MooGirl_Charge</defName>
-		<label>牛牛冲锋</label>
-		<description>冲冲冲！勇敢勇敢我的牛牛！</description>
+		<!-- 牛牛冲锋 -->
+		<label>Mugirl Charge</label>
+		<!-- 冲冲冲！勇敢勇敢我的牛牛！ -->
+		<description>Charge, charge, charge! Brave, brave Mugirl!</description>
 		<hediffClass>HediffWithComps</hediffClass>
 		<isBad>false</isBad>
 		<stages>

@@ -15,7 +15,7 @@ namespace MooGirl
         {
             if (harmony == null)
             {
-                MooGirlLog.WarningOnce("PatchRegistry.NullHarmony", "Manual patches skipped because the Harmony instance is missing.");
+                MooGirlLog.WarningOnce("PatchRegistry.NullHarmony", "MooGirl.PatchRegistry.NullHarmony".Translate().ToString());
                 return;
             }
 
@@ -30,7 +30,7 @@ namespace MooGirl
         {
             MethodInfo target = AccessTools.Method(typeof(PawnGenerator), nameof(PawnGenerator.GeneratePawn), new[] { typeof(PawnGenerationRequest) });
             MethodInfo postfix = AccessTools.Method(typeof(PawnGenerator_GeneratePawn_Patch), nameof(PawnGenerator_GeneratePawn_Patch.Postfix));
-            TryPatch(harmony, "PawnGenerator.GeneratePawn slave apparel lock postfix", target, postfix: postfix);
+            TryPatch(harmony, "MooGirl.PatchRegistry.PawnGeneratorGeneratePawn", target, postfix: postfix);
         }
 
         private static void PatchAlienRaceSwaddleGraphicFor(Harmony harmony)
@@ -45,20 +45,24 @@ namespace MooGirl
 
             MethodInfo target = AccessTools.Method(swaddleType, "GraphicFor", new[] { typeof(Pawn) });
             MethodInfo prefix = AccessTools.Method(typeof(Patch_AlienPawnRenderNode_Swaddle_GraphicFor), nameof(Patch_AlienPawnRenderNode_Swaddle_GraphicFor.Prefix));
-            TryPatch(harmony, "AlienRace swaddle GraphicFor prefix", target, prefix: prefix);
+            TryPatch(harmony, "MooGirl.PatchRegistry.AlienRaceSwaddleGraphicFor", target, prefix: prefix);
         }
 
-        private static void TryPatch(Harmony harmony, string name, MethodBase target, MethodInfo prefix = null, MethodInfo postfix = null)
+        private static void TryPatch(Harmony harmony, string nameKey, MethodBase target, MethodInfo prefix = null, MethodInfo postfix = null)
         {
             if (target == null)
             {
-                MooGirlLog.WarningOnce("PatchRegistry.MissingTarget." + name, "Manual patch target missing: " + name);
+                MooGirlLog.WarningOnce(
+                    "PatchRegistry.MissingTarget." + nameKey,
+                    "MooGirl.PatchRegistry.MissingTarget".Translate(nameKey.Translate()).ToString());
                 return;
             }
 
             if (prefix == null && postfix == null)
             {
-                MooGirlLog.WarningOnce("PatchRegistry.MissingPatchMethod." + name, "Manual patch method missing: " + name);
+                MooGirlLog.WarningOnce(
+                    "PatchRegistry.MissingPatchMethod." + nameKey,
+                    "MooGirl.PatchRegistry.MissingPatchMethod".Translate(nameKey.Translate()).ToString());
                 return;
             }
 
@@ -66,7 +70,7 @@ namespace MooGirl
                 target,
                 prefix: prefix == null ? null : new HarmonyMethod(prefix),
                 postfix: postfix == null ? null : new HarmonyMethod(postfix));
-            manualPatchNames.Add(name);
+            manualPatchNames.Add(nameKey);
         }
     }
 }
