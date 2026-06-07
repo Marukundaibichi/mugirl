@@ -4,4 +4,8 @@
     <MuGirl_Gun_Flame_Thrower.description>这个武器先复用原版迷你火焰冲击枪的代码，后续修改。</MuGirl_Gun_Flame_Thrower.description>
     <!-- Mugirl Flame Thrower -->
     <MuGirl_Gun_Flame_Thrower.label>雪牛娘火焰喷射器</MuGirl_Gun_Flame_Thrower.label>
+    <!-- barrel -->
+    <MuGirl_Gun_Flame_Thrower.tools.barrel.label>枪管</MuGirl_Gun_Flame_Thrower.tools.barrel.label>
+    <!-- Mugirl Flame Thrower -->
+    <MuGirl_Gun_Flame_Thrower.verbs.Verb_SpewFire.label>雪牛娘火焰喷射器</MuGirl_Gun_Flame_Thrower.verbs.Verb_SpewFire.label>
 </LanguageData>

@@ -71,17 +71,17 @@ namespace MooGirl
         {
             Vector3 targetWithOffset = hitch.Position.ToVector3Shifted();
 
-            // Match WallRopeHitch graphicData drawOffset* so the rope ends on the visible wall ring.
+            // The wall hitch's usable rope point sits on the facing side of its occupied cell.
             switch (hitch.Rotation.AsInt)
             {
                 case 0:
-                    return targetWithOffset + new Vector3(0f, 0f, 0.9f);
+                    return targetWithOffset + new Vector3(0f, 0f, 0.5f);
                 case 1:
-                    return targetWithOffset + new Vector3(0.9f, 0f, 0f);
+                    return targetWithOffset + new Vector3(0.5f, 0f, 0f);
                 case 2:
-                    return targetWithOffset + new Vector3(0f, 0f, -0.9f);
+                    return targetWithOffset + new Vector3(0f, 0f, -0.5f);
                 case 3:
-                    return targetWithOffset + new Vector3(-0.9f, 0f, 0f);
+                    return targetWithOffset + new Vector3(-0.5f, 0f, 0f);
                 default:
                     return targetWithOffset;
             }

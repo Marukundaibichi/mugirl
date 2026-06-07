@@ -186,6 +186,28 @@ try {
         Fail "Language duplicate key scan failed: $($languageDuplicateKeys.Count) duplicate key(s)"
     }
 
+    Write-Step "Language load-folder path shadowing"
+    $languageRelativeFiles = @()
+    foreach ($languageRoot in Get-LanguageRoots) {
+        $rootPath = (Resolve-Path -LiteralPath $languageRoot).Path
+        Get-ChildItem -LiteralPath $languageRoot -Recurse -Filter '*.xml' | ForEach-Object {
+            $languageRelativeFiles += [pscustomobject]@{
+                Relative = $_.FullName.Substring($rootPath.Length).TrimStart([char[]]"\/")
+                Path = Get-RelativePath $_.FullName
+            }
+        }
+    }
+
+    $languageShadowingIssues = @()
+    foreach ($group in $languageRelativeFiles | Group-Object Relative | Where-Object { $_.Count -gt 1 }) {
+        $paths = ($group.Group | ForEach-Object { $_.Path } | Sort-Object) -join ', '
+        $languageShadowingIssues += "$($group.Name) :: $paths"
+    }
+    if ($languageShadowingIssues.Count) {
+        $languageShadowingIssues | Sort-Object
+        Fail "Language load-folder path shadowing scan failed: $($languageShadowingIssues.Count) duplicate relative path(s)"
+    }
+
     Write-Step "Language parity"
     function Get-LanguageNodeMap {
         param([string]$Path)
@@ -1417,12 +1439,12 @@ try {
     if (Test-Path -LiteralPath $ropingDrawPath) {
         $ropingDrawText = Get-Content -LiteralPath $ropingDrawPath -Encoding utf8 -Raw
         $wallHitchAnchorSafe = $ropingDrawText -match 'WallHitchAnchor\(Building\s+hitch\)' `
-            -and $ropingDrawText -match 'case\s+0:[\s\S]*new\s+Vector3\(0f,\s*0f,\s*0\.9f\)' `
-            -and $ropingDrawText -match 'case\s+1:[\s\S]*new\s+Vector3\(0\.9f,\s*0f,\s*0f\)' `
-            -and $ropingDrawText -match 'case\s+2:[\s\S]*new\s+Vector3\(0f,\s*0f,\s*-0\.9f\)' `
-            -and $ropingDrawText -match 'case\s+3:[\s\S]*new\s+Vector3\(-0\.9f,\s*0f,\s*0f\)'
+            -and $ropingDrawText -match 'case\s+0:[\s\S]*new\s+Vector3\(0f,\s*0f,\s*0\.5f\)' `
+            -and $ropingDrawText -match 'case\s+1:[\s\S]*new\s+Vector3\(0\.5f,\s*0f,\s*0f\)' `
+            -and $ropingDrawText -match 'case\s+2:[\s\S]*new\s+Vector3\(0f,\s*0f,\s*-0\.5f\)' `
+            -and $ropingDrawText -match 'case\s+3:[\s\S]*new\s+Vector3\(-0\.5f,\s*0f,\s*0f\)'
         if (-not $wallHitchAnchorSafe) {
-            $ropingTargetSafetyIssues += "$ropingDrawPath :: wall rope hitch draw anchor must match WallRopeHitch graphicData drawOffset directions"
+            $ropingTargetSafetyIssues += "$ropingDrawPath :: wall rope hitch draw anchor must use the facing-side cell edge"
         }
     }
     else {
