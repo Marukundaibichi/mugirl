@@ -657,6 +657,16 @@ H241-H243 追加验证结果：Release 构建通过，`Invoke-Phase6StaticValida
 
 H244-H247 追加验证结果：Release 构建通过，`Invoke-Phase6StaticValidation.ps1 -SkipBuild` 通过；`Def lookup safety rules` 计数保持 3 但全源码 `DefDatabase.GetNamed` 禁令已收紧，`Dynamic recipe safety rules` 计数保持 4 但 hotReload 复用已要求 `GetNamedSilentFail`，`Harmony boundary safety rules` 计数保持 14 但 Xenotype scratch list 检查已要求 readonly 与局部 ref 清理。额外复扫 `DefDatabase<...>.GetNamed(` 无源码命中，精确复扫 private static 非 readonly 集合字段无命中。`New-WorkshopPackage.ps1 -SkipBuild` 通过，复制 877 个文件、排除 161 个文件。`New-GameValidationConfigs.ps1` 通过，生成 6 组验证配置。`git diff --check` 无 whitespace 错误，仅报告 Git 的 LF/CRLF 工作区提示。`Invoke-PlayerLogScan.ps1` 仍命中旧 `Player.log` 中的 `Pawn_Melee_Punch_HitBuilding` 和 Simplified Chinese translation report 旧记录；当前代码/静态校验未复现这两条，仍必须重新启动 RimWorld 后复扫 fresh `Player.log` 才能关闭最终日志阻断项。
 
+2026-06-07 已完成追加业务 helper API 面收尾：
+
+行为变更说明：MooGirl 新生儿 xenotype 修正、故事计时、结构坠落/快递员 quest 触发和 Ideology 归化行为不变。改变的是程序集 API 暴露面：三个仅供本程序集调用、且未被 XML/patch/language 目录引用的业务 helper 不再声明为 `public static`，减少外部误用和跨 mod 写调用面的暗门。
+
+- H248：`MooGirlXenotypeService` 只是 `MooGirl_XenotypeFix_GameComp.cs` 内部 Harmony patch 和兜底 GameComponent 的服务层，却以 `public static class` 暴露 `ForceFemaleMooGirlXenotypeIfNeeded` 与 `FixLoadedPawnIfSafe`。现改为 `internal static class`，两个入口同步改为 `internal static`，保留 H246/H247 的 readonly scratch list 与局部 ref 清理边界。
+- H249：`MooGirlStoryService` 与 `MooGirl_IdeoUtility` 均为事件/任务模块内部 helper：前者只由 `MooGirlStoryState.GameComponentTick()` 调用，后者只由本 mod 任务/束具/归化路径调用；它们不需要成为对外公共 API。现将两个 class 与 `Tick` / `AdoptPlayerPrimaryIdeo` 入口收为 `internal static`。
+- H250：Phase 6 扩展事件交互与 Xenotype Harmony boundary 门禁，要求 `MooGirlStoryService`、`MooGirl_IdeoUtility`、`MooGirlXenotypeService` 保持 internal，并禁止对应 `public static class` 回流。额外复扫 `1.6/Defs`、`1.6/Patches`、`Bio_1.6` 与语言目录，无这些 helper 的 XML/翻译引用。
+
+H248-H250 追加验证结果：Release 构建通过，`Invoke-Phase6StaticValidation.ps1 -SkipBuild` 通过；`Incident interaction safety rules` 扩展至 31，新增业务 helper internal API 面门禁；`Harmony boundary safety rules` 计数保持 14，但 Xenotype helper 门禁已要求 internal 入口。`New-WorkshopPackage.ps1 -SkipBuild` 通过，复制 877 个文件、排除 161 个文件。`New-GameValidationConfigs.ps1` 通过，生成 6 组验证配置。`git diff --check` 无 whitespace 错误；文档写入后复跑仅报告 `docs/09-post-refactor-hardening-plan.md` 的 LF/CRLF 工作区提示。`Invoke-PlayerLogScan.ps1` 当前命中现有 `Player.log` 中的 Simplified Chinese translation report 一条；本轮没有启动 RimWorld，也没有生成 fresh clean `Player.log`，因此最终日志阻断项仍未关闭。
+
 ## 执行原则
 
 1. 先修会红字、破存档状态或影响全局行为的问题。
@@ -1347,3 +1357,6 @@ P2：最终发布包不得遗留。主要是冗余、风格、命名、资源卫
 | H245 | P1 | 全源码 Def lookup 门禁未禁止 `GetNamed(..., false)` 回流 | 已加入 Phase 6 静态校验 |
 | H246 | P2 | Xenotype 出生关系静态 scratch list 直接作为 `ref` 参数，理论上可被外部 API 重绑 | 已修复，待 MooGirl 新生儿 xenotype 验证 |
 | H247 | P1 | Xenotype scratch list readonly/ref 局部清理边界缺少自动防回归检查 | 已加入 Phase 6 静态校验 |
+| H248 | P2 | `MooGirlXenotypeService` 作为内部服务层仍暴露 public static API 面 | 已收束，待 MooGirl 新生儿 xenotype 验证 |
+| H249 | P2 | `MooGirlStoryService` 与 `MooGirl_IdeoUtility` 作为事件内部 helper 仍暴露 public static API 面 | 已收束，待事件计时与 Ideology 归化验证 |
+| H250 | P1 | 业务 helper internal API 面缺少自动防回归检查 | 已加入 Phase 6 静态校验 |

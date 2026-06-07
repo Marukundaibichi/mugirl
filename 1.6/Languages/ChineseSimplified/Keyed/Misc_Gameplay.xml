@@ -18,6 +18,12 @@
     <MooGirl.PatchRegistry.MissingPatchMethod>手动补丁方法缺失：{0}</MooGirl.PatchRegistry.MissingPatchMethod>
     <!-- Manual patch failed: {0}. {1} -->
     <MooGirl.PatchRegistry.PatchFailed>手动补丁应用失败：{0}。{1}</MooGirl.PatchRegistry.PatchFailed>
+    <!-- Tried to open a MooGirl window while the window stack was unavailable. -->
+    <MooGirl.GameUtility.WindowStackUnavailable>尝试打开 MooGirl 窗口时窗口栈不可用。</MooGirl.GameUtility.WindowStackUnavailable>
+    <!-- Tried to send a MooGirl letter while the game letter stack was unavailable. -->
+    <MooGirl.GameUtility.LetterStackUnavailable>尝试发送 MooGirl 信件时游戏信件栈不可用。</MooGirl.GameUtility.LetterStackUnavailable>
+    <!-- Tried to move a generated MooGirl pawn through world storage while WorldPawns was unavailable. -->
+    <MooGirl.GameUtility.WorldPawnsUnavailable>尝试将生成的 MooGirl pawn 转入世界存储时 WorldPawns 不可用。</MooGirl.GameUtility.WorldPawnsUnavailable>
     <!-- Gear drop tooltip patch was skipped because the expected vanilla IL pattern was not found. -->
     <MooGirl.DropThingTooltip.TranspilerNotApplied>装备丢弃提示补丁已跳过：未找到预期的原版 IL 模式。</MooGirl.DropThingTooltip.TranspilerNotApplied>
     <!-- Roping tick fallback used BreakAllRopes because the vanilla BreakRopeWithRoper method was not found. -->

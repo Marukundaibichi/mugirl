@@ -3,5 +3,6 @@
 1.6/Assemblies/*.pdb
 TMP/
 **/备份/
+*.sai2
 *.user
 *.suo

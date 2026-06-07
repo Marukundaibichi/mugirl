@@ -36,8 +36,8 @@ namespace MooGirl
 
         private static void PatchAlienRaceSwaddleGraphicFor(Harmony harmony)
         {
-            // HAR 是运行时可选依赖。这里只通过反射访问，保证 AlienRace
-            // 缺失或变更时本 mod 仍能干净加载。
+            // HAR 是本 mod 的硬依赖；这里仍通过反射访问可变的 HAR 内部渲染类型，
+            // 让该内部类型缺失或签名变更时只跳过兼容补丁。
             Type swaddleType = AccessTools.TypeByName("AlienRace.AlienPawnRenderNode_Swaddle");
             if (swaddleType == null)
             {

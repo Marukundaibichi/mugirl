@@ -9,6 +9,9 @@
     <MooGirl.PatchRegistry.MissingTarget>Manual patch target missing: {0}</MooGirl.PatchRegistry.MissingTarget>
     <MooGirl.PatchRegistry.MissingPatchMethod>Manual patch method missing: {0}</MooGirl.PatchRegistry.MissingPatchMethod>
     <MooGirl.PatchRegistry.PatchFailed>Manual patch failed: {0}. {1}</MooGirl.PatchRegistry.PatchFailed>
+    <MooGirl.GameUtility.WindowStackUnavailable>Tried to open a MooGirl window while the window stack was unavailable.</MooGirl.GameUtility.WindowStackUnavailable>
+    <MooGirl.GameUtility.LetterStackUnavailable>Tried to send a MooGirl letter while the game letter stack was unavailable.</MooGirl.GameUtility.LetterStackUnavailable>
+    <MooGirl.GameUtility.WorldPawnsUnavailable>Tried to move a generated MooGirl pawn through world storage while WorldPawns was unavailable.</MooGirl.GameUtility.WorldPawnsUnavailable>
     <MooGirl.DropThingTooltip.TranspilerNotApplied>Gear drop tooltip patch was skipped because the expected vanilla IL pattern was not found.</MooGirl.DropThingTooltip.TranspilerNotApplied>
     <MooGirl.RopingTick.BreakRopeWithRoperMissing>Roping tick fallback used BreakAllRopes because the vanilla BreakRopeWithRoper method was not found.</MooGirl.RopingTick.BreakRopeWithRoperMissing>
     <MooGirl.Mount.DropAtFailed>Mounted rider {0} could not be dropped from {1}; the rider was passed to world storage as a fallback.</MooGirl.Mount.DropAtFailed>

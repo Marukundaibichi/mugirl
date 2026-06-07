@@ -20,7 +20,7 @@ namespace MooGirl
             {
                 MooGirlLog.WarningOnce(
                     "GameUtility.WindowStackUnavailable",
-                    "Tried to open a MooGirl window while the window stack was unavailable.");
+                    "MooGirl.GameUtility.WindowStackUnavailable".Translate().ToString());
                 return false;
             }
 
@@ -208,7 +208,7 @@ namespace MooGirl
             {
                 MooGirlLog.WarningOnce(
                     "GameUtility.LetterStackUnavailable",
-                    "Tried to send a MooGirl letter while the game letter stack was unavailable.");
+                    "MooGirl.GameUtility.LetterStackUnavailable".Translate().ToString());
                 return false;
             }
 
@@ -222,7 +222,7 @@ namespace MooGirl
             {
                 MooGirlLog.WarningOnce(
                     "GameUtility.WorldPawnsUnavailable",
-                    "Tried to move a generated MooGirl pawn through world storage while WorldPawns was unavailable.");
+                    "MooGirl.GameUtility.WorldPawnsUnavailable".Translate().ToString());
                 return false;
             }
 
