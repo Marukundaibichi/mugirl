@@ -123,7 +123,7 @@
         </thingCategories>
     </ThingDef>
 
-    <!-- PMC作战服 - Middle + Shell layers, multi body type -->
+    <!-- PMC作战服：Middle 与 Shell 双层，支持多体型。 -->
     <ThingDef ParentName="ApparelMakeableBase">
         <defName>PMC_CombatUniform</defName>
         <!-- PMC作战服 -->

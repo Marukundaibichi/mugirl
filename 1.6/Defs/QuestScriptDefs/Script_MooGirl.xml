@@ -19,7 +19,7 @@
                 <li>questDescription->A transport pod crashes with a refugee</li>
             </rulesStrings>
         </questDescriptionRules>
-        <everAcceptableInSpace>true</everAcceptableInSpace> <!-- Handled by quest part -->
+        <everAcceptableInSpace>true</everAcceptableInSpace> <!-- 由 quest part 自行处理可接受性。 -->
         <root Class="MooGirl.QuestNode_Root_MooGirl_OpeningPodCrash" />
     </QuestScriptDef>
 
@@ -41,7 +41,7 @@
                 <li>questDescription->A transport pod crashes with a refugee</li>
             </rulesStrings>
         </questDescriptionRules>
-        <everAcceptableInSpace>true</everAcceptableInSpace> <!-- Handled by quest part -->
+        <everAcceptableInSpace>true</everAcceptableInSpace> <!-- 由 quest part 自行处理可接受性。 -->
         <root Class="MooGirl.QuestNode_Root_MooGirl_RefugeePodCrash" />
     </QuestScriptDef>
 

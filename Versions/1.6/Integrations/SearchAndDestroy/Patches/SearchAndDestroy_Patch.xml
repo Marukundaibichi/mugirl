@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
     <!-- PatchGovernance:
-    Targets: MooGirlLike ThinkTreeDef when Search and Destroy is active.
-    Scope: optional SearchAndDestroy integration; inserts one SearchAndDestroy branch into the MooGirl idle combat tree.
-    Duplicate guard: outer conditional skips when the SearchAndDestroy node already exists; inner target uses the unique idle colonist branch.
-    Failure: missing target or upstream think tree drift is acceptable and leaves the base MooGirlLike tree unchanged.
+    Targets: Search and Destroy 启用时的 MooGirlLike ThinkTreeDef。
+    Scope: 可选 SearchAndDestroy 集成；向雪牛娘闲置战斗树插入一个 SearchAndDestroy 分支。
+    Duplicate guard: 外层条件在 SearchAndDestroy 节点已存在时跳过；内层目标使用唯一的殖民者闲置分支。
+    Failure: 目标缺失或上游行为树结构变化时允许无操作，保留基础 MooGirlLike 行为树。
     -->
-    <!-- Search and Destroy think tree targets may change between versions. 目标缺失或已插入时静默跳过。 -->
+    <!-- Search and Destroy 的行为树目标可能随版本变化；目标缺失或已插入时静默跳过。 -->
     <Operation Class="PatchOperationConditional">
         <xpath>Defs/ThinkTreeDef[defName="MooGirlLike"]//li[@Class="SearchAndDestroy.ThinkNode_ConditionalSearchAndDestroy"]</xpath>
         <nomatch Class="PatchOperationConditional">
             <xpath>Defs/ThinkTreeDef[defName="MooGirlLike"]/thinkRoot[@Class="ThinkNode_Priority"]/subNodes/li[@Class="ThinkNode_ConditionalColonist"][subNodes/li[@Class="ThinkNode_Tagger"]/tagToGive[text()="Idle"]]</xpath>
             <match Class="PatchOperationInsert">
-                <!-- Insert before the unique idle colonist branch. 插入到唯一的殖民者闲置分支之前，避免命中多个殖民者节点。 -->
+                <!-- 插入到唯一的殖民者闲置分支之前，避免命中多个殖民者节点。 -->
                 <xpath>Defs/ThinkTreeDef[defName="MooGirlLike"]/thinkRoot[@Class="ThinkNode_Priority"]/subNodes/li[@Class="ThinkNode_ConditionalColonist"][subNodes/li[@Class="ThinkNode_Tagger"]/tagToGive[text()="Idle"]]</xpath>
                 <value>
-                    <!-- Do search and destroy instead of waiting. 执行主动搜索歼灭，而不是原地等待。 -->
+                    <!-- 执行主动搜索歼灭，而不是原地等待。 -->
                     <li Class="SearchAndDestroy.ThinkNode_ConditionalSearchAndDestroy">
                         <subNodes>
                             <li Class="ThinkNode_Priority">

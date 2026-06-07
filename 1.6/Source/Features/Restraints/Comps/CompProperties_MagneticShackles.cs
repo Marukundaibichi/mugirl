@@ -193,7 +193,7 @@ namespace MooGirl
                 {
                     if (entry == null || entry.hediffDef == null) continue;
 
-                    // BodyPartDef 不为空则绑定指定部位
+                    // 配置了 BodyPartDef 时只给对应部位添加束缚 Hediff。
                     if (entry.bodyPartDefs != null && entry.bodyPartDefs.Count > 0 && wearer.RaceProps?.body?.AllParts != null)
                     {
                         foreach (var bodyPartDef in entry.bodyPartDefs)
@@ -219,7 +219,7 @@ namespace MooGirl
                     }
                     else
                     {
-                        // 绑定全身/无部位
+                        // 未配置部位时作为全身效果添加。
                         if (!HasHediffOnPart(wearer, entry.hediffDef, null))
                         {
                             Hediff hd = HediffMaker.MakeHediff(entry.hediffDef, wearer, null);
@@ -243,7 +243,7 @@ namespace MooGirl
             Messages.Message(MooGirlText.Resolve(shackleProps.messageOn, wearer.LabelShortCap), wearer, MessageTypeDefOf.NegativeEvent);
         }
 
-        // 解除逻辑（彻底移除 Hediff）
+        // 解除时只移除本配置添加的束缚 Hediff。
         public void DeactivateShackles()
         {
             DeactivateShackles(Wearer, true);
@@ -297,7 +297,7 @@ namespace MooGirl
             }
         }
 
-        // Verb 限制
+        // 束缚的身体部位组会禁止依赖对应部位的 Verb。
         public override bool CompAllowVerbCast(Verb verb)
         {
             CompProperties_MagneticShackles shackleProps = Props;

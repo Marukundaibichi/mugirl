@@ -13,11 +13,12 @@ namespace MooGirl
         public List<HediffDef> hediffsToRemove;
         public List<HediffWithParams> hediffsToApplyWithParams;
         public List<FilthEntry> filthSpawnEntries;
-        public float stunDuration = 2f; // 电击晕厥时间
-        public float hostileStunDuration = 4f; // 敌对单位的电击晕厥时间
-        public float jitterMagnitude = 0.3f; // 震动幅度
-        public int effectCycleInterval = 200; // 电击效果周期间隔
-        public int maxCycles = 1; // 最多几个周期
+        // 电击基础参数：晕厥时间、震动幅度和循环次数。
+        public float stunDuration = 2f;
+        public float hostileStunDuration = 4f;
+        public float jitterMagnitude = 0.3f;
+        public int effectCycleInterval = 200;
+        public int maxCycles = 1;
 
         public CompProperties_EleShock()
         {
@@ -26,29 +27,29 @@ namespace MooGirl
 
         public class HediffWithParams
         {
-            public HediffDef hediff; // 要应用的 Hediff
-            public float severity = -1f; // Hediff 的严重程度
-            public string bodyPartTarget; // 目标身体部位
+            public HediffDef hediff;
+            public float severity = -1f;
+            public string bodyPartTarget;
         }
 
         public class FilthEntry
         {
-            public ThingDef filthDef; // 污物类型
-            public float filthAmount = 3f; // 污物数量
-            public int spawnInterval = 60; // 生成间隔
-            public bool spawnInFacingDirection = false;  // 是否朝向方向生成
+            public ThingDef filthDef;
+            public float filthAmount = 3f;
+            public int spawnInterval = 60;
+            public bool spawnInFacingDirection = false;
         }
     }
 
     public class HediffComp_EleShock : HediffComp
     {
-        // StaticCacheLifecycle: process-level reflection cache for Pawn_DrawTracker.jitterer; no game objects are retained.
+        // StaticCacheLifecycle: 进程级 Pawn_DrawTracker.jitterer 反射缓存；不持有游戏对象。
         private static readonly FieldInfo JittererField = AccessTools.Field(typeof(Pawn_DrawTracker), "jitterer");
 
-        private int currentTickCount = 0; // 当前计时器
-        private int remainingCycles = 0; // 剩余周期数
-        private int jitterTicksLeft = 0; // 剩余震动时间
-        private Dictionary<ThingDef, int> filthTimers = new Dictionary<ThingDef, int>(); // 污物计时器
+        private int currentTickCount = 0;
+        private int remainingCycles = 0;
+        private int jitterTicksLeft = 0;
+        private Dictionary<ThingDef, int> filthTimers = new Dictionary<ThingDef, int>();
         private readonly List<ThingDef> tmpStaleFilthDefs = new List<ThingDef>();
 
         private CompProperties_EleShock Properties => props as CompProperties_EleShock;
@@ -92,8 +93,8 @@ namespace MooGirl
                 currentTickCount--;
                 if (currentTickCount <= 0)
                 {
-                    remainingCycles--; // 剩余周期
-                    currentTickCount = Mathf.Max(1, shockProps.effectCycleInterval); // 重置间隔
+                    remainingCycles--;
+                    currentTickCount = Mathf.Max(1, shockProps.effectCycleInterval);
                 }
             }
 

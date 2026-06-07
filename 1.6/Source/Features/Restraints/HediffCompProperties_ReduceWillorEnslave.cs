@@ -11,16 +11,10 @@ namespace MooGirl
             compClass = typeof(HediffComp_ReduceWillorEnslave);
         }
 
-        // 多少个 tick 后触发
+        // 达到触发时间后可一次性削减意志或直接奴役囚犯。
         public int triggerTicks = 600;
-
-        // 是否削减意志力
         public bool reduceWill = false;
-
-        // 是否直接转化为奴隶
         public bool makeSlave = false;
-
-        // 意志力削减的量
         public float willReductionAmount = 10f;
     }
 
@@ -37,7 +31,6 @@ namespace MooGirl
 
             age++;
 
-            // 先检查 Pawn 是否穿着洗脑装备且已破解
             CompProperties_ReduceWillorEnslave compProps = Props;
             Pawn pawn = Pawn;
             if (triggered || compProps == null)
@@ -52,13 +45,11 @@ namespace MooGirl
             }
 
             bool handled = false;
-            // 削减意志力
             if (compProps.reduceWill)
             {
                 handled |= ReduceWill(pawn, compProps);
             }
 
-            // 直接奴隶
             if (compProps.makeSlave)
             {
                 handled |= MakeSlave(pawn);
@@ -75,7 +66,6 @@ namespace MooGirl
             }
         }
 
-        // 削减意志力
         private bool ReduceWill(Pawn pawn, CompProperties_ReduceWillorEnslave compProps)
         {
             var guest = pawn?.guest;
@@ -89,13 +79,11 @@ namespace MooGirl
                 return true;
             }
 
-            // 计算削减的意志力
             float willpowerToReduce = Mathf.Min(guest.will, compProps.willReductionAmount);
             guest.will = Mathf.Max(0f, guest.will - willpowerToReduce);
             return true;
         }
 
-        // 直接奴役囚犯
         private bool MakeSlave(Pawn pawn)
         {
             var guest = pawn?.guest;

@@ -3,19 +3,16 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace MooGirl  // 定义命名空间MooGirl，用于组织相关类
+namespace MooGirl
 {
-    // 定义JobDriver_GatherMilk类，继承自JobDriver_GatherBodyResources，用于处理挤奶工作
+    // 雪牛娘挤奶工作：在通用身体资源采集流程上加入动画、固定产量和喷乳反馈。
     public class JobDriver_GatherMilk : JobDriver_GatherBodyResources
     {
-        // 定义常量，表示当角色对自己挤奶时的工作时间（tick）
         public float WorktickSelf = 600f;
-        // 定义常量，表示当角色对其他动物挤奶时的工作时间（tick）
         public float WorktickOther = 600f;
 
         private const float FastMilkingWorkTicks = 60f;
 
-        // 重写WorkTotal属性，根据挤奶对象返回不同的总工作时间
         protected override float WorkTotal
         {
             get
@@ -25,22 +22,19 @@ namespace MooGirl  // 定义命名空间MooGirl，用于组织相关类
                     return FastMilkingWorkTicks;
                 }
 
-                // 判断当前角色是否是挤奶目标（即是否是自己挤奶）
                 if (this.pawn == TargetPawn)
                 {
-                    return WorktickSelf;  // 返回对自己挤奶的工作时间
+                    return WorktickSelf;
                 }
                 else
                 {
-                    return WorktickOther;  // 返回对其他动物挤奶的工作时间
+                    return WorktickOther;
                 }
             }
         }
 
-        // 重写GetComp方法，获取指定动物的挤奶组件
         protected override CompMooHasBodyResource GetComp(Pawn animal)
         {
-            // 返回动物的挤奶组件实例（CompMooMilkable是挤奶功能的具体实现）
             return animal?.TryGetComp<CompMooMilkable>();
         }
 
@@ -70,7 +64,7 @@ namespace MooGirl  // 定义命名空间MooGirl，用于组织相关类
             MooGirlMilkingAnimation.End(doer, target);
         }
 
-        // 使用固定产量榨乳 + 喷乳特效
+        // 挤奶使用固定消耗量，避免一次性清空全部奶量。
         protected override void CompleteGather(Pawn doer)
         {
             CompMooMilkable comp = GetComp(TargetPawn) as CompMooMilkable;

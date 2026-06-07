@@ -28,7 +28,7 @@
             </surfaceLayer>
             <parts>
 
-                <!-- Layers -->
+                <!-- Odyssey 行星层配置。 -->
                 <li MayRequire="Ludeon.RimWorld.Odyssey" Class="ScenPart_PlanetLayer">
                     <def>PlanetLayer</def>
                     <tag>Orbit</tag>
@@ -42,21 +42,21 @@
                     </connections>
                 </li>
 
-                <!-- Config pages -->
+                <!-- 开局人物配置页。 -->
                 <li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
                     <def>ConfigPage_ConfigureStartingPawns</def>
                     <pawnCount>3</pawnCount>
                     <pawnChoiceCount>8</pawnChoiceCount>
                 </li>
 
-                <!-- Player starting stuff spawn method-->
+                <!-- 玩家初始人物到达方式。 -->
                 <li Class="ScenPart_PlayerPawnsArriveMethod">
                     <def>PlayerPawnsArriveMethod</def>
                     <method>DropPods</method>
                     <visible>false</visible>
                 </li>
 
-                <!-- Player pawns modifiers -->
+                <!-- 玩家初始人物修正。 -->
                 <li Class="ScenPart_ForcedHediff">
                     <def>ForcedHediff</def>
                     <visible>false</visible>
@@ -67,7 +67,7 @@
                     <severityRange>1~1</severityRange>
                 </li>
 
-                <!-- Player starting things -->
+                <!-- 玩家开局物资。 -->
                 <li Class="ScenPart_StartingThing_Defined">
                     <def>StartingThing_Defined</def>
                     <thingDef>Silver</thingDef>
@@ -120,7 +120,7 @@
                     <bondToRandomPlayerPawnChance>1.0</bondToRandomPlayerPawnChance>
                 </li>
 
-                <!-- Scatter some things near player start -->
+                <!-- 在玩家起点附近散落的资源。 -->
                 <li Class="ScenPart_ScatterThingsNearPlayerStart">
                     <def>ScatterThingsNearPlayerStart</def>
                     <thingDef>Steel</thingDef>
@@ -132,7 +132,7 @@
                     <count>300</count>
                 </li>
 
-                <!-- Scatter some things anywhere -->
+                <!-- 在地图任意位置散落的资源。 -->
                 <li Class="ScenPart_ScatterThingsAnywhere">
                     <def>ScatterThingsAnywhere</def>
                     <thingDef>ShipChunk</thingDef>
@@ -150,7 +150,7 @@
                     <count>7</count>
                 </li>
 
-                <!-- Game start dialog -->
+                <!-- 游戏开始弹窗。 -->
                 <li Class="ScenPart_GameStartDialog">
                     <def>GameStartDialog</def>
                     <textKey>GameStartDialog</textKey>

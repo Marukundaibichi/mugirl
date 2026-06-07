@@ -4,7 +4,7 @@ using Verse;
 
 namespace MooGirl
 {
-    // StaticCacheLifecycle: process-level required Def cache; missing entries fail fast during static initialization.
+    // StaticCacheLifecycle: 进程级必需 Def 缓存；缺失项会在静态初始化时立即失败。
     internal static class MooGirlRequiredDefs
     {
         internal static class Hediffs

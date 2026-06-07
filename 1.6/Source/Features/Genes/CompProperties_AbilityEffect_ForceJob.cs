@@ -4,14 +4,12 @@ using Verse.AI;
 
 namespace MooGirl
 {
-    // 用于定义强制任务的能力效果
+    // 强制任务能力的 XML 配置：指定影响半径、目标 Job 和可选持续时间。
     public class CompProperties_AbilityEffect_ForceJob : CompProperties_AbilityEffect
     {
         public float radius = 6f;
-        // 定义目标任务
         public JobDef jobDef;
 
-        // 持续时间乘数
         public int durationTick;
 
         public CompProperties_AbilityEffect_ForceJob()
@@ -20,7 +18,7 @@ namespace MooGirl
         }
     }
 
-    // 用于执行强制任务的能力效果
+    // 对施法者周围的敌人强行下达指定 Job，用于嘲讽等控制类能力。
     public class CompAbilityEffect_ForceJob : CompAbilityEffect
     {
         private new CompProperties_AbilityEffect_ForceJob Props
@@ -41,7 +39,7 @@ namespace MooGirl
 
             float radiusSquared = forceProps.radius * forceProps.radius;
 
-            // 以自己为中心 AOE
+            // 以施法者为中心扫描敌人，半径判断使用平方距离避免重复开方。
             foreach (Pawn p in map.mapPawns.AllPawnsSpawned)
             {
                 if (!CanForceJobOn(p, caster, map, radiusSquared))
@@ -93,7 +91,7 @@ namespace MooGirl
             }
         }
 
-        // 判断目标是否可以被AI选择
+        // AI 只在目标正瞄准自己时使用，避免该能力变成无条件群控。
         public override bool AICanTargetNow(LocalTargetInfo target)
         {
             Pawn caster = parent?.pawn;

@@ -9,7 +9,7 @@ namespace MooGirl
     internal static class MooGirlBootstrap
     {
         internal const string HarmonyId = "MooGirlMod.Mod";
-        // StaticCacheLifecycle: process-level bootstrap audit data; filled once because Harmony initialization is process-level.
+        // StaticCacheLifecycle: 进程级 Harmony 启动审计数据；Harmony 初始化只在进程内执行一次。
         private static readonly List<string> patchedClassNames = new List<string>();
 
         internal static Harmony Harmony { get; private set; }

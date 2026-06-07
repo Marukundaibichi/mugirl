@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-    <!-- ========== Underwear ========== -->
+    <!-- ========== 内衣层 ========== -->
 
     <ThingDef ParentName="MooGirl_UnderwearBase">
         <defName>MooGirl_WhitePanties</defName>
@@ -87,9 +87,9 @@
         </apparel>
     </ThingDef>
 
-    <!-- ========== Stocking ========== -->
+    <!-- ========== 袜类 ========== -->
 
-    <!-- ========== OnSkin ========== -->
+    <!-- ========== 贴身层 ========== -->
 
     <ThingDef ParentName="MooGirl_OnSkinBase">
         <defName>MooGirl_ReverseBunnySuit</defName>
@@ -186,7 +186,7 @@
         </thingCategories>
     </ThingDef>
 
-    <!-- ========== Head ========== -->
+    <!-- ========== 头部装备 ========== -->
 
     <ThingDef ParentName="MooGirl_ArmorHelmetBase">
         <defName>MooGirl_PowerArmorHelmet</defName>
@@ -431,7 +431,7 @@
         </apparel>
     </ThingDef>
 
-    <!-- ========== Shell ========== -->
+    <!-- ========== 外壳层 ========== -->
 
     <ThingDef ParentName="MooGirl_ArmorBase">
         <defName>MooGirl_PowerArmor</defName>

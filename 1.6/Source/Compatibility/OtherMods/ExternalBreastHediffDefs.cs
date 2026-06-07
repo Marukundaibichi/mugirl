@@ -3,7 +3,7 @@ using Verse;
 
 namespace MooGirl
 {
-    // StaticCacheLifecycle: process-level external breast HediffDef cache; values may be null when optional mods are absent.
+    // StaticCacheLifecycle: 进程级外部乳房 HediffDef 缓存；可选 mod 缺失时条目允许为 null。
     internal static class ExternalBreastHediffDefs
     {
         internal static readonly HediffDef HugeBreasts = Get("HugeBreasts");

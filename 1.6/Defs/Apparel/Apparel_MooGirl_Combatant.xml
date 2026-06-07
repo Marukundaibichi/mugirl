@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-    <!-- 雪牛娘战斗员防弹衣 - Shell -->
+    <!-- 雪牛娘战斗员防弹衣：Shell 层。 -->
     <ThingDef ParentName="MooGirl_ArmorBase">
         <defName>MooGirl_Combatant_BulletproofVest</defName>
         <!-- 雪牛娘战斗员防弹衣 -->
@@ -59,7 +59,7 @@
         </recipeMaker>
     </ThingDef>
 
-    <!-- 雪牛娘战斗员服装 - Middle -->
+    <!-- 雪牛娘战斗员服装：Middle 层。 -->
     <ThingDef ParentName="MooGirl_MiddleBase">
         <defName>MooGirl_Combatant_Clothes</defName>
         <!-- 雪牛娘战斗员服装 -->
@@ -278,7 +278,7 @@
         </recipeMaker>
     </ThingDef>
 
-    <!-- 雪牛娘全套军礼服 - OnSkin -->
+    <!-- 雪牛娘全套军礼服：OnSkin 层。 -->
     <ThingDef ParentName="MooGirl_OnSkinBase">
         <defName>MooGirl_MilitaryDress</defName>
         <!-- 雪牛娘全套军礼服 -->
@@ -333,7 +333,7 @@
         </recipeMaker>
     </ThingDef>
 
-    <!-- 雪牛娘轻量化军礼服 - OnSkin -->
+    <!-- 雪牛娘轻量化军礼服：OnSkin 层。 -->
     <ThingDef ParentName="MooGirl_OnSkinBase">
         <defName>MooGirl_MilitaryUniform</defName>
         <!-- 雪牛娘轻量化军礼服 -->

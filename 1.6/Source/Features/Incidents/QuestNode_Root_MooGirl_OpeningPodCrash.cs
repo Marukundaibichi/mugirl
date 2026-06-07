@@ -6,38 +6,37 @@ using Verse.AI;
 
 namespace MooGirl
 {
-    // 自定义任务节点：处理坠机逃生舱事件，生成特定角色并处理相关逻辑
+    // 开局逃生舱任务：生成无派系雪牛娘并放入救援流程。
     public class QuestNode_Root_MooGirl_OpeningPodCrash : QuestNode_Root_RefugeePodCrash
     {
         private const int MaxFactionlessGenerationAttempts = 20;
         private const float OpeningPodPawnAgeYears = 18f;
 
-        // 生成自定义逃生者角色
         public override Pawn GeneratePawn()
         {
             // 逃亡奴隶保持无派系；敌对巨企派系只用于袭击与索赔分支。
             Faction faction = null;
 
-            // 配置角色生成参数
+            // 生成请求固定为成年女性、可战斗、可招募，并通过 validator 拒绝带派系的结果。
             PawnGenerationRequest request = new PawnGenerationRequest(
-                MooGirl_DefOf.MooGirl_Beginning_Slave,  // 自定义角色定义
-                faction,                                // 所属派系
-                PawnGenerationContext.NonPlayer,        // 生成上下文
-                -1,                                     // 地图 tile（-1 表示无固定 tile）
-                forceGenerateNewPawn: true,             // 强制生成新角色
-                allowDead: false,                       // 不允许死亡
-                allowDowned: true,                      // 允许倒地状态
-                canGeneratePawnRelations: false,        // 不生成关系
-                mustBeCapableOfViolence: true,          // 必须具备战斗能力
-                forceAddFreeWarmLayerIfNeeded: false,   // 不强制添加保暖层
-                allowGay: true,                         // 允许同性恋
-                allowPregnant: false,                   // 不允许怀孕
-                forceRecruitable: true,                 // 强制可招募
+                MooGirl_DefOf.MooGirl_Beginning_Slave,
+                faction,
+                PawnGenerationContext.NonPlayer,
+                -1,
+                forceGenerateNewPawn: true,
+                allowDead: false,
+                allowDowned: true,
+                canGeneratePawnRelations: false,
+                mustBeCapableOfViolence: true,
+                forceAddFreeWarmLayerIfNeeded: false,
+                allowGay: true,
+                allowPregnant: false,
+                forceRecruitable: true,
                 validatorPostGear: IsValidOpeningPodPawn,
                 fixedBiologicalAge: OpeningPodPawnAgeYears,
                 fixedChronologicalAge: OpeningPodPawnAgeYears,
-                fixedGender: Gender.Female,             // 固定女性
-                developmentalStages: DevelopmentalStage.Adult // 成年阶段
+                fixedGender: Gender.Female,
+                developmentalStages: DevelopmentalStage.Adult
             );
 
             Pawn pawn = GenerateFactionlessPawn(request);
@@ -53,7 +52,7 @@ namespace MooGirl
 
             MooGirlApparelTagUtility.TryWearIdeoSuppressedKindApparel(pawn);
 
-            // 添加自定义健康状态：行动不能症
+            // 开局救援对象需要倒地出现，并带行动不能症作为事件状态。
             pawn.health.AddHediff(MooGirl_DefOf.MooGirl_Abasia);
             HealthUtility.DamageUntilDowned(pawn, true);
 
@@ -98,7 +97,7 @@ namespace MooGirl
             return null;
         }
 
-        // 在同一逃生舱中生成多个角色
+        // 将多个救援对象交给同一个任务投放流程。
         protected bool TryAddSpawnPawnsInOnePod(Quest quest, Map map, Pawn[] pawns)
         {
             if (quest == null || map?.Parent == null || !HasUsablePawns(pawns))
@@ -123,7 +122,6 @@ namespace MooGirl
             return true;
         }
 
-        // 执行任务主逻辑
         protected override void RunInt()
         {
             Quest quest = QuestGen.quest;
@@ -136,7 +134,6 @@ namespace MooGirl
                 return;
             }
 
-            // 获取或生成地图
             if (!slate.TryGet<Map>("map", out var map) || map == null)
             {
                 bool canBeSpace = CanBeSpace;
@@ -150,13 +147,12 @@ namespace MooGirl
                 return;
             }
 
-            // 如果不是太空地图，添加接受条件
             if (!CanBeSpace)
             {
                 quest.AcceptanceRequirementNotSpace(map.Parent);
             }
 
-            // 生成多个角色
+            // 开局事件固定生成两个救援对象；任意一个生成失败都会丢弃已生成 pawn。
             int pawnCount = 2;
             Pawn[] pawns = new Pawn[pawnCount];
             for (int i = 0; i < pawnCount; i++)
@@ -172,7 +168,6 @@ namespace MooGirl
                 }
             }
 
-            // 将所有角色放入同一逃生舱
             if (!TryAddSpawnPawnsInOnePod(quest, map, pawns))
             {
                 MooGirlLog.WarningOnce(
@@ -182,13 +177,10 @@ namespace MooGirl
                 return;
             }
 
-            // 保存角色到任务变量
             slate.Set("pawns", pawns);
 
-            // 发送通知信件
             SendLetter_NewTemp(quest, pawns, map);
 
-            // 设置任务信号处理
             string inSignalRescued = QuestGenUtility.HardcodedSignalWithQuestID("pawns.Rescued");
             string inSignalKilled = QuestGenUtility.HardcodedSignalWithQuestID("pawns.Killed");
             string inSignalLeftBehind = QuestGenUtility.HardcodedSignalWithQuestID("pawns.LeftBehind");
@@ -202,10 +194,8 @@ namespace MooGirl
                 pawns = new List<Pawn>(pawns)
             });
 
-            // 角色死亡处理
             quest.End(QuestEndOutcome.Fail, 0, null, inSignalKilled);
 
-            // 角色被遗弃处理
             quest.End(QuestEndOutcome.Fail, 0, null, inSignalLeftBehind);
         }
 
@@ -241,7 +231,7 @@ namespace MooGirl
             }
         }
 
-        // 发送自定义通知信件（支持多角色）
+        // 开局救援信件需要支持多个 pawn，并把所有对象作为可跳转目标。
         public void SendLetter_NewTemp(Quest quest, Pawn[] pawns, Map map)
         {
             if (pawns == null || pawns.Length == 0)
@@ -266,21 +256,17 @@ namespace MooGirl
             TaggedString label = "MooGirl.LetterLabelOpeningPodCrash".Translate();
             TaggedString text = "";
 
-            // 多角色情况说明
             if (validPawns.Count > 1)
             {
                 text += "MooGirl.OpeningPodCrash_MultipleIntro".Translate();
                 text += "\n\n";
             }
 
-            // 为每个角色生成描述文本
             foreach (Pawn pawn in validPawns)
             {
-                // 基本描述
                 text += "MooGirl.OpeningPodCrash".Translate(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN", true);
                 text += "\n\n";
 
-                // 派系关系描述
                 if (pawn.Faction == null)
                     text += "MooGirl.OpeningPodCrash_Factionless".Translate(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN", true);
                 else if (MooGirlWildSlaveUtility.IsHostileToPlayer(pawn.Faction))
@@ -288,7 +274,6 @@ namespace MooGirl
                 else
                     text += "MooGirl.OpeningPodCrash_NonHostile".Translate(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN", true);
 
-                // 未成年角色特殊描述
                 if (pawn.ageTracker != null && pawn.DevelopmentalStage.Juvenile())
                 {
                     string arg = (pawn.ageTracker.AgeBiologicalYears * 3600000)
@@ -296,24 +281,20 @@ namespace MooGirl
                     text += "\n\n" + "MooGirl.OpeningPodCrash_Child".Translate(pawn.Named("PAWN"), arg.Named("AGE"));
                 }
 
-                // 附加慈善信息
                 QuestNode_Root_WandererJoin_WalkIn.AppendCharityInfoToLetter("JoinerCharityInfo".Translate(pawn), ref text);
 
-                // 附加殖民者关系信息
                 PawnRelationUtility.TryAppendRelationsWithColonistsInfo(ref text, ref label, pawn);
 
-                text += "\n\n"; // 分段
+                text += "\n\n";
             }
 
-            // 创建多目标查看器（指向所有角色）
             LookTargets lookTargets = new LookTargets(validPawns);
 
-            // 发送信件
             MooGirlGameUtility.TryReceiveLetter(
                 label,
                 text,
                 LetterDefOf.NeutralEvent,
-                lookTargets, // 多目标指向
+                lookTargets,
                 null, null, null, null, 0, true
             );
         }

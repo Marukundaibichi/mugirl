@@ -7,9 +7,9 @@ namespace MooGirl
     {
         private const int StaleAfterTicks = 6;
 
-        // StaticCacheLifecycle: per-game animation state keyed by thingIDNumber; cleared on job end, pawn despawn/destroy, stale-state checks and MooGirlStoryState reset.
+        // StaticCacheLifecycle: 每局游戏的挤奶动画状态，按 thingIDNumber 索引；工作结束、Pawn 离图/销毁、陈旧状态检查和全局重置时清空。
         private static readonly Dictionary<int, MilkingVisualState> states = new Dictionary<int, MilkingVisualState>();
-        // StaticCacheLifecycle: per-call scratch key list for safe state removal; cleared before reuse and after removal.
+        // StaticCacheLifecycle: 单次清理使用的临时 key 列表；复用前和移除后都会清空。
         private static readonly List<int> tmpStateKeysToRemove = new List<int>();
 
         private class MilkingVisualState

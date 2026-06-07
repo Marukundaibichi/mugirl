@@ -2711,7 +2711,9 @@ try {
     $mountedMeleePath = '1.6\Source\Features\Mounting\MountedPawnMeleeSupport.cs'
     if (Test-Path -LiteralPath $mountedMeleePath) {
         $mountedMeleeText = Get-Content -LiteralPath $mountedMeleePath -Encoding utf8 -Raw
-        if ($mountedMeleeText -notmatch 'Private vanilla melee helpers' -or $mountedMeleeText -notmatch 'Missing private sound helper' -or $mountedMeleeText -notmatch 'Missing private cooldown field') {
+        if ($mountedMeleeText -notmatch '原版私有近战辅助方法只是兼容调用' -or
+            $mountedMeleeText -notmatch '私有音效辅助方法缺失时' -or
+            $mountedMeleeText -notmatch '私有冷却字段缺失时') {
             $harmonyBoundarySafetyIssues += "$mountedMeleePath :: mounted melee reflection helpers must fall back without throwing in tick"
         }
     }
@@ -2801,7 +2803,7 @@ try {
     $externalBreastHediffLiteralPattern = '"(?:HugeBreasts|BionicBreasts|SlimeBreasts|GR_MuffaloMammaries|Breasts|HydraulicBreasts|SmallBreasts|LargeBreasts|ArchotechBreasts|FlatBreasts)"'
     if (Test-Path -LiteralPath $externalBreastPath) {
         $externalBreastText = Get-Content -LiteralPath $externalBreastPath -Encoding utf8 -Raw
-        if ($externalBreastText -notmatch 'StaticCacheLifecycle: process-level external breast HediffDef cache' -or
+        if ($externalBreastText -notmatch 'StaticCacheLifecycle: 进程级外部乳房 HediffDef 缓存' -or
             $externalBreastText -match 'MooGirl_Lactation') {
             $compatibilityBoundarySafetyIssues += "$externalBreastPath :: external breast cache must document lifecycle and must not carry internal MooGirl hediff defs"
         }
@@ -3386,7 +3388,7 @@ try {
     $optionalDefsPath = '1.6\Source\Core\MooGirlOptionalDefs.cs'
     if (Test-Path -LiteralPath $optionalDefsPath) {
         $optionalDefsText = Get-Content -LiteralPath $optionalDefsPath -Encoding utf8 -Raw
-        if ($optionalDefsText -notmatch 'StaticCacheLifecycle: process-level optional Def cache') {
+        if ($optionalDefsText -notmatch 'StaticCacheLifecycle: 进程级可选 Def 缓存') {
             $staticCacheLifecycleIssues += "$optionalDefsPath :: optional Def cache must document process-level lifecycle and nullable optional entries"
         }
     }
@@ -3398,7 +3400,7 @@ try {
     $requiredDefsPath = '1.6\Source\Core\MooGirlRequiredDefs.cs'
     if (Test-Path -LiteralPath $requiredDefsPath) {
         $requiredDefsText = Get-Content -LiteralPath $requiredDefsPath -Encoding utf8 -Raw
-        if ($requiredDefsText -notmatch 'StaticCacheLifecycle: process-level required Def cache') {
+        if ($requiredDefsText -notmatch 'StaticCacheLifecycle: 进程级必需 Def 缓存') {
             $staticCacheLifecycleIssues += "$requiredDefsPath :: required Def cache must document process-level lifecycle and fail-fast behavior"
         }
     }

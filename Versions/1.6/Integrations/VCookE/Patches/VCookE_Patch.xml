@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
     <!-- PatchGovernance:
-    Targets: VCookE cheese press PipeSystem process list when VCookE is active.
-    Scope: optional VCookE integration; adds the MooGirl milk-to-cheese process without altering other processes.
-    Duplicate guard: outer conditional skips when the process is already present; inner conditional requires the expected PipeSystem process list.
-    Failure: missing target or upstream VCookE/PipeSystem drift is acceptable and leaves VCookE unchanged.
+    Targets: VCookE 启用时的奶酪压制机 PipeSystem 工序列表。
+    Scope: 可选 VCookE 集成；追加雪牛奶转奶酪工序，不改动其他工序。
+    Duplicate guard: 外层条件在工序已存在时跳过；内层条件要求目标 PipeSystem 工序列表存在。
+    Failure: 目标缺失或上游 VCookE/PipeSystem 结构变化时允许无操作，保留 VCookE 原状。
     -->
-    <!-- VCookE and PipeSystem targets can move between versions. 目标缺失或已添加时静默跳过。 -->
+    <!-- VCookE 和 PipeSystem 的目标路径可能随版本变化；目标缺失或已添加时静默跳过。 -->
     <Operation Class="PatchOperationConditional">
         <xpath>Defs/ThingDef[defName="VCE_CheesePress"]/comps/li[@Class="PipeSystem.CompProperties_AdvancedResourceProcessor"]/processes/li[text()="MooGirl_MooGirlMilkIntoCheese"]</xpath>
         <nomatch Class="PatchOperationConditional">

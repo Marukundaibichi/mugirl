@@ -39,7 +39,7 @@
                     </subNodes>
                 </li>
 
-                <!-- Do lovin' -->
+                <!-- 执行亲热。 -->
                 <li Class="ThinkNode_ConditionalLyingDown">
                     <subNodes>
                         <li Class="ThinkNode_ChancePerHour_Lovin">
@@ -55,15 +55,15 @@
                     </subNodes>
                 </li>
 
-                <!-- If we HAVE to keep lying down... -->
+                <!-- 必须卧床时，只允许床上可执行的需求和等待行为。 -->
                 <li Class="ThinkNode_ConditionalMustKeepLyingDown">
                     <subNodes>
-                        <!-- Do a queued job if possible (e.g. watch tv in bed) -->
+                        <!-- 可行时执行队列中的床上任务，例如在床上看电视。 -->
                         <li Class="ThinkNode_QueuedJob">
                             <inBedOnly>true</inBedOnly>
                         </li>
 
-                        <!-- Get joy -->
+                        <!-- 满足娱乐需求。 -->
                         <li Class="ThinkNode_Tagger">
                             <tagToGive>SatisfyingNeeds</tagToGive>
                             <subNodes>
@@ -80,7 +80,7 @@
                             </subNodes>
                         </li>
 
-                        <!-- Keep lying down -->
+                        <!-- 保持卧床。 -->
                         <li Class="JobGiver_KeepLyingDown" />
                     </subNodes>
                 </li>
@@ -95,28 +95,28 @@
                     <treeDef>MentalStateCritical</treeDef>
                 </li>
 
-                <!-- Escaping threats -->
+                <!-- 处理逃离威胁的能力行为。 -->
                 <li Class="ThinkNode_Subtree" MayRequire="Ludeon.RimWorld.Biotech">
                     <treeDef>Abilities_Escape</treeDef>
                 </li>
 
-                <!-- React to close melee threat -->
+                <!-- 应对近身近战威胁。 -->
                 <li Class="JobGiver_ReactToCloseMeleeThreat" />
 
-                <!-- Mental state non critical -->
+                <!-- 处理非紧急精神状态。 -->
                 <li Class="ThinkNode_Subtree">
                     <treeDef>MentalStateNonCritical</treeDef>
                 </li>
 
-                <!-- Insertion hook for modders -->
+                <!-- 给其他 mod 预留的插入点。 -->
                 <li Class="ThinkNode_SubtreesByTag">
                     <insertTag>Humanlike_PostMentalState</insertTag>
                 </li>
 
-                <!-- Do a queued job -->
+                <!-- 执行队列任务。 -->
                 <li Class="ThinkNode_QueuedJob" />
 
-                <!-- Wait if drafted -->
+                <!-- 被征召时执行玩家命令或原地等待。 -->
                 <li Class="ThinkNode_ConditionalColonist">
                     <subNodes>
                         <li Class="ThinkNode_Tagger">
@@ -129,14 +129,14 @@
                     </subNodes>
                 </li>
 
-                <!-- Self-tend if you're an NPC -->
+                <!-- NPC 满足条件时自行治疗。 -->
                 <li Class="ThinkNode_ConditionalNPCCanSelfTendNow">
                     <subNodes>
                         <li Class="JobGiver_SelfTend" />
                     </subNodes>
                 </li>
 
-                <!-- Lord directives (high priority) -->
+                <!-- 高优先级 Lord 指令。 -->
                 <li Class="ThinkNode_JoinVoluntarilyJoinableLord">
                     <dutyHook>HighPriority</dutyHook>
                     <subNodes>
@@ -146,20 +146,20 @@
                     </subNodes>
                 </li>
 
-                <!-- Insertion hook for modders -->
+                <!-- 给其他 mod 预留的插入点。 -->
                 <li Class="ThinkNode_SubtreesByTag">
                     <insertTag>Humanlike_PostDuty</insertTag>
                 </li>
 
-                <!-- Prisoner -->
+                <!-- 囚犯行为。 -->
                 <li Class="ThinkNode_ConditionalPrisoner">
                     <leaveJoinableLordIfIssuesJob>true</leaveJoinableLordIfIssuesJob>
                     <subNodes>
-                        <!-- If it's the player home map... -->
+                        <!-- 在玩家基地地图上优先按囚犯规则等待或逃跑。 -->
                         <li Class="ThinkNode_ConditionalInNonPlayerHomeMap">
                             <invert>true</invert>
                             <subNodes>
-                                <!-- Wait instead of escaping if should -->
+                                <!-- 条件要求等待时不逃跑。 -->
                                 <li Class="ThinkNode_Tagger">
                                     <tagToGive>Idle</tagToGive>
                                     <subNodes>
@@ -169,7 +169,7 @@
                                     </subNodes>
                                 </li>
 
-                                <!-- Escape -->
+                                <!-- 囚犯逃跑。 -->
                                 <li Class="ThinkNode_Tagger">
                                     <tagToGive>Escaping</tagToGive>
                                     <subNodes>
@@ -179,7 +179,7 @@
                             </subNodes>
                         </li>
 
-                        <!-- Exit map if released -->
+                        <!-- 被释放后离开地图。 -->
                         <li Class="ThinkNode_ConditionalReleased">
                             <subNodes>
                                 <li Class="ThinkNode_Tagger">
@@ -232,10 +232,10 @@
                             </subNodes>
                         </li>
 
-                        <!-- If in non-PlayerHomeMap -->
+                        <!-- 非玩家基地地图上的囚犯兜底行为。 -->
                         <li Class="ThinkNode_ConditionalInNonPlayerHomeMap">
                             <subNodes>
-                                <!-- No colonist spawned in the map -->
+                                <!-- 附近没有未倒地殖民者时尝试逃跑。 -->
                                 <li Class="ThinkNode_ConditionalAnyUndownedColonistSpawnedNearby">
                                     <invert>true</invert>
                                     <subNodes>
@@ -247,7 +247,7 @@
                                         </li>
                                     </subNodes>
                                 </li>
-                                <!-- Wander -->
+                                <!-- 在殖民地内游荡。 -->
                                 <li Class="ThinkNode_Tagger">
                                     <tagToGive>Idle</tagToGive>
                                     <subNodes>
@@ -272,26 +272,26 @@
                     </subNodes>
                 </li>
 
-                <!-- If on colonist team, do forced and emergency work -->
+                <!-- 殖民者阵营先处理限制区、安全温度、紧急工作和高优先级需求。 -->
                 <li Class="ThinkNode_ConditionalColonist">
                     <subNodes>
-                        <!-- Seek allowed area -->
+                        <!-- 返回允许活动区域。 -->
                         <li Class="JobGiver_SeekAllowedArea" />
 
-                        <!-- Seek safe temperatures -->
+                        <!-- 处理婴儿安全和舒适温度。 -->
                         <li Class="JobGiver_BringBabyToSafety" />
                         <li Class="JobGiver_SeekSafeTemperature" />
 
-                        <!-- Drop unnused inventory -->
+                        <!-- 丢弃不再需要的随身物品。 -->
                         <li Class="JobGiver_DropUnusedInventory" />
 
-                        <!-- Emergency work -->
+                        <!-- 执行紧急工作。 -->
                         <li Class="JobGiver_Work">
                             <leaveJoinableLordIfIssuesJob>true</leaveJoinableLordIfIssuesJob>
                             <emergency>true</emergency>
                         </li>
 
-                        <!-- Get food (only if starving) -->
+                        <!-- 饥饿严重时优先取食物。 -->
                         <li Class="ThinkNode_ConditionalStarving">
                             <subNodes>
                                 <li Class="ThinkNode_Tagger">
@@ -305,7 +305,7 @@
                             </subNodes>
                         </li>
 
-                        <!-- Breastfeed -->
+                        <!-- 处理自动喂养。 -->
                         <li Class="ThinkNode_Tagger">
                             <tagToGive>Misc</tagToGive>
                             <subNodes>
@@ -313,7 +313,7 @@
                             </subNodes>
                         </li>
 
-                        <!-- Lord directives (medium priority) -->
+                        <!-- 中优先级 Lord 指令。 -->
                         <li Class="ThinkNode_JoinVoluntarilyJoinableLord">
                             <dutyHook>MediumPriority</dutyHook>
                             <subNodes>
@@ -323,12 +323,12 @@
                             </subNodes>
                         </li>
 
-                        <!-- Pick up a weapon dropped while previously downed -->
+                        <!-- 捡回倒地前掉落的武器。 -->
                         <li Class="JobGiver_PickupDroppedWeapon">
                             <ignoreForbidden>true</ignoreForbidden>
                         </li>
 
-                        <!-- Optimize apparel -->
+                        <!-- 优化服装。 -->
                         <li Class="ThinkNode_Tagger">
                             <tagToGive>ChangingApparel</tagToGive>
                             <subNodes>
@@ -338,17 +338,17 @@
                             </subNodes>
                         </li>
 
-                        <!-- Look change -->
+                        <!-- Ideology 外观调整。 -->
                         <li MayRequire="Ludeon.RimWorld.Ideology" Class="ThinkNode_ConditionalWantsLookChange">
                             <subNodes>
                                 <li Class="JobGiver_UseStylingStationAutomatic" />
                             </subNodes>
                         </li>
 
-                        <!-- Dye hair -->
+                        <!-- Ideology 染发。 -->
                         <li MayRequire="Ludeon.RimWorld.Ideology" Class="JobGiver_DyeHair" />
 
-                        <!-- Take for inventory stock -->
+                        <!-- 补充随身库存。 -->
                         <li Class="ThinkNode_Tagger">
                             <tagToGive>TakeForInventoryStock</tagToGive>
                             <subNodes>
@@ -358,7 +358,7 @@
                             </subNodes>
                         </li>
 
-                        <!-- Unload your inventory -->
+                        <!-- 卸下随身库存。 -->
                         <li Class="ThinkNode_Tagger">
                             <tagToGive>UnloadingOwnInventory</tagToGive>
                             <subNodes>
@@ -366,7 +366,7 @@
                             </subNodes>
                         </li>
 
-                        <!-- Pack food if not hungry-->
+                        <!-- 不饿时打包备用食物。 -->
                         <li Class="ThinkNode_ConditionalNeedPercentageAbove">
                             <need>Food</need>
                             <threshold>0.6</threshold>
@@ -379,15 +379,15 @@
                     </subNodes>
                 </li>
 
-                <!-- Behavior from traits -->
+                <!-- 特质提供的行为。 -->
                 <li Class="ThinkNode_TraitBehaviors" />
 
-                <!-- Insertion hook for modders -->
+                <!-- 给其他 mod 预留的插入点。 -->
                 <li Class="ThinkNode_SubtreesByTag">
                     <insertTag>Humanlike_PreMain</insertTag>
                 </li>
 
-                <!-- Main colonist behavior core -->
+                <!-- 殖民者主行为核心。 -->
                 <li Class="ThinkNode_ConditionalColonist">
                     <subNodes>
                         <li Class="ThinkNode_Subtree">
@@ -396,7 +396,7 @@
                         </li>
                     </subNodes>
                 </li>
-                <!-- Main wild man behavior core -->
+                <!-- 野人主行为核心。 -->
                 <li Class="ThinkNode_ConditionalPawnKind">
                     <pawnKind>MooGirl_EscapeWildSlave</pawnKind>
                     <subNodes>
@@ -407,18 +407,18 @@
                     </subNodes>
                 </li>
 
-                <!-- Insertion hook for modders -->
+                <!-- 给其他 mod 预留的插入点。 -->
                 <li Class="ThinkNode_SubtreesByTag">
                     <insertTag>Humanlike_PostMain</insertTag>
                 </li>
 
-                <!-- Idle colonist -->
+                <!-- 殖民者闲置行为。 -->
                 <li Class="ThinkNode_ConditionalColonist">
                     <subNodes>
                         <li Class="ThinkNode_Tagger">
                             <tagToGive>Idle</tagToGive>
                             <subNodes>
-                                <!-- Do random joy activity -->
+                                <!-- 随机娱乐活动。 -->
                                 <li Class="ThinkNode_ConditionalNeedPercentageAbove">
                                     <need>Joy</need>
                                     <threshold>0.9</threshold>
@@ -440,7 +440,7 @@
                                     </subNodes>
                                 </li>
 
-                                <!-- Wander -->
+                                <!-- 在殖民地内游荡。 -->
                                 <li Class="JobGiver_WanderColony">
                                     <maxDanger>None</maxDanger>
                                 </li>
@@ -449,14 +449,14 @@
                     </subNodes>
                 </li>
 
-                <!-- Idle wild man -->
+                <!-- 野人闲置行为。 -->
                 <li Class="ThinkNode_ConditionalPawnKind">
                     <pawnKind>MooGirl_EscapeWildSlave</pawnKind>
                     <subNodes>
                         <li Class="ThinkNode_Tagger">
                             <tagToGive>Idle</tagToGive>
                             <subNodes>
-                                <!-- Wander -->
+                                <!-- 在地图上游荡。 -->
                                 <li Class="JobGiver_WanderAnywhere">
                                     <maxDanger>Deadly</maxDanger>
                                     <ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>
@@ -466,7 +466,7 @@
                     </subNodes>
                 </li>
 
-                <!-- If you're a neutral guest, if you're not hurt exit the map, otherwise use a medical bed -->
+                <!-- 中立访客受伤时找医疗床，否则离开地图。 -->
                 <li Class="ThinkNode_ConditionalGuest">
                     <subNodes>
                         <li Class="ThinkNode_ConditionalNonPlayerNonHostileFactionOrFactionless">
@@ -491,9 +491,8 @@
                     </subNodes>
                 </li>
 
-                <!-- Final backup: If you're just here for no apparent reason, and not a colonist, leave the
-                map
-                            e.g. This happens for pawns who are downed during combat, then later self-heal -->
+                <!-- 最终兜底：非殖民者如果没有明确行为理由，就离开地图；
+                例如战斗中倒地后自行恢复的 pawn。 -->
                 <li Class="ThinkNode_ConditionalColonist">
                     <invert>true</invert>
                     <subNodes>
@@ -508,7 +507,7 @@
                     </subNodes>
                 </li>
 
-                <!-- If you can't leave, just wander -->
+                <!-- 无法离开时改为游荡。 -->
                 <li Class="ThinkNode_Tagger">
                     <tagToGive>Idle</tagToGive>
                     <subNodes>

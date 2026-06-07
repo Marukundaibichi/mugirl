@@ -41,9 +41,9 @@ namespace MooGirl
         private const int RefreshWindowTicks = 300;
         private const int RefreshIntervalTicks = 30;
 
-        // StaticCacheLifecycle: per-game pending Pawn refreshes; cleared by constructors and MooGirlStoryState on game init/new-game/load.
+        // StaticCacheLifecycle: 每局游戏待刷新 Pawn 集合；构造、初始化、新建和读档时清空。
         private static readonly Dictionary<Pawn, int> pendingRefreshUntilTick = new Dictionary<Pawn, int>();
-        // StaticCacheLifecycle: per-tick scratch list; cleared before and after every refresh pass.
+        // StaticCacheLifecycle: 每次刷新使用的临时列表；刷新前后都会清空。
         private static readonly List<Pawn> tmpPawnsToRemove = new List<Pawn>();
 
         public static void NotifyGhoulChanged(Pawn pawn)

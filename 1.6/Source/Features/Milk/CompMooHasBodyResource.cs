@@ -4,24 +4,19 @@ using Verse;
 
 namespace MooGirl
 {
-    // 抽象组件类：用于管理具有身体资源的实体（如动物乳房资源收集）
+    // 身体资源组件基类，负责资源增长、采集消耗和满值通知。
     public abstract class CompMooHasBodyResource : ThingComp
     {
         private const float GatherFullnessPerUse = 0.2f;
 
-        // 抽象属性：资源收集间隔天数（由子类实现）
         protected abstract float GatherResourcesIntervalDays { get; }
 
-        // 抽象属性：每次收集的资源量（由子类实现）
         protected abstract float ResourceAmount { get; }
 
-        // 抽象属性：资源对应的物品定义（由子类实现）
         protected abstract ThingDef ResourceDef { get; }
 
-        // 抽象属性：存档键名（由子类实现）
         protected abstract string SaveKey { get; }
 
-        // 当前资源饱满度（0-1之间）
         private float fullness;
 
         // 防止满值后每 tick 重复触发接管尝试
@@ -35,23 +30,17 @@ namespace MooGirl
 
         protected virtual int FullResourceRetryTicks => 60;
 
-        // 公开只读属性：获取当前饱满度
         public float Fullness => fullness;
 
-        // 公开只读属性：当前是否已满，供设备安全接管产物逻辑
         public bool IsFullNow => fullness >= 1f;
 
-        // 虚拟属性：是否激活（默认检查父对象是否有派系）
         public virtual bool Active => parent?.Faction != null;
 
-        // 复合属性：是否激活且饱满度已满
         public bool ActiveAndFull => Active && fullness >= 1f;
 
-        // 重写方法：处理数据暴露（用于存档读写）
         public override void PostExposeData()
         {
             base.PostExposeData();
-            // 读写饱满度数据
             Scribe_Values.Look(ref fullness, SaveKey, 0f);
             Scribe_Values.Look(ref fullNotified, SaveKey + "_fullNotified", false);
             Scribe_Values.Look(ref lastFullNotifyTick, SaveKey + "_lastFullNotifyTick", -99999);
@@ -59,10 +48,8 @@ namespace MooGirl
             Scribe_Values.Look(ref MilkThreshold, SaveKey + "_MilkThreshold", 0.8f);
         }
 
-        // 重写方法：每帧调用，处理资源增长逻辑
         public override void CompTick()
         {
-            // 如果未激活则直接返回
             if (!Active || !MooGirlGameUtility.IsPlaying())
             {
                 return;
@@ -90,7 +77,6 @@ namespace MooGirl
             float targetFullnessGain = Mathf.Max(0f, ResourceAmount) / 100f;
             float multiplier = pawn != null ? Mathf.Max(0f, GetProductionMultiplier(pawn)) : 1f;
             float increment = targetFullnessGain * multiplier / intervalTicks;
-            // 增加饱满度并限制最大值
             fullness += increment * elapsedTicks;
             if (fullness > 1f)
             {
@@ -117,33 +103,28 @@ namespace MooGirl
         {
         }
 
-        // 方法：处理资源收集行为
+        // 旧采集路径会一次性收走当前全部资源，保留给基类默认流程和兼容入口。
         public void Gathered(Pawn doer)
         {
             ThingDef resourceDef = ResourceDef;
             IntVec3 gatherPosition;
             Map map;
-            // 如果未激活则记录错误并返回
             if (!Active || resourceDef == null || !TryGetGatherContext(doer, out map, out gatherPosition))
             {
                 WarnInvalidGather(doer);
                 return;
             }
 
-            // 根据操作者的动物收集产量统计值随机判断是否收集成功
             if (!Rand.Chance(doer.GetStatValue(StatDefOf.AnimalGatherYield, true, -1)))
             {
-                // 显示收集失败的文字提示
                 ThrowProductWastedMote(doer, map);
             }
             else
             {
-                // 计算实际收集数量：每 1% 奶量产出 1 份雪牛奶
                 int amount = GenMath.RoundRandom(fullness * 100f);
 
                 MooGirlMilkOutputUtility.SpawnStacksNear(resourceDef, amount, gatherPosition, map);
             }
-            // 重置饱满度
             fullness = 0f;
             ResetManualChangeTracking();
         }
@@ -253,7 +234,7 @@ namespace MooGirl
             lastResourceUpdateTick = CurrentGameTickOrFallback(lastResourceUpdateTick);
         }
 
-        // 生产倍率虚方法：子类可重写以集成哺乳期等外部因素
+        // 子类可在基础 profile 之外接入哺乳期等额外产量倍率。
         protected virtual float GetProductionMultiplier(Pawn pawn)
         {
             if (MooGirlBreastProfileUtility.TryGetYieldMultiplier(pawn, out float yieldMultiplier))

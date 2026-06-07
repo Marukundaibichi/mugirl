@@ -95,7 +95,7 @@ namespace MooGirl
     [HarmonyPatch(typeof(Pawn_AgeTracker), "RecalculateLifeStageIndex")]
     internal static class Harmony_PawnAgeTracker_RecalculateLifeStageIndex_MooGirlBodyType
     {
-        // StaticCacheLifecycle: process-level reflection cache for Pawn_AgeTracker.pawn; no game objects are retained.
+        // StaticCacheLifecycle: 进程级 Pawn_AgeTracker.pawn 反射缓存；不持有游戏对象。
         private static readonly FieldInfo PawnField = AccessTools.Field(typeof(Pawn_AgeTracker), "pawn");
 
         public static void Postfix(Pawn_AgeTracker __instance)

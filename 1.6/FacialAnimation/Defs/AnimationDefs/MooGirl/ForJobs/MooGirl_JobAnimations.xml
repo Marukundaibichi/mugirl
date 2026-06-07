@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-    <!-- MooGirl-specific FA job set. These defs intentionally cover FA's base jobs
-                so the runtime fallback only remains for new third-party jobs. -->
+    <!-- 雪牛娘专用 FA 作业动画集；这里主动覆盖 FA 基础 Job，
+                运行时兜底只留给新出现的第三方 Job。 -->
 
     <FacialAnimation.FaceAnimationDef>
         <defName>AttackMelee_MooGirl</defName>

@@ -8,7 +8,7 @@ namespace MooGirl
 {
     internal static class MooGirlPatchRegistry
     {
-        // StaticCacheLifecycle: process-level manual patch audit data; refreshed only during bootstrap registration.
+        // StaticCacheLifecycle: 进程级手动 patch 审计数据；只在启动注册时刷新。
         private static readonly List<string> manualPatchNames = new List<string>();
 
         internal static IReadOnlyList<string> ManualPatchNames => manualPatchNames;
@@ -38,7 +38,7 @@ namespace MooGirl
         private static void PatchAlienRaceSwaddleGraphicFor(Harmony harmony)
         {
             // HAR 是本 mod 的硬依赖；这里仍通过反射访问可变的 HAR 内部渲染类型，
-            // 但反射细节必须留在 Compatibility 层，签名变更时只跳过兼容补丁。
+            // 但反射细节必须留在兼容层，签名变更时只跳过兼容补丁。
             if (!AlienRaceCompatibility.TryGetSwaddleGraphicForTarget(out MethodInfo target))
             {
                 return;

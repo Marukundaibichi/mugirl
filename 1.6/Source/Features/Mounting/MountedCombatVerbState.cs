@@ -6,9 +6,9 @@ namespace MooGirl
 {
     public static partial class MountedCombatController
     {
-        // StaticCacheLifecycle: per-game temporary Verb caster overrides; reset on dismount/equipment removal and by MooGirlStoryState on game init/new-game/load.
+        // StaticCacheLifecycle: 每局游戏的临时 Verb 施放者覆盖；下骑、移除装备和全局重置时清空。
         private static readonly Dictionary<Verb, Thing> OriginalCasters = new Dictionary<Verb, Thing>();
-        // StaticCacheLifecycle: per-game temporary mounted Verb warmup overrides; reset on cast cleanup/equipment removal and by MooGirlStoryState on game init/new-game/load.
+        // StaticCacheLifecycle: 每局游戏的临时骑乘 Verb 暖机覆盖；施放清理、移除装备和全局重置时清空。
         private static readonly Dictionary<Verb, float> WarmupTimeOverrides = new Dictionary<Verb, float>();
 
         public static void ResetTransientState()

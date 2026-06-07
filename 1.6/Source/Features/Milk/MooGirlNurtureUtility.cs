@@ -15,10 +15,10 @@ namespace MooGirl
         public const int AfterglowTicks = 27000000;
         private const int CompletedNurturePassionGainCount = 2;
 
-        // StaticCacheLifecycle: process-level reflection cache for SkillRecord.passion; no game objects are retained.
+        // StaticCacheLifecycle: 进程级 SkillRecord.passion 反射缓存；不持有游戏对象。
         private static readonly FieldInfo SkillPassionField = AccessTools.Field(typeof(SkillRecord), "passion");
 
-        // StaticCacheLifecycle: per-game Def lookup cache; reset by MooGirlStoryState on game init/new-game/load.
+        // StaticCacheLifecycle: 每局游戏的 Def 查询缓存；由 MooGirlStoryState 在初始化、新建和读档时重置。
         private static HediffDef motherlyNurtureDef;
         private static HediffDef nurtureAfterglowDef;
         private static TraitDef nurturedTraitDef;

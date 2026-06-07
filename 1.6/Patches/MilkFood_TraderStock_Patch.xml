@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
     <!-- PatchGovernance:
-    Targets: vanilla and optional-DLC TraderKindDef stockGenerators.
-    Scope: root 1.6 economy patch; exposes MooGirl milk food through traders without replacing existing stock generators.
-    Duplicate guard: every stock generator add is wrapped in a conditional check for the MooGirl_MilkFood trade tag.
-    Failure: missing optional trader targets are allowed to no-op; malformed xpath or required target drift is caught by Phase 6.
+    Targets: 原版和可选 DLC 的 TraderKindDef 库存生成器。
+    Scope: 1.6 根经济补丁；通过商人出售雪牛娘奶制食物，不替换已有库存生成器。
+    Duplicate guard: 每个库存生成器追加前都会检查 MooGirl_MilkFood 交易标签是否已经存在。
+    Failure: 可选商人目标缺失时允许无操作；xpath 异常或必需目标漂移由 Phase 6 捕获。
     -->
-    <!-- Faction bases. 派系基地。 -->
+    <!-- 派系基地库存。 -->
     <Operation Class="PatchOperationConditional">
         <xpath>Defs/TraderKindDef[defName="Base_Neolithic_Standard"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
         <nomatch Class="PatchOperationConditional">
@@ -55,7 +55,7 @@
         </nomatch>
     </Operation>
 
-    <!-- Visitors. 访客。 -->
+    <!-- 访客库存。 -->
     <Operation Class="PatchOperationConditional">
         <xpath>Defs/TraderKindDef[defName="Visitor_Neolithic_Standard"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
         <nomatch Class="PatchOperationConditional">
@@ -88,7 +88,7 @@
         </nomatch>
     </Operation>
 
-    <!-- Pirate traders. 海盗商人。 -->
+    <!-- 海盗商人库存。 -->
     <Operation Class="PatchOperationConditional">
         <xpath>Defs/TraderKindDef[defName="Orbital_PirateMerchant"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
         <nomatch Class="PatchOperationConditional">
@@ -121,7 +121,7 @@
         </nomatch>
     </Operation>
 
-    <!-- Outlander caravans. 外来者商队。 -->
+    <!-- 外来者商队库存。 -->
     <Operation Class="PatchOperationConditional">
         <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_BulkGoods"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
         <nomatch Class="PatchOperationConditional">
@@ -170,7 +170,7 @@
         </nomatch>
     </Operation>
 
-    <!-- Royalty traders. Royalty DLC 商人。 -->
+    <!-- Royalty DLC 商人库存。 -->
     <Operation Class="PatchOperationConditional">
         <xpath>Defs/TraderKindDef[defName="Empire_Caravan_TraderGeneral"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
         <nomatch Class="PatchOperationConditional">
@@ -187,7 +187,7 @@
         </nomatch>
     </Operation>
 
-    <!-- Outlander orbital traders. 外来者贸易船。 -->
+    <!-- 外来者贸易船库存。 -->
     <Operation Class="PatchOperationConditional">
         <xpath>Defs/TraderKindDef[defName="Orbital_BulkGoods"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
         <nomatch Class="PatchOperationConditional">
@@ -252,7 +252,7 @@
         </nomatch>
     </Operation>
 
-    <!-- Neolithic caravans. 部落商队。 -->
+    <!-- 部落商队库存。 -->
     <Operation Class="PatchOperationConditional">
         <xpath>Defs/TraderKindDef[defName="Caravan_Neolithic_BulkGoods"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>
         <nomatch Class="PatchOperationConditional">

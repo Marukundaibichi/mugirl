@@ -9,7 +9,7 @@ namespace MooGirl
     [HarmonyPatch]
     public static class Harmony_Patch_RopingDraw
     {
-        // StaticCacheLifecycle: process-level reflection cache for Pawn_RopeTracker draw fields; no game objects are retained.
+        // StaticCacheLifecycle: 进程级 Pawn_RopeTracker 绘制字段反射缓存；不持有游戏对象。
         private static readonly FieldInfo fieldPawn;
         private static readonly FieldInfo fieldRopeLineMat;
 
@@ -71,7 +71,7 @@ namespace MooGirl
         {
             Vector3 targetWithOffset = hitch.Position.ToVector3Shifted();
 
-            // The wall hitch's usable rope point sits on the facing side of its occupied cell.
+            // 墙绳桩的可用绳点位于占用格朝向侧的边缘。
             switch (hitch.Rotation.AsInt)
             {
                 case 0:

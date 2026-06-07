@@ -9,7 +9,7 @@ namespace MooGirl
     [HarmonyPatch]
     public static class Harmony_MooGirlMilkingAnimation_DisableCachedPawnRender
     {
-        // StaticCacheLifecycle: process-level reflection cache for PawnRenderer.pawn; no game objects are retained.
+        // StaticCacheLifecycle: 进程级 PawnRenderer.pawn 反射缓存；不持有游戏对象。
         private static readonly FieldInfo PawnField = AccessTools.Field(typeof(PawnRenderer), "pawn");
 
         private static MethodBase TargetMethod()
@@ -30,7 +30,7 @@ namespace MooGirl
     [HarmonyPatch]
     public static class Harmony_MooGirlMilkingAnimation_PawnMatrix
     {
-        // StaticCacheLifecycle: process-level reflection cache for PawnRenderer.pawn; no game objects are retained.
+        // StaticCacheLifecycle: 进程级 PawnRenderer.pawn 反射缓存；不持有游戏对象。
         private static readonly FieldInfo PawnField = AccessTools.Field(typeof(PawnRenderer), "pawn");
 
         private static MethodBase TargetMethod()

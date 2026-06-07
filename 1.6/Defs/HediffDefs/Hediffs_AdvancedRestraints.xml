@@ -2,7 +2,7 @@
 
 <Defs>
 
-    <!-- ====================================== Magnetic shackles / 磁力镣铐 =========================================== -->
+    <!-- ====================================== 磁力镣铐 =========================================== -->
 
     <HediffDef ParentName="MooGirl_BondageBase">
         <defName>MooGirl_MagneticShacklesBondage</defName>
@@ -24,7 +24,7 @@
         </stages>
     </HediffDef>
 
-    <!-- ====================================== Shock collar / 电击项圈 =========================================== -->
+    <!-- ====================================== 电击项圈 =========================================== -->
 
     <HediffDef>
         <defName>MooGirl_EleShock</defName>
@@ -52,7 +52,7 @@
                 <showRemainingTime>true</showRemainingTime>
                 <disappearsAfterTicks>360</disappearsAfterTicks>
             </li>
-            <!-- Shock comp still supports cyclic effects; delete the Disappears comp above to restore looping. / 电击 comp 仍支持周期循环；删除上面的 Disappears comp 即可恢复循环。 -->
+            <!-- 电击 comp 仍支持周期循环；删除上面的 Disappears comp 即可恢复循环。 -->
             <li Class="MooGirl.CompProperties_EleShock">
                 <effectCycleInterval>10</effectCycleInterval> <!-- 循环周期 -->
                 <maxCycles>20</maxCycles> <!-- 最多几个循环 -->
@@ -68,7 +68,7 @@
                         <severity>0.2</severity>
                     </li>
                 </hediffsToApplyWithParams>
-                <!-- Filth spawning, currently disabled. / 污渍生成，目前禁用。
+                <!-- 污渍生成目前禁用。
                 <filthSpawnEntries>
                     <li>
                         <filthDef>MooGirlMilkFilth</filthDef>
@@ -124,12 +124,12 @@
                 </hediffsToApplyWithParams>
                 <filthSpawnEntries>
                     <li>
-                        <filthDef>MooGirlMilkFilth</filthDef> <!-- Filth def name / 污渍 Def 名称 -->
-                        <filthAmount>1</filthAmount> <!-- Spawn count / 生成数量 -->
-                        <spawnInterval>100</spawnInterval>  <!-- Spawn interval / 生成周期 -->
-                        <spawnInFacingDirection>true</spawnInFacingDirection> <!-- Spawn only in facing direction / 仅在人物朝向方向生成 -->
+                        <filthDef>MooGirlMilkFilth</filthDef> <!-- 污渍 Def 名称。 -->
+                        <filthAmount>1</filthAmount> <!-- 生成数量。 -->
+                        <spawnInterval>100</spawnInterval>  <!-- 生成周期。 -->
+                        <spawnInFacingDirection>true</spawnInFacingDirection> <!-- 只在人物朝向方向生成。 -->
                     </li>
-                    <!-- Optional mystery-fluid filth after powerful shock; uncomment to enable. / 强力电击后的可选“神秘液体”污渍；取消注释即可启用。 -->
+                    <!-- 强力电击后的可选“神秘液体”污渍；取消注释即可启用。 -->
                     <!--
                     <li>
                         <filthDef>MooGirlWaterFilth</filthDef>
@@ -193,7 +193,7 @@
         </comps>
     </HediffDef>
 
-    <!-- ====================================== Brainwashing restraints / 洗脑束具 =========================================== -->
+    <!-- ====================================== 洗脑束具 =========================================== -->
 
     <HediffDef>
         <defName>MooGirl_BrainWashing_Level1</defName>
@@ -210,11 +210,11 @@
                 <triggerTicks>60</triggerTicks>
                 <stunDelayTicks>0</stunDelayTicks>
                 <stunDurationTicks>4120</stunDurationTicks>
-                <!-- Head mote / 头上显示的 mote -->
+                <!-- 头上显示的 mote。 -->
                 <moteToShowOnHead>MooGirlWashMentalEyesInHead</moteToShowOnHead>
                 <moteShowStartTick>10</moteShowStartTick>
                 <moteShowEndTick>4000</moteShowEndTick>
-                <!-- Flecks (视觉效果) -->
+                <!-- 视觉 Fleck 效果。 -->
                 <flecks>
                     <li>
                         <fleck>MooGirlWashMentalEyes</fleck>
@@ -223,7 +223,7 @@
                         <endTick>4000</endTick>
                     </li>
                 </flecks>
-                <!-- Sounds (音效) -->
+                <!-- 音效。 -->
                 <sounds>
                     <li>
                         <sound>MooGirl_BrainWashing_RingShort</sound>
@@ -262,7 +262,7 @@
                         <endTick>4000</endTick>
                     </li>
                 </sounds>
-                <!-- Texts (文字) -->
+                <!-- 文字演出。 -->
                 <texts>
                     <li>
                         <!-- 哎？...怎么回事 -->
@@ -397,7 +397,7 @@
                 <triggerTicks>60</triggerTicks>
                 <stunDelayTicks>0</stunDelayTicks>
                 <stunDurationTicks>4120</stunDurationTicks>
-                <!-- Head mote / 头上显示的 mote -->
+                <!-- 头上显示的 mote。 -->
                 <moteToShowOnHead>MooGirlWashMentalEyesInHead</moteToShowOnHead>
                 <moteShowStartTick>10</moteShowStartTick>
                 <moteShowEndTick>4000</moteShowEndTick>
@@ -581,7 +581,7 @@
                 <triggerTicks>60</triggerTicks>
                 <stunDelayTicks>0</stunDelayTicks>
                 <stunDurationTicks>4120</stunDurationTicks>
-                <!-- Head mote / 头上显示的 mote -->
+                <!-- 头上显示的 mote。 -->
                 <moteToShowOnHead>MooGirlWashMentalEyesInHead</moteToShowOnHead>
                 <moteShowStartTick>10</moteShowStartTick>
                 <moteShowEndTick>4000</moteShowEndTick>

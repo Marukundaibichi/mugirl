@@ -10,10 +10,10 @@ namespace MooGirl
             compClass = typeof(HediffComp_AddThought);
         }
 
-        // 多少 tick 触发
+        // 佩戴后等待多少 tick 再添加记忆。
         public int triggerTicks = 600;
 
-        // 要添加的 ThoughtDef
+        // 达成条件后写入的 ThoughtDef。
         public ThoughtDef thoughtDef;
 
     }

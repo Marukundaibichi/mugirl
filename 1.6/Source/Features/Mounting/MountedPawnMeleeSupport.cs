@@ -10,7 +10,7 @@ namespace MooGirl
 {
     public static class MountedPawnMeleeSupport
     {
-        // StaticCacheLifecycle: process-level reflection cache for vanilla melee helpers; no game objects are retained.
+        // StaticCacheLifecycle: 进程级原版近战辅助方法反射缓存；不持有游戏对象。
         private static readonly MethodInfo GetNonMissChanceMethod = AccessTools.Method(typeof(Verb_MeleeAttack), "GetNonMissChance");
         private static readonly MethodInfo GetDodgeChanceMethod = AccessTools.Method(typeof(Verb_MeleeAttack), "GetDodgeChance");
         private static readonly MethodInfo SoundHitPawnMethod = AccessTools.Method(typeof(Verb_MeleeAttack), "SoundHitPawn");
@@ -112,7 +112,7 @@ namespace MooGirl
             }
             catch
             {
-                // Private vanilla melee helpers are optional compatibility calls; fall back to guaranteed hit chance if they change.
+                // 原版私有近战辅助方法只是兼容调用；签名变化时退回保底命中率。
                 return 1f;
             }
         }
@@ -126,7 +126,7 @@ namespace MooGirl
             }
             catch
             {
-                // Private vanilla melee helpers are optional compatibility calls; fall back to no dodge if they change.
+                // 原版私有近战辅助方法只是兼容调用；签名变化时退回不可闪避。
                 return 0f;
             }
         }
@@ -140,7 +140,7 @@ namespace MooGirl
             }
             catch
             {
-                // Missing private sound helper must not break the mounted melee tick.
+                // 私有音效辅助方法缺失时，不应打断骑乘近战 tick。
             }
         }
 
@@ -157,7 +157,7 @@ namespace MooGirl
             }
             catch
             {
-                // Missing private cooldown field must not break the mounted melee tick.
+                // 私有冷却字段缺失时，不应打断骑乘近战 tick。
             }
         }
 

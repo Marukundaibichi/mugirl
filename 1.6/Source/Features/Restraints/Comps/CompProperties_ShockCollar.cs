@@ -5,7 +5,7 @@ using Verse;
 
 namespace MooGirl
 {
-    // 定义电击项圈的属性类，继承自CompProperties
+    // 电击项圈配置：控制自动电击、手动按钮和命中的 Hediff 列表。
     public class CompProperties_ShockCollar : CompProperties
     {
         public CompProperties_ShockCollar()
@@ -13,28 +13,20 @@ namespace MooGirl
             compClass = typeof(Comp_ShockCollar);
         }
 
-        // 普通电击效果列表
         public List<HediffDef> hediffDefs = new List<HediffDef>();
-        // 强力电击效果列表
         public List<HediffDef> powerhediffDefs = new List<HediffDef>();
-        // 非雪牛娘强力电击效果列表
         public List<HediffDef> nonMooGirlPowerHediffDefs = new List<HediffDef>();
-        // 自动触发间隔时间（tick）
+
+        // 自动电击参数：间隔、总触发概率和强力电击概率。
         public int ticks = 60;
-        // 自动触发的概率百分比（0-100）
         public int rand = 50;
-        // 强力电击的概率百分比（0-100）
         public int powerShockChance = 30;
 
-        // 主动使用模式的冷却时间（tick）
+        // 手动按钮参数来自 XML，可直接写翻译键或图标路径。
         public int useCooldownTicks = 480;
-
-        // 强力电击按钮显示文本
         public string powerLabel = "MooGirl.Restraints.ShockCollar.PowerLabel";
         public string powerDesc = "MooGirl.Restraints.ShockCollar.PowerDesc";
         public string powerIconPath = "UI/Commands/DesirePower";
-
-        // 普通电击按钮显示文本
         public string commonLabel = "MooGirl.Restraints.ShockCollar.CommonLabel";
         public string commonDesc = "MooGirl.Restraints.ShockCollar.CommonDesc";
         public string commonIconPath = "UI/Commands/DesirePower";
@@ -43,18 +35,14 @@ namespace MooGirl
         public bool playerColonistOnly = true;
     }
 
-    // 电击项圈组件实现
+    // 电击项圈运行逻辑：未破解时自动随机电击，破解后显示手动控制按钮。
     public class Comp_ShockCollar : Comp_AdvancedSlaveApparel
     {
-        // 内部计时器
         private int ticks = 0;
-        // 记录上次手动使用的时间点
         private int lastManualUseTick = -99999;
 
-        // 获取组件属性
         public CompProperties_ShockCollar Props => props as CompProperties_ShockCollar;
 
-        // 获取佩戴者（每次实时检查）
         private Pawn GetWearer()
         {
             if (parent?.ParentHolder is Pawn_ApparelTracker tracker)
@@ -64,37 +52,31 @@ namespace MooGirl
             return null;
         }
 
-        // 检查是否可以被电击（玩家殖民者、囚犯、奴隶可以，访客不行）
+        // 默认只影响玩家可控单位，避免访客、盟友或敌对单位被装备 mod 意外波及。
         private bool CanBeShocked(Pawn pawn, CompProperties_ShockCollar shockProps)
         {
             if (pawn == null || shockProps == null)
                 return false;
 
-            // 如果配置允许所有单位，直接返回true
             if (!shockProps.playerColonistOnly)
                 return true;
 
-            // 检查是否是玩家的殖民者
             if (pawn.IsColonistPlayerControlled)
                 return true;
 
-            // 检查是否是玩家的囚犯（包括奴隶）
             if (pawn.IsPrisonerOfColony)
                 return true;
 
-            // 其他情况（访客、敌对单位、友军等）都不行
             return false;
         }
 
-        // 每帧调用，处理自动电击逻辑
         public override void CompTick()
         {
             base.CompTick();
 
-            // 每tick只做计时器递减，非常轻量
+            // 热路径只递减计时器，完整检查延迟到间隔触发时执行。
             ticks--;
 
-            // 只有计时器触发时才做完整检查
             if (ticks <= 0)
             {
                 CompProperties_ShockCollar shockProps = Props;
@@ -103,30 +85,22 @@ namespace MooGirl
                     return;
                 }
 
-                // 重置计时器
                 ticks = Mathf.Max(1, shockProps.ticks);
 
-                // 实时获取佩戴者
                 Pawn wearer = GetWearer();
 
-                // 完整检查：佩戴者是否有效
                 if (wearer == null || wearer.Dead || !wearer.Spawned)
                     return;
 
-                // 检查：只对玩家控制的单位生效（避免访客模组冲突）
                 if (!CanBeShocked(wearer, shockProps))
                     return;
 
-                // 检查：ParentIsCracked() 返回 true = 未破解，返回 false = 已破解
-                // 只有未破解状态才会自动随机电击
+                // ParentIsCracked() 的历史语义是 true = 未破解；只有未破解状态会自动随机电击。
                 if (!ParentIsCracked())
                     return;
 
-                // 使用RimWorld内置的随机数系统
-                // 概率触发电击
                 if (Rand.Chance(Mathf.Clamp01(shockProps.rand / 100f)))
                 {
-                    // 随机选择电击类型
                     if (Rand.Chance(Mathf.Clamp01(shockProps.powerShockChance / 100f)))
                     {
                         ApplyHediffs(wearer, PowerHediffsFor(wearer, shockProps));
@@ -139,22 +113,18 @@ namespace MooGirl
             }
         }
 
-        // 提取公共方法 - 应用健康效果
         private void ApplyHediffs(Pawn pawn, List<HediffDef> hediffs)
         {
             if (pawn?.health?.hediffSet == null || hediffs == null)
                 return;
 
-            // 批量处理，减少多次访问health.hediffSet
             var hediffSet = pawn.health.hediffSet;
 
             foreach (HediffDef hediffDef in hediffs)
             {
-                // 提前检查null
                 if (hediffDef == null)
                     continue;
 
-                // 避免重复添加相同效果
                 if (!hediffSet.HasHediff(hediffDef))
                 {
                     pawn.health.AddHediff(hediffDef);
@@ -162,7 +132,6 @@ namespace MooGirl
             }
         }
 
-        // 保存/加载游戏时调用
         public override void PostExposeData()
         {
             base.PostExposeData();
@@ -170,37 +139,31 @@ namespace MooGirl
             Scribe_Values.Look(ref lastManualUseTick, "lastManualUseTick", -99999);
         }
 
-        // 获取装备时显示的按钮
         public override IEnumerable<Gizmo> CompGetWornGizmosExtra()
         {
             foreach (var gizmo in base.CompGetWornGizmosExtra())
                 yield return gizmo;
 
-            // 实时获取佩戴者
             Pawn wearer = GetWearer();
             CompProperties_ShockCollar shockProps = Props;
 
-            // 基础检查：存在佩戴者
             if (wearer == null || shockProps == null)
                 yield break;
 
-            // 只对玩家控制的单位显示按钮（殖民者、囚犯、奴隶）
             if (!CanBeShocked(wearer, shockProps))
                 yield break;
 
-            // ParentIsCracked() 返回 true = 未破解，返回 false = 已破解
-            // 只有已破解才显示手动控制按钮
+            // 手动控制只在已破解状态显示，自动电击与手动控制互斥。
             if (ParentIsCracked())
                 yield break;
 
-            // 计算冷却信息（只计算一次）
             int cooldownTicks = Mathf.Max(1, shockProps.useCooldownTicks);
             int currentTick = CurrentGameTickOrFallback(lastManualUseTick);
             int cdLeft = Mathf.Max(0, (lastManualUseTick + cooldownTicks) - currentTick);
             bool canUse = cdLeft <= 0;
             float cooldownPercent = canUse ? 1f : Mathf.Clamp01(1f - (float)cdLeft / cooldownTicks);
 
-            // 提前计算描述文本，避免类型混淆
+            // 描述文本在生成 Gizmo 时计算一次；点击时仍会重新校验冷却和佩戴者。
             string powerDesc = canUse
                 ? MooGirlText.Resolve(shockProps.powerDesc)
                 : MooGirlText.Resolve("MooGirl.Restraints.ShockCollar.PowerCooldownTicksLeft", cdLeft);
@@ -209,7 +172,6 @@ namespace MooGirl
                 ? MooGirlText.Resolve(shockProps.commonDesc)
                 : MooGirlText.Resolve("MooGirl.Restraints.ShockCollar.CommonCooldownTicksLeft", cdLeft);
 
-            // 强力电击按钮
             yield return CreateShockCommand(
                 MooGirlText.Resolve(shockProps.powerLabel),
                 powerDesc,
@@ -219,7 +181,6 @@ namespace MooGirl
                 (currentWearer, currentProps) => ApplyHediffs(currentWearer, PowerHediffsFor(currentWearer, currentProps))
             );
 
-            // 普通电击按钮
             yield return CreateShockCommand(
                 MooGirlText.Resolve(shockProps.commonLabel),
                 commonDesc,
@@ -230,7 +191,6 @@ namespace MooGirl
             );
         }
 
-        // 提取公共方法 - 创建电击命令按钮
         private Command_ActionWithCooldown CreateShockCommand(
             string label,
             string desc,
@@ -246,7 +206,7 @@ namespace MooGirl
                 icon = GetCommandIcon(iconPath),
                 action = () =>
                 {
-                    // 双重检查，确保执行时佩戴者仍然有效且已破解
+                    // 点击执行时重新检查佩戴者、破解状态和冷却，避免旧 Gizmo 操作过期对象。
                     Pawn currentWearer = GetWearer();
                     CompProperties_ShockCollar shockProps = Props;
                     if (currentWearer != null && CanBeShocked(currentWearer, shockProps) && !ParentIsCracked() && ManualUseReady(shockProps, out int currentTick))

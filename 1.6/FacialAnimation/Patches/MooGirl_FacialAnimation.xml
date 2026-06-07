@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
     <!-- PatchGovernance:
-    Targets: MooGirl AlienRace ThingDef comps when Facial Animation is active.
-    Scope: optional FacialAnimation load folder; appends only FacialAnimation comp classes to the MooGirl race def.
-    Duplicate guard: each comp add checks for its compClass before insertion and creates the comps list only when absent.
-    Failure: missing MooGirl race target is acceptable during partial load and produces no patch action.
+    Targets: Facial Animation 启用时的雪牛娘 AlienRace ThingDef comps。
+    Scope: 可选 FacialAnimation 加载目录；只向雪牛娘种族 Def 追加 FacialAnimation comp 类。
+    Duplicate guard: 每个 comp 追加前检查对应 compClass；comps 列表仅在缺失时创建。
+    Failure: 部分加载时缺少雪牛娘种族目标可以接受，并且不执行补丁动作。
     -->
-    <!-- Facial Animation folder only loads when the mod is active; still gate on the MooGirl race Def. 即使目录已按 FA 启用，也只在雪牛娘种族 Def 存在时补丁。 -->
+    <!-- Facial Animation 目录只在该 mod 启用时加载；这里仍以雪牛娘种族 Def 存在作为补丁门槛。 -->
     <Operation Class="PatchOperationConditional">
         <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="MooGirl"]</xpath>
         <match Class="PatchOperationSequence">

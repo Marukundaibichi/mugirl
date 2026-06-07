@@ -50,7 +50,7 @@ namespace MooGirl
 
     internal static class MooGirlPatchCatalog
     {
-        // StaticCacheLifecycle: process-level immutable patch metadata; does not hold game objects or Def instances.
+        // StaticCacheLifecycle: 进程级不可变 patch 元数据；不持有游戏对象或 Def 实例。
         private static readonly List<MooGirlPatchInfo> patchInfos = new List<MooGirlPatchInfo>
         {
             Info(moduleName: "Apparel", patchClassName: "Harmony_Apparel_PawnCanWear_MilkingDevice", targetTypeName: "RimWorld.Apparel", targetMethodName: "PawnCanWear", patchKind: "Postfix", maySkipOriginal: false, compatibilityRisk: MooGirlPatchRiskLevel.Medium, failureBehavior: "Milking device wear filtering falls back to the base apparel result."),
@@ -111,7 +111,7 @@ namespace MooGirl
             Info(moduleName: "Roping", patchClassName: "TakeToPreferredBedJob_Patch", targetTypeName: "RimWorld.WorkGiver_Warden_TakeToBed", targetMethodName: "TakeToPreferredBedJob", patchKind: "Postfix", maySkipOriginal: false, compatibilityRisk: MooGirlPatchRiskLevel.Medium, failureBehavior: "Wardens may create base take-to-bed jobs for roped prisoners.")
         };
 
-        // StaticCacheLifecycle: process-level derived patch metadata; rebuilt only from patchInfos at type initialization.
+        // StaticCacheLifecycle: 进程级派生 patch 元数据；仅在类型初始化时由 patchInfos 构建。
         private static readonly List<MooGirlPatchInfo> highRiskPatchInfos = BuildHighRiskPatchInfos();
 
         internal static IReadOnlyList<MooGirlPatchInfo> PatchInfos => patchInfos;

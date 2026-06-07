@@ -4,10 +4,9 @@ using Verse;
 
 namespace MooGirl
 {
-    // 定义可产奶组件的属性类，继承自CompProperties基类
+    // 可产奶组件的 XML 配置。
     public class CompProperties_MooMilkable : CompProperties
     {
-        // 构造函数，指定关联的组件类为CompMooMilkable
         public CompProperties_MooMilkable()
         {
             this.compClass = typeof(CompMooMilkable);
@@ -17,22 +16,17 @@ namespace MooGirl
         public string displayString = "MooGirl.Milk.FullnessDisplay";
         // 存档字段名必须与显示文本解耦，避免翻译调整影响存档结构。
         public string saveKey = "milkFullness";
-        // 每次产奶的量
         public float milkAmount = 1f;
-        // 是否仅限女性可产奶
         public bool milkFemaleOnly = true;
-        // 产的奶对应的物品定义
         public ThingDef milkDef;
-        // 产奶间隔天数
         public float milkIntervalDays;
     }
 
-    // 实际处理产奶逻辑的组件类，继承自CompMooHasBodyResource
+    // 雪牛娘产奶组件：负责产奶条件、设备接管、哺乳期倍率和显示 Gizmo。
     public class CompMooMilkable : CompMooHasBodyResource
     {
         private Comp_MilkingDevice cachedMilkingDevice;
 
-        // 获取产奶间隔天数（从属性中读取）
         protected override float GatherResourcesIntervalDays
         {
             get
@@ -41,7 +35,6 @@ namespace MooGirl
             }
         }
 
-        // 获取每次产奶的量（从属性中读取）
         protected override float ResourceAmount
         {
             get
@@ -50,7 +43,6 @@ namespace MooGirl
             }
         }
 
-        // 获取产的奶对应的物品定义（从属性中读取）
         protected override ThingDef ResourceDef
         {
             get
@@ -59,7 +51,6 @@ namespace MooGirl
             }
         }
 
-        // 获取保存键名（组合显示字符串）
         protected override string SaveKey
         {
             get
@@ -68,7 +59,6 @@ namespace MooGirl
             }
         }
 
-        // 便捷属性，获取转换后的组件属性
         public CompProperties_MooMilkable Props
         {
             get
@@ -130,7 +120,6 @@ namespace MooGirl
             return milkingDevice != null && milkingDevice.TryAcceptFullMilk(this);
         }
 
-        // 判断组件是否处于激活状态
         public override bool Active
         {
             get
@@ -144,10 +133,8 @@ namespace MooGirl
             }
         }
 
-        // 获取组件额外的检查字符串（用于UI显示）
         public override string CompInspectStringExtra()
         {
-            // 如果组件未激活则不显示
             if (!this.Active)
             {
                 return null;
@@ -159,7 +146,7 @@ namespace MooGirl
 
         private Pawn MooPawn => parent as Pawn;
 
-        // 哺乳期生产倍率集成
+        // 哺乳期 Hediff 可以在基础产量之外继续调整生产倍率。
         protected override float GetProductionMultiplier(Pawn pawn)
         {
             float multiplier = base.GetProductionMultiplier(pawn);
@@ -185,7 +172,6 @@ namespace MooGirl
             return multiplier;
         }
 
-        // 自动添加哺乳期 Hediff
         public override void CompTick()
         {
             base.CompTick();
@@ -219,7 +205,7 @@ namespace MooGirl
             }
         }
 
-        // Gizmo：奶量量杯可视化
+        // 选中雪牛娘时显示奶量槽；开发模式下附带填满按钮。
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             if (!Active || MooPawn == null)
@@ -227,7 +213,6 @@ namespace MooGirl
                 yield break;
             }
 
-            // 奶量槽
             yield return new Gizmo_MilkGauge(this,
                 "MooGirl.Milk.Gauge.Label".Translate(),
                 "MooGirl.Milk.Gauge.Desc".Translate());
@@ -260,7 +245,7 @@ namespace MooGirl
             }
         }
 
-        // 喷乳特效：污物 + 文字提示 + 音效
+        // 手动榨乳完成后的喷乳反馈。
         public void SpawnMilkEffect()
         {
             MooGirlMilkEffectUtility.SpawnMilkSpray(MooPawn);

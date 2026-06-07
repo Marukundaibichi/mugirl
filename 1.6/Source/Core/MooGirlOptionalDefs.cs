@@ -4,7 +4,7 @@ using Verse.AI;
 
 namespace MooGirl
 {
-    // StaticCacheLifecycle: process-level optional Def cache; values come from DefDatabase after mod loading and may be null when optional content is absent.
+    // StaticCacheLifecycle: 进程级可选 Def 缓存；加载 Def 后初始化，可选内容缺失时允许为 null。
     internal static class MooGirlOptionalDefs
     {
         internal static class ThingDefs

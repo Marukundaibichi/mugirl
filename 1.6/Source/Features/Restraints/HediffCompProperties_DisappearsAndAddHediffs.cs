@@ -2,10 +2,10 @@ using Verse;
 
 namespace MooGirl
 {
-    // 新的 HediffComp 属性类，继承消失组件的属性类（可复用）
+    // Hediff 消失后在同一部位追加另一个 Hediff。
     public class CompProperties_DisappearsAndAddHediffs : HediffCompProperties_Disappears
     {
-        public HediffDef hediffToAddOnDisappear; // 消失时添加的新Hediff
+        public HediffDef hediffToAddOnDisappear;
 
         public CompProperties_DisappearsAndAddHediffs()
         {
@@ -13,21 +13,17 @@ namespace MooGirl
         }
     }
 
-    // 继承自 HediffComp_Disappears，增加消失时添加新 Hediff 的功能
     public class HediffComp_DisappearsAndAddHediffs : HediffComp_Disappears
     {
         public new CompProperties_DisappearsAndAddHediffs Props => props as CompProperties_DisappearsAndAddHediffs;
 
-        // 重写消失后调用函数
         public override void CompPostPostRemoved()
         {
             base.CompPostPostRemoved();
 
             CompProperties_DisappearsAndAddHediffs compProps = Props;
-            // 消失时如果配置了新Hediff，则添加它
             if (compProps?.hediffToAddOnDisappear != null && Pawn?.health != null && parent?.Part != null)
             {
-                // 添加指定Hediff，添加在与当前Hediff相同的部位上
                 Pawn.health.AddHediff(compProps.hediffToAddOnDisappear, parent.Part);
             }
         }

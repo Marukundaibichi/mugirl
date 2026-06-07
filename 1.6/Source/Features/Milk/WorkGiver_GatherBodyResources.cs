@@ -5,16 +5,14 @@ using Verse.AI;
 
 namespace MooGirl
 {
-    // 抽象工作给予者类：用于收集生物资源
+    // 身体资源采集 WorkGiver 基类，扫描可采集雪牛娘并创建对应 Job。
     public abstract class WorkGiver_GatherBodyResources : WorkGiver_Scanner
     {
-        // 抽象属性：定义具体的工作类型（由子类实现）
         protected abstract JobDef JobDef { get; }
 
-        // 抽象方法：获取指定Pawn的生物资源组件（由子类实现）
         protected abstract CompMooHasBodyResource GetComp(Pawn animal);
 
-        // 获取全局潜在工作目标（所有符合条件的殖民地成员和囚犯）
+        // 只扫描本地图殖民者和囚犯中的雪牛娘，避免对全图所有 Pawn 做宽扫描。
         public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
         {
             if (pawn?.Map?.mapPawns == null)
@@ -33,7 +31,6 @@ namespace MooGirl
             }
         }
 
-        // 定义路径结束模式为"接触"（表示工作需要接触到目标）
         public override PathEndMode PathEndMode
         {
             get
@@ -42,7 +39,6 @@ namespace MooGirl
             }
         }
 
-        // 检查指定事物是否可执行工作
         public override bool HasJobOnThing(Pawn pawn, Thing thing, bool forced = false)
         {
             if (!CanDoGatherWork(pawn))
@@ -56,7 +52,6 @@ namespace MooGirl
                 return false;
             }
 
-            // 获取目标的生物资源组件
             CompMooHasBodyResource comp = GetComp(pawn2);
             if (comp == null || !comp.Active)
             {
@@ -96,10 +91,8 @@ namespace MooGirl
             return pawn?.RaceProps?.Humanlike == true && !pawn.RaceProps.IsMechanoid && pawn.skills != null;
         }
 
-        // 创建具体的工作任务
         public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
-            // 使用子类定义的JobDef创建新工作，目标为指定事物
             Job job = JobMaker.MakeJob(JobDef, t);
             job.playerForced = forced;
             return job;

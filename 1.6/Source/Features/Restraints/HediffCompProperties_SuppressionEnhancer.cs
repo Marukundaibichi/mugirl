@@ -12,16 +12,10 @@ namespace MooGirl
             this.compClass = typeof(HediffComp_SuppressionEnhancer);
         }
 
-        // 多少tick生效
+        // 每隔一段时间补充奴隶压制度，可切换为加强模式。
         public int triggerTicks = 600;
-
-        // 是否启用压制强化
         public bool enhancedMode = false;
-
-        // 常规压制数值
         public float regularAmount = 0.10f;
-
-        // 加强压制数值
         public float enhancedAmount = 0.30f;
     }
 

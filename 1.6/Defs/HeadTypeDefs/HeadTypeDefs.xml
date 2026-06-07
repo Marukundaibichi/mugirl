@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-    <!-- Female -->
+    <!-- 女性头型。 -->
 
     <HeadTypeDef ParentName="AverageBase">
         <defName>MooGirl_Female_A</defName>

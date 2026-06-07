@@ -11,7 +11,7 @@ namespace MooGirl
     [HarmonyPatch(typeof(ITab_Pawn_Gear), "DrawThingRow")]
     public static class ITab_Pawn_Gear_DrawThingRow_Transpiler
     {
-        // StaticCacheLifecycle: process-level reflection cache for tooltip injection methods; no game objects are retained.
+        // StaticCacheLifecycle: 进程级提示注入方法反射缓存；不持有游戏对象。
         private static readonly MethodInfo TranslateMethod =
             AccessTools.Method(typeof(Translator), nameof(Translator.Translate), new[] { typeof(string) });
 

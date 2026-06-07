@@ -11,7 +11,7 @@ namespace MooGirl
     public static class Patch_RopingTick
     {
         // 反射字段只缓存一次，所有绳索 tracker patch 共用。
-        // StaticCacheLifecycle: process-level reflection cache for Pawn_RopeTracker internals; no game objects are retained.
+        // StaticCacheLifecycle: 进程级 Pawn_RopeTracker 内部成员反射缓存；不持有游戏对象。
         private static readonly FieldInfo pawnField = AccessTools.Field(typeof(Pawn_RopeTracker), "pawn");
         private static readonly MethodInfo breakRopeWithRoperMethod =
             AccessTools.Method(typeof(Pawn_RopeTracker), "BreakRopeWithRoper");

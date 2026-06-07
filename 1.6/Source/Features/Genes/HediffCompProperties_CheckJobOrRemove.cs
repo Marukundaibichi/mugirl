@@ -5,7 +5,7 @@ namespace MooGirl
 {
     public class HediffCompProperties_CheckJobOrRemove : HediffCompProperties_Disappears
     {
-        // 要求 Pawn 当前必须执行的 Job
+        // 维持该 Hediff 时要求 Pawn 正在执行的 Job。
         public JobDef requiredJob;
 
         public HediffCompProperties_CheckJobOrRemove()
@@ -34,7 +34,7 @@ namespace MooGirl
             }
 
             HediffCompProperties_CheckJobOrRemove checkProps = Props;
-            // 如果未配置 requiredJob，则不做检查
+            // 未配置 requiredJob 时只保留 Disappears 的原有倒计时逻辑。
             if (checkProps?.requiredJob == null)
             {
                 return;
@@ -42,7 +42,7 @@ namespace MooGirl
 
             Job curJob = pawn.CurJob;
 
-            // 没有 Job 或 Job 不匹配 → 立刻移除 Hediff
+            // 目标 Job 中断后立即移除 Hediff，避免状态在任务结束后残留。
             if (curJob == null || curJob.def != checkProps.requiredJob)
             {
                 pawn.health?.RemoveHediff(parent);

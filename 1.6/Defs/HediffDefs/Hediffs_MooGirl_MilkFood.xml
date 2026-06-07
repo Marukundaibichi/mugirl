@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-    <!-- ============== 陈年奶酪Hediff - 防感染+去毒素+解食物中毒 +1.5免疫速度，+0.15毒素抗性 ============== -->
+    <!-- ============== 陈年奶酪 Hediff：防感染、去毒素、解食物中毒，免疫速度 1.5 倍，毒素抗性 +0.15 ============== -->
     <HediffDef>
         <defName>Hediff_MooGirlAgedCheese</defName>
         <!-- 陈年奶酪效果 -->
@@ -45,7 +45,7 @@
         </comps>
     </HediffDef>
 
-    <!-- ============== 蛋糕Hediff - 饥饿速率70% ============== -->
+    <!-- ============== 蛋糕 Hediff：饥饿速率降至 70% ============== -->
     <HediffDef>
         <defName>Hediff_MooGirlCowCake</defName>
         <!-- 奶香蛋糕 -->
@@ -71,7 +71,7 @@
         </stages>
     </HediffDef>
 
-    <!-- ============== 奶粉Hediff - 免疫+30%, 意识+10%, 全局学习系数+30% ============== -->
+    <!-- ============== 奶粉 Hediff：免疫 +30%，意识 +10%，全局学习系数 +30% ============== -->
     <HediffDef>
         <defName>Hediff_MooGirlMilkPowder</defName>
         <!-- 健康奶粉 -->
@@ -106,7 +106,7 @@
         </stages>
     </HediffDef>
 
-    <!-- ============== 奶片Hediff - 免疫+60%, 愈合+20% ============== -->
+    <!-- ============== 奶片 Hediff：免疫 +60%，愈合 +20% ============== -->
     <HediffDef>
         <defName>Hediff_MooGirlMilkTablet</defName>
         <!-- 健康奶片 -->

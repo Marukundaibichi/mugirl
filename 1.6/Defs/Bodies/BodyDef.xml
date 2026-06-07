@@ -183,7 +183,7 @@
                                         <li>East</li>
                                     </visibleHediffRots>
                                 </li>
-                                <!-- left Horn -->
+                                <!-- 左角。 -->
                                 <li>
                                     <def>MooGirl_Horn</def>
                                     <customLabel>left horn</customLabel>
@@ -193,7 +193,7 @@
                                         <li>FullHead</li>
                                     </groups>
                                 </li>
-                                <!-- right Horn -->
+                                <!-- 右角。 -->
                                 <li>
                                     <def>MooGirl_Horn</def>
                                     <customLabel>right horn</customLabel>

@@ -13,38 +13,23 @@ namespace MooGirl
             // 逃亡奴隶保持无派系；敌对巨企派系只用于袭击，避免救援任务变成战斗事件。
             Faction faction = null;
 
-            // 创建一个PawnGenerationRequest对象，详细定义了生成的pawn的属性和条件。
+            // 救援逃生舱生成成年女性、可招募且无亲属关系的雪牛娘。
             PawnGenerationRequest request = new PawnGenerationRequest(
-                // 指定要生成的Pawn的种类
                 MooGirl_DefOf.MooGirl_EscapeSpaceSlave,
-                // 指定该Pawn所属的派系
                 faction,
-                // 指定生成上下文为非玩家角色
                 PawnGenerationContext.NonPlayer,
-                // 指定的种子值，这里使用-1表示不使用特定的种子，即随机生成
                 -1,
-                // 强制生成一个新的Pawn对象，而不是从现有的池中获取
                 forceGenerateNewPawn: true,
-                // 不允许生成的Pawn是死亡的
                 allowDead: false,
-                // 允许生成的Pawn是倒下的
                 allowDowned: true,
-                // 不允许为该Pawn生成关系（如亲友关系等）
                 canGeneratePawnRelations: false,
-                // 生成的Pawn必须有能力进行暴力行为
                 mustBeCapableOfViolence: true,
-                // 如果需要，不强制添加免费的保暖层（可能是针对某些特定环境或生物的设定）
                 forceAddFreeWarmLayerIfNeeded: false,
-                // 允许生成的Pawn是同性恋的
                 allowGay: true,
-                // 不允许生成的Pawn是怀孕的
                 allowPregnant: false,
-                // 强制生成的Pawn可被招募
                 forceRecruitable: true,
-                // 指定生成的Pawn的性别为女性
                 fixedGender: Gender.Female,
-                // 不允许生成儿童
-                developmentalStages: DevelopmentalStage.Adult); // 仅允许成人
+                developmentalStages: DevelopmentalStage.Adult);
 
             Pawn pawn = GenerateDownedPawn(request);
             if (pawn == null)
@@ -54,10 +39,9 @@ namespace MooGirl
 
             MooGirlApparelTagUtility.TryWearIdeoSuppressedKindApparel(pawn);
 
-            // 如果生成的pawn不是世界pawn，则将其传递到世界pawn管理中。
+            // 任务系统需要世界 pawn 参与后续信号和清理。
             MooGirlGeneratedPawnUtility.TryPassToWorld(pawn);
 
-            // 返回生成的pawn。
             return pawn;
         }
 
