@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Reflection;
 using HarmonyLib;
 using RimWorld;
@@ -71,7 +72,7 @@ namespace MooGirl
                 return false;
             }
 
-            return IsPlantFoodDef(job.GetTarget(TargetIndex.A).Thing?.def);
+            return MooGirlGrazeUtility.IsPlantFoodDef(job.GetTarget(TargetIndex.A).Thing?.def);
         }
 
         private static Thing FindNextEdiblePlant(Pawn pawn)
@@ -95,7 +96,7 @@ namespace MooGirl
 
         private static bool IsValidPlantFood(Pawn pawn, Thing thing)
         {
-            if (!IsMapPlantFood(thing))
+            if (!MooGirlGrazeUtility.IsMapPlantFood(thing))
             {
                 return false;
             }
@@ -117,8 +118,195 @@ namespace MooGirl
 
             return FoodUtility.FoodIsSuitable(pawn, thing.def);
         }
+    }
 
-        private static bool IsMapPlantFood(Thing thing)
+    [HarmonyPatch]
+    public static class Harmony_MooGirlGrazeIngest
+    {
+        public static MethodBase TargetMethod()
+        {
+            return AccessTools.Method(typeof(JobDriver_Ingest), "PrepareToIngestToils");
+        }
+
+        public static bool Prefix(JobDriver_Ingest __instance, ref IEnumerable<Toil> __result)
+        {
+            Pawn pawn = __instance?.pawn;
+            Job job = __instance?.job;
+            if (!ShouldUseAnimalGrazeToils(pawn, job))
+            {
+                return true;
+            }
+
+            __result = PrepareAnimalGrazeToils();
+            return false;
+        }
+
+        private static bool ShouldUseAnimalGrazeToils(Pawn pawn, Job job)
+        {
+            if (pawn == null || job == null || job.def != JobDefOf.Ingest || !MountedPawnUtility.IsMooGirl(pawn))
+            {
+                return false;
+            }
+
+            Thing thing = job.GetTarget(TargetIndex.A).Thing;
+            return thing?.Map == pawn.Map && MooGirlGrazeUtility.IsMapPlantFood(thing);
+        }
+
+        private static IEnumerable<Toil> PrepareAnimalGrazeToils()
+        {
+            yield return ReserveFood();
+            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch).FailOnDespawnedNullOrForbidden(TargetIndex.A);
+        }
+
+        private static Toil ReserveFood()
+        {
+            Toil toil = ToilMaker.MakeToil("MooGirlReserveGrazePlant");
+            toil.initAction = delegate
+            {
+                Pawn actor = toil.actor;
+                Job curJob = actor?.jobs?.curJob;
+                if (actor?.Faction == null || curJob == null)
+                {
+                    return;
+                }
+
+                Thing thing = curJob.GetTarget(TargetIndex.A).Thing;
+                if (thing == null || actor.carryTracker?.CarriedThing == thing)
+                {
+                    return;
+                }
+
+                int maxAmountToPickup = FoodUtility.GetMaxAmountToPickup(thing, actor, curJob.count);
+                if (maxAmountToPickup == 0)
+                {
+                    return;
+                }
+
+                if (!actor.Reserve(thing, curJob, 10, maxAmountToPickup))
+                {
+                    MooGirlLog.WarningOnce(
+                        "GrazeIngest.ReserveFailed." + actor.ThingID,
+                        "Pawn food reservation for " + actor?.ToString() + " on job " + curJob?.ToString() + " failed, because it could not register grazing plant from " + thing?.ToString() + " - amount: " + maxAmountToPickup);
+                    actor.jobs.EndCurrentJob(JobCondition.Errored);
+                    return;
+                }
+
+                curJob.count = maxAmountToPickup;
+            };
+            toil.defaultCompleteMode = ToilCompleteMode.Instant;
+            toil.atomicWithPrevious = true;
+            return toil;
+        }
+    }
+
+    [HarmonyPatch]
+    public static class Harmony_MooGirlGrazeFloatMenu
+    {
+        public static MethodBase TargetMethod()
+        {
+            return AccessTools.Method(
+                typeof(FloatMenuOptionProvider_Ingest),
+                "GetSingleOptionFor",
+                new[] { typeof(Thing), typeof(FloatMenuContext) });
+        }
+
+        public static bool Prefix(Thing clickedThing, FloatMenuContext context, ref FloatMenuOption __result)
+        {
+            Pawn pawn = context?.FirstSelectedPawn;
+            if (!ShouldUseGrazeFloatMenu(pawn, clickedThing))
+            {
+                return true;
+            }
+
+            __result = BuildGrazeFloatMenuOption(pawn, clickedThing);
+            return false;
+        }
+
+        private static bool ShouldUseGrazeFloatMenu(Pawn pawn, Thing thing)
+        {
+            return pawn != null
+                && thing?.Map == pawn.Map
+                && MountedPawnUtility.IsMooGirl(pawn)
+                && MooGirlGrazeUtility.IsMapPlantFood(thing);
+        }
+
+        private static FloatMenuOption BuildGrazeFloatMenuOption(Pawn pawn, Thing plant)
+        {
+            if (plant.def.ingestible == null || !plant.def.ingestible.showIngestFloatOption)
+            {
+                return null;
+            }
+
+            if (!plant.IngestibleNow || !pawn.RaceProps.CanEverEat(plant.def))
+            {
+                return null;
+            }
+
+            string label = plant.def.ingestible.ingestCommandString.NullOrEmpty()
+                ? "ConsumeThing".Translate(plant.LabelShort, plant).ToString()
+                : plant.def.ingestible.ingestCommandString.Formatted(plant.LabelShort).ToString();
+
+            if (!plant.IsSociallyProper(pawn))
+            {
+                label = label + ": " + "ReservedForPrisoners".Translate().CapitalizeFirst();
+            }
+            else if (FoodUtility.MoodFromIngesting(pawn, plant, plant.def) < 0f)
+            {
+                label = string.Format("{0} ({1})", label, "WarningFoodDisliked".Translate());
+            }
+
+            if (!plant.def.ingestible.nonDrugIngestibleWithoutFoodNeed && !pawn.FoodIsSuitable(plant.def))
+            {
+                return new FloatMenuOption(label + ": " + "FoodNotSuitable".Translate().CapitalizeFirst(), null);
+            }
+
+            if (FoodUtility.InappropriateForTitle(plant.def, pawn, allowIfStarving: true))
+            {
+                return new FloatMenuOption(label + ": " + "FoodBelowTitleRequirements".Translate(pawn.royalty.MostSeniorTitle.def.GetLabelFor(pawn).CapitalizeFirst()).CapitalizeFirst(), null);
+            }
+
+            if (!pawn.CanReach(plant, PathEndMode.Touch, Danger.Deadly))
+            {
+                return new FloatMenuOption(label + ": " + "NoPath".Translate().CapitalizeFirst(), null);
+            }
+
+            int maxAmountToGraze = MaxAmountToGraze(pawn, plant);
+            FloatMenuOption option = FloatMenuUtility.DecoratePrioritizedTask(
+                new FloatMenuOption(label, delegate
+                {
+                    int currentMaxAmountToGraze = MaxAmountToGraze(pawn, plant);
+                    if (currentMaxAmountToGraze == 0)
+                    {
+                        return;
+                    }
+
+                    Job job = JobMaker.MakeJob(JobDefOf.Ingest, plant);
+                    job.count = currentMaxAmountToGraze;
+                    pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+                }),
+                pawn,
+                plant);
+
+            if (maxAmountToGraze == 0)
+            {
+                option.action = null;
+            }
+
+            return option;
+        }
+
+        private static int MaxAmountToGraze(Pawn pawn, Thing plant)
+        {
+            return FoodUtility.GetMaxAmountToPickup(
+                plant,
+                pawn,
+                FoodUtility.WillIngestStackCountOf(pawn, plant.def, FoodUtility.NutritionForEater(pawn, plant)));
+        }
+    }
+
+    internal static class MooGirlGrazeUtility
+    {
+        internal static bool IsMapPlantFood(Thing thing)
         {
             Plant plant = thing as Plant;
             return plant != null
@@ -128,7 +316,7 @@ namespace MooGirl
                 && IsPlantFoodDef(plant.def);
         }
 
-        private static bool IsPlantFoodDef(ThingDef def)
+        internal static bool IsPlantFoodDef(ThingDef def)
         {
             return def != null && typeof(Plant).IsAssignableFrom(def.thingClass) && def.ingestible != null;
         }
