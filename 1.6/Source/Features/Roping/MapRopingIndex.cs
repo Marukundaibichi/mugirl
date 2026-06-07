@@ -10,6 +10,8 @@ namespace MooGirl
         private readonly Dictionary<Pawn, Pawn> roperByRopee = new Dictionary<Pawn, Pawn>();
         private readonly HashSet<Pawn> ropedToSpot = new HashSet<Pawn>();
         private readonly HashSet<Pawn> pendingSpotRope = new HashSet<Pawn>();
+        private readonly List<Pawn> tmpPendingSpotRopeRemovals = new List<Pawn>();
+        private int rebuildTickCounter;
 
         public MapRopingIndex(Map map) : base(map)
         {
@@ -18,7 +20,8 @@ namespace MooGirl
         public override void MapComponentTick()
         {
             // 索引是运行期缓存；低频重建用于兜底处理原版或其他 mod 直接改 RopeTracker 的情况。
-            if (Find.TickManager.TicksGame % 250 == 0)
+            MooGirlTickUtility.Add(ref rebuildTickCounter, 1);
+            if (MooGirlTickUtility.ConsumeReady(ref rebuildTickCounter, 250, out _))
             {
                 RebuildFromMap();
             }
@@ -30,7 +33,13 @@ namespace MooGirl
             roperByRopee.Clear();
             ropedToSpot.Clear();
 
-            IReadOnlyList<Pawn> pawns = map.mapPawns.AllPawnsSpawned;
+            IReadOnlyList<Pawn> pawns = map?.mapPawns?.AllPawnsSpawned;
+            if (pawns == null)
+            {
+                PruneInvalidPendingSpotRopes();
+                return;
+            }
+
             for (int i = 0; i < pawns.Count; i++)
             {
                 Pawn pawn = pawns[i];
@@ -54,6 +63,8 @@ namespace MooGirl
                     RegisterRopedToSpot(pawn);
                 }
             }
+
+            PruneInvalidPendingSpotRopes();
         }
 
         public void RegisterPawnRope(Pawn roper, Pawn ropee)
@@ -65,6 +76,7 @@ namespace MooGirl
 
             RemoveRopeeLink(ropee);
             ropedToSpot.Remove(ropee);
+            pendingSpotRope.Remove(ropee);
 
             List<Pawn> ropees;
             if (!ropeesByRoper.TryGetValue(roper, out ropees))
@@ -89,6 +101,7 @@ namespace MooGirl
 
             RemoveRopeeLink(ropee);
             ropedToSpot.Add(ropee);
+            pendingSpotRope.Remove(ropee);
         }
 
         public void RemovePawn(Pawn pawn)
@@ -192,6 +205,30 @@ namespace MooGirl
                     ropeesByRoper.Remove(roper);
                 }
             }
+        }
+
+        private void PruneInvalidPendingSpotRopes()
+        {
+            if (pendingSpotRope.Count == 0)
+            {
+                return;
+            }
+
+            tmpPendingSpotRopeRemovals.Clear();
+            foreach (Pawn pawn in pendingSpotRope)
+            {
+                if (!CanIndex(pawn) || pawn.Map != map || pawn.roping?.IsRopedToSpot == true)
+                {
+                    tmpPendingSpotRopeRemovals.Add(pawn);
+                }
+            }
+
+            for (int i = 0; i < tmpPendingSpotRopeRemovals.Count; i++)
+            {
+                pendingSpotRope.Remove(tmpPendingSpotRopeRemovals[i]);
+            }
+
+            tmpPendingSpotRopeRemovals.Clear();
         }
 
         private static bool CanIndex(Pawn pawn)

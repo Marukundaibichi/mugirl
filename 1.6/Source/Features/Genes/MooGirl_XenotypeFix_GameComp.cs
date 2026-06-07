@@ -5,11 +5,11 @@ using Verse;
 
 namespace MooGirl
 {
-    public static class MooGirlXenotypeService
+    internal static class MooGirlXenotypeService
     {
-        private static List<Pawn> tmpParents = new List<Pawn>();
+        private static readonly List<Pawn> tmpParents = new List<Pawn>();
 
-        public static void ForceFemaleMooGirlXenotypeIfNeeded(Pawn child, Pawn geneticMother = null, Pawn father = null, Thing birtherThing = null)
+        internal static void ForceFemaleMooGirlXenotypeIfNeeded(Pawn child, Pawn geneticMother = null, Pawn father = null, Thing birtherThing = null)
         {
             if (!ModsConfig.BiotechActive || child == null || child.gender != Gender.Female || child.genes == null)
             {
@@ -25,7 +25,7 @@ namespace MooGirl
             ApplyXenotypeAndMissingEndogenes(child, targetXenotype, forceNonHybrid: true);
         }
 
-        public static void FixLoadedPawnIfSafe(Pawn pawn, XenotypeDef targetXenotype)
+        internal static void FixLoadedPawnIfSafe(Pawn pawn, XenotypeDef targetXenotype)
         {
             if (targetXenotype == null || pawn == null || pawn.def != MooGirl_DefOf.MooGirl || pawn.genes == null)
             {
@@ -48,12 +48,23 @@ namespace MooGirl
                 return true;
             }
 
-            tmpParents.Clear();
-            child.relations?.GetDirectRelations(PawnRelationDefOf.Parent, ref tmpParents);
-            child.relations?.GetDirectRelations(PawnRelationDefOf.ParentBirth, ref tmpParents);
-            bool hasMooGirlParent = HasMooGirlParent(tmpParents);
-            tmpParents.Clear();
-            return hasMooGirlParent;
+            List<Pawn> parents = tmpParents;
+            parents.Clear();
+            try
+            {
+                child.relations?.GetDirectRelations(PawnRelationDefOf.Parent, ref parents);
+                child.relations?.GetDirectRelations(PawnRelationDefOf.ParentBirth, ref parents);
+                return HasMooGirlParent(parents);
+            }
+            finally
+            {
+                if (!ReferenceEquals(parents, tmpParents))
+                {
+                    parents?.Clear();
+                }
+
+                tmpParents.Clear();
+            }
         }
 
         private static bool HasMooGirlParent(List<Pawn> parents)
@@ -77,6 +88,11 @@ namespace MooGirl
 
         private static void ApplyXenotypeAndMissingEndogenes(Pawn pawn, XenotypeDef targetXenotype, bool forceNonHybrid)
         {
+            if (pawn?.genes == null || targetXenotype?.genes == null)
+            {
+                return;
+            }
+
             if (pawn.genes.Xenotype != targetXenotype)
             {
                 pawn.genes.SetXenotypeDirect(targetXenotype);
@@ -90,6 +106,11 @@ namespace MooGirl
             for (int i = 0; i < targetXenotype.genes.Count; i++)
             {
                 GeneDef geneDef = targetXenotype.genes[i];
+                if (geneDef == null)
+                {
+                    continue;
+                }
+
                 if (!pawn.genes.HasEndogene(geneDef) && !pawn.genes.HasXenogene(geneDef))
                 {
                     pawn.genes.AddGene(geneDef, xenogene: false);
@@ -111,9 +132,13 @@ namespace MooGirl
             MooGirlXenotypeService.ForceFemaleMooGirlXenotypeIfNeeded(pawn, birtherThing: motherOrEgg);
         }
 
-        public static void Postfix(Pawn pawn, Thing motherOrEgg)
+        public static void Postfix(Pawn pawn, Thing motherOrEgg, bool __result)
         {
             MooGirlXenotypeService.ForceFemaleMooGirlXenotypeIfNeeded(pawn, birtherThing: motherOrEgg);
+            if (__result)
+            {
+                MooGirlLactationUtility.NotifyBirth(motherOrEgg as Pawn);
+            }
         }
     }
 

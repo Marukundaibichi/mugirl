@@ -11,10 +11,19 @@ namespace MooGirl
     {
         public static void Postfix(ref IEnumerable<RecipeDef> __result, bool hotReload)
         {
-            List<RecipeDef> recipes = new List<RecipeDef>(__result);
+            List<RecipeDef> recipes = __result == null ? new List<RecipeDef>() : new List<RecipeDef>(__result);
             ThingDef milkDef = MooGirlOptionalDefs.ThingDefs.MooGirlMilk;
             if (milkDef == null)
             {
+                __result = recipes;
+                return;
+            }
+
+            if (milkDef.ingestible == null)
+            {
+                MooGirlLog.WarningOnce(
+                    "DrugAdministerDefs.MilkNotIngestible",
+                    "Skipping generated administer milk recipe because MooGirl_Milk has no ingestible properties.");
                 __result = recipes;
                 return;
             }
@@ -32,7 +41,8 @@ namespace MooGirl
         {
             for (int i = 0; i < recipes.Count; i++)
             {
-                if (recipes[i].defName == defName)
+                RecipeDef recipe = recipes[i];
+                if (recipe != null && recipe.defName == defName)
                 {
                     return true;
                 }
@@ -43,10 +53,13 @@ namespace MooGirl
 
         private static RecipeDef CreateAdministerMilkRecipe(ThingDef milkDef, string defName, bool hotReload)
         {
-            RecipeDef recipeDef = hotReload
-                ? DefDatabase<RecipeDef>.GetNamed(defName, false) ?? new RecipeDef()
-                : new RecipeDef();
+            RecipeDef recipeDef = hotReload ? DefDatabase<RecipeDef>.GetNamedSilentFail(defName) : null;
+            if (recipeDef == null)
+            {
+                recipeDef = new RecipeDef();
+            }
 
+            ResetGeneratedRecipe(recipeDef);
             recipeDef.defName = defName;
             recipeDef.label = "RecipeAdminister".Translate(milkDef.label);
             recipeDef.jobString = "RecipeAdministerJobString".Translate(milkDef.label);
@@ -55,8 +68,8 @@ namespace MooGirl
             recipeDef.anesthetize = false;
             recipeDef.surgerySuccessChanceFactor = 99999f;
             recipeDef.modContentPack = milkDef.modContentPack;
-            recipeDef.workAmount = milkDef.ingestible?.baseIngestTicks ?? 250;
-            recipeDef.humanlikeOnly = milkDef.ingestible?.humanlikeOnly ?? true;
+            recipeDef.workAmount = milkDef.ingestible.baseIngestTicks;
+            recipeDef.humanlikeOnly = milkDef.ingestible.humanlikeOnly;
 
             IngredientCount ingredientCount = new IngredientCount();
             ingredientCount.SetBaseCount(1f);
@@ -64,21 +77,45 @@ namespace MooGirl
             recipeDef.ingredients.Add(ingredientCount);
             recipeDef.fixedIngredientFilter.SetAllow(milkDef, allow: true);
 
-            recipeDef.recipeUsers = new List<ThingDef>();
-            foreach (ThingDef pawnDef in DefDatabase<ThingDef>.AllDefs)
-            {
-                if (IsFleshPawnDef(pawnDef))
-                {
-                    recipeDef.recipeUsers.Add(pawnDef);
-                }
-            }
+            PopulateRecipeUsers(recipeDef);
 
             return recipeDef;
         }
 
-        private static bool IsFleshPawnDef(ThingDef thingDef)
+        private static void PopulateRecipeUsers(RecipeDef recipeDef)
         {
-            return thingDef.category == ThingCategory.Pawn && thingDef.race != null && thingDef.race.IsFlesh;
+            if (recipeDef.recipeUsers == null)
+            {
+                recipeDef.recipeUsers = new List<ThingDef>();
+            }
+
+            List<ThingDef> pawnDefs = DefDatabase<ThingDef>.AllDefsListForReading;
+            for (int i = 0; i < pawnDefs.Count; i++)
+            {
+                ThingDef pawnDef = pawnDefs[i];
+                if (MooGirlIdentity.IsMooGirlPawnDef(pawnDef))
+                {
+                    recipeDef.recipeUsers.Add(pawnDef);
+                }
+            }
         }
+
+        private static void ResetGeneratedRecipe(RecipeDef recipeDef)
+        {
+            // 热重载可能复用上一次生成的 RecipeDef；填充前先清可变集合，避免每次重载叠加一份牛奶原料。
+            if (recipeDef.ingredients == null)
+            {
+                recipeDef.ingredients = new List<IngredientCount>();
+            }
+            else
+            {
+                recipeDef.ingredients.Clear();
+            }
+
+            recipeDef.fixedIngredientFilter = new ThingFilter();
+            recipeDef.defaultIngredientFilter = null;
+            recipeDef.recipeUsers = new List<ThingDef>();
+        }
+
     }
 }

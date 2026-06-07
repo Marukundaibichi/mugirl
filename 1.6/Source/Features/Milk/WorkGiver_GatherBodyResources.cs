@@ -17,16 +17,20 @@ namespace MooGirl
         // 获取全局潜在工作目标（所有符合条件的殖民地成员和囚犯）
         public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
         {
-            // 遍历当前地图上的所有殖民地成员和囚犯
-            foreach (Pawn pawn2 in pawn.Map.mapPawns.FreeColonistsAndPrisonersSpawned)
+            if (pawn?.Map?.mapPawns == null)
             {
-                // 筛选出具有MooGirlBody身体类型的Pawn
-                if (pawn2.RaceProps.body == MooGirl_DefOf.MooGirlBody)
+                yield break;
+            }
+
+            List<Pawn> candidates = pawn.Map.mapPawns.FreeColonistsAndPrisonersSpawned;
+            for (int i = 0; i < candidates.Count; i++)
+            {
+                Pawn pawn2 = candidates[i];
+                if (MooGirlIdentity.HasMooGirlBody(pawn2))
                 {
-                    yield return pawn2; // 返回符合条件的Pawn
+                    yield return pawn2;
                 }
             }
-            yield break; // 结束迭代
         }
 
         // 定义路径结束模式为"接触"（表示工作需要接触到目标）
@@ -46,10 +50,8 @@ namespace MooGirl
                 return false;
             }
 
-            // 尝试将事物转换为Pawn类型
             Pawn pawn2 = thing as Pawn;
-            // 如果转换失败或目标不是类人生物，则返回false
-            if (pawn2 == null || !pawn2.RaceProps.Humanlike)
+            if (pawn2 == null || pawn2.RaceProps?.Humanlike != true || !MooGirlIdentity.HasMooGirlBody(pawn2))
             {
                 return false;
             }
@@ -80,14 +82,10 @@ namespace MooGirl
                     return false;
             }
 
-            // 检查Pawn是否可以预订目标
-            if (pawn2 == pawn || pawn2 != pawn)
+            LocalTargetInfo localTargetInfo = pawn2;
+            if (ReservationUtility.CanReserve(pawn, localTargetInfo, 1, -1, null, forced))
             {
-                LocalTargetInfo localTargetInfo = pawn2;
-                if (ReservationUtility.CanReserve(pawn, localTargetInfo, 1, -1, null, forced))
-                {
-                    return true;
-                }
+                return true;
             }
 
             return false;

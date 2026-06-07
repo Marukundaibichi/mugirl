@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-    <!-- Add buy support to traders that do not already buy MooGirl milk food. 让尚未收购雪牛娘奶制食品的商人收购该标签。 -->
-    <Operation Class="PatchOperationConditional">
-        <xpath>Defs/TraderKindDef/stockGenerators[not(li[@Class="StockGenerator_BuyTradeTag"]/tag[text()="MooGirl_MilkFood"])]</xpath>
-        <match Class="PatchOperationAdd">
-            <xpath>Defs/TraderKindDef/stockGenerators[not(li[@Class="StockGenerator_BuyTradeTag"]/tag[text()="MooGirl_MilkFood"])]</xpath>
-            <value>
-                <li Class="StockGenerator_BuyTradeTag">
-                    <tag>MooGirl_MilkFood</tag>
-                </li>
-            </value>
-        </match>
-    </Operation>
-
     <!-- Faction bases. 派系基地。 -->
     <Operation Class="PatchOperationConditional">
         <xpath>Defs/TraderKindDef[defName="Base_Neolithic_Standard"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>

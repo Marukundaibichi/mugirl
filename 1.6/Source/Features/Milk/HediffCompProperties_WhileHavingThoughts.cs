@@ -35,8 +35,10 @@ namespace MooGirl
         // 数据暴露方法，用于存档/读档
         public override void CompExposeData()
         {
+            base.CompExposeData();
             // 读写flagAmIThinking标志位
             Scribe_Values.Look<bool>(ref this.flagAmIThinking, "flagAmIThinking", false, false);
+            Scribe_Values.Look<int>(ref this.checkingCounter, "checkingCounter", 600, false);
         }
 
         // 获取组件属性的快捷方式
@@ -44,7 +46,7 @@ namespace MooGirl
         {
             get
             {
-                return (HediffCompProperties_WhileHavingThoughts)this.props;
+                return this.props as HediffCompProperties_WhileHavingThoughts;
             }
         }
 
@@ -53,23 +55,17 @@ namespace MooGirl
         {
             base.CompPostMake();
 
-            // 如果配置了需要减少严重度的Hediff
-            bool flag = this.Props.hediffReduction != "";
-            if (flag)
+            HediffCompProperties_WhileHavingThoughts thoughtProps = Props;
+            if (thoughtProps == null || string.IsNullOrEmpty(thoughtProps.hediffReduction) || Pawn?.health?.hediffSet == null)
             {
-                // 检查该Hediff定义是否存在
-                bool flag2 = DefDatabase<HediffDef>.GetNamed(this.Props.hediffReduction, false) != null;
-                if (flag2)
-                {
-                    // 获取角色身上的该Hediff实例
-                    Hediff firstHediffOfDef = base.Pawn.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named(this.Props.hediffReduction), false);
-                    bool flag3 = firstHediffOfDef != null;
-                    if (flag3)
-                    {
-                        // 减少其严重度
-                        firstHediffOfDef.Severity -= this.Props.reductionAmount;
-                    }
-                }
+                return;
+            }
+
+            HediffDef hediffDef = DefDatabase<HediffDef>.GetNamedSilentFail(thoughtProps.hediffReduction);
+            Hediff firstHediffOfDef = hediffDef == null ? null : Pawn.health.hediffSet.GetFirstHediffOfDef(hediffDef, false);
+            if (firstHediffOfDef != null)
+            {
+                firstHediffOfDef.Severity -= thoughtProps.reductionAmount;
             }
         }
 
@@ -78,23 +74,38 @@ namespace MooGirl
         {
             base.CompPostTick(ref severityAdjustment);
 
+            HediffCompProperties_WhileHavingThoughts thoughtProps = Props;
+            if (thoughtProps == null)
+            {
+                RemoveSelf();
+                return;
+            }
+
             // 计数器递增
             this.checkingCounter++;
 
             // 当计数器达到检查间隔时执行检查
-            bool flag = this.checkingCounter > this.checkingInterval;
+            int interval = this.checkingInterval < 1 ? 1 : this.checkingInterval;
+            bool flag = this.checkingCounter > interval;
             if (flag)
             {
+                var memories = Pawn?.needs?.mood?.thoughts?.memories;
+                if (memories == null)
+                {
+                    RemoveSelf();
+                    return;
+                }
+
                 // 检查需要检测的想法列表
-                bool flag2 = this.Props.thoughtDefs.Count > 0;
+                this.flagAmIThinking = false;
+                bool flag2 = thoughtProps.thoughtDefs != null && thoughtProps.thoughtDefs.Count > 0;
                 if (flag2)
                 {
                     // 遍历所有需要检测的想法
-                    foreach (ThoughtDef def in this.Props.thoughtDefs)
+                    foreach (ThoughtDef def in thoughtProps.thoughtDefs)
                     {
-                        this.flagAmIThinking = false;
                         // 检查角色是否拥有该想法
-                        bool flag3 = base.Pawn.needs.mood.thoughts.memories.GetFirstMemoryOfDef(def) != null;
+                        bool flag3 = def != null && memories.GetFirstMemoryOfDef(def) != null;
                         if (flag3)
                         {
                             this.flagAmIThinking = true;
@@ -104,18 +115,18 @@ namespace MooGirl
                 }
 
                 // 处理需要移除效果的想法列表
-                bool flag4 = this.Props.removeThoughtDefs.Count > 0;
+                bool flag4 = thoughtProps.removeThoughtDefs != null && thoughtProps.removeThoughtDefs.Count > 0;
                 if (flag4)
                 {
                     // 遍历所有需要移除效果的想法
-                    foreach (ThoughtDef def2 in this.Props.removeThoughtDefs)
+                    foreach (ThoughtDef def2 in thoughtProps.removeThoughtDefs)
                     {
                         // 检查角色是否拥有该想法
-                        bool flag5 = base.Pawn.needs.mood.thoughts.memories.GetFirstMemoryOfDef(def2) != null;
-                        if (flag5)
+                        Thought_Memory memory = def2 == null ? null : memories.GetFirstMemoryOfDef(def2);
+                        if (memory != null)
                         {
                             // 将该想法的情绪影响因子设为0（移除效果）
-                            base.Pawn.needs.mood.thoughts.memories.GetFirstMemoryOfDef(def2).moodPowerFactor = 0f;
+                            memory.moodPowerFactor = 0f;
                         }
                     }
                 }
@@ -125,7 +136,7 @@ namespace MooGirl
                 if (flag6)
                 {
                     // 移除当前Hediff效果
-                    base.Pawn.health.RemoveHediff(this.parent);
+                    RemoveSelf();
                 }
 
                 // 重置计数器
@@ -141,5 +152,10 @@ namespace MooGirl
 
         // 当前计数器值
         public int checkingCounter = 600;
+
+        private void RemoveSelf()
+        {
+            Pawn?.health?.RemoveHediff(parent);
+        }
     }
 }

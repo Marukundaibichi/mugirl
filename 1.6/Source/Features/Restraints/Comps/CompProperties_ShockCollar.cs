@@ -52,7 +52,7 @@ namespace MooGirl
         private int lastManualUseTick = -99999;
 
         // 获取组件属性
-        public CompProperties_ShockCollar Props => (CompProperties_ShockCollar)props;
+        public CompProperties_ShockCollar Props => props as CompProperties_ShockCollar;
 
         // 获取佩戴者（每次实时检查）
         private Pawn GetWearer()
@@ -65,13 +65,13 @@ namespace MooGirl
         }
 
         // 检查是否可以被电击（玩家殖民者、囚犯、奴隶可以，访客不行）
-        private bool CanBeShocked(Pawn pawn)
+        private bool CanBeShocked(Pawn pawn, CompProperties_ShockCollar shockProps)
         {
-            if (pawn == null)
+            if (pawn == null || shockProps == null)
                 return false;
 
             // 如果配置允许所有单位，直接返回true
-            if (!Props.playerColonistOnly)
+            if (!shockProps.playerColonistOnly)
                 return true;
 
             // 检查是否是玩家的殖民者
@@ -97,8 +97,14 @@ namespace MooGirl
             // 只有计时器触发时才做完整检查
             if (ticks <= 0)
             {
+                CompProperties_ShockCollar shockProps = Props;
+                if (shockProps == null)
+                {
+                    return;
+                }
+
                 // 重置计时器
-                ticks = Props.ticks;
+                ticks = Mathf.Max(1, shockProps.ticks);
 
                 // 实时获取佩戴者
                 Pawn wearer = GetWearer();
@@ -108,7 +114,7 @@ namespace MooGirl
                     return;
 
                 // 检查：只对玩家控制的单位生效（避免访客模组冲突）
-                if (!CanBeShocked(wearer))
+                if (!CanBeShocked(wearer, shockProps))
                     return;
 
                 // 检查：ParentIsCracked() 返回 true = 未破解，返回 false = 已破解
@@ -118,16 +124,16 @@ namespace MooGirl
 
                 // 使用RimWorld内置的随机数系统
                 // 概率触发电击
-                if (Rand.Chance(Props.rand / 100f))
+                if (Rand.Chance(Mathf.Clamp01(shockProps.rand / 100f)))
                 {
                     // 随机选择电击类型
-                    if (Rand.Chance(Props.powerShockChance / 100f))
+                    if (Rand.Chance(Mathf.Clamp01(shockProps.powerShockChance / 100f)))
                     {
-                        ApplyHediffs(wearer, PowerHediffsFor(wearer));
+                        ApplyHediffs(wearer, PowerHediffsFor(wearer, shockProps));
                     }
                     else
                     {
-                        ApplyHediffs(wearer, Props.hediffDefs);
+                        ApplyHediffs(wearer, shockProps.hediffDefs);
                     }
                 }
             }
@@ -136,7 +142,7 @@ namespace MooGirl
         // 提取公共方法 - 应用健康效果
         private void ApplyHediffs(Pawn pawn, List<HediffDef> hediffs)
         {
-            if (pawn == null || hediffs == null)
+            if (pawn?.health?.hediffSet == null || hediffs == null)
                 return;
 
             // 批量处理，减少多次访问health.hediffSet
@@ -172,13 +178,14 @@ namespace MooGirl
 
             // 实时获取佩戴者
             Pawn wearer = GetWearer();
+            CompProperties_ShockCollar shockProps = Props;
 
             // 基础检查：存在佩戴者
-            if (wearer == null)
+            if (wearer == null || shockProps == null)
                 yield break;
 
             // 只对玩家控制的单位显示按钮（殖民者、囚犯、奴隶）
-            if (!CanBeShocked(wearer))
+            if (!CanBeShocked(wearer, shockProps))
                 yield break;
 
             // ParentIsCracked() 返回 true = 未破解，返回 false = 已破解
@@ -187,83 +194,115 @@ namespace MooGirl
                 yield break;
 
             // 计算冷却信息（只计算一次）
-            int currentTick = Find.TickManager.TicksGame;
-            int cdLeft = Mathf.Max(0, (lastManualUseTick + Props.useCooldownTicks) - currentTick);
+            int cooldownTicks = Mathf.Max(1, shockProps.useCooldownTicks);
+            int currentTick = CurrentGameTickOrFallback(lastManualUseTick);
+            int cdLeft = Mathf.Max(0, (lastManualUseTick + cooldownTicks) - currentTick);
             bool canUse = cdLeft <= 0;
-            float cooldownPercent = canUse ? 1f : Mathf.Clamp01(1f - (float)cdLeft / Props.useCooldownTicks);
+            float cooldownPercent = canUse ? 1f : Mathf.Clamp01(1f - (float)cdLeft / cooldownTicks);
 
             // 提前计算描述文本，避免类型混淆
             string powerDesc = canUse
-                ? MooGirlText.Resolve(Props.powerDesc)
+                ? MooGirlText.Resolve(shockProps.powerDesc)
                 : MooGirlText.Resolve("MooGirl.Restraints.ShockCollar.PowerCooldownTicksLeft", cdLeft);
 
             string commonDesc = canUse
-                ? MooGirlText.Resolve(Props.commonDesc)
+                ? MooGirlText.Resolve(shockProps.commonDesc)
                 : MooGirlText.Resolve("MooGirl.Restraints.ShockCollar.CommonCooldownTicksLeft", cdLeft);
 
             // 强力电击按钮
             yield return CreateShockCommand(
-                wearer,
-                MooGirlText.Resolve(Props.powerLabel),
+                MooGirlText.Resolve(shockProps.powerLabel),
                 powerDesc,
-                Props.powerIconPath,
+                shockProps.powerIconPath,
                 canUse,
                 cooldownPercent,
-                () => ApplyHediffs(wearer, PowerHediffsFor(wearer))
+                (currentWearer, currentProps) => ApplyHediffs(currentWearer, PowerHediffsFor(currentWearer, currentProps))
             );
 
             // 普通电击按钮
             yield return CreateShockCommand(
-                wearer,
-                MooGirlText.Resolve(Props.commonLabel),
+                MooGirlText.Resolve(shockProps.commonLabel),
                 commonDesc,
-                Props.commonIconPath,
+                shockProps.commonIconPath,
                 canUse,
                 cooldownPercent,
-                () => ApplyHediffs(wearer, Props.hediffDefs)
+                (currentWearer, currentProps) => ApplyHediffs(currentWearer, currentProps.hediffDefs)
             );
         }
 
         // 提取公共方法 - 创建电击命令按钮
         private Command_ActionWithCooldown CreateShockCommand(
-            Pawn wearer,
             string label,
             string desc,
             string iconPath,
             bool enabled,
             float cooldownPercent,
-            System.Action applyAction)
+            System.Action<Pawn, CompProperties_ShockCollar> applyAction)
         {
             return new Command_ActionWithCooldown
             {
                 defaultLabel = label,
                 defaultDesc = desc,
-                icon = ContentFinder<Texture2D>.Get(iconPath),
+                icon = GetCommandIcon(iconPath),
                 action = () =>
                 {
-                    if (!enabled) return;
-
                     // 双重检查，确保执行时佩戴者仍然有效且已破解
                     Pawn currentWearer = GetWearer();
-                    if (currentWearer != null && CanBeShocked(currentWearer) && !ParentIsCracked())
+                    CompProperties_ShockCollar shockProps = Props;
+                    if (currentWearer != null && CanBeShocked(currentWearer, shockProps) && !ParentIsCracked() && ManualUseReady(shockProps, out int currentTick))
                     {
-                        applyAction();
-                        lastManualUseTick = Find.TickManager.TicksGame;
+                        applyAction(currentWearer, shockProps);
+                        lastManualUseTick = currentTick;
                     }
                 },
                 Disabled = !enabled,
-                cooldownPercentGetter = () => cooldownPercent
+                cooldownPercentGetter = () => ManualCooldownPercent(Props, cooldownPercent)
             };
         }
 
-        private List<HediffDef> PowerHediffsFor(Pawn pawn)
+        private List<HediffDef> PowerHediffsFor(Pawn pawn, CompProperties_ShockCollar shockProps)
         {
-            if (pawn != null && !MountedPawnUtility.IsMooGirl(pawn) && Props.nonMooGirlPowerHediffDefs != null && Props.nonMooGirlPowerHediffDefs.Count > 0)
+            if (pawn != null && !MountedPawnUtility.IsMooGirl(pawn) && shockProps?.nonMooGirlPowerHediffDefs != null && shockProps.nonMooGirlPowerHediffDefs.Count > 0)
             {
-                return Props.nonMooGirlPowerHediffDefs;
+                return shockProps.nonMooGirlPowerHediffDefs;
             }
 
-            return Props.powerhediffDefs;
+            return shockProps?.powerhediffDefs;
+        }
+
+        private static int CurrentGameTickOrFallback(int fallback)
+        {
+            return MooGirlTickUtility.CurrentGameTickOrFallback(fallback);
+        }
+
+        private static Texture2D GetCommandIcon(string iconPath)
+        {
+            return string.IsNullOrEmpty(iconPath) ? TexCommand.DesirePower : ContentFinder<Texture2D>.Get(iconPath, false) ?? TexCommand.DesirePower;
+        }
+
+        private bool ManualUseReady(CompProperties_ShockCollar shockProps, out int currentTick)
+        {
+            currentTick = CurrentGameTickOrFallback(lastManualUseTick);
+            if (shockProps == null)
+            {
+                return false;
+            }
+
+            int cooldownTicks = Mathf.Max(1, shockProps.useCooldownTicks);
+            return currentTick >= lastManualUseTick + cooldownTicks;
+        }
+
+        private float ManualCooldownPercent(CompProperties_ShockCollar shockProps, float fallback)
+        {
+            if (shockProps == null)
+            {
+                return Mathf.Clamp01(fallback);
+            }
+
+            int cooldownTicks = Mathf.Max(1, shockProps.useCooldownTicks);
+            int currentTick = CurrentGameTickOrFallback(lastManualUseTick);
+            int cdLeft = Mathf.Max(0, (lastManualUseTick + cooldownTicks) - currentTick);
+            return cdLeft <= 0 ? 1f : Mathf.Clamp01(1f - (float)cdLeft / cooldownTicks);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using RimWorld;
-using System.Collections.Generic;
 using Verse;
 
 namespace MooGirl
@@ -24,7 +23,7 @@ namespace MooGirl
         private int age = 0;
         private bool triggered = false;
 
-        public CompProperties_AddThought Props => (CompProperties_AddThought)props;
+        public CompProperties_AddThought Props => props as CompProperties_AddThought;
 
         public override void CompPostTick(ref float severityAdjustment)
         {
@@ -32,24 +31,32 @@ namespace MooGirl
 
             age++;
 
-            if (!triggered && age >= Props.triggerTicks)
+            CompProperties_AddThought compProps = Props;
+            if (triggered || compProps == null)
             {
-                if (Pawn != null && Pawn.Spawned && Pawn.needs?.mood != null && Pawn.IsWearingCrackedBrainwashApparel())
+                return;
+            }
+
+            int triggerTicks = compProps.triggerTicks < 1 ? 1 : compProps.triggerTicks;
+            if (age >= triggerTicks)
+            {
+                Pawn pawn = Pawn;
+                if (pawn != null && pawn.Spawned && pawn.needs?.mood != null && pawn.IsWearingCrackedBrainwashApparel())
                 {
-                    if (Pawn.Faction == Faction.OfPlayer && Pawn.IsColonist)
+                    if (MooGirlWildSlaveUtility.IsPlayerFaction(pawn.Faction) && pawn.IsColonist)
                     {
-                        TryAddThought();
+                        TryAddThought(pawn, compProps);
                         triggered = true;
                     }
                 }
             }
         }
 
-        private void TryAddThought()
+        private void TryAddThought(Pawn pawn, CompProperties_AddThought compProps)
         {
-            if (Props.thoughtDef != null)
+            if (compProps?.thoughtDef != null && pawn?.needs?.mood?.thoughts?.memories != null)
             {
-                Pawn.needs.mood.thoughts.memories.TryGainMemory(Props.thoughtDef);
+                pawn.needs.mood.thoughts.memories.TryGainMemory(compProps.thoughtDef);
             }
         }
 

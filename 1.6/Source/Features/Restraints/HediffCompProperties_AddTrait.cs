@@ -28,46 +28,67 @@ namespace MooGirl
         private int age = 0;
         private bool triggered = false;
 
-        public CompProperties_AddTrait Props => (CompProperties_AddTrait)props;
+        public CompProperties_AddTrait Props => props as CompProperties_AddTrait;
 
         public override void CompPostTick(ref float severityAdjustment)
         {
             base.CompPostTick(ref severityAdjustment);
             age++;
 
-            if (triggered || age < Props.triggerTicks)
+            CompProperties_AddTrait compProps = Props;
+            if (triggered || compProps == null)
+                return;
+
+            int triggerTicks = compProps.triggerTicks < 1 ? 1 : compProps.triggerTicks;
+            if (age < triggerTicks)
                 return;
 
             if (Pawn?.Spawned != true || !Pawn.IsWearingCrackedBrainwashApparel())
                 return;
 
-            foreach (var entry in Props.pawnTypeTraitEntries)
+            if (compProps.pawnTypeTraitEntries != null)
             {
-                if (MatchesPawnType(Pawn, entry.pawnType))
+                foreach (var entry in compProps.pawnTypeTraitEntries)
                 {
-                    if (!Pawn.story?.traits.HasTrait(entry.trait) ?? true)
+                    if (entry == null || entry.trait == null || !MatchesPawnType(Pawn, entry.pawnType))
                     {
-                        Pawn.story?.traits.GainTrait(new Trait(entry.trait));
+                        continue;
+                    }
+
+                    if (TryGainTrait(Pawn, entry.trait))
+                    {
                         triggered = true;
-                        break;
+                        return;
                     }
                 }
             }
 
-            // 旧方式 fallback（traitDef）
-            if (!triggered && Props.traitDef != null)
+            if (!triggered && TryGainTrait(Pawn, compProps.traitDef))
             {
-                if (!Pawn.story?.traits.HasTrait(Props.traitDef) ?? true)
-                {
-                    Pawn.story?.traits.GainTrait(new Trait(Props.traitDef));
-                    triggered = true;
-                }
+                triggered = true;
             }
         }
 
-        private bool MatchesPawnType(Pawn pawn, string pawnType)
+        private static bool TryGainTrait(Pawn pawn, TraitDef traitDef)
         {
-            switch (pawnType.ToLower())
+            TraitSet traits = pawn?.story?.traits;
+            if (traits == null || traitDef == null || traits.HasTrait(traitDef))
+            {
+                return false;
+            }
+
+            traits.GainTrait(new Trait(traitDef));
+            return true;
+        }
+
+        private static bool MatchesPawnType(Pawn pawn, string pawnType)
+        {
+            if (pawn == null || string.IsNullOrWhiteSpace(pawnType))
+            {
+                return false;
+            }
+
+            switch (pawnType.Trim().ToLowerInvariant())
             {
                 case "colonist":
                     return pawn.IsColonist;
@@ -78,7 +99,7 @@ namespace MooGirl
                 case "free":
                     return !pawn.IsSlave && !pawn.IsPrisoner;
                 case "hostile":
-                    return pawn.HostileTo(Faction.OfPlayer);
+                    return MooGirlWildSlaveUtility.IsHostileToPlayer(pawn);
                 default:
                     return false;
             }

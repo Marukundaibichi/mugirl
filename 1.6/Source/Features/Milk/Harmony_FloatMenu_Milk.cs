@@ -24,7 +24,7 @@ namespace MooGirl
                 return true;
 
             CompMooMilkable comp = target.TryGetComp<CompMooMilkable>();
-            if (MooGirlMilkInteractionUtility.HasEnoughForDirectMilkInteraction(comp))
+            if (MooGirlMilkInteractionUtility.HasAnyMilk(comp))
                 return true;
 
             return false;
@@ -45,10 +45,10 @@ namespace MooGirl
             }
 
             CompMooMilkable comp = targetPawn.TryGetComp<CompMooMilkable>();
-            if (!MooGirlMilkInteractionUtility.HasEnoughForDirectMilkInteraction(comp))
+            if (!MooGirlMilkInteractionUtility.HasAnyMilk(comp))
                 yield break;
 
-            // 榨乳：玩家强制挤奶，任意饱满度大于 5% 即可显示。
+            // 榨乳：玩家强制挤奶，任意饱满度大于 0 即可显示。
             string gatherLabel = "MooGirl.Milk.FloatMenu.Gather".Translate(targetPawn.LabelShortCap);
             if (!pawn.CanReach(targetPawn, PathEndMode.Touch, Danger.Deadly))
             {
@@ -56,16 +56,27 @@ namespace MooGirl
                 yield break;
             }
 
-            yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(
-                gatherLabel,
-                delegate
-                {
-                    Job job = JobMaker.MakeJob(MooGirl_DefOf.Job_GatherMilk, targetPawn);
-                    job.playerForced = true;
-                    pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-                }), pawn, targetPawn);
+            if (!pawn.CanReserve(targetPawn))
+            {
+                yield return DisabledOption(gatherLabel, "Reserved".Translate().CapitalizeFirst());
+                yield break;
+            }
 
-            bool selectedPawnIsChild = !pawn.ageTracker.CurLifeStage.reproductive && pawn.RaceProps.Humanlike;
+            if (comp.IsManagedByMilkingDevice)
+            {
+                yield return DisabledOption(gatherLabel, "MooGirl.Milk.FloatMenu.ManagedByDevice".Translate());
+            }
+            else
+            {
+                yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(
+                    gatherLabel,
+                    delegate
+                    {
+                        TryStartGatherJob(pawn, targetPawn);
+                    }), pawn, targetPawn);
+            }
+
+            bool selectedPawnIsChild = MooGirlMilkInteractionUtility.IsChildMilkSeeker(pawn);
 
             // 喝奶：孩子使用“找奶喝”专属互动，避免重复菜单。
             if (!selectedPawnIsChild)
@@ -73,13 +84,20 @@ namespace MooGirl
                 JobDef drinkDef = MooGirlOptionalDefs.JobDefs.DrinkMilkFromMooGirl;
                 if (drinkDef != null)
                 {
-                    yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(
-                        "MooGirl.Milk.FloatMenu.Drink".Translate(targetPawn.LabelShortCap),
-                        delegate
-                        {
-                            Job job = JobMaker.MakeJob(drinkDef, targetPawn);
-                            pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-                        }), pawn, targetPawn);
+                    string drinkLabel = "MooGirl.Milk.FloatMenu.Drink".Translate(targetPawn.LabelShortCap);
+                    if (!MooGirlMilkInteractionUtility.CanDrinkMilkNow(pawn, targetPawn))
+                    {
+                        yield return DisabledOption(drinkLabel, "MooGirl.Milk.FloatMenu.NotEnoughMilk".Translate());
+                    }
+                    else
+                    {
+                        yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(
+                            drinkLabel,
+                            delegate
+                            {
+                                TryStartDrinkJob(pawn, targetPawn, drinkDef);
+                            }), pawn, targetPawn);
+                    }
                 }
             }
 
@@ -89,13 +107,20 @@ namespace MooGirl
                 JobDef breastfeedDef = MooGirlOptionalDefs.JobDefs.Breastfeed;
                 if (breastfeedDef != null)
                 {
-                    yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(
-                        "MooGirl.Milk.FloatMenu.ChildDrink".Translate(targetPawn.LabelShortCap),
-                        delegate
-                        {
-                            Job job = JobMaker.MakeJob(breastfeedDef, targetPawn);
-                            pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-                        }), pawn, targetPawn);
+                    string childDrinkLabel = "MooGirl.Milk.FloatMenu.ChildDrink".Translate(targetPawn.LabelShortCap);
+                    if (!MooGirlMilkInteractionUtility.CanChildBreastfeedNow(pawn, targetPawn))
+                    {
+                        yield return DisabledOption(childDrinkLabel, "MooGirl.Milk.FloatMenu.NotEnoughMilk".Translate());
+                    }
+                    else
+                    {
+                        yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(
+                            childDrinkLabel,
+                            delegate
+                            {
+                                TryStartBreastfeedJob(pawn, targetPawn, breastfeedDef);
+                            }), pawn, targetPawn);
+                    }
                 }
             }
         }
@@ -124,6 +149,12 @@ namespace MooGirl
                 label,
                 delegate
                 {
+                    if (!MooGirlMilkInteractionUtility.CanFeedDownedPawnNow(feeder, target)
+                        || !feeder.CanReserveAndReach(target, PathEndMode.Touch, Danger.Deadly))
+                    {
+                        return;
+                    }
+
                     Job job = JobMaker.MakeJob(feedJobDef, target);
                     job.playerForced = true;
                     feeder.jobs.TryTakeOrderedJob(job, JobTag.Misc);
@@ -142,6 +173,48 @@ namespace MooGirl
         {
             Pawn pawn = context.FirstSelectedPawn;
             return pawn != null && !pawn.Dead && !pawn.Downed && pawn.TryGetComp<CompMooMilkable>() != null;
+        }
+
+        private static void TryStartGatherJob(Pawn gatherer, Pawn target)
+        {
+            CompMooMilkable comp = target?.TryGetComp<CompMooMilkable>();
+            if (gatherer == null || target == null || target.Dead || !target.Spawned
+                || !MooGirlMilkInteractionUtility.HasAnyMilk(comp)
+                || comp.IsManagedByMilkingDevice
+                || !gatherer.CanReserveAndReach(target, PathEndMode.Touch, Danger.Deadly))
+            {
+                return;
+            }
+
+            Job job = JobMaker.MakeJob(MooGirl_DefOf.Job_GatherMilk, target);
+            job.playerForced = true;
+            gatherer.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+        }
+
+        private static void TryStartDrinkJob(Pawn drinker, Pawn target, JobDef drinkDef)
+        {
+            if (drinkDef == null
+                || !MooGirlMilkInteractionUtility.CanDrinkMilkNow(drinker, target)
+                || !drinker.CanReserveAndReach(target, PathEndMode.Touch, Danger.Deadly))
+            {
+                return;
+            }
+
+            Job job = JobMaker.MakeJob(drinkDef, target);
+            drinker.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+        }
+
+        private static void TryStartBreastfeedJob(Pawn child, Pawn target, JobDef breastfeedDef)
+        {
+            if (breastfeedDef == null
+                || !MooGirlMilkInteractionUtility.CanChildBreastfeedNow(child, target)
+                || !child.CanReserveAndReach(target, PathEndMode.Touch, Danger.Deadly))
+            {
+                return;
+            }
+
+            Job job = JobMaker.MakeJob(breastfeedDef, target);
+            child.jobs.TryTakeOrderedJob(job, JobTag.Misc);
         }
 
         private static bool IsValidFeedTarget(Pawn target)

@@ -10,17 +10,20 @@ namespace MooGirl
     {
         private const TargetIndex MooInd = TargetIndex.A;
 
-        private Pawn MooPawn => (Pawn)job.GetTarget(MooInd).Thing;
+        private Pawn MooPawn => job.GetTarget(MooInd).Thing as Pawn;
         private Pawn Child => pawn;
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            return pawn.Reserve(MooPawn, job, 1, -1, null, errorOnFailed);
+            Pawn mooPawn = MooPawn;
+            return MooGirlMilkInteractionUtility.CanChildBreastfeedNow(Child, mooPawn)
+                && pawn.Reserve(mooPawn, job, 1, -1, null, errorOnFailed);
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDespawnedOrNull(MooInd);
+            this.FailOn(() => !MooGirlMilkInteractionUtility.CanChildBreastfeedNow(Child, MooPawn));
 
             yield return Toils_Goto.GotoThing(MooInd, PathEndMode.Touch);
 
@@ -34,7 +37,10 @@ namespace MooGirl
 
         private void ApplyBreastfeedEffects()
         {
-            MooGirlMilkInteractionUtility.ApplyChildBreastfeed(Child, MooPawn);
+            if (!MooGirlMilkInteractionUtility.ApplyChildBreastfeed(Child, MooPawn))
+            {
+                pawn.jobs.EndCurrentJob(JobCondition.Incompletable, true);
+            }
         }
     }
 }

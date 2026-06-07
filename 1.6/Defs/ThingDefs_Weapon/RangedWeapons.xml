@@ -270,7 +270,7 @@
     </ThingDef>
 
     <!-- 雪牛娘火焰喷射器（复用原版迷你火焰冲击枪） -->
-    <ThingDef ParentName="LightMechanoidGunRanged">
+    <ThingDef ParentName="LightMechanoidGunRanged" MayRequire="Ludeon.RimWorld.Biotech">
         <defName>MuGirl_Gun_Flame_Thrower</defName>
         <!-- 雪牛娘火焰喷射器 -->
         <label>Mugirl Flame Thrower</label>

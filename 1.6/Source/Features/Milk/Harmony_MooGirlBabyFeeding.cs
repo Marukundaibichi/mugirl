@@ -70,33 +70,37 @@ namespace MooGirl
             {
                 return 0f;
             }
-            return milkComp.Fullness * NutritionPerFullness(milkComp);
+            return Mathf.Max(0f, milkComp.Fullness) * NutritionPerFullness(milkComp);
         }
 
         public static bool SuckleFromMooGirl(Pawn baby, Pawn feeder, CompMooMilkable milkComp, int delta)
         {
-            if (baby?.needs?.food == null || feeder == null || milkComp == null)
+            Need_Food food = baby?.needs?.food;
+            if (food == null || feeder == null || milkComp == null || delta <= 0 || food.MaxLevel <= 0f)
             {
                 return false;
             }
 
-            float nutritionWanted = baby.needs.food.NutritionWanted;
-            float desiredNutrition = Mathf.Min(baby.needs.food.MaxLevel / 5000f * (float)delta, nutritionWanted);
+            float nutritionWanted = Mathf.Max(0f, food.NutritionWanted);
+            float desiredNutrition = Mathf.Min(food.MaxLevel / 5000f * delta, nutritionWanted);
             float consumedNutrition = ConsumeMilkNutrition(milkComp, desiredNutrition);
             if (consumedNutrition <= 0f)
             {
                 return false;
             }
 
-            baby.needs.food.CurLevel += consumedNutrition;
+            food.CurLevel = Mathf.Min(food.MaxLevel, food.CurLevel + consumedNutrition);
             MooGirlNurtureUtility.AddBabyNurtureProgress(baby, feeder, delta);
 
             Caravan caravan = baby.GetCaravan();
-            if (caravan != null && feeder.GetCaravan() == caravan)
+            if (caravan != null && feeder.GetCaravan() == caravan && feeder.mindState != null)
             {
-                feeder.mindState.BreastfeedCaravan(baby, consumedNutrition / baby.needs.food.MaxLevel);
+                feeder.mindState.BreastfeedCaravan(baby, Mathf.Clamp01(consumedNutrition / food.MaxLevel));
             }
-            baby.ideo?.IncreaseIdeoExposureIfBabyTick(feeder.Ideo);
+            if (feeder.ideo != null)
+            {
+                baby.ideo?.IncreaseIdeoExposureIfBabyTick(feeder.Ideo);
+            }
 
             if (Mathf.Approximately(consumedNutrition, nutritionWanted))
             {
@@ -107,12 +111,17 @@ namespace MooGirl
 
         private static float ConsumeMilkNutrition(CompMooMilkable milkComp, float desiredNutrition)
         {
-            if (desiredNutrition <= 0f)
+            if (milkComp == null || desiredNutrition <= 0f)
             {
                 return 0f;
             }
 
             float nutritionPerFullness = NutritionPerFullness(milkComp);
+            if (nutritionPerFullness <= 0f)
+            {
+                return 0f;
+            }
+
             float consumedNutrition = Mathf.Min(desiredNutrition, AvailableMilkNutrition(milkComp));
             if (consumedNutrition <= 0f)
             {

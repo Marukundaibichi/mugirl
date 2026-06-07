@@ -17,29 +17,33 @@ namespace MooGirl
         private readonly HashSet<Pawn> hitPawns = new HashSet<Pawn>();
         private int ticksSinceSmokeGeneration;
 
+        private Pawn TargetPawn => job.GetTarget(TargetIndex.A).Thing as Pawn;
+
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            return pawn.Reserve(job.targetA, job);
+            Pawn target = TargetPawn;
+            return CanChargeTarget(target) && pawn.Reserve(target, job, 1, -1, null, errorOnFailed);
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            Pawn target = job.targetA.Thing as Pawn;
             this.FailOnDestroyedOrNull(TargetIndex.A);
+            this.FailOn(() => !CanChargeTarget(TargetPawn));
 
-            pawn.health.AddHediff(HediffMaker.MakeHediff(MooGirl_DefOf.MooGirl_Charge, pawn));
-            GenerateSmokeBehindPawn();
+            AddFinishAction(_ => RemoveChargeHediff());
+            EnsureChargeHediff();
+            GenerateSmokeBehindPawn(TargetPawn);
 
             Toil gotoToil = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
             gotoToil.tickAction = () =>
             {
-                ApplyPassingImpact(target);
+                ApplyPassingImpact(TargetPawn);
                 TickSmokeTrail();
             };
             yield return gotoToil;
 
             Toil attack = new Toil();
-            attack.initAction = () => ApplyFinalImpact(target);
+            attack.initAction = () => ApplyFinalImpact(TargetPawn);
             attack.defaultCompleteMode = ToilCompleteMode.Instant;
 
             if (job.ability != null)
@@ -48,6 +52,17 @@ namespace MooGirl
             }
 
             yield return attack;
+        }
+
+        private bool CanChargeTarget(Pawn target)
+        {
+            return pawn != null
+                && target != null
+                && target != pawn
+                && target.Spawned
+                && !target.Destroyed
+                && !target.Dead
+                && target.Map == pawn.Map;
         }
 
         private void ApplyPassingImpact(Pawn target)
@@ -85,7 +100,7 @@ namespace MooGirl
         {
             RemoveChargeHediff();
 
-            if (target?.Spawned != true)
+            if (!CanChargeTarget(target))
             {
                 return;
             }
@@ -100,10 +115,28 @@ namespace MooGirl
             }
         }
 
+        private void EnsureChargeHediff()
+        {
+            if (pawn?.health == null || MooGirl_DefOf.MooGirl_Charge == null)
+            {
+                return;
+            }
+
+            if (pawn.health.hediffSet.GetFirstHediffOfDef(MooGirl_DefOf.MooGirl_Charge) == null)
+            {
+                pawn.health.AddHediff(HediffMaker.MakeHediff(MooGirl_DefOf.MooGirl_Charge, pawn));
+            }
+        }
+
         private void RemoveChargeHediff()
         {
-            Hediff speedHediff = pawn.health.hediffSet.GetFirstHediffOfDef(MooGirl_DefOf.MooGirl_Charge);
-            if (speedHediff != null)
+            if (pawn?.health == null || MooGirl_DefOf.MooGirl_Charge == null)
+            {
+                return;
+            }
+
+            Hediff speedHediff;
+            while ((speedHediff = pawn.health.hediffSet.GetFirstHediffOfDef(MooGirl_DefOf.MooGirl_Charge)) != null)
             {
                 pawn.health.RemoveHediff(speedHediff);
             }
@@ -114,9 +147,9 @@ namespace MooGirl
             return (target.Position.ToVector3() - pawn.Position.ToVector3()).normalized;
         }
 
-        private void GenerateSmokeBehindPawn()
+        private void GenerateSmokeBehindPawn(Pawn target)
         {
-            if (pawn.Map == null || job.targetA.Thing == null)
+            if (pawn.Map == null || target == null)
             {
                 return;
             }
@@ -124,7 +157,7 @@ namespace MooGirl
             int smokeCount = Rand.RangeInclusive(3, 5);
             for (int i = 0; i < smokeCount; i++)
             {
-                Vector3 direction = (pawn.DrawPos - job.targetA.Thing.DrawPos).normalized;
+                Vector3 direction = (pawn.DrawPos - target.DrawPos).normalized;
                 IntVec3 smokePosition = pawn.Position + direction.ToIntVec3() * (i + 1);
                 FleckMaker.ThrowSmoke(smokePosition.ToVector3Shifted(), pawn.Map, Rand.Range(1f, 1.5f));
             }
@@ -182,10 +215,7 @@ namespace MooGirl
             FleckMaker.ThrowDustPuff(position.ToVector3Shifted() + Gen.RandomHorizontalVector(0.5f), map, 2f);
             GenSpawn.Spawn(pawnFlyer, targetPosition, map, WipeMode.Vanish);
 
-            if (Find.Selector.IsSelected(pawn))
-            {
-                Find.Selector.Select(pawn, false, false);
-            }
+            MooGirlSelectionUtility.ReselectIfSelectedInPlaying(pawn, playSound: false, forceDesignatorDeselect: false);
 
             return true;
         }

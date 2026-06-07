@@ -19,6 +19,7 @@ namespace MooGirl
         private const int PulseDurationTicks = 18;
         private const int StaleAfterTicks = 6;
         private static readonly Dictionary<int, MilkingVisualState> states = new Dictionary<int, MilkingVisualState>();
+        private static readonly List<int> tmpStateKeysToRemove = new List<int>();
 
         private class MilkingVisualState
         {
@@ -39,7 +40,11 @@ namespace MooGirl
                 return;
             }
 
-            int now = Find.TickManager.TicksGame;
+            if (!MooGirlTickUtility.TryGetCurrentGameTick(out int now))
+            {
+                return;
+            }
+
             if (doer == target)
             {
                 EnsureState(target, null, MooGirlMilkingVisualRole.SelfMilking, now);
@@ -63,7 +68,12 @@ namespace MooGirl
                 return;
             }
 
-            int now = Find.TickManager.TicksGame;
+            if (!MooGirlTickUtility.TryGetCurrentGameTick(out int now))
+            {
+                ResetTransientState();
+                return;
+            }
+
             if (doer == target)
             {
                 MilkingVisualState state = EnsureState(target, null, MooGirlMilkingVisualRole.SelfMilking, now);
@@ -127,35 +137,33 @@ namespace MooGirl
                 return;
             }
 
-            List<int> keysToRemove = null;
+            tmpStateKeysToRemove.Clear();
             foreach (KeyValuePair<int, MilkingVisualState> entry in states)
             {
                 MilkingVisualState state = entry.Value;
                 if (state.pawn == pawn || state.partner == pawn)
                 {
-                    if (keysToRemove == null)
-                    {
-                        keysToRemove = new List<int>();
-                    }
-
-                    keysToRemove.Add(entry.Key);
+                    tmpStateKeysToRemove.Add(entry.Key);
                 }
             }
 
-            if (keysToRemove == null)
+            if (tmpStateKeysToRemove.Count == 0)
             {
                 return;
             }
 
-            for (int i = 0; i < keysToRemove.Count; i++)
+            for (int i = 0; i < tmpStateKeysToRemove.Count; i++)
             {
-                states.Remove(keysToRemove[i]);
+                states.Remove(tmpStateKeysToRemove[i]);
             }
+
+            tmpStateKeysToRemove.Clear();
         }
 
         public static void ResetTransientState()
         {
             states.Clear();
+            tmpStateKeysToRemove.Clear();
         }
 
         public static bool HasActiveAnimation(Pawn pawn)
@@ -174,7 +182,7 @@ namespace MooGirl
                 return false;
             }
 
-            int now = Find.TickManager.TicksGame;
+            int now = MooGirlTickUtility.CurrentGameTickOrFallback(state.lastTick);
             int age = Mathf.Max(0, now - state.startTick);
             switch (state.role)
             {
@@ -231,7 +239,7 @@ namespace MooGirl
                 return;
             }
 
-            PawnRenderNodeTagDef tagDef = node.Props?.tagDef;
+            PawnRenderNodeTagDef tagDef = node?.Props?.tagDef;
             if (tagDef != PawnRenderNodeTagDefOf.Head && tagDef != PawnRenderNodeTagDefOf.ApparelHead)
             {
                 return;
@@ -253,7 +261,7 @@ namespace MooGirl
 
         private static void ApplyHelperHeadLift(MilkingVisualState state, ref Vector3 offset, ref Quaternion rotation, ref Vector3 scale)
         {
-            int age = Mathf.Max(0, Find.TickManager.TicksGame - state.startTick);
+            int age = Mathf.Max(0, MooGirlTickUtility.CurrentGameTickOrFallback(state.lastTick) - state.startTick);
             Vector3 toTarget = DirectionToPartner(state);
             offset += new Vector3(0f, 0f, 0.045f + Mathf.Sin(age * 0.12f) * 0.01f);
             offset += toTarget * 0.025f;
@@ -263,7 +271,7 @@ namespace MooGirl
 
         private static void ApplyMooGirlHeadRhythm(MilkingVisualState state, PawnDrawParms parms, ref Vector3 offset, ref Vector3 pivot, ref Quaternion rotation)
         {
-            int age = Mathf.Max(0, Find.TickManager.TicksGame - state.startTick);
+            int age = Mathf.Max(0, MooGirlTickUtility.CurrentGameTickOrFallback(state.lastTick) - state.startTick);
             float wave = Mathf.Sin(age * 0.075f);
             float pulse = PulseEnvelope(state);
             float beat = wave * 0.55f + pulse;
@@ -284,7 +292,7 @@ namespace MooGirl
         private static MilkingVisualState EnsureState(Pawn pawn, Pawn partner, MooGirlMilkingVisualRole role, int now)
         {
             int key = pawn.thingIDNumber;
-            if (!states.TryGetValue(key, out MilkingVisualState state) || state.role != role || state.partner != partner)
+            if (!states.TryGetValue(key, out MilkingVisualState state) || state.pawn != pawn || state.role != role || state.partner != partner)
             {
                 state = new MilkingVisualState
                 {
@@ -314,9 +322,23 @@ namespace MooGirl
                 return false;
             }
 
-            int now = Find.TickManager.TicksGame;
-            if (!Valid(state.pawn) || now - state.lastTick > StaleAfterTicks)
+            if (!MooGirlTickUtility.TryGetCurrentGameTick(out int now))
             {
+                states.Clear();
+                state = null;
+                return false;
+            }
+
+            if (state.pawn != pawn || !Valid(state.pawn) || now - state.lastTick > StaleAfterTicks)
+            {
+                states.Remove(pawn.thingIDNumber);
+                state = null;
+                return false;
+            }
+
+            if (StateNeedsPartner(state) && !Valid(state.partner))
+            {
+                RemoveIfMatches(state.partner, state.pawn);
                 states.Remove(pawn.thingIDNumber);
                 state = null;
                 return false;
@@ -327,7 +349,7 @@ namespace MooGirl
 
         private static void TriggerPulse(MilkingVisualState state, bool spawnMilkSpray)
         {
-            int now = Find.TickManager.TicksGame;
+            int now = MooGirlTickUtility.CurrentGameTickOrFallback(state.lastTick);
             state.pulseStartTick = now;
             state.pulseSeed = Gen.HashCombineInt(state.pawn.thingIDNumber, now);
 
@@ -339,7 +361,7 @@ namespace MooGirl
 
         private static void AddPulseTransform(MilkingVisualState state, float strength, ref Vector3 offset, ref Vector3 scale)
         {
-            int pulseAge = Find.TickManager.TicksGame - state.pulseStartTick;
+            int pulseAge = MooGirlTickUtility.CurrentGameTickOrFallback(state.lastTick) - state.pulseStartTick;
             if (pulseAge < 0 || pulseAge >= PulseDurationTicks)
             {
                 return;
@@ -366,7 +388,7 @@ namespace MooGirl
 
         private static float PulseEnvelope(MilkingVisualState state)
         {
-            int pulseAge = Find.TickManager.TicksGame - state.pulseStartTick;
+            int pulseAge = MooGirlTickUtility.CurrentGameTickOrFallback(state.lastTick) - state.pulseStartTick;
             if (pulseAge < 0 || pulseAge >= PulseDurationTicks)
             {
                 return 0f;
@@ -442,10 +464,15 @@ namespace MooGirl
                 return;
             }
 
-            if (states.TryGetValue(pawn.thingIDNumber, out MilkingVisualState state) && state.partner == expectedPartner)
+            if (states.TryGetValue(pawn.thingIDNumber, out MilkingVisualState state) && state.pawn == pawn && state.partner == expectedPartner)
             {
                 states.Remove(pawn.thingIDNumber);
             }
+        }
+
+        private static bool StateNeedsPartner(MilkingVisualState state)
+        {
+            return state != null && state.role != MooGirlMilkingVisualRole.SelfMilking;
         }
 
         private static Vector3 DirectionToPartner(MilkingVisualState state)
@@ -496,6 +523,7 @@ namespace MooGirl
         {
             return pawn?.RaceProps?.Humanlike == true && !pawn.RaceProps.IsMechanoid;
         }
+
     }
 
     [HarmonyPatch]
@@ -510,7 +538,7 @@ namespace MooGirl
 
         private static void Prefix(PawnRenderer __instance, ref bool disableCache)
         {
-            Pawn pawn = PawnField.GetValue(__instance) as Pawn;
+            Pawn pawn = PawnField?.GetValue(__instance) as Pawn;
             if (MooGirlMilkingAnimation.HasActiveAnimation(pawn))
             {
                 disableCache = true;
@@ -530,7 +558,7 @@ namespace MooGirl
 
         private static void Prefix(PawnRenderer __instance, PawnRenderFlags flags, ref Rot4 bodyFacing)
         {
-            MooGirlMilkingAnimation.AdjustDrawFacing(PawnField.GetValue(__instance) as Pawn, flags, ref bodyFacing);
+            MooGirlMilkingAnimation.AdjustDrawFacing(PawnField?.GetValue(__instance) as Pawn, flags, ref bodyFacing);
         }
 
         private static void Postfix(ref PawnDrawParms __result)

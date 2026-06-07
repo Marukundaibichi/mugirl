@@ -63,7 +63,7 @@ namespace MooGirl
         public static void RestoreAdultBackstories(Pawn pawn, BackstoryDef childhoodBefore, BackstoryDef adulthoodBefore)
         {
             // 成年阶段基类会按原版人类规则重算背景；MooGirl 要保留自定义童年和成年背景。
-            if (pawn?.story == null || pawn.RaceProps?.body != MooGirl_DefOf.MooGirlBody)
+            if (pawn?.story == null || !MooGirlIdentity.HasMooGirlBody(pawn))
             {
                 return;
             }

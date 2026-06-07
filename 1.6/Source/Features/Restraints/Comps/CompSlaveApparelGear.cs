@@ -9,7 +9,7 @@ namespace MooGirl
     {
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn pawn)
         {
-            if ((pawn.Map != null) && (pawn.Map == Find.CurrentMap))
+            if (MooGirlGameUtility.IsCurrentMap(pawn.Map))
             {
                 if (!pawn.CanReserve(parent))
                 {
@@ -20,15 +20,15 @@ namespace MooGirl
                 }
                 else if (pawn.CanReach(parent, PathEndMode.Touch, Danger.Some))
                 {
-                    foreach (Pawn other in pawn.Map.mapPawns.AllPawns)
+                    foreach (Pawn other in pawn.Map.mapPawns.AllPawnsSpawned)
                     {
-                        if ((other != pawn) && other.Spawned && (other.Downed || other.IsPrisonerOfColony || PawnBool.is_slave(other)))
+                        if ((other != pawn) && other.IsWearingSlaveApparel() && (other.Downed || other.IsPrisonerOfColony || PawnSlaveStatusUtility.IsSlave(other)))
                         {
                             yield return this.MakeUnlockOption(
-                                "MooGirl.FloatMenu.ActionOnTarget".Translate(FloatMenuOptionLabel(pawn), PawnBool.get_pawnname(other)),
+                                "MooGirl.FloatMenu.ActionOnTarget".Translate(FloatMenuOptionLabel(pawn), PawnSlaveStatusUtility.DisplayName(other)),
                                 pawn,
                                 other,
-                                (other.IsPrisonerOfColony || PawnBool.is_slave(other)) ? WorkTypeDefOf.Warden : null);
+                                (other.IsPrisonerOfColony || PawnSlaveStatusUtility.IsSlave(other)) ? WorkTypeDefOf.Warden : null);
                         }
                     }
                 }

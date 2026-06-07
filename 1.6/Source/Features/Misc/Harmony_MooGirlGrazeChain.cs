@@ -10,6 +10,7 @@ namespace MooGirl
     public static class Harmony_MooGirlGrazeChain
     {
         private const float FullFoodTolerance = 0.02f;
+        private const float MaxGrazeSearchRadius = 30f;
 
         public static MethodBase TargetMethod()
         {
@@ -49,7 +50,17 @@ namespace MooGirl
 
         private static bool ShouldChainGraze(Pawn pawn, Job job)
         {
-            if (pawn == null || job == null || pawn.Dead || !pawn.Spawned || !MountedPawnUtility.IsMooGirl(pawn))
+            if (pawn == null || job == null || pawn.Dead || pawn.Downed || !pawn.Spawned || !MountedPawnUtility.IsMooGirl(pawn))
+            {
+                return false;
+            }
+
+            if (job.def != JobDefOf.Ingest || job.playerForced || pawn.Drafted || pawn.InMentalState)
+            {
+                return false;
+            }
+
+            if (pawn.jobs?.jobQueue == null || pawn.jobs.jobQueue.Count > 0)
             {
                 return false;
             }
@@ -78,7 +89,7 @@ namespace MooGirl
                 ThingRequest.ForGroup(ThingRequestGroup.Plant),
                 PathEndMode.Touch,
                 traverseParms,
-                9999f,
+                MaxGrazeSearchRadius,
                 thing => IsValidPlantFood(pawn, thing));
         }
 

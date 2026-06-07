@@ -1,3 +1,4 @@
+using System;
 using RimWorld;
 using Verse;
 
@@ -7,14 +8,25 @@ namespace MooGirl
     {
         internal static class Hediffs
         {
-            internal static readonly HediffDef MooGirlMilkHealing = DefDatabase<HediffDef>.GetNamed("MooGirl_MilkHealing");
+            internal static readonly HediffDef MooGirlMilkHealing = Required<HediffDef>("MooGirl_MilkHealing");
         }
 
         internal static class Thoughts
         {
-            internal static readonly ThoughtDef ConsumedMooGirlMilk = DefDatabase<ThoughtDef>.GetNamed("Consumed_MooGirlMilk");
-            internal static readonly ThoughtDef MooGirlDrankMilk = DefDatabase<ThoughtDef>.GetNamed("MooGirl_DrankMilk");
-            internal static readonly ThoughtDef MooGirlFedMilk = DefDatabase<ThoughtDef>.GetNamed("MooGirl_FedMilk");
+            internal static readonly ThoughtDef ConsumedMooGirlMilk = Required<ThoughtDef>("Consumed_MooGirlMilk");
+            internal static readonly ThoughtDef MooGirlDrankMilk = Required<ThoughtDef>("MooGirl_DrankMilk");
+            internal static readonly ThoughtDef MooGirlFedMilk = Required<ThoughtDef>("MooGirl_FedMilk");
+        }
+
+        private static T Required<T>(string defName) where T : Def
+        {
+            T def = DefDatabase<T>.GetNamedSilentFail(defName);
+            if (def != null)
+            {
+                return def;
+            }
+
+            throw new InvalidOperationException($"MooGirl required {typeof(T).Name} is missing: {defName}");
         }
     }
 }

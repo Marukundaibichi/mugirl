@@ -1,4 +1,5 @@
 using HarmonyLib;
+using System.Collections.Generic;
 using Verse;
 
 namespace MooGirl
@@ -17,41 +18,93 @@ namespace MooGirl
         }
     }
 
-    [HarmonyPatch(typeof(Hediff), nameof(Hediff.Tick))]
-    public static class Harmony_GhoulRenderingRefresh_Tick
+    public class GameComponent_GhoulRenderingRefresh : GameComponent
     {
-        public static void Postfix(Hediff __instance)
+        public GameComponent_GhoulRenderingRefresh()
         {
-            if (__instance?.def?.defName != "Ghoul")
-            {
-                return;
-            }
+            GhoulRenderingRefreshUtility.ClearPendingRefreshes();
+        }
 
-            GhoulRenderingRefreshUtility.RefreshIfNeeded(__instance);
+        public GameComponent_GhoulRenderingRefresh(Game game)
+        {
+            GhoulRenderingRefreshUtility.ClearPendingRefreshes();
+        }
+
+        public override void GameComponentTick()
+        {
+            GhoulRenderingRefreshUtility.TickPendingRefreshes();
         }
     }
 
     public static class GhoulRenderingRefreshUtility
     {
+        private const int RefreshWindowTicks = 300;
+        private const int RefreshIntervalTicks = 30;
+
+        private static readonly Dictionary<Pawn, int> pendingRefreshUntilTick = new Dictionary<Pawn, int>();
+        private static readonly List<Pawn> tmpPawnsToRemove = new List<Pawn>();
+
         public static void NotifyGhoulChanged(Pawn pawn)
         {
-            if (!MountedPawnUtility.IsMooGirl(pawn))
+            if (!MountedPawnUtility.IsMooGirl(pawn) || pawn.Destroyed)
             {
                 return;
             }
 
             RefreshGraphics(pawn);
+            if (!MooGirlGameUtility.IsPlaying())
+            {
+                return;
+            }
+
+            if (MooGirlTickUtility.TryGetCurrentGameTick(out int currentTick))
+            {
+                pendingRefreshUntilTick[pawn] = currentTick + RefreshWindowTicks;
+            }
         }
 
-        public static void RefreshIfNeeded(Hediff hediff)
+        public static void TickPendingRefreshes()
         {
-            Pawn pawn = hediff?.pawn;
-            if (!MountedPawnUtility.IsMooGirl(pawn) || hediff.ageTicks > 300 || !pawn.IsHashIntervalTick(30))
+            if (pendingRefreshUntilTick.Count == 0)
             {
                 return;
             }
 
-            RefreshGraphics(pawn);
+            if (!MooGirlTickUtility.TryGetCurrentGameTick(out int currentTick))
+            {
+                return;
+            }
+
+            tmpPawnsToRemove.Clear();
+            if (currentTick % RefreshIntervalTicks != 0)
+            {
+                return;
+            }
+
+            foreach (KeyValuePair<Pawn, int> entry in pendingRefreshUntilTick)
+            {
+                Pawn pawn = entry.Key;
+                if (!MountedPawnUtility.IsMooGirl(pawn) || pawn.Destroyed || currentTick > entry.Value)
+                {
+                    tmpPawnsToRemove.Add(pawn);
+                    continue;
+                }
+
+                RefreshGraphics(pawn);
+            }
+
+            for (int i = 0; i < tmpPawnsToRemove.Count; i++)
+            {
+                pendingRefreshUntilTick.Remove(tmpPawnsToRemove[i]);
+            }
+
+            tmpPawnsToRemove.Clear();
+        }
+
+        public static void ClearPendingRefreshes()
+        {
+            pendingRefreshUntilTick.Clear();
+            tmpPawnsToRemove.Clear();
         }
 
         private static void RefreshGraphics(Pawn pawn)

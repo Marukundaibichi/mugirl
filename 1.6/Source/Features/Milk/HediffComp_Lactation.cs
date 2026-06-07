@@ -23,27 +23,35 @@ namespace MooGirl
     {
         private float lastBirthTick = -1f;
 
-        public CompProperties_Lactation Props => (CompProperties_Lactation)props;
+        public CompProperties_Lactation Props => props as CompProperties_Lactation;
 
         public float ProductionMultiplier
         {
             get
             {
-                float multiplier = Props.baseProductionMultiplier;
-
-                if (lastBirthTick > 0)
+                CompProperties_Lactation lactationProps = Props;
+                if (lactationProps == null)
                 {
-                    float daysSinceBirth = (Find.TickManager.TicksGame - lastBirthTick) / 60000f;
-                    if (daysSinceBirth < Props.postpartumBoostDays)
+                    return 1f;
+                }
+
+                float multiplier = Mathf.Max(0f, lactationProps.baseProductionMultiplier);
+
+                if (lastBirthTick > 0f && MooGirlTickUtility.TryGetCurrentGameTick(out int currentTick))
+                {
+                    float daysSinceBirth = Mathf.Max(0f, (currentTick - lastBirthTick) / GenDate.TicksPerDay);
+                    if (daysSinceBirth < lactationProps.postpartumBoostDays)
                     {
-                        multiplier *= Props.postpartumMultiplier;
+                        multiplier *= Mathf.Max(0f, lactationProps.postpartumMultiplier);
                     }
                 }
 
-                if (Pawn.needs?.food?.CurCategory == HungerCategory.UrgentlyHungry ||
-                    Pawn.needs?.food?.CurCategory == HungerCategory.Starving)
+                Pawn pawn = Pawn;
+                HungerCategory? hungerCategory = pawn?.needs?.food?.CurCategory;
+                if (hungerCategory == HungerCategory.UrgentlyHungry ||
+                    hungerCategory == HungerCategory.Starving)
                 {
-                    multiplier *= Props.malnourishedPenalty;
+                    multiplier *= Mathf.Max(0f, lactationProps.malnourishedPenalty);
                 }
 
                 return multiplier;
@@ -52,13 +60,43 @@ namespace MooGirl
 
         public void NotifyBirth()
         {
-            lastBirthTick = Find.TickManager.TicksGame;
+            if (!MooGirlTickUtility.TryGetCurrentGameTick(out int currentTick))
+            {
+                return;
+            }
+
+            lastBirthTick = currentTick;
         }
 
         public override void CompExposeData()
         {
             base.CompExposeData();
             Scribe_Values.Look(ref lastBirthTick, "lastBirthTick", -1f);
+        }
+    }
+
+    internal static class MooGirlLactationUtility
+    {
+        internal static void NotifyBirth(Pawn mother)
+        {
+            if (!MooGirlIdentity.IsMooGirlPawn(mother) || mother.Destroyed || mother.health?.hediffSet == null)
+            {
+                return;
+            }
+
+            HediffDef lactationDef = MooGirlOptionalDefs.Hediffs.MooGirlLactation;
+            if (lactationDef == null)
+            {
+                return;
+            }
+
+            Hediff lactationHediff = mother.health.hediffSet.GetFirstHediffOfDef(lactationDef);
+            if (lactationHediff == null)
+            {
+                lactationHediff = mother.health.AddHediff(lactationDef);
+            }
+
+            lactationHediff?.TryGetComp<HediffComp_Lactation>()?.NotifyBirth();
         }
     }
 }

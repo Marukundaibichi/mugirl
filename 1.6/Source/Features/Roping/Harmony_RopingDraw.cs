@@ -25,13 +25,18 @@ namespace MooGirl
 
         public static bool Prefix(Pawn_RopeTracker __instance)
         {
-            Pawn pawn = (Pawn)fieldPawn.GetValue(__instance);
+            if (fieldPawn == null || fieldRopeLineMat == null)
+            {
+                return true;
+            }
+
+            Pawn pawn = fieldPawn.GetValue(__instance) as Pawn;
             if (pawn?.Map == null)
             {
                 return true;
             }
 
-            Material ropeLineMat = (Material)fieldRopeLineMat.GetValue(null);
+            Material ropeLineMat = fieldRopeLineMat.GetValue(null) as Material;
             if (ropeLineMat == null)
             {
                 return true;

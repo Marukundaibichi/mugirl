@@ -7,9 +7,14 @@ namespace MooGirl
     {
         internal static void SpawnStacksNear(ThingDef thingDef, int amount, IntVec3 position, Map map)
         {
+            if (thingDef == null || map == null || !position.IsValid || amount <= 0)
+            {
+                return;
+            }
+
             while (amount > 0)
             {
-                int stack = Mathf.Clamp(amount, 1, thingDef.stackLimit);
+                int stack = Mathf.Clamp(amount, 1, Mathf.Max(1, thingDef.stackLimit));
                 amount -= stack;
 
                 Thing thing = ThingMaker.MakeThing(thingDef);

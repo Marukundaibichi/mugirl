@@ -1,5 +1,4 @@
 ﻿using RimWorld;
-using System.Collections.Generic;
 using Verse;
 
 namespace MooGirl
@@ -21,7 +20,7 @@ namespace MooGirl
         private int age = 0;
         private bool triggered = false;
 
-        public CompProperties_AddMentalState Props => (CompProperties_AddMentalState)props;
+        public CompProperties_AddMentalState Props => props as CompProperties_AddMentalState;
 
         public override void CompPostTick(ref float severityAdjustment)
         {
@@ -29,21 +28,31 @@ namespace MooGirl
 
             age++;
 
-            if ( !triggered && Pawn.Faction == Faction.OfPlayer && age >= Props.mentalStateTriggerTicks && Pawn.IsWearingUncrackedBrainwashApparel())
+            CompProperties_AddMentalState compProps = Props;
+            Pawn pawn = Pawn;
+            if (triggered || compProps == null || pawn == null)
+            {
+                return;
+            }
+
+            int triggerTicks = compProps.mentalStateTriggerTicks < 1 ? 1 : compProps.mentalStateTriggerTicks;
+            if (!triggered
+                && MooGirlWildSlaveUtility.IsPlayerFaction(pawn.Faction)
+                && age >= triggerTicks
+                && pawn.IsWearingUncrackedBrainwashApparel())
             {
                 triggered = true;
-                TryStartMentalState();
+                TryStartMentalState(pawn, compProps);
             }
         }
 
-        private void TryStartMentalState()
+        private void TryStartMentalState(Pawn pawn, CompProperties_AddMentalState compProps)
         {
-            if (Props.mentalStateDef != null && Pawn != null && Pawn.mindState != null && Pawn.Spawned)
+            if (compProps?.mentalStateDef != null && pawn?.mindState?.mentalStateHandler != null && pawn.Spawned)
             {
-                if (!Pawn.InMentalState)
+                if (!pawn.InMentalState)
                 {
-                    var handler = Pawn.mindState.mentalStateHandler;
-                    bool started = handler.TryStartMentalState(Props.mentalStateDef, reason: "TriggeredByHediff".Translate(), forceWake: true);
+                    pawn.mindState.mentalStateHandler.TryStartMentalState(compProps.mentalStateDef, reason: "TriggeredByHediff".Translate(), forceWake: true);
                 }
             }
         }

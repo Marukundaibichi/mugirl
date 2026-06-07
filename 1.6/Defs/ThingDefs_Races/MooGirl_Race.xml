@@ -411,10 +411,10 @@
                     <li>MooGirl_RA_Unionary</li>
                     <li>MooGirl_RA_PowerArmor</li>
                     <li>MooGirl_RA_Carrying_Equipment</li>
-                    <li>MooGirl_RA_MechanicBackpack</li>
-                    <li>MooGirl_RA_MechanicBackpack_B</li>
-                    <li>MooGirl_RA_MechanicBackpack_C</li>
-                    <li>MooGirl_RA_MechanicBackpack_D</li>
+                    <li MayRequire="Ludeon.RimWorld.Biotech">MooGirl_RA_MechanicBackpack</li>
+                    <li MayRequire="Ludeon.RimWorld.Biotech">MooGirl_RA_MechanicBackpack_B</li>
+                    <li MayRequire="Ludeon.RimWorld.Biotech">MooGirl_RA_MechanicBackpack_C</li>
+                    <li MayRequire="Ludeon.RimWorld.Biotech">MooGirl_RA_MechanicBackpack_D</li>
                     <li>MooGirl_WeddingDress</li>
                     <li>MooGirl_OL</li>
                     <li>MooGirl_Coat</li>
@@ -455,7 +455,7 @@
                     <li>MuGirl_Gun_Support_Assault_Rifle</li>
                     <li>MuGirl_Gun_Machine_Pistol</li>
                     <li>MuGirl_Gun_Defense_Rifle</li>
-                    <li>MuGirl_Gun_Flame_Thrower</li>
+                    <li MayRequire="Ludeon.RimWorld.Biotech">MuGirl_Gun_Flame_Thrower</li>
 
                     <!-- 雪牛娘战斗员专用武器池 -->
                     <li>PMC_Carbine</li>
@@ -692,7 +692,7 @@
                 <Research>13</Research>
             </lifeStageWorkSettings>
             <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
-            <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
+            <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding_Generic</soundMeleeHitBuilding>
             <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
             <specialShadowData>
                 <volume>(0.3, 0.8, 0.4)</volume>

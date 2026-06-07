@@ -40,7 +40,10 @@ namespace MooGirl
             }
             catch (Exception ex)
             {
-                Log.ErrorOnce("MooGirl.Text.FormatFailedLog".Translate(ex.ToString().Named("ERROR")).ToString(), Gen.HashCombineInt(textOrKey.GetHashCode(), 781233517));
+                string detail = ex.GetType().Name + ": " + ex.Message;
+                MooGirlLog.WarningOnce(
+                    "Text.FormatFailed." + Gen.HashCombineInt(textOrKey.GetHashCode(), 781233517),
+                    "MooGirl.Text.FormatFailedLog".Translate(detail.Named("ERROR")).ToString());
                 return textOrKey;
             }
         }

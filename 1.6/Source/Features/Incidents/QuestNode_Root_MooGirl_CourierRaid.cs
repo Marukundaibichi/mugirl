@@ -16,20 +16,19 @@ namespace MooGirl
             Map map = ResolveTargetMap(slate);
             if (map == null)
             {
-                MooGirlLog.Warning("MooGirl.CourierRaid.Log.NoMap".Translate().ToString());
+                MooGirlLog.WarningOnce("CourierRaid.Root.NoMap", "MooGirl.CourierRaid.Log.NoMap".Translate().ToString());
                 return;
             }
 
-            Faction faction = Find.FactionManager.FirstFactionOfDef(MooGirlContentDefOf.MooGirl_GiantCorporations_Hostile);
-            if (faction == null)
+            if (!MooGirlGameUtility.TryGetFirstFactionOfDef(MooGirlContentDefOf.MooGirl_GiantCorporations_Hostile, out Faction faction))
             {
-                MooGirlLog.Warning("MooGirl.CourierRaid.Log.NoFaction".Translate().ToString());
+                MooGirlLog.WarningOnce("CourierRaid.Root.NoFaction", "MooGirl.CourierRaid.Log.NoFaction".Translate().ToString());
                 return;
             }
 
             if (!RCellFinder.TryFindRandomPawnEntryCell(out IntVec3 spawnCell, map, 0f))
             {
-                MooGirlLog.Warning("MooGirl.CourierRaid.Log.NoSpawnCell".Translate().ToString());
+                MooGirlLog.WarningOnce("CourierRaid.Root.NoSpawnCell", "MooGirl.CourierRaid.Log.NoSpawnCell".Translate().ToString());
                 return;
             }
 
@@ -52,7 +51,7 @@ namespace MooGirl
         protected override bool TestRunInt(Slate slate)
         {
             Map map = ResolveTargetMap(slate);
-            return map != null && Find.FactionManager.FirstFactionOfDef(MooGirlContentDefOf.MooGirl_GiantCorporations_Hostile) != null;
+            return map != null && MooGirlGameUtility.TryGetFirstFactionOfDef(MooGirlContentDefOf.MooGirl_GiantCorporations_Hostile, out _);
         }
 
         private static Map ResolveTargetMap(Slate slate)
@@ -62,13 +61,7 @@ namespace MooGirl
                 return mapFromSlate;
             }
 
-            if (Find.AnyPlayerHomeMap != null)
-            {
-                return Find.AnyPlayerHomeMap;
-            }
-
-            List<Map> maps = Find.Maps;
-            return maps != null && maps.Count > 0 ? maps[0] : null;
+            return MooGirlGameUtility.TryResolvePlayerEventMap(out Map map) ? map : null;
         }
     }
 }

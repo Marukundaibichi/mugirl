@@ -51,9 +51,15 @@ namespace MooGirl
 
         private static ThingDef TryChooseAllowedApparel(string tag)
         {
+            if (tag.NullOrEmpty())
+            {
+                return null;
+            }
+
             // R18 内容已常驻。此处暂不做全局缓存；后续缓存必须围绕
             // Def 加载和可选 mod 条件设计失效时机。
-            List<ThingDef> candidates = new List<ThingDef>();
+            ThingDef chosenDef = null;
+            int matchingCandidates = 0;
             List<ThingDef> allDefs = DefDatabase<ThingDef>.AllDefsListForReading;
             for (int i = 0; i < allDefs.Count; i++)
             {
@@ -63,10 +69,14 @@ namespace MooGirl
                     continue;
                 }
 
-                candidates.Add(thingDef);
+                matchingCandidates++;
+                if (Rand.Range(0, matchingCandidates) == 0)
+                {
+                    chosenDef = thingDef;
+                }
             }
 
-            return candidates.Count > 0 ? candidates.RandomElement() : null;
+            return chosenDef;
         }
 
         private static Apparel MakeApparel(ThingDef def)
@@ -77,7 +87,7 @@ namespace MooGirl
 
         private static bool ShouldLock(Apparel apparel)
         {
-            return apparel is AdvancedSlaveApparel || apparel is BrainWashSlaveApparel;
+            return apparel is AdvancedSlaveApparel;
         }
     }
 }

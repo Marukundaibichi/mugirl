@@ -439,7 +439,7 @@
         </apparel>
     </ThingDef>
 
-    <ThingDef ParentName="ApparelMakeableBase">
+    <ThingDef ParentName="ApparelMakeableBase" MayRequire="Ludeon.RimWorld.Biotech">
         <defName>MooGirl_RA_MechanicBackpack</defName>
         <!-- 雪牛娘 Lv1机械师背包 -->
         <label>Mugirl Mechanic Backpack Lv1</label>
@@ -488,7 +488,7 @@
         </apparel>
     </ThingDef>
 
-    <ThingDef ParentName="ApparelMakeableBase">
+    <ThingDef ParentName="ApparelMakeableBase" MayRequire="Ludeon.RimWorld.Biotech">
         <defName>MooGirl_RA_MechanicBackpack_B</defName>
         <!-- 雪牛娘 Lv2机械师背包 -->
         <label>Mugirl Mechanic Backpack Lv2</label>
@@ -539,7 +539,7 @@
         </apparel>
     </ThingDef>
 
-    <ThingDef ParentName="ApparelMakeableBase">
+    <ThingDef ParentName="ApparelMakeableBase" MayRequire="Ludeon.RimWorld.Biotech">
         <defName>MooGirl_RA_MechanicBackpack_C</defName>
         <!-- 雪牛娘 Lv3机械师背包 -->
         <label>Mugirl Mechanic Backpack Lv3</label>
@@ -591,7 +591,7 @@
         </apparel>
     </ThingDef>
 
-    <ThingDef ParentName="ApparelMakeableBase">
+    <ThingDef ParentName="ApparelMakeableBase" MayRequire="Ludeon.RimWorld.Biotech">
         <defName>MooGirl_RA_MechanicBackpack_D</defName>
         <!-- 雪牛娘 Lv4机械师背包 -->
         <label>Mugirl Mechanic Backpack Lv4</label>

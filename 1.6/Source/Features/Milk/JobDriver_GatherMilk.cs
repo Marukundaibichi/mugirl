@@ -20,13 +20,13 @@ namespace MooGirl  // 定义命名空间MooGirl，用于组织相关类
         {
             get
             {
-                if (MooGirlMod.settings != null && MooGirlMod.settings.enableFastMilking)
+                if (MooGirlMod.Settings != null && MooGirlMod.Settings.enableFastMilking)
                 {
                     return FastMilkingWorkTicks;
                 }
 
                 // 判断当前角色是否是挤奶目标（即是否是自己挤奶）
-                if (this.pawn == (Pawn)this.job.GetTarget(TargetIndex.A).Thing)
+                if (this.pawn == TargetPawn)
                 {
                     return WorktickSelf;  // 返回对自己挤奶的工作时间
                 }
@@ -41,7 +41,18 @@ namespace MooGirl  // 定义命名空间MooGirl，用于组织相关类
         protected override CompMooHasBodyResource GetComp(Pawn animal)
         {
             // 返回动物的挤奶组件实例（CompMooMilkable是挤奶功能的具体实现）
-            return animal.GetComp<CompMooMilkable>();
+            return animal?.TryGetComp<CompMooMilkable>();
+        }
+
+        protected override bool CanGather(CompMooHasBodyResource comp)
+        {
+            if (!base.CanGather(comp))
+            {
+                return false;
+            }
+
+            CompMooMilkable milkComp = comp as CompMooMilkable;
+            return milkComp != null && !milkComp.IsManagedByMilkingDevice;
         }
 
         protected override void StartGatherEffects(Pawn doer, Pawn target)
@@ -62,10 +73,15 @@ namespace MooGirl  // 定义命名空间MooGirl，用于组织相关类
         // 使用固定产量榨乳 + 喷乳特效
         protected override void CompleteGather(Pawn doer)
         {
-            CompMooMilkable comp = GetComp((Pawn)((Thing)job.GetTarget(TargetIndex.A))) as CompMooMilkable;
+            CompMooMilkable comp = GetComp(TargetPawn) as CompMooMilkable;
             if (comp == null) return;
 
-            if (comp.GatheredFixed(doer, out int milkAmount) && milkAmount > 0)
+            if (!CanGather(comp) || !comp.GatheredFixed(doer, out int milkAmount))
+            {
+                return;
+            }
+
+            if (milkAmount > 0)
             {
                 ThingDef milkDef = MooGirl_DefOf.MooGirl_Milk;
                 MooGirlMilkOutputUtility.SpawnStacksNear(milkDef, milkAmount, doer.Position, doer.Map);

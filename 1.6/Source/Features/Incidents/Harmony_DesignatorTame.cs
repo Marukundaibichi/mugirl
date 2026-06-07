@@ -13,7 +13,7 @@ namespace MooGirl
         {
             if (pawn == null) return;
 
-            if (pawn.kindDef == MooGirl_DefOf.MooGirl_EscapeWildSlave && pawn.Faction != Faction.OfPlayer)
+            if (MooGirlWildSlaveUtility.IsNonPlayerEscapeWildSlave(pawn))
             {
                 __result = true;
             }
@@ -31,7 +31,7 @@ namespace MooGirl
             Pawn pawn = t as Pawn;
             if (pawn == null) return;
 
-            if (pawn.kindDef == MooGirl_DefOf.MooGirl_EscapeWildSlave && pawn.Faction != Faction.OfPlayer)
+            if (MooGirlWildSlaveUtility.IsNonPlayerEscapeWildSlave(pawn))
             {
                 __result = true;
             }

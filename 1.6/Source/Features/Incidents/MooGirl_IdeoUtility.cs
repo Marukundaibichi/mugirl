@@ -3,9 +3,9 @@ using Verse;
 
 namespace MooGirl
 {
-    public static class MooGirl_IdeoUtility
+    internal static class MooGirl_IdeoUtility
     {
-        public static void AdoptPlayerPrimaryIdeo(Pawn pawn)
+        internal static void AdoptPlayerPrimaryIdeo(Pawn pawn)
         {
             if (pawn == null || !ModsConfig.IdeologyActive)
             {

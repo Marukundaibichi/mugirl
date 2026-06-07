@@ -29,32 +29,45 @@ namespace MooGirl
     {
         private int age;
 
-        public CompProperties_SuppressionEnhancer Props => (CompProperties_SuppressionEnhancer)this.props;
+        public CompProperties_SuppressionEnhancer Props => props as CompProperties_SuppressionEnhancer;
 
         public override void CompPostTick(ref float severityAdjustment)
         {
             base.CompPostTick(ref severityAdjustment);
 
+            CompProperties_SuppressionEnhancer compProps = Props;
+            if (compProps == null)
+            {
+                return;
+            }
+
             age++;
-            if (age < Props.triggerTicks) return;
+            int triggerTicks = Mathf.Max(1, compProps.triggerTicks);
+            if (age < triggerTicks) return;
 
             age = 0;
 
-            if (Pawn.IsSlaveOfColony && Pawn.IsWearingCrackedBrainwashApparel())
+            Pawn pawn = Pawn;
+            if (pawn?.IsSlaveOfColony == true && pawn.IsWearingCrackedBrainwashApparel())
             {
-                ApplySuppression();
+                ApplySuppression(pawn, compProps);
             }
         }
 
-        private void ApplySuppression()
+        private void ApplySuppression(Pawn pawn, CompProperties_SuppressionEnhancer compProps)
         {
-            Need_Suppression suppression = Pawn.needs?.TryGetNeed<Need_Suppression>();
+            Need_Suppression suppression = pawn?.needs?.TryGetNeed<Need_Suppression>();
             if (suppression == null) return;
 
-            float amount = Props.enhancedMode ? Props.enhancedAmount : Props.regularAmount;
+            float amount = Mathf.Max(0f, compProps.enhancedMode ? compProps.enhancedAmount : compProps.regularAmount);
+            if (amount <= 0f) return;
+
             suppression.CurLevelPercentage = Mathf.Clamp01(suppression.CurLevelPercentage + amount);
 
-            MoteMaker.ThrowText(Pawn.DrawPos, Pawn.Map, "MooGirl.SuppressionIncrease".Translate(amount.ToStringPercent()), Color.yellow, 6f);
+            if (pawn.Map != null)
+            {
+                MoteMaker.ThrowText(pawn.DrawPos, pawn.Map, "MooGirl.SuppressionIncrease".Translate(amount.ToStringPercent()), Color.yellow, 6f);
+            }
         }
 
         public override void CompExposeData()

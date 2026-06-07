@@ -28,7 +28,7 @@ namespace MooGirl
                 return;
             }
 
-            Verb verb = rider.meleeVerbs.TryGetMeleeVerb(target);
+            Verb verb = MountedPawnUtility.TryGetMeleeVerb(rider, target);
             if (verb == null)
             {
                 return;
@@ -83,7 +83,7 @@ namespace MooGirl
             BodyPartRecord hitPart = null;
             if (target is Pawn pawnTarget)
             {
-                hitPart = pawnTarget.health.hediffSet.GetRandomNotMissingPart(damageDef, BodyPartHeight.Undefined, BodyPartDepth.Outside);
+                hitPart = MountedPawnUtility.GetRandomNotMissingPart(pawnTarget, damageDef, BodyPartHeight.Undefined, BodyPartDepth.Outside);
             }
 
             DamageInfo dinfo = new DamageInfo(
@@ -104,25 +104,60 @@ namespace MooGirl
 
         private static float GetNonMissChance(Verb_MeleeAttack verb, Thing target)
         {
-            object result = GetNonMissChanceMethod?.Invoke(verb, new object[] { new LocalTargetInfo(target) });
-            return result is float chance ? chance : 1f;
+            try
+            {
+                object result = GetNonMissChanceMethod?.Invoke(verb, new object[] { new LocalTargetInfo(target) });
+                return result is float chance ? chance : 1f;
+            }
+            catch
+            {
+                // Private vanilla melee helpers are optional compatibility calls; fall back to guaranteed hit chance if they change.
+                return 1f;
+            }
         }
 
         private static float GetDodgeChance(Verb_MeleeAttack verb, Thing target)
         {
-            object result = GetDodgeChanceMethod?.Invoke(verb, new object[] { new LocalTargetInfo(target) });
-            return result is float chance ? chance : 0f;
+            try
+            {
+                object result = GetDodgeChanceMethod?.Invoke(verb, new object[] { new LocalTargetInfo(target) });
+                return result is float chance ? chance : 0f;
+            }
+            catch
+            {
+                // Private vanilla melee helpers are optional compatibility calls; fall back to no dodge if they change.
+                return 0f;
+            }
         }
 
         private static void PlaySound(MethodInfo method, Verb_MeleeAttack verb, Thing target)
         {
-            SoundDef sound = method?.Invoke(verb, method == SoundDodgeMethod ? new object[] { target } : null) as SoundDef;
-            sound?.PlayOneShot(target);
+            try
+            {
+                SoundDef sound = method?.Invoke(verb, method == SoundDodgeMethod ? new object[] { target } : null) as SoundDef;
+                sound?.PlayOneShot(target);
+            }
+            catch
+            {
+                // Missing private sound helper must not break the mounted melee tick.
+            }
         }
 
         private static void SetLastShotTick(Verb verb)
         {
-            LastShotTickField?.SetValue(verb, Find.TickManager.TicksGame);
+            if (!MooGirlTickUtility.TryGetCurrentGameTick(out int currentTick))
+            {
+                return;
+            }
+
+            try
+            {
+                LastShotTickField?.SetValue(verb, currentTick);
+            }
+            catch
+            {
+                // Missing private cooldown field must not break the mounted melee tick.
+            }
         }
 
         public static void DrawWeapon(Comp_MooGirlMount comp)
@@ -139,7 +174,7 @@ namespace MooGirl
             drawPos += carrier.Rotation.RighthandCell.ToVector3() * 0.12f;
             using (MeleeAnimationCompat.SuspendIdleWeaponAnimation())
             {
-                PawnRenderUtility.DrawCarriedWeapon(weapon, drawPos, carrier.Rotation, rider.ageTracker.CurLifeStage.equipmentDrawDistanceFactor);
+                PawnRenderUtility.DrawCarriedWeapon(weapon, drawPos, carrier.Rotation, MountedPawnUtility.EquipmentDrawDistanceFactor(rider));
             }
         }
 
@@ -202,8 +237,8 @@ namespace MooGirl
                 && !rider.Downed
                 && !rider.InMentalState
                 && !rider.IsBurning()
-                && rider.Awake()
-                && rider.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation)
+                && MountedPawnUtility.IsAwake(rider)
+                && MountedPawnUtility.HasCapacity(rider, PawnCapacityDefOf.Manipulation)
                 && !rider.WorkTagIsDisabled(WorkTags.Violent)
                 && rider.stances?.FullBodyBusy == false;
         }

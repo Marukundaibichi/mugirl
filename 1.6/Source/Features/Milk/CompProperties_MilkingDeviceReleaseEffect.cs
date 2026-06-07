@@ -53,22 +53,23 @@ namespace MooGirl
         private List<int> nextFleckTicks = new List<int>();
         private List<int> nextTextTicks = new List<int>();
 
-        public CompProperties_MilkingDeviceReleaseEffect Props => (CompProperties_MilkingDeviceReleaseEffect)props;
+        public CompProperties_MilkingDeviceReleaseEffect Props => props as CompProperties_MilkingDeviceReleaseEffect;
 
         private Pawn Wearer => (parent as Apparel)?.Wearer;
 
         public void Trigger()
         {
+            CompProperties_MilkingDeviceReleaseEffect releaseProps = Props;
             Pawn wearer = Wearer;
-            if (wearer?.Map == null)
+            if (releaseProps == null || wearer?.Map == null)
             {
                 return;
             }
 
-            effectTicksRemaining = Mathf.Max(1, Props.durationTicks);
+            effectTicksRemaining = Mathf.Max(1, releaseProps.durationTicks);
             age = 0;
-            InitializeSchedules();
-            RunEffectFrame(wearer);
+            InitializeSchedules(releaseProps);
+            RunEffectFrame(wearer, releaseProps);
         }
 
         public override void CompTick()
@@ -80,7 +81,8 @@ namespace MooGirl
             }
 
             Pawn wearer = Wearer;
-            if (wearer?.Map == null)
+            CompProperties_MilkingDeviceReleaseEffect releaseProps = Props;
+            if (releaseProps == null || wearer?.Map == null)
             {
                 effectTicksRemaining = 0;
                 return;
@@ -88,7 +90,7 @@ namespace MooGirl
 
             age++;
             effectTicksRemaining--;
-            RunEffectFrame(wearer);
+            RunEffectFrame(wearer, releaseProps);
         }
 
         public override void PostExposeData()
@@ -118,11 +120,11 @@ namespace MooGirl
             }
         }
 
-        private void InitializeSchedules()
+        private void InitializeSchedules(CompProperties_MilkingDeviceReleaseEffect releaseProps)
         {
-            nextSoundTicks = BuildSoundSchedule(Props.sounds);
-            nextFleckTicks = BuildFleckSchedule(Props.flecks);
-            nextTextTicks = BuildTextSchedule(Props.texts);
+            nextSoundTicks = BuildSoundSchedule(releaseProps.sounds);
+            nextFleckTicks = BuildFleckSchedule(releaseProps.flecks);
+            nextTextTicks = BuildTextSchedule(releaseProps.texts);
         }
 
         private static List<int> BuildSoundSchedule(List<CompProperties_MilkingDeviceReleaseEffect.SoundWithParams> sounds)
@@ -135,7 +137,8 @@ namespace MooGirl
 
             for (int i = 0; i < sounds.Count; i++)
             {
-                ticks.Add(sounds[i].startTick);
+                CompProperties_MilkingDeviceReleaseEffect.SoundWithParams soundParams = sounds[i];
+                ticks.Add(soundParams == null ? -1 : Mathf.Max(0, soundParams.startTick));
             }
 
             return ticks;
@@ -151,7 +154,8 @@ namespace MooGirl
 
             for (int i = 0; i < flecks.Count; i++)
             {
-                ticks.Add(flecks[i].startTick);
+                CompProperties_MilkingDeviceReleaseEffect.FleckWithParams fleckParams = flecks[i];
+                ticks.Add(fleckParams == null ? -1 : Mathf.Max(0, fleckParams.startTick));
             }
 
             return ticks;
@@ -167,24 +171,52 @@ namespace MooGirl
 
             for (int i = 0; i < texts.Count; i++)
             {
-                ticks.Add(texts[i].startTick);
+                CompProperties_MilkingDeviceReleaseEffect.TextWithParams textParams = texts[i];
+                ticks.Add(textParams == null ? -1 : Mathf.Max(0, textParams.startTick));
             }
 
             return ticks;
         }
 
-        private void RunEffectFrame(Pawn wearer)
+        private void RunEffectFrame(Pawn wearer, CompProperties_MilkingDeviceReleaseEffect releaseProps)
         {
-            if (Props.texts != null)
+            Map map = wearer?.Map;
+            if (releaseProps == null || map == null)
             {
-                for (int i = 0; i < Props.texts.Count; i++)
+                return;
+            }
+
+            if (nextTextTicks == null)
+            {
+                nextTextTicks = new List<int>();
+            }
+
+            if (nextSoundTicks == null)
+            {
+                nextSoundTicks = new List<int>();
+            }
+
+            if (nextFleckTicks == null)
+            {
+                nextFleckTicks = new List<int>();
+            }
+
+            if (releaseProps.texts != null)
+            {
+                for (int i = 0; i < releaseProps.texts.Count; i++)
                 {
                     if (i < nextTextTicks.Count && nextTextTicks[i] != -1 && age == nextTextTicks[i])
                     {
-                        var textParams = Props.texts[i];
+                        var textParams = releaseProps.texts[i];
+                        if (textParams == null)
+                        {
+                            nextTextTicks[i] = -1;
+                            continue;
+                        }
+
                         if (!string.IsNullOrEmpty(textParams.text))
                         {
-                            MoteMaker.ThrowText(wearer.DrawPos, wearer.Map, textParams.text, textParams.color, 4f);
+                            MoteMaker.ThrowText(wearer.DrawPos, map, textParams.text, textParams.color, 4f);
                         }
 
                         nextTextTicks[i] = -1;
@@ -192,35 +224,51 @@ namespace MooGirl
                 }
             }
 
-            if (Props.sounds != null)
+            if (releaseProps.sounds != null)
             {
-                for (int i = 0; i < Props.sounds.Count; i++)
+                for (int i = 0; i < releaseProps.sounds.Count; i++)
                 {
-                    var soundParams = Props.sounds[i];
-                    if (i < nextSoundTicks.Count && age >= soundParams.startTick && age <= soundParams.endTick && age >= nextSoundTicks[i])
+                    var soundParams = releaseProps.sounds[i];
+                    if (soundParams == null || i >= nextSoundTicks.Count || nextSoundTicks[i] == -1)
                     {
-                        SoundInfo info = SoundInfo.InMap(new TargetInfo(wearer.Position, wearer.Map));
+                        continue;
+                    }
+
+                    int startTick = Mathf.Max(0, soundParams.startTick);
+                    int endTick = Mathf.Max(startTick, soundParams.endTick);
+                    if (age >= startTick && age <= endTick && age >= nextSoundTicks[i])
+                    {
+                        SoundInfo info = SoundInfo.InMap(new TargetInfo(wearer.Position, map));
                         soundParams.sound?.PlayOneShot(info);
                         nextSoundTicks[i] = age + Mathf.Max(1, soundParams.loopInterval);
                     }
                 }
             }
 
-            if (Props.flecks != null)
+            if (releaseProps.flecks != null)
             {
-                for (int i = 0; i < Props.flecks.Count; i++)
+                for (int i = 0; i < releaseProps.flecks.Count; i++)
                 {
-                    var fleckParams = Props.flecks[i];
-                    if (i < nextFleckTicks.Count && age >= fleckParams.startTick && age <= fleckParams.endTick && age >= nextFleckTicks[i])
+                    var fleckParams = releaseProps.flecks[i];
+                    if (fleckParams == null || i >= nextFleckTicks.Count || nextFleckTicks[i] == -1)
+                    {
+                        continue;
+                    }
+
+                    int startTick = Mathf.Max(0, fleckParams.startTick);
+                    int endTick = Mathf.Max(startTick, fleckParams.endTick);
+                    if (age >= startTick && age <= endTick && age >= nextFleckTicks[i])
                     {
                         IntVec3 offset = new IntVec3(Rand.RangeInclusive(-1, 1), 0, Rand.RangeInclusive(0, 1));
                         IntVec3 pos = wearer.Position + offset;
-                        if (pos.InBounds(wearer.Map) && fleckParams.fleck != null)
+                        if (pos.InBounds(map) && fleckParams.fleck != null)
                         {
-                            FleckCreationData data = FleckMaker.GetDataStatic(pos.ToVector3Shifted(), wearer.Map, fleckParams.fleck, fleckParams.scale);
+                            float minSpeed = Mathf.Min(fleckParams.speedMin, fleckParams.speedMax);
+                            float maxSpeed = Mathf.Max(fleckParams.speedMin, fleckParams.speedMax);
+                            FleckCreationData data = FleckMaker.GetDataStatic(pos.ToVector3Shifted(), map, fleckParams.fleck, Mathf.Max(0.01f, fleckParams.scale));
                             data.velocityAngle = 0f;
-                            data.velocitySpeed = Rand.Range(fleckParams.speedMin, fleckParams.speedMax);
-                            wearer.Map.flecks.CreateFleck(data);
+                            data.velocitySpeed = Rand.Range(minSpeed, maxSpeed);
+                            map.flecks.CreateFleck(data);
                         }
 
                         nextFleckTicks[i] = age + Mathf.Max(1, fleckParams.loopInterval);

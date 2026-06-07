@@ -58,22 +58,31 @@ namespace MooGirl
         private int nextStateTick = -1; // 自动循环下一次状态时间
 
         public Pawn Wearer => parent.ParentHolder is Pawn_ApparelTracker tracker ? tracker.pawn : null;
-        public CompProperties_MagneticShackles Props => (CompProperties_MagneticShackles)props;
+        public CompProperties_MagneticShackles Props => props as CompProperties_MagneticShackles;
         public bool IsActive => isActive;
+
+        public override void PostPostMake()
+        {
+            base.PostPostMake();
+            EnsureCycleTimingsInitialized();
+        }
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
-            currentCycleInterval = Props.cycleInterval.RandomInRange;
-            currentBindDurationTicks = Props.bindDurationTicks.RandomInRange;
-            nextStateTick = -1;
+            EnsureCycleTimingsInitialized();
+            if (!respawningAfterLoad)
+            {
+                nextStateTick = -1;
+            }
         }
 
         public override void CompTick()
         {
             base.CompTick();
+            CompProperties_MagneticShackles shackleProps = Props;
             Pawn pawn = Wearer;
-            if (pawn == null || pawn.Dead || !pawn.Spawned)
+            if (shackleProps == null || pawn == null || pawn.Dead || !pawn.Spawned)
                 return;
 
             tickCounter++;
@@ -86,10 +95,11 @@ namespace MooGirl
             }
 
             // 未破解时执行自动循环
-            int currentTick = Find.TickManager.TicksGame;
+            EnsureCycleTimingsInitialized();
+            int currentTick = CurrentGameTickOrFallback(nextStateTick);
             if (nextStateTick < 0)
             {
-                nextStateTick = currentTick + currentCycleInterval;
+                nextStateTick = currentTick + CurrentStateInterval;
             }
 
             if (currentTick >= nextStateTick)
@@ -97,126 +107,207 @@ namespace MooGirl
                 if (isActive)
                 {
                     DeactivateShackles();
-                    currentCycleInterval = Props.cycleInterval.RandomInRange; // 每次重新随机
+                    currentCycleInterval = Mathf.Max(1, shackleProps.cycleInterval.RandomInRange); // 每次重新随机
                     nextStateTick = currentTick + currentCycleInterval;
                 }
                 else
                 {
                     ActivateShackles();
-                    currentBindDurationTicks = Props.bindDurationTicks.RandomInRange; // 每次重新随机
+                    currentBindDurationTicks = Mathf.Max(1, shackleProps.bindDurationTicks.RandomInRange); // 每次重新随机
                     nextStateTick = currentTick + currentBindDurationTicks;
                 }
             }
         }
 
-        public void OnEquipped()
+        public override void Notify_Equipped(Pawn pawn)
         {
-            lastManualUseTick = Find.TickManager.TicksGame;
+            base.Notify_Equipped(pawn);
+            lastManualUseTick = CurrentGameTickOrFallback(lastManualUseTick);
             tickCounter = 0;
-            currentCycleInterval = Props.cycleInterval.RandomInRange;
-            currentBindDurationTicks = Props.bindDurationTicks.RandomInRange;
+            ResetCycleTimings();
+        }
+
+        public override void Notify_Unequipped(Pawn pawn)
+        {
+            base.Notify_Unequipped(pawn);
+            DeactivateShackles(pawn, false);
             nextStateTick = -1;
         }
 
-        public void OnUnequipped()
+        private int CurrentStateInterval
         {
-            DeactivateShackles();
+            get
+            {
+                EnsureCycleTimingsInitialized();
+                return isActive ? currentBindDurationTicks : currentCycleInterval;
+            }
+        }
+
+        private void EnsureCycleTimingsInitialized()
+        {
+            CompProperties_MagneticShackles shackleProps = Props;
+            if (shackleProps == null)
+            {
+                return;
+            }
+
+            if (currentCycleInterval <= 0)
+            {
+                currentCycleInterval = Mathf.Max(1, shackleProps.cycleInterval.RandomInRange);
+            }
+            if (currentBindDurationTicks <= 0)
+            {
+                currentBindDurationTicks = Mathf.Max(1, shackleProps.bindDurationTicks.RandomInRange);
+            }
+        }
+
+        private void ResetCycleTimings()
+        {
+            CompProperties_MagneticShackles shackleProps = Props;
+            if (shackleProps == null)
+            {
+                currentCycleInterval = 0;
+                currentBindDurationTicks = 0;
+                nextStateTick = -1;
+                return;
+            }
+
+            currentCycleInterval = Mathf.Max(1, shackleProps.cycleInterval.RandomInRange);
+            currentBindDurationTicks = Mathf.Max(1, shackleProps.bindDurationTicks.RandomInRange);
+            nextStateTick = -1;
         }
 
         // 激活逻辑
         public void ActivateShackles()
         {
-            if (isActive || Wearer == null) return;
+            CompProperties_MagneticShackles shackleProps = Props;
+            Pawn wearer = Wearer;
+            if (isActive || shackleProps == null || wearer?.health?.hediffSet == null) return;
 
             isActive = true;
-            lastManualUseTick = Find.TickManager.TicksGame;
+            lastManualUseTick = CurrentGameTickOrFallback(lastManualUseTick);
 
-            foreach (var entry in Props.bindHediffs)
+            if (shackleProps.bindHediffs != null)
             {
-                if (entry == null || entry.hediffDef == null) continue;
-
-                // BodyPartDef 不为空则绑定指定部位
-                if (entry.bodyPartDefs != null && entry.bodyPartDefs.Count > 0)
+                foreach (var entry in shackleProps.bindHediffs)
                 {
-                    foreach (var bodyPartDef in entry.bodyPartDefs)
+                    if (entry == null || entry.hediffDef == null) continue;
+
+                    // BodyPartDef 不为空则绑定指定部位
+                    if (entry.bodyPartDefs != null && entry.bodyPartDefs.Count > 0 && wearer.RaceProps?.body?.AllParts != null)
                     {
-                        if (bodyPartDef == null) continue;
-
-                        List<BodyPartRecord> parts = Wearer.RaceProps.body.AllParts;
-                        for (int i = 0; i < parts.Count; i++)
+                        foreach (var bodyPartDef in entry.bodyPartDefs)
                         {
-                            BodyPartRecord part = parts[i];
-                            if (part.def != bodyPartDef)
-                            {
-                                continue;
-                            }
+                            if (bodyPartDef == null) continue;
 
-                            if (!HasHediffOnPart(Wearer, entry.hediffDef, part))
+                            List<BodyPartRecord> parts = wearer.RaceProps.body.AllParts;
+                            for (int i = 0; i < parts.Count; i++)
                             {
-                                Hediff hd = HediffMaker.MakeHediff(entry.hediffDef, Wearer, part);
-                                Wearer.health.AddHediff(hd);
+                                BodyPartRecord part = parts[i];
+                                if (part.def != bodyPartDef)
+                                {
+                                    continue;
+                                }
+
+                                if (!HasHediffOnPart(wearer, entry.hediffDef, part))
+                                {
+                                    Hediff hd = HediffMaker.MakeHediff(entry.hediffDef, wearer, part);
+                                    wearer.health.AddHediff(hd);
+                                }
                             }
                         }
                     }
-                }
-                else
-                {
-                    // 绑定全身/无部位
-                    if (!HasHediffOnPart(Wearer, entry.hediffDef, null))
+                    else
                     {
-                        Hediff hd = HediffMaker.MakeHediff(entry.hediffDef, Wearer, null);
-                        Wearer.health.AddHediff(hd);
+                        // 绑定全身/无部位
+                        if (!HasHediffOnPart(wearer, entry.hediffDef, null))
+                        {
+                            Hediff hd = HediffMaker.MakeHediff(entry.hediffDef, wearer, null);
+                            wearer.health.AddHediff(hd);
+                        }
                     }
                 }
             }
 
-            if (!string.IsNullOrEmpty(Props.activateSoundDefName))
+            if (!string.IsNullOrEmpty(shackleProps.activateSoundDefName) && wearer.Spawned)
             {
-                var soundDef = DefDatabase<SoundDef>.GetNamedSilentFail(Props.activateSoundDefName);
+                var soundDef = DefDatabase<SoundDef>.GetNamedSilentFail(shackleProps.activateSoundDefName);
                 if (soundDef != null)
-                    soundDef.PlayOneShot(Wearer);
+                    soundDef.PlayOneShot(wearer);
             }
 
-            MoteMaker.ThrowText(Wearer.DrawPos, Wearer.Map, MooGirlText.Resolve(Props.moteTextOn), Color.cyan);
-            Messages.Message(MooGirlText.Resolve(Props.messageOn, Wearer.LabelShortCap), Wearer, MessageTypeDefOf.NegativeEvent);
+            if (wearer.Map != null)
+            {
+                MoteMaker.ThrowText(wearer.DrawPos, wearer.Map, MooGirlText.Resolve(shackleProps.moteTextOn), Color.cyan);
+            }
+            Messages.Message(MooGirlText.Resolve(shackleProps.messageOn, wearer.LabelShortCap), wearer, MessageTypeDefOf.NegativeEvent);
         }
 
         // 解除逻辑（彻底移除 Hediff）
         public void DeactivateShackles()
         {
-            if (!isActive || Wearer == null) return;
+            DeactivateShackles(Wearer, true);
+        }
+
+        private void DeactivateShackles(Pawn wearer, bool showFeedback)
+        {
+            if (!isActive) return;
+
+            if (wearer == null)
+            {
+                isActive = false;
+                return;
+            }
 
             isActive = false;
 
-            foreach (var entry in Props.bindHediffs)
+            CompProperties_MagneticShackles shackleProps = Props;
+            if (shackleProps == null || wearer.health?.hediffSet == null)
+            {
+                return;
+            }
+
+            if (shackleProps.bindHediffs == null)
+            {
+                return;
+            }
+
+            foreach (var entry in shackleProps.bindHediffs)
             {
                 if (entry == null || entry.hediffDef == null) continue;
 
-                List<Hediff> hediffs = Wearer.health.hediffSet.hediffs;
+                List<Hediff> hediffs = wearer.health.hediffSet.hediffs;
                 for (int i = hediffs.Count - 1; i >= 0; i--)
                 {
                     Hediff hediff = hediffs[i];
                     if (ShouldRemoveBoundHediff(entry, hediff))
                     {
-                        Wearer.health.RemoveHediff(hediff);
+                        wearer.health.RemoveHediff(hediff);
                     }
                 }
             }
 
-            MoteMaker.ThrowText(Wearer.DrawPos, Wearer.Map, MooGirlText.Resolve(Props.moteTextOff), Color.green);
-            Messages.Message(MooGirlText.Resolve(Props.messageOff, Wearer.LabelShortCap), Wearer, MessageTypeDefOf.PositiveEvent);
+            if (showFeedback)
+            {
+                if (wearer.Spawned && wearer.Map != null)
+                {
+                    MoteMaker.ThrowText(wearer.DrawPos, wearer.Map, MooGirlText.Resolve(shackleProps.moteTextOff), Color.green);
+                }
+                Messages.Message(MooGirlText.Resolve(shackleProps.messageOff, wearer.LabelShortCap), wearer, MessageTypeDefOf.PositiveEvent);
+            }
         }
 
         // Verb 限制
         public override bool CompAllowVerbCast(Verb verb)
         {
-            if (!IsActive || Props.boundBodyPartGroupDefs == null || Props.boundBodyPartGroupDefs.Count == 0)
+            CompProperties_MagneticShackles shackleProps = Props;
+            if (!IsActive || shackleProps?.boundBodyPartGroupDefs == null || shackleProps.boundBodyPartGroupDefs.Count == 0)
                 return true;
 
             if (verb?.tool == null)
                 return true;
 
-            return !Props.boundBodyPartGroupDefs.Contains(verb.tool.linkedBodyPartsGroup);
+            return !shackleProps.boundBodyPartGroupDefs.Contains(verb.tool.linkedBodyPartsGroup);
         }
 
         // 手动按钮
@@ -225,45 +316,50 @@ namespace MooGirl
             foreach (var g in base.CompGetWornGizmosExtra())
                 yield return g;
 
+            CompProperties_MagneticShackles shackleProps = Props;
+            if (shackleProps == null)
+            {
+                yield break;
+            }
+
             if (parent is AdvancedSlaveApparel slave && slave.IsCracked() && Wearer != null)
             {
-                int currentTick = Find.TickManager.TicksGame;
-                int cdLeft = (lastManualUseTick + Props.useCooldownTicks) - currentTick;
+                int cdLeft = ManualCooldownTicksLeft(shackleProps);
                 bool canUse = cdLeft <= 0;
-                float cooldownPercent = Mathf.InverseLerp(Props.useCooldownTicks, 0f, cdLeft);
+                float cooldownPercent = ManualCooldownPercent(shackleProps);
 
                 if (!isActive)
                 {
                     yield return new Command_ActionWithCooldown
                     {
-                        defaultLabel = MooGirlText.Resolve(Props.activateLabel),
-                        defaultDesc = canUse ? MooGirlText.Resolve(Props.activateDesc) : MooGirlText.Resolve("MooGirl.Restraints.MagneticShackles.CooldownTicksLeft", cdLeft),
-                        icon = ContentFinder<Texture2D>.Get(Props.activateIconPath),
+                        defaultLabel = MooGirlText.Resolve(shackleProps.activateLabel),
+                        defaultDesc = canUse ? MooGirlText.Resolve(shackleProps.activateDesc) : MooGirlText.Resolve("MooGirl.Restraints.MagneticShackles.CooldownTicksLeft", cdLeft),
+                        icon = GetCommandIcon(shackleProps.activateIconPath),
                         action = () =>
                         {
-                            if (!canUse) return;
+                            if (!ManualUseReady(Props, out int currentTick)) return;
                             ActivateShackles();
-                            lastManualUseTick = Find.TickManager.TicksGame;
+                            lastManualUseTick = currentTick;
                         },
                         Disabled = !canUse,
-                        cooldownPercentGetter = () => Mathf.Clamp01(cooldownPercent)
+                        cooldownPercentGetter = () => ManualCooldownPercent(Props, cooldownPercent)
                     };
                 }
                 else
                 {
                     yield return new Command_ActionWithCooldown
                     {
-                        defaultLabel = MooGirlText.Resolve(Props.deactivateLabel),
-                        defaultDesc = MooGirlText.Resolve(Props.deactivateDesc),
-                        icon = ContentFinder<Texture2D>.Get(Props.deactivateIconPath),
+                        defaultLabel = MooGirlText.Resolve(shackleProps.deactivateLabel),
+                        defaultDesc = MooGirlText.Resolve(shackleProps.deactivateDesc),
+                        icon = GetCommandIcon(shackleProps.deactivateIconPath),
                         action = () =>
                         {
-                            if (!canUse) return;
+                            if (!ManualUseReady(Props, out int currentTick)) return;
                             DeactivateShackles();
-                            lastManualUseTick = Find.TickManager.TicksGame;
+                            lastManualUseTick = currentTick;
                         },
                         Disabled = !canUse,
-                        cooldownPercentGetter = () => Mathf.Clamp01(cooldownPercent)
+                        cooldownPercentGetter = () => ManualCooldownPercent(Props, cooldownPercent)
                     };
                 }
             }
@@ -271,6 +367,11 @@ namespace MooGirl
 
         private static bool HasHediffOnPart(Pawn pawn, HediffDef hediffDef, BodyPartRecord part)
         {
+            if (pawn?.health?.hediffSet == null || hediffDef == null)
+            {
+                return false;
+            }
+
             List<Hediff> hediffs = pawn.health.hediffSet.hediffs;
             for (int i = 0; i < hediffs.Count; i++)
             {
@@ -286,7 +387,7 @@ namespace MooGirl
 
         private static bool ShouldRemoveBoundHediff(CompProperties_MagneticShackles.BindHediffEntry entry, Hediff hediff)
         {
-            if (hediff.def != entry.hediffDef)
+            if (entry?.hediffDef == null || hediff?.def != entry.hediffDef)
             {
                 return false;
             }
@@ -319,9 +420,66 @@ namespace MooGirl
             Scribe_Values.Look(ref tickCounter, "tickCounter", 0);
             Scribe_Values.Look(ref lastManualUseTick, "lastManualUseTick", -999999);
             Scribe_Values.Look(ref isActive, "isActive", false);
-            Scribe_Values.Look(ref currentCycleInterval, "currentCycleInterval");
-            Scribe_Values.Look(ref currentBindDurationTicks, "currentBindDurationTicks");
-            Scribe_Values.Look(ref nextStateTick, "nextStateTick");
+            Scribe_Values.Look(ref currentCycleInterval, "currentCycleInterval", 0);
+            Scribe_Values.Look(ref currentBindDurationTicks, "currentBindDurationTicks", 0);
+            Scribe_Values.Look(ref nextStateTick, "nextStateTick", -1);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                EnsureCycleTimingsInitialized();
+                if (nextStateTick < -1)
+                {
+                    nextStateTick = -1;
+                }
+            }
+        }
+
+        private static int CurrentGameTickOrFallback(int fallback)
+        {
+            return MooGirlTickUtility.CurrentGameTickOrFallback(fallback);
+        }
+
+        private static Texture2D GetCommandIcon(string iconPath)
+        {
+            return string.IsNullOrEmpty(iconPath) ? TexCommand.DesirePower : ContentFinder<Texture2D>.Get(iconPath, false) ?? TexCommand.DesirePower;
+        }
+
+        private bool ManualUseReady(CompProperties_MagneticShackles shackleProps, out int currentTick)
+        {
+            currentTick = CurrentGameTickOrFallback(lastManualUseTick);
+            if (shackleProps == null || !(parent is AdvancedSlaveApparel slave) || !slave.IsCracked() || Wearer == null)
+            {
+                return false;
+            }
+
+            return ManualCooldownTicksLeft(shackleProps, currentTick) <= 0;
+        }
+
+        private int ManualCooldownTicksLeft(CompProperties_MagneticShackles shackleProps)
+        {
+            return ManualCooldownTicksLeft(shackleProps, CurrentGameTickOrFallback(lastManualUseTick));
+        }
+
+        private int ManualCooldownTicksLeft(CompProperties_MagneticShackles shackleProps, int currentTick)
+        {
+            if (shackleProps == null)
+            {
+                return int.MaxValue;
+            }
+
+            int cooldownTicks = Mathf.Max(1, shackleProps.useCooldownTicks);
+            return Mathf.Max(0, (lastManualUseTick + cooldownTicks) - currentTick);
+        }
+
+        private float ManualCooldownPercent(CompProperties_MagneticShackles shackleProps, float fallback = 0f)
+        {
+            if (shackleProps == null)
+            {
+                return Mathf.Clamp01(fallback);
+            }
+
+            int cooldownTicks = Mathf.Max(1, shackleProps.useCooldownTicks);
+            int cdLeft = ManualCooldownTicksLeft(shackleProps);
+            return cdLeft <= 0 ? 1f : Mathf.Clamp01(1f - (float)cdLeft / cooldownTicks);
         }
     }
 }

@@ -9,6 +9,7 @@ namespace MooGirl
 {
     public static class MountedCombatController
     {
+        private const int DefaultTurretTickInterval = 60;
         private static readonly Dictionary<Verb, Thing> OriginalCasters = new Dictionary<Verb, Thing>();
         private static readonly Dictionary<Verb, float> WarmupTimeOverrides = new Dictionary<Verb, float>();
 
@@ -152,7 +153,7 @@ namespace MooGirl
             comp.turretCastStartTick = -1;
             if (comp.turretAimTicksLeft <= 0 && !TryStartMountedCast(comp, verb, comp.turretAimTarget))
             {
-                comp.turretBurstCooldownTicksLeft = Mathf.Max(comp.Props.turretTickInterval, 1);
+                comp.turretBurstCooldownTicksLeft = TurretTickInterval(comp);
             }
         }
 
@@ -208,7 +209,7 @@ namespace MooGirl
 
             if (!TryStartMountedCast(comp, verb, comp.turretAimTarget))
             {
-                comp.turretBurstCooldownTicksLeft = Mathf.Max(comp.Props.turretTickInterval, 1);
+                comp.turretBurstCooldownTicksLeft = TurretTickInterval(comp);
             }
         }
 
@@ -221,9 +222,15 @@ namespace MooGirl
 
             bool started;
             Pawn carrier = comp.MooPawn;
+            if (carrier?.Map == null)
+            {
+                ClearAim(comp);
+                return false;
+            }
+
             Stance originalStance = carrier?.stances?.curStance;
             bool pointBlankMeleeTarget = castTarget.HasThing && castTarget.Thing == MountedPawnMeleeSupport.CurrentMeleeTarget(carrier);
-            comp.turretCastStartTick = Find.TickManager.TicksGame;
+            comp.turretCastStartTick = MooGirlTickUtility.CurrentGameTickOrFallback(comp.turretCastStartTick);
             using (MountedCasterScope(comp, verb))
             using (new MountedWarmupOverride(verb, 0f))
             using (new MountedMinRangeOverride(verb, pointBlankMeleeTarget ? 0f : (float?)null))
@@ -249,7 +256,18 @@ namespace MooGirl
 
         private static void FinishMountedCast(Comp_MooGirlMount comp, Verb verb, LocalTargetInfo castTarget)
         {
+            if (comp == null || verb?.verbProps == null)
+            {
+                return;
+            }
+
             Pawn carrier = comp.MooPawn;
+            if (carrier == null)
+            {
+                ClearAim(comp);
+                return;
+            }
+
             bool fired = verb != null && verb.LastShotTick >= comp.turretCastStartTick;
             ClearAim(comp);
 
@@ -259,8 +277,8 @@ namespace MooGirl
             }
 
             comp.turretLastAttackedTarget = castTarget;
-            comp.turretLastAttackTargetTick = Find.TickManager.TicksGame;
-            comp.turretBurstCooldownTicksLeft = Mathf.Max(verb.verbProps.AdjustedCooldownTicks(verb, carrier), comp.Props.turretTickInterval);
+            comp.turretLastAttackTargetTick = MooGirlTickUtility.CurrentGameTickOrFallback(comp.turretLastAttackTargetTick);
+            comp.turretBurstCooldownTicksLeft = Mathf.Max(verb.verbProps.AdjustedCooldownTicks(verb, carrier), TurretTickInterval(comp));
         }
 
         public static bool CanUseMountedRangedWeapon(Comp_MooGirlMount comp, out string reasonKey)
@@ -292,7 +310,7 @@ namespace MooGirl
                 return false;
             }
 
-            if (!rider.Awake() || !rider.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation) || rider.WorkTagIsDisabled(WorkTags.Violent))
+            if (!MountedPawnUtility.IsAwake(rider) || !MountedPawnUtility.HasCapacity(rider, PawnCapacityDefOf.Manipulation) || rider.WorkTagIsDisabled(WorkTags.Violent))
             {
                 reasonKey = "MooGirl.Mount.ReasonRiderBadState";
                 return false;
@@ -341,15 +359,16 @@ namespace MooGirl
                 Thing targetThing = aimTarget.Thing;
                 if (targetThing == null || !targetThing.Destroyed)
                 {
+                    float drawDistanceFactor = MountedPawnUtility.EquipmentDrawDistanceFactor(rider);
                     Vector3 targetPos = aimTarget.HasThing ? targetThing.DrawPos : aimTarget.Cell.ToVector3Shifted();
                     float aimAngle = (targetPos - comp.RiderDrawPos).AngleFlat();
-                    drawPos += new Vector3(0f, 0f, 0.4f + weapon.def.equippedDistanceOffset).RotatedBy(aimAngle) * rider.ageTracker.CurLifeStage.equipmentDrawDistanceFactor;
+                    drawPos += new Vector3(0f, 0f, 0.4f + weapon.def.equippedDistanceOffset).RotatedBy(aimAngle) * drawDistanceFactor;
                     PawnRenderUtility.DrawEquipmentAiming(weapon, drawPos, aimAngle);
                     return;
                 }
             }
 
-            PawnRenderUtility.DrawCarriedWeapon(weapon, drawPos, carrier.Rotation, rider.ageTracker.CurLifeStage.equipmentDrawDistanceFactor);
+            PawnRenderUtility.DrawCarriedWeapon(weapon, drawPos, carrier.Rotation, MountedPawnUtility.EquipmentDrawDistanceFactor(rider));
         }
 
         private static Verb GetPrimaryRangedVerb(Comp_MooGirlMount comp)
@@ -414,6 +433,11 @@ namespace MooGirl
             }
 
             return Mathf.Max(warmupTime.SecondsToTicks(), comp?.Props?.turretMinAimTicks ?? 0);
+        }
+
+        private static int TurretTickInterval(Comp_MooGirlMount comp)
+        {
+            return Mathf.Max(1, comp?.Props?.turretTickInterval ?? DefaultTurretTickInterval);
         }
 
         private static void CancelMountedCast(Comp_MooGirlMount comp, Verb verb)
@@ -616,7 +640,17 @@ namespace MooGirl
 
         private static Thing FindBestTarget(Comp_MooGirlMount comp, Verb verb)
         {
+            if (comp == null || verb == null)
+            {
+                return null;
+            }
+
             Pawn carrier = comp.MooPawn;
+            if (carrier?.Map == null)
+            {
+                return null;
+            }
+
             Thing meleeTarget = MountedPawnMeleeSupport.CurrentMeleeTarget(carrier);
             if (IsValidTarget(carrier, verb, meleeTarget, allowPointBlank: true))
             {
@@ -674,13 +708,13 @@ namespace MooGirl
                 this.verb = verb;
             }
 
-            public Thing Thing => comp.MooPawn;
+            public Thing Thing => comp?.MooPawn;
 
             public Verb CurrentEffectiveVerb => verb;
 
-            public LocalTargetInfo LastAttackedTarget => comp.turretLastAttackedTarget;
+            public LocalTargetInfo LastAttackedTarget => comp?.turretLastAttackedTarget ?? LocalTargetInfo.Invalid;
 
-            public int LastAttackTargetTick => comp.turretLastAttackTargetTick;
+            public int LastAttackTargetTick => comp?.turretLastAttackTargetTick ?? 0;
         }
     }
 

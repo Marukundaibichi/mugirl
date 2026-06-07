@@ -14,12 +14,12 @@ namespace MooGirl
 
         public static bool SatisfiesKey(this Apparel apparel, Thing key)
         {
-            return apparel is SlaveApparel && apparel.def is SlaveApparelDef def && (def.keytype == null || def.keytype == key.def);
+            return key != null && apparel is SlaveApparel && apparel.def is SlaveApparelDef def && (def.keytype == null || def.keytype == key.def);
         }
 
         public static bool IsAdvancedApparel(this Apparel apparel)
         {
-            return apparel is AdvancedSlaveApparel || apparel is BrainWashSlaveApparel;
+            return apparel is AdvancedSlaveApparel;
         }
 
         public static bool IsUnlockAdvancedApparel(this Apparel apparel)
@@ -27,11 +27,6 @@ namespace MooGirl
             if (apparel is AdvancedSlaveApparel advanced)
             {
                 return advanced.IsCracked();
-            }
-
-            if (apparel is BrainWashSlaveApparel brainwashed)
-            {
-                return brainwashed.IsCracked();
             }
 
             return false;
@@ -66,7 +61,7 @@ namespace MooGirl
             List<Apparel> wornApparel = pawn.apparel.WornApparel;
             for (int i = 0; i < wornApparel.Count; i++)
             {
-                if (wornApparel[i] is AdvancedSlaveApparel || wornApparel[i] is BrainWashSlaveApparel)
+                if (wornApparel[i] is AdvancedSlaveApparel)
                 {
                     return true;
                 }
@@ -132,20 +127,64 @@ namespace MooGirl
             return false;
         }
 
+        public static void LockGeneratedSlaveApparel(this Pawn pawn)
+        {
+            if (pawn?.apparel?.WornApparel == null)
+            {
+                return;
+            }
+
+            List<Apparel> wornApparel = pawn.apparel.WornApparel;
+            for (int i = 0; i < wornApparel.Count; i++)
+            {
+                Apparel apparel = wornApparel[i];
+                if (apparel is SlaveApparel && !pawn.apparel.IsLocked(apparel))
+                {
+                    pawn.apparel.Lock(apparel);
+                }
+            }
+        }
+
         public static void StartUnlockJob(this CompUsable usable, Pawn pawn, LocalTargetInfo target, Apparel apparel)
         {
-            if (pawn.CanReserveAndReach(usable.parent, PathEndMode.Touch, Danger.Some) &&
-                ((target == null) || pawn.CanReserveAndReach(target, PathEndMode.Touch, Danger.Some)))
+            if (usable == null || pawn == null || apparel == null)
             {
-                CompForbiddable forbiddable = usable.parent.GetComp<CompForbiddable>();
-                if (forbiddable != null)
-                {
-                    forbiddable.Forbidden = false;
-                }
-
-                Job job = JobMaker.MakeJob(((CompProperties_Usable)usable.props).useJob, usable.parent, target, apparel);
-                pawn.jobs.TryTakeOrderedJob(job);
+                return;
             }
+
+            LocalTargetInfo jobTarget = ResolveJobTarget(pawn, target);
+            Pawn targetPawn = ResolveTargetPawn(pawn, jobTarget);
+            if (targetPawn?.apparel == null ||
+                !targetPawn.apparel.LockedApparel.Contains(apparel) ||
+                !apparel.SatisfiesKey(usable.parent))
+            {
+                return;
+            }
+
+            if (!pawn.CanReserveAndReach(usable.parent, PathEndMode.Touch, Danger.Some))
+            {
+                return;
+            }
+
+            if (targetPawn != pawn && !pawn.CanReserveAndReach(jobTarget, PathEndMode.Touch, Danger.Some))
+            {
+                return;
+            }
+
+            CompForbiddable forbiddable = usable.parent.GetComp<CompForbiddable>();
+            if (forbiddable != null)
+            {
+                forbiddable.Forbidden = false;
+            }
+
+            CompProperties_Usable usableProps = usable.props as CompProperties_Usable;
+            if (usableProps?.useJob == null)
+            {
+                return;
+            }
+
+            Job job = JobMaker.MakeJob(usableProps.useJob, usable.parent, jobTarget, apparel);
+            pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
         }
 
         public static FloatMenuOption MakeUnlockOption(
@@ -155,12 +194,24 @@ namespace MooGirl
             LocalTargetInfo target,
             WorkTypeDef requiredWork)
         {
-            if ((target != null) && !pawn.CanReserve(target))
+            LocalTargetInfo jobTarget = ResolveJobTarget(pawn, target);
+            Pawn targetPawn = ResolveTargetPawn(pawn, jobTarget);
+            if (targetPawn?.apparel == null)
+            {
+                return DisabledOption(label, "MooGirl.InvalidTarget".Translate().ToString());
+            }
+
+            if (!HasLockedApparel(targetPawn))
+            {
+                return DisabledOption(label, "MooGirl.NotWearingLockedApparel".Translate().ToString());
+            }
+
+            if (targetPawn != pawn && !pawn.CanReserve(jobTarget))
             {
                 return DisabledOption(label, "MooGirl.Reserved".Translate().ToString());
             }
 
-            if ((target != null) && !pawn.CanReach(target, PathEndMode.Touch, Danger.Some))
+            if (targetPawn != pawn && !pawn.CanReach(jobTarget, PathEndMode.Touch, Danger.Some))
             {
                 return DisabledOption(label, "MooGirl.NoPath".Translate().ToString());
             }
@@ -172,20 +223,20 @@ namespace MooGirl
 
             return new FloatMenuOption(label, delegate
             {
-                Pawn targetPawn = ResolveTargetPawn(pawn, target);
-                if (targetPawn?.apparel == null)
+                Pawn currentTargetPawn = ResolveTargetPawn(pawn, jobTarget);
+                if (currentTargetPawn?.apparel == null)
                 {
                     return;
                 }
 
                 List<FloatMenuOption> options = new List<FloatMenuOption>();
-                List<Apparel> lockedApparel = targetPawn.apparel.LockedApparel;
+                List<Apparel> lockedApparel = currentTargetPawn.apparel.LockedApparel;
                 for (int i = 0; i < lockedApparel.Count; i++)
                 {
                     Apparel item = lockedApparel[i];
                     if (item.SatisfiesKey(usable.parent))
                     {
-                        options.Add(new FloatMenuOption(item.Label, () => usable.StartUnlockJob(pawn, target, item)));
+                        options.Add(new FloatMenuOption(item.Label, () => usable.StartUnlockJob(pawn, jobTarget, item)));
                     }
                     else
                     {
@@ -204,7 +255,11 @@ namespace MooGirl
 
                 if (options.Count > 0)
                 {
-                    Find.WindowStack.Add(new FloatMenu(options));
+                    MooGirlGameUtility.TryAddWindow(new FloatMenu(options));
+                }
+                else
+                {
+                    Messages.Message("MooGirl.NotWearingLockedApparel".Translate(), MessageTypeDefOf.RejectInput, historical: false);
                 }
             },
             MenuOptionPriority.Default);
@@ -220,7 +275,7 @@ namespace MooGirl
 
         private static Pawn ResolveTargetPawn(Pawn actor, LocalTargetInfo target)
         {
-            if (target == null)
+            if (!target.IsValid)
             {
                 return actor;
             }
@@ -236,6 +291,21 @@ namespace MooGirl
             }
 
             return null;
+        }
+
+        private static LocalTargetInfo ResolveJobTarget(Pawn actor, LocalTargetInfo target)
+        {
+            if (target.IsValid)
+            {
+                return target;
+            }
+
+            return actor;
+        }
+
+        private static bool HasLockedApparel(Pawn pawn)
+        {
+            return pawn?.apparel != null && pawn.apparel.LockedApparel.Count > 0;
         }
     }
 }

@@ -1,4 +1,5 @@
 using RimWorld;
+using RimWorld.QuestGen;
 using Verse;
 
 namespace MooGirl
@@ -51,14 +52,18 @@ namespace MooGirl
             int changed = LifeStageVisualService.NormalizeLoadedPawns();
             if (changed > 0)
             {
-                MooGirlLog.Message("MooGirl.Newborn.Log.CorrectedBodyTypes".Translate(changed).ToString());
+                MooGirlLog.DevMessage("MooGirl.Newborn.Log.CorrectedBodyTypes".Translate(changed).ToString());
             }
         }
 
         private static void ResetTransientRuntimeState()
         {
+            MooGirlLog.ResetOnceWarnings();
+            MooGirlFoodEffectUtility.ResetDefCache();
+            MooGirlNurtureUtility.ResetDefCache();
             MooGirlMilkingAnimation.ResetTransientState();
             MountedCombatController.ResetTransientState();
+            GhoulRenderingRefreshUtility.ClearPendingRefreshes();
         }
 
         public override void ExposeData()
@@ -72,15 +77,16 @@ namespace MooGirl
         }
     }
 
-    public static class MooGirlStoryService
+    internal static class MooGirlStoryService
     {
         private const int OpeningCrashRetryTicks = 1000;
         private const float OpeningCrashQuestPoints = 10000f;
         private const float CourierRaidQuestPoints = 200f;
+        private const int CourierRaidRetryTicks = 60000;
 
-        public static void Tick(MooGirlStoryState state)
+        internal static void Tick(MooGirlStoryState state)
         {
-            if (state == null || Current.ProgramState != ProgramState.Playing)
+            if (state == null || !MooGirlGameUtility.IsPlaying())
             {
                 return;
             }
@@ -103,10 +109,14 @@ namespace MooGirl
                 return;
             }
 
-            Faction giantCorpFaction = Find.FactionManager.FirstFactionOfDef(MooGirlContentDefOf.MooGirl_GiantCorporations_Hostile);
-            if (giantCorpFaction != null && IncidentWorker_MooGirlStructuralCrashMission.ShouldExecute())
+            bool hasGiantCorpFaction = MooGirlGameUtility.TryGetFirstFactionOfDef(MooGirlContentDefOf.MooGirl_GiantCorporations_Hostile, out _);
+            bool hasMap = MooGirlGameUtility.TryResolvePlayerEventMap(out Map map);
+            if (hasGiantCorpFaction && hasMap && IncidentWorker_MooGirlStructuralCrashMission.ShouldExecute())
             {
-                QuestUtility.GenerateQuestAndMakeAvailable(MooGirl_DefOf.MooGirl_SlaveOpeningPodCrash, OpeningCrashQuestPoints);
+                Slate slate = new Slate();
+                slate.Set("points", OpeningCrashQuestPoints);
+                slate.Set("map", map);
+                QuestUtility.GenerateQuestAndMakeAvailable(MooGirl_DefOf.MooGirl_SlaveOpeningPodCrash, slate);
                 state.openingCrashStarted = true;
                 state.openingCrashCheckTimer = -1;
                 return;
@@ -133,19 +143,28 @@ namespace MooGirl
                 return;
             }
 
-            state.courierRaidTriggered = true;
             if (state.courierRaidQuestStarted)
             {
+                state.courierRaidTriggered = true;
                 return;
             }
 
-            Faction giantCorp = Find.FactionManager.FirstFactionOfDef(MooGirlContentDefOf.MooGirl_GiantCorporations_Hostile);
-            if (giantCorp != null)
+            bool hasGiantCorp = MooGirlGameUtility.TryGetFirstFactionOfDef(MooGirlContentDefOf.MooGirl_GiantCorporations_Hostile, out _);
+            bool hasMap = MooGirlGameUtility.TryResolvePlayerEventMap(out Map map);
+            if (!hasGiantCorp || !hasMap)
             {
-                QuestUtility.GenerateQuestAndMakeAvailable(MooGirlContentDefOf.MooGirl_CourierRaid, CourierRaidQuestPoints);
-                state.courierRaidQuestStarted = true;
+                state.courierRaidTimer = CourierRaidRetryTicks;
+                return;
             }
+
+            Slate slate = new Slate();
+            slate.Set("points", CourierRaidQuestPoints);
+            slate.Set("map", map);
+            QuestUtility.GenerateQuestAndMakeAvailable(MooGirlContentDefOf.MooGirl_CourierRaid, slate);
+            state.courierRaidTriggered = true;
+            state.courierRaidQuestStarted = true;
         }
+
     }
 
     public class HediffCompProperties_JoinWhenRescued : HediffCompProperties
@@ -172,7 +191,7 @@ namespace MooGirl
             }
 
             Pawn pawn = parent.pawn;
-            if (pawn.Dead || pawn.Faction == Faction.OfPlayer)
+            if (pawn.Dead || pawn.Destroyed || MooGirlWildSlaveUtility.IsPlayerFaction(pawn.Faction) || pawn.mindState == null)
             {
                 joinedAlready = true;
                 return;
@@ -187,7 +206,7 @@ namespace MooGirl
 
             MooGirlRescueJoinUtility.PrepareRescueJoinPawn(pawn);
             if (!pawn.Downed
-                && pawn.health.CanCrawlOrMove
+                && pawn.health?.CanCrawlOrMove == true
                 && (pawn.guest == null || !pawn.guest.IsPrisoner)
                 && MooGirlRescueJoinUtility.WasRescuedByPlayer(pawn)
                 && MooGirlRescueJoinUtility.TryJoinPlayer(pawn))
@@ -208,9 +227,9 @@ namespace MooGirl
     {
         public static bool ShouldExecute()
         {
-            if (MooGirlMod.settings?.enableStructuralCrashEvent != true)
+            if (MooGirlMod.Settings?.enableStructuralCrashEvent != true)
                 return false;
-            var comp = Current.Game.GetComponent<MooGirlStoryState>();
+            MooGirlGameUtility.TryGetGameComponent(out MooGirlStoryState comp);
             if (GenDate.DaysPassedFloat < 1f) return false;
             if (comp?.openingCrashStarted == true) return false;
             return true;

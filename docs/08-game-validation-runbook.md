@@ -43,17 +43,33 @@
 %USERPROFILE%\AppData\LocalLow\Ludeon Studios\RimWorld by Ludeon Studios\Config\ModsConfig.xml
 ```
 
+生成验证用配置模板：
+
+```powershell
+& 'C:\Users\Fishiv\bin\utf8-env.ps1'; .\docs\tools\New-GameValidationConfigs.ps1
+```
+
+输出目录：
+
+```text
+TMP\GameValidationConfigs
+```
+
+使用方式：先备份当前 `ModsConfig.xml`，再将对应模板复制为当前 `ModsConfig.xml`；验证完成后恢复原配置。脚本只生成模板，不会修改用户当前游戏配置。
+
 验证前命令：
 
 ```powershell
 & 'C:\Users\Fishiv\bin\utf8-env.ps1'; .\docs\tools\Invoke-Phase6StaticValidation.ps1
 ```
 
-日志扫描建议：
+日志扫描命令：
 
 ```powershell
-& 'C:\Users\Fishiv\bin\utf8-env.ps1'; Select-String -LiteralPath "$env:USERPROFILE\AppData\LocalLow\Ludeon Studios\RimWorld by Ludeon Studios\Player.log" -Pattern "Error|Exception|Could not|Failed|missing|NullReference|Translation data|Could not resolve|XML error|Patch operation" -CaseSensitive:$false
+& 'C:\Users\Fishiv\bin\utf8-env.ps1'; .\docs\tools\Invoke-PlayerLogScan.ps1
 ```
+
+该脚本发现疑似红字、异常、缺失翻译、XML 或 patch 错误时会返回失败码；需要检查上一轮日志时使用 `-Previous`。
 
 ## 加载组合
 
@@ -61,7 +77,7 @@
 
 目的：证明无 DLC 和无可选集成时，核心 mod 加载不红字。
 
-`activeMods`：
+`activeMods`：可使用 `TMP\GameValidationConfigs\01-minimal.xml`。
 
 ```xml
 <li>brrainz.harmony</li>
@@ -81,7 +97,7 @@
 
 目的：证明 Royalty、Ideology、Biotech、Anomaly、Odyssey 全开时 patch 和 MayRequire 正常。
 
-`activeMods`：
+`activeMods`：可使用 `TMP\GameValidationConfigs\02-all-dlc.xml`。
 
 ```xml
 <li>brrainz.harmony</li>
@@ -107,7 +123,7 @@
 
 目的：证明 `1.6/FacialAnimation` 仅在 FA 启用时加载，且补丁不重复添加 comp。
 
-`activeMods`：在全 DLC 组合后追加：
+`activeMods`：可使用 `TMP\GameValidationConfigs\03-facial-animation.xml`；等价于在全 DLC 组合后追加：
 
 ```xml
 <li>Nals.FacialAnimation</li>
@@ -124,7 +140,7 @@
 
 目的：证明 Search and Destroy 集成只在目标 mod 存在时加载，并正确插入 `MooGirlLike`。
 
-`activeMods`：在全 DLC 组合后追加：
+`activeMods`：可使用 `TMP\GameValidationConfigs\04-search-and-destroy.xml`；等价于在全 DLC 组合后追加：
 
 ```xml
 <li>MemeGoddess.SearchAndDestroy</li>
@@ -141,7 +157,7 @@
 
 目的：证明 VCookE 集成只在目标 mod 存在时加载，且 cheese press 目标缺失或已添加时静默。
 
-`activeMods`：在全 DLC 组合后追加：
+`activeMods`：可使用 `TMP\GameValidationConfigs\05-vcooke.xml`；等价于在全 DLC 组合后追加：
 
 ```xml
 <li>OskarPotocki.VanillaFactionsExpanded.Core</li>
@@ -159,7 +175,7 @@
 
 目的：证明全 DLC、HAR、FA、Search and Destroy、VCookE 同时存在时没有 patch 顺序冲突。
 
-`activeMods`：全 DLC 组合 + FA + Search and Destroy + VCookE。
+`activeMods`：可使用 `TMP\GameValidationConfigs\06-all-integrations.xml`；等价于全 DLC 组合 + FA + Search and Destroy + VCookE。
 
 验收：
 

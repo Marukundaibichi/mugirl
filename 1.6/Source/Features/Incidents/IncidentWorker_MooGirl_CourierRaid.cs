@@ -1,4 +1,5 @@
 using RimWorld;
+using RimWorld.QuestGen;
 using UnityEngine;
 using Verse;
 
@@ -10,17 +11,19 @@ namespace MooGirl
         {
             if (!base.CanFireNowSub(parms)) return false;
             if (!(parms.target is Map)) return false;
-            return Find.FactionManager.FirstFactionOfDef(MooGirlContentDefOf.MooGirl_GiantCorporations_Hostile) != null;
+            return MooGirlGameUtility.TryGetFirstFactionOfDef(MooGirlContentDefOf.MooGirl_GiantCorporations_Hostile, out _);
         }
 
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
             if (!(parms.target is Map map)) return false;
-            Faction faction = Find.FactionManager.FirstFactionOfDef(MooGirlContentDefOf.MooGirl_GiantCorporations_Hostile);
-            if (faction == null) return false;
+            if (!MooGirlGameUtility.TryGetFirstFactionOfDef(MooGirlContentDefOf.MooGirl_GiantCorporations_Hostile, out Faction _)) return false;
 
             float points = parms.points > 0f ? Mathf.Min(parms.points, 200f) : 200f;
-            QuestUtility.GenerateQuestAndMakeAvailable(MooGirlContentDefOf.MooGirl_CourierRaid, points);
+            Slate slate = new Slate();
+            slate.Set("points", points);
+            slate.Set("map", map);
+            QuestUtility.GenerateQuestAndMakeAvailable(MooGirlContentDefOf.MooGirl_CourierRaid, slate);
             return true;
         }
     }

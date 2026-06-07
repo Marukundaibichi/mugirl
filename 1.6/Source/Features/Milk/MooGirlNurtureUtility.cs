@@ -25,6 +25,13 @@ namespace MooGirl
         public static HediffDef NurtureAfterglowDef => nurtureAfterglowDef ?? (nurtureAfterglowDef = DefDatabase<HediffDef>.GetNamedSilentFail("MooGirl_NurtureAfterglow"));
         public static TraitDef NurturedTraitDef => nurturedTraitDef ?? (nurturedTraitDef = DefDatabase<TraitDef>.GetNamedSilentFail("MooGirl_NurturedByMooGirl"));
 
+        internal static void ResetDefCache()
+        {
+            motherlyNurtureDef = null;
+            nurtureAfterglowDef = null;
+            nurturedTraitDef = null;
+        }
+
         public static bool CanStartNurture(Pawn pawn)
         {
             if (pawn?.health?.hediffSet == null)

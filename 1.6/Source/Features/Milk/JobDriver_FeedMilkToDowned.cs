@@ -10,7 +10,7 @@ namespace MooGirl
     {
         private const TargetIndex DownedInd = TargetIndex.A;
 
-        private Pawn DownedPawn => (Pawn)job.GetTarget(DownedInd).Thing;
+        private Pawn DownedPawn => job.GetTarget(DownedInd).Thing as Pawn;
         private Pawn MooPawn => pawn;
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
@@ -35,7 +35,10 @@ namespace MooGirl
 
         private void ApplyFeedEffects()
         {
-            MooGirlMilkInteractionUtility.ApplyDownedFeed(DownedPawn, MooPawn);
+            if (!MooGirlMilkInteractionUtility.ApplyDownedFeed(DownedPawn, MooPawn))
+            {
+                pawn.jobs.EndCurrentJob(JobCondition.Incompletable, true);
+            }
         }
     }
 }

@@ -16,14 +16,19 @@ namespace MooGirl
         {
             base.Notify_QuestSignalReceived(signal);
 
-            if (signal.tag == inSignalRescued)
+            if (!string.IsNullOrEmpty(inSignalRescued) && signal.tag == inSignalRescued)
             {
-                if (signal.args.TryGetArg("SUBJECT", out Pawn rescuedPawn) && pawns.Contains(rescuedPawn))
+                if (signal.args.TryGetArg("SUBJECT", out Pawn rescuedPawn) && pawns?.Contains(rescuedPawn) == true)
                 {
                     TryJoinRescuedPawn(rescuedPawn);
                 }
                 else
                 {
+                    if (pawns == null)
+                    {
+                        return;
+                    }
+
                     for (int i = 0; i < pawns.Count; i++)
                     {
                         TryJoinRescuedPawn(pawns[i]);
@@ -32,7 +37,7 @@ namespace MooGirl
 
                 EndQuestIfAllJoined();
             }
-            else if (signal.tag == inSignalRecruited)
+            else if (!string.IsNullOrEmpty(inSignalRecruited) && signal.tag == inSignalRecruited)
             {
                 EndQuestIfAllJoined();
             }
@@ -40,17 +45,17 @@ namespace MooGirl
 
         private void TryJoinRescuedPawn(Pawn pawn)
         {
-            if (pawn == null || pawn.Dead || pawn.Destroyed)
+            if (pawn == null || pawn.Dead || pawn.Destroyed || pawn.mindState == null)
+            {
+                return;
+            }
+
+            if (MooGirlWildSlaveUtility.IsPlayerFaction(pawn.Faction))
             {
                 return;
             }
 
             MooGirlRescueJoinUtility.PrepareRescueJoinPawn(pawn);
-            if (pawn.Faction == Faction.OfPlayer)
-            {
-                return;
-            }
-
             if (MooGirlRescueJoinUtility.WasRescuedByPlayer(pawn))
             {
                 MooGirlRescueJoinUtility.TryJoinPlayer(pawn);
@@ -60,6 +65,11 @@ namespace MooGirl
         private void EndQuestIfAllJoined()
         {
             if (quest == null || quest.State != QuestState.Ongoing)
+            {
+                return;
+            }
+
+            if (pawns == null)
             {
                 return;
             }
@@ -74,7 +84,7 @@ namespace MooGirl
                 }
 
                 anyPawn = true;
-                if (pawn.Faction != Faction.OfPlayer)
+                if (!MooGirlWildSlaveUtility.IsPlayerFaction(pawn.Faction))
                 {
                     return;
                 }
@@ -88,17 +98,17 @@ namespace MooGirl
 
         public override bool QuestPartReserves(Pawn p)
         {
-            return pawns.Contains(p);
+            return pawns?.Contains(p) == true;
         }
 
         public override void ReplacePawnReferences(Pawn replace, Pawn with)
         {
-            pawns.Replace(replace, with);
+            pawns?.Replace(replace, with);
         }
 
         public override void Notify_PawnDiscarded(Pawn pawn)
         {
-            pawns.Remove(pawn);
+            pawns?.Remove(pawn);
         }
 
         public override void ExposeData()

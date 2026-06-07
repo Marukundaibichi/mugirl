@@ -1,4 +1,5 @@
 using HarmonyLib;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Verse;
@@ -20,7 +21,7 @@ namespace MooGirl
             }
 
             manualPatchNames.Clear();
-            // 特性标注的 patch 仍由 PatchAll 处理；这里仅管理手动反射 patch，
+            // 特性标注的 patch 由 MooGirlBootstrap 逐类处理；这里仅管理手动反射 patch，
             // 让可选兼容逻辑拥有一个可审计的边界。
             PatchPawnGeneratorGeneratePawn(harmony);
             PatchAlienRaceSwaddleGraphicFor(harmony);
@@ -37,7 +38,7 @@ namespace MooGirl
         {
             // HAR 是运行时可选依赖。这里只通过反射访问，保证 AlienRace
             // 缺失或变更时本 mod 仍能干净加载。
-            System.Type swaddleType = AccessTools.TypeByName("AlienRace.AlienPawnRenderNode_Swaddle");
+            Type swaddleType = AccessTools.TypeByName("AlienRace.AlienPawnRenderNode_Swaddle");
             if (swaddleType == null)
             {
                 return;
@@ -66,11 +67,21 @@ namespace MooGirl
                 return;
             }
 
-            harmony.Patch(
-                target,
-                prefix: prefix == null ? null : new HarmonyMethod(prefix),
-                postfix: postfix == null ? null : new HarmonyMethod(postfix));
-            manualPatchNames.Add(nameKey);
+            try
+            {
+                harmony.Patch(
+                    target,
+                    prefix: prefix == null ? null : new HarmonyMethod(prefix),
+                    postfix: postfix == null ? null : new HarmonyMethod(postfix));
+                manualPatchNames.Add(nameKey);
+            }
+            catch (Exception ex)
+            {
+                string detail = ex.GetType().Name + ": " + ex.Message;
+                MooGirlLog.WarningOnce(
+                    "PatchRegistry.PatchFailed." + nameKey,
+                    "MooGirl.PatchRegistry.PatchFailed".Translate(nameKey.Translate(), detail).ToString());
+            }
         }
     }
 }

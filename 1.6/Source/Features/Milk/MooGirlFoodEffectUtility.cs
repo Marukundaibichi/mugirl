@@ -9,7 +9,7 @@ namespace MooGirl
 
         internal static void RemoveHediffs(Pawn pawn, List<string> removeHediffs)
         {
-            if (pawn == null || removeHediffs == null || removeHediffs.Count == 0)
+            if (pawn?.health?.hediffSet == null || removeHediffs == null || removeHediffs.Count == 0)
             {
                 return;
             }
@@ -48,9 +48,14 @@ namespace MooGirl
             return hediffDef;
         }
 
+        internal static void ResetDefCache()
+        {
+            HediffDefCache.Clear();
+        }
+
         internal static void AddOrRefreshHediff(Pawn pawn, HediffDef hediffDef, float minimumSeverity = -1f)
         {
-            if (pawn == null || hediffDef == null)
+            if (pawn?.health?.hediffSet == null || hediffDef == null)
             {
                 return;
             }

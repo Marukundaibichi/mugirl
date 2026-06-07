@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Verse;
 
 namespace MooGirl
@@ -6,29 +7,50 @@ namespace MooGirl
     internal static class MooGirlLog
     {
         private const string Prefix = "[MooGirl] ";
+        private const string UnknownWarningKey = "MooGirlLog.WarningOnce.Unknown";
         private static readonly HashSet<string> warnedKeys = new HashSet<string>();
 
-        internal static void Message(string message)
+        internal static void DevMessage(string message)
         {
-            Log.Message(Prefix + message);
+            if (Prefs.DevMode)
+            {
+                Log.Message(Prefix + message);
+            }
         }
 
-        internal static void Warning(string message)
+        private static void Warning(string message)
         {
             Log.Warning(Prefix + message);
         }
 
-        internal static void WarningOnce(string key, string message)
+        internal static void WarningOnce(
+            string key,
+            string message,
+            [CallerMemberName] string callerMemberName = null,
+            [CallerLineNumber] int callerLineNumber = 0)
         {
-            if (warnedKeys.Add(key))
+            string warningKey = string.IsNullOrWhiteSpace(key)
+                ? BuildFallbackKey(callerMemberName, callerLineNumber)
+                : key.Trim();
+            if (warnedKeys.Add(warningKey))
             {
-                Warning(message);
+                Warning(string.IsNullOrWhiteSpace(message) ? "Unspecified warning." : message);
             }
         }
 
-        internal static void Error(string message)
+        private static string BuildFallbackKey(string callerMemberName, int callerLineNumber)
         {
-            Log.Error(Prefix + message);
+            if (!string.IsNullOrEmpty(callerMemberName) || callerLineNumber > 0)
+            {
+                return "MooGirlLog.WarningOnce.CallSite:" + (callerMemberName ?? string.Empty) + ":" + callerLineNumber;
+            }
+
+            return UnknownWarningKey;
+        }
+
+        internal static void ResetOnceWarnings()
+        {
+            warnedKeys.Clear();
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using RimWorld;
-using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
@@ -28,8 +27,9 @@ namespace MooGirl
     public class HediffComp_ReduceWillorEnslave : HediffComp
     {
         private int age = 0;
+        private bool triggered = false;
 
-        public CompProperties_ReduceWillorEnslave Props => (CompProperties_ReduceWillorEnslave)props;
+        public CompProperties_ReduceWillorEnslave Props => props as CompProperties_ReduceWillorEnslave;
 
         public override void CompPostTick(ref float severityAdjustment)
         {
@@ -38,47 +38,82 @@ namespace MooGirl
             age++;
 
             // 先检查 Pawn 是否穿着洗脑装备且已破解
-            if ( age >= Props.triggerTicks && Pawn.IsPrisoner && Pawn.IsWearingCrackedBrainwashApparel())
+            CompProperties_ReduceWillorEnslave compProps = Props;
+            Pawn pawn = Pawn;
+            if (triggered || compProps == null)
             {
-                // 削减意志力
-                if (Props.reduceWill)
-                {
-                    ReduceWill();
-                }
-
-                // 直接奴隶
-                if (Props.makeSlave)
-                {
-                    MakeSlave();
-                }
+                return;
             }
 
+            int triggerTicks = Mathf.Max(1, compProps.triggerTicks);
+            if (age < triggerTicks || pawn == null || !pawn.IsPrisoner || !pawn.IsWearingCrackedBrainwashApparel())
+            {
+                return;
+            }
+
+            bool handled = false;
+            // 削减意志力
+            if (compProps.reduceWill)
+            {
+                handled |= ReduceWill(pawn, compProps);
+            }
+
+            // 直接奴隶
+            if (compProps.makeSlave)
+            {
+                handled |= MakeSlave(pawn);
+            }
+
+            if (!compProps.reduceWill && !compProps.makeSlave)
+            {
+                handled = true;
+            }
+
+            if (handled)
+            {
+                triggered = true;
+            }
         }
 
         // 削减意志力
-        private void ReduceWill()
+        private bool ReduceWill(Pawn pawn, CompProperties_ReduceWillorEnslave compProps)
         {
-            if (Pawn.guest.IsPrisoner )
+            var guest = pawn?.guest;
+            if (guest?.IsPrisoner != true)
             {
-                // 计算削减的意志力
-                float willpowerToReduce = Mathf.Min(Pawn.guest.will, Props.willReductionAmount);
-                Pawn.guest.will = Mathf.Max(0f, Pawn.guest.will - willpowerToReduce);
+                return false;
             }
+
+            if (compProps.willReductionAmount <= 0f)
+            {
+                return true;
+            }
+
+            // 计算削减的意志力
+            float willpowerToReduce = Mathf.Min(guest.will, compProps.willReductionAmount);
+            guest.will = Mathf.Max(0f, guest.will - willpowerToReduce);
+            return true;
         }
 
         // 直接奴役囚犯
-        private void MakeSlave()
+        private bool MakeSlave(Pawn pawn)
         {
-            if (Pawn.IsPrisoner)
+            var guest = pawn?.guest;
+            Faction playerFaction = Faction.OfPlayerSilentFail;
+            if (guest?.IsPrisoner != true || playerFaction == null)
             {
-                Pawn.guest.will = 0f;
-                Pawn.guest.SetGuestStatus(Faction.OfPlayer, GuestStatus.Slave);
+                return false;
             }
+
+            guest.will = 0f;
+            guest.SetGuestStatus(playerFaction, GuestStatus.Slave);
+            return true;
         }
         public override void CompExposeData()
         {
             base.CompExposeData();
             Scribe_Values.Look(ref age, "age", 0);
+            Scribe_Values.Look(ref triggered, "triggered", false);
         }
 
     }

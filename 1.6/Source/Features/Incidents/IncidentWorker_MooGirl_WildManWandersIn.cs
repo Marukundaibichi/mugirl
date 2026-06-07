@@ -10,9 +10,11 @@ namespace MooGirl
     {
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
-            // 获取目标地图
-            Map map = (Map)parms.target;
-            // 尝试寻找入口位置
+            if (!(parms.target is Map map))
+            {
+                return false;
+            }
+
             if (!TryFindEntryCell(map, out var loc))
                 return false;
 
@@ -37,8 +39,11 @@ namespace MooGirl
                 developmentalStages: DevelopmentalStage.Adult // 成年阶段
             );
 
-            // 生成Pawn实例
             Pawn pawn = PawnGenerator.GeneratePawn(request);
+            if (pawn == null)
+            {
+                return false;
+            }
 
             MooGirlApparelTagUtility.TryWearIdeoSuppressedKindApparel(pawn);
 
@@ -61,6 +66,12 @@ namespace MooGirl
         // 尝试寻找合适的入口位置（地图边缘可达殖民地的位置）
         private bool TryFindEntryCell(Map map, out IntVec3 cell)
         {
+            if (map?.reachability == null)
+            {
+                cell = IntVec3.Invalid;
+                return false;
+            }
+
             return CellFinder.TryFindRandomEdgeCellWith((IntVec3 c) => map.reachability.CanReachColony(c), map, CellFinder.EdgeRoadChance_Ignore, out cell);
         }
     }

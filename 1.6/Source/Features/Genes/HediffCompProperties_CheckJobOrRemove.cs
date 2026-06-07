@@ -19,7 +19,7 @@ namespace MooGirl
         {
             get
             {
-                return (HediffCompProperties_CheckJobOrRemove)this.props;
+                return props as HediffCompProperties_CheckJobOrRemove;
             }
         }
 
@@ -27,14 +27,15 @@ namespace MooGirl
         {
             base.CompPostTick(ref severityAdjustment);
 
-            Pawn pawn = this.parent.pawn;
+            Pawn pawn = parent?.pawn;
             if (pawn == null || pawn.Dead)
             {
                 return;
             }
 
+            HediffCompProperties_CheckJobOrRemove checkProps = Props;
             // 如果未配置 requiredJob，则不做检查
-            if (Props.requiredJob == null)
+            if (checkProps?.requiredJob == null)
             {
                 return;
             }
@@ -42,9 +43,9 @@ namespace MooGirl
             Job curJob = pawn.CurJob;
 
             // 没有 Job 或 Job 不匹配 → 立刻移除 Hediff
-            if (curJob == null || curJob.def != Props.requiredJob)
+            if (curJob == null || curJob.def != checkProps.requiredJob)
             {
-                pawn.health.RemoveHediff(this.parent);
+                pawn.health?.RemoveHediff(parent);
             }
         }
     }

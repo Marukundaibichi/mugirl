@@ -17,22 +17,23 @@ namespace MooGirl
 
         internal static Pawn PawnFor(Pawn_RopeTracker tracker)
         {
-            return tracker == null ? null : (Pawn)pawnField.GetValue(tracker);
+            return tracker == null || pawnField == null ? null : pawnField.GetValue(tracker) as Pawn;
         }
 
         private static void EndCustomFollowJobs(Pawn owner, List<Pawn> ropees)
         {
-            if (ropees == null)
+            if (owner == null || ropees == null)
             {
                 return;
             }
 
-            for (int i = 0; i < ropees.Count; i++)
+            for (int i = ropees.Count - 1; i >= 0; i--)
             {
                 Pawn ropee = ropees[i];
                 if (RopingService.IsMooGirlRopee(ropee) &&
                     RopingService.IsFollowingRoper(ropee) &&
-                    ropee.CurJob.targetA.Thing == owner)
+                    ropee.jobs != null &&
+                    ropee.CurJob?.targetA.Thing == owner)
                 {
                     ropee.jobs.EndCurrentJob(JobCondition.InterruptForced);
                 }
@@ -42,11 +43,8 @@ namespace MooGirl
         private static void ForceUnrope(Pawn_RopeTracker tracker)
         {
             Pawn owner = PawnFor(tracker);
-            List<Pawn> ropees = tracker.Ropees == null ? null : new List<Pawn>(tracker.Ropees);
-
+            EndCustomFollowJobs(owner, tracker.Ropees);
             tracker.BreakAllRopes();
-            RopingService.NotifyBreakAllRopes(owner);
-            EndCustomFollowJobs(owner, ropees);
         }
 
         private static void BreakRopeWithRoper(Pawn_RopeTracker tracker)

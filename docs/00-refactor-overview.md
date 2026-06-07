@@ -50,6 +50,7 @@
 - `06-localization-and-comments.md`：中文注释与翻译键规则。
 - `07-second-round-refactor-plan.md`：重构后快照审查发现的问题、第二轮重构优先级、验收标准和回归清单。
 - `08-game-validation-runbook.md`：第二轮后游戏内加载、功能、日志和回归验证执行清单；该清单由用户手动执行。
+- `09-post-refactor-hardening-plan.md`：第二轮后严格审查发现问题的整改闭环计划，按 P0/P1/P2 处理兼容性、性能、侵入性、设计缺陷和发布卫生。
 
 ## 推荐执行顺序
 

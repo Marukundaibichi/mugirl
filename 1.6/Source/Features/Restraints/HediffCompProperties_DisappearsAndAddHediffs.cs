@@ -16,18 +16,19 @@ namespace MooGirl
     // 继承自 HediffComp_Disappears，增加消失时添加新 Hediff 的功能
     public class HediffComp_DisappearsAndAddHediffs : HediffComp_Disappears
     {
-        public new CompProperties_DisappearsAndAddHediffs Props => (CompProperties_DisappearsAndAddHediffs)props;
+        public new CompProperties_DisappearsAndAddHediffs Props => props as CompProperties_DisappearsAndAddHediffs;
 
         // 重写消失后调用函数
         public override void CompPostPostRemoved()
         {
             base.CompPostPostRemoved();
 
+            CompProperties_DisappearsAndAddHediffs compProps = Props;
             // 消失时如果配置了新Hediff，则添加它
-            if (Props.hediffToAddOnDisappear != null && Pawn != null && parent.Part != null)
+            if (compProps?.hediffToAddOnDisappear != null && Pawn?.health != null && parent?.Part != null)
             {
                 // 添加指定Hediff，添加在与当前Hediff相同的部位上
-                Pawn.health.AddHediff(Props.hediffToAddOnDisappear, parent.Part);
+                Pawn.health.AddHediff(compProps.hediffToAddOnDisappear, parent.Part);
             }
         }
     }

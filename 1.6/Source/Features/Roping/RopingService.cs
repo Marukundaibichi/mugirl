@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using RimWorld;
 using Verse;
+using Verse.AI;
 
 namespace MooGirl
 {
@@ -8,8 +9,61 @@ namespace MooGirl
     {
         public static bool IsMooGirlRopee(Pawn pawn)
         {
-            // 本阶段先保留旧行为：仍以 MooGirlBody 判定，避免影响异种框架变体兼容边界。
-            return pawn?.RaceProps?.body == MooGirl_DefOf.MooGirlBody;
+            // 牵引规则保留历史边界：按 MooGirl body 识别 ropee，允许 HAR 变体共用该身体。
+            return MooGirlIdentity.HasMooGirlBody(pawn);
+        }
+
+        public static bool CanStartPawnRope(Pawn roper, Pawn ropee)
+        {
+            if (roper == null || ropee == null || roper == ropee)
+            {
+                return false;
+            }
+
+            if (!IsMooGirlRopee(ropee))
+            {
+                return false;
+            }
+
+            if (!roper.Spawned || !ropee.Spawned || roper.Dead || ropee.Dead || roper.Destroyed || ropee.Destroyed || roper.Map != ropee.Map)
+            {
+                return false;
+            }
+
+            if (roper.health?.capacities?.CapableOf(PawnCapacityDefOf.Moving) != true ||
+                ropee.health?.capacities?.CapableOf(PawnCapacityDefOf.Moving) != true)
+            {
+                return false;
+            }
+
+            if (IsFollowingRoper(roper))
+            {
+                return false;
+            }
+
+            bool ropeeFollowingRoper = IsFollowingRoper(ropee);
+            bool ropeeRopedToSpot = IsRopedToSpot(ropee);
+            if (ropeeFollowingRoper && !ropeeRopedToSpot)
+            {
+                return false;
+            }
+
+            if (ropee.stances?.stunner?.Stunned == true)
+            {
+                return false;
+            }
+
+            if (IsMooGirlRopee(roper) && IsMooGirlRopee(ropee))
+            {
+                return false;
+            }
+
+            if (ropee.InMentalState && ropee.MentalState is MentalState_Berserk)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public static bool IsFollowingRoper(Pawn pawn)
@@ -117,6 +171,20 @@ namespace MooGirl
             if (index != null)
             {
                 index.ClearPendingSpotRope(pawn);
+            }
+        }
+
+        public static void ClearPendingSpotRope(Pawn pawn, Map map)
+        {
+            MapRopingIndex index = map?.GetComponent<MapRopingIndex>();
+            if (index != null)
+            {
+                index.ClearPendingSpotRope(pawn);
+            }
+
+            if (pawn?.Map != null && pawn.Map != map)
+            {
+                ClearPendingSpotRope(pawn);
             }
         }
 

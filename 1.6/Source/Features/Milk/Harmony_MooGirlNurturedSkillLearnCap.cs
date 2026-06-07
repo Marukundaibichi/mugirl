@@ -16,7 +16,8 @@ namespace MooGirl
         public static void Prefix(SkillRecord __instance)
         {
             Pawn pawn = PawnField?.GetValue(__instance) as Pawn;
-            if (pawn?.story?.traits == null || !pawn.story.traits.HasTrait(MooGirlNurtureUtility.NurturedTraitDef))
+            TraitDef nurturedTrait = MooGirlNurtureUtility.NurturedTraitDef;
+            if (nurturedTrait == null || pawn?.story?.traits == null || !pawn.story.traits.HasTrait(nurturedTrait))
             {
                 return;
             }
@@ -26,8 +27,13 @@ namespace MooGirl
                 return;
             }
 
-            float xpSinceMidnight = (float)XpSinceMidnightField.GetValue(__instance);
-            int baseCap = (int)MaxFullRateXpPerDayField.GetValue(null);
+            object xpSinceMidnightValue = XpSinceMidnightField.GetValue(__instance);
+            object baseCapValue = MaxFullRateXpPerDayField.GetValue(null);
+            if (!(xpSinceMidnightValue is float xpSinceMidnight) || !(baseCapValue is int baseCap))
+            {
+                return;
+            }
+
             float extraCap = baseCap * 1.5f;
             if (xpSinceMidnight > baseCap)
             {

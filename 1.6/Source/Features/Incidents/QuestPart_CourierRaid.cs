@@ -20,7 +20,7 @@ namespace MooGirl
         public override void Notify_QuestSignalReceived(Signal signal)
         {
             base.Notify_QuestSignalReceived(signal);
-            if (signal.tag == inSignal)
+            if (!string.IsNullOrEmpty(inSignal) && signal.tag == inSignal)
             {
                 SpawnCourier();
             }
@@ -34,21 +34,21 @@ namespace MooGirl
             }
             if (map == null)
             {
-                MooGirlLog.Warning("MooGirl.CourierRaid.SpawnLog.NoMap".Translate().ToString());
+                MooGirlLog.WarningOnce("CourierRaid.Spawn.NoMap", "MooGirl.CourierRaid.SpawnLog.NoMap".Translate().ToString());
                 return;
             }
             if (faction == null)
             {
-                MooGirlLog.Warning("MooGirl.CourierRaid.SpawnLog.NoFaction".Translate().ToString());
+                MooGirlLog.WarningOnce("CourierRaid.Spawn.NoFaction", "MooGirl.CourierRaid.SpawnLog.NoFaction".Translate().ToString());
                 return;
             }
             if (!spawnCell.IsValid && !RCellFinder.TryFindRandomPawnEntryCell(out spawnCell, map, 0f))
             {
-                MooGirlLog.Warning("MooGirl.CourierRaid.SpawnLog.NoSpawnCell".Translate().ToString());
+                MooGirlLog.WarningOnce("CourierRaid.Spawn.NoSpawnCell", "MooGirl.CourierRaid.SpawnLog.NoSpawnCell".Translate().ToString());
                 return;
             }
 
-            Faction courierFaction = faction != null && !faction.HostileTo(Faction.OfPlayer) ? faction : null;
+            Faction courierFaction = faction != null && !MooGirlWildSlaveUtility.IsHostileToPlayer(faction) ? faction : null;
             PawnGenerationRequest request = new PawnGenerationRequest(
                 MooGirlContentDefOf.AI_GC_Courier,
                 courierFaction,
@@ -59,30 +59,54 @@ namespace MooGirl
                 mustBeCapableOfViolence: true,
                 allowFood: false);
             courier = PawnGenerator.GeneratePawn(request);
+            if (courier == null || courier.inventory?.innerContainer == null || courier.mindState == null)
+            {
+                MooGirlLog.WarningOnce(
+                    "CourierGenerationFailed",
+                    "Courier raid could not generate a usable courier pawn; skipping courier spawn.");
+                MooGirlGeneratedPawnUtility.Discard(courier);
+                courier = null;
+                return;
+            }
 
             AddToInventory(courier, MooGirlContentDefOf.MooGirl_CourierDiary, 1);
             AddToInventory(courier, MooGirlContentDefOf.MooGirl_SlaveApparelKey_Medieval, 6);
             AddToInventory(courier, MooGirlContentDefOf.MooGirl_SlaveApparelKey_Industrial, 4);
 
             GenSpawn.Spawn(courier, spawnCell, map);
+            if (!courier.Spawned)
+            {
+                MooGirlLog.WarningOnce(
+                    "CourierSpawnFailed",
+                    "Courier raid generated a courier but failed to spawn it on the target map.");
+                MooGirlGeneratedPawnUtility.Discard(courier);
+                courier = null;
+                return;
+            }
+
             LordMaker.MakeNewLord(
                 courier.Faction,
                 new LordJob_WaitForDurationThenExit(spawnCell, ConversationWaitTicks),
                 map,
                 new List<Pawn> { courier });
 
-            Find.LetterStack.ReceiveLetter(
+            MooGirlGameUtility.TryReceiveLetter(
                 "MooGirl.CourierContactLetterLabel".Translate(),
                 "MooGirl.CourierContactLetterText".Translate(),
                 LetterDefOf.NeutralEvent,
                 courier);
-            Find.TickManager.slower.SignalForceNormalSpeedShort();
+            MooGirlGameUtility.TrySignalForceNormalSpeedShort();
         }
 
         private static void AddToInventory(Pawn pawn, ThingDef thingDef, int count)
         {
-            if (pawn == null || thingDef == null || count <= 0) return;
+            if (pawn?.inventory?.innerContainer == null || thingDef == null || count <= 0) return;
             Thing thing = ThingMaker.MakeThing(thingDef);
+            if (thing == null)
+            {
+                return;
+            }
+
             thing.stackCount = count;
             if (!pawn.inventory.innerContainer.TryAdd(thing))
             {
@@ -95,7 +119,7 @@ namespace MooGirl
             base.ExposeData();
             Scribe_References.Look(ref map, "map");
             Scribe_References.Look(ref faction, "faction");
-            Scribe_Values.Look(ref spawnCell, "spawnCell");
+            Scribe_Values.Look(ref spawnCell, "spawnCell", IntVec3.Invalid);
             Scribe_References.Look(ref courier, "courier");
             Scribe_Values.Look(ref inSignal, "inSignal");
         }
@@ -122,21 +146,31 @@ namespace MooGirl
 
         public static void ShowDialog(Pawn courier, Pawn negotiator)
         {
-            if (!CanTalkToCourier(courier))
+            if (!CanNegotiateWithCourier(negotiator, courier))
             {
-                Messages.Message("MooGirl.CourierAlreadyResolved".Translate(), MessageTypeDefOf.RejectInput);
+                Messages.Message("MooGirl.CourierAlreadyResolved".Translate(), MessageTypeDefOf.RejectInput, historical: false);
                 return;
             }
 
             Dialog_MessageBox dialog = new Dialog_MessageBox(
                 "MooGirl.CourierDialogText".Translate(courier.Named("COURIER"), negotiator.Named("NEGOTIATOR")),
                 "MooGirl.CourierDialogFight".Translate(),
-                () => StartFight(courier),
+                () => TryStartFight(courier),
                 "MooGirl.CourierDialogLeaveItems".Translate(),
-                () => DropItemsAndLeave(courier),
+                () => TryDropItemsAndLeave(courier),
                 "MooGirl.CourierDialogTitle".Translate(),
                 buttonADestructive: true);
-            Find.WindowStack.Add(dialog);
+            MooGirlGameUtility.TryAddWindow(dialog);
+        }
+
+        public static bool CanNegotiateWithCourier(Pawn negotiator, Pawn courier)
+        {
+            return negotiator != null
+                && MooGirlWildSlaveUtility.IsPlayerFaction(negotiator.Faction)
+                && negotiator.RaceProps?.Humanlike == true
+                && !negotiator.Dead
+                && !negotiator.Downed
+                && CanTalkToCourier(courier);
         }
 
         private static bool HasCourierPayload(Pawn courier)
@@ -149,10 +183,10 @@ namespace MooGirl
             ThingOwner<Thing> inventory = courier.inventory.innerContainer;
             for (int i = 0; i < inventory.Count; i++)
             {
-                Thing thing = inventory[i];
-                if (thing.def == MooGirlContentDefOf.MooGirl_CourierDiary
-                    || thing.def == MooGirlContentDefOf.MooGirl_SlaveApparelKey_Medieval
-                    || thing.def == MooGirlContentDefOf.MooGirl_SlaveApparelKey_Industrial)
+                ThingDef def = inventory[i]?.def;
+                if (def == MooGirlContentDefOf.MooGirl_CourierDiary
+                    || def == MooGirlContentDefOf.MooGirl_SlaveApparelKey_Medieval
+                    || def == MooGirlContentDefOf.MooGirl_SlaveApparelKey_Industrial)
                 {
                     return true;
                 }
@@ -161,10 +195,11 @@ namespace MooGirl
             return false;
         }
 
-        private static void DropItemsAndLeave(Pawn courier)
+        private static void TryDropItemsAndLeave(Pawn courier)
         {
-            if (courier == null || !courier.Spawned)
+            if (!CanTalkToCourier(courier))
             {
+                Messages.Message("MooGirl.CourierAlreadyResolved".Translate(), MessageTypeDefOf.RejectInput, historical: false);
                 return;
             }
 
@@ -174,10 +209,17 @@ namespace MooGirl
             Messages.Message("MooGirl.CourierItemsDroppedMessage".Translate(courier.Named("COURIER")), courier, MessageTypeDefOf.PositiveEvent);
         }
 
-        private static void StartFight(Pawn courier)
+        private static void TryStartFight(Pawn courier)
         {
-            if (courier == null || !courier.Spawned)
+            if (!CanTalkToCourier(courier))
             {
+                Messages.Message("MooGirl.CourierAlreadyResolved".Translate(), MessageTypeDefOf.RejectInput, historical: false);
+                return;
+            }
+
+            if (courier.mindState?.mentalStateHandler == null)
+            {
+                Messages.Message("MooGirl.CourierAlreadyResolved".Translate(), MessageTypeDefOf.RejectInput, historical: false);
                 return;
             }
 
@@ -195,7 +237,7 @@ namespace MooGirl
                 transitionSilently: true);
             EndRelatedQuest(courier, QuestEndOutcome.Unknown);
             Messages.Message("MooGirl.CourierFightMessage".Translate(courier.Named("COURIER")), courier, MessageTypeDefOf.ThreatSmall);
-            Find.TickManager.slower.SignalForceNormalSpeedShort();
+            MooGirlGameUtility.TrySignalForceNormalSpeedShort();
         }
 
         private static void StartLeaving(Pawn courier)
@@ -216,7 +258,11 @@ namespace MooGirl
 
         private static void EndRelatedQuest(Pawn courier, QuestEndOutcome outcome)
         {
-            List<Quest> quests = Find.QuestManager.QuestsListForReading;
+            if (!MooGirlGameUtility.TryGetQuestsListForReading(out List<Quest> quests))
+            {
+                return;
+            }
+
             for (int i = 0; i < quests.Count; i++)
             {
                 Quest quest = quests[i];
@@ -253,7 +299,7 @@ namespace MooGirl
         public override IEnumerable<FloatMenuOption> GetOptionsFor(Pawn clickedPawn, FloatMenuContext context)
         {
             Pawn actor = context.FirstSelectedPawn;
-            if (actor == null || actor.Faction != Faction.OfPlayer || !actor.RaceProps.Humanlike)
+            if (actor == null || !MooGirlWildSlaveUtility.IsPlayerFaction(actor.Faction) || actor.RaceProps?.Humanlike != true)
             {
                 yield break;
             }
@@ -261,8 +307,7 @@ namespace MooGirl
             FloatMenuOption option = FloatMenuUtility.DecoratePrioritizedTask(
                 new FloatMenuOption("MooGirl.CourierTalkOption".Translate(clickedPawn.Named("COURIER")), () =>
                 {
-                    Job job = JobMaker.MakeJob(MooGirlContentDefOf.MooGirl_TalkCourier, clickedPawn);
-                    actor.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+                    TryStartTalkJob(actor, clickedPawn);
                 }, MenuOptionPriority.High),
                 actor,
                 clickedPawn);
@@ -275,132 +320,39 @@ namespace MooGirl
 
             yield return option;
         }
+
+        private static void TryStartTalkJob(Pawn actor, Pawn courier)
+        {
+            if (!CourierConversationUtility.CanNegotiateWithCourier(actor, courier)
+                || !actor.CanReserveAndReach(courier, PathEndMode.Touch, Danger.Deadly))
+            {
+                return;
+            }
+
+            Job job = JobMaker.MakeJob(MooGirlContentDefOf.MooGirl_TalkCourier, courier);
+            actor.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+        }
     }
 
     public class JobDriver_TalkCourier : JobDriver
     {
-        private Pawn Courier => (Pawn)job.GetTarget(TargetIndex.A).Thing;
+        private Pawn Courier => job.GetTarget(TargetIndex.A).Thing as Pawn;
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            return pawn.Reserve(Courier, job, 1, -1, null, errorOnFailed);
+            Pawn courier = Courier;
+            return CourierConversationUtility.CanNegotiateWithCourier(pawn, courier)
+                && pawn.Reserve(courier, job, 1, -1, null, errorOnFailed);
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDespawnedOrNull(TargetIndex.A);
-            this.FailOn(() => !CourierConversationUtility.CanTalkToCourier(Courier));
+            this.FailOn(() => !CourierConversationUtility.CanNegotiateWithCourier(pawn, Courier));
 
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
             yield return Toils_General.Do(() => CourierConversationUtility.ShowDialog(Courier, pawn));
         }
     }
 
-    public class QuestPart_CourierDemand : QuestPart
-    {
-        public Faction faction;
-        public string inSignal;
-
-        private const int SteelDemand = 6000;
-        private const int ComponentDemand = 300;
-
-        public override void Notify_QuestSignalReceived(Signal signal)
-        {
-            base.Notify_QuestSignalReceived(signal);
-            if (signal.tag == inSignal)
-            {
-                ShowDemandDialog();
-            }
-        }
-
-        private void ShowDemandDialog()
-        {
-            Faction resolvedFaction = faction ?? (MooGirlContentDefOf.MooGirl_GiantCorporations_Hostile != null
-                ? Find.FactionManager.FirstFactionOfDef(MooGirlContentDefOf.MooGirl_GiantCorporations_Hostile)
-                : null);
-
-            Dialog_MessageBox dialog = new Dialog_MessageBox(
-                "MooGirl.CourierDemandDialogText".Translate(SteelDemand, ComponentDemand),
-                "MooGirl.CourierDemandPay".Translate(),
-                () => PayDemand(resolvedFaction),
-                "MooGirl.CourierDemandRefuse".Translate(),
-                () => MakeHostile(resolvedFaction),
-                "MooGirl.CourierDemandTitle".Translate(),
-                buttonADestructive: false);
-            Find.WindowStack.Add(dialog);
-        }
-
-        private static void PayDemand(Faction faction)
-        {
-            if (CountOnPlayerMaps(ThingDefOf.Steel) >= SteelDemand && CountOnPlayerMaps(ThingDefOf.ComponentIndustrial) >= ComponentDemand)
-            {
-                ConsumeFromPlayerMaps(ThingDefOf.Steel, SteelDemand);
-                ConsumeFromPlayerMaps(ThingDefOf.ComponentIndustrial, ComponentDemand);
-                Messages.Message("MooGirl.CourierDemandPaid".Translate(), MessageTypeDefOf.PositiveEvent);
-                return;
-            }
-            Messages.Message("MooGirl.CourierDemandInsufficient".Translate(), MessageTypeDefOf.NegativeEvent);
-            MakeHostile(faction);
-        }
-
-        private static int CountOnPlayerMaps(ThingDef thingDef)
-        {
-            int available = 0;
-            foreach (Map map in Find.Maps)
-            {
-                if (!map.IsPlayerHome) continue;
-                List<Thing> things = map.listerThings.ThingsOfDef(thingDef);
-                for (int i = 0; i < things.Count; i++)
-                {
-                    Thing thing = things[i];
-                    if (thing == null || thing.Destroyed || !thing.Spawned) continue;
-                    available += thing.stackCount;
-                }
-            }
-            return available;
-        }
-
-        private static void ConsumeFromPlayerMaps(ThingDef thingDef, int count)
-        {
-            int remaining = count;
-            foreach (Map map in Find.Maps)
-            {
-                if (!map.IsPlayerHome) continue;
-                List<Thing> things = map.listerThings.ThingsOfDef(thingDef);
-                for (int i = things.Count - 1; i >= 0 && remaining > 0; i--)
-                {
-                    Thing thing = things[i];
-                    if (thing == null || thing.Destroyed || !thing.Spawned) continue;
-                    int taken = System.Math.Min(remaining, thing.stackCount);
-                    Thing payment = thing.SplitOff(taken);
-                    payment.Destroy();
-                    remaining -= taken;
-                }
-                if (remaining <= 0) return;
-            }
-        }
-
-        private static void MakeHostile(Faction faction)
-        {
-            if (faction == null || faction.HostileTo(Faction.OfPlayer)) return;
-            Faction.OfPlayer.TryAffectGoodwillWith(
-                faction,
-                Faction.OfPlayer.GoodwillToMakeHostile(faction),
-                canSendMessage: true,
-                canSendHostilityLetter: true);
-        }
-
-        public override void ExposeData()
-        {
-            base.ExposeData();
-            Scribe_References.Look(ref faction, "faction");
-            Scribe_Values.Look(ref inSignal, "inSignal");
-        }
-
-        public override void AssignDebugData()
-        {
-            base.AssignDebugData();
-            inSignal = "SendDemand";
-        }
-    }
 }

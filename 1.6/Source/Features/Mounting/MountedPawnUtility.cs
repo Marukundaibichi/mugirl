@@ -39,6 +39,47 @@ namespace MooGirl
             return RopingService.HasAnyRope(pawn);
         }
 
+        public static bool IsHumanlike(Pawn pawn)
+        {
+            return pawn?.RaceProps?.Humanlike == true;
+        }
+
+        public static bool HasCapacity(Pawn pawn, PawnCapacityDef capacity)
+        {
+            return pawn?.health?.capacities?.CapableOf(capacity) == true;
+        }
+
+        public static bool IsAwake(Pawn pawn)
+        {
+            if (pawn?.health?.capacities?.CanBeAwake != true)
+            {
+                return false;
+            }
+
+            Pawn_JobTracker jobs = pawn.jobs;
+            if (jobs?.curJob != null && jobs.curDriver != null)
+            {
+                return !jobs.curDriver.asleep;
+            }
+
+            return true;
+        }
+
+        public static Verb TryGetMeleeVerb(Pawn pawn, Thing target)
+        {
+            return pawn?.meleeVerbs?.TryGetMeleeVerb(target);
+        }
+
+        public static BodyPartRecord GetRandomNotMissingPart(Pawn pawn, DamageDef damageDef, BodyPartHeight height, BodyPartDepth depth)
+        {
+            return pawn?.health?.hediffSet?.GetRandomNotMissingPart(damageDef, height, depth);
+        }
+
+        public static float EquipmentDrawDistanceFactor(Pawn pawn)
+        {
+            return pawn?.ageTracker?.CurLifeStage?.equipmentDrawDistanceFactor ?? 1f;
+        }
+
         public static void BreakRopes(Pawn pawn)
         {
             RopingService.BreakAllRopesAndNotify(pawn);
@@ -123,24 +164,90 @@ namespace MooGirl
             pawn.mindState?.priorityWork.ClearPrioritizedWorkAndJobQueue();
         }
 
-        public static void PhysiologyTick(Pawn rider, int delta)
+        public static void MountedPawnTickInterval(Pawn rider, int delta)
         {
             if (rider == null || rider.Destroyed)
             {
                 return;
             }
 
+            bool suspended = rider.Suspended;
+            if (suspended)
+            {
+                rider.guilt?.GuiltTrackerTickInterval(delta);
+                return;
+            }
+
+            // 骑手在 ThingOwner 容器内没有地图位置，不能让 job/寻路/社交等生成态逻辑自行推进；
+            // 这里仅同步原版 interval 中与长期生存、DLC 环境、关系和记录有关的 tracker。
             rider.health?.HealthTickInterval(delta);
             if (rider.Dead)
             {
                 return;
             }
 
+            rider.mindState?.MindStateTickInterval(delta);
+            rider.carryTracker?.CarryHandsTickInterval(delta);
+            if (!rider.InCryptosleep && IsHumanlike(rider))
+            {
+                rider.infectionVectors?.InfectionTickInterval(delta);
+            }
+
+            Thing firstParentThing = ThingOwnerUtility.GetFirstParentThing(rider);
+            if (!rider.Spawned && firstParentThing != null)
+            {
+                PawnUtility.GainComfortFromThingIfPossible(rider, firstParentThing, delta);
+            }
+
             rider.needs?.NeedsTrackerTickInterval(delta);
-            rider.ageTracker?.AgeTickInterval(delta);
             rider.apparel?.ApparelTrackerTickInterval(delta);
+            rider.caller?.CallTrackerTickInterval(delta);
             rider.skills?.SkillsTickInterval(delta);
+            rider.drafter?.DraftControllerTickInterval(delta);
+            rider.relations?.RelationsTrackerTickInterval(delta);
+
+            if (ModsConfig.RoyaltyActive && rider.psychicEntropy != null)
+            {
+                rider.psychicEntropy.PsychicEntropyTrackerTickInterval(delta);
+            }
+
+            if (IsHumanlike(rider))
+            {
+                rider.guest?.GuestTrackerTickInterval(delta);
+            }
+
+            rider.ideo?.IdeoTrackerTickInterval(delta);
             rider.genes?.GeneTrackerTickInterval(delta);
+
+            if (ModsConfig.RoyaltyActive && rider.royalty != null)
+            {
+                rider.royalty.RoyaltyTrackerTickInterval(delta);
+            }
+
+            if (ModsConfig.IdeologyActive)
+            {
+                rider.style?.StyleTrackerTickInterval(delta);
+                rider.styleObserver?.StyleObserverTickInterval(delta);
+                rider.surroundings?.SurroundingsTrackerTickInterval(delta);
+            }
+
+            if (ModsConfig.BiotechActive)
+            {
+                rider.learning?.LearningTickInterval(delta);
+                PollutionUtility.PawnPollutionTickInterval(rider, delta);
+            }
+
+            GasUtility.PawnGasEffectsTickInterval(rider, delta);
+            ToxicUtility.PawnToxicTickInterval(rider, delta);
+            VacuumUtility.PawnVacuumTickInterval(rider, delta);
+
+            if (!rider.IsMutant || rider.mutant?.Def?.disableAging != true)
+            {
+                rider.ageTracker?.AgeTickInterval(delta);
+            }
+
+            rider.records?.RecordsTickInterval(delta);
+            rider.guilt?.GuiltTrackerTickInterval(delta);
 
             if (!rider.Spawned)
             {
@@ -177,8 +284,14 @@ namespace MooGirl
                     icon = TexCommand.SelectCarriedThing,
                     action = delegate
                     {
-                        Find.Selector.ClearSelection();
-                        Find.Selector.Select(carrier);
+                        Comp_MooGirlMount currentComp = GetMountForRider(rider) ?? comp;
+                        Pawn currentCarrier = currentComp?.MooPawn;
+                        if (currentCarrier == null)
+                        {
+                            return;
+                        }
+
+                        MooGirlSelectionUtility.SelectInPlaying(currentCarrier);
                     }
                 };
             }
@@ -190,7 +303,8 @@ namespace MooGirl
                 icon = TexCommand.DropCarriedPawn,
                 action = delegate
                 {
-                    comp?.TryDismount();
+                    Comp_MooGirlMount currentComp = GetMountForRider(rider) ?? comp;
+                    currentComp?.TryDismount();
                 }
             };
 
@@ -199,6 +313,11 @@ namespace MooGirl
 
         public static Vector3 OffsetForRot(CompProperties_MooGirlMount props, Rot4 rotation)
         {
+            if (props == null)
+            {
+                return Vector3.zero;
+            }
+
             switch (rotation.AsInt)
             {
                 case 0:

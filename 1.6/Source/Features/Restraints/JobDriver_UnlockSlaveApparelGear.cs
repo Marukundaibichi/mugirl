@@ -16,7 +16,18 @@ namespace MooGirl
             get
             {
                 var target = job.GetTarget(iitem);
-                if (target == null || !target.HasThing)
+                if (!target.HasThing)
+                    return null;
+                return target.Thing;
+            }
+        }
+
+        protected Thing targetThing
+        {
+            get
+            {
+                var target = job.GetTarget(itar);
+                if (!target.HasThing)
                     return null;
                 return target.Thing;
             }
@@ -24,7 +35,15 @@ namespace MooGirl
 
         protected Pawn targetPawn
         {
-            get { return base.job.GetTarget(itar).Thing as Pawn; }
+            get
+            {
+                Thing target = targetThing;
+                if (target is Pawn pawnTarget)
+                    return pawnTarget;
+                if (target is Corpse corpse)
+                    return corpse.InnerPawn;
+                return null;
+            }
         }
 
         protected Apparel targetApparel
@@ -39,44 +58,56 @@ namespace MooGirl
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            // 修改1：自己解锁自己时，跳过重复预占位
-            bool reservePawn = targetPawn != pawn ? pawn.Reserve(targetPawn, job, 1, -1, null, errorOnFailed) : true;
+            Thing itemToUse = item;
+            Thing targetToReserve = targetThing;
+            Apparel apparelToUnlock = targetApparel;
+            if (itemToUse == null || targetToReserve == null || apparelToUnlock == null)
+            {
+                return false;
+            }
 
-            return reservePawn &&
-                    (targetApparel != null ? pawn.Reserve(targetApparel, job, 1, -1, null, errorOnFailed) : true);
+            bool reserveTarget = targetToReserve == pawn || pawn.Reserve(targetToReserve, job, 1, -1, null, errorOnFailed);
+            bool reserveApparel = pawn.Reserve(apparelToUnlock, job, 1, -1, null, errorOnFailed);
+            bool itemAlreadyHeld = pawn.inventory != null && pawn.inventory.Contains(itemToUse);
+            bool reserveItem = itemAlreadyHeld || pawn.Reserve(itemToUse, job, 1, -1, null, errorOnFailed);
+
+            return reserveTarget && reserveApparel && reserveItem;
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            Thing itemToUse = null;
-            if (job.GetTarget(iitem).HasThing)
-            {
-                itemToUse = job.GetTarget(iitem).Thing;
-            }
-            // 修改2：增加空检查，防止 NullReferenceException
-            if (targetPawn == null)
-            {
-                yield break;
-            }
-            if (targetApparel == null)
+            Thing itemToUse = item;
+            Thing targetToReserve = targetThing;
+            Pawn pawnToUnlock = targetPawn;
+            Apparel apparelToUnlock = targetApparel;
+            if (itemToUse == null || targetToReserve == null || pawnToUnlock?.apparel == null || apparelToUnlock == null)
             {
                 yield break;
             }
 
-            SlaveApparel apparel = targetApparel as SlaveApparel;
+            SlaveApparel apparel = apparelToUnlock as SlaveApparel;
             if (apparel == null)
             {
                 yield break;
             }
 
-            yield return Toils_Reserve.Reserve(itar);
+            if (!apparelToUnlock.SatisfiesKey(itemToUse) || !TargetStillWearsApparel(pawnToUnlock, apparelToUnlock))
+            {
+                yield break;
+            }
 
-            // 修改3：处理物品，如果 pawn 自己拥有则跳过拿取
-            if ((pawn.inventory != null) && pawn.inventory.Contains(item))
+            if (targetToReserve != pawn)
+            {
+                yield return Toils_Reserve.Reserve(itar);
+            }
+
+            yield return Toils_Reserve.Reserve(appear);
+
+            if ((pawn.inventory != null) && pawn.inventory.Contains(itemToUse))
             {
                 yield return Toils_Misc.TakeItemFromInventoryToCarrier(pawn, iitem);
             }
-            else if (item != null)
+            else if (itemToUse.Spawned)
             {
                 yield return Toils_Reserve.Reserve(iitem);
                 yield return Toils_Goto.GotoThing(iitem, PathEndMode.ClosestTouch).FailOnForbidden(iitem);
@@ -84,51 +115,94 @@ namespace MooGirl
                 {
                     initAction = () =>
                     {
-                        pawn.carryTracker.TryStartCarry(item, 1);
+                        if (itemToUse == null || itemToUse.Destroyed || pawn.carryTracker.TryStartCarry(itemToUse, 1) <= 0)
+                        {
+                            pawn.jobs.curDriver.EndJobWith(JobCondition.Incompletable);
+                        }
                     },
                     defaultCompleteMode = ToilCompleteMode.Instant
                 };
             }
+            else
+            {
+                yield break;
+            }
 
-            yield return Toils_Goto.GotoThing(itar, PathEndMode.Touch);
+            if (targetToReserve != pawn)
+            {
+                yield return Toils_Goto.GotoThing(itar, PathEndMode.Touch);
+            }
 
-            yield return Toils_General.WaitWith(itar, apparel.SlaveDef.unlockTick, true);
+            Toil wait = Toils_General.WaitWith(itar, apparel.SlaveDef.unlockTick, true);
+            wait.FailOn(() => !TargetStillWearsApparel(pawnToUnlock, apparelToUnlock));
+            if (targetToReserve != pawn)
+            {
+                wait.FailOnCannotTouch(itar, PathEndMode.Touch);
+            }
+            yield return wait;
 
             yield return new Toil
             {
                 initAction = () =>
                 {
-                    // 修改4：安全检查
-            if (targetPawn == null || targetApparel == null)
-            {
-                MooGirlLog.Warning("MooGirl.Restraints.UnlockTargetMissingLog".Translate().ToString());
-                return;
-            }
+                    if (!TargetStillWearsApparel(pawnToUnlock, apparelToUnlock))
+                    {
+                        MooGirlLog.WarningOnce("UnlockSlaveApparel.TargetMissing", "MooGirl.Restraints.UnlockTargetMissingLog".Translate().ToString());
+                        return;
+                    }
 
+                    int previousLockCount = apparel.lockCount;
                     apparel.lockCount--;
                     if (apparel.lockCount <= 0)
                     {
-                        // 修改5：自己解锁自己也可以正常移除
-                        Apparel apparelToUnlock = targetApparel;
-                        Pawn pawnToUnlock = targetPawn;
+                        apparel.isLocked = false;
+                        apparel.lockCount = 0;
 
-                        if (pawnToUnlock != null && apparelToUnlock != null && pawnToUnlock.apparel.WornApparel.Contains(apparelToUnlock))
+                        if (pawnToUnlock.apparel.WornApparel.Contains(apparelToUnlock))
                         {
-                            pawnToUnlock.apparel.Remove(apparelToUnlock);
-                            GenPlace.TryPlaceThing(apparelToUnlock, pawnToUnlock.Position, pawnToUnlock.Map, ThingPlaceMode.Near);
-                            Messages.Message("MooGirl.SlaveApparelFullyUnlocked".Translate(pawnToUnlock.LabelShort), pawnToUnlock, MessageTypeDefOf.PositiveEvent);
+                            if (pawnToUnlock.apparel.TryDrop(apparelToUnlock, out Apparel _, DropCellFor(targetToReserve, pawnToUnlock), false))
+                            {
+                                Messages.Message("MooGirl.SlaveApparelFullyUnlocked".Translate(pawnToUnlock.LabelShort), pawnToUnlock, MessageTypeDefOf.PositiveEvent);
+                            }
+                            else
+                            {
+                                apparel.isLocked = true;
+                                apparel.lockCount = previousLockCount > 0 ? previousLockCount : 1;
+                                pawnToUnlock.apparel.Lock(apparel);
+                                return;
+                            }
                         }
                     }
                     else
                     {
-                        Messages.Message("MooGirl.SlaveApparelUnlockPartial".Translate(pawn.LabelShort, targetPawn.LabelShort, apparel.lockCount), targetPawn, MessageTypeDefOf.PositiveEvent);
+                        Messages.Message("MooGirl.SlaveApparelUnlockPartial".Translate(pawn.LabelShort, pawnToUnlock.LabelShort, apparel.lockCount), pawnToUnlock, MessageTypeDefOf.PositiveEvent);
                     }
 
-                    if (itemToUse != null)
+                    if (itemToUse != null && !itemToUse.Destroyed)
                         itemToUse.Destroy();
                 },
                 defaultCompleteMode = ToilCompleteMode.Instant
             };
+        }
+
+        private static bool TargetStillWearsApparel(Pawn target, Apparel apparel)
+        {
+            return target?.apparel != null && apparel != null && target.apparel.WornApparel.Contains(apparel);
+        }
+
+        private IntVec3 DropCellFor(Thing target, Pawn wearer)
+        {
+            if (target != null && target.PositionHeld.IsValid)
+            {
+                return target.PositionHeld;
+            }
+
+            if (wearer != null && wearer.PositionHeld.IsValid)
+            {
+                return wearer.PositionHeld;
+            }
+
+            return pawn.PositionHeld;
         }
     }
 }

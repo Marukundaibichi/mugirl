@@ -1,4 +1,3 @@
-﻿using HarmonyLib;
 using UnityEngine;
 using Verse;
 
@@ -7,16 +6,15 @@ namespace MooGirl
     [StaticConstructorOnStartup]
     public class MooGirlMod : Mod
     {
+        private static MooGirlSettings settings;
+
         public MooGirlMod(ModContentPack modContentPack) : base(modContentPack)
         {
             MooGirlBootstrap.Initialize();
-            harmony = MooGirlBootstrap.Harmony;
             settings = GetSettings<MooGirlSettings>();
         }
 
-        public static Harmony harmony;
-
-        public static MooGirlSettings settings;
+        internal static MooGirlSettings Settings => settings;
 
         public override string SettingsCategory()
         {
@@ -25,7 +23,7 @@ namespace MooGirl
 
         public override void DoSettingsWindowContents(Rect inRect)
         {
-            MooGirlSettingsWindow.Draw(inRect, settings);
+            MooGirlSettingsWindow.Draw(inRect, Settings);
             base.DoSettingsWindowContents(inRect);
         }
     }

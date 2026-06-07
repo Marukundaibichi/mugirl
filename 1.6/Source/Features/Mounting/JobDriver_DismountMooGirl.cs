@@ -8,16 +8,24 @@ namespace MooGirl
     {
         private const TargetIndex MooInd = TargetIndex.A;
 
-        private Pawn Moo => job.GetTarget(MooInd).Pawn;
+        private Pawn Moo => job.GetTarget(MooInd).Thing as Pawn;
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            return pawn == Moo || pawn.Reserve(Moo, job, 1, -1, null, errorOnFailed);
+            Pawn moo = Moo;
+            Comp_MooGirlMount comp = MountedPawnUtility.GetMountComp(moo);
+            if (comp?.HasMountedPawn != true)
+            {
+                return false;
+            }
+
+            return pawn == moo || pawn.Reserve(moo, job, 1, -1, null, errorOnFailed);
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDespawnedOrNull(MooInd);
+            this.FailOn(() => MountedPawnUtility.GetMountComp(Moo)?.HasMountedPawn != true);
             if (pawn != Moo)
             {
                 yield return Toils_Goto.GotoThing(MooInd, PathEndMode.Touch);

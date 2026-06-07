@@ -15,14 +15,12 @@ namespace MooGirl
             "MooGirl.CourierDiary.Page5"
         };
 
-        private readonly Thing book;
         private readonly string title;
         private int currentPage;
 
-        public Dialog_ReadBook(string title, Thing book)
+        public Dialog_ReadBook(string title)
         {
             this.title = title;
-            this.book = book;
             forcePause = true;
             absorbInputAroundWindow = true;
             closeOnAccept = false;

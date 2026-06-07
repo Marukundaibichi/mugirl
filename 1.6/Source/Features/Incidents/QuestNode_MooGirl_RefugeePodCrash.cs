@@ -1,12 +1,13 @@
 ﻿using Verse;
 using RimWorld.QuestGen;
 using RimWorld;
-using RimWorld.Planet;
 
 namespace MooGirl
 {
     public class QuestNode_Root_MooGirl_RefugeePodCrash : QuestNode_Root_RefugeePodCrash
     {
+        private const int MaxDownedGenerationAttempts = 10;
+
         public override Pawn GeneratePawn()
         {
             // 逃亡奴隶保持无派系；敌对巨企派系只用于袭击，避免救援任务变成战斗事件。
@@ -45,34 +46,153 @@ namespace MooGirl
                 // 不允许生成儿童
                 developmentalStages: DevelopmentalStage.Adult); // 仅允许成人
 
-            // 最多尝试 10 次，直到生成一个能被打倒的 pawn
-            int num = 0;
-            Pawn pawn = null;
-            while (num < 10 && (pawn == null || !pawn.Downed))
+            Pawn pawn = GenerateDownedPawn(request);
+            if (pawn == null)
             {
-                num++;
-                if (pawn != null)
-                {
-                    Find.WorldPawns.PassToWorld(pawn, PawnDiscardDecideMode.Discard);
-                }
-
-                pawn = PawnGenerator.GeneratePawn(request);
-                HealthUtility.DamageUntilDowned(pawn, true);
+                return null;
             }
 
             MooGirlApparelTagUtility.TryWearIdeoSuppressedKindApparel(pawn);
 
             // 如果生成的pawn不是世界pawn，则将其传递到世界pawn管理中。
-            if (!pawn.IsWorldPawn())
-            {
-                Find.WorldPawns.PassToWorld(pawn);
-            }
+            MooGirlGeneratedPawnUtility.TryPassToWorld(pawn);
 
             // 返回生成的pawn。
             return pawn;
         }
+
+        private static Pawn GenerateDownedPawn(PawnGenerationRequest request)
+        {
+            Pawn fallback = null;
+            for (int i = 0; i < MaxDownedGenerationAttempts; i++)
+            {
+                MooGirlGeneratedPawnUtility.Discard(fallback);
+                fallback = null;
+
+                Pawn pawn = PawnGenerator.GeneratePawn(request);
+                if (pawn == null)
+                {
+                    continue;
+                }
+
+                HealthUtility.DamageUntilDowned(pawn, true);
+                if (pawn.Downed && !pawn.Dead)
+                {
+                    return pawn;
+                }
+
+                fallback = pawn;
+            }
+
+            if (fallback != null && !fallback.Dead)
+            {
+                MooGirlLog.WarningOnce(
+                    "RefugeePodDownedGenerationFallback",
+                    "MooGirl.RefugeePodCrash.Log.DownedGenerationFallback".Translate(MaxDownedGenerationAttempts).ToString());
+                return fallback;
+            }
+
+            MooGirlGeneratedPawnUtility.Discard(fallback);
+            MooGirlLog.WarningOnce(
+                "RefugeePodPawnGenerationFailed",
+                "MooGirl.RefugeePodCrash.Log.GenerationFailed".Translate(MaxDownedGenerationAttempts).ToString());
+            return null;
+        }
+
+        protected override void RunInt()
+        {
+            Quest quest = QuestGen.quest;
+            Slate slate = QuestGen.slate;
+            if (quest == null || slate == null)
+            {
+                MooGirlLog.WarningOnce(
+                    "RefugeePodCrashMissingQuestContext",
+                    "MooGirl.RefugeePodCrash.Log.MissingQuestContext".Translate().ToString());
+                return;
+            }
+
+            if (!slate.TryGet<Map>("map", out Map map) || map == null)
+            {
+                bool canBeSpace = CanBeSpace;
+                map = QuestGen_Get.GetMap(mustBeInfestable: false, null, canBeSpace);
+            }
+            if (map?.Parent == null)
+            {
+                MooGirlLog.WarningOnce(
+                    "RefugeePodCrashMissingMap",
+                    "MooGirl.RefugeePodCrash.Log.MissingMap".Translate().ToString());
+                return;
+            }
+
+            if (!CanBeSpace)
+            {
+                quest.AcceptanceRequirementNotSpace(map.Parent);
+            }
+
+            Pawn pawn = GeneratePawn();
+            if (pawn == null || pawn.Destroyed || pawn.Dead)
+            {
+                MooGirlLog.WarningOnce(
+                    "RefugeePodCrashPawnGenerationFailed",
+                    "MooGirl.RefugeePodCrash.Log.GenerationFailed".Translate(MaxDownedGenerationAttempts).ToString());
+                MooGirlGeneratedPawnUtility.Discard(pawn);
+                return;
+            }
+
+            AddSpawnPawnQuestParts(quest, map, pawn);
+            slate.Set("pawn", pawn);
+            SendLetter_NewTemp(quest, pawn, map);
+
+            string inSignalKilled = QuestGenUtility.HardcodedSignalWithQuestID("pawn.Killed");
+            string inSignalLeftBehind = QuestGenUtility.HardcodedSignalWithQuestID("pawn.LeftBehind");
+            string inSignalPlayerTended = QuestGenUtility.HardcodedSignalWithQuestID("pawn.PlayerTended");
+            string inSignalLeftMap = QuestGenUtility.HardcodedSignalWithQuestID("pawn.LeftMap");
+            string inSignalRecruited = QuestGenUtility.HardcodedSignalWithQuestID("pawn.Recruited");
+
+            quest.End(QuestEndOutcome.Success, 0, null, inSignalPlayerTended);
+            quest.Signal(inSignalKilled, delegate
+            {
+                quest.AcceptedAfterTicks(AllowKilledBeforeTicks, delegate
+                {
+                    quest.AnyColonistWithCharityPrecept(delegate
+                    {
+                        quest.Message("MessageCharityEventRefused".Translate() + ": " + "MessageWandererLeftToDie".Translate(pawn), MessageTypeDefOf.NegativeEvent, getLookTargetsFromSignal: false, null, pawn);
+                    });
+                    QuestGen_End.End(quest, QuestEndOutcome.Fail);
+                }, delegate
+                {
+                    QuestGen_End.End(quest, QuestEndOutcome.Fail);
+                });
+            });
+            quest.Signal(inSignalLeftBehind, delegate
+            {
+                quest.AnyColonistWithCharityPrecept(delegate
+                {
+                    quest.Message("MessageCharityEventRefused".Translate() + ": " + "MessageWandererLeftBehind".Translate(pawn), MessageTypeDefOf.NegativeEvent, getLookTargetsFromSignal: false, null, pawn);
+                });
+                QuestGen_End.End(quest, QuestEndOutcome.Fail);
+            });
+            quest.AnyColonistWithCharityPrecept(delegate
+            {
+                quest.Message("MessageCharityEventFulfilled".Translate() + ": " + "MessageWandererRecruited".Translate(pawn), MessageTypeDefOf.PositiveEvent, getLookTargetsFromSignal: false, null, pawn);
+            }, null, inSignalRecruited);
+            quest.End(QuestEndOutcome.Success, 0, null, inSignalRecruited);
+            quest.Signal(inSignalLeftMap, delegate
+            {
+                AddLeftMapQuestParts(quest, pawn);
+            });
+        }
+
         public override void SendLetter_NewTemp(Quest quest, Pawn pawn, Map map)
         {
+            if (pawn == null || pawn.Destroyed || pawn.Dead)
+            {
+                MooGirlLog.WarningOnce(
+                    "RefugeePodCrashLetterMissingPawn",
+                    "Refugee pod crash tried to send a letter without a usable pawn.");
+                return;
+            }
+
             TaggedString label = "MooGirl.LetterLabelRefugeePodCrash".Translate();
             TaggedString taggedString = "MooGirl.RefugeePodCrash".Translate(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN", true);
             taggedString += "\n\n";
@@ -80,7 +200,7 @@ namespace MooGirl
             {
                 taggedString += "MooGirl.RefugeePodCrash_Factionless".Translate(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN", true);
             }
-            else if (pawn.Faction.HostileTo(Faction.OfPlayer))
+            else if (MooGirlWildSlaveUtility.IsHostileToPlayer(pawn.Faction))
             {
                 taggedString += "MooGirl.RefugeePodCrash_Hostile".Translate(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN", true);
             }
@@ -88,14 +208,14 @@ namespace MooGirl
             {
                 taggedString += "MooGirl.RefugeePodCrash_NonHostile".Translate(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN", true);
             }
-            if (pawn.DevelopmentalStage.Juvenile())
+            if (pawn.ageTracker != null && pawn.DevelopmentalStage.Juvenile())
             {
                 string arg = (pawn.ageTracker.AgeBiologicalYears * 3600000).ToStringTicksToPeriod(true, false, true, true, false);
                 taggedString += "\n\n" + "MooGirl.RefugeePodCrash_Child".Translate(pawn.Named("PAWN"), arg.Named("AGE"));
             }
             QuestNode_Root_WandererJoin_WalkIn.AppendCharityInfoToLetter("JoinerCharityInfo".Translate(pawn), ref taggedString);
             PawnRelationUtility.TryAppendRelationsWithColonistsInfo(ref taggedString, ref label, pawn);
-            Find.LetterStack.ReceiveLetter(label, taggedString, LetterDefOf.NeutralEvent, new TargetInfo(pawn), null, null, null, null, 0, true);
+            MooGirlGameUtility.TryReceiveLetter(label, taggedString, LetterDefOf.NeutralEvent, new TargetInfo(pawn), null, null, null, null, 0, true);
         }
     }
 }

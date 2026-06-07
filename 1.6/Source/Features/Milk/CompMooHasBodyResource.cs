@@ -42,7 +42,7 @@ namespace MooGirl
         public bool IsFullNow => fullness >= 1f;
 
         // 虚拟属性：是否激活（默认检查父对象是否有派系）
-        public virtual bool Active => parent.Faction != null;
+        public virtual bool Active => parent?.Faction != null;
 
         // 复合属性：是否激活且饱满度已满
         public bool ActiveAndFull => Active && fullness >= 1f;
@@ -63,12 +63,12 @@ namespace MooGirl
         public override void CompTick()
         {
             // 如果未激活则直接返回
-            if (!Active)
+            if (!Active || !MooGirlGameUtility.IsPlaying())
             {
                 return;
             }
 
-            int currentTick = Find.TickManager.TicksGame;
+            int currentTick = CurrentGameTickOrFallback(lastResourceUpdateTick);
             int updateInterval = Mathf.Max(1, ResourceUpdateIntervalTicks);
             if (lastResourceUpdateTick < 0)
             {
@@ -120,10 +120,13 @@ namespace MooGirl
         // 方法：处理资源收集行为
         public void Gathered(Pawn doer)
         {
+            ThingDef resourceDef = ResourceDef;
+            IntVec3 gatherPosition;
+            Map map;
             // 如果未激活则记录错误并返回
-            if (!Active)
+            if (!Active || resourceDef == null || !TryGetGatherContext(doer, out map, out gatherPosition))
             {
-                Log.Error("MooGirl.Milk.GatherInactiveLog".Translate(doer, parent).ToString());
+                WarnInvalidGather(doer);
                 return;
             }
 
@@ -131,24 +134,14 @@ namespace MooGirl
             if (!Rand.Chance(doer.GetStatValue(StatDefOf.AnimalGatherYield, true, -1)))
             {
                 // 显示收集失败的文字提示
-                MoteMaker.ThrowText((doer.DrawPos + parent.DrawPos) / 2f, parent.Map, "TextMote_ProductWasted".Translate(), 3.65f);
+                ThrowProductWastedMote(doer, map);
             }
             else
             {
-                // 再次检查乳房类型设置收集产量系数
-                Pawn pawn = parent as Pawn;
-                if (pawn != null)
-                {
-                    if (MooGirlBreastProfileUtility.TryGetYieldMultiplier(pawn, out float yieldMultiplier))
-                    {
-                        BreastSize = yieldMultiplier;
-                    }
-                }
-
                 // 计算实际收集数量：每 1% 奶量产出 1 份雪牛奶
                 int amount = GenMath.RoundRandom(fullness * 100f);
 
-                MooGirlMilkOutputUtility.SpawnStacksNear(ResourceDef, amount, doer.Position, doer.Map);
+                MooGirlMilkOutputUtility.SpawnStacksNear(resourceDef, amount, gatherPosition, map);
             }
             // 重置饱满度
             fullness = 0f;
@@ -180,7 +173,7 @@ namespace MooGirl
             if (triggerNotify)
             {
                 fullNotified = true;
-                lastFullNotifyTick = Find.TickManager.TicksGame;
+                lastFullNotifyTick = CurrentGameTickOrFallback(lastFullNotifyTick);
                 OnResourceBecameFull();
             }
 
@@ -189,15 +182,6 @@ namespace MooGirl
 
         public int GetResourceAmountForCurrentFullness()
         {
-            Pawn pawn = parent as Pawn;
-            if (pawn != null)
-            {
-                if (MooGirlBreastProfileUtility.TryGetYieldMultiplier(pawn, out float yieldMultiplier))
-                {
-                    BreastSize = yieldMultiplier;
-                }
-            }
-
             return GenMath.RoundRandom(fullness * 100f);
         }
 
@@ -236,7 +220,9 @@ namespace MooGirl
         public bool GatheredFixed(Pawn doer, out int milkAmount)
         {
             milkAmount = 0;
-            if (!Active || fullness <= 0f)
+            Map map;
+            IntVec3 gatherPosition;
+            if (!Active || ResourceDef == null || fullness <= 0f || !TryGetGatherContext(doer, out map, out gatherPosition))
             {
                 return false;
             }
@@ -244,7 +230,7 @@ namespace MooGirl
             float gatheredFullness = GetNextGatherFullness();
             if (!Rand.Chance(doer.GetStatValue(StatDefOf.AnimalGatherYield, true, -1)))
             {
-                MoteMaker.ThrowText((doer.DrawPos + parent.DrawPos) / 2f, parent.Map, "TextMote_ProductWasted".Translate(), 3.65f);
+                ThrowProductWastedMote(doer, map);
                 ConsumeGatheredFullness(gatheredFullness);
                 return true;
             }
@@ -264,16 +250,66 @@ namespace MooGirl
         {
             fullNotified = false;
             lastFullNotifyTick = -99999;
-            lastResourceUpdateTick = Find.TickManager.TicksGame;
+            lastResourceUpdateTick = CurrentGameTickOrFallback(lastResourceUpdateTick);
         }
 
         // 生产倍率虚方法：子类可重写以集成哺乳期等外部因素
         protected virtual float GetProductionMultiplier(Pawn pawn)
         {
+            if (MooGirlBreastProfileUtility.TryGetYieldMultiplier(pawn, out float yieldMultiplier))
+            {
+                return yieldMultiplier;
+            }
+
             return 1f;
         }
 
-        // 保护字段：乳房产量系数（影响收集数量）
-        protected float BreastSize = 1f;
+        private bool TryGetGatherContext(Pawn doer, out Map map, out IntVec3 gatherPosition)
+        {
+            map = null;
+            gatherPosition = IntVec3.Invalid;
+            if (doer == null || parent == null)
+            {
+                return false;
+            }
+
+            Map parentMap = parent.Map;
+            Map doerMap = doer.Map;
+            if (parentMap != null && doerMap != null && parentMap != doerMap)
+            {
+                return false;
+            }
+
+            map = doerMap ?? parentMap;
+            if (map == null)
+            {
+                return false;
+            }
+
+            gatherPosition = doerMap != null ? doer.Position : parent.Position;
+            return gatherPosition.IsValid;
+        }
+
+        private void ThrowProductWastedMote(Pawn doer, Map map)
+        {
+            if (doer == null || parent == null || map == null)
+            {
+                return;
+            }
+
+            MoteMaker.ThrowText((doer.DrawPos + parent.DrawPos) / 2f, map, "TextMote_ProductWasted".Translate(), 3.65f);
+        }
+
+        private void WarnInvalidGather(Pawn doer)
+        {
+            string doerLabel = doer?.LabelShortCap ?? "null";
+            string parentLabel = parent?.LabelShortCap ?? "null";
+            MooGirlLog.WarningOnce(SaveKey + ".GatherInactive", "MooGirl.Milk.GatherInactiveLog".Translate(doerLabel, parentLabel).ToString());
+        }
+
+        private static int CurrentGameTickOrFallback(int fallback)
+        {
+            return MooGirlTickUtility.CurrentGameTickOrFallback(fallback);
+        }
     }
 }

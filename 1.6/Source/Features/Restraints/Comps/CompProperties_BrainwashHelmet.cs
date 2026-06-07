@@ -59,14 +59,44 @@ namespace MooGirl
         public Pawn Wearer => parent.ParentHolder is Pawn_ApparelTracker tracker ? tracker.pawn : null;
 
         // 简化访问属性，获得对应的属性配置
-        public CompProperties_BrainwashHelmet Props => (CompProperties_BrainwashHelmet)props;
+        public CompProperties_BrainwashHelmet Props => props as CompProperties_BrainwashHelmet;
+
+        public override void PostPostMake()
+        {
+            base.PostPostMake();
+            EnsureCurrentTicksToChangeInitialized();
+        }
 
         // 当组件生成完成或加载时调用，初始化当前周期需要的 tick 数
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
-            // 随机选择周期 tick 数
-            currentTicksToChange = Props.ticksToChange.RandomInRange;
+
+            if (!respawningAfterLoad)
+            {
+                EnsureCurrentTicksToChangeInitialized();
+            }
+        }
+
+        public override void Notify_Equipped(Pawn pawn)
+        {
+            base.Notify_Equipped(pawn);
+            EnsureCurrentTicksToChangeInitialized();
+        }
+
+        private void EnsureCurrentTicksToChangeInitialized()
+        {
+            if (currentTicksToChange > 0)
+                return;
+
+            CompProperties_BrainwashHelmet helmetProps = Props;
+            if (helmetProps == null)
+            {
+                return;
+            }
+
+            // 装备可能直接生成到穿戴栏，未必经过地图生成入口；只补非法/未初始化值，避免读档后覆盖保存的剩余周期。
+            currentTicksToChange = Mathf.Max(1, helmetProps.ticksToChange.RandomInRange);
         }
 
         // 组件每个游戏 tick 调用
@@ -75,10 +105,11 @@ namespace MooGirl
             base.CompTick();
 
             Pawn pawn = Wearer;
-            if (pawn == null || pawn.Dead || !pawn.Spawned || !ParentIsCracked())
+            CompProperties_BrainwashHelmet helmetProps = Props;
+            if (helmetProps == null || pawn?.health?.hediffSet == null || pawn.Dead || !pawn.Spawned || !ParentIsCracked())
                 return;
 
-            if (Props.blockHediff != null && pawn.health.hediffSet.HasHediff(Props.blockHediff))
+            if (helmetProps.blockHediff != null && pawn.health.hediffSet.HasHediff(helmetProps.blockHediff))
             {
                 nonBlockedTicks = 0;
                 return;
@@ -90,10 +121,10 @@ namespace MooGirl
                 if (nonBlockedTicks >= currentTicksToChange)
                 {
                     nonBlockedTicks = 0;
-                    currentTicksToChange = Props.ticksToChange.RandomInRange;
+                    currentTicksToChange = Mathf.Max(1, helmetProps.ticksToChange.RandomInRange);
 
                     // 周期到达，执行转换
-                    ExecuteHediffLogic(pawn);
+                    ExecuteHediffLogic(pawn, helmetProps);
                 }
             }
         }
@@ -105,35 +136,50 @@ namespace MooGirl
             foreach (var g in base.CompGetWornGizmosExtra())
                 yield return g;
 
+            CompProperties_BrainwashHelmet helmetProps = Props;
+            if (helmetProps == null)
+            {
+                yield break;
+            }
+
             // 只有装备被破解且有穿戴者时显示主动洗脑按钮
             if (parent is AdvancedSlaveApparel slave && slave.IsCracked() && Wearer != null)
             {
-                int currentTick = Find.TickManager.TicksGame;
-                int cdLeft = (lastManualUseTick + Props.useCooldownTicks) - currentTick;
+                int cdLeft = ManualCooldownTicksLeft(helmetProps);
                 bool canUse = cdLeft <= 0;
 
                 // 计算冷却进度比例，0-1 之间
-                float cooldownPercent = Mathf.InverseLerp(Props.useCooldownTicks, 0f, cdLeft);
+                float cooldownPercent = ManualCooldownPercent(helmetProps);
+                Texture2D activateIcon = GetCommandIcon(helmetProps.activateIconPath);
 
                 // 返回带冷却效果的按钮
                 yield return new Command_ActionWithCooldown
                 {
-                    defaultLabel = MooGirlText.Resolve(Props.activateLabel),
-                    defaultDesc = MooGirlText.Resolve(Props.activateDesc),
-                    icon = ContentFinder<Texture2D>.Get(Props.activateIconPath),
+                    defaultLabel = MooGirlText.Resolve(helmetProps.activateLabel),
+                    defaultDesc = MooGirlText.Resolve(helmetProps.activateDesc),
+                    icon = activateIcon,
                     action = () =>
                     {
-                        if (!canUse) return;
+                        CompProperties_BrainwashHelmet currentProps = Props;
+                        if (!(parent is AdvancedSlaveApparel currentSlave) || !currentSlave.IsCracked() || !ManualUseReady(currentProps, out int currentTick))
+                        {
+                            return;
+                        }
+                        Pawn wearer = Wearer;
+                        if (wearer?.health?.hediffSet == null)
+                        {
+                            return;
+                        }
 
                         // 主动触发 Hediff 转换逻辑
-                        ExecuteHediffLogic(slave.Wearer);
-                        lastManualUseTick = Find.TickManager.TicksGame;
+                        ExecuteHediffLogic(wearer, currentProps);
+                        lastManualUseTick = currentTick;
 
                         // 显示消息提示
-                        Messages.Message("MooGirl.Restraints.BrainwashHelmet.ManualTriggerMessage".Translate(slave.Wearer.LabelShortCap), MessageTypeDefOf.PositiveEvent);
+                        Messages.Message("MooGirl.Restraints.BrainwashHelmet.ManualTriggerMessage".Translate(wearer.LabelShortCap), MessageTypeDefOf.PositiveEvent);
                     },
                     Disabled = !canUse,
-                    cooldownPercentGetter = () => Mathf.Clamp01(cooldownPercent)
+                    cooldownPercentGetter = () => ManualCooldownPercent(Props, cooldownPercent)
                 };
 
                 // 文化转换按钮（仅在意识形态激活时显示）
@@ -143,23 +189,35 @@ namespace MooGirl
                     {
                         defaultLabel = "MooGirl.Restraints.BrainwashHelmet.IdeoConvertLabel".Translate(),
                         defaultDesc = "MooGirl.Restraints.BrainwashHelmet.IdeoConvertDesc".Translate(),
-                        icon = ContentFinder<Texture2D>.Get(Props.activateIconPath),
+                        icon = activateIcon,
                         action = () =>
                         {
-                            GameComponent_BrainwashPerformance.StartFor(Wearer, GetBrainwashPerformanceHediffDefFor(Wearer));
-                            MooGirl_IdeoUtility.AdoptPlayerPrimaryIdeo(Wearer);
-                            Messages.Message("MooGirl.Restraints.BrainwashHelmet.IdeoConvertMessage".Translate(Wearer.LabelShortCap), Wearer, MessageTypeDefOf.PositiveEvent);
+                            CompProperties_BrainwashHelmet currentProps = Props;
+                            if (currentProps == null || !(parent is AdvancedSlaveApparel currentSlave) || !currentSlave.IsCracked())
+                            {
+                                return;
+                            }
+
+                            Pawn wearer = Wearer;
+                            if (wearer == null)
+                            {
+                                return;
+                            }
+
+                            GameComponent_BrainwashPerformance.StartFor(wearer, GetBrainwashPerformanceHediffDefFor(wearer, currentProps));
+                            MooGirl_IdeoUtility.AdoptPlayerPrimaryIdeo(wearer);
+                            Messages.Message("MooGirl.Restraints.BrainwashHelmet.IdeoConvertMessage".Translate(wearer.LabelShortCap), wearer, MessageTypeDefOf.PositiveEvent);
                         }
                     };
                 }
             }
         }
 
-        private HediffDef GetBrainwashPerformanceHediffDefFor(Pawn pawn)
+        private HediffDef GetBrainwashPerformanceHediffDefFor(Pawn pawn, CompProperties_BrainwashHelmet helmetProps)
         {
-            if (pawn?.health?.hediffSet != null && Props.convertList != null)
+            if (pawn?.health?.hediffSet != null && helmetProps?.convertList != null)
             {
-                foreach (var entry in Props.convertList)
+                foreach (var entry in helmetProps.convertList)
                 {
                     if (entry?.hediffToCheck == null || entry.hediffToAdd == null)
                         continue;
@@ -171,48 +229,51 @@ namespace MooGirl
                 }
             }
 
-            return Props.defaultHediff;
+            return helmetProps?.defaultHediff;
         }
 
         // 核心 Hediff 转换逻辑
-        private void ExecuteHediffLogic(Pawn pawn)
+        private void ExecuteHediffLogic(Pawn pawn, CompProperties_BrainwashHelmet helmetProps)
         {
-            var convertList = Props.convertList;
+            var convertList = helmetProps?.convertList;
             bool converted = false;
 
             // 遍历所有预设转换条目
-            foreach (var entry in convertList)
+            if (pawn?.health?.hediffSet != null && convertList != null)
             {
-                if (entry.hediffToCheck == null || entry.hediffToAdd == null)
-                    continue;
-
-                // 查找 Pawn 身上是否已有需要被转换的 Hediff
-                Hediff existing = pawn.health.hediffSet.GetFirstHediffOfDef(entry.hediffToCheck);
-                if (existing != null)
+                foreach (var entry in convertList)
                 {
-                    // 移除已有 Hediff
-                    pawn.health.RemoveHediff(existing);
+                    if (entry.hediffToCheck == null || entry.hediffToAdd == null)
+                        continue;
 
-                    // 找到大脑部位进行添加
-                    var brain = pawn.health.hediffSet.GetBrain();
-                    if (brain != null && !pawn.health.hediffSet.HasHediff(entry.hediffToAdd))
+                    // 查找 Pawn 身上是否已有需要被转换的 Hediff
+                    Hediff existing = pawn.health.hediffSet.GetFirstHediffOfDef(entry.hediffToCheck);
+                    if (existing != null)
                     {
-                        pawn.health.AddHediff(entry.hediffToAdd, brain);
-                    }
+                        // 移除已有 Hediff
+                        pawn.health.RemoveHediff(existing);
 
-                    // 标记已转换，跳出循环
-                    converted = true;
-                    break;
+                        // 找到大脑部位进行添加
+                        var brain = pawn.health.hediffSet.GetBrain();
+                        if (brain != null && !pawn.health.hediffSet.HasHediff(entry.hediffToAdd))
+                        {
+                            pawn.health.AddHediff(entry.hediffToAdd, brain);
+                        }
+
+                        // 标记已转换，跳出循环
+                        converted = true;
+                        break;
+                    }
                 }
             }
 
             // 如果没有匹配的转换，添加默认 Hediff（如果存在且尚未添加）
-            if (!converted && Props.defaultHediff != null && !pawn.health.hediffSet.HasHediff(Props.defaultHediff))
+            if (!converted && pawn?.health?.hediffSet != null && helmetProps?.defaultHediff != null && !pawn.health.hediffSet.HasHediff(helmetProps.defaultHediff))
             {
                 var brain = pawn.health.hediffSet.GetBrain();
                 if (brain != null)
                 {
-                    pawn.health.AddHediff(Props.defaultHediff, brain);
+                    pawn.health.AddHediff(helmetProps.defaultHediff, brain);
                 }
             }
         }
@@ -224,10 +285,16 @@ namespace MooGirl
             if (pawn == null || pawn.health == null || pawn.health.hediffSet == null)
                 return;
 
-            // 遍历 convertList，移除所有相关的 hediffToAdd
-            if (Props.convertList != null)
+            CompProperties_BrainwashHelmet helmetProps = Props;
+            if (helmetProps == null)
             {
-                foreach (var entry in Props.convertList)
+                return;
+            }
+
+            // 遍历 convertList，移除所有相关的 hediffToAdd
+            if (helmetProps.convertList != null)
+            {
+                foreach (var entry in helmetProps.convertList)
                 {
                     if (entry?.hediffToAdd == null) continue;
 
@@ -243,12 +310,12 @@ namespace MooGirl
             }
 
             // 移除默认添加的 Hediff
-            if (Props.defaultHediff != null)
+            if (helmetProps.defaultHediff != null)
             {
                 var hediffs = pawn.health.hediffSet.hediffs;
                 for (int i = hediffs.Count - 1; i >= 0; i--)
                 {
-                    if (hediffs[i].def == Props.defaultHediff)
+                    if (hediffs[i].def == helmetProps.defaultHediff)
                     {
                         pawn.health.RemoveHediff(hediffs[i]);
                     }
@@ -266,7 +333,60 @@ namespace MooGirl
             // 保存主动使用的最后 tick
             Scribe_Values.Look(ref lastManualUseTick, "lastManualUseTick", -999999);
             // 保存当前周期所需 tick
-            Scribe_Values.Look(ref currentTicksToChange, "currentTicksToChange");
+            Scribe_Values.Look(ref currentTicksToChange, "currentTicksToChange", 0);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                EnsureCurrentTicksToChangeInitialized();
+            }
+        }
+
+        private static int CurrentGameTickOrFallback(int fallback)
+        {
+            return MooGirlTickUtility.CurrentGameTickOrFallback(fallback);
+        }
+
+        private static Texture2D GetCommandIcon(string iconPath)
+        {
+            return string.IsNullOrEmpty(iconPath) ? TexCommand.DesirePower : ContentFinder<Texture2D>.Get(iconPath, false) ?? TexCommand.DesirePower;
+        }
+
+        private bool ManualUseReady(CompProperties_BrainwashHelmet helmetProps, out int currentTick)
+        {
+            currentTick = CurrentGameTickOrFallback(lastManualUseTick);
+            if (helmetProps == null)
+            {
+                return false;
+            }
+
+            return ManualCooldownTicksLeft(helmetProps, currentTick) <= 0;
+        }
+
+        private int ManualCooldownTicksLeft(CompProperties_BrainwashHelmet helmetProps)
+        {
+            return ManualCooldownTicksLeft(helmetProps, CurrentGameTickOrFallback(lastManualUseTick));
+        }
+
+        private int ManualCooldownTicksLeft(CompProperties_BrainwashHelmet helmetProps, int currentTick)
+        {
+            if (helmetProps == null)
+            {
+                return int.MaxValue;
+            }
+
+            int cooldownTicks = Mathf.Max(1, helmetProps.useCooldownTicks);
+            return Mathf.Max(0, (lastManualUseTick + cooldownTicks) - currentTick);
+        }
+
+        private float ManualCooldownPercent(CompProperties_BrainwashHelmet helmetProps, float fallback = 0f)
+        {
+            if (helmetProps == null)
+            {
+                return Mathf.Clamp01(fallback);
+            }
+
+            int cooldownTicks = Mathf.Max(1, helmetProps.useCooldownTicks);
+            int cdLeft = ManualCooldownTicksLeft(helmetProps);
+            return cdLeft <= 0 ? 1f : Mathf.Clamp01(1f - (float)cdLeft / cooldownTicks);
         }
     }
 }

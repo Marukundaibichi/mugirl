@@ -385,7 +385,7 @@
         </tradeTags>
         <recipeMaker>
             <displayPriority>110</displayPriority>
-            <researchPrerequisite>Gunlink</researchPrerequisite>
+            <researchPrerequisite MayRequire="Ludeon.RimWorld.Royalty">Gunlink</researchPrerequisite>
         </recipeMaker>
     </ThingDef>
 

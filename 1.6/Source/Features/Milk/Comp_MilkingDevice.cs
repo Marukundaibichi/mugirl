@@ -18,13 +18,9 @@ namespace MooGirl
         private string cachedFilthThingDefName;
         private ThingDef cachedFilthThingDef;
 
-        public CompProperties_MilkingDevice Props => (CompProperties_MilkingDevice)props;
+        public CompProperties_MilkingDevice Props => props as CompProperties_MilkingDevice;
 
         public Pawn Wearer => (parent as Apparel)?.Wearer;
-
-        private ThingDef ReleaseThingDef => GetCachedThingDef(Props.releaseThingDefName, ref cachedReleaseThingDefName, ref cachedReleaseThingDef);
-
-        private ThingDef FilthThingDef => GetCachedThingDef(Props.filthDefName, ref cachedFilthThingDefName, ref cachedFilthThingDef);
 
         public bool CanManageMilkSource(CompMooMilkable milkComp)
         {
@@ -34,7 +30,8 @@ namespace MooGirl
 
         public bool TryAcceptFullMilk(CompMooMilkable milkComp)
         {
-            if (!CanManageMilkSource(milkComp) || !milkComp.IsFullNow)
+            CompProperties_MilkingDevice deviceProps = Props;
+            if (deviceProps == null || !CanManageMilkSource(milkComp) || !milkComp.IsFullNow)
             {
                 return false;
             }
@@ -45,11 +42,12 @@ namespace MooGirl
                 DoMilkingRelease();
             }
 
-            if (storedCharges >= Props.maxCharges)
+            int maxCharges = Mathf.Max(1, deviceProps.maxCharges);
+            if (storedCharges >= maxCharges)
             {
                 DoMilkingRelease();
 
-                if (storedCharges >= Props.maxCharges)
+                if (storedCharges >= maxCharges)
                 {
                     return false;
                 }
@@ -78,10 +76,16 @@ namespace MooGirl
 
         public override string CompInspectStringExtra()
         {
+            CompProperties_MilkingDevice deviceProps = Props;
+            if (deviceProps == null)
+            {
+                return null;
+            }
+
             return "MooGirl.MilkingDevice.Inspect".Translate(
-                TranslateProp(Props.inspectLabel),
+                TranslateProp(deviceProps.inspectLabel),
                 storedCharges,
-                Props.maxCharges,
+                Mathf.Max(1, deviceProps.maxCharges),
                 storedMilkAmount,
                 MooGirl_DefOf.MooGirl_Milk.label);
         }
@@ -94,17 +98,19 @@ namespace MooGirl
             }
 
             Pawn wearer = Wearer;
-            if (!ShouldShowReleaseGizmo(wearer))
+            CompProperties_MilkingDevice deviceProps = Props;
+            if (deviceProps == null || !ShouldShowReleaseGizmo(wearer))
             {
                 yield break;
             }
 
             bool canRelease = storedCharges > 0 && storedMilkAmount > 0;
+            Texture2D releaseIcon = GetCommandIcon(deviceProps.releaseIconPath);
             yield return new Command_ActionWithCooldown
             {
-                defaultLabel = TranslateProp(Props.releaseLabel),
-                defaultDesc = canRelease ? TranslateProp(Props.releaseDesc) : TranslateProp(Props.noChargeText),
-                icon = ContentFinder<Texture2D>.Get(Props.releaseIconPath),
+                defaultLabel = TranslateProp(deviceProps.releaseLabel),
+                defaultDesc = canRelease ? TranslateProp(deviceProps.releaseDesc) : TranslateProp(deviceProps.noChargeText),
+                icon = releaseIcon,
                 action = DoMilkingRelease,
                 Disabled = !canRelease,
                 cooldownPercentGetter = () => canRelease ? 1f : 0f
@@ -112,18 +118,18 @@ namespace MooGirl
 
             yield return new Command_Toggle
             {
-                defaultLabel = TranslateProp(autoReleaseEnabled ? Props.autoReleaseEnabledLabel : Props.autoReleaseDisabledLabel),
-                defaultDesc = TranslateProp(Props.autoReleaseToggleDesc),
-                icon = ContentFinder<Texture2D>.Get(Props.releaseIconPath),
+                defaultLabel = TranslateProp(autoReleaseEnabled ? deviceProps.autoReleaseEnabledLabel : deviceProps.autoReleaseDisabledLabel),
+                defaultDesc = TranslateProp(deviceProps.autoReleaseToggleDesc),
+                icon = releaseIcon,
                 isActive = () => autoReleaseEnabled,
                 toggleAction = () => autoReleaseEnabled = !autoReleaseEnabled
             };
 
             yield return new Command_Toggle
             {
-                defaultLabel = TranslateProp(powerReleaseEnabled ? Props.powerReleaseEnabledLabel : Props.powerReleaseDisabledLabel),
-                defaultDesc = TranslateProp(Props.powerReleaseToggleDesc),
-                icon = ContentFinder<Texture2D>.Get(Props.releaseIconPath),
+                defaultLabel = TranslateProp(powerReleaseEnabled ? deviceProps.powerReleaseEnabledLabel : deviceProps.powerReleaseDisabledLabel),
+                defaultDesc = TranslateProp(deviceProps.powerReleaseToggleDesc),
+                icon = releaseIcon,
                 isActive = () => powerReleaseEnabled,
                 toggleAction = () => powerReleaseEnabled = !powerReleaseEnabled
             };
@@ -147,6 +153,11 @@ namespace MooGirl
             Scribe_Values.Look(ref storedMilkAmount, "storedMilkAmount", 0);
             Scribe_Values.Look(ref autoReleaseEnabled, "autoReleaseEnabled", false);
             Scribe_Values.Look(ref powerReleaseEnabled, "powerReleaseEnabled", false);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                storedCharges = Mathf.Max(0, storedCharges);
+                storedMilkAmount = Mathf.Max(0, storedMilkAmount);
+            }
         }
 
         private bool ShouldShowReleaseGizmo(Pawn wearer)
@@ -162,46 +173,53 @@ namespace MooGirl
         private void NotifyStoredCharge()
         {
             Pawn wearer = Wearer;
-            if (wearer?.Map != null && !string.IsNullOrEmpty(Props.storedMoteText))
+            CompProperties_MilkingDevice deviceProps = Props;
+            if (deviceProps == null)
             {
-                MoteMaker.ThrowText(wearer.DrawPos, wearer.Map, TranslateProp(Props.storedMoteText), Color.cyan, 4f);
+                return;
             }
 
-            if (wearer != null && !string.IsNullOrEmpty(Props.storedMessageKey))
+            if (wearer?.Map != null && !string.IsNullOrEmpty(deviceProps.storedMoteText))
             {
-                Messages.Message(Props.storedMessageKey.Translate(wearer.LabelShortCap, storedCharges, Props.maxCharges), wearer, MessageTypeDefOf.PositiveEvent);
+                MoteMaker.ThrowText(wearer.DrawPos, wearer.Map, TranslateProp(deviceProps.storedMoteText), Color.cyan, 4f);
+            }
+
+            if (wearer != null && !string.IsNullOrEmpty(deviceProps.storedMessageKey))
+            {
+                Messages.Message(deviceProps.storedMessageKey.Translate(wearer.LabelShortCap, storedCharges, Mathf.Max(1, deviceProps.maxCharges)), wearer, MessageTypeDefOf.PositiveEvent);
             }
         }
 
         private void DoMilkingRelease()
         {
+            CompProperties_MilkingDevice deviceProps = Props;
             Pawn wearer = Wearer;
-            if (wearer == null || wearer.Map == null || storedCharges <= 0 || storedMilkAmount <= 0)
+            if (deviceProps == null || wearer == null || wearer.Map == null || storedCharges <= 0 || storedMilkAmount <= 0)
             {
                 return;
             }
 
-            ThingDef thingDef = ReleaseThingDef;
+            ThingDef thingDef = GetReleaseThingDef(deviceProps);
             if (thingDef == null)
             {
-                Log.Warning("MooGirl.MilkingDevice.ReleaseThingMissing".Translate().ToString());
+                MooGirlLog.WarningOnce("MilkingDevice.ReleaseThingMissing", "MooGirl.MilkingDevice.ReleaseThingMissing".Translate().ToString());
                 return;
             }
 
             int releasedMilkAmount = storedMilkAmount;
             SpawnReleasedMilk(wearer, thingDef, releasedMilkAmount);
-            SpawnReleaseFilth(wearer);
-            PlayReleaseSounds(wearer, powerReleaseEnabled);
+            SpawnReleaseFilth(wearer, deviceProps);
+            PlayReleaseSounds(wearer, powerReleaseEnabled, deviceProps);
             parent.TryGetComp<CompMilkingDeviceReleaseEffect>()?.Trigger();
 
             if (powerReleaseEnabled)
             {
-                ApplyPowerReleasePause(wearer);
+                ApplyPowerReleasePause(wearer, deviceProps);
             }
 
-            if (!string.IsNullOrEmpty(Props.releaseMessageKey))
+            if (!string.IsNullOrEmpty(deviceProps.releaseMessageKey))
             {
-                Messages.Message(Props.releaseMessageKey.Translate(wearer.LabelShortCap, releasedMilkAmount), wearer, MessageTypeDefOf.PositiveEvent);
+                Messages.Message(deviceProps.releaseMessageKey.Translate(wearer.LabelShortCap, releasedMilkAmount), wearer, MessageTypeDefOf.PositiveEvent);
             }
 
             storedCharges = 0;
@@ -219,7 +237,7 @@ namespace MooGirl
             CompMooMilkable milkComp = wearer.TryGetComp<CompMooMilkable>();
             if (milkComp == null || !milkComp.DevFillToFull(triggerNotify: true))
             {
-                Messages.Message("MooGirl.MilkingDevice.DevFill.Failed".Translate(wearer.LabelShortCap), wearer, MessageTypeDefOf.RejectInput);
+                Messages.Message("MooGirl.MilkingDevice.DevFill.Failed".Translate(wearer.LabelShortCap), wearer, MessageTypeDefOf.RejectInput, historical: false);
                 return;
             }
 
@@ -242,28 +260,33 @@ namespace MooGirl
             return cachedDef;
         }
 
+        private static Texture2D GetCommandIcon(string iconPath)
+        {
+            return string.IsNullOrEmpty(iconPath) ? TexCommand.DesirePower : ContentFinder<Texture2D>.Get(iconPath, false) ?? TexCommand.DesirePower;
+        }
+
         private void SpawnReleasedMilk(Pawn wearer, ThingDef thingDef, int amount)
         {
             MooGirlMilkOutputUtility.SpawnStacksNear(thingDef, amount, wearer.Position, wearer.Map);
         }
 
-        private void SpawnReleaseFilth(Pawn wearer)
+        private void SpawnReleaseFilth(Pawn wearer, CompProperties_MilkingDevice deviceProps)
         {
-            if (!Props.spawnFilthOnRelease)
+            if (wearer?.Map == null || deviceProps == null || !deviceProps.spawnFilthOnRelease)
             {
                 return;
             }
 
-            ThingDef filthThingDef = FilthThingDef;
+            ThingDef filthThingDef = GetFilthThingDef(deviceProps);
             if (filthThingDef == null)
             {
                 return;
             }
 
-            int filthCount = Props.filthCountRange.RandomInRange;
+            int filthCount = Mathf.Max(0, deviceProps.filthCountRange.RandomInRange);
             for (int i = 0; i < filthCount; i++)
             {
-                IntVec3 pos = Props.spawnFilthInFacingDirection && wearer.Rotation != Rot4.Invalid
+                IntVec3 pos = deviceProps.spawnFilthInFacingDirection && wearer.Rotation != Rot4.Invalid
                     ? wearer.Position + wearer.Rotation.FacingCell
                     : wearer.Position;
 
@@ -277,10 +300,10 @@ namespace MooGirl
             }
         }
 
-        private void PlayReleaseSounds(Pawn wearer, bool powerMode)
+        private void PlayReleaseSounds(Pawn wearer, bool powerMode, CompProperties_MilkingDevice deviceProps)
         {
-            List<SoundDef> sounds = powerMode ? Props.powerReleaseSounds : Props.releaseSounds;
-            if (sounds == null)
+            List<SoundDef> sounds = powerMode ? deviceProps?.powerReleaseSounds : deviceProps?.releaseSounds;
+            if (wearer?.Map == null || sounds == null)
             {
                 return;
             }
@@ -292,10 +315,20 @@ namespace MooGirl
             }
         }
 
-        private void ApplyPowerReleasePause(Pawn wearer)
+        private void ApplyPowerReleasePause(Pawn wearer, CompProperties_MilkingDevice deviceProps)
         {
-            int stunTicks = Mathf.Max(1, Props.powerReleaseStunTicks);
+            int stunTicks = Mathf.Max(1, deviceProps.powerReleaseStunTicks);
             wearer.stances?.stunner?.StunFor(stunTicks, wearer, false, true, true);
+        }
+
+        private ThingDef GetReleaseThingDef(CompProperties_MilkingDevice deviceProps)
+        {
+            return GetCachedThingDef(deviceProps?.releaseThingDefName, ref cachedReleaseThingDefName, ref cachedReleaseThingDef);
+        }
+
+        private ThingDef GetFilthThingDef(CompProperties_MilkingDevice deviceProps)
+        {
+            return GetCachedThingDef(deviceProps?.filthDefName, ref cachedFilthThingDefName, ref cachedFilthThingDef);
         }
     }
 }

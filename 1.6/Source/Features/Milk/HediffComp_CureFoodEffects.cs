@@ -18,7 +18,7 @@ namespace MooGirl
     {
         private bool applied;
 
-        public HediffCompProperties_CureFoodEffects CureProps => (HediffCompProperties_CureFoodEffects)props;
+        public HediffCompProperties_CureFoodEffects CureProps => props as HediffCompProperties_CureFoodEffects;
 
         public void ReapplyCure()
         {
@@ -42,23 +42,35 @@ namespace MooGirl
         {
             base.CompPostTick(ref severityAdjustment);
             if (!applied) ApplyCure();
-            if (Pawn != null && CureProps.removeHediffs != null && CureProps.removeHediffs.Count > 0)
+            if (TryGetRemoveHediffs(out List<string> removeHediffs) && removeHediffs.Count > 0)
             {
-                RemoveTargetHediffs();
+                RemoveTargetHediffs(Pawn, removeHediffs);
             }
         }
 
         private void ApplyCure()
         {
             if (applied) return;
-            if (Pawn == null || CureProps.removeHediffs == null) return;
+            if (CureProps == null)
+            {
+                applied = true;
+                return;
+            }
+
+            if (!TryGetRemoveHediffs(out List<string> removeHediffs)) return;
             applied = true;
-            RemoveTargetHediffs();
+            RemoveTargetHediffs(Pawn, removeHediffs);
         }
 
-        private void RemoveTargetHediffs()
+        private bool TryGetRemoveHediffs(out List<string> removeHediffs)
         {
-            MooGirlFoodEffectUtility.RemoveHediffs(Pawn, CureProps.removeHediffs);
+            removeHediffs = CureProps?.removeHediffs;
+            return Pawn?.health?.hediffSet != null && removeHediffs != null;
+        }
+
+        private void RemoveTargetHediffs(Pawn pawn, List<string> removeHediffs)
+        {
+            MooGirlFoodEffectUtility.RemoveHediffs(pawn, removeHediffs);
         }
 
         public override void CompExposeData()

@@ -19,7 +19,12 @@ namespace MooGirl
 
         public override bool TargetPawnValid(Pawn target, FloatMenuContext context)
         {
-            return target != null && target.Spawned && !target.Dead && MountedPawnUtility.GetMountComp(target) != null && MountedPawnUtility.IsMooGirl(target);
+            return base.TargetPawnValid(target, context)
+                && target != null
+                && target.Spawned
+                && !target.Dead
+                && MountedPawnUtility.GetMountComp(target) != null
+                && MountedPawnUtility.IsMooGirl(target);
         }
 
         public override IEnumerable<FloatMenuOption> GetOptionsFor(Pawn clickedPawn, FloatMenuContext context)
@@ -41,7 +46,7 @@ namespace MooGirl
             {
                 if (comp.HasMountedPawn)
                 {
-                    yield return new FloatMenuOption("MooGirl.Mount.DismountRider".Translate(), () => comp.TryDismount(), MenuOptionPriority.High, null, moo);
+                    yield return new FloatMenuOption("MooGirl.Mount.DismountRider".Translate(), () => TryDismountSelf(moo), MenuOptionPriority.High, null, moo);
                 }
 
                 yield break;
@@ -49,10 +54,22 @@ namespace MooGirl
 
             if (comp.HasMountedPawn)
             {
-                FloatMenuOption option = new FloatMenuOption("MooGirl.Mount.DismountRider".Translate(), delegate
+                string dismountLabel = "MooGirl.Mount.DismountRider".Translate();
+                if (!actor.CanReserve(moo))
                 {
-                    Job job = JobMaker.MakeJob(MooGirl_DefOf.Job_DismountMooGirl, moo);
-                    actor.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+                    yield return new FloatMenuOption("MooGirl.Mount.LabelWithReason".Translate(dismountLabel, "MooGirl.Mount.ReasonReserved".Translate()), null, MenuOptionPriority.High, null, moo);
+                    yield break;
+                }
+
+                if (!actor.CanReach(moo, PathEndMode.Touch, Danger.Deadly))
+                {
+                    yield return new FloatMenuOption("MooGirl.Mount.LabelWithReason".Translate(dismountLabel, "MooGirl.Mount.ReasonNoPath".Translate()), null, MenuOptionPriority.High, null, moo);
+                    yield break;
+                }
+
+                FloatMenuOption option = new FloatMenuOption(dismountLabel, delegate
+                {
+                    TryStartDismountJob(actor, moo);
                 }, MenuOptionPriority.High, null, moo);
 
                 yield return FloatMenuUtility.DecoratePrioritizedTask(option, actor, moo);
@@ -80,11 +97,42 @@ namespace MooGirl
 
             FloatMenuOption mountOption = new FloatMenuOption(label, delegate
             {
-                Job job = JobMaker.MakeJob(MooGirl_DefOf.Job_MountMooGirl, moo);
-                actor.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+                TryStartMountJob(actor, moo);
             }, MenuOptionPriority.High, null, moo);
 
             yield return FloatMenuUtility.DecoratePrioritizedTask(mountOption, actor, moo);
+        }
+
+        private static void TryDismountSelf(Pawn carrier)
+        {
+            MountedPawnUtility.GetMountComp(carrier)?.TryDismount();
+        }
+
+        private static void TryStartDismountJob(Pawn actor, Pawn carrier)
+        {
+            Comp_MooGirlMount comp = MountedPawnUtility.GetMountComp(carrier);
+            if (actor == null || carrier == null || comp?.HasMountedPawn != true
+                || !actor.CanReserveAndReach(carrier, PathEndMode.Touch, Danger.Deadly))
+            {
+                return;
+            }
+
+            Job job = JobMaker.MakeJob(MooGirl_DefOf.Job_DismountMooGirl, carrier);
+            actor.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+        }
+
+        private static void TryStartMountJob(Pawn actor, Pawn carrier)
+        {
+            Comp_MooGirlMount comp = MountedPawnUtility.GetMountComp(carrier);
+            if (actor == null || carrier == null || comp == null
+                || !comp.CanMount(actor, out _)
+                || !actor.CanReserveAndReach(carrier, PathEndMode.Touch, Danger.Deadly))
+            {
+                return;
+            }
+
+            Job job = JobMaker.MakeJob(MooGirl_DefOf.Job_MountMooGirl, carrier);
+            actor.jobs.TryTakeOrderedJob(job, JobTag.Misc);
         }
     }
 }

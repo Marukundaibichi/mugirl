@@ -5,42 +5,6 @@ namespace MooGirl
 {
     internal static class MooGirlBreastProfileUtility
     {
-        internal static bool TryGetProductionDays(Pawn pawn, out float days)
-        {
-            if (HasSpecialBreasts(pawn))
-            {
-                days = 3f;
-                return true;
-            }
-
-            if (HasNormalBreasts(pawn))
-            {
-                days = 1.2f;
-                return true;
-            }
-
-            if (HasHediff(pawn, MooGirlOptionalDefs.Hediffs.SmallBreasts))
-            {
-                days = 1f;
-                return true;
-            }
-
-            if (HasLargeBreasts(pawn))
-            {
-                days = 1.5f;
-                return true;
-            }
-
-            if (HasFlatBreastsOrMale(pawn))
-            {
-                days = 0.85f;
-                return true;
-            }
-
-            days = 0f;
-            return false;
-        }
-
         internal static bool TryGetYieldMultiplier(Pawn pawn, out float multiplier)
         {
             if (HasSpecialBreasts(pawn))

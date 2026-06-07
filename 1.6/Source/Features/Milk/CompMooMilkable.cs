@@ -37,7 +37,7 @@ namespace MooGirl
         {
             get
             {
-                return this.Props.milkIntervalDays;
+                return this.Props?.milkIntervalDays ?? 1f;
             }
         }
 
@@ -46,7 +46,7 @@ namespace MooGirl
         {
             get
             {
-                return this.Props.milkAmount;
+                return this.Props?.milkAmount ?? 0f;
             }
         }
 
@@ -55,7 +55,7 @@ namespace MooGirl
         {
             get
             {
-                return this.Props.milkDef;
+                return this.Props?.milkDef;
             }
         }
 
@@ -64,7 +64,7 @@ namespace MooGirl
         {
             get
             {
-                return Props.saveKey;
+                return Props?.saveKey ?? "milkFullness";
             }
         }
 
@@ -73,7 +73,7 @@ namespace MooGirl
         {
             get
             {
-                return (CompProperties_MooMilkable)this.props;
+                return props as CompProperties_MooMilkable;
             }
         }
 
@@ -153,7 +153,8 @@ namespace MooGirl
                 return null;
             }
             // 显示格式进入翻译键，避免不同语言下冒号和空格规则固定在 C# 中。
-            return "MooGirl.Milk.FullnessInspect".Translate(MooGirlText.Resolve(this.Props.displayString), base.Fullness.ToStringPercent()).ToString();
+            CompProperties_MooMilkable milkProps = Props;
+            return "MooGirl.Milk.FullnessInspect".Translate(MooGirlText.Resolve(milkProps?.displayString ?? "MooGirl.Milk.FullnessDisplay"), base.Fullness.ToStringPercent()).ToString();
         }
 
         private Pawn MooPawn => parent as Pawn;
@@ -162,6 +163,10 @@ namespace MooGirl
         protected override float GetProductionMultiplier(Pawn pawn)
         {
             float multiplier = base.GetProductionMultiplier(pawn);
+            if (pawn?.health?.hediffSet == null)
+            {
+                return multiplier;
+            }
 
             HediffDef lactationDef = MooGirlOptionalDefs.Hediffs.MooGirlLactation;
             if (lactationDef != null)
@@ -189,10 +194,12 @@ namespace MooGirl
 
         private bool CanProduceMilk(Pawn pawn)
         {
+            CompProperties_MooMilkable milkProps = Props;
             return pawn != null
-                && (!Props.milkFemaleOnly || pawn.gender == Gender.Female)
-                && pawn.ageTracker.CurLifeStage.reproductive
-                && pawn.RaceProps.Humanlike;
+                && milkProps != null
+                && (!milkProps.milkFemaleOnly || pawn.gender == Gender.Female)
+                && pawn.ageTracker?.CurLifeStage?.reproductive == true
+                && pawn.RaceProps?.Humanlike == true;
         }
 
         private void EnsureLactationHediff()
@@ -200,7 +207,7 @@ namespace MooGirl
             // 当前行为是在 comp 激活后尽快添加哺乳期 hediff。
             // 改为事件驱动或低频检查会改变添加时机。
             Pawn pawn = MooPawn;
-            if (!Active || pawn == null)
+            if (!Active || pawn?.health?.hediffSet == null)
             {
                 return;
             }
@@ -234,13 +241,19 @@ namespace MooGirl
                     icon = TexCommand.DesirePower,
                     action = () =>
                     {
+                        Pawn pawn = MooPawn;
+                        if (pawn == null)
+                        {
+                            return;
+                        }
+
                         if (DevFillToFull(triggerNotify: false))
                         {
-                            Messages.Message("MooGirl.Milk.DevFill.Success".Translate(MooPawn.LabelShortCap), MooPawn, MessageTypeDefOf.PositiveEvent);
+                            Messages.Message("MooGirl.Milk.DevFill.Success".Translate(pawn.LabelShortCap), pawn, MessageTypeDefOf.PositiveEvent);
                         }
                         else
                         {
-                            Messages.Message("MooGirl.Milk.DevFill.Failed".Translate(MooPawn.LabelShortCap), MooPawn, MessageTypeDefOf.RejectInput);
+                            Messages.Message("MooGirl.Milk.DevFill.Failed".Translate(pawn.LabelShortCap), pawn, MessageTypeDefOf.RejectInput, historical: false);
                         }
                     }
                 };

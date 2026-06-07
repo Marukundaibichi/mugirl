@@ -13,22 +13,24 @@ namespace MooGirl
         {
             if (__result == null) return;
 
-            Pawn pawn = __instance.pawn;
+            Pawn pawn = __instance?.pawn;
             if (!RopingService.IsMooGirlRopee(pawn)) return;
             if (!RopingService.IsFollowingRoper(pawn) && !RopingService.IsRopedToSpot(pawn)) return;
 
-            // 转成列表后再禁用征召按钮，避免延迟枚举时修改原序列。
-            List<Gizmo> gizmoList = new List<Gizmo>();
-            foreach (Gizmo gizmo in __result)
+            __result = DisableDraftGizmo(__result);
+        }
+
+        private static IEnumerable<Gizmo> DisableDraftGizmo(IEnumerable<Gizmo> gizmos)
+        {
+            foreach (Gizmo gizmo in gizmos)
             {
                 if (gizmo is Command_Toggle toggle && toggle.icon == TexCommand.Draft)
                 {
                     toggle.Disable("MooGirl.DraftDisabledWhileRoped".Translate());
                 }
-                gizmoList.Add(gizmo);
-            }
 
-            __result = gizmoList;
+                yield return gizmo;
+            }
         }
     }
 }

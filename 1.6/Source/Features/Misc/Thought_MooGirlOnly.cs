@@ -7,17 +7,14 @@ namespace MooGirl
     {
         public override void ThoughtInterval()
         {
-            // 如果不是雪牛娘种族，直接移除自身
-            if (this.pawn?.RaceProps?.body.defName != "MooGirlBody")
+            Pawn currentPawn = pawn;
+            if (!MooGirlIdentity.HasMooGirlBody(currentPawn))
             {
-                this.pawn.needs.mood.thoughts.memories.RemoveMemory(this);
+                currentPawn?.needs?.mood?.thoughts?.memories?.RemoveMemory(this);
                 return;
             }
 
-            // 原有逻辑
             base.ThoughtInterval();
         }
-
     }
-
 }

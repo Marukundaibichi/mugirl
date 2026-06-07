@@ -24,7 +24,7 @@ namespace MooGirl
 
         IThingHolder IThingHolder.ParentHolder => parent.MapHeld ?? parent.ParentHolder;
 
-        public CompProperties_MooGirlMount Props => (CompProperties_MooGirlMount)props;
+        public CompProperties_MooGirlMount Props => props as CompProperties_MooGirlMount;
 
         public Pawn MooPawn => parent as Pawn;
 
@@ -68,15 +68,22 @@ namespace MooGirl
                     headOffset = carrier.Drawer.renderer.BaseHeadOffsetAt(carrier.Rotation);
                 }
 
-                Vector3 result = drawPos + headOffset + MountedPawnUtility.OffsetForRot(Props, carrier.Rotation);
-                float altitudeOffset = Props.riderAltitudeOffset;
+                CompProperties_MooGirlMount mountProps = Props;
+                Vector3 result = drawPos + headOffset + MountedPawnUtility.OffsetForRot(mountProps, carrier.Rotation);
+                if (mountProps == null)
+                {
+                    result.y = drawPos.y;
+                    return result;
+                }
+
+                float altitudeOffset = mountProps.riderAltitudeOffset;
                 if (carrier.Rotation == Rot4.North)
                 {
-                    altitudeOffset = Props.northRiderAltitudeOffset;
+                    altitudeOffset = mountProps.northRiderAltitudeOffset;
                 }
                 else if (carrier.Rotation == Rot4.South)
                 {
-                    altitudeOffset = Props.southRiderAltitudeOffset;
+                    altitudeOffset = mountProps.southRiderAltitudeOffset;
                 }
 
                 result.y = drawPos.y + altitudeOffset;
@@ -110,7 +117,7 @@ namespace MooGirl
         {
             base.Initialize(props);
             MakeContainer();
-            fireAtWill = Props.turretFireAtWillDefault;
+            fireAtWill = Props?.turretFireAtWillDefault ?? true;
         }
 
         public override void PostPostMake()
@@ -142,7 +149,7 @@ namespace MooGirl
             }
 
             Pawn carrier = MooPawn;
-            bool wasSelected = Current.ProgramState == ProgramState.Playing && Find.Selector.IsSelected(rider);
+            bool wasSelected = MooGirlSelectionUtility.IsSelectedInPlaying(rider);
             MountedPawnUtility.PreparePawnForMountContainer(rider);
             MountedPawnUtility.BreakRopes(rider);
             MountedPawnUtility.BreakRopes(carrier);
@@ -153,8 +160,7 @@ namespace MooGirl
                 GenSpawn.Spawn(rider, carrier.Position, carrier.Map);
                 if (wasSelected)
                 {
-                    Find.Selector.ClearSelection();
-                    Find.Selector.Select(rider);
+                    MooGirlSelectionUtility.SelectInPlaying(rider);
                 }
 
                 Messages.Message("MooGirl.Mount.LabelWithReason".Translate("MooGirl.Mount.CannotMount".Translate(), "MooGirl.Mount.ReasonInvalid".Translate()).CapitalizeFirst(), carrier, MessageTypeDefOf.RejectInput, historical: false);
@@ -165,8 +171,7 @@ namespace MooGirl
             MountedCombatController.NotifyMounted(this);
             if (wasSelected)
             {
-                Find.Selector.ClearSelection();
-                Find.Selector.Select(rider, playSound: false, forceDesignatorDeselect: false);
+                MooGirlSelectionUtility.SelectInPlaying(rider, playSound: false, forceDesignatorDeselect: false);
             }
 
             Messages.Message("MooGirl.Mount.MountedMessage".Translate(rider.LabelShort, carrier.LabelShort), carrier, MessageTypeDefOf.PositiveEvent);
@@ -199,7 +204,7 @@ namespace MooGirl
                 return false;
             }
 
-            bool wasSelected = Current.ProgramState == ProgramState.Playing && Find.Selector.IsSelected(rider);
+            bool wasSelected = MooGirlSelectionUtility.IsSelectedInPlaying(rider);
             if (!innerContainer.TryDrop(rider, cell, map, ThingPlaceMode.Near, out Thing dropped, null, c => MountedPawnUtility.DismountCellValidator(c, carrier, rider, map)))
             {
                 if (sendMessage)
@@ -219,8 +224,7 @@ namespace MooGirl
 
             if (wasSelected && droppedPawn != null)
             {
-                Find.Selector.ClearSelection();
-                Find.Selector.Select(droppedPawn, playSound: false, forceDesignatorDeselect: false);
+                MooGirlSelectionUtility.SelectInPlaying(droppedPawn, playSound: false, forceDesignatorDeselect: false);
             }
 
             if (sendMessage)
@@ -240,8 +244,18 @@ namespace MooGirl
                 return false;
             }
 
-            bool wasSelected = Current.ProgramState == ProgramState.Playing && Find.Selector.IsSelected(rider);
-            if (!innerContainer.TryDrop(rider, cell, map, ThingPlaceMode.Near, out Thing dropped, null, null, playDropSound: false))
+            Pawn carrier = MooPawn;
+            IntVec3 dropCell = cell;
+            if (!MountedPawnUtility.DismountCellValidator(dropCell, carrier, rider, map))
+            {
+                if (carrier == null || !MountedPawnUtility.TryFindDismountCell(carrier, rider, null, out dropCell))
+                {
+                    return false;
+                }
+            }
+
+            bool wasSelected = MooGirlSelectionUtility.IsSelectedInPlaying(rider);
+            if (!innerContainer.TryDrop(rider, dropCell, map, ThingPlaceMode.Near, out Thing dropped, null, c => MountedPawnUtility.DismountCellValidator(c, carrier, rider, map), playDropSound: false))
             {
                 return false;
             }
@@ -255,8 +269,7 @@ namespace MooGirl
 
             if (wasSelected && droppedPawn != null)
             {
-                Find.Selector.ClearSelection();
-                Find.Selector.Select(droppedPawn, playSound: false, forceDesignatorDeselect: false);
+                MooGirlSelectionUtility.SelectInPlaying(droppedPawn, playSound: false, forceDesignatorDeselect: false);
             }
 
             return true;
@@ -266,7 +279,8 @@ namespace MooGirl
         {
             base.CompTickInterval(delta);
             Pawn rider = MountedPawn;
-            if (rider == null)
+            CompProperties_MooGirlMount mountProps = Props;
+            if (rider == null || mountProps == null)
             {
                 return;
             }
@@ -278,9 +292,13 @@ namespace MooGirl
             MountedCombatController.VerbTick(this, delta);
             MountedCombatController.TickAim(this, delta);
 
-            if (Props.tickPhysiology && MooGirlTickUtility.ConsumeReady(ref physiologicalTickCounter, Props.physiologicalTickInterval, out int physiologicalDelta))
+            int physiologicalInterval = Mathf.Max(1, mountProps.physiologicalTickInterval);
+            int safetyInterval = Mathf.Max(1, mountProps.safetyCheckInterval);
+            int turretInterval = Mathf.Max(1, mountProps.turretTickInterval);
+
+            if (mountProps.tickPhysiology && MooGirlTickUtility.ConsumeReady(ref physiologicalTickCounter, physiologicalInterval, out int physiologicalDelta))
             {
-                MountedPawnUtility.PhysiologyTick(rider, physiologicalDelta);
+                MountedPawnUtility.MountedPawnTickInterval(rider, physiologicalDelta);
                 if (rider.Dead)
                 {
                     TryDismount(sendMessage: false);
@@ -288,7 +306,7 @@ namespace MooGirl
                 }
             }
 
-            if (Props.autoDismount && MooGirlTickUtility.ConsumeReady(ref safetyTickCounter, Props.safetyCheckInterval, out _))
+            if (mountProps.autoDismount && MooGirlTickUtility.ConsumeReady(ref safetyTickCounter, safetyInterval, out _))
             {
                 if (MountEligibilityService.ShouldAutoDismount(rider, MooPawn, out string reasonKey))
                 {
@@ -302,12 +320,12 @@ namespace MooGirl
                 }
             }
 
-            if (MooGirlTickUtility.ConsumeReady(ref turretTickCounter, Props.turretTickInterval, out int turretDelta))
+            if (MooGirlTickUtility.ConsumeReady(ref turretTickCounter, turretInterval, out int turretDelta))
             {
                 MountedCombatController.Tick(this, turretDelta);
             }
 
-            if (MooGirlTickUtility.ConsumeReady(ref riderMeleeTickCounter, Props.turretTickInterval, out _))
+            if (MooGirlTickUtility.ConsumeReady(ref riderMeleeTickCounter, turretInterval, out _))
             {
                 MountedPawnMeleeSupport.Tick(this);
             }
@@ -345,7 +363,8 @@ namespace MooGirl
             }
 
             MountedCombatController.NotifyDismounting(this);
-            if (innerContainer.TryDrop(rider, cell, map, ThingPlaceMode.Near, out Thing _))
+            Pawn carrier = MooPawn;
+            if (cell.IsValid && innerContainer.TryDrop(rider, cell, map, ThingPlaceMode.Near, out Thing _, null, c => MountedPawnUtility.DismountCellValidator(c, carrier, rider, map)))
             {
                 return;
             }
@@ -355,10 +374,10 @@ namespace MooGirl
                 cell,
                 map,
                 5,
-                c => c.InBounds(map) && c.Walkable(map) && !c.Fogged(map),
+                c => MountedPawnUtility.DismountCellValidator(c, carrier, rider, map),
                 out fallbackCell);
 
-            if (foundFallback && innerContainer.TryDrop(rider, fallbackCell, map, ThingPlaceMode.Near, out Thing _))
+            if (foundFallback && innerContainer.TryDrop(rider, fallbackCell, map, ThingPlaceMode.Near, out Thing _, null, c => MountedPawnUtility.DismountCellValidator(c, carrier, rider, map)))
             {
                 return;
             }
@@ -420,8 +439,13 @@ namespace MooGirl
                 icon = TexCommand.SelectCarriedPawn,
                 action = delegate
                 {
-                    Find.Selector.ClearSelection();
-                    Find.Selector.Select(rider);
+                    Pawn currentRider = MountedPawn;
+                    if (currentRider == null)
+                    {
+                        return;
+                    }
+
+                    MooGirlSelectionUtility.SelectInPlaying(currentRider);
                 }
             };
 

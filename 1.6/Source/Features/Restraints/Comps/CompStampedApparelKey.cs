@@ -7,9 +7,9 @@ namespace MooGirl
 {
     public class CompStampedApparelKey : CompUsable
     {
-        protected string make_label(Pawn pawn, Pawn other)
+        protected string MakeLabel(Pawn pawn, Pawn other)
         {
-            string targetLabel = other == null ? "MooGirl.SelfLabel".Translate().ToString() : PawnBool.get_pawnname(other);
+            string targetLabel = other == null ? "MooGirl.SelfLabel".Translate().ToString() : PawnSlaveStatusUtility.DisplayName(other);
             return "MooGirl.FloatMenu.ActionOnTarget".Translate(FloatMenuOptionLabel(pawn), targetLabel).ToString();
         }
 
@@ -30,24 +30,24 @@ namespace MooGirl
                 {
                     if (!pawn.IsHandsBlocked())
                     {
-                        yield return this.MakeUnlockOption(make_label(pawn, pawn), pawn, pawn, null);
+                        yield return this.MakeUnlockOption(MakeLabel(pawn, pawn), pawn, pawn, null);
                     }
                     else
                     {
                         yield return new FloatMenuOption(
-                            "MooGirl.FloatMenu.OptionWithReason".Translate(make_label(pawn, pawn), "MooGirl.HandsBlocked".Translate()),
+                            "MooGirl.FloatMenu.OptionWithReason".Translate(MakeLabel(pawn, pawn), "MooGirl.HandsBlocked".Translate()),
                             null,
                             MenuOptionPriority.DisabledOption);
                     }
                 }
 
-                if ((pawn.Map != null) && (pawn.Map == Find.CurrentMap))
+                if (MooGirlGameUtility.IsCurrentMap(pawn.Map))
                 {
                     foreach (var other in pawn.Map.mapPawns.FreeColonists)
                     {
                         if ((other != pawn) && other.IsWearingSlaveApparel())
                         {
-                            yield return this.MakeUnlockOption(make_label(pawn, other), pawn, other, null);
+                            yield return this.MakeUnlockOption(MakeLabel(pawn, other), pawn, other, null);
                         }
                     }
 
@@ -55,7 +55,7 @@ namespace MooGirl
                     {
                         if (prisoner.IsWearingSlaveApparel())
                         {
-                            yield return this.MakeUnlockOption(make_label(pawn, prisoner), pawn, prisoner, WorkTypeDefOf.Warden);
+                            yield return this.MakeUnlockOption(MakeLabel(pawn, prisoner), pawn, prisoner, WorkTypeDefOf.Warden);
                         }
                     }
 
@@ -64,7 +64,7 @@ namespace MooGirl
                         var corpse = q as Corpse;
                         if (corpse?.InnerPawn?.IsWearingSlaveApparel() == true)
                         {
-                            yield return this.MakeUnlockOption(make_label(pawn, corpse.InnerPawn), pawn, corpse, null);
+                            yield return this.MakeUnlockOption(MakeLabel(pawn, corpse.InnerPawn), pawn, corpse, null);
                         }
                     }
                 }

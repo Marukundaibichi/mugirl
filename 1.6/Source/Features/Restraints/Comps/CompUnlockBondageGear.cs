@@ -10,39 +10,44 @@ namespace MooGirl
 
         public override void DoEffect(Pawn p)
         {
-            base.DoEffect(p);
-
-            if (p.MapHeld == null || p.apparel == null)
+            if (p == null || p.MapHeld == null || p.apparel == null)
                 return;
 
+            base.DoEffect(p);
+
             Apparel lockedApparel = null;
-            for (int i = 0; i < p.apparel.WornApparel.Count; i++)
+            for (int i = 0; i < p.apparel.LockedApparel.Count; i++)
             {
-                if (p.apparel.WornApparel[i].IsSlaveApparel())
+                if (p.apparel.LockedApparel[i].SatisfiesKey(parent))
                 {
-                    lockedApparel = p.apparel.WornApparel[i];
+                    lockedApparel = p.apparel.LockedApparel[i];
                     break;
                 }
             }
 
             if (lockedApparel is SlaveApparel apparel)
             {
+                int previousLockCount = apparel.lockCount;
                 apparel.lockCount--;
 
                 if (apparel.lockCount <= 0)
                 {
                     apparel.isLocked = false;
-                    p.apparel.Remove(lockedApparel);
-                    Thing dropped = null;
+                    apparel.lockCount = 0;
 
-                    if (GenThing.TryDropAndSetForbidden(lockedApparel, p.Position, p.MapHeld, ThingPlaceMode.Near, out dropped, false))
+                    if (p.apparel.TryDrop(lockedApparel, out Apparel _, p.PositionHeld, false))
                     {
                         parent.Destroy();
                     }
                     else
                     {
-                        apparel.lockCount = 1;
+                        apparel.lockCount = previousLockCount > 0 ? previousLockCount : 1;
+                        apparel.isLocked = true;
                     }
+                }
+                else if (!parent.Destroyed)
+                {
+                    parent.Destroy();
                 }
             }
         }

@@ -27,19 +27,19 @@ namespace MooGirl
                 return false;
             }
 
-            if (!carrier.Spawned || carrier.Dead || carrier.Downed || carrier.Destroyed || carrier.IsBurning() || carrier.InMentalState || !carrier.health.capacities.CapableOf(PawnCapacityDefOf.Moving))
+            if (!carrier.Spawned || carrier.Dead || carrier.Downed || carrier.Destroyed || carrier.IsBurning() || carrier.InMentalState || !MountedPawnUtility.HasCapacity(carrier, PawnCapacityDefOf.Moving))
             {
                 reasonKey = "MooGirl.Mount.ReasonTargetBadState";
                 return false;
             }
 
-            if (!rider.Spawned || rider.Dead || rider.Downed || rider.Destroyed || rider.IsBurning() || rider.InMentalState || !rider.health.capacities.CapableOf(PawnCapacityDefOf.Moving))
+            if (!rider.Spawned || rider.Dead || rider.Downed || rider.Destroyed || rider.IsBurning() || rider.InMentalState || !MountedPawnUtility.HasCapacity(rider, PawnCapacityDefOf.Moving))
             {
                 reasonKey = "MooGirl.Mount.ReasonRiderBadState";
                 return false;
             }
 
-            if (rider.RaceProps?.Humanlike != true)
+            if (!MountedPawnUtility.IsHumanlike(rider))
             {
                 reasonKey = "MooGirl.Mount.ReasonRiderNotHumanlike";
                 return false;

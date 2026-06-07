@@ -85,7 +85,7 @@ namespace MooGirl  // 定义命名空间MooGirl，用于组织相关类
 
             active = true;
             age = 0;
-            stunTickTarget = props.triggerTicks + props.stunDelayTicks;
+            stunTickTarget = Mathf.Max(0, props.triggerTicks) + Mathf.Max(0, props.stunDelayTicks);
             stunned = false;
             stunEndTick = -1;
             stunMessageSent = false;
@@ -95,7 +95,8 @@ namespace MooGirl  // 定义命名空间MooGirl，用于组织相关类
             {
                 for (int i = 0; i < props.texts.Count; i++)
                 {
-                    nextTextShowTicks.Add(props.texts[i].startTick);
+                    CompProperties_PerformanceEffect.TextWithParams textParams = props.texts[i];
+                    nextTextShowTicks.Add(textParams == null ? -1 : Mathf.Max(0, textParams.startTick));
                 }
             }
 
@@ -104,7 +105,8 @@ namespace MooGirl  // 定义命名空间MooGirl，用于组织相关类
             {
                 for (int i = 0; i < props.sounds.Count; i++)
                 {
-                    nextSoundTicks.Add(props.sounds[i].startTick);
+                    CompProperties_PerformanceEffect.SoundWithParams soundParams = props.sounds[i];
+                    nextSoundTicks.Add(soundParams == null ? -1 : Mathf.Max(0, soundParams.startTick));
                 }
             }
 
@@ -113,7 +115,8 @@ namespace MooGirl  // 定义命名空间MooGirl，用于组织相关类
             {
                 for (int i = 0; i < props.flecks.Count; i++)
                 {
-                    nextFleckTicks.Add(props.flecks[i].startTick);
+                    CompProperties_PerformanceEffect.FleckWithParams fleckParams = props.flecks[i];
+                    nextFleckTicks.Add(fleckParams == null ? -1 : Mathf.Max(0, fleckParams.startTick));
                 }
             }
         }
@@ -185,7 +188,9 @@ namespace MooGirl  // 定义命名空间MooGirl，用于组织相关类
                 while (nextTextShowTicks.Count < props.texts.Count)
                 {
                     int index = nextTextShowTicks.Count;
-                    nextTextShowTicks.Add(age <= props.texts[index].startTick ? props.texts[index].startTick : -1);
+                    CompProperties_PerformanceEffect.TextWithParams textParams = props.texts[index];
+                    int startTick = textParams == null ? -1 : Mathf.Max(0, textParams.startTick);
+                    nextTextShowTicks.Add(startTick >= age ? startTick : -1);
                 }
             }
 
@@ -194,7 +199,8 @@ namespace MooGirl  // 定义命名空间MooGirl，用于组织相关类
                 while (nextSoundTicks.Count < props.sounds.Count)
                 {
                     int index = nextSoundTicks.Count;
-                    nextSoundTicks.Add(Mathf.Max(age, props.sounds[index].startTick));
+                    CompProperties_PerformanceEffect.SoundWithParams soundParams = props.sounds[index];
+                    nextSoundTicks.Add(soundParams == null ? -1 : Mathf.Max(age, soundParams.startTick));
                 }
             }
 
@@ -203,7 +209,8 @@ namespace MooGirl  // 定义命名空间MooGirl，用于组织相关类
                 while (nextFleckTicks.Count < props.flecks.Count)
                 {
                     int index = nextFleckTicks.Count;
-                    nextFleckTicks.Add(Mathf.Max(age, props.flecks[index].startTick));
+                    CompProperties_PerformanceEffect.FleckWithParams fleckParams = props.flecks[index];
+                    nextFleckTicks.Add(fleckParams == null ? -1 : Mathf.Max(age, fleckParams.startTick));
                 }
             }
         }
@@ -218,7 +225,10 @@ namespace MooGirl  // 定义命名空间MooGirl，用于组织相关类
                 if (i < nextTextShowTicks.Count && nextTextShowTicks[i] != -1 && age >= nextTextShowTicks[i])
                 {
                     var textParams = props.texts[i];
-                    MoteMaker.ThrowText(pawn.DrawPos, pawn.Map, textParams.text, textParams.color);
+                    if (textParams != null && !string.IsNullOrEmpty(textParams.text))
+                    {
+                        MoteMaker.ThrowText(pawn.DrawPos, pawn.Map, textParams.text, textParams.color);
+                    }
                     nextTextShowTicks[i] = -1;
                 }
             }
@@ -235,7 +245,12 @@ namespace MooGirl  // 定义命名空间MooGirl，用于组织相关类
                     continue;
 
                 var s = props.sounds[i];
-                if (age >= s.startTick && age <= s.endTick && age >= nextSoundTicks[i])
+                if (s == null || nextSoundTicks[i] == -1)
+                    continue;
+
+                int startTick = Mathf.Max(0, s.startTick);
+                int endTick = Mathf.Max(startTick, s.endTick);
+                if (age >= startTick && age <= endTick && age >= nextSoundTicks[i])
                 {
                     SoundInfo info = SoundInfo.InMap(new TargetInfo(pawn.Position, pawn.Map));
                     s.sound?.PlayOneShot(info);
@@ -255,7 +270,12 @@ namespace MooGirl  // 定义命名空间MooGirl，用于组织相关类
                     continue;
 
                 var f = props.flecks[i];
-                if (age >= f.startTick && age <= f.endTick && age >= nextFleckTicks[i])
+                if (f == null || f.fleck == null || nextFleckTicks[i] == -1)
+                    continue;
+
+                int startTick = Mathf.Max(0, f.startTick);
+                int endTick = Mathf.Max(startTick, f.endTick);
+                if (age >= startTick && age <= endTick && age >= nextFleckTicks[i])
                 {
                     IntVec3 offset = new IntVec3(Rand.RangeInclusive(-1, 1), 0, Rand.RangeInclusive(0, 1));
                     IntVec3 pos = pawn.Position + offset;
@@ -276,12 +296,16 @@ namespace MooGirl  // 定义命名空间MooGirl，用于组织相关类
             if (!stunned && age >= stunTickTarget)
             {
                 stunned = true;
-                stunEndTick = age + props.stunDurationTicks;
+                int stunDurationTicks = Mathf.Max(0, props.stunDurationTicks);
+                stunEndTick = age + stunDurationTicks;
                 if (sendMessages)
                 {
                     Messages.Message("MooGirl.BrainwashStart".Translate(pawn.LabelShortCap), pawn, MessageTypeDefOf.NegativeEvent);
                 }
-                pawn.stances?.stunner?.StunFor(props.stunDurationTicks, null, false, false, true);
+                if (stunDurationTicks > 0)
+                {
+                    pawn.stances?.stunner?.StunFor(stunDurationTicks, null, false, false, true);
+                }
             }
 
             if (stunned && !stunMessageSent && age >= stunEndTick)
@@ -335,7 +359,11 @@ namespace MooGirl  // 定义命名空间MooGirl，用于组织相关类
             {
                 for (int i = 0; i < props.sounds.Count; i++)
                 {
-                    completionTick = Mathf.Max(completionTick, props.sounds[i].endTick);
+                    CompProperties_PerformanceEffect.SoundWithParams soundParams = props.sounds[i];
+                    if (soundParams != null)
+                    {
+                        completionTick = Mathf.Max(completionTick, soundParams.endTick);
+                    }
                 }
             }
 
@@ -343,7 +371,11 @@ namespace MooGirl  // 定义命名空间MooGirl，用于组织相关类
             {
                 for (int i = 0; i < props.flecks.Count; i++)
                 {
-                    completionTick = Mathf.Max(completionTick, props.flecks[i].endTick);
+                    CompProperties_PerformanceEffect.FleckWithParams fleckParams = props.flecks[i];
+                    if (fleckParams != null)
+                    {
+                        completionTick = Mathf.Max(completionTick, fleckParams.endTick);
+                    }
                 }
             }
 
@@ -351,7 +383,11 @@ namespace MooGirl  // 定义命名空间MooGirl，用于组织相关类
             {
                 for (int i = 0; i < props.texts.Count; i++)
                 {
-                    completionTick = Mathf.Max(completionTick, props.texts[i].startTick);
+                    CompProperties_PerformanceEffect.TextWithParams textParams = props.texts[i];
+                    if (textParams != null)
+                    {
+                        completionTick = Mathf.Max(completionTick, textParams.startTick);
+                    }
                 }
             }
 
@@ -385,13 +421,15 @@ namespace MooGirl  // 定义命名空间MooGirl，用于组织相关类
             if (pawn == null || sourceHediffDef == null)
                 return;
 
-            GameComponent_BrainwashPerformance comp = Current.Game?.GetComponent<GameComponent_BrainwashPerformance>();
-            if (comp == null && Current.Game != null)
+            if (!MooGirlGameUtility.TryGetGameComponent(out GameComponent_BrainwashPerformance comp))
             {
-                comp = new GameComponent_BrainwashPerformance(Current.Game);
-                Current.Game.components.Add(comp);
+                MooGirlLog.WarningOnce(
+                    "BrainwashPerformance.GameComponentMissing",
+                    "Tried to start a MooGirl brainwash performance while its GameComponent was unavailable.");
+                return;
             }
-            comp?.StartPerformance(pawn, sourceHediffDef);
+
+            comp.StartPerformance(pawn, sourceHediffDef);
         }
 
         public override void GameComponentTick()
@@ -517,7 +555,7 @@ namespace MooGirl  // 定义命名空间MooGirl，用于组织相关类
         private BrainwashPerformancePlayer performancePlayer = new BrainwashPerformancePlayer();
 
         // 快捷属性，获取配置参数
-        public CompProperties_PerformanceEffect Props => (CompProperties_PerformanceEffect)props;
+        public CompProperties_PerformanceEffect Props => props as CompProperties_PerformanceEffect;
 
         // 组件初始化后调用
         public override void CompPostMake()

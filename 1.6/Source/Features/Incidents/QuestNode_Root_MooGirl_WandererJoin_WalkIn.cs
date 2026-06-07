@@ -76,7 +76,21 @@ namespace MooGirl
             QuestNode_Root_WandererJoin_WalkIn.ApplyBestSkillInfoToLetter(ref taggedString2, pawn);
 
             // 创建可选择是否接受的信件
-            ChoiceLetter_AcceptJoiner choiceLetter_AcceptJoiner = (ChoiceLetter_AcceptJoiner)LetterMaker.MakeLetter(taggedString, taggedString2, LetterDefOf.AcceptJoiner, null, null);
+            Letter letter = LetterMaker.MakeLetter(taggedString, taggedString2, LetterDefOf.AcceptJoiner, null, null);
+            ChoiceLetter_AcceptJoiner choiceLetter_AcceptJoiner = letter as ChoiceLetter_AcceptJoiner;
+            if (choiceLetter_AcceptJoiner == null)
+            {
+                MooGirlLog.WarningOnce(
+                    "WandererJoinAcceptLetterType",
+                    "Wanderer join letter was not ChoiceLetter_AcceptJoiner; sending fallback letter without join choice.");
+                if (letter != null)
+                {
+                    MooGirlGameUtility.TryReceiveLetter(letter, null, 0, true);
+                }
+
+                return;
+            }
+
             choiceLetter_AcceptJoiner.signalAccept = this.signalAccept; // 设置接受信号
             choiceLetter_AcceptJoiner.signalReject = this.signalReject; // 设置拒绝信号
             choiceLetter_AcceptJoiner.quest = quest; // 关联任务
@@ -84,7 +98,7 @@ namespace MooGirl
             choiceLetter_AcceptJoiner.StartTimeout(60000); // 设置超时时间
 
             // 发送信件
-            Find.LetterStack.ReceiveLetter(choiceLetter_AcceptJoiner, null, 0, true);
+            MooGirlGameUtility.TryReceiveLetter(choiceLetter_AcceptJoiner, null, 0, true);
         }
     }
 }

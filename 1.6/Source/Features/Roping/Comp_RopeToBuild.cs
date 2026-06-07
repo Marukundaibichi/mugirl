@@ -33,6 +33,11 @@ namespace MooGirl
 
         private void StartRoping(Pawn pawn)
         {
+            if (!pawn.CanReserveAndReach(parent, PathEndMode.Touch, Danger.Some))
+            {
+                return;
+            }
+
             Pawn ropee = RopingService.FirstMooGirlFollowing(pawn);
             if (ropee == null)
             {
@@ -41,7 +46,7 @@ namespace MooGirl
 
             Job job = JobMaker.MakeJob(MooGirl_DefOf.RopeToBuild, parent);
             job.targetB = ropee;
-            pawn.jobs.StartJob(job);
+            pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
         }
     }
 }

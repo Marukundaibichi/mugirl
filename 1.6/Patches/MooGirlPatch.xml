@@ -37,7 +37,7 @@
     <Operation Class="PatchOperationAdd">
         <xpath>Defs/TraderKindDef[defName="Orbital_PirateMerchant"]/stockGenerators</xpath>
         <value>
-            <li Class="StockGenerator_MooGirl_Slaves">
+            <li Class="MooGirl.StockGenerator_MooGirl_Slaves">
                 <!-- Slave count range. 生成奴隶的数量范围。 -->
                 <slaveCountRange>0~6</slaveCountRange>
             </li>
@@ -48,7 +48,7 @@
     <Operation Class="PatchOperationAdd">
         <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_PirateMerchant"]/stockGenerators</xpath>
         <value>
-            <li Class="StockGenerator_MooGirl_Slaves">
+            <li Class="MooGirl.StockGenerator_MooGirl_Slaves">
                 <!-- Slave count range. 生成奴隶的数量范围。 -->
                 <slaveCountRange>0~2</slaveCountRange>
             </li>
@@ -59,7 +59,7 @@
     <Operation Class="PatchOperationAdd">
         <xpath>Defs/TraderKindDef[defName="Base_Outlander_Standard"]/stockGenerators</xpath>
         <value>
-            <li Class="StockGenerator_MooGirl_Slaves">
+            <li Class="MooGirl.StockGenerator_MooGirl_Slaves">
                 <!-- Slave count range. 生成奴隶的数量范围。 -->
                 <slaveCountRange>0~2</slaveCountRange>
             </li>

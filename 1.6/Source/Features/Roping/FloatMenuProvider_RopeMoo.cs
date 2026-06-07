@@ -42,12 +42,12 @@ namespace MooGirl
                 yield break;
             }
 
-            if (!pawn.health.capacities.CapableOf(PawnCapacityDefOf.Moving))
+            if (pawn.health?.capacities?.CapableOf(PawnCapacityDefOf.Moving) != true)
             {
                 yield break;
             }
 
-            if (!target.health.capacities.CapableOf(PawnCapacityDefOf.Moving))
+            if (target.health?.capacities?.CapableOf(PawnCapacityDefOf.Moving) != true)
             {
                 yield break;
             }
@@ -56,43 +56,16 @@ namespace MooGirl
             bool isPawnFollowingRoper = RopingService.IsFollowingRoper(pawn);
             bool isRopedToThing = RopingService.IsRopedToSpot(target);
 
-            // 牵引逻辑。
-            if (!isPawnFollowingRoper && (!isTargetFollowingRoper || isRopedToThing) && !target.stances.stunner.Stunned)
+            if (RopingService.CanStartPawnRope(pawn, target))
             {
-                // 旧行为禁止雪牛娘牵引雪牛娘。
-                if (RopingService.IsMooGirlRopee(pawn) && RopingService.IsMooGirlRopee(target))
-                {
-                    yield break;
-                }
-
-                // 旧行为禁止牵引狂暴目标。
-                if (target.InMentalState && target.MentalState is MentalState_Berserk)
-                {
-                    yield break;
-                }
-
                 Action action = delegate
                 {
                     pawn.jobs.TryTakeOrderedJob(new Job(MooGirl_DefOf.JobDriver_RopeMoo, target), JobTag.Misc);
                 };
 
-                string label;
-                if (RopingService.IsMooGirlRopee(target))
-                {
-                    label = RopeLabelWithSuccessChance(
-                        "MooGirl.Rope.Target".Translate(target).ToString(),
-                        1f.ToStringPercent());
-                }
-                else if (target.IsPrisonerOfColony || target.IsSlave)
-                {
-                    label = "MooGirl.Rope.Target".Translate(target).ToString();
-                }
-                else
-                {
-                    label = RopeLabelWithSuccessChance(
-                        "MooGirl.Rope.Target".Translate(target).ToString(),
-                        target.GetAcceptArrestChance(pawn).ToStringPercent());
-                }
+                string label = RopeLabelWithSuccessChance(
+                    "MooGirl.Rope.Target".Translate(target).ToString(),
+                    1f.ToStringPercent());
 
                 yield return FloatMenuUtility.DecoratePrioritizedTask(
                     new FloatMenuOption(label, action, MenuOptionPriority.High, null, target, 0f, null, null, true, 0),
@@ -103,7 +76,6 @@ namespace MooGirl
                 );
             }
 
-            // 解除牵引逻辑。
             if ((isTargetFollowingRoper || isRopedToThing) && !isPawnFollowingRoper)
             {
                 yield return new FloatMenuOption("MooGirl.Unrope.Target".Translate(target), () =>

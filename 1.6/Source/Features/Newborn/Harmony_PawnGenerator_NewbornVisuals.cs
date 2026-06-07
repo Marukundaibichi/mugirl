@@ -14,9 +14,9 @@ namespace MooGirl
         {
             if (__result == null) return;
 
-            // 仅对 MooGirl 类型新生儿生效
-            if (__result.RaceProps.body == MooGirl_DefOf.MooGirlBody &&
-                __result.ageTracker.AgeChronologicalYearsFloat == 0f)
+            if (MooGirlIdentity.HasMooGirlBody(__result) &&
+                __result.ageTracker?.AgeChronologicalYearsFloat == 0f &&
+                __result.story != null)
             {
                 __result.story.Childhood = MooGirl_DefOf.MooGirl_Newborn;
                 __result.story.Adulthood = null;

@@ -7,7 +7,7 @@ namespace MooGirl
     {
         public static void PrepareRescueJoinPawn(Pawn pawn)
         {
-            if (pawn == null)
+            if (pawn?.mindState == null)
             {
                 return;
             }
@@ -21,23 +21,23 @@ namespace MooGirl
 
         public static bool WasRescuedByPlayer(Pawn pawn)
         {
-            if (pawn == null)
+            if (pawn == null || pawn.Destroyed || pawn.Dead)
             {
                 return false;
             }
 
-            if (pawn.HostFaction == Faction.OfPlayer)
+            if (MooGirlWildSlaveUtility.IsPlayerFaction(pawn.HostFaction))
             {
                 return true;
             }
 
             Building_Bed bed = pawn.CurrentBed();
-            return bed != null && bed.Faction == Faction.OfPlayer;
+            return bed != null && MooGirlWildSlaveUtility.IsPlayerFaction(bed.Faction);
         }
 
         public static bool TryJoinPlayer(Pawn pawn, Pawn rescuer = null, bool sendLetter = true)
         {
-            if (pawn == null || pawn.Dead || pawn.Faction == Faction.OfPlayer)
+            if (pawn == null || pawn.Dead || pawn.Destroyed || MooGirlWildSlaveUtility.IsPlayerFaction(pawn.Faction) || pawn.mindState == null)
             {
                 return false;
             }
@@ -62,26 +62,26 @@ namespace MooGirl
                 sendLetter: false);
 
             MooGirl_IdeoUtility.AdoptPlayerPrimaryIdeo(pawn);
-            if (pawn.Faction == Faction.OfPlayer)
+            if (MooGirlWildSlaveUtility.IsPlayerFaction(pawn.Faction))
             {
                 MooGirlWildSlaveUtility.NormalizeAfterJoiningPlayer(pawn, wasEscapeWildSlave);
             }
 
-            if (pawn.needs?.mood != null)
+            if (pawn.needs?.mood?.thoughts?.memories != null)
             {
                 pawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOf.Rescued);
             }
 
-            if (sendLetter && pawn.Faction == Faction.OfPlayer)
+            if (sendLetter && MooGirlWildSlaveUtility.IsPlayerFaction(pawn.Faction))
             {
-                Find.LetterStack.ReceiveLetter(
+                MooGirlGameUtility.TryReceiveLetter(
                     "LetterLabelRescueeJoins".Translate(pawn.Named("PAWN")),
                     "LetterRescueeJoins".Translate(pawn.Named("PAWN")),
                     LetterDefOf.PositiveEvent,
                     pawn);
             }
 
-            return pawn.Faction == Faction.OfPlayer;
+            return MooGirlWildSlaveUtility.IsPlayerFaction(pawn.Faction);
         }
     }
 }

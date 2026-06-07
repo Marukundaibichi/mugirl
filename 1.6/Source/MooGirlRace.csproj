@@ -64,12 +64,14 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Core\MooGirlBootstrap.cs" />
+        <Compile Include="Core\MooGirlGameUtility.cs" />
         <Compile Include="Core\MooGirlIdentity.cs" />
         <Compile Include="Core\MooGirlLog.cs" />
         <Compile Include="Core\MooGirlMod.cs" />
         <Compile Include="Core\MooGirlOptionalDefs.cs" />
         <Compile Include="Core\MooGirlPatchRegistry.cs" />
         <Compile Include="Core\MooGirlRequiredDefs.cs" />
+        <Compile Include="Core\MooGirlSelectionUtility.cs" />
         <Compile Include="Core\MooGirlText.cs" />
         <Compile Include="Core\MooGirlTickUtility.cs" />
         <Compile Include="DefOf\MooGirlContentDefOf.cs" />
@@ -81,12 +83,12 @@
         <Compile Include="Features\Genes\MooGirl_XenotypeFix_GameComp.cs" />
         <Compile Include="Features\Incidents\CompReadableBook.cs" />
         <Compile Include="Features\Incidents\Dialog_ReadBook.cs" />
-        <Compile Include="Features\Incidents\FactionUtility.cs" />
         <Compile Include="Features\Incidents\Harmony_DesignatorTame.cs" />
         <Compile Include="Features\Incidents\Harmony_GiantCorpRaidTiers.cs" />
         <Compile Include="Features\Incidents\Harmony_IsWildMan_WildManUtility.cs" />
         <Compile Include="Features\Incidents\IncidentWorker_MooGirl_CourierRaid.cs" />
         <Compile Include="Features\Incidents\IncidentWorker_MooGirl_WildManWandersIn.cs" />
+        <Compile Include="Features\Incidents\MooGirlGeneratedPawnUtility.cs" />
         <Compile Include="Features\Incidents\MooGirlRescueJoinUtility.cs" />
         <Compile Include="Features\Incidents\MooGirlStoryState.cs" />
         <Compile Include="Features\Incidents\MooGirlWildSlaveUtility.cs" />
@@ -105,7 +107,6 @@
         <Compile Include="Features\Milk\Comp_MilkingDevice.cs" />
         <Compile Include="Features\Milk\Gizmo_MilkGauge.cs" />
         <Compile Include="Features\Milk\Harmony_Apparel_PawnCanWear_MilkingDevice.cs" />
-        <Compile Include="Features\Milk\Harmony_BreastfedGrowthPoints.cs" />
         <Compile Include="Features\Milk\Harmony_FloatMenu_Milk.cs" />
         <Compile Include="Features\Milk\Harmony_MooGirlBabyFeeding.cs" />
         <Compile Include="Features\Milk\Harmony_MooGirlNurtureGrowthPoints.cs" />
@@ -183,7 +184,7 @@
         <Compile Include="Features\Restraints\JobDriver_CrackBondageGear.cs" />
         <Compile Include="Features\Restraints\JobDriver_UnlockSlaveApparelGear.cs" />
         <Compile Include="Features\Restraints\JobDriver_UseItemOn.cs" />
-        <Compile Include="Features\Restraints\PawnBool.cs" />
+        <Compile Include="Features\Restraints\PawnSlaveStatusUtility.cs" />
         <Compile Include="Features\Restraints\SlaveApparelDef.cs" />
         <Compile Include="Features\Restraints\SlaveApparelExtensions.cs" />
         <Compile Include="Features\Roping\Comp_RopeToBuild.cs" />

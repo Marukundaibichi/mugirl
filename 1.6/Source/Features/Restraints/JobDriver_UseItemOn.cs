@@ -7,15 +7,16 @@ namespace MooGirl
 {
     public class JobDriver_UseItemOn : JobDriver_UseItem
     {
-        public static Toil pickup_item(Pawn p, Thing item)
+        public static Toil PickupItem(Pawn p, Thing item)
         {
             return new Toil
             {
                 initAction = delegate
                 {
-                    p.carryTracker.TryStartCarry(item, 1);
-                    if (item.Spawned)
+                    if (item == null || item.Destroyed || p.carryTracker.TryStartCarry(item, 1) <= 0)
+                    {
                         p.jobs.curDriver.EndJobWith(JobCondition.Incompletable);
+                    }
                 },
                 defaultCompleteMode = ToilCompleteMode.Instant
             };
@@ -29,7 +30,10 @@ namespace MooGirl
         {
             get
             {
-                return base.job.GetTarget(iitem).Thing;
+                LocalTargetInfo target = base.job.GetTarget(iitem);
+                if (!target.HasThing)
+                    return null;
+                return target.Thing;
             }
         }
 
@@ -37,21 +41,35 @@ namespace MooGirl
         {
             get
             {
-                return base.job.GetTarget(itar).Thing;
+                LocalTargetInfo target = base.job.GetTarget(itar);
+                if (!target.HasThing)
+                    return null;
+                return target.Thing;
             }
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            if (tar == null)
+            Thing itemToUse = item;
+            Thing targetThing = tar;
+            if (targetThing == null)
+            {
+                if (itemToUse == null)
+                {
+                    yield break;
+                }
+
                 foreach (var toil in base.MakeNewToils())
+                {
                     yield return toil;
+                }
+            }
             else
             {
-                Pawn other;
+                Pawn other = ResolveTargetPawn(targetThing);
+                if (itemToUse == null || other?.apparel == null)
                 {
-                    var corpse = tar as Corpse;
-                    other = (corpse == null) ? (Pawn)tar : corpse.InnerPawn;
+                    yield break;
                 }
 
                 this.FailOnDespawnedNullOrForbidden(itar);
@@ -59,15 +77,19 @@ namespace MooGirl
                     this.FailOnAggroMentalState(itar);
                 yield return Toils_Reserve.Reserve(itar);
 
-                if ((pawn.inventory != null) && pawn.inventory.Contains(item))
+                if ((pawn.inventory != null) && pawn.inventory.Contains(itemToUse))
                 {
                     yield return Toils_Misc.TakeItemFromInventoryToCarrier(pawn, iitem);
                 }
-                else
+                else if (itemToUse.Spawned)
                 {
                     yield return Toils_Reserve.Reserve(iitem);
                     yield return Toils_Goto.GotoThing(iitem, PathEndMode.ClosestTouch).FailOnForbidden(iitem);
-                    yield return pickup_item(pawn, item);
+                    yield return PickupItem(pawn, itemToUse);
+                }
+                else
+                {
+                    yield break;
                 }
 
                 yield return Toils_Goto.GotoThing(itar, PathEndMode.Touch);
@@ -87,7 +109,7 @@ namespace MooGirl
                 {
                     initAction = delegate
                     {
-                        var effective_item = item;
+                        Thing effective_item = itemToUse;
                         if ((effective_item as Apparel) != null)
                         {
                             Thing dropped_thing;
@@ -109,6 +131,21 @@ namespace MooGirl
                     defaultCompleteMode = ToilCompleteMode.Instant
                 };
             }
+        }
+
+        private static Pawn ResolveTargetPawn(Thing target)
+        {
+            if (target is Pawn pawn)
+            {
+                return pawn;
+            }
+
+            if (target is Corpse corpse)
+            {
+                return corpse.InnerPawn;
+            }
+
+            return null;
         }
     }
 }

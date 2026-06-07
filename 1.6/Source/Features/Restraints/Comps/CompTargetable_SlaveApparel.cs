@@ -28,36 +28,32 @@ namespace MooGirl
                 validator = delegate (TargetInfo target)
                 {
                     if (!target.HasThing)
-                        return false;
-
-                    // 只接受 Apparel 且是在地上
-                    if (target.Thing is Apparel apparel && apparel.ParentHolder is Map)
                     {
-                        return true;
+                        return false;
                     }
 
-                    return false;
+                    return target.Thing is Apparel apparel && apparel.Spawned && apparel.IsAdvancedApparel() && !apparel.IsUnlockAdvancedApparel();
                 }
             };
         }
 
-        // 获取玩家选择的目标
         public override IEnumerable<Thing> GetTargets(Thing targetChosenByPlayer = null)
         {
-            yield return targetChosenByPlayer;
-            yield break;
+            if (targetChosenByPlayer != null && ValidateTarget(targetChosenByPlayer, false))
+            {
+                yield return targetChosenByPlayer;
+            }
         }
 
-        // 校验目标是否有效
         public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true)
         {
-            if (target.Thing is Apparel apparel && apparel.IsAdvancedApparel())
+            if (target.HasThing && target.Thing is Apparel apparel && apparel.Spawned && apparel.IsAdvancedApparel())
             {
                 if (apparel is AdvancedSlaveApparel slaveApparel && slaveApparel.IsCracked())
                 {
                     if (showMessages)
                     {
-                        Messages.Message("MooGirl.AlreadyCracked".Translate(), MessageTypeDefOf.NeutralEvent);
+                        Messages.Message("MooGirl.AlreadyCracked".Translate(), MessageTypeDefOf.NeutralEvent, historical: false);
                     }
                     return false;
                 }
@@ -67,7 +63,7 @@ namespace MooGirl
             {
                 if (showMessages)
                 {
-                    Messages.Message("MooGirl.InvalidTarget".Translate(), MessageTypeDefOf.NeutralEvent);
+                    Messages.Message("MooGirl.InvalidTarget".Translate(), MessageTypeDefOf.NeutralEvent, historical: false);
                 }
                 return false;
             }

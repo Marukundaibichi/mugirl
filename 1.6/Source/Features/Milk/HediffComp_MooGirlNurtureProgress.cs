@@ -19,7 +19,7 @@ namespace MooGirl
         {
             base.CompPostTick(ref severityAdjustment);
 
-            if (!completed && parent.Severity >= parent.def.maxSeverity)
+            if (!completed && IsComplete)
             {
                 TryComplete();
             }
@@ -27,7 +27,7 @@ namespace MooGirl
 
         public void TryComplete(Pawn feeder = null)
         {
-            if (completed || parent.Severity < parent.def.maxSeverity)
+            if (completed || !IsComplete)
             {
                 return;
             }
@@ -41,5 +41,7 @@ namespace MooGirl
             base.CompExposeData();
             Scribe_Values.Look(ref completed, "completed", false);
         }
+
+        private bool IsComplete => parent?.def != null && parent.Severity >= parent.def.maxSeverity;
     }
 }

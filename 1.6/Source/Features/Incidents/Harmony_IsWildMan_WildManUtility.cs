@@ -16,7 +16,7 @@ namespace MooGirl
             if (__result) return;
 
             // 检查pawn是否为逃跑的野生奴隶且不是亚人类
-            if (p.kindDef == MooGirl_DefOf.MooGirl_EscapeWildSlave && p.Faction != Faction.OfPlayer && !p.IsSubhuman)
+            if (MooGirlWildSlaveUtility.IsNonPlayerEscapeWildSlave(p) && !p.IsSubhuman)
             {
                 __result = true; // 强制认定为野人
             }
@@ -38,11 +38,11 @@ namespace MooGirl
             // 空值检查
             if (pawn == null) return;
 
-            if (faction == Faction.OfPlayer)
+            if (MooGirlWildSlaveUtility.IsPlayerFaction(faction))
             {
                 MooGirlWildSlaveUtility.NormalizeAfterJoiningPlayer(pawn, __state);
             }
-            else if (__state && pawn.kindDef == MooGirl_DefOf.MooGirl_EscapeWildSlave)
+            else if (__state && MooGirlWildSlaveUtility.IsEscapeWildSlave(pawn) && MooGirl_DefOf.MooGirl_PreEscapeWildSlave != null)
             {
                 pawn.ChangeKind(MooGirl_DefOf.MooGirl_PreEscapeWildSlave);
             }

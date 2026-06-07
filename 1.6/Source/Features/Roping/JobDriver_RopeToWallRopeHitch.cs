@@ -7,13 +7,18 @@ namespace MooGirl
 {
     public class JobDriver_RopeToWallRopeHitch : JobDriver
     {
-        protected Building WallRopeHitch => (Building)job.GetTarget(TargetIndex.A).Thing;
-        protected Pawn RopeePawn => (Pawn)job.GetTarget(TargetIndex.B).Thing;
+        private Map pendingSpotRopeMap;
+
+        protected Building WallRopeHitch => job.GetTarget(TargetIndex.A).Thing as Building;
+        protected Pawn RopeePawn => job.GetTarget(TargetIndex.B).Thing as Pawn;
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            return pawn.Reserve(WallRopeHitch, job, 1, -1, null) &&
-                    pawn.Reserve(RopeePawn, job, 1, -1, null, errorOnFailed);
+            Building hitch = WallRopeHitch;
+            Pawn ropee = RopeePawn;
+            return CanStartRopeToHitch(pawn, ropee, hitch) &&
+                    pawn.Reserve(hitch, job, 1, -1, null, errorOnFailed) &&
+                    pawn.Reserve(ropee, job, 1, -1, null, errorOnFailed);
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
@@ -21,21 +26,26 @@ namespace MooGirl
             Pawn ropee = RopeePawn;
             Building hitch = WallRopeHitch;
 
-            if (ropee == null || hitch == null)
+            if (!CanStartRopeToHitch(pawn, ropee, hitch))
             {
                 yield break;
             }
 
+            AddFinishAction(_ => ClearPendingSpotRope(ropee));
+
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch)
                 .FailOnDespawnedNullOrForbidden(TargetIndex.A)
-                .FailOn(() => !this.pawn.CanReach(hitch, PathEndMode.Touch, Danger.Deadly));
+                .FailOn(() => !CanPlaceAtHitch(pawn, ropee, hitch) || !this.pawn.CanReach(hitch, PathEndMode.Touch, Danger.Deadly));
 
-            // 断绳前标记“正在拴绳”
             yield return new Toil
             {
                 initAction = () =>
                 {
-                    RopingService.MarkPendingSpotRope(ropee);
+                    if (!CanStartRopeToHitch(pawn, ropee, hitch))
+                    {
+                        EndJobWith(JobCondition.Incompletable);
+                        return;
+                    }
 
                     if (ropee.roping != null)
                     {
@@ -49,15 +59,24 @@ namespace MooGirl
                             ropee.jobs.EndCurrentJob(JobCondition.InterruptForced);
                         }
                     }
+
+                    pendingSpotRopeMap = ropee.Map;
+                    RopingService.MarkPendingSpotRope(ropee);
                 },
                 defaultCompleteMode = ToilCompleteMode.Instant
             };
 
-            // 拴到墙体
             yield return new Toil
             {
                 initAction = () =>
                 {
+                    if (!CanPlaceAtHitch(pawn, ropee, hitch))
+                    {
+                        ClearPendingSpotRope(ropee);
+                        EndJobWith(JobCondition.Incompletable);
+                        return;
+                    }
+
                     if (ropee.Map != null)
                     {
                         ropee.Map.pawnDestinationReservationManager.ReleaseAllClaimedBy(ropee);
@@ -65,19 +84,54 @@ namespace MooGirl
 
                     ropee.Position = hitch.Position;
 
+                    if (ropee.roping == null)
+                    {
+                        ropee.roping = new Pawn_RopeTracker(ropee);
+                    }
+
                     if (ropee.roping != null)
                     {
                         ropee.roping.RopeToSpot(hitch.Position);
                         RopingService.RegisterRopedToSpot(ropee);
                     }
 
-                    // 绑定完成后清除状态
-                    RopingService.ClearPendingSpotRope(ropee);
+                    ClearPendingSpotRope(ropee);
                 },
                 defaultCompleteMode = ToilCompleteMode.Instant
             };
 
             yield return Toils_General.Wait(60);
+        }
+
+        private static bool CanStartRopeToHitch(Pawn roper, Pawn ropee, Building hitch)
+        {
+            return CanPlaceAtHitch(roper, ropee, hitch) &&
+                RopingService.IsMooGirlRopee(ropee) &&
+                RopingService.IsFollowingRoper(ropee) &&
+                ropee.CurJob?.targetA.Thing == roper;
+        }
+
+        private static bool CanPlaceAtHitch(Pawn roper, Pawn ropee, Building hitch)
+        {
+            return roper != null &&
+                ropee != null &&
+                hitch != null &&
+                roper.Spawned &&
+                ropee.Spawned &&
+                hitch.Spawned &&
+                !roper.Dead &&
+                !ropee.Dead &&
+                !roper.Destroyed &&
+                !ropee.Destroyed &&
+                !hitch.Destroyed &&
+                roper.Map == hitch.Map &&
+                ropee.Map == hitch.Map;
+        }
+
+        private void ClearPendingSpotRope(Pawn ropee)
+        {
+            RopingService.ClearPendingSpotRope(ropee, pendingSpotRopeMap);
+            pendingSpotRopeMap = null;
         }
     }
 }

@@ -2,6 +2,23 @@ namespace MooGirl
 {
     internal static class MooGirlTickUtility
     {
+        internal static bool TryGetCurrentGameTick(out int tick)
+        {
+            if (Verse.Current.ProgramState == Verse.ProgramState.Playing && Verse.Find.TickManager != null)
+            {
+                tick = Verse.Find.TickManager.TicksGame;
+                return true;
+            }
+
+            tick = 0;
+            return false;
+        }
+
+        internal static int CurrentGameTickOrFallback(int fallback)
+        {
+            return TryGetCurrentGameTick(out int tick) ? tick : fallback;
+        }
+
         internal static void Add(ref int counter, int delta)
         {
             counter += delta;

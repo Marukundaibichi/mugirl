@@ -56,6 +56,7 @@ namespace MooGirl
                 && candidate.Position.InHorDistOf(pawn.Position, MaxNuzzleDistance)
                 && pawnRoom == candidate.GetRoom(RegionType.Set_All)
                 && !candidate.Position.IsForbidden(pawn)
+                && pawn.CanReserve(candidate)
                 && candidate.CanCasuallyInteractNow(false, false, false, false);
         }
 

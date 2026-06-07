@@ -9,11 +9,15 @@ namespace MooGirl
     {
         private const TargetIndex MooInd = TargetIndex.A;
 
-        private Pawn Moo => job.GetTarget(MooInd).Pawn;
+        private Pawn Moo => job.GetTarget(MooInd).Thing as Pawn;
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            return pawn.Reserve(Moo, job, 1, -1, null, errorOnFailed);
+            Pawn moo = Moo;
+            Comp_MooGirlMount comp = MountedPawnUtility.GetMountComp(moo);
+            return comp != null
+                && comp.CanMount(pawn, out _)
+                && pawn.Reserve(moo, job, 1, -1, null, errorOnFailed);
         }
 
         protected override IEnumerable<Toil> MakeNewToils()

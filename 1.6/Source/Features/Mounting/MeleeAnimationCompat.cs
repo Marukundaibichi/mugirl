@@ -27,7 +27,13 @@ namespace MooGirl
             bool originalValue;
             try
             {
-                originalValue = (bool)AnimateAtIdleField.GetValue(settings);
+                object originalValueObj = AnimateAtIdleField.GetValue(settings);
+                if (!(originalValueObj is bool value))
+                {
+                    return NullDisposable.Instance;
+                }
+
+                originalValue = value;
                 if (!originalValue)
                 {
                     return NullDisposable.Instance;

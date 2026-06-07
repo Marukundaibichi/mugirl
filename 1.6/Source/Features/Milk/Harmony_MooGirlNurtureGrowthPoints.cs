@@ -18,13 +18,26 @@ namespace MooGirl
             }
 
             Pawn pawn = PawnField?.GetValue(__instance) as Pawn;
-            if (pawn?.health?.hediffSet?.HasHediff(MooGirlNurtureUtility.NurtureAfterglowDef) == true)
+            HediffSet hediffSet = pawn?.health?.hediffSet;
+            if (hediffSet == null)
+            {
+                return;
+            }
+
+            HediffDef afterglowDef = MooGirlNurtureUtility.NurtureAfterglowDef;
+            if (afterglowDef != null && hediffSet.HasHediff(afterglowDef))
             {
                 __result *= 2.5f;
                 return;
             }
 
-            Hediff nurture = pawn?.health?.hediffSet?.GetFirstHediffOfDef(MooGirlNurtureUtility.MotherlyNurtureDef);
+            HediffDef nurtureDef = MooGirlNurtureUtility.MotherlyNurtureDef;
+            if (nurtureDef == null)
+            {
+                return;
+            }
+
+            Hediff nurture = hediffSet.GetFirstHediffOfDef(nurtureDef);
             if (nurture == null)
             {
                 return;

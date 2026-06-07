@@ -17,15 +17,21 @@ namespace MooGirl
 
     public class CompReadableBook : ThingComp
     {
-        public CompProperties_ReadableBook Props => (CompProperties_ReadableBook)props;
+        public CompProperties_ReadableBook Props => props as CompProperties_ReadableBook;
+
+        public string BookTitle => MooGirlText.Resolve(Props?.bookTitle ?? "MooGirl.CourierDiary.Title");
 
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
         {
-            string title = MooGirlText.Resolve(Props.bookTitle);
+            if (selPawn == null || parent == null)
+            {
+                yield break;
+            }
+
+            string title = BookTitle;
             FloatMenuOption option = FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("MooGirl.CourierDiary.ReadOption".Translate(title), () =>
             {
-                Job job = JobMaker.MakeJob(MooGirlContentDefOf.MooGirl_ReadCourierDiary, parent);
-                selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+                TryStartReadJob(selPawn, parent);
             }), selPawn, parent);
 
             if (!selPawn.CanReserveAndReach(parent, PathEndMode.Touch, Danger.Deadly))
@@ -36,6 +42,28 @@ namespace MooGirl
 
             yield return option;
         }
+
+        internal static bool CanReadNow(Pawn reader, Thing diary)
+        {
+            return reader != null
+                && !reader.Dead
+                && !reader.Downed
+                && diary != null
+                && !diary.Destroyed
+                && diary.TryGetComp<CompReadableBook>() != null;
+        }
+
+        private static void TryStartReadJob(Pawn reader, Thing diary)
+        {
+            if (!CanReadNow(reader, diary)
+                || !reader.CanReserveAndReach(diary, PathEndMode.Touch, Danger.Deadly))
+            {
+                return;
+            }
+
+            Job job = JobMaker.MakeJob(MooGirlContentDefOf.MooGirl_ReadCourierDiary, diary);
+            reader.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+        }
     }
 
     public class JobDriver_ReadCourierDiary : JobDriver
@@ -44,22 +72,26 @@ namespace MooGirl
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            return pawn.Reserve(Diary, job, 1, -1, null, errorOnFailed);
+            Thing diary = Diary;
+            return CompReadableBook.CanReadNow(pawn, diary)
+                && pawn.Reserve(diary, job, 1, -1, null, errorOnFailed);
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDestroyedNullOrForbidden(TargetIndex.A);
+            this.FailOn(() => !CompReadableBook.CanReadNow(pawn, Diary));
 
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch)
                 .FailOnSomeonePhysicallyInteracting(TargetIndex.A);
 
             yield return Toils_General.Do(() =>
             {
-                CompReadableBook comp = Diary.TryGetComp<CompReadableBook>();
+                Thing diary = Diary;
+                CompReadableBook comp = diary?.TryGetComp<CompReadableBook>();
                 if (comp != null)
                 {
-                    Find.WindowStack.Add(new Dialog_ReadBook(MooGirlText.Resolve(comp.Props.bookTitle), Diary));
+                    MooGirlGameUtility.TryAddWindow(new Dialog_ReadBook(comp.BookTitle));
                 }
             });
         }

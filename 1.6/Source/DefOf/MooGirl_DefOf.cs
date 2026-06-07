@@ -34,8 +34,10 @@ namespace MooGirl
 
         public static HediffDef MooGirl_Abasia;
 
+        [MayRequire("Ludeon.RimWorld.Biotech")]
         public static HediffDef MooGirl_Stun;
 
+        [MayRequire("Ludeon.RimWorld.Biotech")]
         public static HediffDef MooGirl_Charge;
 
         public static FleckDef MooGirlWashMentalEyes;
@@ -64,6 +66,7 @@ namespace MooGirl
 
         public static RimWorld.BackstoryDef MooGirl_Colonist;
 
+        [MayRequire("Ludeon.RimWorld.Biotech")]
         public static XenotypeDef MooGirl_Xenotype;
     }
 }

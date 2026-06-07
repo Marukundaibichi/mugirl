@@ -12,6 +12,11 @@ namespace MooGirl
             return pawn != null && pawn.kindDef == MooGirl_DefOf.MooGirl_EscapeWildSlave;
         }
 
+        public static bool IsNonPlayerEscapeWildSlave(Pawn pawn)
+        {
+            return IsEscapeWildSlave(pawn) && !IsPlayerFaction(pawn.Faction);
+        }
+
         public static bool IsMooGirlPawn(Pawn pawn)
         {
             if (pawn == null)
@@ -28,6 +33,17 @@ namespace MooGirl
         {
             Faction playerFaction = Faction.OfPlayerSilentFail;
             return playerFaction != null && faction == playerFaction;
+        }
+
+        public static bool IsHostileToPlayer(Faction faction)
+        {
+            Faction playerFaction = Faction.OfPlayerSilentFail;
+            return faction != null && playerFaction != null && faction.HostileTo(playerFaction);
+        }
+
+        public static bool IsHostileToPlayer(Pawn pawn)
+        {
+            return pawn != null && IsHostileToPlayer(pawn.Faction);
         }
 
         public static bool NormalizeAfterJoiningPlayer(Pawn pawn, bool wasEscapeWildSlave = false)
@@ -120,10 +136,7 @@ namespace MooGirl
             PortraitsCache.SetDirty(pawn);
             pawn.Drawer?.renderer?.SetAllGraphicsDirty();
 
-            if (Current.ProgramState == ProgramState.Playing)
-            {
-                Find.ColonistBar.MarkColonistsDirty();
-            }
+            MooGirlGameUtility.TryMarkColonistsDirty();
         }
     }
 

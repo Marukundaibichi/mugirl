@@ -4,6 +4,8 @@
     <MooGirl.Text.FormatFailedLog>MooGirl 文本格式化失败：{ERROR}</MooGirl.Text.FormatFailedLog>
     <!-- MooGirl mod control -->
     <MooGirl.Settings.Category>牛牛模组控制</MooGirl.Settings.Category>
+    <!-- Harmony patch skipped: {0}. {1} -->
+    <MooGirl.Bootstrap.HarmonyPatchFailed>Harmony 补丁已跳过：{0}。{1}</MooGirl.Bootstrap.HarmonyPatchFailed>
     <!-- Manual patches skipped because the Harmony instance is missing. -->
     <MooGirl.PatchRegistry.NullHarmony>手动补丁已跳过：缺少 Harmony 实例。</MooGirl.PatchRegistry.NullHarmony>
     <!-- PawnGenerator.GeneratePawn slave apparel lock postfix -->
@@ -14,6 +16,8 @@
     <MooGirl.PatchRegistry.MissingTarget>手动补丁目标缺失：{0}</MooGirl.PatchRegistry.MissingTarget>
     <!-- Manual patch method missing: {0} -->
     <MooGirl.PatchRegistry.MissingPatchMethod>手动补丁方法缺失：{0}</MooGirl.PatchRegistry.MissingPatchMethod>
+    <!-- Manual patch failed: {0}. {1} -->
+    <MooGirl.PatchRegistry.PatchFailed>手动补丁应用失败：{0}。{1}</MooGirl.PatchRegistry.PatchFailed>
     <!-- Gear drop tooltip patch was skipped because the expected vanilla IL pattern was not found. -->
     <MooGirl.DropThingTooltip.TranspilerNotApplied>装备丢弃提示补丁已跳过：未找到预期的原版 IL 模式。</MooGirl.DropThingTooltip.TranspilerNotApplied>
     <!-- Roping tick fallback used BreakAllRopes because the vanilla BreakRopeWithRoper method was not found. -->
@@ -160,6 +164,8 @@
     <MooGirl.Milk.FloatMenu.NotActive>无法产奶</MooGirl.Milk.FloatMenu.NotActive>
     <!-- Not enough milk -->
     <MooGirl.Milk.FloatMenu.NotEnoughMilk>奶量不足</MooGirl.Milk.FloatMenu.NotEnoughMilk>
+    <!-- Managed by milking device -->
+    <MooGirl.Milk.FloatMenu.ManagedByDevice>已由榨乳器管理</MooGirl.Milk.FloatMenu.ManagedByDevice>
     <!-- MooGirl: {0} gathered body resources while inactive: {1} -->
     <MooGirl.Milk.GatherInactiveLog>MooGirl：{0} 在未激活状态下收集身体资源：{1}</MooGirl.Milk.GatherInactiveLog>
     <!-- {PAWN_labelShort} has received complete Mugirl nurture. -->
@@ -346,18 +352,6 @@
     <MooGirl.CourierRaid.SpawnLog.NoFaction>运货员生成中止：派系为空。</MooGirl.CourierRaid.SpawnLog.NoFaction>
     <!-- CourierRaid spawn aborted: no valid spawn cell. -->
     <MooGirl.CourierRaid.SpawnLog.NoSpawnCell>运货员生成中止：缺少有效生成位置。</MooGirl.CourierRaid.SpawnLog.NoSpawnCell>
-    <!-- Mega Corporation Claim Notice -->
-    <MooGirl.CourierDemandTitle>巨型企业索赔通知</MooGirl.CourierDemandTitle>
-    <!-- A mega corporation representative opens a channel:\n\n\"You killed our courier and destroyed our ship. Under corporate regulation 47, you are required to compensate our losses.\n\nCompensation: {0} steel + {1} components.\n\nPay immediately and the mega corporation will suspend further action. Refuse, and the mega corporation will consider you hostile and respond militarily.\" -->
-    <MooGirl.CourierDemandDialogText>一位巨型企业代表发来通讯：\n\n“你们杀了我们的运货员，摧毁了我们的飞船。根据企业条例第47条，你们需要赔偿我们的损失。\n\n赔偿金额：{0}钢铁 + {1}零部件。\n\n立即支付赔偿，巨型企业将暂不追究。拒绝赔偿，巨型企业将视你们为敌人并采取军事行动。”</MooGirl.CourierDemandDialogText>
-    <!-- Pay compensation -->
-    <MooGirl.CourierDemandPay>支付赔偿</MooGirl.CourierDemandPay>
-    <!-- Refuse compensation -->
-    <MooGirl.CourierDemandRefuse>拒绝赔偿</MooGirl.CourierDemandRefuse>
-    <!-- Compensation has been paid to the mega corporation. -->
-    <MooGirl.CourierDemandPaid>已向巨型企业支付赔偿。</MooGirl.CourierDemandPaid>
-    <!-- Insufficient compensation supplies. The mega corporation now considers you hostile. -->
-    <MooGirl.CourierDemandInsufficient>赔偿物资不足，巨型企业将你们视为敌人。</MooGirl.CourierDemandInsufficient>
     <!-- Courier diary -->
     <MooGirl.CourierDiary.Title>运货员日记本</MooGirl.CourierDiary.Title>
     <!-- Read {0} -->
@@ -404,8 +398,6 @@
     <MooGirl.OpeningPodCrash_NonHostile>{PAWN_nameDef}来自{PAWN_factionName}。如果你救援{PAWN_objective}，{PAWN_pronoun}回到派系后会改善双方关系。\n你也可以俘虏{PAWN_objective}来招募或奴役，但这会激怒{PAWN_possessive}派系。</MooGirl.OpeningPodCrash_NonHostile>
     <!-- Failed to generate a factionless opening pod pawn after {0} attempts. Check PawnKindDef or other pawn generation patches. -->
     <MooGirl.OpeningPodCrash.Log.FactionlessGenerationFailed>尝试 {0} 次后仍无法生成无派系开局逃生舱 Pawn。请检查 PawnKindDef 或其它 Pawn 生成补丁。</MooGirl.OpeningPodCrash.Log.FactionlessGenerationFailed>
-    <!-- MooGirl opening pod pawn must be generated factionless. -->
-    <MooGirl.OpeningPodCrash.Exception.MustBeFactionless>MooGirl 开局逃生舱 Pawn 必须以无派系状态生成。</MooGirl.OpeningPodCrash.Exception.MustBeFactionless>
     <!-- Corrected juvenile MooGirl body types: {0}. -->
     <MooGirl.Newborn.Log.CorrectedBodyTypes>已修正幼年 MooGirl 体型：{0}。</MooGirl.Newborn.Log.CorrectedBodyTypes>
     <!-- feral child -->
@@ -426,6 +418,14 @@
     <MooGirl.RefugeePodCrash_Hostile>{PAWN_nameDef}来自敌对派系{PAWN_factionName}，你可以俘虏{PAWN_objective}来招募或奴役。</MooGirl.RefugeePodCrash_Hostile>
     <!-- {PAWN_nameDef} comes from {PAWN_factionName}. If you rescue [PAWN_objective], [PAWN_pronoun] will improve relations between your factions when [PAWN_pronoun] returns.\n\nYou can also capture [PAWN_objective] to recruit or enslave [PAWN_objective], but this will anger [PAWN_possessive] faction. -->
     <MooGirl.RefugeePodCrash_NonHostile>{PAWN_nameDef}来自{PAWN_factionName}。如果你救援{PAWN_objective}，{PAWN_pronoun}回到派系后会改善双方关系。\n\n你也可以俘虏{PAWN_objective}来招募或奴役，但这会激怒{PAWN_possessive}派系。</MooGirl.RefugeePodCrash_NonHostile>
+    <!-- Refugee pod pawn could not be downed after {0} attempts; using a living fallback pawn. -->
+    <MooGirl.RefugeePodCrash.Log.DownedGenerationFallback>尝试 {0} 次后仍无法生成倒地逃生舱 Pawn；将使用一个存活的备用 Pawn。</MooGirl.RefugeePodCrash.Log.DownedGenerationFallback>
+    <!-- Refugee pod pawn generation failed after {0} attempts. Check PawnKindDef or other pawn generation patches. -->
+    <MooGirl.RefugeePodCrash.Log.GenerationFailed>尝试 {0} 次后逃生舱 Pawn 生成失败。请检查 PawnKindDef 或其它 Pawn 生成补丁。</MooGirl.RefugeePodCrash.Log.GenerationFailed>
+    <!-- Refugee pod crash quest root ran without a valid quest context. -->
+    <MooGirl.RefugeePodCrash.Log.MissingQuestContext>逃生舱坠毁任务根节点运行时缺少有效任务上下文。</MooGirl.RefugeePodCrash.Log.MissingQuestContext>
+    <!-- Refugee pod crash quest could not resolve a usable target map. -->
+    <MooGirl.RefugeePodCrash.Log.MissingMap>逃生舱坠毁任务无法解析可用目标地图。</MooGirl.RefugeePodCrash.Log.MissingMap>
     <!-- Wanderer Joins: {PAWN_nameDef} -->
     <LetterLabelWandererJoins>流浪者加入：{PAWN_nameDef}</LetterLabelWandererJoins>
     <!-- A {PAWN_title} named {PAWN_nameDef} has arrived here; she escaped from a slave caravan, with tattered restraints still bound to [PAWN_objective], telling of [PAWN_possessive] tragic past. With nowhere to go, she is willing to contribute to your colony. {PAWN_objective} won't leave voluntarily; you can choose to refuse [PAWN_objective] and send [PAWN_objective] away, but your colonists will feel uneasy about turning away someone in need.\n\nWill you give this pitiful yet resilient escapee a chance at freedom and a new life? -->
