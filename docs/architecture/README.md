@@ -1,10 +1,16 @@
-# Architecture Decision Records
+# 架构决策记录
 
-本目录存放长期架构决策记录。这里记录“为什么这样设计”，不替代 `docs/10-architecture-improvement-plan.md` 的执行计划，也不替代 `docs/09-post-refactor-hardening-plan.md` 的整改流水账。
+本目录保存长期架构决策。这里记录“为什么这样维护”，不记录重构阶段流水账。
 
 当前 ADR：
 
 - `ADR-001-single-dll.md`：保持单 DLL。
-- `ADR-002-harmony-registration.md`：Harmony 扫描 + 高风险 patch metadata。
-- `ADR-003-compatibility-scope.md`：Compatibility 层只先迁移反射和探测。
+- `ADR-002-harmony-registration.md`：Harmony 扫描 + patch metadata。
+- `ADR-003-compatibility-scope.md`：Compatibility 层的职责边界。
 - `ADR-004-root-namespace-markers.md`：根命名空间保留条件。
+
+维护规则：
+
+- 修改架构约束前，先更新或新增 ADR。
+- ADR 只写稳定决策、背景、后果，不写一次性任务列表。
+- 与日常操作相关的步骤放回 `docs/maintenance-guide.md`、`docs/compatibility-guide.md` 或 `docs/release-checklist.md`。

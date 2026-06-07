@@ -1,4 +1,4 @@
-# ADR-001: Keep One Runtime DLL
+# ADR-001: 保持单运行时 DLL
 
 ## Decision
 
@@ -11,7 +11,7 @@ MooGirl 继续使用一个运行时 DLL，不拆成多个程序集。
 ## Rationale
 
 - 一个 DLL 更符合 RimWorld/Harmony mod 的常见加载模型。
-- 当前 Phase 6 已能审计 csproj、XML 类型引用、patch metadata、静态缓存、发布卫生和语言一致性。
+- 当前静态验证已能审计 csproj、XML 类型引用、patch metadata、静态缓存、发布卫生和语言一致性。
 - 模块边界优先通过目录、命名空间、服务类和静态审计建立，而不是先靠程序集拆分。
 - 可选内容通过 `LoadFolders.xml`、XML patch gate、Compatibility 层和 null-safe Def/反射探测表达。
 

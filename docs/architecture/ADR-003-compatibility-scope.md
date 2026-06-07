@@ -1,8 +1,8 @@
-# ADR-003: Compatibility Layer Scope
+# ADR-003: Compatibility 层职责边界
 
 ## Decision
 
-Compatibility 层首轮只迁移第三方类型反射、第三方 Def 探测和可选 mod glue，不整批搬业务逻辑。
+Compatibility 层只承载第三方类型反射、第三方 Def 探测和可选 mod glue，不整批搬业务逻辑。
 
 ## Context
 
@@ -13,10 +13,10 @@ HAR、Facial Animation、Melee Animation、Search and Destroy、VCookE 和外部
 - 反射和 Def 探测是兼容风险最高、最适合集中审计的部分。
 - 业务行为仍保留在 Feature 模块，避免 Compatibility 反向依赖具体业务状态。
 - 可选依赖缺失时，Compatibility 返回 null/false，调用方只处理业务 fallback。
-- Phase 6 已禁止第三方 `AccessTools.TypeByName` 和外部乳房 hediff 字符串回流到业务层。
+- 静态验证已禁止第三方 `AccessTools.TypeByName` 和外部乳房 hediff 字符串回流到业务层。
 
 ## Consequences
 
 - Compatibility 不是“第三方相关所有代码”的垃圾桶。
 - 迁移业务 glue 前必须先确认没有 XML 类名、存档类名或 patch metadata 稳定性风险。
-- 后续可以按 mod/domain 小步扩展，例如 FacialAnimation 或 VCookE 的 C# glue。
+- 可以按 mod/domain 小步扩展，例如 FacialAnimation 或 VCookE 的 C# glue。

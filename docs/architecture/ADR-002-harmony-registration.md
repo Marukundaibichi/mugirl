@@ -1,4 +1,4 @@
-# ADR-002: Harmony Scan Plus Patch Metadata
+# ADR-002: Harmony 扫描与 Patch 元数据
 
 ## Decision
 
@@ -13,7 +13,7 @@
 - Attribute 扫描适合普通 patch，能减少样板代码。
 - Patch metadata 记录模块、目标类型/方法、patch 类型、是否跳过原方法、风险等级和失败行为。
 - 手动反射 patch 继续由 `MooGirlPatchRegistry` 管理，失败时用一次性 warning 降级。
-- Phase 6 会检查所有 Harmony patch 和手动 patch 是否存在 metadata，避免新增高风险 patch 变成隐形行为。
+- 静态验证会检查 Harmony patch 和手动 patch 是否存在 metadata，避免新增高风险 patch 变成隐形行为。
 
 ## Consequences
 

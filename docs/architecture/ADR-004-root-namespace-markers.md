@@ -1,4 +1,4 @@
-# ADR-004: Root Namespace Marker Types
+# ADR-004: 根命名空间保留类型
 
 ## Decision
 
@@ -25,6 +25,6 @@
 
 ## Consequences
 
-- Phase 6 先输出 namespace boundary report，不立即失败。
+- 静态验证输出 namespace boundary report，不立即失败。
 - 当前 root namespace 类型数量是治理基线，不是质量目标。
 - 后续若要收紧，应先建立允许清单，再禁止新增无理由 root namespace 类型。

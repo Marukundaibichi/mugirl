@@ -110,11 +110,12 @@ try {
 
     Write-Step "Release build"
     if (-not $SkipBuild) {
+        $programFiles = [Environment]::GetFolderPath('ProgramFiles')
         $msbuildCandidates = @(
-            'C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe',
-            'C:\Program Files\Microsoft Visual Studio\2022\Professional\MSBuild\Current\Bin\MSBuild.exe',
-            'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\MSBuild.exe',
-            'C:\Program Files\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin\MSBuild.exe'
+            (Join-Path $programFiles 'Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe'),
+            (Join-Path $programFiles 'Microsoft Visual Studio\2022\Professional\MSBuild\Current\Bin\MSBuild.exe'),
+            (Join-Path $programFiles 'Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\MSBuild.exe'),
+            (Join-Path $programFiles 'Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin\MSBuild.exe')
         )
         $msbuild = $msbuildCandidates | Where-Object { Test-Path -LiteralPath $_ } | Select-Object -First 1
         if (-not $msbuild) {
@@ -359,13 +360,17 @@ try {
         Fail "LoadFolders scan failed: $($loadFolderErrors.Count) issue(s)"
     }
 
-    Write-Step "Architecture documentation"
+    Write-Step "Maintenance documentation"
     $architectureDocumentationChecks = 0
     $architectureDocumentationIssues = @()
     $requiredArchitectureDocs = @(
-        'docs\10-architecture-improvement-plan.md',
-        'docs\11-namespace-boundary.md',
-        'docs\12-module-slimming-preflight.md',
+        'docs\README.md',
+        'docs\maintenance-guide.md',
+        'docs\content-update-guide.md',
+        'docs\compatibility-guide.md',
+        'docs\localization-and-comments.md',
+        'docs\validation-runbook.md',
+        'docs\release-checklist.md',
         'docs\architecture\README.md',
         'docs\architecture\ADR-001-single-dll.md',
         'docs\architecture\ADR-002-harmony-registration.md',
@@ -380,7 +385,7 @@ try {
     }
 
     $architectureDocumentationChecks++
-    $runbookPath = 'docs\08-game-validation-runbook.md'
+    $runbookPath = 'docs\validation-runbook.md'
     if (Test-Path -LiteralPath $runbookPath) {
         $runbookText = Get-Content -LiteralPath $runbookPath -Encoding utf8 -Raw
         if ($runbookText -notmatch 'Fresh Log 记录模板' -or
@@ -394,23 +399,23 @@ try {
     }
 
     $architectureDocumentationChecks++
-    $overviewPath = 'docs\00-refactor-overview.md'
+    $overviewPath = 'docs\README.md'
     if (Test-Path -LiteralPath $overviewPath) {
         $overviewText = Get-Content -LiteralPath $overviewPath -Encoding utf8 -Raw
-        if ($overviewText -notmatch '10-architecture-improvement-plan\.md' -or
-            $overviewText -notmatch '11-namespace-boundary\.md' -or
-            $overviewText -notmatch '12-module-slimming-preflight\.md' -or
+        if ($overviewText -notmatch 'maintenance-guide\.md' -or
+            $overviewText -notmatch 'validation-runbook\.md' -or
+            $overviewText -notmatch 'release-checklist\.md' -or
             $overviewText -notmatch 'architecture/') {
-            $architectureDocumentationIssues += "$overviewPath :: overview must link the architecture plan, namespace rules and ADR directory"
+            $architectureDocumentationIssues += "$overviewPath :: maintenance overview must link guide, validation, release and ADR directory"
         }
     }
     else {
-        $architectureDocumentationIssues += "$overviewPath :: missing refactor overview"
+        $architectureDocumentationIssues += "$overviewPath :: missing maintenance overview"
     }
 
     if ($architectureDocumentationIssues.Count) {
         $architectureDocumentationIssues | Sort-Object
-        Fail "Architecture documentation scan failed: $($architectureDocumentationIssues.Count) issue(s)"
+        Fail "Maintenance documentation scan failed: $($architectureDocumentationIssues.Count) issue(s)"
     }
 
     Write-Step "Forbidden production patterns"
@@ -4291,7 +4296,7 @@ try {
     Write-Host "  Broad keyed keys: $($broadKeys.Count)"
     Write-Host "  Language translation nodes: $languageTranslationNodes"
     Write-Host "  English to Chinese parity keys: $languageParityKeys"
-    Write-Host "  Architecture documentation rules: $architectureDocumentationChecks"
+    Write-Host "  Maintenance documentation rules: $architectureDocumentationChecks"
     Write-Host "  Text formatting safety rules: $textFormattingSafetyChecks"
     Write-Host "  Tick manager access safety rules: $tickManagerAccessSafetyChecks"
     Write-Host "  Find access safety rules: $findAccessSafetyChecks"
