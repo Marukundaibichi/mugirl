@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
     <!-- [MooGirl_Rev_Last] [MooGirl_Rev_First_Female] -->
-    <MooGirl_NameUtility.rulePack.rulesStrings>[MooGirl_Rev_Last] [MooGirl_Rev_First_Female]</MooGirl_NameUtility.rulePack.rulesStrings>
+    <MooGirl_NameUtility.rulePack.rulesStrings>
+        <li>r_name->[MooGirl_Rev_Last] [MooGirl_Rev_First_Female]</li>
+    </MooGirl_NameUtility.rulePack.rulesStrings>
     <!-- [MooGirl_Rev_Last] [MooGirl_Rev_First_Female] -->
-    <MooGirl_NamerPerson.rulePack.rulesStrings>[MooGirl_Rev_Last] [MooGirl_Rev_First_Female]</MooGirl_NamerPerson.rulePack.rulesStrings>
+    <MooGirl_NamerPerson.rulePack.rulesStrings>
+        <li>r_name->[MooGirl_Rev_Last] [MooGirl_Rev_First_Female]</li>
+    </MooGirl_NamerPerson.rulePack.rulesStrings>
 </LanguageData>

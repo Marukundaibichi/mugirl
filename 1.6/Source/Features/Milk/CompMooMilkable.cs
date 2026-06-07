@@ -168,7 +168,7 @@ namespace MooGirl
                 return multiplier;
             }
 
-            HediffDef lactationDef = MooGirlOptionalDefs.Hediffs.MooGirlLactation;
+            HediffDef lactationDef = MooGirlRequiredDefs.Hediffs.MooGirlLactation;
             if (lactationDef != null)
             {
                 Hediff lactationHediff = pawn.health.hediffSet.GetFirstHediffOfDef(lactationDef);
@@ -212,7 +212,7 @@ namespace MooGirl
                 return;
             }
 
-            HediffDef lactationDef = MooGirlOptionalDefs.Hediffs.MooGirlLactation;
+            HediffDef lactationDef = MooGirlRequiredDefs.Hediffs.MooGirlLactation;
             if (lactationDef != null && !pawn.health.hediffSet.HasHediff(lactationDef))
             {
                 pawn.health.AddHediff(lactationDef);

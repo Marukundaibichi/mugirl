@@ -71,6 +71,17 @@ namespace MooGirl
             return pawn?.CurJob?.def == MooGirl_DefOf.Job_FollowRoper;
         }
 
+        public static bool IsRopedByPawn(Pawn pawn)
+        {
+            if (pawn?.roping?.IsRopedByPawn == true)
+            {
+                return true;
+            }
+
+            MapRopingIndex index = IndexFor(pawn);
+            return index?.RoperFor(pawn) != null;
+        }
+
         public static Pawn RoperFor(Pawn ropee)
         {
             Pawn roper = ropee?.roping?.RopedByPawn;

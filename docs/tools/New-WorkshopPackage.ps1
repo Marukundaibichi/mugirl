@@ -103,7 +103,7 @@ try {
 
     New-Item -ItemType Directory -Path $destRoot -Force | Out-Null
 
-    $roots = @('About', '1.6', 'Bio_1.6', 'Textures', 'Sounds', 'Versions')
+    $roots = @('About', '1.6', 'Bio_1.6', 'Odyssey_1.6', 'Textures', 'Sounds', 'Versions')
     $rootFiles = @('LoadFolders.xml')
     $copiedFiles = 0
     $excludedFiles = 0

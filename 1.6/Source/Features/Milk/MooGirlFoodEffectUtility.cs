@@ -5,6 +5,7 @@ namespace MooGirl
 {
     internal static class MooGirlFoodEffectUtility
     {
+        // StaticCacheLifecycle: per-game Def lookup cache; stores DefDatabase results only and is reset by MooGirlStoryState on game init/new-game/load.
         private static readonly Dictionary<string, HediffDef> HediffDefCache = new Dictionary<string, HediffDef>();
 
         internal static void RemoveHediffs(Pawn pawn, List<string> removeHediffs)

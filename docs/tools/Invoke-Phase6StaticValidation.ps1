@@ -56,6 +56,7 @@ try {
             '1.6\Defs',
             '1.6\FacialAnimation\Defs',
             'Bio_1.6\Defs',
+            'Odyssey_1.6\Defs',
             'Versions\1.6\Integrations\VCookE\Defs'
         ) | Where-Object { Test-Path -LiteralPath $_ }
     }
@@ -65,7 +66,19 @@ try {
             '1.6\Defs',
             '1.6\FacialAnimation\Defs',
             'Bio_1.6\Defs',
+            'Odyssey_1.6\Defs',
             'Versions\1.6\Integrations\VCookE\Defs'
+        ) | Where-Object { Test-Path -LiteralPath $_ }
+    }
+
+    function Get-LanguageRoots {
+        return @(
+            '1.6\Languages',
+            '1.6\FacialAnimation\Languages',
+            'Bio_1.6\Languages',
+            'Odyssey_1.6\Languages',
+            'Versions\1.6\Integrations\VCookE\Languages',
+            'Versions\1.6\Integrations\SearchAndDestroy\Languages'
         ) | Where-Object { Test-Path -LiteralPath $_ }
     }
 
@@ -80,11 +93,19 @@ try {
         ) | Where-Object { Test-Path -LiteralPath $_ }
     }
 
-    $ProductionRoots = @('1.6', 'Bio_1.6', 'Versions', 'Textures', 'Sounds') | Where-Object { Test-Path -LiteralPath $_ }
+    $ProductionRoots = @('1.6', 'Bio_1.6', 'Odyssey_1.6', 'Versions', 'Textures', 'Sounds') | Where-Object { Test-Path -LiteralPath $_ }
     $DefTypeAliases = @{
         'AlienRace.ThingDef_AlienRace' = 'ThingDef'
         'MooGirl.SlaveApparelDef' = 'ThingDef'
         'AlienRace.AlienBackstoryDef' = 'BackstoryDef'
+    }
+    function Get-NormalizedDefType {
+        param([string]$XmlType)
+
+        if ($DefTypeAliases.ContainsKey($XmlType)) {
+            return $DefTypeAliases[$XmlType]
+        }
+        return $XmlType
     }
 
     Write-Step "Release build"
@@ -116,7 +137,7 @@ try {
             $xmlFiles.Add((Resolve-Path -LiteralPath $path).Path)
         }
     }
-    foreach ($root in @('About', '1.6', 'Bio_1.6', 'Versions')) {
+    foreach ($root in @('About', '1.6', 'Bio_1.6', 'Odyssey_1.6', 'Versions')) {
         if (Test-Path -LiteralPath $root) {
             Get-ChildItem -LiteralPath $root -Recurse -Filter '*.xml' | ForEach-Object {
                 $xmlFiles.Add($_.FullName)
@@ -141,8 +162,8 @@ try {
     Write-Step "Language duplicate keys"
     $languageTranslationNodes = 0
     $languageDuplicateKeys = @()
-    if (Test-Path -LiteralPath '1.6\Languages') {
-        Get-ChildItem -LiteralPath '1.6\Languages' -Recurse -Filter '*.xml' | ForEach-Object {
+    foreach ($languageRoot in Get-LanguageRoots) {
+        Get-ChildItem -LiteralPath $languageRoot -Recurse -Filter '*.xml' | ForEach-Object {
             $full = $_.FullName
             $doc = Get-XmlDocument $full
             $names = @{}
@@ -314,6 +335,60 @@ try {
     if ($loadFolderErrors.Count) {
         $loadFolderErrors | Sort-Object
         Fail "LoadFolders scan failed: $($loadFolderErrors.Count) issue(s)"
+    }
+
+    Write-Step "Architecture documentation"
+    $architectureDocumentationChecks = 0
+    $architectureDocumentationIssues = @()
+    $requiredArchitectureDocs = @(
+        'docs\10-architecture-improvement-plan.md',
+        'docs\11-namespace-boundary.md',
+        'docs\12-module-slimming-preflight.md',
+        'docs\architecture\README.md',
+        'docs\architecture\ADR-001-single-dll.md',
+        'docs\architecture\ADR-002-harmony-registration.md',
+        'docs\architecture\ADR-003-compatibility-scope.md',
+        'docs\architecture\ADR-004-root-namespace-markers.md'
+    )
+    foreach ($docPath in $requiredArchitectureDocs) {
+        $architectureDocumentationChecks++
+        if (-not (Test-Path -LiteralPath $docPath)) {
+            $architectureDocumentationIssues += "$docPath :: required architecture document is missing"
+        }
+    }
+
+    $architectureDocumentationChecks++
+    $runbookPath = 'docs\08-game-validation-runbook.md'
+    if (Test-Path -LiteralPath $runbookPath) {
+        $runbookText = Get-Content -LiteralPath $runbookPath -Encoding utf8 -Raw
+        if ($runbookText -notmatch 'Fresh Log 记录模板' -or
+            $runbookText -notmatch 'Player\.log LastWriteTime' -or
+            $runbookText -notmatch '日志扫描结果') {
+            $architectureDocumentationIssues += "$runbookPath :: game validation runbook must keep the fresh log record template"
+        }
+    }
+    else {
+        $architectureDocumentationIssues += "$runbookPath :: missing game validation runbook"
+    }
+
+    $architectureDocumentationChecks++
+    $overviewPath = 'docs\00-refactor-overview.md'
+    if (Test-Path -LiteralPath $overviewPath) {
+        $overviewText = Get-Content -LiteralPath $overviewPath -Encoding utf8 -Raw
+        if ($overviewText -notmatch '10-architecture-improvement-plan\.md' -or
+            $overviewText -notmatch '11-namespace-boundary\.md' -or
+            $overviewText -notmatch '12-module-slimming-preflight\.md' -or
+            $overviewText -notmatch 'architecture/') {
+            $architectureDocumentationIssues += "$overviewPath :: overview must link the architecture plan, namespace rules and ADR directory"
+        }
+    }
+    else {
+        $architectureDocumentationIssues += "$overviewPath :: missing refactor overview"
+    }
+
+    if ($architectureDocumentationIssues.Count) {
+        $architectureDocumentationIssues | Sort-Object
+        Fail "Architecture documentation scan failed: $($architectureDocumentationIssues.Count) issue(s)"
     }
 
     Write-Step "Forbidden production patterns"
@@ -1050,19 +1125,24 @@ try {
     }
 
     $restraintHediffStateSafetyChecks++
-    $performanceEffectPath = '1.6\Source\Features\Restraints\HediffCompProperties_PerformanceEffect.cs'
-    if (Test-Path -LiteralPath $performanceEffectPath) {
-        $performanceEffectText = Get-Content -LiteralPath $performanceEffectPath -Encoding utf8 -Raw
+    $performanceEffectPaths = @(
+        '1.6\Source\Features\Restraints\HediffCompProperties_PerformanceEffect.cs',
+        '1.6\Source\Features\Restraints\BrainwashPerformancePlayer.cs',
+        '1.6\Source\Features\Restraints\HediffComp_BrainWashingStar.cs'
+    )
+    $missingPerformanceEffectPaths = @($performanceEffectPaths | Where-Object { -not (Test-Path -LiteralPath $_) })
+    if ($missingPerformanceEffectPaths.Count -eq 0) {
+        $performanceEffectText = ($performanceEffectPaths | ForEach-Object { Get-Content -LiteralPath $_ -Encoding utf8 -Raw }) -join "`n"
         if ($performanceEffectText -notmatch 'props\s+as\s+CompProperties_PerformanceEffect' -or
             $performanceEffectText -notmatch 'textParams\s*==\s*null\s*\?\s*-1' -or
             $performanceEffectText -notmatch 's\s*==\s*null\s*\|\|\s*nextSoundTicks\[i\]\s*==\s*-1' -or
             $performanceEffectText -notmatch 'f\s*==\s*null\s*\|\|\s*f\.fleck\s*==\s*null' -or
             $performanceEffectText -notmatch 'stunDurationTicks\s*=\s*Mathf\.Max\(0,\s*props\.stunDurationTicks\)') {
-            $restraintHediffStateSafetyIssues += "$performanceEffectPath :: brainwash performance must guard safe props, null XML list entries and invalid stun duration"
+            $restraintHediffStateSafetyIssues += "PerformanceEffect split files :: brainwash performance must guard safe props, null XML list entries and invalid stun duration"
         }
     }
     else {
-        $restraintHediffStateSafetyIssues += "$performanceEffectPath :: missing file for PerformanceEffect safety"
+        $restraintHediffStateSafetyIssues += "PerformanceEffect split files :: missing file(s): $($missingPerformanceEffectPaths -join ', ')"
     }
 
     $restraintHediffStateSafetyChecks++
@@ -1118,9 +1198,13 @@ try {
     }
 
     $restraintHediffStateSafetyChecks++
-    $magneticShacklesPath = '1.6\Source\Features\Restraints\Comps\CompProperties_MagneticShackles.cs'
-    if (Test-Path -LiteralPath $magneticShacklesPath) {
-        $magneticShacklesText = Get-Content -LiteralPath $magneticShacklesPath -Encoding utf8 -Raw
+    $magneticShacklesPaths = @(
+        '1.6\Source\Features\Restraints\Comps\CompProperties_MagneticShackles.cs',
+        '1.6\Source\Features\Restraints\Comps\Comp_MagneticShackles.Gizmos.cs'
+    )
+    $missingMagneticShacklesPaths = @($magneticShacklesPaths | Where-Object { -not (Test-Path -LiteralPath $_) })
+    if ($missingMagneticShacklesPaths.Count -eq 0) {
+        $magneticShacklesText = ($magneticShacklesPaths | ForEach-Object { Get-Content -LiteralPath $_ -Encoding utf8 -Raw }) -join "`n"
         $magneticShacklesSafe = $magneticShacklesText -match 'props\s+as\s+CompProperties_MagneticShackles' `
             -and $magneticShacklesText -match 'ManualUseReady' `
             -and $magneticShacklesText -match 'ManualCooldownPercent' `
@@ -1129,11 +1213,11 @@ try {
             -and $magneticShacklesText -notmatch 'new\s+List<CompProperties_MagneticShackles\.BindHediffEntry>' `
             -and $magneticShacklesText -notmatch 'if\s*\(!canUse\)\s*return'
         if (-not $magneticShacklesSafe) {
-            $restraintHediffStateSafetyIssues += "$magneticShacklesPath :: magnetic shackles comp must safe-cast props, avoid hot-path list allocation and recheck manual cooldown at click time"
+            $restraintHediffStateSafetyIssues += "MagneticShackles split files :: magnetic shackles comp must safe-cast props, avoid hot-path list allocation and recheck manual cooldown at click time"
         }
     }
     else {
-        $restraintHediffStateSafetyIssues += "$magneticShacklesPath :: missing file for magnetic shackles comp safety"
+        $restraintHediffStateSafetyIssues += "MagneticShackles split files :: missing file(s): $($missingMagneticShacklesPaths -join ', ')"
     }
 
     if ($restraintHediffStateSafetyIssues.Count) {
@@ -1212,9 +1296,11 @@ try {
         $floatMenuRopeText = Get-Content -LiteralPath $floatMenuRopePath -Encoding utf8 -Raw
         $floatMenuRopeBounded = $floatMenuRopeText -match 'TargetPawnValid\(Pawn\s+target,\s*FloatMenuContext\s+context\)[\s\S]*!RopingService\.IsMooGirlRopee\(target\)' `
             -and $floatMenuRopeText -match '1f\.ToStringPercent\(\)' `
+            -and $floatMenuRopeText -match 'RopingService\.IsRopedByPawn\(target\)' `
+            -and $floatMenuRopeText -match '!isPawnRopedByPawn\s*&&\s*!isPawnRopedToThing' `
             -and $floatMenuRopeText -notmatch 'GetAcceptArrestChance|target\.IsPrisonerOfColony|target\.IsSlave'
         if (-not $floatMenuRopeBounded) {
-            $ropingTargetSafetyIssues += "$floatMenuRopePath :: rope float menu must expose only MooGirl targets and avoid non-MooGirl arrest chance branches"
+            $ropingTargetSafetyIssues += "$floatMenuRopePath :: rope float menu must expose only MooGirl targets, use tracker-based unrope state and avoid non-MooGirl arrest chance branches"
         }
     }
     else {
@@ -1230,9 +1316,11 @@ try {
             -and $ropingTickText -match 'owner\s*==\s*null\s*\|\|\s*ropees\s*==\s*null' `
             -and $ropingTickText -match 'ropee\.jobs\s*!=\s*null' `
             -and $ropingTickText -match 'ropee\.CurJob\?\.targetA\.Thing\s*==\s*owner' `
+            -and $ropingTickText -match 'ShouldUseMooGirlRopeeTick' `
+            -and $ropingTickText -match 'ClearDraftedRopee\(pawn\)' `
             -and $ropingTickText -notmatch 'new\s+List<Pawn>\s*\(\s*tracker\.Ropees\s*\)'
         if (-not $ropingTickSafe) {
-            $ropingTargetSafetyIssues += "$ropingTickPath :: roping tick must end custom follow jobs before BreakAllRopes without snapshotting tracker.Ropees"
+            $ropingTargetSafetyIssues += "$ropingTickPath :: roping tick must end custom follow jobs before BreakAllRopes, keep drafted MooGirl ropees from falling through to vanilla break logic and avoid snapshotting tracker.Ropees"
         }
     }
     else {
@@ -1311,15 +1399,34 @@ try {
         $pawnDraftControllerSafe = $pawnDraftControllerText -match 'Pawn\s+pawn\s*=\s*__instance\?\.pawn' `
             -and $pawnDraftControllerText -match 'DisableDraftGizmo\(__result\)' `
             -and $pawnDraftControllerText -match 'private\s+static\s+IEnumerable<Gizmo>\s+DisableDraftGizmo\(IEnumerable<Gizmo>\s+gizmos\)' `
+            -and $pawnDraftControllerText -match 'RopingService\.IsRopedByPawn\(pawn\)' `
+            -and $pawnDraftControllerText -match 'RopingService\.IsPendingSpotRope\(pawn\)' `
             -and $pawnDraftControllerText -match 'yield\s+return\s+gizmo\s*;' `
             -and $pawnDraftControllerText -match 'toggle\.Disable\("MooGirl\.DraftDisabledWhileRoped"\.Translate\(\)\)' `
             -and $pawnDraftControllerText -notmatch 'new\s+List<Gizmo>'
         if (-not $pawnDraftControllerSafe) {
-            $ropingTargetSafetyIssues += "$pawnDraftControllerPath :: roped pawn draft gizmo patch must disable the draft toggle through a lazy iterator and avoid per-gizmo list allocation"
+            $ropingTargetSafetyIssues += "$pawnDraftControllerPath :: roped pawn draft gizmo patch must use tracker/pending rope state, disable the draft toggle through a lazy iterator and avoid per-gizmo list allocation"
         }
     }
     else {
         $ropingTargetSafetyIssues += "$pawnDraftControllerPath :: missing file for roped draft gizmo safety"
+    }
+
+    $ropingTargetSafetyChecks++
+    $ropingDrawPath = '1.6\Source\Features\Roping\Harmony_RopingDraw.cs'
+    if (Test-Path -LiteralPath $ropingDrawPath) {
+        $ropingDrawText = Get-Content -LiteralPath $ropingDrawPath -Encoding utf8 -Raw
+        $wallHitchAnchorSafe = $ropingDrawText -match 'WallHitchAnchor\(Building\s+hitch\)' `
+            -and $ropingDrawText -match 'case\s+0:[\s\S]*new\s+Vector3\(0f,\s*0f,\s*0\.9f\)' `
+            -and $ropingDrawText -match 'case\s+1:[\s\S]*new\s+Vector3\(0\.9f,\s*0f,\s*0f\)' `
+            -and $ropingDrawText -match 'case\s+2:[\s\S]*new\s+Vector3\(0f,\s*0f,\s*-0\.9f\)' `
+            -and $ropingDrawText -match 'case\s+3:[\s\S]*new\s+Vector3\(-0\.9f,\s*0f,\s*0f\)'
+        if (-not $wallHitchAnchorSafe) {
+            $ropingTargetSafetyIssues += "$ropingDrawPath :: wall rope hitch draw anchor must match WallRopeHitch graphicData drawOffset directions"
+        }
+    }
+    else {
+        $ropingTargetSafetyIssues += "$ropingDrawPath :: missing file for wall rope hitch draw anchor safety"
     }
 
     if ($ropingTargetSafetyIssues.Count) {
@@ -2451,9 +2558,14 @@ try {
     }
 
     $harmonyBoundarySafetyChecks++
-    $milkingAnimationPath = '1.6\Source\Features\Milk\MooGirlMilkingAnimation.cs'
-    if (Test-Path -LiteralPath $milkingAnimationPath) {
-        $milkingAnimationText = Get-Content -LiteralPath $milkingAnimationPath -Encoding utf8 -Raw
+    $milkingAnimationPaths = @(
+        '1.6\Source\Features\Milk\MooGirlMilkingAnimation.cs',
+        '1.6\Source\Features\Milk\MooGirlMilkingAnimation.State.cs',
+        '1.6\Source\Features\Milk\Harmony_MooGirlMilkingAnimation.cs'
+    )
+    $missingMilkingAnimationPaths = @($milkingAnimationPaths | Where-Object { -not (Test-Path -LiteralPath $_) })
+    if ($missingMilkingAnimationPaths.Count -eq 0) {
+        $milkingAnimationText = ($milkingAnimationPaths | ForEach-Object { Get-Content -LiteralPath $_ -Encoding utf8 -Raw }) -join "`n"
         $milkingAnimationSafe = $milkingAnimationText -match 'PawnField\?\.GetValue' `
             -and $milkingAnimationText -match 'MooGirlTickUtility\.TryGetCurrentGameTick' `
             -and $milkingAnimationText -match 'MooGirlTickUtility\.CurrentGameTickOrFallback' `
@@ -2468,11 +2580,11 @@ try {
             -and $milkingAnimationText -match 'RemoveIfMatches\(state\.partner,\s*state\.pawn\)' `
             -and $milkingAnimationText -match 'tmpStateKeysToRemove\.Clear\(\)'
         if (-not $milkingAnimationSafe) {
-            $harmonyBoundarySafetyIssues += "$milkingAnimationPath :: milking render patches must guard reflection, centralized tick access, stale/cross-pawn/partner state and missing render node props"
+            $harmonyBoundarySafetyIssues += "MooGirlMilkingAnimation split files :: milking render patches must guard reflection, centralized tick access, stale/cross-pawn/partner state and missing render node props"
         }
     }
     else {
-        $harmonyBoundarySafetyIssues += "$milkingAnimationPath :: missing file for milking animation reflection safety"
+        $harmonyBoundarySafetyIssues += "MooGirlMilkingAnimation split files :: missing file(s): $($missingMilkingAnimationPaths -join ', ')"
     }
 
     $harmonyBoundarySafetyChecks++
@@ -2586,7 +2698,7 @@ try {
     }
 
     $harmonyBoundarySafetyChecks++
-    $meleeAnimationCompatPath = '1.6\Source\Features\Mounting\MeleeAnimationCompat.cs'
+    $meleeAnimationCompatPath = '1.6\Source\Compatibility\MeleeAnimation\MeleeAnimationCompat.cs'
     if (Test-Path -LiteralPath $meleeAnimationCompatPath) {
         $meleeAnimationCompatText = Get-Content -LiteralPath $meleeAnimationCompatPath -Encoding utf8 -Raw
         if ($meleeAnimationCompatText -notmatch 'originalValueObj\s+is\s+bool') {
@@ -2612,6 +2724,114 @@ try {
     if ($harmonyBoundarySafetyIssues.Count) {
         $harmonyBoundarySafetyIssues | Sort-Object
         Fail "Harmony boundary safety scan failed: $($harmonyBoundarySafetyIssues.Count) issue(s)"
+    }
+
+    Write-Step "Compatibility boundary safety"
+    $compatibilityBoundarySafetyChecks = 0
+    $compatibilityBoundarySafetyIssues = @()
+
+    $compatibilityBoundarySafetyChecks++
+    $directThirdPartyReflection = @()
+    Get-ChildItem -LiteralPath '1.6\Source' -Recurse -Filter '*.cs' | ForEach-Object {
+        $relative = (Get-RelativePath $_.FullName).TrimStart('.', '\', '/').Replace('/', '\')
+        if ($relative -like '1.6\Source\Compatibility\*') {
+            return
+        }
+
+        Select-String -LiteralPath $_.FullName -Pattern 'AccessTools\.TypeByName' | ForEach-Object {
+            $directThirdPartyReflection += "${relative}:$($_.LineNumber) :: $($_.Line.Trim())"
+        }
+    }
+    if ($directThirdPartyReflection.Count) {
+        $compatibilityBoundarySafetyIssues += "Third-party TypeByName reflection must stay under 1.6\Source\Compatibility:"
+        $compatibilityBoundarySafetyIssues += $directThirdPartyReflection
+    }
+
+    $compatibilityBoundarySafetyChecks++
+    $patchRegistryPath = '1.6\Source\Core\MooGirlPatchRegistry.cs'
+    if (Test-Path -LiteralPath $patchRegistryPath) {
+        $patchRegistryText = Get-Content -LiteralPath $patchRegistryPath -Encoding utf8 -Raw
+        if ($patchRegistryText -notmatch 'AlienRaceCompatibility\.TryGetSwaddleGraphicForTarget\(out\s+MethodInfo\s+target\)' -or
+            $patchRegistryText -match 'AccessTools\.TypeByName') {
+            $compatibilityBoundarySafetyIssues += "$patchRegistryPath :: HAR swaddle target discovery must be delegated to AlienRaceCompatibility"
+        }
+    }
+    else {
+        $compatibilityBoundarySafetyIssues += "$patchRegistryPath :: missing patch registry for Compatibility boundary safety"
+    }
+
+    $compatibilityBoundarySafetyChecks++
+    $alienRaceCompatibilityPath = '1.6\Source\Compatibility\AlienRace\AlienRaceCompatibility.cs'
+    if (Test-Path -LiteralPath $alienRaceCompatibilityPath) {
+        $alienRaceCompatibilityText = Get-Content -LiteralPath $alienRaceCompatibilityPath -Encoding utf8 -Raw
+        if ($alienRaceCompatibilityText -notmatch 'AlienRace\.AlienPawnRenderNode_Swaddle' -or
+            $alienRaceCompatibilityText -notmatch 'AccessTools\.TypeByName' -or
+            $alienRaceCompatibilityText -notmatch 'TryGetSwaddleGraphicForTarget') {
+            $compatibilityBoundarySafetyIssues += "$alienRaceCompatibilityPath :: HAR internal render target lookup must stay centralized in Compatibility/AlienRace"
+        }
+    }
+    else {
+        $compatibilityBoundarySafetyIssues += "$alienRaceCompatibilityPath :: missing AlienRace compatibility file"
+    }
+
+    $compatibilityBoundarySafetyChecks++
+    $externalBreastPath = '1.6\Source\Compatibility\OtherMods\ExternalBreastHediffDefs.cs'
+    $externalBreastHediffLiteralPattern = '"(?:HugeBreasts|BionicBreasts|SlimeBreasts|GR_MuffaloMammaries|Breasts|HydraulicBreasts|SmallBreasts|LargeBreasts|ArchotechBreasts|FlatBreasts)"'
+    if (Test-Path -LiteralPath $externalBreastPath) {
+        $externalBreastText = Get-Content -LiteralPath $externalBreastPath -Encoding utf8 -Raw
+        if ($externalBreastText -notmatch 'StaticCacheLifecycle: process-level external breast HediffDef cache' -or
+            $externalBreastText -match 'MooGirl_Lactation') {
+            $compatibilityBoundarySafetyIssues += "$externalBreastPath :: external breast cache must document lifecycle and must not carry internal MooGirl hediff defs"
+        }
+    }
+    else {
+        $compatibilityBoundarySafetyIssues += "$externalBreastPath :: missing external breast hediff compatibility cache"
+    }
+
+    $compatibilityBoundarySafetyChecks++
+    $externalBreastLiteralHits = @()
+    Get-ChildItem -LiteralPath '1.6\Source' -Recurse -Filter '*.cs' | ForEach-Object {
+        $relative = (Get-RelativePath $_.FullName).TrimStart('.', '\', '/').Replace('/', '\')
+        if ($relative -eq $externalBreastPath) {
+            return
+        }
+
+        Select-String -LiteralPath $_.FullName -Pattern $externalBreastHediffLiteralPattern | ForEach-Object {
+            $externalBreastLiteralHits += "${relative}:$($_.LineNumber) :: $($_.Line.Trim())"
+        }
+    }
+    if ($externalBreastLiteralHits.Count) {
+        $compatibilityBoundarySafetyIssues += "External breast hediff defName literals must stay in ExternalBreastHediffDefs:"
+        $compatibilityBoundarySafetyIssues += $externalBreastLiteralHits
+    }
+
+    $compatibilityBoundarySafetyChecks++
+    $optionalDefsPath = '1.6\Source\Core\MooGirlOptionalDefs.cs'
+    if (Test-Path -LiteralPath $optionalDefsPath) {
+        $optionalDefsText = Get-Content -LiteralPath $optionalDefsPath -Encoding utf8 -Raw
+        if ($optionalDefsText -match 'internal\s+static\s+class\s+Hediffs') {
+            $compatibilityBoundarySafetyIssues += "$optionalDefsPath :: optional external hediff defs must not drift back into MooGirlOptionalDefs.Hediffs"
+        }
+    }
+    else {
+        $compatibilityBoundarySafetyIssues += "$optionalDefsPath :: missing optional defs file for Compatibility boundary safety"
+    }
+
+    $compatibilityBoundarySafetyChecks++
+    $requiredDefsPath = '1.6\Source\Core\MooGirlRequiredDefs.cs'
+    if (Test-Path -LiteralPath $requiredDefsPath) {
+        $requiredDefsText = Get-Content -LiteralPath $requiredDefsPath -Encoding utf8 -Raw
+        if ($requiredDefsText -notmatch 'MooGirlLactation\s*=\s*Required<HediffDef>\("MooGirl_Lactation"\)') {
+            $compatibilityBoundarySafetyIssues += "$requiredDefsPath :: internal MooGirl lactation hediff must stay in required Def cache, not in external compatibility caches"
+        }
+    }
+    else {
+        $compatibilityBoundarySafetyIssues += "$requiredDefsPath :: missing required defs file for internal lactation cache safety"
+    }
+
+    if ($compatibilityBoundarySafetyIssues.Count) {
+        $compatibilityBoundarySafetyIssues | Sort-Object
+        Fail "Compatibility boundary safety scan failed: $($compatibilityBoundarySafetyIssues.Count) issue(s)"
     }
 
     Write-Step "Ability job safety"
@@ -2978,6 +3198,218 @@ try {
         Fail "Manual patch registry safety scan failed: $($manualPatchRegistrySafetyIssues.Count) issue(s)"
     }
 
+    Write-Step "Patch metadata audit"
+    $patchMetadataAuditChecks = 0
+    $patchMetadataAuditIssues = @()
+    $patchMetadataAuditEntries = 0
+
+    $patchInfoPath = '1.6\Source\Core\MooGirlPatchInfo.cs'
+    if (Test-Path -LiteralPath $patchInfoPath) {
+        $patchInfoText = Get-Content -LiteralPath $patchInfoPath -Encoding utf8 -Raw
+
+        $patchMetadataAuditChecks++
+        $patchInfoShapeSafe = $patchInfoText -match 'internal\s+sealed\s+class\s+MooGirlPatchInfo' `
+            -and $patchInfoText -match 'internal\s+enum\s+MooGirlPatchRiskLevel' `
+            -and $patchInfoText -match 'ModuleName\s*\{\s*get;\s*\}' `
+            -and $patchInfoText -match 'PatchClassName\s*\{\s*get;\s*\}' `
+            -and $patchInfoText -match 'PatchClassFullName\s*=>' `
+            -and $patchInfoText -match 'TargetTypeName\s*\{\s*get;\s*\}' `
+            -and $patchInfoText -match 'TargetMethodName\s*\{\s*get;\s*\}' `
+            -and $patchInfoText -match 'PatchKind\s*\{\s*get;\s*\}' `
+            -and $patchInfoText -match 'MaySkipOriginal\s*\{\s*get;\s*\}' `
+            -and $patchInfoText -match 'CompatibilityRisk\s*\{\s*get;\s*\}' `
+            -and $patchInfoText -match 'FailureBehavior\s*\{\s*get;\s*\}' `
+            -and $patchInfoText -match 'RegistryNameKey\s*\{\s*get;\s*\}' `
+            -and $patchInfoText -match 'HighRiskPatchInfos' `
+            -and $patchInfoText -match 'LogDevSummary'
+        if (-not $patchInfoShapeSafe) {
+            $patchMetadataAuditIssues += "$patchInfoPath :: patch metadata must expose module, class, target, kind, skip-original flag, risk level, failure behavior, manual registry key and DevMode summary"
+        }
+
+        $registeredPatchClassMatches = [regex]::Matches($patchInfoText, 'patchClassName:\s*"([^"]+)"')
+        $patchMetadataAuditEntries = $registeredPatchClassMatches.Count
+        $registeredPatchClasses = New-Object 'System.Collections.Generic.HashSet[string]'
+        foreach ($match in $registeredPatchClassMatches) {
+            [void]$registeredPatchClasses.Add('MooGirl.' + $match.Groups[1].Value)
+        }
+
+        $patchMetadataAuditChecks++
+        if ($registeredPatchClasses.Count -ne $registeredPatchClassMatches.Count) {
+            $patchMetadataAuditIssues += "$patchInfoPath :: duplicate patchClassFullName entries found in patch metadata"
+        }
+
+        $registeredManualPatchKeys = New-Object 'System.Collections.Generic.HashSet[string]'
+        [regex]::Matches($patchInfoText, 'registryNameKey:\s*"([^"]+)"') | ForEach-Object {
+            [void]$registeredManualPatchKeys.Add($_.Groups[1].Value)
+        }
+
+        $actualPatchClasses = New-Object 'System.Collections.Generic.HashSet[string]'
+        Get-ChildItem -LiteralPath '1.6\Source' -Recurse -Filter '*.cs' | ForEach-Object {
+            $sourceText = Get-Content -LiteralPath $_.FullName -Encoding utf8 -Raw
+            [regex]::Matches($sourceText, '(?m)(?:^\s*\[\s*HarmonyPatch[^\r\n]*\]\s*\r?\n)+(?:\s*(?:public|internal)\s+static\s+class\s+([A-Za-z0-9_]+))') | ForEach-Object {
+                [void]$actualPatchClasses.Add('MooGirl.' + $_.Groups[1].Value)
+            }
+        }
+
+        foreach ($patchClass in ($actualPatchClasses | Sort-Object)) {
+            $patchMetadataAuditChecks++
+            if (-not $registeredPatchClasses.Contains($patchClass)) {
+                $patchMetadataAuditIssues += "$patchInfoPath :: missing MooGirlPatchInfo for Harmony patch class $patchClass"
+            }
+        }
+
+        $manualPatchExpectations = @(
+            @{
+                Class = 'MooGirl.PawnGenerator_GeneratePawn_Patch'
+                Key = 'MooGirl.PatchRegistry.PawnGeneratorGeneratePawn'
+            },
+            @{
+                Class = 'MooGirl.Patch_AlienPawnRenderNode_Swaddle_GraphicFor'
+                Key = 'MooGirl.PatchRegistry.AlienRaceSwaddleGraphicFor'
+            }
+        )
+        foreach ($expectedManualPatch in $manualPatchExpectations) {
+            $patchMetadataAuditChecks++
+            if (-not $registeredPatchClasses.Contains($expectedManualPatch.Class)) {
+                $patchMetadataAuditIssues += "$patchInfoPath :: missing MooGirlPatchInfo for manual patch class $($expectedManualPatch.Class)"
+            }
+
+            if (-not $registeredManualPatchKeys.Contains($expectedManualPatch.Key)) {
+                $patchMetadataAuditIssues += "$patchInfoPath :: missing registryNameKey metadata for manual patch $($expectedManualPatch.Key)"
+            }
+
+            [void]$actualPatchClasses.Add($expectedManualPatch.Class)
+        }
+
+        foreach ($registeredPatchClass in ($registeredPatchClasses | Sort-Object)) {
+            $patchMetadataAuditChecks++
+            if (-not $actualPatchClasses.Contains($registeredPatchClass)) {
+                $patchMetadataAuditIssues += "$patchInfoPath :: patch metadata entry has no matching Harmony or manual patch class: $registeredPatchClass"
+            }
+        }
+
+        $patchMetadataAuditChecks++
+        if ($patchInfoText -notmatch 'compatibilityRisk:\s*MooGirlPatchRiskLevel\.(High|Critical)') {
+            $patchMetadataAuditIssues += "$patchInfoPath :: patch metadata must include high-risk or critical entries"
+        }
+    }
+    else {
+        $patchMetadataAuditIssues += "$patchInfoPath :: missing patch metadata file"
+    }
+
+    $patchMetadataAuditChecks++
+    $bootstrapPath = '1.6\Source\Core\MooGirlBootstrap.cs'
+    if (Test-Path -LiteralPath $bootstrapPath) {
+        $bootstrapText = Get-Content -LiteralPath $bootstrapPath -Encoding utf8 -Raw
+        if ($bootstrapText -notmatch 'MooGirlPatchCatalog\.LogDevSummary\(patchedClassNames,\s*MooGirlPatchRegistry\.ManualPatchNames\)') {
+            $patchMetadataAuditIssues += "$bootstrapPath :: bootstrap must emit the patch metadata DevMode summary after attribute and manual patch registration"
+        }
+    }
+    else {
+        $patchMetadataAuditIssues += "$bootstrapPath :: missing file for patch metadata DevMode summary"
+    }
+
+    if ($patchMetadataAuditIssues.Count) {
+        $patchMetadataAuditIssues | Sort-Object
+        Fail "Patch metadata audit failed: $($patchMetadataAuditIssues.Count) issue(s)"
+    }
+
+    Write-Step "Static cache lifecycle"
+    $staticCacheLifecycleChecks = 0
+    $staticCacheLifecycleFields = 0
+    $staticCacheLifecycleIssues = @()
+
+    $staticCacheFieldPatterns = @(
+        'private\s+static\s+(?:readonly\s+)?(?:Dictionary|HashSet|List)<[^>]+>\s+\w+\s*(?:=|;)',
+        'private\s+static\s+readonly\s+(?:FieldInfo|MethodInfo)\s+\w+\s*(?:=|;)',
+        'private\s+static\s+(?:HediffDef|TraitDef)\s+\w+\s*(?:=|;)'
+    )
+
+    Get-ChildItem -LiteralPath '1.6\Source' -Recurse -Filter '*.cs' | ForEach-Object {
+        $path = $_.FullName
+        $relative = Get-RelativePath $path
+        $lines = Get-Content -LiteralPath $path -Encoding utf8
+        for ($i = 0; $i -lt $lines.Count; $i++) {
+            $line = $lines[$i]
+            $isStaticCacheField = $false
+            foreach ($pattern in $staticCacheFieldPatterns) {
+                if ($line -match $pattern) {
+                    $isStaticCacheField = $true
+                    break
+                }
+            }
+
+            if (-not $isStaticCacheField) {
+                continue
+            }
+
+            $staticCacheLifecycleFields++
+            $staticCacheLifecycleChecks++
+            $hasLifecycleComment = $false
+            $start = [Math]::Max(0, $i - 8)
+            for ($j = $start; $j -lt $i; $j++) {
+                if ($lines[$j] -match 'StaticCacheLifecycle:') {
+                    $hasLifecycleComment = $true
+                    break
+                }
+            }
+
+            if (-not $hasLifecycleComment) {
+                $staticCacheLifecycleIssues += "${relative}:$($i + 1) :: static cache field must declare StaticCacheLifecycle: $($line.Trim())"
+            }
+        }
+    }
+
+    $staticCacheLifecycleChecks++
+    $optionalDefsPath = '1.6\Source\Core\MooGirlOptionalDefs.cs'
+    if (Test-Path -LiteralPath $optionalDefsPath) {
+        $optionalDefsText = Get-Content -LiteralPath $optionalDefsPath -Encoding utf8 -Raw
+        if ($optionalDefsText -notmatch 'StaticCacheLifecycle: process-level optional Def cache') {
+            $staticCacheLifecycleIssues += "$optionalDefsPath :: optional Def cache must document process-level lifecycle and nullable optional entries"
+        }
+    }
+    else {
+        $staticCacheLifecycleIssues += "$optionalDefsPath :: missing optional Def cache file"
+    }
+
+    $staticCacheLifecycleChecks++
+    $requiredDefsPath = '1.6\Source\Core\MooGirlRequiredDefs.cs'
+    if (Test-Path -LiteralPath $requiredDefsPath) {
+        $requiredDefsText = Get-Content -LiteralPath $requiredDefsPath -Encoding utf8 -Raw
+        if ($requiredDefsText -notmatch 'StaticCacheLifecycle: process-level required Def cache') {
+            $staticCacheLifecycleIssues += "$requiredDefsPath :: required Def cache must document process-level lifecycle and fail-fast behavior"
+        }
+    }
+    else {
+        $staticCacheLifecycleIssues += "$requiredDefsPath :: missing required Def cache file"
+    }
+
+    $staticCacheLifecycleChecks++
+    $storyStatePath = '1.6\Source\Features\Incidents\MooGirlStoryState.cs'
+    if (Test-Path -LiteralPath $storyStatePath) {
+        $storyStateText = Get-Content -LiteralPath $storyStatePath -Encoding utf8 -Raw
+        $storyStateResetsSafe = $storyStateText -match 'FinalizeInit\(\)' `
+            -and $storyStateText -match 'StartedNewGame\(\)' `
+            -and $storyStateText -match 'LoadedGame\(\)' `
+            -and $storyStateText -match 'MooGirlLog\.ResetOnceWarnings\(\)' `
+            -and $storyStateText -match 'MooGirlFoodEffectUtility\.ResetDefCache\(\)' `
+            -and $storyStateText -match 'MooGirlNurtureUtility\.ResetDefCache\(\)' `
+            -and $storyStateText -match 'MooGirlMilkingAnimation\.ResetTransientState\(\)' `
+            -and $storyStateText -match 'MountedCombatController\.ResetTransientState\(\)' `
+            -and $storyStateText -match 'GhoulRenderingRefreshUtility\.ClearPendingRefreshes\(\)'
+        if (-not $storyStateResetsSafe) {
+            $staticCacheLifecycleIssues += "$storyStatePath :: game init/new-game/load must reset once warnings, Def caches and transient pawn/verb render state"
+        }
+    }
+    else {
+        $staticCacheLifecycleIssues += "$storyStatePath :: missing story state reset file"
+    }
+
+    if ($staticCacheLifecycleIssues.Count) {
+        $staticCacheLifecycleIssues | Sort-Object
+        Fail "Static cache lifecycle scan failed: $($staticCacheLifecycleIssues.Count) issue(s)"
+    }
+
     Write-Step "Scribe state defaults"
     $requiredScribeDefaultFields = New-Object 'System.Collections.Generic.HashSet[string]'
     foreach ($field in @(
@@ -3055,6 +3487,38 @@ try {
             $notIncluded | Sort-Object
         }
         Fail "csproj source reference scan failed"
+    }
+
+    Write-Step "Feature module size report"
+    $featureModuleSizeChecks = 0
+    $featureModuleLargeFileCount = 0
+    $featureModuleStats = @{}
+    foreach ($moduleName in @('Milk', 'Mounting', 'Restraints')) {
+        $featureModuleSizeChecks++
+        $modulePath = "1.6\Source\Features\$moduleName"
+        if (-not (Test-Path -LiteralPath $modulePath)) {
+            Fail "Feature module size report failed: missing $modulePath"
+        }
+
+        $moduleFiles = @(Get-ChildItem -LiteralPath $modulePath -Recurse -Filter '*.cs')
+        $moduleLineCount = 0
+        $moduleMaxFileLines = 0
+        foreach ($moduleFile in $moduleFiles) {
+            $lineCount = (Get-Content -LiteralPath $moduleFile.FullName -Encoding utf8).Count
+            $moduleLineCount += $lineCount
+            if ($lineCount -gt $moduleMaxFileLines) {
+                $moduleMaxFileLines = $lineCount
+            }
+            if ($lineCount -gt 400) {
+                $featureModuleLargeFileCount++
+            }
+        }
+
+        $featureModuleStats[$moduleName] = [pscustomobject]@{
+            Files = $moduleFiles.Count
+            Lines = $moduleLineCount
+            MaxFileLines = $moduleMaxFileLines
+        }
     }
 
     Write-Step "C# empty production types"
@@ -3149,8 +3613,60 @@ try {
         Fail "MooGirl XML type cross-check failed: $($missingTypeRefs.Count) missing reference(s), $($unqualifiedMooGirlTypeRefs.Count) unqualified reference(s)"
     }
 
+    Write-Step "Namespace boundary report"
+    $namespaceBoundaryChecks = 0
+    $namespaceRootTypeCount = 0
+    $namespaceRootXmlReferencedTypeCount = 0
+    $namespaceRootLegacyTypeCount = 0
+    $namespaceSpecificTypeCount = 0
+    $namespaceNonMooGirlTypeCount = 0
+    $namespaceSpecificNames = New-Object 'System.Collections.Generic.HashSet[string]'
+    $xmlReferencedTypeNames = New-Object 'System.Collections.Generic.HashSet[string]'
+    foreach ($typeRef in $typeRefs) {
+        $shortName = $typeRef.Substring('MooGirl.'.Length).Split(',')[0].Trim()
+        if (-not [string]::IsNullOrWhiteSpace($shortName)) {
+            [void]$xmlReferencedTypeNames.Add($shortName)
+        }
+    }
+
+    $namespaceBoundaryChecks++
+    foreach ($file in Get-ChildItem -LiteralPath '1.6\Source' -Recurse -Filter '*.cs') {
+        if ($file.FullName -match '\\bin\\|\\obj\\') {
+            continue
+        }
+
+        $text = Get-Content -LiteralPath $file.FullName -Raw -Encoding utf8
+        $namespaceMatch = [regex]::Match($text, '(?m)^\s*namespace\s+([A-Za-z_][A-Za-z0-9_.]*)')
+        if (-not $namespaceMatch.Success) {
+            continue
+        }
+
+        $namespaceName = $namespaceMatch.Groups[1].Value
+        $typeMatches = [regex]::Matches($text, '(?m)^\s*(?:\[[^\]]+\]\s*)*(?:(?:public|internal|private|protected|static|sealed|abstract|partial|new)\s+)*(?:class|struct|enum|interface)\s+([A-Za-z_][A-Za-z0-9_]*)')
+        foreach ($match in $typeMatches) {
+            $typeName = $match.Groups[1].Value
+            if ($namespaceName -eq 'MooGirl') {
+                $namespaceRootTypeCount++
+                if ($xmlReferencedTypeNames.Contains($typeName)) {
+                    $namespaceRootXmlReferencedTypeCount++
+                }
+                else {
+                    $namespaceRootLegacyTypeCount++
+                }
+            }
+            elseif ($namespaceName.StartsWith('MooGirl.')) {
+                $namespaceSpecificTypeCount++
+                [void]$namespaceSpecificNames.Add($namespaceName)
+            }
+            else {
+                $namespaceNonMooGirlTypeCount++
+            }
+        }
+    }
+
     Write-Step "Def index"
     $defsByType = @{}
+    $modMayRequireDefsByType = @{}
     $concreteModDefs = @{}
     $concreteVanillaDefs = @{}
     $modDuplicateDefs = @()
@@ -3164,7 +3680,7 @@ try {
             }
             foreach ($node in @($doc.DocumentElement.ChildNodes | Where-Object { $_.NodeType -eq [System.Xml.XmlNodeType]::Element })) {
                 $xmlType = $node.LocalName
-                $defType = if ($DefTypeAliases.ContainsKey($xmlType)) { $DefTypeAliases[$xmlType] } else { $xmlType }
+                $defType = Get-NormalizedDefType $xmlType
                 $defName = $null
                 $defNameNode = $node.SelectSingleNode('defName')
                 if ($defNameNode -and -not [string]::IsNullOrWhiteSpace($defNameNode.InnerText)) {
@@ -3180,6 +3696,10 @@ try {
                 Add-SetValue $defsByType $defType $defName
 
                 $isAbstract = $node.Attributes -and $node.Attributes['Abstract'] -and $node.Attributes['Abstract'].Value -eq 'True'
+                if ($isModRoot -and $node.Attributes -and ($node.Attributes['MayRequire'] -or $node.Attributes['MayRequireAnyOf'])) {
+                    Add-SetValue $modMayRequireDefsByType $defType $defName
+                }
+
                 if (-not $isAbstract -and $defNameNode) {
                     $key = "$defType::$defName"
                     $relative = Get-RelativePath $_.FullName
@@ -3303,6 +3823,8 @@ try {
         '//recipeUsers/li',
         '//costList/*',
         '//statBases/*',
+        '//statOffsets/*',
+        '//statFactors/*',
         '//equippedStatOffsets/*'
     )
     $optionalDlcRefCount = 0
@@ -3321,7 +3843,7 @@ try {
 
         foreach ($xpath in $highConfidenceRefNodes) {
             foreach ($node in $doc.SelectNodes($xpath)) {
-                $value = if ($xpath -in @('//costList/*', '//statBases/*', '//equippedStatOffsets/*')) { $node.LocalName } else { $node.InnerText.Trim() }
+                $value = if ($xpath -in @('//costList/*', '//statBases/*', '//statOffsets/*', '//statFactors/*', '//equippedStatOffsets/*')) { $node.LocalName } else { $node.InnerText.Trim() }
                 if ([string]::IsNullOrWhiteSpace($value)) {
                     continue
                 }
@@ -3372,10 +3894,67 @@ try {
         Fail "Patch XPath syntax scan failed: $($xpathSyntaxErrors.Count) invalid xpath(s)"
     }
 
+    Write-Step "XML patch governance"
+    $xmlPatchGovernanceChecks = 0
+    $xmlPatchGovernanceFiles = 0
+    $xmlPatchGovernanceIssues = @()
+
+    foreach ($patchFile in $patchFiles) {
+        $doc = Get-XmlDocument $patchFile
+        if ($doc.DocumentElement -eq $null -or $doc.DocumentElement.LocalName -ne 'Patch') {
+            continue
+        }
+
+        $xmlPatchGovernanceFiles++
+        $xmlPatchGovernanceChecks++
+        $patchText = Get-Content -LiteralPath $patchFile -Encoding utf8 -Raw
+        $hasGovernanceComment = $patchText -match '(?s)<Patch>\s*<!--\s*PatchGovernance:.*Targets:.*Scope:.*Duplicate guard:.*Failure:.*-->'
+        if (-not $hasGovernanceComment) {
+            $xmlPatchGovernanceIssues += "$(Get-RelativePath $patchFile) :: patch file must start with PatchGovernance comment containing Targets, Scope, Duplicate guard and Failure"
+        }
+    }
+
+    if ($xmlPatchGovernanceIssues.Count) {
+        $xmlPatchGovernanceIssues | Sort-Object
+        Fail "XML patch governance scan failed: $($xmlPatchGovernanceIssues.Count) issue(s)"
+    }
+
+    function Test-PatchOperationHasConditionalAncestor {
+        param([System.Xml.XmlNode]$Node)
+
+        $current = $Node.ParentNode
+        while ($current -ne $null) {
+            if ($current.NodeType -eq [System.Xml.XmlNodeType]::Element -and
+                $current.Attributes -and
+                $current.Attributes['Class'] -and
+                $current.Attributes['Class'].Value -eq 'PatchOperationConditional') {
+                return $true
+            }
+
+            $current = $current.ParentNode
+        }
+
+        return $false
+    }
+
+    function Test-PatchFileIsOptionalIntegration {
+        param([string]$RelativePatch)
+
+        $normalized = $RelativePatch.TrimStart('.', '\', '/').Replace('/', '\')
+        return $normalized -match '^1\.6\\FacialAnimation\\Patches\\' -or
+            $normalized -match '^Versions\\1\.6\\Integrations\\'
+    }
+
     Write-Step "Direct PatchOperationAdd targets"
     $missingPatchTargets = @()
     $externalPatchTargets = @()
     $checkedPatchTargets = 0
+    $directPatchAddGuardedTargets = 0
+    $directPatchAddUnguardedTargets = 0
+    $directPatchAddVanillaTargets = 0
+    $directPatchAddModTargets = 0
+    $directPatchAddOptionalIntegrationTargets = 0
+    $directPatchAddUnclassifiedTargets = @()
     foreach ($patch in $patchFiles) {
         $doc = Get-XmlDocument $patch
         foreach ($operation in $doc.SelectNodes('//*[@Class="PatchOperationAdd"]')) {
@@ -3389,11 +3968,32 @@ try {
             }
             $checkedPatchTargets++
             $rawDefType = $matches[1]
-            $defType = if ($DefTypeAliases.ContainsKey($rawDefType)) { $DefTypeAliases[$rawDefType] } else { $rawDefType }
+            $defType = Get-NormalizedDefType $rawDefType
             $defName = $matches[2]
+            $targetKey = "$defType::$defName"
+            $relativePatch = (Get-RelativePath $patch).TrimStart('.', '\', '/').Replace('/', '\')
+            if (Test-PatchOperationHasConditionalAncestor $operation) {
+                $directPatchAddGuardedTargets++
+            }
+            else {
+                $directPatchAddUnguardedTargets++
+            }
+
+            if (Test-PatchFileIsOptionalIntegration $relativePatch) {
+                $directPatchAddOptionalIntegrationTargets++
+            }
+            elseif ($concreteVanillaDefs.ContainsKey($targetKey)) {
+                $directPatchAddVanillaTargets++
+            }
+            elseif ($concreteModDefs.ContainsKey($targetKey)) {
+                $directPatchAddModTargets++
+            }
+            else {
+                $directPatchAddUnclassifiedTargets += "$relativePatch :: $xpath"
+            }
+
             if (-not $defsByType.ContainsKey($defType) -or -not $defsByType[$defType].Contains($defName)) {
-                $relativePatch = Get-RelativePath $patch
-                if ($relativePatch -match '\\Versions\\1\.6\\Integrations\\') {
+                if ($relativePatch -match '(^|\\)Versions\\1\.6\\Integrations\\') {
                     $externalPatchTargets += "$relativePatch :: $xpath"
                 }
                 else {
@@ -3405,6 +4005,10 @@ try {
     if ($missingPatchTargets.Count) {
         $missingPatchTargets | Sort-Object
         Fail "Direct PatchOperationAdd target scan failed: $($missingPatchTargets.Count) missing target(s)"
+    }
+    if ($directPatchAddUnclassifiedTargets.Count) {
+        $directPatchAddUnclassifiedTargets | Sort-Object
+        Fail "Direct PatchOperationAdd classification failed: $($directPatchAddUnclassifiedTargets.Count) unclassified target(s)"
     }
 
     Write-Step "Keyed translations"
@@ -3464,8 +4068,9 @@ try {
     }
 
     Write-Step "DefInjected translations"
-    $orphanInjected = @()
-    Get-ChildItem -LiteralPath '1.6\Languages' -Recurse -Filter '*.xml' |
+    $defInjectedIssues = @()
+    foreach ($languageRoot in Get-LanguageRoots) {
+        Get-ChildItem -LiteralPath $languageRoot -Recurse -Filter '*.xml' |
         Where-Object { $_.FullName -match '\\DefInjected\\' } |
         ForEach-Object {
             $full = $_.FullName
@@ -3481,13 +4086,28 @@ try {
                 $key = $node.LocalName
                 $defName = ($key -split '\.')[0]
                 if (-not $knownDefs.Contains($defName)) {
-                    $orphanInjected += "$(Get-RelativePath $full) :: $key"
+                    $defInjectedIssues += "$(Get-RelativePath $full) :: orphan $key"
+                }
+
+                if ($key -match '\.rulesStrings$') {
+                    $listItems = @($node.ChildNodes | Where-Object { $_.NodeType -eq [System.Xml.XmlNodeType]::Element -and $_.LocalName -eq 'li' })
+                    if ($listItems.Count -eq 0) {
+                        $defInjectedIssues += "$(Get-RelativePath $full) :: $key must translate rulesStrings as <li> list nodes"
+                    }
+                }
+
+                $relativeFull = Get-RelativePath $full
+                if ($relativeFull -match '^[.\\\/]*1\.6[\\\/]Languages[\\\/]' -and
+                    $modMayRequireDefsByType.ContainsKey($defType) -and
+                    $modMayRequireDefsByType[$defType].Contains($defName)) {
+                    $defInjectedIssues += "$relativeFull :: $key translates MayRequire-gated Def in root 1.6 language folder"
                 }
             }
         }
-    if ($orphanInjected.Count) {
-        $orphanInjected | Sort-Object | Select-Object -First 200
-        Fail "DefInjected orphan scan failed: $($orphanInjected.Count) candidate(s)"
+    }
+    if ($defInjectedIssues.Count) {
+        $defInjectedIssues | Sort-Object | Select-Object -First 200
+        Fail "DefInjected translation scan failed: $($defInjectedIssues.Count) issue(s)"
     }
 
     Write-Step "Sound clip paths"
@@ -3523,7 +4143,7 @@ try {
     }
 
     Write-Step "Texture paths"
-    $textureRoots = @('Textures', '1.6\Textures', 'Bio_1.6\Textures', 'Versions\1.6\Textures') | Where-Object { Test-Path -LiteralPath $_ }
+    $textureRoots = @('Textures', '1.6\Textures', 'Bio_1.6\Textures', 'Odyssey_1.6\Textures', 'Versions\1.6\Textures') | Where-Object { Test-Path -LiteralPath $_ }
     $vanillaPaths = New-Object 'System.Collections.Generic.HashSet[string]'
     foreach ($root in @('..\..\Data\Core\Defs', '..\..\Data\Royalty\Defs', '..\..\Data\Ideology\Defs', '..\..\Data\Biotech\Defs', '..\..\Data\Anomaly\Defs', '..\..\Data\Odyssey\Defs') | Where-Object { Test-Path -LiteralPath $_ }) {
         Get-ChildItem -LiteralPath $root -Recurse -Filter '*.xml' | ForEach-Object {
@@ -3615,18 +4235,39 @@ try {
     Write-Host ""
     Write-Host "Phase 6 static validation OK"
     Write-Host "  Compile items: $($compileItems.Count)"
+    Write-Host "  Feature module size rules: $featureModuleSizeChecks"
+    foreach ($moduleName in @('Milk', 'Mounting', 'Restraints')) {
+        $moduleStats = $featureModuleStats[$moduleName]
+        Write-Host "  $moduleName feature files/lines/max: $($moduleStats.Files)/$($moduleStats.Lines)/$($moduleStats.MaxFileLines)"
+    }
+    Write-Host "  Feature module files over 400 lines: $featureModuleLargeFileCount"
     Write-Host "  Empty production marker types: $emptyProductionTypeCount"
     Write-Host "  LoadFolders v1.6 entries: $loadFolderEntries"
     Write-Host "  MooGirl XML type refs: $($typeRefs.Count)"
     Write-Host "  Unqualified MooGirl XML type refs: $($unqualifiedMooGirlTypeRefs.Count)"
+    Write-Host "  Namespace boundary rules: $namespaceBoundaryChecks"
+    Write-Host "  Root namespace types: $namespaceRootTypeCount"
+    Write-Host "  Root namespace XML-referenced types: $namespaceRootXmlReferencedTypeCount"
+    Write-Host "  Root namespace legacy/non-XML types: $namespaceRootLegacyTypeCount"
+    Write-Host "  Specific MooGirl namespace types: $namespaceSpecificTypeCount"
+    Write-Host "  Specific MooGirl namespaces: $($namespaceSpecificNames.Count)"
+    Write-Host "  Non-MooGirl namespace types: $namespaceNonMooGirlTypeCount"
     Write-Host "  Patch xpath nodes: $xpathCount"
+    Write-Host "  XML patch governance files: $xmlPatchGovernanceFiles"
+    Write-Host "  XML patch governance rules: $xmlPatchGovernanceChecks"
     Write-Host "  Direct PatchOperationAdd targets: $checkedPatchTargets"
+    Write-Host "  Direct PatchOperationAdd guarded targets: $directPatchAddGuardedTargets"
+    Write-Host "  Direct PatchOperationAdd unguarded targets: $directPatchAddUnguardedTargets"
+    Write-Host "  Direct PatchOperationAdd vanilla targets: $directPatchAddVanillaTargets"
+    Write-Host "  Direct PatchOperationAdd mod targets: $directPatchAddModTargets"
+    Write-Host "  Direct PatchOperationAdd optional integration targets: $directPatchAddOptionalIntegrationTargets"
     Write-Host "  Optional external PatchOperationAdd targets: $($externalPatchTargets.Count)"
     Write-Host "  Mod concrete defs: $($concreteModDefs.Count)"
     Write-Host "  Direct keyed keys: $($directKeys.Count)"
     Write-Host "  Broad keyed keys: $($broadKeys.Count)"
     Write-Host "  Language translation nodes: $languageTranslationNodes"
     Write-Host "  English to Chinese parity keys: $languageParityKeys"
+    Write-Host "  Architecture documentation rules: $architectureDocumentationChecks"
     Write-Host "  Text formatting safety rules: $textFormattingSafetyChecks"
     Write-Host "  Tick manager access safety rules: $tickManagerAccessSafetyChecks"
     Write-Host "  Find access safety rules: $findAccessSafetyChecks"
@@ -3643,6 +4284,7 @@ try {
     Write-Host "  Incident interaction safety rules: $incidentInteractionSafetyChecks"
     Write-Host "  Harmony bootstrap safety rules: $harmonyBootstrapSafetyChecks"
     Write-Host "  Harmony boundary safety rules: $harmonyBoundarySafetyChecks"
+    Write-Host "  Compatibility boundary safety rules: $compatibilityBoundarySafetyChecks"
     Write-Host "  Ability job safety rules: $abilityJobSafetyChecks"
     Write-Host "  Misc job safety rules: $miscJobSafetyChecks"
     Write-Host "  Apparel generation safety rules: $apparelGenerationSafetyChecks"
@@ -3650,6 +4292,10 @@ try {
     Write-Host "  Apparel lifecycle safety rules: $apparelLifecycleSafetyChecks"
     Write-Host "  Generated apparel lock safety rules: $generatedApparelLockSafetyChecks"
     Write-Host "  Manual patch registry safety rules: $manualPatchRegistrySafetyChecks"
+    Write-Host "  Patch metadata audit entries: $patchMetadataAuditEntries"
+    Write-Host "  Patch metadata audit rules: $patchMetadataAuditChecks"
+    Write-Host "  Static cache lifecycle fields: $staticCacheLifecycleFields"
+    Write-Host "  Static cache lifecycle rules: $staticCacheLifecycleChecks"
     Write-Host "  High-risk no-default Scribe hits: $scribeStateDefaultCount"
     Write-Host "  Def types indexed: $($defsByType.Keys.Count)"
     Write-Host "  Optional DLC Def refs: $optionalDlcRefCount"

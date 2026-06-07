@@ -8,6 +8,7 @@ namespace MooGirl
     {
         private const string Prefix = "[MooGirl] ";
         private const string UnknownWarningKey = "MooGirlLog.WarningOnce.Unknown";
+        // StaticCacheLifecycle: per-game warning keys; MooGirlStoryState resets this on game init/new-game/load.
         private static readonly HashSet<string> warnedKeys = new HashSet<string>();
 
         internal static void DevMessage(string message)

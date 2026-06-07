@@ -5,6 +5,7 @@
         <li>1.6</li>
         <li IfModActive="Nals.FacialAnimation">1.6/FacialAnimation</li>
         <li IfModActive="ludeon.rimworld.biotech">Bio_1.6</li>
+        <li IfModActive="ludeon.rimworld.odyssey">Odyssey_1.6</li>
         <li IfModActive="VanillaExpanded.VCookE">Versions/1.6/Integrations/VCookE</li>
         <li IfModActive="MemeGoddess.SearchAndDestroy">Versions/1.6/Integrations/SearchAndDestroy</li>
     </v1.6>

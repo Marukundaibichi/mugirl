@@ -8,6 +8,7 @@ namespace MooGirl
     [HarmonyPatch(typeof(Pawn_AgeTracker), nameof(Pawn_AgeTracker.GrowthPointsPerDay), MethodType.Getter)]
     public static class Harmony_MooGirlNurtureGrowthPoints
     {
+        // StaticCacheLifecycle: process-level reflection cache for Pawn_AgeTracker.pawn; no game objects are retained.
         private static readonly FieldInfo PawnField = AccessTools.Field(typeof(Pawn_AgeTracker), "pawn");
 
         public static void Postfix(Pawn_AgeTracker __instance, ref float __result)

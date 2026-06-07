@@ -19,7 +19,7 @@ namespace MooGirl
                 return true;
             }
 
-            if (HasHediff(pawn, MooGirlOptionalDefs.Hediffs.SmallBreasts))
+            if (HasHediff(pawn, ExternalBreastHediffDefs.SmallBreasts))
             {
                 multiplier = 0.75f;
                 return true;
@@ -43,28 +43,28 @@ namespace MooGirl
 
         private static bool HasSpecialBreasts(Pawn pawn)
         {
-            return HasHediff(pawn, MooGirlOptionalDefs.Hediffs.HugeBreasts)
-                || HasHediff(pawn, MooGirlOptionalDefs.Hediffs.BionicBreasts)
-                || HasHediff(pawn, MooGirlOptionalDefs.Hediffs.SlimeBreasts)
-                || HasHediff(pawn, MooGirlOptionalDefs.Hediffs.GrMuffaloMammaries);
+            return HasHediff(pawn, ExternalBreastHediffDefs.HugeBreasts)
+                || HasHediff(pawn, ExternalBreastHediffDefs.BionicBreasts)
+                || HasHediff(pawn, ExternalBreastHediffDefs.SlimeBreasts)
+                || HasHediff(pawn, ExternalBreastHediffDefs.GrMuffaloMammaries);
         }
 
         private static bool HasNormalBreasts(Pawn pawn)
         {
-            return HasHediff(pawn, MooGirlOptionalDefs.Hediffs.Breasts)
-                || HasHediff(pawn, MooGirlOptionalDefs.Hediffs.HydraulicBreasts)
-                || (pawn?.gender == Gender.Female && MooGirlOptionalDefs.Hediffs.Breasts == null);
+            return HasHediff(pawn, ExternalBreastHediffDefs.Breasts)
+                || HasHediff(pawn, ExternalBreastHediffDefs.HydraulicBreasts)
+                || (pawn?.gender == Gender.Female && ExternalBreastHediffDefs.Breasts == null);
         }
 
         private static bool HasLargeBreasts(Pawn pawn)
         {
-            return HasHediff(pawn, MooGirlOptionalDefs.Hediffs.LargeBreasts)
-                || HasHediff(pawn, MooGirlOptionalDefs.Hediffs.ArchotechBreasts);
+            return HasHediff(pawn, ExternalBreastHediffDefs.LargeBreasts)
+                || HasHediff(pawn, ExternalBreastHediffDefs.ArchotechBreasts);
         }
 
         private static bool HasFlatBreastsOrMale(Pawn pawn)
         {
-            return HasHediff(pawn, MooGirlOptionalDefs.Hediffs.FlatBreasts)
+            return HasHediff(pawn, ExternalBreastHediffDefs.FlatBreasts)
                 || pawn?.gender == Gender.Male;
         }
 

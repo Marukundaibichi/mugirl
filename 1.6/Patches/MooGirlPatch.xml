@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+    <!-- PatchGovernance:
+    Targets: vanilla/optional-DLC precept comps, ingestible defs, building comps, trader stock generators and smelter recipes.
+    Scope: root 1.6 patch; adds MooGirl-specific thoughts, roping, slave stock and restraint-smelting integration to vanilla/DLC targets.
+    Duplicate guard: Ideology precept is conditional; direct vanilla adds are one-shot required targets loaded once by RimWorld.
+    Failure: missing optional Ideology target is acceptable; missing required vanilla targets is caught by Phase 6.
+    -->
     <!-- Ideology is optional. 缺少 Ideology 时该 PreceptDef 不存在，必须静默跳过。 -->
     <Operation Class="PatchOperationConditional">
         <xpath>/Defs/PreceptDef[defName="NutrientPasteEating_Disgusting"]/comps</xpath>

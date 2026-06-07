@@ -11,6 +11,7 @@ namespace MooGirl
     public static class Patch_RopingTick
     {
         // 反射字段只缓存一次，所有绳索 tracker patch 共用。
+        // StaticCacheLifecycle: process-level reflection cache for Pawn_RopeTracker internals; no game objects are retained.
         private static readonly FieldInfo pawnField = AccessTools.Field(typeof(Pawn_RopeTracker), "pawn");
         private static readonly MethodInfo breakRopeWithRoperMethod =
             AccessTools.Method(typeof(Pawn_RopeTracker), "BreakRopeWithRoper");
@@ -65,10 +66,48 @@ namespace MooGirl
         {
             return pawn.Dead ||
                 pawn.Downed ||
-                pawn.Drafted ||
                 (!pawn.Awake() && tracker.IsRopedByPawn) ||
                 ShouldDropRopesDueToMentalState(pawn) ||
                 pawn.IsBurning();
+        }
+
+        private static bool ShouldUseMooGirlRopeeTick(Pawn pawn, Pawn_RopeTracker tracker)
+        {
+            return RopingService.IsMooGirlRopee(pawn) && (tracker.IsRopedByPawn || tracker.IsRopedToSpot);
+        }
+
+        private static void ClearDraftedRopee(Pawn pawn)
+        {
+            if (pawn?.drafter?.Drafted == true)
+            {
+                pawn.drafter.Drafted = false;
+            }
+        }
+
+        private static void TickMooGirlRopee(Pawn_RopeTracker tracker, Pawn pawn)
+        {
+            ClearDraftedRopee(pawn);
+
+            if (ShouldBreakAllRopes(pawn, tracker))
+            {
+                tracker.BreakAllRopes();
+                RopingService.NotifyPawnNoLongerRopedToTarget(pawn);
+                return;
+            }
+
+            if (tracker.RopedTo.IsValid &&
+                !pawn.CanReach(tracker.RopedTo, PathEndMode.Touch, Danger.Deadly))
+            {
+                BreakRopeWithRoper(tracker);
+                RopingService.NotifyPawnNoLongerRopedToTarget(pawn);
+                return;
+            }
+
+            if (tracker.IsRopedToHitchingPost && !tracker.RopedToHitchingSpot.Spawned)
+            {
+                tracker.UnropeFromSpot();
+                RopingService.NotifyPawnNoLongerRopedToTarget(pawn);
+            }
         }
 
         private static bool ShouldDropRopesDueToMentalState(Pawn pawn)
@@ -82,6 +121,12 @@ namespace MooGirl
             if (pawn == null)
             {
                 return true;
+            }
+
+            if (ShouldUseMooGirlRopeeTick(pawn, __instance))
+            {
+                TickMooGirlRopee(__instance, pawn);
+                return false;
             }
 
             if (!RopingService.HasOnlyMooGirlRopees(__instance))

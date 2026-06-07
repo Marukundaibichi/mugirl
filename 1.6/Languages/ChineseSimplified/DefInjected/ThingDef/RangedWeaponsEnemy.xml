@@ -24,6 +24,8 @@
     <OPC_Assault_Rifle.tools.0.label>枪托</OPC_Assault_Rifle.tools.0.label>
     <!-- barrel -->
     <OPC_Assault_Rifle.tools.1.label>枪管</OPC_Assault_Rifle.tools.1.label>
+    <!-- OPC Assault Rifle -->
+    <OPC_Assault_Rifle.verbs.Verb_Shoot.label>OPC自动步枪</OPC_Assault_Rifle.verbs.Verb_Shoot.label>
     <!-- An OPC security rifle focused on stopping power and positional defense. -->
     <OPC_Defense_Rifle.description>OPC 警戒步枪，偏重制止能力与阵地防御。</OPC_Defense_Rifle.description>
     <!-- OPC Defense Rifle -->
@@ -32,6 +34,8 @@
     <OPC_Defense_Rifle.tools.0.label>枪托</OPC_Defense_Rifle.tools.0.label>
     <!-- barrel -->
     <OPC_Defense_Rifle.tools.1.label>枪管</OPC_Defense_Rifle.tools.1.label>
+    <!-- OPC Defense Rifle -->
+    <OPC_Defense_Rifle.verbs.Verb_Shoot.label>OPC防卫步枪</OPC_Defense_Rifle.verbs.Verb_Shoot.label>
     <!-- The OPC primary riot-control close-combat weapon, emphasizing immediate stopping effect at short range. -->
     <OPC_Tactical_Shotgun.description>OPC 防暴近战主武器，强调短距瞬时制止效果。</OPC_Tactical_Shotgun.description>
     <!-- OPC Tactical Shotgun -->
@@ -40,6 +44,8 @@
     <OPC_Tactical_Shotgun.tools.0.label>枪托</OPC_Tactical_Shotgun.tools.0.label>
     <!-- barrel -->
     <OPC_Tactical_Shotgun.tools.1.label>枪管</OPC_Tactical_Shotgun.tools.1.label>
+    <!-- OPC Tactical Shotgun -->
+    <OPC_Tactical_Shotgun.verbs.Verb_Shoot.label>OPC防卫霰弹枪</OPC_Tactical_Shotgun.verbs.Verb_Shoot.label>
     <!-- A low-lethality suppression pistol issued by the OPC, emphasizing control and close-range self-defense. -->
     <OPC_Tranquilizer_Pistol.description>OPC 配发的低致死压制手枪，强调控制与近距自卫。</OPC_Tranquilizer_Pistol.description>
     <!-- OPC Tranquilizer Pistol -->
@@ -48,6 +54,8 @@
     <OPC_Tranquilizer_Pistol.tools.0.label>握把</OPC_Tranquilizer_Pistol.tools.0.label>
     <!-- barrel -->
     <OPC_Tranquilizer_Pistol.tools.1.label>枪管</OPC_Tranquilizer_Pistol.tools.1.label>
+    <!-- OPC Tranquilizer Pistol -->
+    <OPC_Tranquilizer_Pistol.verbs.Verb_Shoot.label>OPC麻醉手枪</OPC_Tranquilizer_Pistol.verbs.Verb_Shoot.label>
     <!-- The standard PMC assault rifle, balancing firepower, mobility, and range. -->
     <PMC_Assault_Rifle.description>PMC 标准制式突击步枪，兼顾火力、机动与射程。</PMC_Assault_Rifle.description>
     <!-- PMC Assault Rifle -->
@@ -56,6 +64,8 @@
     <PMC_Assault_Rifle.tools.0.label>枪托</PMC_Assault_Rifle.tools.0.label>
     <!-- barrel -->
     <PMC_Assault_Rifle.tools.1.label>枪管</PMC_Assault_Rifle.tools.1.label>
+    <!-- PMC Assault Rifle -->
+    <PMC_Assault_Rifle.verbs.Verb_Shoot.label>PMC突击步枪</PMC_Assault_Rifle.verbs.Verb_Shoot.label>
     <!-- A compact carbine commonly used by PMC forces, emphasizing sustained suppression at close to medium range. -->
     <PMC_Carbine.description>PMC 常用的紧凑型卡宾枪，强调中近距离持续压制能力。</PMC_Carbine.description>
     <!-- PMC Carbine -->
@@ -64,6 +74,8 @@
     <PMC_Carbine.tools.0.label>握把</PMC_Carbine.tools.0.label>
     <!-- barrel -->
     <PMC_Carbine.tools.1.label>枪管</PMC_Carbine.tools.1.label>
+    <!-- PMC Carbine -->
+    <PMC_Carbine.verbs.Verb_Shoot.label>PMC卡宾枪</PMC_Carbine.verbs.Verb_Shoot.label>
     <!-- A rifle for PMC squad designated marksmen, reinforced for medium- to long-range engagements. -->
     <PMC_DMR.description>PMC 班组精确射手用步枪，针对中远距离交战强化。</PMC_DMR.description>
     <!-- PMC Designated Marksman Rifle -->
@@ -72,6 +84,8 @@
     <PMC_DMR.tools.0.label>枪托</PMC_DMR.tools.0.label>
     <!-- barrel -->
     <PMC_DMR.tools.1.label>枪管</PMC_DMR.tools.1.label>
+    <!-- PMC Designated Marksman Rifle -->
+    <PMC_DMR.verbs.Verb_Shoot.label>PMC射手步枪</PMC_DMR.verbs.Verb_Shoot.label>
     <!-- The core of PMC suppressive firepower, suited for sustained suppression and area denial. -->
     <PMC_LMG.description>PMC 压制火力核心，适合持续压制与区域封锁。</PMC_LMG.description>
     <!-- PMC Light Machine Gun -->
@@ -80,4 +94,6 @@
     <PMC_LMG.tools.0.label>枪托</PMC_LMG.tools.0.label>
     <!-- barrel -->
     <PMC_LMG.tools.1.label>枪管</PMC_LMG.tools.1.label>
+    <!-- PMC Light Machine Gun -->
+    <PMC_LMG.verbs.Verb_Shoot.label>PMC轻机枪</PMC_LMG.verbs.Verb_Shoot.label>
 </LanguageData>

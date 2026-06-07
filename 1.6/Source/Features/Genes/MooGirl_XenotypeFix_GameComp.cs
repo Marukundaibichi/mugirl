@@ -7,6 +7,7 @@ namespace MooGirl
 {
     internal static class MooGirlXenotypeService
     {
+        // StaticCacheLifecycle: per-call scratch list for relation lookup; always cleared in finally before returning.
         private static readonly List<Pawn> tmpParents = new List<Pawn>();
 
         internal static void ForceFemaleMooGirlXenotypeIfNeeded(Pawn child, Pawn geneticMother = null, Pawn father = null, Thing birtherThing = null)

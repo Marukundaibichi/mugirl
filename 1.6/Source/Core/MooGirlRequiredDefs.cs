@@ -4,10 +4,12 @@ using Verse;
 
 namespace MooGirl
 {
+    // StaticCacheLifecycle: process-level required Def cache; missing entries fail fast during static initialization.
     internal static class MooGirlRequiredDefs
     {
         internal static class Hediffs
         {
+            internal static readonly HediffDef MooGirlLactation = Required<HediffDef>("MooGirl_Lactation");
             internal static readonly HediffDef MooGirlMilkHealing = Required<HediffDef>("MooGirl_MilkHealing");
         }
 

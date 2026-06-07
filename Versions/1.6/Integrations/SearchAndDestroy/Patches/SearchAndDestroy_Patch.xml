@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+    <!-- PatchGovernance:
+    Targets: MooGirlLike ThinkTreeDef when Search and Destroy is active.
+    Scope: optional SearchAndDestroy integration; inserts one SearchAndDestroy branch into the MooGirl idle combat tree.
+    Duplicate guard: outer conditional skips when the SearchAndDestroy node already exists; inner target uses the unique idle colonist branch.
+    Failure: missing target or upstream think tree drift is acceptable and leaves the base MooGirlLike tree unchanged.
+    -->
     <!-- Search and Destroy think tree targets may change between versions. 目标缺失或已插入时静默跳过。 -->
     <Operation Class="PatchOperationConditional">
         <xpath>Defs/ThinkTreeDef[defName="MooGirlLike"]//li[@Class="SearchAndDestroy.ThinkNode_ConditionalSearchAndDestroy"]</xpath>

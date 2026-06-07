@@ -6,7 +6,7 @@ using Verse.AI;
 
 namespace MooGirl
 {
-    public class Comp_MooGirlMount : ThingComp, IThingHolder
+    public partial class Comp_MooGirlMount : ThingComp, IThingHolder
     {
         public ThingOwner<Thing> innerContainer;
         public bool fireAtWill;
@@ -102,7 +102,7 @@ namespace MooGirl
                     return pos;
                 }
 
-                pos += carrier.Rotation.RighthandCell.ToVector3() * 0.14f;
+                pos += MountedPawnUtility.MountedWeaponSideOffset(carrier.Rotation, 0.14f);
                 pos.y += 0.01f;
                 return pos;
             }
@@ -331,168 +331,5 @@ namespace MooGirl
             }
         }
 
-        public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
-        {
-            base.PostDeSpawn(map, mode);
-            if (HasMountedPawn && mode != DestroyMode.WillReplace && map != null)
-            {
-                TryDropAt(parent.PositionHeld, map, mode);
-            }
-        }
-
-        public override void PostDestroy(DestroyMode mode, Map previousMap)
-        {
-            base.PostDestroy(mode, previousMap);
-            if (HasMountedPawn && previousMap != null)
-            {
-                TryDropAt(parent.PositionHeld, previousMap, mode);
-            }
-            else if (HasMountedPawn)
-            {
-                MountedCombatController.NotifyDismounting(this);
-                innerContainer.ClearAndDestroyContentsOrPassToWorld(mode);
-            }
-        }
-
-        private void TryDropAt(IntVec3 cell, Map map, DestroyMode fallbackMode = DestroyMode.Vanish)
-        {
-            Pawn rider = MountedPawn;
-            if (rider == null || map == null)
-            {
-                return;
-            }
-
-            MountedCombatController.NotifyDismounting(this);
-            Pawn carrier = MooPawn;
-            if (cell.IsValid && innerContainer.TryDrop(rider, cell, map, ThingPlaceMode.Near, out Thing _, null, c => MountedPawnUtility.DismountCellValidator(c, carrier, rider, map)))
-            {
-                return;
-            }
-
-            IntVec3 fallbackCell;
-            bool foundFallback = CellFinder.TryFindRandomCellNear(
-                cell,
-                map,
-                5,
-                c => MountedPawnUtility.DismountCellValidator(c, carrier, rider, map),
-                out fallbackCell);
-
-            if (foundFallback && innerContainer.TryDrop(rider, fallbackCell, map, ThingPlaceMode.Near, out Thing _, null, c => MountedPawnUtility.DismountCellValidator(c, carrier, rider, map)))
-            {
-                return;
-            }
-
-            MooGirlLog.WarningOnce(
-                "Mount.DropAtFailed",
-                "MooGirl.Mount.DropAtFailed".Translate(rider.LabelShortCap, parent.LabelShortCap).ToString());
-            innerContainer.ClearAndDestroyContentsOrPassToWorld(fallbackMode);
-        }
-
-        public override void PostExposeData()
-        {
-            base.PostExposeData();
-            Scribe_Deep.Look(ref innerContainer, "innerContainer", this);
-            Scribe_Values.Look(ref fireAtWill, "fireAtWill", Props?.turretFireAtWillDefault ?? true);
-            Scribe_Values.Look(ref physiologicalTickCounter, "physiologicalTickCounter", 0);
-            Scribe_Values.Look(ref safetyTickCounter, "safetyTickCounter", 0);
-            Scribe_Values.Look(ref turretTickCounter, "turretTickCounter", 0);
-            Scribe_Values.Look(ref riderMeleeTickCounter, "riderMeleeTickCounter", 0);
-            Scribe_Values.Look(ref turretBurstCooldownTicksLeft, "turretBurstCooldownTicksLeft", 0);
-            Scribe_TargetInfo.Look(ref turretAimTarget, "turretAimTarget");
-            Scribe_Values.Look(ref turretAimTicksLeft, "turretAimTicksLeft", 0);
-            Scribe_Values.Look(ref turretAimTicksTotal, "turretAimTicksTotal", 0);
-            Scribe_Values.Look(ref turretCastStartTick, "turretCastStartTick", -1);
-            Scribe_TargetInfo.Look(ref turretLastAttackedTarget, "turretLastAttackedTarget");
-            Scribe_Values.Look(ref turretLastAttackTargetTick, "turretLastAttackTargetTick", 0);
-            if (Scribe.mode == LoadSaveMode.PostLoadInit)
-            {
-                MakeContainer();
-            }
-        }
-
-        public override void PostSpawnSetup(bool respawningAfterLoad)
-        {
-            base.PostSpawnSetup(respawningAfterLoad);
-            if (HasMountedPawn)
-            {
-                MountedCombatController.NotifyMounted(this);
-            }
-        }
-
-        public override IEnumerable<Gizmo> CompGetGizmosExtra()
-        {
-            foreach (Gizmo gizmo in base.CompGetGizmosExtra())
-            {
-                yield return gizmo;
-            }
-
-            Pawn rider = MountedPawn;
-            if (rider == null)
-            {
-                yield break;
-            }
-
-            yield return new Command_Action
-            {
-                defaultLabel = "MooGirl.Mount.SelectRider".Translate(),
-                defaultDesc = "MooGirl.Mount.SelectRiderDesc".Translate(),
-                icon = TexCommand.SelectCarriedPawn,
-                action = delegate
-                {
-                    Pawn currentRider = MountedPawn;
-                    if (currentRider == null)
-                    {
-                        return;
-                    }
-
-                    MooGirlSelectionUtility.SelectInPlaying(currentRider);
-                }
-            };
-
-            yield return new Command_Action
-            {
-                defaultLabel = "MooGirl.Mount.DismountRider".Translate(),
-                defaultDesc = "MooGirl.Mount.DismountRiderDesc".Translate(),
-                icon = TexCommand.DropCarriedPawn,
-                action = delegate
-                {
-                    TryDismount();
-                }
-            };
-
-            yield return new Command_Toggle
-            {
-                defaultLabel = fireAtWill ? "MooGirl.Mount.FireAtWill".Translate() : "MooGirl.Mount.HoldFire".Translate(),
-                defaultDesc = fireAtWill ? "MooGirl.Mount.FireAtWillDesc".Translate() : "MooGirl.Mount.HoldFireDesc".Translate(),
-                icon = fireAtWill ? TexCommand.FireAtWill : TexCommand.CannotShoot,
-                isActive = () => fireAtWill,
-                toggleAction = delegate
-                {
-                    fireAtWill = !fireAtWill;
-                }
-            };
-        }
-
-        public override string CompInspectStringExtra()
-        {
-            Pawn rider = MountedPawn;
-            if (rider == null)
-            {
-                return null;
-            }
-
-            return "MooGirl.Mount.InspectRider".Translate(rider.LabelShort);
-        }
-
-        public void GetChildHolders(List<IThingHolder> outChildren)
-        {
-            ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, GetDirectlyHeldThings());
-        }
-
-        public ThingOwner GetDirectlyHeldThings()
-        {
-            MakeContainer();
-            return innerContainer;
-        }
     }
 }

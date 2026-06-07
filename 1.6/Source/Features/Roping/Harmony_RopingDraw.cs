@@ -9,6 +9,7 @@ namespace MooGirl
     [HarmonyPatch]
     public static class Harmony_Patch_RopingDraw
     {
+        // StaticCacheLifecycle: process-level reflection cache for Pawn_RopeTracker draw fields; no game objects are retained.
         private static readonly FieldInfo fieldPawn;
         private static readonly FieldInfo fieldRopeLineMat;
 
@@ -51,28 +52,9 @@ namespace MooGirl
                     Building hitch = ropeCell.GetFirstThing(pawn.Map, MooGirl_DefOf.WallRopeHitch) as Building;
                     if (hitch != null)
                     {
-                        Vector3 targetWithOffset = hitch.Position.ToVector3Shifted();
-
-                        // 墙面栓点的贴图中心不等于挂绳点，按朝向修正视觉终点。
-                        switch (hitch.Rotation.AsInt)
-                        {
-                            case 0:
-                                targetWithOffset += new Vector3(0f, 0f, -0.4f);
-                                break;
-                            case 1:
-                                targetWithOffset += new Vector3(-0.5f, 0f, 0f);
-                                break;
-                            case 2:
-                                targetWithOffset += new Vector3(0f, 0f, 0.5f);
-                                break;
-                            case 3:
-                                targetWithOffset += new Vector3(0.4f, 0f, 0f);
-                                break;
-                        }
-
                         GenDraw.DrawLineBetween(
                             pawn.DrawPos.Yto0(),
-                            targetWithOffset.Yto0(),
+                            WallHitchAnchor(hitch).Yto0(),
                             AltitudeLayer.PawnRope.AltitudeFor(),
                             ropeLineMat,
                             0.2f);
@@ -83,6 +65,26 @@ namespace MooGirl
             }
 
             return true;
+        }
+
+        private static Vector3 WallHitchAnchor(Building hitch)
+        {
+            Vector3 targetWithOffset = hitch.Position.ToVector3Shifted();
+
+            // Match WallRopeHitch graphicData drawOffset* so the rope ends on the visible wall ring.
+            switch (hitch.Rotation.AsInt)
+            {
+                case 0:
+                    return targetWithOffset + new Vector3(0f, 0f, 0.9f);
+                case 1:
+                    return targetWithOffset + new Vector3(0.9f, 0f, 0f);
+                case 2:
+                    return targetWithOffset + new Vector3(0f, 0f, -0.9f);
+                case 3:
+                    return targetWithOffset + new Vector3(-0.9f, 0f, 0f);
+                default:
+                    return targetWithOffset;
+            }
         }
     }
 }

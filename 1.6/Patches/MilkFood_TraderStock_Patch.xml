@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+    <!-- PatchGovernance:
+    Targets: vanilla and optional-DLC TraderKindDef stockGenerators.
+    Scope: root 1.6 economy patch; exposes MooGirl milk food through traders without replacing existing stock generators.
+    Duplicate guard: every stock generator add is wrapped in a conditional check for the MooGirl_MilkFood trade tag.
+    Failure: missing optional trader targets are allowed to no-op; malformed xpath or required target drift is caught by Phase 6.
+    -->
     <!-- Faction bases. 派系基地。 -->
     <Operation Class="PatchOperationConditional">
         <xpath>Defs/TraderKindDef[defName="Base_Neolithic_Standard"]/stockGenerators/li[@Class="StockGenerator_Tag"]/tradeTag[text()="MooGirl_MilkFood"]</xpath>

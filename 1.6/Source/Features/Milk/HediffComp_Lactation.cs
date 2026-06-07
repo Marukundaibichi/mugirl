@@ -84,7 +84,7 @@ namespace MooGirl
                 return;
             }
 
-            HediffDef lactationDef = MooGirlOptionalDefs.Hediffs.MooGirlLactation;
+            HediffDef lactationDef = MooGirlRequiredDefs.Hediffs.MooGirlLactation;
             if (lactationDef == null)
             {
                 return;

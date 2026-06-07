@@ -52,8 +52,9 @@ namespace MooGirl
                 yield break;
             }
 
-            bool isTargetFollowingRoper = RopingService.IsFollowingRoper(target);
-            bool isPawnFollowingRoper = RopingService.IsFollowingRoper(pawn);
+            bool isTargetRopedByPawn = RopingService.IsRopedByPawn(target);
+            bool isPawnRopedByPawn = RopingService.IsRopedByPawn(pawn);
+            bool isPawnRopedToThing = RopingService.IsRopedToSpot(pawn);
             bool isRopedToThing = RopingService.IsRopedToSpot(target);
 
             if (RopingService.CanStartPawnRope(pawn, target))
@@ -63,8 +64,9 @@ namespace MooGirl
                     pawn.jobs.TryTakeOrderedJob(new Job(MooGirl_DefOf.JobDriver_RopeMoo, target), JobTag.Misc);
                 };
 
+                string targetLabel = target.LabelShortCap;
                 string label = RopeLabelWithSuccessChance(
-                    "MooGirl.Rope.Target".Translate(target).ToString(),
+                    "MooGirl.Rope.Target".Translate(targetLabel).ToString(),
                     1f.ToStringPercent());
 
                 yield return FloatMenuUtility.DecoratePrioritizedTask(
@@ -76,9 +78,9 @@ namespace MooGirl
                 );
             }
 
-            if ((isTargetFollowingRoper || isRopedToThing) && !isPawnFollowingRoper)
+            if ((isTargetRopedByPawn || isRopedToThing) && !isPawnRopedByPawn && !isPawnRopedToThing)
             {
-                yield return new FloatMenuOption("MooGirl.Unrope.Target".Translate(target), () =>
+                yield return new FloatMenuOption("MooGirl.Unrope.Target".Translate(target.LabelShortCap), () =>
                 {
                     pawn.jobs.TryTakeOrderedJob(new Job(MooGirl_DefOf.JobDriver_RemoveRopeMoo, target), JobTag.Misc);
                 });

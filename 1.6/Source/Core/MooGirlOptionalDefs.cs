@@ -4,28 +4,9 @@ using Verse.AI;
 
 namespace MooGirl
 {
+    // StaticCacheLifecycle: process-level optional Def cache; values come from DefDatabase after mod loading and may be null when optional content is absent.
     internal static class MooGirlOptionalDefs
     {
-        internal static class Hediffs
-        {
-            internal static readonly HediffDef HugeBreasts = Get("HugeBreasts");
-            internal static readonly HediffDef BionicBreasts = Get("BionicBreasts");
-            internal static readonly HediffDef SlimeBreasts = Get("SlimeBreasts");
-            internal static readonly HediffDef GrMuffaloMammaries = Get("GR_MuffaloMammaries");
-            internal static readonly HediffDef Breasts = Get("Breasts");
-            internal static readonly HediffDef HydraulicBreasts = Get("HydraulicBreasts");
-            internal static readonly HediffDef SmallBreasts = Get("SmallBreasts");
-            internal static readonly HediffDef LargeBreasts = Get("LargeBreasts");
-            internal static readonly HediffDef ArchotechBreasts = Get("ArchotechBreasts");
-            internal static readonly HediffDef FlatBreasts = Get("FlatBreasts");
-            internal static readonly HediffDef MooGirlLactation = Get("MooGirl_Lactation");
-
-            private static HediffDef Get(string defName)
-            {
-                return DefDatabase<HediffDef>.GetNamedSilentFail(defName);
-            }
-        }
-
         internal static class ThingDefs
         {
             internal static readonly ThingDef MooGirlMilk = DefDatabase<ThingDef>.GetNamedSilentFail("MooGirl_Milk");

@@ -80,6 +80,16 @@ namespace MooGirl
             return pawn?.ageTracker?.CurLifeStage?.equipmentDrawDistanceFactor ?? 1f;
         }
 
+        public static Vector3 MountedWeaponSideOffset(Rot4 rotation, float distance)
+        {
+            if (rotation == Rot4.East || rotation == Rot4.West)
+            {
+                return Vector3.zero;
+            }
+
+            return rotation.RighthandCell.ToVector3() * distance;
+        }
+
         public static void BreakRopes(Pawn pawn)
         {
             RopingService.BreakAllRopesAndNotify(pawn);

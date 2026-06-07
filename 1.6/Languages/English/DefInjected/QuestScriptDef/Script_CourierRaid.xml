@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-    <MooGirl_CourierRaid.questNameRules.rulesStrings>Courier contact</MooGirl_CourierRaid.questNameRules.rulesStrings>
-    <MooGirl_CourierRaid.questDescriptionRules.rulesStrings>A mega corporation courier carrying important items has arrived near your colony. You can send a colonist to negotiate with him.</MooGirl_CourierRaid.questDescriptionRules.rulesStrings>
+    <MooGirl_CourierRaid.questNameRules.rulesStrings>
+        <li>questName->Courier contact</li>
+    </MooGirl_CourierRaid.questNameRules.rulesStrings>
+    <MooGirl_CourierRaid.questDescriptionRules.rulesStrings>
+        <li>questDescription->A mega corporation courier carrying important items has arrived near your colony. You can send a colonist to negotiate with him.</li>
+    </MooGirl_CourierRaid.questDescriptionRules.rulesStrings>
 </LanguageData>

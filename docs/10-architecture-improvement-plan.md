@@ -9,6 +9,28 @@
 - 仍未达到 `docs/02-target-architecture.md` 中设想的完整终态，尤其是显式 patch 元数据、Compatibility 分层、命名空间边界和大模块内聚度。
 - 后续改进应以“小步、可验证、行为锁定”为原则，不再做大范围无收益搬文件。
 
+## 执行状态
+
+截至 2026-06-07：
+
+- 阶段 A 已完成 6 组 fresh 加载组合验证。MooGirl、Facial Animation、Search and Destroy、VCookE 集成未发现本 mod 加载、Def、贴图、XML 注入或 Harmony 错误；剩余日志项已归类为外部翻译、外部元数据、外部按键配置或原版存档关系噪音。
+- 阶段 B 已完成首版落地：新增 `MooGirlPatchInfo` / `MooGirlPatchCatalog`，覆盖现有 Harmony patch 与 2 个手动反射 patch，记录模块、patch class、目标类型/方法、patch 方式、是否可能跳过原方法、风险等级和失败行为。
+- `MooGirlBootstrap` 已在 DevMode 输出 patch audit 摘要；正常玩家日志不输出完整清单，手动 patch 失败仍沿用一次性 warning。
+- `docs/tools/Invoke-Phase6StaticValidation.ps1` 已新增 patch metadata audit：所有 `[HarmonyPatch]` 类必须登记，手动反射 patch 必须登记 registry key，重复或过期元数据会失败。
+- 阶段 G 已完成首版落地：静态集合、反射缓存、Def 缓存和持有 Pawn/Verb/Thing 的运行期缓存均已补 `StaticCacheLifecycle:` 说明；`MooGirlStoryState` 的游戏初始化/新开局/读档重置入口纳入 Phase 6 门禁。
+- `docs/tools/Invoke-Phase6StaticValidation.ps1` 已新增 static cache lifecycle audit：当前扫描 40 个静态缓存字段、43 条生命周期规则，新增未标注静态缓存会失败。
+- 阶段 C 已完成首版落地：HAR swaddle 反射目标、Melee Animation 反射探测和第三方乳房 hediff Def 缓存已集中到 `1.6/Source/Compatibility/`；业务模块不再直接调用第三方 `AccessTools.TypeByName`，也不再散落第三方乳房 hediff 字符串。
+- `MooGirl_Lactation` 已保留在内部 required Def 缓存中，避免被误归入 `Compatibility/OtherMods` 的外部兼容缓存。
+- `docs/tools/Invoke-Phase6StaticValidation.ps1` 已新增 Compatibility boundary safety audit：第三方 `TypeByName` 只能位于 Compatibility 层，外部乳房 hediff 字符串只能位于 `ExternalBreastHediffDefs`，`MooGirlOptionalDefs.Hediffs` 不允许回流。
+- 阶段 F 已完成首版落地：5 个 XML patch 文件均补充 `PatchGovernance` 顶部说明，明确目标、作用范围、重复防护和失败行为。
+- `docs/tools/Invoke-Phase6StaticValidation.ps1` 已新增 XML patch governance audit 与 Direct `PatchOperationAdd` 分类统计；当前统计 5 个治理文件、37 个 direct add 目标，其中 31 个有 conditional guard、6 个为直接 vanilla 目标、11 个属于可选集成路径。
+- 阶段 D 已完成首版低风险落地：新增 `docs/11-namespace-boundary.md`，明确新代码命名空间规则、根命名空间保留条件和 XML/Harmony/save 相关例外。
+- `docs/tools/Invoke-Phase6StaticValidation.ps1` 已新增 namespace boundary report 软报告；当前统计 251 个 root namespace types，其中 70 个被 XML 直引、181 个为 legacy/non-XML，specific MooGirl namespace types 仍为 0。
+- 阶段 H 已完成首版落地：新增 `docs/architecture/` ADR，记录单 DLL、Harmony 扫描 + patch metadata、Compatibility 分层范围和根命名空间保留规则；`docs/08-game-validation-runbook.md` 已补 fresh log 记录模板，`docs/00-refactor-overview.md` 已更新文档导航。
+- `docs/tools/Invoke-Phase6StaticValidation.ps1` 已新增 architecture documentation audit，防止关键 ADR、命名空间规则和验证模板缺失。
+- 阶段 E 已完成首轮机械拆分：Mounting 拆出骑乘战斗 target/render/eligibility 与 mount comp gizmo/lifecycle/storage；Milk 拆出 milking animation state 与 Harmony glue；Restraints 拆出 brainwash performance/player/hediff comp 与 magnetic shackles gizmo/cooldown。所有 C# 文件当前均低于 400 行，类名、XML 引用、save key 和玩家可见行为保持不变。
+- 验证命令 `docs/tools/Invoke-Phase6StaticValidation.ps1 -SkipBuild` 已通过；当前统计为 166 个 compile item、48 条 patch metadata entries、100 条 patch metadata audit rules、14 条 Harmony boundary safety rules、7 条 compatibility boundary safety rules、5 条 XML patch governance rules、1 条 namespace boundary report rule、10 条 architecture documentation rules、3 条 feature module size report rules、40 个 static cache lifecycle fields；Milk/Mounting/Restraints 最大文件分别为 393/339/392 行，400 行以上文件为 0。
+
 ## 总目标
 
 把当前架构从“重构后可维护”推进到“长期扩展抗压”：
@@ -159,6 +181,12 @@
 - 每次拆分不改变 save key、不改变 Def 引用、不改变玩家可见数值。
 - 旧文件只在职责明确减少时拆，不为了缩短行数拆。
 - 每次拆分后运行 Release build、Phase 6、package。
+
+首轮状态：
+
+- 已完成 Mounting、Milk、Restraints 最大文件机械拆分。
+- 已通过逐模块 Release build。
+- 待本轮最终 Phase 6、package、发布目录同步和游戏内 smoke 验证。
 
 ## 阶段 F：XML Patch 侵入性治理
 

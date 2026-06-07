@@ -5,6 +5,7 @@ namespace MooGirl
 {
     public static class MeleeAnimationCompat
     {
+        // StaticCacheLifecycle: process-level optional-mod reflection cache; no game objects are retained.
         private static readonly FieldInfo AnimateAtIdleField;
         private static readonly FieldInfo SettingsField;
 

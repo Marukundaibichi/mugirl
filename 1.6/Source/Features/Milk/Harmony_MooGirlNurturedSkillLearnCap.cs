@@ -9,6 +9,7 @@ namespace MooGirl
     [HarmonyPatch(typeof(SkillRecord), nameof(SkillRecord.Learn))]
     public static class Harmony_MooGirlNurturedSkillLearnCap
     {
+        // StaticCacheLifecycle: process-level reflection cache for SkillRecord internals; no game objects are retained.
         private static readonly FieldInfo PawnField = AccessTools.Field(typeof(SkillRecord), "pawn");
         private static readonly FieldInfo XpSinceMidnightField = AccessTools.Field(typeof(SkillRecord), "xpSinceMidnight");
         private static readonly FieldInfo MaxFullRateXpPerDayField = AccessTools.Field(typeof(SkillRecord), "MaxFullRateXpPerDay");

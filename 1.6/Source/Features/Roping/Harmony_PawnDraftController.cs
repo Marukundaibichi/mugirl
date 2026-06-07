@@ -15,7 +15,7 @@ namespace MooGirl
 
             Pawn pawn = __instance?.pawn;
             if (!RopingService.IsMooGirlRopee(pawn)) return;
-            if (!RopingService.IsFollowingRoper(pawn) && !RopingService.IsRopedToSpot(pawn)) return;
+            if (!RopingService.IsRopedByPawn(pawn) && !RopingService.IsRopedToSpot(pawn) && !RopingService.IsPendingSpotRope(pawn)) return;
 
             __result = DisableDraftGizmo(__result);
         }

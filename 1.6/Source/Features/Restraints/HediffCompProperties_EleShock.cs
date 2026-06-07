@@ -42,6 +42,7 @@ namespace MooGirl
 
     public class HediffComp_EleShock : HediffComp
     {
+        // StaticCacheLifecycle: process-level reflection cache for Pawn_DrawTracker.jitterer; no game objects are retained.
         private static readonly FieldInfo JittererField = AccessTools.Field(typeof(Pawn_DrawTracker), "jitterer");
 
         private int currentTickCount = 0; // 当前计时器

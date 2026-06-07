@@ -34,6 +34,8 @@
     <MooGirl_ChildWorker.titleShort>童工</MooGirl_ChildWorker.titleShort>
     <!-- [PAWN_nameDef] came of age in our colony. [PAWN_possessive] story continues. -->
     <MooGirl_Colonist.baseDesc>[PAWN_nameDef] 在我们的殖民地成年了。[PAWN_possessive] 的故事仍在继续。</MooGirl_Colonist.baseDesc>
+    <!-- [PAWN_nameDef] came of age in our colony. [PAWN_possessive] story continues. -->
+    <MooGirl_Colonist.description>[PAWN_nameDef] 在我们的殖民地成年了。[PAWN_possessive] 的故事仍在继续。</MooGirl_Colonist.description>
     <!-- Mugirl Colonist -->
     <MooGirl_Colonist.title>雪牛娘殖民者</MooGirl_Colonist.title>
     <!-- Colonist -->

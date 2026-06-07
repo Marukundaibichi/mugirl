@@ -10,6 +10,7 @@ namespace MooGirl
 {
     public static class MountedPawnMeleeSupport
     {
+        // StaticCacheLifecycle: process-level reflection cache for vanilla melee helpers; no game objects are retained.
         private static readonly MethodInfo GetNonMissChanceMethod = AccessTools.Method(typeof(Verb_MeleeAttack), "GetNonMissChance");
         private static readonly MethodInfo GetDodgeChanceMethod = AccessTools.Method(typeof(Verb_MeleeAttack), "GetDodgeChance");
         private static readonly MethodInfo SoundHitPawnMethod = AccessTools.Method(typeof(Verb_MeleeAttack), "SoundHitPawn");
@@ -171,7 +172,7 @@ namespace MooGirl
             }
 
             Vector3 drawPos = comp.WeaponDrawPos;
-            drawPos += carrier.Rotation.RighthandCell.ToVector3() * 0.12f;
+            drawPos += MountedPawnUtility.MountedWeaponSideOffset(carrier.Rotation, 0.12f);
             using (MeleeAnimationCompat.SuspendIdleWeaponAnimation())
             {
                 PawnRenderUtility.DrawCarriedWeapon(weapon, drawPos, carrier.Rotation, MountedPawnUtility.EquipmentDrawDistanceFactor(rider));

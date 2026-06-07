@@ -71,6 +71,32 @@ TMP\GameValidationConfigs
 
 该脚本发现疑似红字、异常、缺失翻译、XML 或 patch 错误时会返回失败码；需要检查上一轮日志时使用 `-Previous`。
 
+## Fresh Log 记录模板
+
+每次手动验证后追加一条记录，避免只留下“已跑完”但缺少可复核证据。
+
+```text
+日期时间：
+验证人：
+配置模板：
+RimWorld 版本：
+MooGirl DLL 时间戳：
+Player.log 路径：
+Player.log LastWriteTime：
+日志扫描命令：
+日志扫描结果：
+进入主菜单：是/否
+新档进入地图：是/否
+保存读档：是/否
+红字：无/有，摘要：
+黄字：无/有，摘要：
+MooGirl 相关异常：无/有，摘要：
+外部 mod 噪音：无/有，摘要：
+本轮功能点：
+结论：通过/不通过/需复查
+后续处理：
+```
+
 ## 加载组合
 
 ### 1. 最小必需组合
@@ -263,5 +289,123 @@ Player.log 路径：
 截至 2026-06-07：
 
 - 静态验证已通过：`docs/tools/Invoke-Phase6StaticValidation.ps1`。
-- 游戏内验证尚未执行。
-- 最终发布前必须至少完成“最小必需组合”“全 DLC 组合”“全集成组合”和全部功能验证。
+- 最小必需组合已完成一次 fresh 游戏内验证。
+- 最小组合 `Player.log` 未再出现旧 `VacuumResistance` 缺失、贴图缺失或 MooGirl `rulesStrings` 注入错误。
+- 最小组合仍有 Simplified Chinese 翻译报告 load errors，但已判定为原版/DLC/HAR 外部语言噪音，不是 MooGirl DefInjected 条目。
+- 2026-06-07 追加修复 MooGirl 自身翻译报告缺失项：`MooGirl_Colonist.description`、`MooGirl_GiantCorporations_Hostile.leaderTitle`、`messageDefendersAttacking`、MooGirl/PMC/OPC 武器 `verbs.Verb_Shoot.label`。修复后 Phase 6 静态验证通过。
+- 全 DLC 组合已完成一次 fresh 游戏内验证；`Player.log` 经扫描后无 MooGirl 可疑行。原版 `Ideo.PostLoadInit` 自动补齐隐藏 ritual precept 的 warning 已归类为读档修复噪音，并加入 `Invoke-PlayerLogScan.ps1` 精确白名单。
+- Facial Animation 组合已完成一次 fresh 游戏内验证；`Player.log` 扫描无可疑行，`1.6/FacialAnimation` 加载未出现 MooGirl 缺 Def、缺贴图或 patch 错误。
+- Search and Destroy 组合已完成一次 fresh 游戏内验证；`Player.log` 扫描无可疑行，SearchAndDestroy think tree patch 未出现 target 或类型错误。
+- VCookE 组合已完成 fresh 游戏内验证；首次发现 MooGirl `ProcessDef` 语言目录错误，已修复为 `PipeSystem.ProcessDef` 并重跑确认 General load errors 为 0。剩余 3 条翻译 load errors 均为外部 Blackboard/SchoolDesk 条目。
+- 全集成组合已完成一次 fresh 游戏内验证；MooGirl、Facial Animation、Search and Destroy、VCookE 集成均无加载或 patch 错误。日志仍含已归类外部语言、外部元数据、外部按键和原版 AncientSoldier 存档关系噪音。
+- 阶段 A 的 6 组加载组合已覆盖完成；后续仍需按“功能验证”清单做具体交互长跑。
+
+## 验证记录
+
+```text
+日期：2026-06-07
+RimWorld 版本：1.6
+验证人：用户手动验证
+mod 组合：01-minimal.xml；Harmony + Core + Humanoid Alien Races + MooGirl Race
+ModsConfig 备份路径：用户手动管理
+Player.log 路径：%USERPROFILE%\AppData\LocalLow\Ludeon Studios\RimWorld by Ludeon Studios\Player.log
+TranslationReport 路径：%USERPROFILE%\Desktop\TranslationReport.txt
+静态脚本结果：修复后 `docs/tools/Invoke-Phase6StaticValidation.ps1 -SkipBuild` 通过
+主菜单加载：已完成
+红字/异常：未发现 MooGirl 运行时红字；仅剩 Simplified Chinese 外部 DefInjected load errors 汇总
+重复日志：未发现 MooGirl 重复刷日志
+功能项通过：最小组合启动、进地图、保存、读档由用户确认完成
+失败项：无 MooGirl 失败项；TranslationReport 中外部 HAR/原版/DLC 缺失项暂不由本 mod 修复
+截图/存档：无
+结论：最小组合对 MooGirl 判定通过，可继续全 DLC 组合；外部简中语言噪音需在后续组合中继续分离记录
+```
+
+```text
+日期：2026-06-07
+RimWorld 版本：1.6
+验证人：用户手动验证
+mod 组合：02-all-dlc.xml；Harmony + Core + Royalty + Ideology + Biotech + Anomaly + Odyssey + Humanoid Alien Races + MooGirl Race
+ModsConfig 备份路径：用户手动管理
+Player.log 路径：%USERPROFILE%\AppData\LocalLow\Ludeon Studios\RimWorld by Ludeon Studios\Player.log
+TranslationReport 路径：未重新生成；桌面报告仍为 19:42:42 的最小组合旧报告
+静态脚本结果：`docs/tools/Invoke-Phase6StaticValidation.ps1 -SkipBuild` 通过
+主菜单加载：已完成
+红字/异常：无 MooGirl 加载、Def、贴图、XML 注入或 Harmony 可疑行
+重复日志：读档时出现 14 条原版 hidden ritual precept 补齐 warning；已由源码确认为 RimWorld.Ideo 读档修复路径，不是本 mod 问题
+功能项通过：全 DLC 组合启动、进地图、保存、读档由用户确认完成
+失败项：无 MooGirl 失败项
+截图/存档：无
+结论：全 DLC 组合对 MooGirl 判定通过，可继续 Facial Animation 组合
+```
+
+```text
+日期：2026-06-07
+RimWorld 版本：1.6
+验证人：用户手动验证
+mod 组合：03-facial-animation.xml；全 DLC 组合 + Nals.FacialAnimation
+ModsConfig 备份路径：用户手动管理
+Player.log 路径：%USERPROFILE%\AppData\LocalLow\Ludeon Studios\RimWorld by Ludeon Studios\Player.log
+TranslationReport 路径：未重新生成
+静态脚本结果：前一轮 `docs/tools/Invoke-Phase6StaticValidation.ps1 -SkipBuild` 通过；本轮未改生产文件
+主菜单加载：已完成
+红字/异常：无 MooGirl 加载、Def、贴图、XML 注入、FA patch 或 Harmony 可疑行
+重复日志：未发现 MooGirl 重复刷日志
+功能项通过：FA 组合启动、进地图、保存、读档由用户确认完成
+失败项：无 MooGirl 失败项；日志中的 `Mod Roren Facial Animation dependency ... downloadUrl` 为外部未启用 FA 包元数据提示，不属于 MooGirl
+截图/存档：无
+结论：Facial Animation 组合对 MooGirl 判定通过，可继续 Search and Destroy 组合
+```
+
+```text
+日期：2026-06-07
+RimWorld 版本：1.6
+验证人：用户手动验证
+mod 组合：04-search-and-destroy.xml；全 DLC 组合 + MemeGoddess.SearchAndDestroy
+ModsConfig 备份路径：用户手动管理
+Player.log 路径：%USERPROFILE%\AppData\LocalLow\Ludeon Studios\RimWorld by Ludeon Studios\Player.log
+TranslationReport 路径：未重新生成
+静态脚本结果：前一轮 `docs/tools/Invoke-Phase6StaticValidation.ps1 -SkipBuild` 通过；本轮未改生产文件
+主菜单加载：已完成
+红字/异常：无 MooGirl 加载、Def、贴图、XML 注入、SearchAndDestroy patch 或 Harmony 可疑行
+重复日志：未发现 MooGirl 重复刷日志
+功能项通过：Search and Destroy 组合启动、进地图、保存、读档由用户确认完成
+失败项：无 MooGirl 失败项；日志中的 `OpenMapSearch`/`Command_ItemForbid` 按键冲突属于外部 mod/玩家按键配置，不由 MooGirl 定义
+截图/存档：无
+结论：Search and Destroy 组合对 MooGirl 判定通过，可继续 VCookE 组合
+```
+
+```text
+日期：2026-06-07
+RimWorld 版本：1.6
+验证人：用户手动验证
+mod 组合：05-vcooke.xml；全 DLC 组合 + Vanilla Expanded Framework Core + Vanilla Cooking Expanded
+ModsConfig 备份路径：用户手动管理
+Player.log 路径：%USERPROFILE%\AppData\LocalLow\Ludeon Studios\RimWorld by Ludeon Studios\Player.log
+TranslationReport 路径：%USERPROFILE%\Desktop\TranslationReport.txt
+静态脚本结果：修复后 `docs/tools/Invoke-Phase6StaticValidation.ps1 -SkipBuild` 通过
+主菜单加载：已完成
+红字/异常：首次报告 `DefInjected/ProcessDef` 不对应 Def type；已修复为 `DefInjected/PipeSystem.ProcessDef` 并重跑确认该错误消失
+重复日志：未发现 MooGirl 重复刷日志
+功能项通过：VCookE 组合启动、进地图、保存、读档由用户确认完成；MooGirl milk cheese ProcessDef 语言目录加载成功
+失败项：无 MooGirl 失败项；剩余 3 条 DefInjected load errors 为外部 `Blackboard`/`SchoolDesk` 家具翻译注入项；日志中的 `More Gravship Workbenches dependency ... downloadUrl` 为外部未启用包元数据提示
+截图/存档：无
+结论：VCookE 组合对 MooGirl 判定通过，可继续全集成组合
+```
+
+```text
+日期：2026-06-07
+RimWorld 版本：1.6
+验证人：用户手动验证
+mod 组合：06-all-integrations.xml；全 DLC 组合 + Nals.FacialAnimation + MemeGoddess.SearchAndDestroy + Vanilla Expanded Framework Core + Vanilla Cooking Expanded
+ModsConfig 备份路径：用户手动管理
+Player.log 路径：%USERPROFILE%\AppData\LocalLow\Ludeon Studios\RimWorld by Ludeon Studios\Player.log
+TranslationReport 路径：沿用 20:36:56 的 VCookE fresh report；本轮未生成新的差异报告
+静态脚本结果：`docs/tools/Invoke-Phase6StaticValidation.ps1 -SkipBuild` 通过
+主菜单加载：已完成
+红字/异常：无 MooGirl、FA、SearchAndDestroy、VCookE 加载、Def、贴图、XML 注入或 patch 可疑行
+重复日志：未发现 MooGirl 重复刷日志
+功能项通过：全集成组合启动、进地图、保存、读档由用户确认完成
+失败项：无 MooGirl 失败项；日志中的 3 条 Simplified Chinese load errors 为外部 `Blackboard`/`SchoolDesk` 家具翻译注入项；`More Gravship Workbenches` 与 `Roren Facial Animation` 为外部未启用包元数据提示；`OpenMapSearch`/`Command_ItemForbid` 为外部按键配置冲突；`Thing_Human2986`/`Dino` 为原版 `AncientSoldier` cryptosleep casket 存档关系残留，未命中 MooGirl 生成路径
+截图/存档：无
+结论：全集成组合对 MooGirl 判定通过；阶段 A 的 6 组加载组合完成
+```

@@ -79,7 +79,7 @@
         <graphicData>
             <graphicClass>Graphic_Fleck</graphicClass>
             <shaderType>Mote</shaderType>
-            <texPath>Things/Mote/WaterSplash</texPath>
+            <texPath>Things/Filth/MooGirl_PoolSoft/MooGirl_PoolSoftA</texPath>
             <drawSize>1.6</drawSize>
             <color>(1, 1, 1, 0.95)</color>
         </graphicData>

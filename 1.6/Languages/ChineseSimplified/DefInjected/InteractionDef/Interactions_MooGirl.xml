@@ -3,5 +3,30 @@
     <!-- Nuzzle -->
     <MooGirl_Nuzzle.label>蹭蹭</MooGirl_Nuzzle.label>
     <!-- <li>r_logentry(p=2)->[INITIATOR_nameDef] [nuzzleadverb] [nuzzled] [RECIPIENT_nameDef].</li><li>r_logentry->[INITIATOR_nameDef] [nuzzleadverb] rubbed [INITIATOR_possessive] nose against [RECIPIENT_nameDef]'s [rubbedpart].</li><li>nuzzled(p=2)->nuzzled</li><li>nuzzled->snuggled up to</li><li>nuzzleadverb(p=4)-></li><li>nuzzleadverb->gently</li><li>nuzzleadverb->encouragingly</li><li>nuzzleadverb->happily</li><li>nuzzleadverb->softly</li><li>nuzzleadverb->supportively</li><li>nuzzleadverb->lightly</li><li>nuzzleadverb->warmly</li><li>nuzzleadverb->plaintively</li><li>nuzzleadverb->lovingly</li><li>nuzzleadverb->affectionately</li><li>rubbedpart->leg</li><li>rubbedpart->knee</li><li>rubbedpart->foot</li><li>rubbedpart->elbow</li><li>rubbedpart->hip</li><li>rubbedpart->shoulder</li><li>rubbedpart->hand</li><li>rubbedpart->side</li><li>rubbedpart->arm</li> -->
-    <MooGirl_Nuzzle.logRulesInitiator.rulesStrings>&lt;li&gt;r_logentry(p=2)-&gt;[INITIATOR_nameDef][nuzzleadverb][nuzzled][RECIPIENT_nameDef]。&lt;/li&gt;&lt;li&gt;r_logentry-&gt;[INITIATOR_nameDef][nuzzleadverb]用鼻子蹭了蹭[RECIPIENT_nameDef]的[rubbedpart]。&lt;/li&gt;&lt;li&gt;nuzzled(p=2)-&gt;依偎着&lt;/li&gt;&lt;li&gt;nuzzled-&gt;蹭了蹭&lt;/li&gt;&lt;li&gt;nuzzleadverb(p=4)-&gt;&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;轻轻地&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;鼓励地&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;开心地&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;柔和地&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;支持地&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;小心地&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;温暖地&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;委屈地&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;亲爱地&lt;/li&gt;&lt;li&gt;nuzzleadverb-&gt;亲昵地&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;腿&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;膝盖&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;脚&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;手肘&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;臀侧&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;肩膀&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;手&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;身侧&lt;/li&gt;&lt;li&gt;rubbedpart-&gt;手臂&lt;/li&gt;</MooGirl_Nuzzle.logRulesInitiator.rulesStrings>
+    <MooGirl_Nuzzle.logRulesInitiator.rulesStrings>
+        <li>r_logentry(p=2)->[INITIATOR_nameDef][nuzzleadverb][nuzzled][RECIPIENT_nameDef]。</li>
+        <li>r_logentry->[INITIATOR_nameDef][nuzzleadverb]用鼻子蹭了蹭[RECIPIENT_nameDef]的[rubbedpart]。</li>
+        <li>nuzzled(p=2)->依偎着</li>
+        <li>nuzzled->蹭了蹭</li>
+        <li>nuzzleadverb(p=4)-></li>
+        <li>nuzzleadverb->轻轻地</li>
+        <li>nuzzleadverb->鼓励地</li>
+        <li>nuzzleadverb->开心地</li>
+        <li>nuzzleadverb->柔和地</li>
+        <li>nuzzleadverb->支持地</li>
+        <li>nuzzleadverb->小心地</li>
+        <li>nuzzleadverb->温暖地</li>
+        <li>nuzzleadverb->委屈地</li>
+        <li>nuzzleadverb->亲爱地</li>
+        <li>nuzzleadverb->亲昵地</li>
+        <li>rubbedpart->腿</li>
+        <li>rubbedpart->膝盖</li>
+        <li>rubbedpart->脚</li>
+        <li>rubbedpart->手肘</li>
+        <li>rubbedpart->臀侧</li>
+        <li>rubbedpart->肩膀</li>
+        <li>rubbedpart->手</li>
+        <li>rubbedpart->身侧</li>
+        <li>rubbedpart->手臂</li>
+    </MooGirl_Nuzzle.logRulesInitiator.rulesStrings>
 </LanguageData>

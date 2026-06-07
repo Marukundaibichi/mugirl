@@ -9,6 +9,7 @@ namespace MooGirl
     internal static class MooGirlBootstrap
     {
         internal const string HarmonyId = "MooGirlMod.Mod";
+        // StaticCacheLifecycle: process-level bootstrap audit data; filled once because Harmony initialization is process-level.
         private static readonly List<string> patchedClassNames = new List<string>();
 
         internal static Harmony Harmony { get; private set; }
@@ -25,6 +26,7 @@ namespace MooGirl
             patchedClassNames.Clear();
             RegisterAttributePatches(Harmony);
             MooGirlPatchRegistry.RegisterManualPatches(Harmony);
+            MooGirlPatchCatalog.LogDevSummary(patchedClassNames, MooGirlPatchRegistry.ManualPatchNames);
         }
 
         private static void RegisterAttributePatches(Harmony harmony)

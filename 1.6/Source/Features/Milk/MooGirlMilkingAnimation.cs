@@ -1,7 +1,4 @@
-using HarmonyLib;
 using RimWorld;
-using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 using Verse;
 
@@ -14,24 +11,9 @@ namespace MooGirl
         Helper
     }
 
-    public static class MooGirlMilkingAnimation
+    public static partial class MooGirlMilkingAnimation
     {
         private const int PulseDurationTicks = 18;
-        private const int StaleAfterTicks = 6;
-        private static readonly Dictionary<int, MilkingVisualState> states = new Dictionary<int, MilkingVisualState>();
-        private static readonly List<int> tmpStateKeysToRemove = new List<int>();
-
-        private class MilkingVisualState
-        {
-            public Pawn pawn;
-            public Pawn partner;
-            public MooGirlMilkingVisualRole role;
-            public int startTick;
-            public int lastTick;
-            public int nextPulseTick;
-            public int pulseStartTick = -99999;
-            public int pulseSeed;
-        }
 
         public static void Start(Pawn doer, Pawn target)
         {
@@ -128,47 +110,6 @@ namespace MooGirl
             {
                 RemoveIfMatches(target, null);
             }
-        }
-
-        public static void NotifyPawnLifecycleEnded(Pawn pawn)
-        {
-            if (pawn == null || states.Count == 0)
-            {
-                return;
-            }
-
-            tmpStateKeysToRemove.Clear();
-            foreach (KeyValuePair<int, MilkingVisualState> entry in states)
-            {
-                MilkingVisualState state = entry.Value;
-                if (state.pawn == pawn || state.partner == pawn)
-                {
-                    tmpStateKeysToRemove.Add(entry.Key);
-                }
-            }
-
-            if (tmpStateKeysToRemove.Count == 0)
-            {
-                return;
-            }
-
-            for (int i = 0; i < tmpStateKeysToRemove.Count; i++)
-            {
-                states.Remove(tmpStateKeysToRemove[i]);
-            }
-
-            tmpStateKeysToRemove.Clear();
-        }
-
-        public static void ResetTransientState()
-        {
-            states.Clear();
-            tmpStateKeysToRemove.Clear();
-        }
-
-        public static bool HasActiveAnimation(Pawn pawn)
-        {
-            return TryGetState(pawn, out _);
         }
 
         public static bool TryGetPawnTransform(Pawn pawn, PawnRenderFlags flags, out Vector3 offset, out Quaternion rotation, out Vector3 scale)
@@ -289,64 +230,6 @@ namespace MooGirl
             }
         }
 
-        private static MilkingVisualState EnsureState(Pawn pawn, Pawn partner, MooGirlMilkingVisualRole role, int now)
-        {
-            int key = pawn.thingIDNumber;
-            if (!states.TryGetValue(key, out MilkingVisualState state) || state.pawn != pawn || state.role != role || state.partner != partner)
-            {
-                state = new MilkingVisualState
-                {
-                    pawn = pawn,
-                    partner = partner,
-                    role = role,
-                    startTick = now,
-                    lastTick = now,
-                    nextPulseTick = now + ((role == MooGirlMilkingVisualRole.SelfMilking) ? Rand.RangeInclusive(35, 70) : Rand.RangeInclusive(25, 55))
-                };
-                states[key] = state;
-            }
-            else
-            {
-                state.pawn = pawn;
-                state.partner = partner;
-                state.lastTick = now;
-            }
-            return state;
-        }
-
-        private static bool TryGetState(Pawn pawn, out MilkingVisualState state)
-        {
-            state = null;
-            if (pawn == null || !states.TryGetValue(pawn.thingIDNumber, out state))
-            {
-                return false;
-            }
-
-            if (!MooGirlTickUtility.TryGetCurrentGameTick(out int now))
-            {
-                states.Clear();
-                state = null;
-                return false;
-            }
-
-            if (state.pawn != pawn || !Valid(state.pawn) || now - state.lastTick > StaleAfterTicks)
-            {
-                states.Remove(pawn.thingIDNumber);
-                state = null;
-                return false;
-            }
-
-            if (StateNeedsPartner(state) && !Valid(state.partner))
-            {
-                RemoveIfMatches(state.partner, state.pawn);
-                states.Remove(pawn.thingIDNumber);
-                state = null;
-                return false;
-            }
-
-            return true;
-        }
-
         private static void TriggerPulse(MilkingVisualState state, bool spawnMilkSpray)
         {
             int now = MooGirlTickUtility.CurrentGameTickOrFallback(state.lastTick);
@@ -457,24 +340,6 @@ namespace MooGirl
             return Pawn_RotationTracker.RotFromAngleBiased(direction.AngleFlat());
         }
 
-        private static void RemoveIfMatches(Pawn pawn, Pawn expectedPartner)
-        {
-            if (pawn == null)
-            {
-                return;
-            }
-
-            if (states.TryGetValue(pawn.thingIDNumber, out MilkingVisualState state) && state.pawn == pawn && state.partner == expectedPartner)
-            {
-                states.Remove(pawn.thingIDNumber);
-            }
-        }
-
-        private static bool StateNeedsPartner(MilkingVisualState state)
-        {
-            return state != null && state.role != MooGirlMilkingVisualRole.SelfMilking;
-        }
-
         private static Vector3 DirectionToPartner(MilkingVisualState state)
         {
             if (state.partner == null)
@@ -524,76 +389,5 @@ namespace MooGirl
             return pawn?.RaceProps?.Humanlike == true && !pawn.RaceProps.IsMechanoid;
         }
 
-    }
-
-    [HarmonyPatch]
-    public static class Harmony_MooGirlMilkingAnimation_DisableCachedPawnRender
-    {
-        private static readonly FieldInfo PawnField = AccessTools.Field(typeof(PawnRenderer), "pawn");
-
-        private static MethodBase TargetMethod()
-        {
-            return AccessTools.Method(typeof(PawnRenderer), "ParallelGetPreRenderResults");
-        }
-
-        private static void Prefix(PawnRenderer __instance, ref bool disableCache)
-        {
-            Pawn pawn = PawnField?.GetValue(__instance) as Pawn;
-            if (MooGirlMilkingAnimation.HasActiveAnimation(pawn))
-            {
-                disableCache = true;
-            }
-        }
-    }
-
-    [HarmonyPatch]
-    public static class Harmony_MooGirlMilkingAnimation_PawnMatrix
-    {
-        private static readonly FieldInfo PawnField = AccessTools.Field(typeof(PawnRenderer), "pawn");
-
-        private static MethodBase TargetMethod()
-        {
-            return AccessTools.Method(typeof(PawnRenderer), "GetDrawParms");
-        }
-
-        private static void Prefix(PawnRenderer __instance, PawnRenderFlags flags, ref Rot4 bodyFacing)
-        {
-            MooGirlMilkingAnimation.AdjustDrawFacing(PawnField?.GetValue(__instance) as Pawn, flags, ref bodyFacing);
-        }
-
-        private static void Postfix(ref PawnDrawParms __result)
-        {
-            if (MooGirlMilkingAnimation.TryGetPawnTransform(__result.pawn, __result.flags, out Vector3 offset, out Quaternion rotation, out Vector3 scale))
-            {
-                __result.matrix = Matrix4x4.Translate(offset) * __result.matrix * Matrix4x4.Rotate(rotation) * Matrix4x4.Scale(scale);
-            }
-        }
-    }
-
-    [HarmonyPatch(typeof(PawnRenderNode), nameof(PawnRenderNode.GetTransform))]
-    public static class Harmony_MooGirlMilkingAnimation_NodeTransform
-    {
-        private static void Postfix(PawnRenderNode __instance, PawnDrawParms parms, ref Vector3 offset, ref Vector3 pivot, ref Quaternion rotation, ref Vector3 scale)
-        {
-            MooGirlMilkingAnimation.ModifyNodeTransform(__instance, parms, ref offset, ref pivot, ref rotation, ref scale);
-        }
-    }
-
-    [HarmonyPatch(typeof(Pawn), nameof(Pawn.DeSpawn))]
-    public static class Harmony_MooGirlMilkingAnimation_PawnDeSpawn
-    {
-        private static void Prefix(Pawn __instance)
-        {
-            MooGirlMilkingAnimation.NotifyPawnLifecycleEnded(__instance);
-        }
-    }
-
-    [HarmonyPatch(typeof(Pawn), nameof(Pawn.Destroy))]
-    public static class Harmony_MooGirlMilkingAnimation_PawnDestroy
-    {
-        private static void Prefix(Pawn __instance)
-        {
-            MooGirlMilkingAnimation.NotifyPawnLifecycleEnded(__instance);
-        }
     }
 }

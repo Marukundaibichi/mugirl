@@ -20,14 +20,6 @@
     <MooGirl_ReverseBunnySuit.description>雪牛娘专属逆兔女郎装，以更大胆的开口与贴身剪裁强化魅力，同时保留轻度基础防护。</MooGirl_ReverseBunnySuit.description>
     <!-- Mugirl Reverse Bunny Suit -->
     <MooGirl_ReverseBunnySuit.label>雪牛娘 逆兔女郎装</MooGirl_ReverseBunnySuit.label>
-    <!-- A close-fitting Mugirl-exclusive spacesuit that provides all-weather environmental protection while avoiding interference with outer equipment as much as possible. -->
-    <MooGirl_Spacesuit.description>贴身设计的雪牛娘专属太空服，在尽量不干扰外层装备的前提下提供全天候环境防护。</MooGirl_Spacesuit.description>
-    <!-- Mugirl Spacesuit -->
-    <MooGirl_Spacesuit.label>雪牛娘 太空服</MooGirl_Spacesuit.label>
-    <!-- Lightweight headgear prepared for the Mugirl spacesuit, built within the existing Mugirl headwear system to complete environmental sealing. -->
-    <MooGirl_SpacesuitHeadgear.description>为雪牛娘太空服准备的轻量头部面罩，按现有雪牛娘头饰体系制作，用于补足环境密封。</MooGirl_SpacesuitHeadgear.description>
-    <!-- Mugirl Spacesuit Headgear -->
-    <MooGirl_SpacesuitHeadgear.label>雪牛娘 太空面罩</MooGirl_SpacesuitHeadgear.label>
     <!-- Full protective combat armor optimized for Mugirls, covering the limbs and torso while emphasizing load-bearing and sustained ranged combat capability. -->
     <MooGirl_WarriorCombatArmor.description>为雪牛娘优化的全防护战斗甲，覆盖四肢与躯干，强调负重与持续远程作战能力。</MooGirl_WarriorCombatArmor.description>
     <!-- Mugirl Warrior Combat Armor -->

@@ -51,6 +51,10 @@
 - `07-second-round-refactor-plan.md`：重构后快照审查发现的问题、第二轮重构优先级、验收标准和回归清单。
 - `08-game-validation-runbook.md`：第二轮后游戏内加载、功能、日志和回归验证执行清单；该清单由用户手动执行。
 - `09-post-refactor-hardening-plan.md`：第二轮后严格审查发现问题的整改闭环计划，按 P0/P1/P2 处理兼容性、性能、侵入性、设计缺陷和发布卫生。
+- `10-architecture-improvement-plan.md`：两轮重构后的后续架构加固路线，记录阶段 A-H 的推进状态。
+- `11-namespace-boundary.md`：阶段 D 命名空间边界规则和 Phase 6 软报告说明。
+- `12-module-slimming-preflight.md`：阶段 E 大模块瘦身前体量基线、首轮机械拆分结果和游戏验证关口。
+- `architecture/`：长期架构决策记录，解释单 DLL、Harmony patch metadata、Compatibility 范围和根命名空间保留规则。
 
 ## 推荐执行顺序
 

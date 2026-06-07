@@ -53,7 +53,7 @@
                 <statOffsets>
                     <ComfyTemperatureMin>-80</ComfyTemperatureMin>
                     <ComfyTemperatureMax>80</ComfyTemperatureMax>
-                    <VacuumResistance>1</VacuumResistance>
+                    <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">1</VacuumResistance>
                 </statOffsets>
             </li>
             <li>
@@ -73,7 +73,7 @@
                 <statOffsets>
                     <ComfyTemperatureMin>-80</ComfyTemperatureMin>
                     <ComfyTemperatureMax>80</ComfyTemperatureMax>
-                    <VacuumResistance>1</VacuumResistance>
+                    <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">1</VacuumResistance>
                 </statOffsets>
             </li>
         </stages>

@@ -31,7 +31,9 @@ $patterns = @(
 $ignoredPatterns = @(
     'Fallback handler could not load library .*MonoBleedingEdge',
     'Failed Allocations\. Bucket layout:',
-    '^\s*\d+B: .* Failed count:'
+    '^\s*\d+B: .* Failed count:',
+    '^A hidden ritual precept was missing, adding: ',
+    '^Adding missing ritual seat precept '
 )
 
 $matches = Select-String -LiteralPath $LogPath -Pattern $patterns -CaseSensitive:$false |
