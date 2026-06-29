@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using RimWorld;
 using System;
 using Verse;
 
@@ -15,14 +14,11 @@ namespace MooGirl
             if (__result == null) return;
 
             if (MooGirlIdentity.HasMooGirlBody(__result) &&
-                __result.ageTracker?.AgeChronologicalYearsFloat == 0f &&
+                __result.ageTracker?.CurLifeStage != null &&
                 __result.story != null)
             {
-                __result.story.Childhood = MooGirl_DefOf.MooGirl_Newborn;
-                __result.story.Adulthood = null;
+                LifeStageVisualService.NormalizeBodyType(__result);
             }
-
-            LifeStageVisualService.NormalizeBodyType(__result);
         }
     }
 }

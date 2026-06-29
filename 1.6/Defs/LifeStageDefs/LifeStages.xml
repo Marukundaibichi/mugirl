@@ -98,20 +98,4 @@
             <MoveSpeed>0.95</MoveSpeed>
         </statFactors>
     </LifeStageDef>
-
-    <LifeStageDef>
-        <defName>MooGirl_AdultLifeStage</defName>
-        <!-- 成年 -->
-        <label>adult</label>
-        <workerClass MayRequire="Ludeon.RimWorld.Biotech">MooGirl.LifeStageWorker_MooGirlAdult</workerClass>
-        <visible>false</visible>
-        <reproductive>true</reproductive>
-        <sittingOffset>0.18</sittingOffset>
-        <silhouetteGraphicData>
-            <texPath>Things/Pawn/Humanlike/Silhouettes/Silhouette_HumanAdult</texPath>
-            <graphicClass>Graphic_Single</graphicClass>
-            <drawSize>1</drawSize>
-        </silhouetteGraphicData>
-    </LifeStageDef>
-
 </Defs>

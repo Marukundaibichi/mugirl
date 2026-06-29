@@ -11,7 +11,7 @@ namespace MooGirl
 
         public static bool NormalizeBodyType(Pawn pawn)
         {
-            if (!ModsConfig.BiotechActive || pawn?.story == null || !MooGirlIdentity.IsMooGirlPawn(pawn))
+            if (!ModsConfig.BiotechActive || pawn?.story == null || !MooGirlIdentity.HasMooGirlBody(pawn))
             {
                 return false;
             }
@@ -58,32 +58,6 @@ namespace MooGirl
             }
 
             return changed;
-        }
-
-        public static void RestoreAdultBackstories(Pawn pawn, BackstoryDef childhoodBefore, BackstoryDef adulthoodBefore)
-        {
-            // 成年阶段基类会按原版人类规则重算背景；MooGirl 要保留自定义童年和成年背景。
-            if (pawn?.story == null || !MooGirlIdentity.HasMooGirlBody(pawn))
-            {
-                return;
-            }
-
-            if (childhoodBefore != null && pawn.story.Childhood != childhoodBefore)
-            {
-                pawn.story.Childhood = childhoodBefore;
-            }
-
-            if (adulthoodBefore != null && pawn.story.Adulthood != adulthoodBefore)
-            {
-                pawn.story.Adulthood = adulthoodBefore;
-            }
-            else if (adulthoodBefore == null)
-            {
-                pawn.story.Adulthood = MooGirl_DefOf.MooGirl_Colonist;
-            }
-
-            pawn.Notify_DisabledWorkTypesChanged();
-            NormalizeBodyType(pawn);
         }
 
         private static bool IsTeenagerLifeStage(Pawn pawn)

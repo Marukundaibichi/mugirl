@@ -25,7 +25,6 @@ namespace MooGirl
             // 特性标注的 patch 由 MooGirlBootstrap 逐类处理；这里仅管理手动反射 patch，
             // 让可选兼容逻辑拥有一个可审计的边界。
             PatchPawnGeneratorGeneratePawn(harmony);
-            PatchAlienRaceSwaddleGraphicFor(harmony);
         }
 
         private static void PatchPawnGeneratorGeneratePawn(Harmony harmony)
@@ -33,19 +32,6 @@ namespace MooGirl
             MethodInfo target = AccessTools.Method(typeof(PawnGenerator), nameof(PawnGenerator.GeneratePawn), new[] { typeof(PawnGenerationRequest) });
             MethodInfo postfix = AccessTools.Method(typeof(PawnGenerator_GeneratePawn_Patch), nameof(PawnGenerator_GeneratePawn_Patch.Postfix));
             TryPatch(harmony, "MooGirl.PatchRegistry.PawnGeneratorGeneratePawn", target, postfix: postfix);
-        }
-
-        private static void PatchAlienRaceSwaddleGraphicFor(Harmony harmony)
-        {
-            // HAR 是本 mod 的硬依赖；这里仍通过反射访问可变的 HAR 内部渲染类型，
-            // 但反射细节必须留在兼容层，签名变更时只跳过兼容补丁。
-            if (!AlienRaceCompatibility.TryGetSwaddleGraphicForTarget(out MethodInfo target))
-            {
-                return;
-            }
-
-            MethodInfo prefix = AccessTools.Method(typeof(Patch_AlienPawnRenderNode_Swaddle_GraphicFor), nameof(Patch_AlienPawnRenderNode_Swaddle_GraphicFor.Prefix));
-            TryPatch(harmony, "MooGirl.PatchRegistry.AlienRaceSwaddleGraphicFor", target, prefix: prefix);
         }
 
         private static void TryPatch(Harmony harmony, string nameKey, MethodBase target, MethodInfo prefix = null, MethodInfo postfix = null)

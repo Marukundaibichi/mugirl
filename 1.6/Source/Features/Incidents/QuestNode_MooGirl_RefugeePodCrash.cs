@@ -28,6 +28,7 @@ namespace MooGirl
                 allowGay: true,
                 allowPregnant: false,
                 forceRecruitable: true,
+                validatorPostGear: IsValidRefugeePodPawn,
                 fixedGender: Gender.Female,
                 developmentalStages: DevelopmentalStage.Adult);
 
@@ -59,6 +60,12 @@ namespace MooGirl
                     continue;
                 }
 
+                if (!IsValidRefugeePodPawn(pawn))
+                {
+                    MooGirlGeneratedPawnUtility.Discard(pawn);
+                    continue;
+                }
+
                 HealthUtility.DamageUntilDowned(pawn, true);
                 if (pawn.Downed && !pawn.Dead)
                 {
@@ -81,6 +88,15 @@ namespace MooGirl
                 "RefugeePodPawnGenerationFailed",
                 "MooGirl.RefugeePodCrash.Log.GenerationFailed".Translate(MaxDownedGenerationAttempts).ToString());
             return null;
+        }
+
+        private static bool IsValidRefugeePodPawn(Pawn pawn)
+        {
+            return pawn != null
+                && MooGirlIdentity.IsMooGirlDef(pawn)
+                && pawn.kindDef == MooGirl_DefOf.MooGirl_EscapeSpaceSlave
+                && pawn.Faction == null
+                && !pawn.WorkTagIsDisabled(WorkTags.Violent);
         }
 
         protected override void RunInt()
@@ -114,7 +130,7 @@ namespace MooGirl
             }
 
             Pawn pawn = GeneratePawn();
-            if (pawn == null || pawn.Destroyed || pawn.Dead)
+            if (pawn == null || pawn.Destroyed || pawn.Dead || !IsValidRefugeePodPawn(pawn))
             {
                 MooGirlLog.WarningOnce(
                     "RefugeePodCrashPawnGenerationFailed",

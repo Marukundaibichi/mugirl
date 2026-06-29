@@ -75,8 +75,6 @@
         <Compile Include="Core\MooGirlSelectionUtility.cs" />
         <Compile Include="Core\MooGirlText.cs" />
         <Compile Include="Core\MooGirlTickUtility.cs" />
-        <Compile Include="Compatibility\AlienRace\AlienRaceCompatibility.cs" />
-        <Compile Include="Compatibility\AlienRace\Harmony_AlienPawnRenderNode_Swaddle_GraphicFor.cs" />
         <Compile Include="Compatibility\MeleeAnimation\MeleeAnimationCompat.cs" />
         <Compile Include="Compatibility\OtherMods\ExternalBreastHediffDefs.cs" />
         <Compile Include="DefOf\MooGirlContentDefOf.cs" />
@@ -111,7 +109,6 @@
         <Compile Include="Features\Milk\CompProperties_MilkingDeviceReleaseEffect.cs" />
         <Compile Include="Features\Milk\Comp_MilkingDevice.cs" />
         <Compile Include="Features\Milk\Gizmo_MilkGauge.cs" />
-        <Compile Include="Features\Milk\Harmony_Apparel_PawnCanWear_MilkingDevice.cs" />
         <Compile Include="Features\Milk\Harmony_FloatMenu_Milk.cs" />
         <Compile Include="Features\Milk\Harmony_MooGirlMilkingAnimation.cs" />
         <Compile Include="Features\Milk\Harmony_MooGirlBabyFeeding.cs" />
@@ -168,8 +165,8 @@
         <Compile Include="Features\Mounting\MountedPawnUtility.cs" />
         <Compile Include="Features\Mounting\MountedVerbScope.cs" />
         <Compile Include="Features\Newborn\Harmony_PawnGenerator_NewbornVisuals.cs" />
+        <Compile Include="Features\Newborn\Harmony_PawnRenderNode_Hair_MooGirlBaby.cs" />
         <Compile Include="Features\Newborn\LifeStageVisualService.cs" />
-        <Compile Include="Features\Newborn\LifeStageWorker_HumanlikeAdult_MooGirl.cs" />
         <Compile Include="Features\Restraints\AdultContentControl.cs" />
         <Compile Include="Features\Restraints\BrainwashPerformancePlayer.cs" />
         <Compile Include="Features\Restraints\Comps\CompGetSlaveApparelGear.cs" />
@@ -188,7 +185,6 @@
         <Compile Include="Features\Restraints\Harmony_DropThingTooltip.cs" />
         <Compile Include="Features\Restraints\Harmony_InitiateSlaveRebellionMtbDays.cs" />
         <Compile Include="Features\Restraints\Harmony_PawnGenerator_Patch.cs" />
-        <Compile Include="Features\Restraints\Harmony_PawnStoryTracker_SkinColor.cs" />
         <Compile Include="Features\Restraints\GameComponent_BrainwashPerformance.cs" />
         <Compile Include="Features\Restraints\HediffComp_BrainWashingStar.cs" />
         <Compile Include="Features\Restraints\HediffCompProperties_AddMentalState.cs" />

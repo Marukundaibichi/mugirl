@@ -5,7 +5,6 @@
     <MooGirl.Bootstrap.HarmonyPatchFailed>Harmony patch skipped: {0}. {1}</MooGirl.Bootstrap.HarmonyPatchFailed>
     <MooGirl.PatchRegistry.NullHarmony>Manual patches skipped because the Harmony instance is missing.</MooGirl.PatchRegistry.NullHarmony>
     <MooGirl.PatchRegistry.PawnGeneratorGeneratePawn>PawnGenerator.GeneratePawn slave apparel lock postfix</MooGirl.PatchRegistry.PawnGeneratorGeneratePawn>
-    <MooGirl.PatchRegistry.AlienRaceSwaddleGraphicFor>AlienRace swaddle GraphicFor prefix</MooGirl.PatchRegistry.AlienRaceSwaddleGraphicFor>
     <MooGirl.PatchRegistry.MissingTarget>Manual patch target missing: {0}</MooGirl.PatchRegistry.MissingTarget>
     <MooGirl.PatchRegistry.MissingPatchMethod>Manual patch method missing: {0}</MooGirl.PatchRegistry.MissingPatchMethod>
     <MooGirl.PatchRegistry.PatchFailed>Manual patch failed: {0}. {1}</MooGirl.PatchRegistry.PatchFailed>

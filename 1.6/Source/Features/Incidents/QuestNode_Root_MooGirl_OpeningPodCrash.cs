@@ -62,6 +62,8 @@ namespace MooGirl
         private static bool IsValidOpeningPodPawn(Pawn pawn)
         {
             return pawn != null
+                && MooGirlIdentity.IsMooGirlDef(pawn)
+                && pawn.kindDef == MooGirl_DefOf.MooGirl_Beginning_Slave
                 && pawn.Faction == null
                 && !pawn.WorkTagIsDisabled(WorkTags.Violent);
         }
@@ -209,7 +211,7 @@ namespace MooGirl
             for (int i = 0; i < pawns.Length; i++)
             {
                 Pawn pawn = pawns[i];
-                if (pawn == null || pawn.Destroyed || pawn.Dead)
+                if (pawn == null || pawn.Destroyed || pawn.Dead || !IsValidOpeningPodPawn(pawn))
                 {
                     return false;
                 }

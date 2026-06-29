@@ -22,6 +22,12 @@ namespace MooGirl
             if (!completed && IsComplete)
             {
                 TryComplete();
+                return;
+            }
+
+            if (!completed && ShouldRemoveIncompleteNurture)
+            {
+                Pawn?.health?.RemoveHediff(parent);
             }
         }
 
@@ -43,5 +49,7 @@ namespace MooGirl
         }
 
         private bool IsComplete => parent?.def != null && parent.Severity >= parent.def.maxSeverity;
+
+        private bool ShouldRemoveIncompleteNurture => Pawn?.ageTracker?.CurLifeStage?.reproductive == true;
     }
 }

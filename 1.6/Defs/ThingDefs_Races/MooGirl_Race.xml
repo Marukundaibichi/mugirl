@@ -58,6 +58,7 @@
                     </li>
                 </adultBackstoryFilter>
 
+                <minAgeForAdulthood>14</minAgeForAdulthood>
                 <humanRecipeImport>true</humanRecipeImport>
                 <maleGenderProbability>0</maleGenderProbability>
                 <immuneToAge>true</immuneToAge>
@@ -243,6 +244,40 @@
                                 </west>
                             </offsets>
                         </li>
+                        <!-- 婴儿左角附加图层。 -->
+                        <li>
+                            <path>MooGirl/Horn/Left/LeftHorn</path>
+                            <drawSize>0.5</drawSize>
+                            <defaultOffset>Center</defaultOffset>
+                            <alignWithHead>true</alignWithHead>
+                            <scaleWithPawnDrawsize>false</scaleWithPawnDrawsize>
+                            <colorChannel>hair</colorChannel>
+                            <conditions>
+                                <RotStage>Fresh,Rotting</RotStage>
+                                <BodyPart>
+                                    <bodyPart>MooGirl_Horn</bodyPart>
+                                    <bodyPartLabel>left horn</bodyPartLabel>
+                                    <drawWithoutPart>true</drawWithoutPart>
+                                </BodyPart>
+                                <BodyType>Baby</BodyType>
+                            </conditions>
+                            <offsets>
+                                <south>
+                                    <offset>(0.0,0.01)</offset>
+                                    <layerOffset>-0.5</layerOffset>
+                                </south>
+                                <north>
+                                    <offset>(0.0,0.01)</offset>
+                                    <layerOffset>-0.5</layerOffset>
+                                </north>
+                                <east>
+                                    <layerOffset>-0.5</layerOffset>
+                                </east>
+                                <west>
+                                    <layerOffset>-0.5</layerOffset>
+                                </west>
+                            </offsets>
+                        </li>
                         <!-- 右角附加图层。 -->
                         <li>
                             <path>MooGirl/Horn/Right/RightHorn</path>
@@ -259,6 +294,40 @@
                                     <drawWithoutPart>true</drawWithoutPart>
                                 </BodyPart>
                                 <BodyType>Female</BodyType>
+                            </conditions>
+                            <offsets>
+                                <south>
+                                    <offset>(0.0,0.01)</offset>
+                                    <layerOffset>-0.5</layerOffset>
+                                </south>
+                                <north>
+                                    <offset>(0.0,0.01)</offset>
+                                    <layerOffset>-0.5</layerOffset>
+                                </north>
+                                <east>
+                                    <layerOffset>-0.5</layerOffset>
+                                </east>
+                                <west>
+                                    <layerOffset>-0.5</layerOffset>
+                                </west>
+                            </offsets>
+                        </li>
+                        <!-- 婴儿右角附加图层。 -->
+                        <li>
+                            <path>MooGirl/Horn/Right/RightHorn</path>
+                            <drawSize>0.5</drawSize>
+                            <defaultOffset>Center</defaultOffset>
+                            <alignWithHead>true</alignWithHead>
+                            <scaleWithPawnDrawsize>false</scaleWithPawnDrawsize>
+                            <colorChannel>hair</colorChannel>
+                            <conditions>
+                                <RotStage>Fresh,Rotting</RotStage>
+                                <BodyPart>
+                                    <bodyPart>MooGirl_Horn</bodyPart>
+                                    <bodyPartLabel>right horn</bodyPartLabel>
+                                    <drawWithoutPart>true</drawWithoutPart>
+                                </BodyPart>
+                                <BodyType>Baby</BodyType>
                             </conditions>
                             <offsets>
                                 <south>
@@ -296,6 +365,7 @@
             <graphicPaths>
                 <head>MooGirl/Heads/</head>
                 <body>MooGirl/Bodies/</body>
+                <swaddle>MooGirl/Bodies/SwaddledBaby/Swaddled_Child</swaddle>
             </graphicPaths>
             <styleSettings>
                 <li>
@@ -664,7 +734,7 @@
                     <minAge>12</minAge>
                 </li>
                 <li>
-                    <def>MooGirl_AdultLifeStage</def>
+                    <def>HumanlikeAdult</def>
                     <minAge>14</minAge>
                 </li>
             </lifeStageAges>

@@ -2780,9 +2780,9 @@ try {
     $patchRegistryPath = '1.6\Source\Core\MooGirlPatchRegistry.cs'
     if (Test-Path -LiteralPath $patchRegistryPath) {
         $patchRegistryText = Get-Content -LiteralPath $patchRegistryPath -Encoding utf8 -Raw
-        if ($patchRegistryText -notmatch 'AlienRaceCompatibility\.TryGetSwaddleGraphicForTarget\(out\s+MethodInfo\s+target\)' -or
+        if ($patchRegistryText -match 'AlienRaceCompatibility|AlienPawnRenderNode_Swaddle|TryGetSwaddleGraphicForTarget|AlienRaceSwaddleGraphicFor|PatchAlienRaceSwaddleGraphicFor' -or
             $patchRegistryText -match 'AccessTools\.TypeByName') {
-            $compatibilityBoundarySafetyIssues += "$patchRegistryPath :: HAR swaddle target discovery must be delegated to AlienRaceCompatibility"
+            $compatibilityBoundarySafetyIssues += "$patchRegistryPath :: HAR swaddle rendering must be configured through race XML, not a manual reflection patch"
         }
     }
     else {
@@ -2790,17 +2790,26 @@ try {
     }
 
     $compatibilityBoundarySafetyChecks++
-    $alienRaceCompatibilityPath = '1.6\Source\Compatibility\AlienRace\AlienRaceCompatibility.cs'
-    if (Test-Path -LiteralPath $alienRaceCompatibilityPath) {
-        $alienRaceCompatibilityText = Get-Content -LiteralPath $alienRaceCompatibilityPath -Encoding utf8 -Raw
-        if ($alienRaceCompatibilityText -notmatch 'AlienRace\.AlienPawnRenderNode_Swaddle' -or
-            $alienRaceCompatibilityText -notmatch 'AccessTools\.TypeByName' -or
-            $alienRaceCompatibilityText -notmatch 'TryGetSwaddleGraphicForTarget') {
-            $compatibilityBoundarySafetyIssues += "$alienRaceCompatibilityPath :: HAR internal render target lookup must stay centralized in Compatibility/AlienRace"
+    $raceXmlPath = '1.6\Defs\ThingDefs_Races\MooGirl_Race.xml'
+    if (Test-Path -LiteralPath $raceXmlPath) {
+        $raceXmlText = Get-Content -LiteralPath $raceXmlPath -Encoding utf8 -Raw
+        if ($raceXmlText -notmatch '<graphicPaths>[\s\S]*<swaddle>\s*MooGirl/Bodies/SwaddledBaby/Swaddled_Child\s*</swaddle>[\s\S]*</graphicPaths>') {
+            $compatibilityBoundarySafetyIssues += "$raceXmlPath :: HAR swaddle path must be configured in graphicPaths.swaddle"
         }
     }
     else {
-        $compatibilityBoundarySafetyIssues += "$alienRaceCompatibilityPath :: missing AlienRace compatibility file"
+        $compatibilityBoundarySafetyIssues += "$raceXmlPath :: missing race XML for HAR swaddle configuration"
+    }
+
+    $compatibilityBoundarySafetyChecks++
+    $removedSwaddlePatchPaths = @(
+        '1.6\Source\Compatibility\AlienRace\AlienRaceCompatibility.cs',
+        '1.6\Source\Compatibility\AlienRace\Harmony_AlienPawnRenderNode_Swaddle_GraphicFor.cs'
+    )
+    foreach ($removedSwaddlePatchPath in $removedSwaddlePatchPaths) {
+        if (Test-Path -LiteralPath $removedSwaddlePatchPath) {
+            $compatibilityBoundarySafetyIssues += "$removedSwaddlePatchPath :: HAR swaddle reflection patch should stay removed; use graphicPaths.swaddle"
+        }
     }
 
     $compatibilityBoundarySafetyChecks++
@@ -3291,10 +3300,6 @@ try {
             @{
                 Class = 'MooGirl.PawnGenerator_GeneratePawn_Patch'
                 Key = 'MooGirl.PatchRegistry.PawnGeneratorGeneratePawn'
-            },
-            @{
-                Class = 'MooGirl.Patch_AlienPawnRenderNode_Swaddle_GraphicFor'
-                Key = 'MooGirl.PatchRegistry.AlienRaceSwaddleGraphicFor'
             }
         )
         foreach ($expectedManualPatch in $manualPatchExpectations) {
