@@ -45,3 +45,10 @@
 - 大小写尽量和磁盘一致，减少跨平台或打包时的路径问题。
 - 发布包脚本会排除源码、PDB、bin/obj、`.sai2`、临时文件和备份目录。
 
+## Facial Animation 内容
+
+- 新增或修改 `Textures/FA`、`1.6/FacialAnimation/Defs` 前先看 `facial-animation-guide.md`。
+- 新 FA 动画必须写 `raceName=MooGirl`，否则当前雪牛娘专属动画池不会使用它。
+- 新 shape 要同时确认 `*ShapeDef` 和 `{shape}_south` 贴图；缺贴图会按 `altShapeDef`、`normal`、透明 dummy 静默回退。
+- 不要删除或限制 `normal_MooGirl`，它是所有动画合成的基础帧。
+- 眼睛贴图改动要同时处理 `MooGirl_EyeNormal` 的 `altMaskPath=FA/Eyes/Common`，补 mask 或移除该字段二选一。

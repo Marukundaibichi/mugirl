@@ -48,9 +48,8 @@ Failure: 目标缺失或上游变化时的预期行为。
 ## 当前重点兼容对象
 
 - HAR：硬依赖。种族、body、渲染节点相关路径要谨慎。
-- Facial Animation：条件目录加载；只在雪牛娘种族 Def 存在时追加 comp 和动画。
+- Facial Animation：条件目录加载；只在雪牛娘种族 Def 存在时追加 comp 和动画。新增或调整 FA 内容前先看 `facial-animation-guide.md`，尤其是 `raceName=MooGirl` 专属池、`normal_MooGirl` 底座动画、贴图回退和 `FA/Eyes/Common` mask 决策。
 - Search and Destroy：只向雪牛娘行为树插入主动搜索歼灭分支，目标漂移时 no-op。
 - VCookE/PipeSystem：只追加雪牛奶转奶酪工序，工序已存在或目标缺失时 no-op。
 - Melee Animation：渲染兼容层不能因为对方内部字段变化打断绘制。
 - 外部乳房 Hediff mods：只作为可选 HediffDef 探测，不混入本 mod 内部哺乳 Hediff。
-

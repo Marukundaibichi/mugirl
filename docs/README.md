@@ -7,6 +7,7 @@
 - `maintenance-guide.md`：日常改代码、改 Def、改资源前后的基本流程。
 - `content-update-guide.md`：新增服装、物品、Hediff、Job、事件、种族外观等内容时的检查项。
 - `compatibility-guide.md`：DLC、HAR、Facial Animation、Search and Destroy、VCookE 以及其他可选 mod 的兼容规则。
+- `facial-animation-guide.md`：雪牛娘 Facial Animation 接入、贴图命名、动画调度和新增 FA 内容检查项。
 - `localization-and-comments.md`：翻译键、玩家可见文本和中文注释风格。
 - `validation-runbook.md`：静态验证、游戏内验证和 fresh `Player.log` 记录模板。
 - `release-checklist.md`：打包前的发布检查和 Workshop 包生成方式。
@@ -29,4 +30,3 @@
 3. 修改代码、Def 或资源；避免混入无关整理。
 4. 再跑静态验证，必要时按 `validation-runbook.md` 做游戏内验证。
 5. 发布前按 `release-checklist.md` 生成发布包并检查 `TMP` 输出。
-
