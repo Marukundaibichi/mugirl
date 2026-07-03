@@ -41,7 +41,7 @@
         <roopIntervalMax>0</roopIntervalMax>
         <applyWhenStandingOnly>true</applyWhenStandingOnly>
         <targetJobs>
-            <li>Job_GatherMilk</li>
+            <li>Job_MugirlMilkingTargetWait</li>
         </targetJobs>
         <priority>10600</priority>
     </FacialAnimation.FaceAnimationDef>

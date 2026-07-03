@@ -16,6 +16,8 @@ namespace Mugirl
 
         public static JobDef Job_GatherMilk;
 
+        public static JobDef Job_MugirlMilkingTargetWait;
+
         public static JobDef JobDriver_RopeMoo;
 
         public static JobDef JobDriver_RemoveRopeMoo;

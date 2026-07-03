@@ -127,7 +127,9 @@ namespace Mugirl
                 {
                     Pawn actor = wait.actor;
                     actor.pather.StopDead();
-                    PawnUtility.ForceWait(targetPawn, 15000, actor, true);
+                    Job targetWaitJob = JobMaker.MakeJob(Mugirl_DefOf.Job_MugirlMilkingTargetWait, actor);
+                    targetWaitJob.expiryInterval = 15000;
+                    targetPawn.jobs.StartJob(targetWaitJob, JobCondition.InterruptForced, null, resumeCurJobAfterwards: true);
                     forcedWaitJobLoadId = targetPawn.CurJob != null ? targetPawn.CurJob.loadID : -1;
                     BeginGatherEffects(actor, targetPawn);
                 };
@@ -234,7 +236,7 @@ namespace Mugirl
 
         private bool ShouldEndForcedWait(Pawn cleanupTarget)
         {
-            if (cleanupTarget == null || cleanupTarget.Destroyed || cleanupTarget == pawn || cleanupTarget.CurJobDef != JobDefOf.Wait_MaintainPosture)
+            if (cleanupTarget == null || cleanupTarget.Destroyed || cleanupTarget == pawn || cleanupTarget.CurJobDef != Mugirl_DefOf.Job_MugirlMilkingTargetWait)
             {
                 return false;
             }

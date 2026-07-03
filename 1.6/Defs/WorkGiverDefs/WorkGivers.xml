@@ -25,4 +25,14 @@
         <reportString>Milk {TargetA}.</reportString>
         <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
     </JobDef>
+
+    <JobDef>
+        <defName>Job_MugirlMilkingTargetWait</defName>
+        <carryThingAfterJob>true</carryThingAfterJob>
+        <driverClass>JobDriver_WaitMaintainPosture</driverClass>
+        <dropThingBeforeJob>false</dropThingBeforeJob>
+        <ifFlyingKeepFlying>true</ifFlyingKeepFlying>
+        <!-- 被挤奶中 -->
+        <reportString>being milked.</reportString>
+    </JobDef>
 </Defs>
