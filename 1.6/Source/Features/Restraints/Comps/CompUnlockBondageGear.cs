@@ -1,7 +1,7 @@
 ﻿using RimWorld;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
 
     public class CompUnlockBondageGear : CompUseEffect

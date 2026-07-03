@@ -1,6 +1,6 @@
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     internal static class PawnSlaveStatusUtility
     {

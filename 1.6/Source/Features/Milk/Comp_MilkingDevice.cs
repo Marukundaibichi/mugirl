@@ -4,7 +4,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace MooGirl
+namespace Mugirl
 {
     // 榨乳器运行组件：负责储乳状态、穿戴者 Gizmo、释放产物和释放反馈。
     public class Comp_MilkingDevice : ThingComp
@@ -82,12 +82,12 @@ namespace MooGirl
                 return null;
             }
 
-            return "MooGirl.MilkingDevice.Inspect".Translate(
+            return "Mugirl.MilkingDevice.Inspect".Translate(
                 TranslateProp(deviceProps.inspectLabel),
                 storedCharges,
                 Mathf.Max(1, deviceProps.maxCharges),
                 storedMilkAmount,
-                MooGirl_DefOf.MooGirl_Milk.label);
+                Mugirl_DefOf.Mugirl_Milk.label);
         }
 
         public override IEnumerable<Gizmo> CompGetWornGizmosExtra()
@@ -138,8 +138,8 @@ namespace MooGirl
             {
                 yield return new Command_Action
                 {
-                    defaultLabel = "MooGirl.MilkingDevice.DevFill.Label".Translate(),
-                    defaultDesc = "MooGirl.MilkingDevice.DevFill.Desc".Translate(),
+                    defaultLabel = "Mugirl.MilkingDevice.DevFill.Label".Translate(),
+                    defaultDesc = "Mugirl.MilkingDevice.DevFill.Desc".Translate(),
                     icon = TexCommand.DesirePower,
                     action = DevFillMilkResource
                 };
@@ -202,7 +202,7 @@ namespace MooGirl
             ThingDef thingDef = GetReleaseThingDef(deviceProps);
             if (thingDef == null)
             {
-                MooGirlLog.WarningOnce("MilkingDevice.ReleaseThingMissing", "MooGirl.MilkingDevice.ReleaseThingMissing".Translate().ToString());
+                MugirlLog.WarningOnce("MilkingDevice.ReleaseThingMissing", "Mugirl.MilkingDevice.ReleaseThingMissing".Translate().ToString());
                 return;
             }
 
@@ -237,16 +237,16 @@ namespace MooGirl
             CompMooMilkable milkComp = wearer.TryGetComp<CompMooMilkable>();
             if (milkComp == null || !milkComp.DevFillToFull(triggerNotify: true))
             {
-                Messages.Message("MooGirl.MilkingDevice.DevFill.Failed".Translate(wearer.LabelShortCap), wearer, MessageTypeDefOf.RejectInput, historical: false);
+                Messages.Message("Mugirl.MilkingDevice.DevFill.Failed".Translate(wearer.LabelShortCap), wearer, MessageTypeDefOf.RejectInput, historical: false);
                 return;
             }
 
-            Messages.Message("MooGirl.MilkingDevice.DevFill.Success".Translate(wearer.LabelShortCap), wearer, MessageTypeDefOf.PositiveEvent);
+            Messages.Message("Mugirl.MilkingDevice.DevFill.Success".Translate(wearer.LabelShortCap), wearer, MessageTypeDefOf.PositiveEvent);
         }
 
         private static string TranslateProp(string textOrKey)
         {
-            return MooGirlText.Resolve(textOrKey);
+            return MugirlText.Resolve(textOrKey);
         }
 
         private static ThingDef GetCachedThingDef(string defName, ref string cachedDefName, ref ThingDef cachedDef)
@@ -267,7 +267,7 @@ namespace MooGirl
 
         private void SpawnReleasedMilk(Pawn wearer, ThingDef thingDef, int amount)
         {
-            MooGirlMilkOutputUtility.SpawnStacksNear(thingDef, amount, wearer.Position, wearer.Map);
+            MugirlMilkOutputUtility.SpawnStacksNear(thingDef, amount, wearer.Position, wearer.Map);
         }
 
         private void SpawnReleaseFilth(Pawn wearer, CompProperties_MilkingDevice deviceProps)

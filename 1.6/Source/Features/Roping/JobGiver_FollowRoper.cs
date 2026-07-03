@@ -2,7 +2,7 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class JobGiver_FollowRoper : ThinkNode_JobGiver
     {
@@ -36,7 +36,7 @@ namespace MooGirl
             }
 
             RopingService.RegisterPawnRope(roper, pawn);
-            return JobMaker.MakeJob(MooGirl_DefOf.Job_FollowRoper, roper);
+            return JobMaker.MakeJob(Mugirl_DefOf.Job_FollowRoper, roper);
         }
     }
 }

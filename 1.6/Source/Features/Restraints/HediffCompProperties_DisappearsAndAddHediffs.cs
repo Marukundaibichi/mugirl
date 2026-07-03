@@ -1,6 +1,6 @@
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     // Hediff 消失后在同一部位追加另一个 Hediff。
     public class CompProperties_DisappearsAndAddHediffs : HediffCompProperties_Disappears

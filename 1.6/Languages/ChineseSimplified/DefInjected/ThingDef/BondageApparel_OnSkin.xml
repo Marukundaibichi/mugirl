@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
     <!-- A locking restraint glove used to secure a Mugirl's fingers tightly, significantly reducing manipulation and fine motor ability. The gloves are equipped with a dedicated locking mechanism that can only be opened with an [Exquisite Restraint Key]. -->
-    <MooGirl_Slavegauntlet.description>一种带锁的束缚手套，用于将雪牛娘的手指紧紧固定，显著降低其操作与精细劳动能力。\n\n手套配有专用锁具，必须使用[精致束具钥匙]才能解开。</MooGirl_Slavegauntlet.description>
+    <Mugirl_Slavegauntlet.description>一种带锁的束缚手套，用于将雪牛娘的手指紧紧固定，显著降低其操作与精细劳动能力。\n\n手套配有专用锁具，必须使用[精致束具钥匙]才能解开。</Mugirl_Slavegauntlet.description>
     <!-- Mugirl Slave Gauntlets -->
-    <MooGirl_Slavegauntlet.label>雪牛娘 奴隶手套</MooGirl_Slavegauntlet.label>
+    <Mugirl_Slavegauntlet.label>雪牛娘 奴隶手套</Mugirl_Slavegauntlet.label>
     <!-- A special type of restraint stockings shaped similarly to high heels but without heels, making the wearer walk unsteadily with noticeably reduced movement speed. The stockings are equipped with a dedicated locking mechanism that can only be opened with an [Exquisite Restraint Key]. -->
-    <MooGirl_Slavestockings.description>一种特殊的束缚袜，造型类似高跟鞋但缺少后跟，使穿戴者步伐不稳，移动速度明显降低。\n\n袜子配有专用锁具，必须使用[精致束具钥匙]才能解开。</MooGirl_Slavestockings.description>
+    <Mugirl_Slavestockings.description>一种特殊的束缚袜，造型类似高跟鞋但缺少后跟，使穿戴者步伐不稳，移动速度明显降低。\n\n袜子配有专用锁具，必须使用[精致束具钥匙]才能解开。</Mugirl_Slavestockings.description>
     <!-- Mugirl Slave Stockings -->
-    <MooGirl_Slavestockings.label>雪牛娘 奴隶袜</MooGirl_Slavestockings.label>
+    <Mugirl_Slavestockings.label>雪牛娘 奴隶袜</Mugirl_Slavestockings.label>
 </LanguageData>

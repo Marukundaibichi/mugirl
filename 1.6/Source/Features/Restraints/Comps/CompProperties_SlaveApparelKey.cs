@@ -1,6 +1,6 @@
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class CompProperties_SlaveApparelKey : CompProperties
     {

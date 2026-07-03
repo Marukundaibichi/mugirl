@@ -2,7 +2,7 @@
 <Defs>
     <!-- 喝奶疗愈 Hediff（倒地喂奶时获得） -->
     <HediffDef>
-        <defName>MooGirl_MilkHealing</defName>
+        <defName>Mugirl_MilkHealing</defName>
         <hediffClass>HediffWithComps</hediffClass>
         <!-- 雪牛奶疗愈 -->
         <label>Mugirl milk healing</label>

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class CompTargetable_SlaveApparel : CompTargetable
     {
@@ -53,7 +53,7 @@ namespace MooGirl
                 {
                     if (showMessages)
                     {
-                        Messages.Message("MooGirl.AlreadyCracked".Translate(), MessageTypeDefOf.NeutralEvent, historical: false);
+                        Messages.Message("Mugirl.AlreadyCracked".Translate(), MessageTypeDefOf.NeutralEvent, historical: false);
                     }
                     return false;
                 }
@@ -63,7 +63,7 @@ namespace MooGirl
             {
                 if (showMessages)
                 {
-                    Messages.Message("MooGirl.InvalidTarget".Translate(), MessageTypeDefOf.NeutralEvent, historical: false);
+                    Messages.Message("Mugirl.InvalidTarget".Translate(), MessageTypeDefOf.NeutralEvent, historical: false);
                 }
                 return false;
             }

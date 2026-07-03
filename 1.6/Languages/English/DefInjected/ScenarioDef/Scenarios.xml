@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-    <MooGirl_ColonyStart.label>Mugirl Start</MooGirl_ColonyStart.label>
-    <MooGirl_ColonyStart.description>Several Mugirls who were either slaves of a mega corporation or rescued by an anti-slavery organisation have arrived here. They hope to build their own lives in this new environment, pursuing freedom and dignity.</MooGirl_ColonyStart.description>
-    <MooGirl_ColonyStart.scenario.description>Several Mugirls who were formerly slaves of a mega corporation or rescued by an anti-slavery organisation will begin their new lives as your starting colonists. Having cast off their past restraints, they are gradually establishing a colony belonging to the Mugirls.</MooGirl_ColonyStart.scenario.description>
-    <MooGirl_ColonyStart.scenario.name>Mugirl Start</MooGirl_ColonyStart.scenario.name>
-    <MooGirl_ColonyStart.scenario.summary>Several escaped slave Mugirls are beginning their new lives in your colony. They need your help to adapt to freedom and the new environment.</MooGirl_ColonyStart.scenario.summary>
+    <Mugirl_ColonyStart.label>Mugirl Start</Mugirl_ColonyStart.label>
+    <Mugirl_ColonyStart.description>Several Mugirls who were either slaves of a mega corporation or rescued by an anti-slavery organisation have arrived here. They hope to build their own lives in this new environment, pursuing freedom and dignity.</Mugirl_ColonyStart.description>
+    <Mugirl_ColonyStart.scenario.description>Several Mugirls who were formerly slaves of a mega corporation or rescued by an anti-slavery organisation will begin their new lives as your starting colonists. Having cast off their past restraints, they are gradually establishing a colony belonging to the Mugirls.</Mugirl_ColonyStart.scenario.description>
+    <Mugirl_ColonyStart.scenario.name>Mugirl Start</Mugirl_ColonyStart.scenario.name>
+    <Mugirl_ColonyStart.scenario.summary>Several escaped slave Mugirls are beginning their new lives in your colony. They need your help to adapt to freedom and the new environment.</Mugirl_ColonyStart.scenario.summary>
 </LanguageData>

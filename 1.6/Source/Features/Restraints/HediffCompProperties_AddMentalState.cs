@@ -1,7 +1,7 @@
 ﻿using RimWorld;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class CompProperties_AddMentalState : HediffCompProperties
     {
@@ -37,7 +37,7 @@ namespace MooGirl
 
             int triggerTicks = compProps.mentalStateTriggerTicks < 1 ? 1 : compProps.mentalStateTriggerTicks;
             if (!triggered
-                && MooGirlWildSlaveUtility.IsPlayerFaction(pawn.Faction)
+                && MugirlWildSlaveUtility.IsPlayerFaction(pawn.Faction)
                 && age >= triggerTicks
                 && pawn.IsWearingUncrackedBrainwashApparel())
             {

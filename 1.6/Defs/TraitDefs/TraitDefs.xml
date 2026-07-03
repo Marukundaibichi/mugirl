@@ -2,7 +2,7 @@
 <Defs>
 
     <TraitDef>
-        <defName>MooGirl_SingleshotWeaponAversion</defName>
+        <defName>Mugirl_SingleshotWeaponAversion</defName>
         <degreeDatas>
             <li>
                 <!-- 单发武器厌恶 -->
@@ -29,7 +29,7 @@
     </TraitDef>
 
     <TraitDef>
-        <defName>MooGirl_BrainWashPeace</defName>
+        <defName>Mugirl_BrainWashPeace</defName>
         <commonality>0</commonality>
         <degreeDatas>
             <li>
@@ -45,7 +45,7 @@
     </TraitDef>
 
     <TraitDef>
-        <defName>MooGirl_BrainWashObey</defName>
+        <defName>Mugirl_BrainWashObey</defName>
         <commonality>0</commonality>
         <degreeDatas>
             <li>
@@ -58,7 +58,7 @@
     </TraitDef>
 
     <TraitDef>
-        <defName>MooGirl_NurturedByMooGirl</defName>
+        <defName>Mugirl_NurturedByMugirl</defName>
         <commonality>0</commonality>
         <degreeDatas>
             <li>

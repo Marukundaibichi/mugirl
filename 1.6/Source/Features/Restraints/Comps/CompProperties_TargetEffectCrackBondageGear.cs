@@ -1,7 +1,7 @@
 ﻿using RimWorld;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class CompProperties_TargetEffectCrackBondageGear : CompProperties
     {
@@ -21,7 +21,7 @@ namespace MooGirl
             }
             else
             {
-                Messages.Message("MooGirl.CrackBondageGear_TargetNotValid".Translate(), MessageTarget(user, target), MessageTypeDefOf.RejectInput, historical: false);
+                Messages.Message("Mugirl.CrackBondageGear_TargetNotValid".Translate(), MessageTarget(user, target), MessageTypeDefOf.RejectInput, historical: false);
             }
         }
 
@@ -29,18 +29,18 @@ namespace MooGirl
         {
             if (apparel is BrainWashSlaveApparel brain)
             {
-                Messages.Message("MooGirl.CrackBondageGear_CrackBrainwash".Translate(brain.Label), brain, MessageTypeDefOf.PositiveEvent, historical: false);
+                Messages.Message("Mugirl.CrackBondageGear_CrackBrainwash".Translate(brain.Label), brain, MessageTypeDefOf.PositiveEvent, historical: false);
                 brain.Crack();
             }
             else if (apparel is AdvancedSlaveApparel adv)
             {
-                Messages.Message("MooGirl.CrackBondageGear_CrackAdvanced".Translate(adv.Label), adv, MessageTypeDefOf.PositiveEvent, historical: false);
+                Messages.Message("Mugirl.CrackBondageGear_CrackAdvanced".Translate(adv.Label), adv, MessageTypeDefOf.PositiveEvent, historical: false);
                 adv.Crack();
             }
             else
             {
-                Messages.Message("MooGirl.CrackBondageGear_NoCrackableType".Translate(), MessageTarget(user, apparel), MessageTypeDefOf.RejectInput, historical: false);
-                MooGirlLog.WarningOnce("CrackBondageGear.NoCrackableType", "MooGirl.CrackBondageGear_NoCrackableType".Translate().ToString());
+                Messages.Message("Mugirl.CrackBondageGear_NoCrackableType".Translate(), MessageTarget(user, apparel), MessageTypeDefOf.RejectInput, historical: false);
+                MugirlLog.WarningOnce("CrackBondageGear.NoCrackableType", "Mugirl.CrackBondageGear_NoCrackableType".Translate().ToString());
             }
         }
 

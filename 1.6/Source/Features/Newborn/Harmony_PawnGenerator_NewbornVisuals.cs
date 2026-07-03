@@ -2,7 +2,7 @@
 using System;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     [HarmonyPatch(typeof(PawnGenerator))]
     [HarmonyPatch("GeneratePawn")]
@@ -13,7 +13,7 @@ namespace MooGirl
         {
             if (__result == null) return;
 
-            if (MooGirlIdentity.HasMooGirlBody(__result) &&
+            if (MugirlIdentity.HasMugirlBody(__result) &&
                 __result.ageTracker?.CurLifeStage != null &&
                 __result.story != null)
             {

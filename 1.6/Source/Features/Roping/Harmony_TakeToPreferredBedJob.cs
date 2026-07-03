@@ -3,7 +3,7 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     [HarmonyPatch(typeof(WorkGiver_Warden_TakeToBed), "TakeToPreferredBedJob")]
     public static class TakeToPreferredBedJob_Patch

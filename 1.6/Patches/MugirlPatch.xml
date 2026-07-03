@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <!-- PatchGovernance:
+    Targets: 原版和可选 DLC 的戒律 comp、食物 def、建筑 comp、商人库存生成器和熔炼配方。
+    Scope: 1.6 根补丁；向原版/DLC 目标追加雪牛娘的心情、牵引、奴隶库存和束具熔炼集成。
+    Duplicate guard: Ideology 戒律使用条件补丁；原版必需目标为 RimWorld 单次加载的直接追加项。
+    Failure: 缺少可选 Ideology 目标可以接受；必需原版目标缺失由 Phase 6 检查捕获。
+    -->
+    <!-- Ideology 为可选 DLC；缺少时该 PreceptDef 不存在，必须静默跳过。 -->
+    <Operation Class="PatchOperationConditional">
+        <xpath>/Defs/PreceptDef[defName="NutrientPasteEating_Disgusting"]/comps</xpath>
+        <match Class="PatchOperationAdd">
+            <xpath>/Defs/PreceptDef[defName="NutrientPasteEating_Disgusting"]/comps</xpath>
+            <value>
+                <li Class="PreceptComp_SelfTookMemoryThought">
+                    <eventDef>AteNutrientPaste</eventDef>
+                    <thought>Mugirl_AteNutrient</thought>
+                </li>
+            </value>
+        </match>
+    </Operation>
+
+    <Operation Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Hay"]/ingestible</xpath>
+        <value>
+            <tasteThought>Mugirl_AteHay</tasteThought>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="CaravanPackingSpot"]/comps</xpath>
+        <value>
+            <li Class="CompProperties_Usable">
+                <compClass>Mugirl.CompRopeToBuild</compClass>
+                <useJob>RopeToBuild</useJob>
+                <!-- 栓在建筑上的右键操作文本。 -->
+                <useLabel>Rope to Building</useLabel>
+            </li>
+        </value>
+    </Operation>
+
+    <!-- 给奴隶贸易船追加雪牛娘奴隶库存。 -->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/TraderKindDef[defName="Orbital_PirateMerchant"]/stockGenerators</xpath>
+        <value>
+            <li Class="Mugirl.StockGenerator_Mugirl_Slaves">
+                <!-- 生成奴隶的数量范围。 -->
+                <slaveCountRange>0~6</slaveCountRange>
+            </li>
+        </value>
+    </Operation>
+
+    <!-- 给海盗大篷车追加少量雪牛娘奴隶库存。 -->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_PirateMerchant"]/stockGenerators</xpath>
+        <value>
+            <li Class="Mugirl.StockGenerator_Mugirl_Slaves">
+                <!-- 生成奴隶的数量范围。 -->
+                <slaveCountRange>0~2</slaveCountRange>
+            </li>
+        </value>
+    </Operation>
+
+    <!-- 给外来者派系基地追加少量雪牛娘奴隶库存。 -->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/TraderKindDef[defName="Base_Outlander_Standard"]/stockGenerators</xpath>
+        <value>
+            <li Class="Mugirl.StockGenerator_Mugirl_Slaves">
+                <!-- 生成奴隶的数量范围。 -->
+                <slaveCountRange>0~2</slaveCountRange>
+            </li>
+        </value>
+    </Operation>
+
+    <!-- 让电熔炉可以处理束具回收配方。 -->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="ElectricSmelter"]/recipes</xpath>
+        <value>
+            <li>Mugirl_SmeltBondageApparel</li>
+        </value>
+    </Operation>
+</Patch>

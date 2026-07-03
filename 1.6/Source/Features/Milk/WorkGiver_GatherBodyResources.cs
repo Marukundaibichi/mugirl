@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     // 身体资源采集 WorkGiver 基类，扫描可采集雪牛娘并创建对应 Job。
     public abstract class WorkGiver_GatherBodyResources : WorkGiver_Scanner
@@ -24,7 +24,7 @@ namespace MooGirl
             for (int i = 0; i < candidates.Count; i++)
             {
                 Pawn pawn2 = candidates[i];
-                if (MooGirlIdentity.HasMooGirlBody(pawn2))
+                if (MugirlIdentity.HasMugirlBody(pawn2))
                 {
                     yield return pawn2;
                 }
@@ -47,7 +47,7 @@ namespace MooGirl
             }
 
             Pawn pawn2 = thing as Pawn;
-            if (pawn2 == null || pawn2.RaceProps?.Humanlike != true || !MooGirlIdentity.HasMooGirlBody(pawn2))
+            if (pawn2 == null || pawn2.RaceProps?.Humanlike != true || !MugirlIdentity.HasMugirlBody(pawn2))
             {
                 return false;
             }

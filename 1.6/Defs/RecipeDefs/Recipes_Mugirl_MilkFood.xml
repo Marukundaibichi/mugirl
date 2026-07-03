@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <!-- ============== 雪牛娘奶布丁配方 ============== -->
+    <RecipeDef ParentName="CookMealBase">
+        <defName>Mugirl_MakeMilkPudding</defName>
+        <!-- 制作雪牛娘奶布丁 -->
+        <label>make Mugirl milk pudding</label>
+        <!-- 用雪牛娘奶和素食制作奶布丁 -->
+        <description>Make milk pudding with Mugirl milk and vegetarian ingredients.</description>
+        <!-- 正在制作雪牛娘奶布丁 -->
+        <jobString>Making Mugirl milk pudding.</jobString>
+        <workAmount>300</workAmount>
+        <recipeUsers>
+            <li>ElectricStove</li>
+            <li>FueledStove</li>
+        </recipeUsers>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Mugirl_Milk</li>
+                    </thingDefs>
+                </filter>
+                <count>10</count>
+            </li>
+            <li>
+                <filter>
+                    <categories>
+                        <li>PlantFoodRaw</li>
+                    </categories>
+                </filter>
+                <count>0.1</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>Mugirl_Milk</li>
+            </thingDefs>
+            <categories>
+                <li>PlantFoodRaw</li>
+            </categories>
+        </fixedIngredientFilter>
+        <products>
+            <Mugirl_MilkPudding>4</Mugirl_MilkPudding>
+        </products>
+    </RecipeDef>
+
+    <!-- ============== 雪牛娘奶酪配方 ============== -->
+    <RecipeDef ParentName="CookMealBase">
+        <defName>Mugirl_MakeCheese</defName>
+        <!-- 制作雪牛娘奶酪 -->
+        <label>make Mugirl cheese</label>
+        <!-- 用雪牛娘奶制作奶酪 -->
+        <description>Make cheese with Mugirl milk.</description>
+        <!-- 正在制作雪牛娘奶酪 -->
+        <jobString>Making Mugirl cheese.</jobString>
+        <workAmount>300</workAmount>
+        <recipeUsers>
+            <li>ElectricStove</li>
+            <li>FueledStove</li>
+        </recipeUsers>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Mugirl_Milk</li>
+                    </thingDefs>
+                </filter>
+                <count>10</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>Mugirl_Milk</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+        <products>
+            <Mugirl_Cheese>4</Mugirl_Cheese>
+        </products>
+    </RecipeDef>
+
+    <!-- ============== 雪牛娘陈年奶酪配方 ============== -->
+    <RecipeDef ParentName="CookMealBase">
+        <defName>Mugirl_MakeAgedCheese</defName>
+        <!-- 制作雪牛娘陈年奶酪 -->
+        <label>make aged Mugirl cheese</label>
+        <!-- 用雪牛娘奶和啤酒花制作陈年奶酪 -->
+        <description>Make aged cheese with Mugirl milk and hops.</description>
+        <!-- 正在制作雪牛娘陈年奶酪 -->
+        <jobString>Making aged Mugirl cheese.</jobString>
+        <workAmount>600</workAmount>
+        <recipeUsers>
+            <li>ElectricStove</li>
+            <li>FueledStove</li>
+        </recipeUsers>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Mugirl_Milk</li>
+                    </thingDefs>
+                </filter>
+                <count>20</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>RawHops</li>
+                    </thingDefs>
+                </filter>
+                <count>10</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>Mugirl_Milk</li>
+                <li>RawHops</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+        <products>
+            <Mugirl_AgedCheese>4</Mugirl_AgedCheese>
+        </products>
+    </RecipeDef>
+
+    <!-- ============== 雪牛娘奶宝塔糖配方 ============== -->
+    <RecipeDef ParentName="CookMealBase">
+        <defName>Mugirl_MakeBaotaSugar</defName>
+        <!-- 制作雪牛娘奶宝塔糖 -->
+        <label>make Mugirl milk baota candy</label>
+        <!-- 用雪牛娘奶和草药制作糖果打虫药 -->
+        <description>Make candy dewormer with Mugirl milk and herbal medicine.</description>
+        <!-- 正在制作雪牛娘奶宝塔糖 -->
+        <jobString>Making Mugirl milk baota candy.</jobString>
+        <workAmount>300</workAmount>
+        <recipeUsers>
+            <li>DrugLab</li>
+        </recipeUsers>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Mugirl_Milk</li>
+                    </thingDefs>
+                </filter>
+                <count>5</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>MedicineHerbal</li>
+                    </thingDefs>
+                </filter>
+                <count>5</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>Mugirl_Milk</li>
+                <li>MedicineHerbal</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+        <products>
+            <Mugirl_BaotaSugar>4</Mugirl_BaotaSugar>
+        </products>
+    </RecipeDef>
+
+    <!-- ============== 大肥牛奶糖配方 ============== -->
+    <RecipeDef ParentName="CookMealBase">
+        <defName>Mugirl_MakeMilkCandy</defName>
+        <!-- 制作大肥牛奶糖 -->
+        <label>make big cow milk candy</label>
+        <!-- 用雪牛娘奶制作奶糖 -->
+        <description>Make milk candy with Mugirl milk.</description>
+        <!-- 正在制作大肥牛奶糖 -->
+        <jobString>Making big cow milk candy.</jobString>
+        <workAmount>300</workAmount>
+        <recipeUsers>
+            <li>ElectricStove</li>
+            <li>FueledStove</li>
+        </recipeUsers>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Mugirl_Milk</li>
+                    </thingDefs>
+                </filter>
+                <count>2</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>Mugirl_Milk</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+        <products>
+            <Mugirl_MilkCandy>4</Mugirl_MilkCandy>
+        </products>
+    </RecipeDef>
+
+    <!-- ============== 雪牛娘牛乳蛋糕配方 ============== -->
+    <RecipeDef ParentName="CookMealBase">
+        <defName>Mugirl_MakeCowCake</defName>
+        <!-- 制作雪牛娘牛乳蛋糕 -->
+        <label>make Mugirl milk cake</label>
+        <!-- 用雪牛娘奶和素食制作蛋糕 -->
+        <description>Make cake with Mugirl milk and vegetarian ingredients.</description>
+        <!-- 正在制作雪牛娘牛乳蛋糕 -->
+        <jobString>Making Mugirl milk cake.</jobString>
+        <workAmount>300</workAmount>
+        <recipeUsers>
+            <li>ElectricStove</li>
+            <li>FueledStove</li>
+        </recipeUsers>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Mugirl_Milk</li>
+                    </thingDefs>
+                </filter>
+                <count>20</count>
+            </li>
+            <li>
+                <filter>
+                    <categories>
+                        <li>PlantFoodRaw</li>
+                    </categories>
+                </filter>
+                <count>20</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>Mugirl_Milk</li>
+            </thingDefs>
+            <categories>
+                <li>PlantFoodRaw</li>
+            </categories>
+        </fixedIngredientFilter>
+        <products>
+            <Mugirl_CowCake>4</Mugirl_CowCake>
+        </products>
+    </RecipeDef>
+
+    <!-- ============== 雪牛娘奶粉配方 ============== -->
+    <RecipeDef ParentName="CookMealBase">
+        <defName>Mugirl_MakeMilkPowder</defName>
+        <!-- 制作雪牛娘奶粉 -->
+        <label>make Mugirl milk powder</label>
+        <!-- 用雪牛娘奶制作奶粉 -->
+        <description>Make milk powder with Mugirl milk.</description>
+        <!-- 正在制作雪牛娘奶粉 -->
+        <jobString>Making Mugirl milk powder.</jobString>
+        <workAmount>300</workAmount>
+        <recipeUsers>
+            <li>ElectricStove</li>
+            <li>FueledStove</li>
+        </recipeUsers>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Mugirl_Milk</li>
+                    </thingDefs>
+                </filter>
+                <count>5</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>Mugirl_Milk</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+        <products>
+            <Mugirl_MilkPowder>4</Mugirl_MilkPowder>
+        </products>
+    </RecipeDef>
+
+    <!-- ============== 雪牛娘奶片配方 ============== -->
+    <RecipeDef ParentName="CookMealBase">
+        <defName>Mugirl_MakeMilkTablet</defName>
+        <!-- 制作雪牛娘奶片 -->
+        <label>make Mugirl milk tablets</label>
+        <!-- 用雪牛娘奶和药草制作奶片 -->
+        <description>Make milk tablets with Mugirl milk and herbal medicine.</description>
+        <!-- 正在制作雪牛娘奶片 -->
+        <jobString>Making Mugirl milk tablets.</jobString>
+        <workAmount>300</workAmount>
+        <recipeUsers>
+            <li>ElectricStove</li>
+            <li>FueledStove</li>
+        </recipeUsers>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Mugirl_Milk</li>
+                    </thingDefs>
+                </filter>
+                <count>5</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>MedicineHerbal</li>
+                    </thingDefs>
+                </filter>
+                <count>2</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>Mugirl_Milk</li>
+                <li>MedicineHerbal</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+        <products>
+            <Mugirl_MilkTablet>4</Mugirl_MilkTablet>
+        </products>
+    </RecipeDef>
+
+    <!-- ============== 奶霜苹果配方 ============== -->
+    <RecipeDef ParentName="CookMealBase">
+        <defName>Mugirl_MakeMilkCreamApple</defName>
+        <!-- 制作奶霜苹果 -->
+        <label>make milk cream apple</label>
+        <!-- 用雪牛娘奶和素食制作奶霜苹果 -->
+        <description>Make milk cream apple with Mugirl milk and vegetarian ingredients.</description>
+        <!-- 正在制作奶霜苹果 -->
+        <jobString>Making milk cream apple.</jobString>
+        <workAmount>300</workAmount>
+        <recipeUsers>
+            <li>ElectricStove</li>
+            <li>FueledStove</li>
+        </recipeUsers>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Mugirl_Milk</li>
+                    </thingDefs>
+                </filter>
+                <count>5</count>
+            </li>
+            <li>
+                <filter>
+                    <categories>
+                        <li>PlantFoodRaw</li>
+                    </categories>
+                </filter>
+                <count>0.1</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>Mugirl_Milk</li>
+            </thingDefs>
+            <categories>
+                <li>PlantFoodRaw</li>
+            </categories>
+        </fixedIngredientFilter>
+        <products>
+            <Mugirl_MilkCreamApple>4</Mugirl_MilkCreamApple>
+        </products>
+    </RecipeDef>
+
+</Defs>

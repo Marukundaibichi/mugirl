@@ -96,7 +96,7 @@ try {
     $ProductionRoots = @('1.6', 'Bio_1.6', 'Odyssey_1.6', 'Versions', 'Textures', 'Sounds') | Where-Object { Test-Path -LiteralPath $_ }
     $DefTypeAliases = @{
         'AlienRace.ThingDef_AlienRace' = 'ThingDef'
-        'MooGirl.SlaveApparelDef' = 'ThingDef'
+        'Mugirl.SlaveApparelDef' = 'ThingDef'
         'AlienRace.AlienBackstoryDef' = 'BackstoryDef'
     }
     function Get-NormalizedDefType {
@@ -122,7 +122,7 @@ try {
             $msbuild = 'MSBuild.exe'
         }
 
-        & $msbuild '1.6\Source\MooGirlRace.csproj' /p:Configuration=Release /p:Platform=AnyCPU /nologo /v:m
+        & $msbuild '1.6\Source\MugirlRace.csproj' /p:Configuration=Release /p:Platform=AnyCPU /nologo /v:m
         if ($LASTEXITCODE -ne 0) {
             Fail "Release build failed with exit code $LASTEXITCODE"
         }
@@ -281,8 +281,8 @@ try {
     $aboutDoc = Get-XmlDocument (Resolve-Path -LiteralPath $aboutPath)
     $aboutErrors = @()
     $packageId = $aboutDoc.ModMetaData.packageId
-    if ($packageId -ne 'HAR.MuGirlRace') {
-        $aboutErrors += "About.xml :: packageId is '$packageId', expected 'HAR.MuGirlRace'"
+    if ($packageId -ne 'HAR.MugirlRace') {
+        $aboutErrors += "About.xml :: packageId is '$packageId', expected 'HAR.MugirlRace'"
     }
     $supportedVersions = @($aboutDoc.ModMetaData.supportedVersions.li | ForEach-Object { $_.'#text' ?? $_.InnerText ?? $_ })
     if (-not ($supportedVersions -contains '1.6')) {
@@ -304,8 +304,8 @@ try {
     }
 
     $incompatibleIds = @($aboutDoc.ModMetaData.incompatibleWith.li | ForEach-Object { $_.'#text' ?? $_.InnerText ?? $_ })
-    if (-not ($incompatibleIds -contains 'Luca.MuGirlFacialAnimation')) {
-        $aboutErrors += "About.xml :: incompatibleWith missing Luca.MuGirlFacialAnimation"
+    if (-not ($incompatibleIds -contains 'Luca.MugirlFacialAnimation')) {
+        $aboutErrors += "About.xml :: incompatibleWith missing Luca.MugirlFacialAnimation"
     }
     if ($aboutErrors.Count) {
         $aboutErrors | Sort-Object
@@ -419,7 +419,7 @@ try {
     }
 
     Write-Step "Forbidden production patterns"
-    $forbidden = 'Apperal|Heiffs|\bHai\b|Gloden|MechanoidWorkControlSettings|allArmorDefs|milking\(V1\)|south \.png|EyeInHead _backpack|Ldloc_S|MooGirlSkinApplied|Analyzer|MooGirl_FactionUtility|AdvancedSlaveApparel\s*\|\|[^\r\n]*BrainWashSlaveApparel'
+    $forbidden = 'Apperal|Heiffs|\bHai\b|Gloden|MechanoidWorkControlSettings|allArmorDefs|milking\(V1\)|south \.png|EyeInHead _backpack|Ldloc_S|MugirlSkinApplied|Analyzer|Mugirl_FactionUtility|AdvancedSlaveApparel\s*\|\|[^\r\n]*BrainWashSlaveApparel'
     $hits = & rg -n $forbidden @ProductionRoots
     if ($LASTEXITCODE -eq 0) {
         $hits
@@ -431,17 +431,17 @@ try {
 
     Write-Step "Direct Verse.Log calls"
     $allowedDirectLogFiles = New-Object 'System.Collections.Generic.HashSet[string]'
-    [void]$allowedDirectLogFiles.Add('1.6\Source\Core\MooGirlLog.cs')
+    [void]$allowedDirectLogFiles.Add('1.6\Source\Core\MugirlLog.cs')
     $directLogCalls = @()
     Get-ChildItem -LiteralPath '1.6\Source' -Recurse -Filter '*.cs' | ForEach-Object {
         $relative = (Get-RelativePath $_.FullName).TrimStart('.', '\', '/')
-        Select-String -LiteralPath $_.FullName -Pattern '(?<!MooGirl)Log\.(ErrorOnce|Error|Warning|Message)\(' | ForEach-Object {
+        Select-String -LiteralPath $_.FullName -Pattern '(?<!Mugirl)Log\.(ErrorOnce|Error|Warning|Message)\(' | ForEach-Object {
             if (-not $allowedDirectLogFiles.Contains($relative)) {
                 $directLogCalls += ("{0}:{1}: {2}" -f $relative, $_.LineNumber, $_.Line.Trim())
             }
         }
     }
-    $logWrapperPath = '1.6\Source\Core\MooGirlLog.cs'
+    $logWrapperPath = '1.6\Source\Core\MugirlLog.cs'
     if (Test-Path -LiteralPath $logWrapperPath) {
         $logWrapperText = Get-Content -LiteralPath $logWrapperPath -Encoding utf8 -Raw
         if ($logWrapperText -notmatch 'internal\s+static\s+void\s+DevMessage\(' -or
@@ -472,14 +472,14 @@ try {
             return
         }
 
-        Select-String -LiteralPath $_.FullName -Pattern 'MooGirlLog\.Message\(' | ForEach-Object {
-            $directLogCalls += ("{0}:{1}: business code must not use MooGirlLog.Message: {2}" -f $relative, $_.LineNumber, $_.Line.Trim())
+        Select-String -LiteralPath $_.FullName -Pattern 'MugirlLog\.Message\(' | ForEach-Object {
+            $directLogCalls += ("{0}:{1}: business code must not use MugirlLog.Message: {2}" -f $relative, $_.LineNumber, $_.Line.Trim())
         }
-        Select-String -LiteralPath $_.FullName -Pattern 'MooGirlLog\.Warning\(' | ForEach-Object {
-            $directLogCalls += ("{0}:{1}: business code must use MooGirlLog.WarningOnce instead of non-limited Warning: {2}" -f $relative, $_.LineNumber, $_.Line.Trim())
+        Select-String -LiteralPath $_.FullName -Pattern 'MugirlLog\.Warning\(' | ForEach-Object {
+            $directLogCalls += ("{0}:{1}: business code must use MugirlLog.WarningOnce instead of non-limited Warning: {2}" -f $relative, $_.LineNumber, $_.Line.Trim())
         }
-        Select-String -LiteralPath $_.FullName -Pattern 'MooGirlLog\.Error\(' | ForEach-Object {
-            $directLogCalls += ("{0}:{1}: business code must not use MooGirlLog.Error; use a downgraded WarningOnce/fallback path unless a red error is explicitly justified: {2}" -f $relative, $_.LineNumber, $_.Line.Trim())
+        Select-String -LiteralPath $_.FullName -Pattern 'MugirlLog\.Error\(' | ForEach-Object {
+            $directLogCalls += ("{0}:{1}: business code must not use MugirlLog.Error; use a downgraded WarningOnce/fallback path unless a red error is explicitly justified: {2}" -f $relative, $_.LineNumber, $_.Line.Trim())
         }
     }
     if ($directLogCalls.Count) {
@@ -492,21 +492,21 @@ try {
     $textFormattingSafetyIssues = @()
 
     $textFormattingSafetyChecks++
-    $textUtilityPath = '1.6\Source\Core\MooGirlText.cs'
+    $textUtilityPath = '1.6\Source\Core\MugirlText.cs'
     if (Test-Path -LiteralPath $textUtilityPath) {
         $textUtilityText = Get-Content -LiteralPath $textUtilityPath -Encoding utf8 -Raw
         $textFormatFailureSafe = $textUtilityText -match 'catch\s*\(\s*Exception\s+ex\s*\)' `
             -and $textUtilityText -match 'ex\.GetType\(\)\.Name\s*\+\s*": "\s*\+\s*ex\.Message' `
-            -and $textUtilityText -match 'MooGirlLog\.WarningOnce' `
+            -and $textUtilityText -match 'MugirlLog\.WarningOnce' `
             -and $textUtilityText -match 'Text\.FormatFailed\.' `
             -and $textUtilityText -match 'Gen\.HashCombineInt\(textOrKey\.GetHashCode\(\),\s*781233517\)' `
-            -and $textUtilityText -match 'MooGirl\.Text\.FormatFailedLog' `
+            -and $textUtilityText -match 'Mugirl\.Text\.FormatFailedLog' `
             -and $textUtilityText -match 'detail\.Named\("ERROR"\)' `
             -and $textUtilityText -match 'return\s+textOrKey' `
             -and $textUtilityText -notmatch 'Log\.ErrorOnce' `
             -and $textUtilityText -notmatch 'Log\.Error\s*\('
         if (-not $textFormatFailureSafe) {
-            $textFormattingSafetyIssues += "$textUtilityPath :: text formatting failures must degrade with MooGirlLog.WarningOnce and return the original text"
+            $textFormattingSafetyIssues += "$textUtilityPath :: text formatting failures must degrade with MugirlLog.WarningOnce and return the original text"
         }
     }
     else {
@@ -522,7 +522,7 @@ try {
     $tickManagerAccessSafetyChecks = 0
     $tickManagerAccessSafetyIssues = @()
 
-    $tickUtilityPath = '1.6\Source\Core\MooGirlTickUtility.cs'
+    $tickUtilityPath = '1.6\Source\Core\MugirlTickUtility.cs'
     $tickManagerAccessSafetyChecks++
     if (Test-Path -LiteralPath $tickUtilityPath) {
         $tickUtilityText = Get-Content -LiteralPath $tickUtilityPath -Encoding utf8 -Raw
@@ -551,7 +551,7 @@ try {
         }
     if ($directTickManagerAccess.Count) {
         $directTickManagerAccess | Sort-Object
-        $tickManagerAccessSafetyIssues += "1.6\Source :: direct Find.TickManager access outside MooGirlTickUtility"
+        $tickManagerAccessSafetyIssues += "1.6\Source :: direct Find.TickManager access outside MugirlTickUtility"
     }
 
     if ($tickManagerAccessSafetyIssues.Count) {
@@ -564,9 +564,9 @@ try {
     $findAccessSafetyIssues = @()
 
     $allowedFindAccessFiles = New-Object 'System.Collections.Generic.HashSet[string]'
-    [void]$allowedFindAccessFiles.Add('1.6\Source\Core\MooGirlGameUtility.cs')
-    [void]$allowedFindAccessFiles.Add('1.6\Source\Core\MooGirlSelectionUtility.cs')
-    [void]$allowedFindAccessFiles.Add('1.6\Source\Core\MooGirlTickUtility.cs')
+    [void]$allowedFindAccessFiles.Add('1.6\Source\Core\MugirlGameUtility.cs')
+    [void]$allowedFindAccessFiles.Add('1.6\Source\Core\MugirlSelectionUtility.cs')
+    [void]$allowedFindAccessFiles.Add('1.6\Source\Core\MugirlTickUtility.cs')
 
     $findAccessSafetyChecks++
     foreach ($allowedFindAccessFile in $allowedFindAccessFiles) {
@@ -602,12 +602,12 @@ try {
     $currentGameAccessSafetyIssues = @()
 
     $allowedCurrentGameAccessFiles = New-Object 'System.Collections.Generic.HashSet[string]'
-    [void]$allowedCurrentGameAccessFiles.Add('1.6\Source\Core\MooGirlGameUtility.cs')
-    [void]$allowedCurrentGameAccessFiles.Add('1.6\Source\Core\MooGirlSelectionUtility.cs')
-    [void]$allowedCurrentGameAccessFiles.Add('1.6\Source\Core\MooGirlTickUtility.cs')
+    [void]$allowedCurrentGameAccessFiles.Add('1.6\Source\Core\MugirlGameUtility.cs')
+    [void]$allowedCurrentGameAccessFiles.Add('1.6\Source\Core\MugirlSelectionUtility.cs')
+    [void]$allowedCurrentGameAccessFiles.Add('1.6\Source\Core\MugirlTickUtility.cs')
 
     $currentGameAccessSafetyChecks++
-    $gameUtilityPathForCurrent = '1.6\Source\Core\MooGirlGameUtility.cs'
+    $gameUtilityPathForCurrent = '1.6\Source\Core\MugirlGameUtility.cs'
     if (Test-Path -LiteralPath $gameUtilityPathForCurrent) {
         $gameUtilityCurrentText = Get-Content -LiteralPath $gameUtilityPathForCurrent -Encoding utf8 -Raw
         if ($gameUtilityCurrentText -notmatch 'internal\s+static\s+bool\s+IsPlaying\(\)' -or
@@ -660,7 +660,7 @@ try {
     $defLookupSafetyIssues = @()
 
     $defLookupSafetyChecks++
-    $requiredDefsPath = '1.6\Source\Core\MooGirlRequiredDefs.cs'
+    $requiredDefsPath = '1.6\Source\Core\MugirlRequiredDefs.cs'
     if (Test-Path -LiteralPath $requiredDefsPath) {
         $requiredDefsText = Get-Content -LiteralPath $requiredDefsPath -Encoding utf8 -Raw
         $requiredDefsUsesHelper = $requiredDefsText -match 'Required<[^>]+>\('
@@ -674,7 +674,7 @@ try {
     }
 
     $defLookupSafetyChecks++
-    $optionalDefsPath = '1.6\Source\Core\MooGirlOptionalDefs.cs'
+    $optionalDefsPath = '1.6\Source\Core\MugirlOptionalDefs.cs'
     if (Test-Path -LiteralPath $optionalDefsPath) {
         $optionalDefsText = Get-Content -LiteralPath $optionalDefsPath -Encoding utf8 -Raw
         if ($optionalDefsText -match 'DefDatabase<[^>]+>\.GetNamed\(') {
@@ -723,7 +723,7 @@ try {
 
         $dynamicRecipeSafetyChecks++
         $drugAdministerIngestibleSafe = $drugAdministerText -match 'milkDef\.ingestible\s*==\s*null' `
-            -and $drugAdministerText -match 'MooGirlLog\.WarningOnce' `
+            -and $drugAdministerText -match 'MugirlLog\.WarningOnce' `
             -and $drugAdministerText -notmatch 'milkDef\.ingestible\?\.'
         if (-not $drugAdministerIngestibleSafe) {
             $dynamicRecipeSafetyIssues += "$drugAdministerPath :: administer milk recipe must not be generated from a non-ingestible ThingDef fallback"
@@ -744,12 +744,12 @@ try {
         $dynamicRecipeSafetyChecks++
         $drugAdministerUsersSafe = $drugAdministerText -match 'PopulateRecipeUsers\(recipeDef\)' `
             -and $drugAdministerText -match 'DefDatabase<ThingDef>\.AllDefsListForReading' `
-            -and $drugAdministerText -match 'MooGirlIdentity\.IsMooGirlPawnDef\(pawnDef\)' `
+            -and $drugAdministerText -match 'MugirlIdentity\.IsMugirlPawnDef\(pawnDef\)' `
             -and $drugAdministerText -notmatch 'race\.IsFlesh' `
-            -and $drugAdministerText -notmatch 'MooGirl_DefOf\.MooGirlBody' `
+            -and $drugAdministerText -notmatch 'Mugirl_DefOf\.MugirlBody' `
             -and $drugAdministerText -notmatch 'DefDatabase<ThingDef>\.AllDefs(?!ListForReading)'
         if (-not $drugAdministerUsersSafe) {
-            $dynamicRecipeSafetyIssues += "$drugAdministerPath :: administer milk recipeUsers must stay limited to MooGirl race/body and avoid broad flesh-pawn scans"
+            $dynamicRecipeSafetyIssues += "$drugAdministerPath :: administer milk recipeUsers must stay limited to Mugirl race/body and avoid broad flesh-pawn scans"
         }
     }
     else {
@@ -760,70 +760,70 @@ try {
         Fail "Dynamic recipe safety scan failed: $($dynamicRecipeSafetyIssues.Count) issue(s)"
     }
 
-    Write-Step "MooGirl identity safety"
-    $mooGirlIdentitySafetyChecks = 0
-    $mooGirlIdentitySafetyIssues = @()
+    Write-Step "Mugirl identity safety"
+    $mugirlIdentitySafetyChecks = 0
+    $mugirlIdentitySafetyIssues = @()
 
-    $mooGirlIdentityPath = '1.6\Source\Core\MooGirlIdentity.cs'
-    $mooGirlIdentitySafetyChecks++
-    if (Test-Path -LiteralPath $mooGirlIdentityPath) {
-        $mooGirlIdentityText = Get-Content -LiteralPath $mooGirlIdentityPath -Encoding utf8 -Raw
-        $mooGirlIdentitySafe = $mooGirlIdentityText -match 'internal\s+static\s+bool\s+IsMooGirlDef\(Pawn\s+pawn\)' `
-            -and $mooGirlIdentityText -match 'internal\s+static\s+bool\s+IsMooGirlDef\(ThingDef\s+thingDef\)' `
-            -and $mooGirlIdentityText -match 'internal\s+static\s+bool\s+HasMooGirlBody\(Pawn\s+pawn\)' `
-            -and $mooGirlIdentityText -match 'internal\s+static\s+bool\s+HasMooGirlBody\(ThingDef\s+thingDef\)' `
-            -and $mooGirlIdentityText -match 'internal\s+static\s+bool\s+IsMooGirlPawn\(Pawn\s+pawn\)' `
-            -and $mooGirlIdentityText -match 'internal\s+static\s+bool\s+IsMooGirlPawnDef\(ThingDef\s+thingDef\)' `
-            -and $mooGirlIdentityText -match 'thingDef\?\.category\s*==\s*ThingCategory\.Pawn'
-        if (-not $mooGirlIdentitySafe) {
-            $mooGirlIdentitySafetyIssues += "$mooGirlIdentityPath :: MooGirl identity checks must centralize Pawn and ThingDef race/body recognition"
+    $mugirlIdentityPath = '1.6\Source\Core\MugirlIdentity.cs'
+    $mugirlIdentitySafetyChecks++
+    if (Test-Path -LiteralPath $mugirlIdentityPath) {
+        $mugirlIdentityText = Get-Content -LiteralPath $mugirlIdentityPath -Encoding utf8 -Raw
+        $mugirlIdentitySafe = $mugirlIdentityText -match 'internal\s+static\s+bool\s+IsMugirlDef\(Pawn\s+pawn\)' `
+            -and $mugirlIdentityText -match 'internal\s+static\s+bool\s+IsMugirlDef\(ThingDef\s+thingDef\)' `
+            -and $mugirlIdentityText -match 'internal\s+static\s+bool\s+HasMugirlBody\(Pawn\s+pawn\)' `
+            -and $mugirlIdentityText -match 'internal\s+static\s+bool\s+HasMugirlBody\(ThingDef\s+thingDef\)' `
+            -and $mugirlIdentityText -match 'internal\s+static\s+bool\s+IsMugirlPawn\(Pawn\s+pawn\)' `
+            -and $mugirlIdentityText -match 'internal\s+static\s+bool\s+IsMugirlPawnDef\(ThingDef\s+thingDef\)' `
+            -and $mugirlIdentityText -match 'thingDef\?\.category\s*==\s*ThingCategory\.Pawn'
+        if (-not $mugirlIdentitySafe) {
+            $mugirlIdentitySafetyIssues += "$mugirlIdentityPath :: Mugirl identity checks must centralize Pawn and ThingDef race/body recognition"
         }
     }
     else {
-        $mooGirlIdentitySafetyIssues += "$mooGirlIdentityPath :: missing file for MooGirl identity safety"
+        $mugirlIdentitySafetyIssues += "$mugirlIdentityPath :: missing file for Mugirl identity safety"
     }
 
-    $mooGirlIdentitySafetyChecks++
-    $directMooGirlBodyChecks = @()
+    $mugirlIdentitySafetyChecks++
+    $directMugirlBodyChecks = @()
     Get-ChildItem -LiteralPath '1.6\Source' -Recurse -Filter '*.cs' |
         Where-Object { $_.FullName -notmatch '\\bin\\|\\obj\\' } |
         ForEach-Object {
             $relative = (Get-RelativePath $_.FullName).TrimStart('.', '\', '/')
-            if ($relative -ne $mooGirlIdentityPath) {
-                Select-String -LiteralPath $_.FullName -Pattern 'MooGirl_DefOf\.MooGirlBody|body\.defName\s*[=!]=\s*"MooGirlBody"' | ForEach-Object {
-                    $directMooGirlBodyChecks += ("{0}:{1}: {2}" -f $relative, $_.LineNumber, $_.Line.Trim())
+            if ($relative -ne $mugirlIdentityPath) {
+                Select-String -LiteralPath $_.FullName -Pattern 'Mugirl_DefOf\.MugirlBody|body\.defName\s*[=!]=\s*"MugirlBody"' | ForEach-Object {
+                    $directMugirlBodyChecks += ("{0}:{1}: {2}" -f $relative, $_.LineNumber, $_.Line.Trim())
                 }
             }
         }
-    if ($directMooGirlBodyChecks.Count) {
-        $directMooGirlBodyChecks | Sort-Object
-        $mooGirlIdentitySafetyIssues += "1.6\Source :: direct MooGirl body identity checks outside MooGirlIdentity"
+    if ($directMugirlBodyChecks.Count) {
+        $directMugirlBodyChecks | Sort-Object
+        $mugirlIdentitySafetyIssues += "1.6\Source :: direct Mugirl body identity checks outside MugirlIdentity"
     }
 
-    $mooGirlIdentitySafetyChecks++
+    $mugirlIdentitySafetyChecks++
     $identityCallSites = @{
-        '1.6\Source\Features\Misc\Thought_MooGirlOnly.cs' = 'MooGirlIdentity\.HasMooGirlBody\(currentPawn\)'
-        '1.6\Source\Features\Roping\RopingService.cs' = 'MooGirlIdentity\.HasMooGirlBody\(pawn\)'
-        '1.6\Source\Features\Milk\WorkGiver_GatherBodyResources.cs' = 'MooGirlIdentity\.HasMooGirlBody\(pawn2\)'
-        '1.6\Source\Features\Newborn\LifeStageVisualService.cs' = 'MooGirlIdentity\.HasMooGirlBody\(pawn\)'
-        '1.6\Source\Features\Newborn\Harmony_PawnGenerator_NewbornVisuals.cs' = 'MooGirlIdentity\.HasMooGirlBody\(__result\)'
-        '1.6\Source\Features\Misc\Harmony_DrugAdministerDefs.cs' = 'MooGirlIdentity\.IsMooGirlPawnDef\(pawnDef\)'
+        '1.6\Source\Features\Misc\Thought_MugirlOnly.cs' = 'MugirlIdentity\.HasMugirlBody\(currentPawn\)'
+        '1.6\Source\Features\Roping\RopingService.cs' = 'MugirlIdentity\.HasMugirlBody\(pawn\)'
+        '1.6\Source\Features\Milk\WorkGiver_GatherBodyResources.cs' = 'MugirlIdentity\.HasMugirlBody\(pawn2\)'
+        '1.6\Source\Features\Newborn\LifeStageVisualService.cs' = 'MugirlIdentity\.HasMugirlBody\(pawn\)'
+        '1.6\Source\Features\Newborn\Harmony_PawnGenerator_NewbornVisuals.cs' = 'MugirlIdentity\.HasMugirlBody\(__result\)'
+        '1.6\Source\Features\Misc\Harmony_DrugAdministerDefs.cs' = 'MugirlIdentity\.IsMugirlPawnDef\(pawnDef\)'
     }
     foreach ($entry in $identityCallSites.GetEnumerator()) {
         if (-not (Test-Path -LiteralPath $entry.Key)) {
-            $mooGirlIdentitySafetyIssues += "$($entry.Key) :: missing file for MooGirl identity call-site safety"
+            $mugirlIdentitySafetyIssues += "$($entry.Key) :: missing file for Mugirl identity call-site safety"
             continue
         }
 
         $callSiteText = Get-Content -LiteralPath $entry.Key -Encoding utf8 -Raw
         if ($callSiteText -notmatch $entry.Value) {
-            $mooGirlIdentitySafetyIssues += "$($entry.Key) :: must use centralized MooGirlIdentity helper for MooGirl race/body checks"
+            $mugirlIdentitySafetyIssues += "$($entry.Key) :: must use centralized MugirlIdentity helper for Mugirl race/body checks"
         }
     }
 
-    if ($mooGirlIdentitySafetyIssues.Count) {
-        $mooGirlIdentitySafetyIssues | Sort-Object
-        Fail "MooGirl identity safety scan failed: $($mooGirlIdentitySafetyIssues.Count) issue(s)"
+    if ($mugirlIdentitySafetyIssues.Count) {
+        $mugirlIdentitySafetyIssues | Sort-Object
+        Fail "Mugirl identity safety scan failed: $($mugirlIdentitySafetyIssues.Count) issue(s)"
     }
 
     Write-Step "Player faction helper safety"
@@ -924,8 +924,8 @@ try {
     $restraintTargetSafetyChecks++
     if (Test-Path -LiteralPath $targetablePath) {
         $targetableText = Get-Content -LiteralPath $targetablePath -Encoding utf8 -Raw
-        if ($targetableText -notmatch 'Messages\.Message\("MooGirl\.AlreadyCracked"\.Translate\(\),\s*MessageTypeDefOf\.NeutralEvent,\s*historical:\s*false\)' -or
-            $targetableText -notmatch 'Messages\.Message\("MooGirl\.InvalidTarget"\.Translate\(\),\s*MessageTypeDefOf\.NeutralEvent,\s*historical:\s*false\)') {
+        if ($targetableText -notmatch 'Messages\.Message\("Mugirl\.AlreadyCracked"\.Translate\(\),\s*MessageTypeDefOf\.NeutralEvent,\s*historical:\s*false\)' -or
+            $targetableText -notmatch 'Messages\.Message\("Mugirl\.InvalidTarget"\.Translate\(\),\s*MessageTypeDefOf\.NeutralEvent,\s*historical:\s*false\)') {
             $restraintTargetSafetyIssues += "$targetablePath :: targetable invalid/already-cracked feedback must not be archived"
         }
     }
@@ -949,9 +949,9 @@ try {
     $restraintTargetSafetyChecks++
     if (Test-Path -LiteralPath $slaveApparelExtensionsPath) {
         $slaveApparelExtensionsText = Get-Content -LiteralPath $slaveApparelExtensionsPath -Encoding utf8 -Raw
-        if ($slaveApparelExtensionsText -notmatch 'MooGirlGameUtility\.TryAddWindow\(\s*new\s+FloatMenu\(options\)\s*\)' -or
+        if ($slaveApparelExtensionsText -notmatch 'MugirlGameUtility\.TryAddWindow\(\s*new\s+FloatMenu\(options\)\s*\)' -or
             $slaveApparelExtensionsText -match 'Find\.WindowStack') {
-            $restraintTargetSafetyIssues += "$slaveApparelExtensionsPath :: unlock submenu must use MooGirlGameUtility.TryAddWindow and avoid direct Find.WindowStack"
+            $restraintTargetSafetyIssues += "$slaveApparelExtensionsPath :: unlock submenu must use MugirlGameUtility.TryAddWindow and avoid direct Find.WindowStack"
         }
     }
     else {
@@ -961,7 +961,7 @@ try {
     $restraintTargetSafetyChecks++
     if (Test-Path -LiteralPath $slaveApparelExtensionsPath) {
         $slaveApparelExtensionsText = Get-Content -LiteralPath $slaveApparelExtensionsPath -Encoding utf8 -Raw
-        if ($slaveApparelExtensionsText -notmatch 'Messages\.Message\("MooGirl\.NotWearingLockedApparel"\.Translate\(\),\s*MessageTypeDefOf\.RejectInput,\s*historical:\s*false\)') {
+        if ($slaveApparelExtensionsText -notmatch 'Messages\.Message\("Mugirl\.NotWearingLockedApparel"\.Translate\(\),\s*MessageTypeDefOf\.RejectInput,\s*historical:\s*false\)') {
             $restraintTargetSafetyIssues += "$slaveApparelExtensionsPath :: no-locked-apparel reject feedback must not be archived"
         }
     }
@@ -973,15 +973,15 @@ try {
     $crackBondageGearEffectPath = '1.6\Source\Features\Restraints\Comps\CompProperties_TargetEffectCrackBondageGear.cs'
     if (Test-Path -LiteralPath $crackBondageGearEffectPath) {
         $crackBondageGearEffectText = Get-Content -LiteralPath $crackBondageGearEffectPath -Encoding utf8 -Raw
-        $crackBondageGearFeedbackSafe = $crackBondageGearEffectText -match 'Messages\.Message\("MooGirl\.CrackBondageGear_TargetNotValid"' `
-            -and $crackBondageGearEffectText -match 'Messages\.Message\("MooGirl\.CrackBondageGear_CrackBrainwash"' `
-            -and $crackBondageGearEffectText -match 'Messages\.Message\("MooGirl\.CrackBondageGear_CrackAdvanced"' `
-            -and $crackBondageGearEffectText -match 'Messages\.Message\("MooGirl\.CrackBondageGear_NoCrackableType"' `
+        $crackBondageGearFeedbackSafe = $crackBondageGearEffectText -match 'Messages\.Message\("Mugirl\.CrackBondageGear_TargetNotValid"' `
+            -and $crackBondageGearEffectText -match 'Messages\.Message\("Mugirl\.CrackBondageGear_CrackBrainwash"' `
+            -and $crackBondageGearEffectText -match 'Messages\.Message\("Mugirl\.CrackBondageGear_CrackAdvanced"' `
+            -and $crackBondageGearEffectText -match 'Messages\.Message\("Mugirl\.CrackBondageGear_NoCrackableType"' `
             -and $crackBondageGearEffectText -match 'MessageTarget\(Pawn\s+user,\s*Thing\s+fallback\)' `
-            -and $crackBondageGearEffectText -match 'MooGirlLog\.WarningOnce\("CrackBondageGear\.NoCrackableType"' `
-            -and $crackBondageGearEffectText -notmatch 'MooGirlLog\.Message' `
-            -and $crackBondageGearEffectText -notmatch '(?<!MooGirl)Log\.Message' `
-            -and $crackBondageGearEffectText -notmatch '(?<!MooGirl)Log\.Warning'
+            -and $crackBondageGearEffectText -match 'MugirlLog\.WarningOnce\("CrackBondageGear\.NoCrackableType"' `
+            -and $crackBondageGearEffectText -notmatch 'MugirlLog\.Message' `
+            -and $crackBondageGearEffectText -notmatch '(?<!Mugirl)Log\.Message' `
+            -and $crackBondageGearEffectText -notmatch '(?<!Mugirl)Log\.Warning'
         if (-not $crackBondageGearFeedbackSafe) {
             $restraintTargetSafetyIssues += "$crackBondageGearEffectPath :: crack bondage gear player feedback must use Messages.Message, keep only WarningOnce for impossible XML type drift and avoid raw log output"
         }
@@ -1073,7 +1073,7 @@ try {
         if ($addTraitText -notmatch 'props\s+as\s+CompProperties_AddTrait' -or
             $addTraitText -notmatch 'TryGainTrait' -or
             $addTraitText -notmatch 'string\.IsNullOrWhiteSpace\(pawnType\)' -or
-            $addTraitText -notmatch 'MooGirlWildSlaveUtility\.IsHostileToPlayer\(pawn\)') {
+            $addTraitText -notmatch 'MugirlWildSlaveUtility\.IsHostileToPlayer\(pawn\)') {
             $restraintHediffStateSafetyIssues += "$addTraitPath :: AddTrait hediff must guard props, missing trait entries and player hostility helper"
         }
     }
@@ -1103,7 +1103,7 @@ try {
         if ($addMentalStateText -notmatch 'props\s+as\s+CompProperties_AddMentalState' -or
             $addMentalStateText -notmatch 'compProps\s*==\s*null' -or
             $addMentalStateText -notmatch 'mentalStateHandler\s*!=\s*null' -or
-            $addMentalStateText -notmatch 'MooGirlWildSlaveUtility\.IsPlayerFaction\(pawn\.Faction\)') {
+            $addMentalStateText -notmatch 'MugirlWildSlaveUtility\.IsPlayerFaction\(pawn\.Faction\)') {
             $restraintHediffStateSafetyIssues += "$addMentalStatePath :: AddMentalState hediff must guard props, mentalState handler and player faction helper"
         }
     }
@@ -1294,9 +1294,9 @@ try {
     $ropingServicePath = '1.6\Source\Features\Roping\RopingService.cs'
     if (Test-Path -LiteralPath $ropingServicePath) {
         $ropingServiceText = Get-Content -LiteralPath $ropingServicePath -Encoding utf8 -Raw
-        $ropingTargetBounded = $ropingServiceText -match 'public\s+static\s+bool\s+CanStartPawnRope\(Pawn\s+roper,\s*Pawn\s+ropee\)[\s\S]*if\s*\(\s*!IsMooGirlRopee\(ropee\)\s*\)\s*\{\s*return\s+false;\s*\}'
+        $ropingTargetBounded = $ropingServiceText -match 'public\s+static\s+bool\s+CanStartPawnRope\(Pawn\s+roper,\s*Pawn\s+ropee\)[\s\S]*if\s*\(\s*!IsMugirlRopee\(ropee\)\s*\)\s*\{\s*return\s+false;\s*\}'
         if (-not $ropingTargetBounded) {
-            $ropingTargetSafetyIssues += "$ropingServicePath :: CanStartPawnRope must reject non-MooGirl ropees before allowing rope jobs to start"
+            $ropingTargetSafetyIssues += "$ropingServicePath :: CanStartPawnRope must reject non-Mugirl ropees before allowing rope jobs to start"
         }
     }
     else {
@@ -1310,7 +1310,7 @@ try {
         $ropeMooInvasiveBranchesRemoved = $ropeMooText -match 'NotifyRopeAccepted\(pawn\)' `
             -and $ropeMooText -notmatch 'GetAcceptArrestChance|MessageRefusedRope|RopeRejected|MentalStateDefOf\.Berserk|Notify_MemberCaptured|CheckAcceptRope'
         if (-not $ropeMooInvasiveBranchesRemoved) {
-            $ropingTargetSafetyIssues += "$ropeMooPath :: rope job must not keep vanilla arrest chance/refusal/berserk branches for non-MooGirl pawns"
+            $ropingTargetSafetyIssues += "$ropeMooPath :: rope job must not keep vanilla arrest chance/refusal/berserk branches for non-Mugirl pawns"
         }
     }
     else {
@@ -1321,13 +1321,13 @@ try {
     $floatMenuRopePath = '1.6\Source\Features\Roping\FloatMenuProvider_RopeMoo.cs'
     if (Test-Path -LiteralPath $floatMenuRopePath) {
         $floatMenuRopeText = Get-Content -LiteralPath $floatMenuRopePath -Encoding utf8 -Raw
-        $floatMenuRopeBounded = $floatMenuRopeText -match 'TargetPawnValid\(Pawn\s+target,\s*FloatMenuContext\s+context\)[\s\S]*!RopingService\.IsMooGirlRopee\(target\)' `
+        $floatMenuRopeBounded = $floatMenuRopeText -match 'TargetPawnValid\(Pawn\s+target,\s*FloatMenuContext\s+context\)[\s\S]*!RopingService\.IsMugirlRopee\(target\)' `
             -and $floatMenuRopeText -match '1f\.ToStringPercent\(\)' `
             -and $floatMenuRopeText -match 'RopingService\.IsRopedByPawn\(target\)' `
             -and $floatMenuRopeText -match '!isPawnRopedByPawn\s*&&\s*!isPawnRopedToThing' `
             -and $floatMenuRopeText -notmatch 'GetAcceptArrestChance|target\.IsPrisonerOfColony|target\.IsSlave'
         if (-not $floatMenuRopeBounded) {
-            $ropingTargetSafetyIssues += "$floatMenuRopePath :: rope float menu must expose only MooGirl targets, use tracker-based unrope state and avoid non-MooGirl arrest chance branches"
+            $ropingTargetSafetyIssues += "$floatMenuRopePath :: rope float menu must expose only Mugirl targets, use tracker-based unrope state and avoid non-Mugirl arrest chance branches"
         }
     }
     else {
@@ -1343,11 +1343,11 @@ try {
             -and $ropingTickText -match 'owner\s*==\s*null\s*\|\|\s*ropees\s*==\s*null' `
             -and $ropingTickText -match 'ropee\.jobs\s*!=\s*null' `
             -and $ropingTickText -match 'ropee\.CurJob\?\.targetA\.Thing\s*==\s*owner' `
-            -and $ropingTickText -match 'ShouldUseMooGirlRopeeTick' `
+            -and $ropingTickText -match 'ShouldUseMugirlRopeeTick' `
             -and $ropingTickText -match 'ClearDraftedRopee\(pawn\)' `
             -and $ropingTickText -notmatch 'new\s+List<Pawn>\s*\(\s*tracker\.Ropees\s*\)'
         if (-not $ropingTickSafe) {
-            $ropingTargetSafetyIssues += "$ropingTickPath :: roping tick must end custom follow jobs before BreakAllRopes, keep drafted MooGirl ropees from falling through to vanilla break logic and avoid snapshotting tracker.Ropees"
+            $ropingTargetSafetyIssues += "$ropingTickPath :: roping tick must end custom follow jobs before BreakAllRopes, keep drafted Mugirl ropees from falling through to vanilla break logic and avoid snapshotting tracker.Ropees"
         }
     }
     else {
@@ -1359,8 +1359,8 @@ try {
     if (Test-Path -LiteralPath $mapRopingIndexPath) {
         $mapRopingIndexText = Get-Content -LiteralPath $mapRopingIndexPath -Encoding utf8 -Raw
         $mapRopingIndexSafe = $mapRopingIndexText -match 'private\s+int\s+rebuildTickCounter' `
-            -and $mapRopingIndexText -match 'MooGirlTickUtility\.Add\(ref\s+rebuildTickCounter,\s*1\)' `
-            -and $mapRopingIndexText -match 'MooGirlTickUtility\.ConsumeReady\(ref\s+rebuildTickCounter,\s*250,\s*out\s+_\)' `
+            -and $mapRopingIndexText -match 'MugirlTickUtility\.Add\(ref\s+rebuildTickCounter,\s*1\)' `
+            -and $mapRopingIndexText -match 'MugirlTickUtility\.ConsumeReady\(ref\s+rebuildTickCounter,\s*250,\s*out\s+_\)' `
             -and $mapRopingIndexText -notmatch 'Find\.TickManager'
         if (-not $mapRopingIndexSafe) {
             $ropingTargetSafetyIssues += "$mapRopingIndexPath :: roping index rebuild cadence must use a map-local counter instead of direct Find.TickManager modulo checks"
@@ -1429,7 +1429,7 @@ try {
             -and $pawnDraftControllerText -match 'RopingService\.IsRopedByPawn\(pawn\)' `
             -and $pawnDraftControllerText -match 'RopingService\.IsPendingSpotRope\(pawn\)' `
             -and $pawnDraftControllerText -match 'yield\s+return\s+gizmo\s*;' `
-            -and $pawnDraftControllerText -match 'toggle\.Disable\("MooGirl\.DraftDisabledWhileRoped"\.Translate\(\)\)' `
+            -and $pawnDraftControllerText -match 'toggle\.Disable\("Mugirl\.DraftDisabledWhileRoped"\.Translate\(\)\)' `
             -and $pawnDraftControllerText -notmatch 'new\s+List<Gizmo>'
         if (-not $pawnDraftControllerSafe) {
             $ropingTargetSafetyIssues += "$pawnDraftControllerPath :: roped pawn draft gizmo patch must use tracker/pending rope state, disable the draft toggle through a lazy iterator and avoid per-gizmo list allocation"
@@ -1466,7 +1466,7 @@ try {
     $mountingStateSafetyIssues = @()
     $mountingStateSafetyRules = @(
         @{
-            Path = '1.6\Source\Features\Mounting\Comp_MooGirlMount.cs'
+            Path = '1.6\Source\Features\Mounting\Comp_MugirlMount.cs'
             Pattern = 'TryDrop\(rider,\s*cell,\s*map,\s*ThingPlaceMode\.Near,\s*out Thing (dropped|_),\s*null,\s*null'
             Description = 'mounted rider drop has no dismount cell validator'
         },
@@ -1491,17 +1491,17 @@ try {
             Description = 'mounted combat searcher assumes comp turret state is non-null'
         },
         @{
-            Path = '1.6\Source\Features\Mounting\FloatMenuProvider_MountMooGirl.cs'
+            Path = '1.6\Source\Features\Mounting\FloatMenuProvider_MountMugirl.cs'
             Pattern = '\(\)\s*=>\s*comp\.TryDismount\(\)'
             Description = 'mount float menu dismounts captured comp'
         },
         @{
-            Path = '1.6\Source\Features\Mounting\JobDriver_MountMooGirl.cs'
+            Path = '1.6\Source\Features\Mounting\JobDriver_MountMugirl.cs'
             Pattern = 'job\.GetTarget\(MooInd\)\.Pawn'
             Description = 'mount job target uses Pawn shortcut without explicit Thing type check'
         },
         @{
-            Path = '1.6\Source\Features\Mounting\JobDriver_DismountMooGirl.cs'
+            Path = '1.6\Source\Features\Mounting\JobDriver_DismountMugirl.cs'
             Pattern = 'job\.GetTarget\(MooInd\)\.Pawn'
             Description = 'dismount job target uses Pawn shortcut without explicit Thing type check'
         }
@@ -1524,7 +1524,7 @@ try {
     }
 
     $mountingStateSafetyChecks++
-    $mountFloatMenuPath = '1.6\Source\Features\Mounting\FloatMenuProvider_MountMooGirl.cs'
+    $mountFloatMenuPath = '1.6\Source\Features\Mounting\FloatMenuProvider_MountMugirl.cs'
     if (Test-Path -LiteralPath $mountFloatMenuPath) {
         $mountFloatMenuText = Get-Content -LiteralPath $mountFloatMenuPath -Encoding utf8 -Raw
         if ($mountFloatMenuText -notmatch 'TryStartMountJob' -or $mountFloatMenuText -notmatch 'TryStartDismountJob' -or $mountFloatMenuText -notmatch 'CanReserveAndReach') {
@@ -1536,16 +1536,16 @@ try {
     }
 
     $mountingStateSafetyChecks++
-    $mountCompPath = '1.6\Source\Features\Mounting\Comp_MooGirlMount.cs'
+    $mountCompPath = '1.6\Source\Features\Mounting\Comp_MugirlMount.cs'
     if (Test-Path -LiteralPath $mountCompPath) {
         $mountCompText = Get-Content -LiteralPath $mountCompPath -Encoding utf8 -Raw
-        $mountCompSafe = $mountCompText -match 'props\s+as\s+CompProperties_MooGirlMount' `
-            -and $mountCompText -match 'CompProperties_MooGirlMount\s+mountProps\s*=\s*Props' `
+        $mountCompSafe = $mountCompText -match 'props\s+as\s+CompProperties_MugirlMount' `
+            -and $mountCompText -match 'CompProperties_MugirlMount\s+mountProps\s*=\s*Props' `
             -and $mountCompText -match 'mountProps\s*==\s*null' `
             -and $mountCompText -match 'Mathf\.Max\(1,\s*mountProps\.physiologicalTickInterval\)' `
             -and $mountCompText -match 'Mathf\.Max\(1,\s*mountProps\.safetyCheckInterval\)' `
             -and $mountCompText -match 'Mathf\.Max\(1,\s*mountProps\.turretTickInterval\)' `
-            -and $mountCompText -notmatch '\(CompProperties_MooGirlMount\)props'
+            -and $mountCompText -notmatch '\(CompProperties_MugirlMount\)props'
         if (-not $mountCompSafe) {
             $mountingStateSafetyIssues += "$mountCompPath :: mount comp must safe-cast props and clamp tick intervals before mounted tick work"
         }
@@ -1583,11 +1583,11 @@ try {
     $mountingStateSafetyChecks++
     if (Test-Path -LiteralPath $mountedCombatPath) {
         $mountedCombatText = Get-Content -LiteralPath $mountedCombatPath -Encoding utf8 -Raw
-        $mountedCombatTickSafe = $mountedCombatText -match 'MooGirlTickUtility\.CurrentGameTickOrFallback\(comp\.turretCastStartTick\)' `
-            -and $mountedCombatText -match 'MooGirlTickUtility\.CurrentGameTickOrFallback\(comp\.turretLastAttackTargetTick\)' `
+        $mountedCombatTickSafe = $mountedCombatText -match 'MugirlTickUtility\.CurrentGameTickOrFallback\(comp\.turretCastStartTick\)' `
+            -and $mountedCombatText -match 'MugirlTickUtility\.CurrentGameTickOrFallback\(comp\.turretLastAttackTargetTick\)' `
             -and $mountedCombatText -notmatch 'Find\.TickManager\.TicksGame'
         if (-not $mountedCombatTickSafe) {
-            $mountingStateSafetyIssues += "$mountedCombatPath :: mounted combat cast and last-attack timestamps must use MooGirlTickUtility fallback reads"
+            $mountingStateSafetyIssues += "$mountedCombatPath :: mounted combat cast and last-attack timestamps must use MugirlTickUtility fallback reads"
         }
     }
     else {
@@ -1631,7 +1631,7 @@ try {
     }
 
     $mountingStateSafetyChecks++
-    $selectionUtilityPath = '1.6\Source\Core\MooGirlSelectionUtility.cs'
+    $selectionUtilityPath = '1.6\Source\Core\MugirlSelectionUtility.cs'
     if (Test-Path -LiteralPath $selectionUtilityPath) {
         $selectionUtilityText = Get-Content -LiteralPath $selectionUtilityPath -Encoding utf8 -Raw
         $mountCompSelectionText = ''
@@ -1648,13 +1648,13 @@ try {
             -and $selectionUtilityText -match 'Find\.Selector\s*!=\s*null' `
             -and $selectionUtilityText -match 'SelectInPlaying' `
             -and $selectionUtilityText -match 'ReselectIfSelectedInPlaying' `
-            -and $mountCompSelectionText -match 'MooGirlSelectionUtility\.IsSelectedInPlaying' `
-            -and $mountCompSelectionText -match 'MooGirlSelectionUtility\.SelectInPlaying' `
+            -and $mountCompSelectionText -match 'MugirlSelectionUtility\.IsSelectedInPlaying' `
+            -and $mountCompSelectionText -match 'MugirlSelectionUtility\.SelectInPlaying' `
             -and $mountCompSelectionText -notmatch 'Find\.Selector' `
-            -and $mountUtilitySelectionText -match 'MooGirlSelectionUtility\.SelectInPlaying\(currentCarrier\)' `
+            -and $mountUtilitySelectionText -match 'MugirlSelectionUtility\.SelectInPlaying\(currentCarrier\)' `
             -and $mountUtilitySelectionText -notmatch 'Find\.Selector'
         if (-not $mountSelectionSafe) {
-            $mountingStateSafetyIssues += "$selectionUtilityPath :: mounted selection paths must use guarded MooGirlSelectionUtility instead of direct Find.Selector access"
+            $mountingStateSafetyIssues += "$selectionUtilityPath :: mounted selection paths must use guarded MugirlSelectionUtility instead of direct Find.Selector access"
         }
     }
     else {
@@ -1671,7 +1671,7 @@ try {
     $milkInteractionSafetyIssues = @()
     $milkInteractionSafetyRules = @(
         @{
-            Path = '1.6\Source\Features\Milk\JobDriver_DrinkMilkFromMooGirl.cs'
+            Path = '1.6\Source\Features\Milk\JobDriver_DrinkMilkFromMugirl.cs'
             Pattern = '\(\s*Pawn\s*\)\s*job\.GetTarget'
             Description = 'drink milk job directly casts job target'
         },
@@ -1710,7 +1710,7 @@ try {
     }
 
     $milkInteractionSafetyChecks++
-    $milkUtilityPath = '1.6\Source\Features\Milk\MooGirlMilkInteractionUtility.cs'
+    $milkUtilityPath = '1.6\Source\Features\Milk\MugirlMilkInteractionUtility.cs'
     if (Test-Path -LiteralPath $milkUtilityPath) {
         $milkUtilityText = Get-Content -LiteralPath $milkUtilityPath -Encoding utf8 -Raw
         if ($milkUtilityText -match 'internal\s+static\s+void\s+Apply(AdultDrink|DownedFeed|ChildBreastfeed)\s*\(') {
@@ -1756,7 +1756,7 @@ try {
     if (Test-Path -LiteralPath $lactationPath) {
         $lactationText = Get-Content -LiteralPath $lactationPath -Encoding utf8 -Raw
         $lactationSafe = $lactationText -match 'props\s+as\s+CompProperties_Lactation' `
-            -and $lactationText -match 'MooGirlTickUtility\.TryGetCurrentGameTick' `
+            -and $lactationText -match 'MugirlTickUtility\.TryGetCurrentGameTick' `
             -and $lactationText -match 'pawn\?\.needs\?\.food\?\.CurCategory' `
             -and $lactationText -match 'Mathf\.Max\(0f,\s*lactationProps\.baseProductionMultiplier\)' `
             -and $lactationText -match 'mother\.Destroyed' `
@@ -1799,7 +1799,7 @@ try {
             -and $milkingDeviceText -match 'storedCharges\s*=\s*Mathf\.Max\(0,\s*storedCharges\)' `
             -and $milkingDeviceText -match 'storedMilkAmount\s*=\s*Mathf\.Max\(0,\s*storedMilkAmount\)' `
             -and $milkingDeviceText -match 'GetCommandIcon' `
-            -and $milkingDeviceText -match 'MooGirlLog\.WarningOnce' `
+            -and $milkingDeviceText -match 'MugirlLog\.WarningOnce' `
             -and $milkingDeviceText -match 'GetReleaseThingDef\(deviceProps\)' `
             -and $milkingDeviceText -match 'GetFilthThingDef\(deviceProps\)' `
             -and $milkingDeviceText -notmatch '\(CompProperties_MilkingDevice\)props'
@@ -1815,8 +1815,8 @@ try {
     if ((Test-Path -LiteralPath $milkablePath) -and (Test-Path -LiteralPath $milkingDevicePath)) {
         $milkableText = Get-Content -LiteralPath $milkablePath -Encoding utf8 -Raw
         $milkingDeviceText = Get-Content -LiteralPath $milkingDevicePath -Encoding utf8 -Raw
-        $milkDevFillRejectFeedbackSafe = $milkableText -match 'Messages\.Message\("MooGirl\.Milk\.DevFill\.Failed"\.Translate\(pawn\.LabelShortCap\),\s*pawn,\s*MessageTypeDefOf\.RejectInput,\s*historical:\s*false\)' `
-            -and $milkingDeviceText -match 'Messages\.Message\("MooGirl\.MilkingDevice\.DevFill\.Failed"\.Translate\(wearer\.LabelShortCap\),\s*wearer,\s*MessageTypeDefOf\.RejectInput,\s*historical:\s*false\)'
+        $milkDevFillRejectFeedbackSafe = $milkableText -match 'Messages\.Message\("Mugirl\.Milk\.DevFill\.Failed"\.Translate\(pawn\.LabelShortCap\),\s*pawn,\s*MessageTypeDefOf\.RejectInput,\s*historical:\s*false\)' `
+            -and $milkingDeviceText -match 'Messages\.Message\("Mugirl\.MilkingDevice\.DevFill\.Failed"\.Translate\(wearer\.LabelShortCap\),\s*wearer,\s*MessageTypeDefOf\.RejectInput,\s*historical:\s*false\)'
         if (-not $milkDevFillRejectFeedbackSafe) {
             $milkInteractionSafetyIssues += "$milkablePath / $milkingDevicePath :: DevFill reject feedback must not be archived"
         }
@@ -1849,7 +1849,7 @@ try {
     if (Test-Path -LiteralPath $bodyResourcePath) {
         $bodyResourceText = Get-Content -LiteralPath $bodyResourcePath -Encoding utf8 -Raw
         $bodyResourceSafe = $bodyResourceText -match 'parent\?\.Faction' `
-            -and $bodyResourceText -match 'MooGirlGameUtility\.IsPlaying\(\)' `
+            -and $bodyResourceText -match 'MugirlGameUtility\.IsPlaying\(\)' `
             -and $bodyResourceText -match 'CurrentGameTickOrFallback' `
             -and $bodyResourceText -match 'ResourceDef\s*==\s*null' `
             -and $bodyResourceText -match 'TryGetGatherContext' `
@@ -1880,7 +1880,7 @@ try {
     }
 
     $milkInteractionSafetyChecks++
-    $foodEffectUtilityPath = '1.6\Source\Features\Milk\MooGirlFoodEffectUtility.cs'
+    $foodEffectUtilityPath = '1.6\Source\Features\Milk\MugirlFoodEffectUtility.cs'
     if (Test-Path -LiteralPath $foodEffectUtilityPath) {
         $foodEffectUtilityText = Get-Content -LiteralPath $foodEffectUtilityPath -Encoding utf8 -Raw
         $foodEffectUtilitySafe = $foodEffectUtilityText -match 'pawn\?\.health\?\.hediffSet\s*==\s*null' `
@@ -1896,7 +1896,7 @@ try {
     }
 
     $milkInteractionSafetyChecks++
-    $nurtureUtilityPath = '1.6\Source\Features\Milk\MooGirlNurtureUtility.cs'
+    $nurtureUtilityPath = '1.6\Source\Features\Milk\MugirlNurtureUtility.cs'
     if (Test-Path -LiteralPath $nurtureUtilityPath) {
         $nurtureUtilityText = Get-Content -LiteralPath $nurtureUtilityPath -Encoding utf8 -Raw
         $nurtureUtilityDefCacheSafe = $nurtureUtilityText -match 'private\s+static\s+HediffDef\s+motherlyNurtureDef' `
@@ -1915,7 +1915,7 @@ try {
     }
 
     $milkInteractionSafetyChecks++
-    $milkOutputUtilityPath = '1.6\Source\Features\Milk\MooGirlMilkOutputUtility.cs'
+    $milkOutputUtilityPath = '1.6\Source\Features\Milk\MugirlMilkOutputUtility.cs'
     if (Test-Path -LiteralPath $milkOutputUtilityPath) {
         $milkOutputUtilityText = Get-Content -LiteralPath $milkOutputUtilityPath -Encoding utf8 -Raw
         $milkOutputUtilitySafe = $milkOutputUtilityText -match 'thingDef\s*==\s*null' `
@@ -1931,7 +1931,7 @@ try {
     }
 
     $milkInteractionSafetyChecks++
-    $nurtureProgressPath = '1.6\Source\Features\Milk\HediffComp_MooGirlNurtureProgress.cs'
+    $nurtureProgressPath = '1.6\Source\Features\Milk\HediffComp_MugirlNurtureProgress.cs'
     if (Test-Path -LiteralPath $nurtureProgressPath) {
         $nurtureProgressText = Get-Content -LiteralPath $nurtureProgressPath -Encoding utf8 -Raw
         if ($nurtureProgressText -notmatch 'IsComplete\s*=>\s*parent\?\.def\s*!=\s*null') {
@@ -1943,7 +1943,7 @@ try {
     }
 
     $milkInteractionSafetyChecks++
-    $babyFeedingPath = '1.6\Source\Features\Milk\Harmony_MooGirlBabyFeeding.cs'
+    $babyFeedingPath = '1.6\Source\Features\Milk\Harmony_MugirlBabyFeeding.cs'
     if (Test-Path -LiteralPath $babyFeedingPath) {
         $babyFeedingText = Get-Content -LiteralPath $babyFeedingPath -Encoding utf8 -Raw
         $babyFeedingSafe = $babyFeedingText -match 'ModsConfig\.BiotechActive' `
@@ -1956,7 +1956,7 @@ try {
             -and $babyFeedingText -match 'feeder\.ideo\s*!=\s*null' `
             -and $babyFeedingText -match 'nutritionPerFullness\s*<=\s*0f'
         if (-not $babyFeedingSafe) {
-            $milkInteractionSafetyIssues += "$babyFeedingPath :: MooGirl baby feeding must guard Biotech, food need bounds, milk fullness/nutrition conversion and optional mindState/ideo hooks"
+            $milkInteractionSafetyIssues += "$babyFeedingPath :: Mugirl baby feeding must guard Biotech, food need bounds, milk fullness/nutrition conversion and optional mindState/ideo hooks"
         }
     }
     else {
@@ -1978,13 +1978,13 @@ try {
             Description = 'courier talk job directly casts job target'
         },
         @{
-            Path = '1.6\Source\Features\Incidents\IncidentWorker_MooGirl_CourierRaid.cs'
-            Pattern = 'GenerateQuestAndMakeAvailable\(\s*MooGirlContentDefOf\.MooGirl_CourierRaid\s*,\s*points\s*\)'
+            Path = '1.6\Source\Features\Incidents\IncidentWorker_Mugirl_CourierRaid.cs'
+            Pattern = 'GenerateQuestAndMakeAvailable\(\s*MugirlContentDefOf\.Mugirl_CourierRaid\s*,\s*points\s*\)'
             Description = 'courier incident generates quest without target map slate'
         },
         @{
             Path = '1.6\Source\Features\Incidents\CompReadableBook.cs'
-            Pattern = 'JobMaker\.MakeJob\(\s*MooGirlContentDefOf\.MooGirl_ReadCourierDiary\s*,\s*parent\s*\)'
+            Pattern = 'JobMaker\.MakeJob\(\s*MugirlContentDefOf\.Mugirl_ReadCourierDiary\s*,\s*parent\s*\)'
             Description = 'readable book menu dispatches job without click-time validation'
         },
         @{
@@ -1993,7 +1993,7 @@ try {
             Description = 'read book dialog keeps unused book field'
         },
         @{
-            Path = '1.6\Source\Features\Incidents\QuestNode_Root_MooGirl_WandererJoin_WalkIn.cs'
+            Path = '1.6\Source\Features\Incidents\QuestNode_Root_Mugirl_WandererJoin_WalkIn.cs'
             Pattern = '\(\s*ChoiceLetter_AcceptJoiner\s*\)\s*LetterMaker\.MakeLetter'
             Description = 'wanderer join letter directly casts AcceptJoiner letter'
         }
@@ -2016,7 +2016,7 @@ try {
     if (Test-Path -LiteralPath $readableBookPath) {
         $readableBookText = Get-Content -LiteralPath $readableBookPath -Encoding utf8 -Raw
         $readableBookSafe = $readableBookText -match 'props\s+as\s+CompProperties_ReadableBook' `
-            -and $readableBookText -match 'BookTitle\s*=>\s*MooGirlText\.Resolve\(Props\?\.bookTitle\s*\?\?\s*"MooGirl\.CourierDiary\.Title"\)' `
+            -and $readableBookText -match 'BookTitle\s*=>\s*MugirlText\.Resolve\(Props\?\.bookTitle\s*\?\?\s*"Mugirl\.CourierDiary\.Title"\)' `
             -and $readableBookText -match 'selPawn\s*==\s*null\s*\|\|\s*parent\s*==\s*null' `
             -and $readableBookText -match 'comp\.BookTitle' `
             -and $readableBookText -notmatch '\(CompProperties_ReadableBook\)props'
@@ -2029,7 +2029,7 @@ try {
     }
 
     $incidentInteractionSafetyChecks++
-    $courierIncidentWorkerPath = '1.6\Source\Features\Incidents\IncidentWorker_MooGirl_CourierRaid.cs'
+    $courierIncidentWorkerPath = '1.6\Source\Features\Incidents\IncidentWorker_Mugirl_CourierRaid.cs'
     if (Test-Path -LiteralPath $courierIncidentWorkerPath) {
         $courierIncidentWorkerText = Get-Content -LiteralPath $courierIncidentWorkerPath -Encoding utf8 -Raw
         if ($courierIncidentWorkerText -notmatch 'slate\.Set\(\s*"map"\s*,\s*map\s*\)') {
@@ -2041,18 +2041,18 @@ try {
     }
 
     $incidentInteractionSafetyChecks++
-    $storyStatePath = '1.6\Source\Features\Incidents\MooGirlStoryState.cs'
+    $storyStatePath = '1.6\Source\Features\Incidents\MugirlStoryState.cs'
     if (Test-Path -LiteralPath $storyStatePath) {
         $storyStateText = Get-Content -LiteralPath $storyStatePath -Encoding utf8 -Raw
-        if ($storyStateText -notmatch 'internal\s+static\s+class\s+MooGirlStoryService' -or
-            $storyStateText -notmatch 'internal\s+static\s+void\s+Tick\(\s*MooGirlStoryState\s+state\s*\)' -or
-            $storyStateText -match 'public\s+static\s+class\s+MooGirlStoryService') {
+        if ($storyStateText -notmatch 'internal\s+static\s+class\s+MugirlStoryService' -or
+            $storyStateText -notmatch 'internal\s+static\s+void\s+Tick\(\s*MugirlStoryState\s+state\s*\)' -or
+            $storyStateText -match 'public\s+static\s+class\s+MugirlStoryService') {
             $incidentInteractionSafetyIssues += "$storyStatePath :: story service helper must stay internal and not expose public static API surface"
         }
 
         $storyStateHasMapSlate = $storyStateText -match 'slate\.Set\(\s*"map"\s*,\s*map\s*\)'
-        $storyStateUsesSlateQuest = $storyStateText -match 'GenerateQuestAndMakeAvailable\(\s*MooGirlContentDefOf\.MooGirl_CourierRaid\s*,\s*slate\s*\)'
-        $storyStateUsesOldPointsCall = $storyStateText -match 'GenerateQuestAndMakeAvailable\(\s*MooGirlContentDefOf\.MooGirl_CourierRaid\s*,\s*CourierRaidQuestPoints\s*\)'
+        $storyStateUsesSlateQuest = $storyStateText -match 'GenerateQuestAndMakeAvailable\(\s*MugirlContentDefOf\.Mugirl_CourierRaid\s*,\s*slate\s*\)'
+        $storyStateUsesOldPointsCall = $storyStateText -match 'GenerateQuestAndMakeAvailable\(\s*MugirlContentDefOf\.Mugirl_CourierRaid\s*,\s*CourierRaidQuestPoints\s*\)'
         if (-not $storyStateHasMapSlate -or -not $storyStateUsesSlateQuest -or $storyStateUsesOldPointsCall) {
             $incidentInteractionSafetyIssues += "$storyStatePath :: courier story timer must pass a resolved target map through quest slate"
         }
@@ -2065,8 +2065,8 @@ try {
     if (Test-Path -LiteralPath $storyStatePath) {
         $storyStateText = Get-Content -LiteralPath $storyStatePath -Encoding utf8 -Raw
         $openingStoryHasMapSlate = $storyStateText -match 'slate\.Set\(\s*"map"\s*,\s*map\s*\)' `
-            -and $storyStateText -match 'GenerateQuestAndMakeAvailable\(\s*MooGirl_DefOf\.MooGirl_SlaveOpeningPodCrash\s*,\s*slate\s*\)'
-        $openingStoryUsesOldPointsCall = $storyStateText -match 'GenerateQuestAndMakeAvailable\(\s*MooGirl_DefOf\.MooGirl_SlaveOpeningPodCrash\s*,\s*OpeningCrashQuestPoints\s*\)'
+            -and $storyStateText -match 'GenerateQuestAndMakeAvailable\(\s*Mugirl_DefOf\.Mugirl_SlaveOpeningPodCrash\s*,\s*slate\s*\)'
+        $openingStoryUsesOldPointsCall = $storyStateText -match 'GenerateQuestAndMakeAvailable\(\s*Mugirl_DefOf\.Mugirl_SlaveOpeningPodCrash\s*,\s*OpeningCrashQuestPoints\s*\)'
         if (-not $openingStoryHasMapSlate -or $openingStoryUsesOldPointsCall) {
             $incidentInteractionSafetyIssues += "$storyStatePath :: opening crash story timer must pass a resolved target map through quest slate"
         }
@@ -2079,10 +2079,10 @@ try {
     if (Test-Path -LiteralPath $storyStatePath) {
         $storyStateText = Get-Content -LiteralPath $storyStatePath -Encoding utf8 -Raw
         $storyStateTransientResetSafe = $storyStateText -match 'ResetTransientRuntimeState\(\)' `
-            -and $storyStateText -match 'MooGirlLog\.ResetOnceWarnings\(\)' `
-            -and $storyStateText -match 'MooGirlFoodEffectUtility\.ResetDefCache\(\)' `
-            -and $storyStateText -match 'MooGirlNurtureUtility\.ResetDefCache\(\)' `
-            -and $storyStateText -match 'MooGirlMilkingAnimation\.ResetTransientState\(\)' `
+            -and $storyStateText -match 'MugirlLog\.ResetOnceWarnings\(\)' `
+            -and $storyStateText -match 'MugirlFoodEffectUtility\.ResetDefCache\(\)' `
+            -and $storyStateText -match 'MugirlNurtureUtility\.ResetDefCache\(\)' `
+            -and $storyStateText -match 'MugirlMilkingAnimation\.ResetTransientState\(\)' `
             -and $storyStateText -match 'MountedCombatController\.ResetTransientState\(\)'
         if (-not $storyStateTransientResetSafe) {
             $incidentInteractionSafetyIssues += "$storyStatePath :: story game component must reset static warning/cache/transient state on init, new game and load"
@@ -2104,19 +2104,19 @@ try {
     }
 
     $incidentInteractionSafetyChecks++
-    $generatedPawnUtilityPath = '1.6\Source\Features\Incidents\MooGirlGeneratedPawnUtility.cs'
+    $generatedPawnUtilityPath = '1.6\Source\Features\Incidents\MugirlGeneratedPawnUtility.cs'
     if (Test-Path -LiteralPath $generatedPawnUtilityPath) {
         $generatedPawnUtilityText = Get-Content -LiteralPath $generatedPawnUtilityPath -Encoding utf8 -Raw
         $generatedPawnUtilitySafe = $generatedPawnUtilityText -match 'TryPassToWorld' `
             -and $generatedPawnUtilityText -match 'public\s+static\s+void\s+Discard\(\s*Pawn\s+pawn\s*\)' `
             -and $generatedPawnUtilityText -match 'pawn\.Spawned' `
             -and $generatedPawnUtilityText -match 'GeneratedPawnDiscardSpawned' `
-            -and $generatedPawnUtilityText -match 'MooGirlGameUtility\.TryPassToWorld\(pawn\)' `
-            -and $generatedPawnUtilityText -match 'MooGirlGameUtility\.TryRemoveWorldPawn\(pawn\)' `
-            -and $generatedPawnUtilityText -match 'MooGirlGameUtility\.TryPassToWorldForDiscard\(pawn\)' `
+            -and $generatedPawnUtilityText -match 'MugirlGameUtility\.TryPassToWorld\(pawn\)' `
+            -and $generatedPawnUtilityText -match 'MugirlGameUtility\.TryRemoveWorldPawn\(pawn\)' `
+            -and $generatedPawnUtilityText -match 'MugirlGameUtility\.TryPassToWorldForDiscard\(pawn\)' `
             -and $generatedPawnUtilityText -notmatch 'Find\.WorldPawns'
         if (-not $generatedPawnUtilitySafe) {
-            $incidentInteractionSafetyIssues += "$generatedPawnUtilityPath :: generated pawn world/discard helper must guard null, destroyed and spawned pawns and use MooGirlGameUtility for WorldPawns access"
+            $incidentInteractionSafetyIssues += "$generatedPawnUtilityPath :: generated pawn world/discard helper must guard null, destroyed and spawned pawns and use MugirlGameUtility for WorldPawns access"
         }
     }
     else {
@@ -2124,12 +2124,12 @@ try {
     }
 
     $incidentInteractionSafetyChecks++
-    $ideoUtilityPath = '1.6\Source\Features\Incidents\MooGirl_IdeoUtility.cs'
+    $ideoUtilityPath = '1.6\Source\Features\Incidents\Mugirl_IdeoUtility.cs'
     if (Test-Path -LiteralPath $ideoUtilityPath) {
         $ideoUtilityText = Get-Content -LiteralPath $ideoUtilityPath -Encoding utf8 -Raw
-        if ($ideoUtilityText -notmatch 'internal\s+static\s+class\s+MooGirl_IdeoUtility' -or
+        if ($ideoUtilityText -notmatch 'internal\s+static\s+class\s+Mugirl_IdeoUtility' -or
             $ideoUtilityText -notmatch 'internal\s+static\s+void\s+AdoptPlayerPrimaryIdeo\(\s*Pawn\s+pawn\s*\)' -or
-            $ideoUtilityText -match 'public\s+static\s+class\s+MooGirl_IdeoUtility') {
+            $ideoUtilityText -match 'public\s+static\s+class\s+Mugirl_IdeoUtility') {
             $incidentInteractionSafetyIssues += "$ideoUtilityPath :: Ideology helper must stay internal and not expose public static API surface"
         }
     }
@@ -2138,7 +2138,7 @@ try {
     }
 
     $incidentInteractionSafetyChecks++
-    $openingPodCrashPath = '1.6\Source\Features\Incidents\QuestNode_Root_MooGirl_OpeningPodCrash.cs'
+    $openingPodCrashPath = '1.6\Source\Features\Incidents\QuestNode_Root_Mugirl_OpeningPodCrash.cs'
     if (Test-Path -LiteralPath $openingPodCrashPath) {
         $openingPodCrashText = Get-Content -LiteralPath $openingPodCrashPath -Encoding utf8 -Raw
         $openingPodCrashSafe = $openingPodCrashText -match 'quest\s*==\s*null\s*\|\|\s*slate\s*==\s*null' `
@@ -2146,17 +2146,17 @@ try {
             -and $openingPodCrashText -match 'TryAddSpawnPawnsInOnePod' `
             -and $openingPodCrashText -match 'HasUsablePawns' `
             -and $openingPodCrashText -match 'DiscardGeneratedPawns' `
-            -and $openingPodCrashText -match 'MooGirlGeneratedPawnUtility\.Discard' `
+            -and $openingPodCrashText -match 'MugirlGeneratedPawnUtility\.Discard' `
             -and $openingPodCrashText -match 'List<Pawn>\s+validPawns' `
             -and $openingPodCrashText -match 'validPawns\.Count'
         if (-not $openingPodCrashSafe) {
             $incidentInteractionSafetyIssues += "$openingPodCrashPath :: opening pod crash root must guard quest/slate/map/pawns and letter targets"
         }
         $openingPodGenerationFailureSafe = $openingPodCrashText -match 'OpeningPodCrashFactionlessGenerationFailed' `
-            -and $openingPodCrashText -match 'MooGirl\.OpeningPodCrash\.Log\.FactionlessGenerationFailed' `
+            -and $openingPodCrashText -match 'Mugirl\.OpeningPodCrash\.Log\.FactionlessGenerationFailed' `
             -and $openingPodCrashText -match 'return\s+null' `
             -and $openingPodCrashText -notmatch 'throw\s+new' `
-            -and $openingPodCrashText -notmatch 'MooGirlLog\.Error'
+            -and $openingPodCrashText -notmatch 'MugirlLog\.Error'
         if (-not $openingPodGenerationFailureSafe) {
             $incidentInteractionSafetyIssues += "$openingPodCrashPath :: opening pod crash pawn generation failure must degrade with WarningOnce/null return, not throw or hard-error"
         }
@@ -2197,8 +2197,8 @@ try {
     $incidentInteractionSafetyChecks++
     if (Test-Path -LiteralPath $courierQuestPartPath) {
         $courierQuestPartText = Get-Content -LiteralPath $courierQuestPartPath -Encoding utf8 -Raw
-        $courierAlreadyResolvedMessages = [regex]::Matches($courierQuestPartText, 'Messages\.Message\("MooGirl\.CourierAlreadyResolved"\.Translate\(\),\s*MessageTypeDefOf\.RejectInput')
-        $courierAlreadyResolvedNonHistorical = [regex]::Matches($courierQuestPartText, 'Messages\.Message\("MooGirl\.CourierAlreadyResolved"\.Translate\(\),\s*MessageTypeDefOf\.RejectInput,\s*historical:\s*false\)')
+        $courierAlreadyResolvedMessages = [regex]::Matches($courierQuestPartText, 'Messages\.Message\("Mugirl\.CourierAlreadyResolved"\.Translate\(\),\s*MessageTypeDefOf\.RejectInput')
+        $courierAlreadyResolvedNonHistorical = [regex]::Matches($courierQuestPartText, 'Messages\.Message\("Mugirl\.CourierAlreadyResolved"\.Translate\(\),\s*MessageTypeDefOf\.RejectInput,\s*historical:\s*false\)')
         if ($courierAlreadyResolvedMessages.Count -eq 0 -or $courierAlreadyResolvedMessages.Count -ne $courierAlreadyResolvedNonHistorical.Count) {
             $incidentInteractionSafetyIssues += "$courierQuestPartPath :: courier already-resolved reject feedback must not be archived"
         }
@@ -2212,7 +2212,7 @@ try {
         $courierQuestPartText = Get-Content -LiteralPath $courierQuestPartPath -Encoding utf8 -Raw
         $courierNullClears = [regex]::Matches($courierQuestPartText, 'courier\s*=\s*null').Count
         $courierSpawnSafe = $courierQuestPartText -match 'courier\s*==\s*null\s*\|\|\s*courier\.inventory\?\.innerContainer\s*==\s*null\s*\|\|\s*courier\.mindState\s*==\s*null' `
-            -and $courierQuestPartText -match 'MooGirlGeneratedPawnUtility\.Discard\(courier\)' `
+            -and $courierQuestPartText -match 'MugirlGeneratedPawnUtility\.Discard\(courier\)' `
             -and $courierQuestPartText -match 'CourierGenerationFailed' `
             -and $courierQuestPartText -match 'CourierSpawnFailed' `
             -and $courierNullClears -ge 2
@@ -2240,13 +2240,13 @@ try {
     }
 
     $incidentInteractionSafetyChecks++
-    $slaveStockGeneratorPath = '1.6\Source\Features\Incidents\StockGenerator_MooGirl_Slaves.cs'
+    $slaveStockGeneratorPath = '1.6\Source\Features\Incidents\StockGenerator_Mugirl_Slaves.cs'
     if (Test-Path -LiteralPath $slaveStockGeneratorPath) {
         $slaveStockGeneratorText = Get-Content -LiteralPath $slaveStockGeneratorPath -Encoding utf8 -Raw
-        $slaveStockGeneratorSafe = $slaveStockGeneratorText -match 'namespace\s+MooGirl' `
+        $slaveStockGeneratorSafe = $slaveStockGeneratorText -match 'namespace\s+Mugirl' `
             -and $slaveStockGeneratorText -match 'thingDef\?\.category' `
             -and $slaveStockGeneratorText -match 'thingDef\.race\?\.Humanlike' `
-            -and $slaveStockGeneratorText -match 'MooGirlGameUtility\.ChildrenAllowedByCurrentDifficulty\(\)'
+            -and $slaveStockGeneratorText -match 'MugirlGameUtility\.ChildrenAllowedByCurrentDifficulty\(\)'
         if (-not $slaveStockGeneratorSafe) {
             $incidentInteractionSafetyIssues += "$slaveStockGeneratorPath :: slave stock generator must stay namespaced and ThingDef/difficulty null-safe"
         }
@@ -2256,19 +2256,19 @@ try {
     }
 
     $incidentInteractionSafetyChecks++
-    $mooGirlPatchPath = '1.6\Patches\MooGirlPatch.xml'
-    if (Test-Path -LiteralPath $mooGirlPatchPath) {
-        $mooGirlPatchText = Get-Content -LiteralPath $mooGirlPatchPath -Encoding utf8 -Raw
-        if ($mooGirlPatchText -notmatch 'Class="MooGirl\.StockGenerator_MooGirl_Slaves"' -or $mooGirlPatchText -match 'Class="StockGenerator_MooGirl_Slaves"') {
-            $incidentInteractionSafetyIssues += "$mooGirlPatchPath :: slave stock generator XML must use the full MooGirl namespace"
+    $mugirlPatchPath = '1.6\Patches\MugirlPatch.xml'
+    if (Test-Path -LiteralPath $mugirlPatchPath) {
+        $mugirlPatchText = Get-Content -LiteralPath $mugirlPatchPath -Encoding utf8 -Raw
+        if ($mugirlPatchText -notmatch 'Class="Mugirl\.StockGenerator_Mugirl_Slaves"' -or $mugirlPatchText -match 'Class="StockGenerator_Mugirl_Slaves"') {
+            $incidentInteractionSafetyIssues += "$mugirlPatchPath :: slave stock generator XML must use the full Mugirl namespace"
         }
     }
     else {
-        $incidentInteractionSafetyIssues += "$mooGirlPatchPath :: missing file for slave stock generator XML safety"
+        $incidentInteractionSafetyIssues += "$mugirlPatchPath :: missing file for slave stock generator XML safety"
     }
 
     $incidentInteractionSafetyChecks++
-    $rescueJoinUtilityPath = '1.6\Source\Features\Incidents\MooGirlRescueJoinUtility.cs'
+    $rescueJoinUtilityPath = '1.6\Source\Features\Incidents\MugirlRescueJoinUtility.cs'
     if (Test-Path -LiteralPath $rescueJoinUtilityPath) {
         $rescueJoinUtilityText = Get-Content -LiteralPath $rescueJoinUtilityPath -Encoding utf8 -Raw
         $rescueJoinUtilitySafe = $rescueJoinUtilityText -match 'pawn\?\.mindState\s*==\s*null' `
@@ -2283,7 +2283,7 @@ try {
     }
 
     $incidentInteractionSafetyChecks++
-    $rescueJoinPartPath = '1.6\Source\Features\Incidents\QuestPart_MooGirlRescueJoin.cs'
+    $rescueJoinPartPath = '1.6\Source\Features\Incidents\QuestPart_MugirlRescueJoin.cs'
     if (Test-Path -LiteralPath $rescueJoinPartPath) {
         $rescueJoinPartText = Get-Content -LiteralPath $rescueJoinPartPath -Encoding utf8 -Raw
         $rescueJoinPartSafe = $rescueJoinPartText -match '!string\.IsNullOrEmpty\(inSignalRescued\)' `
@@ -2300,7 +2300,7 @@ try {
     $incidentInteractionSafetyChecks++
     if (Test-Path -LiteralPath $rescueJoinPartPath) {
         $rescueJoinPartText = Get-Content -LiteralPath $rescueJoinPartPath -Encoding utf8 -Raw
-        $rescueJoinReentrySafe = $rescueJoinPartText -match '(?s)private\s+void\s+TryJoinRescuedPawn\(Pawn\s+pawn\).*?MooGirlWildSlaveUtility\.IsPlayerFaction\(pawn\.Faction\).*?return;.*?MooGirlRescueJoinUtility\.PrepareRescueJoinPawn\(pawn\)'
+        $rescueJoinReentrySafe = $rescueJoinPartText -match '(?s)private\s+void\s+TryJoinRescuedPawn\(Pawn\s+pawn\).*?MugirlWildSlaveUtility\.IsPlayerFaction\(pawn\.Faction\).*?return;.*?MugirlRescueJoinUtility\.PrepareRescueJoinPawn\(pawn\)'
         if (-not $rescueJoinReentrySafe) {
             $incidentInteractionSafetyIssues += "$rescueJoinPartPath :: rescue join quest part must skip already-player pawns before setting WillJoinColonyIfRescued"
         }
@@ -2311,10 +2311,10 @@ try {
 
     $incidentInteractionSafetyChecks++
     $playerFactionEqualityFiles = @(
-        '1.6\Source\Features\Incidents\MooGirlRescueJoinUtility.cs',
-        '1.6\Source\Features\Incidents\QuestPart_MooGirlRescueJoin.cs',
+        '1.6\Source\Features\Incidents\MugirlRescueJoinUtility.cs',
+        '1.6\Source\Features\Incidents\QuestPart_MugirlRescueJoin.cs',
         '1.6\Source\Features\Incidents\QuestPart_CourierRaid.cs',
-        '1.6\Source\Features\Incidents\MooGirlStoryState.cs'
+        '1.6\Source\Features\Incidents\MugirlStoryState.cs'
     )
     foreach ($path in $playerFactionEqualityFiles) {
         if (-not (Test-Path -LiteralPath $path)) {
@@ -2323,7 +2323,7 @@ try {
         }
 
         Select-String -LiteralPath $path -Pattern '(Faction\.OfPlayer\s*[=!]=|[=!]=\s*Faction\.OfPlayer)' | ForEach-Object {
-            $incidentInteractionSafetyIssues += "${path}:$($_.LineNumber) :: player faction equality must use MooGirlWildSlaveUtility.IsPlayerFaction: $($_.Line.Trim())"
+            $incidentInteractionSafetyIssues += "${path}:$($_.LineNumber) :: player faction equality must use MugirlWildSlaveUtility.IsPlayerFaction: $($_.Line.Trim())"
         }
     }
 
@@ -2343,15 +2343,15 @@ try {
     }
 
     $incidentInteractionSafetyChecks++
-    $refugeePodCrashPath = '1.6\Source\Features\Incidents\QuestNode_MooGirl_RefugeePodCrash.cs'
+    $refugeePodCrashPath = '1.6\Source\Features\Incidents\QuestNode_Mugirl_RefugeePodCrash.cs'
     if (Test-Path -LiteralPath $refugeePodCrashPath) {
         $refugeePodCrashText = Get-Content -LiteralPath $refugeePodCrashPath -Encoding utf8 -Raw
         $refugeePodCrashSafe = $refugeePodCrashText -match 'MaxDownedGenerationAttempts' `
             -and $refugeePodCrashText -match 'GenerateDownedPawn' `
             -and $refugeePodCrashText -match 'PawnGenerator\.GeneratePawn\(request\)' `
             -and $refugeePodCrashText -match 'pawn\s*==\s*null' `
-            -and $refugeePodCrashText -match 'MooGirlGeneratedPawnUtility\.Discard' `
-            -and $refugeePodCrashText -match 'MooGirlGeneratedPawnUtility\.TryPassToWorld' `
+            -and $refugeePodCrashText -match 'MugirlGeneratedPawnUtility\.Discard' `
+            -and $refugeePodCrashText -match 'MugirlGeneratedPawnUtility\.TryPassToWorld' `
             -and $refugeePodCrashText -match 'RefugeePodDownedGenerationFallback' `
             -and $refugeePodCrashText -match 'RefugeePodCrashLetterMissingPawn' `
             -and $refugeePodCrashText -match 'pawn\.ageTracker\s*!=\s*null'
@@ -2362,12 +2362,12 @@ try {
             -and $refugeePodCrashText -match 'quest\s*==\s*null\s*\|\|\s*slate\s*==\s*null' `
             -and $refugeePodCrashText -match 'map\?\.Parent\s*==\s*null' `
             -and $refugeePodCrashText -match 'RefugeePodPawnGenerationFailed' `
-            -and $refugeePodCrashText -match 'MooGirl\.RefugeePodCrash\.Log\.GenerationFailed' `
-            -and $refugeePodCrashText -match 'MooGirl\.RefugeePodCrash\.Log\.MissingQuestContext' `
-            -and $refugeePodCrashText -match 'MooGirl\.RefugeePodCrash\.Log\.MissingMap' `
+            -and $refugeePodCrashText -match 'Mugirl\.RefugeePodCrash\.Log\.GenerationFailed' `
+            -and $refugeePodCrashText -match 'Mugirl\.RefugeePodCrash\.Log\.MissingQuestContext' `
+            -and $refugeePodCrashText -match 'Mugirl\.RefugeePodCrash\.Log\.MissingMap' `
             -and $refugeePodCrashText -match 'return\s+null' `
             -and $refugeePodCrashText -notmatch 'throw\s+new' `
-            -and $refugeePodCrashText -notmatch 'MooGirlLog\.Error'
+            -and $refugeePodCrashText -notmatch 'MugirlLog\.Error'
         if (-not $refugeePodGenerationFailureSafe) {
             $incidentInteractionSafetyIssues += "$refugeePodCrashPath :: refugee pod crash generation failure must be handled by local RunInt and WarningOnce/null return, not QuestNode exception logging"
         }
@@ -2377,13 +2377,13 @@ try {
     }
 
     $incidentInteractionSafetyChecks++
-    $wandererJoinPath = '1.6\Source\Features\Incidents\QuestNode_Root_MooGirl_WandererJoin_WalkIn.cs'
+    $wandererJoinPath = '1.6\Source\Features\Incidents\QuestNode_Root_Mugirl_WandererJoin_WalkIn.cs'
     if (Test-Path -LiteralPath $wandererJoinPath) {
         $wandererJoinText = Get-Content -LiteralPath $wandererJoinPath -Encoding utf8 -Raw
         $wandererJoinLetterSafe = $wandererJoinText -match 'Letter\s+letter\s*=\s*LetterMaker\.MakeLetter' `
             -and $wandererJoinText -match 'letter\s+as\s+ChoiceLetter_AcceptJoiner' `
             -and $wandererJoinText -match 'choiceLetter_AcceptJoiner\s*==\s*null' `
-            -and $wandererJoinText -match 'MooGirlLog\.WarningOnce'
+            -and $wandererJoinText -match 'MugirlLog\.WarningOnce'
         if (-not $wandererJoinLetterSafe) {
             $incidentInteractionSafetyIssues += "$wandererJoinPath :: wanderer join letter must type-check AcceptJoiner and degrade with a limited warning"
         }
@@ -2393,7 +2393,7 @@ try {
     }
 
     $incidentInteractionSafetyChecks++
-    $wildManIncidentPath = '1.6\Source\Features\Incidents\IncidentWorker_MooGirl_WildManWandersIn.cs'
+    $wildManIncidentPath = '1.6\Source\Features\Incidents\IncidentWorker_Mugirl_WildManWandersIn.cs'
     if (Test-Path -LiteralPath $wildManIncidentPath) {
         $wildManIncidentText = Get-Content -LiteralPath $wildManIncidentPath -Encoding utf8 -Raw
         $wildManIncidentSafe = $wildManIncidentText -match 'parms\.target\s+is\s+Map\s+map' `
@@ -2409,7 +2409,7 @@ try {
     }
 
     $incidentInteractionSafetyChecks++
-    $gameUtilityPath = '1.6\Source\Core\MooGirlGameUtility.cs'
+    $gameUtilityPath = '1.6\Source\Core\MugirlGameUtility.cs'
     if (Test-Path -LiteralPath $gameUtilityPath) {
         $gameUtilityText = Get-Content -LiteralPath $gameUtilityPath -Encoding utf8 -Raw
         $gameUtilitySafe = $gameUtilityText -match 'TryAddWindow' `
@@ -2447,7 +2447,7 @@ try {
     $directIncidentGlobalAccess = @()
     if (Test-Path -LiteralPath '1.6\Source\Features\Incidents') {
         Get-ChildItem -LiteralPath '1.6\Source\Features\Incidents' -Recurse -Filter '*.cs' | Select-String -Pattern 'Find\.(WindowStack|LetterStack|QuestManager|TickManager|WorldPawns|FactionManager|AnyPlayerHomeMap|Maps)|WindowStack\.Add' | ForEach-Object {
-            $directIncidentGlobalAccess += "$(Get-RelativePath $_.Path):$($_.LineNumber) :: incident global UI/game access must use MooGirlGameUtility: $($_.Line.Trim())"
+            $directIncidentGlobalAccess += "$(Get-RelativePath $_.Path):$($_.LineNumber) :: incident global UI/game access must use MugirlGameUtility: $($_.Line.Trim())"
         }
     }
     if ($directIncidentGlobalAccess.Count) {
@@ -2464,7 +2464,7 @@ try {
     $harmonyBootstrapSafetyIssues = @()
 
     $harmonyBootstrapSafetyChecks++
-    $bootstrapPath = '1.6\Source\Core\MooGirlBootstrap.cs'
+    $bootstrapPath = '1.6\Source\Core\MugirlBootstrap.cs'
     if (Test-Path -LiteralPath $bootstrapPath) {
         $bootstrapText = Get-Content -LiteralPath $bootstrapPath -Encoding utf8 -Raw
         $bootstrapSafe = $bootstrapText -match 'RegisterAttributePatches\(Harmony\)' `
@@ -2479,7 +2479,7 @@ try {
             -and $bootstrapText -match 'Bootstrap\.PatchClassDiscoveryFailed' `
             -and $bootstrapText -match 'Bootstrap\.PatchClassAttributeFailed\.' `
             -and $bootstrapText -match 'Bootstrap\.PatchClassFailed\.' `
-            -and $bootstrapText -match 'MooGirl\.Bootstrap\.HarmonyPatchFailed' `
+            -and $bootstrapText -match 'Mugirl\.Bootstrap\.HarmonyPatchFailed' `
             -and $bootstrapText -match 'patchedClassNames\.Add\(patchClassName\)' `
             -and $bootstrapText -notmatch '\.PatchAll\s*\('
         if (-not $bootstrapSafe) {
@@ -2496,8 +2496,8 @@ try {
     if ((Test-Path -LiteralPath $englishGameplayLanguagePath) -and (Test-Path -LiteralPath $chineseGameplayLanguagePath)) {
         $englishGameplayLanguageText = Get-Content -LiteralPath $englishGameplayLanguagePath -Encoding utf8 -Raw
         $chineseGameplayLanguageText = Get-Content -LiteralPath $chineseGameplayLanguagePath -Encoding utf8 -Raw
-        $harmonyBootstrapTextSafe = $englishGameplayLanguageText -match '<MooGirl\.Bootstrap\.HarmonyPatchFailed>Harmony patch skipped: \{0\}\. \{1\}</MooGirl\.Bootstrap\.HarmonyPatchFailed>' `
-            -and $chineseGameplayLanguageText -match '<MooGirl\.Bootstrap\.HarmonyPatchFailed>Harmony 补丁已跳过：\{0\}。\{1\}</MooGirl\.Bootstrap\.HarmonyPatchFailed>'
+        $harmonyBootstrapTextSafe = $englishGameplayLanguageText -match '<Mugirl\.Bootstrap\.HarmonyPatchFailed>Harmony patch skipped: \{0\}\. \{1\}</Mugirl\.Bootstrap\.HarmonyPatchFailed>' `
+            -and $chineseGameplayLanguageText -match '<Mugirl\.Bootstrap\.HarmonyPatchFailed>Harmony 补丁已跳过：\{0\}。\{1\}</Mugirl\.Bootstrap\.HarmonyPatchFailed>'
         if (-not $harmonyBootstrapTextSafe) {
             $harmonyBootstrapSafetyIssues += "$englishGameplayLanguagePath / $chineseGameplayLanguagePath :: Harmony bootstrap failure warning text must keep English/Chinese key parity and placeholder parity"
         }
@@ -2507,14 +2507,14 @@ try {
     }
 
     $harmonyBootstrapSafetyChecks++
-    $modEntryPath = '1.6\Source\Core\MooGirlMod.cs'
+    $modEntryPath = '1.6\Source\Core\MugirlMod.cs'
     if (Test-Path -LiteralPath $modEntryPath) {
         $modEntryText = Get-Content -LiteralPath $modEntryPath -Encoding utf8 -Raw
-        $modEntryStateSafe = $modEntryText -match 'private\s+static\s+MooGirlSettings\s+settings' `
-            -and $modEntryText -match 'internal\s+static\s+MooGirlSettings\s+Settings\s*=>\s*settings' `
-            -and $modEntryText -match 'MooGirlBootstrap\.Initialize\(\)' `
+        $modEntryStateSafe = $modEntryText -match 'private\s+static\s+MugirlSettings\s+settings' `
+            -and $modEntryText -match 'internal\s+static\s+MugirlSettings\s+Settings\s*=>\s*settings' `
+            -and $modEntryText -match 'MugirlBootstrap\.Initialize\(\)' `
             -and $modEntryText -notmatch 'using\s+HarmonyLib' `
-            -and $modEntryText -notmatch 'public\s+static\s+Harmony\s+harmony|public\s+static\s+MooGirlSettings\s+settings|MooGirlBootstrap\.Harmony'
+            -and $modEntryText -notmatch 'public\s+static\s+Harmony\s+harmony|public\s+static\s+MugirlSettings\s+settings|MugirlBootstrap\.Harmony'
         if (-not $modEntryStateSafe) {
             $harmonyBootstrapSafetyIssues += "$modEntryPath :: mod entry point must not expose public mutable Harmony/settings fields and should use bootstrap-owned Harmony"
         }
@@ -2523,8 +2523,8 @@ try {
         $harmonyBootstrapSafetyIssues += "$modEntryPath :: missing file for mod entry state safety"
     }
 
-    Get-ChildItem -LiteralPath '1.6\Source' -Recurse -Filter '*.cs' | Select-String -Pattern 'MooGirlMod\.(settings|harmony)' -CaseSensitive | ForEach-Object {
-        $harmonyBootstrapSafetyIssues += "$(Get-RelativePath $_.Path):$($_.LineNumber) :: callers must use MooGirlMod.Settings and never access legacy public settings/harmony fields: $($_.Line.Trim())"
+    Get-ChildItem -LiteralPath '1.6\Source' -Recurse -Filter '*.cs' | Select-String -Pattern 'MugirlMod\.(settings|harmony)' -CaseSensitive | ForEach-Object {
+        $harmonyBootstrapSafetyIssues += "$(Get-RelativePath $_.Path):$($_.LineNumber) :: callers must use MugirlMod.Settings and never access legacy public settings/harmony fields: $($_.Line.Trim())"
     }
 
     if ($harmonyBootstrapSafetyIssues.Count) {
@@ -2537,7 +2537,7 @@ try {
     $harmonyBoundarySafetyIssues = @()
 
     $harmonyBoundarySafetyChecks++
-    $nurturedSkillPath = '1.6\Source\Features\Milk\Harmony_MooGirlNurturedSkillLearnCap.cs'
+    $nurturedSkillPath = '1.6\Source\Features\Milk\Harmony_MugirlNurturedSkillLearnCap.cs'
     if (Test-Path -LiteralPath $nurturedSkillPath) {
         $nurturedSkillText = Get-Content -LiteralPath $nurturedSkillPath -Encoding utf8 -Raw
         if ($nurturedSkillText -notmatch 'nurturedTrait\s*==\s*null' -or $nurturedSkillText -notmatch 'HasTrait\(nurturedTrait\)' -or $nurturedSkillText -notmatch 'xpSinceMidnightValue\s+is\s+float' -or $nurturedSkillText -notmatch 'baseCapValue\s+is\s+int') {
@@ -2549,7 +2549,7 @@ try {
     }
 
     $harmonyBoundarySafetyChecks++
-    $nurtureGrowthPath = '1.6\Source\Features\Milk\Harmony_MooGirlNurtureGrowthPoints.cs'
+    $nurtureGrowthPath = '1.6\Source\Features\Milk\Harmony_MugirlNurtureGrowthPoints.cs'
     if (Test-Path -LiteralPath $nurtureGrowthPath) {
         $nurtureGrowthText = Get-Content -LiteralPath $nurtureGrowthPath -Encoding utf8 -Raw
         if ($nurtureGrowthText -notmatch 'afterglowDef\s*!=\s*null' -or $nurtureGrowthText -notmatch 'nurtureDef\s*==\s*null' -or $nurtureGrowthText -notmatch 'HediffSet\s+hediffSet') {
@@ -2586,16 +2586,16 @@ try {
 
     $harmonyBoundarySafetyChecks++
     $milkingAnimationPaths = @(
-        '1.6\Source\Features\Milk\MooGirlMilkingAnimation.cs',
-        '1.6\Source\Features\Milk\MooGirlMilkingAnimation.State.cs',
-        '1.6\Source\Features\Milk\Harmony_MooGirlMilkingAnimation.cs'
+        '1.6\Source\Features\Milk\MugirlMilkingAnimation.cs',
+        '1.6\Source\Features\Milk\MugirlMilkingAnimation.State.cs',
+        '1.6\Source\Features\Milk\Harmony_MugirlMilkingAnimation.cs'
     )
     $missingMilkingAnimationPaths = @($milkingAnimationPaths | Where-Object { -not (Test-Path -LiteralPath $_) })
     if ($missingMilkingAnimationPaths.Count -eq 0) {
         $milkingAnimationText = ($milkingAnimationPaths | ForEach-Object { Get-Content -LiteralPath $_ -Encoding utf8 -Raw }) -join "`n"
         $milkingAnimationSafe = $milkingAnimationText -match 'PawnField\?\.GetValue' `
-            -and $milkingAnimationText -match 'MooGirlTickUtility\.TryGetCurrentGameTick' `
-            -and $milkingAnimationText -match 'MooGirlTickUtility\.CurrentGameTickOrFallback' `
+            -and $milkingAnimationText -match 'MugirlTickUtility\.TryGetCurrentGameTick' `
+            -and $milkingAnimationText -match 'MugirlTickUtility\.CurrentGameTickOrFallback' `
             -and $milkingAnimationText -notmatch 'Find\.TickManager' `
             -and $milkingAnimationText -match 'states\.Clear\(\)' `
             -and $milkingAnimationText -match 'node\?\.Props\?\.tagDef' `
@@ -2607,11 +2607,11 @@ try {
             -and $milkingAnimationText -match 'RemoveIfMatches\(state\.partner,\s*state\.pawn\)' `
             -and $milkingAnimationText -match 'tmpStateKeysToRemove\.Clear\(\)'
         if (-not $milkingAnimationSafe) {
-            $harmonyBoundarySafetyIssues += "MooGirlMilkingAnimation split files :: milking render patches must guard reflection, centralized tick access, stale/cross-pawn/partner state and missing render node props"
+            $harmonyBoundarySafetyIssues += "MugirlMilkingAnimation split files :: milking render patches must guard reflection, centralized tick access, stale/cross-pawn/partner state and missing render node props"
         }
     }
     else {
-        $harmonyBoundarySafetyIssues += "MooGirlMilkingAnimation split files :: missing file(s): $($missingMilkingAnimationPaths -join ', ')"
+        $harmonyBoundarySafetyIssues += "MugirlMilkingAnimation split files :: missing file(s): $($missingMilkingAnimationPaths -join ', ')"
     }
 
     $harmonyBoundarySafetyChecks++
@@ -2619,8 +2619,8 @@ try {
     if (Test-Path -LiteralPath $ghoulRenderingPath) {
         $ghoulRenderingText = Get-Content -LiteralPath $ghoulRenderingPath -Encoding utf8 -Raw
         $ghoulRenderingSafe = $ghoulRenderingText -match 'ClearPendingRefreshes' `
-            -and $ghoulRenderingText -match 'MooGirlGameUtility\.IsPlaying\(\)' `
-            -and $ghoulRenderingText -match 'MooGirlTickUtility\.TryGetCurrentGameTick' `
+            -and $ghoulRenderingText -match 'MugirlGameUtility\.IsPlaying\(\)' `
+            -and $ghoulRenderingText -match 'MugirlTickUtility\.TryGetCurrentGameTick' `
             -and $ghoulRenderingText -notmatch 'Find\.TickManager' `
             -and $ghoulRenderingText -match 'pendingRefreshUntilTick\.Clear\(\)' `
             -and $ghoulRenderingText -match 'tmpPawnsToRemove\.Clear\(\)' `
@@ -2637,7 +2637,7 @@ try {
     $wildManPath = '1.6\Source\Features\Incidents\Harmony_IsWildMan_WildManUtility.cs'
     if (Test-Path -LiteralPath $wildManPath) {
         $wildManText = Get-Content -LiteralPath $wildManPath -Encoding utf8 -Raw
-        if ($wildManText -notmatch 'IsNonPlayerEscapeWildSlave\(p\)' -or $wildManText -notmatch 'IsPlayerFaction\(faction\)' -or $wildManText -notmatch 'MooGirl_PreEscapeWildSlave\s*!=\s*null') {
+        if ($wildManText -notmatch 'IsNonPlayerEscapeWildSlave\(p\)' -or $wildManText -notmatch 'IsPlayerFaction\(faction\)' -or $wildManText -notmatch 'Mugirl_PreEscapeWildSlave\s*!=\s*null') {
             $harmonyBoundarySafetyIssues += "$wildManPath :: wild-slave global patches must guard null pawn and missing fallback kind"
         }
     }
@@ -2661,7 +2661,7 @@ try {
     $newbornVisualPath = '1.6\Source\Features\Newborn\Harmony_PawnGenerator_NewbornVisuals.cs'
     if (Test-Path -LiteralPath $newbornVisualPath) {
         $newbornVisualText = Get-Content -LiteralPath $newbornVisualPath -Encoding utf8 -Raw
-        if ($newbornVisualText -notmatch 'MooGirlIdentity\.HasMooGirlBody\(__result\)' -or $newbornVisualText -notmatch 'ageTracker\?' -or $newbornVisualText -notmatch 'story\s*!=\s*null') {
+        if ($newbornVisualText -notmatch 'MugirlIdentity\.HasMugirlBody\(__result\)' -or $newbornVisualText -notmatch 'ageTracker\?' -or $newbornVisualText -notmatch 'story\s*!=\s*null') {
             $harmonyBoundarySafetyIssues += "$newbornVisualPath :: newborn visual patch must guard generated pawn race, age and story trackers"
         }
     }
@@ -2670,11 +2670,11 @@ try {
     }
 
     $harmonyBoundarySafetyChecks++
-    $xenotypeFixPath = '1.6\Source\Features\Genes\MooGirl_XenotypeFix_GameComp.cs'
+    $xenotypeFixPath = '1.6\Source\Features\Genes\Mugirl_XenotypeFix_GameComp.cs'
     if (Test-Path -LiteralPath $xenotypeFixPath) {
         $xenotypeFixText = Get-Content -LiteralPath $xenotypeFixPath -Encoding utf8 -Raw
-        $xenotypeFixSafe = $xenotypeFixText -match 'internal\s+static\s+class\s+MooGirlXenotypeService' `
-            -and $xenotypeFixText -match 'internal\s+static\s+void\s+ForceFemaleMooGirlXenotypeIfNeeded' `
+        $xenotypeFixSafe = $xenotypeFixText -match 'internal\s+static\s+class\s+MugirlXenotypeService' `
+            -and $xenotypeFixText -match 'internal\s+static\s+void\s+ForceFemaleMugirlXenotypeIfNeeded' `
             -and $xenotypeFixText -match 'internal\s+static\s+void\s+FixLoadedPawnIfSafe' `
             -and $xenotypeFixText -match 'private\s+static\s+readonly\s+List<Pawn>\s+tmpParents\s*=' `
             -and $xenotypeFixText -match 'List<Pawn>\s+parents\s*=\s*tmpParents' `
@@ -2684,7 +2684,7 @@ try {
             -and $xenotypeFixText -match 'targetXenotype\?\.genes\s*==\s*null' `
             -and $xenotypeFixText -match 'geneDef\s*==\s*null' `
             -and $xenotypeFixText -match 'ModsConfig\.BiotechActive' `
-            -and $xenotypeFixText -notmatch 'public\s+static\s+class\s+MooGirlXenotypeService'
+            -and $xenotypeFixText -notmatch 'public\s+static\s+class\s+MugirlXenotypeService'
         if (-not $xenotypeFixSafe) {
             $harmonyBoundarySafetyIssues += "$xenotypeFixPath :: xenotype birth/load helper must stay internal, keep parent scratch data readonly, clear it after use and guard missing gene lists"
         }
@@ -2777,7 +2777,7 @@ try {
     }
 
     $compatibilityBoundarySafetyChecks++
-    $patchRegistryPath = '1.6\Source\Core\MooGirlPatchRegistry.cs'
+    $patchRegistryPath = '1.6\Source\Core\MugirlPatchRegistry.cs'
     if (Test-Path -LiteralPath $patchRegistryPath) {
         $patchRegistryText = Get-Content -LiteralPath $patchRegistryPath -Encoding utf8 -Raw
         if ($patchRegistryText -match 'AlienRaceCompatibility|AlienPawnRenderNode_Swaddle|TryGetSwaddleGraphicForTarget|AlienRaceSwaddleGraphicFor|PatchAlienRaceSwaddleGraphicFor' -or
@@ -2790,10 +2790,10 @@ try {
     }
 
     $compatibilityBoundarySafetyChecks++
-    $raceXmlPath = '1.6\Defs\ThingDefs_Races\MooGirl_Race.xml'
+    $raceXmlPath = '1.6\Defs\ThingDefs_Races\Mugirl_Race.xml'
     if (Test-Path -LiteralPath $raceXmlPath) {
         $raceXmlText = Get-Content -LiteralPath $raceXmlPath -Encoding utf8 -Raw
-        if ($raceXmlText -notmatch '<graphicPaths>[\s\S]*<swaddle>\s*MooGirl/Bodies/SwaddledBaby/Swaddled_Child\s*</swaddle>[\s\S]*</graphicPaths>') {
+        if ($raceXmlText -notmatch '<graphicPaths>[\s\S]*<swaddle>\s*Mugirl/Bodies/SwaddledBaby/Swaddled_Child\s*</swaddle>[\s\S]*</graphicPaths>') {
             $compatibilityBoundarySafetyIssues += "$raceXmlPath :: HAR swaddle path must be configured in graphicPaths.swaddle"
         }
     }
@@ -2818,8 +2818,8 @@ try {
     if (Test-Path -LiteralPath $externalBreastPath) {
         $externalBreastText = Get-Content -LiteralPath $externalBreastPath -Encoding utf8 -Raw
         if ($externalBreastText -notmatch 'StaticCacheLifecycle: 进程级外部乳房 HediffDef 缓存' -or
-            $externalBreastText -match 'MooGirl_Lactation') {
-            $compatibilityBoundarySafetyIssues += "$externalBreastPath :: external breast cache must document lifecycle and must not carry internal MooGirl hediff defs"
+            $externalBreastText -match 'Mugirl_Lactation') {
+            $compatibilityBoundarySafetyIssues += "$externalBreastPath :: external breast cache must document lifecycle and must not carry internal Mugirl hediff defs"
         }
     }
     else {
@@ -2844,11 +2844,11 @@ try {
     }
 
     $compatibilityBoundarySafetyChecks++
-    $optionalDefsPath = '1.6\Source\Core\MooGirlOptionalDefs.cs'
+    $optionalDefsPath = '1.6\Source\Core\MugirlOptionalDefs.cs'
     if (Test-Path -LiteralPath $optionalDefsPath) {
         $optionalDefsText = Get-Content -LiteralPath $optionalDefsPath -Encoding utf8 -Raw
         if ($optionalDefsText -match 'internal\s+static\s+class\s+Hediffs') {
-            $compatibilityBoundarySafetyIssues += "$optionalDefsPath :: optional external hediff defs must not drift back into MooGirlOptionalDefs.Hediffs"
+            $compatibilityBoundarySafetyIssues += "$optionalDefsPath :: optional external hediff defs must not drift back into MugirlOptionalDefs.Hediffs"
         }
     }
     else {
@@ -2856,11 +2856,11 @@ try {
     }
 
     $compatibilityBoundarySafetyChecks++
-    $requiredDefsPath = '1.6\Source\Core\MooGirlRequiredDefs.cs'
+    $requiredDefsPath = '1.6\Source\Core\MugirlRequiredDefs.cs'
     if (Test-Path -LiteralPath $requiredDefsPath) {
         $requiredDefsText = Get-Content -LiteralPath $requiredDefsPath -Encoding utf8 -Raw
-        if ($requiredDefsText -notmatch 'MooGirlLactation\s*=\s*Required<HediffDef>\("MooGirl_Lactation"\)') {
-            $compatibilityBoundarySafetyIssues += "$requiredDefsPath :: internal MooGirl lactation hediff must stay in required Def cache, not in external compatibility caches"
+        if ($requiredDefsText -notmatch 'MugirlLactation\s*=\s*Required<HediffDef>\("Mugirl_Lactation"\)') {
+            $compatibilityBoundarySafetyIssues += "$requiredDefsPath :: internal Mugirl lactation hediff must stay in required Def cache, not in external compatibility caches"
         }
     }
     else {
@@ -2887,7 +2887,7 @@ try {
             Description = 'charge job captures stale target at toil construction time'
         },
         @{
-            Path = '1.6\Source\Features\Misc\Harmony_MooGirlGrazeChain.cs'
+            Path = '1.6\Source\Features\Misc\Harmony_MugirlGrazeChain.cs'
             Pattern = '9999f'
             Description = 'graze chain searches the whole map for the next plant'
         }
@@ -2920,9 +2920,9 @@ try {
     $abilityJobSafetyChecks++
     if (Test-Path -LiteralPath $chargeDriverPath) {
         $chargeDriverText = Get-Content -LiteralPath $chargeDriverPath -Encoding utf8 -Raw
-        if ($chargeDriverText -notmatch 'MooGirlSelectionUtility\.ReselectIfSelectedInPlaying\(pawn,\s*playSound:\s*false,\s*forceDesignatorDeselect:\s*false\)' -or
+        if ($chargeDriverText -notmatch 'MugirlSelectionUtility\.ReselectIfSelectedInPlaying\(pawn,\s*playSound:\s*false,\s*forceDesignatorDeselect:\s*false\)' -or
             $chargeDriverText -match 'Find\.Selector') {
-            $abilityJobSafetyIssues += "$chargeDriverPath :: charge jump reselect must use guarded MooGirlSelectionUtility instead of direct Find.Selector access"
+            $abilityJobSafetyIssues += "$chargeDriverPath :: charge jump reselect must use guarded MugirlSelectionUtility instead of direct Find.Selector access"
         }
     }
     else {
@@ -2965,7 +2965,7 @@ try {
     }
 
     $abilityJobSafetyChecks++
-    $grazeChainPath = '1.6\Source\Features\Misc\Harmony_MooGirlGrazeChain.cs'
+    $grazeChainPath = '1.6\Source\Features\Misc\Harmony_MugirlGrazeChain.cs'
     if (Test-Path -LiteralPath $grazeChainPath) {
         $grazeChainText = Get-Content -LiteralPath $grazeChainPath -Encoding utf8 -Raw
         if ($grazeChainText -notmatch 'MaxGrazeSearchRadius' -or $grazeChainText -notmatch 'job\.playerForced' -or $grazeChainText -notmatch 'pawn\.Drafted' -or $grazeChainText -notmatch 'jobQueue\.Count') {
@@ -3036,7 +3036,7 @@ try {
     Write-Step "Apparel generation safety"
     $apparelGenerationSafetyChecks = 0
     $apparelGenerationSafetyIssues = @()
-    $apparelTagUtilityPath = '1.6\Source\Features\Apparel\MooGirlApparelTagUtility.cs'
+    $apparelTagUtilityPath = '1.6\Source\Features\Apparel\MugirlApparelTagUtility.cs'
     $apparelGenerationSafetyChecks++
     if (Test-Path -LiteralPath $apparelTagUtilityPath) {
         $apparelTagUtilityText = Get-Content -LiteralPath $apparelTagUtilityPath -Encoding utf8 -Raw
@@ -3117,7 +3117,7 @@ try {
             -and $slaveApparelDefText -match 'ApparelUtility\.HasPartsToWear\(pawn,\s*nextDef\)' `
             -and $slaveApparelDefText -match 'ThingMaker\.MakeThing\(nextDef,\s*stuff\)\s+is\s+Apparel\s+nextApparel' `
             -and $slaveApparelDefText -match 'Wear\(nextApparel,\s*locked:\s*true\)' `
-            -and $slaveApparelDefText -match 'MooGirlSelectionUtility\.SelectInPlaying\(wearer\)' `
+            -and $slaveApparelDefText -match 'MugirlSelectionUtility\.SelectInPlaying\(wearer\)' `
             -and $slaveApparelDefText -notmatch 'new\s+List<Hediff>\s+hediffsToRemove' `
             -and $slaveApparelDefText -notmatch 'Find\.Selector'
         if (-not $slaveApparelLifecycleSafe) {
@@ -3172,14 +3172,14 @@ try {
     }
 
     $generatedApparelLockSafetyChecks++
-    $patchRegistryPath = '1.6\Source\Core\MooGirlPatchRegistry.cs'
+    $patchRegistryPath = '1.6\Source\Core\MugirlPatchRegistry.cs'
     if (Test-Path -LiteralPath $patchRegistryPath) {
         $patchRegistryText = Get-Content -LiteralPath $patchRegistryPath -Encoding utf8 -Raw
         $manualPatchSafe = $patchRegistryText -match 'PatchPawnGeneratorGeneratePawn\(harmony\)' `
             -and $patchRegistryText -match 'AccessTools\.Method\(typeof\(PawnGenerator\),\s*nameof\(PawnGenerator\.GeneratePawn\)' `
             -and $patchRegistryText -match 'typeof\(PawnGenerator_GeneratePawn_Patch\)' `
             -and $patchRegistryText -match 'nameof\(PawnGenerator_GeneratePawn_Patch\.Postfix\)' `
-            -and $patchRegistryText -match 'MooGirl\.PatchRegistry\.PawnGeneratorGeneratePawn'
+            -and $patchRegistryText -match 'Mugirl\.PatchRegistry\.PawnGeneratorGeneratePawn'
         if (-not $manualPatchSafe) {
             $generatedApparelLockSafetyIssues += "$patchRegistryPath :: PawnGenerator manual patch registration must stay explicit and auditable"
         }
@@ -3198,13 +3198,13 @@ try {
     $manualPatchRegistrySafetyIssues = @()
 
     $manualPatchRegistrySafetyChecks++
-    $patchRegistryPath = '1.6\Source\Core\MooGirlPatchRegistry.cs'
+    $patchRegistryPath = '1.6\Source\Core\MugirlPatchRegistry.cs'
     if (Test-Path -LiteralPath $patchRegistryPath) {
         $patchRegistryText = Get-Content -LiteralPath $patchRegistryPath -Encoding utf8 -Raw
         $manualPatchFailureSafe = $patchRegistryText -match 'using\s+System;' `
             -and $patchRegistryText -match 'catch\s*\(\s*Exception\s+ex\s*\)' `
             -and $patchRegistryText -match 'ex\.GetType\(\)\.Name\s*\+\s*": "\s*\+\s*ex\.Message' `
-            -and $patchRegistryText -match 'MooGirl\.PatchRegistry\.PatchFailed' `
+            -and $patchRegistryText -match 'Mugirl\.PatchRegistry\.PatchFailed' `
             -and $patchRegistryText -match 'PatchRegistry\.PatchFailed\.\s*"\s*\+\s*nameKey' `
             -and $patchRegistryText -match '(?s)try\s*\{.*harmony\.Patch\s*\(.*manualPatchNames\.Add\(nameKey\);.*\}\s*catch\s*\(\s*Exception\s+ex\s*\)'
         if (-not $manualPatchFailureSafe) {
@@ -3221,8 +3221,8 @@ try {
     if ((Test-Path -LiteralPath $englishGameplayLanguagePath) -and (Test-Path -LiteralPath $chineseGameplayLanguagePath)) {
         $englishGameplayLanguageText = Get-Content -LiteralPath $englishGameplayLanguagePath -Encoding utf8 -Raw
         $chineseGameplayLanguageText = Get-Content -LiteralPath $chineseGameplayLanguagePath -Encoding utf8 -Raw
-        $manualPatchFailureTextSafe = $englishGameplayLanguageText -match '<MooGirl\.PatchRegistry\.PatchFailed>Manual patch failed: \{0\}\. \{1\}</MooGirl\.PatchRegistry\.PatchFailed>' `
-            -and $chineseGameplayLanguageText -match '<MooGirl\.PatchRegistry\.PatchFailed>手动补丁应用失败：\{0\}。\{1\}</MooGirl\.PatchRegistry\.PatchFailed>'
+        $manualPatchFailureTextSafe = $englishGameplayLanguageText -match '<Mugirl\.PatchRegistry\.PatchFailed>Manual patch failed: \{0\}\. \{1\}</Mugirl\.PatchRegistry\.PatchFailed>' `
+            -and $chineseGameplayLanguageText -match '<Mugirl\.PatchRegistry\.PatchFailed>手动补丁应用失败：\{0\}。\{1\}</Mugirl\.PatchRegistry\.PatchFailed>'
         if (-not $manualPatchFailureTextSafe) {
             $manualPatchRegistrySafetyIssues += "$englishGameplayLanguagePath / $chineseGameplayLanguagePath :: manual patch failure warning text must keep English/Chinese key parity and placeholder parity"
         }
@@ -3241,13 +3241,13 @@ try {
     $patchMetadataAuditIssues = @()
     $patchMetadataAuditEntries = 0
 
-    $patchInfoPath = '1.6\Source\Core\MooGirlPatchInfo.cs'
+    $patchInfoPath = '1.6\Source\Core\MugirlPatchInfo.cs'
     if (Test-Path -LiteralPath $patchInfoPath) {
         $patchInfoText = Get-Content -LiteralPath $patchInfoPath -Encoding utf8 -Raw
 
         $patchMetadataAuditChecks++
-        $patchInfoShapeSafe = $patchInfoText -match 'internal\s+sealed\s+class\s+MooGirlPatchInfo' `
-            -and $patchInfoText -match 'internal\s+enum\s+MooGirlPatchRiskLevel' `
+        $patchInfoShapeSafe = $patchInfoText -match 'internal\s+sealed\s+class\s+MugirlPatchInfo' `
+            -and $patchInfoText -match 'internal\s+enum\s+MugirlPatchRiskLevel' `
             -and $patchInfoText -match 'ModuleName\s*\{\s*get;\s*\}' `
             -and $patchInfoText -match 'PatchClassName\s*\{\s*get;\s*\}' `
             -and $patchInfoText -match 'PatchClassFullName\s*=>' `
@@ -3268,7 +3268,7 @@ try {
         $patchMetadataAuditEntries = $registeredPatchClassMatches.Count
         $registeredPatchClasses = New-Object 'System.Collections.Generic.HashSet[string]'
         foreach ($match in $registeredPatchClassMatches) {
-            [void]$registeredPatchClasses.Add('MooGirl.' + $match.Groups[1].Value)
+            [void]$registeredPatchClasses.Add('Mugirl.' + $match.Groups[1].Value)
         }
 
         $patchMetadataAuditChecks++
@@ -3285,27 +3285,27 @@ try {
         Get-ChildItem -LiteralPath '1.6\Source' -Recurse -Filter '*.cs' | ForEach-Object {
             $sourceText = Get-Content -LiteralPath $_.FullName -Encoding utf8 -Raw
             [regex]::Matches($sourceText, '(?m)(?:^\s*\[\s*HarmonyPatch[^\r\n]*\]\s*\r?\n)+(?:\s*(?:public|internal)\s+static\s+class\s+([A-Za-z0-9_]+))') | ForEach-Object {
-                [void]$actualPatchClasses.Add('MooGirl.' + $_.Groups[1].Value)
+                [void]$actualPatchClasses.Add('Mugirl.' + $_.Groups[1].Value)
             }
         }
 
         foreach ($patchClass in ($actualPatchClasses | Sort-Object)) {
             $patchMetadataAuditChecks++
             if (-not $registeredPatchClasses.Contains($patchClass)) {
-                $patchMetadataAuditIssues += "$patchInfoPath :: missing MooGirlPatchInfo for Harmony patch class $patchClass"
+                $patchMetadataAuditIssues += "$patchInfoPath :: missing MugirlPatchInfo for Harmony patch class $patchClass"
             }
         }
 
         $manualPatchExpectations = @(
             @{
-                Class = 'MooGirl.PawnGenerator_GeneratePawn_Patch'
-                Key = 'MooGirl.PatchRegistry.PawnGeneratorGeneratePawn'
+                Class = 'Mugirl.PawnGenerator_GeneratePawn_Patch'
+                Key = 'Mugirl.PatchRegistry.PawnGeneratorGeneratePawn'
             }
         )
         foreach ($expectedManualPatch in $manualPatchExpectations) {
             $patchMetadataAuditChecks++
             if (-not $registeredPatchClasses.Contains($expectedManualPatch.Class)) {
-                $patchMetadataAuditIssues += "$patchInfoPath :: missing MooGirlPatchInfo for manual patch class $($expectedManualPatch.Class)"
+                $patchMetadataAuditIssues += "$patchInfoPath :: missing MugirlPatchInfo for manual patch class $($expectedManualPatch.Class)"
             }
 
             if (-not $registeredManualPatchKeys.Contains($expectedManualPatch.Key)) {
@@ -3323,7 +3323,7 @@ try {
         }
 
         $patchMetadataAuditChecks++
-        if ($patchInfoText -notmatch 'compatibilityRisk:\s*MooGirlPatchRiskLevel\.(High|Critical)') {
+        if ($patchInfoText -notmatch 'compatibilityRisk:\s*MugirlPatchRiskLevel\.(High|Critical)') {
             $patchMetadataAuditIssues += "$patchInfoPath :: patch metadata must include high-risk or critical entries"
         }
     }
@@ -3332,10 +3332,10 @@ try {
     }
 
     $patchMetadataAuditChecks++
-    $bootstrapPath = '1.6\Source\Core\MooGirlBootstrap.cs'
+    $bootstrapPath = '1.6\Source\Core\MugirlBootstrap.cs'
     if (Test-Path -LiteralPath $bootstrapPath) {
         $bootstrapText = Get-Content -LiteralPath $bootstrapPath -Encoding utf8 -Raw
-        if ($bootstrapText -notmatch 'MooGirlPatchCatalog\.LogDevSummary\(patchedClassNames,\s*MooGirlPatchRegistry\.ManualPatchNames\)') {
+        if ($bootstrapText -notmatch 'MugirlPatchCatalog\.LogDevSummary\(patchedClassNames,\s*MugirlPatchRegistry\.ManualPatchNames\)') {
             $patchMetadataAuditIssues += "$bootstrapPath :: bootstrap must emit the patch metadata DevMode summary after attribute and manual patch registration"
         }
     }
@@ -3395,7 +3395,7 @@ try {
     }
 
     $staticCacheLifecycleChecks++
-    $optionalDefsPath = '1.6\Source\Core\MooGirlOptionalDefs.cs'
+    $optionalDefsPath = '1.6\Source\Core\MugirlOptionalDefs.cs'
     if (Test-Path -LiteralPath $optionalDefsPath) {
         $optionalDefsText = Get-Content -LiteralPath $optionalDefsPath -Encoding utf8 -Raw
         if ($optionalDefsText -notmatch 'StaticCacheLifecycle: 进程级可选 Def 缓存') {
@@ -3407,7 +3407,7 @@ try {
     }
 
     $staticCacheLifecycleChecks++
-    $requiredDefsPath = '1.6\Source\Core\MooGirlRequiredDefs.cs'
+    $requiredDefsPath = '1.6\Source\Core\MugirlRequiredDefs.cs'
     if (Test-Path -LiteralPath $requiredDefsPath) {
         $requiredDefsText = Get-Content -LiteralPath $requiredDefsPath -Encoding utf8 -Raw
         if ($requiredDefsText -notmatch 'StaticCacheLifecycle: 进程级必需 Def 缓存') {
@@ -3419,16 +3419,16 @@ try {
     }
 
     $staticCacheLifecycleChecks++
-    $storyStatePath = '1.6\Source\Features\Incidents\MooGirlStoryState.cs'
+    $storyStatePath = '1.6\Source\Features\Incidents\MugirlStoryState.cs'
     if (Test-Path -LiteralPath $storyStatePath) {
         $storyStateText = Get-Content -LiteralPath $storyStatePath -Encoding utf8 -Raw
         $storyStateResetsSafe = $storyStateText -match 'FinalizeInit\(\)' `
             -and $storyStateText -match 'StartedNewGame\(\)' `
             -and $storyStateText -match 'LoadedGame\(\)' `
-            -and $storyStateText -match 'MooGirlLog\.ResetOnceWarnings\(\)' `
-            -and $storyStateText -match 'MooGirlFoodEffectUtility\.ResetDefCache\(\)' `
-            -and $storyStateText -match 'MooGirlNurtureUtility\.ResetDefCache\(\)' `
-            -and $storyStateText -match 'MooGirlMilkingAnimation\.ResetTransientState\(\)' `
+            -and $storyStateText -match 'MugirlLog\.ResetOnceWarnings\(\)' `
+            -and $storyStateText -match 'MugirlFoodEffectUtility\.ResetDefCache\(\)' `
+            -and $storyStateText -match 'MugirlNurtureUtility\.ResetDefCache\(\)' `
+            -and $storyStateText -match 'MugirlMilkingAnimation\.ResetTransientState\(\)' `
             -and $storyStateText -match 'MountedCombatController\.ResetTransientState\(\)' `
             -and $storyStateText -match 'GhoulRenderingRefreshUtility\.ClearPendingRefreshes\(\)'
         if (-not $storyStateResetsSafe) {
@@ -3484,7 +3484,7 @@ try {
     }
 
     Write-Step "csproj source references"
-    $projPath = '1.6\Source\MooGirlRace.csproj'
+    $projPath = '1.6\Source\MugirlRace.csproj'
     $proj = Get-XmlDocument (Resolve-Path -LiteralPath $projPath)
     $projDir = Resolve-Path -LiteralPath '1.6\Source'
     $compileItems = @($proj.Project.ItemGroup.Compile | ForEach-Object { $_.Include } | Where-Object { $_ })
@@ -3587,7 +3587,7 @@ try {
         Fail "C# empty production type scan failed: $($unexpectedEmptyProductionTypes.Count) unexpected empty type(s)"
     }
 
-    Write-Step "MooGirl XML type references"
+    Write-Step "Mugirl XML type references"
     $classNames = New-Object 'System.Collections.Generic.HashSet[string]'
     Get-ChildItem -LiteralPath '1.6\Source' -Recurse -Filter '*.cs' | ForEach-Object {
         $text = Get-Content -LiteralPath $_.FullName -Raw -Encoding utf8
@@ -3604,47 +3604,47 @@ try {
     )
     $typeRefs = New-Object 'System.Collections.Generic.HashSet[string]'
     $missingTypeRefs = @()
-    $unqualifiedMooGirlTypeRefs = @()
+    $unqualifiedMugirlTypeRefs = @()
     foreach ($file in Get-ChildItem -LiteralPath '1.6', 'Bio_1.6', 'Versions' -Recurse -Filter '*.xml') {
         $doc = Get-XmlDocument $file.FullName
         foreach ($node in $doc.SelectNodes('//*')) {
             foreach ($field in $typeFields) {
                 if ($node.Attributes -and $node.Attributes[$field]) {
                     $value = $node.Attributes[$field].Value.Trim()
-                    if ($value.StartsWith('MooGirl.')) {
+                    if ($value.StartsWith('Mugirl.')) {
                         [void]$typeRefs.Add($value)
-                        $shortName = $value.Substring('MooGirl.'.Length).Split(',')[0].Trim()
+                        $shortName = $value.Substring('Mugirl.'.Length).Split(',')[0].Trim()
                         if (-not $classNames.Contains($shortName)) {
                             $missingTypeRefs += "$(Get-RelativePath $file.FullName) :: @$field=$value"
                         }
                     }
                     elseif (-not $value.Contains('.') -and $classNames.Contains($value)) {
-                        $unqualifiedMooGirlTypeRefs += "$(Get-RelativePath $file.FullName) :: @$field=$value"
+                        $unqualifiedMugirlTypeRefs += "$(Get-RelativePath $file.FullName) :: @$field=$value"
                     }
                 }
             }
             if ($typeFields -contains $node.LocalName) {
                 $value = $node.InnerText.Trim()
-                if ($value.StartsWith('MooGirl.')) {
+                if ($value.StartsWith('Mugirl.')) {
                     [void]$typeRefs.Add($value)
-                    $shortName = $value.Substring('MooGirl.'.Length).Split(',')[0].Trim()
+                    $shortName = $value.Substring('Mugirl.'.Length).Split(',')[0].Trim()
                     if (-not $classNames.Contains($shortName)) {
                         $missingTypeRefs += "$(Get-RelativePath $file.FullName) :: <$($node.LocalName)>$value"
                     }
                 }
                 elseif (-not $value.Contains('.') -and $classNames.Contains($value)) {
-                    $unqualifiedMooGirlTypeRefs += "$(Get-RelativePath $file.FullName) :: <$($node.LocalName)>$value"
+                    $unqualifiedMugirlTypeRefs += "$(Get-RelativePath $file.FullName) :: <$($node.LocalName)>$value"
                 }
             }
         }
     }
-    if ($missingTypeRefs.Count -or $unqualifiedMooGirlTypeRefs.Count) {
+    if ($missingTypeRefs.Count -or $unqualifiedMugirlTypeRefs.Count) {
         $missingTypeRefs | Sort-Object | Select-Object -First 120
-        if ($unqualifiedMooGirlTypeRefs.Count) {
-            "Unqualified MooGirl type references:"
-            $unqualifiedMooGirlTypeRefs | Sort-Object | Select-Object -First 120
+        if ($unqualifiedMugirlTypeRefs.Count) {
+            "Unqualified Mugirl type references:"
+            $unqualifiedMugirlTypeRefs | Sort-Object | Select-Object -First 120
         }
-        Fail "MooGirl XML type cross-check failed: $($missingTypeRefs.Count) missing reference(s), $($unqualifiedMooGirlTypeRefs.Count) unqualified reference(s)"
+        Fail "Mugirl XML type cross-check failed: $($missingTypeRefs.Count) missing reference(s), $($unqualifiedMugirlTypeRefs.Count) unqualified reference(s)"
     }
 
     Write-Step "Namespace boundary report"
@@ -3653,11 +3653,11 @@ try {
     $namespaceRootXmlReferencedTypeCount = 0
     $namespaceRootLegacyTypeCount = 0
     $namespaceSpecificTypeCount = 0
-    $namespaceNonMooGirlTypeCount = 0
+    $namespaceNonMugirlTypeCount = 0
     $namespaceSpecificNames = New-Object 'System.Collections.Generic.HashSet[string]'
     $xmlReferencedTypeNames = New-Object 'System.Collections.Generic.HashSet[string]'
     foreach ($typeRef in $typeRefs) {
-        $shortName = $typeRef.Substring('MooGirl.'.Length).Split(',')[0].Trim()
+        $shortName = $typeRef.Substring('Mugirl.'.Length).Split(',')[0].Trim()
         if (-not [string]::IsNullOrWhiteSpace($shortName)) {
             [void]$xmlReferencedTypeNames.Add($shortName)
         }
@@ -3679,7 +3679,7 @@ try {
         $typeMatches = [regex]::Matches($text, '(?m)^\s*(?:\[[^\]]+\]\s*)*(?:(?:public|internal|private|protected|static|sealed|abstract|partial|new)\s+)*(?:class|struct|enum|interface)\s+([A-Za-z_][A-Za-z0-9_]*)')
         foreach ($match in $typeMatches) {
             $typeName = $match.Groups[1].Value
-            if ($namespaceName -eq 'MooGirl') {
+            if ($namespaceName -eq 'Mugirl') {
                 $namespaceRootTypeCount++
                 if ($xmlReferencedTypeNames.Contains($typeName)) {
                     $namespaceRootXmlReferencedTypeCount++
@@ -3688,12 +3688,12 @@ try {
                     $namespaceRootLegacyTypeCount++
                 }
             }
-            elseif ($namespaceName.StartsWith('MooGirl.')) {
+            elseif ($namespaceName.StartsWith('Mugirl.')) {
                 $namespaceSpecificTypeCount++
                 [void]$namespaceSpecificNames.Add($namespaceName)
             }
             else {
-                $namespaceNonMooGirlTypeCount++
+                $namespaceNonMugirlTypeCount++
             }
         }
     }
@@ -3760,9 +3760,9 @@ try {
     }
 
     $requiredIndexedDefs = @(
-        @('BackstoryDef', 'MooGirl_ChildSlaveBackStory'),
-        @('MentalStateDef', 'MooGirl_BrainWashing'),
-        @('ThingDef', 'MooGirl'),
+        @('BackstoryDef', 'Mugirl_ChildSlaveBackStory'),
+        @('MentalStateDef', 'Mugirl_BrainWashing'),
+        @('ThingDef', 'Mugirl'),
         @('ThingDef', 'CaravanPackingSpot')
     )
     foreach ($pair in $requiredIndexedDefs) {
@@ -4049,19 +4049,19 @@ try {
     $directKeys = New-Object 'System.Collections.Generic.HashSet[string]'
     $broadKeys = New-Object 'System.Collections.Generic.HashSet[string]'
     $skipPrefixes = @(
-        'MooGirl.Comp', 'MooGirl.Hediff', 'MooGirl.JobDriver', 'MooGirl.Quest',
-        'MooGirl.CompProperties', 'MooGirl.Thought', 'MooGirl.Incident',
-        'MooGirl.MooGirl', 'MooGirl.SlaveApparel', 'MooGirl.GameComponent',
-        'MooGirl.MapComponent', 'MooGirl.PawnRender', 'MooGirl.Command',
-        'MooGirl.Building', 'MooGirl.Thing', 'MooGirl.Verb', 'MooGirl.Stat',
-        'MooGirl.Work', 'MooGirl.Dialog', 'MooGirl.Mental', 'MooGirl.Pawn'
+        'Mugirl.Comp', 'Mugirl.Hediff', 'Mugirl.JobDriver', 'Mugirl.Quest',
+        'Mugirl.CompProperties', 'Mugirl.Thought', 'Mugirl.Incident',
+        'Mugirl.Mugirl', 'Mugirl.SlaveApparel', 'Mugirl.GameComponent',
+        'Mugirl.MapComponent', 'Mugirl.PawnRender', 'Mugirl.Command',
+        'Mugirl.Building', 'Mugirl.Thing', 'Mugirl.Verb', 'Mugirl.Stat',
+        'Mugirl.Work', 'Mugirl.Dialog', 'Mugirl.Mental', 'Mugirl.Pawn'
     )
     Get-ChildItem -LiteralPath '1.6\Source' -Recurse -Filter '*.cs' | ForEach-Object {
         $text = Get-Content -LiteralPath $_.FullName -Raw -Encoding utf8
-        foreach ($match in [regex]::Matches($text, '"(MooGirl\.[A-Za-z0-9_.-]+)"\s*\.Translate\s*\(')) {
+        foreach ($match in [regex]::Matches($text, '"(Mugirl\.[A-Za-z0-9_.-]+)"\s*\.Translate\s*\(')) {
             [void]$directKeys.Add($match.Groups[1].Value)
         }
-        foreach ($match in [regex]::Matches($text, '"(MooGirl\.[A-Za-z0-9_.-]+)"')) {
+        foreach ($match in [regex]::Matches($text, '"(Mugirl\.[A-Za-z0-9_.-]+)"')) {
             $key = $match.Groups[1].Value
             $isType = $false
             foreach ($prefix in $skipPrefixes) {
@@ -4277,15 +4277,15 @@ try {
     Write-Host "  Feature module files over 400 lines: $featureModuleLargeFileCount"
     Write-Host "  Empty production marker types: $emptyProductionTypeCount"
     Write-Host "  LoadFolders v1.6 entries: $loadFolderEntries"
-    Write-Host "  MooGirl XML type refs: $($typeRefs.Count)"
-    Write-Host "  Unqualified MooGirl XML type refs: $($unqualifiedMooGirlTypeRefs.Count)"
+    Write-Host "  Mugirl XML type refs: $($typeRefs.Count)"
+    Write-Host "  Unqualified Mugirl XML type refs: $($unqualifiedMugirlTypeRefs.Count)"
     Write-Host "  Namespace boundary rules: $namespaceBoundaryChecks"
     Write-Host "  Root namespace types: $namespaceRootTypeCount"
     Write-Host "  Root namespace XML-referenced types: $namespaceRootXmlReferencedTypeCount"
     Write-Host "  Root namespace legacy/non-XML types: $namespaceRootLegacyTypeCount"
-    Write-Host "  Specific MooGirl namespace types: $namespaceSpecificTypeCount"
-    Write-Host "  Specific MooGirl namespaces: $($namespaceSpecificNames.Count)"
-    Write-Host "  Non-MooGirl namespace types: $namespaceNonMooGirlTypeCount"
+    Write-Host "  Specific Mugirl namespace types: $namespaceSpecificTypeCount"
+    Write-Host "  Specific Mugirl namespaces: $($namespaceSpecificNames.Count)"
+    Write-Host "  Non-Mugirl namespace types: $namespaceNonMugirlTypeCount"
     Write-Host "  Patch xpath nodes: $xpathCount"
     Write-Host "  XML patch governance files: $xmlPatchGovernanceFiles"
     Write-Host "  XML patch governance rules: $xmlPatchGovernanceChecks"
@@ -4308,7 +4308,7 @@ try {
     Write-Host "  Current game access safety rules: $currentGameAccessSafetyChecks"
     Write-Host "  Def lookup safety rules: $defLookupSafetyChecks"
     Write-Host "  Dynamic recipe safety rules: $dynamicRecipeSafetyChecks"
-    Write-Host "  MooGirl identity safety rules: $mooGirlIdentitySafetyChecks"
+    Write-Host "  Mugirl identity safety rules: $mugirlIdentitySafetyChecks"
     Write-Host "  Player faction helper safety rules: $playerFactionHelperSafetyChecks"
     Write-Host "  Restraint target safety rules: $restraintTargetSafetyChecks"
     Write-Host "  Restraint hediff state safety rules: $restraintHediffStateSafetyChecks"

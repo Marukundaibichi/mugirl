@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
     <ThoughtDef>
-        <defName>MooGirl_SingleshotWeaponAversionUnhappy</defName>
-        <workerClass>MooGirl.ThoughtWorker_SingleshotWeaponAversion</workerClass>
+        <defName>Mugirl_SingleshotWeaponAversionUnhappy</defName>
+        <workerClass>Mugirl.ThoughtWorker_SingleshotWeaponAversion</workerClass>
         <validWhileDespawned>true</validWhileDespawned>
         <requiredTraits>
-            <li>MooGirl_SingleshotWeaponAversion</li>
+            <li>Mugirl_SingleshotWeaponAversion</li>
         </requiredTraits>
         <stages>
             <li>
@@ -19,8 +19,8 @@
     </ThoughtDef>
 
     <ThoughtDef>
-        <defName>MooGirl_AteHay</defName>
-        <thoughtClass>MooGirl.Thought_MooGirlOnly</thoughtClass>
+        <defName>Mugirl_AteHay</defName>
+        <thoughtClass>Mugirl.Thought_MugirlOnly</thoughtClass>
         <showBubble>true</showBubble>
         <icon>Things/Mote/ThoughtSymbol/Food</icon>
         <durationDays>1</durationDays>
@@ -36,8 +36,8 @@
     </ThoughtDef>
 
     <ThoughtDef>
-        <defName>MooGirl_AteNutrient</defName>
-        <thoughtClass>MooGirl.Thought_MooGirlOnly</thoughtClass>
+        <defName>Mugirl_AteNutrient</defName>
+        <thoughtClass>Mugirl.Thought_MugirlOnly</thoughtClass>
         <durationDays>1</durationDays>
         <nullifyingTraits>
             <li>Ascetic</li>
@@ -54,7 +54,7 @@
     </ThoughtDef>
 
     <ThoughtDef>
-        <defName>MooGirl_BrainwashHappy</defName>
+        <defName>Mugirl_BrainwashHappy</defName>
         <durationDays>1</durationDays>
         <stages>
             <li>
@@ -68,7 +68,7 @@
     </ThoughtDef>
 
     <ThoughtDef>
-        <defName>MooGirl_BrainWashing_End</defName>
+        <defName>Mugirl_BrainWashing_End</defName>
         <durationDays>3</durationDays>
         <stackLimit>5</stackLimit>
         <stages>
@@ -83,7 +83,7 @@
     </ThoughtDef>
 
     <ThoughtDef>
-        <defName>MooGirl_Nuzzled</defName>
+        <defName>Mugirl_Nuzzled</defName>
         <durationDays>1</durationDays>
         <stackLimit>3</stackLimit>
         <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
@@ -114,8 +114,8 @@
     </ThoughtDef>
 
     <ThoughtDef>
-        <defName>MooGirl_Roper</defName>
-        <workerClass>MooGirl.ThoughtWorker_Roper</workerClass>
+        <defName>Mugirl_Roper</defName>
+        <workerClass>Mugirl.ThoughtWorker_Roper</workerClass>
         <stages>
             <li>
                 <!-- 牵引了一只雪牛娘 -->
@@ -135,8 +135,8 @@
     </ThoughtDef>
 
     <ThoughtDef>
-        <defName>MooGirl_Roped</defName>
-        <workerClass>MooGirl.ThoughtWorker_Roped</workerClass>
+        <defName>Mugirl_Roped</defName>
+        <workerClass>Mugirl.ThoughtWorker_Roped</workerClass>
         <stages>
             <li>
                 <!-- 正在被牵引 -->

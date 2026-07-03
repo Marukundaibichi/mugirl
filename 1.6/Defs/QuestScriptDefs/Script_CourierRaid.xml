@@ -2,7 +2,7 @@
 <Defs>
 
     <QuestScriptDef>
-    <defName>MooGirl_CourierRaid</defName>
+    <defName>Mugirl_CourierRaid</defName>
     <autoAccept>true</autoAccept>
     <questNameRules>
         <rulesStrings>
@@ -16,7 +16,7 @@
         <li>questDescription->A mega corporation courier carrying important items has arrived near your colony. You can send a colonist to negotiate with him.</li>
         </rulesStrings>
     </questDescriptionRules>
-    <root Class="MooGirl.QuestNode_Root_MooGirl_CourierRaid" />
+    <root Class="Mugirl.QuestNode_Root_Mugirl_CourierRaid" />
     </QuestScriptDef>
 
 </Defs>

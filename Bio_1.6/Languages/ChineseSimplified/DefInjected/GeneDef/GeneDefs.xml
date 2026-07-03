@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
     <!-- Carriers of this gene possess explosive power, allowing them to accelerate toward enemies in a short time. It is said to be a traditional way to embrace the glory of battle. -->
-    <MooGirl_Charge.description>这种基因的携带者具有强大爆发能力，可以在短时间加速冲向敌人，据说这是一种拥抱战斗的荣耀传统形式。</MooGirl_Charge.description>
+    <Mugirl_Charge.description>这种基因的携带者具有强大爆发能力，可以在短时间加速冲向敌人，据说这是一种拥抱战斗的荣耀传统形式。</Mugirl_Charge.description>
     <!-- Mugirl Charge! -->
-    <MooGirl_Charge.label>雪牛冲锋！</MooGirl_Charge.label>
+    <Mugirl_Charge.label>雪牛冲锋！</Mugirl_Charge.label>
     <!-- Carriers of this gene learn slowly, but fortunately have strong memory. Even a Mugirl might win a Nobel-ish prize! -->
-    <MooGirl_NobelPrize.description>这种基因的携带者学习能力低下，但是好在记忆力强。雪牛也有机会获得诺背耳奖！</MooGirl_NobelPrize.description>
+    <Mugirl_NobelPrize.description>这种基因的携带者学习能力低下，但是好在记忆力强。雪牛也有机会获得诺背耳奖！</Mugirl_NobelPrize.description>
     <!-- Mugirl Nobel Memory! -->
-    <MooGirl_NobelPrize.label>雪牛大葱鸣！</MooGirl_NobelPrize.label>
+    <Mugirl_NobelPrize.label>雪牛大葱鸣！</Mugirl_NobelPrize.label>
     <!-- Carriers of this gene are impatient, like firing wildly, and dislike careful aiming. -->
-    <MooGirl_Shooting.description>这种基因的携带者耐不住性子，喜欢乱开枪，厌恶瞄准。</MooGirl_Shooting.description>
+    <Mugirl_Shooting.description>这种基因的携带者耐不住性子，喜欢乱开枪，厌恶瞄准。</Mugirl_Shooting.description>
     <!-- Mugirl Bang-Bang-Bang! -->
-    <MooGirl_Shooting.label>雪牛砰砰砰！</MooGirl_Shooting.label>
+    <Mugirl_Shooting.label>雪牛砰砰砰！</Mugirl_Shooting.label>
     <!-- Carriers of this gene have a unique roar. This strange cry provokes nearby enemies into attacking them, functioning as a taunt. (RUA~!) -->
-    <MooGirl_Shout.description>这种基因的携带者拥有独特的吼声，这种奇怪的叫声会令周围的敌人忍不住殴打他，具有嘲讽能力。（RUA~！）</MooGirl_Shout.description>
+    <Mugirl_Shout.description>这种基因的携带者拥有独特的吼声，这种奇怪的叫声会令周围的敌人忍不住殴打他，具有嘲讽能力。（RUA~！）</Mugirl_Shout.description>
     <!-- Mugirl Shout! -->
-    <MooGirl_Shout.label>雪牛大叫！</MooGirl_Shout.label>
+    <Mugirl_Shout.label>雪牛大叫！</Mugirl_Shout.label>
 </LanguageData>

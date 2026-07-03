@@ -4,31 +4,31 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     public static class MountedPawnUtility
     {
-        public static bool IsMooGirl(Pawn pawn)
+        public static bool IsMugirl(Pawn pawn)
         {
-            return MooGirlIdentity.IsMooGirlPawn(pawn);
+            return MugirlIdentity.IsMugirlPawn(pawn);
         }
 
-        public static Comp_MooGirlMount GetMountComp(Pawn pawn)
+        public static Comp_MugirlMount GetMountComp(Pawn pawn)
         {
-            return pawn?.TryGetComp<Comp_MooGirlMount>();
+            return pawn?.TryGetComp<Comp_MugirlMount>();
         }
 
-        public static Comp_MooGirlMount GetMountForRider(Pawn rider)
+        public static Comp_MugirlMount GetMountForRider(Pawn rider)
         {
             if (rider == null)
             {
                 return null;
             }
 
-            return rider.ParentHolder as Comp_MooGirlMount ?? ThingOwnerUtility.GetAnyParent<Comp_MooGirlMount>(rider);
+            return rider.ParentHolder as Comp_MugirlMount ?? ThingOwnerUtility.GetAnyParent<Comp_MugirlMount>(rider);
         }
 
-        public static bool IsMounted(Pawn pawn, out Comp_MooGirlMount comp)
+        public static bool IsMounted(Pawn pawn, out Comp_MugirlMount comp)
         {
             comp = GetMountForRider(pawn);
             return comp != null && comp.MountedPawn == pawn;
@@ -282,38 +282,38 @@ namespace MooGirl
             return MountEligibilityService.ShouldAutoDismount(rider, carrier, out reasonKey);
         }
 
-        public static IEnumerable<Gizmo> GetMountedPawnGizmos(Pawn rider, Comp_MooGirlMount comp)
+        public static IEnumerable<Gizmo> GetMountedPawnGizmos(Pawn rider, Comp_MugirlMount comp)
         {
             Pawn carrier = comp?.MooPawn;
             if (carrier != null)
             {
                 yield return new Command_Action
                 {
-                    defaultLabel = "MooGirl.Mount.SelectCarrier".Translate(),
-                    defaultDesc = "MooGirl.Mount.SelectCarrierDesc".Translate(),
+                    defaultLabel = "Mugirl.Mount.SelectCarrier".Translate(),
+                    defaultDesc = "Mugirl.Mount.SelectCarrierDesc".Translate(),
                     icon = TexCommand.SelectCarriedThing,
                     action = delegate
                     {
-                        Comp_MooGirlMount currentComp = GetMountForRider(rider) ?? comp;
+                        Comp_MugirlMount currentComp = GetMountForRider(rider) ?? comp;
                         Pawn currentCarrier = currentComp?.MooPawn;
                         if (currentCarrier == null)
                         {
                             return;
                         }
 
-                        MooGirlSelectionUtility.SelectInPlaying(currentCarrier);
+                        MugirlSelectionUtility.SelectInPlaying(currentCarrier);
                     }
                 };
             }
 
             yield return new Command_Action
             {
-                defaultLabel = "MooGirl.Mount.DismountRider".Translate(),
-                defaultDesc = "MooGirl.Mount.DismountRiderDesc".Translate(),
+                defaultLabel = "Mugirl.Mount.DismountRider".Translate(),
+                defaultDesc = "Mugirl.Mount.DismountRiderDesc".Translate(),
                 icon = TexCommand.DropCarriedPawn,
                 action = delegate
                 {
-                    Comp_MooGirlMount currentComp = GetMountForRider(rider) ?? comp;
+                    Comp_MugirlMount currentComp = GetMountForRider(rider) ?? comp;
                     currentComp?.TryDismount();
                 }
             };
@@ -321,7 +321,7 @@ namespace MooGirl
             yield break;
         }
 
-        public static Vector3 OffsetForRot(CompProperties_MooGirlMount props, Rot4 rotation)
+        public static Vector3 OffsetForRot(CompProperties_MugirlMount props, Rot4 rotation)
         {
             if (props == null)
             {

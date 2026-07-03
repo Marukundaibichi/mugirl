@@ -2,7 +2,7 @@ using RimWorld;
 using System.Collections.Generic;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class GameComponent_BrainwashPerformance : GameComponent
     {
@@ -21,11 +21,11 @@ namespace MooGirl
             if (pawn == null || sourceHediffDef == null)
                 return;
 
-            if (!MooGirlGameUtility.TryGetGameComponent(out GameComponent_BrainwashPerformance comp))
+            if (!MugirlGameUtility.TryGetGameComponent(out GameComponent_BrainwashPerformance comp))
             {
-                MooGirlLog.WarningOnce(
+                MugirlLog.WarningOnce(
                     "BrainwashPerformance.GameComponentMissing",
-                    "Tried to start a MooGirl brainwash performance while its GameComponent was unavailable.");
+                    "Tried to start a Mugirl brainwash performance while its GameComponent was unavailable.");
                 return;
             }
 

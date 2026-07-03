@@ -3,7 +3,7 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     // 逃亡野生奴隶不是普通动物，但沿用驯服指令作为“接触并收编”的入口。
     [HarmonyPatch(typeof(TameUtility), nameof(TameUtility.CanTame))]
@@ -13,7 +13,7 @@ namespace MooGirl
         {
             if (pawn == null) return;
 
-            if (MooGirlWildSlaveUtility.IsNonPlayerEscapeWildSlave(pawn))
+            if (MugirlWildSlaveUtility.IsNonPlayerEscapeWildSlave(pawn))
             {
                 __result = true;
             }
@@ -31,7 +31,7 @@ namespace MooGirl
             Pawn pawn = t as Pawn;
             if (pawn == null) return;
 
-            if (MooGirlWildSlaveUtility.IsNonPlayerEscapeWildSlave(pawn))
+            if (MugirlWildSlaveUtility.IsNonPlayerEscapeWildSlave(pawn))
             {
                 __result = true;
             }

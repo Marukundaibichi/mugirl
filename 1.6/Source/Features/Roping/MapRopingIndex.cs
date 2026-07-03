@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using RimWorld;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     public sealed class MapRopingIndex : MapComponent
     {
@@ -20,8 +20,8 @@ namespace MooGirl
         public override void MapComponentTick()
         {
             // 索引是运行期缓存；低频重建用于兜底处理原版或其他 mod 直接改 RopeTracker 的情况。
-            MooGirlTickUtility.Add(ref rebuildTickCounter, 1);
-            if (MooGirlTickUtility.ConsumeReady(ref rebuildTickCounter, 250, out _))
+            MugirlTickUtility.Add(ref rebuildTickCounter, 1);
+            if (MugirlTickUtility.ConsumeReady(ref rebuildTickCounter, 250, out _))
             {
                 RebuildFromMap();
             }

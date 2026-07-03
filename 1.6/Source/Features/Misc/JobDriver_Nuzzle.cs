@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class JobDriver_Nuzzle : JobDriver
     {
@@ -29,7 +29,7 @@ namespace MooGirl
                 Pawn recipient = Recipient;
                 if (CanNuzzle(pawn, recipient))
                 {
-                    this.pawn.interactions.TryInteractWith(recipient, MooGirl_DefOf.MooGirl_Nuzzle);
+                    this.pawn.interactions.TryInteractWith(recipient, Mugirl_DefOf.Mugirl_Nuzzle);
                 }
             });
             yield break;

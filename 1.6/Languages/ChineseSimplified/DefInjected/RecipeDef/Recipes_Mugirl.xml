@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- Make a restraint decryptor. -->
+    <Mugirl_MakeKey_Advance.description>制作一个束具破解器</Mugirl_MakeKey_Advance.description>
+    <!-- Making restraint decryptor -->
+    <Mugirl_MakeKey_Advance.jobString>正在制作束具破解器</Mugirl_MakeKey_Advance.jobString>
+    <!-- Make Restraint Decryptor -->
+    <Mugirl_MakeKey_Advance.label>制作束具破解器</Mugirl_MakeKey_Advance.label>
+    <!-- Make a exquisite key to unlock high-level restraint. -->
+    <Mugirl_MakeKey_Industrial.description>制作一把可解锁高等级束具的精致钥匙。</Mugirl_MakeKey_Industrial.description>
+    <!-- Making Dedicate Restraint Key -->
+    <Mugirl_MakeKey_Industrial.jobString>正在制作精致束具钥匙</Mugirl_MakeKey_Industrial.jobString>
+    <!-- Make Exquisite Restraint Key -->
+    <Mugirl_MakeKey_Industrial.label>制作精致束具钥匙</Mugirl_MakeKey_Industrial.label>
+    <!-- Make a rough key to unlock low level restraint. -->
+    <Mugirl_MakeKey_Medieval.description>制作一把粗糙钥匙，可用于解锁低级束具。</Mugirl_MakeKey_Medieval.description>
+    <!-- Making Rough Restraint Key -->
+    <Mugirl_MakeKey_Medieval.jobString>正在制作粗糙束具钥匙</Mugirl_MakeKey_Medieval.jobString>
+    <!-- Make Rough Restraint Key -->
+    <Mugirl_MakeKey_Medieval.label>制作粗糙束具钥匙</Mugirl_MakeKey_Medieval.label>
+    <!-- Make a exquisite key for Spacer restraint. -->
+    <Mugirl_MakeKey_Spacer.description>制作一把适用于太空束具的精致钥匙。</Mugirl_MakeKey_Spacer.description>
+    <!-- Making Spacer Restraint Key -->
+    <Mugirl_MakeKey_Spacer.jobString>正在制作太空束具钥匙</Mugirl_MakeKey_Spacer.jobString>
+    <!-- Make Spacer Restraint Key -->
+    <Mugirl_MakeKey_Spacer.label>制作太空束具钥匙</Mugirl_MakeKey_Spacer.label>
+    <!-- Use high heat and electromagnets to break armored restraint apparel down into useful resources. -->
+    <Mugirl_SmeltBondageApparel.description>利用高温和电磁铁将装甲之类的束具衣物分解成有用的资源。</Mugirl_SmeltBondageApparel.description>
+    <!-- Smelting restraint apparel -->
+    <Mugirl_SmeltBondageApparel.jobString>正在熔炼束具。</Mugirl_SmeltBondageApparel.jobString>
+    <!-- Smelt restraint apparel -->
+    <Mugirl_SmeltBondageApparel.label>熔炼束具</Mugirl_SmeltBondageApparel.label>
+</LanguageData>

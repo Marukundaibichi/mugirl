@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
     <!-- Crashlanded Mugirl Slave -->
-    <MooGirl_Beginning_Slave.label>雪牛迫降奴隶</MooGirl_Beginning_Slave.label>
+    <Mugirl_Beginning_Slave.label>雪牛迫降奴隶</Mugirl_Beginning_Slave.label>
     <!-- Escaped Mugirl Space Slave -->
-    <MooGirl_EscapeSpaceSlave.label>逃脱太空奴隶</MooGirl_EscapeSpaceSlave.label>
+    <Mugirl_EscapeSpaceSlave.label>逃脱太空奴隶</Mugirl_EscapeSpaceSlave.label>
     <!-- Escaped Mugirl Slave -->
-    <MooGirl_EscapeWanderSlave.label>逃亡奴隶</MooGirl_EscapeWanderSlave.label>
+    <Mugirl_EscapeWanderSlave.label>逃亡奴隶</Mugirl_EscapeWanderSlave.label>
     <!-- Escaped Wild Mugirl -->
-    <MooGirl_EscapeWildSlave.label>逃脱流浪野人</MooGirl_EscapeWildSlave.label>
+    <Mugirl_EscapeWildSlave.label>逃脱流浪野人</Mugirl_EscapeWildSlave.label>
     <!-- Mugirl Wanderer -->
-    <MooGirl_PreEscapeWildSlave.label>雪牛流浪者</MooGirl_PreEscapeWildSlave.label>
+    <Mugirl_PreEscapeWildSlave.label>雪牛流浪者</Mugirl_PreEscapeWildSlave.label>
     <!-- Slave -->
-    <MooGirl_Slave.label>奴隶</MooGirl_Slave.label>
+    <Mugirl_Slave.label>奴隶</Mugirl_Slave.label>
 </LanguageData>

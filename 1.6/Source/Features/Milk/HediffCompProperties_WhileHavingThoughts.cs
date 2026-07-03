@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     // 根据记忆 Thought 维持或移除自身 Hediff 的配置。
     internal class HediffCompProperties_WhileHavingThoughts : HediffCompProperties

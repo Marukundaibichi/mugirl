@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
     <!-- Charge, charge, charge! Brave, brave Mugirl! -->
-    <MooGirl_Charge.description>冲冲冲！勇敢勇敢我的牛牛！</MooGirl_Charge.description>
+    <Mugirl_Charge.description>冲冲冲！勇敢勇敢我的牛牛！</Mugirl_Charge.description>
     <!-- Mugirl Charge -->
-    <MooGirl_Charge.label>牛牛冲锋</MooGirl_Charge.label>
+    <Mugirl_Charge.label>牛牛冲锋</Mugirl_Charge.label>
     <!-- Knocked senseless by a charging Mugirl. -->
-    <MooGirl_Stun.description>被雪牛娘创力~口区。</MooGirl_Stun.description>
+    <Mugirl_Stun.description>被雪牛娘创力~口区。</Mugirl_Stun.description>
     <!-- Mugirl Impact -->
-    <MooGirl_Stun.label>牛牛撞击</MooGirl_Stun.label>
+    <Mugirl_Stun.label>牛牛撞击</Mugirl_Stun.label>
 </LanguageData>

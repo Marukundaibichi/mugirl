@@ -1,220 +1,218 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-    <MooGirl.Text.FormatFailedLog>MooGirl text formatting failed: {ERROR}</MooGirl.Text.FormatFailedLog>
-    <MooGirl.Settings.Category>MooGirl mod control</MooGirl.Settings.Category>
-    <MooGirl.Bootstrap.HarmonyPatchFailed>Harmony patch skipped: {0}. {1}</MooGirl.Bootstrap.HarmonyPatchFailed>
-    <MooGirl.PatchRegistry.NullHarmony>Manual patches skipped because the Harmony instance is missing.</MooGirl.PatchRegistry.NullHarmony>
-    <MooGirl.PatchRegistry.PawnGeneratorGeneratePawn>PawnGenerator.GeneratePawn slave apparel lock postfix</MooGirl.PatchRegistry.PawnGeneratorGeneratePawn>
-    <MooGirl.PatchRegistry.MissingTarget>Manual patch target missing: {0}</MooGirl.PatchRegistry.MissingTarget>
-    <MooGirl.PatchRegistry.MissingPatchMethod>Manual patch method missing: {0}</MooGirl.PatchRegistry.MissingPatchMethod>
-    <MooGirl.PatchRegistry.PatchFailed>Manual patch failed: {0}. {1}</MooGirl.PatchRegistry.PatchFailed>
-    <MooGirl.GameUtility.WindowStackUnavailable>Tried to open a MooGirl window while the window stack was unavailable.</MooGirl.GameUtility.WindowStackUnavailable>
-    <MooGirl.GameUtility.LetterStackUnavailable>Tried to send a MooGirl letter while the game letter stack was unavailable.</MooGirl.GameUtility.LetterStackUnavailable>
-    <MooGirl.GameUtility.WorldPawnsUnavailable>Tried to move a generated MooGirl pawn through world storage while WorldPawns was unavailable.</MooGirl.GameUtility.WorldPawnsUnavailable>
-    <MooGirl.DropThingTooltip.TranspilerNotApplied>Gear drop tooltip patch was skipped because the expected vanilla IL pattern was not found.</MooGirl.DropThingTooltip.TranspilerNotApplied>
-    <MooGirl.RopingTick.BreakRopeWithRoperMissing>Roping tick fallback used BreakAllRopes because the vanilla BreakRopeWithRoper method was not found.</MooGirl.RopingTick.BreakRopeWithRoperMissing>
-    <MooGirl.Mount.DropAtFailed>Mounted rider {0} could not be dropped from {1}; the rider was passed to world storage as a fallback.</MooGirl.Mount.DropAtFailed>
-    <MooGirl.Restraints.MagneticShackles.ActivateLabel>Activate shackles</MooGirl.Restraints.MagneticShackles.ActivateLabel>
-    <MooGirl.Restraints.MagneticShackles.ActivateDesc>Activate the magnetic shackles, restraining the target.</MooGirl.Restraints.MagneticShackles.ActivateDesc>
-    <MooGirl.Restraints.MagneticShackles.DeactivateLabel>Release shackles</MooGirl.Restraints.MagneticShackles.DeactivateLabel>
-    <MooGirl.Restraints.MagneticShackles.DeactivateDesc>Release the magnetic shackles.</MooGirl.Restraints.MagneticShackles.DeactivateDesc>
-    <MooGirl.Restraints.MagneticShackles.LabelActive>Magnetic shackles (active)</MooGirl.Restraints.MagneticShackles.LabelActive>
-    <MooGirl.Restraints.MagneticShackles.LabelInactive>Magnetic shackles (inactive)</MooGirl.Restraints.MagneticShackles.LabelInactive>
-    <MooGirl.Restraints.MagneticShackles.MoteOn>Magnetic shackles activated!</MooGirl.Restraints.MagneticShackles.MoteOn>
-    <MooGirl.Restraints.MagneticShackles.MoteOff>Magnetic shackles released!</MooGirl.Restraints.MagneticShackles.MoteOff>
-    <MooGirl.Restraints.MagneticShackles.MessageOn>{0}'s magnetic shackles suddenly activated.</MooGirl.Restraints.MagneticShackles.MessageOn>
-    <MooGirl.Restraints.MagneticShackles.MessageOff>{0}'s magnetic shackles were released.</MooGirl.Restraints.MagneticShackles.MessageOff>
-    <MooGirl.Restraints.MagneticShackles.CooldownTicksLeft>Cooling down: {0}</MooGirl.Restraints.MagneticShackles.CooldownTicksLeft>
-    <MooGirl.Restraints.ShockCollar.PowerLabel>Power shock</MooGirl.Restraints.ShockCollar.PowerLabel>
-    <MooGirl.Restraints.ShockCollar.PowerDesc>Trigger one power shock.</MooGirl.Restraints.ShockCollar.PowerDesc>
-    <MooGirl.Restraints.ShockCollar.CommonLabel>Common shock</MooGirl.Restraints.ShockCollar.CommonLabel>
-    <MooGirl.Restraints.ShockCollar.CommonDesc>Trigger one common shock.</MooGirl.Restraints.ShockCollar.CommonDesc>
-    <MooGirl.Restraints.ShockCollar.PowerCooldownTicksLeft>Cooling down: {0}</MooGirl.Restraints.ShockCollar.PowerCooldownTicksLeft>
-    <MooGirl.Restraints.ShockCollar.CommonCooldownTicksLeft>Cooling down: {0}</MooGirl.Restraints.ShockCollar.CommonCooldownTicksLeft>
-    <MooGirl.Restraints.DevUnlock.Label>Dev: unlock {0}</MooGirl.Restraints.DevUnlock.Label>
-    <MooGirl.Restraints.DevUnlock.Desc>Dev mode: immediately remove the wear lock from {0} for debugging.</MooGirl.Restraints.DevUnlock.Desc>
-    <MooGirl.Restraints.DevUnlock.Message>Dev-unlocked {0}'s {1}.</MooGirl.Restraints.DevUnlock.Message>
-    <MooGirl.Restraints.BrainwashHelmet.ActivateLabel>Activate brainwashing</MooGirl.Restraints.BrainwashHelmet.ActivateLabel>
-    <MooGirl.Restraints.BrainwashHelmet.ActivateDesc>Activate the brainwashing helmet and brainwash the target.</MooGirl.Restraints.BrainwashHelmet.ActivateDesc>
-    <MooGirl.Restraints.BrainwashHelmet.ManualTriggerMessage>{0} activated the brainwashing device.</MooGirl.Restraints.BrainwashHelmet.ManualTriggerMessage>
-    <MooGirl.Restraints.BrainwashHelmet.IdeoConvertLabel>Ideology conversion</MooGirl.Restraints.BrainwashHelmet.IdeoConvertLabel>
-    <MooGirl.Restraints.BrainwashHelmet.IdeoConvertDesc>Change the wearer's ideology to the colony's primary ideology.</MooGirl.Restraints.BrainwashHelmet.IdeoConvertDesc>
-    <MooGirl.Restraints.BrainwashHelmet.IdeoConvertMessage>{0}'s ideology has been converted to the colony's primary ideology.</MooGirl.Restraints.BrainwashHelmet.IdeoConvertMessage>
-    <MooGirl.MilkingDevice.StoredMessage>{0}'s milking device stored one production charge ({1}/{2}).</MooGirl.MilkingDevice.StoredMessage>
-    <MooGirl.MilkingDevice.ReleaseMessage>{0} released the stored milk and produced {1} MooGirl milk.</MooGirl.MilkingDevice.ReleaseMessage>
-    <MooGirl.MilkingDevice.ReleaseLabel>Release stored milk</MooGirl.MilkingDevice.ReleaseLabel>
-    <MooGirl.MilkingDevice.ReleaseDesc>Release all MooGirl milk stored in this device onto the ground.</MooGirl.MilkingDevice.ReleaseDesc>
-    <MooGirl.MilkingDevice.InspectLabel>Stored milk</MooGirl.MilkingDevice.InspectLabel>
-    <MooGirl.MilkingDevice.InspectLabelWithCharges>Stored milk charges</MooGirl.MilkingDevice.InspectLabelWithCharges>
-    <MooGirl.MilkingDevice.Inspect>{0}: {1}/{2} ({3}x {4})</MooGirl.MilkingDevice.Inspect>
-    <MooGirl.MilkingDevice.NoChargeText>There is no stored milk to release.</MooGirl.MilkingDevice.NoChargeText>
-    <MooGirl.MilkingDevice.StoredMoteText>Stored milk +1</MooGirl.MilkingDevice.StoredMoteText>
-    <MooGirl.MilkingDevice.AutoReleaseEnabled>Auto milking: on</MooGirl.MilkingDevice.AutoReleaseEnabled>
-    <MooGirl.MilkingDevice.AutoReleaseDisabled>Auto milking: off</MooGirl.MilkingDevice.AutoReleaseDisabled>
-    <MooGirl.MilkingDevice.AutoReleaseDesc>When enabled, the milking device immediately releases milk when its wearer reaches full milk. When disabled, it only releases overflow after storage is already full and another full-milk event is received.</MooGirl.MilkingDevice.AutoReleaseDesc>
-    <MooGirl.MilkingDevice.PowerReleaseEnabled>Power release: on</MooGirl.MilkingDevice.PowerReleaseEnabled>
-    <MooGirl.MilkingDevice.PowerReleaseDisabled>Power release: off</MooGirl.MilkingDevice.PowerReleaseDisabled>
-    <MooGirl.MilkingDevice.DevFill.Label>Dev: fill milking progress</MooGirl.MilkingDevice.DevFill.Label>
-    <MooGirl.MilkingDevice.DevFill.Desc>Dev mode: immediately fill the current wearer's milk progress and trigger milking-device logic.</MooGirl.MilkingDevice.DevFill.Desc>
-    <MooGirl.MilkingDevice.DevFill.Success>Filled {0}'s milk progress in dev mode.</MooGirl.MilkingDevice.DevFill.Success>
-    <MooGirl.MilkingDevice.DevFill.Failed>{0}'s milk progress cannot be filled in dev mode right now.</MooGirl.MilkingDevice.DevFill.Failed>
-    <MooGirl.MilkingDevice.ReleaseThingMissing>Milking device could not resolve the release product Def.</MooGirl.MilkingDevice.ReleaseThingMissing>
-    <MooGirl.Settings.StructuralCrashEvent.Label>Enable MooGirl crash event</MooGirl.Settings.StructuralCrashEvent.Label>
-    <MooGirl.Settings.StructuralCrashEvent.Desc>Controls whether the MooGirl crash event can trigger. Disable this to prevent the event from firing.</MooGirl.Settings.StructuralCrashEvent.Desc>
-    <MooGirl.Settings.FastMilking.Label>Fast milking</MooGirl.Settings.FastMilking.Label>
-    <MooGirl.Settings.FastMilking.Desc>When enabled, self-milking and assisted milking work time for MooGirls is shortened to 1 second.</MooGirl.Settings.FastMilking.Desc>
-    <MooGirl.Milk.Gauge.Label>Lactation</MooGirl.Milk.Gauge.Label>
-    <MooGirl.Milk.Gauge.Desc>Current milk fullness for this MooGirl. The red line marks the automatic milking threshold; colonists will automatically milk when it is reached.</MooGirl.Milk.Gauge.Desc>
-    <MooGirl.Milk.FullnessDisplay>Mugirl milk</MooGirl.Milk.FullnessDisplay>
-    <MooGirl.Milk.FullnessInspect>{0}: {1}</MooGirl.Milk.FullnessInspect>
-    <MooGirl.Milk.Gauge.Tooltip>{0}\n\nCurrent: {1}\nThreshold: {2}\nMove the mouse over the right-side buttons to inspect threshold changes\nEstimated milk per use: {3}\nLactation speed: {4}</MooGirl.Milk.Gauge.Tooltip>
-    <MooGirl.Milk.ProductionRate>{0}% / {1}s</MooGirl.Milk.ProductionRate>
-    <MooGirl.Milk.Gauge.IncreaseThresholdTooltip>Increase automatic milking threshold\nCurrent: {0}\nAfter adjustment: {1}</MooGirl.Milk.Gauge.IncreaseThresholdTooltip>
-    <MooGirl.Milk.Gauge.DecreaseThresholdTooltip>Decrease automatic milking threshold\nCurrent: {0}\nAfter adjustment: {1}</MooGirl.Milk.Gauge.DecreaseThresholdTooltip>
-    <MooGirl.Milk.DevFill.Label>Dev: fill milk</MooGirl.Milk.DevFill.Label>
-    <MooGirl.Milk.DevFill.Desc>Dev mode: immediately fill the selected MooGirl's milk amount to maximum.</MooGirl.Milk.DevFill.Desc>
-    <MooGirl.Milk.DevFill.Success>Filled {0}'s milk amount.</MooGirl.Milk.DevFill.Success>
-    <MooGirl.Milk.DevFill.Failed>{0}'s milk amount cannot be filled right now.</MooGirl.Milk.DevFill.Failed>
-    <MooGirl.Milk.SprayText>Milk spray!</MooGirl.Milk.SprayText>
-    <MooGirl.Milk.FloatMenu.Gather>Milk ({0})</MooGirl.Milk.FloatMenu.Gather>
-    <MooGirl.Milk.FloatMenu.Drink>Drink milk ({0})</MooGirl.Milk.FloatMenu.Drink>
-    <MooGirl.Milk.FloatMenu.ChildDrink>Seek milk ({0})</MooGirl.Milk.FloatMenu.ChildDrink>
-    <MooGirl.Milk.FloatMenu.Feed>Feed milk ({0})</MooGirl.Milk.FloatMenu.Feed>
-    <MooGirl.Milk.FloatMenu.Disabled>{0}: {1}</MooGirl.Milk.FloatMenu.Disabled>
-    <MooGirl.Milk.FloatMenu.FeedJobMissing>Job_FeedMilkToDowned missing</MooGirl.Milk.FloatMenu.FeedJobMissing>
-    <MooGirl.Milk.FloatMenu.NotActive>Cannot produce milk</MooGirl.Milk.FloatMenu.NotActive>
-    <MooGirl.Milk.FloatMenu.NotEnoughMilk>Not enough milk</MooGirl.Milk.FloatMenu.NotEnoughMilk>
-    <MooGirl.Milk.FloatMenu.ManagedByDevice>Managed by milking device</MooGirl.Milk.FloatMenu.ManagedByDevice>
-    <MooGirl.Milk.GatherInactiveLog>MooGirl: {0} gathered body resources while inactive: {1}</MooGirl.Milk.GatherInactiveLog>
-    <MooGirl.Nurture.Completed>{PAWN_labelShort} has received complete Mugirl nurture.</MooGirl.Nurture.Completed>
-    <MooGirl.CrackBondageGear_TargetNotValid>The target is not decryptable. Decryption is not possible.</MooGirl.CrackBondageGear_TargetNotValid>
-    <MooGirl.CrackBondageGear_CrackAdvanced>Decrypting Advanced Restraint: {0}.</MooGirl.CrackBondageGear_CrackAdvanced>
-    <MooGirl.CrackBondageGear_CrackBrainwash>Decrypting Brainwashing Restraint: {0}.</MooGirl.CrackBondageGear_CrackBrainwash>
-    <MooGirl.CrackBondageGear_NoCrackableType>Unknown type, cannot be decrypted.</MooGirl.CrackBondageGear_NoCrackableType>
-    <MooGirl.SelfLabel>Self</MooGirl.SelfLabel>
-    <MooGirl.Reserved>Reserved</MooGirl.Reserved>
-    <MooGirl.NotWearingLockedApparel>Not wearing locked restraint.</MooGirl.NotWearingLockedApparel>
-    <MooGirl.AlreadyCracked>This device has been decrypted.</MooGirl.AlreadyCracked>
-    <MooGirl.InvalidTarget>Invalid Target.</MooGirl.InvalidTarget>
-    <MooGirl.SlaveApparelCannotBeRemoved>Mugirl Restraint cannot be removed. The restraint requires the corresponding key to unlock.</MooGirl.SlaveApparelCannotBeRemoved>
-    <MooGirl.BrainwashStart>The brainwashing device suddenly activated, {0} is being brainwashed.</MooGirl.BrainwashStart>
-    <MooGirl.BrainwashEnd>{0}'s brainwashing has ended.</MooGirl.BrainwashEnd>
-    <MooGirl.SuppressionIncrease>Suppression +{0}</MooGirl.SuppressionIncrease>
-    <MooGirl.SlaveApparelFullyUnlocked>{0}'s restraint has been completely unlocked.</MooGirl.SlaveApparelFullyUnlocked>
-    <MooGirl.Restraints.UnlockTargetMissingLog>Unlocking failed: target pawn or target apparel is missing.</MooGirl.Restraints.UnlockTargetMissingLog>
-    <MooGirl.HandsBlocked>Unable to free this pawn's self: hands bound.</MooGirl.HandsBlocked>
-    <MooGirl.SlaveApparelUnlockPartial>{0} unlocks {1}'s restraint. {2} more key(s) are required to completely unlock.</MooGirl.SlaveApparelUnlockPartial>
-    <MooGirl.WrongKeyType>Unable to unlock: Key type does not match {0}</MooGirl.WrongKeyType>
-    <MooGirl.NoPath>No Path</MooGirl.NoPath>
-    <MooGirl.CannotPrioritizeWorkTypeDisabled>Unable to work ({0} has been disabled)</MooGirl.CannotPrioritizeWorkTypeDisabled>
-    <MooGirl.SlaveApparelCracked>{0}'s restraint has been decrypted.</MooGirl.SlaveApparelCracked>
-    <MooGirl.SlaveApparel.StatusLabel>{0} ({1})</MooGirl.SlaveApparel.StatusLabel>
-    <MooGirl.CrackStatus>Decryption Status</MooGirl.CrackStatus>
-    <MooGirl.Cracked>Decrypted</MooGirl.Cracked>
-    <MooGirl.Uncracked>Not Decrypted</MooGirl.Uncracked>
-    <MooGirl.CrackStatusDesc>Whether this restraint has been decrypted.</MooGirl.CrackStatusDesc>
-    <MooGirl.RopeToHitch>Rope to Hitch</MooGirl.RopeToHitch>
-    <MooGirl.NoValidToRope>No valid object to be roped.</MooGirl.NoValidToRope>
-    <MooGirl.RopedByPawn>Roped by other pawn</MooGirl.RopedByPawn>
-    <MooGirl.RopedToHitchingPost>Roped to Hitching Post.</MooGirl.RopedToHitchingPost>
-    <MooGirl.RopedToSpot>Roped to A Certain Spot.</MooGirl.RopedToSpot>
-    <MooGirl.Rope.Target>Rope {0}</MooGirl.Rope.Target>
-    <MooGirl.Rope.SuccessChance>Success Rate</MooGirl.Rope.SuccessChance>
-    <MooGirl.Rope.TargetWithSuccessChance>{0} ({1} {2})</MooGirl.Rope.TargetWithSuccessChance>
-    <MooGirl.Unrope.Target>Unrope {0}</MooGirl.Unrope.Target>
-    <MooGirl.FloatMenu.OptionWithReason>{0} ({1})</MooGirl.FloatMenu.OptionWithReason>
-    <MooGirl.FloatMenu.ActionOnTarget>{0} on {1}</MooGirl.FloatMenu.ActionOnTarget>
-    <MooGirl.FloatMenu.ActionOnReserved>{0} on ({1})</MooGirl.FloatMenu.ActionOnReserved>
-    <MooGirl.DraftDisabledWhileRoped>The Mugirl is currently being roped by others and cannot be drafted.</MooGirl.DraftDisabledWhileRoped>
-    <MooGirl.Mount.Target>Mount {0}</MooGirl.Mount.Target>
-    <MooGirl.Mount.DismountRider>Dismount rider</MooGirl.Mount.DismountRider>
-    <MooGirl.Mount.DismountRiderDesc>Drop the current rider from this MooGirl.</MooGirl.Mount.DismountRiderDesc>
-    <MooGirl.Mount.SelectRider>Select rider</MooGirl.Mount.SelectRider>
-    <MooGirl.Mount.SelectRiderDesc>Select the pawn currently riding this MooGirl.</MooGirl.Mount.SelectRiderDesc>
-    <MooGirl.Mount.SelectCarrier>Select MooGirl</MooGirl.Mount.SelectCarrier>
-    <MooGirl.Mount.SelectCarrierDesc>Select the MooGirl carrying this rider.</MooGirl.Mount.SelectCarrierDesc>
-    <MooGirl.Mount.FireAtWill>Fire at will</MooGirl.Mount.FireAtWill>
-    <MooGirl.Mount.FireAtWillDesc>Allow the rider to act as an automatic ranged mount weapon.</MooGirl.Mount.FireAtWillDesc>
-    <MooGirl.Mount.HoldFire>Hold fire</MooGirl.Mount.HoldFire>
-    <MooGirl.Mount.HoldFireDesc>Prevent the rider from firing automatically.</MooGirl.Mount.HoldFireDesc>
-    <MooGirl.Mount.CannotMount>Cannot mount</MooGirl.Mount.CannotMount>
-    <MooGirl.Mount.LabelWithReason>{0}: {1}</MooGirl.Mount.LabelWithReason>
-    <MooGirl.Mount.MountedMessage>{0} mounted {1}.</MooGirl.Mount.MountedMessage>
-    <MooGirl.Mount.DismountedMessage>{0} dismounted from {1}.</MooGirl.Mount.DismountedMessage>
-    <MooGirl.Mount.AutoDismountMessage>{0} dismounted automatically: {1}.</MooGirl.Mount.AutoDismountMessage>
-    <MooGirl.Mount.NoDismountCell>No valid dismount cell near {0}.</MooGirl.Mount.NoDismountCell>
-    <MooGirl.Mount.InspectRider>Rider: {0}</MooGirl.Mount.InspectRider>
-    <MooGirl.Mount.ReasonInvalid>Invalid target</MooGirl.Mount.ReasonInvalid>
-    <MooGirl.Mount.ReasonAlreadyHasRider>Already has a rider</MooGirl.Mount.ReasonAlreadyHasRider>
-    <MooGirl.Mount.ReasonTargetNotMooGirl>Target is not a MooGirl</MooGirl.Mount.ReasonTargetNotMooGirl>
-    <MooGirl.Mount.ReasonTargetBadState>The MooGirl is in a bad state</MooGirl.Mount.ReasonTargetBadState>
-    <MooGirl.Mount.ReasonRiderBadState>The rider is in a bad state</MooGirl.Mount.ReasonRiderBadState>
-    <MooGirl.Mount.ReasonRiderNotHumanlike>The rider must be a humanlike pawn</MooGirl.Mount.ReasonRiderNotHumanlike>
-    <MooGirl.Mount.ReasonAlreadyMounted>Already mounted</MooGirl.Mount.ReasonAlreadyMounted>
-    <MooGirl.Mount.ReasonRoped>Roped pawns cannot mount</MooGirl.Mount.ReasonRoped>
-    <MooGirl.Mount.ReasonReserved>Reserved</MooGirl.Mount.ReasonReserved>
-    <MooGirl.Mount.ReasonNoPath>No path</MooGirl.Mount.ReasonNoPath>
-    <MooGirl.Mount.ReasonRiderHungry>hungry</MooGirl.Mount.ReasonRiderHungry>
-    <MooGirl.Mount.ReasonRiderTired>exhausted</MooGirl.Mount.ReasonRiderTired>
-    <MooGirl.Mount.ReasonRiderMedical>needs medical rest</MooGirl.Mount.ReasonRiderMedical>
-    <MooGirl.Mount.ReasonTurretHoldFire>Rider is holding fire</MooGirl.Mount.ReasonTurretHoldFire>
-    <MooGirl.Mount.ReasonNoRangedWeapon>Rider has no ranged weapon</MooGirl.Mount.ReasonNoRangedWeapon>
-    <MooGirl.CourierContactLetterLabel>Corporate Courier</MooGirl.CourierContactLetterLabel>
-    <MooGirl.CourierContactLetterText>A mega corporation courier is approaching from the edge of the map. He has not opened fire, but he looks extremely nervous. You can send a colonist to negotiate with him.</MooGirl.CourierContactLetterText>
-    <MooGirl.CourierTalkOption>Negotiate with the corporate courier</MooGirl.CourierTalkOption>
-    <MooGirl.CourierTalkCannotReach>cannot reach</MooGirl.CourierTalkCannotReach>
-    <MooGirl.CourierTalkOptionDisabled>{0} ({1})</MooGirl.CourierTalkOptionDisabled>
-    <MooGirl.CourierAlreadyResolved>This courier can no longer negotiate.</MooGirl.CourierAlreadyResolved>
-    <MooGirl.CourierDialogTitle>Corporate Courier</MooGirl.CourierDialogTitle>
-    <MooGirl.CourierDialogText>The mega corporation courier watches you nervously, one hand never leaving his weapon.\n\n\"I'm just a delivery worker. The ship went down, the cargo is gone, and the company will not listen to excuses. If you want the goods, let me drop the diary and keys I am carrying, then I leave right now. Do not force me to shoot. I do not want this reaching the company level either.\"</MooGirl.CourierDialogText>
-    <MooGirl.CourierDialogLeaveItems>Leave the items and go</MooGirl.CourierDialogLeaveItems>
-    <MooGirl.CourierDialogFight>Open fire now</MooGirl.CourierDialogFight>
-    <MooGirl.CourierItemsDroppedMessage>The corporate courier dropped his carried items and is leaving.</MooGirl.CourierItemsDroppedMessage>
-    <MooGirl.CourierFightMessage>The corporate courier draws his weapon. This clash will not change your relationship with the mega corporation.</MooGirl.CourierFightMessage>
-    <MooGirl.CourierFightReason>Negotiations broke down.</MooGirl.CourierFightReason>
-    <MooGirl.CourierRaid.Log.NoMap>CourierRaid quest aborted: no valid map target.</MooGirl.CourierRaid.Log.NoMap>
-    <MooGirl.CourierRaid.Log.NoFaction>CourierRaid quest aborted: hostile giant corporation faction not found.</MooGirl.CourierRaid.Log.NoFaction>
-    <MooGirl.CourierRaid.Log.NoSpawnCell>CourierRaid quest aborted: no valid spawn cell.</MooGirl.CourierRaid.Log.NoSpawnCell>
-    <MooGirl.CourierRaid.SpawnLog.NoMap>CourierRaid spawn aborted: map is null.</MooGirl.CourierRaid.SpawnLog.NoMap>
-    <MooGirl.CourierRaid.SpawnLog.NoFaction>CourierRaid spawn aborted: faction is null.</MooGirl.CourierRaid.SpawnLog.NoFaction>
-    <MooGirl.CourierRaid.SpawnLog.NoSpawnCell>CourierRaid spawn aborted: no valid spawn cell.</MooGirl.CourierRaid.SpawnLog.NoSpawnCell>
-    <MooGirl.CourierDiary.Title>Courier diary</MooGirl.CourierDiary.Title>
-    <MooGirl.CourierDiary.ReadOption>Read {0}</MooGirl.CourierDiary.ReadOption>
-    <MooGirl.CourierDiary.OptionDisabled>{0} ({1})</MooGirl.CourierDiary.OptionDisabled>
-    <MooGirl.CourierDiary.CannotReach>cannot reach</MooGirl.CourierDiary.CannotReach>
-    <MooGirl.CourierDiary.PageCounter>Page {0} / {1}</MooGirl.CourierDiary.PageCounter>
-    <MooGirl.CourierDiary.PreviousPage>Previous</MooGirl.CourierDiary.PreviousPage>
-    <MooGirl.CourierDiary.NextPage>Next</MooGirl.CourierDiary.NextPage>
-    <MooGirl.CourierDiary.Close>Close</MooGirl.CourierDiary.Close>
-    <MooGirl.CourierDiary.Page1>[Page One]\n\nWelcome to Courier Diary.\n\nThis diary records the experiences of a low-level courier during his time working for the mega corporation. It contains practical advice and survival lessons.</MooGirl.CourierDiary.Page1>
-    <MooGirl.CourierDiary.Page2>[Page Two]\n\nAbout the mega corporation:\n\nThe mega corporation is a vast corporate alliance with armed forces spread across many planets. They field distinctive OPIC and PMC weapon series.\n\nWhen facing a raid, pay attention to enemy equipment tiers. Enemies carrying PMC-prefix weapons are usually more dangerous.</MooGirl.CourierDiary.Page2>
-    <MooGirl.CourierDiary.Page3>[Page Three]\n\nAbout MooGirls:\n\nMooGirls are products of genetic engineering. Their milk has exceptional nutritional value, and MooGirl dairy products can provide additional benefits.\n\nMooGirl milk pudding improves mood, cheese can detoxify, and aged cheese and milk tablets can strengthen immunity.</MooGirl.CourierDiary.Page3>
-    <MooGirl.CourierDiary.Page4>[Page Four]\n\nAbout restraint keys:\n\nCrude restraint keys can be made at machining tables or smithies. Fine restraint keys require more advanced workstations.\n\nIf you find keys carried by a lucky courier, you can use them to unlock restraints on MooGirls.</MooGirl.CourierDiary.Page4>
-    <MooGirl.CourierDiary.Page5>[Page Five]\n\nSurvival advice:\n\n1. Develop MooGirl husbandry for a stable milk supply\n2. Build enough defenses against mega corporation raids\n3. Produce dairy foods to strengthen colonists\n4. Restraint keys can help recruit enslaved MooGirls\n\nGood luck surviving this brutal world.</MooGirl.CourierDiary.Page5>
-    <MooGirl.LetterLabelWandererJoins>Wanderer Joins: {PAWN_nameDef}</MooGirl.LetterLabelWandererJoins>
-    <MooGirl.LetterWandererJoins>A {PAWN_title} named {PAWN_nameDef} has arrived here, wishing to join the colony.\n\n[PAWN_pronoun] claims to have nowhere else to go and is willing to contribute. {PAWN_objective} won't leave voluntarily; you can choose to refuse {PAWN_objective} and send {PAWN_objective} away. However, your colonists will feel uneasy about turning away someone in need.</MooGirl.LetterWandererJoins>
-    <MooGirl.LetterLabelOpeningPodCrash>Transport Pod Crashed (Mugirl Slave)</MooGirl.LetterLabelOpeningPodCrash>
-    <MooGirl.OpeningPodCrash_MultipleIntro>Transport pods have crashed, carrying multiple escapees.</MooGirl.OpeningPodCrash_MultipleIntro>
-    <MooGirl.OpeningPodCrash>Two transport pods have crash-landed nearby, each carrying an escaped Mugirl slave.\nThey just escaped from a mega corporation's slave transport ship- whether due to ship malfunction, attack, or some other means remains unknown. The escape has left them utterly exhausted, and the tightly bound slave restraints on their bodies silently record the pain and submission they endured under the mega corporation's tyranny. The impact has also left {PAWN_pronoun} severely injured.\n\nNow they have nowhere to go. If you choose to rescue them, they will join your colony. Will you give these two pitiful yet lovely escapees a chance at freedom and a new life?</MooGirl.OpeningPodCrash>
-    <MooGirl.OpeningPodCrash_Child>Among them, {PAWN_nameDef} is a {AGE}-year-old child who has just escaped from a slave caravan and is completely alone.</MooGirl.OpeningPodCrash_Child>
-    <MooGirl.OpeningPodCrash_Factionless>Among them, [PAWN_pronoun] doesn't belong to any faction. You can choose to rescue [PAWN_objective], hoping [PAWN_pronoun] will freely join your colony, or you can choose to capture [PAWN_objective] to recruit or enslave [PAWN_objective].</MooGirl.OpeningPodCrash_Factionless>
-    <MooGirl.OpeningPodCrash_Hostile>Among them, {PAWN_nameDef} comes from the hostile faction {PAWN_factionName}. You can capture [PAWN_objective] to recruit or enslave [PAWN_objective].</MooGirl.OpeningPodCrash_Hostile>
-    <MooGirl.OpeningPodCrash_NonHostile>{PAWN_nameDef} comes from {PAWN_factionName}. If you rescue [PAWN_objective], [PAWN_pronoun] will improve relations between your factions when [PAWN_pronoun] returns.\n\nYou can also capture [PAWN_objective] to recruit or enslave [PAWN_objective], but this will anger [PAWN_possessive] faction.</MooGirl.OpeningPodCrash_NonHostile>
-    <MooGirl.OpeningPodCrash.Log.FactionlessGenerationFailed>Failed to generate a factionless opening pod pawn after {0} attempts. Check PawnKindDef or other pawn generation patches.</MooGirl.OpeningPodCrash.Log.FactionlessGenerationFailed>
-    <MooGirl.Newborn.Log.CorrectedBodyTypes>Corrected juvenile MooGirl body types: {0}.</MooGirl.Newborn.Log.CorrectedBodyTypes>
-    <MooGirl.FeralChild>feral child</MooGirl.FeralChild>
-    <MooGirl.Child>child</MooGirl.Child>
-    <MooGirl.Person>person</MooGirl.Person>
-    <MooGirl.LetterLabelRefugeePodCrash>Transport Pod Crashed (Mugirl Slave)</MooGirl.LetterLabelRefugeePodCrash>
-    <MooGirl.RefugeePodCrash>An transport pod has crash-landed nearby, carrying a {PAWN_titleIndef} named {PAWN_nameDef}.\nShe just escaped from a mega corporation's slave transport ship - whether due to ship malfunction, attack, or some other means remains unknown. The escape has left her utterly exhausted, and the tightly bound slave restraints on her body silently record the pain and submission she endured under the mega corporation's tyranny. The impact has also left {PAWN_pronoun} severely injured.\n\nWill you give this escapee a chance at freedom and a new life?</MooGirl.RefugeePodCrash>
-    <MooGirl.RefugeePodCrash_Child>{PAWN_nameDef} is a {AGE}-year-old child and is completely alone.</MooGirl.RefugeePodCrash_Child>
-    <MooGirl.RefugeePodCrash_Factionless>[PAWN_pronoun] doesn't belong to any faction. You can choose to rescue [PAWN_objective], hoping [PAWN_pronoun] will freely join your colony, or you can choose to capture [PAWN_objective] to recruit or enslave [PAWN_objective].</MooGirl.RefugeePodCrash_Factionless>
-    <MooGirl.RefugeePodCrash_Hostile>{PAWN_nameDef} comes from the hostile faction {PAWN_factionName}. You can capture [PAWN_objective] to recruit or enslave [PAWN_objective].</MooGirl.RefugeePodCrash_Hostile>
-    <MooGirl.RefugeePodCrash_NonHostile>{PAWN_nameDef} comes from {PAWN_factionName}. If you rescue [PAWN_objective], [PAWN_pronoun] will improve relations between your factions when [PAWN_pronoun] returns.\n\nYou can also capture [PAWN_objective] to recruit or enslave [PAWN_objective], but this will anger [PAWN_possessive] faction.</MooGirl.RefugeePodCrash_NonHostile>
-    <MooGirl.RefugeePodCrash.Log.DownedGenerationFallback>Refugee pod pawn could not be downed after {0} attempts; using a living fallback pawn.</MooGirl.RefugeePodCrash.Log.DownedGenerationFallback>
-    <MooGirl.RefugeePodCrash.Log.GenerationFailed>Refugee pod pawn generation failed after {0} attempts. Check PawnKindDef or other pawn generation patches.</MooGirl.RefugeePodCrash.Log.GenerationFailed>
-    <MooGirl.RefugeePodCrash.Log.MissingQuestContext>Refugee pod crash quest root ran without a valid quest context.</MooGirl.RefugeePodCrash.Log.MissingQuestContext>
-    <MooGirl.RefugeePodCrash.Log.MissingMap>Refugee pod crash quest could not resolve a usable target map.</MooGirl.RefugeePodCrash.Log.MissingMap>
+    <Mugirl.Text.FormatFailedLog>Mugirl text formatting failed: {ERROR}</Mugirl.Text.FormatFailedLog>
+    <Mugirl.Settings.Category>Mugirl mod control</Mugirl.Settings.Category>
+    <Mugirl.Bootstrap.HarmonyPatchFailed>Harmony patch skipped: {0}. {1}</Mugirl.Bootstrap.HarmonyPatchFailed>
+    <Mugirl.PatchRegistry.NullHarmony>Manual patches skipped because the Harmony instance is missing.</Mugirl.PatchRegistry.NullHarmony>
+    <Mugirl.PatchRegistry.PawnGeneratorGeneratePawn>PawnGenerator.GeneratePawn slave apparel lock postfix</Mugirl.PatchRegistry.PawnGeneratorGeneratePawn>
+    <Mugirl.PatchRegistry.MissingTarget>Manual patch target missing: {0}</Mugirl.PatchRegistry.MissingTarget>
+    <Mugirl.PatchRegistry.MissingPatchMethod>Manual patch method missing: {0}</Mugirl.PatchRegistry.MissingPatchMethod>
+    <Mugirl.PatchRegistry.PatchFailed>Manual patch failed: {0}. {1}</Mugirl.PatchRegistry.PatchFailed>
+    <Mugirl.GameUtility.WindowStackUnavailable>Tried to open a Mugirl window while the window stack was unavailable.</Mugirl.GameUtility.WindowStackUnavailable>
+    <Mugirl.GameUtility.LetterStackUnavailable>Tried to send a Mugirl letter while the game letter stack was unavailable.</Mugirl.GameUtility.LetterStackUnavailable>
+    <Mugirl.GameUtility.WorldPawnsUnavailable>Tried to move a generated Mugirl pawn through world storage while WorldPawns was unavailable.</Mugirl.GameUtility.WorldPawnsUnavailable>
+    <Mugirl.DropThingTooltip.TranspilerNotApplied>Gear drop tooltip patch was skipped because the expected vanilla IL pattern was not found.</Mugirl.DropThingTooltip.TranspilerNotApplied>
+    <Mugirl.RopingTick.BreakRopeWithRoperMissing>Roping tick fallback used BreakAllRopes because the vanilla BreakRopeWithRoper method was not found.</Mugirl.RopingTick.BreakRopeWithRoperMissing>
+    <Mugirl.Mount.DropAtFailed>Mounted rider {0} could not be dropped from {1}; the rider was passed to world storage as a fallback.</Mugirl.Mount.DropAtFailed>
+    <Mugirl.Restraints.MagneticShackles.ActivateLabel>Activate shackles</Mugirl.Restraints.MagneticShackles.ActivateLabel>
+    <Mugirl.Restraints.MagneticShackles.ActivateDesc>Activate the magnetic shackles, restraining the target.</Mugirl.Restraints.MagneticShackles.ActivateDesc>
+    <Mugirl.Restraints.MagneticShackles.DeactivateLabel>Release shackles</Mugirl.Restraints.MagneticShackles.DeactivateLabel>
+    <Mugirl.Restraints.MagneticShackles.DeactivateDesc>Release the magnetic shackles.</Mugirl.Restraints.MagneticShackles.DeactivateDesc>
+    <Mugirl.Restraints.MagneticShackles.LabelActive>Magnetic shackles (active)</Mugirl.Restraints.MagneticShackles.LabelActive>
+    <Mugirl.Restraints.MagneticShackles.LabelInactive>Magnetic shackles (inactive)</Mugirl.Restraints.MagneticShackles.LabelInactive>
+    <Mugirl.Restraints.MagneticShackles.MoteOn>Magnetic shackles activated!</Mugirl.Restraints.MagneticShackles.MoteOn>
+    <Mugirl.Restraints.MagneticShackles.MoteOff>Magnetic shackles released!</Mugirl.Restraints.MagneticShackles.MoteOff>
+    <Mugirl.Restraints.MagneticShackles.MessageOn>{0}'s magnetic shackles suddenly activated.</Mugirl.Restraints.MagneticShackles.MessageOn>
+    <Mugirl.Restraints.MagneticShackles.MessageOff>{0}'s magnetic shackles were released.</Mugirl.Restraints.MagneticShackles.MessageOff>
+    <Mugirl.Restraints.MagneticShackles.CooldownTicksLeft>Cooling down: {0}</Mugirl.Restraints.MagneticShackles.CooldownTicksLeft>
+    <Mugirl.Restraints.ShockCollar.PowerLabel>Power shock</Mugirl.Restraints.ShockCollar.PowerLabel>
+    <Mugirl.Restraints.ShockCollar.PowerDesc>Trigger one power shock.</Mugirl.Restraints.ShockCollar.PowerDesc>
+    <Mugirl.Restraints.ShockCollar.CommonLabel>Common shock</Mugirl.Restraints.ShockCollar.CommonLabel>
+    <Mugirl.Restraints.ShockCollar.CommonDesc>Trigger one common shock.</Mugirl.Restraints.ShockCollar.CommonDesc>
+    <Mugirl.Restraints.ShockCollar.PowerCooldownTicksLeft>Cooling down: {0}</Mugirl.Restraints.ShockCollar.PowerCooldownTicksLeft>
+    <Mugirl.Restraints.ShockCollar.CommonCooldownTicksLeft>Cooling down: {0}</Mugirl.Restraints.ShockCollar.CommonCooldownTicksLeft>
+    <Mugirl.Restraints.DevUnlock.Label>Dev: unlock {0}</Mugirl.Restraints.DevUnlock.Label>
+    <Mugirl.Restraints.DevUnlock.Desc>Dev mode: immediately remove the wear lock from {0} for debugging.</Mugirl.Restraints.DevUnlock.Desc>
+    <Mugirl.Restraints.DevUnlock.Message>Dev-unlocked {0}'s {1}.</Mugirl.Restraints.DevUnlock.Message>
+    <Mugirl.Restraints.BrainwashHelmet.ActivateLabel>Activate brainwashing</Mugirl.Restraints.BrainwashHelmet.ActivateLabel>
+    <Mugirl.Restraints.BrainwashHelmet.ActivateDesc>Activate the brainwashing helmet and brainwash the target.</Mugirl.Restraints.BrainwashHelmet.ActivateDesc>
+    <Mugirl.Restraints.BrainwashHelmet.ManualTriggerMessage>{0} activated the brainwashing device.</Mugirl.Restraints.BrainwashHelmet.ManualTriggerMessage>
+    <Mugirl.Restraints.BrainwashHelmet.IdeoConvertLabel>Ideology conversion</Mugirl.Restraints.BrainwashHelmet.IdeoConvertLabel>
+    <Mugirl.Restraints.BrainwashHelmet.IdeoConvertDesc>Change the wearer's ideology to the colony's primary ideology.</Mugirl.Restraints.BrainwashHelmet.IdeoConvertDesc>
+    <Mugirl.Restraints.BrainwashHelmet.IdeoConvertMessage>{0}'s ideology has been converted to the colony's primary ideology.</Mugirl.Restraints.BrainwashHelmet.IdeoConvertMessage>
+    <Mugirl.MilkingDevice.StoredMessage>{0}'s milking device stored one production charge ({1}/{2}).</Mugirl.MilkingDevice.StoredMessage>
+    <Mugirl.MilkingDevice.ReleaseMessage>{0} released the stored milk and produced {1} Mugirl milk.</Mugirl.MilkingDevice.ReleaseMessage>
+    <Mugirl.MilkingDevice.ReleaseLabel>Release stored milk</Mugirl.MilkingDevice.ReleaseLabel>
+    <Mugirl.MilkingDevice.ReleaseDesc>Release all Mugirl milk stored in this device onto the ground.</Mugirl.MilkingDevice.ReleaseDesc>
+    <Mugirl.MilkingDevice.InspectLabel>Stored milk</Mugirl.MilkingDevice.InspectLabel>
+    <Mugirl.MilkingDevice.InspectLabelWithCharges>Stored milk charges</Mugirl.MilkingDevice.InspectLabelWithCharges>
+    <Mugirl.MilkingDevice.Inspect>{0}: {1}/{2} ({3}x {4})</Mugirl.MilkingDevice.Inspect>
+    <Mugirl.MilkingDevice.NoChargeText>There is no stored milk to release.</Mugirl.MilkingDevice.NoChargeText>
+    <Mugirl.MilkingDevice.StoredMoteText>Stored milk +1</Mugirl.MilkingDevice.StoredMoteText>
+    <Mugirl.MilkingDevice.AutoReleaseEnabled>Auto milking: on</Mugirl.MilkingDevice.AutoReleaseEnabled>
+    <Mugirl.MilkingDevice.AutoReleaseDisabled>Auto milking: off</Mugirl.MilkingDevice.AutoReleaseDisabled>
+    <Mugirl.MilkingDevice.AutoReleaseDesc>When enabled, the milking device immediately releases milk when its wearer reaches full milk. When disabled, it only releases overflow after storage is already full and another full-milk event is received.</Mugirl.MilkingDevice.AutoReleaseDesc>
+    <Mugirl.MilkingDevice.PowerReleaseEnabled>Power release: on</Mugirl.MilkingDevice.PowerReleaseEnabled>
+    <Mugirl.MilkingDevice.PowerReleaseDisabled>Power release: off</Mugirl.MilkingDevice.PowerReleaseDisabled>
+    <Mugirl.MilkingDevice.DevFill.Label>Dev: fill milking progress</Mugirl.MilkingDevice.DevFill.Label>
+    <Mugirl.MilkingDevice.DevFill.Desc>Dev mode: immediately fill the current wearer's milk progress and trigger milking-device logic.</Mugirl.MilkingDevice.DevFill.Desc>
+    <Mugirl.MilkingDevice.DevFill.Success>Filled {0}'s milk progress in dev mode.</Mugirl.MilkingDevice.DevFill.Success>
+    <Mugirl.MilkingDevice.DevFill.Failed>{0}'s milk progress cannot be filled in dev mode right now.</Mugirl.MilkingDevice.DevFill.Failed>
+    <Mugirl.MilkingDevice.ReleaseThingMissing>Milking device could not resolve the release product Def.</Mugirl.MilkingDevice.ReleaseThingMissing>
+    <Mugirl.Settings.StructuralCrashEvent.Label>Enable Mugirl crash event</Mugirl.Settings.StructuralCrashEvent.Label>
+    <Mugirl.Settings.StructuralCrashEvent.Desc>Controls whether the Mugirl crash event can trigger. Disable this to prevent the event from firing.</Mugirl.Settings.StructuralCrashEvent.Desc>
+    <Mugirl.Settings.FastMilking.Label>Fast milking</Mugirl.Settings.FastMilking.Label>
+    <Mugirl.Settings.FastMilking.Desc>When enabled, self-milking and assisted milking work time for Mugirls is shortened to 1 second.</Mugirl.Settings.FastMilking.Desc>
+    <Mugirl.Milk.Gauge.Label>Lactation</Mugirl.Milk.Gauge.Label>
+    <Mugirl.Milk.Gauge.Desc>Current milk fullness for this Mugirl. The red line marks the automatic milking threshold; colonists will automatically milk when it is reached.</Mugirl.Milk.Gauge.Desc>
+    <Mugirl.Milk.FullnessDisplay>Mugirl milk</Mugirl.Milk.FullnessDisplay>
+    <Mugirl.Milk.FullnessInspect>{0}: {1}</Mugirl.Milk.FullnessInspect>
+    <Mugirl.Milk.Gauge.Tooltip>{0}\n\nCurrent: {1}\nThreshold: {2}\nDrag the red line to adjust the automatic milking threshold\nEstimated milk per use: {3}\nLactation speed: {4}</Mugirl.Milk.Gauge.Tooltip>
+    <Mugirl.Milk.ProductionRate>{0}% / {1}s</Mugirl.Milk.ProductionRate>
+    <Mugirl.Milk.DevFill.Label>Dev: fill milk</Mugirl.Milk.DevFill.Label>
+    <Mugirl.Milk.DevFill.Desc>Dev mode: immediately fill the selected Mugirl's milk amount to maximum.</Mugirl.Milk.DevFill.Desc>
+    <Mugirl.Milk.DevFill.Success>Filled {0}'s milk amount.</Mugirl.Milk.DevFill.Success>
+    <Mugirl.Milk.DevFill.Failed>{0}'s milk amount cannot be filled right now.</Mugirl.Milk.DevFill.Failed>
+    <Mugirl.Milk.SprayText>Milk spray!</Mugirl.Milk.SprayText>
+    <Mugirl.Milk.FloatMenu.Gather>Milk ({0})</Mugirl.Milk.FloatMenu.Gather>
+    <Mugirl.Milk.FloatMenu.Drink>Drink milk ({0})</Mugirl.Milk.FloatMenu.Drink>
+    <Mugirl.Milk.FloatMenu.ChildDrink>Seek milk ({0})</Mugirl.Milk.FloatMenu.ChildDrink>
+    <Mugirl.Milk.FloatMenu.Feed>Feed milk ({0})</Mugirl.Milk.FloatMenu.Feed>
+    <Mugirl.Milk.FloatMenu.Disabled>{0}: {1}</Mugirl.Milk.FloatMenu.Disabled>
+    <Mugirl.Milk.FloatMenu.FeedJobMissing>Job_FeedMilkToDowned missing</Mugirl.Milk.FloatMenu.FeedJobMissing>
+    <Mugirl.Milk.FloatMenu.NotActive>Cannot produce milk</Mugirl.Milk.FloatMenu.NotActive>
+    <Mugirl.Milk.FloatMenu.NotEnoughMilk>Not enough milk</Mugirl.Milk.FloatMenu.NotEnoughMilk>
+    <Mugirl.Milk.FloatMenu.ManagedByDevice>Managed by milking device</Mugirl.Milk.FloatMenu.ManagedByDevice>
+    <Mugirl.Milk.GatherInactiveLog>Mugirl: {0} gathered body resources while inactive: {1}</Mugirl.Milk.GatherInactiveLog>
+    <Mugirl.Nurture.Completed>{PAWN_labelShort} has received complete Mugirl nurture.</Mugirl.Nurture.Completed>
+    <Mugirl.CrackBondageGear_TargetNotValid>The target is not decryptable. Decryption is not possible.</Mugirl.CrackBondageGear_TargetNotValid>
+    <Mugirl.CrackBondageGear_CrackAdvanced>Decrypting Advanced Restraint: {0}.</Mugirl.CrackBondageGear_CrackAdvanced>
+    <Mugirl.CrackBondageGear_CrackBrainwash>Decrypting Brainwashing Restraint: {0}.</Mugirl.CrackBondageGear_CrackBrainwash>
+    <Mugirl.CrackBondageGear_NoCrackableType>Unknown type, cannot be decrypted.</Mugirl.CrackBondageGear_NoCrackableType>
+    <Mugirl.SelfLabel>Self</Mugirl.SelfLabel>
+    <Mugirl.Reserved>Reserved</Mugirl.Reserved>
+    <Mugirl.NotWearingLockedApparel>Not wearing locked restraint.</Mugirl.NotWearingLockedApparel>
+    <Mugirl.AlreadyCracked>This device has been decrypted.</Mugirl.AlreadyCracked>
+    <Mugirl.InvalidTarget>Invalid Target.</Mugirl.InvalidTarget>
+    <Mugirl.SlaveApparelCannotBeRemoved>Mugirl Restraint cannot be removed. The restraint requires the corresponding key to unlock.</Mugirl.SlaveApparelCannotBeRemoved>
+    <Mugirl.BrainwashStart>The brainwashing device suddenly activated, {0} is being brainwashed.</Mugirl.BrainwashStart>
+    <Mugirl.BrainwashEnd>{0}'s brainwashing has ended.</Mugirl.BrainwashEnd>
+    <Mugirl.SuppressionIncrease>Suppression +{0}</Mugirl.SuppressionIncrease>
+    <Mugirl.SlaveApparelFullyUnlocked>{0}'s restraint has been completely unlocked.</Mugirl.SlaveApparelFullyUnlocked>
+    <Mugirl.Restraints.UnlockTargetMissingLog>Unlocking failed: target pawn or target apparel is missing.</Mugirl.Restraints.UnlockTargetMissingLog>
+    <Mugirl.HandsBlocked>Unable to free this pawn's self: hands bound.</Mugirl.HandsBlocked>
+    <Mugirl.SlaveApparelUnlockPartial>{0} unlocks {1}'s restraint. {2} more key(s) are required to completely unlock.</Mugirl.SlaveApparelUnlockPartial>
+    <Mugirl.WrongKeyType>Unable to unlock: Key type does not match {0}</Mugirl.WrongKeyType>
+    <Mugirl.NoPath>No Path</Mugirl.NoPath>
+    <Mugirl.CannotPrioritizeWorkTypeDisabled>Unable to work ({0} has been disabled)</Mugirl.CannotPrioritizeWorkTypeDisabled>
+    <Mugirl.SlaveApparelCracked>{0}'s restraint has been decrypted.</Mugirl.SlaveApparelCracked>
+    <Mugirl.SlaveApparel.StatusLabel>{0} ({1})</Mugirl.SlaveApparel.StatusLabel>
+    <Mugirl.CrackStatus>Decryption Status</Mugirl.CrackStatus>
+    <Mugirl.Cracked>Decrypted</Mugirl.Cracked>
+    <Mugirl.Uncracked>Not Decrypted</Mugirl.Uncracked>
+    <Mugirl.CrackStatusDesc>Whether this restraint has been decrypted.</Mugirl.CrackStatusDesc>
+    <Mugirl.RopeToHitch>Rope to Hitch</Mugirl.RopeToHitch>
+    <Mugirl.NoValidToRope>No valid object to be roped.</Mugirl.NoValidToRope>
+    <Mugirl.RopedByPawn>Roped by other pawn</Mugirl.RopedByPawn>
+    <Mugirl.RopedToHitchingPost>Roped to Hitching Post.</Mugirl.RopedToHitchingPost>
+    <Mugirl.RopedToSpot>Roped to A Certain Spot.</Mugirl.RopedToSpot>
+    <Mugirl.Rope.Target>Rope {0}</Mugirl.Rope.Target>
+    <Mugirl.Rope.SuccessChance>Success Rate</Mugirl.Rope.SuccessChance>
+    <Mugirl.Rope.TargetWithSuccessChance>{0} ({1} {2})</Mugirl.Rope.TargetWithSuccessChance>
+    <Mugirl.Unrope.Target>Unrope {0}</Mugirl.Unrope.Target>
+    <Mugirl.FloatMenu.OptionWithReason>{0} ({1})</Mugirl.FloatMenu.OptionWithReason>
+    <Mugirl.FloatMenu.ActionOnTarget>{0} on {1}</Mugirl.FloatMenu.ActionOnTarget>
+    <Mugirl.FloatMenu.ActionOnReserved>{0} on ({1})</Mugirl.FloatMenu.ActionOnReserved>
+    <Mugirl.DraftDisabledWhileRoped>The Mugirl is currently being roped by others and cannot be drafted.</Mugirl.DraftDisabledWhileRoped>
+    <Mugirl.Mount.Target>Mount {0}</Mugirl.Mount.Target>
+    <Mugirl.Mount.DismountRider>Dismount rider</Mugirl.Mount.DismountRider>
+    <Mugirl.Mount.DismountRiderDesc>Drop the current rider from this Mugirl.</Mugirl.Mount.DismountRiderDesc>
+    <Mugirl.Mount.SelectRider>Select rider</Mugirl.Mount.SelectRider>
+    <Mugirl.Mount.SelectRiderDesc>Select the pawn currently riding this Mugirl.</Mugirl.Mount.SelectRiderDesc>
+    <Mugirl.Mount.SelectCarrier>Select Mugirl</Mugirl.Mount.SelectCarrier>
+    <Mugirl.Mount.SelectCarrierDesc>Select the Mugirl carrying this rider.</Mugirl.Mount.SelectCarrierDesc>
+    <Mugirl.Mount.FireAtWill>Fire at will</Mugirl.Mount.FireAtWill>
+    <Mugirl.Mount.FireAtWillDesc>Allow the rider to act as an automatic ranged mount weapon.</Mugirl.Mount.FireAtWillDesc>
+    <Mugirl.Mount.HoldFire>Hold fire</Mugirl.Mount.HoldFire>
+    <Mugirl.Mount.HoldFireDesc>Prevent the rider from firing automatically.</Mugirl.Mount.HoldFireDesc>
+    <Mugirl.Mount.CannotMount>Cannot mount</Mugirl.Mount.CannotMount>
+    <Mugirl.Mount.LabelWithReason>{0}: {1}</Mugirl.Mount.LabelWithReason>
+    <Mugirl.Mount.MountedMessage>{0} mounted {1}.</Mugirl.Mount.MountedMessage>
+    <Mugirl.Mount.DismountedMessage>{0} dismounted from {1}.</Mugirl.Mount.DismountedMessage>
+    <Mugirl.Mount.AutoDismountMessage>{0} dismounted automatically: {1}.</Mugirl.Mount.AutoDismountMessage>
+    <Mugirl.Mount.NoDismountCell>No valid dismount cell near {0}.</Mugirl.Mount.NoDismountCell>
+    <Mugirl.Mount.InspectRider>Rider: {0}</Mugirl.Mount.InspectRider>
+    <Mugirl.Mount.ReasonInvalid>Invalid target</Mugirl.Mount.ReasonInvalid>
+    <Mugirl.Mount.ReasonAlreadyHasRider>Already has a rider</Mugirl.Mount.ReasonAlreadyHasRider>
+    <Mugirl.Mount.ReasonTargetNotMugirl>Target is not a Mugirl</Mugirl.Mount.ReasonTargetNotMugirl>
+    <Mugirl.Mount.ReasonTargetBadState>The Mugirl is in a bad state</Mugirl.Mount.ReasonTargetBadState>
+    <Mugirl.Mount.ReasonRiderBadState>The rider is in a bad state</Mugirl.Mount.ReasonRiderBadState>
+    <Mugirl.Mount.ReasonRiderNotHumanlike>The rider must be a humanlike pawn</Mugirl.Mount.ReasonRiderNotHumanlike>
+    <Mugirl.Mount.ReasonAlreadyMounted>Already mounted</Mugirl.Mount.ReasonAlreadyMounted>
+    <Mugirl.Mount.ReasonRoped>Roped pawns cannot mount</Mugirl.Mount.ReasonRoped>
+    <Mugirl.Mount.ReasonReserved>Reserved</Mugirl.Mount.ReasonReserved>
+    <Mugirl.Mount.ReasonNoPath>No path</Mugirl.Mount.ReasonNoPath>
+    <Mugirl.Mount.ReasonRiderHungry>hungry</Mugirl.Mount.ReasonRiderHungry>
+    <Mugirl.Mount.ReasonRiderTired>exhausted</Mugirl.Mount.ReasonRiderTired>
+    <Mugirl.Mount.ReasonRiderMedical>needs medical rest</Mugirl.Mount.ReasonRiderMedical>
+    <Mugirl.Mount.ReasonTurretHoldFire>Rider is holding fire</Mugirl.Mount.ReasonTurretHoldFire>
+    <Mugirl.Mount.ReasonNoRangedWeapon>Rider has no ranged weapon</Mugirl.Mount.ReasonNoRangedWeapon>
+    <Mugirl.CourierContactLetterLabel>Corporate Courier</Mugirl.CourierContactLetterLabel>
+    <Mugirl.CourierContactLetterText>A mega corporation courier is approaching from the edge of the map. He has not opened fire, but he looks extremely nervous. You can send a colonist to negotiate with him.</Mugirl.CourierContactLetterText>
+    <Mugirl.CourierTalkOption>Negotiate with the corporate courier</Mugirl.CourierTalkOption>
+    <Mugirl.CourierTalkCannotReach>cannot reach</Mugirl.CourierTalkCannotReach>
+    <Mugirl.CourierTalkOptionDisabled>{0} ({1})</Mugirl.CourierTalkOptionDisabled>
+    <Mugirl.CourierAlreadyResolved>This courier can no longer negotiate.</Mugirl.CourierAlreadyResolved>
+    <Mugirl.CourierDialogTitle>Corporate Courier</Mugirl.CourierDialogTitle>
+    <Mugirl.CourierDialogText>The mega corporation courier watches you nervously, one hand never leaving his weapon.\n\n\"I'm just a delivery worker. The ship went down, the cargo is gone, and the company will not listen to excuses. If you want the goods, let me drop the diary and keys I am carrying, then I leave right now. Do not force me to shoot. I do not want this reaching the company level either.\"</Mugirl.CourierDialogText>
+    <Mugirl.CourierDialogLeaveItems>Leave the items and go</Mugirl.CourierDialogLeaveItems>
+    <Mugirl.CourierDialogFight>Open fire now</Mugirl.CourierDialogFight>
+    <Mugirl.CourierItemsDroppedMessage>The corporate courier dropped his carried items and is leaving.</Mugirl.CourierItemsDroppedMessage>
+    <Mugirl.CourierFightMessage>The corporate courier draws his weapon. This clash will not change your relationship with the mega corporation.</Mugirl.CourierFightMessage>
+    <Mugirl.CourierFightReason>Negotiations broke down.</Mugirl.CourierFightReason>
+    <Mugirl.CourierRaid.Log.NoMap>CourierRaid quest aborted: no valid map target.</Mugirl.CourierRaid.Log.NoMap>
+    <Mugirl.CourierRaid.Log.NoFaction>CourierRaid quest aborted: hostile giant corporation faction not found.</Mugirl.CourierRaid.Log.NoFaction>
+    <Mugirl.CourierRaid.Log.NoSpawnCell>CourierRaid quest aborted: no valid spawn cell.</Mugirl.CourierRaid.Log.NoSpawnCell>
+    <Mugirl.CourierRaid.SpawnLog.NoMap>CourierRaid spawn aborted: map is null.</Mugirl.CourierRaid.SpawnLog.NoMap>
+    <Mugirl.CourierRaid.SpawnLog.NoFaction>CourierRaid spawn aborted: faction is null.</Mugirl.CourierRaid.SpawnLog.NoFaction>
+    <Mugirl.CourierRaid.SpawnLog.NoSpawnCell>CourierRaid spawn aborted: no valid spawn cell.</Mugirl.CourierRaid.SpawnLog.NoSpawnCell>
+    <Mugirl.CourierDiary.Title>Courier diary</Mugirl.CourierDiary.Title>
+    <Mugirl.CourierDiary.ReadOption>Read {0}</Mugirl.CourierDiary.ReadOption>
+    <Mugirl.CourierDiary.OptionDisabled>{0} ({1})</Mugirl.CourierDiary.OptionDisabled>
+    <Mugirl.CourierDiary.CannotReach>cannot reach</Mugirl.CourierDiary.CannotReach>
+    <Mugirl.CourierDiary.PageCounter>Page {0} / {1}</Mugirl.CourierDiary.PageCounter>
+    <Mugirl.CourierDiary.PreviousPage>Previous</Mugirl.CourierDiary.PreviousPage>
+    <Mugirl.CourierDiary.NextPage>Next</Mugirl.CourierDiary.NextPage>
+    <Mugirl.CourierDiary.Close>Close</Mugirl.CourierDiary.Close>
+    <Mugirl.CourierDiary.Page1>[Page One]\n\nWelcome to Courier Diary.\n\nThis diary records the experiences of a low-level courier during his time working for the mega corporation. It contains practical advice and survival lessons.</Mugirl.CourierDiary.Page1>
+    <Mugirl.CourierDiary.Page2>[Page Two]\n\nAbout the mega corporation:\n\nThe mega corporation is a vast corporate alliance with armed forces spread across many planets. They field distinctive OPIC and PMC weapon series.\n\nWhen facing a raid, pay attention to enemy equipment tiers. Enemies carrying PMC-prefix weapons are usually more dangerous.</Mugirl.CourierDiary.Page2>
+    <Mugirl.CourierDiary.Page3>[Page Three]\n\nAbout Mugirls:\n\nMugirls are products of genetic engineering. Their milk has exceptional nutritional value, and Mugirl dairy products can provide additional benefits.\n\nMugirl milk pudding improves mood, cheese can detoxify, and aged cheese and milk tablets can strengthen immunity.</Mugirl.CourierDiary.Page3>
+    <Mugirl.CourierDiary.Page4>[Page Four]\n\nAbout restraint keys:\n\nCrude restraint keys can be made at machining tables or smithies. Fine restraint keys require more advanced workstations.\n\nIf you find keys carried by a lucky courier, you can use them to unlock restraints on Mugirls.</Mugirl.CourierDiary.Page4>
+    <Mugirl.CourierDiary.Page5>[Page Five]\n\nSurvival advice:\n\n1. Develop Mugirl husbandry for a stable milk supply\n2. Build enough defenses against mega corporation raids\n3. Produce dairy foods to strengthen colonists\n4. Restraint keys can help recruit enslaved Mugirls\n\nGood luck surviving this brutal world.</Mugirl.CourierDiary.Page5>
+    <Mugirl.LetterLabelWandererJoins>Wanderer Joins: {PAWN_nameDef}</Mugirl.LetterLabelWandererJoins>
+    <Mugirl.LetterWandererJoins>A {PAWN_title} named {PAWN_nameDef} has arrived here, wishing to join the colony.\n\n[PAWN_pronoun] claims to have nowhere else to go and is willing to contribute. {PAWN_objective} won't leave voluntarily; you can choose to refuse {PAWN_objective} and send {PAWN_objective} away. However, your colonists will feel uneasy about turning away someone in need.</Mugirl.LetterWandererJoins>
+    <Mugirl.LetterLabelOpeningPodCrash>Transport Pod Crashed (Mugirl Slave)</Mugirl.LetterLabelOpeningPodCrash>
+    <Mugirl.OpeningPodCrash_MultipleIntro>Transport pods have crashed, carrying multiple escapees.</Mugirl.OpeningPodCrash_MultipleIntro>
+    <Mugirl.OpeningPodCrash>Two transport pods have crash-landed nearby, each carrying an escaped Mugirl slave.\nThey just escaped from a mega corporation's slave transport ship- whether due to ship malfunction, attack, or some other means remains unknown. The escape has left them utterly exhausted, and the tightly bound slave restraints on their bodies silently record the pain and submission they endured under the mega corporation's tyranny. The impact has also left {PAWN_pronoun} severely injured.\n\nNow they have nowhere to go. If you choose to rescue them, they will join your colony. Will you give these two pitiful yet lovely escapees a chance at freedom and a new life?</Mugirl.OpeningPodCrash>
+    <Mugirl.OpeningPodCrash_Child>Among them, {PAWN_nameDef} is a {AGE}-year-old child who has just escaped from a slave caravan and is completely alone.</Mugirl.OpeningPodCrash_Child>
+    <Mugirl.OpeningPodCrash_Factionless>Among them, [PAWN_pronoun] doesn't belong to any faction. You can choose to rescue [PAWN_objective], hoping [PAWN_pronoun] will freely join your colony, or you can choose to capture [PAWN_objective] to recruit or enslave [PAWN_objective].</Mugirl.OpeningPodCrash_Factionless>
+    <Mugirl.OpeningPodCrash_Hostile>Among them, {PAWN_nameDef} comes from the hostile faction {PAWN_factionName}. You can capture [PAWN_objective] to recruit or enslave [PAWN_objective].</Mugirl.OpeningPodCrash_Hostile>
+    <Mugirl.OpeningPodCrash_NonHostile>{PAWN_nameDef} comes from {PAWN_factionName}. If you rescue [PAWN_objective], [PAWN_pronoun] will improve relations between your factions when [PAWN_pronoun] returns.\n\nYou can also capture [PAWN_objective] to recruit or enslave [PAWN_objective], but this will anger [PAWN_possessive] faction.</Mugirl.OpeningPodCrash_NonHostile>
+    <Mugirl.OpeningPodCrash.Log.FactionlessGenerationFailed>Failed to generate a factionless opening pod pawn after {0} attempts. Check PawnKindDef or other pawn generation patches.</Mugirl.OpeningPodCrash.Log.FactionlessGenerationFailed>
+    <Mugirl.Newborn.Log.CorrectedBodyTypes>Corrected juvenile Mugirl body types: {0}.</Mugirl.Newborn.Log.CorrectedBodyTypes>
+    <Mugirl.FeralChild>feral child</Mugirl.FeralChild>
+    <Mugirl.Child>child</Mugirl.Child>
+    <Mugirl.Person>person</Mugirl.Person>
+    <Mugirl.LetterLabelRefugeePodCrash>Transport Pod Crashed (Mugirl Slave)</Mugirl.LetterLabelRefugeePodCrash>
+    <Mugirl.RefugeePodCrash>An transport pod has crash-landed nearby, carrying a {PAWN_titleIndef} named {PAWN_nameDef}.\nShe just escaped from a mega corporation's slave transport ship - whether due to ship malfunction, attack, or some other means remains unknown. The escape has left her utterly exhausted, and the tightly bound slave restraints on her body silently record the pain and submission she endured under the mega corporation's tyranny. The impact has also left {PAWN_pronoun} severely injured.\n\nWill you give this escapee a chance at freedom and a new life?</Mugirl.RefugeePodCrash>
+    <Mugirl.RefugeePodCrash_Child>{PAWN_nameDef} is a {AGE}-year-old child and is completely alone.</Mugirl.RefugeePodCrash_Child>
+    <Mugirl.RefugeePodCrash_Factionless>[PAWN_pronoun] doesn't belong to any faction. You can choose to rescue [PAWN_objective], hoping [PAWN_pronoun] will freely join your colony, or you can choose to capture [PAWN_objective] to recruit or enslave [PAWN_objective].</Mugirl.RefugeePodCrash_Factionless>
+    <Mugirl.RefugeePodCrash_Hostile>{PAWN_nameDef} comes from the hostile faction {PAWN_factionName}. You can capture [PAWN_objective] to recruit or enslave [PAWN_objective].</Mugirl.RefugeePodCrash_Hostile>
+    <Mugirl.RefugeePodCrash_NonHostile>{PAWN_nameDef} comes from {PAWN_factionName}. If you rescue [PAWN_objective], [PAWN_pronoun] will improve relations between your factions when [PAWN_pronoun] returns.\n\nYou can also capture [PAWN_objective] to recruit or enslave [PAWN_objective], but this will anger [PAWN_possessive] faction.</Mugirl.RefugeePodCrash_NonHostile>
+    <Mugirl.RefugeePodCrash.Log.DownedGenerationFallback>Refugee pod pawn could not be downed after {0} attempts; using a living fallback pawn.</Mugirl.RefugeePodCrash.Log.DownedGenerationFallback>
+    <Mugirl.RefugeePodCrash.Log.GenerationFailed>Refugee pod pawn generation failed after {0} attempts. Check PawnKindDef or other pawn generation patches.</Mugirl.RefugeePodCrash.Log.GenerationFailed>
+    <Mugirl.RefugeePodCrash.Log.MissingQuestContext>Refugee pod crash quest root ran without a valid quest context.</Mugirl.RefugeePodCrash.Log.MissingQuestContext>
+    <Mugirl.RefugeePodCrash.Log.MissingMap>Refugee pod crash quest could not resolve a usable target map.</Mugirl.RefugeePodCrash.Log.MissingMap>
     <LetterLabelWandererJoins>Wanderer Joins: {PAWN_nameDef}</LetterLabelWandererJoins>
     <LetterWandererJoins>A {PAWN_title} named {PAWN_nameDef} has arrived here; she escaped from a slave caravan, with tattered restraints still bound to [PAWN_objective], telling of [PAWN_possessive] tragic past. With nowhere to go, she is willing to contribute to your colony. {PAWN_objective} won't leave voluntarily; you can choose to refuse [PAWN_objective] and send [PAWN_objective] away, but your colonists will feel uneasy about turning away someone in need.\n\nWill you give this pitiful yet resilient escapee a chance at freedom and a new life?</LetterWandererJoins>
 </LanguageData>

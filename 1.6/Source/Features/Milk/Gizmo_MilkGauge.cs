@@ -1,86 +1,64 @@
 using UnityEngine;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     // 奶量量杯自定义 Gizmo：在选中雪牛娘时显示乳汁饱满度和自动挤奶阈值
     public class Gizmo_MilkGauge : Gizmo
     {
         private const int MainTooltipSeed = 129734551;
-        private const int IncreaseTooltipSeed = 129734552;
-        private const int DecreaseTooltipSeed = 129734553;
+        private const int ThresholdDragControlSeed = 129734552;
+        private const string GaugeTexturePath = "UI/Mugirl_MilkGauge";
+
+        private const float GizmoWidth = 158f;
+        private const float GizmoHeight = 75f;
+        private const float GaugeDrawScale = 0.92f;
+        private const float MinMilkThreshold = 0.1f;
+
+        private const float SourceTextureWidth = 1264f;
+        private const float SourceTextureHeight = 919f;
+        private static readonly Rect GaugeSourceCropRect = new Rect(0f, 0f, SourceTextureWidth, SourceTextureHeight);
+        private static readonly Rect MilkSlotSourceRect = new Rect(180f, 524f, 922f, 151f);
+        private static readonly Rect GaugeTextureCoords = SourceRectToTextureCoords(GaugeSourceCropRect);
 
         private CompMooHasBodyResource comp;
-        private string label;
         private string desc;
 
-        private static readonly Color CupBackColor = new Color(0.06f, 0.13f, 0.15f, 0.92f);
-        private static readonly Color CupLineColor = new Color(0.72f, 0.93f, 1f);
-        private static readonly Color CupLineDimColor = new Color(0.43f, 0.68f, 0.76f);
+        private static Texture2D gaugeTexture;
+        private static bool triedLoadGaugeTexture;
+
+        private static readonly Color EmptySlotColor = new Color(0.03f, 0.03f, 0.03f, 0.72f);
         private static readonly Color MilkFillColor = Color.white;
-        private static readonly Color MilkSurfaceColor = Color.white;
-        private static readonly Color TickColor = new Color(0.78f, 0.91f, 0.96f);
         private static readonly Color ThresholdColor = new Color(1f, 0.28f, 0.22f);
-        private static readonly Color ButtonBgColor = new Color(0.10f, 0.12f, 0.13f);
-        private static readonly Color ButtonHoverColor = new Color(0.17f, 0.21f, 0.23f);
-        private static readonly Color ButtonBorderColor = new Color(0.54f, 0.72f, 0.78f);
 
         public Gizmo_MilkGauge(CompMooHasBodyResource comp, string label, string desc)
         {
             this.comp = comp;
-            this.label = label;
             this.desc = desc;
         }
 
         public override float GetWidth(float maxWidth)
         {
-            return 142f;
+            return GizmoWidth;
         }
 
         public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth, GizmoRenderParms parms)
         {
             float width = GetWidth(maxWidth);
-            Rect totalRect = new Rect(topLeft.x, topLeft.y, width, 75f);
+            Rect totalRect = new Rect(topLeft.x, topLeft.y, width, GizmoHeight);
             bool interacted = false;
 
             // 背景
             Widgets.DrawWindowBackground(totalRect);
 
-            // 标题
-            Rect titleRect = new Rect(totalRect.x + 7f, totalRect.y + 1f, 76f, 17f);
-            Text.Font = GameFont.Tiny;
-            Text.Anchor = TextAnchor.UpperCenter;
-            Widgets.Label(titleRect, label);
-            Text.Anchor = TextAnchor.UpperLeft;
-            Text.Font = GameFont.Small;
+            float fullness = Mathf.Clamp01(comp.Fullness);
 
-            Rect cupOuterRect = new Rect(totalRect.x + 18f, totalRect.y + 16f, 58f, 51f);
-            Rect cupInnerRect = new Rect(cupOuterRect.x + 7f, cupOuterRect.y + 8f, cupOuterRect.width - 14f, cupOuterRect.height - 13f);
-            float fullness = comp.Fullness;
-            float threshold = comp.MilkThreshold;
-
-            DrawCup(cupOuterRect, cupInnerRect, fullness, threshold);
-
-            GUI.color = Color.white;
-            Rect controlsRect = new Rect(totalRect.x + 101f, totalRect.y + 16f, 26f, 51f);
-            bool overThresholdControls;
-            interacted = DrawThresholdControls(controlsRect, out overThresholdControls) || interacted;
-
-            GUI.color = Color.white;
-
-            // 百分比文字
-            Rect pctRect = new Rect(cupOuterRect.x - 1f, totalRect.yMax - 17f, cupOuterRect.width + 2f, 16f);
-            Text.Font = GameFont.Tiny;
-            Text.Anchor = TextAnchor.UpperCenter;
-            Widgets.Label(pctRect, fullness.ToStringPercent());
-            Text.Anchor = TextAnchor.UpperLeft;
-            Text.Font = GameFont.Small;
+            Rect gaugeRect = FillRectCentered(totalRect, GaugeSourceCropRect.width / GaugeSourceCropRect.height);
+            gaugeRect = ScaleRectCentered(gaugeRect, GaugeDrawScale);
+            interacted = DrawGauge(gaugeRect, fullness) || interacted;
 
             // Tooltip 文本会随奶量变化，必须使用稳定 ID 避免悬浮提示闪烁。
-            if (!overThresholdControls)
-            {
-                TooltipHandler.TipRegion(totalRect, new TipSignal(GetMainTooltip, StableTooltipId(MainTooltipSeed)));
-            }
+            TooltipHandler.TipRegion(totalRect, new TipSignal(GetMainTooltip, StableTooltipId(MainTooltipSeed)));
 
             if (interacted)
             {
@@ -90,89 +68,40 @@ namespace MooGirl
             return new GizmoResult(Mouse.IsOver(totalRect) ? GizmoState.Mouseover : GizmoState.Clear);
         }
 
-        private void DrawCup(Rect cupOuterRect, Rect cupInnerRect, float fullness, float threshold)
+        private bool DrawGauge(Rect gaugeRect, float fullness)
         {
-            DrawSolidRect(cupInnerRect, CupBackColor);
+            Rect milkSlotRect = SourceRectToDrawRect(MilkSlotSourceRect, GaugeSourceCropRect, gaugeRect);
+            DrawSolidRect(milkSlotRect, EmptySlotColor);
 
-            float fillHeight = cupInnerRect.height * Mathf.Clamp01(fullness);
-            if (fillHeight > 0f)
+            float fillWidth = milkSlotRect.width * fullness;
+            if (fillWidth > 0f)
             {
-                Rect fillRect = new Rect(cupInnerRect.x + 1f, cupInnerRect.yMax - fillHeight, cupInnerRect.width - 2f, fillHeight);
+                Rect fillRect = new Rect(milkSlotRect.x, milkSlotRect.y, fillWidth, milkSlotRect.height);
                 DrawSolidRect(fillRect, MilkFillColor);
-
-                Rect surfaceRect = new Rect(fillRect.x, fillRect.y, fillRect.width, 2f);
-                DrawSolidRect(surfaceRect, MilkSurfaceColor);
             }
 
-            DrawCupOutline(cupOuterRect, cupInnerRect);
-            DrawGraduationTicks(cupInnerRect);
-
-            float thresholdY = cupInnerRect.y + cupInnerRect.height * (1f - Mathf.Clamp01(threshold));
-            DrawSolidRect(new Rect(cupInnerRect.x - 3f, thresholdY - 1f, cupInnerRect.width + 6f, 2f), ThresholdColor);
-        }
-
-        private void DrawCupOutline(Rect cupOuterRect, Rect cupInnerRect)
-        {
-            const float thickness = 2f;
-            Rect outlineRect = new Rect(cupInnerRect.x - 3f, cupInnerRect.y - 3f, cupInnerRect.width + 6f, cupInnerRect.height + 6f);
-
-            DrawSolidRect(new Rect(outlineRect.x, outlineRect.y, outlineRect.width, thickness), CupLineColor);
-            DrawSolidRect(new Rect(outlineRect.x, outlineRect.yMax - thickness, outlineRect.width, thickness), CupLineColor);
-            DrawSolidRect(new Rect(outlineRect.x, outlineRect.y, thickness, outlineRect.height), CupLineColor);
-            DrawSolidRect(new Rect(outlineRect.xMax - thickness, outlineRect.y, thickness, outlineRect.height), CupLineColor);
-
-            DrawSolidRect(new Rect(cupInnerRect.x, cupInnerRect.y, cupInnerRect.width, 1f), CupLineDimColor);
-            DrawSolidRect(new Rect(cupInnerRect.x, cupInnerRect.yMax, cupInnerRect.width, 1f), CupLineDimColor);
-        }
-
-        private void DrawGraduationTicks(Rect cupInnerRect)
-        {
-            for (int i = 1; i <= 4; i++)
+            Texture2D texture = GaugeTexture;
+            if (texture != null)
             {
-                float y = cupInnerRect.yMax - cupInnerRect.height * i / 4f;
-                float tickWidth = i % 2 == 0 ? 18f : 10f;
-                DrawSolidRect(new Rect(cupInnerRect.x + 4f, y, tickWidth, 1f), TickColor);
+                Color oldColor = GUI.color;
+                GUI.color = Color.white;
+                GUI.DrawTextureWithTexCoords(gaugeRect, texture, GaugeTextureCoords);
+                GUI.color = oldColor;
             }
-        }
-
-        private bool DrawThresholdControls(Rect controlsRect, out bool mouseOverControls)
-        {
-            bool interacted = false;
-
-            Rect plusRect = new Rect(controlsRect.x, controlsRect.y + 3f, 24f, 20f);
-            Rect minusRect = new Rect(controlsRect.x, controlsRect.y + 28f, 24f, 20f);
-            mouseOverControls = Mouse.IsOver(plusRect) || Mouse.IsOver(minusRect);
-
-            if (DrawThresholdButton(plusRect, true))
+            else
             {
-                comp.MilkThreshold = Mathf.Min(1f, comp.MilkThreshold + 0.1f);
-                interacted = true;
+                Widgets.DrawBox(gaugeRect);
             }
 
-            if (DrawThresholdButton(minusRect, false))
-            {
-                comp.MilkThreshold = Mathf.Max(0.1f, comp.MilkThreshold - 0.1f);
-                interacted = true;
-            }
+            bool interacted = HandleThresholdDrag(milkSlotRect);
+            DrawThresholdLine(milkSlotRect, comp.MilkThreshold);
 
-            if (Mouse.IsOver(plusRect))
-            {
-                TooltipHandler.TipRegion(plusRect, new TipSignal(GetIncreaseThresholdTooltip, StableTooltipId(IncreaseTooltipSeed)));
-            }
-
-            if (Mouse.IsOver(minusRect))
-            {
-                TooltipHandler.TipRegion(minusRect, new TipSignal(GetDecreaseThresholdTooltip, StableTooltipId(DecreaseTooltipSeed)));
-            }
-
-            Text.Anchor = TextAnchor.UpperLeft;
-            Text.Font = GameFont.Small;
             return interacted;
         }
 
         private string GetMainTooltip()
         {
-            return "MooGirl.Milk.Gauge.Tooltip".Translate(
+            return "Mugirl.Milk.Gauge.Tooltip".Translate(
                 desc,
                 comp.Fullness.ToStringPercent(),
                 comp.MilkThreshold.ToStringPercent(),
@@ -180,18 +109,46 @@ namespace MooGirl
                 comp.GetProductionRateExplanation());
         }
 
-        private string GetIncreaseThresholdTooltip()
+        private bool HandleThresholdDrag(Rect milkSlotRect)
         {
-            return "MooGirl.Milk.Gauge.IncreaseThresholdTooltip".Translate(
-                comp.MilkThreshold.ToStringPercent(),
-                Mathf.Min(1f, comp.MilkThreshold + 0.1f).ToStringPercent());
+            Event current = Event.current;
+            float thresholdX = ThresholdX(milkSlotRect, comp.MilkThreshold);
+            Rect hitRect = new Rect(thresholdX - 8f, milkSlotRect.y - 7f, 16f, milkSlotRect.height + 14f);
+            Rect clickRect = new Rect(milkSlotRect.x, milkSlotRect.y - 7f, milkSlotRect.width, milkSlotRect.height + 14f);
+            int controlId = GUIUtility.GetControlID(StableTooltipId(ThresholdDragControlSeed), FocusType.Passive, milkSlotRect);
+
+            bool overThresholdLine = hitRect.Contains(current.mousePosition);
+
+            if (current.type == EventType.MouseDown && current.button == 0 && (overThresholdLine || clickRect.Contains(current.mousePosition)))
+            {
+                GUIUtility.hotControl = controlId;
+                SetThresholdFromMouse(milkSlotRect, current.mousePosition.x);
+                current.Use();
+                return true;
+            }
+
+            if (GUIUtility.hotControl == controlId && current.type == EventType.MouseDrag)
+            {
+                SetThresholdFromMouse(milkSlotRect, current.mousePosition.x);
+                current.Use();
+                return true;
+            }
+
+            if (GUIUtility.hotControl == controlId && current.type == EventType.MouseUp && current.button == 0)
+            {
+                SetThresholdFromMouse(milkSlotRect, current.mousePosition.x);
+                GUIUtility.hotControl = 0;
+                current.Use();
+                return true;
+            }
+
+            return false;
         }
 
-        private string GetDecreaseThresholdTooltip()
+        private void SetThresholdFromMouse(Rect milkSlotRect, float mouseX)
         {
-            return "MooGirl.Milk.Gauge.DecreaseThresholdTooltip".Translate(
-                comp.MilkThreshold.ToStringPercent(),
-                Mathf.Max(0.1f, comp.MilkThreshold - 0.1f).ToStringPercent());
+            float threshold = (mouseX - milkSlotRect.x) / milkSlotRect.width;
+            comp.MilkThreshold = Mathf.Clamp(threshold, MinMilkThreshold, 1f);
         }
 
         private int StableTooltipId(int seed)
@@ -199,24 +156,75 @@ namespace MooGirl
             return Gen.HashCombineInt(comp.parent.thingIDNumber, seed);
         }
 
-        private bool DrawThresholdButton(Rect rect, bool plus)
+        private void DrawThresholdLine(Rect milkSlotRect, float threshold)
         {
-            bool mouseOver = Mouse.IsOver(rect);
-            DrawSolidRect(rect, mouseOver ? ButtonHoverColor : ButtonBgColor);
+            float thresholdX = ThresholdX(milkSlotRect, threshold);
+            DrawSolidRect(new Rect(thresholdX - 1f, milkSlotRect.y - 2f, 2f, milkSlotRect.height + 4f), ThresholdColor);
+        }
 
-            GUI.color = mouseOver ? CupLineColor : ButtonBorderColor;
-            Widgets.DrawBox(rect);
-            GUI.color = Color.white;
+        private static float ThresholdX(Rect milkSlotRect, float threshold)
+        {
+            return milkSlotRect.x + milkSlotRect.width * Mathf.Clamp(threshold, MinMilkThreshold, 1f);
+        }
 
-            float centerX = rect.center.x;
-            float centerY = rect.center.y;
-            DrawSolidRect(new Rect(centerX - 5f, centerY - 1f, 10f, 2f), CupLineColor);
-            if (plus)
+        private static Rect SourceRectToDrawRect(Rect sourceRect, Rect sourceCropRect, Rect drawRect)
+        {
+            return new Rect(
+                drawRect.x + drawRect.width * ((sourceRect.x - sourceCropRect.x) / sourceCropRect.width),
+                drawRect.y + drawRect.height * ((sourceRect.y - sourceCropRect.y) / sourceCropRect.height),
+                drawRect.width * (sourceRect.width / sourceCropRect.width),
+                drawRect.height * (sourceRect.height / sourceCropRect.height));
+        }
+
+        private static Rect FillRectCentered(Rect bounds, float aspect)
+        {
+            float width = bounds.width;
+            float height = width / aspect;
+            if (height < bounds.height)
             {
-                DrawSolidRect(new Rect(centerX - 1f, centerY - 5f, 2f, 10f), CupLineColor);
+                height = bounds.height;
+                width = height * aspect;
             }
 
-            return Widgets.ButtonInvisible(rect);
+            return new Rect(
+                bounds.x + (bounds.width - width) / 2f,
+                bounds.y + (bounds.height - height) / 2f,
+                width,
+                height);
+        }
+
+        private static Rect ScaleRectCentered(Rect rect, float scale)
+        {
+            float width = rect.width * scale;
+            float height = rect.height * scale;
+            return new Rect(
+                rect.x + (rect.width - width) / 2f,
+                rect.y + (rect.height - height) / 2f,
+                width,
+                height);
+        }
+
+        private static Rect SourceRectToTextureCoords(Rect sourceRect)
+        {
+            return new Rect(
+                sourceRect.x / SourceTextureWidth,
+                1f - ((sourceRect.y + sourceRect.height) / SourceTextureHeight),
+                sourceRect.width / SourceTextureWidth,
+                sourceRect.height / SourceTextureHeight);
+        }
+
+        private static Texture2D GaugeTexture
+        {
+            get
+            {
+                if (!triedLoadGaugeTexture)
+                {
+                    gaugeTexture = ContentFinder<Texture2D>.Get(GaugeTexturePath, false);
+                    triedLoadGaugeTexture = true;
+                }
+
+                return gaugeTexture;
+            }
         }
 
         private void DrawSolidRect(Rect rect, Color color)

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <Mugirl.label>Mugirl</Mugirl.label>
+    <Mugirl.description>A half-muffalo race genetically engineered by a mega corporation, possessing soft fur, light blue coats and adorable horns. They combine strength with a gentle nature, being intelligent and affectionate, yet are forced to endure a life of servitude. Despite this, they still comfort those around them with tender gestures, demonstrating a remarkable kindness inherent to their character.</Mugirl.description>
+    <Mugirl.comps.CompMooMilkable.displayString>Mugirl milk</Mugirl.comps.CompMooMilkable.displayString>
+    <Mugirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.1.conditions.1.bodyPartLabel>left horn</Mugirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.1.conditions.1.bodyPartLabel>
+    <Mugirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.2.conditions.1.bodyPartLabel>right horn</Mugirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.2.conditions.1.bodyPartLabel>
+    <Mugirl.tools.0.label>horn</Mugirl.tools.0.label>
+    <Mugirl.tools.1.label>left fist</Mugirl.tools.1.label>
+    <Mugirl.tools.2.label>right fist</Mugirl.tools.2.label>
+</LanguageData>

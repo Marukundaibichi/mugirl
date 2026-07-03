@@ -3,13 +3,13 @@
 <Defs>
 
     <SoundDef>
-        <defName>MooGirl_EleShock_Sound</defName>
+        <defName>Mugirl_EleShock_Sound</defName>
         <context>MapOnly</context>
         <subSounds>
             <li>
                 <grains>
                     <li Class="AudioGrain_Clip">
-                        <clipPath>MooGirlEleShockSound</clipPath>
+                        <clipPath>MugirlEleShockSound</clipPath>
                     </li>
                 </grains>
                 <volumeRange>20</volumeRange>
@@ -19,13 +19,13 @@
     </SoundDef>
 
     <SoundDef>
-        <defName>MooGirl_PowerEleShock_Sound</defName>
+        <defName>Mugirl_PowerEleShock_Sound</defName>
         <context>MapOnly</context>
         <subSounds>
             <li>
                 <grains>
                     <li Class="AudioGrain_Clip">
-                        <clipPath>MooGirlPowerEleShockSound</clipPath>
+                        <clipPath>MugirlPowerEleShockSound</clipPath>
                     </li>
                 </grains>
                 <volumeRange>15</volumeRange>
@@ -35,13 +35,13 @@
     </SoundDef>
 
     <SoundDef>
-        <defName>MooGirl_MagneticShackles_Work</defName>
+        <defName>Mugirl_MagneticShackles_Work</defName>
         <context>MapOnly</context>
         <subSounds>
             <li>
                 <grains>
                     <li Class="AudioGrain_Clip">
-                        <clipPath>MooGirlMagneticShacklesWork</clipPath>
+                        <clipPath>MugirlMagneticShacklesWork</clipPath>
                     </li>
                 </grains>
                 <volumeRange>500</volumeRange>
@@ -51,7 +51,7 @@
     </SoundDef>
 
     <SoundDef>
-        <defName>MooGirl_Milking_Sound</defName>
+        <defName>Mugirl_Milking_Sound</defName>
         <context>MapOnly</context>
         <subSounds>
             <li>
@@ -67,7 +67,7 @@
     </SoundDef>
 
     <SoundDef>
-        <defName>MooGirl_Milking_Power_Sound</defName>
+        <defName>Mugirl_Milking_Power_Sound</defName>
         <context>MapOnly</context>
         <subSounds>
             <li>
@@ -83,13 +83,13 @@
     </SoundDef>
 
     <SoundDef>
-        <defName>MooGirl_BrainWashing_RingLong</defName>
+        <defName>Mugirl_BrainWashing_RingLong</defName>
         <context>MapOnly</context>
         <subSounds>
             <li>
                 <grains>
                     <li Class="AudioGrain_Clip">
-                        <clipPath>MooGirlRingLong</clipPath>
+                        <clipPath>MugirlRingLong</clipPath>
                     </li>
                 </grains>
                 <volumeRange>80</volumeRange>
@@ -99,13 +99,13 @@
     </SoundDef>
 
     <SoundDef>
-        <defName>MooGirl_BrainWashing_RingShort</defName>
+        <defName>Mugirl_BrainWashing_RingShort</defName>
         <context>MapOnly</context>
         <subSounds>
             <li>
                 <grains>
                     <li Class="AudioGrain_Clip">
-                        <clipPath>MooGirlRingShort</clipPath>
+                        <clipPath>MugirlRingShort</clipPath>
                     </li>
                 </grains>
                 <volumeRange>80</volumeRange>
@@ -115,13 +115,13 @@
     </SoundDef>
 
     <SoundDef>
-        <defName>MooGirl_BrainWashing_HeartBeat</defName>
+        <defName>Mugirl_BrainWashing_HeartBeat</defName>
         <context>MapOnly</context>
         <subSounds>
             <li>
                 <grains>
                     <li Class="AudioGrain_Clip">
-                        <clipPath>MooGirlHeartBeat</clipPath>
+                        <clipPath>MugirlHeartBeat</clipPath>
                     </li>
                 </grains>
                 <volumeRange>80</volumeRange>
@@ -131,13 +131,13 @@
     </SoundDef>
 
     <SoundDef>
-        <defName>MooGirl_BrainWashing_First</defName>
+        <defName>Mugirl_BrainWashing_First</defName>
         <context>MapOnly</context>
         <subSounds>
             <li>
                 <grains>
                     <li Class="AudioGrain_Clip">
-                        <clipPath>MooGirlWashMentalFirst</clipPath>
+                        <clipPath>MugirlWashMentalFirst</clipPath>
                     </li>
                 </grains>
                 <volumeRange>100</volumeRange>
@@ -147,13 +147,13 @@
     </SoundDef>
 
     <SoundDef>
-        <defName>MooGirl_BrainWashing_Second</defName>
+        <defName>Mugirl_BrainWashing_Second</defName>
         <context>MapOnly</context>
         <subSounds>
             <li>
                 <grains>
                     <li Class="AudioGrain_Clip">
-                        <clipPath>MooGirlWashMentalSecond</clipPath>
+                        <clipPath>MugirlWashMentalSecond</clipPath>
                     </li>
                 </grains>
                 <volumeRange>100</volumeRange>

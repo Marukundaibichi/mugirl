@@ -2,7 +2,7 @@ using HarmonyLib;
 using UnityEngine;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     [HarmonyPatch(typeof(Pawn), nameof(Pawn.DynamicDrawPhaseAt))]
     public static class Harmony_MountRendering
@@ -30,7 +30,7 @@ namespace MooGirl
                 return;
             }
 
-            Comp_MooGirlMount comp = pawn.TryGetComp<Comp_MooGirlMount>();
+            Comp_MugirlMount comp = pawn.TryGetComp<Comp_MugirlMount>();
             Pawn rider = comp?.MountedPawn;
             if (rider == null || rider.Destroyed || rider.Drawer?.renderer == null)
             {

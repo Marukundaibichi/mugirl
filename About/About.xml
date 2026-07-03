@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-    <name>MooGirl Race</name>
+    <name>Mugirl Race</name>
     <author>PCR、114、梓磐谷客、伊贝森、Marukun</author>
     <supportedVersions>
         <li>1.6</li>
     </supportedVersions>
-    <packageId>HAR.MuGirlRace</packageId>
+    <packageId>HAR.MugirlRace</packageId>
     <modDependencies>
         <li>
             <packageId>brrainz.harmony</packageId>
@@ -25,7 +25,7 @@
         <li>Nals.FacialAnimation</li>
     </loadAfter>
     <incompatibleWith>
-        <li>Luca.MuGirlFacialAnimation</li>
+        <li>Luca.MugirlFacialAnimation</li>
     </incompatibleWith>
     <description>
     添加了雪牛娘物种，很可爱哦~ (◕‿◕✿) 

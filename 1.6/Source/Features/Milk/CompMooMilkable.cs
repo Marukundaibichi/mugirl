@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     // 可产奶组件的 XML 配置。
     public class CompProperties_MooMilkable : CompProperties
@@ -13,7 +13,7 @@ namespace MooGirl
         }
 
         // 显示名可能来自 XML 实际文本，也可能使用默认 Keyed。
-        public string displayString = "MooGirl.Milk.FullnessDisplay";
+        public string displayString = "Mugirl.Milk.FullnessDisplay";
         // 存档字段名必须与显示文本解耦，避免翻译调整影响存档结构。
         public string saveKey = "milkFullness";
         public float milkAmount = 1f;
@@ -141,7 +141,7 @@ namespace MooGirl
             }
             // 显示格式进入翻译键，避免不同语言下冒号和空格规则固定在 C# 中。
             CompProperties_MooMilkable milkProps = Props;
-            return "MooGirl.Milk.FullnessInspect".Translate(MooGirlText.Resolve(milkProps?.displayString ?? "MooGirl.Milk.FullnessDisplay"), base.Fullness.ToStringPercent()).ToString();
+            return "Mugirl.Milk.FullnessInspect".Translate(MugirlText.Resolve(milkProps?.displayString ?? "Mugirl.Milk.FullnessDisplay"), base.Fullness.ToStringPercent()).ToString();
         }
 
         private Pawn MooPawn => parent as Pawn;
@@ -155,7 +155,7 @@ namespace MooGirl
                 return multiplier;
             }
 
-            HediffDef lactationDef = MooGirlRequiredDefs.Hediffs.MooGirlLactation;
+            HediffDef lactationDef = MugirlRequiredDefs.Hediffs.MugirlLactation;
             if (lactationDef != null)
             {
                 Hediff lactationHediff = pawn.health.hediffSet.GetFirstHediffOfDef(lactationDef);
@@ -198,7 +198,7 @@ namespace MooGirl
                 return;
             }
 
-            HediffDef lactationDef = MooGirlRequiredDefs.Hediffs.MooGirlLactation;
+            HediffDef lactationDef = MugirlRequiredDefs.Hediffs.MugirlLactation;
             if (lactationDef != null && !pawn.health.hediffSet.HasHediff(lactationDef))
             {
                 pawn.health.AddHediff(lactationDef);
@@ -214,15 +214,15 @@ namespace MooGirl
             }
 
             yield return new Gizmo_MilkGauge(this,
-                "MooGirl.Milk.Gauge.Label".Translate(),
-                "MooGirl.Milk.Gauge.Desc".Translate());
+                "Mugirl.Milk.Gauge.Label".Translate(),
+                "Mugirl.Milk.Gauge.Desc".Translate());
 
             if (Prefs.DevMode)
             {
                 yield return new Command_Action
                 {
-                    defaultLabel = "MooGirl.Milk.DevFill.Label".Translate(),
-                    defaultDesc = "MooGirl.Milk.DevFill.Desc".Translate(),
+                    defaultLabel = "Mugirl.Milk.DevFill.Label".Translate(),
+                    defaultDesc = "Mugirl.Milk.DevFill.Desc".Translate(),
                     icon = TexCommand.DesirePower,
                     action = () =>
                     {
@@ -234,11 +234,11 @@ namespace MooGirl
 
                         if (DevFillToFull(triggerNotify: false))
                         {
-                            Messages.Message("MooGirl.Milk.DevFill.Success".Translate(pawn.LabelShortCap), pawn, MessageTypeDefOf.PositiveEvent);
+                            Messages.Message("Mugirl.Milk.DevFill.Success".Translate(pawn.LabelShortCap), pawn, MessageTypeDefOf.PositiveEvent);
                         }
                         else
                         {
-                            Messages.Message("MooGirl.Milk.DevFill.Failed".Translate(pawn.LabelShortCap), pawn, MessageTypeDefOf.RejectInput, historical: false);
+                            Messages.Message("Mugirl.Milk.DevFill.Failed".Translate(pawn.LabelShortCap), pawn, MessageTypeDefOf.RejectInput, historical: false);
                         }
                     }
                 };
@@ -248,7 +248,7 @@ namespace MooGirl
         // 手动榨乳完成后的喷乳反馈。
         public void SpawnMilkEffect()
         {
-            MooGirlMilkEffectUtility.SpawnMilkSpray(MooPawn);
+            MugirlMilkEffectUtility.SpawnMilkSpray(MooPawn);
         }
 
     }

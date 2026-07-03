@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- Mugirl -->
+    <Mugirl.label>雪牛娘</Mugirl.label>
+    <!-- A half-muffalo race genetically engineered by a mega corporation, possessing soft fur, light blue coats and adorable horns. They combine strength with a gentle nature, being intelligent and affectionate, yet are forced to endure a life of servitude. Despite this, they still comfort those around them with tender gestures, demonstrating a remarkable kindness inherent to their character. -->
+    <Mugirl.description>由巨型企业以智人种为蓝本，通过基因工程改造的半人半牛娘种族，拥有淡淡牛油香气的柔软毛发，淡蓝色皮毛和可爱牛角等特征。她们身体机能的各项强度都达到大型动物水准，身材高大，普遍身高在两米以上，兼具力量与温顺天性，聪慧而亲人，却被迫忍受奴役生活。即便如此，她们仍会以温柔的举止安慰身边的人，展现出难得的善良本性。\n由于基因工程产生的某种遗传物质，雪牛娘胎儿的最后一对“性染色体”总是保持XX染色体，因此雪牛娘的子嗣仍然是雪牛娘。\n这种遗传物质也使雪牛娘汗液散发出一股清爽、柔和、温和甜蜜的乳香，类似于淡牛油的气味。</Mugirl.description>
+    <!-- Mugirl milk -->
+    <Mugirl.comps.CompMooMilkable.displayString>雪牛奶</Mugirl.comps.CompMooMilkable.displayString>
+    <!-- left horn -->
+    <Mugirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.1.conditions.1.bodyPartLabel>左牛角</Mugirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.1.conditions.1.bodyPartLabel>
+    <!-- right horn -->
+    <Mugirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.2.conditions.1.bodyPartLabel>右牛角</Mugirl.alienRace.generalSettings.alienPartGenerator.bodyAddons.2.conditions.1.bodyPartLabel>
+    <!-- horn -->
+    <Mugirl.tools.0.label>牛角</Mugirl.tools.0.label>
+    <!-- left fist -->
+    <Mugirl.tools.1.label>左拳</Mugirl.tools.1.label>
+    <!-- right fist -->
+    <Mugirl.tools.2.label>右拳</Mugirl.tools.2.label>
+</LanguageData>

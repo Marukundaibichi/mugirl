@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class JobDriver_UnlockSlaveApparelGear : JobDriver
     {
@@ -147,7 +147,7 @@ namespace MooGirl
                 {
                     if (!TargetStillWearsApparel(pawnToUnlock, apparelToUnlock))
                     {
-                        MooGirlLog.WarningOnce("UnlockSlaveApparel.TargetMissing", "MooGirl.Restraints.UnlockTargetMissingLog".Translate().ToString());
+                        MugirlLog.WarningOnce("UnlockSlaveApparel.TargetMissing", "Mugirl.Restraints.UnlockTargetMissingLog".Translate().ToString());
                         return;
                     }
 
@@ -162,7 +162,7 @@ namespace MooGirl
                         {
                             if (pawnToUnlock.apparel.TryDrop(apparelToUnlock, out Apparel _, DropCellFor(targetToReserve, pawnToUnlock), false))
                             {
-                                Messages.Message("MooGirl.SlaveApparelFullyUnlocked".Translate(pawnToUnlock.LabelShort), pawnToUnlock, MessageTypeDefOf.PositiveEvent);
+                                Messages.Message("Mugirl.SlaveApparelFullyUnlocked".Translate(pawnToUnlock.LabelShort), pawnToUnlock, MessageTypeDefOf.PositiveEvent);
                             }
                             else
                             {
@@ -175,7 +175,7 @@ namespace MooGirl
                     }
                     else
                     {
-                        Messages.Message("MooGirl.SlaveApparelUnlockPartial".Translate(pawn.LabelShort, pawnToUnlock.LabelShort, apparel.lockCount), pawnToUnlock, MessageTypeDefOf.PositiveEvent);
+                        Messages.Message("Mugirl.SlaveApparelUnlockPartial".Translate(pawn.LabelShort, pawnToUnlock.LabelShort, apparel.lockCount), pawnToUnlock, MessageTypeDefOf.PositiveEvent);
                     }
 
                     if (itemToUse != null && !itemToUse.Destroyed)

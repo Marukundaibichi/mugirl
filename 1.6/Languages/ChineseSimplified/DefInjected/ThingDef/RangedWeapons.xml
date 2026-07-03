@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-    <!-- MooGirl assault round -->
-    <Bullet_MooGirl_AR_Standard.label>雪牛娘突击步枪弹</Bullet_MooGirl_AR_Standard.label>
-    <!-- MooGirl pistol round -->
-    <Bullet_MooGirl_MP_Standard.label>雪牛娘手枪弹</Bullet_MooGirl_MP_Standard.label>
+    <!-- Mugirl assault round -->
+    <Bullet_Mugirl_AR_Standard.label>雪牛娘突击步枪弹</Bullet_Mugirl_AR_Standard.label>
+    <!-- Mugirl pistol round -->
+    <Bullet_Mugirl_MP_Standard.label>雪牛娘手枪弹</Bullet_Mugirl_MP_Standard.label>
     <!-- militia rifle cartridge -->
-    <Bullet_MooGirl_Militia_Rifle.label>民兵步枪弹</Bullet_MooGirl_Militia_Rifle.label>
+    <Bullet_Mugirl_Militia_Rifle.label>民兵步枪弹</Bullet_Mugirl_Militia_Rifle.label>
     <!-- A long-range rifle used by Mugirls. Although it is only an ordinary gunpowder rifle, it is designed around the powerful Mugirl physique and performs better than a standard rifle. -->
-    <MuGirl_Gun_Defense_Rifle.description>雪牛娘使用的长射程步枪，尽管只是普通的火药步枪，但基于雪牛娘那强大的体格进行设计，这把枪拥有着强于普通步枪的性能</MuGirl_Gun_Defense_Rifle.description>
+    <Mugirl_Gun_Defense_Rifle.description>雪牛娘使用的长射程步枪，尽管只是普通的火药步枪，但基于雪牛娘那强大的体格进行设计，这把枪拥有着强于普通步枪的性能</Mugirl_Gun_Defense_Rifle.description>
     <!-- Mugirl Defense Rifle -->
-    <MuGirl_Gun_Defense_Rifle.label>雪牛娘防卫步枪</MuGirl_Gun_Defense_Rifle.label>
+    <Mugirl_Gun_Defense_Rifle.label>雪牛娘防卫步枪</Mugirl_Gun_Defense_Rifle.label>
     <!-- bayonet -->
-    <MuGirl_Gun_Defense_Rifle.tools.bayonet.label>刺刀</MuGirl_Gun_Defense_Rifle.tools.bayonet.label>
+    <Mugirl_Gun_Defense_Rifle.tools.bayonet.label>刺刀</Mugirl_Gun_Defense_Rifle.tools.bayonet.label>
     <!-- Mugirl Defense Rifle -->
-    <MuGirl_Gun_Defense_Rifle.verbs.Verb_Shoot.label>雪牛娘防卫步枪</MuGirl_Gun_Defense_Rifle.verbs.Verb_Shoot.label>
+    <Mugirl_Gun_Defense_Rifle.verbs.Verb_Shoot.label>雪牛娘防卫步枪</Mugirl_Gun_Defense_Rifle.verbs.Verb_Shoot.label>
     <!-- A basic pistol used by Mugirls. Although it uses ordinary gunpowder, it is designed around the powerful Mugirl physique and has firepower far beyond a standard autopistol. -->
-    <MuGirl_Gun_Machine_Pistol.description>雪牛娘使用的基础手枪，尽管用的只是普通的火药，但基于雪牛娘那强大的体格进行设计，这把枪拥有着远强于普通自动手枪的火力</MuGirl_Gun_Machine_Pistol.description>
+    <Mugirl_Gun_Machine_Pistol.description>雪牛娘使用的基础手枪，尽管用的只是普通的火药，但基于雪牛娘那强大的体格进行设计，这把枪拥有着远强于普通自动手枪的火力</Mugirl_Gun_Machine_Pistol.description>
     <!-- Mugirl Machine Pistol -->
-    <MuGirl_Gun_Machine_Pistol.label>雪牛娘冲锋手枪</MuGirl_Gun_Machine_Pistol.label>
+    <Mugirl_Gun_Machine_Pistol.label>雪牛娘冲锋手枪</Mugirl_Gun_Machine_Pistol.label>
     <!-- grip -->
-    <MuGirl_Gun_Machine_Pistol.tools.grip.label>握把</MuGirl_Gun_Machine_Pistol.tools.grip.label>
+    <Mugirl_Gun_Machine_Pistol.tools.grip.label>握把</Mugirl_Gun_Machine_Pistol.tools.grip.label>
     <!-- barrel -->
-    <MuGirl_Gun_Machine_Pistol.tools.barrel.label>枪管</MuGirl_Gun_Machine_Pistol.tools.barrel.label>
+    <Mugirl_Gun_Machine_Pistol.tools.barrel.label>枪管</Mugirl_Gun_Machine_Pistol.tools.barrel.label>
     <!-- Mugirl Machine Pistol -->
-    <MuGirl_Gun_Machine_Pistol.verbs.Verb_Shoot.label>雪牛娘冲锋手枪</MuGirl_Gun_Machine_Pistol.verbs.Verb_Shoot.label>
+    <Mugirl_Gun_Machine_Pistol.verbs.Verb_Shoot.label>雪牛娘冲锋手枪</Mugirl_Gun_Machine_Pistol.verbs.Verb_Shoot.label>
     <!-- A heavy-firepower rifle used by Mugirls. Although it is only an ordinary gunpowder rifle, it is designed around the powerful Mugirl physique and has firepower far beyond a standard light machine gun. -->
-    <MuGirl_Gun_Support_Assault_Rifle.description>雪牛娘使用的大火力步枪，尽管只是普通的火药步枪，但基于雪牛娘那强大的体格进行设计，这把枪拥有着远强于普通轻机枪的火力</MuGirl_Gun_Support_Assault_Rifle.description>
+    <Mugirl_Gun_Support_Assault_Rifle.description>雪牛娘使用的大火力步枪，尽管只是普通的火药步枪，但基于雪牛娘那强大的体格进行设计，这把枪拥有着远强于普通轻机枪的火力</Mugirl_Gun_Support_Assault_Rifle.description>
     <!-- Mugirl Support Assault Rifle -->
-    <MuGirl_Gun_Support_Assault_Rifle.label>雪牛娘支援突击步枪</MuGirl_Gun_Support_Assault_Rifle.label>
+    <Mugirl_Gun_Support_Assault_Rifle.label>雪牛娘支援突击步枪</Mugirl_Gun_Support_Assault_Rifle.label>
     <!-- stock -->
-    <MuGirl_Gun_Support_Assault_Rifle.tools.stock.label>枪托</MuGirl_Gun_Support_Assault_Rifle.tools.stock.label>
+    <Mugirl_Gun_Support_Assault_Rifle.tools.stock.label>枪托</Mugirl_Gun_Support_Assault_Rifle.tools.stock.label>
     <!-- barrel -->
-    <MuGirl_Gun_Support_Assault_Rifle.tools.barrel.label>枪管</MuGirl_Gun_Support_Assault_Rifle.tools.barrel.label>
+    <Mugirl_Gun_Support_Assault_Rifle.tools.barrel.label>枪管</Mugirl_Gun_Support_Assault_Rifle.tools.barrel.label>
     <!-- Mugirl Support Assault Rifle -->
-    <MuGirl_Gun_Support_Assault_Rifle.verbs.Verb_Shoot.label>雪牛娘支援突击步枪</MuGirl_Gun_Support_Assault_Rifle.verbs.Verb_Shoot.label>
+    <Mugirl_Gun_Support_Assault_Rifle.verbs.Verb_Shoot.label>雪牛娘支援突击步枪</Mugirl_Gun_Support_Assault_Rifle.verbs.Verb_Shoot.label>
 </LanguageData>

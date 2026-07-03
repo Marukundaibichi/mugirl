@@ -3,7 +3,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     public partial class Comp_MagneticShackles
     {
@@ -29,8 +29,8 @@ namespace MooGirl
                 {
                     yield return new Command_ActionWithCooldown
                     {
-                        defaultLabel = MooGirlText.Resolve(shackleProps.activateLabel),
-                        defaultDesc = canUse ? MooGirlText.Resolve(shackleProps.activateDesc) : MooGirlText.Resolve("MooGirl.Restraints.MagneticShackles.CooldownTicksLeft", cdLeft),
+                        defaultLabel = MugirlText.Resolve(shackleProps.activateLabel),
+                        defaultDesc = canUse ? MugirlText.Resolve(shackleProps.activateDesc) : MugirlText.Resolve("Mugirl.Restraints.MagneticShackles.CooldownTicksLeft", cdLeft),
                         icon = GetCommandIcon(shackleProps.activateIconPath),
                         action = () =>
                         {
@@ -46,8 +46,8 @@ namespace MooGirl
                 {
                     yield return new Command_ActionWithCooldown
                     {
-                        defaultLabel = MooGirlText.Resolve(shackleProps.deactivateLabel),
-                        defaultDesc = MooGirlText.Resolve(shackleProps.deactivateDesc),
+                        defaultLabel = MugirlText.Resolve(shackleProps.deactivateLabel),
+                        defaultDesc = MugirlText.Resolve(shackleProps.deactivateDesc),
                         icon = GetCommandIcon(shackleProps.deactivateIconPath),
                         action = () =>
                         {

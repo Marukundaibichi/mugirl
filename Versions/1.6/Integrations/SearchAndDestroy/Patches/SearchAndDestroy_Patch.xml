@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
     <!-- PatchGovernance:
-    Targets: Search and Destroy 启用时的 MooGirlLike ThinkTreeDef。
+    Targets: Search and Destroy 启用时的 MugirlLike ThinkTreeDef。
     Scope: 可选 SearchAndDestroy 集成；向雪牛娘闲置战斗树插入一个 SearchAndDestroy 分支。
     Duplicate guard: 外层条件在 SearchAndDestroy 节点已存在时跳过；内层目标使用唯一的殖民者闲置分支。
-    Failure: 目标缺失或上游行为树结构变化时允许无操作，保留基础 MooGirlLike 行为树。
+    Failure: 目标缺失或上游行为树结构变化时允许无操作，保留基础 MugirlLike 行为树。
     -->
     <!-- Search and Destroy 的行为树目标可能随版本变化；目标缺失或已插入时静默跳过。 -->
     <Operation Class="PatchOperationConditional">
-        <xpath>Defs/ThinkTreeDef[defName="MooGirlLike"]//li[@Class="SearchAndDestroy.ThinkNode_ConditionalSearchAndDestroy"]</xpath>
+        <xpath>Defs/ThinkTreeDef[defName="MugirlLike"]//li[@Class="SearchAndDestroy.ThinkNode_ConditionalSearchAndDestroy"]</xpath>
         <nomatch Class="PatchOperationConditional">
-            <xpath>Defs/ThinkTreeDef[defName="MooGirlLike"]/thinkRoot[@Class="ThinkNode_Priority"]/subNodes/li[@Class="ThinkNode_ConditionalColonist"][subNodes/li[@Class="ThinkNode_Tagger"]/tagToGive[text()="Idle"]]</xpath>
+            <xpath>Defs/ThinkTreeDef[defName="MugirlLike"]/thinkRoot[@Class="ThinkNode_Priority"]/subNodes/li[@Class="ThinkNode_ConditionalColonist"][subNodes/li[@Class="ThinkNode_Tagger"]/tagToGive[text()="Idle"]]</xpath>
             <match Class="PatchOperationInsert">
                 <!-- 插入到唯一的殖民者闲置分支之前，避免命中多个殖民者节点。 -->
-                <xpath>Defs/ThinkTreeDef[defName="MooGirlLike"]/thinkRoot[@Class="ThinkNode_Priority"]/subNodes/li[@Class="ThinkNode_ConditionalColonist"][subNodes/li[@Class="ThinkNode_Tagger"]/tagToGive[text()="Idle"]]</xpath>
+                <xpath>Defs/ThinkTreeDef[defName="MugirlLike"]/thinkRoot[@Class="ThinkNode_Priority"]/subNodes/li[@Class="ThinkNode_ConditionalColonist"][subNodes/li[@Class="ThinkNode_Tagger"]/tagToGive[text()="Idle"]]</xpath>
                 <value>
                     <!-- 执行主动搜索歼灭，而不是原地等待。 -->
                     <li Class="SearchAndDestroy.ThinkNode_ConditionalSearchAndDestroy">

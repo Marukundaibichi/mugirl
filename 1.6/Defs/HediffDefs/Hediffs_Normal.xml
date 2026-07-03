@@ -4,7 +4,7 @@
 
     <HediffDef ParentName="DiseaseBase">
         <!-- 逃脱奴役后的短期虚弱 Hediff，用于开局或事件后的行动限制。 -->
-        <defName>MooGirl_Abasia</defName>
+        <defName>Mugirl_Abasia</defName>
         <!-- 精疲力尽 -->
         <label>Exhausted</label>
         <!-- 她似乎在巨型企业的奴役下经历了未知的折磨，虽然设法逃脱出来，但在接下来的几天里，身体疲惫至极，几乎无法动弹。 -->

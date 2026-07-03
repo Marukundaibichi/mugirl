@@ -2,23 +2,23 @@
 <Defs>
 
     <RulePackDef>
-        <defName>MooGirl_NamerPerson</defName>
+        <defName>Mugirl_NamerPerson</defName>
         <rulePack>
             <rulesFiles>
-                <li>MooGirl_Rev_First_Female->Names/MooGirl_First_Female</li>
-                <li>MooGirl_Rev_Last->Names/MooGirl_Last</li>
+                <li>Mugirl_Rev_First_Female->Names/Mugirl_First_Female</li>
+                <li>Mugirl_Rev_Last->Names/Mugirl_Last</li>
             </rulesFiles>
         </rulePack>
     </RulePackDef>
 
     <RulePackDef>
-        <defName>MooGirl_NameUtility</defName>
+        <defName>Mugirl_NameUtility</defName>
         <include>
-            <li>MooGirl_NamerPerson</li>
+            <li>Mugirl_NamerPerson</li>
         </include>
         <rulePack>
             <rulesStrings>
-                <li>r_name->[MooGirl_Rev_Last] [MooGirl_Rev_First_Female]</li>
+                <li>r_name->[Mugirl_Rev_Last] [Mugirl_Rev_First_Female]</li>
             </rulesStrings>
         </rulePack>
     </RulePackDef>

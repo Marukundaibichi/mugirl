@@ -72,7 +72,7 @@
             <li>PMC</li>
             <li>GC_Weapon_Tier2</li>
             <li>GC_Weapon_Tier3</li>
-            <li>GC_Weapon_MooGirl</li>
+            <li>GC_Weapon_Mugirl</li>
             <li>ShortShots</li>
         </weaponTags>
         <tools>
@@ -166,7 +166,7 @@
             <li>PMC</li>
             <li>GC_Weapon_Tier2</li>
             <li>GC_Weapon_Tier3</li>
-            <li>GC_Weapon_MooGirl</li>
+            <li>GC_Weapon_Mugirl</li>
             <li>AssaultRifle</li>
         </weaponTags>
         <tools>
@@ -259,7 +259,7 @@
             <li>PMC</li>
             <li>GC_Weapon_Tier2</li>
             <li>GC_Weapon_Tier3</li>
-            <li>GC_Weapon_MooGirl</li>
+            <li>GC_Weapon_Mugirl</li>
             <li>AssaultRifle</li>
         </weaponTags>
         <tools>

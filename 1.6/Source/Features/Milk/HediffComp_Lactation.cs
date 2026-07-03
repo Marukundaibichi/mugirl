@@ -2,7 +2,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     // 哺乳期 HediffComp：管理雪牛娘的哺乳状态，影响产奶速度
     public class CompProperties_Lactation : HediffCompProperties
@@ -37,7 +37,7 @@ namespace MooGirl
 
                 float multiplier = Mathf.Max(0f, lactationProps.baseProductionMultiplier);
 
-                if (lastBirthTick > 0f && MooGirlTickUtility.TryGetCurrentGameTick(out int currentTick))
+                if (lastBirthTick > 0f && MugirlTickUtility.TryGetCurrentGameTick(out int currentTick))
                 {
                     float daysSinceBirth = Mathf.Max(0f, (currentTick - lastBirthTick) / GenDate.TicksPerDay);
                     if (daysSinceBirth < lactationProps.postpartumBoostDays)
@@ -60,7 +60,7 @@ namespace MooGirl
 
         public void NotifyBirth()
         {
-            if (!MooGirlTickUtility.TryGetCurrentGameTick(out int currentTick))
+            if (!MugirlTickUtility.TryGetCurrentGameTick(out int currentTick))
             {
                 return;
             }
@@ -75,16 +75,16 @@ namespace MooGirl
         }
     }
 
-    internal static class MooGirlLactationUtility
+    internal static class MugirlLactationUtility
     {
         internal static void NotifyBirth(Pawn mother)
         {
-            if (!MooGirlIdentity.IsMooGirlPawn(mother) || mother.Destroyed || mother.health?.hediffSet == null)
+            if (!MugirlIdentity.IsMugirlPawn(mother) || mother.Destroyed || mother.health?.hediffSet == null)
             {
                 return;
             }
 
-            HediffDef lactationDef = MooGirlRequiredDefs.Hediffs.MooGirlLactation;
+            HediffDef lactationDef = MugirlRequiredDefs.Hediffs.MugirlLactation;
             if (lactationDef == null)
             {
                 return;

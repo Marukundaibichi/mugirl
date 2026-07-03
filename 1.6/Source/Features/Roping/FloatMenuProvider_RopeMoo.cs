@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class FloatMenuProvider_RopeMoo : FloatMenuOptionProvider
     {
@@ -14,7 +14,7 @@ namespace MooGirl
 
         public override bool TargetPawnValid(Pawn target, FloatMenuContext context)
         {
-            if (!RopingService.IsMooGirlRopee(target))
+            if (!RopingService.IsMugirlRopee(target))
             {
                 return false;
             }
@@ -61,12 +61,12 @@ namespace MooGirl
             {
                 Action action = delegate
                 {
-                    pawn.jobs.TryTakeOrderedJob(new Job(MooGirl_DefOf.JobDriver_RopeMoo, target), JobTag.Misc);
+                    pawn.jobs.TryTakeOrderedJob(new Job(Mugirl_DefOf.JobDriver_RopeMoo, target), JobTag.Misc);
                 };
 
                 string targetLabel = target.LabelShortCap;
                 string label = RopeLabelWithSuccessChance(
-                    "MooGirl.Rope.Target".Translate(targetLabel).ToString(),
+                    "Mugirl.Rope.Target".Translate(targetLabel).ToString(),
                     1f.ToStringPercent());
 
                 yield return FloatMenuUtility.DecoratePrioritizedTask(
@@ -80,19 +80,19 @@ namespace MooGirl
 
             if ((isTargetRopedByPawn || isRopedToThing) && !isPawnRopedByPawn && !isPawnRopedToThing)
             {
-                yield return new FloatMenuOption("MooGirl.Unrope.Target".Translate(target.LabelShortCap), () =>
+                yield return new FloatMenuOption("Mugirl.Unrope.Target".Translate(target.LabelShortCap), () =>
                 {
-                    pawn.jobs.TryTakeOrderedJob(new Job(MooGirl_DefOf.JobDriver_RemoveRopeMoo, target), JobTag.Misc);
+                    pawn.jobs.TryTakeOrderedJob(new Job(Mugirl_DefOf.JobDriver_RemoveRopeMoo, target), JobTag.Misc);
                 });
             }
         }
 
         private static string RopeLabelWithSuccessChance(string baseLabel, string chance)
         {
-            return "MooGirl.Rope.TargetWithSuccessChance".Translate(
+            return "Mugirl.Rope.TargetWithSuccessChance".Translate(
                 baseLabel,
                 chance,
-                "MooGirl.Rope.SuccessChance".Translate()).ToString();
+                "Mugirl.Rope.SuccessChance".Translate()).ToString();
         }
     }
 

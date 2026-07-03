@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using RimWorld;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     public static partial class MountedCombatController
     {
@@ -94,7 +94,7 @@ namespace MooGirl
             }
         }
 
-        private static void EnsureVerbCaster(Comp_MooGirlMount comp, Verb verb)
+        private static void EnsureVerbCaster(Comp_MugirlMount comp, Verb verb)
         {
             Pawn carrier = comp?.MooPawn;
             Pawn rider = comp?.MountedPawn;
@@ -109,7 +109,7 @@ namespace MooGirl
             }
         }
 
-        private static MountedVerbScope MountedCasterScope(Comp_MooGirlMount comp, Verb verb)
+        private static MountedVerbScope MountedCasterScope(Comp_MugirlMount comp, Verb verb)
         {
             EnsureVerbCaster(comp, verb);
             Pawn carrier = comp?.MooPawn;

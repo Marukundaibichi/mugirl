@@ -3,7 +3,7 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     // 让逃亡野生奴隶走原版野人入口，方便玩家用熟悉的交互收编。
     [HarmonyPatch(typeof(WildManUtility), "IsWildMan")]
@@ -13,7 +13,7 @@ namespace MooGirl
         {
             if (__result) return;
 
-            if (MooGirlWildSlaveUtility.IsNonPlayerEscapeWildSlave(p) && !p.IsSubhuman)
+            if (MugirlWildSlaveUtility.IsNonPlayerEscapeWildSlave(p) && !p.IsSubhuman)
             {
                 __result = true;
             }
@@ -26,20 +26,20 @@ namespace MooGirl
     {
         public static void Prefix(Pawn pawn, out bool __state)
         {
-            __state = MooGirlWildSlaveUtility.IsEscapeWildSlave(pawn);
+            __state = MugirlWildSlaveUtility.IsEscapeWildSlave(pawn);
         }
 
         public static void Postfix(Pawn pawn, Faction faction, bool __state)
         {
             if (pawn == null) return;
 
-            if (MooGirlWildSlaveUtility.IsPlayerFaction(faction))
+            if (MugirlWildSlaveUtility.IsPlayerFaction(faction))
             {
-                MooGirlWildSlaveUtility.NormalizeAfterJoiningPlayer(pawn, __state);
+                MugirlWildSlaveUtility.NormalizeAfterJoiningPlayer(pawn, __state);
             }
-            else if (__state && MooGirlWildSlaveUtility.IsEscapeWildSlave(pawn) && MooGirl_DefOf.MooGirl_PreEscapeWildSlave != null)
+            else if (__state && MugirlWildSlaveUtility.IsEscapeWildSlave(pawn) && Mugirl_DefOf.Mugirl_PreEscapeWildSlave != null)
             {
-                pawn.ChangeKind(MooGirl_DefOf.MooGirl_PreEscapeWildSlave);
+                pawn.ChangeKind(Mugirl_DefOf.Mugirl_PreEscapeWildSlave);
             }
         }
     }

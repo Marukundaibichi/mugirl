@@ -2,11 +2,11 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     public static partial class MountedCombatController
     {
-        private static Thing FindBestTarget(Comp_MooGirlMount comp, Verb verb)
+        private static Thing FindBestTarget(Comp_MugirlMount comp, Verb verb)
         {
             if (comp == null || verb == null)
             {

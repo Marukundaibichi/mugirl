@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
     <!-- Courier contact -->
-    <MooGirl_CourierRaid.questNameRules.rulesStrings>
+    <Mugirl_CourierRaid.questNameRules.rulesStrings>
         <li>questName->运货员接触</li>
-    </MooGirl_CourierRaid.questNameRules.rulesStrings>
+    </Mugirl_CourierRaid.questNameRules.rulesStrings>
     <!-- A mega corporation courier carrying important items has arrived near your colony. You can send a colonist to negotiate with him. -->
-    <MooGirl_CourierRaid.questDescriptionRules.rulesStrings>
+    <Mugirl_CourierRaid.questDescriptionRules.rulesStrings>
         <li>questDescription->一名巨型企业的运货员携带重要物品来到你的殖民地附近。你可以派殖民者与他交涉。</li>
-    </MooGirl_CourierRaid.questDescriptionRules.rulesStrings>
+    </Mugirl_CourierRaid.questDescriptionRules.rulesStrings>
 </LanguageData>

@@ -2,7 +2,7 @@
 <Defs>
 
     <ScenarioDef>
-        <defName>MooGirl_ColonyStart</defName>
+        <defName>Mugirl_ColonyStart</defName>
         <!-- 雪牛娘开局 -->
         <label>Mugirl Start</label>
         <!-- 几只曾是巨型企业的奴隶或被反奴隶者营救的雪牛娘来到这里，她们希望在新的环境中展开属于自己的生活，追求自由与尊严。 -->
@@ -12,7 +12,7 @@
             <summary>Several escaped slave Mugirls are beginning their new lives in your colony. They need your help to adapt to freedom and the new environment.</summary>
             <playerFaction>
                 <def>PlayerFaction</def>
-                <factionDef>MooGirl_Colony</factionDef>
+                <factionDef>Mugirl_Colony</factionDef>
             </playerFaction>
             <surfaceLayer>
                 <def>SurfaceLayerFixed</def>

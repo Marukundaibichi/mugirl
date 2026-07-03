@@ -3,7 +3,7 @@ using RimWorld;
 using System.Collections.Generic;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     [HarmonyPatch(typeof(RecipeDefGenerator))]
     [HarmonyPatch("DrugAdministerDefs")]
@@ -12,7 +12,7 @@ namespace MooGirl
         public static void Postfix(ref IEnumerable<RecipeDef> __result, bool hotReload)
         {
             List<RecipeDef> recipes = __result == null ? new List<RecipeDef>() : new List<RecipeDef>(__result);
-            ThingDef milkDef = MooGirlOptionalDefs.ThingDefs.MooGirlMilk;
+            ThingDef milkDef = MugirlOptionalDefs.ThingDefs.MugirlMilk;
             if (milkDef == null)
             {
                 __result = recipes;
@@ -21,9 +21,9 @@ namespace MooGirl
 
             if (milkDef.ingestible == null)
             {
-                MooGirlLog.WarningOnce(
+                MugirlLog.WarningOnce(
                     "DrugAdministerDefs.MilkNotIngestible",
-                    "Skipping generated administer milk recipe because MooGirl_Milk has no ingestible properties.");
+                    "Skipping generated administer milk recipe because Mugirl_Milk has no ingestible properties.");
                 __result = recipes;
                 return;
             }
@@ -93,7 +93,7 @@ namespace MooGirl
             for (int i = 0; i < pawnDefs.Count; i++)
             {
                 ThingDef pawnDef = pawnDefs[i];
-                if (MooGirlIdentity.IsMooGirlPawnDef(pawnDef))
+                if (MugirlIdentity.IsMugirlPawnDef(pawnDef))
                 {
                     recipeDef.recipeUsers.Add(pawnDef);
                 }

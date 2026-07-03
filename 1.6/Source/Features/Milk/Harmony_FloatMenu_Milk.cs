@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     // 为雪牛娘添加右键菜单：榨乳、找奶喝、喝奶、给倒地者喂奶
-    public class FloatMenuProvider_MilkMooGirl : FloatMenuOptionProvider
+    public class FloatMenuProvider_MilkMugirl : FloatMenuOptionProvider
     {
         protected override bool Drafted => true;
         protected override bool Undrafted => true;
@@ -24,7 +24,7 @@ namespace MooGirl
                 return true;
 
             CompMooMilkable comp = target.TryGetComp<CompMooMilkable>();
-            if (MooGirlMilkInteractionUtility.HasAnyMilk(comp))
+            if (MugirlMilkInteractionUtility.HasAnyMilk(comp))
                 return true;
 
             return false;
@@ -45,11 +45,11 @@ namespace MooGirl
             }
 
             CompMooMilkable comp = targetPawn.TryGetComp<CompMooMilkable>();
-            if (!MooGirlMilkInteractionUtility.HasAnyMilk(comp))
+            if (!MugirlMilkInteractionUtility.HasAnyMilk(comp))
                 yield break;
 
             // 榨乳：玩家强制挤奶，任意饱满度大于 0 即可显示。
-            string gatherLabel = "MooGirl.Milk.FloatMenu.Gather".Translate(targetPawn.LabelShortCap);
+            string gatherLabel = "Mugirl.Milk.FloatMenu.Gather".Translate(targetPawn.LabelShortCap);
             if (!pawn.CanReach(targetPawn, PathEndMode.Touch, Danger.Deadly))
             {
                 yield return DisabledOption(gatherLabel, "NoPath".Translate().CapitalizeFirst());
@@ -64,7 +64,7 @@ namespace MooGirl
 
             if (comp.IsManagedByMilkingDevice)
             {
-                yield return DisabledOption(gatherLabel, "MooGirl.Milk.FloatMenu.ManagedByDevice".Translate());
+                yield return DisabledOption(gatherLabel, "Mugirl.Milk.FloatMenu.ManagedByDevice".Translate());
             }
             else
             {
@@ -76,18 +76,18 @@ namespace MooGirl
                     }), pawn, targetPawn);
             }
 
-            bool selectedPawnIsChild = MooGirlMilkInteractionUtility.IsChildMilkSeeker(pawn);
+            bool selectedPawnIsChild = MugirlMilkInteractionUtility.IsChildMilkSeeker(pawn);
 
             // 喝奶：孩子使用“找奶喝”专属互动，避免重复菜单。
             if (!selectedPawnIsChild)
             {
-                JobDef drinkDef = MooGirlOptionalDefs.JobDefs.DrinkMilkFromMooGirl;
+                JobDef drinkDef = MugirlOptionalDefs.JobDefs.DrinkMilkFromMugirl;
                 if (drinkDef != null)
                 {
-                    string drinkLabel = "MooGirl.Milk.FloatMenu.Drink".Translate(targetPawn.LabelShortCap);
-                    if (!MooGirlMilkInteractionUtility.CanDrinkMilkNow(pawn, targetPawn))
+                    string drinkLabel = "Mugirl.Milk.FloatMenu.Drink".Translate(targetPawn.LabelShortCap);
+                    if (!MugirlMilkInteractionUtility.CanDrinkMilkNow(pawn, targetPawn))
                     {
-                        yield return DisabledOption(drinkLabel, "MooGirl.Milk.FloatMenu.NotEnoughMilk".Translate());
+                        yield return DisabledOption(drinkLabel, "Mugirl.Milk.FloatMenu.NotEnoughMilk".Translate());
                     }
                     else
                     {
@@ -104,13 +104,13 @@ namespace MooGirl
             // 找奶喝：仅小孩（不可繁殖阶段）
             if (selectedPawnIsChild)
             {
-                JobDef breastfeedDef = MooGirlOptionalDefs.JobDefs.Breastfeed;
+                JobDef breastfeedDef = MugirlOptionalDefs.JobDefs.Breastfeed;
                 if (breastfeedDef != null)
                 {
-                    string childDrinkLabel = "MooGirl.Milk.FloatMenu.ChildDrink".Translate(targetPawn.LabelShortCap);
-                    if (!MooGirlMilkInteractionUtility.CanChildBreastfeedNow(pawn, targetPawn))
+                    string childDrinkLabel = "Mugirl.Milk.FloatMenu.ChildDrink".Translate(targetPawn.LabelShortCap);
+                    if (!MugirlMilkInteractionUtility.CanChildBreastfeedNow(pawn, targetPawn))
                     {
-                        yield return DisabledOption(childDrinkLabel, "MooGirl.Milk.FloatMenu.NotEnoughMilk".Translate());
+                        yield return DisabledOption(childDrinkLabel, "Mugirl.Milk.FloatMenu.NotEnoughMilk".Translate());
                     }
                     else
                     {
@@ -127,17 +127,17 @@ namespace MooGirl
 
         private static FloatMenuOption GetFeedMilkOption(Pawn feeder, Pawn target, CompMooMilkable milkComp)
         {
-            string label = "MooGirl.Milk.FloatMenu.Feed".Translate(target.LabelShortCap);
+            string label = "Mugirl.Milk.FloatMenu.Feed".Translate(target.LabelShortCap);
 
-            JobDef feedJobDef = MooGirlOptionalDefs.JobDefs.FeedMilkToDowned;
+            JobDef feedJobDef = MugirlOptionalDefs.JobDefs.FeedMilkToDowned;
             if (feedJobDef == null)
-                return DisabledOption(label, "MooGirl.Milk.FloatMenu.FeedJobMissing".Translate());
+                return DisabledOption(label, "Mugirl.Milk.FloatMenu.FeedJobMissing".Translate());
 
             if (!milkComp.Active)
-                return DisabledOption(label, "MooGirl.Milk.FloatMenu.NotActive".Translate());
+                return DisabledOption(label, "Mugirl.Milk.FloatMenu.NotActive".Translate());
 
-            if (!MooGirlMilkInteractionUtility.HasEnoughForDirectMilkInteraction(milkComp))
-                return DisabledOption(label, "MooGirl.Milk.FloatMenu.NotEnoughMilk".Translate());
+            if (!MugirlMilkInteractionUtility.HasEnoughForDirectMilkInteraction(milkComp))
+                return DisabledOption(label, "Mugirl.Milk.FloatMenu.NotEnoughMilk".Translate());
 
             if (!feeder.CanReach(target, PathEndMode.Touch, Danger.Deadly))
                 return DisabledOption(label, "NoPath".Translate().CapitalizeFirst());
@@ -149,7 +149,7 @@ namespace MooGirl
                 label,
                 delegate
                 {
-                    if (!MooGirlMilkInteractionUtility.CanFeedDownedPawnNow(feeder, target)
+                    if (!MugirlMilkInteractionUtility.CanFeedDownedPawnNow(feeder, target)
                         || !feeder.CanReserveAndReach(target, PathEndMode.Touch, Danger.Deadly))
                     {
                         return;
@@ -166,7 +166,7 @@ namespace MooGirl
 
         private static FloatMenuOption DisabledOption(string label, string reason)
         {
-            return new FloatMenuOption("MooGirl.Milk.FloatMenu.Disabled".Translate(label, reason), null);
+            return new FloatMenuOption("Mugirl.Milk.FloatMenu.Disabled".Translate(label, reason), null);
         }
 
         private static bool SelectedPawnHasMilkSource(FloatMenuContext context)
@@ -179,14 +179,14 @@ namespace MooGirl
         {
             CompMooMilkable comp = target?.TryGetComp<CompMooMilkable>();
             if (gatherer == null || target == null || target.Dead || !target.Spawned
-                || !MooGirlMilkInteractionUtility.HasAnyMilk(comp)
+                || !MugirlMilkInteractionUtility.HasAnyMilk(comp)
                 || comp.IsManagedByMilkingDevice
                 || !gatherer.CanReserveAndReach(target, PathEndMode.Touch, Danger.Deadly))
             {
                 return;
             }
 
-            Job job = JobMaker.MakeJob(MooGirl_DefOf.Job_GatherMilk, target);
+            Job job = JobMaker.MakeJob(Mugirl_DefOf.Job_GatherMilk, target);
             job.playerForced = true;
             gatherer.jobs.TryTakeOrderedJob(job, JobTag.Misc);
         }
@@ -194,7 +194,7 @@ namespace MooGirl
         private static void TryStartDrinkJob(Pawn drinker, Pawn target, JobDef drinkDef)
         {
             if (drinkDef == null
-                || !MooGirlMilkInteractionUtility.CanDrinkMilkNow(drinker, target)
+                || !MugirlMilkInteractionUtility.CanDrinkMilkNow(drinker, target)
                 || !drinker.CanReserveAndReach(target, PathEndMode.Touch, Danger.Deadly))
             {
                 return;
@@ -207,7 +207,7 @@ namespace MooGirl
         private static void TryStartBreastfeedJob(Pawn child, Pawn target, JobDef breastfeedDef)
         {
             if (breastfeedDef == null
-                || !MooGirlMilkInteractionUtility.CanChildBreastfeedNow(child, target)
+                || !MugirlMilkInteractionUtility.CanChildBreastfeedNow(child, target)
                 || !child.CanReserveAndReach(target, PathEndMode.Touch, Danger.Deadly))
             {
                 return;

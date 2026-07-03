@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class InteractionWorker_Nuzzle : InteractionWorker
     {
@@ -17,7 +17,7 @@ namespace MooGirl
 
         private void AddNuzzledThought(Pawn initiator, Pawn recipient)
         {
-            Thought_Memory thought_Memory = (Thought_Memory)ThoughtMaker.MakeThought(MooGirl_DefOf.MooGirl_Nuzzled);
+            Thought_Memory thought_Memory = (Thought_Memory)ThoughtMaker.MakeThought(Mugirl_DefOf.Mugirl_Nuzzled);
             if (recipient.needs.mood != null)
             {
                 recipient.needs.mood.thoughts.memories.TryGainMemory(thought_Memory, null);

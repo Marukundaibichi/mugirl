@@ -5,7 +5,7 @@ using Verse;
 using Verse.AI;
 using Verse.AI.Group;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class QuestPart_SpawnCourier : QuestPart
     {
@@ -34,23 +34,23 @@ namespace MooGirl
             }
             if (map == null)
             {
-                MooGirlLog.WarningOnce("CourierRaid.Spawn.NoMap", "MooGirl.CourierRaid.SpawnLog.NoMap".Translate().ToString());
+                MugirlLog.WarningOnce("CourierRaid.Spawn.NoMap", "Mugirl.CourierRaid.SpawnLog.NoMap".Translate().ToString());
                 return;
             }
             if (faction == null)
             {
-                MooGirlLog.WarningOnce("CourierRaid.Spawn.NoFaction", "MooGirl.CourierRaid.SpawnLog.NoFaction".Translate().ToString());
+                MugirlLog.WarningOnce("CourierRaid.Spawn.NoFaction", "Mugirl.CourierRaid.SpawnLog.NoFaction".Translate().ToString());
                 return;
             }
             if (!spawnCell.IsValid && !RCellFinder.TryFindRandomPawnEntryCell(out spawnCell, map, 0f))
             {
-                MooGirlLog.WarningOnce("CourierRaid.Spawn.NoSpawnCell", "MooGirl.CourierRaid.SpawnLog.NoSpawnCell".Translate().ToString());
+                MugirlLog.WarningOnce("CourierRaid.Spawn.NoSpawnCell", "Mugirl.CourierRaid.SpawnLog.NoSpawnCell".Translate().ToString());
                 return;
             }
 
-            Faction courierFaction = faction != null && !MooGirlWildSlaveUtility.IsHostileToPlayer(faction) ? faction : null;
+            Faction courierFaction = faction != null && !MugirlWildSlaveUtility.IsHostileToPlayer(faction) ? faction : null;
             PawnGenerationRequest request = new PawnGenerationRequest(
-                MooGirlContentDefOf.AI_GC_Courier,
+                MugirlContentDefOf.AI_GC_Courier,
                 courierFaction,
                 PawnGenerationContext.NonPlayer,
                 map.Tile,
@@ -61,25 +61,25 @@ namespace MooGirl
             courier = PawnGenerator.GeneratePawn(request);
             if (courier == null || courier.inventory?.innerContainer == null || courier.mindState == null)
             {
-                MooGirlLog.WarningOnce(
+                MugirlLog.WarningOnce(
                     "CourierGenerationFailed",
                     "Courier raid could not generate a usable courier pawn; skipping courier spawn.");
-                MooGirlGeneratedPawnUtility.Discard(courier);
+                MugirlGeneratedPawnUtility.Discard(courier);
                 courier = null;
                 return;
             }
 
-            AddToInventory(courier, MooGirlContentDefOf.MooGirl_CourierDiary, 1);
-            AddToInventory(courier, MooGirlContentDefOf.MooGirl_SlaveApparelKey_Medieval, 6);
-            AddToInventory(courier, MooGirlContentDefOf.MooGirl_SlaveApparelKey_Industrial, 4);
+            AddToInventory(courier, MugirlContentDefOf.Mugirl_CourierDiary, 1);
+            AddToInventory(courier, MugirlContentDefOf.Mugirl_SlaveApparelKey_Medieval, 6);
+            AddToInventory(courier, MugirlContentDefOf.Mugirl_SlaveApparelKey_Industrial, 4);
 
             GenSpawn.Spawn(courier, spawnCell, map);
             if (!courier.Spawned)
             {
-                MooGirlLog.WarningOnce(
+                MugirlLog.WarningOnce(
                     "CourierSpawnFailed",
                     "Courier raid generated a courier but failed to spawn it on the target map.");
-                MooGirlGeneratedPawnUtility.Discard(courier);
+                MugirlGeneratedPawnUtility.Discard(courier);
                 courier = null;
                 return;
             }
@@ -90,12 +90,12 @@ namespace MooGirl
                 map,
                 new List<Pawn> { courier });
 
-            MooGirlGameUtility.TryReceiveLetter(
-                "MooGirl.CourierContactLetterLabel".Translate(),
-                "MooGirl.CourierContactLetterText".Translate(),
+            MugirlGameUtility.TryReceiveLetter(
+                "Mugirl.CourierContactLetterLabel".Translate(),
+                "Mugirl.CourierContactLetterText".Translate(),
                 LetterDefOf.NeutralEvent,
                 courier);
-            MooGirlGameUtility.TrySignalForceNormalSpeedShort();
+            MugirlGameUtility.TrySignalForceNormalSpeedShort();
         }
 
         private static void AddToInventory(Pawn pawn, ThingDef thingDef, int count)
@@ -140,7 +140,7 @@ namespace MooGirl
                 && !courier.Dead
                 && !courier.Downed
                 && !courier.InAggroMentalState
-                && courier.kindDef == MooGirlContentDefOf.AI_GC_Courier
+                && courier.kindDef == MugirlContentDefOf.AI_GC_Courier
                 && HasCourierPayload(courier);
         }
 
@@ -148,25 +148,25 @@ namespace MooGirl
         {
             if (!CanNegotiateWithCourier(negotiator, courier))
             {
-                Messages.Message("MooGirl.CourierAlreadyResolved".Translate(), MessageTypeDefOf.RejectInput, historical: false);
+                Messages.Message("Mugirl.CourierAlreadyResolved".Translate(), MessageTypeDefOf.RejectInput, historical: false);
                 return;
             }
 
             Dialog_MessageBox dialog = new Dialog_MessageBox(
-                "MooGirl.CourierDialogText".Translate(courier.Named("COURIER"), negotiator.Named("NEGOTIATOR")),
-                "MooGirl.CourierDialogFight".Translate(),
+                "Mugirl.CourierDialogText".Translate(courier.Named("COURIER"), negotiator.Named("NEGOTIATOR")),
+                "Mugirl.CourierDialogFight".Translate(),
                 () => TryStartFight(courier),
-                "MooGirl.CourierDialogLeaveItems".Translate(),
+                "Mugirl.CourierDialogLeaveItems".Translate(),
                 () => TryDropItemsAndLeave(courier),
-                "MooGirl.CourierDialogTitle".Translate(),
+                "Mugirl.CourierDialogTitle".Translate(),
                 buttonADestructive: true);
-            MooGirlGameUtility.TryAddWindow(dialog);
+            MugirlGameUtility.TryAddWindow(dialog);
         }
 
         public static bool CanNegotiateWithCourier(Pawn negotiator, Pawn courier)
         {
             return negotiator != null
-                && MooGirlWildSlaveUtility.IsPlayerFaction(negotiator.Faction)
+                && MugirlWildSlaveUtility.IsPlayerFaction(negotiator.Faction)
                 && negotiator.RaceProps?.Humanlike == true
                 && !negotiator.Dead
                 && !negotiator.Downed
@@ -184,9 +184,9 @@ namespace MooGirl
             for (int i = 0; i < inventory.Count; i++)
             {
                 ThingDef def = inventory[i]?.def;
-                if (def == MooGirlContentDefOf.MooGirl_CourierDiary
-                    || def == MooGirlContentDefOf.MooGirl_SlaveApparelKey_Medieval
-                    || def == MooGirlContentDefOf.MooGirl_SlaveApparelKey_Industrial)
+                if (def == MugirlContentDefOf.Mugirl_CourierDiary
+                    || def == MugirlContentDefOf.Mugirl_SlaveApparelKey_Medieval
+                    || def == MugirlContentDefOf.Mugirl_SlaveApparelKey_Industrial)
                 {
                     return true;
                 }
@@ -199,27 +199,27 @@ namespace MooGirl
         {
             if (!CanTalkToCourier(courier))
             {
-                Messages.Message("MooGirl.CourierAlreadyResolved".Translate(), MessageTypeDefOf.RejectInput, historical: false);
+                Messages.Message("Mugirl.CourierAlreadyResolved".Translate(), MessageTypeDefOf.RejectInput, historical: false);
                 return;
             }
 
             courier.inventory.DropAllNearPawn(courier.Position, forbid: false, unforbid: true);
             StartLeaving(courier);
             EndRelatedQuest(courier, QuestEndOutcome.Success);
-            Messages.Message("MooGirl.CourierItemsDroppedMessage".Translate(courier.Named("COURIER")), courier, MessageTypeDefOf.PositiveEvent);
+            Messages.Message("Mugirl.CourierItemsDroppedMessage".Translate(courier.Named("COURIER")), courier, MessageTypeDefOf.PositiveEvent);
         }
 
         private static void TryStartFight(Pawn courier)
         {
             if (!CanTalkToCourier(courier))
             {
-                Messages.Message("MooGirl.CourierAlreadyResolved".Translate(), MessageTypeDefOf.RejectInput, historical: false);
+                Messages.Message("Mugirl.CourierAlreadyResolved".Translate(), MessageTypeDefOf.RejectInput, historical: false);
                 return;
             }
 
             if (courier.mindState?.mentalStateHandler == null)
             {
-                Messages.Message("MooGirl.CourierAlreadyResolved".Translate(), MessageTypeDefOf.RejectInput, historical: false);
+                Messages.Message("Mugirl.CourierAlreadyResolved".Translate(), MessageTypeDefOf.RejectInput, historical: false);
                 return;
             }
 
@@ -231,13 +231,13 @@ namespace MooGirl
 
             courier.mindState.mentalStateHandler.TryStartMentalState(
                 MentalStateDefOf.Berserk,
-                "MooGirl.CourierFightReason".Translate(),
+                "Mugirl.CourierFightReason".Translate(),
                 forced: true,
                 forceWake: true,
                 transitionSilently: true);
             EndRelatedQuest(courier, QuestEndOutcome.Unknown);
-            Messages.Message("MooGirl.CourierFightMessage".Translate(courier.Named("COURIER")), courier, MessageTypeDefOf.ThreatSmall);
-            MooGirlGameUtility.TrySignalForceNormalSpeedShort();
+            Messages.Message("Mugirl.CourierFightMessage".Translate(courier.Named("COURIER")), courier, MessageTypeDefOf.ThreatSmall);
+            MugirlGameUtility.TrySignalForceNormalSpeedShort();
         }
 
         private static void StartLeaving(Pawn courier)
@@ -258,7 +258,7 @@ namespace MooGirl
 
         private static void EndRelatedQuest(Pawn courier, QuestEndOutcome outcome)
         {
-            if (!MooGirlGameUtility.TryGetQuestsListForReading(out List<Quest> quests))
+            if (!MugirlGameUtility.TryGetQuestsListForReading(out List<Quest> quests))
             {
                 return;
             }
@@ -266,7 +266,7 @@ namespace MooGirl
             for (int i = 0; i < quests.Count; i++)
             {
                 Quest quest = quests[i];
-                if (quest == null || quest.root != MooGirlContentDefOf.MooGirl_CourierRaid || quest.State != QuestState.Ongoing)
+                if (quest == null || quest.root != MugirlContentDefOf.Mugirl_CourierRaid || quest.State != QuestState.Ongoing)
                 {
                     continue;
                 }
@@ -299,13 +299,13 @@ namespace MooGirl
         public override IEnumerable<FloatMenuOption> GetOptionsFor(Pawn clickedPawn, FloatMenuContext context)
         {
             Pawn actor = context.FirstSelectedPawn;
-            if (actor == null || !MooGirlWildSlaveUtility.IsPlayerFaction(actor.Faction) || actor.RaceProps?.Humanlike != true)
+            if (actor == null || !MugirlWildSlaveUtility.IsPlayerFaction(actor.Faction) || actor.RaceProps?.Humanlike != true)
             {
                 yield break;
             }
 
             FloatMenuOption option = FloatMenuUtility.DecoratePrioritizedTask(
-                new FloatMenuOption("MooGirl.CourierTalkOption".Translate(clickedPawn.Named("COURIER")), () =>
+                new FloatMenuOption("Mugirl.CourierTalkOption".Translate(clickedPawn.Named("COURIER")), () =>
                 {
                     TryStartTalkJob(actor, clickedPawn);
                 }, MenuOptionPriority.High),
@@ -315,7 +315,7 @@ namespace MooGirl
             if (!actor.CanReserveAndReach(clickedPawn, PathEndMode.Touch, Danger.Deadly))
             {
                 option.Disabled = true;
-                option.Label = "MooGirl.CourierTalkOptionDisabled".Translate(option.Label, "MooGirl.CourierTalkCannotReach".Translate());
+                option.Label = "Mugirl.CourierTalkOptionDisabled".Translate(option.Label, "Mugirl.CourierTalkCannotReach".Translate());
             }
 
             yield return option;
@@ -329,7 +329,7 @@ namespace MooGirl
                 return;
             }
 
-            Job job = JobMaker.MakeJob(MooGirlContentDefOf.MooGirl_TalkCourier, courier);
+            Job job = JobMaker.MakeJob(MugirlContentDefOf.Mugirl_TalkCourier, courier);
             actor.jobs.TryTakeOrderedJob(job, JobTag.Misc);
         }
     }

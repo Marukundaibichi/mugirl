@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class CompStampedApparelKey : CompUsable
     {
         protected string MakeLabel(Pawn pawn, Pawn other)
         {
-            string targetLabel = other == null ? "MooGirl.SelfLabel".Translate().ToString() : PawnSlaveStatusUtility.DisplayName(other);
-            return "MooGirl.FloatMenu.ActionOnTarget".Translate(FloatMenuOptionLabel(pawn), targetLabel).ToString();
+            string targetLabel = other == null ? "Mugirl.SelfLabel".Translate().ToString() : PawnSlaveStatusUtility.DisplayName(other);
+            return "Mugirl.FloatMenu.ActionOnTarget".Translate(FloatMenuOptionLabel(pawn), targetLabel).ToString();
         }
 
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn pawn)
@@ -18,7 +18,7 @@ namespace MooGirl
             if (!pawn.CanReserve(parent))
             {
                 yield return new FloatMenuOption(
-                    "MooGirl.FloatMenu.OptionWithReason".Translate(FloatMenuOptionLabel(pawn), "MooGirl.Reserved".Translate()),
+                    "Mugirl.FloatMenu.OptionWithReason".Translate(FloatMenuOptionLabel(pawn), "Mugirl.Reserved".Translate()),
                     null,
                     MenuOptionPriority.DisabledOption
                 );
@@ -35,13 +35,13 @@ namespace MooGirl
                     else
                     {
                         yield return new FloatMenuOption(
-                            "MooGirl.FloatMenu.OptionWithReason".Translate(MakeLabel(pawn, pawn), "MooGirl.HandsBlocked".Translate()),
+                            "Mugirl.FloatMenu.OptionWithReason".Translate(MakeLabel(pawn, pawn), "Mugirl.HandsBlocked".Translate()),
                             null,
                             MenuOptionPriority.DisabledOption);
                     }
                 }
 
-                if (MooGirlGameUtility.IsCurrentMap(pawn.Map))
+                if (MugirlGameUtility.IsCurrentMap(pawn.Map))
                 {
                     foreach (var other in pawn.Map.mapPawns.FreeColonists)
                     {

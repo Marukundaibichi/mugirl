@@ -1,155 +1,155 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
     <!-- [PAWN_nameDef] had a rare and happy childhood after being rescued by an anti-slavery organisation. During that time in the camp, [PAWN_pronoun] mastered many combat skills. After reaching adulthood, [PAWN_pronoun] devoted [PAWN_possessive] life to liberating more compatriots, eventually becoming a steadfast anti-slavery organisation fighter. -->
-    <MooGirl_Adult.baseDesc>[PAWN_nameDef]因被反奴役组织解救而拥有了难得幸福的童年，在营地的那段时光里，她掌握了不少战斗技巧。成年之后，她将一生奉献于解放更多同胞，最终成为了一名坚定的反奴役组织战士。</MooGirl_Adult.baseDesc>
+    <Mugirl_Adult.baseDesc>[PAWN_nameDef]因被反奴役组织解救而拥有了难得幸福的童年，在营地的那段时光里，她掌握了不少战斗技巧。成年之后，她将一生奉献于解放更多同胞，最终成为了一名坚定的反奴役组织战士。</Mugirl_Adult.baseDesc>
     <!-- [PAWN_nameDef] had a rare and happy childhood after being rescued by an anti-slavery organisation. During that time in the camp, [PAWN_pronoun] mastered many combat skills. After reaching adulthood, [PAWN_pronoun] devoted [PAWN_possessive] life to liberating more compatriots, eventually becoming a steadfast anti-slavery organisation fighter. -->
-    <MooGirl_Adult.description>[PAWN_nameDef]因被反奴役组织解救而拥有了难得幸福的童年，在营地的那段时光里，她掌握了不少战斗技巧。成年之后，她将一生奉献于解放更多同胞，最终成为了一名坚定的反奴役组织战士。</MooGirl_Adult.description>
+    <Mugirl_Adult.description>[PAWN_nameDef]因被反奴役组织解救而拥有了难得幸福的童年，在营地的那段时光里，她掌握了不少战斗技巧。成年之后，她将一生奉献于解放更多同胞，最终成为了一名坚定的反奴役组织战士。</Mugirl_Adult.description>
     <!-- Mugirls' Liberator -->
-    <MooGirl_Adult.title>雪牛娘解放者</MooGirl_Adult.title>
+    <Mugirl_Adult.title>雪牛娘解放者</Mugirl_Adult.title>
     <!-- Great Mugirl -->
-    <MooGirl_Adult.titleShort>大雪牛娘</MooGirl_Adult.titleShort>
+    <Mugirl_Adult.titleShort>大雪牛娘</Mugirl_Adult.titleShort>
     <!-- [PAWN_nameDef] endured immense hardship as a milking slave on a "cattle" farm, never qualifying to be treated as a human. Initially confined to narrow pens and exploited by the farm owner, [PAWN_pronoun] later transitioned from being a "dairy cow" to managing livestock for [PAWN_possessive] master when labour was short, operating machinery and processing fresh milk. However, [PAWN_pronoun] often struggled to handle the temperamental cattle and was frequently attacked by the herd. -->
-    <MooGirl_CattleSlave.baseDesc>[PAWN_nameDef]作为养“牛”场的产奶奴隶历尽艰辛，始终未能获得成为“人”的资格。起初只是被关在狭窄的畜栏中受牧场主榨取，当人手不足时，她则从“奶牛”摇身一变成为协助主人管理牲畜的奴隶，操作机器并处理鲜奶。但她有时难以驾驭脾气古怪的牛群，屡屡受到攻击。</MooGirl_CattleSlave.baseDesc>
+    <Mugirl_CattleSlave.baseDesc>[PAWN_nameDef]作为养“牛”场的产奶奴隶历尽艰辛，始终未能获得成为“人”的资格。起初只是被关在狭窄的畜栏中受牧场主榨取，当人手不足时，她则从“奶牛”摇身一变成为协助主人管理牲畜的奴隶，操作机器并处理鲜奶。但她有时难以驾驭脾气古怪的牛群，屡屡受到攻击。</Mugirl_CattleSlave.baseDesc>
     <!-- [PAWN_nameDef] endured immense hardship as a milking slave on a "cattle" farm, never qualifying to be treated as a human. Initially confined to narrow pens and exploited by the farm owner, [PAWN_pronoun] later transitioned from being a "dairy cow" to managing livestock for [PAWN_possessive] master when labour was short, operating machinery and processing fresh milk. However, [PAWN_pronoun] often struggled to handle the temperamental cattle and was frequently attacked by the herd. -->
-    <MooGirl_CattleSlave.description>[PAWN_nameDef]作为养“牛”场的产奶奴隶历尽艰辛，始终未能获得成为“人”的资格。起初只是被关在狭窄的畜栏中受牧场主榨取，当人手不足时，她则从“奶牛”摇身一变成为协助主人管理牲畜的奴隶，操作机器并处理鲜奶。但她有时难以驾驭脾气古怪的牛群，屡屡受到攻击。</MooGirl_CattleSlave.description>
+    <Mugirl_CattleSlave.description>[PAWN_nameDef]作为养“牛”场的产奶奴隶历尽艰辛，始终未能获得成为“人”的资格。起初只是被关在狭窄的畜栏中受牧场主榨取，当人手不足时，她则从“奶牛”摇身一变成为协助主人管理牲畜的奴隶，操作机器并处理鲜奶。但她有时难以驾驭脾气古怪的牛群，屡屡受到攻击。</Mugirl_CattleSlave.description>
     <!-- Cattle Ranch Slave -->
-    <MooGirl_CattleSlave.title>牛场奴隶</MooGirl_CattleSlave.title>
+    <Mugirl_CattleSlave.title>牛场奴隶</Mugirl_CattleSlave.title>
     <!-- Cattle Ranch Slave -->
-    <MooGirl_CattleSlave.titleShort>牛场奴隶</MooGirl_CattleSlave.titleShort>
+    <Mugirl_CattleSlave.titleShort>牛场奴隶</Mugirl_CattleSlave.titleShort>
     <!-- [PAWN_nameDef] was rescued by an anti-slavery organisation at a young age, allowing [PAWN_pronoun] to escape the same fate of enslavement as [PAWN_possessive] compatriots. [PAWN_pronoun] was placed in a camp hidden deep in the mountains, where [PAWN_pronoun] spent a happy childhood— for this race, such an experience was undoubtedly a luxury. -->
-    <MooGirl_Child.baseDesc>[PAWN_nameDef]在年幼时便被某个反奴役组织解救，得以逃脱与同胞们相同的奴役命运。她被安置在隐匿于群山深处的营地中，度过了幸福的童年—————对这个种族而言，这样的经历无疑是一种奢望。</MooGirl_Child.baseDesc>
+    <Mugirl_Child.baseDesc>[PAWN_nameDef]在年幼时便被某个反奴役组织解救，得以逃脱与同胞们相同的奴役命运。她被安置在隐匿于群山深处的营地中，度过了幸福的童年—————对这个种族而言，这样的经历无疑是一种奢望。</Mugirl_Child.baseDesc>
     <!-- [PAWN_nameDef] was rescued by an anti-slavery organisation at a young age, allowing [PAWN_pronoun] to escape the same fate of enslavement as [PAWN_possessive] compatriots. [PAWN_pronoun] was placed in a camp hidden deep in the mountains, where [PAWN_pronoun] spent a happy childhood— for this race, such an experience was undoubtedly a luxury. -->
-    <MooGirl_Child.description>[PAWN_nameDef]在年幼时便被某个反奴役组织解救，得以逃脱与同胞们相同的奴役命运。她被安置在隐匿于群山深处的营地中，度过了幸福的童年—————对这个种族而言，这样的经历无疑是一种奢望。</MooGirl_Child.description>
+    <Mugirl_Child.description>[PAWN_nameDef]在年幼时便被某个反奴役组织解救，得以逃脱与同胞们相同的奴役命运。她被安置在隐匿于群山深处的营地中，度过了幸福的童年—————对这个种族而言，这样的经历无疑是一种奢望。</Mugirl_Child.description>
     <!-- The Rescued Mugirl -->
-    <MooGirl_Child.title>被解救的雪牛娘</MooGirl_Child.title>
+    <Mugirl_Child.title>被解救的雪牛娘</Mugirl_Child.title>
     <!-- Little Mugirl -->
-    <MooGirl_Child.titleShort>小小雪牛娘</MooGirl_Child.titleShort>
+    <Mugirl_Child.titleShort>小小雪牛娘</Mugirl_Child.titleShort>
     <!-- [PAWN_nameDef] no longer remembers when [PAWN_pronoun] started engaging in heavy physical labour. As a child labourer, [PAWN_nameDef] served as cheap labour in factories or mines, sweating all day under harsh production conditions. To maximise the exploitation of [PAWN_nameDef]'s surplus value, [PAWN_pronoun] was forbidden from resting for more than ten minutes, let alone receiving basic cultural education. -->
-    <MooGirl_ChildWorker.baseDesc>[PAWN_nameDef] 已不记得自己是什么时候开始参与繁重体力劳动的了。作为儿童劳工，[PAWN_nameDef]充当工厂或矿井当中的廉价劳动力，整日在恶劣的生产条件下挥洒汗水。为了最大限度地压榨 [PAWN_nameDef]的剩余价值，她被禁止休息十分钟以上，更不用说获得最基本的文化教育了。</MooGirl_ChildWorker.baseDesc>
+    <Mugirl_ChildWorker.baseDesc>[PAWN_nameDef] 已不记得自己是什么时候开始参与繁重体力劳动的了。作为儿童劳工，[PAWN_nameDef]充当工厂或矿井当中的廉价劳动力，整日在恶劣的生产条件下挥洒汗水。为了最大限度地压榨 [PAWN_nameDef]的剩余价值，她被禁止休息十分钟以上，更不用说获得最基本的文化教育了。</Mugirl_ChildWorker.baseDesc>
     <!-- [PAWN_nameDef] no longer remembers when [PAWN_pronoun] started engaging in heavy physical labour. As a child labourer, [PAWN_nameDef] served as cheap labour in factories or mines, sweating all day under harsh production conditions. To maximise the exploitation of [PAWN_nameDef]'s surplus value, [PAWN_pronoun] was forbidden from resting for more than ten minutes, let alone receiving basic cultural education. -->
-    <MooGirl_ChildWorker.description>[PAWN_nameDef] 已不记得自己是什么时候开始参与繁重体力劳动的了。作为儿童劳工，[PAWN_nameDef]充当工厂或矿井当中的廉价劳动力，整日在恶劣的生产条件下挥洒汗水。为了最大限度地压榨 [PAWN_nameDef]的剩余价值，她被禁止休息十分钟以上，更不用说获得最基本的文化教育了。</MooGirl_ChildWorker.description>
+    <Mugirl_ChildWorker.description>[PAWN_nameDef] 已不记得自己是什么时候开始参与繁重体力劳动的了。作为儿童劳工，[PAWN_nameDef]充当工厂或矿井当中的廉价劳动力，整日在恶劣的生产条件下挥洒汗水。为了最大限度地压榨 [PAWN_nameDef]的剩余价值，她被禁止休息十分钟以上，更不用说获得最基本的文化教育了。</Mugirl_ChildWorker.description>
     <!-- Child Labour -->
-    <MooGirl_ChildWorker.title>儿童劳工</MooGirl_ChildWorker.title>
+    <Mugirl_ChildWorker.title>儿童劳工</Mugirl_ChildWorker.title>
     <!-- Child Labour -->
-    <MooGirl_ChildWorker.titleShort>童工</MooGirl_ChildWorker.titleShort>
+    <Mugirl_ChildWorker.titleShort>童工</Mugirl_ChildWorker.titleShort>
     <!-- [PAWN_nameDef] came of age in our colony. [PAWN_possessive] story continues. -->
-    <MooGirl_Colonist.baseDesc>[PAWN_nameDef] 在我们的殖民地成年了。[PAWN_possessive] 的故事仍在继续。</MooGirl_Colonist.baseDesc>
+    <Mugirl_Colonist.baseDesc>[PAWN_nameDef] 在我们的殖民地成年了。[PAWN_possessive] 的故事仍在继续。</Mugirl_Colonist.baseDesc>
     <!-- [PAWN_nameDef] came of age in our colony. [PAWN_possessive] story continues. -->
-    <MooGirl_Colonist.description>[PAWN_nameDef] 在我们的殖民地成年了。[PAWN_possessive] 的故事仍在继续。</MooGirl_Colonist.description>
+    <Mugirl_Colonist.description>[PAWN_nameDef] 在我们的殖民地成年了。[PAWN_possessive] 的故事仍在继续。</Mugirl_Colonist.description>
     <!-- Mugirl Colonist -->
-    <MooGirl_Colonist.title>雪牛娘殖民者</MooGirl_Colonist.title>
+    <Mugirl_Colonist.title>雪牛娘殖民者</Mugirl_Colonist.title>
     <!-- Colonist -->
-    <MooGirl_Colonist.titleShort>殖民者</MooGirl_Colonist.titleShort>
+    <Mugirl_Colonist.titleShort>殖民者</Mugirl_Colonist.titleShort>
     <!-- [PAWN_nameDef] is a fairly skilled construction labour. Starting with miscellaneous tasks on construction sites, [PAWN_nameDef] gradually accumulated various operational experiences, capable of taking on roles such as plumbing, bricklaying, and painting. [PAWN_nameDef] particularly enjoys the wonderful feeling of using a nail gun to shoot nails, that short and powerful gas ejection sound is especially pleasing to the ear. The immense physical exertion on the site led [PAWN_objective] to develop a habit of eating at a nearby small canteen, after all, who has the energy to cook for themselves after working non-stop? -->
-    <MooGirl_ConstructionWorker.baseDesc>[PAWN_nameDef] 是一名水平不错的建筑工人。从工地上的杂活开始，[PAWN_nameDef]逐渐积累了各种操作经验，能胜任管道、泥瓦、粉刷等多种角色。[PAWN_nameDef]尤其喜爱使用射钉枪发射钉子的美妙感觉，那种短促有力的气体喷发声格外悦耳。工地上的巨大体能消耗令她养成了去附近小食堂吃饭的习惯，毕竟谁能在连轴转的工作后还有体力亲自下厨呢？</MooGirl_ConstructionWorker.baseDesc>
+    <Mugirl_ConstructionWorker.baseDesc>[PAWN_nameDef] 是一名水平不错的建筑工人。从工地上的杂活开始，[PAWN_nameDef]逐渐积累了各种操作经验，能胜任管道、泥瓦、粉刷等多种角色。[PAWN_nameDef]尤其喜爱使用射钉枪发射钉子的美妙感觉，那种短促有力的气体喷发声格外悦耳。工地上的巨大体能消耗令她养成了去附近小食堂吃饭的习惯，毕竟谁能在连轴转的工作后还有体力亲自下厨呢？</Mugirl_ConstructionWorker.baseDesc>
     <!-- [PAWN_nameDef] is a fairly skilled construction labour. Starting with miscellaneous tasks on construction sites, [PAWN_nameDef] gradually accumulated various operational experiences, capable of taking on roles such as plumbing, bricklaying, and painting. [PAWN_nameDef] particularly enjoys the wonderful feeling of using a nail gun to shoot nails, that short and powerful gas ejection sound is especially pleasing to the ear. The immense physical exertion on the site led [PAWN_objective] to develop a habit of eating at a nearby small canteen, after all, who has the energy to cook for themselves after working non-stop? -->
-    <MooGirl_ConstructionWorker.description>[PAWN_nameDef] 是一名水平不错的建筑工人。从工地上的杂活开始，[PAWN_nameDef]逐渐积累了各种操作经验，能胜任管道、泥瓦、粉刷等多种角色。[PAWN_nameDef]尤其喜爱使用射钉枪发射钉子的美妙感觉，那种短促有力的气体喷发声格外悦耳。工地上的巨大体能消耗令她养成了去附近小食堂吃饭的习惯，毕竟谁能在连轴转的工作后还有体力亲自下厨呢？</MooGirl_ConstructionWorker.description>
+    <Mugirl_ConstructionWorker.description>[PAWN_nameDef] 是一名水平不错的建筑工人。从工地上的杂活开始，[PAWN_nameDef]逐渐积累了各种操作经验，能胜任管道、泥瓦、粉刷等多种角色。[PAWN_nameDef]尤其喜爱使用射钉枪发射钉子的美妙感觉，那种短促有力的气体喷发声格外悦耳。工地上的巨大体能消耗令她养成了去附近小食堂吃饭的习惯，毕竟谁能在连轴转的工作后还有体力亲自下厨呢？</Mugirl_ConstructionWorker.description>
     <!-- Construction Site Labour -->
-    <MooGirl_ConstructionWorker.title>工地劳工</MooGirl_ConstructionWorker.title>
+    <Mugirl_ConstructionWorker.title>工地劳工</Mugirl_ConstructionWorker.title>
     <!-- Construction Site Labour -->
-    <MooGirl_ConstructionWorker.titleShort>工地劳工</MooGirl_ConstructionWorker.titleShort>
+    <Mugirl_ConstructionWorker.titleShort>工地劳工</Mugirl_ConstructionWorker.titleShort>
     <!-- [PAWN_nameDef] grew up as an experiment subject in an agricultural research institute, undergoing many long-term medical observations and experiments, and became familiar with numerous medical terms. The managers told [PAWN_nameDef] that outside the institute, dangers lurked everywhere, and if [PAWN_pronoun] left, there was a risk of death at any time. During childhood, [PAWN_pronoun] never saw the true form of feed, nor did [PAWN_pronoun] ever see [PAWN_possessive] own kind. -->
-    <MooGirl_ExperimentalChild.baseDesc>[PAWN_nameDef] 在某个农业研究所作为实验对象长大，接受了许多长期医疗观察和试验，对不少医学术语耳熟能详。管理者告诉[PAWN_nameDef]，研究所外面危机四伏，一旦离开随时有丧命的风险。在童年期间，[PAWN_pronoun] 从未见过饲料的原貌，也从未见过自己的同类。</MooGirl_ExperimentalChild.baseDesc>
+    <Mugirl_ExperimentalChild.baseDesc>[PAWN_nameDef] 在某个农业研究所作为实验对象长大，接受了许多长期医疗观察和试验，对不少医学术语耳熟能详。管理者告诉[PAWN_nameDef]，研究所外面危机四伏，一旦离开随时有丧命的风险。在童年期间，[PAWN_pronoun] 从未见过饲料的原貌，也从未见过自己的同类。</Mugirl_ExperimentalChild.baseDesc>
     <!-- [PAWN_nameDef] grew up as an experiment subject in an agricultural research institute, undergoing many long-term medical observations and experiments, and became familiar with numerous medical terms. The managers told [PAWN_nameDef] that outside the institute, dangers lurked everywhere, and if [PAWN_pronoun] left, there was a risk of death at any time. During childhood, [PAWN_pronoun] never saw the true form of feed, nor did [PAWN_pronoun] ever see [PAWN_possessive] own kind. -->
-    <MooGirl_ExperimentalChild.description>[PAWN_nameDef] 在某个农业研究所作为实验对象长大，接受了许多长期医疗观察和试验，对不少医学术语耳熟能详。管理者告诉[PAWN_nameDef]，研究所外面危机四伏，一旦离开随时有丧命的风险。在童年期间，[PAWN_pronoun] 从未见过饲料的原貌，也从未见过自己的同类。</MooGirl_ExperimentalChild.description>
+    <Mugirl_ExperimentalChild.description>[PAWN_nameDef] 在某个农业研究所作为实验对象长大，接受了许多长期医疗观察和试验，对不少医学术语耳熟能详。管理者告诉[PAWN_nameDef]，研究所外面危机四伏，一旦离开随时有丧命的风险。在童年期间，[PAWN_pronoun] 从未见过饲料的原貌，也从未见过自己的同类。</Mugirl_ExperimentalChild.description>
     <!-- Yield Enhancement Experiment Subject -->
-    <MooGirl_ExperimentalChild.title>增产实验对象</MooGirl_ExperimentalChild.title>
+    <Mugirl_ExperimentalChild.title>增产实验对象</Mugirl_ExperimentalChild.title>
     <!-- Yield Enhancement Experiment Subject -->
-    <MooGirl_ExperimentalChild.titleShort>实验对象</MooGirl_ExperimentalChild.titleShort>
+    <Mugirl_ExperimentalChild.titleShort>实验对象</Mugirl_ExperimentalChild.titleShort>
     <!-- [PAWN_nameDef] spent years seeking livelihood opportunities among various assembly line factories in industrial parks, trying to create better living conditions with [PAWN_possessive] hands. If the fruits of [PAWN_possessive] labour were not legally unprotected, [PAWN_pronoun] might have continued working in the same sweatshop. [PAWN_nameDef] has worked in various jobs such as assembly, quality inspection, loading and unloading, and security, leaving sweat and toil in every position. Although forced by life circumstances to receive little education, [PAWN_pronoun] still harbours a longing for school. -->
-    <MooGirl_FactoryWorker.baseDesc>[PAWN_nameDef]常年在工业园区的各大流水线工厂之间寻找谋生机会，试图用双手创造更好的生活条件。若不是劳动成果得不到法律保障，她也许还会在同一家血汗工厂继续工作。[PAWN_nameDef]干过装配、质检、装卸、安保等多种工作，每个岗位上都留下了辛劳汗水。尽管因生活所迫未能接受太多教育，她仍对校园心存向往。</MooGirl_FactoryWorker.baseDesc>
+    <Mugirl_FactoryWorker.baseDesc>[PAWN_nameDef]常年在工业园区的各大流水线工厂之间寻找谋生机会，试图用双手创造更好的生活条件。若不是劳动成果得不到法律保障，她也许还会在同一家血汗工厂继续工作。[PAWN_nameDef]干过装配、质检、装卸、安保等多种工作，每个岗位上都留下了辛劳汗水。尽管因生活所迫未能接受太多教育，她仍对校园心存向往。</Mugirl_FactoryWorker.baseDesc>
     <!-- [PAWN_nameDef] spent years seeking livelihood opportunities among various assembly line factories in industrial parks, trying to create better living conditions with [PAWN_possessive] hands. If the fruits of [PAWN_possessive] labour were not legally unprotected, [PAWN_pronoun] might have continued working in the same sweatshop. [PAWN_nameDef] has worked in various jobs such as assembly, quality inspection, loading and unloading, and security, leaving sweat and toil in every position. Although forced by life circumstances to receive little education, [PAWN_pronoun] still harbours a longing for school. -->
-    <MooGirl_FactoryWorker.description>[PAWN_nameDef]常年在工业园区的各大流水线工厂之间寻找谋生机会，试图用双手创造更好的生活条件。若不是劳动成果得不到法律保障，她也许还会在同一家血汗工厂继续工作。[PAWN_nameDef]干过装配、质检、装卸、安保等多种工作，每个岗位上都留下了辛劳汗水。尽管因生活所迫未能接受太多教育，她仍对校园心存向往。</MooGirl_FactoryWorker.description>
+    <Mugirl_FactoryWorker.description>[PAWN_nameDef]常年在工业园区的各大流水线工厂之间寻找谋生机会，试图用双手创造更好的生活条件。若不是劳动成果得不到法律保障，她也许还会在同一家血汗工厂继续工作。[PAWN_nameDef]干过装配、质检、装卸、安保等多种工作，每个岗位上都留下了辛劳汗水。尽管因生活所迫未能接受太多教育，她仍对校园心存向往。</Mugirl_FactoryWorker.description>
     <!-- Factory Worker -->
-    <MooGirl_FactoryWorker.title>工厂劳工</MooGirl_FactoryWorker.title>
+    <Mugirl_FactoryWorker.title>工厂劳工</Mugirl_FactoryWorker.title>
     <!-- Factory Worker -->
-    <MooGirl_FactoryWorker.titleShort>工厂劳工</MooGirl_FactoryWorker.titleShort>
+    <Mugirl_FactoryWorker.titleShort>工厂劳工</Mugirl_FactoryWorker.titleShort>
     <!-- [PAWN_nameDef] has lived on a rural farm since [PAWN_possessive] earliest memories, driven by the owner to work diligently and without complaint. [PAWN_nameDef]'s childhood was spent tending crops and livestock, with blisters on [PAWN_possessive] hands always forming and breaking. For years, [PAWN_pronoun] only received the minimum amount of food on the farm. [PAWN_nameDef] does not know where this unpalatable paste comes from, because [PAWN_pronoun] has always been forbidden from entering the kitchen. -->
-    <MooGirl_FarmSlave.baseDesc>[PAWN_nameDef] 从有记忆起就生存在一座乡村农场，受主人驱使而任劳任怨地工作。[PAWN_nameDef]的童年在照顾庄稼和牲畜当中度过，手上的水泡总是长了又破。多年来，她在农场只能得到最低限度的食物。[PAWN_nameDef] 不知道这些难以下咽的糊糊究竟从何而来，因为[PAWN_pronoun] 始终被禁止进入厨房。</MooGirl_FarmSlave.baseDesc>
+    <Mugirl_FarmSlave.baseDesc>[PAWN_nameDef] 从有记忆起就生存在一座乡村农场，受主人驱使而任劳任怨地工作。[PAWN_nameDef]的童年在照顾庄稼和牲畜当中度过，手上的水泡总是长了又破。多年来，她在农场只能得到最低限度的食物。[PAWN_nameDef] 不知道这些难以下咽的糊糊究竟从何而来，因为[PAWN_pronoun] 始终被禁止进入厨房。</Mugirl_FarmSlave.baseDesc>
     <!-- [PAWN_nameDef] has lived on a rural farm since [PAWN_possessive] earliest memories, driven by the owner to work diligently and without complaint. [PAWN_nameDef]'s childhood was spent tending crops and livestock, with blisters on [PAWN_possessive] hands always forming and breaking. For years, [PAWN_pronoun] only received the minimum amount of food on the farm. [PAWN_nameDef] does not know where this unpalatable paste comes from, because [PAWN_pronoun] has always been forbidden from entering the kitchen. -->
-    <MooGirl_FarmSlave.description>[PAWN_nameDef] 从有记忆起就生存在一座乡村农场，受主人驱使而任劳任怨地工作。[PAWN_nameDef]的童年在照顾庄稼和牲畜当中度过，手上的水泡总是长了又破。多年来，她在农场只能得到最低限度的食物。[PAWN_nameDef] 不知道这些难以下咽的糊糊究竟从何而来，因为[PAWN_pronoun] 始终被禁止进入厨房。</MooGirl_FarmSlave.description>
+    <Mugirl_FarmSlave.description>[PAWN_nameDef] 从有记忆起就生存在一座乡村农场，受主人驱使而任劳任怨地工作。[PAWN_nameDef]的童年在照顾庄稼和牲畜当中度过，手上的水泡总是长了又破。多年来，她在农场只能得到最低限度的食物。[PAWN_nameDef] 不知道这些难以下咽的糊糊究竟从何而来，因为[PAWN_pronoun] 始终被禁止进入厨房。</Mugirl_FarmSlave.description>
     <!-- Farm Slave -->
-    <MooGirl_FarmSlave.title>农场奴隶</MooGirl_FarmSlave.title>
+    <Mugirl_FarmSlave.title>农场奴隶</Mugirl_FarmSlave.title>
     <!-- Farm Slave -->
-    <MooGirl_FarmSlave.titleShort>农场奴隶</MooGirl_FarmSlave.titleShort>
+    <Mugirl_FarmSlave.titleShort>农场奴隶</Mugirl_FarmSlave.titleShort>
     <!-- [PAWN_nameDef] has long been engaged in crop cultivation and livestock management on a large farm. [PAWN_nameDef] carries the scent of soil and hay, and the daily fieldwork has made [PAWN_objective] familiar with the growth cycles of various crops and animal habits. During the off-season, [PAWN_nameDef] often hears news about nearby farms from the farm owner. It is said that a cruel farm owner who keeps a large number of Mugirls often sends people to burn, kill, and rob everywhere, and [PAWN_pronoun] is glad that [PAWN_pronoun] does not have to take up arms to defend the farm. -->
-    <MooGirl_FarmWorker.baseDesc>[PAWN_nameDef] 在大型农场长期从事作物种植和牲畜管理工作。[PAWN_nameDef]身上带着泥土与干草的香气，日复一日的田间劳作让她熟谙各类农作物的生长周期和动物习性。农闲时，[PAWN_nameDef]时常从农场主那里获悉附近农场的消息。据说有一个豢养大批雪牛娘的残忍农场主经常派人四处烧杀抢劫，她很庆幸自己不用拿起武器保卫农场。</MooGirl_FarmWorker.baseDesc>
+    <Mugirl_FarmWorker.baseDesc>[PAWN_nameDef] 在大型农场长期从事作物种植和牲畜管理工作。[PAWN_nameDef]身上带着泥土与干草的香气，日复一日的田间劳作让她熟谙各类农作物的生长周期和动物习性。农闲时，[PAWN_nameDef]时常从农场主那里获悉附近农场的消息。据说有一个豢养大批雪牛娘的残忍农场主经常派人四处烧杀抢劫，她很庆幸自己不用拿起武器保卫农场。</Mugirl_FarmWorker.baseDesc>
     <!-- [PAWN_nameDef] has long been engaged in crop cultivation and livestock management on a large farm. [PAWN_nameDef] carries the scent of soil and hay, and the daily fieldwork has made [PAWN_objective] familiar with the growth cycles of various crops and animal habits. During the off-season, [PAWN_nameDef] often hears news about nearby farms from the farm owner. It is said that a cruel farm owner who keeps a large number of Mugirls often sends people to burn, kill, and rob everywhere, and [PAWN_pronoun] is glad that [PAWN_pronoun] does not have to take up arms to defend the farm. -->
-    <MooGirl_FarmWorker.description>[PAWN_nameDef] 在大型农场长期从事作物种植和牲畜管理工作。[PAWN_nameDef]身上带着泥土与干草的香气，日复一日的田间劳作让她熟谙各类农作物的生长周期和动物习性。农闲时，[PAWN_nameDef]时常从农场主那里获悉附近农场的消息。据说有一个豢养大批雪牛娘的残忍农场主经常派人四处烧杀抢劫，她很庆幸自己不用拿起武器保卫农场。</MooGirl_FarmWorker.description>
+    <Mugirl_FarmWorker.description>[PAWN_nameDef] 在大型农场长期从事作物种植和牲畜管理工作。[PAWN_nameDef]身上带着泥土与干草的香气，日复一日的田间劳作让她熟谙各类农作物的生长周期和动物习性。农闲时，[PAWN_nameDef]时常从农场主那里获悉附近农场的消息。据说有一个豢养大批雪牛娘的残忍农场主经常派人四处烧杀抢劫，她很庆幸自己不用拿起武器保卫农场。</Mugirl_FarmWorker.description>
     <!-- Farm Labour -->
-    <MooGirl_FarmWorker.title>农场劳工</MooGirl_FarmWorker.title>
+    <Mugirl_FarmWorker.title>农场劳工</Mugirl_FarmWorker.title>
     <!-- Farm Labour -->
-    <MooGirl_FarmWorker.titleShort>农场劳工</MooGirl_FarmWorker.titleShort>
+    <Mugirl_FarmWorker.titleShort>农场劳工</Mugirl_FarmWorker.titleShort>
     <!-- [PAWN_nameDef] embarked on a life of crime as an adult, living on the edge with street fights and gang brawls becoming daily occurrences. On the lawless fringes of society, [PAWN_pronoun] served local crime bosses, chasing dreams of getting rich overnight. Due to [PAWN_possessive] inexperience, [PAWN_pronoun] backed the wrong side in internal gang conflicts, became ostracized, and was forced into a life on the run, constantly moving to avoid detection. -->
-    <MooGirl_GangMember.baseDesc>[PAWN_nameDef]成年后过上刀尖舔血的犯罪生涯，街头火并、聚众斗殴成日常。在缺乏治安的社会边缘，她为地头蛇效力，追逐一夜暴富梦想。因经验不足，帮派内斗中站队失误，被排挤，只能过上东躲西藏的逃亡生活。</MooGirl_GangMember.baseDesc>
+    <Mugirl_GangMember.baseDesc>[PAWN_nameDef]成年后过上刀尖舔血的犯罪生涯，街头火并、聚众斗殴成日常。在缺乏治安的社会边缘，她为地头蛇效力，追逐一夜暴富梦想。因经验不足，帮派内斗中站队失误，被排挤，只能过上东躲西藏的逃亡生活。</Mugirl_GangMember.baseDesc>
     <!-- [PAWN_nameDef] embarked on a life of crime as an adult, living on the edge with street fights and gang brawls becoming daily occurrences. On the lawless fringes of society, [PAWN_pronoun] served local crime bosses, chasing dreams of getting rich overnight. Due to [PAWN_possessive] inexperience, [PAWN_pronoun] backed the wrong side in internal gang conflicts, became ostracized, and was forced into a life on the run, constantly moving to avoid detection. -->
-    <MooGirl_GangMember.description>[PAWN_nameDef]成年后过上刀尖舔血的犯罪生涯，街头火并、聚众斗殴成日常。在缺乏治安的社会边缘，她为地头蛇效力，追逐一夜暴富梦想。因经验不足，帮派内斗中站队失误，被排挤，只能过上东躲西藏的逃亡生活。</MooGirl_GangMember.description>
+    <Mugirl_GangMember.description>[PAWN_nameDef]成年后过上刀尖舔血的犯罪生涯，街头火并、聚众斗殴成日常。在缺乏治安的社会边缘，她为地头蛇效力，追逐一夜暴富梦想。因经验不足，帮派内斗中站队失误，被排挤，只能过上东躲西藏的逃亡生活。</Mugirl_GangMember.description>
     <!-- Gang Member -->
-    <MooGirl_GangMember.title>黑道成员</MooGirl_GangMember.title>
+    <Mugirl_GangMember.title>黑道成员</Mugirl_GangMember.title>
     <!-- Gang Member -->
-    <MooGirl_GangMember.titleShort>黑道成员</MooGirl_GangMember.titleShort>
+    <Mugirl_GangMember.titleShort>黑道成员</Mugirl_GangMember.titleShort>
     <!-- [PAWN_nameDef] is an experienced gladiator, making a living by participating in arena fights for substantial rewards. Through years of rigorous training in combat skills, [PAWN_pronoun] has mastered various weapons, hoping to prevail in the cruel and bloody contests of the arena. With limited medical facilities available, [PAWN_pronoun] had to learn folk remedies to treat injuries and illnesses. -->
-    <MooGirl_Gladiator.baseDesc>[PAWN_nameDef]是经验丰富的角斗战士，以参加角斗赚取高额奖励维持生计。多年苦练格斗本领，掌握多种武器使用方式，希望在竞技场残酷血腥的角斗中胜出。医疗条件有限，她不得不学习土法偏方处理伤病。</MooGirl_Gladiator.baseDesc>
+    <Mugirl_Gladiator.baseDesc>[PAWN_nameDef]是经验丰富的角斗战士，以参加角斗赚取高额奖励维持生计。多年苦练格斗本领，掌握多种武器使用方式，希望在竞技场残酷血腥的角斗中胜出。医疗条件有限，她不得不学习土法偏方处理伤病。</Mugirl_Gladiator.baseDesc>
     <!-- [PAWN_nameDef] is an experienced gladiator, making a living by participating in arena fights for substantial rewards. Through years of rigorous training in combat skills, [PAWN_pronoun] has mastered various weapons, hoping to prevail in the cruel and bloody contests of the arena. With limited medical facilities available, [PAWN_pronoun] had to learn folk remedies to treat injuries and illnesses. -->
-    <MooGirl_Gladiator.description>[PAWN_nameDef]是经验丰富的角斗战士，以参加角斗赚取高额奖励维持生计。多年苦练格斗本领，掌握多种武器使用方式，希望在竞技场残酷血腥的角斗中胜出。医疗条件有限，她不得不学习土法偏方处理伤病。</MooGirl_Gladiator.description>
+    <Mugirl_Gladiator.description>[PAWN_nameDef]是经验丰富的角斗战士，以参加角斗赚取高额奖励维持生计。多年苦练格斗本领，掌握多种武器使用方式，希望在竞技场残酷血腥的角斗中胜出。医疗条件有限，她不得不学习土法偏方处理伤病。</Mugirl_Gladiator.description>
     <!-- Gladiator -->
-    <MooGirl_Gladiator.title>角斗战士</MooGirl_Gladiator.title>
+    <Mugirl_Gladiator.title>角斗战士</Mugirl_Gladiator.title>
     <!-- Gladiator -->
-    <MooGirl_Gladiator.titleShort>角斗战士</MooGirl_Gladiator.titleShort>
+    <Mugirl_Gladiator.titleShort>角斗战士</Mugirl_Gladiator.titleShort>
     <!-- [PAWN_nameDef] served as a domestic servant in a wealthy household, mastering household service skills under the butler's strict training and being responsible for addressing all daily needs of the master's family. [PAWN_nameDef] undertook heavy household chores from a young age, yet lacked experience in pet care- after all, [PAWN_nameDef] had likely already occupied their ecological niche. -->
-    <MooGirl_HouseServant.baseDesc>[PAWN_nameDef] 是一个殷实家庭的佣人，在管家的严苛训练下很早就掌握了家务服务技巧，负责解决主人一家的衣食住行。[PAWN_nameDef]年龄尚小就承担起了繁重的家务，却缺乏照顾宠物的经验，毕竟很可能 [PAWN_nameDef] 已经挤占了它们的生态位。</MooGirl_HouseServant.baseDesc>
+    <Mugirl_HouseServant.baseDesc>[PAWN_nameDef] 是一个殷实家庭的佣人，在管家的严苛训练下很早就掌握了家务服务技巧，负责解决主人一家的衣食住行。[PAWN_nameDef]年龄尚小就承担起了繁重的家务，却缺乏照顾宠物的经验，毕竟很可能 [PAWN_nameDef] 已经挤占了它们的生态位。</Mugirl_HouseServant.baseDesc>
     <!-- [PAWN_nameDef] served as a domestic servant in a wealthy household, mastering household service skills under the butler's strict training and being responsible for addressing all daily needs of the master's family. [PAWN_nameDef] undertook heavy household chores from a young age, yet lacked experience in pet care- after all, [PAWN_nameDef] had likely already occupied their ecological niche. -->
-    <MooGirl_HouseServant.description>[PAWN_nameDef] 是一个殷实家庭的佣人，在管家的严苛训练下很早就掌握了家务服务技巧，负责解决主人一家的衣食住行。[PAWN_nameDef]年龄尚小就承担起了繁重的家务，却缺乏照顾宠物的经验，毕竟很可能 [PAWN_nameDef] 已经挤占了它们的生态位。</MooGirl_HouseServant.description>
+    <Mugirl_HouseServant.description>[PAWN_nameDef] 是一个殷实家庭的佣人，在管家的严苛训练下很早就掌握了家务服务技巧，负责解决主人一家的衣食住行。[PAWN_nameDef]年龄尚小就承担起了繁重的家务，却缺乏照顾宠物的经验，毕竟很可能 [PAWN_nameDef] 已经挤占了它们的生态位。</Mugirl_HouseServant.description>
     <!-- Domestic Servant -->
-    <MooGirl_HouseServant.title>家庭仆人</MooGirl_HouseServant.title>
+    <Mugirl_HouseServant.title>家庭仆人</Mugirl_HouseServant.title>
     <!-- Domestic Servant -->
-    <MooGirl_HouseServant.titleShort>家庭仆人</MooGirl_HouseServant.titleShort>
+    <Mugirl_HouseServant.titleShort>家庭仆人</Mugirl_HouseServant.titleShort>
     <!-- [PAWN_nameDef] has experience working as a household carer for multiple families, developing a particular fondness for child care and cooking. [PAWN_pronoun] would rise before dawn to prepare breakfast and handle household chores until late at night. Although [PAWN_pronoun] put considerable effort into refining culinary techniques and studying childcare knowledge, [PAWN_pronoun] still struggled to meet the nitpicking expectations of demanding employers, often reminiscing about [PAWN_possessive] own unrealized artistic dreams. -->
-    <MooGirl_Housekeeper.baseDesc>[PAWN_nameDef]拥有在多个家庭做保姆的经验，对儿童保育和烹饪情有独钟。天不亮就起床准备早餐，处理家务到深夜。她在钻研烹饪技巧和学习育儿心得上下了不少功夫，却仍难以满足刁钻雇主吹毛求疵的期望，也常想起自己未能实践的艺术梦想。</MooGirl_Housekeeper.baseDesc>
+    <Mugirl_Housekeeper.baseDesc>[PAWN_nameDef]拥有在多个家庭做保姆的经验，对儿童保育和烹饪情有独钟。天不亮就起床准备早餐，处理家务到深夜。她在钻研烹饪技巧和学习育儿心得上下了不少功夫，却仍难以满足刁钻雇主吹毛求疵的期望，也常想起自己未能实践的艺术梦想。</Mugirl_Housekeeper.baseDesc>
     <!-- [PAWN_nameDef] has experience working as a household carer for multiple families, developing a particular fondness for child care and cooking. [PAWN_pronoun] would rise before dawn to prepare breakfast and handle household chores until late at night. Although [PAWN_pronoun] put considerable effort into refining culinary techniques and studying childcare knowledge, [PAWN_pronoun] still struggled to meet the nitpicking expectations of demanding employers, often reminiscing about [PAWN_possessive] own unrealized artistic dreams. -->
-    <MooGirl_Housekeeper.description>[PAWN_nameDef]拥有在多个家庭做保姆的经验，对儿童保育和烹饪情有独钟。天不亮就起床准备早餐，处理家务到深夜。她在钻研烹饪技巧和学习育儿心得上下了不少功夫，却仍难以满足刁钻雇主吹毛求疵的期望，也常想起自己未能实践的艺术梦想。</MooGirl_Housekeeper.description>
+    <Mugirl_Housekeeper.description>[PAWN_nameDef]拥有在多个家庭做保姆的经验，对儿童保育和烹饪情有独钟。天不亮就起床准备早餐，处理家务到深夜。她在钻研烹饪技巧和学习育儿心得上下了不少功夫，却仍难以满足刁钻雇主吹毛求疵的期望，也常想起自己未能实践的艺术梦想。</Mugirl_Housekeeper.description>
     <!-- Household Carer -->
-    <MooGirl_Housekeeper.title>家庭保姆</MooGirl_Housekeeper.title>
+    <Mugirl_Housekeeper.title>家庭保姆</Mugirl_Housekeeper.title>
     <!-- Household Carer -->
-    <MooGirl_Housekeeper.titleShort>家庭保姆</MooGirl_Housekeeper.titleShort>
+    <Mugirl_Housekeeper.titleShort>家庭保姆</Mugirl_Housekeeper.titleShort>
     <!-- [PAWN_nameDef] made a living running small goods retail, once prospering through business acumen and owning [PAWN_possessive] own shop. However, economic crisis, plague and warfare followed in quick succession. When [PAWN_pronoun] tried to defend [PAWN_possessive] business with weapons during several large-scale looting events, [PAWN_possessive] property was ultimately plundered by frenzied crowds. After regrouping, [PAWN_pronoun] mobilized all social connections to borrow funds and resumed [PAWN_possessive] life of hawking wares while travelling through streets and alleys. -->
-    <MooGirl_Merchant.baseDesc>[PAWN_nameDef]靠经营小商品零售维持生计，凭借商业眼光一度发财，拥有自己的铺面。但经济危机、瘟疫与战乱接踵而至，她在几场大规模“零元购”中试图用武器保卫生意，财产最终仍被疯狂人群洗劫一空。重整旗鼓后，她动用所有社会关系筹借资金，再次开始游街串巷、吆喝叫卖的生活。</MooGirl_Merchant.baseDesc>
+    <Mugirl_Merchant.baseDesc>[PAWN_nameDef]靠经营小商品零售维持生计，凭借商业眼光一度发财，拥有自己的铺面。但经济危机、瘟疫与战乱接踵而至，她在几场大规模“零元购”中试图用武器保卫生意，财产最终仍被疯狂人群洗劫一空。重整旗鼓后，她动用所有社会关系筹借资金，再次开始游街串巷、吆喝叫卖的生活。</Mugirl_Merchant.baseDesc>
     <!-- [PAWN_nameDef] made a living running small goods retail, once prospering through business acumen and owning [PAWN_possessive] own shop. However, economic crisis, plague and warfare followed in quick succession. When [PAWN_pronoun] tried to defend [PAWN_possessive] business with weapons during several large-scale looting events, [PAWN_possessive] property was ultimately plundered by frenzied crowds. After regrouping, [PAWN_pronoun] mobilized all social connections to borrow funds and resumed [PAWN_possessive] life of hawking wares while travelling through streets and alleys. -->
-    <MooGirl_Merchant.description>[PAWN_nameDef]靠经营小商品零售维持生计，凭借商业眼光一度发财，拥有自己的铺面。但经济危机、瘟疫与战乱接踵而至，她在几场大规模“零元购”中试图用武器保卫生意，财产最终仍被疯狂人群洗劫一空。重整旗鼓后，她动用所有社会关系筹借资金，再次开始游街串巷、吆喝叫卖的生活。</MooGirl_Merchant.description>
+    <Mugirl_Merchant.description>[PAWN_nameDef]靠经营小商品零售维持生计，凭借商业眼光一度发财，拥有自己的铺面。但经济危机、瘟疫与战乱接踵而至，她在几场大规模“零元购”中试图用武器保卫生意，财产最终仍被疯狂人群洗劫一空。重整旗鼓后，她动用所有社会关系筹借资金，再次开始游街串巷、吆喝叫卖的生活。</Mugirl_Merchant.description>
     <!-- Pedlar -->
-    <MooGirl_Merchant.title>行商小贩</MooGirl_Merchant.title>
+    <Mugirl_Merchant.title>行商小贩</Mugirl_Merchant.title>
     <!-- Pedlar -->
-    <MooGirl_Merchant.titleShort>行商小贩</MooGirl_Merchant.titleShort>
+    <Mugirl_Merchant.titleShort>行商小贩</Mugirl_Merchant.titleShort>
     <!-- [PAWN_nameDef] secured work in an underground mine thanks to [PAWN_possessive] robust physique, barely scraping by on meager wages. In the pitch-black, dust-filled mine shafts, [PAWN_nameDef] swung picks and pushed mine carts day and night, meeting increasingly demanding quotas. With [PAWN_possessive] strained finances and virtually no leave, [PAWN_pronoun] avoided medical care, unwilling to undergo health checks that would disrupt [PAWN_possessive] work. -->
-    <MooGirl_MineWorker.baseDesc>[PAWN_nameDef] 凭借过硬的体格找到了一份地下矿井的工作，依靠微薄的薪水艰难度日。在暗无天日、粉尘弥漫的矿道中，[PAWN_nameDef]整天整夜挥动镐头，推动矿车，完成越来越高的指标要求。捉襟见肘的钱包和几乎没有的休假，使她讳疾忌医，不愿接受体检而耽误工作。</MooGirl_MineWorker.baseDesc>
+    <Mugirl_MineWorker.baseDesc>[PAWN_nameDef] 凭借过硬的体格找到了一份地下矿井的工作，依靠微薄的薪水艰难度日。在暗无天日、粉尘弥漫的矿道中，[PAWN_nameDef]整天整夜挥动镐头，推动矿车，完成越来越高的指标要求。捉襟见肘的钱包和几乎没有的休假，使她讳疾忌医，不愿接受体检而耽误工作。</Mugirl_MineWorker.baseDesc>
     <!-- [PAWN_nameDef] secured work in an underground mine thanks to [PAWN_possessive] robust physique, barely scraping by on meager wages. In the pitch-black, dust-filled mine shafts, [PAWN_nameDef] swung picks and pushed mine carts day and night, meeting increasingly demanding quotas. With [PAWN_possessive] strained finances and virtually no leave, [PAWN_pronoun] avoided medical care, unwilling to undergo health checks that would disrupt [PAWN_possessive] work. -->
-    <MooGirl_MineWorker.description>[PAWN_nameDef] 凭借过硬的体格找到了一份地下矿井的工作，依靠微薄的薪水艰难度日。在暗无天日、粉尘弥漫的矿道中，[PAWN_nameDef]整天整夜挥动镐头，推动矿车，完成越来越高的指标要求。捉襟见肘的钱包和几乎没有的休假，使她讳疾忌医，不愿接受体检而耽误工作。</MooGirl_MineWorker.description>
+    <Mugirl_MineWorker.description>[PAWN_nameDef] 凭借过硬的体格找到了一份地下矿井的工作，依靠微薄的薪水艰难度日。在暗无天日、粉尘弥漫的矿道中，[PAWN_nameDef]整天整夜挥动镐头，推动矿车，完成越来越高的指标要求。捉襟见肘的钱包和几乎没有的休假，使她讳疾忌医，不愿接受体检而耽误工作。</Mugirl_MineWorker.description>
     <!-- Mine Labour -->
-    <MooGirl_MineWorker.title>矿井劳工</MooGirl_MineWorker.title>
+    <Mugirl_MineWorker.title>矿井劳工</Mugirl_MineWorker.title>
     <!-- Mine Labour -->
-    <MooGirl_MineWorker.titleShort>矿井劳工</MooGirl_MineWorker.titleShort>
+    <Mugirl_MineWorker.titleShort>矿井劳工</Mugirl_MineWorker.titleShort>
     <!-- [PAWN_nameDef] is a newborn. [PAWN_possessive] life revolves around drinking milk and sleeping. -->
-    <MooGirl_Newborn.baseDesc>[PAWN_nameDef]是一个新生儿。[PAWN_possessive] 的生活围绕着喝奶和睡觉。</MooGirl_Newborn.baseDesc>
+    <Mugirl_Newborn.baseDesc>[PAWN_nameDef]是一个新生儿。[PAWN_possessive] 的生活围绕着喝奶和睡觉。</Mugirl_Newborn.baseDesc>
     <!-- [PAWN_nameDef] is a newborn. [PAWN_possessive] life revolves around drinking milk and sleeping. -->
-    <MooGirl_Newborn.description>[PAWN_nameDef]是一个新生儿。[PAWN_possessive] 的生活围绕着喝奶和睡觉。</MooGirl_Newborn.description>
+    <Mugirl_Newborn.description>[PAWN_nameDef]是一个新生儿。[PAWN_possessive] 的生活围绕着喝奶和睡觉。</Mugirl_Newborn.description>
     <!-- Mugirl newborn -->
-    <MooGirl_Newborn.title>雪牛娘新生儿</MooGirl_Newborn.title>
+    <Mugirl_Newborn.title>雪牛娘新生儿</Mugirl_Newborn.title>
     <!-- newborn -->
-    <MooGirl_Newborn.titleShort>新生儿</MooGirl_Newborn.titleShort>
+    <Mugirl_Newborn.titleShort>新生儿</Mugirl_Newborn.titleShort>
     <!-- [PAWN_nameDef] dropped out of school and wandered into urban nightlife, becoming an employee under the lure of high salaries, responsible for checking customers' ages and maintaining order. [PAWN_nameDef] received basic firearms training and occasionally needed to show the weapon to intimidate drunk troublemakers. However, the inverted day-night schedule disrupted [PAWN_pronoun] routine, and [PAWN_pronoun] was solely focused on "making money", with no time to care for [PAWN_possessive] health. -->
-    <MooGirl_NightclubStaff.baseDesc>[PAWN_nameDef]辍学后浪迹于都市夜场，在高薪诱惑下成为员工，负责检查顾客年龄并维持秩序。接受了基本枪械训练，偶尔需要亮出家伙震慑酒后闹事的人。然而昼夜颠倒的生活打乱了作息，她一心扑在“搞钱”上，无暇顾及身体健康。</MooGirl_NightclubStaff.baseDesc>
+    <Mugirl_NightclubStaff.baseDesc>[PAWN_nameDef]辍学后浪迹于都市夜场，在高薪诱惑下成为员工，负责检查顾客年龄并维持秩序。接受了基本枪械训练，偶尔需要亮出家伙震慑酒后闹事的人。然而昼夜颠倒的生活打乱了作息，她一心扑在“搞钱”上，无暇顾及身体健康。</Mugirl_NightclubStaff.baseDesc>
     <!-- [PAWN_nameDef] dropped out of school and wandered into urban nightlife, becoming an employee under the lure of high salaries, responsible for checking customers' ages and maintaining order. [PAWN_nameDef] received basic firearms training and occasionally needed to show the weapon to intimidate drunk troublemakers. However, the inverted day-night schedule disrupted [PAWN_pronoun] routine, and [PAWN_pronoun] was solely focused on "making money", with no time to care for [PAWN_possessive] health. -->
-    <MooGirl_NightclubStaff.description>[PAWN_nameDef]辍学后浪迹于都市夜场，在高薪诱惑下成为员工，负责检查顾客年龄并维持秩序。接受了基本枪械训练，偶尔需要亮出家伙震慑酒后闹事的人。然而昼夜颠倒的生活打乱了作息，她一心扑在“搞钱”上，无暇顾及身体健康。</MooGirl_NightclubStaff.description>
+    <Mugirl_NightclubStaff.description>[PAWN_nameDef]辍学后浪迹于都市夜场，在高薪诱惑下成为员工，负责检查顾客年龄并维持秩序。接受了基本枪械训练，偶尔需要亮出家伙震慑酒后闹事的人。然而昼夜颠倒的生活打乱了作息，她一心扑在“搞钱”上，无暇顾及身体健康。</Mugirl_NightclubStaff.description>
     <!-- Nightclub Staff -->
-    <MooGirl_NightclubStaff.title>夜场员工</MooGirl_NightclubStaff.title>
+    <Mugirl_NightclubStaff.title>夜场员工</Mugirl_NightclubStaff.title>
     <!-- Nightclub Staff -->
-    <MooGirl_NightclubStaff.titleShort>夜场员工</MooGirl_NightclubStaff.titleShort>
+    <Mugirl_NightclubStaff.titleShort>夜场员工</Mugirl_NightclubStaff.titleShort>
     <!-- [PAWN_nameDef] is a performance idol in urban underground clubs. As a Mugirl, [PAWN_pronoun] naturally possesses an excellent appearance and was selected by a talent agency as a trainee at a young age. However, after a few years, [PAWN_pronoun] failed to make it to the end on the idol path and was eliminated. Subsequently, [PAWN_pronoun] continued performing in underground clubs, desperately attracting audience attention to make a living. -->
-    <MooGirl_UndergroundIdol.baseDesc>[PAWN_nameDef]是都市地下俱乐部的表演偶像。作为雪牛娘，她天生拥有出色外貌，很早被经纪公司选拔为练习生。但几年后未能在偶像道路上走到最后，被淘汰出局。随后，她在地下俱乐部继续表演，拼命吸引观众目光，维持生计。</MooGirl_UndergroundIdol.baseDesc>
+    <Mugirl_UndergroundIdol.baseDesc>[PAWN_nameDef]是都市地下俱乐部的表演偶像。作为雪牛娘，她天生拥有出色外貌，很早被经纪公司选拔为练习生。但几年后未能在偶像道路上走到最后，被淘汰出局。随后，她在地下俱乐部继续表演，拼命吸引观众目光，维持生计。</Mugirl_UndergroundIdol.baseDesc>
     <!-- [PAWN_nameDef] is a performance idol in urban underground clubs. As a Mugirl, [PAWN_pronoun] naturally possesses an excellent appearance and was selected by a talent agency as a trainee at a young age. However, after a few years, [PAWN_pronoun] failed to make it to the end on the idol path and was eliminated. Subsequently, [PAWN_pronoun] continued performing in underground clubs, desperately attracting audience attention to make a living. -->
-    <MooGirl_UndergroundIdol.description>[PAWN_nameDef]是都市地下俱乐部的表演偶像。作为雪牛娘，她天生拥有出色外貌，很早被经纪公司选拔为练习生。但几年后未能在偶像道路上走到最后，被淘汰出局。随后，她在地下俱乐部继续表演，拼命吸引观众目光，维持生计。</MooGirl_UndergroundIdol.description>
+    <Mugirl_UndergroundIdol.description>[PAWN_nameDef]是都市地下俱乐部的表演偶像。作为雪牛娘，她天生拥有出色外貌，很早被经纪公司选拔为练习生。但几年后未能在偶像道路上走到最后，被淘汰出局。随后，她在地下俱乐部继续表演，拼命吸引观众目光，维持生计。</Mugirl_UndergroundIdol.description>
     <!-- Underground Idol -->
-    <MooGirl_UndergroundIdol.title>地下偶像</MooGirl_UndergroundIdol.title>
+    <Mugirl_UndergroundIdol.title>地下偶像</Mugirl_UndergroundIdol.title>
     <!-- Underground Idol -->
-    <MooGirl_UndergroundIdol.titleShort>地下偶像</MooGirl_UndergroundIdol.titleShort>
+    <Mugirl_UndergroundIdol.titleShort>地下偶像</Mugirl_UndergroundIdol.titleShort>
 </LanguageData>

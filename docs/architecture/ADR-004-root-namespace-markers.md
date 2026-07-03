@@ -2,11 +2,11 @@
 
 ## Decision
 
-`MooGirl` 根命名空间继续作为历史兼容命名空间保留，但新增类型默认不再使用根命名空间。
+`Mugirl` 根命名空间继续作为历史兼容命名空间保留，但新增类型默认不再使用根命名空间。
 
 ## Context
 
-大量 XML 字段直接引用 `MooGirl.*` 类型，包括 `Class`、`thingClass`、`compClass`、`driverClass`、`workerClass`、`incidentWorkerClass` 和 quest root。直接批量迁移命名空间会同时触碰 XML、Harmony metadata、Scribe 类名和旧运行时引用。
+大量 XML 字段直接引用 `Mugirl.*` 类型，包括 `Class`、`thingClass`、`compClass`、`driverClass`、`workerClass`、`incidentWorkerClass` 和 quest root。直接批量迁移命名空间会同时触碰 XML、Harmony metadata、Scribe 类名和旧运行时引用。
 
 ## Root Namespace Is Allowed For
 
@@ -18,10 +18,10 @@
 
 ## Preferred New Namespaces
 
-- `MooGirl.Core`
-- `MooGirl.Compatibility.<Domain>`
-- `MooGirl.Features.<FeatureName>`
-- `MooGirl.UI`
+- `Mugirl.Core`
+- `Mugirl.Compatibility.<Domain>`
+- `Mugirl.Features.<FeatureName>`
+- `Mugirl.UI`
 
 ## Consequences
 

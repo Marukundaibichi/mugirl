@@ -1,59 +1,59 @@
 using RimWorld;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     public static class MountEligibilityService
     {
-        public static bool CanMount(Comp_MooGirlMount comp, Pawn rider, out string reasonKey)
+        public static bool CanMount(Comp_MugirlMount comp, Pawn rider, out string reasonKey)
         {
             reasonKey = null;
             Pawn carrier = comp?.MooPawn;
             if (rider == null || carrier == null || rider == carrier)
             {
-                reasonKey = "MooGirl.Mount.ReasonInvalid";
+                reasonKey = "Mugirl.Mount.ReasonInvalid";
                 return false;
             }
 
-            if (!MountedPawnUtility.IsMooGirl(carrier))
+            if (!MountedPawnUtility.IsMugirl(carrier))
             {
-                reasonKey = "MooGirl.Mount.ReasonTargetNotMooGirl";
+                reasonKey = "Mugirl.Mount.ReasonTargetNotMugirl";
                 return false;
             }
 
             if (comp.HasMountedPawn)
             {
-                reasonKey = "MooGirl.Mount.ReasonAlreadyHasRider";
+                reasonKey = "Mugirl.Mount.ReasonAlreadyHasRider";
                 return false;
             }
 
             if (!carrier.Spawned || carrier.Dead || carrier.Downed || carrier.Destroyed || carrier.IsBurning() || carrier.InMentalState || !MountedPawnUtility.HasCapacity(carrier, PawnCapacityDefOf.Moving))
             {
-                reasonKey = "MooGirl.Mount.ReasonTargetBadState";
+                reasonKey = "Mugirl.Mount.ReasonTargetBadState";
                 return false;
             }
 
             if (!rider.Spawned || rider.Dead || rider.Downed || rider.Destroyed || rider.IsBurning() || rider.InMentalState || !MountedPawnUtility.HasCapacity(rider, PawnCapacityDefOf.Moving))
             {
-                reasonKey = "MooGirl.Mount.ReasonRiderBadState";
+                reasonKey = "Mugirl.Mount.ReasonRiderBadState";
                 return false;
             }
 
             if (!MountedPawnUtility.IsHumanlike(rider))
             {
-                reasonKey = "MooGirl.Mount.ReasonRiderNotHumanlike";
+                reasonKey = "Mugirl.Mount.ReasonRiderNotHumanlike";
                 return false;
             }
 
             if (MountedPawnUtility.IsMounted(rider, out _))
             {
-                reasonKey = "MooGirl.Mount.ReasonAlreadyMounted";
+                reasonKey = "Mugirl.Mount.ReasonAlreadyMounted";
                 return false;
             }
 
             if (MountedPawnUtility.HasAnyRope(rider) || MountedPawnUtility.HasAnyRope(carrier))
             {
-                reasonKey = "MooGirl.Mount.ReasonRoped";
+                reasonKey = "Mugirl.Mount.ReasonRoped";
                 return false;
             }
 
@@ -65,45 +65,45 @@ namespace MooGirl
             reasonKey = null;
             if (rider == null || carrier == null)
             {
-                reasonKey = "MooGirl.Mount.ReasonInvalid";
+                reasonKey = "Mugirl.Mount.ReasonInvalid";
                 return true;
             }
 
             if (!carrier.Spawned || carrier.Destroyed || carrier.Dead || carrier.Downed || carrier.IsBurning() || carrier.InMentalState)
             {
-                reasonKey = "MooGirl.Mount.ReasonTargetBadState";
+                reasonKey = "Mugirl.Mount.ReasonTargetBadState";
                 return true;
             }
 
             if (rider.Destroyed || rider.Dead || rider.Downed || rider.IsBurning() || rider.InMentalState)
             {
-                reasonKey = "MooGirl.Mount.ReasonRiderBadState";
+                reasonKey = "Mugirl.Mount.ReasonRiderBadState";
                 return true;
             }
 
             Need_Food food = rider.needs?.food;
             if (food != null && (food.Starving || food.CurLevelPercentage <= food.PercentageThreshUrgentlyHungry))
             {
-                reasonKey = "MooGirl.Mount.ReasonRiderHungry";
+                reasonKey = "Mugirl.Mount.ReasonRiderHungry";
                 return true;
             }
 
             Need_Rest rest = rider.needs?.rest;
             if (rest != null && rest.CurLevel < Need_Rest.ThreshVeryTired)
             {
-                reasonKey = "MooGirl.Mount.ReasonRiderTired";
+                reasonKey = "Mugirl.Mount.ReasonRiderTired";
                 return true;
             }
 
             if (HealthAIUtility.ShouldSeekMedicalRest(rider))
             {
-                reasonKey = "MooGirl.Mount.ReasonRiderMedical";
+                reasonKey = "Mugirl.Mount.ReasonRiderMedical";
                 return true;
             }
 
             if (MountedPawnUtility.HasAnyRope(rider) || MountedPawnUtility.HasAnyRope(carrier))
             {
-                reasonKey = "MooGirl.Mount.ReasonRoped";
+                reasonKey = "Mugirl.Mount.ReasonRoped";
                 return true;
             }
 

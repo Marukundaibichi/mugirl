@@ -3,15 +3,15 @@ using RimWorld;
 using System.Reflection;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     internal static class LifeStageVisualService
     {
-        private const string TeenagerLifeStageDefName = "MooGirl_Teenager";
+        private const string TeenagerLifeStageDefName = "Mugirl_Teenager";
 
         public static bool NormalizeBodyType(Pawn pawn)
         {
-            if (!ModsConfig.BiotechActive || pawn?.story == null || !MooGirlIdentity.HasMooGirlBody(pawn))
+            if (!ModsConfig.BiotechActive || pawn?.story == null || !MugirlIdentity.HasMugirlBody(pawn))
             {
                 return false;
             }
@@ -67,7 +67,7 @@ namespace MooGirl
     }
 
     [HarmonyPatch(typeof(Pawn_AgeTracker), "RecalculateLifeStageIndex")]
-    internal static class Harmony_PawnAgeTracker_RecalculateLifeStageIndex_MooGirlBodyType
+    internal static class Harmony_PawnAgeTracker_RecalculateLifeStageIndex_MugirlBodyType
     {
         // StaticCacheLifecycle: 进程级 Pawn_AgeTracker.pawn 反射缓存；不持有游戏对象。
         private static readonly FieldInfo PawnField = AccessTools.Field(typeof(Pawn_AgeTracker), "pawn");

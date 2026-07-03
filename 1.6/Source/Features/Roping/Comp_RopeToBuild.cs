@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class CompRopeToBuild : CompUsable
     {
@@ -20,14 +20,14 @@ namespace MooGirl
                 yield break;
             }
 
-            Pawn ropee = RopingService.FirstMooGirlFollowing(pawn);
+            Pawn ropee = RopingService.FirstMugirlFollowing(pawn);
             if (ropee != null)
             {
-                yield return new FloatMenuOption("MooGirl.RopeToHitch".Translate(), () => StartRoping(pawn));
+                yield return new FloatMenuOption("Mugirl.RopeToHitch".Translate(), () => StartRoping(pawn));
             }
             else
             {
-                yield return new FloatMenuOption("MooGirl.NoValidToRope".Translate(), null, MenuOptionPriority.DisabledOption);
+                yield return new FloatMenuOption("Mugirl.NoValidToRope".Translate(), null, MenuOptionPriority.DisabledOption);
             }
         }
 
@@ -38,13 +38,13 @@ namespace MooGirl
                 return;
             }
 
-            Pawn ropee = RopingService.FirstMooGirlFollowing(pawn);
+            Pawn ropee = RopingService.FirstMugirlFollowing(pawn);
             if (ropee == null)
             {
                 return;
             }
 
-            Job job = JobMaker.MakeJob(MooGirl_DefOf.RopeToBuild, parent);
+            Job job = JobMaker.MakeJob(Mugirl_DefOf.RopeToBuild, parent);
             job.targetB = ropee;
             pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
         }

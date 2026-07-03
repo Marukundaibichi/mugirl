@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class CompProperties_SuppressionEnhancer : HediffCompProperties
     {
@@ -60,7 +60,7 @@ namespace MooGirl
 
             if (pawn.Map != null)
             {
-                MoteMaker.ThrowText(pawn.DrawPos, pawn.Map, "MooGirl.SuppressionIncrease".Translate(amount.ToStringPercent()), Color.yellow, 6f);
+                MoteMaker.ThrowText(pawn.DrawPos, pawn.Map, "Mugirl.SuppressionIncrease".Translate(amount.ToStringPercent()), Color.yellow, 6f);
             }
         }
 

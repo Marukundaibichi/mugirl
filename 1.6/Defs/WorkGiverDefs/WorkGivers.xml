@@ -5,7 +5,7 @@
         <defName>Work_GatherMilk</defName>
         <!-- 自己挤奶 -->
         <label>milk on her own</label>
-        <giverClass>MooGirl.WorkGiver_GatherMilk</giverClass>
+        <giverClass>Mugirl.WorkGiver_GatherMilk</giverClass>
         <workType>Handling</workType>
         <!-- 挤奶 -->
         <verb>milk</verb>
@@ -20,7 +20,7 @@
 
     <JobDef>
         <defName>Job_GatherMilk</defName>
-        <driverClass>MooGirl.JobDriver_GatherMilk</driverClass>
+        <driverClass>Mugirl.JobDriver_GatherMilk</driverClass>
         <!-- 给 TargetA 挤奶 -->
         <reportString>Milk {TargetA}.</reportString>
         <allowOpportunisticPrefix>true</allowOpportunisticPrefix>

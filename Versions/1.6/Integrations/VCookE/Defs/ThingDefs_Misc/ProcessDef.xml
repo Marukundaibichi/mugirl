@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
     <PipeSystem.ProcessDef>
-        <defName>MooGirl_MooGirlMilkIntoCheese</defName>
+        <defName>Mugirl_MugirlMilkIntoCheese</defName>
         <!-- 添加雪牛奶制作奶酪 -->
         <label>Add Mugirl milk cheese process</label>
         <!-- 把 50 份雪牛奶变成 25 份奶酪。 -->
@@ -13,7 +13,7 @@
         <useIngredients>true</useIngredients>
         <ingredients>
             <li>
-                <thing>MooGirl_Milk</thing>
+                <thing>Mugirl_Milk</thing>
                 <countNeeded>50</countNeeded>
             </li>
         </ingredients>

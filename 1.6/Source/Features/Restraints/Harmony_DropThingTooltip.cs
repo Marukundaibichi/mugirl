@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     [HarmonyPatch(typeof(ITab_Pawn_Gear), "DrawThingRow")]
     public static class ITab_Pawn_Gear_DrawThingRow_Transpiler
@@ -53,9 +53,9 @@ namespace MooGirl
 
             if (!patched)
             {
-                MooGirlLog.WarningOnce(
+                MugirlLog.WarningOnce(
                     "DropThingTooltip.TranspilerNotApplied",
-                    "MooGirl.DropThingTooltip.TranspilerNotApplied".Translate().ToString());
+                    "Mugirl.DropThingTooltip.TranspilerNotApplied".Translate().ToString());
             }
         }
 
@@ -64,7 +64,7 @@ namespace MooGirl
             if (thing is Apparel apparel &&
                 (apparel.IsAdvancedApparel() || apparel.IsSlaveApparel()))
             {
-                return "MooGirl.SlaveApparelCannotBeRemoved".Translate();
+                return "Mugirl.SlaveApparelCannotBeRemoved".Translate();
             }
 
             return "DropThingLocked".Translate();

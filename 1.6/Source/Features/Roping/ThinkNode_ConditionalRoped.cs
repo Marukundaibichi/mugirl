@@ -1,7 +1,7 @@
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class ThinkNode_ConditionalRoped : ThinkNode_Conditional
     {

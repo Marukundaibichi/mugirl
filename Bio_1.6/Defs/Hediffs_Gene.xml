@@ -2,7 +2,7 @@
 
 <Defs>
     <HediffDef>
-        <defName>MooGirl_Stun</defName>
+        <defName>Mugirl_Stun</defName>
         <!-- 牛牛撞击 -->
         <label>Mugirl Impact</label>
         <!-- 被雪牛娘创力~口区。 -->
@@ -27,7 +27,7 @@
     </HediffDef>
 
     <HediffDef>
-        <defName>MooGirl_Charge</defName>
+        <defName>Mugirl_Charge</defName>
         <!-- 牛牛冲锋 -->
         <label>Mugirl Charge</label>
         <!-- 冲冲冲！勇敢勇敢我的牛牛！ -->
@@ -42,7 +42,7 @@
             </li>
         </stages>
         <comps>
-            <li Class="MooGirl.HediffCompProperties_CheckJobOrRemove">
+            <li Class="Mugirl.HediffCompProperties_CheckJobOrRemove">
                 <disappearsAfterTicks>1200</disappearsAfterTicks>
                 <requiredJob>Job_Charge</requiredJob>
             </li>

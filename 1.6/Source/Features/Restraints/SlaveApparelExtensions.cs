@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     public static class SlaveApparelExtensions
     {
@@ -198,27 +198,27 @@ namespace MooGirl
             Pawn targetPawn = ResolveTargetPawn(pawn, jobTarget);
             if (targetPawn?.apparel == null)
             {
-                return DisabledOption(label, "MooGirl.InvalidTarget".Translate().ToString());
+                return DisabledOption(label, "Mugirl.InvalidTarget".Translate().ToString());
             }
 
             if (!HasLockedApparel(targetPawn))
             {
-                return DisabledOption(label, "MooGirl.NotWearingLockedApparel".Translate().ToString());
+                return DisabledOption(label, "Mugirl.NotWearingLockedApparel".Translate().ToString());
             }
 
             if (targetPawn != pawn && !pawn.CanReserve(jobTarget))
             {
-                return DisabledOption(label, "MooGirl.Reserved".Translate().ToString());
+                return DisabledOption(label, "Mugirl.Reserved".Translate().ToString());
             }
 
             if (targetPawn != pawn && !pawn.CanReach(jobTarget, PathEndMode.Touch, Danger.Some))
             {
-                return DisabledOption(label, "MooGirl.NoPath".Translate().ToString());
+                return DisabledOption(label, "Mugirl.NoPath".Translate().ToString());
             }
 
             if ((requiredWork != null) && pawn.WorkTagIsDisabled(requiredWork.workTags))
             {
-                return DisabledOption(label, "MooGirl.CannotPrioritizeWorkTypeDisabled".Translate(requiredWork.gerundLabel).ToString());
+                return DisabledOption(label, "Mugirl.CannotPrioritizeWorkTypeDisabled".Translate(requiredWork.gerundLabel).ToString());
             }
 
             return new FloatMenuOption(label, delegate
@@ -241,7 +241,7 @@ namespace MooGirl
                     else
                     {
                         options.Add(new FloatMenuOption(
-                            "MooGirl.WrongKeyType".Translate(item.Label),
+                            "Mugirl.WrongKeyType".Translate(item.Label),
                             null,
                             MenuOptionPriority.Default,
                             null,
@@ -255,11 +255,11 @@ namespace MooGirl
 
                 if (options.Count > 0)
                 {
-                    MooGirlGameUtility.TryAddWindow(new FloatMenu(options));
+                    MugirlGameUtility.TryAddWindow(new FloatMenu(options));
                 }
                 else
                 {
-                    Messages.Message("MooGirl.NotWearingLockedApparel".Translate(), MessageTypeDefOf.RejectInput, historical: false);
+                    Messages.Message("Mugirl.NotWearingLockedApparel".Translate(), MessageTypeDefOf.RejectInput, historical: false);
                 }
             },
             MenuOptionPriority.Default);
@@ -268,7 +268,7 @@ namespace MooGirl
         private static FloatMenuOption DisabledOption(string label, string reason)
         {
             return new FloatMenuOption(
-                "MooGirl.FloatMenu.OptionWithReason".Translate(label, reason),
+                "Mugirl.FloatMenu.OptionWithReason".Translate(label, reason),
                 null,
                 MenuOptionPriority.DisabledOption);
         }

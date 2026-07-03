@@ -9,7 +9,7 @@
     <!-- Feed milk to {TargetA}. -->
     <Job_Breastfeed.reportString>给 {TargetA} 喂奶</Job_Breastfeed.reportString>
     <!-- Drink milk from {TargetA}. -->
-    <Job_DrinkMilkFromMooGirl.reportString>从 {TargetA} 喝奶</Job_DrinkMilkFromMooGirl.reportString>
+    <Job_DrinkMilkFromMugirl.reportString>从 {TargetA} 喝奶</Job_DrinkMilkFromMugirl.reportString>
     <!-- Feed milk to {TargetA}. -->
     <Job_FeedMilkToDowned.reportString>给 {TargetA} 喂奶</Job_FeedMilkToDowned.reportString>
     <!-- Nuzzle {TargetA}. -->

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     // 奴隶服装 ThingDef 扩展，保存锁定、Hediff 和身体部位限制等 XML 配置。
     public class SlaveApparelDef : ThingDef
@@ -170,7 +170,7 @@ namespace MooGirl
             isLocked = false;
             lockCount = 0;
             Wearer.apparel?.Unlock(this);
-            Messages.Message("MooGirl.Restraints.DevUnlock.Message".Translate(Wearer.LabelShortCap, LabelCap), Wearer, MessageTypeDefOf.PositiveEvent);
+            Messages.Message("Mugirl.Restraints.DevUnlock.Message".Translate(Wearer.LabelShortCap, LabelCap), Wearer, MessageTypeDefOf.PositiveEvent);
         }
     }
 
@@ -188,8 +188,8 @@ namespace MooGirl
             Pawn wearer = Wearer;
             if (wearer != null)
             {
-                Messages.Message("MooGirl.SlaveApparelCracked".Translate(wearer.LabelShortCap), wearer, MessageTypeDefOf.PositiveEvent);
-                MooGirlSelectionUtility.SelectInPlaying(wearer);
+                Messages.Message("Mugirl.SlaveApparelCracked".Translate(wearer.LabelShortCap), wearer, MessageTypeDefOf.PositiveEvent);
+                MugirlSelectionUtility.SelectInPlaying(wearer);
             }
         }
 
@@ -204,8 +204,8 @@ namespace MooGirl
             get
             {
                 string label = base.LabelNoCount;
-                string status = IsCracked() ? "MooGirl.Cracked".Translate().ToString() : "MooGirl.Uncracked".Translate().ToString();
-                return "MooGirl.SlaveApparel.StatusLabel".Translate(label, status).ToString();
+                string status = IsCracked() ? "Mugirl.Cracked".Translate().ToString() : "Mugirl.Uncracked".Translate().ToString();
+                return "Mugirl.SlaveApparel.StatusLabel".Translate(label, status).ToString();
             }
         }
 
@@ -215,9 +215,9 @@ namespace MooGirl
 
             yield return new StatDrawEntry(
                 StatCategoryDefOf.Apparel,
-                "MooGirl.CrackStatus".Translate(),
-                IsCracked() ? "MooGirl.Cracked".Translate() : "MooGirl.Uncracked".Translate(),
-                "MooGirl.CrackStatusDesc".Translate(),
+                "Mugirl.CrackStatus".Translate(),
+                IsCracked() ? "Mugirl.Cracked".Translate() : "Mugirl.Uncracked".Translate(),
+                "Mugirl.CrackStatusDesc".Translate(),
                 999);
         }
 

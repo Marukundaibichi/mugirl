@@ -5,7 +5,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class CompProperties_EleShock : HediffCompProperties
     {
@@ -207,7 +207,7 @@ namespace MooGirl
                 return;
             }
 
-            bool hostile = MooGirlWildSlaveUtility.IsHostileToPlayer(pawn);
+            bool hostile = MugirlWildSlaveUtility.IsHostileToPlayer(pawn);
             for (int i = 0; i < shockProps.hediffsToApplyWithParams.Count; i++)
             {
                 TryAddHediffWithParams(pawn, shockProps, shockProps.hediffsToApplyWithParams[i], hostile);

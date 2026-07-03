@@ -3,7 +3,7 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     [HarmonyPatch(typeof(Verb), nameof(Verb.WarmupTime), MethodType.Getter)]
     public static class Harmony_MountedCombatController_WarmupTime

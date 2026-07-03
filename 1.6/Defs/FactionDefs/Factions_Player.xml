@@ -2,21 +2,21 @@
 <Defs>
 
     <FactionDef>
-        <defName>MooGirl_Colony</defName>
+        <defName>Mugirl_Colony</defName>
         <!-- 雪牛娘殖民者 -->
         <label>Mugirl Colonists</label>
         <!-- （文案） -->
         <description>A group of freedom-seeking Mugirls who have successfully escaped enslavement and gathered to establish their own colony. Though the environment is harsh and resources are scarce, they still strive to farm, fight, and support each other, carving out a new future.</description>
         <isPlayer>true</isPlayer>
-        <basicMemberKind>MooGirl_Colony</basicMemberKind>
+        <basicMemberKind>Mugirl_Colony</basicMemberKind>
         <pawnSingular>colonist</pawnSingular>
         <pawnsPlural>colonists</pawnsPlural>
         <techLevel>Industrial</techLevel>
         <backstoryFilters>
             <li>
                 <categories>
-                    <li>MooGirl_Colony</li>
-                    <li>MooGirl_Slave</li>
+                    <li>Mugirl_Colony</li>
+                    <li>Mugirl_Slave</li>
                 </categories>
             </li>
         </backstoryFilters>
@@ -26,8 +26,8 @@
         <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
         <factionNameMaker>NamerFactionOutlander</factionNameMaker>
         <settlementNameMaker>NamerSettlementOutlander</settlementNameMaker>
-        <settlementTexturePath>World/MooGirl_Colony</settlementTexturePath>
-        <factionIconPath>World/MooGirl_Colony</factionIconPath>
+        <settlementTexturePath>World/Mugirl_Colony</settlementTexturePath>
+        <factionIconPath>World/Mugirl_Colony</factionIconPath>
         <startingResearchTags>
             <li>ClassicStart</li>
         </startingResearchTags>

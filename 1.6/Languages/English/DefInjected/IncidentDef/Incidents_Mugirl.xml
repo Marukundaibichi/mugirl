@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <Mugirl_WildManWandersIn.label>Wild Mugirl Slave</Mugirl_WildManWandersIn.label>
+    <Mugirl_WildManWandersIn.letterLabel>{0} trespassed onto your territory.</Mugirl_WildManWandersIn.letterLabel>
+    <Mugirl_WildManWandersIn.letterText>A {1} who escaped from a slave caravan, the tattered restraints on [PAWN_possessive] body seeming to tell of a tragic past. [PAWN_pronoun] is named {0}.\n\nYou can attempt to recruit [PAWN_objective].</Mugirl_WildManWandersIn.letterText>
+</LanguageData>

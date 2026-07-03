@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- aged cheese effect -->
+    <Hediff_MugirlAgedCheese.label>陈年奶酪效果</Hediff_MugirlAgedCheese.label>
+    <!-- Special compounds from aged cheese are active in the body, preventing wound infection, improving blood filtration, clearing toxins, and speeding immunity. -->
+    <Hediff_MugirlAgedCheese.description>陈年奶酪的特殊成分在体内发挥作用：防止伤口感染、提高血液过滤清除毒素、并加快免疫速度</Hediff_MugirlAgedCheese.description>
+    <!-- milky cake -->
+    <Hediff_MugirlCowCake.label>奶香蛋糕</Hediff_MugirlCowCake.label>
+    <!-- Ate a delicious cake with a rich milk fragrance. -->
+    <Hediff_MugirlCowCake.description>吃了块奶香浓郁的美味蛋糕</Hediff_MugirlCowCake.description>
+    <!-- healthy milk powder -->
+    <Hediff_MugirlMilkPowder.label>健康奶粉</Hediff_MugirlMilkPowder.label>
+    <!-- Mugirl milk powder provides comprehensive nutrition bonuses. -->
+    <Hediff_MugirlMilkPowder.description>雪牛娘奶粉提供全面的营养加成</Hediff_MugirlMilkPowder.description>
+    <!-- healthy milk tablet -->
+    <Hediff_MugirlMilkTablet.label>健康奶片</Hediff_MugirlMilkTablet.label>
+    <!-- Mugirl milk tablets provide nutrition bonuses. -->
+    <Hediff_MugirlMilkTablet.description>雪牛娘奶片提供营养加成</Hediff_MugirlMilkTablet.description>
+</LanguageData>

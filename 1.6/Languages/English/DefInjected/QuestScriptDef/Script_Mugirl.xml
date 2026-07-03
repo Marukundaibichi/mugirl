@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <Mugirl_SlaveOpeningPodCrash.questDescriptionRules.rulesStrings>
+        <li>questDescription->A Mugirl slave's transport pod crashlanded near your colony. She just escaped from a megacorporation's slave transport ship- whether it was due to ship malfunction, attack, or some other means of escape remains unknown.\nThe tight slave restraints on her body silently speak of the suffering she endured under megacorporation's tyranny.\nNow she has nowhere to go. If you choose to rescue her, she may join your colony. Will you give this cute and pitiful escapee a chance at freedom and a new life?</li>
+    </Mugirl_SlaveOpeningPodCrash.questDescriptionRules.rulesStrings>
+    <Mugirl_SlaveOpeningPodCrash.questNameRules.rulesStrings>
+        <li>questName->Transport Pod Crash (Mugirl Slave)</li>
+    </Mugirl_SlaveOpeningPodCrash.questNameRules.rulesStrings>
+    <Mugirl_SlaveRefugeePodCrash.questDescriptionRules.rulesStrings>
+        <li>questDescription->A Mugirl slave's transport pod crashlanded near your colony. She just escaped from a megacorporation's slave transport ship- whether it was due to ship malfunction, attack, or some other means of escape remains unknown.\nThe tightly bound slave restraints on her body silently record the pain and submission she experienced under the megacorporation's tyranny.\nNow she has nowhere to go. If you choose to rescue her, she may join your colony.</li>
+    </Mugirl_SlaveRefugeePodCrash.questDescriptionRules.rulesStrings>
+    <Mugirl_SlaveRefugeePodCrash.questNameRules.rulesStrings>
+        <li>questName->Transport Pod Crash (Mugirl Slave)</li>
+    </Mugirl_SlaveRefugeePodCrash.questNameRules.rulesStrings>
+    <Mugirl_SlaveWandererJoins.questDescriptionRules.rulesStrings>
+        <li>questDescription->A Mugirl who escaped from a slave caravan has wandered here, her tattered restraints still bound to her, telling of the suffering she endured as a slave. You can attempt to rescue and recruit her.</li>
+    </Mugirl_SlaveWandererJoins.questDescriptionRules.rulesStrings>
+    <Mugirl_SlaveWandererJoins.questNameRules.rulesStrings>
+        <li>questName->Wild Mugirl Slave Joins</li>
+    </Mugirl_SlaveWandererJoins.questNameRules.rulesStrings>
+</LanguageData>

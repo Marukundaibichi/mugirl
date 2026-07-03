@@ -8,13 +8,13 @@
     -->
     <!-- VCookE 和 PipeSystem 的目标路径可能随版本变化；目标缺失或已添加时静默跳过。 -->
     <Operation Class="PatchOperationConditional">
-        <xpath>Defs/ThingDef[defName="VCE_CheesePress"]/comps/li[@Class="PipeSystem.CompProperties_AdvancedResourceProcessor"]/processes/li[text()="MooGirl_MooGirlMilkIntoCheese"]</xpath>
+        <xpath>Defs/ThingDef[defName="VCE_CheesePress"]/comps/li[@Class="PipeSystem.CompProperties_AdvancedResourceProcessor"]/processes/li[text()="Mugirl_MugirlMilkIntoCheese"]</xpath>
         <nomatch Class="PatchOperationConditional">
             <xpath>Defs/ThingDef[defName="VCE_CheesePress"]/comps/li[@Class="PipeSystem.CompProperties_AdvancedResourceProcessor"]/processes</xpath>
             <match Class="PatchOperationAdd">
                 <xpath>Defs/ThingDef[defName="VCE_CheesePress"]/comps/li[@Class="PipeSystem.CompProperties_AdvancedResourceProcessor"]/processes</xpath>
                 <value>
-                    <li>MooGirl_MooGirlMilkIntoCheese</li>
+                    <li>Mugirl_MugirlMilkIntoCheese</li>
                 </value>
             </match>
         </nomatch>

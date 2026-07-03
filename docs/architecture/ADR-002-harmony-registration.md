@@ -2,7 +2,7 @@
 
 ## Decision
 
-保留 Harmony attribute 扫描作为主要 patch 注册方式，同时使用 `MooGirlPatchInfo` / `MooGirlPatchCatalog` 记录高风险和手动 patch 元数据。
+保留 Harmony attribute 扫描作为主要 patch 注册方式，同时使用 `MugirlPatchInfo` / `MugirlPatchCatalog` 记录高风险和手动 patch 元数据。
 
 ## Context
 
@@ -12,7 +12,7 @@
 
 - Attribute 扫描适合普通 patch，能减少样板代码。
 - Patch metadata 记录模块、目标类型/方法、patch 类型、是否跳过原方法、风险等级和失败行为。
-- 手动反射 patch 继续由 `MooGirlPatchRegistry` 管理，失败时用一次性 warning 降级。
+- 手动反射 patch 继续由 `MugirlPatchRegistry` 管理，失败时用一次性 warning 降级。
 - 静态验证会检查 Harmony patch 和手动 patch 是否存在 metadata，避免新增高风险 patch 变成隐形行为。
 
 ## Consequences

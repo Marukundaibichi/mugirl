@@ -54,7 +54,7 @@
         <comps>
             <li Class="CompProperties_Flickable" />
             <li Class="CompProperties_Usable">
-                <compClass>MooGirl.CompRopeToBuild</compClass>
+                <compClass>Mugirl.CompRopeToBuild</compClass>
                 <useJob>RopeToBuild</useJob>
                 <!-- 栓在建筑上 -->
                 <useLabel>Rope to Building</useLabel>

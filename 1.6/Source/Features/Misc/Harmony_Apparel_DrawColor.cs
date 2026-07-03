@@ -3,14 +3,14 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     [HarmonyPatch(typeof(Apparel), nameof(Apparel.DrawColor), MethodType.Getter)]
     public static class Harmony_Apparel_DrawColor
     {
         public static bool Prefix(Apparel __instance, ref Color __result)
         {
-            if (__instance?.def?.defName != "MooGirl_Spacesuit")
+            if (__instance?.def?.defName != "Mugirl_Spacesuit")
             {
                 return true;
             }

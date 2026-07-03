@@ -3,7 +3,7 @@ using RimWorld;
 using System.Collections.Generic;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     [HarmonyPatch(typeof(Pawn_DraftController), "GetGizmos")]
     public static class Patch_PawnDraftController_GetGizmos
@@ -14,7 +14,7 @@ namespace MooGirl
             if (__result == null) return;
 
             Pawn pawn = __instance?.pawn;
-            if (!RopingService.IsMooGirlRopee(pawn)) return;
+            if (!RopingService.IsMugirlRopee(pawn)) return;
             if (!RopingService.IsRopedByPawn(pawn) && !RopingService.IsRopedToSpot(pawn) && !RopingService.IsPendingSpotRope(pawn)) return;
 
             __result = DisableDraftGizmo(__result);
@@ -26,7 +26,7 @@ namespace MooGirl
             {
                 if (gizmo is Command_Toggle toggle && toggle.icon == TexCommand.Draft)
                 {
-                    toggle.Disable("MooGirl.DraftDisabledWhileRoped".Translate());
+                    toggle.Disable("Mugirl.DraftDisabledWhileRoped".Translate());
                 }
 
                 yield return gizmo;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     // 脑控头盔配置：周期性 Hediff 转换和主动按钮参数。
     public class CompProperties_BrainwashHelmet : CompProperties
@@ -15,8 +15,8 @@ namespace MooGirl
 
         public int useCooldownTicks = 480;
 
-        public string activateLabel = "MooGirl.Restraints.BrainwashHelmet.ActivateLabel";
-        public string activateDesc = "MooGirl.Restraints.BrainwashHelmet.ActivateDesc";
+        public string activateLabel = "Mugirl.Restraints.BrainwashHelmet.ActivateLabel";
+        public string activateDesc = "Mugirl.Restraints.BrainwashHelmet.ActivateDesc";
         public string activateIconPath = "UI/Commands/DesirePower";
 
         // 每轮转换随机抽取一个周期，避免所有装备同 tick 触发。
@@ -139,8 +139,8 @@ namespace MooGirl
 
                 yield return new Command_ActionWithCooldown
                 {
-                    defaultLabel = MooGirlText.Resolve(helmetProps.activateLabel),
-                    defaultDesc = MooGirlText.Resolve(helmetProps.activateDesc),
+                    defaultLabel = MugirlText.Resolve(helmetProps.activateLabel),
+                    defaultDesc = MugirlText.Resolve(helmetProps.activateDesc),
                     icon = activateIcon,
                     action = () =>
                     {
@@ -158,7 +158,7 @@ namespace MooGirl
                         ExecuteHediffLogic(wearer, currentProps);
                         lastManualUseTick = currentTick;
 
-                        Messages.Message("MooGirl.Restraints.BrainwashHelmet.ManualTriggerMessage".Translate(wearer.LabelShortCap), MessageTypeDefOf.PositiveEvent);
+                        Messages.Message("Mugirl.Restraints.BrainwashHelmet.ManualTriggerMessage".Translate(wearer.LabelShortCap), MessageTypeDefOf.PositiveEvent);
                     },
                     Disabled = !canUse,
                     cooldownPercentGetter = () => ManualCooldownPercent(Props, cooldownPercent)
@@ -169,8 +169,8 @@ namespace MooGirl
                 {
                     yield return new Command_Action
                     {
-                        defaultLabel = "MooGirl.Restraints.BrainwashHelmet.IdeoConvertLabel".Translate(),
-                        defaultDesc = "MooGirl.Restraints.BrainwashHelmet.IdeoConvertDesc".Translate(),
+                        defaultLabel = "Mugirl.Restraints.BrainwashHelmet.IdeoConvertLabel".Translate(),
+                        defaultDesc = "Mugirl.Restraints.BrainwashHelmet.IdeoConvertDesc".Translate(),
                         icon = activateIcon,
                         action = () =>
                         {
@@ -187,8 +187,8 @@ namespace MooGirl
                             }
 
                             GameComponent_BrainwashPerformance.StartFor(wearer, GetBrainwashPerformanceHediffDefFor(wearer, currentProps));
-                            MooGirl_IdeoUtility.AdoptPlayerPrimaryIdeo(wearer);
-                            Messages.Message("MooGirl.Restraints.BrainwashHelmet.IdeoConvertMessage".Translate(wearer.LabelShortCap), wearer, MessageTypeDefOf.PositiveEvent);
+                            Mugirl_IdeoUtility.AdoptPlayerPrimaryIdeo(wearer);
+                            Messages.Message("Mugirl.Restraints.BrainwashHelmet.IdeoConvertMessage".Translate(wearer.LabelShortCap), wearer, MessageTypeDefOf.PositiveEvent);
                         }
                     };
                 }
@@ -313,7 +313,7 @@ namespace MooGirl
 
         private static int CurrentGameTickOrFallback(int fallback)
         {
-            return MooGirlTickUtility.CurrentGameTickOrFallback(fallback);
+            return MugirlTickUtility.CurrentGameTickOrFallback(fallback);
         }
 
         private static Texture2D GetCommandIcon(string iconPath)

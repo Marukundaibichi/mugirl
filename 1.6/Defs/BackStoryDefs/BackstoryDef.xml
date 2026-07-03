@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-    <AlienRace.AlienBackstoryDef Name="MooGirl_BaseBackStory" Abstract="True">
+    <AlienRace.AlienBackstoryDef Name="Mugirl_BaseBackStory" Abstract="True">
         <maleCommonality>0</maleCommonality>
     </AlienRace.AlienBackstoryDef>
 
-    <AlienRace.AlienBackstoryDef ParentName="MooGirl_BaseBackStory">
-        <defName>MooGirl_Newborn</defName>
+    <AlienRace.AlienBackstoryDef ParentName="Mugirl_BaseBackStory">
+        <defName>Mugirl_Newborn</defName>
         <bodyTypeGlobal MayRequire="Ludeon.RimWorld.Biotech">Baby</bodyTypeGlobal>
         <!-- 雪牛娘新生儿 -->
         <title>Mugirl newborn</title>
@@ -15,14 +15,14 @@
         <baseDesc>[PAWN_nameDef] is a newborn. [PAWN_possessive] life revolves around drinking milk and sleeping.</baseDesc>
         <slot>Childhood</slot>
         <spawnCategories>
-            <li>MooGirl_Newborn</li>
+            <li>Mugirl_Newborn</li>
         </spawnCategories>
         <requiresSpawnCategory>true</requiresSpawnCategory>
     </AlienRace.AlienBackstoryDef>
 
     <!--儿童背景-->
-    <AlienRace.AlienBackstoryDef ParentName="MooGirl_BaseBackStory">
-        <defName>MooGirl_Child</defName>
+    <AlienRace.AlienBackstoryDef ParentName="Mugirl_BaseBackStory">
+        <defName>Mugirl_Child</defName>
         <bodyTypeGlobal MayRequire="Ludeon.RimWorld.Biotech">Child</bodyTypeGlobal>
         <!-- 被解救的雪牛娘 -->
         <title>The Rescued Mugirl</title>
@@ -38,22 +38,22 @@
             <Social>5</Social>
         </skillGains>
         <spawnCategories>
-            <li>MooGirl_Colony</li>
+            <li>Mugirl_Colony</li>
         </spawnCategories>
     </AlienRace.AlienBackstoryDef>
 
-    <AlienRace.AlienBackstoryDef ParentName="MooGirl_BaseBackStory" Name="MooGirl_ChildSlaveBackStory" Abstract="True">
+    <AlienRace.AlienBackstoryDef ParentName="Mugirl_BaseBackStory" Name="Mugirl_ChildSlaveBackStory" Abstract="True">
         <bodyTypeGlobal MayRequire="Ludeon.RimWorld.Biotech">Child</bodyTypeGlobal>
         <slot>Childhood</slot>
         <spawnCategories>
-            <li>MooGirl_Slave</li>
+            <li>Mugirl_Slave</li>
         </spawnCategories>
     </AlienRace.AlienBackstoryDef>
 
     <!--儿童劳工+手+矿
     -社 禁智-->
-    <AlienRace.AlienBackstoryDef ParentName="MooGirl_ChildSlaveBackStory">
-        <defName>MooGirl_ChildWorker</defName>
+    <AlienRace.AlienBackstoryDef ParentName="Mugirl_ChildSlaveBackStory">
+        <defName>Mugirl_ChildWorker</defName>
         <!-- 儿童劳工 -->
         <title>Child Labour</title>
         <!-- 童工 -->
@@ -72,8 +72,8 @@
 
     <!--农场奴隶+种+驯
     -艺 禁烹-->
-    <AlienRace.AlienBackstoryDef ParentName="MooGirl_ChildSlaveBackStory">
-        <defName>MooGirl_FarmSlave</defName>
+    <AlienRace.AlienBackstoryDef ParentName="Mugirl_ChildSlaveBackStory">
+        <defName>Mugirl_FarmSlave</defName>
         <!-- 农场奴隶 -->
         <title>Farm Slave</title>
         <!-- 农场奴隶 -->
@@ -92,8 +92,8 @@
 
     <!--家庭仆人+社+烹-驯
     无暴力-->
-    <AlienRace.AlienBackstoryDef ParentName="MooGirl_ChildSlaveBackStory">
-        <defName>MooGirl_HouseServant</defName>
+    <AlienRace.AlienBackstoryDef ParentName="Mugirl_ChildSlaveBackStory">
+        <defName>Mugirl_HouseServant</defName>
         <!-- 家庭仆人 -->
         <title>Domestic Servant</title>
         <!-- 家庭仆人 -->
@@ -112,8 +112,8 @@
 
     <!--增产实验对象
     +医 +智 -种 禁社-->
-    <AlienRace.AlienBackstoryDef ParentName="MooGirl_ChildSlaveBackStory">
-        <defName>MooGirl_ExperimentalChild</defName>
+    <AlienRace.AlienBackstoryDef ParentName="Mugirl_ChildSlaveBackStory">
+        <defName>Mugirl_ExperimentalChild</defName>
         <!-- 增产实验对象 -->
         <title>Yield Enhancement Experiment Subject</title>
         <!-- 实验对象 -->
@@ -131,8 +131,8 @@
     </AlienRace.AlienBackstoryDef>
 
     <!--成年背景-->
-    <AlienRace.AlienBackstoryDef ParentName="MooGirl_BaseBackStory">
-        <defName>MooGirl_Adult</defName>
+    <AlienRace.AlienBackstoryDef ParentName="Mugirl_BaseBackStory">
+        <defName>Mugirl_Adult</defName>
         <bodyTypeFemale>Female</bodyTypeFemale>
         <bodyTypeMale>Female</bodyTypeMale>
         <!-- 雪牛娘解放者 -->
@@ -151,21 +151,21 @@
             <Crafting>5</Crafting>
         </skillGains>
         <spawnCategories>
-            <li>MooGirl_Colony</li>
+            <li>Mugirl_Colony</li>
         </spawnCategories>
     </AlienRace.AlienBackstoryDef>
 
-    <AlienRace.AlienBackstoryDef ParentName="MooGirl_BaseBackStory" Name="MooGirl_AdultSlaveBackStory" Abstract="True">
+    <AlienRace.AlienBackstoryDef ParentName="Mugirl_BaseBackStory" Name="Mugirl_AdultSlaveBackStory" Abstract="True">
         <bodyTypeFemale>Female</bodyTypeFemale>
         <bodyTypeMale>Female</bodyTypeMale>
         <slot>Adulthood</slot>
         <spawnCategories>
-            <li>MooGirl_Slave</li>
+            <li>Mugirl_Slave</li>
         </spawnCategories>
     </AlienRace.AlienBackstoryDef>
 
-    <AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
-        <defName>MooGirl_Colonist</defName>
+    <AlienRace.AlienBackstoryDef ParentName="Mugirl_AdultSlaveBackStory">
+        <defName>Mugirl_Colonist</defName>
         <!-- 雪牛娘殖民者 -->
         <title>Mugirl Colonist</title>
         <!-- 殖民者 -->
@@ -175,8 +175,8 @@
         <requiresSpawnCategory>true</requiresSpawnCategory>
     </AlienRace.AlienBackstoryDef>
 
-    <AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
-        <defName>MooGirl_MineWorker</defName>
+    <AlienRace.AlienBackstoryDef ParentName="Mugirl_AdultSlaveBackStory">
+        <defName>Mugirl_MineWorker</defName>
         <!-- 矿井劳工 -->
         <title>Mine Labour</title>
         <!-- 矿井劳工 -->
@@ -190,8 +190,8 @@
         </skillGains>
     </AlienRace.AlienBackstoryDef>
 
-    <AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
-        <defName>MooGirl_ConstructionWorker</defName>
+    <AlienRace.AlienBackstoryDef ParentName="Mugirl_AdultSlaveBackStory">
+        <defName>Mugirl_ConstructionWorker</defName>
         <!-- 工地劳工 -->
         <title>Construction Site Labour</title>
         <!-- 工地劳工 -->
@@ -205,8 +205,8 @@
         </skillGains>
     </AlienRace.AlienBackstoryDef>
 
-    <AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
-        <defName>MooGirl_FarmWorker</defName>
+    <AlienRace.AlienBackstoryDef ParentName="Mugirl_AdultSlaveBackStory">
+        <defName>Mugirl_FarmWorker</defName>
         <!-- 农场劳工 -->
         <title>Farm Labour</title>
         <!-- 农场劳工 -->
@@ -223,8 +223,8 @@
         </workDisables>
     </AlienRace.AlienBackstoryDef>
 
-    <AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
-        <defName>MooGirl_FactoryWorker</defName>
+    <AlienRace.AlienBackstoryDef ParentName="Mugirl_AdultSlaveBackStory">
+        <defName>Mugirl_FactoryWorker</defName>
         <!-- 工厂劳工 -->
         <title>Factory Worker</title>
         <!-- 工厂劳工 -->
@@ -238,8 +238,8 @@
         </skillGains>
     </AlienRace.AlienBackstoryDef>
 
-    <AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
-        <defName>MooGirl_CattleSlave</defName>
+    <AlienRace.AlienBackstoryDef ParentName="Mugirl_AdultSlaveBackStory">
+        <defName>Mugirl_CattleSlave</defName>
         <!-- 牛场奴隶 -->
         <title>Cattle Ranch Slave</title>
         <!-- 牛场奴隶 -->
@@ -253,8 +253,8 @@
         </skillGains>
     </AlienRace.AlienBackstoryDef>
 
-    <AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
-        <defName>MooGirl_Merchant</defName>
+    <AlienRace.AlienBackstoryDef ParentName="Mugirl_AdultSlaveBackStory">
+        <defName>Mugirl_Merchant</defName>
         <!-- 行商小贩 -->
         <title>Pedlar</title>
         <!-- 行商小贩 -->
@@ -268,8 +268,8 @@
         </skillGains>
     </AlienRace.AlienBackstoryDef>
 
-    <AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
-        <defName>MooGirl_Housekeeper</defName>
+    <AlienRace.AlienBackstoryDef ParentName="Mugirl_AdultSlaveBackStory">
+        <defName>Mugirl_Housekeeper</defName>
         <!-- 家庭保姆 -->
         <title>Household Carer</title>
         <!-- 家庭保姆 -->
@@ -283,8 +283,8 @@
         </skillGains>
     </AlienRace.AlienBackstoryDef>
 
-    <AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
-        <defName>MooGirl_UndergroundIdol</defName>
+    <AlienRace.AlienBackstoryDef ParentName="Mugirl_AdultSlaveBackStory">
+        <defName>Mugirl_UndergroundIdol</defName>
         <!-- 地下偶像 -->
         <title>Underground Idol</title>
         <!-- 地下偶像 -->
@@ -298,8 +298,8 @@
         </skillGains>
     </AlienRace.AlienBackstoryDef>
 
-    <AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
-        <defName>MooGirl_NightclubStaff</defName>
+    <AlienRace.AlienBackstoryDef ParentName="Mugirl_AdultSlaveBackStory">
+        <defName>Mugirl_NightclubStaff</defName>
         <!-- 夜场员工 -->
         <title>Nightclub Staff</title>
         <!-- 夜场员工 -->
@@ -313,8 +313,8 @@
         </skillGains>
     </AlienRace.AlienBackstoryDef>
 
-    <AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
-        <defName>MooGirl_Gladiator</defName>
+    <AlienRace.AlienBackstoryDef ParentName="Mugirl_AdultSlaveBackStory">
+        <defName>Mugirl_Gladiator</defName>
         <!-- 角斗战士 -->
         <title>Gladiator</title>
         <!-- 角斗战士 -->
@@ -328,8 +328,8 @@
         </skillGains>
     </AlienRace.AlienBackstoryDef>
 
-    <AlienRace.AlienBackstoryDef ParentName="MooGirl_AdultSlaveBackStory">
-        <defName>MooGirl_GangMember</defName>
+    <AlienRace.AlienBackstoryDef ParentName="Mugirl_AdultSlaveBackStory">
+        <defName>Mugirl_GangMember</defName>
         <!-- 黑道成员 -->
         <title>Gang Member</title>
         <!-- 黑道成员 -->

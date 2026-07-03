@@ -2,7 +2,7 @@
 <Defs>
     <!-- 喝奶心情 -->
     <ThoughtDef>
-        <defName>MooGirl_DrankMilk</defName>
+        <defName>Mugirl_DrankMilk</defName>
         <durationDays>1</durationDays>
         <stackLimit>1</stackLimit>
         <stages>
@@ -18,7 +18,7 @@
 
     <!-- 被喂奶心情（倒地时） -->
     <ThoughtDef>
-        <defName>MooGirl_FedMilk</defName>
+        <defName>Mugirl_FedMilk</defName>
         <durationDays>1</durationDays>
         <stackLimit>1</stackLimit>
         <stages>

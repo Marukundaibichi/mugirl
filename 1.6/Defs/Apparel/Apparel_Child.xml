@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-    <ThingDef Name="MooGirl_ChildBase" ParentName="MooGirl_ApparelBase" Abstract="True">
+    <ThingDef Name="Mugirl_ChildBase" ParentName="Mugirl_ApparelBase" Abstract="True">
     <recipeMaker>
         <researchPrerequisite>ComplexClothing</researchPrerequisite>
     </recipeMaker>
@@ -11,25 +11,25 @@
                 <li>OnSkin</li>
             </layers>
             <tags>
-                <li>MooGirl_OnSkin</li>
+                <li>Mugirl_OnSkin</li>
             </tags>
         </apparel>
         <thingCategories>
-            <li>MooGirl_OnSkin</li>
+            <li>Mugirl_OnSkin</li>
         </thingCategories>
         <recipeMaker>
             <researchPrerequisite>ComplexClothing</researchPrerequisite>
         </recipeMaker>
     </ThingDef>
 
-    <ThingDef ParentName="MooGirl_ChildBase">
-        <defName>MooGirl_ChildCheongsam</defName>
+    <ThingDef ParentName="Mugirl_ChildBase">
+        <defName>Mugirl_ChildCheongsam</defName>
         <!-- 雪牛娘 儿童旗袍 「皎月裁云」 -->
         <label>Mugirl Child Cheongsam "Cloud-Cut Bright Moon"</label>
         <!-- 「八重·朱 服装」出品高开衩真丝旗袍，纷繁花绣衬出超低胸襟。东方美学与现代性感碰撞，化身移动的纯白焦点。 -->
         <description>A Mugirl silk cheongsam from "Vache Rousse", with ornate floral embroidery and a flowing white silhouette shaped by eastern aesthetics.</description>
         <graphicData>
-            <texPath>Things/Apparel/MooGirl_ChildCheongsam/MooGirl_ChildCheongsam</texPath>
+            <texPath>Things/Apparel/Mugirl_ChildCheongsam/Mugirl_ChildCheongsam</texPath>
         </graphicData>
         <costStuffCount>70</costStuffCount>
         <stuffCategories>
@@ -51,7 +51,7 @@
                 <li>Shoulders</li>
                 <li>Legs</li>
             </bodyPartGroups>
-            <wornGraphicPath>Things/Apparel/MooGirl_ChildCheongsam/MooGirl_ChildCheongsam</wornGraphicPath>
+            <wornGraphicPath>Things/Apparel/Mugirl_ChildCheongsam/Mugirl_ChildCheongsam</wornGraphicPath>
             <useWornGraphicMask>false</useWornGraphicMask>
         </apparel>
     </ThingDef>

@@ -48,9 +48,9 @@
 ## Facial Animation 内容
 
 - 新增或修改 `Textures/FA`、`1.6/FacialAnimation/Defs` 前先看 `facial-animation-guide.md`。
-- 新 FA 动画必须写 `raceName=MooGirl`，否则当前雪牛娘专属动画池不会使用它。
+- 新 FA 动画必须写 `raceName=Mugirl`，否则当前雪牛娘专属动画池不会使用它。
 - 新 shape 要同时确认 `*ShapeDef` 和 `{shape}_south` 贴图；缺贴图会按 `altShapeDef`、`normal`、透明 dummy 静默回退。
-- 不要删除或限制 `normal_MooGirl`，它是所有动画合成的基础帧。
+- 不要删除或限制 `normal_Mugirl`，它是所有动画合成的基础帧。
 - 眼睛贴图当前按整张眼睛和高光绘制，不写 `altMaskPath`；只有重新启用左右眼 mask 时，才补 `FA/Eyes/Common` 并把 `altMaskPath` 加回所有相关 Eye TypeDef。
 - `blush`、`lovinblush` 必须作为 `headShapeDef` 使用并画在 `Heads_Blank`，这样脸红位于眼白下方；不要在新动画里用 `emotionShapeDef=blush/lovinblush`。
 - `sad` 也是严肃嘴，不只代表低心情；静态攻击、`Wait_Combat` 等沉默紧张状态用 `sad`，咬牙或明显用力状态才用 `tight`。`Wait_Combat` 可以用 `angled` 眉和扫视表现警戒，但不能全程半眯。

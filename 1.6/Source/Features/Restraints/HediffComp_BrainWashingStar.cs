@@ -1,6 +1,6 @@
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     // 洗脑表演 HediffComp，持有可存档的播放状态。
     public class HediffComp_BrainWashingStar : HediffComp

@@ -3,14 +3,14 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     public static class RopingService
     {
-        public static bool IsMooGirlRopee(Pawn pawn)
+        public static bool IsMugirlRopee(Pawn pawn)
         {
-            // 牵引规则保留历史边界：按 MooGirl body 识别 ropee，允许 HAR 变体共用该身体。
-            return MooGirlIdentity.HasMooGirlBody(pawn);
+            // 牵引规则保留历史边界：按 Mugirl body 识别 ropee，允许 HAR 变体共用该身体。
+            return MugirlIdentity.HasMugirlBody(pawn);
         }
 
         public static bool CanStartPawnRope(Pawn roper, Pawn ropee)
@@ -20,7 +20,7 @@ namespace MooGirl
                 return false;
             }
 
-            if (!IsMooGirlRopee(ropee))
+            if (!IsMugirlRopee(ropee))
             {
                 return false;
             }
@@ -53,7 +53,7 @@ namespace MooGirl
                 return false;
             }
 
-            if (IsMooGirlRopee(roper) && IsMooGirlRopee(ropee))
+            if (IsMugirlRopee(roper) && IsMugirlRopee(ropee))
             {
                 return false;
             }
@@ -68,7 +68,7 @@ namespace MooGirl
 
         public static bool IsFollowingRoper(Pawn pawn)
         {
-            return pawn?.CurJob?.def == MooGirl_DefOf.Job_FollowRoper;
+            return pawn?.CurJob?.def == Mugirl_DefOf.Job_FollowRoper;
         }
 
         public static bool IsRopedByPawn(Pawn pawn)
@@ -205,7 +205,7 @@ namespace MooGirl
             return index != null && index.IsPendingSpotRope(pawn);
         }
 
-        public static Pawn FirstMooGirlFollowing(Pawn roper)
+        public static Pawn FirstMugirlFollowing(Pawn roper)
         {
             List<Pawn> ropees = RopeesFor(roper);
             if (ropees == null)
@@ -216,7 +216,7 @@ namespace MooGirl
             for (int i = 0; i < ropees.Count; i++)
             {
                 Pawn ropee = ropees[i];
-                if (IsMooGirlRopee(ropee) && IsFollowingRoper(ropee) && ropee.CurJob.targetA.Thing == roper)
+                if (IsMugirlRopee(ropee) && IsFollowingRoper(ropee) && ropee.CurJob.targetA.Thing == roper)
                 {
                     return ropee;
                 }
@@ -225,7 +225,7 @@ namespace MooGirl
             return null;
         }
 
-        public static int CountMooGirlFollowers(Pawn roper, int stopAt)
+        public static int CountMugirlFollowers(Pawn roper, int stopAt)
         {
             List<Pawn> ropees = RopeesFor(roper);
             if (ropees == null)
@@ -237,7 +237,7 @@ namespace MooGirl
             for (int i = 0; i < ropees.Count; i++)
             {
                 Pawn ropee = ropees[i];
-                if (!IsMooGirlRopee(ropee) || !IsFollowingRoper(ropee) || ropee.CurJob.targetA.Thing != roper)
+                if (!IsMugirlRopee(ropee) || !IsFollowingRoper(ropee) || ropee.CurJob.targetA.Thing != roper)
                 {
                     continue;
                 }
@@ -252,7 +252,7 @@ namespace MooGirl
             return count;
         }
 
-        public static bool HasOnlyMooGirlRopees(Pawn_RopeTracker tracker)
+        public static bool HasOnlyMugirlRopees(Pawn_RopeTracker tracker)
         {
             if (tracker == null || tracker.Ropees == null || tracker.Ropees.Count == 0)
             {
@@ -262,7 +262,7 @@ namespace MooGirl
             List<Pawn> ropees = tracker.Ropees;
             for (int i = 0; i < ropees.Count; i++)
             {
-                if (!IsMooGirlRopee(ropees[i]))
+                if (!IsMugirlRopee(ropees[i]))
                 {
                     return false;
                 }

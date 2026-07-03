@@ -4,7 +4,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class Comp_AdvancedSlaveApparel : ThingComp
     {

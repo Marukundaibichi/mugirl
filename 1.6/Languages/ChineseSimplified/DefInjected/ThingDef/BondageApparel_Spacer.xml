@@ -1,67 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
     <!-- Mugirl Brainwashing Helmet -->
-    <MooGirl_BrainwashHelmet.label>雪牛娘 洗脑头盔</MooGirl_BrainwashHelmet.label>
+    <Mugirl_BrainwashHelmet.label>雪牛娘 洗脑头盔</Mugirl_BrainwashHelmet.label>
     <!-- An advanced mind-control device developed by a space-age megacorporation, appearing as a tightly-fitted, fully enclosed helmet. Its interior emits specific light waves, visuals, and audio to deliver deep sensory stimulation and psychological suggestion, gradually eroding the wearer's self-awareness and reshaping loyalty.\nDuring the brainwashing process, the Mugirl's pupils reflect intense light, her expression becomes stiff and dazed, and her breathing turns rapid, as if caught in a state of irrepressible pleasure intertwined with fear. If forcibly used on individuals from non-megacorporation factions, they will suffer mental breakdowns and frantically attack nearby creatures.\nRemoval requires a [Spacer Restraint Key], and after unlocking, the device can be further decoded using a [Restraint Decryptor].\n\nThe decoded helmet produces different effects depending on the wearer's status: for prisoners, each brainwashing session weakens their will to escape, with three sessions resulting in complete conversion to slavery;\nfor slaves, each session deepens their sense of suppression, with three sessions leading to total submission and elimination of escape desires;\nfor colonists, each session induces an eerie euphoria, with three sessions permanently altering their personality, preventing them from harming other pawns even during mental breaks. -->
-    <MooGirl_BrainwashHelmet.description>由太空巨企研发的高级精神控制装置，外观是一款紧贴头部的全封闭头盔。其内部会释放特定光波、影像与音频，对佩戴者进行深层感官刺激与心理暗示，逐步瓦解自我意识并重塑忠诚。在洗脑过程中，雪牛娘的瞳孔会被强光反射，表情僵硬而恍惚，呼吸急促，仿佛陷入一种无法抗拒的快感与恐惧交织的状态。\n\n若被强制使用在非巨企派系个体上，他们会因精神崩溃而疯狂攻击附近生物。\n\n解除束缚需要[高科技束具钥匙]，而在解锁后还可通过[束具破解器]进行破解。\n\n破解后的头盔会根据佩戴者身份产生不同效果：对于囚犯，每次洗脑都会削弱其逃跑的意志，三次后将被彻底转化为奴隶；对于奴隶，每次洗脑会加深压制感，三次后将完全顺服，不再萌生越狱之心；而对于殖民者，每次洗脑会赋予一种诡异的愉悦情绪，三次后其性格将被永久改变，即便在精神崩溃时也不会再伤害同伴。</MooGirl_BrainwashHelmet.description>
+    <Mugirl_BrainwashHelmet.description>由太空巨企研发的高级精神控制装置，外观是一款紧贴头部的全封闭头盔。其内部会释放特定光波、影像与音频，对佩戴者进行深层感官刺激与心理暗示，逐步瓦解自我意识并重塑忠诚。在洗脑过程中，雪牛娘的瞳孔会被强光反射，表情僵硬而恍惚，呼吸急促，仿佛陷入一种无法抗拒的快感与恐惧交织的状态。\n\n若被强制使用在非巨企派系个体上，他们会因精神崩溃而疯狂攻击附近生物。\n\n解除束缚需要[高科技束具钥匙]，而在解锁后还可通过[束具破解器]进行破解。\n\n破解后的头盔会根据佩戴者身份产生不同效果：对于囚犯，每次洗脑都会削弱其逃跑的意志，三次后将被彻底转化为奴隶；对于奴隶，每次洗脑会加深压制感，三次后将完全顺服，不再萌生越狱之心；而对于殖民者，每次洗脑会赋予一种诡异的愉悦情绪，三次后其性格将被永久改变，即便在精神崩溃时也不会再伤害同伴。</Mugirl_BrainwashHelmet.description>
     <!-- Activate brainwashing -->
-    <MooGirl_BrainwashHelmet.comps.Comp_BrainwashHelmet.activateLabel>激活洗脑</MooGirl_BrainwashHelmet.comps.Comp_BrainwashHelmet.activateLabel>
+    <Mugirl_BrainwashHelmet.comps.Comp_BrainwashHelmet.activateLabel>激活洗脑</Mugirl_BrainwashHelmet.comps.Comp_BrainwashHelmet.activateLabel>
     <!-- Activate the brainwashing helmet and brainwash the target. -->
-    <MooGirl_BrainwashHelmet.comps.Comp_BrainwashHelmet.activateDesc>激活洗脑头盔，洗脑目标。</MooGirl_BrainwashHelmet.comps.Comp_BrainwashHelmet.activateDesc>
+    <Mugirl_BrainwashHelmet.comps.Comp_BrainwashHelmet.activateDesc>激活洗脑头盔，洗脑目标。</Mugirl_BrainwashHelmet.comps.Comp_BrainwashHelmet.activateDesc>
     <!-- Mugirl Magnetic Shackles -->
-    <MooGirl_MagneticShackles.label>雪牛娘 磁力镣铐</MooGirl_MagneticShackles.label>
+    <Mugirl_MagneticShackles.label>雪牛娘 磁力镣铐</Mugirl_MagneticShackles.label>
     <!-- A high-tech restraint developed by a space-age megacorporation, combining a collar and handcuffs. Its internal magnetic mechanism activates intermittently, pulling the wearer's hands to the neck, forming a shackle-like posture. This design exhibits a distinct whimsicality, intended for observing the Mugirl's flustered reactions when suddenly restrained. Removal requires a [Spacer Restraint Key], and after unlocking, the device can be further decoded using a [Restraint Decryptor]. The decoded shackles will no longer activate automatically but can be manually activated or deactivated by the controller. -->
-    <MooGirl_MagneticShackles.description>由太空巨企开发的高科技束具，结合项圈与手铐组成。其内部磁力装置会不定时启动，将佩戴者的双手吸附到颈部，形成类似枷锁的姿态。这种设计带有明显的恶趣味，用以观赏雪牛娘在突然被束缚时的窘迫反应。\n\n解除束缚需要[高科技束具钥匙]，而在解锁后，该装置还可通过[束具破解器]进行破解。\n\n破解后的镣铐将不再自动启动，而是可以由控制者手动激活或解除。</MooGirl_MagneticShackles.description>
+    <Mugirl_MagneticShackles.description>由太空巨企开发的高科技束具，结合项圈与手铐组成。其内部磁力装置会不定时启动，将佩戴者的双手吸附到颈部，形成类似枷锁的姿态。这种设计带有明显的恶趣味，用以观赏雪牛娘在突然被束缚时的窘迫反应。\n\n解除束缚需要[高科技束具钥匙]，而在解锁后，该装置还可通过[束具破解器]进行破解。\n\n破解后的镣铐将不再自动启动，而是可以由控制者手动激活或解除。</Mugirl_MagneticShackles.description>
     <!-- Activate shackles -->
-    <MooGirl_MagneticShackles.comps.Comp_MagneticShackles.activateLabel>激活镣铐</MooGirl_MagneticShackles.comps.Comp_MagneticShackles.activateLabel>
+    <Mugirl_MagneticShackles.comps.Comp_MagneticShackles.activateLabel>激活镣铐</Mugirl_MagneticShackles.comps.Comp_MagneticShackles.activateLabel>
     <!-- Activate the magnetic shackles, restraining the target. -->
-    <MooGirl_MagneticShackles.comps.Comp_MagneticShackles.activateDesc>启动磁力镣铐，束缚目标。</MooGirl_MagneticShackles.comps.Comp_MagneticShackles.activateDesc>
+    <Mugirl_MagneticShackles.comps.Comp_MagneticShackles.activateDesc>启动磁力镣铐，束缚目标。</Mugirl_MagneticShackles.comps.Comp_MagneticShackles.activateDesc>
     <!-- Release shackles -->
-    <MooGirl_MagneticShackles.comps.Comp_MagneticShackles.deactivateLabel>解除镣铐</MooGirl_MagneticShackles.comps.Comp_MagneticShackles.deactivateLabel>
+    <Mugirl_MagneticShackles.comps.Comp_MagneticShackles.deactivateLabel>解除镣铐</Mugirl_MagneticShackles.comps.Comp_MagneticShackles.deactivateLabel>
     <!-- Release the magnetic shackles. -->
-    <MooGirl_MagneticShackles.comps.Comp_MagneticShackles.deactivateDesc>解除磁力镣铐。</MooGirl_MagneticShackles.comps.Comp_MagneticShackles.deactivateDesc>
+    <Mugirl_MagneticShackles.comps.Comp_MagneticShackles.deactivateDesc>解除磁力镣铐。</Mugirl_MagneticShackles.comps.Comp_MagneticShackles.deactivateDesc>
     <!-- Magnetic shackles (active) -->
-    <MooGirl_MagneticShackles.comps.Comp_MagneticShackles.labelWhenActive>磁力镣铐（激活）</MooGirl_MagneticShackles.comps.Comp_MagneticShackles.labelWhenActive>
+    <Mugirl_MagneticShackles.comps.Comp_MagneticShackles.labelWhenActive>磁力镣铐（激活）</Mugirl_MagneticShackles.comps.Comp_MagneticShackles.labelWhenActive>
     <!-- Magnetic shackles (inactive) -->
-    <MooGirl_MagneticShackles.comps.Comp_MagneticShackles.labelWhenInactive>磁力镣铐（未激活）</MooGirl_MagneticShackles.comps.Comp_MagneticShackles.labelWhenInactive>
+    <Mugirl_MagneticShackles.comps.Comp_MagneticShackles.labelWhenInactive>磁力镣铐（未激活）</Mugirl_MagneticShackles.comps.Comp_MagneticShackles.labelWhenInactive>
     <!-- Magnetic shackles activated! -->
-    <MooGirl_MagneticShackles.comps.Comp_MagneticShackles.moteTextOn>磁力手铐启动!</MooGirl_MagneticShackles.comps.Comp_MagneticShackles.moteTextOn>
+    <Mugirl_MagneticShackles.comps.Comp_MagneticShackles.moteTextOn>磁力手铐启动!</Mugirl_MagneticShackles.comps.Comp_MagneticShackles.moteTextOn>
     <!-- Magnetic shackles released! -->
-    <MooGirl_MagneticShackles.comps.Comp_MagneticShackles.moteTextOff>磁力手铐解除!</MooGirl_MagneticShackles.comps.Comp_MagneticShackles.moteTextOff>
+    <Mugirl_MagneticShackles.comps.Comp_MagneticShackles.moteTextOff>磁力手铐解除!</Mugirl_MagneticShackles.comps.Comp_MagneticShackles.moteTextOff>
     <!-- {0}'s magnetic shackles suddenly activated. -->
-    <MooGirl_MagneticShackles.comps.Comp_MagneticShackles.messageOn>{0} 的磁力手铐突然启动了</MooGirl_MagneticShackles.comps.Comp_MagneticShackles.messageOn>
+    <Mugirl_MagneticShackles.comps.Comp_MagneticShackles.messageOn>{0} 的磁力手铐突然启动了</Mugirl_MagneticShackles.comps.Comp_MagneticShackles.messageOn>
     <!-- {0}'s magnetic shackles were released. -->
-    <MooGirl_MagneticShackles.comps.Comp_MagneticShackles.messageOff>{0} 的磁力手铐被解除</MooGirl_MagneticShackles.comps.Comp_MagneticShackles.messageOff>
+    <Mugirl_MagneticShackles.comps.Comp_MagneticShackles.messageOff>{0} 的磁力手铐被解除</Mugirl_MagneticShackles.comps.Comp_MagneticShackles.messageOff>
     <!-- Mugirl milking device -->
-    <MooGirl_MilkingDevice.label>雪牛娘 榨乳器</MooGirl_MilkingDevice.label>
+    <Mugirl_MilkingDevice.label>雪牛娘 榨乳器</Mugirl_MilkingDevice.label>
     <!-- A high-tech milking device designed for Mugirls. When the wearer's milk progress fills, it intercepts one production charge and compresses the milk into an internal container. Once storage is full, the wearer can manually release it to produce Mugirl milk in one batch. This version prioritizes function and does not include dedicated graphics for changing storage levels. -->
-    <MooGirl_MilkingDevice.description>一种面向雪牛娘设计的高科技榨乳设备。它会在雪牛娘产乳进度满时自动截留一次产奶，将其压缩储存在内部容器中。储能满后，可由穿戴者手动释放，集中生成雪牛奶。当前版本以功能优先，不包含按储能变化的专用贴图。</MooGirl_MilkingDevice.description>
+    <Mugirl_MilkingDevice.description>一种面向雪牛娘设计的高科技榨乳设备。它会在雪牛娘产乳进度满时自动截留一次产奶，将其压缩储存在内部容器中。储能满后，可由穿戴者手动释放，集中生成雪牛奶。当前版本以功能优先，不包含按储能变化的专用贴图。</Mugirl_MilkingDevice.description>
     <!-- Release stored milk -->
-    <MooGirl_MilkingDevice.comps.Comp_MilkingDevice.releaseLabel>释放储乳</MooGirl_MilkingDevice.comps.Comp_MilkingDevice.releaseLabel>
+    <Mugirl_MilkingDevice.comps.Comp_MilkingDevice.releaseLabel>释放储乳</Mugirl_MilkingDevice.comps.Comp_MilkingDevice.releaseLabel>
     <!-- Stored milk charges -->
-    <MooGirl_MilkingDevice.comps.Comp_MilkingDevice.inspectLabel>储乳层数</MooGirl_MilkingDevice.comps.Comp_MilkingDevice.inspectLabel>
+    <Mugirl_MilkingDevice.comps.Comp_MilkingDevice.inspectLabel>储乳层数</Mugirl_MilkingDevice.comps.Comp_MilkingDevice.inspectLabel>
     <!-- There is no stored milk to release. -->
-    <MooGirl_MilkingDevice.comps.Comp_MilkingDevice.noChargeText>当前没有可释放的储乳。</MooGirl_MilkingDevice.comps.Comp_MilkingDevice.noChargeText>
+    <Mugirl_MilkingDevice.comps.Comp_MilkingDevice.noChargeText>当前没有可释放的储乳。</Mugirl_MilkingDevice.comps.Comp_MilkingDevice.noChargeText>
     <!-- Mugirl hidden milking device -->
-    <MooGirl_MilkingDeviceHidden.label>雪牛娘 隐藏式榨乳器</MooGirl_MilkingDeviceHidden.label>
+    <Mugirl_MilkingDeviceHidden.label>雪牛娘 隐藏式榨乳器</Mugirl_MilkingDeviceHidden.label>
     <!-- A more discreet milking device that can be hidden under underwear or outer clothing. It still intercepts one production charge when the Mugirl's milk progress fills, but is better suited to ordinary outfits and low-profile control. -->
-    <MooGirl_MilkingDeviceHidden.description>一款可隐藏在内衣或外层服装下的和谐型榨乳装置。它仍会在雪牛娘产乳进度满时自动截留一次产奶，但更适合在普通穿搭下保持外观低调，仅在需要时再进行控制。</MooGirl_MilkingDeviceHidden.description>
+    <Mugirl_MilkingDeviceHidden.description>一款可隐藏在内衣或外层服装下的和谐型榨乳装置。它仍会在雪牛娘产乳进度满时自动截留一次产奶，但更适合在普通穿搭下保持外观低调，仅在需要时再进行控制。</Mugirl_MilkingDeviceHidden.description>
     <!-- Release stored milk -->
-    <MooGirl_MilkingDeviceHidden.comps.Comp_MilkingDevice.releaseLabel>释放储乳</MooGirl_MilkingDeviceHidden.comps.Comp_MilkingDevice.releaseLabel>
+    <Mugirl_MilkingDeviceHidden.comps.Comp_MilkingDevice.releaseLabel>释放储乳</Mugirl_MilkingDeviceHidden.comps.Comp_MilkingDevice.releaseLabel>
     <!-- Stored milk charges -->
-    <MooGirl_MilkingDeviceHidden.comps.Comp_MilkingDevice.inspectLabel>储乳层数</MooGirl_MilkingDeviceHidden.comps.Comp_MilkingDevice.inspectLabel>
+    <Mugirl_MilkingDeviceHidden.comps.Comp_MilkingDevice.inspectLabel>储乳层数</Mugirl_MilkingDeviceHidden.comps.Comp_MilkingDevice.inspectLabel>
     <!-- There is no stored milk to release. -->
-    <MooGirl_MilkingDeviceHidden.comps.Comp_MilkingDevice.noChargeText>当前没有可释放的储乳。</MooGirl_MilkingDeviceHidden.comps.Comp_MilkingDevice.noChargeText>
+    <Mugirl_MilkingDeviceHidden.comps.Comp_MilkingDevice.noChargeText>当前没有可释放的储乳。</Mugirl_MilkingDeviceHidden.comps.Comp_MilkingDevice.noChargeText>
     <!-- Mugirl Electric Shock Collar -->
-    <MooGirl_ShockCollar.label>雪牛娘 电击项圈</MooGirl_ShockCollar.label>
+    <Mugirl_ShockCollar.label>雪牛娘 电击项圈</Mugirl_ShockCollar.label>
     <!-- A control-oriented restraint specially designed by a space-age megacorporation, appearing as a metal collar fitted tightly around the neck. Its internal electrodes intermittently release electric currents to shock the wearer, featuring both mild and severe modes. This unpredictable stimulation is often used to maintain discipline and demonstrate control. Removal requires a [Spacer Restraint Key], and after unlocking, the device can be further decoded using a [Restraint Decryptor]. The decoded collar will no longer deliver random shocks but can be manually triggered by the controller, with free selection of shock mode. -->
-    <MooGirl_ShockCollar.description>由太空巨企专门设计的控制型束具，外观为紧贴在颈部的金属项圈。其内部电极会不定期释放电流，对佩戴者进行电击，拥有轻度与重度两种模式。这种不可预测的刺激常被用作维持纪律与展示控制。 \n\n解除束缚需要[高科技束具钥匙]，在解锁后还可通过[束具破解器]进行破解。\n\n破解后的项圈将不再随机电击，而是可由控制者手动触发，并自由选择电击模式。</MooGirl_ShockCollar.description>
+    <Mugirl_ShockCollar.description>由太空巨企专门设计的控制型束具，外观为紧贴在颈部的金属项圈。其内部电极会不定期释放电流，对佩戴者进行电击，拥有轻度与重度两种模式。这种不可预测的刺激常被用作维持纪律与展示控制。 \n\n解除束缚需要[高科技束具钥匙]，在解锁后还可通过[束具破解器]进行破解。\n\n破解后的项圈将不再随机电击，而是可由控制者手动触发，并自由选择电击模式。</Mugirl_ShockCollar.description>
     <!-- Common shock -->
-    <MooGirl_ShockCollar.comps.Comp_ShockCollar.commonLabel>普通电击</MooGirl_ShockCollar.comps.Comp_ShockCollar.commonLabel>
+    <Mugirl_ShockCollar.comps.Comp_ShockCollar.commonLabel>普通电击</Mugirl_ShockCollar.comps.Comp_ShockCollar.commonLabel>
     <!-- Trigger one common shock. -->
-    <MooGirl_ShockCollar.comps.Comp_ShockCollar.commonDesc>激活一次普通电击</MooGirl_ShockCollar.comps.Comp_ShockCollar.commonDesc>
+    <Mugirl_ShockCollar.comps.Comp_ShockCollar.commonDesc>激活一次普通电击</Mugirl_ShockCollar.comps.Comp_ShockCollar.commonDesc>
     <!-- Power shock -->
-    <MooGirl_ShockCollar.comps.Comp_ShockCollar.powerLabel>强力电击</MooGirl_ShockCollar.comps.Comp_ShockCollar.powerLabel>
+    <Mugirl_ShockCollar.comps.Comp_ShockCollar.powerLabel>强力电击</Mugirl_ShockCollar.comps.Comp_ShockCollar.powerLabel>
     <!-- Trigger one power shock. -->
-    <MooGirl_ShockCollar.comps.Comp_ShockCollar.powerDesc>激活一次强力电击，电死你！</MooGirl_ShockCollar.comps.Comp_ShockCollar.powerDesc>
+    <Mugirl_ShockCollar.comps.Comp_ShockCollar.powerDesc>激活一次强力电击，电死你！</Mugirl_ShockCollar.comps.Comp_ShockCollar.powerDesc>
 </LanguageData>

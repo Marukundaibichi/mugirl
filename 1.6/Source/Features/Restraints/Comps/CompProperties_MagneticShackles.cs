@@ -4,7 +4,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class CompProperties_MagneticShackles : CompProperties
     {
@@ -26,21 +26,21 @@ namespace MooGirl
 
         public int useCooldownTicks = 600;
 
-        public string activateLabel = "MooGirl.Restraints.MagneticShackles.ActivateLabel";
-        public string activateDesc = "MooGirl.Restraints.MagneticShackles.ActivateDesc";
+        public string activateLabel = "Mugirl.Restraints.MagneticShackles.ActivateLabel";
+        public string activateDesc = "Mugirl.Restraints.MagneticShackles.ActivateDesc";
         public string activateIconPath = "UI/Commands/DesirePower";
 
-        public string deactivateLabel = "MooGirl.Restraints.MagneticShackles.DeactivateLabel";
-        public string deactivateDesc = "MooGirl.Restraints.MagneticShackles.DeactivateDesc";
+        public string deactivateLabel = "Mugirl.Restraints.MagneticShackles.DeactivateLabel";
+        public string deactivateDesc = "Mugirl.Restraints.MagneticShackles.DeactivateDesc";
         public string deactivateIconPath = "UI/Commands/DesirePower";
 
-        public string labelWhenActive = "MooGirl.Restraints.MagneticShackles.LabelActive";
-        public string labelWhenInactive = "MooGirl.Restraints.MagneticShackles.LabelInactive";
+        public string labelWhenActive = "Mugirl.Restraints.MagneticShackles.LabelActive";
+        public string labelWhenInactive = "Mugirl.Restraints.MagneticShackles.LabelInactive";
 
-        public string moteTextOn = "MooGirl.Restraints.MagneticShackles.MoteOn";
-        public string moteTextOff = "MooGirl.Restraints.MagneticShackles.MoteOff";
-        public string messageOn = "MooGirl.Restraints.MagneticShackles.MessageOn";
-        public string messageOff = "MooGirl.Restraints.MagneticShackles.MessageOff";
+        public string moteTextOn = "Mugirl.Restraints.MagneticShackles.MoteOn";
+        public string moteTextOff = "Mugirl.Restraints.MagneticShackles.MoteOff";
+        public string messageOn = "Mugirl.Restraints.MagneticShackles.MessageOn";
+        public string messageOff = "Mugirl.Restraints.MagneticShackles.MessageOff";
 
         public List<BodyPartGroupDef> boundBodyPartGroupDefs = new List<BodyPartGroupDef>();
 
@@ -238,9 +238,9 @@ namespace MooGirl
 
             if (wearer.Map != null)
             {
-                MoteMaker.ThrowText(wearer.DrawPos, wearer.Map, MooGirlText.Resolve(shackleProps.moteTextOn), Color.cyan);
+                MoteMaker.ThrowText(wearer.DrawPos, wearer.Map, MugirlText.Resolve(shackleProps.moteTextOn), Color.cyan);
             }
-            Messages.Message(MooGirlText.Resolve(shackleProps.messageOn, wearer.LabelShortCap), wearer, MessageTypeDefOf.NegativeEvent);
+            Messages.Message(MugirlText.Resolve(shackleProps.messageOn, wearer.LabelShortCap), wearer, MessageTypeDefOf.NegativeEvent);
         }
 
         // 解除时只移除本配置添加的束缚 Hediff。
@@ -291,9 +291,9 @@ namespace MooGirl
             {
                 if (wearer.Spawned && wearer.Map != null)
                 {
-                    MoteMaker.ThrowText(wearer.DrawPos, wearer.Map, MooGirlText.Resolve(shackleProps.moteTextOff), Color.green);
+                    MoteMaker.ThrowText(wearer.DrawPos, wearer.Map, MugirlText.Resolve(shackleProps.moteTextOff), Color.green);
                 }
-                Messages.Message(MooGirlText.Resolve(shackleProps.messageOff, wearer.LabelShortCap), wearer, MessageTypeDefOf.PositiveEvent);
+                Messages.Message(MugirlText.Resolve(shackleProps.messageOff, wearer.LabelShortCap), wearer, MessageTypeDefOf.PositiveEvent);
             }
         }
 
@@ -380,7 +380,7 @@ namespace MooGirl
 
         private static int CurrentGameTickOrFallback(int fallback)
         {
-            return MooGirlTickUtility.CurrentGameTickOrFallback(fallback);
+            return MugirlTickUtility.CurrentGameTickOrFallback(fallback);
         }
 
     }

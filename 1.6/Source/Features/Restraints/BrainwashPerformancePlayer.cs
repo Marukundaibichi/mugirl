@@ -4,7 +4,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class BrainwashPerformancePlayer : IExposable
     {
@@ -245,7 +245,7 @@ namespace MooGirl
                 stunEndTick = age + stunDurationTicks;
                 if (sendMessages)
                 {
-                    Messages.Message("MooGirl.BrainwashStart".Translate(pawn.LabelShortCap), pawn, MessageTypeDefOf.NegativeEvent);
+                    Messages.Message("Mugirl.BrainwashStart".Translate(pawn.LabelShortCap), pawn, MessageTypeDefOf.NegativeEvent);
                 }
                 if (stunDurationTicks > 0)
                 {
@@ -258,7 +258,7 @@ namespace MooGirl
                 stunMessageSent = true;
                 if (sendMessages)
                 {
-                    Messages.Message("MooGirl.BrainwashEnd".Translate(pawn.LabelShortCap), pawn, MessageTypeDefOf.PositiveEvent);
+                    Messages.Message("Mugirl.BrainwashEnd".Translate(pawn.LabelShortCap), pawn, MessageTypeDefOf.PositiveEvent);
                 }
             }
         }

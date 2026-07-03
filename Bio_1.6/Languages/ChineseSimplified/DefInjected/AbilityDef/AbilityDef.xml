@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
     <!-- Charge, charge, charge! I'll ram you down! -->
-    <MooGirl_Charge.description>冲冲冲！我要创死你！</MooGirl_Charge.description>
+    <Mugirl_Charge.description>冲冲冲！我要创死你！</Mugirl_Charge.description>
     <!-- Mugirl Charge! -->
-    <MooGirl_Charge.label>雪牛冲锋！</MooGirl_Charge.label>
+    <Mugirl_Charge.label>雪牛冲锋！</Mugirl_Charge.label>
     <!-- Charge! -->
-    <MooGirl_Charge.verbProperties.label>冲冲冲</MooGirl_Charge.verbProperties.label>
+    <Mugirl_Charge.verbProperties.label>冲冲冲</Mugirl_Charge.verbProperties.label>
     <!-- RUAAAAAAAAA! (an embarrassing cry) -->
-    <MooGirl_Shout.description>RUAAAAAAAAA！（丢人的叫声）</MooGirl_Shout.description>
+    <Mugirl_Shout.description>RUAAAAAAAAA！（丢人的叫声）</Mugirl_Shout.description>
     <!-- Mugirl Shout! -->
-    <MooGirl_Shout.label>雪牛大叫！</MooGirl_Shout.label>
+    <Mugirl_Shout.label>雪牛大叫！</Mugirl_Shout.label>
 </LanguageData>

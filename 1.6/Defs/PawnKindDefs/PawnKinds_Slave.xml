@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-    <PawnKindDef Name="MooGirl_SlaveBase" ParentName="MooGirl_BaseKind" Abstract="True">
+    <PawnKindDef Name="Mugirl_SlaveBase" ParentName="Mugirl_BaseKind" Abstract="True">
         <combatPower>30</combatPower>
-        <race>MooGirl</race>
+        <race>Mugirl</race>
         <itemQuality>Poor</itemQuality>
         <chemicalAddictionChance>0.06</chemicalAddictionChance>
         <backstoryCryptosleepCommonality>0</backstoryCryptosleepCommonality>
         <backstoryFilters>
             <li>
                 <categories>
-                    <li>MooGirl_Slave</li>
+                    <li>Mugirl_Slave</li>
                 </categories>
             </li>
         </backstoryFilters>
@@ -26,96 +26,96 @@
         <initialResistanceRange>10~17</initialResistanceRange> <!-- 招募时的抗拒值范围 -->
     </PawnKindDef>
 
-    <PawnKindDef ParentName="MooGirl_SlaveBase">
-        <defName>MooGirl_Beginning_Slave</defName>
+    <PawnKindDef ParentName="Mugirl_SlaveBase">
+        <defName>Mugirl_Beginning_Slave</defName>
         <!-- 雪牛迫降奴隶 -->
         <label>Crashlanded Mugirl Slave</label>
         <apparelTags> <!-- 服装筛选标签，仅穿戴包含这些标签的装备 -->
-            <li>MooGirl_Slave_Underwear</li>
-            <li>MooGirl_Slave_Shell_Upper</li>
-            <li>MooGirl_Slave_Shell_Lower</li>
-            <li>MooGirl_Slave_Gags</li>
-            <li>MooGirl_Slave_Earplugs</li>
-            <li>MooGirl_Slave_Blinder</li>
+            <li>Mugirl_Slave_Underwear</li>
+            <li>Mugirl_Slave_Shell_Upper</li>
+            <li>Mugirl_Slave_Shell_Lower</li>
+            <li>Mugirl_Slave_Gags</li>
+            <li>Mugirl_Slave_Earplugs</li>
+            <li>Mugirl_Slave_Blinder</li>
         </apparelTags>
         <initialWillRange>0~1</initialWillRange>
         <initialResistanceRange>10~17</initialResistanceRange>
     </PawnKindDef>
 
-    <PawnKindDef ParentName="MooGirl_SlaveBase">
-        <defName>MooGirl_Slave</defName>
+    <PawnKindDef ParentName="Mugirl_SlaveBase">
+        <defName>Mugirl_Slave</defName>
         <!-- 雪牛奴隶 -->
         <label>Slave</label>
         <apparelTags> <!-- 服装筛选标签，仅穿戴包含这些标签的装备 -->
-            <li>MooGirl_Slave_Underwear</li>
-            <li>MooGirl_Slave_Shell_Upper</li>
-            <li>MooGirl_Slave_Shell_Lower</li>
-            <li>MooGirl_Slave_Gags</li>
-            <li>MooGirl_Slave_Earplugs</li>
-            <li>MooGirl_Slave_Blinder</li>
-            <li>MooGirl_Slave_Spacer</li>
+            <li>Mugirl_Slave_Underwear</li>
+            <li>Mugirl_Slave_Shell_Upper</li>
+            <li>Mugirl_Slave_Shell_Lower</li>
+            <li>Mugirl_Slave_Gags</li>
+            <li>Mugirl_Slave_Earplugs</li>
+            <li>Mugirl_Slave_Blinder</li>
+            <li>Mugirl_Slave_Spacer</li>
         </apparelTags>
         <initialWillRange>0~1</initialWillRange>
         <initialResistanceRange>10~17</initialResistanceRange>
     </PawnKindDef>
 
-    <PawnKindDef ParentName="MooGirl_SlaveBase">
-        <defName>MooGirl_EscapeSpaceSlave</defName>
+    <PawnKindDef ParentName="Mugirl_SlaveBase">
+        <defName>Mugirl_EscapeSpaceSlave</defName>
         <!-- 雪牛太空奴隶 -->
         <label>Escaped Mugirl Space Slave</label>
         <apparelTags> <!-- 服装筛选标签，仅穿戴包含这些标签的装备 -->
-            <li>MooGirl_Slave_Underwear</li>
-            <li>MooGirl_Slave_Spacer</li>
-            <li>MooGirl_Slave_OnSkin_Upper</li>
-            <li>MooGirl_Slave_OnSkin_Lower</li>
+            <li>Mugirl_Slave_Underwear</li>
+            <li>Mugirl_Slave_Spacer</li>
+            <li>Mugirl_Slave_OnSkin_Upper</li>
+            <li>Mugirl_Slave_OnSkin_Lower</li>
         </apparelTags>
         <initialWillRange>2~40</initialWillRange>
         <initialResistanceRange>2~40</initialResistanceRange>
     </PawnKindDef>
 
-    <PawnKindDef ParentName="MooGirl_SlaveBase">
-        <defName>MooGirl_EscapeWanderSlave</defName>
+    <PawnKindDef ParentName="Mugirl_SlaveBase">
+        <defName>Mugirl_EscapeWanderSlave</defName>
         <!-- 雪牛逃亡奴隶 -->
         <label>Escaped Mugirl Slave</label>
         <apparelTags> <!-- 服装筛选标签，仅穿戴包含这些标签的装备 -->
-            <li>MooGirl_Slave_Underwear</li>
-            <li>MooGirl_Slave_Gags</li>
-            <li>MooGirl_Slave_Earplugs</li>
-            <li>MooGirl_Slave_Blinder</li>
-            <li>MooGirl_Slave_Shell_Upper</li>
-            <li>MooGirl_Slave_Shell_Lower</li>
+            <li>Mugirl_Slave_Underwear</li>
+            <li>Mugirl_Slave_Gags</li>
+            <li>Mugirl_Slave_Earplugs</li>
+            <li>Mugirl_Slave_Blinder</li>
+            <li>Mugirl_Slave_Shell_Upper</li>
+            <li>Mugirl_Slave_Shell_Lower</li>
         </apparelTags>
         <gearHealthRange>0.6~0.8</gearHealthRange>
         <initialWillRange>2~40</initialWillRange>
         <initialResistanceRange>2~40</initialResistanceRange>
     </PawnKindDef>
 
-    <PawnKindDef ParentName="MooGirl_SlaveBase">
-        <defName>MooGirl_EscapeWildSlave</defName>
+    <PawnKindDef ParentName="Mugirl_SlaveBase">
+        <defName>Mugirl_EscapeWildSlave</defName>
         <!-- 雪牛流浪野人 -->
         <label>Escaped Wild Mugirl</label>
         <acceptArrestChanceFactor>0.5</acceptArrestChanceFactor>
         <apparelTags>
-            <li>MooGirl_Slave_Underwear</li>
-            <li>MooGirl_Slave_Shell_Upper</li>
-            <li>MooGirl_Slave_Shell_Lower</li>
-            <li>MooGirl_Slave_Blinder</li>
+            <li>Mugirl_Slave_Underwear</li>
+            <li>Mugirl_Slave_Shell_Upper</li>
+            <li>Mugirl_Slave_Shell_Lower</li>
+            <li>Mugirl_Slave_Blinder</li>
         </apparelTags>
         <gearHealthRange>0.3~0.6</gearHealthRange>
         <initialWillRange>2~40</initialWillRange>
         <initialResistanceRange>2~40</initialResistanceRange>
     </PawnKindDef>
 
-    <PawnKindDef ParentName="MooGirl_SlaveBase">
-        <defName>MooGirl_PreEscapeWildSlave</defName>
+    <PawnKindDef ParentName="Mugirl_SlaveBase">
+        <defName>Mugirl_PreEscapeWildSlave</defName>
         <!-- 雪牛流浪者 -->
         <label>Mugirl Wanderer</label>
         <acceptArrestChanceFactor>0.5</acceptArrestChanceFactor>
         <apparelTags>
-            <li>MooGirl_Slave_Underwear</li>
-            <li>MooGirl_Slave_Shell_Upper</li>
-            <li>MooGirl_Slave_Shell_Lower</li>
-            <li>MooGirl_Slave_Blinder</li>
+            <li>Mugirl_Slave_Underwear</li>
+            <li>Mugirl_Slave_Shell_Upper</li>
+            <li>Mugirl_Slave_Shell_Lower</li>
+            <li>Mugirl_Slave_Blinder</li>
         </apparelTags>
         <gearHealthRange>0.3~0.6</gearHealthRange>
         <initialWillRange>2~40</initialWillRange>

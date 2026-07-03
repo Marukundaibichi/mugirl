@@ -2,13 +2,13 @@
 <Defs>
 
     <IncidentDef>
-    <defName>MooGirl_CourierRaid</defName>
+    <defName>Mugirl_CourierRaid</defName>
     <!-- 运货员接触 -->
     <label>courier contact</label>
     <targetTags>
         <li>Map_PlayerHome</li>
     </targetTags>
-    <workerClass>MooGirl.IncidentWorker_MooGirl_CourierRaid</workerClass>
+    <workerClass>Mugirl.IncidentWorker_Mugirl_CourierRaid</workerClass>
     <letterDef>ThreatSmall</letterDef>
     <category>ThreatSmall</category>
     <baseChance>0</baseChance>

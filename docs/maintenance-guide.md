@@ -17,9 +17,9 @@
 先确认改动属于哪类：
 
 - 规则变化：优先在对应 `Features` 模块处理。
-- Def 引用：优先使用 `DefOf`、`MooGirlRequiredDefs` 或 `MooGirlOptionalDefs`。
+- Def 引用：优先使用 `DefOf`、`MugirlRequiredDefs` 或 `MugirlOptionalDefs`。
 - 第三方 mod 访问：优先放到 `Compatibility`，业务层只拿 null-safe 结果。
-- Harmony patch：同步补 `MooGirlPatchInfo` 元数据，并说明失败行为。
+- Harmony patch：同步补 `MugirlPatchInfo` 元数据，并说明失败行为。
 - 存档状态：新增字段必须有默认值和 `Scribe` 兼容说明。
 
 ## 代码约束
@@ -29,7 +29,7 @@
 - 每局游戏状态必须在新建、读档或初始化路径清理，避免跨档残留。
 - Harmony patch 尽量小而明确。高风险 patch 要能解释是否跳过原方法、失败时如何降级。
 - 反射访问要集中，缺字段或缺方法时不能在 tick 或渲染路径抛异常。
-- 日志走 `MooGirlLog`，不要在业务代码里直接 `Verse.Log`。
+- 日志走 `MugirlLog`，不要在业务代码里直接 `Verse.Log`。
 
 ## 改 XML/Def 前
 

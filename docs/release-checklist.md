@@ -20,7 +20,7 @@
 默认输出：
 
 ```text
-TMP\WorkshopPackage\MooGirlRace
+TMP\WorkshopPackage\MugirlRace
 ```
 
 如果已经构建过 DLL，可以跳过构建：
@@ -43,7 +43,7 @@ TMP\WorkshopPackage\MooGirlRace
 
 - `About`
 - `LoadFolders.xml`
-- `1.6/Assemblies/MooGirlRace.dll`
+- `1.6/Assemblies/MugirlRace.dll`
 - `1.6/Defs`
 - `1.6/Languages`
 - `1.6/Patches`

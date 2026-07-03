@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <Defs>
-    <MooGirl.SlaveApparelDef Name="MooGirl_SlaveApparel_Head" ParentName="MooGirl_SlaveApparel_Base"
+    <Mugirl.SlaveApparelDef Name="Mugirl_SlaveApparel_Head" ParentName="Mugirl_SlaveApparel_Base"
         Abstract="True">
         <stuffCategories>
             <li>Leathery</li>
@@ -24,30 +24,30 @@
             <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
         </recipeMaker>
         <descriptionHyperlinks>
-            <ThingDef>MooGirl_SlaveApparelKey_Medieval</ThingDef>
+            <ThingDef>Mugirl_SlaveApparelKey_Medieval</ThingDef>
         </descriptionHyperlinks>
         <apparel>
             <parentTagDef>ApparelHead</parentTagDef>
             <useWornGraphicMask>true</useWornGraphicMask>
         </apparel>
         <needkeynumber>1</needkeynumber> <!-- 解锁需求钥匙数量 -->
-        <keytype>MooGirl_SlaveApparelKey_Medieval</keytype> <!-- 钥匙类型 -->
+        <keytype>Mugirl_SlaveApparelKey_Medieval</keytype> <!-- 钥匙类型 -->
         <gives_bound_moodlet>true</gives_bound_moodlet>
-    </MooGirl.SlaveApparelDef>
+    </Mugirl.SlaveApparelDef>
 
     <!-- ====================================== 眼罩 =========================================== -->
 
-    <MooGirl.SlaveApparelDef ParentName="MooGirl_SlaveApparel_Head">
-        <defName>MooGirl_Blindfold</defName>
+    <Mugirl.SlaveApparelDef ParentName="Mugirl_SlaveApparel_Head">
+        <defName>Mugirl_Blindfold</defName>
         <!-- 雪牛娘 奴隶眼罩 -->
         <label>Mugirl Slave Blindfold</label>
         <!-- 一种用于阻挡雪牛娘的视线的束具，据说感官屏蔽会令受害者更加敏感 (๑•̀ㅂ•́)و✧。眼罩配有专用锁具，必须使用[粗糙束具钥匙]才能解开。 -->
         <description>A restraint designed to obstruct a Mugirl's vision; sensory deprivation is said to heighten the victim's sensitivity (๑•̀ㅂ•́)و✧. The blindfold features a dedicated locking mechanism that can only be opened with a [Rough Restraint Key].</description>
         <!-- <descriptionHyperlinks>
-            <HediffDef>MooGirl_Blindfold</HediffDef>
+            <HediffDef>Mugirl_Blindfold</HediffDef>
         </descriptionHyperlinks>            -->
         <graphicData>
-            <texPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slaveblindfold/MooGirl_Slaveblindfold</texPath>
+            <texPath>Things/Apparel/Mugirl_SlaveApparel/Mugirl_Slaveblindfold/Mugirl_Slaveblindfold</texPath>
         </graphicData>
         <statBases>
             <MaxHitPoints>250</MaxHitPoints>
@@ -66,7 +66,7 @@
             <bodyPartGroups>
                 <li>Eyes</li>
             </bodyPartGroups>
-            <wornGraphicPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slaveblindfold/MooGirl_Slaveblindfold</wornGraphicPath>
+            <wornGraphicPath>Things/Apparel/Mugirl_SlaveApparel/Mugirl_Slaveblindfold/Mugirl_Slaveblindfold</wornGraphicPath>
             <layers>
                 <li>EyeCover</li>
             </layers>
@@ -76,10 +76,10 @@
                 </defaultData>
             </drawData>
             <tags> <!-- 自定义标签，可用于pankind生成 -->
-                <li>MooGirl_Slave_Blinder</li>
+                <li>Mugirl_Slave_Blinder</li>
             </tags>
         </apparel>
-        <equipped_hediff>MooGirl_Blindfold</equipped_hediff>
+        <equipped_hediff>Mugirl_Blindfold</equipped_hediff>
         <gives_bound_moodlet>true</gives_bound_moodlet>
         <blocks_hands>false</blocks_hands>
         <HediffTargetBodyPartDefs>
@@ -88,11 +88,11 @@
         <BoundBodyPartGroupDefs>
             <li>Eyes</li>
         </BoundBodyPartGroupDefs>
-    </MooGirl.SlaveApparelDef>
+    </Mugirl.SlaveApparelDef>
 
     <!-- ====================================== 口塞 =========================================== -->
 
-    <MooGirl.SlaveApparelDef Name="MooGirl_SlaveApparel_Gag" ParentName="MooGirl_SlaveApparel_Head"
+    <Mugirl.SlaveApparelDef Name="Mugirl_SlaveApparel_Gag" ParentName="Mugirl_SlaveApparel_Head"
         Abstract="True">
         <apparel>
             <bodyPartGroups>
@@ -107,13 +107,13 @@
                 </defaultData>
             </drawData>
             <tags> <!-- 自定义标签，可用于pankind生成 -->
-                <li>MooGirl_Slave_Gags</li>
+                <li>Mugirl_Slave_Gags</li>
             </tags>
         </apparel>
         <!-- <descriptionHyperlinks>
-            <HediffDef>MooGirl_Gagstick</HediffDef>
+            <HediffDef>Mugirl_Gagstick</HediffDef>
         </descriptionHyperlinks> -->
-        <equipped_hediff>MooGirl_Gagstick</equipped_hediff>
+        <equipped_hediff>Mugirl_Gagstick</equipped_hediff>
         <gives_gagged_moodlet>true</gives_gagged_moodlet>
         <blocks_oral>true</blocks_oral>
         <HediffTargetBodyPartDefs>
@@ -125,16 +125,16 @@
             <li>Beak</li>
             <li>Mouth</li>
         </BoundBodyPartGroupDefs>
-    </MooGirl.SlaveApparelDef>
+    </Mugirl.SlaveApparelDef>
 
-    <MooGirl.SlaveApparelDef ParentName="MooGirl_SlaveApparel_Gag">
-        <defName>MooGirl_Gagstick</defName>
+    <Mugirl.SlaveApparelDef ParentName="Mugirl_SlaveApparel_Gag">
+        <defName>Mugirl_Gagstick</defName>
         <!-- 雪牛娘 奴隶口棒 -->
         <label>Mugirl Slave Gagstick</label>
         <!-- 一种用于限制雪牛娘发声的束具，能够有效阻止清晰的言语表达，只能发出含混的呜咽声。口棒配有专用锁具，必须使用[粗糙束具钥匙]才能解开。 -->
         <description>A restraint designed to restrict a Mugirl's voice, effectively preventing clear speech and allowing only muffled whimpers. The gagstick features a dedicated locking mechanism that can only be opened with a [Rough Restraint Key].</description>
         <graphicData>
-            <texPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slavegagstick/MooGirl_Slavegagstick</texPath>
+            <texPath>Things/Apparel/Mugirl_SlaveApparel/Mugirl_Slavegagstick/Mugirl_Slavegagstick</texPath>
         </graphicData>
         <statBases>
             <MaxHitPoints>150</MaxHitPoints>
@@ -150,23 +150,23 @@
             <li>Woody</li>
         </stuffCategories>
         <apparel>
-            <wornGraphicPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slavegagstick/MooGirl_Slavegagstick</wornGraphicPath>
+            <wornGraphicPath>Things/Apparel/Mugirl_SlaveApparel/Mugirl_Slavegagstick/Mugirl_Slavegagstick</wornGraphicPath>
         </apparel>
-    </MooGirl.SlaveApparelDef>
+    </Mugirl.SlaveApparelDef>
 
     <!-- ====================================== 耳塞 =========================================== -->
 
-    <MooGirl.SlaveApparelDef ParentName="MooGirl_SlaveApparel_Head">
-        <defName>MooGirl_Earplugs</defName>
+    <Mugirl.SlaveApparelDef ParentName="Mugirl_SlaveApparel_Head">
+        <defName>Mugirl_Earplugs</defName>
         <!-- 雪牛娘 奴隶耳塞 -->
         <label>Mugirl Slave Earplugs</label>
         <!-- 一种完全封闭雪牛娘听觉的拘束用具，佩戴后几乎无法听到外界声音，令受害者陷入安静而隔绝的环境。耳塞配有专用锁具，必须使用[粗糙束具钥匙]才能解开。 -->
         <description>A fully enclosed restraint device designed to block a Mugirl's hearing entirely. Once fitted, external sounds become almost inaudible, leaving the victim in a silent and isolated environment. The earplugs feature a dedicated locking mechanism that can only be opened with a [Rough Restraint Key].</description>
         <!-- <descriptionHyperlinks>
-            <HediffDef>MooGirl_Earplugs</HediffDef>
+            <HediffDef>Mugirl_Earplugs</HediffDef>
         </descriptionHyperlinks>         -->
         <graphicData>
-            <texPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slaveearplugs/MooGirl_Slaveearplugs</texPath>
+            <texPath>Things/Apparel/Mugirl_SlaveApparel/Mugirl_Slaveearplugs/Mugirl_Slaveearplugs</texPath>
         </graphicData>
         <statBases>
             <MaxHitPoints>150</MaxHitPoints>
@@ -184,15 +184,15 @@
             <bodyPartGroups>
                 <li>Ears</li>
             </bodyPartGroups>
-            <wornGraphicPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slaveearplugs/MooGirl_Slaveearplugs</wornGraphicPath>
+            <wornGraphicPath>Things/Apparel/Mugirl_SlaveApparel/Mugirl_Slaveearplugs/Mugirl_Slaveearplugs</wornGraphicPath>
             <layers>
                 <li>Overhead</li>
             </layers>
             <tags> <!-- 自定义标签，可用于pankind生成 -->
-                <li>MooGirl_Slave_Earplugs</li>
+                <li>Mugirl_Slave_Earplugs</li>
             </tags>
         </apparel>
-        <equipped_hediff>MooGirl_Earplugs</equipped_hediff>
+        <equipped_hediff>Mugirl_Earplugs</equipped_hediff>
         <gives_gagged_moodlet>true</gives_gagged_moodlet>
         <blocks_oral>true</blocks_oral>
         <HediffTargetBodyPartDefs>
@@ -201,6 +201,6 @@
         <BoundBodyPartGroupDefs>
             <li>Ears</li>
         </BoundBodyPartGroupDefs>
-    </MooGirl.SlaveApparelDef>
+    </Mugirl.SlaveApparelDef>
 
 </Defs>

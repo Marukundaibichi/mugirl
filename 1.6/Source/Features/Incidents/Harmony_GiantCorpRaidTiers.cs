@@ -1,7 +1,7 @@
 using HarmonyLib;
 using RimWorld;
 
-namespace MooGirl
+namespace Mugirl
 {
     [HarmonyPatch(typeof(PawnGroupMaker), nameof(PawnGroupMaker.CanGenerateFrom))]
     public static class Harmony_GiantCorpRaidTiers
@@ -13,7 +13,7 @@ namespace MooGirl
 
         public static void Postfix(PawnGroupMaker __instance, PawnGroupMakerParms parms, ref bool __result)
         {
-            if (!__result || __instance == null || parms?.faction?.def != MooGirlContentDefOf.MooGirl_GiantCorporations_Hostile)
+            if (!__result || __instance == null || parms?.faction?.def != MugirlContentDefOf.Mugirl_GiantCorporations_Hostile)
             {
                 return;
             }

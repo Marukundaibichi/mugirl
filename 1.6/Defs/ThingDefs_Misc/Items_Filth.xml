@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
     <ThingDef ParentName="BaseFilth">
-        <defName>MooGirlMilkFilth</defName>
+        <defName>MugirlMilkFilth</defName>
         <!-- 电击产生的喷乳 -->
         <label>Electrocution Milk Spray</label>
         <statBases>
@@ -9,7 +9,7 @@
             <Cleanliness>-5</Cleanliness>
         </statBases>
         <graphicData>
-            <texPath>Things/Filth/MooGirl_PoolSoft</texPath>
+            <texPath>Things/Filth/Mugirl_PoolSoft</texPath>
             <color>(1, 1, 1, 1)</color>
         </graphicData>
         <filth>
@@ -23,7 +23,7 @@
     </ThingDef>
 
     <ThingDef ParentName="BaseFilth">
-        <defName>MooGirlWaterFilth</defName>
+        <defName>MugirlWaterFilth</defName>
         <!-- 电击流下的液体 -->
         <label>The liquid flowing down from electrocution.</label>
         <statBases>
@@ -31,7 +31,7 @@
             <Cleanliness>-5</Cleanliness>
         </statBases>
         <graphicData>
-            <texPath>Things/Filth/MooGirl_PoolSoft</texPath>
+            <texPath>Things/Filth/Mugirl_PoolSoft</texPath>
             <color>(200, 200, 140, 50)</color>
         </graphicData>
         <filth>
@@ -45,11 +45,11 @@
     </ThingDef>
 
     <ThingDef ParentName="MoteBase">
-        <defName>MooGirlWashMentalEyesInHead</defName>
+        <defName>MugirlWashMentalEyesInHead</defName>
         <thingClass>MoteDualAttached</thingClass>
         <altitudeLayer>MetaOverlays</altitudeLayer>
         <graphicData>
-            <texPath>Things/Mote/MooGirl_EyeInHead</texPath>
+            <texPath>Things/Mote/Mugirl_EyeInHead</texPath>
             <drawSize>1.2</drawSize>
             <color>(239, 70, 274, 100)</color>
         </graphicData>
@@ -60,9 +60,9 @@
     </ThingDef>
 
     <FleckDef ParentName="FleckBase_Thrown">
-        <defName>MooGirlWashMentalEyes</defName>
+        <defName>MugirlWashMentalEyes</defName>
         <graphicData>
-            <texPath>Things/Mote/MooGirl_MentalEyes</texPath>
+            <texPath>Things/Mote/Mugirl_MentalEyes</texPath>
             <renderInstanced>true</renderInstanced>
             <drawSize>1.5</drawSize>
             <color>(239, 70, 274, 100)</color>
@@ -75,11 +75,11 @@
     </FleckDef>
 
     <FleckDef ParentName="FleckBase_Thrown">
-        <defName>MooGirl_MilkSpray</defName>
+        <defName>Mugirl_MilkSpray</defName>
         <graphicData>
             <graphicClass>Graphic_Fleck</graphicClass>
             <shaderType>Mote</shaderType>
-            <texPath>Things/Filth/MooGirl_PoolSoft/MooGirl_PoolSoftA</texPath>
+            <texPath>Things/Filth/Mugirl_PoolSoft/Mugirl_PoolSoftA</texPath>
             <drawSize>1.6</drawSize>
             <color>(1, 1, 1, 0.95)</color>
         </graphicData>

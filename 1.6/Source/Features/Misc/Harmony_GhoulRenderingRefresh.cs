@@ -2,7 +2,7 @@ using HarmonyLib;
 using System.Collections.Generic;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     [HarmonyPatch(typeof(Hediff), nameof(Hediff.PostAdd))]
     public static class Harmony_GhoulRenderingRefresh_PostAdd
@@ -48,18 +48,18 @@ namespace MooGirl
 
         public static void NotifyGhoulChanged(Pawn pawn)
         {
-            if (!MountedPawnUtility.IsMooGirl(pawn) || pawn.Destroyed)
+            if (!MountedPawnUtility.IsMugirl(pawn) || pawn.Destroyed)
             {
                 return;
             }
 
             RefreshGraphics(pawn);
-            if (!MooGirlGameUtility.IsPlaying())
+            if (!MugirlGameUtility.IsPlaying())
             {
                 return;
             }
 
-            if (MooGirlTickUtility.TryGetCurrentGameTick(out int currentTick))
+            if (MugirlTickUtility.TryGetCurrentGameTick(out int currentTick))
             {
                 pendingRefreshUntilTick[pawn] = currentTick + RefreshWindowTicks;
             }
@@ -72,7 +72,7 @@ namespace MooGirl
                 return;
             }
 
-            if (!MooGirlTickUtility.TryGetCurrentGameTick(out int currentTick))
+            if (!MugirlTickUtility.TryGetCurrentGameTick(out int currentTick))
             {
                 return;
             }
@@ -86,7 +86,7 @@ namespace MooGirl
             foreach (KeyValuePair<Pawn, int> entry in pendingRefreshUntilTick)
             {
                 Pawn pawn = entry.Key;
-                if (!MountedPawnUtility.IsMooGirl(pawn) || pawn.Destroyed || currentTick > entry.Value)
+                if (!MountedPawnUtility.IsMugirl(pawn) || pawn.Destroyed || currentTick > entry.Value)
                 {
                     tmpPawnsToRemove.Add(pawn);
                     continue;

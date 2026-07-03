@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace MooGirl
+namespace Mugirl
 {
     public static class MeleeAnimationCompat
     {

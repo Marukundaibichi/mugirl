@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
     <!-- Electrocution Milk Spray -->
-    <MooGirlMilkFilth.label>电击喷乳</MooGirlMilkFilth.label>
+    <MugirlMilkFilth.label>电击喷乳</MugirlMilkFilth.label>
     <!-- The effect of Mugirl involuntarily spraying milk due to a powerful electric shock. -->
-    <MooGirlWashMentalEyesInHead.label>雪牛娘因强力电击而忍不住喷奶的效果</MooGirlWashMentalEyesInHead.label>
+    <MugirlWashMentalEyesInHead.label>雪牛娘因强力电击而忍不住喷奶的效果</MugirlWashMentalEyesInHead.label>
     <!-- The liquid flowing down from electrocution. -->
-    <MooGirlWaterFilth.label>电击流下的液体</MooGirlWaterFilth.label>
+    <MugirlWaterFilth.label>电击流下的液体</MugirlWaterFilth.label>
 </LanguageData>

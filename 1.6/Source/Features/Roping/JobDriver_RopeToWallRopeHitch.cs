@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class JobDriver_RopeToWallRopeHitch : JobDriver
     {
@@ -106,7 +106,7 @@ namespace MooGirl
         private static bool CanStartRopeToHitch(Pawn roper, Pawn ropee, Building hitch)
         {
             return CanPlaceAtHitch(roper, ropee, hitch) &&
-                RopingService.IsMooGirlRopee(ropee) &&
+                RopingService.IsMugirlRopee(ropee) &&
                 RopingService.IsFollowingRoper(ropee) &&
                 ropee.CurJob?.targetA.Thing == roper;
         }

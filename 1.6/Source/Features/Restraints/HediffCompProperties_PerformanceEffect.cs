@@ -4,7 +4,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace MooGirl
+namespace Mugirl
 {
     // 洗脑表演效果配置，控制延迟、持续时间和播放的声音/粒子/文字。
     public class CompProperties_PerformanceEffect : HediffCompProperties

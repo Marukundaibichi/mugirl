@@ -1,7 +1,7 @@
 using RimWorld;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class CompProperties_ShowRopedBy : CompProperties
     {
@@ -27,19 +27,19 @@ namespace MooGirl
             // 被其他角色牵引。
             if (roping.IsRopedByPawn)
             {
-                return "MooGirl.RopedByPawn".Translate();
+                return "Mugirl.RopedByPawn".Translate();
             }
 
             // 被原版拴点牵引。
             if (roping.IsRopedToHitchingPost)
             {
-                return "MooGirl.RopedToHitchingPost".Translate();
+                return "Mugirl.RopedToHitchingPost".Translate();
             }
 
             // 被地图坐标牵引。
             if (roping.IsRopedToSpot)
             {
-                return "MooGirl.RopedToSpot".Translate();
+                return "Mugirl.RopedToSpot".Translate();
             }
 
             return null;

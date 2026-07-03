@@ -2,7 +2,7 @@
 
 <Defs>
 
-    <HediffDef Name="MooGirl_BondageBase" Abstract="True">
+    <HediffDef Name="Mugirl_BondageBase" Abstract="True">
         <hediffClass>Hediff</hediffClass>
         <defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
         <makesSickThought>false</makesSickThought>
@@ -11,8 +11,8 @@
         <scenarioCanAdd>false</scenarioCanAdd>
     </HediffDef>
 
-    <HediffDef ParentName="MooGirl_BondageBase">
-        <defName>MooGirl_Armbinder</defName>
+    <HediffDef ParentName="Mugirl_BondageBase">
+        <defName>Mugirl_Armbinder</defName>
         <!-- 单手套束缚 -->
         <label>Arm Restraints</label>
         <!-- 单手套束缚 -->
@@ -23,7 +23,7 @@
             <li>
                 <workerClass>PawnRenderNodeWorker_AttachmentBody</workerClass>
                 <bodyTypeGraphicPaths>
-                    <Female>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slavesarmbinder/Skin/MooGirl_Slavesarmbinder_Female</Female>
+                    <Female>Things/Apparel/Mugirl_SlaveApparel/Mugirl_Slavesarmbinder/Skin/Mugirl_Slavesarmbinder_Female</Female>
                 </bodyTypeGraphicPaths>
                 <baseLayer>49</baseLayer>
                 <texSeed>1</texSeed>
@@ -54,8 +54,8 @@
         </stages>
     </HediffDef>
 
-    <HediffDef ParentName="MooGirl_BondageBase">
-        <defName>MooGirl_Handcuffs</defName>
+    <HediffDef ParentName="Mugirl_BondageBase">
+        <defName>Mugirl_Handcuffs</defName>
         <!-- 手铐束缚 -->
         <label>Handcuff Restraints</label>
         <!-- 手铐束缚 -->
@@ -66,7 +66,7 @@
             <li>
                 <workerClass>PawnRenderNodeWorker_AttachmentBody</workerClass>
                 <bodyTypeGraphicPaths>
-                    <Female>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slavehandcuffs/Skin/MooGirl_Slavehandcuffs_Female</Female>
+                    <Female>Things/Apparel/Mugirl_SlaveApparel/Mugirl_Slavehandcuffs/Skin/Mugirl_Slavehandcuffs_Female</Female>
                 </bodyTypeGraphicPaths>
                 <baseLayer>49</baseLayer>
                 <texSeed>1</texSeed>
@@ -101,8 +101,8 @@
         </stages>
     </HediffDef>
 
-    <HediffDef ParentName="MooGirl_BondageBase">
-        <defName>MooGirl_Boxbinder</defName>
+    <HediffDef ParentName="Mugirl_BondageBase">
+        <defName>Mugirl_Boxbinder</defName>
         <!-- 多重束缚 -->
         <label>Multiple Restraints</label>
         <!-- 多重束缚 -->
@@ -113,7 +113,7 @@
             <li>
                 <workerClass>PawnRenderNodeWorker_AttachmentBody</workerClass>
                 <bodyTypeGraphicPaths>
-                    <Female>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slaveclothes/Skin/MooGirl_Slaveclothes_Female</Female>
+                    <Female>Things/Apparel/Mugirl_SlaveApparel/Mugirl_Slaveclothes/Skin/Mugirl_Slaveclothes_Female</Female>
                 </bodyTypeGraphicPaths>
                 <baseLayer>49</baseLayer>
                 <texSeed>1</texSeed>
@@ -148,8 +148,8 @@
         </stages>
     </HediffDef>
 
-    <HediffDef ParentName="MooGirl_BondageBase">
-        <defName>MooGirl_Straitjacket</defName>
+    <HediffDef ParentName="Mugirl_BondageBase">
+        <defName>Mugirl_Straitjacket</defName>
         <!-- 拘束衣束缚 -->
         <label>Straitjacket Restraints</label>
         <!-- 拘束衣束缚 -->
@@ -168,8 +168,8 @@
         </stages>
     </HediffDef>
 
-    <HediffDef ParentName="MooGirl_BondageBase">
-        <defName>MooGirl_Legbinder</defName>
+    <HediffDef ParentName="Mugirl_BondageBase">
+        <defName>Mugirl_Legbinder</defName>
         <!-- 双腿束缚 -->
         <label>Leg Restraints</label>
         <!-- 双腿束缚 -->
@@ -188,8 +188,8 @@
         </stages>
     </HediffDef>
 
-    <HediffDef ParentName="MooGirl_BondageBase">
-        <defName>MooGirl_Gauntlet</defName>
+    <HediffDef ParentName="Mugirl_BondageBase">
+        <defName>Mugirl_Gauntlet</defName>
         <!-- 奴隶手套束缚 -->
         <label>Slave Gauntlets Restraints</label>
         <!-- 手套束缚 -->
@@ -200,7 +200,7 @@
             <li>
                 <workerClass>PawnRenderNodeWorker_AttachmentBody</workerClass>
                 <bodyTypeGraphicPaths>
-                    <Female>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slavegauntlet/Skin/MooGirl_Slavegauntlet_Female</Female>
+                    <Female>Things/Apparel/Mugirl_SlaveApparel/Mugirl_Slavegauntlet/Skin/Mugirl_Slavegauntlet_Female</Female>
                 </bodyTypeGraphicPaths>
                 <baseLayer>49</baseLayer>
                 <texSeed>1</texSeed>
@@ -235,8 +235,8 @@
         </stages>
     </HediffDef>
 
-    <HediffDef ParentName="MooGirl_BondageBase">
-        <defName>MooGirl_Stockings</defName>
+    <HediffDef ParentName="Mugirl_BondageBase">
+        <defName>Mugirl_Stockings</defName>
         <!-- 奴隶袜束缚 -->
         <label>Slave Sock Restraints</label>
         <!-- 奴隶袜束缚 -->
@@ -255,8 +255,8 @@
         </stages>
     </HediffDef>
 
-    <HediffDef ParentName="MooGirl_BondageBase">
-        <defName>MooGirl_FullHeadCovering</defName>
+    <HediffDef ParentName="Mugirl_BondageBase">
+        <defName>Mugirl_FullHeadCovering</defName>
         <!-- 全包头套 -->
         <label>Full Head Covering</label>
         <!-- 一个全包头套 -->
@@ -283,8 +283,8 @@
         </stages>
     </HediffDef>
 
-    <HediffDef ParentName="MooGirl_BondageBase">
-        <defName>MooGirl_Blindfold</defName>
+    <HediffDef ParentName="Mugirl_BondageBase">
+        <defName>Mugirl_Blindfold</defName>
         <!-- 蒙眼 -->
         <label>Blindfold</label>
         <!-- 一副眼罩 -->
@@ -303,8 +303,8 @@
         </stages>
     </HediffDef>
 
-    <HediffDef ParentName="MooGirl_BondageBase">
-        <defName>MooGirl_Gagstick</defName>
+    <HediffDef ParentName="Mugirl_BondageBase">
+        <defName>Mugirl_Gagstick</defName>
         <!-- 口棒 -->
         <label>Gagstick</label>
         <!-- 一副口棒 -->
@@ -327,8 +327,8 @@
         </stages>
     </HediffDef>
 
-    <HediffDef ParentName="MooGirl_BondageBase">
-        <defName>MooGirl_Earplugs</defName>
+    <HediffDef ParentName="Mugirl_BondageBase">
+        <defName>Mugirl_Earplugs</defName>
         <!-- 耳塞 -->
         <label>Earplugs</label>
         <!-- 一对耳塞 -->

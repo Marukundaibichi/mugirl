@@ -2,7 +2,7 @@
 <Defs>
     <!-- 哺乳期 Hediff -->
     <HediffDef>
-        <defName>MooGirl_Lactation</defName>
+        <defName>Mugirl_Lactation</defName>
         <hediffClass>HediffWithComps</hediffClass>
         <!-- 哺乳期 -->
         <label>lactating</label>
@@ -11,7 +11,7 @@
         <isBad>false</isBad>
         <scenarioCanAdd>false</scenarioCanAdd>
         <comps>
-            <li Class="MooGirl.CompProperties_Lactation">
+            <li Class="Mugirl.CompProperties_Lactation">
                 <baseProductionMultiplier>1.0</baseProductionMultiplier>
                 <postpartumBoostDays>7</postpartumBoostDays>
                 <postpartumMultiplier>2.5</postpartumMultiplier>
@@ -21,7 +21,7 @@
     </HediffDef>
 
     <HediffDef>
-        <defName>MooGirl_MotherlyNurture</defName>
+        <defName>Mugirl_MotherlyNurture</defName>
         <hediffClass>HediffWithComps</hediffClass>
         <!-- 雪牛娘妈妈的哺育 -->
         <label>Mugirl mother's nurture</label>
@@ -60,12 +60,12 @@
             </li>
         </stages>
         <comps>
-            <li Class="MooGirl.HediffCompProperties_MooGirlNurtureProgress" />
+            <li Class="Mugirl.HediffCompProperties_MugirlNurtureProgress" />
         </comps>
     </HediffDef>
 
     <HediffDef>
-        <defName>MooGirl_NurtureAfterglow</defName>
+        <defName>Mugirl_NurtureAfterglow</defName>
         <hediffClass>HediffWithComps</hediffClass>
         <!-- 雪牛娘哺育余韵 -->
         <label>Mugirl nurture afterglow</label>

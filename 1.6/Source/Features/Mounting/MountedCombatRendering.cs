@@ -2,11 +2,11 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     public static partial class MountedCombatController
     {
-        public static void DrawWeapon(Comp_MooGirlMount comp)
+        public static void DrawWeapon(Comp_MugirlMount comp)
         {
             Pawn rider = comp?.MountedPawn;
             Pawn carrier = comp?.MooPawn;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-    <ThingDef Name="MooGirl_UnderwearBase" ParentName="MooGirl_ApparelBase" Abstract="True">
+    <ThingDef Name="Mugirl_UnderwearBase" ParentName="Mugirl_ApparelBase" Abstract="True">
         <graphicData>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
@@ -16,31 +16,31 @@
         </statBases>
         <apparel>
             <layers>
-                <li>MooGirl_Underwear</li>
+                <li>Mugirl_Underwear</li>
             </layers>
             <tags>
-                <li>MooGirl_Underwear</li>
+                <li>Mugirl_Underwear</li>
             </tags>
         </apparel>
         <stuffCategories>
             <li>Fabric</li>
         </stuffCategories>
         <thingCategories>
-            <li>MooGirl_Underwear</li>
+            <li>Mugirl_Underwear</li>
         </thingCategories>
         <recipeMaker>
             <researchPrerequisite>ComplexClothing</researchPrerequisite>
         </recipeMaker>
     </ThingDef>
 
-    <ThingDef ParentName="MooGirl_UnderwearBase">
-        <defName>MooGirl_Bikini</defName>
+    <ThingDef ParentName="Mugirl_UnderwearBase">
+        <defName>Mugirl_Bikini</defName>
         <!-- 雪牛娘 比基尼 「雪域响铃 -->
         <label>Mugirl Bikini "Carillon des Neiges"</label>
         <!-- 「八重·朱 服装」出品奶牛斑纹比基尼，颈环黑皮带系银铃难掩前胸曼妙。黑白斑驳随腰肢晃动铃音清响，堪称纯真与情欲的临界点宣言。 -->
         <description>"Vache Rousse" presents a cow-print bikini, where a black leather neck collar with a silver bell cannot constrain the graceful bust.\nThe dappled black and white pattern sways with the hips, the clear chime a manifesto poised between innocence and desire.</description>
         <graphicData>
-            <texPath>Things/Apparel/MooGirl_Bikini/MooGirl_Bikini</texPath>
+            <texPath>Things/Apparel/Mugirl_Bikini/Mugirl_Bikini</texPath>
         </graphicData>
         <costStuffCount>50</costStuffCount>
         <equippedStatOffsets>
@@ -51,22 +51,22 @@
                 <li>Torso</li>
                 <li>Shoulders</li>
             </bodyPartGroups>
-            <wornGraphicPath>Things/Apparel/MooGirl_Bikini/MooGirl_Bikini</wornGraphicPath>
+            <wornGraphicPath>Things/Apparel/Mugirl_Bikini/Mugirl_Bikini</wornGraphicPath>
             <useWornGraphicMask>false</useWornGraphicMask>
             <tags> <!-- 自定义标签，可用于pankind生成 -->
-                <li>MooGirl_Slave_Underwear</li>
+                <li>Mugirl_Slave_Underwear</li>
             </tags>
         </apparel>
     </ThingDef>
 
-    <ThingDef ParentName="MooGirl_UnderwearBase">
-        <defName>MooGirl_Bikini_Stocking</defName>
+    <ThingDef ParentName="Mugirl_UnderwearBase">
+        <defName>Mugirl_Bikini_Stocking</defName>
         <!-- 雪牛娘 比基尼（带长筒袜） 「斑驳热焰」 -->
         <label>Mugirl Bikini (With Stockings) "Flamme Marbrée"</label>
         <!-- 「八重·朱 服装」出品奶牛纹绑带比基尼搭配过膝袜，颈铃与腰身共振。黑白碰撞点燃视觉野性，每一步皆诱发狩猎本能。 -->
         <description>"Vache Rousse" presents a cow-print strappy bikini paired with over-knee socks, where the neck bell resonates with the wearer's movements.\nThe clash of black and white ignites a visual wildness, each step stirring the primal instinct to hunt.</description>
         <graphicData>
-            <texPath>Things/Apparel/MooGirl_Bikini_Stocking/MooGirl_Bikini_Stocking</texPath>
+            <texPath>Things/Apparel/Mugirl_Bikini_Stocking/Mugirl_Bikini_Stocking</texPath>
         </graphicData>
         <costStuffCount>50</costStuffCount>
         <equippedStatOffsets>
@@ -78,22 +78,22 @@
                 <li>Shoulders</li>
                 <li>Legs</li>
             </bodyPartGroups>
-            <wornGraphicPath>Things/Apparel/MooGirl_Bikini_Stocking/MooGirl_Bikini_Stocking</wornGraphicPath>
+            <wornGraphicPath>Things/Apparel/Mugirl_Bikini_Stocking/Mugirl_Bikini_Stocking</wornGraphicPath>
             <useWornGraphicMask>false</useWornGraphicMask>
             <tags> <!-- 自定义标签，可用于pankind生成 -->
-                <li>MooGirl_Slave_Underwear</li>
+                <li>Mugirl_Slave_Underwear</li>
             </tags>
         </apparel>
     </ThingDef>
 
-    <ThingDef ParentName="MooGirl_UnderwearBase">
-        <defName>MooGirl_Bar</defName>
+    <ThingDef ParentName="Mugirl_UnderwearBase">
+        <defName>Mugirl_Bar</defName>
         <!-- 雪牛娘 文胸 「夜庭皇权」 -->
         <label>Mugirl Bra "Pouvoir Impérial de la Nuit"</label>
         <!-- 「八重·朱 服装」出品黑色哥特蕾丝全罩杯文胸，暗银丝线刺绣覆盖杯面。如女皇加冕般托起饱满曲线，于外着下流淌隐秘的奢华宣言。 -->
         <description>"Vache Rousse" presents a black Gothic lace full-cup bra, with ornate silver-thread embroidery gracing the cups.\nIt lifts the silhouette like a coronation, a secret declaration of luxury flowing beneath outer garments.</description>
         <graphicData>
-            <texPath>Things/Apparel/MooGirl_Bar/MooGirl_Bar</texPath>
+            <texPath>Things/Apparel/Mugirl_Bar/Mugirl_Bar</texPath>
             <shaderType>CutoutComplex</shaderType>
         </graphicData>
         <costStuffCount>50</costStuffCount>
@@ -104,19 +104,19 @@
             <bodyPartGroups>
                 <li>Shoulders</li>
             </bodyPartGroups>
-            <wornGraphicPath>Things/Apparel/MooGirl_Bar/MooGirl_Bar</wornGraphicPath>
+            <wornGraphicPath>Things/Apparel/Mugirl_Bar/Mugirl_Bar</wornGraphicPath>
             <useWornGraphicMask>true</useWornGraphicMask>
         </apparel>
     </ThingDef>
 
-    <ThingDef ParentName="MooGirl_UnderwearBase">
-        <defName>MooGirl_Eroticpanties</defName>
+    <ThingDef ParentName="Mugirl_UnderwearBase">
+        <defName>Mugirl_Eroticpanties</defName>
         <!-- 雪牛娘 轻薄内裤 「蜜境迷踪」 -->
         <label>Mugirl Erotic Underpants "Mystère du Jardin de Miel"</label>
         <!-- 「八重·朱 服装」出品黑色哥特蕾丝丁字裤，暗银刺绣镂空臀线迷宫。最终防线的华丽失守，引诱冒险者向未知禁域更进一步。 -->
         <description>"Vache Rousse" presents black Gothic lace panties, with intricate silver embroidery creating a labyrinth at the hip line.\nA glorious breaching of the final defence, luring adventurers one step closer into forbidden territory.</description>
         <graphicData>
-            <texPath>Things/Apparel/MooGirl_Eroticpanties/MooGirl_Eroticpanties</texPath>
+            <texPath>Things/Apparel/Mugirl_Eroticpanties/Mugirl_Eroticpanties</texPath>
             <shaderType>CutoutComplex</shaderType>
         </graphicData>
         <costStuffCount>50</costStuffCount>
@@ -127,7 +127,7 @@
             <bodyPartGroups>
                 <li>Legs</li>
             </bodyPartGroups>
-            <wornGraphicPath>Things/Apparel/MooGirl_Eroticpanties/MooGirl_Eroticpanties</wornGraphicPath>
+            <wornGraphicPath>Things/Apparel/Mugirl_Eroticpanties/Mugirl_Eroticpanties</wornGraphicPath>
             <useWornGraphicMask>true</useWornGraphicMask>
         </apparel>
     </ThingDef>

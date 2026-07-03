@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
     <!-- mounting TargetA. -->
-    <Job_MountMooGirl.reportString>骑上 TargetA。</Job_MountMooGirl.reportString>
+    <Job_MountMugirl.reportString>骑上 TargetA。</Job_MountMugirl.reportString>
     <!-- dismounting the rider from TargetA. -->
-    <Job_DismountMooGirl.reportString>让 TargetA 上的骑乘者下来。</Job_DismountMooGirl.reportString>
+    <Job_DismountMugirl.reportString>让 TargetA 上的骑乘者下来。</Job_DismountMugirl.reportString>
 </LanguageData>

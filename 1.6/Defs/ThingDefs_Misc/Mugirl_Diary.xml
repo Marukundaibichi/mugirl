@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <ThingDef>
+        <defName>Mugirl_CourierDiary</defName>
+        <label>courier diary</label> <!-- 运货员日记本 -->
+        <description>A diary kept by an unlucky low-level courier, filled with hard-earned survival experience from years of scraping by.</description> <!-- 一个倒霉底层运货员的日记，其中凝结了他这么久以来摸爬滚打的经验 -->
+        <thingClass>ThingWithComps</thingClass>
+        <category>Item</category>
+        <selectable>true</selectable>
+        <useHitPoints>true</useHitPoints>
+        <pathCost>15</pathCost>
+        <altitudeLayer>Item</altitudeLayer>
+        <alwaysHaulable>true</alwaysHaulable>
+        <drawGUIOverlay>true</drawGUIOverlay>
+        <thingCategories>
+            <li>Books</li>
+        </thingCategories>
+        <graphicData>
+            <texPath>Things/Item/Specialitems/diary/diary</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
+        </graphicData>
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <MarketValue>10</MarketValue>
+            <Mass>0.20</Mass>
+            <Flammability>1.0</Flammability>
+            <Beauty>3</Beauty>
+            <DeteriorationRate>0.1</DeteriorationRate>
+        </statBases>
+        <comps>
+            <li Class="Mugirl.CompProperties_ReadableBook">
+                <bookTitle>Courier diary</bookTitle> <!-- 运货员日记本 -->
+            </li>
+            <li Class="CompProperties_Forbiddable" />
+        </comps>
+    </ThingDef>
+
+</Defs>

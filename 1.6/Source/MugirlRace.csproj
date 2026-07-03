@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{CD131244-B1A2-4989-A4A4-7BD0B38810DF}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>MugirlRace</RootNamespace>
+        <AssemblyName>MugirlRace</AssemblyName>
+        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+        <Deterministic>true</Deterministic>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+        <LangVersion>7.2</LangVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <DebugSymbols>false</DebugSymbols>
+        <DebugType>none</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>..\Assemblies\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <LangVersion>7.2</LangVersion>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="0Harmony">
+            <HintPath>..\..\..\..\..\..\workshop\content\294100\2009463077\Current\Assemblies\0Harmony.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="AlienRace, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c0473c1c409d3997, processorArchitecture=MSIL">
+            <SpecificVersion>False</SpecificVersion>
+            <HintPath>..\..\..\..\..\..\workshop\content\294100\839005762\1.6\Assemblies\AlienRace.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="System" />
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.IMGUIModule">
+            <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.TextRenderingModule">
+            <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Core\MugirlBootstrap.cs" />
+        <Compile Include="Core\MugirlGameUtility.cs" />
+        <Compile Include="Core\MugirlIdentity.cs" />
+        <Compile Include="Core\MugirlLog.cs" />
+        <Compile Include="Core\MugirlMod.cs" />
+        <Compile Include="Core\MugirlOptionalDefs.cs" />
+        <Compile Include="Core\MugirlPatchInfo.cs" />
+        <Compile Include="Core\MugirlPatchRegistry.cs" />
+        <Compile Include="Core\MugirlRequiredDefs.cs" />
+        <Compile Include="Core\MugirlSelectionUtility.cs" />
+        <Compile Include="Core\MugirlText.cs" />
+        <Compile Include="Core\MugirlTickUtility.cs" />
+        <Compile Include="Compatibility\MeleeAnimation\MeleeAnimationCompat.cs" />
+        <Compile Include="Compatibility\OtherMods\ExternalBreastHediffDefs.cs" />
+        <Compile Include="DefOf\MugirlContentDefOf.cs" />
+        <Compile Include="DefOf\Mugirl_DefOf.cs" />
+        <Compile Include="Features\Apparel\MugirlApparelTagUtility.cs" />
+        <Compile Include="Features\Genes\CompProperties_AbilityEffect_ForceJob.cs" />
+        <Compile Include="Features\Genes\HediffCompProperties_CheckJobOrRemove.cs" />
+        <Compile Include="Features\Genes\JobDriver_CastCharge.cs" />
+        <Compile Include="Features\Genes\Mugirl_XenotypeFix_GameComp.cs" />
+        <Compile Include="Features\Incidents\CompReadableBook.cs" />
+        <Compile Include="Features\Incidents\Dialog_ReadBook.cs" />
+        <Compile Include="Features\Incidents\Harmony_DesignatorTame.cs" />
+        <Compile Include="Features\Incidents\Harmony_GiantCorpRaidTiers.cs" />
+        <Compile Include="Features\Incidents\Harmony_IsWildMan_WildManUtility.cs" />
+        <Compile Include="Features\Incidents\IncidentWorker_Mugirl_CourierRaid.cs" />
+        <Compile Include="Features\Incidents\IncidentWorker_Mugirl_WildManWandersIn.cs" />
+        <Compile Include="Features\Incidents\MugirlGeneratedPawnUtility.cs" />
+        <Compile Include="Features\Incidents\MugirlRescueJoinUtility.cs" />
+        <Compile Include="Features\Incidents\MugirlStoryState.cs" />
+        <Compile Include="Features\Incidents\MugirlWildSlaveUtility.cs" />
+        <Compile Include="Features\Incidents\Mugirl_IdeoUtility.cs" />
+        <Compile Include="Features\Incidents\QuestNode_Mugirl_RefugeePodCrash.cs" />
+        <Compile Include="Features\Incidents\QuestNode_Root_Mugirl_CourierRaid.cs" />
+        <Compile Include="Features\Incidents\QuestNode_Root_Mugirl_OpeningPodCrash.cs" />
+        <Compile Include="Features\Incidents\QuestNode_Root_Mugirl_WandererJoin_WalkIn.cs" />
+        <Compile Include="Features\Incidents\QuestPart_CourierRaid.cs" />
+        <Compile Include="Features\Incidents\QuestPart_MugirlRescueJoin.cs" />
+        <Compile Include="Features\Incidents\StockGenerator_Mugirl_Slaves.cs" />
+        <Compile Include="Features\Milk\CompMooHasBodyResource.cs" />
+        <Compile Include="Features\Milk\CompMooMilkable.cs" />
+        <Compile Include="Features\Milk\CompProperties_MilkingDevice.cs" />
+        <Compile Include="Features\Milk\CompProperties_MilkingDeviceReleaseEffect.cs" />
+        <Compile Include="Features\Milk\Comp_MilkingDevice.cs" />
+        <Compile Include="Features\Milk\Gizmo_MilkGauge.cs" />
+        <Compile Include="Features\Milk\Harmony_FloatMenu_Milk.cs" />
+        <Compile Include="Features\Milk\Harmony_MugirlMilkingAnimation.cs" />
+        <Compile Include="Features\Milk\Harmony_MugirlBabyFeeding.cs" />
+        <Compile Include="Features\Milk\Harmony_MugirlNurtureGrowthPoints.cs" />
+        <Compile Include="Features\Milk\Harmony_MugirlNurturedSkillLearnCap.cs" />
+        <Compile Include="Features\Milk\HediffCompProperties_WhileHavingThoughts.cs" />
+        <Compile Include="Features\Milk\HediffComp_CureFoodEffects.cs" />
+        <Compile Include="Features\Milk\HediffComp_Lactation.cs" />
+        <Compile Include="Features\Milk\HediffComp_MugirlNurtureProgress.cs" />
+        <Compile Include="Features\Milk\JobDriver_Breastfeed.cs" />
+        <Compile Include="Features\Milk\JobDriver_DrinkMilkFromMugirl.cs" />
+        <Compile Include="Features\Milk\JobDriver_FeedMilkToDowned.cs" />
+        <Compile Include="Features\Milk\JobDriver_GatherBodyResources.cs" />
+        <Compile Include="Features\Milk\JobDriver_GatherMilk.cs" />
+        <Compile Include="Features\Milk\MugirlBreastProfileUtility.cs" />
+        <Compile Include="Features\Milk\MugirlFoodEffectUtility.cs" />
+        <Compile Include="Features\Milk\MugirlMilkEffectUtility.cs" />
+        <Compile Include="Features\Milk\MugirlMilkInteractionUtility.cs" />
+        <Compile Include="Features\Milk\MugirlMilkOutputUtility.cs" />
+        <Compile Include="Features\Milk\MugirlMilkingAnimation.cs" />
+        <Compile Include="Features\Milk\MugirlMilkingAnimation.State.cs" />
+        <Compile Include="Features\Milk\MugirlNurtureUtility.cs" />
+        <Compile Include="Features\Milk\Thought_Hediff.cs" />
+        <Compile Include="Features\Milk\WorkGiver_GatherBodyResources.cs" />
+        <Compile Include="Features\Milk\WorkGiver_GatherMilk.cs" />
+        <Compile Include="Features\Misc\Harmony_Apparel_DrawColor.cs" />
+        <Compile Include="Features\Misc\Harmony_DrugAdministerDefs.cs" />
+        <Compile Include="Features\Misc\Harmony_GhoulRenderingRefresh.cs" />
+        <Compile Include="Features\Misc\Harmony_MugirlGrazeChain.cs" />
+        <Compile Include="Features\Misc\InteractionWorker_Nuzzle.cs" />
+        <Compile Include="Features\Misc\JobDriver_Nuzzle.cs" />
+        <Compile Include="Features\Misc\JobGiver_Nuzzle.cs" />
+        <Compile Include="Features\Misc\ThoughtWorker_SingleshotWeaponAversion.cs" />
+        <Compile Include="Features\Misc\Thought_MugirlOnly.cs" />
+        <Compile Include="Features\Mounting\CompProperties_MugirlMount.cs" />
+        <Compile Include="Features\Mounting\Comp_MugirlMount.cs" />
+        <Compile Include="Features\Mounting\Comp_MugirlMount.Gizmos.cs" />
+        <Compile Include="Features\Mounting\Comp_MugirlMount.Lifecycle.cs" />
+        <Compile Include="Features\Mounting\Comp_MugirlMount.Storage.cs" />
+        <Compile Include="Features\Mounting\FloatMenuProvider_MountMugirl.cs" />
+        <Compile Include="Features\Mounting\Harmony_MountRendering.cs" />
+        <Compile Include="Features\Mounting\Harmony_MountedPawnGizmos.cs" />
+        <Compile Include="Features\Mounting\Harmony_MountedCombatController.cs" />
+        <Compile Include="Features\Mounting\JobDriver_DismountMugirl.cs" />
+        <Compile Include="Features\Mounting\JobDriver_MountMugirl.cs" />
+        <Compile Include="Features\Mounting\MountEligibilityService.cs" />
+        <Compile Include="Features\Mounting\MountedCombatRendering.cs" />
+        <Compile Include="Features\Mounting\MountedCombatTargeting.cs" />
+        <Compile Include="Features\Mounting\MountedCombatTargetSearcher.cs" />
+        <Compile Include="Features\Mounting\MountedCombatVerbState.cs" />
+        <Compile Include="Features\Mounting\MountedCombatWeaponEligibility.cs" />
+        <Compile Include="Features\Mounting\MountedPawnCombatTurret.cs" />
+        <Compile Include="Features\Mounting\MountedPawnMeleeSupport.cs" />
+        <Compile Include="Features\Mounting\MountedPawnUtility.cs" />
+        <Compile Include="Features\Mounting\MountedVerbScope.cs" />
+        <Compile Include="Features\Newborn\Harmony_PawnGenerator_NewbornVisuals.cs" />
+        <Compile Include="Features\Newborn\Harmony_PawnRenderNode_Hair_MugirlBaby.cs" />
+        <Compile Include="Features\Newborn\LifeStageVisualService.cs" />
+        <Compile Include="Features\Restraints\AdultContentControl.cs" />
+        <Compile Include="Features\Restraints\BrainwashPerformancePlayer.cs" />
+        <Compile Include="Features\Restraints\Comps\CompGetSlaveApparelGear.cs" />
+        <Compile Include="Features\Restraints\Comps\Comp_MagneticShackles.Gizmos.cs" />
+        <Compile Include="Features\Restraints\Comps\CompProperties_AdvancedSlaveApparel.cs" />
+        <Compile Include="Features\Restraints\Comps\CompProperties_BrainwashHelmet.cs" />
+        <Compile Include="Features\Restraints\Comps\CompProperties_DevUnlockSlaveApparel.cs" />
+        <Compile Include="Features\Restraints\Comps\CompProperties_MagneticShackles.cs" />
+        <Compile Include="Features\Restraints\Comps\CompProperties_ShockCollar.cs" />
+        <Compile Include="Features\Restraints\Comps\CompProperties_SlaveApparelKey.cs" />
+        <Compile Include="Features\Restraints\Comps\CompProperties_TargetEffectCrackBondageGear.cs" />
+        <Compile Include="Features\Restraints\Comps\CompSlaveApparelGear.cs" />
+        <Compile Include="Features\Restraints\Comps\CompStampedApparelKey.cs" />
+        <Compile Include="Features\Restraints\Comps\CompTargetable_SlaveApparel.cs" />
+        <Compile Include="Features\Restraints\Comps\CompUnlockBondageGear.cs" />
+        <Compile Include="Features\Restraints\Harmony_DropThingTooltip.cs" />
+        <Compile Include="Features\Restraints\Harmony_InitiateSlaveRebellionMtbDays.cs" />
+        <Compile Include="Features\Restraints\Harmony_PawnGenerator_Patch.cs" />
+        <Compile Include="Features\Restraints\GameComponent_BrainwashPerformance.cs" />
+        <Compile Include="Features\Restraints\HediffComp_BrainWashingStar.cs" />
+        <Compile Include="Features\Restraints\HediffCompProperties_AddMentalState.cs" />
+        <Compile Include="Features\Restraints\HediffCompProperties_AddThoughts.cs" />
+        <Compile Include="Features\Restraints\HediffCompProperties_AddTrait.cs" />
+        <Compile Include="Features\Restraints\HediffCompProperties_DisappearsAndAddHediffs.cs" />
+        <Compile Include="Features\Restraints\HediffCompProperties_EleShock.cs" />
+        <Compile Include="Features\Restraints\HediffCompProperties_PerformanceEffect.cs" />
+        <Compile Include="Features\Restraints\HediffCompProperties_ReduceWillorEnslave.cs" />
+        <Compile Include="Features\Restraints\HediffCompProperties_SuppressionEnhancer.cs" />
+        <Compile Include="Features\Restraints\JobDriver_CrackBondageGear.cs" />
+        <Compile Include="Features\Restraints\JobDriver_UnlockSlaveApparelGear.cs" />
+        <Compile Include="Features\Restraints\JobDriver_UseItemOn.cs" />
+        <Compile Include="Features\Restraints\PawnSlaveStatusUtility.cs" />
+        <Compile Include="Features\Restraints\SlaveApparelDef.cs" />
+        <Compile Include="Features\Restraints\SlaveApparelExtensions.cs" />
+        <Compile Include="Features\Roping\Comp_RopeToBuild.cs" />
+        <Compile Include="Features\Roping\Comp_ShowRopedBy.cs" />
+        <Compile Include="Features\Roping\FloatMenuProvider_RopeMoo.cs" />
+        <Compile Include="Features\Roping\Harmony_Door_PawnCanOpen.cs" />
+        <Compile Include="Features\Roping\Harmony_PawnDraftController.cs" />
+        <Compile Include="Features\Roping\Harmony_PreventEscape.cs" />
+        <Compile Include="Features\Roping\Harmony_RopingDraw.cs" />
+        <Compile Include="Features\Roping\Harmony_RopingTick.cs" />
+        <Compile Include="Features\Roping\Harmony_ShouldShowRestraintsInfo.cs" />
+        <Compile Include="Features\Roping\Harmony_TakeToPreferredBedJob.cs" />
+        <Compile Include="Features\Roping\JobDriver_FollowRoper.cs" />
+        <Compile Include="Features\Roping\JobDriver_RemoveRopeMoo.cs" />
+        <Compile Include="Features\Roping\JobDriver_RopeMoo.cs" />
+        <Compile Include="Features\Roping\JobDriver_RopeToWallRopeHitch.cs" />
+        <Compile Include="Features\Roping\JobGiver_FollowRoper.cs" />
+        <Compile Include="Features\Roping\JobGiver_WanderRoped.cs" />
+        <Compile Include="Features\Roping\MapRopingIndex.cs" />
+        <Compile Include="Features\Roping\RopeLink.cs" />
+        <Compile Include="Features\Roping\RopingService.cs" />
+        <Compile Include="Features\Roping\ThinkNode_ConditionalRoped.cs" />
+        <Compile Include="Features\Roping\ThoughtWorker_Roped.cs" />
+        <Compile Include="Features\Roping\ThoughtWorker_Roper.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="UI\MugirlSettingsWindow.cs" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -2,15 +2,15 @@
 <Defs>
 
     <JobDef>
-        <defName>Job_MountMooGirl</defName>
-        <driverClass>MooGirl.JobDriver_MountMooGirl</driverClass>
+        <defName>Job_MountMugirl</defName>
+        <driverClass>Mugirl.JobDriver_MountMugirl</driverClass>
         <reportString>mounting TargetA.</reportString> <!-- 骑上 TargetA。 -->
         <suspendable>false</suspendable>
     </JobDef>
 
     <JobDef>
-        <defName>Job_DismountMooGirl</defName>
-        <driverClass>MooGirl.JobDriver_DismountMooGirl</driverClass>
+        <defName>Job_DismountMugirl</defName>
+        <driverClass>Mugirl.JobDriver_DismountMugirl</driverClass>
         <reportString>dismounting the rider from TargetA.</reportString> <!-- 让 TargetA 上的骑乘者下来。 -->
         <suspendable>false</suspendable>
     </JobDef>

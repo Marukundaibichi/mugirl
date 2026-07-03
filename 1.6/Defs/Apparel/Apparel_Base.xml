@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-    <ThingDef Name="MooGirl_ApparelBase" ParentName="ApparelBase" Abstract="True">
+    <ThingDef Name="Mugirl_ApparelBase" ParentName="ApparelBase" Abstract="True">
     <thingClass>Apparel</thingClass>
     <category>Item</category>
     <selectable>True</selectable>
@@ -35,7 +35,7 @@
     </apparel>
     <tradeability>Sellable</tradeability>
     <tradeTags>
-        <li>MooGirl_Apparel</li>
+        <li>Mugirl_Apparel</li>
     </tradeTags>
     <recipeMaker>
         <workSpeedStat>GeneralLaborSpeed</workSpeedStat>

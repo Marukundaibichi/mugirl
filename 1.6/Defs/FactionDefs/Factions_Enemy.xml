@@ -2,7 +2,7 @@
 <Defs>
 
     <FactionDef ParentName="FactionBase">
-        <defName>MooGirl_GiantCorporations_Hostile</defName>
+        <defName>Mugirl_GiantCorporations_Hostile</defName>
         <!-- 巨型企业 -->
         <label>Giant Corporation</label>
         <!-- 一个庞大的企业联合体，控制着无数资源与武装力量，对任何妨碍其利益者毫不留情。 -->
@@ -97,7 +97,7 @@
                     <AI_GC_Soldiers>30</AI_GC_Soldiers>
                     <AI_GC_Sapper>7</AI_GC_Sapper>
                     <AI_GC_Elites>3</AI_GC_Elites>
-                    <AI_GC_MooGirlRaider>1</AI_GC_MooGirlRaider>
+                    <AI_GC_MugirlRaider>1</AI_GC_MugirlRaider>
                 </options>
             </li>
             <li>
@@ -109,7 +109,7 @@
                     <AI_GC_Soldiers>50</AI_GC_Soldiers>
                     <AI_GC_Sapper>10</AI_GC_Sapper>
                     <AI_GC_Elites>24</AI_GC_Elites>
-                    <AI_GC_MooGirlRaider>1</AI_GC_MooGirlRaider>
+                    <AI_GC_MugirlRaider>1</AI_GC_MugirlRaider>
                 </options>
             </li>
             <li>

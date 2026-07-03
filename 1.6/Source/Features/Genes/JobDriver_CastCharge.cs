@@ -4,7 +4,7 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class JobDriver_CastCharge : JobDriver
     {
@@ -106,7 +106,7 @@ namespace MooGirl
             }
 
             target.TakeDamage(new DamageInfo(DamageDefOf.Cut, 50f, 0f, -1, pawn));
-            target.health.AddHediff(HediffMaker.MakeHediff(MooGirl_DefOf.MooGirl_Stun, target));
+            target.health.AddHediff(HediffMaker.MakeHediff(Mugirl_DefOf.Mugirl_Stun, target));
 
             if (!target.Dead)
             {
@@ -117,26 +117,26 @@ namespace MooGirl
 
         private void EnsureChargeHediff()
         {
-            if (pawn?.health == null || MooGirl_DefOf.MooGirl_Charge == null)
+            if (pawn?.health == null || Mugirl_DefOf.Mugirl_Charge == null)
             {
                 return;
             }
 
-            if (pawn.health.hediffSet.GetFirstHediffOfDef(MooGirl_DefOf.MooGirl_Charge) == null)
+            if (pawn.health.hediffSet.GetFirstHediffOfDef(Mugirl_DefOf.Mugirl_Charge) == null)
             {
-                pawn.health.AddHediff(HediffMaker.MakeHediff(MooGirl_DefOf.MooGirl_Charge, pawn));
+                pawn.health.AddHediff(HediffMaker.MakeHediff(Mugirl_DefOf.Mugirl_Charge, pawn));
             }
         }
 
         private void RemoveChargeHediff()
         {
-            if (pawn?.health == null || MooGirl_DefOf.MooGirl_Charge == null)
+            if (pawn?.health == null || Mugirl_DefOf.Mugirl_Charge == null)
             {
                 return;
             }
 
             Hediff speedHediff;
-            while ((speedHediff = pawn.health.hediffSet.GetFirstHediffOfDef(MooGirl_DefOf.MooGirl_Charge)) != null)
+            while ((speedHediff = pawn.health.hediffSet.GetFirstHediffOfDef(Mugirl_DefOf.Mugirl_Charge)) != null)
             {
                 pawn.health.RemoveHediff(speedHediff);
             }
@@ -215,14 +215,14 @@ namespace MooGirl
             FleckMaker.ThrowDustPuff(position.ToVector3Shifted() + Gen.RandomHorizontalVector(0.5f), map, 2f);
             GenSpawn.Spawn(pawnFlyer, targetPosition, map, WipeMode.Vanish);
 
-            MooGirlSelectionUtility.ReselectIfSelectedInPlaying(pawn, playSound: false, forceDesignatorDeselect: false);
+            MugirlSelectionUtility.ReselectIfSelectedInPlaying(pawn, playSound: false, forceDesignatorDeselect: false);
 
             return true;
         }
 
         private static bool TryDismountMountedRiderBeforeJump(Pawn pawn, Map map)
         {
-            Comp_MooGirlMount comp = MountedPawnUtility.GetMountComp(pawn);
+            Comp_MugirlMount comp = MountedPawnUtility.GetMountComp(pawn);
             if (comp?.MountedPawn == null)
             {
                 return true;

@@ -2,7 +2,7 @@
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     // 强制任务能力的 XML 配置：指定影响半径、目标 Job 和可选持续时间。
     public class CompProperties_AbilityEffect_ForceJob : CompProperties_AbilityEffect
@@ -95,7 +95,7 @@ namespace MooGirl
         public override bool AICanTargetNow(LocalTargetInfo target)
         {
             Pawn caster = parent?.pawn;
-            if (caster == null || MooGirlWildSlaveUtility.IsPlayerFaction(caster.Faction))
+            if (caster == null || MugirlWildSlaveUtility.IsPlayerFaction(caster.Faction))
             {
                 return false;
             }

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
     <!-- A massive corporate consortium controlling countless resources and armed forces, showing no mercy to anyone who obstructs its interests. -->
-    <MooGirl_GiantCorporations_Hostile.description>一个庞大的企业联合体，控制着无数资源与武装力量，对任何妨碍其利益者毫不留情。</MooGirl_GiantCorporations_Hostile.description>
+    <Mugirl_GiantCorporations_Hostile.description>一个庞大的企业联合体，控制着无数资源与武装力量，对任何妨碍其利益者毫不留情。</Mugirl_GiantCorporations_Hostile.description>
     <!-- Giant Corporation -->
-    <MooGirl_GiantCorporations_Hostile.fixedName>巨型企业</MooGirl_GiantCorporations_Hostile.fixedName>
+    <Mugirl_GiantCorporations_Hostile.fixedName>巨型企业</Mugirl_GiantCorporations_Hostile.fixedName>
     <!-- Giant Corporation -->
-    <MooGirl_GiantCorporations_Hostile.label>巨型企业</MooGirl_GiantCorporations_Hostile.label>
+    <Mugirl_GiantCorporations_Hostile.label>巨型企业</Mugirl_GiantCorporations_Hostile.label>
     <!-- leader -->
-    <MooGirl_GiantCorporations_Hostile.leaderTitle>主管</MooGirl_GiantCorporations_Hostile.leaderTitle>
+    <Mugirl_GiantCorporations_Hostile.leaderTitle>主管</Mugirl_GiantCorporations_Hostile.leaderTitle>
     <!-- {0} from {1} are attacking your {2}. -->
-    <MooGirl_GiantCorporations_Hostile.messageDefendersAttacking>来自 {1} 的 {0} 正在攻击你的 {2}。</MooGirl_GiantCorporations_Hostile.messageDefendersAttacking>
+    <Mugirl_GiantCorporations_Hostile.messageDefendersAttacking>来自 {1} 的 {0} 正在攻击你的 {2}。</Mugirl_GiantCorporations_Hostile.messageDefendersAttacking>
     <!-- Corporate Mercenary -->
-    <MooGirl_GiantCorporations_Hostile.pawnSingular>巨企佣兵</MooGirl_GiantCorporations_Hostile.pawnSingular>
+    <Mugirl_GiantCorporations_Hostile.pawnSingular>巨企佣兵</Mugirl_GiantCorporations_Hostile.pawnSingular>
     <!-- Corporate Mercenaries -->
-    <MooGirl_GiantCorporations_Hostile.pawnsPlural>巨企佣兵</MooGirl_GiantCorporations_Hostile.pawnsPlural>
+    <Mugirl_GiantCorporations_Hostile.pawnsPlural>巨企佣兵</Mugirl_GiantCorporations_Hostile.pawnsPlural>
 </LanguageData>

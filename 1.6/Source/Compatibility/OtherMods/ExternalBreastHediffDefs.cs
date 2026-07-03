@@ -1,7 +1,7 @@
 using RimWorld;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     // StaticCacheLifecycle: 进程级外部乳房 HediffDef 缓存；可选 mod 缺失时条目允许为 null。
     internal static class ExternalBreastHediffDefs

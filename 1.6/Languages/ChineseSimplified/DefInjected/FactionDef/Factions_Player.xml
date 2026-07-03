@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
     <!-- Mugirl Colonists -->
-    <MooGirl_Colony.label>雪牛娘殖民者</MooGirl_Colony.label>
+    <Mugirl_Colony.label>雪牛娘殖民者</Mugirl_Colony.label>
     <!-- A group of freedom-seeking Mugirls who have successfully escaped enslavement and gathered to establish their own colony. Though the environment is harsh and resources are scarce, they still strive to farm, fight, and support each other, carving out a new future. -->
-    <MooGirl_Colony.description>一群追求自由的雪牛娘，她们成功逃离奴役，聚集在一起建立属于自己的殖民地。虽然环境恶劣、资源匮乏，但她们依旧努力耕作、战斗、互相扶持，开辟出新的未来。</MooGirl_Colony.description>
+    <Mugirl_Colony.description>一群追求自由的雪牛娘，她们成功逃离奴役，聚集在一起建立属于自己的殖民地。虽然环境恶劣、资源匮乏，但她们依旧努力耕作、战斗、互相扶持，开辟出新的未来。</Mugirl_Colony.description>
     <!-- Leader -->
-    <MooGirl_Colony.leaderTitle>首领</MooGirl_Colony.leaderTitle>
+    <Mugirl_Colony.leaderTitle>首领</Mugirl_Colony.leaderTitle>
     <!-- Colonist -->
-    <MooGirl_Colony.pawnSingular>殖民者</MooGirl_Colony.pawnSingular>
+    <Mugirl_Colony.pawnSingular>殖民者</Mugirl_Colony.pawnSingular>
     <!-- Colonists -->
-    <MooGirl_Colony.pawnsPlural>殖民者们</MooGirl_Colony.pawnsPlural>
+    <Mugirl_Colony.pawnsPlural>殖民者们</Mugirl_Colony.pawnsPlural>
 </LanguageData>

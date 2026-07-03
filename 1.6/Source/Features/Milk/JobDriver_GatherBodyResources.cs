@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     // 身体资源采集 JobDriver 基类，负责预约、等待、进度条和采集结束清理。
     public abstract class JobDriver_GatherBodyResources : JobDriver

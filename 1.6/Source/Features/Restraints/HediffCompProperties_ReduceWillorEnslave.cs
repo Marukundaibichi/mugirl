@@ -2,7 +2,7 @@
 using UnityEngine;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class CompProperties_ReduceWillorEnslave : HediffCompProperties
     {

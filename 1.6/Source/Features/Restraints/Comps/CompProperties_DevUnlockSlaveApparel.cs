@@ -3,7 +3,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class CompProperties_DevUnlockSlaveApparel : CompProperties
     {
@@ -29,8 +29,8 @@ namespace MooGirl
 
             yield return new Command_Action
             {
-                defaultLabel = "MooGirl.Restraints.DevUnlock.Label".Translate(apparel.LabelCap),
-                defaultDesc = "MooGirl.Restraints.DevUnlock.Desc".Translate(apparel.LabelCap),
+                defaultLabel = "Mugirl.Restraints.DevUnlock.Label".Translate(apparel.LabelCap),
+                defaultDesc = "Mugirl.Restraints.DevUnlock.Desc".Translate(apparel.LabelCap),
                 icon = TexCommand.ClearPrioritizedWork,
                 action = () => DevUnlock(apparel)
             };
@@ -47,7 +47,7 @@ namespace MooGirl
             apparel.isLocked = false;
             apparel.lockCount = 0;
             wearer.apparel?.Unlock(apparel);
-            Messages.Message("MooGirl.Restraints.DevUnlock.Message".Translate(wearer.LabelShortCap, apparel.LabelCap), wearer, MessageTypeDefOf.PositiveEvent);
+            Messages.Message("Mugirl.Restraints.DevUnlock.Message".Translate(wearer.LabelShortCap, apparel.LabelCap), wearer, MessageTypeDefOf.PositiveEvent);
         }
     }
 }

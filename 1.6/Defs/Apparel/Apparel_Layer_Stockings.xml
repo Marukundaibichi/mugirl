@@ -2,7 +2,7 @@
 <Defs>
 
     <ApparelLayerDef>
-    <defName>MooGirl_SpeciallyStocking</defName>
+    <defName>Mugirl_SpeciallyStocking</defName>
     <!-- 特制丝袜 -->
     <label>Special Stockings</label>
     <drawOrder>-5</drawOrder>

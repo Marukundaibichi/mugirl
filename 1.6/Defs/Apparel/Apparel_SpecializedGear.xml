@@ -3,14 +3,14 @@
 
     <!-- ========== 内衣层 ========== -->
 
-    <ThingDef ParentName="MooGirl_UnderwearBase">
-        <defName>MooGirl_WhitePanties</defName>
+    <ThingDef ParentName="Mugirl_UnderwearBase">
+        <defName>Mugirl_WhitePanties</defName>
         <!-- 雪牛娘 白丝内衣 -->
         <label>Mugirl White Silk Underwear</label>
         <!-- 轻柔白丝制成的雪牛娘专属内衣，采用贴身剪裁作为白丝套装主体，提供基础保暖与魅力加成。 -->
         <description>Soft white silk underwear made exclusively for Mugirls. Its close-fitting cut forms the base of the white silk outfit, providing basic warmth and a charm bonus.</description>
         <graphicData>
-            <texPath>Things/Apparel/MooGirl_WhitePanties/MooGirl_WhitePanties</texPath>
+            <texPath>Things/Apparel/Mugirl_WhitePanties/Mugirl_WhitePanties</texPath>
             <shaderType>CutoutComplex</shaderType>
         </graphicData>
         <costStuffCount>50</costStuffCount>
@@ -29,19 +29,19 @@
             <bodyPartGroups>
                 <li>Legs</li>
             </bodyPartGroups>
-            <wornGraphicPath>Things/Apparel/MooGirl_WhitePanties/MooGirl_WhitePanties</wornGraphicPath>
+            <wornGraphicPath>Things/Apparel/Mugirl_WhitePanties/Mugirl_WhitePanties</wornGraphicPath>
             <useWornGraphicMask>true</useWornGraphicMask>
         </apparel>
     </ThingDef>
 
-    <ThingDef ParentName="MooGirl_UnderwearBase" MayRequire="Ludeon.RimWorld.Odyssey">
-        <defName>MooGirl_Spacesuit</defName>
+    <ThingDef ParentName="Mugirl_UnderwearBase" MayRequire="Ludeon.RimWorld.Odyssey">
+        <defName>Mugirl_Spacesuit</defName>
         <!-- 雪牛娘 太空服 -->
         <label>Mugirl Spacesuit</label>
         <!-- 贴身设计的雪牛娘专属太空服，在尽量不干扰外层装备的前提下提供全天候环境防护。 -->
         <description>A close-fitting Mugirl-exclusive spacesuit that provides all-weather environmental protection while avoiding interference with outer equipment as much as possible.</description>
         <graphicData>
-            <texPath>Things/Apparel/MooGirl_Spacesuit/MooGirl_Spacesuit</texPath>
+            <texPath>Things/Apparel/Mugirl_Spacesuit/Mugirl_Spacesuit</texPath>
             <ignoreThingDrawColor>true</ignoreThingDrawColor>
         </graphicData>
         <techLevel>Spacer</techLevel>
@@ -82,7 +82,7 @@
                 <li>Arms</li>
                 <li>Legs</li>
             </bodyPartGroups>
-            <wornGraphicPath>Things/Apparel/MooGirl_Spacesuit/MooGirl_Spacesuit</wornGraphicPath>
+            <wornGraphicPath>Things/Apparel/Mugirl_Spacesuit/Mugirl_Spacesuit</wornGraphicPath>
             <useWornGraphicMask>false</useWornGraphicMask>
         </apparel>
     </ThingDef>
@@ -91,14 +91,14 @@
 
     <!-- ========== 贴身层 ========== -->
 
-    <ThingDef ParentName="MooGirl_OnSkinBase">
-        <defName>MooGirl_ReverseBunnySuit</defName>
+    <ThingDef ParentName="Mugirl_OnSkinBase">
+        <defName>Mugirl_ReverseBunnySuit</defName>
         <!-- 雪牛娘 逆兔女郎装 -->
         <label>Mugirl Reverse Bunny Suit</label>
         <!-- 雪牛娘专属逆兔女郎装，以更大胆的开口与贴身剪裁强化魅力，同时保留轻度基础防护。 -->
         <description>A reverse bunny suit made exclusively for Mugirls, using bolder openings and a close-fitting cut to emphasize charm while retaining light basic protection.</description>
         <graphicData>
-            <texPath>Things/Apparel/MooGirl_ReverseBunnySuit/MooGirl_ReverseBunnySuit</texPath>
+            <texPath>Things/Apparel/Mugirl_ReverseBunnySuit/Mugirl_ReverseBunnySuit</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
         <costStuffCount>50</costStuffCount>
@@ -124,18 +124,18 @@
                 <li>Shoulders</li>
                 <li>Legs</li>
             </bodyPartGroups>
-            <wornGraphicPath>Things/Apparel/MooGirl_ReverseBunnySuit/MooGirl_ReverseBunnySuit</wornGraphicPath>
+            <wornGraphicPath>Things/Apparel/Mugirl_ReverseBunnySuit/Mugirl_ReverseBunnySuit</wornGraphicPath>
         </apparel>
     </ThingDef>
 
     <ThingDef ParentName="ApparelMakeableBase">
-        <defName>MooGirl_ReverseBunnySticker</defName>
+        <defName>Mugirl_ReverseBunnySticker</defName>
         <!-- 雪牛娘 逆兔女郎贴纸 -->
         <label>Mugirl Reverse Bunny Stickers</label>
         <!-- 逆兔女郎套装的三点式贴纸装饰件，可与内衣一同穿戴，作为隐藏外饰用于还原整体风格。 -->
         <description>Three-piece sticker ornaments for the reverse bunny set. They can be worn with underwear as hidden ornaments to complete the overall style.</description>
         <graphicData>
-            <texPath>Things/Apparel/MooGirl_ReverseBunnySticker/MooGirl_ReverseBunnySticker</texPath>
+            <texPath>Things/Apparel/Mugirl_ReverseBunnySticker/Mugirl_ReverseBunnySticker</texPath>
             <graphicClass>Graphic_Single</graphicClass>
             <shaderType>CutoutComplex</shaderType>
         </graphicData>
@@ -161,9 +161,9 @@
             <bodyPartGroups>
                 <li>Torso</li>
             </bodyPartGroups>
-            <wornGraphicPath>Things/Apparel/MooGirl_ReverseBunnySticker/MooGirl_ReverseBunnySticker</wornGraphicPath>
+            <wornGraphicPath>Things/Apparel/Mugirl_ReverseBunnySticker/Mugirl_ReverseBunnySticker</wornGraphicPath>
             <layers>
-                <li>MooGirl_HiddenOrnament</li>
+                <li>Mugirl_HiddenOrnament</li>
             </layers>
             <drawData>
                 <defaultData>
@@ -188,14 +188,14 @@
 
     <!-- ========== 头部装备 ========== -->
 
-    <ThingDef ParentName="MooGirl_ArmorHelmetBase">
-        <defName>MooGirl_PowerArmorHelmet</defName>
+    <ThingDef ParentName="Mugirl_ArmorHelmetBase">
+        <defName>Mugirl_PowerArmorHelmet</defName>
         <!-- 雪牛娘 动力甲头盔 -->
         <label>Mugirl Power Armor Helmet</label>
         <!-- 为雪牛娘动力甲配套的全封闭头盔，兼顾环境耐受与中近距离射击支援。 -->
         <description>A fully enclosed helmet paired with Mugirl power armor, balancing environmental resistance with close- and mid-range shooting support.</description>
         <graphicData>
-            <texPath>Things/Apparel/MooGirl_PowerArmorHelmet/MooGirl_PowerArmorHelmet</texPath>
+            <texPath>Things/Apparel/Mugirl_PowerArmorHelmet/Mugirl_PowerArmorHelmet</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
         <techLevel>Spacer</techLevel>
@@ -229,9 +229,9 @@
             <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.66</VacuumResistance>
         </equippedStatOffsets>
         <apparel>
-            <wornGraphicPath>Things/Apparel/MooGirl_PowerArmorHelmet/MooGirl_PowerArmorHelmet</wornGraphicPath>
+            <wornGraphicPath>Things/Apparel/Mugirl_PowerArmorHelmet/Mugirl_PowerArmorHelmet</wornGraphicPath>
             <tags>
-                <li>MooGirl_Helmet</li>
+                <li>Mugirl_Helmet</li>
             </tags>
         </apparel>
         <recipeMaker>
@@ -259,14 +259,14 @@
         </recipeMaker>
     </ThingDef>
 
-    <ThingDef ParentName="MooGirl_ArmorHelmetBase">
-        <defName>MooGirl_KnightHelmet</defName>
+    <ThingDef ParentName="Mugirl_ArmorHelmetBase">
+        <defName>Mugirl_KnightHelmet</defName>
         <!-- 雪牛娘 骑士头盔 -->
         <label>Mugirl Knight Helmet</label>
         <!-- 适配雪牛娘头型与角位的骑士头盔，提供稳定的全头部防护。 -->
         <description>A knight helmet adapted to a Mugirl head shape and horn position, providing stable full-head protection.</description>
         <graphicData>
-            <texPath>Things/Apparel/MooGirl_KnightHelmet/MooGirl_KnightHelmet</texPath>
+            <texPath>Things/Apparel/Mugirl_KnightHelmet/Mugirl_KnightHelmet</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
         <techLevel>Medieval</techLevel>
@@ -288,9 +288,9 @@
             <EquipDelay>2</EquipDelay>
         </statBases>
         <apparel>
-            <wornGraphicPath>Things/Apparel/MooGirl_KnightHelmet/MooGirl_KnightHelmet</wornGraphicPath>
+            <wornGraphicPath>Things/Apparel/Mugirl_KnightHelmet/Mugirl_KnightHelmet</wornGraphicPath>
             <tags>
-                <li>MooGirl_Helmet</li>
+                <li>Mugirl_Helmet</li>
             </tags>
         </apparel>
         <recipeMaker>
@@ -307,14 +307,14 @@
         </recipeMaker>
     </ThingDef>
 
-    <ThingDef ParentName="MooGirl_ArmorHelmetBase">
-        <defName>MooGirl_WarriorCombatHelmet</defName>
+    <ThingDef ParentName="Mugirl_ArmorHelmetBase">
+        <defName>Mugirl_WarriorCombatHelmet</defName>
         <!-- 雪牛娘 战士头盔 -->
         <label>Mugirl Warrior Helmet</label>
         <!-- 战士全防护服配套的重型头盔，强调正面防护与射击稳定性。 -->
         <description>A heavy helmet paired with the warrior full protective suit, emphasizing frontal protection and shooting stability.</description>
         <graphicData>
-            <texPath>Things/Apparel/MooGirl_WarriorCombatHelmet/MooGirl_WarriorCombatHelmet</texPath>
+            <texPath>Things/Apparel/Mugirl_WarriorCombatHelmet/Mugirl_WarriorCombatHelmet</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
         <techLevel>Industrial</techLevel>
@@ -345,9 +345,9 @@
             <ShootingAccuracyPawn>1</ShootingAccuracyPawn>
         </equippedStatOffsets>
         <apparel>
-            <wornGraphicPath>Things/Apparel/MooGirl_WarriorCombatHelmet/MooGirl_WarriorCombatHelmet</wornGraphicPath>
+            <wornGraphicPath>Things/Apparel/Mugirl_WarriorCombatHelmet/Mugirl_WarriorCombatHelmet</wornGraphicPath>
             <tags>
-                <li>MooGirl_Helmet</li>
+                <li>Mugirl_Helmet</li>
             </tags>
         </apparel>
         <recipeMaker>
@@ -374,14 +374,14 @@
         </recipeMaker>
     </ThingDef>
 
-    <ThingDef ParentName="MooGirl_HeadBase" MayRequire="Ludeon.RimWorld.Odyssey">
-        <defName>MooGirl_SpacesuitHeadgear</defName>
+    <ThingDef ParentName="Mugirl_HeadBase" MayRequire="Ludeon.RimWorld.Odyssey">
+        <defName>Mugirl_SpacesuitHeadgear</defName>
         <!-- 雪牛娘 太空面罩 -->
         <label>Mugirl Spacesuit Headgear</label>
         <!-- 为雪牛娘太空服准备的轻量头部面罩，按现有雪牛娘头饰体系制作，用于补足环境密封。 -->
         <description>Lightweight headgear prepared for the Mugirl spacesuit, built within the existing Mugirl headwear system to complete environmental sealing.</description>
         <graphicData>
-            <texPath>Things/Apparel/MooGirl_SpacesuitHeadgear/MooGirl_SpacesuitHeadgear</texPath>
+            <texPath>Things/Apparel/Mugirl_SpacesuitHeadgear/Mugirl_SpacesuitHeadgear</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
         <techLevel>Spacer</techLevel>
@@ -421,7 +421,7 @@
             <bodyPartGroups>
                 <li>HeadAttackTool</li>
             </bodyPartGroups>
-            <wornGraphicPath>Things/Apparel/MooGirl_SpacesuitHeadgear/MooGirl_SpacesuitHeadgear</wornGraphicPath>
+            <wornGraphicPath>Things/Apparel/Mugirl_SpacesuitHeadgear/Mugirl_SpacesuitHeadgear</wornGraphicPath>
             <forceEyesVisibleForRotations>
                 <li>1</li>
                 <li>2</li>
@@ -433,14 +433,14 @@
 
     <!-- ========== 外壳层 ========== -->
 
-    <ThingDef ParentName="MooGirl_ArmorBase">
-        <defName>MooGirl_PowerArmor</defName>
+    <ThingDef ParentName="Mugirl_ArmorBase">
+        <defName>Mugirl_PowerArmor</defName>
         <!-- 雪牛娘 动力甲 -->
         <label>Mugirl Power Armor</label>
         <!-- 面向雪牛娘体型调整的重型动力甲，强化负重与近战动作，在全身防护的同时保留一定机动性。 -->
         <description>Heavy power armor adjusted for the Mugirl body shape. It strengthens carrying capacity and melee motion while retaining some mobility under full-body protection.</description>
         <graphicData>
-            <texPath>Things/Apparel/MooGirl_PowerArmor/MooGirl_PowerArmor</texPath>
+            <texPath>Things/Apparel/Mugirl_PowerArmor/Mugirl_PowerArmor</texPath>
         </graphicData>
         <techLevel>Spacer</techLevel>
         <costStuffCount>120</costStuffCount>
@@ -499,9 +499,9 @@
                 <li>Shell</li>
                 <li>Middle</li>
             </layers>
-            <wornGraphicPath>Things/Apparel/MooGirl_PowerArmor/MooGirl_PowerArmor</wornGraphicPath>
+            <wornGraphicPath>Things/Apparel/Mugirl_PowerArmor/Mugirl_PowerArmor</wornGraphicPath>
             <tags>
-                <li>MooGirl_Armor</li>
+                <li>Mugirl_Armor</li>
             </tags>
             <bodyPartGroups>
                 <li>Torso</li>
@@ -513,14 +513,14 @@
         </apparel>
     </ThingDef>
 
-    <ThingDef ParentName="MooGirl_ArmorBase">
-        <defName>MooGirl_WarriorCombatArmor</defName>
+    <ThingDef ParentName="Mugirl_ArmorBase">
+        <defName>Mugirl_WarriorCombatArmor</defName>
         <!-- 雪牛娘 战士全防护服 -->
         <label>Mugirl Warrior Combat Armor</label>
         <!-- 为雪牛娘优化的全防护战斗甲，覆盖四肢与躯干，强调负重与持续远程作战能力。 -->
         <description>Full protective combat armor optimized for Mugirls, covering the limbs and torso while emphasizing load-bearing and sustained ranged combat capability.</description>
         <graphicData>
-            <texPath>Things/Apparel/MooGirl_WarriorCombatArmor/MooGirl_WarriorCombatArmor</texPath>
+            <texPath>Things/Apparel/Mugirl_WarriorCombatArmor/Mugirl_WarriorCombatArmor</texPath>
         </graphicData>
         <techLevel>Industrial</techLevel>
         <costStuffCount>60</costStuffCount>
@@ -565,9 +565,9 @@
                 <li>Shell</li>
                 <li>Middle</li>
             </layers>
-            <wornGraphicPath>Things/Apparel/MooGirl_WarriorCombatArmor/MooGirl_WarriorCombatArmor</wornGraphicPath>
+            <wornGraphicPath>Things/Apparel/Mugirl_WarriorCombatArmor/Mugirl_WarriorCombatArmor</wornGraphicPath>
             <tags>
-                <li>MooGirl_Armor</li>
+                <li>Mugirl_Armor</li>
             </tags>
             <bodyPartGroups>
                 <li>Torso</li>

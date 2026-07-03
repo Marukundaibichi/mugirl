@@ -5,7 +5,7 @@ using System.Reflection;
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     [HarmonyPatch(typeof(Pawn_RopeTracker), "RopingTick")]
     public static class Patch_RopingTick
@@ -31,7 +31,7 @@ namespace MooGirl
             for (int i = ropees.Count - 1; i >= 0; i--)
             {
                 Pawn ropee = ropees[i];
-                if (RopingService.IsMooGirlRopee(ropee) &&
+                if (RopingService.IsMugirlRopee(ropee) &&
                     RopingService.IsFollowingRoper(ropee) &&
                     ropee.jobs != null &&
                     ropee.CurJob?.targetA.Thing == owner)
@@ -52,9 +52,9 @@ namespace MooGirl
         {
             if (breakRopeWithRoperMethod == null)
             {
-                MooGirlLog.WarningOnce(
+                MugirlLog.WarningOnce(
                     "RopingTick.BreakRopeWithRoperMissing",
-                    "MooGirl.RopingTick.BreakRopeWithRoperMissing".Translate().ToString());
+                    "Mugirl.RopingTick.BreakRopeWithRoperMissing".Translate().ToString());
                 tracker.BreakAllRopes();
                 return;
             }
@@ -71,9 +71,9 @@ namespace MooGirl
                 pawn.IsBurning();
         }
 
-        private static bool ShouldUseMooGirlRopeeTick(Pawn pawn, Pawn_RopeTracker tracker)
+        private static bool ShouldUseMugirlRopeeTick(Pawn pawn, Pawn_RopeTracker tracker)
         {
-            return RopingService.IsMooGirlRopee(pawn) && (tracker.IsRopedByPawn || tracker.IsRopedToSpot);
+            return RopingService.IsMugirlRopee(pawn) && (tracker.IsRopedByPawn || tracker.IsRopedToSpot);
         }
 
         private static void ClearDraftedRopee(Pawn pawn)
@@ -84,7 +84,7 @@ namespace MooGirl
             }
         }
 
-        private static void TickMooGirlRopee(Pawn_RopeTracker tracker, Pawn pawn)
+        private static void TickMugirlRopee(Pawn_RopeTracker tracker, Pawn pawn)
         {
             ClearDraftedRopee(pawn);
 
@@ -123,13 +123,13 @@ namespace MooGirl
                 return true;
             }
 
-            if (ShouldUseMooGirlRopeeTick(pawn, __instance))
+            if (ShouldUseMugirlRopeeTick(pawn, __instance))
             {
-                TickMooGirlRopee(__instance, pawn);
+                TickMugirlRopee(__instance, pawn);
                 return false;
             }
 
-            if (!RopingService.HasOnlyMooGirlRopees(__instance))
+            if (!RopingService.HasOnlyMugirlRopees(__instance))
             {
                 return true;
             }

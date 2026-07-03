@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- courier diary -->
+    <Mugirl_CourierDiary.label>运货员日记本</Mugirl_CourierDiary.label>
+    <!-- A diary kept by an unlucky low-level courier, filled with hard-earned survival experience from years of scraping by. -->
+    <Mugirl_CourierDiary.description>一个倒霉底层运货员的日记，其中凝结了他这么久以来摸爬滚打的经验</Mugirl_CourierDiary.description>
+    <!-- Courier diary -->
+    <Mugirl_CourierDiary.comps.CompReadableBook.bookTitle>运货员日记本</Mugirl_CourierDiary.comps.CompReadableBook.bookTitle>
+</LanguageData>

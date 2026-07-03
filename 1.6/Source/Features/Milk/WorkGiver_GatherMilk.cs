@@ -1,6 +1,6 @@
 ﻿using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
 
     public class WorkGiver_GatherMilk : WorkGiver_GatherBodyResources
@@ -9,7 +9,7 @@ namespace MooGirl
         {
             get
             {
-                return MooGirl_DefOf.Job_GatherMilk;
+                return Mugirl_DefOf.Job_GatherMilk;
             }
         }
 

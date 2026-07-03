@@ -2,7 +2,7 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     [HarmonyPatch(typeof(JobGiver_PrisonerEscape), "TryGiveJob")]
     public static class JobGiver_PrisonerEscape_RopedBlock_Patch

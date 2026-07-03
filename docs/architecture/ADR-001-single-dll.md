@@ -2,7 +2,7 @@
 
 ## Decision
 
-MooGirl 继续使用一个运行时 DLL，不拆成多个程序集。
+Mugirl 继续使用一个运行时 DLL，不拆成多个程序集。
 
 ## Context
 

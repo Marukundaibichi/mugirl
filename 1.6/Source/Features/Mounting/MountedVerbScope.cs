@@ -2,7 +2,7 @@ using System;
 using RimWorld;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     public readonly struct MountedVerbScope : IDisposable
     {

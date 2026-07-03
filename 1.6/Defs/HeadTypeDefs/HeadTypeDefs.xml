@@ -3,43 +3,43 @@
     <!-- 女性头型。 -->
 
     <HeadTypeDef ParentName="AverageBase">
-        <defName>MooGirl_Female_A</defName>
-        <graphicPath>MooGirl/Heads/Female/MooGirl_Female_A</graphicPath>
+        <defName>Mugirl_Female_A</defName>
+        <graphicPath>Mugirl/Heads/Female/Mugirl_Female_A</graphicPath>
         <gender>Female</gender>
         <eyeOffsetEastWest>(0.13, 0, 0.17)</eyeOffsetEastWest>
     </HeadTypeDef>
 
     <HeadTypeDef ParentName="AverageBase">
-        <defName>MooGirl_Female_B</defName>
-        <graphicPath>MooGirl/Heads/Female/MooGirl_Female_B</graphicPath>
+        <defName>Mugirl_Female_B</defName>
+        <graphicPath>Mugirl/Heads/Female/Mugirl_Female_B</graphicPath>
         <gender>Female</gender>
         <eyeOffsetEastWest>(0.13, 0, 0.17)</eyeOffsetEastWest>
     </HeadTypeDef>
 
     <HeadTypeDef ParentName="AverageBase">
-        <defName>MooGirl_Female_C</defName>
-        <graphicPath>MooGirl/Heads/Female/MooGirl_Female_C</graphicPath>
+        <defName>Mugirl_Female_C</defName>
+        <graphicPath>Mugirl/Heads/Female/Mugirl_Female_C</graphicPath>
         <gender>Female</gender>
         <eyeOffsetEastWest>(0.13, 0, 0.17)</eyeOffsetEastWest>
     </HeadTypeDef>
 
     <HeadTypeDef ParentName="AverageBase">
-        <defName>MooGirl_Female_D</defName>
-        <graphicPath>MooGirl/Heads/Female/MooGirl_Female_D</graphicPath>
+        <defName>Mugirl_Female_D</defName>
+        <graphicPath>Mugirl/Heads/Female/Mugirl_Female_D</graphicPath>
         <gender>Female</gender>
         <eyeOffsetEastWest>(0.13, 0, 0.17)</eyeOffsetEastWest>
     </HeadTypeDef>
 
     <HeadTypeDef ParentName="AverageBase">
-        <defName>MooGirl_Female_E</defName>
-        <graphicPath>MooGirl/Heads/Female/MooGirl_Female_E</graphicPath>
+        <defName>Mugirl_Female_E</defName>
+        <graphicPath>Mugirl/Heads/Female/Mugirl_Female_E</graphicPath>
         <gender>Female</gender>
         <eyeOffsetEastWest>(0.13, 0, 0.17)</eyeOffsetEastWest>
     </HeadTypeDef>
 
     <HeadTypeDef ParentName="AverageBase">
-        <defName>MooGirl_Female_F</defName>
-        <graphicPath>MooGirl/Heads/Female/MooGirl_Female_F</graphicPath>
+        <defName>Mugirl_Female_F</defName>
+        <graphicPath>Mugirl/Heads/Female/Mugirl_Female_F</graphicPath>
         <gender>Female</gender>
         <eyeOffsetEastWest>(0.13, 0, 0.17)</eyeOffsetEastWest>
     </HeadTypeDef>

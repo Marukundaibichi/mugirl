@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using RimWorld;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class HediffCompProperties_CureFoodEffects : HediffCompProperties
     {
@@ -70,7 +70,7 @@ namespace MooGirl
 
         private void RemoveTargetHediffs(Pawn pawn, List<string> removeHediffs)
         {
-            MooGirlFoodEffectUtility.RemoveHediffs(pawn, removeHediffs);
+            MugirlFoodEffectUtility.RemoveHediffs(pawn, removeHediffs);
         }
 
         public override void CompExposeData()
@@ -86,7 +86,7 @@ namespace MooGirl
 
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested, int ingestedCount)
         {
-            MooGirlFoodEffectUtility.RemoveHediffs(pawn, removeHediffs);
+            MugirlFoodEffectUtility.RemoveHediffs(pawn, removeHediffs);
         }
     }
 
@@ -97,7 +97,7 @@ namespace MooGirl
 
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested, int ingestedCount)
         {
-            MooGirlFoodEffectUtility.AddOrRefreshHediff(pawn, hediffDef, severity);
+            MugirlFoodEffectUtility.AddOrRefreshHediff(pawn, hediffDef, severity);
         }
     }
 }

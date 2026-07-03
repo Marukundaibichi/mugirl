@@ -5,13 +5,13 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     public static partial class MountedCombatController
     {
         private const int DefaultTurretTickInterval = 60;
 
-        public static void NotifyMounted(Comp_MooGirlMount comp)
+        public static void NotifyMounted(Comp_MugirlMount comp)
         {
             Verb verb = GetPrimaryRangedVerb(comp);
             if (verb != null)
@@ -20,7 +20,7 @@ namespace MooGirl
             }
         }
 
-        public static void NotifyDismounting(Comp_MooGirlMount comp)
+        public static void NotifyDismounting(Comp_MugirlMount comp)
         {
             Pawn rider = comp?.MountedPawn;
             Verb verb = GetPrimaryRangedVerb(rider);
@@ -34,7 +34,7 @@ namespace MooGirl
             }
         }
 
-        public static void NotifyDismounting(Comp_MooGirlMount comp, Pawn rider)
+        public static void NotifyDismounting(Comp_MugirlMount comp, Pawn rider)
         {
             Verb verb = GetPrimaryRangedVerb(rider);
             CancelMountedCast(comp, verb);
@@ -62,7 +62,7 @@ namespace MooGirl
             }
         }
 
-        public static void VerbTick(Comp_MooGirlMount comp, int delta)
+        public static void VerbTick(Comp_MugirlMount comp, int delta)
         {
             Verb verb = GetPrimaryRangedVerb(comp);
             if (verb == null)
@@ -84,7 +84,7 @@ namespace MooGirl
             }
         }
 
-        public static void Tick(Comp_MooGirlMount comp, int delta)
+        public static void Tick(Comp_MugirlMount comp, int delta)
         {
             if (comp?.turretAimTarget.IsValid == true)
             {
@@ -136,7 +136,7 @@ namespace MooGirl
             }
         }
 
-        public static void TickAim(Comp_MooGirlMount comp, int delta)
+        public static void TickAim(Comp_MugirlMount comp, int delta)
         {
             if (!CanUseMountedRangedWeapon(comp, out _))
             {
@@ -192,7 +192,7 @@ namespace MooGirl
             }
         }
 
-        private static bool TryStartMountedCast(Comp_MooGirlMount comp, Verb verb, LocalTargetInfo castTarget)
+        private static bool TryStartMountedCast(Comp_MugirlMount comp, Verb verb, LocalTargetInfo castTarget)
         {
             if (comp == null || verb == null || !castTarget.IsValid)
             {
@@ -209,7 +209,7 @@ namespace MooGirl
 
             Stance originalStance = carrier?.stances?.curStance;
             bool pointBlankMeleeTarget = castTarget.HasThing && castTarget.Thing == MountedPawnMeleeSupport.CurrentMeleeTarget(carrier);
-            comp.turretCastStartTick = MooGirlTickUtility.CurrentGameTickOrFallback(comp.turretCastStartTick);
+            comp.turretCastStartTick = MugirlTickUtility.CurrentGameTickOrFallback(comp.turretCastStartTick);
             using (MountedCasterScope(comp, verb))
             using (new MountedWarmupOverride(verb, 0f))
             using (new MountedMinRangeOverride(verb, pointBlankMeleeTarget ? 0f : (float?)null))
@@ -233,7 +233,7 @@ namespace MooGirl
             return true;
         }
 
-        private static void FinishMountedCast(Comp_MooGirlMount comp, Verb verb, LocalTargetInfo castTarget)
+        private static void FinishMountedCast(Comp_MugirlMount comp, Verb verb, LocalTargetInfo castTarget)
         {
             if (comp == null || verb?.verbProps == null)
             {
@@ -256,11 +256,11 @@ namespace MooGirl
             }
 
             comp.turretLastAttackedTarget = castTarget;
-            comp.turretLastAttackTargetTick = MooGirlTickUtility.CurrentGameTickOrFallback(comp.turretLastAttackTargetTick);
+            comp.turretLastAttackTargetTick = MugirlTickUtility.CurrentGameTickOrFallback(comp.turretLastAttackTargetTick);
             comp.turretBurstCooldownTicksLeft = Mathf.Max(verb.verbProps.AdjustedCooldownTicks(verb, carrier), TurretTickInterval(comp));
         }
 
-        private static int GetMountedAimTicks(Comp_MooGirlMount comp, Pawn rider, Verb verb)
+        private static int GetMountedAimTicks(Comp_MugirlMount comp, Pawn rider, Verb verb)
         {
             if (verb?.verbProps == null)
             {
@@ -276,12 +276,12 @@ namespace MooGirl
             return Mathf.Max(warmupTime.SecondsToTicks(), comp?.Props?.turretMinAimTicks ?? 0);
         }
 
-        private static int TurretTickInterval(Comp_MooGirlMount comp)
+        private static int TurretTickInterval(Comp_MugirlMount comp)
         {
             return Mathf.Max(1, comp?.Props?.turretTickInterval ?? DefaultTurretTickInterval);
         }
 
-        private static void CancelMountedCast(Comp_MooGirlMount comp, Verb verb)
+        private static void CancelMountedCast(Comp_MugirlMount comp, Verb verb)
         {
             Pawn carrier = comp?.MooPawn;
             if (carrier?.stances?.curStance is Stance_Busy busyStance && (busyStance.verb == verb || (verb == null && IsMountedVerb(busyStance.verb))))
@@ -317,12 +317,12 @@ namespace MooGirl
             }
         }
 
-        private static bool WasMountedCastStarted(Comp_MooGirlMount comp)
+        private static bool WasMountedCastStarted(Comp_MugirlMount comp)
         {
             return comp != null && comp.turretCastStartTick >= 0;
         }
 
-        private static void ClearAim(Comp_MooGirlMount comp)
+        private static void ClearAim(Comp_MugirlMount comp)
         {
             if (comp == null)
             {

@@ -1,61 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-    <MooGirl_BrainWashing_Level1.label>Brainwashing Lv. 1 (First Brainwashing)</MooGirl_BrainWashing_Level1.label>
-    <MooGirl_BrainWashing_Level1.description>Yes... yes... I obey your command...</MooGirl_BrainWashing_Level1.description>
-    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.0.text>Huh?... what's going on</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.0.text>
-    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.1.text>My body... why can't it move</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.1.text>
-    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.2.text>Ugh...</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.2.text>
-    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.3.text>My head... so dizzy...</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.3.text>
-    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.4.text>...</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.4.text>
-    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.5.text>...</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.5.text>
-    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.6.text>...</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.6.text>
-    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.7.text>Ugh... ngh...</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.7.text>
-    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.8.text>Mm... ah~♥</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.8.text>
-    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.9.text>S-so comfortable~♥</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.9.text>
-    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.10.text>Ngh~♥</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.10.text>
-    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.11.text>Ah~♥</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.11.text>
-    <MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.12.text>Okay~♥</MooGirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.12.text>
-    <MooGirl_BrainWashing_Level2.label>Brainwashing Lv. 2 (Brainwashing Trance)</MooGirl_BrainWashing_Level2.label>
-    <MooGirl_BrainWashing_Level2.description>Huh? Eh? What just happened, why am I standing here...</MooGirl_BrainWashing_Level2.description>
-    <MooGirl_BrainWashing_Level3.label>Brainwashing Lv. 3 (Brainwashing Again)</MooGirl_BrainWashing_Level3.label>
-    <MooGirl_BrainWashing_Level3.description>Yes... yes... hehe... Mechanical-sama is the best~♥</MooGirl_BrainWashing_Level3.description>
-    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.0.text>Huh?... what's going on</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.0.text>
-    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.1.text>Is it happening again...</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.1.text>
-    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.2.text>Oh...</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.2.text>
-    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.3.text>I... I won't lose to the machine...</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.3.text>
-    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.4.text>...</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.4.text>
-    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.5.text>Oh...</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.5.text>
-    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.6.text>...</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.6.text>
-    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.7.text>Ugh... ngh...</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.7.text>
-    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.8.text>Mm... ah~♥</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.8.text>
-    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.9.text>My body feels so good~♥</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.9.text>
-    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.10.text>Ngh~♥</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.10.text>
-    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.11.text>Ah~ Mechanical-sama is the best~♥</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.11.text>
-    <MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.12.text>Okay~♥</MooGirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.12.text>
-    <MooGirl_BrainWashing_Level4.label>Brainwashing Lv. 4 (Brainwashing Dizziness)</MooGirl_BrainWashing_Level4.label>
-    <MooGirl_BrainWashing_Level4.description>Ugh.... my head is so dizzy... did I space out again... it must be this damn helmet, but why... my body feels so comfortable (whisper)</MooGirl_BrainWashing_Level4.description>
-    <MooGirl_BrainWashing_Level5.label>Brainwashing Lv. 5 (Brainwashing Complete)</MooGirl_BrainWashing_Level5.label>
-    <MooGirl_BrainWashing_Level5.description>Understand... I understand... kill... kill them all... the colonists... not a single one left... kill them all!</MooGirl_BrainWashing_Level5.description>
-    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.0.text>Huh?~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.0.text>
-    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.1.text>This feeling~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.1.text>
-    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.2.text>Ngh~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.2.text>
-    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.3.text>Mechanical-sama~♥ Mechanical-sama~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.3.text>
-    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.4.text>So comfortable~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.4.text>
-    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.5.text>Oh~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.5.text>
-    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.6.text>Hehe~</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.6.text>
-    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.7.text>My body~ feels so good~</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.7.text>
-    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.8.text>Mm... ah~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.8.text>
-    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.9.text>So comfortable~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.9.text>
-    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.10.text>Ah~ Mechanical-sama is the best~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.10.text>
-    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.11.text>Hehe~ I love Mechanical-sama the most~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.11.text>
-    <MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.12.text>Mm, I understand~♥</MooGirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.12.text>
-    <MooGirl_EleShock.label>Collar Electric Shock</MooGirl_EleShock.label>
-    <MooGirl_EleShock.description>For some reason, the electric shock collar started electrocuting the Mugirl, fortunately it was only a mild shock.</MooGirl_EleShock.description>
-    <MooGirl_MagneticShacklesBondage.label>Magnetic Shackles Bondage</MooGirl_MagneticShacklesBondage.label>
-    <MooGirl_MagneticShacklesBondage.description>The Mugirl's arms were strictly restrained to the Mugirl's neck by the suddenly activated magnetic shackles, unable to move.</MooGirl_MagneticShacklesBondage.description>
-    <MooGirl_MagneticShacklesBondage.labelNoun>Magnetic Shackles Bondage</MooGirl_MagneticShacklesBondage.labelNoun>
-    <MooGirl_PowerEleShock.label>Powerful Collar Electric Shock</MooGirl_PowerEleShock.label>
-    <MooGirl_PowerEleShock.description>For some reason, the electric shock collar started strongly electrocuting the Mugirl. Stop it quickly! It could really kill the Mugirl!</MooGirl_PowerEleShock.description>
-    <MooGirl_PowerEleShock_NoMilk.label>Powerful Collar Electric Shock</MooGirl_PowerEleShock_NoMilk.label>
-    <MooGirl_PowerEleShock_NoMilk.description>For some reason, the electric shock collar started strongly electrocuting the wearer.</MooGirl_PowerEleShock_NoMilk.description>
+    <Mugirl_BrainWashing_Level1.label>Brainwashing Lv. 1 (First Brainwashing)</Mugirl_BrainWashing_Level1.label>
+    <Mugirl_BrainWashing_Level1.description>Yes... yes... I obey your command...</Mugirl_BrainWashing_Level1.description>
+    <Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.0.text>Huh?... what's going on</Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.0.text>
+    <Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.1.text>My body... why can't it move</Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.1.text>
+    <Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.2.text>Ugh...</Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.2.text>
+    <Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.3.text>My head... so dizzy...</Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.3.text>
+    <Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.4.text>...</Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.4.text>
+    <Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.5.text>...</Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.5.text>
+    <Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.6.text>...</Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.6.text>
+    <Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.7.text>Ugh... ngh...</Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.7.text>
+    <Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.8.text>Mm... ah~♥</Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.8.text>
+    <Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.9.text>S-so comfortable~♥</Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.9.text>
+    <Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.10.text>Ngh~♥</Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.10.text>
+    <Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.11.text>Ah~♥</Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.11.text>
+    <Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.12.text>Okay~♥</Mugirl_BrainWashing_Level1.comps.HediffComp_BrainWashingStar.texts.12.text>
+    <Mugirl_BrainWashing_Level2.label>Brainwashing Lv. 2 (Brainwashing Trance)</Mugirl_BrainWashing_Level2.label>
+    <Mugirl_BrainWashing_Level2.description>Huh? Eh? What just happened, why am I standing here...</Mugirl_BrainWashing_Level2.description>
+    <Mugirl_BrainWashing_Level3.label>Brainwashing Lv. 3 (Brainwashing Again)</Mugirl_BrainWashing_Level3.label>
+    <Mugirl_BrainWashing_Level3.description>Yes... yes... hehe... Mechanical-sama is the best~♥</Mugirl_BrainWashing_Level3.description>
+    <Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.0.text>Huh?... what's going on</Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.0.text>
+    <Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.1.text>Is it happening again...</Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.1.text>
+    <Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.2.text>Oh...</Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.2.text>
+    <Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.3.text>I... I won't lose to the machine...</Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.3.text>
+    <Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.4.text>...</Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.4.text>
+    <Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.5.text>Oh...</Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.5.text>
+    <Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.6.text>...</Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.6.text>
+    <Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.7.text>Ugh... ngh...</Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.7.text>
+    <Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.8.text>Mm... ah~♥</Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.8.text>
+    <Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.9.text>My body feels so good~♥</Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.9.text>
+    <Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.10.text>Ngh~♥</Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.10.text>
+    <Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.11.text>Ah~ Mechanical-sama is the best~♥</Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.11.text>
+    <Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.12.text>Okay~♥</Mugirl_BrainWashing_Level3.comps.HediffComp_BrainWashingStar.texts.12.text>
+    <Mugirl_BrainWashing_Level4.label>Brainwashing Lv. 4 (Brainwashing Dizziness)</Mugirl_BrainWashing_Level4.label>
+    <Mugirl_BrainWashing_Level4.description>Ugh.... my head is so dizzy... did I space out again... it must be this damn helmet, but why... my body feels so comfortable (whisper)</Mugirl_BrainWashing_Level4.description>
+    <Mugirl_BrainWashing_Level5.label>Brainwashing Lv. 5 (Brainwashing Complete)</Mugirl_BrainWashing_Level5.label>
+    <Mugirl_BrainWashing_Level5.description>Understand... I understand... kill... kill them all... the colonists... not a single one left... kill them all!</Mugirl_BrainWashing_Level5.description>
+    <Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.0.text>Huh?~♥</Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.0.text>
+    <Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.1.text>This feeling~♥</Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.1.text>
+    <Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.2.text>Ngh~♥</Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.2.text>
+    <Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.3.text>Mechanical-sama~♥ Mechanical-sama~♥</Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.3.text>
+    <Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.4.text>So comfortable~♥</Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.4.text>
+    <Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.5.text>Oh~♥</Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.5.text>
+    <Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.6.text>Hehe~</Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.6.text>
+    <Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.7.text>My body~ feels so good~</Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.7.text>
+    <Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.8.text>Mm... ah~♥</Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.8.text>
+    <Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.9.text>So comfortable~♥</Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.9.text>
+    <Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.10.text>Ah~ Mechanical-sama is the best~♥</Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.10.text>
+    <Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.11.text>Hehe~ I love Mechanical-sama the most~♥</Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.11.text>
+    <Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.12.text>Mm, I understand~♥</Mugirl_BrainWashing_Level5.comps.HediffComp_BrainWashingStar.texts.12.text>
+    <Mugirl_EleShock.label>Collar Electric Shock</Mugirl_EleShock.label>
+    <Mugirl_EleShock.description>For some reason, the electric shock collar started electrocuting the Mugirl, fortunately it was only a mild shock.</Mugirl_EleShock.description>
+    <Mugirl_MagneticShacklesBondage.label>Magnetic Shackles Bondage</Mugirl_MagneticShacklesBondage.label>
+    <Mugirl_MagneticShacklesBondage.description>The Mugirl's arms were strictly restrained to the Mugirl's neck by the suddenly activated magnetic shackles, unable to move.</Mugirl_MagneticShacklesBondage.description>
+    <Mugirl_MagneticShacklesBondage.labelNoun>Magnetic Shackles Bondage</Mugirl_MagneticShacklesBondage.labelNoun>
+    <Mugirl_PowerEleShock.label>Powerful Collar Electric Shock</Mugirl_PowerEleShock.label>
+    <Mugirl_PowerEleShock.description>For some reason, the electric shock collar started strongly electrocuting the Mugirl. Stop it quickly! It could really kill the Mugirl!</Mugirl_PowerEleShock.description>
+    <Mugirl_PowerEleShock_NoMilk.label>Powerful Collar Electric Shock</Mugirl_PowerEleShock_NoMilk.label>
+    <Mugirl_PowerEleShock_NoMilk.description>For some reason, the electric shock collar started strongly electrocuting the wearer.</Mugirl_PowerEleShock_NoMilk.description>
 </LanguageData>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
     <ThingDef ParentName="BuildingBase">
-        <defName>MooGirl_MilkPoweredGenerator</defName>
+        <defName>Mugirl_MilkPoweredGenerator</defName>
         <!-- 雪牛娘奶发电机 -->
         <label>Mugirl milk generator</label>
         <!-- 使用雪牛娘奶作为燃料发电的改造发电机。必须定期手动补充雪牛娘奶。 -->
@@ -52,7 +52,7 @@
                 <fuelCapacity>30.0</fuelCapacity>
                 <fuelFilter>
                     <thingDefs>
-                        <li>MooGirl_Milk</li>
+                        <li>Mugirl_Milk</li>
                     </thingDefs>
                 </fuelFilter>
                 <showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>

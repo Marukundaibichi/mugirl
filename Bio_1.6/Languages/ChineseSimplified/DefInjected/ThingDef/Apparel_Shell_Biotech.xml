@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
     <!-- A mechanic backpack that grants a small increase to a Mugirl's bandwidth. -->
-    <MooGirl_RA_MechanicBackpack.description>给雪牛娘增加少量带宽的机械师背包</MooGirl_RA_MechanicBackpack.description>
+    <Mugirl_RA_MechanicBackpack.description>给雪牛娘增加少量带宽的机械师背包</Mugirl_RA_MechanicBackpack.description>
     <!-- Mugirl Mechanic Backpack Lv1 -->
-    <MooGirl_RA_MechanicBackpack.label>雪牛娘 Lv1 机械师背包</MooGirl_RA_MechanicBackpack.label>
+    <Mugirl_RA_MechanicBackpack.label>雪牛娘 Lv1 机械师背包</Mugirl_RA_MechanicBackpack.label>
     <!-- A mechanic backpack that grants a moderate increase to a Mugirl's bandwidth. -->
-    <MooGirl_RA_MechanicBackpack_B.description>给雪牛娘增加中量带宽的机械师背包</MooGirl_RA_MechanicBackpack_B.description>
+    <Mugirl_RA_MechanicBackpack_B.description>给雪牛娘增加中量带宽的机械师背包</Mugirl_RA_MechanicBackpack_B.description>
     <!-- Mugirl Mechanic Backpack Lv2 -->
-    <MooGirl_RA_MechanicBackpack_B.label>雪牛娘 Lv2 机械师背包</MooGirl_RA_MechanicBackpack_B.label>
+    <Mugirl_RA_MechanicBackpack_B.label>雪牛娘 Lv2 机械师背包</Mugirl_RA_MechanicBackpack_B.label>
     <!-- A mechanic backpack that grants a large increase to a Mugirl's bandwidth. -->
-    <MooGirl_RA_MechanicBackpack_C.description>给雪牛娘增加大量带宽的机械师背包</MooGirl_RA_MechanicBackpack_C.description>
+    <Mugirl_RA_MechanicBackpack_C.description>给雪牛娘增加大量带宽的机械师背包</Mugirl_RA_MechanicBackpack_C.description>
     <!-- Mugirl Mechanic Backpack Lv3 -->
-    <MooGirl_RA_MechanicBackpack_C.label>雪牛娘 Lv3 机械师背包</MooGirl_RA_MechanicBackpack_C.label>
+    <Mugirl_RA_MechanicBackpack_C.label>雪牛娘 Lv3 机械师背包</Mugirl_RA_MechanicBackpack_C.label>
     <!-- A mechanic backpack that grants an immense increase to a Mugirl's bandwidth. -->
-    <MooGirl_RA_MechanicBackpack_D.description>给雪牛娘增加超多量带宽的机械师背包</MooGirl_RA_MechanicBackpack_D.description>
+    <Mugirl_RA_MechanicBackpack_D.description>给雪牛娘增加超多量带宽的机械师背包</Mugirl_RA_MechanicBackpack_D.description>
     <!-- Mugirl Mechanic Backpack Lv4 -->
-    <MooGirl_RA_MechanicBackpack_D.label>雪牛娘 Lv4 机械师背包</MooGirl_RA_MechanicBackpack_D.label>
+    <Mugirl_RA_MechanicBackpack_D.label>雪牛娘 Lv4 机械师背包</Mugirl_RA_MechanicBackpack_D.label>
 </LanguageData>

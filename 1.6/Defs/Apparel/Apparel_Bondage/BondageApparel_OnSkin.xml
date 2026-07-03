@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <Defs>
-    <MooGirl.SlaveApparelDef Name="MooGirl_OnSkin_SlaveApparel" ParentName="MooGirl_SlaveApparel_Base" Abstract="True">
+    <Mugirl.SlaveApparelDef Name="Mugirl_OnSkin_SlaveApparel" ParentName="Mugirl_SlaveApparel_Base" Abstract="True">
         <stuffCategories>
             <li>Leathery</li>
             <li>Metallic</li>
         </stuffCategories>
         <descriptionHyperlinks>
-            <ThingDef>MooGirl_SlaveApparelKey_Industrial</ThingDef>
+            <ThingDef>Mugirl_SlaveApparelKey_Industrial</ThingDef>
         </descriptionHyperlinks>
         <recipeMaker>
             <researchPrerequisite>FlakArmor</researchPrerequisite>
@@ -32,14 +32,14 @@
             <useWornGraphicMask>true</useWornGraphicMask>
         </apparel>
         <needkeynumber>2</needkeynumber> <!-- 解锁需求钥匙数量 -->
-        <keytype>MooGirl_SlaveApparelKey_Industrial</keytype> <!-- 钥匙类型 -->
+        <keytype>Mugirl_SlaveApparelKey_Industrial</keytype> <!-- 钥匙类型 -->
         <gives_bound_moodlet>true</gives_bound_moodlet>
-    </MooGirl.SlaveApparelDef>
+    </Mugirl.SlaveApparelDef>
 
     <!-- ====================================== 上半身束具 =========================================== -->
 
-    <MooGirl.SlaveApparelDef Name="MooGirl_OnSkin_Upper_SlaveApparel"
-        ParentName="MooGirl_OnSkin_SlaveApparel" Abstract="True">
+    <Mugirl.SlaveApparelDef Name="Mugirl_OnSkin_Upper_SlaveApparel"
+        ParentName="Mugirl_OnSkin_SlaveApparel" Abstract="True">
         <apparel>
             <bodyPartGroups>
                 <li>Arms</li>
@@ -47,19 +47,19 @@
                 <li>RightHand</li>
             </bodyPartGroups>
             <layers>
-                <li>MooGirl_Arm_bondage</li>
+                <li>Mugirl_Arm_bondage</li>
             </layers>
             <tags> <!-- 自定义标签，可用于pankind生成 -->
-                <li>MooGirl_Slave_OnSkin_Upper</li>
+                <li>Mugirl_Slave_OnSkin_Upper</li>
             </tags>
         </apparel>
         <!-- <descriptionHyperlinks>
-            <HediffDef>MooGirl_Gauntlet</HediffDef>
+            <HediffDef>Mugirl_Gauntlet</HediffDef>
         </descriptionHyperlinks>  		 -->
         <equippedStatOffsets>
             <SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">0.35</SlaveSuppressionOffset>
         </equippedStatOffsets>
-        <equipped_hediff>MooGirl_Gauntlet</equipped_hediff>
+        <equipped_hediff>Mugirl_Gauntlet</equipped_hediff>
         <blocks_hands>false</blocks_hands>
         <HediffTargetBodyPartDefs>
             <li>Arm</li>
@@ -68,16 +68,16 @@
             <li>LeftHand</li>
             <li>RightHand</li>
         </BoundBodyPartGroupDefs>
-    </MooGirl.SlaveApparelDef>
+    </Mugirl.SlaveApparelDef>
 
-    <MooGirl.SlaveApparelDef ParentName="MooGirl_OnSkin_Upper_SlaveApparel">
-        <defName>MooGirl_Slavegauntlet</defName>
+    <Mugirl.SlaveApparelDef ParentName="Mugirl_OnSkin_Upper_SlaveApparel">
+        <defName>Mugirl_Slavegauntlet</defName>
         <!-- 雪牛娘 奴隶手套 -->
         <label>Mugirl Slave Gauntlets</label>
         <!-- 一种带锁的束缚手套，用于将雪牛娘的手指紧紧固定，显著降低其操作与精细劳动能力。手套配有专用锁具，必须使用[精致束具钥匙]才能解开。 -->
         <description>A locking restraint glove used to secure a Mugirl's fingers tightly, significantly reducing manipulation and fine motor ability. The gloves are equipped with a dedicated locking mechanism that can only be opened with an [Exquisite Restraint Key].</description>
         <graphicData>
-            <texPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slavegauntlet/MooGirl_Slavegauntlet</texPath>
+            <texPath>Things/Apparel/Mugirl_SlaveApparel/Mugirl_Slavegauntlet/Mugirl_Slavegauntlet</texPath>
         </graphicData>
         <costStuffCount>180</costStuffCount>
         <statBases>
@@ -93,7 +93,7 @@
             <EquipDelay>5</EquipDelay>
         </statBases>
         <apparel>
-            <wornGraphicPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slavegauntlet/MooGirl_Slavegauntlet</wornGraphicPath>
+            <wornGraphicPath>Things/Apparel/Mugirl_SlaveApparel/Mugirl_Slavegauntlet/Mugirl_Slavegauntlet</wornGraphicPath>
             <drawData>
                 <dataEast>
                     <layer>201</layer>
@@ -106,47 +106,47 @@
                 </dataNorth>
             </drawData>
         </apparel>
-        <keytype>MooGirl_SlaveApparelKey_Industrial</keytype> <!-- 钥匙类型 -->
-    </MooGirl.SlaveApparelDef>
+        <keytype>Mugirl_SlaveApparelKey_Industrial</keytype> <!-- 钥匙类型 -->
+    </Mugirl.SlaveApparelDef>
 
     <!-- ====================================== 下半身束具 =========================================== -->
 
-    <MooGirl.SlaveApparelDef Name="MooGirl_OnSkin_Lower_SlaveApparel"
-        ParentName="MooGirl_OnSkin_SlaveApparel" Abstract="True">
+    <Mugirl.SlaveApparelDef Name="Mugirl_OnSkin_Lower_SlaveApparel"
+        ParentName="Mugirl_OnSkin_SlaveApparel" Abstract="True">
         <equippedStatOffsets>
             <SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">0.25</SlaveSuppressionOffset>
         </equippedStatOffsets>
         <!-- <descriptionHyperlinks>
-            <HediffDef>MooGirl_Stockings</HediffDef>
+            <HediffDef>Mugirl_Stockings</HediffDef>
         </descriptionHyperlinks> 		 -->
         <apparel>
             <bodyPartGroups>
                 <li>Waist</li>
             </bodyPartGroups>
             <layers>
-                <li>MooGirl_Leg_bondage</li>
+                <li>Mugirl_Leg_bondage</li>
             </layers>
             <tags> <!-- 自定义标签，可用于pankind生成 -->
-                <li>MooGirl_Slave_OnSkin_Lower</li>
+                <li>Mugirl_Slave_OnSkin_Lower</li>
             </tags>
         </apparel>
-        <equipped_hediff>MooGirl_Stockings</equipped_hediff>
+        <equipped_hediff>Mugirl_Stockings</equipped_hediff>
         <HediffTargetBodyPartDefs>
             <li>Leg</li>
         </HediffTargetBodyPartDefs>
         <BoundBodyPartGroupDefs>
             <li>Feet</li>
         </BoundBodyPartGroupDefs>
-    </MooGirl.SlaveApparelDef>
+    </Mugirl.SlaveApparelDef>
 
-    <MooGirl.SlaveApparelDef ParentName="MooGirl_OnSkin_Lower_SlaveApparel">
-        <defName>MooGirl_Slavestockings</defName>
+    <Mugirl.SlaveApparelDef ParentName="Mugirl_OnSkin_Lower_SlaveApparel">
+        <defName>Mugirl_Slavestockings</defName>
         <!-- 雪牛娘 奴隶袜 -->
         <label>Mugirl Slave Stockings</label>
         <!-- 一种特殊的束缚袜，造型类似高跟鞋但缺少后跟，使穿戴者步伐不稳，移动速度明显降低。袜子配有专用锁具，必须使用[精致束具钥匙]才能解开。 -->
         <description>A special type of restraint stockings shaped similarly to high heels but without heels, making the wearer walk unsteadily with noticeably reduced movement speed. The stockings are equipped with a dedicated locking mechanism that can only be opened with an [Exquisite Restraint Key].</description>
         <graphicData>
-            <texPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slavestocking/MooGirl_Slavestocking</texPath>
+            <texPath>Things/Apparel/Mugirl_SlaveApparel/Mugirl_Slavestocking/Mugirl_Slavestocking</texPath>
         </graphicData>
         <costStuffCount>180</costStuffCount>
         <statBases>
@@ -162,8 +162,8 @@
             <EquipDelay>5</EquipDelay>
         </statBases>
         <apparel>
-            <wornGraphicPath>Things/Apparel/MooGirl_SlaveApparel/MooGirl_Slavestocking/MooGirl_Slavestocking</wornGraphicPath>
+            <wornGraphicPath>Things/Apparel/Mugirl_SlaveApparel/Mugirl_Slavestocking/Mugirl_Slavestocking</wornGraphicPath>
         </apparel>
-    </MooGirl.SlaveApparelDef>
+    </Mugirl.SlaveApparelDef>
 
 </Defs>

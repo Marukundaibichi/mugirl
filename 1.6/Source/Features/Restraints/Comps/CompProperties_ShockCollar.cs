@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     // 电击项圈配置：控制自动电击、手动按钮和命中的 Hediff 列表。
     public class CompProperties_ShockCollar : CompProperties
@@ -15,7 +15,7 @@ namespace MooGirl
 
         public List<HediffDef> hediffDefs = new List<HediffDef>();
         public List<HediffDef> powerhediffDefs = new List<HediffDef>();
-        public List<HediffDef> nonMooGirlPowerHediffDefs = new List<HediffDef>();
+        public List<HediffDef> nonMugirlPowerHediffDefs = new List<HediffDef>();
 
         // 自动电击参数：间隔、总触发概率和强力电击概率。
         public int ticks = 60;
@@ -24,11 +24,11 @@ namespace MooGirl
 
         // 手动按钮参数来自 XML，可直接写翻译键或图标路径。
         public int useCooldownTicks = 480;
-        public string powerLabel = "MooGirl.Restraints.ShockCollar.PowerLabel";
-        public string powerDesc = "MooGirl.Restraints.ShockCollar.PowerDesc";
+        public string powerLabel = "Mugirl.Restraints.ShockCollar.PowerLabel";
+        public string powerDesc = "Mugirl.Restraints.ShockCollar.PowerDesc";
         public string powerIconPath = "UI/Commands/DesirePower";
-        public string commonLabel = "MooGirl.Restraints.ShockCollar.CommonLabel";
-        public string commonDesc = "MooGirl.Restraints.ShockCollar.CommonDesc";
+        public string commonLabel = "Mugirl.Restraints.ShockCollar.CommonLabel";
+        public string commonDesc = "Mugirl.Restraints.ShockCollar.CommonDesc";
         public string commonIconPath = "UI/Commands/DesirePower";
 
         // 是否只对玩家控制的单位生效（殖民者、囚犯、奴隶），避免访客模组冲突
@@ -165,15 +165,15 @@ namespace MooGirl
 
             // 描述文本在生成 Gizmo 时计算一次；点击时仍会重新校验冷却和佩戴者。
             string powerDesc = canUse
-                ? MooGirlText.Resolve(shockProps.powerDesc)
-                : MooGirlText.Resolve("MooGirl.Restraints.ShockCollar.PowerCooldownTicksLeft", cdLeft);
+                ? MugirlText.Resolve(shockProps.powerDesc)
+                : MugirlText.Resolve("Mugirl.Restraints.ShockCollar.PowerCooldownTicksLeft", cdLeft);
 
             string commonDesc = canUse
-                ? MooGirlText.Resolve(shockProps.commonDesc)
-                : MooGirlText.Resolve("MooGirl.Restraints.ShockCollar.CommonCooldownTicksLeft", cdLeft);
+                ? MugirlText.Resolve(shockProps.commonDesc)
+                : MugirlText.Resolve("Mugirl.Restraints.ShockCollar.CommonCooldownTicksLeft", cdLeft);
 
             yield return CreateShockCommand(
-                MooGirlText.Resolve(shockProps.powerLabel),
+                MugirlText.Resolve(shockProps.powerLabel),
                 powerDesc,
                 shockProps.powerIconPath,
                 canUse,
@@ -182,7 +182,7 @@ namespace MooGirl
             );
 
             yield return CreateShockCommand(
-                MooGirlText.Resolve(shockProps.commonLabel),
+                MugirlText.Resolve(shockProps.commonLabel),
                 commonDesc,
                 shockProps.commonIconPath,
                 canUse,
@@ -222,9 +222,9 @@ namespace MooGirl
 
         private List<HediffDef> PowerHediffsFor(Pawn pawn, CompProperties_ShockCollar shockProps)
         {
-            if (pawn != null && !MountedPawnUtility.IsMooGirl(pawn) && shockProps?.nonMooGirlPowerHediffDefs != null && shockProps.nonMooGirlPowerHediffDefs.Count > 0)
+            if (pawn != null && !MountedPawnUtility.IsMugirl(pawn) && shockProps?.nonMugirlPowerHediffDefs != null && shockProps.nonMugirlPowerHediffDefs.Count > 0)
             {
-                return shockProps.nonMooGirlPowerHediffDefs;
+                return shockProps.nonMugirlPowerHediffDefs;
             }
 
             return shockProps?.powerhediffDefs;
@@ -232,7 +232,7 @@ namespace MooGirl
 
         private static int CurrentGameTickOrFallback(int fallback)
         {
-            return MooGirlTickUtility.CurrentGameTickOrFallback(fallback);
+            return MugirlTickUtility.CurrentGameTickOrFallback(fallback);
         }
 
         private static Texture2D GetCommandIcon(string iconPath)

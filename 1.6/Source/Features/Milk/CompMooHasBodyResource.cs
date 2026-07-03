@@ -2,7 +2,7 @@
 using UnityEngine;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     // 身体资源组件基类，负责资源增长、采集消耗和满值通知。
     public abstract class CompMooHasBodyResource : ThingComp
@@ -50,7 +50,7 @@ namespace MooGirl
 
         public override void CompTick()
         {
-            if (!Active || !MooGirlGameUtility.IsPlaying())
+            if (!Active || !MugirlGameUtility.IsPlaying())
             {
                 return;
             }
@@ -123,7 +123,7 @@ namespace MooGirl
             {
                 int amount = GenMath.RoundRandom(fullness * 100f);
 
-                MooGirlMilkOutputUtility.SpawnStacksNear(resourceDef, amount, gatherPosition, map);
+                MugirlMilkOutputUtility.SpawnStacksNear(resourceDef, amount, gatherPosition, map);
             }
             fullness = 0f;
             ResetManualChangeTracking();
@@ -182,7 +182,7 @@ namespace MooGirl
             float intervalSeconds = Mathf.Max(1f, GatherResourcesIntervalDays * 1000f);
             float multiplier = pawn != null ? Mathf.Max(0f, GetProductionMultiplier(pawn)) : 1f;
             float percentGain = Mathf.Max(0f, ResourceAmount) * multiplier;
-            return "MooGirl.Milk.ProductionRate".Translate(percentGain.ToString("0.#"), intervalSeconds.ToString("0.#"));
+            return "Mugirl.Milk.ProductionRate".Translate(percentGain.ToString("0.#"), intervalSeconds.ToString("0.#"));
         }
 
         // 自动挤奶阈值（0-1，默认 0.8 = 80%）
@@ -237,7 +237,7 @@ namespace MooGirl
         // 子类可在基础 profile 之外接入哺乳期等额外产量倍率。
         protected virtual float GetProductionMultiplier(Pawn pawn)
         {
-            if (MooGirlBreastProfileUtility.TryGetYieldMultiplier(pawn, out float yieldMultiplier))
+            if (MugirlBreastProfileUtility.TryGetYieldMultiplier(pawn, out float yieldMultiplier))
             {
                 return yieldMultiplier;
             }
@@ -285,12 +285,12 @@ namespace MooGirl
         {
             string doerLabel = doer?.LabelShortCap ?? "null";
             string parentLabel = parent?.LabelShortCap ?? "null";
-            MooGirlLog.WarningOnce(SaveKey + ".GatherInactive", "MooGirl.Milk.GatherInactiveLog".Translate(doerLabel, parentLabel).ToString());
+            MugirlLog.WarningOnce(SaveKey + ".GatherInactive", "Mugirl.Milk.GatherInactiveLog".Translate(doerLabel, parentLabel).ToString());
         }
 
         private static int CurrentGameTickOrFallback(int fallback)
         {
-            return MooGirlTickUtility.CurrentGameTickOrFallback(fallback);
+            return MugirlTickUtility.CurrentGameTickOrFallback(fallback);
         }
     }
 }

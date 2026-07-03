@@ -61,7 +61,7 @@ TMP\GameValidationConfigs
 验证人：
 配置模板：
 RimWorld 版本：
-MooGirl DLL 时间戳：
+Mugirl DLL 时间戳：
 Player.log 路径：
 Player.log LastWriteTime：
 日志扫描命令：
@@ -71,7 +71,7 @@ Player.log LastWriteTime：
 保存读档：是/否
 红字：无/有，摘要：
 黄字：无/有，摘要：
-MooGirl 相关异常：无/有，摘要：
+Mugirl 相关异常：无/有，摘要：
 外部 mod 噪音：无/有，摘要：
 本轮功能点：
 结论：通过/不通过/需复查
@@ -80,9 +80,9 @@ MooGirl 相关异常：无/有，摘要：
 
 ## 建议验证组合
 
-- 最小必需：Harmony、Core、HAR、MooGirl。
+- 最小必需：Harmony、Core、HAR、Mugirl。
 - 全 DLC：Royalty、Ideology、Biotech、Anomaly、Odyssey 全开。
-- Facial Animation：按 `facial-animation-guide.md` 检查头部 comp、表情动画、贴图回退和渲染日志。重点看 `normal_MooGirl`、眨眼、疼痛不哭泣、倒地、穿脱衣不用爱心眼、Lovin、`blush/lovinblush` 位于眼白下方、`AttackStatic`/`Wait_Combat` 使用 `sad` 严肃嘴、`Wait_Combat` 不全程半眯、整张眼睛贴图与高光；只有重新启用左右眼 mask 时才检查 `FA/Eyes/Common`。
+- Facial Animation：按 `facial-animation-guide.md` 检查头部 comp、表情动画、贴图回退和渲染日志。重点看 `normal_Mugirl`、眨眼、疼痛不哭泣、倒地、穿脱衣不用爱心眼、Lovin、`blush/lovinblush` 位于眼白下方、`AttackStatic`/`Wait_Combat` 使用 `sad` 严肃嘴、`Wait_Combat` 不全程半眯、整张眼睛贴图与高光；只有重新启用左右眼 mask 时才检查 `FA/Eyes/Common`。
 - Search and Destroy：检查雪牛娘闲置战斗行为树不红字。
 - VCookE：检查奶酪压制机工序是否追加且不重复。
 - 全集成：所有上面组合一起加载。

@@ -3,11 +3,11 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class CompProperties_ReadableBook : CompProperties
     {
-        public string bookTitle = "MooGirl.CourierDiary.Title";
+        public string bookTitle = "Mugirl.CourierDiary.Title";
 
         public CompProperties_ReadableBook()
         {
@@ -19,7 +19,7 @@ namespace MooGirl
     {
         public CompProperties_ReadableBook Props => props as CompProperties_ReadableBook;
 
-        public string BookTitle => MooGirlText.Resolve(Props?.bookTitle ?? "MooGirl.CourierDiary.Title");
+        public string BookTitle => MugirlText.Resolve(Props?.bookTitle ?? "Mugirl.CourierDiary.Title");
 
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
         {
@@ -29,7 +29,7 @@ namespace MooGirl
             }
 
             string title = BookTitle;
-            FloatMenuOption option = FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("MooGirl.CourierDiary.ReadOption".Translate(title), () =>
+            FloatMenuOption option = FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("Mugirl.CourierDiary.ReadOption".Translate(title), () =>
             {
                 TryStartReadJob(selPawn, parent);
             }), selPawn, parent);
@@ -37,7 +37,7 @@ namespace MooGirl
             if (!selPawn.CanReserveAndReach(parent, PathEndMode.Touch, Danger.Deadly))
             {
                 option.Disabled = true;
-                option.Label = "MooGirl.CourierDiary.OptionDisabled".Translate(option.Label, "MooGirl.CourierDiary.CannotReach".Translate());
+                option.Label = "Mugirl.CourierDiary.OptionDisabled".Translate(option.Label, "Mugirl.CourierDiary.CannotReach".Translate());
             }
 
             yield return option;
@@ -61,7 +61,7 @@ namespace MooGirl
                 return;
             }
 
-            Job job = JobMaker.MakeJob(MooGirlContentDefOf.MooGirl_ReadCourierDiary, diary);
+            Job job = JobMaker.MakeJob(MugirlContentDefOf.Mugirl_ReadCourierDiary, diary);
             reader.jobs.TryTakeOrderedJob(job, JobTag.Misc);
         }
     }
@@ -91,7 +91,7 @@ namespace MooGirl
                 CompReadableBook comp = diary?.TryGetComp<CompReadableBook>();
                 if (comp != null)
                 {
-                    MooGirlGameUtility.TryAddWindow(new Dialog_ReadBook(comp.BookTitle));
+                    MugirlGameUtility.TryAddWindow(new Dialog_ReadBook(comp.BookTitle));
                 }
             });
         }

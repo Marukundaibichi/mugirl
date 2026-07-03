@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- A Mugirl slave's transport pod crashlanded near your colony. She just escaped from a megacorporation's slave transport ship- whether it was due to ship malfunction, attack, or some other means of escape remains unknown.\nThe tight slave restraints on her body silently speak of the suffering she endured under megacorporation's tyranny.\nNow she has nowhere to go. If you choose to rescue her, she may join your colony. Will you give this cute and pitiful escapee a chance at freedom and a new life? -->
+    <Mugirl_SlaveOpeningPodCrash.questDescriptionRules.rulesStrings>
+        <li>questDescription->一名雪牛娘奴隶的太空逃生舱在你殖民地附近坠毁。她刚刚从巨型企业的奴隶运输船中逃脱，究竟是飞船故障、遭遇攻击，还是她以其他方式逃脱尚不得而知。\n\n逃亡经历令她精疲力尽，身上的紧实的奴隶束具，默默诉说着她在企业暴政下遭受的苦难。\n\n如今她无处可去，如果你选择营救她，她可能会加入你的殖民地，你愿意给这位可爱又可怜的逃亡者一次自由与新生活的机会吗？</li>
+    </Mugirl_SlaveOpeningPodCrash.questDescriptionRules.rulesStrings>
+    <!-- Transport Pod Crash (Mugirl Slave) -->
+    <Mugirl_SlaveOpeningPodCrash.questNameRules.rulesStrings>
+        <li>questName->逃生舱坠毁（雪牛娘奴隶）</li>
+    </Mugirl_SlaveOpeningPodCrash.questNameRules.rulesStrings>
+    <!-- A Mugirl slave's transport pod crashlanded near your colony. She just escaped from a megacorporation's slave transport ship- whether it was due to ship malfunction, attack, or some other means of escape remains unknown.\nThe tightly bound slave restraints on her body silently record the pain and submission she experienced under the megacorporation's tyranny.\nNow she has nowhere to go. If you choose to rescue her, she may join your colony. -->
+    <Mugirl_SlaveRefugeePodCrash.questDescriptionRules.rulesStrings>
+        <li>questDescription->一名雪牛娘奴隶的太空逃生舱在你殖民地附近坠毁。她刚刚从巨型企业的奴隶运输船中逃脱，究竟是飞船故障、遭遇攻击，还是她以其他方式逃脱尚不得而知。\n\n紧密捆缚在身上的奴隶束具，无声记录着她在巨型企业暴政下的痛苦与屈从。\n\n如今她无处可去，如果你选择营救她，她可能会加入你的殖民地。</li>
+    </Mugirl_SlaveRefugeePodCrash.questDescriptionRules.rulesStrings>
+    <!-- Transport Pod Crash (Mugirl Slave) -->
+    <Mugirl_SlaveRefugeePodCrash.questNameRules.rulesStrings>
+        <li>questName->逃生舱坠毁（雪牛娘奴隶）</li>
+    </Mugirl_SlaveRefugeePodCrash.questNameRules.rulesStrings>
+    <!-- A Mugirl who escaped from a slave caravan has wandered here, her tattered restraints still bound to her, telling of the suffering she endured as a slave. You can attempt to rescue and recruit her. -->
+    <Mugirl_SlaveWandererJoins.questDescriptionRules.rulesStrings>
+        <li>questDescription->从奴隶商队逃脱的雪牛娘流浪到这里，破旧束具仍缠绕身上，诉说着她被奴隶的悲惨经历。你可以尝试救助并驯服她。</li>
+    </Mugirl_SlaveWandererJoins.questDescriptionRules.rulesStrings>
+    <!-- Wild Mugirl Slave Joins -->
+    <Mugirl_SlaveWandererJoins.questNameRules.rulesStrings>
+        <li>questName->流浪雪牛娘奴隶加入</li>
+    </Mugirl_SlaveWandererJoins.questNameRules.rulesStrings>
+</LanguageData>

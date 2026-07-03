@@ -1,7 +1,7 @@
 ﻿using RimWorld;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class CompProperties_AddThought : HediffCompProperties
     {
@@ -43,7 +43,7 @@ namespace MooGirl
                 Pawn pawn = Pawn;
                 if (pawn != null && pawn.Spawned && pawn.needs?.mood != null && pawn.IsWearingCrackedBrainwashApparel())
                 {
-                    if (MooGirlWildSlaveUtility.IsPlayerFaction(pawn.Faction) && pawn.IsColonist)
+                    if (MugirlWildSlaveUtility.IsPlayerFaction(pawn.Faction) && pawn.IsColonist)
                     {
                         TryAddThought(pawn, compProps);
                         triggered = true;

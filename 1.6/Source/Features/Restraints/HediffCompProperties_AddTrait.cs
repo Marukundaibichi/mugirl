@@ -2,7 +2,7 @@
 using RimWorld;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class CompProperties_AddTrait : HediffCompProperties
     {
@@ -99,7 +99,7 @@ namespace MooGirl
                 case "free":
                     return !pawn.IsSlave && !pawn.IsPrisoner;
                 case "hostile":
-                    return MooGirlWildSlaveUtility.IsHostileToPlayer(pawn);
+                    return MugirlWildSlaveUtility.IsHostileToPlayer(pawn);
                 default:
                     return false;
             }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-    <MooGirl_Colony.label>Mugirl Colonists</MooGirl_Colony.label>
-    <MooGirl_Colony.description>A group of freedom-seeking Mugirls who have successfully escaped enslavement and gathered to establish their own colony. Though the environment is harsh and resources are scarce, they still strive to farm, fight, and support each other, carving out a new future.</MooGirl_Colony.description>
-    <MooGirl_Colony.leaderTitle>Leader</MooGirl_Colony.leaderTitle>
-    <MooGirl_Colony.pawnSingular>Colonist</MooGirl_Colony.pawnSingular>
-    <MooGirl_Colony.pawnsPlural>Colonists</MooGirl_Colony.pawnsPlural>
+    <Mugirl_Colony.label>Mugirl Colonists</Mugirl_Colony.label>
+    <Mugirl_Colony.description>A group of freedom-seeking Mugirls who have successfully escaped enslavement and gathered to establish their own colony. Though the environment is harsh and resources are scarce, they still strive to farm, fight, and support each other, carving out a new future.</Mugirl_Colony.description>
+    <Mugirl_Colony.leaderTitle>Leader</Mugirl_Colony.leaderTitle>
+    <Mugirl_Colony.pawnSingular>Colonist</Mugirl_Colony.pawnSingular>
+    <Mugirl_Colony.pawnsPlural>Colonists</Mugirl_Colony.pawnsPlural>
 </LanguageData>

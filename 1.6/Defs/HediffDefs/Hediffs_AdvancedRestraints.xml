@@ -4,8 +4,8 @@
 
     <!-- ====================================== 磁力镣铐 =========================================== -->
 
-    <HediffDef ParentName="MooGirl_BondageBase">
-        <defName>MooGirl_MagneticShacklesBondage</defName>
+    <HediffDef ParentName="Mugirl_BondageBase">
+        <defName>Mugirl_MagneticShacklesBondage</defName>
         <!-- 磁力镣铐束缚 -->
         <label>Magnetic Shackles Bondage</label>
         <!-- 磁力镣铐束缚 -->
@@ -27,7 +27,7 @@
     <!-- ====================================== 电击项圈 =========================================== -->
 
     <HediffDef>
-        <defName>MooGirl_EleShock</defName>
+        <defName>Mugirl_EleShock</defName>
         <hediffClass>HediffWithComps</hediffClass>
         <!-- 项圈电击 -->
         <label>Collar Electric Shock</label>
@@ -53,13 +53,13 @@
                 <disappearsAfterTicks>360</disappearsAfterTicks>
             </li>
             <!-- 电击 comp 仍支持周期循环；删除上面的 Disappears comp 即可恢复循环。 -->
-            <li Class="MooGirl.CompProperties_EleShock">
+            <li Class="Mugirl.CompProperties_EleShock">
                 <effectCycleInterval>10</effectCycleInterval> <!-- 循环周期 -->
                 <maxCycles>20</maxCycles> <!-- 最多几个循环 -->
                 <stunDuration>7</stunDuration>
                 <jitterMagnitude>0.2</jitterMagnitude>
                 <shockSounds>
-                    <li>MooGirl_PowerEleShock_Sound</li>
+                    <li>Mugirl_PowerEleShock_Sound</li>
                 </shockSounds>
                 <hediffsToApplyWithParams>
                     <li>
@@ -71,7 +71,7 @@
                 <!-- 污渍生成目前禁用。
                 <filthSpawnEntries>
                     <li>
-                        <filthDef>MooGirlMilkFilth</filthDef>
+                        <filthDef>MugirlMilkFilth</filthDef>
                         <filthAmount>1</filthAmount>
                         <spawnInterval>150</spawnInterval>
                         <spawnInFacingDirection>true</spawnInFacingDirection>
@@ -82,7 +82,7 @@
     </HediffDef>
 
     <HediffDef>
-        <defName>MooGirl_PowerEleShock</defName>
+        <defName>Mugirl_PowerEleShock</defName>
         <hediffClass>HediffWithComps</hediffClass>
         <!-- 强力项圈电击 -->
         <label>Powerful Collar Electric Shock</label>
@@ -107,13 +107,13 @@
                 <showRemainingTime>true</showRemainingTime>
                 <disappearsAfterTicks>360</disappearsAfterTicks>
             </li>
-            <li Class="MooGirl.CompProperties_EleShock">
+            <li Class="Mugirl.CompProperties_EleShock">
                 <effectCycleInterval>10</effectCycleInterval>
                 <maxCycles>20</maxCycles>
                 <stunDuration>5</stunDuration>
                 <jitterMagnitude>0.5</jitterMagnitude>
                 <shockSounds>
-                    <li>MooGirl_PowerEleShock_Sound</li>
+                    <li>Mugirl_PowerEleShock_Sound</li>
                 </shockSounds>
                 <hediffsToApplyWithParams>
                     <li>
@@ -124,7 +124,7 @@
                 </hediffsToApplyWithParams>
                 <filthSpawnEntries>
                     <li>
-                        <filthDef>MooGirlMilkFilth</filthDef> <!-- 污渍 Def 名称。 -->
+                        <filthDef>MugirlMilkFilth</filthDef> <!-- 污渍 Def 名称。 -->
                         <filthAmount>1</filthAmount> <!-- 生成数量。 -->
                         <spawnInterval>100</spawnInterval>  <!-- 生成周期。 -->
                         <spawnInFacingDirection>true</spawnInFacingDirection> <!-- 只在人物朝向方向生成。 -->
@@ -132,21 +132,21 @@
                     <!-- 强力电击后的可选“神秘液体”污渍；取消注释即可启用。 -->
                     <!--
                     <li>
-                        <filthDef>MooGirlWaterFilth</filthDef>
+                        <filthDef>MugirlWaterFilth</filthDef>
                         <filthnumber>1</filthnumber>
                         <interval>200</interval>
                     </li>
                     -->
                 </filthSpawnEntries>
                 <hediffsToRemove>
-                    <li>MooGirl_EleShock</li>
+                    <li>Mugirl_EleShock</li>
                 </hediffsToRemove>
             </li>
         </comps>
     </HediffDef>
 
     <HediffDef>
-        <defName>MooGirl_PowerEleShock_NoMilk</defName>
+        <defName>Mugirl_PowerEleShock_NoMilk</defName>
         <hediffClass>HediffWithComps</hediffClass>
         <!-- 强力项圈电击 -->
         <label>Powerful Collar Electric Shock</label>
@@ -171,13 +171,13 @@
                 <showRemainingTime>true</showRemainingTime>
                 <disappearsAfterTicks>360</disappearsAfterTicks>
             </li>
-            <li Class="MooGirl.CompProperties_EleShock">
+            <li Class="Mugirl.CompProperties_EleShock">
                 <effectCycleInterval>10</effectCycleInterval>
                 <maxCycles>20</maxCycles>
                 <stunDuration>5</stunDuration>
                 <jitterMagnitude>0.5</jitterMagnitude>
                 <shockSounds>
-                    <li>MooGirl_PowerEleShock_Sound</li>
+                    <li>Mugirl_PowerEleShock_Sound</li>
                 </shockSounds>
                 <hediffsToApplyWithParams>
                     <li>
@@ -187,7 +187,7 @@
                     </li>
                 </hediffsToApplyWithParams>
                 <hediffsToRemove>
-                    <li>MooGirl_EleShock</li>
+                    <li>Mugirl_EleShock</li>
                 </hediffsToRemove>
             </li>
         </comps>
@@ -196,7 +196,7 @@
     <!-- ====================================== 洗脑束具 =========================================== -->
 
     <HediffDef>
-        <defName>MooGirl_BrainWashing_Level1</defName>
+        <defName>Mugirl_BrainWashing_Level1</defName>
         <hediffClass>HediffWithComps</hediffClass>
         <!-- 初次洗脑 -->
         <label>Brainwashing Lv. 1 (First Brainwashing)</label>
@@ -206,18 +206,18 @@
         <scenarioCanAdd>false</scenarioCanAdd>
         <isBad>false</isBad>
         <comps>
-            <li Class="MooGirl.CompProperties_PerformanceEffect">
+            <li Class="Mugirl.CompProperties_PerformanceEffect">
                 <triggerTicks>60</triggerTicks>
                 <stunDelayTicks>0</stunDelayTicks>
                 <stunDurationTicks>4120</stunDurationTicks>
                 <!-- 头上显示的 mote。 -->
-                <moteToShowOnHead>MooGirlWashMentalEyesInHead</moteToShowOnHead>
+                <moteToShowOnHead>MugirlWashMentalEyesInHead</moteToShowOnHead>
                 <moteShowStartTick>10</moteShowStartTick>
                 <moteShowEndTick>4000</moteShowEndTick>
                 <!-- 视觉 Fleck 效果。 -->
                 <flecks>
                     <li>
-                        <fleck>MooGirlWashMentalEyes</fleck>
+                        <fleck>MugirlWashMentalEyes</fleck>
                         <startTick>60</startTick>
                         <loopInterval>120</loopInterval>
                         <endTick>4000</endTick>
@@ -226,37 +226,37 @@
                 <!-- 音效。 -->
                 <sounds>
                     <li>
-                        <sound>MooGirl_BrainWashing_RingShort</sound>
+                        <sound>Mugirl_BrainWashing_RingShort</sound>
                         <startTick>60</startTick>
                         <loopInterval>120</loopInterval>
                         <endTick>1860</endTick>
                     </li>
                     <li>
-                        <sound>MooGirl_BrainWashing_RingLong</sound>
+                        <sound>Mugirl_BrainWashing_RingLong</sound>
                         <startTick>60</startTick>
                         <loopInterval>360</loopInterval>
                         <endTick>1860</endTick>
                     </li>
                     <li>
-                        <sound>MooGirl_BrainWashing_RingShort</sound>
+                        <sound>Mugirl_BrainWashing_RingShort</sound>
                         <startTick>1860</startTick>
                         <loopInterval>60</loopInterval>
                         <endTick>3400</endTick>
                     </li>
                     <li>
-                        <sound>MooGirl_BrainWashing_RingLong</sound>
+                        <sound>Mugirl_BrainWashing_RingLong</sound>
                         <startTick>1860</startTick>
                         <loopInterval>180</loopInterval>
                         <endTick>3940</endTick>
                     </li>
                     <li>
-                        <sound>MooGirl_BrainWashing_HeartBeat</sound>
+                        <sound>Mugirl_BrainWashing_HeartBeat</sound>
                         <startTick>60</startTick>
                         <loopInterval>3400</loopInterval>
                         <endTick>4000</endTick>
                     </li>
                     <li>
-                        <sound>MooGirl_BrainWashing_First</sound>
+                        <sound>Mugirl_BrainWashing_First</sound>
                         <startTick>3940</startTick>
                         <loopInterval>120</loopInterval>
                         <endTick>4000</endTick>
@@ -344,31 +344,31 @@
                     </li>
                 </texts>
             </li>
-            <li Class="MooGirl.CompProperties_ReduceWillorEnslave">
+            <li Class="Mugirl.CompProperties_ReduceWillorEnslave">
                 <triggerTicks>4120</triggerTicks>
                 <reduceWill>true</reduceWill>
                 <makeSlave>false</makeSlave>
                 <willReductionAmount>25</willReductionAmount>
             </li>
-            <li Class="MooGirl.CompProperties_SuppressionEnhancer">
+            <li Class="Mugirl.CompProperties_SuppressionEnhancer">
                 <triggerTicks>4120</triggerTicks>
                 <enhancedMode>false</enhancedMode>
             </li>
-            <li Class="MooGirl.CompProperties_AddThought">
+            <li Class="Mugirl.CompProperties_AddThought">
                 <triggerTicks>4120</triggerTicks>
-                <thoughtDef>MooGirl_BrainwashHappy</thoughtDef>
+                <thoughtDef>Mugirl_BrainwashHappy</thoughtDef>
             </li>
             <li Class="HediffCompProperties_DisappearsOnDeath" />
-            <li Class="MooGirl.CompProperties_DisappearsAndAddHediffs">
+            <li Class="Mugirl.CompProperties_DisappearsAndAddHediffs">
                 <disappearsAfterTicks>5000</disappearsAfterTicks>
                 <showRemainingTime>true</showRemainingTime>
-                <hediffToAddOnDisappear>MooGirl_BrainWashing_Level2</hediffToAddOnDisappear>
+                <hediffToAddOnDisappear>Mugirl_BrainWashing_Level2</hediffToAddOnDisappear>
             </li>
         </comps>
     </HediffDef>
 
     <HediffDef>
-        <defName>MooGirl_BrainWashing_Level2</defName>
+        <defName>Mugirl_BrainWashing_Level2</defName>
         <hediffClass>HediffWithComps</hediffClass>
         <!-- 洗脑恍惚 -->
         <label>Brainwashing Lv. 2 (Brainwashing Trance)</label>
@@ -383,7 +383,7 @@
     </HediffDef>
 
     <HediffDef>
-        <defName>MooGirl_BrainWashing_Level3</defName>
+        <defName>Mugirl_BrainWashing_Level3</defName>
         <hediffClass>HediffWithComps</hediffClass>
         <!-- 再次洗脑 -->
         <label>Brainwashing Lv. 3 (Brainwashing Again)</label>
@@ -393,17 +393,17 @@
         <scenarioCanAdd>false</scenarioCanAdd>
         <isBad>false</isBad>
         <comps>
-            <li Class="MooGirl.CompProperties_PerformanceEffect">
+            <li Class="Mugirl.CompProperties_PerformanceEffect">
                 <triggerTicks>60</triggerTicks>
                 <stunDelayTicks>0</stunDelayTicks>
                 <stunDurationTicks>4120</stunDurationTicks>
                 <!-- 头上显示的 mote。 -->
-                <moteToShowOnHead>MooGirlWashMentalEyesInHead</moteToShowOnHead>
+                <moteToShowOnHead>MugirlWashMentalEyesInHead</moteToShowOnHead>
                 <moteShowStartTick>10</moteShowStartTick>
                 <moteShowEndTick>4000</moteShowEndTick>
                 <flecks>
                     <li>
-                        <fleck>MooGirlWashMentalEyes</fleck>
+                        <fleck>MugirlWashMentalEyes</fleck>
                         <startTick>60</startTick>
                         <loopInterval>120</loopInterval>
                         <endTick>4000</endTick>
@@ -411,37 +411,37 @@
                 </flecks>
                 <sounds>
                     <li>
-                        <sound>MooGirl_BrainWashing_RingShort</sound>
+                        <sound>Mugirl_BrainWashing_RingShort</sound>
                         <startTick>60</startTick>
                         <loopInterval>120</loopInterval>
                         <endTick>1860</endTick>
                     </li>
                     <li>
-                        <sound>MooGirl_BrainWashing_RingLong</sound>
+                        <sound>Mugirl_BrainWashing_RingLong</sound>
                         <startTick>60</startTick>
                         <loopInterval>360</loopInterval>
                         <endTick>1860</endTick>
                     </li>
                     <li>
-                        <sound>MooGirl_BrainWashing_RingShort</sound>
+                        <sound>Mugirl_BrainWashing_RingShort</sound>
                         <startTick>1860</startTick>
                         <loopInterval>60</loopInterval>
                         <endTick>3400</endTick>
                     </li>
                     <li>
-                        <sound>MooGirl_BrainWashing_RingLong</sound>
+                        <sound>Mugirl_BrainWashing_RingLong</sound>
                         <startTick>1860</startTick>
                         <loopInterval>180</loopInterval>
                         <endTick>3940</endTick>
                     </li>
                     <li>
-                        <sound>MooGirl_BrainWashing_HeartBeat</sound>
+                        <sound>Mugirl_BrainWashing_HeartBeat</sound>
                         <startTick>60</startTick>
                         <loopInterval>3400</loopInterval>
                         <endTick>4000</endTick>
                     </li>
                     <li>
-                        <sound>MooGirl_BrainWashing_Second</sound>
+                        <sound>Mugirl_BrainWashing_Second</sound>
                         <startTick>3940</startTick>
                         <loopInterval>120</loopInterval>
                         <endTick>4000</endTick>
@@ -528,31 +528,31 @@
                     </li>
                 </texts>
             </li>
-            <li Class="MooGirl.CompProperties_ReduceWillorEnslave">
+            <li Class="Mugirl.CompProperties_ReduceWillorEnslave">
                 <triggerTicks>4120</triggerTicks>
                 <reduceWill>true</reduceWill>
                 <makeSlave>false</makeSlave>
                 <willReductionAmount>25</willReductionAmount>
             </li>
-            <li Class="MooGirl.CompProperties_SuppressionEnhancer">
+            <li Class="Mugirl.CompProperties_SuppressionEnhancer">
                 <triggerTicks>4120</triggerTicks>
                 <enhancedMode>true</enhancedMode>
             </li>
-            <li Class="MooGirl.CompProperties_AddThought">
+            <li Class="Mugirl.CompProperties_AddThought">
                 <triggerTicks>4120</triggerTicks>
-                <thoughtDef>MooGirl_BrainwashHappy</thoughtDef>
+                <thoughtDef>Mugirl_BrainwashHappy</thoughtDef>
             </li>
             <li Class="HediffCompProperties_DisappearsOnDeath" />
-            <li Class="MooGirl.CompProperties_DisappearsAndAddHediffs">
+            <li Class="Mugirl.CompProperties_DisappearsAndAddHediffs">
                 <disappearsAfterTicks>5000</disappearsAfterTicks>
                 <showRemainingTime>true</showRemainingTime>
-                <hediffToAddOnDisappear>MooGirl_BrainWashing_Level4</hediffToAddOnDisappear>
+                <hediffToAddOnDisappear>Mugirl_BrainWashing_Level4</hediffToAddOnDisappear>
             </li>
         </comps>
     </HediffDef>
 
     <HediffDef>
-        <defName>MooGirl_BrainWashing_Level4</defName>
+        <defName>Mugirl_BrainWashing_Level4</defName>
         <hediffClass>HediffWithComps</hediffClass>
         <!-- 洗脑晕眩 -->
         <label>Brainwashing Lv. 4 (Brainwashing Dizziness)</label>
@@ -567,7 +567,7 @@
     </HediffDef>
 
     <HediffDef>
-        <defName>MooGirl_BrainWashing_Level5</defName>
+        <defName>Mugirl_BrainWashing_Level5</defName>
         <hediffClass>HediffWithComps</hediffClass>
         <!-- 洗脑完成 -->
         <label>Brainwashing Lv. 5 (Brainwashing Complete)</label>
@@ -577,17 +577,17 @@
         <scenarioCanAdd>false</scenarioCanAdd>
         <isBad>false</isBad>
         <comps>
-            <li Class="MooGirl.CompProperties_PerformanceEffect">
+            <li Class="Mugirl.CompProperties_PerformanceEffect">
                 <triggerTicks>60</triggerTicks>
                 <stunDelayTicks>0</stunDelayTicks>
                 <stunDurationTicks>4120</stunDurationTicks>
                 <!-- 头上显示的 mote。 -->
-                <moteToShowOnHead>MooGirlWashMentalEyesInHead</moteToShowOnHead>
+                <moteToShowOnHead>MugirlWashMentalEyesInHead</moteToShowOnHead>
                 <moteShowStartTick>10</moteShowStartTick>
                 <moteShowEndTick>4000</moteShowEndTick>
                 <flecks>
                     <li>
-                        <fleck>MooGirlWashMentalEyes</fleck>
+                        <fleck>MugirlWashMentalEyes</fleck>
                         <startTick>60</startTick>
                         <loopInterval>120</loopInterval>
                         <endTick>4000</endTick>
@@ -595,37 +595,37 @@
                 </flecks>
                 <sounds>
                     <li>
-                        <sound>MooGirl_BrainWashing_RingShort</sound>
+                        <sound>Mugirl_BrainWashing_RingShort</sound>
                         <startTick>60</startTick>
                         <loopInterval>120</loopInterval>
                         <endTick>1860</endTick>
                     </li>
                     <li>
-                        <sound>MooGirl_BrainWashing_RingLong</sound>
+                        <sound>Mugirl_BrainWashing_RingLong</sound>
                         <startTick>60</startTick>
                         <loopInterval>360</loopInterval>
                         <endTick>1860</endTick>
                     </li>
                     <li>
-                        <sound>MooGirl_BrainWashing_RingShort</sound>
+                        <sound>Mugirl_BrainWashing_RingShort</sound>
                         <startTick>1860</startTick>
                         <loopInterval>60</loopInterval>
                         <endTick>3400</endTick>
                     </li>
                     <li>
-                        <sound>MooGirl_BrainWashing_RingLong</sound>
+                        <sound>Mugirl_BrainWashing_RingLong</sound>
                         <startTick>1860</startTick>
                         <loopInterval>180</loopInterval>
                         <endTick>3940</endTick>
                     </li>
                     <li>
-                        <sound>MooGirl_BrainWashing_HeartBeat</sound>
+                        <sound>Mugirl_BrainWashing_HeartBeat</sound>
                         <startTick>60</startTick>
                         <loopInterval>3400</loopInterval>
                         <endTick>4000</endTick>
                     </li>
                     <li>
-                        <sound>MooGirl_BrainWashing_Second</sound>
+                        <sound>Mugirl_BrainWashing_Second</sound>
                         <startTick>3940</startTick>
                         <loopInterval>120</loopInterval>
                         <endTick>4000</endTick>
@@ -712,39 +712,39 @@
                     </li>
                 </texts>
             </li>
-            <li Class="MooGirl.CompProperties_AddMentalState">
+            <li Class="Mugirl.CompProperties_AddMentalState">
                 <mentalStateDef>Berserk</mentalStateDef>
                 <mentalStateTriggerTicks>4000</mentalStateTriggerTicks>
             </li>
-            <li Class="MooGirl.CompProperties_AddTrait">
+            <li Class="Mugirl.CompProperties_AddTrait">
                 <triggerTicks>4120</triggerTicks>
                 <pawnTypeTraitEntries>
                     <li>
                         <pawnType>colonist</pawnType>
-                        <trait>MooGirl_BrainWashPeace</trait>
+                        <trait>Mugirl_BrainWashPeace</trait>
                     </li>
                     <li>
                         <pawnType>slave</pawnType>
-                        <trait>MooGirl_BrainWashObey</trait>
+                        <trait>Mugirl_BrainWashObey</trait>
                     </li>
                 </pawnTypeTraitEntries>
             </li>
-            <li Class="MooGirl.CompProperties_ReduceWillorEnslave">
+            <li Class="Mugirl.CompProperties_ReduceWillorEnslave">
                 <triggerTicks>4120</triggerTicks>
                 <reduceWill>false</reduceWill>
                 <makeSlave>true</makeSlave>
             </li>
             <li Class="HediffCompProperties_DisappearsOnDeath" />
-            <li Class="MooGirl.CompProperties_DisappearsAndAddHediffs">
+            <li Class="Mugirl.CompProperties_DisappearsAndAddHediffs">
                 <disappearsAfterTicks>5000</disappearsAfterTicks>
                 <showRemainingTime>true</showRemainingTime>
-                <hediffToAddOnDisappear>MooGirl_BrainWashing_Level2</hediffToAddOnDisappear>
+                <hediffToAddOnDisappear>Mugirl_BrainWashing_Level2</hediffToAddOnDisappear>
             </li>
         </comps>
     </HediffDef>
 
     <MentalStateDef ParentName="BaseMentalState" Name="Berserk">
-        <defName>MooGirl_BrainWashing</defName>
+        <defName>Mugirl_BrainWashing</defName>
         <stateClass>MentalState_Berserk</stateClass>
         <!-- 被洗脑 -->
         <label>Being Brainwashed</label>
@@ -756,7 +756,7 @@
             <li>Insult</li>
         </blockInteractionRecipientExcept>
         <blockRandomInteraction>true</blockRandomInteraction>
-        <moodRecoveryThought>MooGirl_BrainWashing_End</moodRecoveryThought>
+        <moodRecoveryThought>Mugirl_BrainWashing_End</moodRecoveryThought>
         <blockNormalThoughts>true</blockNormalThoughts>
         <nameColor>(0.9,0.2,0.5)</nameColor>
         <!-- {0} 已经被洗脑头盔完全洗脑。\n\n[PAWN_pronoun] 会无差别攻击殖民地任意 [PAWN_pronoun] 。 -->

@@ -6,7 +6,7 @@ using Verse;
 using Verse.AI;
 using Verse.Sound;
 
-namespace MooGirl
+namespace Mugirl
 {
     public static class MountedPawnMeleeSupport
     {
@@ -19,7 +19,7 @@ namespace MooGirl
         private static readonly MethodInfo SoundDodgeMethod = AccessTools.Method(typeof(Verb_MeleeAttack), "SoundDodge");
         private static readonly FieldInfo LastShotTickField = AccessTools.Field(typeof(Verb), "lastShotTick");
 
-        public static void Tick(Comp_MooGirlMount comp)
+        public static void Tick(Comp_MugirlMount comp)
         {
             Pawn carrier = comp?.MooPawn;
             Pawn rider = comp?.MountedPawn;
@@ -146,7 +146,7 @@ namespace MooGirl
 
         private static void SetLastShotTick(Verb verb)
         {
-            if (!MooGirlTickUtility.TryGetCurrentGameTick(out int currentTick))
+            if (!MugirlTickUtility.TryGetCurrentGameTick(out int currentTick))
             {
                 return;
             }
@@ -161,7 +161,7 @@ namespace MooGirl
             }
         }
 
-        public static void DrawWeapon(Comp_MooGirlMount comp)
+        public static void DrawWeapon(Comp_MugirlMount comp)
         {
             Pawn rider = comp?.MountedPawn;
             Pawn carrier = comp?.MooPawn;

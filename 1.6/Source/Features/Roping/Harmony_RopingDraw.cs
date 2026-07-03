@@ -4,7 +4,7 @@ using System.Reflection;
 using UnityEngine;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     [HarmonyPatch]
     public static class Harmony_Patch_RopingDraw
@@ -49,7 +49,7 @@ namespace MooGirl
                 IntVec3 ropeCell = pawn.roping.RopedTo.Cell;
                 if (ropeCell.IsValid)
                 {
-                    Building hitch = ropeCell.GetFirstThing(pawn.Map, MooGirl_DefOf.WallRopeHitch) as Building;
+                    Building hitch = ropeCell.GetFirstThing(pawn.Map, Mugirl_DefOf.WallRopeHitch) as Building;
                     if (hitch != null)
                     {
                         GenDraw.DrawLineBetween(

@@ -2,7 +2,7 @@ using RimWorld;
 using System.Collections.Generic;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     internal class Thought_Hediff : Thought_Memory
     {
@@ -95,7 +95,7 @@ namespace MooGirl
 
         private void AddOrRefreshDefHediff()
         {
-            MooGirlFoodEffectUtility.AddOrRefreshHediff(pawn, def.hediff);
+            MugirlFoodEffectUtility.AddOrRefreshHediff(pawn, def.hediff);
         }
     }
 

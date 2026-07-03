@@ -2,7 +2,7 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace MooGirl
+namespace Mugirl
 {
     [HarmonyPatch(typeof(RestraintsUtility), nameof(RestraintsUtility.InRestraints))]
     public static class Patch_RestraintsUtility_InRestraints

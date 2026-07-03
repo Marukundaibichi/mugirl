@@ -1,7 +1,7 @@
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class JobGiver_WanderRoped : JobGiver_Wander
     {

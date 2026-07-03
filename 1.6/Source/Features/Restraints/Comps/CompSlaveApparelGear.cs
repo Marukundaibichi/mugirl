@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
-namespace MooGirl
+namespace Mugirl
 {
     public class CompSlaveApparelGear : CompUsable
     {
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn pawn)
         {
-            if (MooGirlGameUtility.IsCurrentMap(pawn.Map))
+            if (MugirlGameUtility.IsCurrentMap(pawn.Map))
             {
                 if (!pawn.CanReserve(parent))
                 {
                     yield return new FloatMenuOption(
-                        "MooGirl.FloatMenu.ActionOnReserved".Translate(FloatMenuOptionLabel(pawn), "MooGirl.Reserved".Translate()),
+                        "Mugirl.FloatMenu.ActionOnReserved".Translate(FloatMenuOptionLabel(pawn), "Mugirl.Reserved".Translate()),
                         null,
                         MenuOptionPriority.DisabledOption);
                 }
@@ -25,7 +25,7 @@ namespace MooGirl
                         if ((other != pawn) && other.IsWearingSlaveApparel() && (other.Downed || other.IsPrisonerOfColony || PawnSlaveStatusUtility.IsSlave(other)))
                         {
                             yield return this.MakeUnlockOption(
-                                "MooGirl.FloatMenu.ActionOnTarget".Translate(FloatMenuOptionLabel(pawn), PawnSlaveStatusUtility.DisplayName(other)),
+                                "Mugirl.FloatMenu.ActionOnTarget".Translate(FloatMenuOptionLabel(pawn), PawnSlaveStatusUtility.DisplayName(other)),
                                 pawn,
                                 other,
                                 (other.IsPrisonerOfColony || PawnSlaveStatusUtility.IsSlave(other)) ? WorkTypeDefOf.Warden : null);

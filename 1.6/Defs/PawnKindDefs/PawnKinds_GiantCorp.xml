@@ -6,7 +6,7 @@
         <!-- 巨企佣兵 -->
         <label>Giant Corp Mercenary</label>
         <race>Human</race>
-        <defaultFactionDef>MooGirl_GiantCorporations_Hostile</defaultFactionDef>
+        <defaultFactionDef>Mugirl_GiantCorporations_Hostile</defaultFactionDef>
         <combatPower>60</combatPower>
         <isFighter>true</isFighter>
         <maxGenerationAge>65</maxGenerationAge>
@@ -42,7 +42,7 @@
         <!-- 巨企安保员 -->
         <label>Giant Corp Security Officer</label>
         <race>Human</race>
-        <defaultFactionDef>MooGirl_GiantCorporations_Hostile</defaultFactionDef>
+        <defaultFactionDef>Mugirl_GiantCorporations_Hostile</defaultFactionDef>
         <combatPower>105</combatPower>
         <isFighter>true</isFighter>
         <maxGenerationAge>60</maxGenerationAge>
@@ -77,7 +77,7 @@
         <!-- 巨企OPC爆破员 -->
         <label>Giant Corp OPC Sapper</label>
         <race>Human</race>
-        <defaultFactionDef>MooGirl_GiantCorporations_Hostile</defaultFactionDef>
+        <defaultFactionDef>Mugirl_GiantCorporations_Hostile</defaultFactionDef>
         <combatPower>140</combatPower>
         <isFighter>true</isFighter>
         <canBeSapper>true</canBeSapper>
@@ -117,7 +117,7 @@
         <!-- 巨企运货员 -->
         <label>Giant Corp Courier</label>
         <race>Human</race>
-        <defaultFactionDef>MooGirl_GiantCorporations_Hostile</defaultFactionDef>
+        <defaultFactionDef>Mugirl_GiantCorporations_Hostile</defaultFactionDef>
         <combatPower>80</combatPower>
         <isFighter>true</isFighter>
         <maxGenerationAge>60</maxGenerationAge>
@@ -150,7 +150,7 @@
         <!-- 巨企PMC新兵 -->
         <label>Giant Corp PMC Recruit</label>
         <race>Human</race>
-        <defaultFactionDef>MooGirl_GiantCorporations_Hostile</defaultFactionDef>
+        <defaultFactionDef>Mugirl_GiantCorporations_Hostile</defaultFactionDef>
         <combatPower>500</combatPower>
         <isFighter>true</isFighter>
         <maxGenerationAge>55</maxGenerationAge>
@@ -184,7 +184,7 @@
         <!-- 巨企PMC士兵 -->
         <label>Giant Corp PMC Soldier</label>
         <race>Human</race>
-        <defaultFactionDef>MooGirl_GiantCorporations_Hostile</defaultFactionDef>
+        <defaultFactionDef>Mugirl_GiantCorporations_Hostile</defaultFactionDef>
         <combatPower>800</combatPower>
         <isFighter>true</isFighter>
         <maxGenerationAge>55</maxGenerationAge>
@@ -214,7 +214,7 @@
         <!-- 巨企爆破员 -->
         <label>Giant Corp Sapper</label>
         <race>Human</race>
-        <defaultFactionDef>MooGirl_GiantCorporations_Hostile</defaultFactionDef>
+        <defaultFactionDef>Mugirl_GiantCorporations_Hostile</defaultFactionDef>
         <combatPower>800</combatPower>
         <isFighter>true</isFighter>
         <canBeSapper>true</canBeSapper>
@@ -251,7 +251,7 @@
         <!-- 巨企精英 -->
         <label>Giant Corp Elite</label>
         <race>Human</race>
-        <defaultFactionDef>MooGirl_GiantCorporations_Hostile</defaultFactionDef>
+        <defaultFactionDef>Mugirl_GiantCorporations_Hostile</defaultFactionDef>
         <factionLeader>true</factionLeader>
         <combatPower>1200</combatPower>
         <isFighter>true</isFighter>
@@ -278,11 +278,11 @@
     </PawnKindDef>
 
     <PawnKindDef>
-        <defName>AI_GC_MooGirlRaider</defName>
+        <defName>AI_GC_MugirlRaider</defName>
         <!-- 雪牛娘战斗员 -->
         <label>Mugirl Combatant</label>
-        <race>MooGirl</race>
-        <defaultFactionDef>MooGirl_GiantCorporations_Hostile</defaultFactionDef>
+        <race>Mugirl</race>
+        <defaultFactionDef>Mugirl_GiantCorporations_Hostile</defaultFactionDef>
         <combatPower>1600</combatPower>
         <isFighter>true</isFighter>
         <maxPerGroup>1</maxPerGroup>
@@ -296,9 +296,9 @@
         <apparelMoney>0~0</apparelMoney>
         <weaponMoney>700~1400</weaponMoney>
         <apparelRequired>
-            <li>MooGirl_Combatant_Clothes</li>
-            <li>MooGirl_Combatant_Helmet</li>
-            <li>MooGirl_Combatant_Underwear</li>
+            <li>Mugirl_Combatant_Clothes</li>
+            <li>Mugirl_Combatant_Helmet</li>
+            <li>Mugirl_Combatant_Underwear</li>
         </apparelRequired>
         <specificApparelRequirements>
             <li>
@@ -306,7 +306,7 @@
                 <apparelLayer>Shell</apparelLayer>
                 <alternateTagChoices>
                     <li>
-                        <tag>MooGirl_Combatant_OptionalVest</tag>
+                        <tag>Mugirl_Combatant_OptionalVest</tag>
                         <chance>0.35</chance>
                     </li>
                 </alternateTagChoices>
@@ -315,26 +315,26 @@
                 <bodyPartGroup>Legs</bodyPartGroup>
                 <alternateTagChoices>
                     <li>
-                        <tag>MooGirl_Combatant_Legwear</tag>
+                        <tag>Mugirl_Combatant_Legwear</tag>
                         <chance>0.25</chance>
                     </li>
                 </alternateTagChoices>
             </li>
         </specificApparelRequirements>
         <weaponTags>
-            <li>GC_Weapon_MooGirl</li>
+            <li>GC_Weapon_Mugirl</li>
             <li>PMC</li>
         </weaponTags>
         <backstoryFilters>
             <li>
                 <categories>
-                    <li>MooGirl_Slave</li>
+                    <li>Mugirl_Slave</li>
                 </categories>
             </li>
         </backstoryFilters>
         <xenotypeSet>
             <xenotypeChances>
-                <MooGirl_Xenotype MayRequire="Ludeon.RimWorld.Biotech">1</MooGirl_Xenotype>
+                <Mugirl_Xenotype MayRequire="Ludeon.RimWorld.Biotech">1</Mugirl_Xenotype>
             </xenotypeChances>
         </xenotypeSet>
         <useFactionXenotypes>false</useFactionXenotypes>

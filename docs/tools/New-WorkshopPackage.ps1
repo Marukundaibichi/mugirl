@@ -6,7 +6,7 @@ param(
 $ErrorActionPreference = 'Stop'
 
 $RepoRoot = Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..\..')
-$DefaultPackageRoot = Join-Path $RepoRoot 'TMP\WorkshopPackage\MooGirlRace'
+$DefaultPackageRoot = Join-Path $RepoRoot 'TMP\WorkshopPackage\MugirlRace'
 if ([string]::IsNullOrWhiteSpace($PackageRoot)) {
     $PackageRoot = $DefaultPackageRoot
 }
@@ -81,7 +81,7 @@ try {
             $msbuild = 'MSBuild.exe'
         }
 
-        & $msbuild '1.6\Source\MooGirlRace.csproj' /p:Configuration=Release /p:Platform=AnyCPU /nologo /v:m
+        & $msbuild '1.6\Source\MugirlRace.csproj' /p:Configuration=Release /p:Platform=AnyCPU /nologo /v:m
         if ($LASTEXITCODE -ne 0) {
             throw "Release build failed with exit code $LASTEXITCODE"
         }

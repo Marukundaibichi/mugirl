@@ -2,7 +2,7 @@
 <Defs>
 
     <LifeStageDef ParentName="HumanlikeAdolescent">
-        <defName>MooGirl_HumanlikeBaby</defName>
+        <defName>Mugirl_HumanlikeBaby</defName>
         <!-- 婴儿 -->
         <label>baby</label>
         <bodySizeFactor>0.11</bodySizeFactor>
@@ -56,7 +56,7 @@
     </LifeStageDef>
 
     <LifeStageDef ParentName="LifeStageHumanlikeChild">
-        <defName>MooGirl_PreTeenager</defName>
+        <defName>Mugirl_PreTeenager</defName>
         <!-- 未成年 -->
         <label>pre-teen</label>
         <headSizeFactor>0.8</headSizeFactor>
@@ -74,7 +74,7 @@
     </LifeStageDef>
 
     <LifeStageDef ParentName="HumanlikeAdolescent">
-        <defName>MooGirl_Teenager</defName>
+        <defName>Mugirl_Teenager</defName>
         <!-- 青少年 -->
         <label>teenager</label>
         <!-- 青少年的 -->

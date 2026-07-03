@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <Defs>
-    <ThingDef Name="MooGirl_Base_SlaveApparelKey" Abstract="True">
+    <ThingDef Name="Mugirl_Base_SlaveApparelKey" Abstract="True">
         <thingClass>ThingWithComps</thingClass>
         <category>Item</category>
         <thingCategories>
@@ -23,22 +23,22 @@
         <generateCommonality>0.0</generateCommonality>
         <comps>
             <li Class="CompProperties_Forbiddable" />
-            <li Class="MooGirl.CompProperties_SlaveApparelKey" />
+            <li Class="Mugirl.CompProperties_SlaveApparelKey" />
             <li Class="CompProperties_Usable">
-                <compClass>MooGirl.CompStampedApparelKey</compClass>
+                <compClass>Mugirl.CompStampedApparelKey</compClass>
                 <useJob>UnlockSlaveApparel</useJob>
                 <!-- 解锁束具 -->
                 <useLabel>Unlock Restraint</useLabel>
             </li>
             <li Class="CompProperties_UseEffect">
-                <compClass>MooGirl.CompUnlockBondageGear</compClass>
+                <compClass>Mugirl.CompUnlockBondageGear</compClass>
             </li>
         </comps>
         <pathCost>1</pathCost>
     </ThingDef>
 
-    <ThingDef ParentName="MooGirl_Base_SlaveApparelKey">
-        <defName>MooGirl_SlaveApparelKey_Medieval</defName>
+    <ThingDef ParentName="Mugirl_Base_SlaveApparelKey">
+        <defName>Mugirl_SlaveApparelKey_Medieval</defName>
         <!-- 粗糙束具钥匙 -->
         <label>Rough Restraint Key</label>
         <!-- 用于解锁雪牛娘束具的钥匙，加工较粗糙，只能用来解锁较低级的束具。 -->
@@ -57,8 +57,8 @@
         <techLevel>Medieval</techLevel>
     </ThingDef>
 
-    <ThingDef ParentName="MooGirl_Base_SlaveApparelKey">
-        <defName>MooGirl_SlaveApparelKey_Industrial</defName>
+    <ThingDef ParentName="Mugirl_Base_SlaveApparelKey">
+        <defName>Mugirl_SlaveApparelKey_Industrial</defName>
         <!-- 精致束具钥匙 -->
         <label>Exquisite Restraint Key</label>
         <!-- 用于解锁雪牛娘束具的钥匙，加工精致，用来解锁奴隶袜、奴隶手套等拥有较复杂锁具的束具。 -->
@@ -77,8 +77,8 @@
         <techLevel>Industrial</techLevel>
     </ThingDef>
 
-    <ThingDef ParentName="MooGirl_Base_SlaveApparelKey">
-        <defName>MooGirl_SlaveApparelKey_Spacer</defName>
+    <ThingDef ParentName="Mugirl_Base_SlaveApparelKey">
+        <defName>Mugirl_SlaveApparelKey_Spacer</defName>
         <!-- 高科技束具钥匙 -->
         <label>Spacer Restraint Key</label>
         <!-- 用于解锁雪牛娘束具的钥匙，内含太空科技密钥，用来解锁磁力镣铐、电击项圈、和洗脑头盔等太空科技级别的束具。 -->
@@ -99,7 +99,7 @@
 
 
     <ThingDef>
-        <defName>MooGirl_SlaveApparelKey_Advance</defName>
+        <defName>Mugirl_SlaveApparelKey_Advance</defName>
         <!-- 束具破解器 -->
         <label>Restraint Decryptor</label>
         <!-- 用于破解雪牛娘太空束具的破解器，被破解后的束具可以为己方所用。 -->
@@ -142,9 +142,9 @@
                 <showUseGizmo>true</showUseGizmo>
             </li>
             <li Class="CompProperties_Targetable">
-                <compClass>MooGirl.CompTargetable_SlaveApparel</compClass>
+                <compClass>Mugirl.CompTargetable_SlaveApparel</compClass>
             </li>
-            <li Class="MooGirl.CompProperties_TargetEffectCrackBondageGear" />
+            <li Class="Mugirl.CompProperties_TargetEffectCrackBondageGear" />
         </comps>
         <pathCost>1</pathCost>
         <techLevel>Medieval</techLevel>

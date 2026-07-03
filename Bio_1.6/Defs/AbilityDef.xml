@@ -2,12 +2,12 @@
 <Defs>
 
     <AbilityDef>
-        <defName>MooGirl_Charge</defName>
+        <defName>Mugirl_Charge</defName>
         <!-- 雪牛冲锋！ -->
         <label>Mugirl Charge!</label>
         <!-- 冲冲冲！我要创死你！ -->
         <description>Charge, charge, charge! I'll ram you down!</description>
-        <iconPath>UI/MooGirl_Charge</iconPath>
+        <iconPath>UI/Mugirl_Charge</iconPath>
         <cooldownTicksRange>6000</cooldownTicksRange>
         <sendMessageOnCooldownComplete>true</sendMessageOnCooldownComplete>
         <warmupStartSound>FireSpew_Warmup</warmupStartSound>
@@ -31,12 +31,12 @@
 
 
     <AbilityDef>
-        <defName>MooGirl_Shout</defName>
+        <defName>Mugirl_Shout</defName>
         <!-- 雪牛大叫！ -->
         <label>Mugirl Shout!</label>
         <!-- RUAAAAAAAAA！（丢人的叫声） -->
         <description>RUAAAAAAAAA! (an embarrassing cry)</description>
-        <iconPath>UI/MooGirl_Shout</iconPath>
+        <iconPath>UI/Mugirl_Shout</iconPath>
         <cooldownTicksRange>6000</cooldownTicksRange>
         <targetRequired>false</targetRequired>
         <hostile>false</hostile>
@@ -52,7 +52,7 @@
             </targetParams>
         </verbProperties>
         <comps>
-            <li Class="MooGirl.CompProperties_AbilityEffect_ForceJob">
+            <li Class="Mugirl.CompProperties_AbilityEffect_ForceJob">
                 <jobDef>GotoMindControlled</jobDef>
                 <durationTick>240</durationTick>
                 <radius>6</radius>

@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
     <ThingDef ParentName="OrganicProductBase">
-        <defName>MooGirl_Milk</defName>
+        <defName>Mugirl_Milk</defName>
         <!-- 雪牛奶 -->
         <label>Mugirl Milk</label>
         <!-- 雪牛娘分泌的乳汁，香甜浓郁，呈乳白带淡蓝色光泽。奇迹星基因工程让其营养成分远超普通牛奶，添加到食物中可以大幅提升免疫力，并促进伤口快速愈合。 -->
         <description>The milk secreted by Mugirls is sweet and rich, with a milky white hue and a light blue sheen. Miracle Star Genetic Engineering has endowed it with nutritional content far surpassing ordinary milk. When added to meals, it significantly boosts immunity and promotes rapid wound healing.</description>
         <graphicData>
-            <texPath>Things/Item/Resource/MooGirl_Milk</texPath>
+            <texPath>Things/Item/Resource/Mugirl_Milk</texPath>
             <graphicClass>Graphic_StackCount</graphicClass>
         </graphicData>
         <tradeability>Sellable</tradeability>
         <tradeTags>
-            <li>MooGirl_MilkFood</li>
+            <li>Mugirl_MilkFood</li>
         </tradeTags>
         <socialPropernessMatters>true</socialPropernessMatters>
         <statBases>
@@ -35,9 +35,9 @@
             <joy>0.25</joy>
             <maxNumToIngestAtOnce>10</maxNumToIngestAtOnce>
             <joyKind>Gluttonous</joyKind>
-            <tasteThought>Consumed_MooGirlMilk</tasteThought>
+            <tasteThought>Consumed_MugirlMilk</tasteThought>
             <babiesCanIngest>true</babiesCanIngest>
-            <specialThoughtAsIngredient>Consumed_MooGirlMilk</specialThoughtAsIngredient>
+            <specialThoughtAsIngredient>Consumed_MugirlMilk</specialThoughtAsIngredient>
         </ingestible>
         <thingCategories>
             <li>AnimalProductRaw</li>
@@ -46,9 +46,9 @@
     </ThingDef>
 
     <ThoughtDef>
-        <thoughtClass>MooGirl.Thought_Hediff</thoughtClass>
-        <defName>Consumed_MooGirlMilk</defName>
-        <hediff>Consumed_MooGirlMilk</hediff>
+        <thoughtClass>Mugirl.Thought_Hediff</thoughtClass>
+        <defName>Consumed_MugirlMilk</defName>
+        <hediff>Consumed_MugirlMilk</hediff>
         <durationDays>1</durationDays>
         <stages>
             <li>
@@ -62,7 +62,7 @@
     </ThoughtDef>
 
     <HediffDef>
-        <defName>Consumed_MooGirlMilk</defName>
+        <defName>Consumed_MugirlMilk</defName>
         <!-- 强身健体！ -->
         <label>Fitter and Stronger!</label>
         <makesSickThought>false</makesSickThought>
@@ -75,9 +75,9 @@
         <initialSeverity>1.0</initialSeverity>
         <maxSeverity>1.0</maxSeverity>
         <comps>
-            <li Class="MooGirl.HediffCompProperties_WhileHavingThoughts">
+            <li Class="Mugirl.HediffCompProperties_WhileHavingThoughts">
                 <thoughtDefs>
-                    <li>Consumed_MooGirlMilk</li>
+                    <li>Consumed_MugirlMilk</li>
                 </thoughtDefs>
             </li>
         </comps>
@@ -93,13 +93,13 @@
 
 
     <ThingDef ParentName="WoolBase">
-        <defName>MooGirl_Wool</defName>
+        <defName>Mugirl_Wool</defName>
         <!-- 雪牛娘毛 -->
         <label>Mugirl Fur</label>
         <!-- 奇迹星基因工程的副产物之一——雪牛娘的毛发，雪牛一样的淡蓝色，但在质感上远比雪牛毛更柔软。细细嗅闻能闻到淡淡的牛油味。 -->
         <description>A by-product of the Miracle Star Genetic Engineering programme- the fur of Mugirls, possessing the same light blue colour as Muffalo fur but significantly softer in texture. When sniffed closely, it carries a faint buttery scent.</description>
         <graphicData>
-            <texPath>Things/Item/Resource/MooGirl_Wool</texPath>
+            <texPath>Things/Item/Resource/Mugirl_Wool</texPath>
             <graphicClass>Graphic_StackCount</graphicClass>
             <color>(183,212,222)</color>
         </graphicData>

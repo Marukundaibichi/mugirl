@@ -3,7 +3,7 @@
 
 
     <BodyDef>
-        <defName>MooGirlBody</defName>
+        <defName>MugirlBody</defName>
         <!-- 雪牛娘 -->
         <label>Mugirl</label>
         <corePart>
@@ -48,8 +48,8 @@
                     </groups>
                 </li>
                 <li>
-                    <def>MooGirl_Tail</def>
-                    <customLabel>MooGirl Tail</customLabel>
+                    <def>Mugirl_Tail</def>
+                    <customLabel>Mugirl Tail</customLabel>
                     <coverage>0.02</coverage>
                     <height>Bottom</height>
                     <groups>
@@ -185,7 +185,7 @@
                                 </li>
                                 <!-- 左角。 -->
                                 <li>
-                                    <def>MooGirl_Horn</def>
+                                    <def>Mugirl_Horn</def>
                                     <customLabel>left horn</customLabel>
                                     <coverage>0.07</coverage>
                                     <groups>
@@ -195,7 +195,7 @@
                                 </li>
                                 <!-- 右角。 -->
                                 <li>
-                                    <def>MooGirl_Horn</def>
+                                    <def>Mugirl_Horn</def>
                                     <customLabel>right horn</customLabel>
                                     <coverage>0.07</coverage>
                                     <groups>
@@ -645,7 +645,7 @@
     </BodyDef>
 
     <BodyPartDef>
-        <defName>MooGirl_Tail</defName>
+        <defName>Mugirl_Tail</defName>
         <label>tail</label>
         <hitPoints>25</hitPoints>
         <frostbiteVulnerability>1</frostbiteVulnerability>
@@ -658,7 +658,7 @@
     </BodyPartDef>
 
     <BodyPartDef>
-        <defName>MooGirl_Horn</defName>
+        <defName>Mugirl_Horn</defName>
         <label>horn</label>
         <hitPoints>35</hitPoints>
         <frostbiteVulnerability>0</frostbiteVulnerability>
