@@ -163,7 +163,7 @@
                                 <options>
                                     <li>
                                         <weight>1</weight>
-                                        <only>(255,241,231)</only>
+                                        <only>RGBA(1.0,1.0,1.0,1)</only>
                                     </li>
                                 </options>
                             </first>
