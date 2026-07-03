@@ -51,32 +51,32 @@
         <raceName>MooGirl</raceName>
         <animationFrames>
             <li>
-                <duration>100</duration>
+                <duration>90</duration>
                 <browShapeDef>angled</browShapeDef>
-                <lidShapeDef>half</lidShapeDef>
-                <mouthShapeDef>tight</mouthShapeDef>
-                <eyeballOffset>(0.0,0,0.008)</eyeballOffset>
+                <lidShapeDef>normal</lidShapeDef>
+                <mouthShapeDef>sad</mouthShapeDef>
+                <eyeballOffset>(0.0,0,0.001)</eyeballOffset>
             </li>
             <li>
-                <duration>10</duration>
+                <duration>14</duration>
                 <browShapeDef>angled</browShapeDef>
-                <lidShapeDef>half</lidShapeDef>
-                <mouthShapeDef>tight</mouthShapeDef>
-                <eyeballOffset>(0.01,0,0.006)</eyeballOffset>
+                <lidShapeDef>normal</lidShapeDef>
+                <mouthShapeDef>sad</mouthShapeDef>
+                <eyeballOffset>(0.01,0,0.001)</eyeballOffset>
             </li>
             <li>
-                <duration>80</duration>
+                <duration>18</duration>
                 <browShapeDef>angled</browShapeDef>
                 <lidShapeDef>half</lidShapeDef>
-                <mouthShapeDef>tight</mouthShapeDef>
-                <eyeballOffset>(0.0,0,0.008)</eyeballOffset>
+                <mouthShapeDef>sad</mouthShapeDef>
+                <eyeballOffset>(0.0,0,0.000)</eyeballOffset>
             </li>
             <li>
-                <duration>10</duration>
+                <duration>14</duration>
                 <browShapeDef>angled</browShapeDef>
-                <lidShapeDef>half</lidShapeDef>
-                <mouthShapeDef>tight</mouthShapeDef>
-                <eyeballOffset>(-0.01,0,0.006)</eyeballOffset>
+                <lidShapeDef>normal</lidShapeDef>
+                <mouthShapeDef>sad</mouthShapeDef>
+                <eyeballOffset>(-0.01,0,0.001)</eyeballOffset>
             </li>
         </animationFrames>
         <targetJobs>
@@ -93,35 +93,35 @@
                 <duration>160</duration>
                 <browShapeDef>flat</browShapeDef>
                 <lidShapeDef>half</lidShapeDef>
-                <mouthShapeDef>tight</mouthShapeDef>
+                <mouthShapeDef>normal</mouthShapeDef>
                 <eyeballOffset>(-0.004,0,-0.012)</eyeballOffset>
             </li>
             <li>
                 <duration>18</duration>
                 <browShapeDef>flat</browShapeDef>
                 <lidShapeDef>half</lidShapeDef>
-                <mouthShapeDef>tight</mouthShapeDef>
+                <mouthShapeDef>normal</mouthShapeDef>
                 <eyeballOffset>(-0.012,0,-0.012)</eyeballOffset>
             </li>
             <li>
                 <duration>40</duration>
                 <browShapeDef>s-shaped</browShapeDef>
                 <lidShapeDef>normal</lidShapeDef>
-                <mouthShapeDef>tight</mouthShapeDef>
+                <mouthShapeDef>puzzle</mouthShapeDef>
                 <eyeballOffset>(0.0,0,-0.012)</eyeballOffset>
             </li>
             <li>
                 <duration>18</duration>
                 <browShapeDef>s-shaped</browShapeDef>
                 <lidShapeDef>normal</lidShapeDef>
-                <mouthShapeDef>tight</mouthShapeDef>
+                <mouthShapeDef>puzzle</mouthShapeDef>
                 <eyeballOffset>(0.012,0,-0.012)</eyeballOffset>
             </li>
             <li>
                 <duration>160</duration>
                 <browShapeDef>s-shaped</browShapeDef>
                 <lidShapeDef>normal</lidShapeDef>
-                <mouthShapeDef>tight</mouthShapeDef>
+                <mouthShapeDef>puzzle</mouthShapeDef>
                 <eyeballOffset>(0.004,0,-0.012)</eyeballOffset>
             </li>
         </animationFrames>
@@ -204,7 +204,6 @@
         </animationFrames>
         <roopIntervalMin>0</roopIntervalMin>
         <roopIntervalMax>0</roopIntervalMax>
-        <applyWhenStandingOnly>true</applyWhenStandingOnly>
         <targetJobs>
             <li>LayDown</li>
         </targetJobs>
@@ -230,7 +229,6 @@
         </animationFrames>
         <roopIntervalMin>500</roopIntervalMin>
         <roopIntervalMax>1200</roopIntervalMax>
-        <applyWhenStandingOnly>true</applyWhenStandingOnly>
         <targetJobs>
             <li>LayDown</li>
         </targetJobs>
@@ -272,14 +270,14 @@
                 <duration>180</duration>
                 <browShapeDef>flat</browShapeDef>
                 <lidShapeDef>half</lidShapeDef>
-                <mouthShapeDef>tight</mouthShapeDef>
+                <mouthShapeDef>puzzle</mouthShapeDef>
                 <eyeballOffset>(-0.004,0,-0.012)</eyeballOffset>
             </li>
             <li>
                 <duration>180</duration>
                 <browShapeDef>s-shaped</browShapeDef>
                 <lidShapeDef>normal</lidShapeDef>
-                <mouthShapeDef>tight</mouthShapeDef>
+                <mouthShapeDef>puzzle</mouthShapeDef>
                 <eyeballOffset>(0.004,0,-0.012)</eyeballOffset>
             </li>
         </animationFrames>
@@ -298,13 +296,13 @@
                 <duration>180</duration>
                 <browShapeDef>flat</browShapeDef>
                 <mouthShapeDef>smile</mouthShapeDef>
-                <emotionShapeDef>blush</emotionShapeDef>
+                <headShapeDef>blush</headShapeDef>
             </li>
             <li>
                 <duration>90</duration>
                 <browShapeDef>normal</browShapeDef>
                 <mouthShapeDef>open</mouthShapeDef>
-                <emotionShapeDef>blush</emotionShapeDef>
+                <headShapeDef>blush</headShapeDef>
             </li>
         </animationFrames>
         <targetJobs>
@@ -321,7 +319,7 @@
                 <duration>120</duration>
                 <browShapeDef>flat</browShapeDef>
                 <mouthShapeDef>smile</mouthShapeDef>
-                <emotionShapeDef>blush</emotionShapeDef>
+                <headShapeDef>blush</headShapeDef>
                 <eyeballOffset>(0.0,0,0.003)</eyeballOffset>
             </li>
         </animationFrames>
@@ -343,7 +341,7 @@
                 <browShapeDef>s-shaped</browShapeDef>
                 <lidShapeDef>half</lidShapeDef>
                 <mouthShapeDef>tight</mouthShapeDef>
-                <emotionShapeDef>blush</emotionShapeDef>
+                <headShapeDef>blush</headShapeDef>
                 <eyeballOffset>(-0.006,0,0.005)</eyeballOffset>
             </li>
             <li>
@@ -351,14 +349,14 @@
                 <browShapeDef>s-shaped</browShapeDef>
                 <lidShapeDef>half</lidShapeDef>
                 <mouthShapeDef>open</mouthShapeDef>
-                <emotionShapeDef>blush</emotionShapeDef>
+                <headShapeDef>blush</headShapeDef>
                 <eyeballOffset>(0.006,0,0.005)</eyeballOffset>
             </li>
         </animationFrames>
         <targetJobs>
             <li>Strip</li>
         </targetJobs>
-        <priority>105</priority>
+        <priority>110000</priority>
         <applyWhenStandingOnly>true</applyWhenStandingOnly>
         <roopIntervalMin>30</roopIntervalMin>
         <roopIntervalMax>300</roopIntervalMax>
@@ -372,25 +370,19 @@
                 <duration>20</duration>
                 <browShapeDef>flat</browShapeDef>
                 <lidShapeDef>half</lidShapeDef>
-                <mouthShapeDef>tight</mouthShapeDef>
-                <eyeballShapeDef>MooGirl_heart</eyeballShapeDef>
-                <emotionShapeDef>lovinblush</emotionShapeDef>
+                <mouthShapeDef>normal</mouthShapeDef>
+                <headShapeDef>blush</headShapeDef>
                 <headOffset>(0.0,0,-0.001)</headOffset>
                 <eyeballOffset>(-0.004,0,0.004)</eyeballOffset>
-                <eyeballOffsetL>+0.0025,0,0</eyeballOffsetL>
-                <eyeballOffsetR>-0.0025,0,0</eyeballOffsetR>
             </li>
             <li>
                 <duration>12</duration>
                 <browShapeDef>normal</browShapeDef>
                 <lidShapeDef>half</lidShapeDef>
                 <mouthShapeDef>smile</mouthShapeDef>
-                <eyeballShapeDef>MooGirl_heart</eyeballShapeDef>
-                <emotionShapeDef>lovinblush</emotionShapeDef>
+                <headShapeDef>blush</headShapeDef>
                 <headOffset>(0.0,0,0.002)</headOffset>
                 <eyeballOffset>(0.004,0,0.004)</eyeballOffset>
-                <eyeballOffsetL>+0.0025,0,0</eyeballOffsetL>
-                <eyeballOffsetR>-0.0025,0,0</eyeballOffsetR>
             </li>
         </animationFrames>
         <targetJobs>
@@ -410,23 +402,17 @@
                 <duration>18</duration>
                 <browShapeDef>s-shaped</browShapeDef>
                 <lidShapeDef>half</lidShapeDef>
-                <mouthShapeDef>tight</mouthShapeDef>
-                <eyeballShapeDef>MooGirl_heart</eyeballShapeDef>
-                <emotionShapeDef>lovinblush</emotionShapeDef>
+                <mouthShapeDef>normal</mouthShapeDef>
+                <headShapeDef>blush</headShapeDef>
                 <eyeballOffset>(0.0,0,0.005)</eyeballOffset>
-                <eyeballOffsetL>+0.0025,0,0</eyeballOffsetL>
-                <eyeballOffsetR>-0.0025,0,0</eyeballOffsetR>
             </li>
             <li>
                 <duration>14</duration>
                 <browShapeDef>flat</browShapeDef>
                 <lidShapeDef>half</lidShapeDef>
                 <mouthShapeDef>smile</mouthShapeDef>
-                <eyeballShapeDef>MooGirl_heart</eyeballShapeDef>
-                <emotionShapeDef>lovinblush</emotionShapeDef>
+                <headShapeDef>blush</headShapeDef>
                 <eyeballOffset>(0.006,0,0.005)</eyeballOffset>
-                <eyeballOffsetL>+0.0025,0,0</eyeballOffsetL>
-                <eyeballOffsetR>-0.0025,0,0</eyeballOffsetR>
             </li>
         </animationFrames>
         <targetJobs>
@@ -483,7 +469,6 @@
         </animationFrames>
         <roopIntervalMin>0</roopIntervalMin>
         <roopIntervalMax>0</roopIntervalMax>
-        <applyWhenStandingOnly>true</applyWhenStandingOnly>
         <targetJobs>
             <li>Wait_Downed</li>
         </targetJobs>
@@ -495,38 +480,38 @@
         <raceName>MooGirl</raceName>
         <animationFrames>
             <li>
-                <duration>120</duration>
+                <duration>90</duration>
                 <browShapeDef>angled</browShapeDef>
-                <lidShapeDef>half</lidShapeDef>
-                <mouthShapeDef>tight</mouthShapeDef>
+                <lidShapeDef>normal</lidShapeDef>
+                <mouthShapeDef>sad</mouthShapeDef>
                 <eyeballOffset>(0.0,0,0.006)</eyeballOffset>
             </li>
             <li>
-                <duration>36</duration>
-                <browShapeDef>angled</browShapeDef>
-                <lidShapeDef>half</lidShapeDef>
-                <mouthShapeDef>tight</mouthShapeDef>
-                <eyeballOffset>(-0.012,0,0.004)</eyeballOffset>
-            </li>
-            <li>
-                <duration>32</duration>
-                <browShapeDef>angled</browShapeDef>
-                <lidShapeDef>half</lidShapeDef>
-                <mouthShapeDef>tight</mouthShapeDef>
-                <eyeballOffset>(0.0,0,0.004)</eyeballOffset>
-            </li>
-            <li>
-                <duration>36</duration>
-                <browShapeDef>angled</browShapeDef>
-                <lidShapeDef>half</lidShapeDef>
-                <mouthShapeDef>tight</mouthShapeDef>
-                <eyeballOffset>(0.012,0,0.004)</eyeballOffset>
-            </li>
-            <li>
-                <duration>60</duration>
+                <duration>28</duration>
                 <browShapeDef>angled</browShapeDef>
                 <lidShapeDef>normal</lidShapeDef>
-                <mouthShapeDef>tight</mouthShapeDef>
+                <mouthShapeDef>sad</mouthShapeDef>
+                <eyeballOffset>(-0.012,0,0.005)</eyeballOffset>
+            </li>
+            <li>
+                <duration>18</duration>
+                <browShapeDef>angled</browShapeDef>
+                <lidShapeDef>half</lidShapeDef>
+                <mouthShapeDef>sad</mouthShapeDef>
+                <eyeballOffset>(-0.006,0,0.004)</eyeballOffset>
+            </li>
+            <li>
+                <duration>28</duration>
+                <browShapeDef>angled</browShapeDef>
+                <lidShapeDef>normal</lidShapeDef>
+                <mouthShapeDef>sad</mouthShapeDef>
+                <eyeballOffset>(0.012,0,0.005)</eyeballOffset>
+            </li>
+            <li>
+                <duration>70</duration>
+                <browShapeDef>angled</browShapeDef>
+                <lidShapeDef>normal</lidShapeDef>
+                <mouthShapeDef>sad</mouthShapeDef>
                 <eyeballOffset>(0.0,0,0.006)</eyeballOffset>
             </li>
         </animationFrames>

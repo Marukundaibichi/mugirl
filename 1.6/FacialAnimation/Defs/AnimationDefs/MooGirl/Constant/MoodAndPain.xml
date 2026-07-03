@@ -7,7 +7,7 @@
             <li>
                 <duration>1</duration>
                 <browShapeDef>flat</browShapeDef>
-                <emotionShapeDef>blush</emotionShapeDef>
+                <headShapeDef>blush</headShapeDef>
                 <mouthShapeDef>smile</mouthShapeDef>
             </li>
         </animationFrames>
@@ -24,6 +24,7 @@
                 <duration>1</duration>
                 <browShapeDef>s-shaped</browShapeDef>
                 <mouthShapeDef>sad</mouthShapeDef>
+                <lidOptionShapeDef>tear</lidOptionShapeDef>
             </li>
         </animationFrames>
         <priority>100000</priority>
@@ -41,11 +42,55 @@
                 <browShapeDef>s-shaped</browShapeDef>
                 <lidShapeDef>half</lidShapeDef>
                 <mouthShapeDef>sad</mouthShapeDef>
+                <lidOptionShapeDef>MooGirl_cry</lidOptionShapeDef>
             </li>
         </animationFrames>
         <priority>100000</priority>
         <targetMoodMax>0.20</targetMoodMax>
         <targetMoodMin>0.00</targetMoodMin>
+    </FacialAnimation.FaceAnimationDef>
+
+    <FacialAnimation.FaceAnimationDef>
+        <defName>environmentHot_MooGirl</defName>
+        <raceName>MooGirl</raceName>
+        <animationFrames>
+            <li>
+                <duration>45</duration>
+                <headShapeDef>hot</headShapeDef>
+                <browShapeDef>s-shaped</browShapeDef>
+                <lidShapeDef>half</lidShapeDef>
+                <mouthShapeDef>hot1</mouthShapeDef>
+            </li>
+            <li>
+                <duration>45</duration>
+                <headShapeDef>hot_heavy_sweat</headShapeDef>
+                <browShapeDef>s-shaped</browShapeDef>
+                <lidShapeDef>half</lidShapeDef>
+                <mouthShapeDef>hot2</mouthShapeDef>
+            </li>
+        </animationFrames>
+        <priority>99900</priority>
+        <targetThoughtDefs>
+            <li>EnvironmentHot</li>
+        </targetThoughtDefs>
+    </FacialAnimation.FaceAnimationDef>
+
+    <FacialAnimation.FaceAnimationDef>
+        <defName>environmentCold_MooGirl</defName>
+        <raceName>MooGirl</raceName>
+        <animationFrames>
+            <li>
+                <duration>1</duration>
+                <headShapeDef>cold</headShapeDef>
+                <browShapeDef>s-shaped</browShapeDef>
+                <lidShapeDef>half</lidShapeDef>
+                <mouthShapeDef>cold_tight1</mouthShapeDef>
+            </li>
+        </animationFrames>
+        <priority>99900</priority>
+        <targetThoughtDefs>
+            <li>EnvironmentCold</li>
+        </targetThoughtDefs>
     </FacialAnimation.FaceAnimationDef>
 
     <FacialAnimation.FaceAnimationDef>
@@ -55,7 +100,7 @@
             <li>
                 <duration>1</duration>
                 <browShapeDef>s-shaped</browShapeDef>
-                <lidOptionShapeDef>tear</lidOptionShapeDef>
+                <mouthShapeDef>pain1</mouthShapeDef>
             </li>
         </animationFrames>
         <targetPainMin>0.4</targetPainMin>
@@ -70,7 +115,8 @@
             <li>
                 <duration>1</duration>
                 <browShapeDef>s-shaped</browShapeDef>
-                <lidOptionShapeDef>MooGirl_cry</lidOptionShapeDef>
+                <headShapeDef>heavy_sweat</headShapeDef>
+                <mouthShapeDef>pain3</mouthShapeDef>
             </li>
         </animationFrames>
         <targetPainMin>0.8</targetPainMin>

@@ -23,27 +23,25 @@
         <raceName>MooGirl</raceName>
         <animationFrames>
             <li>
-                <duration>15</duration>
+                <duration>12</duration>
                 <eyeballOffset>(-0.01,0,0)</eyeballOffset>
+            </li>
+            <li>
+                <duration>8</duration>
+                <eyeballOffset>(0.0,0,0)</eyeballOffset>
+            </li>
+            <li>
+                <duration>12</duration>
+                <eyeballOffset>(0.01,0,0)</eyeballOffset>
+            </li>
+            <li>
+                <duration>10</duration>
+                <eyeballOffset>(0.0,0,0)</eyeballOffset>
             </li>
         </animationFrames>
         <priority>1002</priority>
-        <roopIntervalMin>30</roopIntervalMin>
-        <roopIntervalMax>500</roopIntervalMax>
-    </FacialAnimation.FaceAnimationDef>
-
-    <FacialAnimation.FaceAnimationDef>
-        <defName>eyeMoving2_MooGirl</defName>
-        <raceName>MooGirl</raceName>
-        <animationFrames>
-            <li>
-                <duration>15</duration>
-                <eyeballOffset>(0.01,0,0)</eyeballOffset>
-            </li>
-        </animationFrames>
-        <priority>1001</priority>
-        <roopIntervalMin>30</roopIntervalMin>
-        <roopIntervalMax>500</roopIntervalMax>
+        <roopIntervalMin>80</roopIntervalMin>
+        <roopIntervalMax>360</roopIntervalMax>
     </FacialAnimation.FaceAnimationDef>
 
     <FacialAnimation.FaceAnimationDef>

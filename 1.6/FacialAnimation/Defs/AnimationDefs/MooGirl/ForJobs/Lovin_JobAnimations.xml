@@ -9,13 +9,8 @@
                 <faceAnimationRepeatCount>1</faceAnimationRepeatCount>
             </li>
         </animationFrames>
-        <targetJobs>
-            <li>Lovin</li>
-            <li>MLI_Jobs_MassLoveIn</li>
-            <li>MLI_Jobs_SingleLoveIn</li>
-        </targetJobs>
+        <targetJobs />
         <priority>10400</priority>
-        <applyWhenStandingOnly>true</applyWhenStandingOnly>
     </FacialAnimation.FaceAnimationDef>
 
     <FacialAnimation.FaceAnimationDef>
@@ -32,8 +27,7 @@
                 <eyeballShapeDef>normal</eyeballShapeDef>
                 <eyeballOffset>(0.0,0,0.0075)</eyeballOffset>
                 <mouthOffset>(0,0,0.0005)</mouthOffset>
-                <headShapeDef>normal</headShapeDef>
-                <emotionShapeDef>lovinblush</emotionShapeDef>
+                <headShapeDef>lovinblush</headShapeDef>
             </li>
             <li>
                 <duration>2</duration>
@@ -44,8 +38,7 @@
                 <lidOffset>(0.0,0,-0.001)</lidOffset>
                 <eyeballShapeDef>normal</eyeballShapeDef>
                 <eyeballOffset>(0.0,0,0.0075)</eyeballOffset>
-                <headShapeDef>normal</headShapeDef>
-                <emotionShapeDef>lovinblush</emotionShapeDef>
+                <headShapeDef>lovinblush</headShapeDef>
             </li>
             <li>
                 <duration>7</duration>
@@ -57,8 +50,7 @@
                 <eyeballShapeDef>normal</eyeballShapeDef>
                 <eyeballOffset>(0.0,0,0.0075)</eyeballOffset>
                 <mouthOffset>(0,0,-0.001)</mouthOffset>
-                <headShapeDef>normal</headShapeDef>
-                <emotionShapeDef>lovinblush</emotionShapeDef>
+                <headShapeDef>lovinblush</headShapeDef>
             </li>
             <li>
                 <duration>4</duration>
@@ -70,8 +62,7 @@
                 <eyeballShapeDef>normal</eyeballShapeDef>
                 <eyeballOffset>(0.0,0,0.0075)</eyeballOffset>
                 <mouthOffset>(0,0,-0.00275)</mouthOffset>
-                <headShapeDef>normal</headShapeDef>
-                <emotionShapeDef>lovinblush</emotionShapeDef>
+                <headShapeDef>lovinblush</headShapeDef>
             </li>
             <li>
                 <duration>2</duration>
@@ -83,8 +74,7 @@
                 <eyeballShapeDef>normal</eyeballShapeDef>
                 <eyeballOffset>(0.0,0,0.0075)</eyeballOffset>
                 <mouthOffset>(0,0,-0.00225)</mouthOffset>
-                <headShapeDef>normal</headShapeDef>
-                <emotionShapeDef>lovinblush</emotionShapeDef>
+                <headShapeDef>lovinblush</headShapeDef>
             </li>
             <li>
                 <duration>4</duration>
@@ -96,8 +86,7 @@
                 <eyeballShapeDef>normal</eyeballShapeDef>
                 <eyeballOffset>(0.0,0,0.0075)</eyeballOffset>
                 <mouthOffset>(0,0,0.00025)</mouthOffset>
-                <headShapeDef>normal</headShapeDef>
-                <emotionShapeDef>lovinblush</emotionShapeDef>
+                <headShapeDef>lovinblush</headShapeDef>
             </li>
         </animationFrames>
         <targetJobs />
@@ -108,59 +97,53 @@
         <raceName>MooGirl</raceName>
         <animationFrames>
             <li>
-                <duration>240</duration>
+                <duration>90</duration>
                 <browShapeDef>s-shaped</browShapeDef>
                 <mouthShapeDef>smile</mouthShapeDef>
-                <headShapeDef>normal</headShapeDef>
-                <emotionShapeDef>lovinblush</emotionShapeDef>
+                <headShapeDef>lovinblush</headShapeDef>
                 <lidShapeDef>close</lidShapeDef>
             </li>
             <li>
-                <duration>240</duration>
+                <duration>70</duration>
                 <browShapeDef>s-shaped</browShapeDef>
                 <eyeballShapeDef>normal</eyeballShapeDef>
                 <eyeballOffset>(0,0,-0.03)</eyeballOffset>
-                <headShapeDef>normal</headShapeDef>
-                <emotionShapeDef>lovinblush</emotionShapeDef>
+                <headShapeDef>lovinblush</headShapeDef>
                 <lidShapeDef>half</lidShapeDef>
             </li>
             <li>
-                <duration>240</duration>
+                <duration>90</duration>
                 <browShapeDef>s-shaped</browShapeDef>
                 <mouthShapeDef>open</mouthShapeDef>
-                <headShapeDef>normal</headShapeDef>
-                <emotionShapeDef>lovinblush</emotionShapeDef>
+                <headShapeDef>lovinblush</headShapeDef>
                 <lidShapeDef>close</lidShapeDef>
             </li>
             <li>
-                <duration>240</duration>
+                <duration>60</duration>
                 <browShapeDef>flat</browShapeDef>
-                <eyeballShapeDef>MooGirl_heart</eyeballShapeDef>
+                <eyeballShapeDef>heart</eyeballShapeDef>
                 <eyeballOffset>(0,0,0.002)</eyeballOffset>
                 <eyeballOffsetL>+0.0025,0,0</eyeballOffsetL>
                 <eyeballOffsetR>-0.0025,0,0</eyeballOffsetR>
                 <mouthShapeDef>surprise</mouthShapeDef>
-                <headShapeDef>normal</headShapeDef>
-                <emotionShapeDef>lovinblush</emotionShapeDef>
+                <headShapeDef>lovinblush</headShapeDef>
                 <lidShapeDef>half</lidShapeDef>
             </li>
             <li>
-                <duration>240</duration>
+                <duration>80</duration>
                 <browShapeDef>flat</browShapeDef>
-                <eyeballShapeDef>MooGirl_heart</eyeballShapeDef>
+                <eyeballShapeDef>heart</eyeballShapeDef>
                 <eyeballOffset>(0,0,0.025)</eyeballOffset>
                 <eyeballOffsetL>+0.0025,0,0</eyeballOffsetL>
                 <eyeballOffsetR>-0.0025,0,0</eyeballOffsetR>
                 <mouthShapeDef>MooGirl_lovin</mouthShapeDef>
-                <headShapeDef>normal</headShapeDef>
-                <emotionShapeDef>lovinblush</emotionShapeDef>
+                <headShapeDef>lovinblush</headShapeDef>
                 <lidShapeDef>normal</lidShapeDef>
                 <lidOptionShapeDef>tear</lidOptionShapeDef>
             </li>
         </animationFrames>
         <roopIntervalMin>0</roopIntervalMin>
         <roopIntervalMax>0</roopIntervalMax>
-        <applyWhenStandingOnly>true</applyWhenStandingOnly>
         <targetJobs>
             <li>Lovin</li>
             <li>MLI_Jobs_MassLoveIn</li>

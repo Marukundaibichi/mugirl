@@ -10,7 +10,6 @@
 
     <FacialAnimation.EyeballTypeDef>
         <defName>MooGirl_EyeNormal</defName>
-        <altMaskPath>FA/Eyes/Common</altMaskPath>
         <texPath>FA/Eyes/Normal</texPath>
         <shader>Map/CutoutSkinOverlay</shader>
         <colorMode>whiteColor</colorMode>
@@ -52,6 +51,336 @@
     <FacialAnimation.EmotionTypeDef>
         <defName>MooGirl_EmotionNormal</defName>
         <texPath>FA/Emotions/Normal</texPath>
+        <shader>Map/Transparent</shader>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.EmotionTypeDef>
+
+    <FacialAnimation.HeadTypeDef>
+        <defName>MooGirl_HeadNormal2</defName>
+        <texPath>FA/Heads_Blank/Normal2</texPath>
+        <shader>Map/CutoutSkin</shader>
+        <shaderColorOverride>Map/CutoutSkinOverride</shaderColorOverride>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.HeadTypeDef>
+
+    <FacialAnimation.HeadTypeDef>
+        <defName>MooGirl_HeadNormal3</defName>
+        <texPath>FA/Heads_Blank/Normal3</texPath>
+        <shader>Map/CutoutSkin</shader>
+        <shaderColorOverride>Map/CutoutSkinOverride</shaderColorOverride>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.HeadTypeDef>
+
+    <FacialAnimation.HeadTypeDef>
+        <defName>MooGirl_HeadNormal4</defName>
+        <texPath>FA/Heads_Blank/Normal4</texPath>
+        <shader>Map/CutoutSkin</shader>
+        <shaderColorOverride>Map/CutoutSkinOverride</shaderColorOverride>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.HeadTypeDef>
+
+    <FacialAnimation.HeadTypeDef>
+        <defName>MooGirl_HeadNormal5</defName>
+        <texPath>FA/Heads_Blank/Normal5</texPath>
+        <shader>Map/CutoutSkin</shader>
+        <shaderColorOverride>Map/CutoutSkinOverride</shaderColorOverride>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.HeadTypeDef>
+
+    <FacialAnimation.HeadTypeDef>
+        <defName>MooGirl_HeadNormal6</defName>
+        <texPath>FA/Heads_Blank/Normal6</texPath>
+        <shader>Map/CutoutSkin</shader>
+        <shaderColorOverride>Map/CutoutSkinOverride</shaderColorOverride>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.HeadTypeDef>
+
+    <FacialAnimation.HeadTypeDef>
+        <defName>MooGirl_HeadNormal7</defName>
+        <texPath>FA/Heads_Blank/Normal7</texPath>
+        <shader>Map/CutoutSkin</shader>
+        <shaderColorOverride>Map/CutoutSkinOverride</shaderColorOverride>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.HeadTypeDef>
+
+    <FacialAnimation.EyeballTypeDef>
+        <defName>MooGirl_EyeNormal2</defName>
+        <texPath>FA/Eyes/Normal2</texPath>
+        <shader>Map/CutoutSkinOverlay</shader>
+        <colorMode>whiteColor</colorMode>
+        <minColor>RGB(255,255,255)</minColor>
+        <maxColor>RGB(255,255,255)</maxColor>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.EyeballTypeDef>
+
+    <FacialAnimation.EyeballTypeDef>
+        <defName>MooGirl_EyeNormal3</defName>
+        <texPath>FA/Eyes/Normal3</texPath>
+        <shader>Map/CutoutSkinOverlay</shader>
+        <colorMode>whiteColor</colorMode>
+        <minColor>RGB(255,255,255)</minColor>
+        <maxColor>RGB(255,255,255)</maxColor>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.EyeballTypeDef>
+
+    <FacialAnimation.EyeballTypeDef>
+        <defName>MooGirl_EyeNormal4</defName>
+        <texPath>FA/Eyes/Normal4</texPath>
+        <shader>Map/CutoutSkinOverlay</shader>
+        <colorMode>whiteColor</colorMode>
+        <minColor>RGB(255,255,255)</minColor>
+        <maxColor>RGB(255,255,255)</maxColor>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.EyeballTypeDef>
+
+    <FacialAnimation.EyeballTypeDef>
+        <defName>MooGirl_EyeNormal5</defName>
+        <texPath>FA/Eyes/Normal5</texPath>
+        <shader>Map/CutoutSkinOverlay</shader>
+        <colorMode>whiteColor</colorMode>
+        <minColor>RGB(255,255,255)</minColor>
+        <maxColor>RGB(255,255,255)</maxColor>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.EyeballTypeDef>
+
+    <FacialAnimation.EyeballTypeDef>
+        <defName>MooGirl_EyeNormal6</defName>
+        <texPath>FA/Eyes/Normal6</texPath>
+        <shader>Map/CutoutSkinOverlay</shader>
+        <colorMode>whiteColor</colorMode>
+        <minColor>RGB(255,255,255)</minColor>
+        <maxColor>RGB(255,255,255)</maxColor>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.EyeballTypeDef>
+
+    <FacialAnimation.EyeballTypeDef>
+        <defName>MooGirl_EyeNormal7</defName>
+        <texPath>FA/Eyes/Normal7</texPath>
+        <shader>Map/CutoutSkinOverlay</shader>
+        <colorMode>whiteColor</colorMode>
+        <minColor>RGB(255,255,255)</minColor>
+        <maxColor>RGB(255,255,255)</maxColor>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.EyeballTypeDef>
+
+    <FacialAnimation.LidTypeDef>
+        <defName>MooGirl_LidNormal2</defName>
+        <texPath>FA/Lids/Normal2</texPath>
+        <shader>Map/Transparent</shader>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.LidTypeDef>
+
+    <FacialAnimation.LidTypeDef>
+        <defName>MooGirl_LidNormal3</defName>
+        <texPath>FA/Lids/Normal3</texPath>
+        <shader>Map/Transparent</shader>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.LidTypeDef>
+
+    <FacialAnimation.LidTypeDef>
+        <defName>MooGirl_LidNormal4</defName>
+        <texPath>FA/Lids/Normal4</texPath>
+        <shader>Map/Transparent</shader>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.LidTypeDef>
+
+    <FacialAnimation.LidTypeDef>
+        <defName>MooGirl_LidNormal5</defName>
+        <texPath>FA/Lids/Normal5</texPath>
+        <shader>Map/Transparent</shader>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.LidTypeDef>
+
+    <FacialAnimation.LidTypeDef>
+        <defName>MooGirl_LidNormal6</defName>
+        <texPath>FA/Lids/Normal6</texPath>
+        <shader>Map/Transparent</shader>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.LidTypeDef>
+
+    <FacialAnimation.LidTypeDef>
+        <defName>MooGirl_LidNormal7</defName>
+        <texPath>FA/Lids/Normal7</texPath>
+        <shader>Map/Transparent</shader>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.LidTypeDef>
+
+    <FacialAnimation.BrowTypeDef>
+        <defName>MooGirl_BrowNormal2</defName>
+        <texPath>FA/Brows/Normal2</texPath>
+        <shader>Map/Transparent</shader>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.BrowTypeDef>
+
+    <FacialAnimation.BrowTypeDef>
+        <defName>MooGirl_BrowNormal3</defName>
+        <texPath>FA/Brows/Normal3</texPath>
+        <shader>Map/Transparent</shader>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.BrowTypeDef>
+
+    <FacialAnimation.BrowTypeDef>
+        <defName>MooGirl_BrowNormal4</defName>
+        <texPath>FA/Brows/Normal4</texPath>
+        <shader>Map/Transparent</shader>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.BrowTypeDef>
+
+    <FacialAnimation.BrowTypeDef>
+        <defName>MooGirl_BrowNormal5</defName>
+        <texPath>FA/Brows/Normal5</texPath>
+        <shader>Map/Transparent</shader>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.BrowTypeDef>
+
+    <FacialAnimation.BrowTypeDef>
+        <defName>MooGirl_BrowNormal6</defName>
+        <texPath>FA/Brows/Normal6</texPath>
+        <shader>Map/Transparent</shader>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.BrowTypeDef>
+
+    <FacialAnimation.BrowTypeDef>
+        <defName>MooGirl_BrowNormal7</defName>
+        <texPath>FA/Brows/Normal7</texPath>
+        <shader>Map/Transparent</shader>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.BrowTypeDef>
+
+    <FacialAnimation.MouthTypeDef>
+        <defName>MooGirl_MouthNormal2</defName>
+        <texPath>FA/Mouth/Normal2</texPath>
+        <shader>Map/Transparent</shader>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.MouthTypeDef>
+
+    <FacialAnimation.MouthTypeDef>
+        <defName>MooGirl_MouthNormal3</defName>
+        <texPath>FA/Mouth/Normal3</texPath>
+        <shader>Map/Transparent</shader>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.MouthTypeDef>
+
+    <FacialAnimation.MouthTypeDef>
+        <defName>MooGirl_MouthNormal4</defName>
+        <texPath>FA/Mouth/Normal4</texPath>
+        <shader>Map/Transparent</shader>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.MouthTypeDef>
+
+    <FacialAnimation.MouthTypeDef>
+        <defName>MooGirl_MouthNormal5</defName>
+        <texPath>FA/Mouth/Normal5</texPath>
+        <shader>Map/Transparent</shader>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.MouthTypeDef>
+
+    <FacialAnimation.MouthTypeDef>
+        <defName>MooGirl_MouthNormal6</defName>
+        <texPath>FA/Mouth/Normal6</texPath>
+        <shader>Map/Transparent</shader>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.MouthTypeDef>
+
+    <FacialAnimation.MouthTypeDef>
+        <defName>MooGirl_MouthNormal7</defName>
+        <texPath>FA/Mouth/Normal7</texPath>
+        <shader>Map/Transparent</shader>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.MouthTypeDef>
+
+    <FacialAnimation.LidOptionTypeDef>
+        <defName>MooGirl_LidOptionNormal2</defName>
+        <texPath>FA/LidOptions/Normal2</texPath>
+        <shader>Map/Transparent</shader>
+        <minColor>(1,1,1,1)</minColor>
+        <maxColor>(1,1,1,1)</maxColor>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.LidOptionTypeDef>
+
+    <FacialAnimation.LidOptionTypeDef>
+        <defName>MooGirl_LidOptionNormal3</defName>
+        <texPath>FA/LidOptions/Normal3</texPath>
+        <shader>Map/Transparent</shader>
+        <minColor>(1,1,1,1)</minColor>
+        <maxColor>(1,1,1,1)</maxColor>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.LidOptionTypeDef>
+
+    <FacialAnimation.LidOptionTypeDef>
+        <defName>MooGirl_LidOptionNormal4</defName>
+        <texPath>FA/LidOptions/Normal4</texPath>
+        <shader>Map/Transparent</shader>
+        <minColor>(1,1,1,1)</minColor>
+        <maxColor>(1,1,1,1)</maxColor>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.LidOptionTypeDef>
+
+    <FacialAnimation.LidOptionTypeDef>
+        <defName>MooGirl_LidOptionNormal5</defName>
+        <texPath>FA/LidOptions/Normal5</texPath>
+        <shader>Map/Transparent</shader>
+        <minColor>(1,1,1,1)</minColor>
+        <maxColor>(1,1,1,1)</maxColor>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.LidOptionTypeDef>
+
+    <FacialAnimation.LidOptionTypeDef>
+        <defName>MooGirl_LidOptionNormal6</defName>
+        <texPath>FA/LidOptions/Normal6</texPath>
+        <shader>Map/Transparent</shader>
+        <minColor>(1,1,1,1)</minColor>
+        <maxColor>(1,1,1,1)</maxColor>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.LidOptionTypeDef>
+
+    <FacialAnimation.LidOptionTypeDef>
+        <defName>MooGirl_LidOptionNormal7</defName>
+        <texPath>FA/LidOptions/Normal7</texPath>
+        <shader>Map/Transparent</shader>
+        <minColor>(1,1,1,1)</minColor>
+        <maxColor>(1,1,1,1)</maxColor>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.LidOptionTypeDef>
+
+    <FacialAnimation.EmotionTypeDef>
+        <defName>MooGirl_EmotionNormal2</defName>
+        <texPath>FA/Emotions/Normal2</texPath>
+        <shader>Map/Transparent</shader>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.EmotionTypeDef>
+
+    <FacialAnimation.EmotionTypeDef>
+        <defName>MooGirl_EmotionNormal3</defName>
+        <texPath>FA/Emotions/Normal3</texPath>
+        <shader>Map/Transparent</shader>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.EmotionTypeDef>
+
+    <FacialAnimation.EmotionTypeDef>
+        <defName>MooGirl_EmotionNormal4</defName>
+        <texPath>FA/Emotions/Normal4</texPath>
+        <shader>Map/Transparent</shader>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.EmotionTypeDef>
+
+    <FacialAnimation.EmotionTypeDef>
+        <defName>MooGirl_EmotionNormal5</defName>
+        <texPath>FA/Emotions/Normal5</texPath>
+        <shader>Map/Transparent</shader>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.EmotionTypeDef>
+
+    <FacialAnimation.EmotionTypeDef>
+        <defName>MooGirl_EmotionNormal6</defName>
+        <texPath>FA/Emotions/Normal6</texPath>
+        <shader>Map/Transparent</shader>
+        <raceName>MooGirl</raceName>
+    </FacialAnimation.EmotionTypeDef>
+
+    <FacialAnimation.EmotionTypeDef>
+        <defName>MooGirl_EmotionNormal7</defName>
+        <texPath>FA/Emotions/Normal7</texPath>
         <shader>Map/Transparent</shader>
         <raceName>MooGirl</raceName>
     </FacialAnimation.EmotionTypeDef>
