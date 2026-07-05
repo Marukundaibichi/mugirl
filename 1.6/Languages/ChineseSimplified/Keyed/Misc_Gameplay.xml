@@ -126,6 +126,76 @@
     <Mugirl.Settings.FastMilking.Label>快速榨乳</Mugirl.Settings.FastMilking.Label>
     <!-- When enabled, self-milking and assisted milking work time for Mugirls is shortened to 1 second. -->
     <Mugirl.Settings.FastMilking.Desc>开启后，雪牛娘的自己榨乳和他人榨乳工作时间都会缩短为 1 秒。</Mugirl.Settings.FastMilking.Desc>
+    <!-- Enable Mugirl migration event -->
+    <Mugirl.Settings.MigrationEvent.Label>启用雪牛娘大迁徙</Mugirl.Settings.MigrationEvent.Label>
+    <!-- Controls whether the wild Mugirl migration event can trigger. -->
+    <Mugirl.Settings.MigrationEvent.Desc>控制是否启用雪牛娘大迁徙事件。取消勾选后，野生雪牛娘迁徙不会触发。</Mugirl.Settings.MigrationEvent.Desc>
+    <!-- Enable bovine fusion investment event -->
+    <Mugirl.Settings.FusionInvestmentEvent.Label>启用牛聚变投资</Mugirl.Settings.FusionInvestmentEvent.Label>
+    <!-- Controls whether the suspicious bovine fusion investor can visit. -->
+    <Mugirl.Settings.FusionInvestmentEvent.Desc>控制是否启用牛聚变投资事件。取消勾选后，可疑投资人不会来招商引资。</Mugirl.Settings.FusionInvestmentEvent.Desc>
+    <!-- Dev: deliver bovine fusion reward now -->
+    <Mugirl.Settings.FusionInvestmentEvent.DevDeliver>Dev: 立即结算牛聚变奖励</Mugirl.Settings.FusionInvestmentEvent.DevDeliver>
+    <!-- Enable runaway Mugirl ranch quest -->
+    <Mugirl.Settings.RunawayFarmQuest.Label>启用失控雪牛娘牧场任务</Mugirl.Settings.RunawayFarmQuest.Label>
+    <!-- Controls whether the runaway Mugirl ranch quest can appear. -->
+    <Mugirl.Settings.RunawayFarmQuest.Desc>控制是否启用“疯牛满地跑，农民傻了”任务。取消勾选后，该任务不会出现。</Mugirl.Settings.RunawayFarmQuest.Desc>
+    <!-- Mugirl migration -->
+    <Mugirl.Migration.LetterLabel>雪牛娘大迁徙</Mugirl.Migration.LetterLabel>
+    <!-- A herd of wild Mugirls arrives from the map edge. -->
+    <Mugirl.Migration.LetterText>一小群只穿着比基尼的野生雪牛娘从地图边缘慢吞吞地走来。她们似乎被这里的草地吸引，会在附近停留一阵，不停地低头吃草。她们性情温顺，你可以尝试驯服她们，也可以在她们有奶时手动榨乳。等吃饱之后，仍然野生的雪牛娘会自行离开。</Mugirl.Migration.LetterText>
+    <!-- Bovine fusion investment -->
+    <Mugirl.FusionInvestment.LetterLabel>牛聚变投资</Mugirl.FusionInvestment.LetterLabel>
+    <!-- Suspicious investor letter text. -->
+    <Mugirl.FusionInvestment.LetterText>一个形迹可疑的投资人从地图边缘走进了殖民地。他声称自己长期观察雪牛娘吃草时的惊人转化率，并由此发现了一条通往“牛聚变科技”的道路。现在，他希望你提供一笔启动资金。听上去很不靠谱，但他的眼神实在太认真了。派殖民者右键与他交谈即可决定是否投资。</Mugirl.FusionInvestment.LetterText>
+    <!-- Talk to investor -->
+    <Mugirl.FusionInvestment.TalkOption>与牛聚变投资人交谈</Mugirl.FusionInvestment.TalkOption>
+    <!-- cannot reach -->
+    <Mugirl.FusionInvestment.TalkCannotReach>无法到达</Mugirl.FusionInvestment.TalkCannotReach>
+    <!-- {0} ({1}) -->
+    <Mugirl.FusionInvestment.TalkOptionDisabled>{0}（{1}）</Mugirl.FusionInvestment.TalkOptionDisabled>
+    <!-- Bovine fusion investment -->
+    <Mugirl.FusionInvestment.DialogTitle>牛聚变投资</Mugirl.FusionInvestment.DialogTitle>
+    <!-- Investor dialog text. -->
+    <Mugirl.FusionInvestment.DialogText>这位可疑投资人压低声音，认真得像是在宣布宇宙真理。\n\n“我观察过了。雪牛娘把草转化成雪牛奶的效率完全不讲道理。只要给我一点启动资金，我就能把这套现象推进到牛聚变阶段。你现在投，等我成功，奶制品和实验安置名额都少不了你。”</Mugirl.FusionInvestment.DialogText>
+    <!-- Invest {0} silver -->
+    <Mugirl.FusionInvestment.OptionInvest>投资 {0} 白银</Mugirl.FusionInvestment.OptionInvest>
+    <!-- No valid map. -->
+    <Mugirl.FusionInvestment.OptionNoMap>无法确认投资地点</Mugirl.FusionInvestment.OptionNoMap>
+    <!-- Need {0} silver in valid storage. -->
+    <Mugirl.FusionInvestment.OptionNoSilver>需要地图库存中有 {0} 白银</Mugirl.FusionInvestment.OptionNoSilver>
+    <!-- Reject -->
+    <Mugirl.FusionInvestment.OptionReject>这听起来太离谱了</Mugirl.FusionInvestment.OptionReject>
+    <!-- Postpone -->
+    <Mugirl.FusionInvestment.OptionPostpone>之后再谈</Mugirl.FusionInvestment.OptionPostpone>
+    <!-- This investor can no longer negotiate. -->
+    <Mugirl.FusionInvestment.AlreadyResolved>这位投资人已经无法继续交涉。</Mugirl.FusionInvestment.AlreadyResolved>
+    <!-- Not enough silver. -->
+    <Mugirl.FusionInvestment.MessageNoSilver>可用白银不足，无法投资 {0}。</Mugirl.FusionInvestment.MessageNoSilver>
+    <!-- Investment accepted. -->
+    <Mugirl.FusionInvestment.MessageAccepted>你向牛聚变科技投资了 {0} 白银。</Mugirl.FusionInvestment.MessageAccepted>
+    <!-- Investment rejected. -->
+    <Mugirl.FusionInvestment.MessageRejected>你拒绝了牛聚变投资。那位投资人带着他的图表离开了。</Mugirl.FusionInvestment.MessageRejected>
+    <!-- Investment postponed. -->
+    <Mugirl.FusionInvestment.MessagePostponed>你暂时把牛聚变投资放到一边。那位投资人嘀咕着“窗口期很宝贵”，但仍在等你之后再谈。</Mugirl.FusionInvestment.MessagePostponed>
+    <!-- No pending investment. -->
+    <Mugirl.FusionInvestment.DevDeliver.NoPending>当前没有待结算的牛聚变投资。</Mugirl.FusionInvestment.DevDeliver.NoPending>
+    <!-- Bovine fusion succeeds -->
+    <Mugirl.FusionInvestment.ResultLetterLabel>牛聚变取得巨大成功</Mugirl.FusionInvestment.ResultLetterLabel>
+    <!-- Bovine fusion result letter text. -->
+    <Mugirl.FusionInvestment.ResultLetterText>那位可疑投资人寄来了热情洋溢的回信。他声称牛聚变实验已经取得巨大成功，虽然附件中的图表没人看得懂，但随信送来的雪牛奶制品和被安置过来的雪牛娘奴隶倒是货真价实。</Mugirl.FusionInvestment.ResultLetterText>
+    <!-- Runaway farm arrived -->
+    <Mugirl.RunawayFarm.ArrivedLetterLabel>失控的雪牛娘牧场</Mugirl.RunawayFarm.ArrivedLetterLabel>
+    <!-- Runaway farm map generated text. -->
+    <Mugirl.RunawayFarm.ArrivedLetterText>你抵达了那处乱成一团的雪牛娘牧场。失控的雪牛娘正在附近撒欢乱跑。把她们牵起来，并系到任意预置栓点上。</Mugirl.RunawayFarm.ArrivedLetterText>
+    <!-- Runaway farm success -->
+    <Mugirl.RunawayFarm.SuccessLetterLabel>牧场重新安静了</Mugirl.RunawayFarm.SuccessLetterLabel>
+    <!-- Runaway farm success text. -->
+    <Mugirl.RunawayFarm.SuccessLetterText>所有失控的雪牛娘都被重新系回了栓点。农场主擦着汗表示感谢。这时你发现 {PAWN_labelShort} 一直黏在你身边不肯走，农场主看了看她，又看了看你，表示可以让她当场加入你的队伍。</Mugirl.RunawayFarm.SuccessLetterText>
+    <!-- Runaway farm quest aborted: no valid map target. -->
+    <Mugirl.RunawayFarm.Log.NoMap>失控雪牛娘牧场任务中止：缺少有效地图目标。</Mugirl.RunawayFarm.Log.NoMap>
+    <!-- Runaway farm quest aborted: no valid site tile. -->
+    <Mugirl.RunawayFarm.Log.NoTile>失控雪牛娘牧场任务中止：找不到有效世界地点。</Mugirl.RunawayFarm.Log.NoTile>
     <!-- Lactation -->
     <Mugirl.Milk.Gauge.Label>泌乳量</Mugirl.Milk.Gauge.Label>
     <!-- Current milk fullness for this Mugirl. The red line marks the automatic milking threshold; colonists will automatically milk when it is reached. -->
@@ -200,6 +270,20 @@
     <Mugirl.SlaveApparelFullyUnlocked>{0} 的束具被完全解锁了</Mugirl.SlaveApparelFullyUnlocked>
     <!-- Unlocking failed: target pawn or target apparel is missing. -->
     <Mugirl.Restraints.UnlockTargetMissingLog>解锁失败：目标 Pawn 或目标束具缺失。</Mugirl.Restraints.UnlockTargetMissingLog>
+    <!-- Force open restraint ({0}) -->
+    <Mugirl.Restraints.ForceUnlock.FloatMenu>强行打开束具（{0}）</Mugirl.Restraints.ForceUnlock.FloatMenu>
+    <!-- Strength too low: {0}/{1}. Required baseline: {2} -->
+    <Mugirl.Restraints.ForceUnlock.StrengthTooLow>力量不足：{0}/{1}。需求基准：{2}</Mugirl.Restraints.ForceUnlock.StrengthTooLow>
+    <!-- body size 1.0, manipulation 100%, melee 10 -->
+    <Mugirl.Restraints.ForceUnlock.RequirementRough>体型 1.0，操作 100%，格斗 10</Mugirl.Restraints.ForceUnlock.RequirementRough>
+    <!-- body size 1.0, manipulation 100%, melee 14 -->
+    <Mugirl.Restraints.ForceUnlock.RequirementFine>体型 1.0，操作 100%，格斗 14</Mugirl.Restraints.ForceUnlock.RequirementFine>
+    <!-- unsupported restraint type -->
+    <Mugirl.Restraints.ForceUnlock.RequirementUnsupported>不支持的束具类型</Mugirl.Restraints.ForceUnlock.RequirementUnsupported>
+    <!-- {0} forced open {1}'s {2}. -->
+    <Mugirl.Restraints.ForceUnlock.Success>{0} 强行打开了 {1} 的 {2}。</Mugirl.Restraints.ForceUnlock.Success>
+    <!-- Wounded! -->
+    <Mugirl.Restraints.ForceUnlock.WoundMote>受伤！</Mugirl.Restraints.ForceUnlock.WoundMote>
     <!-- Unable to free this pawn's self: hands bound. -->
     <Mugirl.HandsBlocked>无法解锁自己 双手被拘束</Mugirl.HandsBlocked>
     <!-- {0} unlocks {1}'s restraint. {2} more key(s) are required to completely unlock. -->

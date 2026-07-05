@@ -4,6 +4,8 @@
     <CrackBondageGear.reportString>解锁束具</CrackBondageGear.reportString>
     <!-- Put on Restraints -->
     <GiveSlaveApparelGear.reportString>穿上束具</GiveSlaveApparelGear.reportString>
+    <!-- Force open restraints -->
+    <ForceUnlockSlaveApparel.reportString>强行打开束具</ForceUnlockSlaveApparel.reportString>
     <!-- Follow {TargetA}. -->
     <Job_FollowRoper.reportString>跟随 {TargetA}</Job_FollowRoper.reportString>
     <!-- Feed milk to {TargetA}. -->

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <QuestScriptDef>
+        <defName>Mugirl_RunawayFarmQuest</defName>
+        <rootSelectionWeight>0</rootSelectionWeight>
+        <expireDaysRange>6~8</expireDaysRange>
+        <questAvailableLetterLabel>Runaway Mugirls, baffled farmers</questAvailableLetterLabel>
+        <questAvailableLetterTextIsDescription>true</questAvailableLetterTextIsDescription>
+        <questNameRules>
+            <rulesStrings>
+                <li>questName->Runaway Mugirls, baffled farmers</li>
+            </rulesStrings>
+        </questNameRules>
+        <questDescriptionRules>
+            <rulesStrings>
+                <li>questDescription->A nearby Mugirl ranch has sent bad news: the Mugirls ate something strange and are now running wild. The rancher says that if this continues, crops will be ruined and the Mugirls may scatter who knows where. Travel to the ranch and rope every runaway Mugirl back to a hitch. After the work is done, the rancher says there will be a proper reward.</li>
+            </rulesStrings>
+        </questDescriptionRules>
+        <everAcceptableInSpace>true</everAcceptableInSpace>
+        <root Class="Mugirl.QuestNode_Root_Mugirl_RunawayFarmQuest" />
+    </QuestScriptDef>
+</Defs>

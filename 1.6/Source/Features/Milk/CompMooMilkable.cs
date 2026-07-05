@@ -124,7 +124,8 @@ namespace Mugirl
         {
             get
             {
-                if (!base.Active)
+                bool temporaryMilk = MugirlEventUtility.CanUseTemporaryMilk(MooPawn);
+                if (!base.Active && !temporaryMilk)
                 {
                     return false;
                 }

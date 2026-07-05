@@ -7,6 +7,18 @@ namespace Mugirl
 {
     public class CompRopeToBuild : CompUsable
     {
+        public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
+        {
+            base.PostDeSpawn(map, mode);
+            NotifyHitchRemoved(map);
+        }
+
+        public override void PostDestroy(DestroyMode mode, Map previousMap)
+        {
+            base.PostDestroy(mode, previousMap);
+            NotifyHitchRemoved(previousMap);
+        }
+
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn pawn)
         {
             if (!pawn.CanReserve(parent))
@@ -47,6 +59,11 @@ namespace Mugirl
             Job job = JobMaker.MakeJob(Mugirl_DefOf.RopeToBuild, parent);
             job.targetB = ropee;
             pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+        }
+
+        private void NotifyHitchRemoved(Map map)
+        {
+            RopingService.NotifyWallRopeHitchRemoved(map, parent.PositionHeld);
         }
     }
 }

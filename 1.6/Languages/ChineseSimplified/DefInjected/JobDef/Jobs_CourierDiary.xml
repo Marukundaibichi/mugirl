@@ -4,4 +4,6 @@
     <Mugirl_ReadCourierDiary.reportString>阅读 TargetA。</Mugirl_ReadCourierDiary.reportString>
     <!-- Negotiate with TargetA. -->
     <Mugirl_TalkCourier.reportString>与 TargetA 交涉。</Mugirl_TalkCourier.reportString>
+    <!-- Discuss investment with TargetA. -->
+    <Mugirl_TalkFusionInvestor.reportString>与 TargetA 谈投资。</Mugirl_TalkFusionInvestor.reportString>
 </LanguageData>

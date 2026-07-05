@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <IncidentDef>
+        <defName>Mugirl_Migration</defName>
+        <label>Mugirl migration</label>
+        <category>Misc</category>
+        <targetTags>
+            <li>Map_PlayerHome</li>
+        </targetTags>
+        <workerClass>Mugirl.IncidentWorker_Mugirl_Migration</workerClass>
+        <baseChance>1.0</baseChance>
+        <populationEffect>IncreaseMedium</populationEffect>
+        <letterDef>PositiveEvent</letterDef>
+    </IncidentDef>
+
+    <IncidentDef>
+        <defName>Mugirl_FusionInvestment</defName>
+        <label>bovine fusion investment</label>
+        <category>Misc</category>
+        <targetTags>
+            <li>Map_PlayerHome</li>
+        </targetTags>
+        <workerClass>Mugirl.IncidentWorker_Mugirl_FusionInvestment</workerClass>
+        <baseChance>0.7</baseChance>
+        <letterDef>NeutralEvent</letterDef>
+    </IncidentDef>
+
+    <IncidentDef>
+        <defName>Mugirl_RunawayFarmQuest</defName>
+        <label>runaway Mugirl farm</label>
+        <category>GiveQuest</category>
+        <targetTags>
+            <li>Map_PlayerHome</li>
+        </targetTags>
+        <workerClass>Mugirl.IncidentWorker_Mugirl_RunawayFarmQuest</workerClass>
+        <questScriptDef>Mugirl_RunawayFarmQuest</questScriptDef>
+        <baseChance>0.8</baseChance>
+        <pointsScaleable>false</pointsScaleable>
+        <letterDef>NewQuest</letterDef>
+    </IncidentDef>
+</Defs>

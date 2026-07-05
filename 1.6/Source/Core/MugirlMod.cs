@@ -32,6 +32,12 @@ namespace Mugirl
     {
         public bool enableStructuralCrashEvent = true;
 
+        public bool enableMugirlMigrationEvent = true;
+
+        public bool enableMugirlFusionInvestmentEvent = true;
+
+        public bool enableRunawayMugirlFarmQuest = true;
+
         public bool enableFastMilking = false;
 
         public override void ExposeData()
@@ -39,6 +45,9 @@ namespace Mugirl
             base.ExposeData();
 
             Scribe_Values.Look(ref enableStructuralCrashEvent, "enableStructuralCrashEvent", true);
+            Scribe_Values.Look(ref enableMugirlMigrationEvent, "enableMugirlMigrationEvent", true);
+            Scribe_Values.Look(ref enableMugirlFusionInvestmentEvent, "enableMugirlFusionInvestmentEvent", true);
+            Scribe_Values.Look(ref enableRunawayMugirlFarmQuest, "enableRunawayMugirlFarmQuest", true);
             Scribe_Values.Look(ref enableFastMilking, "enableFastMilking", false);
         }
     }

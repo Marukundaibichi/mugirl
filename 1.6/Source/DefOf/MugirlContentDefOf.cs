@@ -14,6 +14,8 @@ namespace Mugirl
         public static ThingDef Mugirl_SpeciallyStockings;
         public static ThingDef Mugirl_MilitaryDress;
         public static ThingDef Mugirl_MilitaryUniform;
+        public static ThingDef Mugirl_Bikini;
+        public static ThingDef Mugirl_Bikini_Stocking;
 
         // PMC 敌对单位服装引用。
         public static ThingDef PMC_Helmet;
@@ -47,9 +49,21 @@ namespace Mugirl
         // 快递事件任务引用。
         public static QuestScriptDef Mugirl_CourierRaid;
 
+        // 新增雪牛娘事件引用。
+        [DefAlias("Mugirl_Migration")]
+        public static IncidentDef Mugirl_MigrationIncident;
+        [DefAlias("Mugirl_FusionInvestment")]
+        public static IncidentDef Mugirl_FusionInvestmentIncident;
+        [DefAlias("Mugirl_RunawayFarmQuest")]
+        public static IncidentDef Mugirl_RunawayFarmQuestIncident;
+        public static QuestScriptDef Mugirl_RunawayFarmQuest;
+        public static SitePartDef Mugirl_RunawayFarm;
+        public static HediffDef Mugirl_RunawayPanic;
+
         // 快递事件交互 Job 引用。
         public static JobDef Mugirl_ReadCourierDiary;
         public static JobDef Mugirl_TalkCourier;
+        public static JobDef Mugirl_TalkFusionInvestor;
 
         // 奶制食品效果引用。
         public static HediffDef Hediff_MugirlAgedCheese;

@@ -15,4 +15,11 @@
     <reportString>Negotiate with TargetA.</reportString>
     </JobDef>
 
+    <JobDef>
+    <defName>Mugirl_TalkFusionInvestor</defName>
+    <driverClass>Mugirl.JobDriver_TalkFusionInvestor</driverClass>
+    <!-- 与 TargetA 谈投资。 -->
+    <reportString>Discuss investment with TargetA.</reportString>
+    </JobDef>
+
 </Defs>

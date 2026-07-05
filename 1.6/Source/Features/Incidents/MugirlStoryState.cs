@@ -16,6 +16,14 @@ namespace Mugirl
         public int courierRaidTimer = CourierRaidInitialDelayTicks;
         public bool courierRaidQuestStarted;
 
+        public bool fusionInvestmentAccepted;
+        public bool fusionInvestmentPending;
+        public int fusionInvestmentAmount;
+        public int fusionInvestmentTimer;
+        public int fusionInvestmentNextOfferTick;
+        public bool fusionInvestmentInvestorActive;
+        public Pawn fusionInvestmentInvestor;
+
         public MugirlStoryState() { }
 
         public MugirlStoryState(Game game) { }
@@ -74,6 +82,13 @@ namespace Mugirl
             Scribe_Values.Look(ref courierRaidTriggered, "courierRaidTriggered", false);
             Scribe_Values.Look(ref courierRaidTimer, "courierRaidTimer", CourierRaidInitialDelayTicks);
             Scribe_Values.Look(ref courierRaidQuestStarted, "courierRaidQuestStarted", false);
+            Scribe_Values.Look(ref fusionInvestmentAccepted, "fusionInvestmentAccepted", false);
+            Scribe_Values.Look(ref fusionInvestmentPending, "fusionInvestmentPending", false);
+            Scribe_Values.Look(ref fusionInvestmentAmount, "fusionInvestmentAmount", 0);
+            Scribe_Values.Look(ref fusionInvestmentTimer, "fusionInvestmentTimer", 0);
+            Scribe_Values.Look(ref fusionInvestmentNextOfferTick, "fusionInvestmentNextOfferTick", 0);
+            Scribe_Values.Look(ref fusionInvestmentInvestorActive, "fusionInvestmentInvestorActive", false);
+            Scribe_References.Look(ref fusionInvestmentInvestor, "fusionInvestmentInvestor");
         }
     }
 
@@ -93,6 +108,7 @@ namespace Mugirl
 
             TickOpeningCrash(state);
             TickCourierRaid(state);
+            MugirlFusionInvestmentUtility.Tick(state);
         }
 
         private static void TickOpeningCrash(MugirlStoryState state)

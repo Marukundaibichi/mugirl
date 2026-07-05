@@ -63,6 +63,41 @@
     <Mugirl.Settings.StructuralCrashEvent.Desc>Controls whether the Mugirl crash event can trigger. Disable this to prevent the event from firing.</Mugirl.Settings.StructuralCrashEvent.Desc>
     <Mugirl.Settings.FastMilking.Label>Fast milking</Mugirl.Settings.FastMilking.Label>
     <Mugirl.Settings.FastMilking.Desc>When enabled, self-milking and assisted milking work time for Mugirls is shortened to 1 second.</Mugirl.Settings.FastMilking.Desc>
+    <Mugirl.Settings.MigrationEvent.Label>Enable Mugirl migration</Mugirl.Settings.MigrationEvent.Label>
+    <Mugirl.Settings.MigrationEvent.Desc>Controls whether the wild Mugirl migration event can trigger.</Mugirl.Settings.MigrationEvent.Desc>
+    <Mugirl.Settings.FusionInvestmentEvent.Label>Enable bovine fusion investment</Mugirl.Settings.FusionInvestmentEvent.Label>
+    <Mugirl.Settings.FusionInvestmentEvent.Desc>Controls whether the suspicious bovine fusion investor can visit.</Mugirl.Settings.FusionInvestmentEvent.Desc>
+    <Mugirl.Settings.FusionInvestmentEvent.DevDeliver>Dev: deliver bovine fusion reward now</Mugirl.Settings.FusionInvestmentEvent.DevDeliver>
+    <Mugirl.Settings.RunawayFarmQuest.Label>Enable runaway Mugirl ranch quest</Mugirl.Settings.RunawayFarmQuest.Label>
+    <Mugirl.Settings.RunawayFarmQuest.Desc>Controls whether the runaway Mugirl ranch quest can appear.</Mugirl.Settings.RunawayFarmQuest.Desc>
+    <Mugirl.Migration.LetterLabel>Mugirl migration</Mugirl.Migration.LetterLabel>
+    <Mugirl.Migration.LetterText>A small herd of wild Mugirls in bikinis wanders in from the map edge. They seem drawn by the grass here and will stay nearby for a while, constantly lowering their heads to graze. They are gentle; you can try to tame them, and when they have milk you can manually milk them. Once they are full, any Mugirls that are still wild will leave on their own.</Mugirl.Migration.LetterText>
+    <Mugirl.FusionInvestment.LetterLabel>Bovine fusion investment</Mugirl.FusionInvestment.LetterLabel>
+    <Mugirl.FusionInvestment.LetterText>A suspicious investor has walked in from the map edge. He claims that after long observation of the astonishing conversion rate of grazing Mugirls, he discovered a path toward "bovine fusion technology". Now he wants you to provide startup funding. It sounds deeply unreliable, but the look in his eyes is alarmingly serious. Send a colonist to talk to him and decide whether to invest.</Mugirl.FusionInvestment.LetterText>
+    <Mugirl.FusionInvestment.TalkOption>Talk to the bovine fusion investor</Mugirl.FusionInvestment.TalkOption>
+    <Mugirl.FusionInvestment.TalkCannotReach>cannot reach</Mugirl.FusionInvestment.TalkCannotReach>
+    <Mugirl.FusionInvestment.TalkOptionDisabled>{0} ({1})</Mugirl.FusionInvestment.TalkOptionDisabled>
+    <Mugirl.FusionInvestment.DialogTitle>Bovine fusion investment</Mugirl.FusionInvestment.DialogTitle>
+    <Mugirl.FusionInvestment.DialogText>The suspicious investor lowers his voice, speaking with the gravity of someone revealing a universal law.\n\n"I have seen the numbers. The rate at which Mugirls convert grass into milk is completely unreasonable. Give me startup capital, and I can push this phenomenon into the bovine fusion stage. Invest now, and when it works, you will have dairy products and experimental relocation slots waiting for you."</Mugirl.FusionInvestment.DialogText>
+    <Mugirl.FusionInvestment.OptionInvest>Invest {0} silver</Mugirl.FusionInvestment.OptionInvest>
+    <Mugirl.FusionInvestment.OptionNoMap>No valid investment map</Mugirl.FusionInvestment.OptionNoMap>
+    <Mugirl.FusionInvestment.OptionNoSilver>Requires {0} silver in map storage</Mugirl.FusionInvestment.OptionNoSilver>
+    <Mugirl.FusionInvestment.OptionReject>This sounds too absurd</Mugirl.FusionInvestment.OptionReject>
+    <Mugirl.FusionInvestment.OptionPostpone>Talk about this later</Mugirl.FusionInvestment.OptionPostpone>
+    <Mugirl.FusionInvestment.AlreadyResolved>This investor can no longer negotiate.</Mugirl.FusionInvestment.AlreadyResolved>
+    <Mugirl.FusionInvestment.MessageNoSilver>Not enough usable silver to invest {0}.</Mugirl.FusionInvestment.MessageNoSilver>
+    <Mugirl.FusionInvestment.MessageAccepted>You invested {0} silver in bovine fusion technology.</Mugirl.FusionInvestment.MessageAccepted>
+    <Mugirl.FusionInvestment.MessageRejected>You rejected the bovine fusion investment. The investor leaves with his charts.</Mugirl.FusionInvestment.MessageRejected>
+    <Mugirl.FusionInvestment.MessagePostponed>You set the bovine fusion investment aside for now. The investor mutters that the window of opportunity is valuable, but remains available to talk later.</Mugirl.FusionInvestment.MessagePostponed>
+    <Mugirl.FusionInvestment.DevDeliver.NoPending>There is no pending bovine fusion investment.</Mugirl.FusionInvestment.DevDeliver.NoPending>
+    <Mugirl.FusionInvestment.ResultLetterLabel>Bovine fusion was a huge success</Mugirl.FusionInvestment.ResultLetterLabel>
+    <Mugirl.FusionInvestment.ResultLetterText>The suspicious investor has sent back an enthusiastic letter. He claims the bovine fusion experiment has achieved a huge success. Nobody can understand the attached charts, but the Mugirl dairy products and relocated Mugirl slaves that arrived with the letter are quite real.</Mugirl.FusionInvestment.ResultLetterText>
+    <Mugirl.RunawayFarm.ArrivedLetterLabel>Runaway Mugirl ranch</Mugirl.RunawayFarm.ArrivedLetterLabel>
+    <Mugirl.RunawayFarm.ArrivedLetterText>You have arrived at the chaotic Mugirl ranch. The runaway Mugirls are tearing around nearby. Rope them and tie every one of them to any prepared hitch.</Mugirl.RunawayFarm.ArrivedLetterText>
+    <Mugirl.RunawayFarm.SuccessLetterLabel>The ranch is quiet again</Mugirl.RunawayFarm.SuccessLetterLabel>
+    <Mugirl.RunawayFarm.SuccessLetterText>Every runaway Mugirl has been tied back to a hitch. The rancher wipes away sweat and thanks you. Then you notice {PAWN_labelShort} staying close and refusing to leave your side. The rancher looks at her, then at you, and says she can join your group right here.</Mugirl.RunawayFarm.SuccessLetterText>
+    <Mugirl.RunawayFarm.Log.NoMap>Runaway Mugirl ranch quest aborted: no valid map target.</Mugirl.RunawayFarm.Log.NoMap>
+    <Mugirl.RunawayFarm.Log.NoTile>Runaway Mugirl ranch quest aborted: no valid world site tile.</Mugirl.RunawayFarm.Log.NoTile>
     <Mugirl.Milk.Gauge.Label>Lactation</Mugirl.Milk.Gauge.Label>
     <Mugirl.Milk.Gauge.Desc>Current milk fullness for this Mugirl. The red line marks the automatic milking threshold; colonists will automatically milk when it is reached.</Mugirl.Milk.Gauge.Desc>
     <Mugirl.Milk.FullnessDisplay>Mugirl milk</Mugirl.Milk.FullnessDisplay>
@@ -100,6 +135,13 @@
     <Mugirl.SuppressionIncrease>Suppression +{0}</Mugirl.SuppressionIncrease>
     <Mugirl.SlaveApparelFullyUnlocked>{0}'s restraint has been completely unlocked.</Mugirl.SlaveApparelFullyUnlocked>
     <Mugirl.Restraints.UnlockTargetMissingLog>Unlocking failed: target pawn or target apparel is missing.</Mugirl.Restraints.UnlockTargetMissingLog>
+    <Mugirl.Restraints.ForceUnlock.FloatMenu>Force open restraint ({0})</Mugirl.Restraints.ForceUnlock.FloatMenu>
+    <Mugirl.Restraints.ForceUnlock.StrengthTooLow>Strength too low: {0}/{1}. Required baseline: {2}</Mugirl.Restraints.ForceUnlock.StrengthTooLow>
+    <Mugirl.Restraints.ForceUnlock.RequirementRough>body size 1.0, manipulation 100%, melee 10</Mugirl.Restraints.ForceUnlock.RequirementRough>
+    <Mugirl.Restraints.ForceUnlock.RequirementFine>body size 1.0, manipulation 100%, melee 14</Mugirl.Restraints.ForceUnlock.RequirementFine>
+    <Mugirl.Restraints.ForceUnlock.RequirementUnsupported>unsupported restraint type</Mugirl.Restraints.ForceUnlock.RequirementUnsupported>
+    <Mugirl.Restraints.ForceUnlock.Success>{0} forced open {1}'s {2}.</Mugirl.Restraints.ForceUnlock.Success>
+    <Mugirl.Restraints.ForceUnlock.WoundMote>Wounded!</Mugirl.Restraints.ForceUnlock.WoundMote>
     <Mugirl.HandsBlocked>Unable to free this pawn's self: hands bound.</Mugirl.HandsBlocked>
     <Mugirl.SlaveApparelUnlockPartial>{0} unlocks {1}'s restraint. {2} more key(s) are required to completely unlock.</Mugirl.SlaveApparelUnlockPartial>
     <Mugirl.WrongKeyType>Unable to unlock: Key type does not match {0}</Mugirl.WrongKeyType>

@@ -23,6 +23,7 @@ namespace Mugirl
             internal static readonly JobDef DrinkMilkFromMugirl = DefDatabase<JobDef>.GetNamedSilentFail("Job_DrinkMilkFromMugirl");
             internal static readonly JobDef Breastfeed = DefDatabase<JobDef>.GetNamedSilentFail("Job_Breastfeed");
             internal static readonly JobDef FeedMilkToDowned = DefDatabase<JobDef>.GetNamedSilentFail("Job_FeedMilkToDowned");
+            internal static readonly JobDef ForceUnlockSlaveApparel = DefDatabase<JobDef>.GetNamedSilentFail("ForceUnlockSlaveApparel");
         }
 
         internal static class FleckDefs

@@ -90,7 +90,11 @@
         <Compile Include="Features\Incidents\Harmony_GiantCorpRaidTiers.cs" />
         <Compile Include="Features\Incidents\Harmony_IsWildMan_WildManUtility.cs" />
         <Compile Include="Features\Incidents\IncidentWorker_Mugirl_CourierRaid.cs" />
+        <Compile Include="Features\Incidents\IncidentWorker_Mugirl_FusionInvestment.cs" />
+        <Compile Include="Features\Incidents\IncidentWorker_Mugirl_Migration.cs" />
+        <Compile Include="Features\Incidents\IncidentWorker_Mugirl_RunawayFarmQuest.cs" />
         <Compile Include="Features\Incidents\IncidentWorker_Mugirl_WildManWandersIn.cs" />
+        <Compile Include="Features\Incidents\MugirlEventUtility.cs" />
         <Compile Include="Features\Incidents\MugirlGeneratedPawnUtility.cs" />
         <Compile Include="Features\Incidents\MugirlRescueJoinUtility.cs" />
         <Compile Include="Features\Incidents\MugirlStoryState.cs" />
@@ -99,9 +103,11 @@
         <Compile Include="Features\Incidents\QuestNode_Mugirl_RefugeePodCrash.cs" />
         <Compile Include="Features\Incidents\QuestNode_Root_Mugirl_CourierRaid.cs" />
         <Compile Include="Features\Incidents\QuestNode_Root_Mugirl_OpeningPodCrash.cs" />
+        <Compile Include="Features\Incidents\QuestNode_Root_Mugirl_RunawayFarmQuest.cs" />
         <Compile Include="Features\Incidents\QuestNode_Root_Mugirl_WandererJoin_WalkIn.cs" />
         <Compile Include="Features\Incidents\QuestPart_CourierRaid.cs" />
         <Compile Include="Features\Incidents\QuestPart_MugirlRescueJoin.cs" />
+        <Compile Include="Features\Incidents\QuestPart_RunawayFarm.cs" />
         <Compile Include="Features\Incidents\StockGenerator_Mugirl_Slaves.cs" />
         <Compile Include="Features\Milk\CompMooHasBodyResource.cs" />
         <Compile Include="Features\Milk\CompMooMilkable.cs" />
@@ -182,6 +188,8 @@
         <Compile Include="Features\Restraints\Comps\CompStampedApparelKey.cs" />
         <Compile Include="Features\Restraints\Comps\CompTargetable_SlaveApparel.cs" />
         <Compile Include="Features\Restraints\Comps\CompUnlockBondageGear.cs" />
+        <Compile Include="Features\Restraints\FloatMenuProvider_ForceUnlockSlaveApparel.cs" />
+        <Compile Include="Features\Restraints\ForceUnlockRestraintUtility.cs" />
         <Compile Include="Features\Restraints\Harmony_DropThingTooltip.cs" />
         <Compile Include="Features\Restraints\Harmony_InitiateSlaveRebellionMtbDays.cs" />
         <Compile Include="Features\Restraints\Harmony_PawnGenerator_Patch.cs" />
@@ -196,6 +204,7 @@
         <Compile Include="Features\Restraints\HediffCompProperties_ReduceWillorEnslave.cs" />
         <Compile Include="Features\Restraints\HediffCompProperties_SuppressionEnhancer.cs" />
         <Compile Include="Features\Restraints\JobDriver_CrackBondageGear.cs" />
+        <Compile Include="Features\Restraints\JobDriver_ForceUnlockSlaveApparel.cs" />
         <Compile Include="Features\Restraints\JobDriver_UnlockSlaveApparelGear.cs" />
         <Compile Include="Features\Restraints\JobDriver_UseItemOn.cs" />
         <Compile Include="Features\Restraints\PawnSlaveStatusUtility.cs" />

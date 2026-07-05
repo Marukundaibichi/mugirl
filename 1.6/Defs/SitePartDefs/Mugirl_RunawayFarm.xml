@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <SitePartDef>
+        <defName>Mugirl_RunawayFarm</defName>
+        <label>runaway Mugirl ranch</label>
+        <description>A Mugirl ranch where the livestock has become wildly overexcited.</description>
+        <siteTexture>World/WorldObjects/Sites/GenericSite</siteTexture>
+        <expandingIconTexture>World/WorldObjects/Expanding/Sites/ItemStash</expandingIconTexture>
+        <handlesWorldObjectTimeoutInspectString>true</handlesWorldObjectTimeoutInspectString>
+        <gravShipsCanLandOn>true</gravShipsCanLandOn>
+        <considerEnteringAsAttack>false</considerEnteringAsAttack>
+        <tags>
+            <li>MugirlRunawayFarm</li>
+        </tags>
+    </SitePartDef>
+</Defs>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <HediffDef>
+        <defName>Mugirl_RunawayPanic</defName>
+        <hediffClass>HediffWithComps</hediffClass>
+        <label>runaway panic</label>
+        <description>This Mugirl is in a harmless but extremely energetic runaway state.</description>
+        <isBad>false</isBad>
+        <scenarioCanAdd>false</scenarioCanAdd>
+        <initialSeverity>1</initialSeverity>
+        <stages>
+            <li>
+                <statFactors>
+                    <MoveSpeed>2.0</MoveSpeed>
+                </statFactors>
+            </li>
+        </stages>
+    </HediffDef>
+</Defs>

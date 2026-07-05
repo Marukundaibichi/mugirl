@@ -199,6 +199,30 @@ namespace Mugirl
             }
         }
 
+        public static void NotifyWallRopeHitchRemoved(Map map, IntVec3 cell)
+        {
+            if (map?.mapPawns?.AllPawnsSpawned == null || !cell.IsValid)
+            {
+                return;
+            }
+
+            IReadOnlyList<Pawn> pawns = map.mapPawns.AllPawnsSpawned;
+            for (int i = 0; i < pawns.Count; i++)
+            {
+                Pawn pawn = pawns[i];
+                Pawn_RopeTracker tracker = pawn?.roping;
+                if (!IsMugirlRopee(pawn) ||
+                    tracker?.IsRopedToSpot != true ||
+                    tracker.RopedTo.Cell != cell)
+                {
+                    continue;
+                }
+
+                tracker.UnropeFromSpot();
+                NotifyPawnNoLongerRopedToTarget(pawn);
+            }
+        }
+
         public static bool IsPendingSpotRope(Pawn pawn)
         {
             MapRopingIndex index = IndexFor(pawn);

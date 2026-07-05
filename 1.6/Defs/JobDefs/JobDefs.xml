@@ -32,6 +32,13 @@
     </JobDef>
 
     <JobDef>
+        <defName>ForceUnlockSlaveApparel</defName>
+        <driverClass>Mugirl.JobDriver_ForceUnlockSlaveApparel</driverClass>
+        <!-- 强行开锁 -->
+        <reportString>Force open restraints</reportString>
+    </JobDef>
+
+    <JobDef>
         <defName>CrackBondageGear</defName>
         <driverClass>Mugirl.JobDriver_CrackBondageGear</driverClass>
         <!-- 解锁 -->

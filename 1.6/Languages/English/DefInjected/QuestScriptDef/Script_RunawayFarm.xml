@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <Mugirl_RunawayFarmQuest.questAvailableLetterLabel>Runaway Mugirls, baffled farmers</Mugirl_RunawayFarmQuest.questAvailableLetterLabel>
+    <Mugirl_RunawayFarmQuest.questNameRules.rulesStrings>
+        <li>questName->Runaway Mugirls, baffled farmers</li>
+    </Mugirl_RunawayFarmQuest.questNameRules.rulesStrings>
+    <Mugirl_RunawayFarmQuest.questDescriptionRules.rulesStrings>
+        <li>questDescription->A nearby Mugirl ranch has sent bad news: the Mugirls ate something strange and are now running wild. The rancher says that if this continues, crops will be ruined and the Mugirls may scatter who knows where. Travel to the ranch and rope every runaway Mugirl back to a hitch. After the work is done, the rancher says there will be a proper reward.</li>
+    </Mugirl_RunawayFarmQuest.questDescriptionRules.rulesStrings>
+</LanguageData>
