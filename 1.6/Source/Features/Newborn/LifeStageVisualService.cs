@@ -9,7 +9,7 @@ namespace Mugirl
     {
         private const string TeenagerLifeStageDefName = "Mugirl_Teenager";
 
-        public static bool NormalizeBodyType(Pawn pawn)
+        public static bool NormalizeBodyType(Pawn pawn, bool queueRenderRefresh = false)
         {
             if (!ModsConfig.BiotechActive || pawn?.story == null || !MugirlIdentity.HasMugirlBody(pawn))
             {
@@ -34,15 +34,39 @@ namespace Mugirl
                 expectedBodyType = BodyTypeDefOf.Female;
             }
 
-            if (expectedBodyType == null || pawn.story.bodyType == expectedBodyType)
+            if (expectedBodyType == null)
             {
                 return false;
             }
 
+            if (pawn.story.bodyType == expectedBodyType)
+            {
+                if (queueRenderRefresh)
+                {
+                    RefreshVisuals(pawn, queueRenderRefresh: true);
+                }
+
+                return false;
+            }
+
             pawn.story.bodyType = expectedBodyType;
+            RefreshVisuals(pawn, queueRenderRefresh);
+            return true;
+        }
+
+        public static void RefreshVisuals(Pawn pawn, bool queueRenderRefresh = false)
+        {
+            if (pawn == null || pawn.Destroyed)
+            {
+                return;
+            }
+
             pawn.Drawer?.renderer?.SetAllGraphicsDirty();
             PortraitsCache.SetDirty(pawn);
-            return true;
+            if (queueRenderRefresh)
+            {
+                PawnRenderingRefreshUtility.NotifyPawnChanged(pawn);
+            }
         }
 
         public static int NormalizeLoadedPawns()

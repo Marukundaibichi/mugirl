@@ -71,7 +71,7 @@ namespace Mugirl
             MugirlNurtureUtility.ResetDefCache();
             MugirlMilkingAnimation.ResetTransientState();
             MountedCombatController.ResetTransientState();
-            GhoulRenderingRefreshUtility.ClearPendingRefreshes();
+            PawnRenderingRefreshUtility.ClearPendingRefreshes();
         }
 
         public override void ExposeData()

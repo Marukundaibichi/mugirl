@@ -527,10 +527,6 @@
                     <li>Mugirl_Gun_Defense_Rifle</li>
                     <li MayRequire="Ludeon.RimWorld.Biotech">Mugirl_Gun_Flame_Thrower</li>
 
-                    <!-- 雪牛娘战斗员专用武器池 -->
-                    <li>PMC_Carbine</li>
-                    <li>PMC_Assault_Rifle</li>
-                    <li>PMC_DMR</li>
                 </weaponList>
 
                 <onlyUseRaceRestrictedApparel>true</onlyUseRaceRestrictedApparel>

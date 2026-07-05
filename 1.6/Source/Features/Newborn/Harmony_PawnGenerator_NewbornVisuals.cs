@@ -17,7 +17,7 @@ namespace Mugirl
                 __result.ageTracker?.CurLifeStage != null &&
                 __result.story != null)
             {
-                LifeStageVisualService.NormalizeBodyType(__result);
+                LifeStageVisualService.NormalizeBodyType(__result, queueRenderRefresh: true);
             }
         }
     }

@@ -14,7 +14,7 @@ namespace Mugirl
                 return;
             }
 
-            GhoulRenderingRefreshUtility.NotifyGhoulChanged(__instance.pawn);
+            PawnRenderingRefreshUtility.NotifyPawnChanged(__instance.pawn);
         }
     }
 
@@ -22,21 +22,21 @@ namespace Mugirl
     {
         public GameComponent_GhoulRenderingRefresh()
         {
-            GhoulRenderingRefreshUtility.ClearPendingRefreshes();
+            PawnRenderingRefreshUtility.ClearPendingRefreshes();
         }
 
         public GameComponent_GhoulRenderingRefresh(Game game)
         {
-            GhoulRenderingRefreshUtility.ClearPendingRefreshes();
+            PawnRenderingRefreshUtility.ClearPendingRefreshes();
         }
 
         public override void GameComponentTick()
         {
-            GhoulRenderingRefreshUtility.TickPendingRefreshes();
+            PawnRenderingRefreshUtility.TickPendingRefreshes();
         }
     }
 
-    public static class GhoulRenderingRefreshUtility
+    public static class PawnRenderingRefreshUtility
     {
         private const int RefreshWindowTicks = 300;
         private const int RefreshIntervalTicks = 30;
@@ -46,7 +46,7 @@ namespace Mugirl
         // StaticCacheLifecycle: 每次刷新使用的临时列表；刷新前后都会清空。
         private static readonly List<Pawn> tmpPawnsToRemove = new List<Pawn>();
 
-        public static void NotifyGhoulChanged(Pawn pawn)
+        public static void NotifyPawnChanged(Pawn pawn)
         {
             if (!MountedPawnUtility.IsMugirl(pawn) || pawn.Destroyed)
             {
