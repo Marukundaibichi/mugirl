@@ -187,13 +187,14 @@ namespace Mugirl
         {
             migrationPawns.RemoveAll(p => p == null || p.Destroyed);
             EnsureGrazeTicksAligned();
+            int currentTick = MugirlTickUtility.CurrentGameTickOrFallback(0);
             for (int i = 0; i < pawns.Count; i++)
             {
                 Pawn pawn = pawns[i];
                 if (pawn != null && !migrationPawns.Contains(pawn))
                 {
                     migrationPawns.Add(pawn);
-                    nextGrazeTicks.Add(Find.TickManager.TicksGame + Rand.RangeInclusive(30, ForcedGrazeIntervalTicks));
+                    nextGrazeTicks.Add(currentTick + Rand.RangeInclusive(30, ForcedGrazeIntervalTicks));
                 }
             }
 
@@ -253,7 +254,7 @@ namespace Mugirl
             }
 
             EnsureGrazeTicksAligned();
-            int ticksGame = Find.TickManager.TicksGame;
+            int ticksGame = MugirlTickUtility.CurrentGameTickOrFallback(0);
             if (index < 0 || index >= nextGrazeTicks.Count || ticksGame < nextGrazeTicks[index])
             {
                 return;
@@ -349,7 +350,8 @@ namespace Mugirl
 
             while (nextGrazeTicks.Count < migrationPawns.Count)
             {
-                nextGrazeTicks.Add(Find.TickManager.TicksGame + Rand.RangeInclusive(30, ForcedGrazeIntervalTicks));
+                int currentTick = MugirlTickUtility.CurrentGameTickOrFallback(0);
+                nextGrazeTicks.Add(currentTick + Rand.RangeInclusive(30, ForcedGrazeIntervalTicks));
             }
 
             while (nextGrazeTicks.Count > migrationPawns.Count)

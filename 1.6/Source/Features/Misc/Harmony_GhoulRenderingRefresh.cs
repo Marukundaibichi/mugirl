@@ -114,4 +114,12 @@ namespace Mugirl
             pawn.Drawer?.renderer?.SetAllGraphicsDirty();
         }
     }
+
+    public static class GhoulRenderingRefreshUtility
+    {
+        public static void ClearPendingRefreshes()
+        {
+            PawnRenderingRefreshUtility.ClearPendingRefreshes();
+        }
+    }
 }

@@ -28,10 +28,15 @@ namespace Mugirl
                 return false;
             }
 
+            if (!MugirlTickUtility.TryGetCurrentGameTick(out int currentTick))
+            {
+                return false;
+            }
+
             return !state.fusionInvestmentAccepted
                 && !state.fusionInvestmentPending
                 && !state.fusionInvestmentInvestorActive
-                && Find.TickManager.TicksGame >= state.fusionInvestmentNextOfferTick;
+                && currentTick >= state.fusionInvestmentNextOfferTick;
         }
 
         protected override bool TryExecuteWorker(IncidentParms parms)
@@ -80,7 +85,7 @@ namespace Mugirl
                         {
                             if (MugirlFusionInvestmentUtility.TryAcceptInvestment(targetMap, amount, null))
                             {
-                                Find.LetterStack.RemoveLetter(this);
+                                MugirlGameUtility.TryRemoveLetter(this);
                             }
                         };
                     }
@@ -101,7 +106,7 @@ namespace Mugirl
                     {
                         MugirlFusionInvestmentUtility.ScheduleNextOffer();
                         Messages.Message("Mugirl.FusionInvestment.MessageRejected".Translate(), MessageTypeDefOf.NeutralEvent, historical: false);
-                        Find.LetterStack.RemoveLetter(this);
+                        MugirlGameUtility.TryRemoveLetter(this);
                     },
                     resolveTree = true
                 };
@@ -147,7 +152,7 @@ namespace Mugirl
                 return false;
             }
 
-            Faction faction = Find.FactionManager.RandomNonHostileFaction(allowHidden: false, minTechLevel: TechLevel.Medieval);
+            MugirlGameUtility.TryGetRandomNonHostileFaction(out Faction faction, allowHidden: false, minTechLevel: TechLevel.Medieval);
             PawnGenerationRequest request = new PawnGenerationRequest(
                 PawnKindDefOf.Villager,
                 faction,
@@ -190,6 +195,7 @@ namespace Mugirl
             {
                 state.fusionInvestmentInvestorActive = true;
                 state.fusionInvestmentInvestor = investor;
+                state.WakeStoryService();
             }
 
             return true;
@@ -224,6 +230,7 @@ namespace Mugirl
                 state.fusionInvestmentPending = true;
                 state.fusionInvestmentAmount = amount;
                 state.fusionInvestmentTimer = ResultDelayTicks.RandomInRange;
+                state.WakeStoryService();
             }
 
             Messages.Message("Mugirl.FusionInvestment.MessageAccepted".Translate(amount), MessageTypeDefOf.PositiveEvent);
@@ -288,18 +295,27 @@ namespace Mugirl
 
         internal static void Tick(MugirlStoryState state)
         {
+            Tick(state, 1, checkInvestor: true);
+        }
+
+        internal static void Tick(MugirlStoryState state, int elapsedTicks, bool checkInvestor)
+        {
             if (state == null)
             {
                 return;
             }
 
-            ClearStaleInvestor(state);
+            if (checkInvestor)
+            {
+                ClearStaleInvestor(state);
+            }
+
             if (!state.fusionInvestmentPending)
             {
                 return;
             }
 
-            state.fusionInvestmentTimer--;
+            state.fusionInvestmentTimer -= elapsedTicks > 0 ? elapsedTicks : 1;
             if (state.fusionInvestmentTimer > 0)
             {
                 return;
@@ -433,7 +449,8 @@ namespace Mugirl
         {
             if (MugirlGameUtility.TryGetGameComponent(out MugirlStoryState state))
             {
-                state.fusionInvestmentNextOfferTick = Find.TickManager.TicksGame + delayTicks;
+                int currentTick = MugirlTickUtility.CurrentGameTickOrFallback(state.fusionInvestmentNextOfferTick);
+                state.fusionInvestmentNextOfferTick = currentTick + delayTicks;
             }
         }
 
@@ -443,6 +460,7 @@ namespace Mugirl
             {
                 state.fusionInvestmentInvestorActive = false;
                 state.fusionInvestmentInvestor = null;
+                state.WakeStoryService();
             }
 
             if (investor == null)
@@ -558,7 +576,7 @@ namespace Mugirl
             {
                 PawnGenerationRequest request = new PawnGenerationRequest(
                     Mugirl_DefOf.Mugirl_Slave,
-                    Faction.OfPlayer,
+                    MugirlWildSlaveUtility.PlayerFaction,
                     PawnGenerationContext.NonPlayer,
                     forceGenerateNewPawn: true,
                     allowDead: false,
@@ -610,12 +628,14 @@ namespace Mugirl
 
         private static bool IsUsableSilver(Thing thing)
         {
+            Faction playerFaction = MugirlWildSlaveUtility.PlayerFaction;
             return thing != null
+                && playerFaction != null
                 && thing.Spawned
                 && !thing.Destroyed
                 && thing.def == ThingDefOf.Silver
                 && thing.IsInValidStorage()
-                && !thing.IsForbidden(Faction.OfPlayer);
+                && !thing.IsForbidden(playerFaction);
         }
     }
 

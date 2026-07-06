@@ -73,7 +73,7 @@ namespace Mugirl
 
         private static bool ShouldUseMugirlRopeeTick(Pawn pawn, Pawn_RopeTracker tracker)
         {
-            return RopingService.IsMugirlRopee(pawn) && (tracker.IsRopedByPawn || tracker.IsRopedToSpot);
+            return (tracker.IsRopedByPawn || tracker.IsRopedToSpot) && RopingService.IsMugirlRopee(pawn);
         }
 
         private static void ClearDraftedRopee(Pawn pawn)
@@ -115,9 +115,14 @@ namespace Mugirl
             return pawn.InMentalState && pawn.MentalStateDef != MentalStateDefOf.Roaming;
         }
 
-        public static bool Prefix(Pawn_RopeTracker __instance)
+        public static bool Prefix(Pawn_RopeTracker __instance, Pawn ___pawn)
         {
-            Pawn pawn = PawnFor(__instance);
+            if (__instance == null || !__instance.HasAnyRope)
+            {
+                return true;
+            }
+
+            Pawn pawn = ___pawn ?? PawnFor(__instance);
             if (pawn == null)
             {
                 return true;
@@ -134,7 +139,10 @@ namespace Mugirl
                 return true;
             }
 
-            RopingService.RefreshRoperFromTracker(pawn);
+            if (Gen.IsHashIntervalTick(pawn, 250))
+            {
+                RopingService.RefreshRoperFromTracker(pawn);
+            }
 
             // 这是本 patch 唯一替代原版 RopingTick 的场景：牵引者只牵着雪牛娘时，
             // 自定义跟随允许牵引者继续普通工作，因此不能沿用原版 IsStillDoingRopingJob
@@ -166,9 +174,9 @@ namespace Mugirl
     public static class Patch_RopeTracker_RopePawn
     {
         [HarmonyPostfix]
-        public static void Postfix(Pawn_RopeTracker __instance, Pawn ropee)
+        public static void Postfix(Pawn ___pawn, Pawn ropee)
         {
-            RopingService.RegisterPawnRope(Patch_RopingTick.PawnFor(__instance), ropee);
+            RopingService.RegisterPawnRope(___pawn, ropee);
         }
     }
 
@@ -176,9 +184,9 @@ namespace Mugirl
     public static class Patch_RopeTracker_RopeToSpot
     {
         [HarmonyPostfix]
-        public static void Postfix(Pawn_RopeTracker __instance)
+        public static void Postfix(Pawn ___pawn)
         {
-            RopingService.RegisterRopedToSpot(Patch_RopingTick.PawnFor(__instance));
+            RopingService.RegisterRopedToSpot(___pawn);
         }
     }
 
@@ -186,9 +194,9 @@ namespace Mugirl
     public static class Patch_RopeTracker_BreakAllRopes
     {
         [HarmonyPostfix]
-        public static void Postfix(Pawn_RopeTracker __instance)
+        public static void Postfix(Pawn ___pawn)
         {
-            RopingService.NotifyBreakAllRopes(Patch_RopingTick.PawnFor(__instance));
+            RopingService.NotifyBreakAllRopes(___pawn);
         }
     }
 
@@ -206,9 +214,9 @@ namespace Mugirl
     public static class Patch_RopeTracker_UnropeFromSpot
     {
         [HarmonyPostfix]
-        public static void Postfix(Pawn_RopeTracker __instance)
+        public static void Postfix(Pawn ___pawn)
         {
-            RopingService.NotifyPawnNoLongerRopedToTarget(Patch_RopingTick.PawnFor(__instance));
+            RopingService.NotifyPawnNoLongerRopedToTarget(___pawn);
         }
     }
 }

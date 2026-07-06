@@ -60,6 +60,26 @@ namespace Mugirl
             return true;
         }
 
+        internal static bool TryRemoveLetter(Letter letter)
+        {
+            if (letter == null)
+            {
+                return false;
+            }
+
+            LetterStack letterStack = Find.LetterStack;
+            if (letterStack == null)
+            {
+                MugirlLog.WarningOnce(
+                    "GameUtility.LetterStackUnavailable",
+                    "Mugirl.GameUtility.LetterStackUnavailable".Translate().ToString());
+                return false;
+            }
+
+            letterStack.RemoveLetter(letter);
+            return true;
+        }
+
         internal static bool TrySignalForceNormalSpeedShort()
         {
             if (Current.Game?.tickManager?.slower == null)
@@ -90,6 +110,17 @@ namespace Mugirl
         internal static bool IsCurrentMap(Map map)
         {
             return map != null && Current.Game?.CurrentMap == map;
+        }
+
+        internal static bool TryDeinitAndRemoveMap(Map map, bool notifyPlayer)
+        {
+            if (map == null || Current.Game == null)
+            {
+                return false;
+            }
+
+            Current.Game.DeinitAndRemoveMap(map, notifyPlayer);
+            return true;
         }
 
         internal static bool TryMarkColonistsDirty()
@@ -130,6 +161,23 @@ namespace Mugirl
             }
 
             faction = factionManager.FirstFactionOfDef(factionDef);
+            return faction != null;
+        }
+
+        internal static bool TryGetRandomNonHostileFaction(out Faction faction, bool allowHidden, TechLevel minTechLevel)
+        {
+            faction = null;
+            FactionManager factionManager = Find.FactionManager;
+            if (factionManager == null)
+            {
+                return false;
+            }
+
+            faction = factionManager.RandomNonHostileFaction(
+                allowHidden: allowHidden,
+                allowDefeated: false,
+                allowNonHumanlike: true,
+                minTechLevel: minTechLevel);
             return faction != null;
         }
 
@@ -200,6 +248,23 @@ namespace Mugirl
         internal static bool WorldPawnsContains(Pawn pawn)
         {
             return TryGetWorldPawns(out WorldPawns worldPawns) && worldPawns.Contains(pawn);
+        }
+
+        internal static bool TrySendSignal(string signalTag)
+        {
+            if (signalTag.NullOrEmpty())
+            {
+                return false;
+            }
+
+            SignalManager signalManager = Find.SignalManager;
+            if (signalManager == null)
+            {
+                return false;
+            }
+
+            signalManager.SendSignal(new Signal(signalTag));
+            return true;
         }
 
         private static bool CanReceiveLetter()

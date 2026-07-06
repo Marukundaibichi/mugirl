@@ -72,7 +72,7 @@ namespace Mugirl
             }
 
             IntVec3 center = FindFarmCenter(map);
-            rancherFaction = Find.FactionManager.RandomNonHostileFaction(allowHidden: false, minTechLevel: TechLevel.Medieval);
+            MugirlGameUtility.TryGetRandomNonHostileFaction(out rancherFaction, allowHidden: false, minTechLevel: TechLevel.Medieval);
             BuildFarm(map, center);
             SpawnRancher(map, center);
             SpawnRunaways(map, center);
@@ -673,7 +673,7 @@ namespace Mugirl
             resolved = true;
             if (!failSignal.NullOrEmpty())
             {
-                Find.SignalManager.SendSignal(new Signal(failSignal));
+                MugirlGameUtility.TrySendSignal(failSignal);
             }
         }
 
@@ -730,7 +730,7 @@ namespace Mugirl
         {
             if (site?.HasMap == true && !HasPlayerControlledPawn(site.Map))
             {
-                Current.Game.DeinitAndRemoveMap(site.Map, notifyPlayer: true);
+                MugirlGameUtility.TryDeinitAndRemoveMap(site.Map, notifyPlayer: true);
             }
 
             QuestPart_DestroyWorldObject.TryRemove(site);
@@ -747,7 +747,7 @@ namespace Mugirl
             for (int i = 0; i < pawns.Count; i++)
             {
                 Pawn pawn = pawns[i];
-                if (pawn != null && !pawn.Destroyed && (pawn.Faction == Faction.OfPlayer || pawn.HostFaction == Faction.OfPlayer))
+                if (pawn != null && !pawn.Destroyed && (MugirlWildSlaveUtility.IsPlayerFaction(pawn.Faction) || MugirlWildSlaveUtility.IsPlayerFaction(pawn.HostFaction)))
                 {
                     return true;
                 }
@@ -775,7 +775,11 @@ namespace Mugirl
             }
 
             bool wasEscapeWildSlave = MugirlWildSlaveUtility.IsEscapeWildSlave(pawn);
-            pawn.SetFaction(Faction.OfPlayer);
+            if (!MugirlWildSlaveUtility.TrySetPlayerFaction(pawn))
+            {
+                return false;
+            }
+
             MugirlWildSlaveUtility.NormalizeAfterJoiningPlayer(pawn, wasEscapeWildSlave);
             return MugirlWildSlaveUtility.IsPlayerFaction(pawn.Faction);
         }

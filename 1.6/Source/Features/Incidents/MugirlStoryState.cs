@@ -24,6 +24,10 @@ namespace Mugirl
         public bool fusionInvestmentInvestorActive;
         public Pawn fusionInvestmentInvestor;
 
+        internal int storyServiceLastTick = -1;
+        internal int storyServiceNextTick = -1;
+        internal int fusionInvestmentNextStaleCheckTick = -1;
+
         public MugirlStoryState() { }
 
         public MugirlStoryState(Game game) { }
@@ -31,6 +35,7 @@ namespace Mugirl
         public override void FinalizeInit()
         {
             base.FinalizeInit();
+            ResetStoryServiceSchedule();
             ResetTransientRuntimeState();
             NormalizeJuvenileGraphics();
         }
@@ -38,6 +43,7 @@ namespace Mugirl
         public override void StartedNewGame()
         {
             base.StartedNewGame();
+            ResetStoryServiceSchedule();
             ResetTransientRuntimeState();
             NormalizeJuvenileGraphics();
         }
@@ -45,6 +51,7 @@ namespace Mugirl
         public override void LoadedGame()
         {
             base.LoadedGame();
+            ResetStoryServiceSchedule();
             ResetTransientRuntimeState();
             NormalizeJuvenileGraphics();
         }
@@ -71,7 +78,19 @@ namespace Mugirl
             MugirlNurtureUtility.ResetDefCache();
             MugirlMilkingAnimation.ResetTransientState();
             MountedCombatController.ResetTransientState();
-            PawnRenderingRefreshUtility.ClearPendingRefreshes();
+            GhoulRenderingRefreshUtility.ClearPendingRefreshes();
+        }
+
+        private void ResetStoryServiceSchedule()
+        {
+            storyServiceLastTick = -1;
+            storyServiceNextTick = -1;
+            fusionInvestmentNextStaleCheckTick = -1;
+        }
+
+        internal void WakeStoryService()
+        {
+            storyServiceNextTick = -1;
         }
 
         public override void ExposeData()
@@ -98,6 +117,7 @@ namespace Mugirl
         private const float OpeningCrashQuestPoints = 10000f;
         private const float CourierRaidQuestPoints = 200f;
         private const int CourierRaidRetryTicks = 60000;
+        private const int FusionInvestmentStaleCheckIntervalTicks = 250;
 
         internal static void Tick(MugirlStoryState state)
         {
@@ -106,12 +126,62 @@ namespace Mugirl
                 return;
             }
 
-            TickOpeningCrash(state);
-            TickCourierRaid(state);
-            MugirlFusionInvestmentUtility.Tick(state);
+            if (!MugirlTickUtility.TryGetCurrentGameTick(out int currentTick))
+            {
+                return;
+            }
+
+            EnsureScheduleInitialized(state, currentTick);
+            if (state.storyServiceNextTick > currentTick)
+            {
+                return;
+            }
+
+            int elapsedTicks = currentTick - state.storyServiceLastTick;
+            if (elapsedTicks <= 0)
+            {
+                elapsedTicks = 1;
+            }
+            state.storyServiceLastTick = currentTick;
+
+            bool checkFusionInvestor = ShouldCheckFusionInvestor(state, currentTick);
+
+            TickOpeningCrash(state, elapsedTicks);
+            TickCourierRaid(state, elapsedTicks);
+            MugirlFusionInvestmentUtility.Tick(state, elapsedTicks, checkFusionInvestor);
+            ScheduleNextWake(state, currentTick);
         }
 
-        private static void TickOpeningCrash(MugirlStoryState state)
+        private static void EnsureScheduleInitialized(MugirlStoryState state, int currentTick)
+        {
+            if (state.storyServiceLastTick < 0)
+            {
+                state.storyServiceLastTick = currentTick - 1;
+            }
+
+            if (state.storyServiceNextTick < 0)
+            {
+                state.storyServiceNextTick = currentTick;
+            }
+
+            if (state.fusionInvestmentNextStaleCheckTick < 0)
+            {
+                state.fusionInvestmentNextStaleCheckTick = currentTick;
+            }
+        }
+
+        private static bool ShouldCheckFusionInvestor(MugirlStoryState state, int currentTick)
+        {
+            if (!state.fusionInvestmentInvestorActive || state.fusionInvestmentNextStaleCheckTick > currentTick)
+            {
+                return false;
+            }
+
+            state.fusionInvestmentNextStaleCheckTick = SafeAddTicks(currentTick, FusionInvestmentStaleCheckIntervalTicks);
+            return true;
+        }
+
+        private static void TickOpeningCrash(MugirlStoryState state, int elapsedTicks)
         {
             if (state.openingCrashStarted)
             {
@@ -121,8 +191,11 @@ namespace Mugirl
 
             if (state.openingCrashCheckTimer > 0)
             {
-                state.openingCrashCheckTimer--;
-                return;
+                state.openingCrashCheckTimer -= elapsedTicks;
+                if (state.openingCrashCheckTimer > 0)
+                {
+                    return;
+                }
             }
 
             bool hasGiantCorpFaction = MugirlGameUtility.TryGetFirstFactionOfDef(MugirlContentDefOf.Mugirl_GiantCorporations_Hostile, out _);
@@ -141,7 +214,7 @@ namespace Mugirl
             state.openingCrashCheckTimer = OpeningCrashRetryTicks;
         }
 
-        private static void TickCourierRaid(MugirlStoryState state)
+        private static void TickCourierRaid(MugirlStoryState state, int elapsedTicks)
         {
             if (state.courierRaidTriggered)
             {
@@ -153,10 +226,13 @@ namespace Mugirl
                 state.courierRaidTimer = MugirlStoryState.CourierRaidInitialDelayTicks;
             }
 
-            state.courierRaidTimer--;
             if (state.courierRaidTimer > 0)
             {
-                return;
+                state.courierRaidTimer -= elapsedTicks;
+                if (state.courierRaidTimer > 0)
+                {
+                    return;
+                }
             }
 
             if (state.courierRaidQuestStarted)
@@ -179,6 +255,53 @@ namespace Mugirl
             QuestUtility.GenerateQuestAndMakeAvailable(MugirlContentDefOf.Mugirl_CourierRaid, slate);
             state.courierRaidTriggered = true;
             state.courierRaidQuestStarted = true;
+        }
+
+        private static void ScheduleNextWake(MugirlStoryState state, int currentTick)
+        {
+            int delayTicks = int.MaxValue;
+
+            if (!state.openingCrashStarted)
+            {
+                IncludeWakeDelay(ref delayTicks, state.openingCrashCheckTimer);
+            }
+
+            if (!state.courierRaidTriggered)
+            {
+                IncludeWakeDelay(ref delayTicks, state.courierRaidTimer);
+            }
+
+            if (state.fusionInvestmentPending)
+            {
+                IncludeWakeDelay(ref delayTicks, state.fusionInvestmentTimer);
+            }
+
+            if (state.fusionInvestmentInvestorActive)
+            {
+                IncludeWakeDelay(ref delayTicks, state.fusionInvestmentNextStaleCheckTick - currentTick);
+            }
+
+            state.storyServiceNextTick = delayTicks == int.MaxValue
+                ? int.MaxValue
+                : SafeAddTicks(currentTick, delayTicks);
+        }
+
+        private static void IncludeWakeDelay(ref int currentDelayTicks, int candidateTicks)
+        {
+            if (candidateTicks <= 0)
+            {
+                candidateTicks = 1;
+            }
+
+            if (candidateTicks < currentDelayTicks)
+            {
+                currentDelayTicks = candidateTicks;
+            }
+        }
+
+        private static int SafeAddTicks(int currentTick, int delayTicks)
+        {
+            return currentTick > int.MaxValue - delayTicks ? int.MaxValue : currentTick + delayTicks;
         }
 
     }

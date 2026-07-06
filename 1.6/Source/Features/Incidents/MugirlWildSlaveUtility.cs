@@ -7,6 +7,8 @@ namespace Mugirl
 {
     internal static class MugirlWildSlaveUtility
     {
+        public static Faction PlayerFaction => Faction.OfPlayerSilentFail;
+
         public static bool IsEscapeWildSlave(Pawn pawn)
         {
             return pawn != null && pawn.kindDef == Mugirl_DefOf.Mugirl_EscapeWildSlave;
@@ -31,14 +33,25 @@ namespace Mugirl
 
         public static bool IsPlayerFaction(Faction faction)
         {
-            Faction playerFaction = Faction.OfPlayerSilentFail;
+            Faction playerFaction = PlayerFaction;
             return playerFaction != null && faction == playerFaction;
         }
 
         public static bool IsHostileToPlayer(Faction faction)
         {
-            Faction playerFaction = Faction.OfPlayerSilentFail;
+            Faction playerFaction = PlayerFaction;
             return faction != null && playerFaction != null && faction.HostileTo(playerFaction);
+        }
+
+        public static bool TrySetPlayerFaction(Pawn pawn)
+        {
+            if (pawn == null || pawn.Destroyed || PlayerFaction == null)
+            {
+                return false;
+            }
+
+            pawn.SetFaction(PlayerFaction);
+            return IsPlayerFaction(pawn.Faction);
         }
 
         public static bool IsHostileToPlayer(Pawn pawn)

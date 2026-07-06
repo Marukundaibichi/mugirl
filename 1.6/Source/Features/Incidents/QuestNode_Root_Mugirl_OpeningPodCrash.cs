@@ -9,7 +9,7 @@ namespace Mugirl
     // 开局逃生舱任务：生成无派系雪牛娘并放入救援流程。
     public class QuestNode_Root_Mugirl_OpeningPodCrash : QuestNode_Root_RefugeePodCrash
     {
-        private const int MaxFactionlessGenerationAttempts = 20;
+        private const int MaxFactionlessGenerationAttempts = 5;
         private const float OpeningPodPawnAgeYears = 18f;
 
         public override Pawn GeneratePawn()
@@ -17,7 +17,7 @@ namespace Mugirl
             // 逃亡奴隶保持无派系；敌对巨企派系只用于袭击与索赔分支。
             Faction faction = null;
 
-            // 生成请求固定为成年女性、可战斗、可招募，并通过 validator 拒绝带派系的结果。
+            // 生成请求固定为成年女性、可战斗、可招募；生成后再做少量可控重试。
             PawnGenerationRequest request = new PawnGenerationRequest(
                 Mugirl_DefOf.Mugirl_Beginning_Slave,
                 faction,
@@ -32,7 +32,7 @@ namespace Mugirl
                 allowGay: true,
                 allowPregnant: false,
                 forceRecruitable: true,
-                validatorPostGear: IsValidOpeningPodPawn,
+                validatorPostGear: null,
                 fixedBiologicalAge: OpeningPodPawnAgeYears,
                 fixedChronologicalAge: OpeningPodPawnAgeYears,
                 fixedGender: Gender.Female,

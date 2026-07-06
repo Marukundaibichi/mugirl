@@ -93,7 +93,7 @@ namespace Mugirl
             for (int i = 0; i < pawnDefs.Count; i++)
             {
                 ThingDef pawnDef = pawnDefs[i];
-                if (pawnDef?.race?.Humanlike == true)
+                if (MugirlIdentity.IsMugirlPawnDef(pawnDef))
                 {
                     recipeDef.recipeUsers.Add(pawnDef);
                 }
