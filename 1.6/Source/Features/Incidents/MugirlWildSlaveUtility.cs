@@ -14,9 +14,14 @@ namespace Mugirl
             return pawn != null && pawn.kindDef == Mugirl_DefOf.Mugirl_EscapeWildSlave;
         }
 
+        public static bool IsWildMugirl(Pawn pawn)
+        {
+            return IsEscapeWildSlave(pawn) || pawn?.kindDef == Mugirl_DefOf.Mugirl_WildMugirl;
+        }
+
         public static bool IsNonPlayerEscapeWildSlave(Pawn pawn)
         {
-            return IsEscapeWildSlave(pawn) && !IsPlayerFaction(pawn.Faction);
+            return IsWildMugirl(pawn) && !IsPlayerFaction(pawn.Faction);
         }
 
         public static bool IsMugirlPawn(Pawn pawn)
@@ -28,6 +33,7 @@ namespace Mugirl
 
             return MugirlIdentity.IsMugirlPawn(pawn)
                 || pawn.kindDef == Mugirl_DefOf.Mugirl_EscapeWildSlave
+                || pawn.kindDef == Mugirl_DefOf.Mugirl_WildMugirl
                 || pawn.kindDef == Mugirl_DefOf.Mugirl_PreEscapeWildSlave;
         }
 
@@ -67,7 +73,7 @@ namespace Mugirl
             }
 
             bool changed = false;
-            bool shouldUseNonWildKind = wasEscapeWildSlave || pawn.kindDef == Mugirl_DefOf.Mugirl_EscapeWildSlave;
+            bool shouldUseNonWildKind = wasEscapeWildSlave || IsWildMugirl(pawn);
             if (shouldUseNonWildKind && Mugirl_DefOf.Mugirl_PreEscapeWildSlave != null && pawn.kindDef != Mugirl_DefOf.Mugirl_PreEscapeWildSlave)
             {
                 pawn.ChangeKind(Mugirl_DefOf.Mugirl_PreEscapeWildSlave);
@@ -131,7 +137,7 @@ namespace Mugirl
                 return false;
             }
 
-            if (!IsMugirlPawn(pawn) && pawn.kindDef != Mugirl_DefOf.Mugirl_EscapeWildSlave)
+            if (!IsMugirlPawn(pawn) && !IsWildMugirl(pawn))
             {
                 return false;
             }
@@ -158,7 +164,7 @@ namespace Mugirl
     {
         public static void Prefix(Pawn __instance, out bool __state)
         {
-            __state = MugirlWildSlaveUtility.IsEscapeWildSlave(__instance);
+            __state = MugirlWildSlaveUtility.IsWildMugirl(__instance);
         }
 
         public static void Postfix(Pawn __instance, Faction newFaction, bool __state)

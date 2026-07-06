@@ -60,33 +60,41 @@ namespace Mugirl
                 return;
             }
 
-            Apparel wornBikini = null;
-            System.Collections.Generic.List<Apparel> wornApparel = pawn.apparel.WornApparel;
-            for (int i = wornApparel.Count - 1; i >= 0; i--)
+            SlaveApparelAutoStageContext.BeginSuppressNextStage();
+            try
             {
-                Apparel removedApparel = wornApparel[i];
-                if (removedApparel?.def == bikiniDef && wornBikini == null)
+                Apparel wornBikini = null;
+                System.Collections.Generic.List<Apparel> wornApparel = pawn.apparel.WornApparel;
+                for (int i = wornApparel.Count - 1; i >= 0; i--)
                 {
-                    wornBikini = removedApparel;
-                    pawn.apparel.Lock(wornBikini);
-                    continue;
+                    Apparel removedApparel = wornApparel[i];
+                    if (removedApparel?.def == bikiniDef && wornBikini == null)
+                    {
+                        wornBikini = removedApparel;
+                        pawn.apparel.Lock(wornBikini);
+                        continue;
+                    }
+
+                    pawn.apparel.Unlock(removedApparel);
+                    pawn.apparel.Remove(removedApparel);
+                    removedApparel.Destroy(DestroyMode.Vanish);
                 }
 
-                pawn.apparel.Unlock(removedApparel);
-                pawn.apparel.Remove(removedApparel);
-                removedApparel.Destroy(DestroyMode.Vanish);
-            }
+                if (wornBikini != null)
+                {
+                    return;
+                }
 
-            if (wornBikini != null)
-            {
-                return;
+                ThingDef stuff = bikiniDef.MadeFromStuff ? GenStuff.RandomStuffFor(bikiniDef) : null;
+                Apparel apparel = ThingMaker.MakeThing(bikiniDef, stuff) as Apparel;
+                if (apparel != null)
+                {
+                    pawn.apparel.Wear(apparel, dropReplacedApparel: false, locked: true);
+                }
             }
-
-            ThingDef stuff = bikiniDef.MadeFromStuff ? GenStuff.RandomStuffFor(bikiniDef) : null;
-            Apparel apparel = ThingMaker.MakeThing(bikiniDef, stuff) as Apparel;
-            if (apparel != null)
+            finally
             {
-                pawn.apparel.Wear(apparel, dropReplacedApparel: false, locked: true);
+                SlaveApparelAutoStageContext.EndSuppressNextStage();
             }
         }
 
@@ -220,7 +228,24 @@ namespace Mugirl
         public static bool Prefix(Pawn_MindState __instance)
         {
             Pawn pawn = __instance.pawn;
+            if (MugirlEventUtility.IsMigrationPawn(pawn))
+            {
+                MapComponent_MugirlMigration.NotifyMigrationPawnAttacked(pawn);
+            }
+
             return !MugirlEventUtility.IsPassiveEventPawn(pawn);
+        }
+    }
+
+    [HarmonyPatch(typeof(Pawn), "PreApplyDamage")]
+    internal static class Pawn_PreApplyDamage_MugirlMigrationFlee_Patch
+    {
+        public static void Prefix(Pawn __instance)
+        {
+            if (MugirlEventUtility.IsMigrationPawn(__instance))
+            {
+                MapComponent_MugirlMigration.NotifyMigrationPawnAttacked(__instance);
+            }
         }
     }
 

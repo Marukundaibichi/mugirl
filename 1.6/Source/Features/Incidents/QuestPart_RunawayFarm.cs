@@ -393,7 +393,7 @@ namespace Mugirl
         private static Pawn GenerateRunaway(PlanetTile tile)
         {
             PawnGenerationRequest request = new PawnGenerationRequest(
-                Mugirl_DefOf.Mugirl_EscapeWildSlave,
+                Mugirl_DefOf.Mugirl_WildMugirl,
                 null,
                 PawnGenerationContext.NonPlayer,
                 tile,
@@ -406,8 +406,10 @@ namespace Mugirl
                 allowGay: true,
                 allowPregnant: false,
                 forceRecruitable: true,
+                dontGiveWeapon: true,
                 fixedGender: Gender.Female,
                 developmentalStages: DevelopmentalStage.Adult);
+            request.ForceNoIdeoGear = true;
 
             Pawn pawn = PawnGenerator.GeneratePawn(request);
             if (pawn == null)
@@ -774,7 +776,7 @@ namespace Mugirl
                 pawn.jobs.EndCurrentJob(JobCondition.InterruptForced);
             }
 
-            bool wasEscapeWildSlave = MugirlWildSlaveUtility.IsEscapeWildSlave(pawn);
+            bool wasEscapeWildSlave = MugirlWildSlaveUtility.IsWildMugirl(pawn);
             if (!MugirlWildSlaveUtility.TrySetPlayerFaction(pawn))
             {
                 return false;

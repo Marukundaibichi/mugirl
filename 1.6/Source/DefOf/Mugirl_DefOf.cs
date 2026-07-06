@@ -58,6 +58,8 @@ namespace Mugirl
 
         public static PawnKindDef Mugirl_PreEscapeWildSlave;
 
+        public static PawnKindDef Mugirl_WildMugirl;
+
         public static InteractionDef Mugirl_Nuzzle;
 
         public static ThoughtDef Mugirl_Nuzzled;

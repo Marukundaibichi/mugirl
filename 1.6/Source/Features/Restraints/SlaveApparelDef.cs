@@ -6,6 +6,23 @@ using Verse.AI;
 
 namespace Mugirl
 {
+    internal static class SlaveApparelAutoStageContext
+    {
+        private static int suppressNextStageDepth;
+
+        internal static bool SuppressNextStage => suppressNextStageDepth > 0;
+
+        internal static void BeginSuppressNextStage()
+        {
+            suppressNextStageDepth++;
+        }
+
+        internal static void EndSuppressNextStage()
+        {
+            suppressNextStageDepth = Math.Max(0, suppressNextStageDepth - 1);
+        }
+    }
+
     // 奴隶服装 ThingDef 扩展，保存锁定、Hediff 和身体部位限制等 XML 配置。
     public class SlaveApparelDef : ThingDef
     {
@@ -132,7 +149,7 @@ namespace Mugirl
             }
 
             // 存在下一阶段服装时，卸下当前件后自动换上第一件可穿目标。
-            if (def.NextSlaveApparelDefs != null)
+            if (def.NextSlaveApparelDefs != null && !SlaveApparelAutoStageContext.SuppressNextStage)
             {
                 foreach (var nextDef in def.NextSlaveApparelDefs)
                 {

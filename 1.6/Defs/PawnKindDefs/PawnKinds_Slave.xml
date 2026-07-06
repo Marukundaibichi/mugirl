@@ -122,4 +122,19 @@
         <initialResistanceRange>2~40</initialResistanceRange>
     </PawnKindDef>
 
+    <PawnKindDef ParentName="Mugirl_SlaveBase">
+        <defName>Mugirl_WildMugirl</defName>
+        <!-- 野生雪牛娘：事件专用，只穿比基尼。 -->
+        <label>Wild Mugirl</label>
+        <acceptArrestChanceFactor>0.5</acceptArrestChanceFactor>
+        <apparelMoney>0~0</apparelMoney>
+        <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+        <apparelRequired>
+            <li>Mugirl_Bikini</li>
+        </apparelRequired>
+        <gearHealthRange>0.3~0.6</gearHealthRange>
+        <initialWillRange>2~40</initialWillRange>
+        <initialResistanceRange>2~40</initialResistanceRange>
+    </PawnKindDef>
+
 </Defs>

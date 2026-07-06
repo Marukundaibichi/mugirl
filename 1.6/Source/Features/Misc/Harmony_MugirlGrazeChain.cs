@@ -7,6 +7,28 @@ using Verse.AI;
 
 namespace Mugirl
 {
+    internal static class MugirlMigrationIngestNutritionUtility
+    {
+        internal const float FixedIngestNutrition = 0.08f;
+
+        internal static bool ShouldUseFixedNutrition(Pawn pawn)
+        {
+            return MugirlEventUtility.IsMigrationPawn(pawn) && pawn?.needs?.food != null;
+        }
+    }
+
+    [HarmonyPatch(typeof(Thing), nameof(Thing.Ingested))]
+    public static class Harmony_MugirlMigrationFixedIngestNutrition
+    {
+        public static void Postfix(Pawn ingester, ref float __result)
+        {
+            if (MugirlMigrationIngestNutritionUtility.ShouldUseFixedNutrition(ingester))
+            {
+                __result = MugirlMigrationIngestNutritionUtility.FixedIngestNutrition;
+            }
+        }
+    }
+
     [HarmonyPatch]
     public static class Harmony_MugirlGrazeChain
     {

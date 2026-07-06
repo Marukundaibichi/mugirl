@@ -55,6 +55,7 @@ namespace Mugirl
                 Pawn pawn = pawns[i];
                 IntVec3 cell = CellFinder.RandomClosewalkCellNear(start, map, 10);
                 GenSpawn.Spawn(pawn, cell, map, rot);
+                MugirlEventUtility.EnsureBikiniOnly(pawn);
             }
 
             MapComponent_MugirlMigration migration = map.GetComponent<MapComponent_MugirlMigration>();
@@ -77,7 +78,7 @@ namespace Mugirl
             for (int i = 0; i < count; i++)
             {
                 PawnGenerationRequest request = new PawnGenerationRequest(
-                    Mugirl_DefOf.Mugirl_EscapeWildSlave,
+                    Mugirl_DefOf.Mugirl_WildMugirl,
                     null,
                     PawnGenerationContext.NonPlayer,
                     tile,
@@ -90,8 +91,10 @@ namespace Mugirl
                     allowGay: true,
                     allowPregnant: false,
                     forceRecruitable: true,
+                    dontGiveWeapon: true,
                     fixedGender: Gender.Female,
                     developmentalStages: DevelopmentalStage.Adult);
+                request.ForceNoIdeoGear = true;
 
                 Pawn pawn = PawnGenerator.GeneratePawn(request);
                 if (pawn == null)
@@ -137,7 +140,6 @@ namespace Mugirl
 
             return count;
         }
-
         private static bool TryFindStartAndEndCells(Map map, out IntVec3 start, out IntVec3 end)
         {
             if (!RCellFinder.TryFindRandomPawnEntryCell(out start, map, CellFinder.EdgeRoadChance_Animal))
@@ -173,6 +175,7 @@ namespace Mugirl
     {
         private const int ForcedGrazeIntervalTicks = 300;
         private const float ForcedGrazeSearchRadius = 30f;
+        private const float FoodSatisfiedTolerance = 0.02f;
 
         private List<Pawn> migrationPawns = new List<Pawn>();
         private List<int> nextGrazeTicks = new List<int>();
@@ -200,6 +203,22 @@ namespace Mugirl
 
             exitCell = exit;
             ticksUntilDeparture = stayTicks;
+        }
+
+        internal static void NotifyMigrationPawnAttacked(Pawn pawn)
+        {
+            Map map = pawn?.MapHeld;
+            map?.GetComponent<MapComponent_MugirlMigration>()?.NotifyPawnAttacked(pawn);
+        }
+
+        private void NotifyPawnAttacked(Pawn pawn)
+        {
+            if (pawn == null || !migrationPawns.Contains(pawn))
+            {
+                return;
+            }
+
+            BeginDeparture(LocomotionUrgency.Sprint);
         }
 
         public override void MapComponentTick()
@@ -249,6 +268,11 @@ namespace Mugirl
         private void TryForcedGraze(Pawn pawn, int index)
         {
             if (pawn == null || pawn.Dead || pawn.Downed || !pawn.Spawned || pawn.Map != map)
+            {
+                return;
+            }
+
+            if (!ShouldGrazeForFood(pawn))
             {
                 return;
             }
@@ -305,6 +329,11 @@ namespace Mugirl
                 return;
             }
 
+            if (!ShouldGrazeForFood(pawn))
+            {
+                return;
+            }
+
             if (pawn.Map?.physicalInteractionReservationManager?.IsReserved(pawn) == true)
             {
                 return;
@@ -330,6 +359,12 @@ namespace Mugirl
             job.count = 1;
             job.overeat = true;
             pawn.jobs.StartJob(job, JobCondition.InterruptForced, tag: JobTag.Misc);
+        }
+
+        private static bool ShouldGrazeForFood(Pawn pawn)
+        {
+            Need_Food food = pawn?.needs?.food;
+            return food != null && food.CurLevel < food.MaxLevel - FoodSatisfiedTolerance;
         }
 
         private void RemoveMigrationPawnAt(int index)
@@ -362,6 +397,11 @@ namespace Mugirl
 
         private void BeginDeparture()
         {
+            BeginDeparture(LocomotionUrgency.Walk);
+        }
+
+        private void BeginDeparture(LocomotionUrgency urgency)
+        {
             List<Pawn> departing = new List<Pawn>();
             for (int i = 0; i < migrationPawns.Count; i++)
             {
@@ -376,12 +416,16 @@ namespace Mugirl
                     continue;
                 }
 
+                pawn.jobs?.EndCurrentJob(JobCondition.InterruptForced, false, false);
                 departing.Add(pawn);
             }
 
-            if (departing.Count > 0 && exitCell.IsValid)
+            if (departing.Count > 0)
             {
-                LordMaker.MakeNewLord(null, new LordJob_ExitMapNear(exitCell, LocomotionUrgency.Walk), map, departing);
+                LordJob lordJob = exitCell.IsValid
+                    ? (LordJob)new LordJob_ExitMapNear(exitCell, urgency)
+                    : new LordJob_ExitMapBest(urgency, canDig: false, canDefendSelf: false);
+                LordMaker.MakeNewLord(null, lordJob, map, departing);
             }
 
             migrationPawns.Clear();

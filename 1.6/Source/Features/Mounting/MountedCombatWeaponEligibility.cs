@@ -28,7 +28,7 @@ namespace Mugirl
                 return false;
             }
 
-            if (rider.Dead || rider.Downed || rider.InMentalState || rider.IsBurning() || (carrier.pather?.Moving == true && MountedPawnMeleeSupport.CurrentMeleeTarget(carrier) == null))
+            if (rider.Dead || rider.Downed || rider.InMentalState || rider.IsBurning())
             {
                 reasonKey = "Mugirl.Mount.ReasonRiderBadState";
                 return false;

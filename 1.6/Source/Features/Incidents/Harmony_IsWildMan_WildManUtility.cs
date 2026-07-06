@@ -26,7 +26,7 @@ namespace Mugirl
     {
         public static void Prefix(Pawn pawn, out bool __state)
         {
-            __state = MugirlWildSlaveUtility.IsEscapeWildSlave(pawn);
+            __state = MugirlWildSlaveUtility.IsWildMugirl(pawn);
         }
 
         public static void Postfix(Pawn pawn, Faction faction, bool __state)
@@ -37,7 +37,7 @@ namespace Mugirl
             {
                 MugirlWildSlaveUtility.NormalizeAfterJoiningPlayer(pawn, __state);
             }
-            else if (__state && MugirlWildSlaveUtility.IsEscapeWildSlave(pawn) && Mugirl_DefOf.Mugirl_PreEscapeWildSlave != null)
+            else if (__state && MugirlWildSlaveUtility.IsWildMugirl(pawn) && Mugirl_DefOf.Mugirl_PreEscapeWildSlave != null)
             {
                 pawn.ChangeKind(Mugirl_DefOf.Mugirl_PreEscapeWildSlave);
             }
