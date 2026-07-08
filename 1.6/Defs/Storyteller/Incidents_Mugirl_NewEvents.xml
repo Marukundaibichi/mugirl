@@ -2,6 +2,7 @@
 <Defs>
     <IncidentDef>
         <defName>Mugirl_Migration</defName>
+        <!-- 雪牛娘大迁徙 -->
         <label>Mugirl migration</label>
         <category>Misc</category>
         <targetTags>
@@ -15,6 +16,7 @@
 
     <IncidentDef>
         <defName>Mugirl_FusionInvestment</defName>
+        <!-- 牛聚变投资 -->
         <label>bovine fusion investment</label>
         <category>Misc</category>
         <targetTags>
@@ -27,6 +29,7 @@
 
     <IncidentDef>
         <defName>Mugirl_RunawayFarmQuest</defName>
+        <!-- 疯牛满地跑，农民傻了 -->
         <label>runaway Mugirl farm</label>
         <category>GiveQuest</category>
         <targetTags>

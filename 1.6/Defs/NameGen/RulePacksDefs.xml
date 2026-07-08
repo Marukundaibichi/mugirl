@@ -18,6 +18,7 @@
         </include>
         <rulePack>
             <rulesStrings>
+                <!-- r_name->[Mugirl_Rev_Last] [Mugirl_Rev_First_Female] -->
                 <li>r_name->[Mugirl_Rev_Last] [Mugirl_Rev_First_Female]</li>
             </rulesStrings>
         </rulePack>

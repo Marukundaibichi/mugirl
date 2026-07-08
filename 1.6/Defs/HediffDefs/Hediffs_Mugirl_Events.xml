@@ -3,7 +3,9 @@
     <HediffDef>
         <defName>Mugirl_RunawayPanic</defName>
         <hediffClass>HediffWithComps</hediffClass>
+        <!-- 撒欢乱跑 -->
         <label>runaway panic</label>
+        <!-- 这位雪牛娘处于无害但异常有劲的失控奔跑状态。 -->
         <description>This Mugirl is in a harmless but extremely energetic runaway state.</description>
         <isBad>false</isBad>
         <scenarioCanAdd>false</scenarioCanAdd>

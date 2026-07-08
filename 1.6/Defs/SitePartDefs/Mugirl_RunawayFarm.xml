@@ -2,7 +2,9 @@
 <Defs>
     <SitePartDef>
         <defName>Mugirl_RunawayFarm</defName>
+        <!-- 失控的雪牛娘牧场 -->
         <label>runaway Mugirl ranch</label>
+        <!-- 一处雪牛娘们突然撒欢乱跑的牧场。 -->
         <description>A Mugirl ranch where the livestock has become wildly overexcited.</description>
         <siteTexture>World/WorldObjects/Sites/GenericSite</siteTexture>
         <expandingIconTexture>World/WorldObjects/Expanding/Sites/ItemStash</expandingIconTexture>

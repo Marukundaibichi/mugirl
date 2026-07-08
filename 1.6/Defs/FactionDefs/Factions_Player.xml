@@ -9,7 +9,9 @@
         <description>A group of freedom-seeking Mugirls who have successfully escaped enslavement and gathered to establish their own colony. Though the environment is harsh and resources are scarce, they still strive to farm, fight, and support each other, carving out a new future.</description>
         <isPlayer>true</isPlayer>
         <basicMemberKind>Mugirl_Colony</basicMemberKind>
+        <!-- 殖民者 -->
         <pawnSingular>colonist</pawnSingular>
+        <!-- 殖民者们 -->
         <pawnsPlural>colonists</pawnsPlural>
         <techLevel>Industrial</techLevel>
         <backstoryFilters>

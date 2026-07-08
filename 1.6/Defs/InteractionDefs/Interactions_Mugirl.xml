@@ -9,32 +9,56 @@
     <workerClass>Mugirl.InteractionWorker_Nuzzle</workerClass>
     <logRulesInitiator>
         <rulesStrings>
+        <!-- r_logentry(p=2)->[INITIATOR_nameDef][nuzzleadverb][nuzzled][RECIPIENT_nameDef]。 -->
         <li>r_logentry(p=2)->[INITIATOR_nameDef] [nuzzleadverb] [nuzzled] [RECIPIENT_nameDef].</li>
+        <!-- r_logentry->[INITIATOR_nameDef][nuzzleadverb]用鼻子蹭了蹭[RECIPIENT_nameDef]的[rubbedpart]。 -->
         <li>r_logentry->[INITIATOR_nameDef] [nuzzleadverb] rubbed [INITIATOR_possessive] nose against [RECIPIENT_nameDef]'s [rubbedpart].</li>
 
+        <!-- nuzzled(p=2)->依偎着 -->
         <li>nuzzled(p=2)->nuzzled</li>
+        <!-- nuzzled->蹭了蹭 -->
         <li>nuzzled->snuggled up to</li>
 
+        <!-- nuzzleadverb(p=4)-> -->
         <li>nuzzleadverb(p=4)-></li>
+        <!-- nuzzleadverb->轻轻地 -->
         <li>nuzzleadverb->gently</li>
+        <!-- nuzzleadverb->鼓励地 -->
         <li>nuzzleadverb->encouragingly</li>
+        <!-- nuzzleadverb->开心地 -->
         <li>nuzzleadverb->happily</li>
+        <!-- nuzzleadverb->柔和地 -->
         <li>nuzzleadverb->softly</li>
+        <!-- nuzzleadverb->支持地 -->
         <li>nuzzleadverb->supportively</li>
+        <!-- nuzzleadverb->小心地 -->
         <li>nuzzleadverb->lightly</li>
+        <!-- nuzzleadverb->温暖地 -->
         <li>nuzzleadverb->warmly</li>
+        <!-- nuzzleadverb->委屈地 -->
         <li>nuzzleadverb->plaintively</li>
+        <!-- nuzzleadverb->亲爱地 -->
         <li>nuzzleadverb->lovingly</li>
+        <!-- nuzzleadverb->亲昵地 -->
         <li>nuzzleadverb->affectionately</li>
 
+        <!-- rubbedpart->腿 -->
         <li>rubbedpart->leg</li>
+        <!-- rubbedpart->膝盖 -->
         <li>rubbedpart->knee</li>
+        <!-- rubbedpart->脚 -->
         <li>rubbedpart->foot</li>
+        <!-- rubbedpart->手肘 -->
         <li>rubbedpart->elbow</li>
+        <!-- rubbedpart->臀侧 -->
         <li>rubbedpart->hip</li>
+        <!-- rubbedpart->肩膀 -->
         <li>rubbedpart->shoulder</li>
+        <!-- rubbedpart->手 -->
         <li>rubbedpart->hand</li>
+        <!-- rubbedpart->身侧 -->
         <li>rubbedpart->side</li>
+        <!-- rubbedpart->手臂 -->
         <li>rubbedpart->arm</li>
         </rulesStrings>
     </logRulesInitiator>

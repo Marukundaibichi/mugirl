@@ -49,6 +49,7 @@
                 </li>
                 <li>
                     <def>Mugirl_Tail</def>
+                    <!-- 雪牛尾巴 -->
                     <customLabel>Mugirl Tail</customLabel>
                     <coverage>0.02</coverage>
                     <height>Bottom</height>
@@ -74,6 +75,7 @@
                 </li>
                 <li>
                     <def>Lung</def>
+                    <!-- 左肺 -->
                     <customLabel>left lung</customLabel>
                     <coverage>0.025</coverage>
                     <depth>Inside</depth>
@@ -83,6 +85,7 @@
                 </li>
                 <li>
                     <def>Lung</def>
+                    <!-- 右肺 -->
                     <customLabel>right lung</customLabel>
                     <coverage>0.025</coverage>
                     <depth>Inside</depth>
@@ -92,6 +95,7 @@
                 </li>
                 <li>
                     <def>Kidney</def>
+                    <!-- 左肾 -->
                     <customLabel>left kidney</customLabel>
                     <coverage>0.017</coverage>
                     <depth>Inside</depth>
@@ -101,6 +105,7 @@
                 </li>
                 <li>
                     <def>Kidney</def>
+                    <!-- 右肾 -->
                     <customLabel>right kidney</customLabel>
                     <coverage>0.017</coverage>
                     <depth>Inside</depth>
@@ -156,6 +161,7 @@
                                 </li>
                                 <li>
                                     <def>Eye</def>
+                                    <!-- 左眼 -->
                                     <customLabel>left eye</customLabel>
                                     <coverage>0.07</coverage>
                                     <groups>
@@ -171,6 +177,7 @@
                                 </li>
                                 <li>
                                     <def>Eye</def>
+                                    <!-- 右眼 -->
                                     <customLabel>right eye</customLabel>
                                     <coverage>0.07</coverage>
                                     <groups>
@@ -186,6 +193,7 @@
                                 <!-- 左角。 -->
                                 <li>
                                     <def>Mugirl_Horn</def>
+                                    <!-- 左角 -->
                                     <customLabel>left horn</customLabel>
                                     <coverage>0.07</coverage>
                                     <groups>
@@ -196,6 +204,7 @@
                                 <!-- 右角。 -->
                                 <li>
                                     <def>Mugirl_Horn</def>
+                                    <!-- 右角 -->
                                     <customLabel>right horn</customLabel>
                                     <coverage>0.07</coverage>
                                     <groups>
@@ -205,6 +214,7 @@
                                 </li>
                                 <li>
                                     <def>Ear</def>
+                                    <!-- 左耳 -->
                                     <customLabel>left ear</customLabel>
                                     <coverage>0.07</coverage>
                                     <flipGraphic>true</flipGraphic>
@@ -216,6 +226,7 @@
                                 </li>
                                 <li>
                                     <def>Ear</def>
+                                    <!-- 右耳 -->
                                     <customLabel>right ear</customLabel>
                                     <coverage>0.07</coverage>
                                     <groups>
@@ -256,6 +267,7 @@
                 </li>
                 <li>
                     <def>Shoulder</def>
+                    <!-- 左肩 -->
                     <customLabel>left shoulder</customLabel>
                     <coverage>0.12</coverage>
                     <woundAnchorTag>LeftShoulder</woundAnchorTag>
@@ -266,6 +278,7 @@
                     <parts>
                         <li>
                             <def>Clavicle</def>
+                            <!-- 左锁骨 -->
                             <customLabel>left clavicle</customLabel>
                             <coverage>0.09</coverage>
                             <height>Top</height>
@@ -277,6 +290,7 @@
                         </li>
                         <li>
                             <def>Arm</def>
+                            <!-- 左臂 -->
                             <customLabel>left arm</customLabel>
                             <coverage>0.77</coverage>
                             <flipGraphic>true</flipGraphic>
@@ -286,6 +300,7 @@
                             <parts>
                                 <li>
                                     <def>Humerus</def>
+                                    <!-- 左肱骨 -->
                                     <customLabel>left humerus</customLabel>
                                     <coverage>0.1</coverage>
                                     <depth>Inside</depth>
@@ -295,6 +310,7 @@
                                 </li>
                                 <li>
                                     <def>Radius</def>
+                                    <!-- 左桡骨 -->
                                     <customLabel>left radius</customLabel>
                                     <coverage>0.1</coverage>
                                     <depth>Inside</depth>
@@ -304,6 +320,7 @@
                                 </li>
                                 <li>
                                     <def>Hand</def>
+                                    <!-- 左手 -->
                                     <customLabel>left hand</customLabel>
                                     <coverage>0.14</coverage>
                                     <height>Bottom</height>
@@ -314,6 +331,7 @@
                                     <parts>
                                         <li>
                                             <def>Finger</def>
+                                            <!-- 左小指 -->
                                             <customLabel>left pinky</customLabel>
                                             <coverage>0.06</coverage>
                                             <groups>
@@ -323,6 +341,7 @@
                                         </li>
                                         <li>
                                             <def>Finger</def>
+                                            <!-- 左无名指 -->
                                             <customLabel>left ring finger</customLabel>
                                             <coverage>0.07</coverage>
                                             <groups>
@@ -332,6 +351,7 @@
                                         </li>
                                         <li>
                                             <def>Finger</def>
+                                            <!-- 左中指 -->
                                             <customLabel>left middle finger</customLabel>
                                             <coverage>0.08</coverage>
                                             <groups>
@@ -342,6 +362,7 @@
                                         </li>
                                         <li>
                                             <def>Finger</def>
+                                            <!-- 左食指 -->
                                             <customLabel>left index finger</customLabel>
                                             <coverage>0.07</coverage>
                                             <groups>
@@ -351,6 +372,7 @@
                                         </li>
                                         <li>
                                             <def>Finger</def>
+                                            <!-- 左拇指 -->
                                             <customLabel>left thumb</customLabel>
                                             <coverage>0.08</coverage>
                                             <groups>
@@ -366,6 +388,7 @@
                 </li>
                 <li>
                     <def>Shoulder</def>
+                    <!-- 右肩 -->
                     <customLabel>right shoulder</customLabel>
                     <coverage>0.12</coverage>
                     <woundAnchorTag>RightShoulder</woundAnchorTag>
@@ -375,6 +398,7 @@
                     <parts>
                         <li>
                             <def>Clavicle</def>
+                            <!-- 右锁骨 -->
                             <customLabel>right clavicle</customLabel>
                             <coverage>0.09</coverage>
                             <height>Top</height>
@@ -385,6 +409,7 @@
                         </li>
                         <li>
                             <def>Arm</def>
+                            <!-- 右臂 -->
                             <customLabel>right arm</customLabel>
                             <coverage>0.77</coverage>
                             <groups>
@@ -393,6 +418,7 @@
                             <parts>
                                 <li>
                                     <def>Humerus</def>
+                                    <!-- 右肱骨 -->
                                     <customLabel>right humerus</customLabel>
                                     <coverage>0.1</coverage>
                                     <depth>Inside</depth>
@@ -402,6 +428,7 @@
                                 </li>
                                 <li>
                                     <def>Radius</def>
+                                    <!-- 右桡骨 -->
                                     <customLabel>right radius</customLabel>
                                     <coverage>0.1</coverage>
                                     <depth>Inside</depth>
@@ -411,6 +438,7 @@
                                 </li>
                                 <li>
                                     <def>Hand</def>
+                                    <!-- 右手 -->
                                     <customLabel>right hand</customLabel>
                                     <coverage>0.14</coverage>
                                     <height>Bottom</height>
@@ -420,6 +448,7 @@
                                     <parts>
                                         <li>
                                             <def>Finger</def>
+                                            <!-- 右小指 -->
                                             <customLabel>right pinky</customLabel>
                                             <coverage>0.06</coverage>
                                             <groups>
@@ -429,6 +458,7 @@
                                         </li>
                                         <li>
                                             <def>Finger</def>
+                                            <!-- 右无名指 -->
                                             <customLabel>right ring finger</customLabel>
                                             <coverage>0.07</coverage>
                                             <groups>
@@ -438,6 +468,7 @@
                                         </li>
                                         <li>
                                             <def>Finger</def>
+                                            <!-- 右中指 -->
                                             <customLabel>right middle finger</customLabel>
                                             <coverage>0.08</coverage>
                                             <groups>
@@ -448,6 +479,7 @@
                                         </li>
                                         <li>
                                             <def>Finger</def>
+                                            <!-- 右食指 -->
                                             <customLabel>right index finger</customLabel>
                                             <coverage>0.07</coverage>
                                             <groups>
@@ -457,6 +489,7 @@
                                         </li>
                                         <li>
                                             <def>Finger</def>
+                                            <!-- 右拇指 -->
                                             <customLabel>right thumb</customLabel>
                                             <coverage>0.08</coverage>
                                             <groups>
@@ -480,6 +513,7 @@
                 </li>
                 <li>
                     <def>Leg</def>
+                    <!-- 左腿 -->
                     <customLabel>left leg</customLabel>
                     <coverage>0.14</coverage>
                     <height>Bottom</height>
@@ -491,6 +525,7 @@
                     <parts>
                         <li>
                             <def>Femur</def>
+                            <!-- 左股骨 -->
                             <customLabel>left femur</customLabel>
                             <coverage>0.1</coverage>
                             <depth>Inside</depth>
@@ -500,6 +535,7 @@
                         </li>
                         <li>
                             <def>Tibia</def>
+                            <!-- 左胫骨 -->
                             <customLabel>left tibia</customLabel>
                             <coverage>0.1</coverage>
                             <depth>Inside</depth>
@@ -509,6 +545,7 @@
                         </li>
                         <li>
                             <def>Foot</def>
+                            <!-- 左脚 -->
                             <customLabel>left foot</customLabel>
                             <coverage>0.1</coverage>
                             <flipGraphic>true</flipGraphic>
@@ -518,6 +555,7 @@
                             <parts>
                                 <li>
                                     <def>Toe</def>
+                                    <!-- 左小趾 -->
                                     <customLabel>left little toe</customLabel>
                                     <coverage>0.06</coverage>
                                     <groups>
@@ -526,6 +564,7 @@
                                 </li>
                                 <li>
                                     <def>Toe</def>
+                                    <!-- 左第四趾 -->
                                     <customLabel>left fourth toe</customLabel>
                                     <coverage>0.07</coverage>
                                     <groups>
@@ -534,6 +573,7 @@
                                 </li>
                                 <li>
                                     <def>Toe</def>
+                                    <!-- 左中趾 -->
                                     <customLabel>left middle toe</customLabel>
                                     <coverage>0.08</coverage>
                                     <groups>
@@ -542,6 +582,7 @@
                                 </li>
                                 <li>
                                     <def>Toe</def>
+                                    <!-- 左第二趾 -->
                                     <customLabel>left second toe</customLabel>
                                     <coverage>0.09</coverage>
                                     <groups>
@@ -550,6 +591,7 @@
                                 </li>
                                 <li>
                                     <def>Toe</def>
+                                    <!-- 左大趾 -->
                                     <customLabel>left big toe</customLabel>
                                     <coverage>0.09</coverage>
                                     <groups>
@@ -562,6 +604,7 @@
                 </li>
                 <li>
                     <def>Leg</def>
+                    <!-- 右腿 -->
                     <customLabel>right leg</customLabel>
                     <coverage>0.14</coverage>
                     <height>Bottom</height>
@@ -572,6 +615,7 @@
                     <parts>
                         <li>
                             <def>Femur</def>
+                            <!-- 右股骨 -->
                             <customLabel>right femur</customLabel>
                             <coverage>0.1</coverage>
                             <depth>Inside</depth>
@@ -581,6 +625,7 @@
                         </li>
                         <li>
                             <def>Tibia</def>
+                            <!-- 右胫骨 -->
                             <customLabel>right tibia</customLabel>
                             <coverage>0.1</coverage>
                             <depth>Inside</depth>
@@ -590,6 +635,7 @@
                         </li>
                         <li>
                             <def>Foot</def>
+                            <!-- 右脚 -->
                             <customLabel>right foot</customLabel>
                             <coverage>0.1</coverage>
                             <groups>
@@ -598,6 +644,7 @@
                             <parts>
                                 <li>
                                     <def>Toe</def>
+                                    <!-- 右小趾 -->
                                     <customLabel>right little toe</customLabel>
                                     <coverage>0.06</coverage>
                                     <groups>
@@ -606,6 +653,7 @@
                                 </li>
                                 <li>
                                     <def>Toe</def>
+                                    <!-- 右第四趾 -->
                                     <customLabel>right fourth toe</customLabel>
                                     <coverage>0.07</coverage>
                                     <groups>
@@ -614,6 +662,7 @@
                                 </li>
                                 <li>
                                     <def>Toe</def>
+                                    <!-- 右中趾 -->
                                     <customLabel>right middle toe</customLabel>
                                     <coverage>0.08</coverage>
                                     <groups>
@@ -622,6 +671,7 @@
                                 </li>
                                 <li>
                                     <def>Toe</def>
+                                    <!-- 右第二趾 -->
                                     <customLabel>right second toe</customLabel>
                                     <coverage>0.09</coverage>
                                     <groups>
@@ -630,6 +680,7 @@
                                 </li>
                                 <li>
                                     <def>Toe</def>
+                                    <!-- 右大趾 -->
                                     <customLabel>right big toe</customLabel>
                                     <coverage>0.09</coverage>
                                     <groups>
@@ -646,6 +697,7 @@
 
     <BodyPartDef>
         <defName>Mugirl_Tail</defName>
+        <!-- 尾巴 -->
         <label>tail</label>
         <hitPoints>25</hitPoints>
         <frostbiteVulnerability>1</frostbiteVulnerability>
@@ -659,6 +711,7 @@
 
     <BodyPartDef>
         <defName>Mugirl_Horn</defName>
+        <!-- 牛角 -->
         <label>horn</label>
         <hitPoints>35</hitPoints>
         <frostbiteVulnerability>0</frostbiteVulnerability>
@@ -672,6 +725,7 @@
 
     <BodyPartGroupDef>
         <defName>Ears</defName>
+        <!-- 耳朵 -->
         <label>ears</label>
         <listOrder>195</listOrder>
     </BodyPartGroupDef>

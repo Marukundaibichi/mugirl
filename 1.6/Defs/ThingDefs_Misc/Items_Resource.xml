@@ -61,37 +61,6 @@
         </stages>
     </ThoughtDef>
 
-    <HediffDef>
-        <defName>Consumed_MugirlMilk</defName>
-        <!-- 强身健体！ -->
-        <label>Fitter and Stronger!</label>
-        <makesSickThought>false</makesSickThought>
-        <!-- 雪牛娘的奶富含修复因子，可以极大的提高伤口修复效率。 -->
-        <description>Mugirl's milk is rich in restorative factors that can significantly improve wound healing efficiency.</description>
-        <tendable>false</tendable>
-        <isBad>false</isBad>
-        <defaultLabelColor>(255,242,0)</defaultLabelColor>
-        <hediffClass>HediffWithComps</hediffClass>
-        <initialSeverity>1.0</initialSeverity>
-        <maxSeverity>1.0</maxSeverity>
-        <comps>
-            <li Class="Mugirl.HediffCompProperties_WhileHavingThoughts">
-                <thoughtDefs>
-                    <li>Consumed_MugirlMilk</li>
-                </thoughtDefs>
-            </li>
-        </comps>
-        <stages>
-            <li>
-                <statFactors>
-                    <ImmunityGainSpeed>1.75</ImmunityGainSpeed>
-                    <InjuryHealingFactor>1.75</InjuryHealingFactor>
-                </statFactors>
-            </li>
-        </stages>
-    </HediffDef>
-
-
     <ThingDef ParentName="WoolBase">
         <defName>Mugirl_Wool</defName>
         <!-- 雪牛娘毛 -->
