@@ -32,7 +32,7 @@ namespace Mugirl
         {
             Pawn targetPawn = TargetPawn;
             Apparel targetApparel = TargetApparel;
-            if (targetPawn == null || targetApparel == null)
+            if (!CanForceUnlockNow(pawn, targetPawn, targetApparel))
             {
                 return false;
             }
@@ -48,6 +48,7 @@ namespace Mugirl
             Apparel apparel = TargetApparel;
             if (!CanForceUnlockNow(pawn, wearer, apparel))
             {
+                yield return EndIncompletableToil();
                 yield break;
             }
 
@@ -103,6 +104,18 @@ namespace Mugirl
             };
         }
 
+        private Toil EndIncompletableToil()
+        {
+            return new Toil
+            {
+                initAction = delegate
+                {
+                    pawn.jobs.curDriver.EndJobWith(JobCondition.Incompletable);
+                },
+                defaultCompleteMode = ToilCompleteMode.Instant
+            };
+        }
+
         private bool CanForceUnlockNow(Pawn actor, Pawn wearer, Apparel apparel)
         {
             return actor != null
@@ -127,8 +140,19 @@ namespace Mugirl
             slaveApparel.lockCount = 0;
             wearer.apparel.Unlock(apparel);
 
-            if (wearer.apparel.WornApparel.Contains(apparel)
-                && wearer.apparel.TryDrop(apparel, out Apparel _, DropCellFor(wearer), false))
+            bool dropped = false;
+            SlaveApparelAutoStageContext.BeginSuppressNextStage();
+            try
+            {
+                dropped = wearer.apparel.WornApparel.Contains(apparel)
+                    && wearer.apparel.TryDrop(apparel, out Apparel _, DropCellFor(wearer), false);
+            }
+            finally
+            {
+                SlaveApparelAutoStageContext.EndSuppressNextStage();
+            }
+
+            if (dropped)
             {
                 Messages.Message("Mugirl.Restraints.ForceUnlock.Success".Translate(pawn.LabelShort, wearer.LabelShort, apparel.Label), wearer, MessageTypeDefOf.PositiveEvent);
                 return;

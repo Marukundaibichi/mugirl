@@ -12,6 +12,19 @@ namespace Mugirl
             return apparel is SlaveApparel;
         }
 
+        public static bool IsLockedSlaveApparel(this Apparel apparel)
+        {
+            return apparel is SlaveApparel slaveApparel && slaveApparel.isLocked;
+        }
+
+        public static bool IsWornLockedSlaveApparel(this Pawn pawn, Apparel apparel)
+        {
+            return pawn?.apparel != null
+                && apparel != null
+                && pawn.apparel.WornApparel.Contains(apparel)
+                && apparel.IsLockedSlaveApparel();
+        }
+
         public static bool SatisfiesKey(this Apparel apparel, Thing key)
         {
             return key != null && apparel is SlaveApparel && apparel.def is SlaveApparelDef def && (def.keytype == null || def.keytype == key.def);
@@ -155,7 +168,7 @@ namespace Mugirl
             LocalTargetInfo jobTarget = ResolveJobTarget(pawn, target);
             Pawn targetPawn = ResolveTargetPawn(pawn, jobTarget);
             if (targetPawn?.apparel == null ||
-                !targetPawn.apparel.LockedApparel.Contains(apparel) ||
+                !targetPawn.IsWornLockedSlaveApparel(apparel) ||
                 !apparel.SatisfiesKey(usable.parent))
             {
                 return;
@@ -230,10 +243,15 @@ namespace Mugirl
                 }
 
                 List<FloatMenuOption> options = new List<FloatMenuOption>();
-                List<Apparel> lockedApparel = currentTargetPawn.apparel.LockedApparel;
-                for (int i = 0; i < lockedApparel.Count; i++)
+                List<Apparel> wornApparel = currentTargetPawn.apparel.WornApparel;
+                for (int i = 0; i < wornApparel.Count; i++)
                 {
-                    Apparel item = lockedApparel[i];
+                    Apparel item = wornApparel[i];
+                    if (!currentTargetPawn.IsWornLockedSlaveApparel(item))
+                    {
+                        continue;
+                    }
+
                     if (item.SatisfiesKey(usable.parent))
                     {
                         options.Add(new FloatMenuOption(item.Label, () => usable.StartUnlockJob(pawn, jobTarget, item)));
@@ -305,7 +323,21 @@ namespace Mugirl
 
         private static bool HasLockedApparel(Pawn pawn)
         {
-            return pawn?.apparel != null && pawn.apparel.LockedApparel.Count > 0;
+            if (pawn?.apparel == null)
+            {
+                return false;
+            }
+
+            List<Apparel> wornApparel = pawn.apparel.WornApparel;
+            for (int i = 0; i < wornApparel.Count; i++)
+            {
+                if (pawn.IsWornLockedSlaveApparel(wornApparel[i]))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

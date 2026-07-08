@@ -87,7 +87,7 @@ namespace Mugirl
 
         private static bool ShouldLock(Apparel apparel)
         {
-            return apparel is AdvancedSlaveApparel;
+            return apparel is SlaveApparel;
         }
     }
 }

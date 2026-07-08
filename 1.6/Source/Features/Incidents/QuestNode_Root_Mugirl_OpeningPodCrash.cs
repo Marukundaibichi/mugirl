@@ -264,31 +264,13 @@ namespace Mugirl
                 text += "\n\n";
             }
 
-            foreach (Pawn pawn in validPawns)
-            {
-                text += "Mugirl.OpeningPodCrash".Translate(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN", true);
-                text += "\n\n";
+            Pawn representativePawn = validPawns[0];
+            text += "Mugirl.OpeningPodCrash".Translate(representativePawn.Named("PAWN")).AdjustedFor(representativePawn, "PAWN", true);
 
-                if (pawn.Faction == null)
-                    text += "Mugirl.OpeningPodCrash_Factionless".Translate(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN", true);
-                else if (MugirlWildSlaveUtility.IsHostileToPlayer(pawn.Faction))
-                    text += "Mugirl.OpeningPodCrash_Hostile".Translate(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN", true);
-                else
-                    text += "Mugirl.OpeningPodCrash_NonHostile".Translate(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN", true);
-
-                if (pawn.ageTracker != null && pawn.DevelopmentalStage.Juvenile())
-                {
-                    string arg = (pawn.ageTracker.AgeBiologicalYears * 3600000)
-                        .ToStringTicksToPeriod(true, false, true, true, false);
-                    text += "\n\n" + "Mugirl.OpeningPodCrash_Child".Translate(pawn.Named("PAWN"), arg.Named("AGE"));
-                }
-
-                QuestNode_Root_WandererJoin_WalkIn.AppendCharityInfoToLetter("JoinerCharityInfo".Translate(pawn), ref text);
-
-                PawnRelationUtility.TryAppendRelationsWithColonistsInfo(ref text, ref label, pawn);
-
-                text += "\n\n";
-            }
+            AppendFactionInfo(validPawns, ref text);
+            AppendChildInfo(validPawns, ref text);
+            QuestNode_Root_WandererJoin_WalkIn.AppendCharityInfoToLetter("JoinerCharityInfo".Translate(representativePawn), ref text);
+            AppendRelationsInfo(validPawns, ref text, ref label);
 
             LookTargets lookTargets = new LookTargets(validPawns);
 
@@ -299,6 +281,88 @@ namespace Mugirl
                 lookTargets,
                 null, null, null, null, 0, true
             );
+        }
+
+        private static void AppendFactionInfo(List<Pawn> pawns, ref TaggedString text)
+        {
+            if (pawns == null || pawns.Count == 0)
+            {
+                return;
+            }
+
+            if (AllFactionless(pawns))
+            {
+                if (pawns.Count > 1)
+                {
+                    AppendParagraph(ref text, "Mugirl.OpeningPodCrash_FactionlessMultiple".Translate());
+                }
+                else
+                {
+                    Pawn pawn = pawns[0];
+                    AppendParagraph(ref text, "Mugirl.OpeningPodCrash_Factionless".Translate(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN", true));
+                }
+
+                return;
+            }
+
+            for (int i = 0; i < pawns.Count; i++)
+            {
+                Pawn pawn = pawns[i];
+                if (pawn.Faction == null)
+                {
+                    AppendParagraph(ref text, "Mugirl.OpeningPodCrash_Factionless".Translate(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN", true));
+                }
+                else if (MugirlWildSlaveUtility.IsHostileToPlayer(pawn.Faction))
+                {
+                    AppendParagraph(ref text, "Mugirl.OpeningPodCrash_Hostile".Translate(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN", true));
+                }
+                else
+                {
+                    AppendParagraph(ref text, "Mugirl.OpeningPodCrash_NonHostile".Translate(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN", true));
+                }
+            }
+        }
+
+        private static bool AllFactionless(List<Pawn> pawns)
+        {
+            for (int i = 0; i < pawns.Count; i++)
+            {
+                if (pawns[i]?.Faction != null)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private static void AppendChildInfo(List<Pawn> pawns, ref TaggedString text)
+        {
+            for (int i = 0; i < pawns.Count; i++)
+            {
+                Pawn pawn = pawns[i];
+                if (pawn?.ageTracker != null && pawn.DevelopmentalStage.Juvenile())
+                {
+                    string age = (pawn.ageTracker.AgeBiologicalYears * 3600000)
+                        .ToStringTicksToPeriod(true, false, true, true, false);
+                    AppendParagraph(ref text, "Mugirl.OpeningPodCrash_Child".Translate(pawn.Named("PAWN"), age.Named("AGE")));
+                }
+            }
+        }
+
+        private static void AppendRelationsInfo(List<Pawn> pawns, ref TaggedString text, ref TaggedString label)
+        {
+            for (int i = 0; i < pawns.Count; i++)
+            {
+                Pawn pawn = pawns[i];
+                PawnRelationUtility.TryAppendRelationsWithColonistsInfo(ref text, ref label, pawn);
+            }
+        }
+
+        private static void AppendParagraph(ref TaggedString text, TaggedString paragraph)
+        {
+            text += "\n\n";
+            text += paragraph;
         }
     }
 }

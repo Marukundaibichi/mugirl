@@ -82,17 +82,20 @@ namespace Mugirl
             Apparel apparelToUnlock = targetApparel;
             if (itemToUse == null || targetToReserve == null || pawnToUnlock?.apparel == null || apparelToUnlock == null)
             {
+                yield return EndIncompletableToil();
                 yield break;
             }
 
             SlaveApparel apparel = apparelToUnlock as SlaveApparel;
             if (apparel == null)
             {
+                yield return EndIncompletableToil();
                 yield break;
             }
 
-            if (!apparelToUnlock.SatisfiesKey(itemToUse) || !TargetStillWearsApparel(pawnToUnlock, apparelToUnlock))
+            if (!apparelToUnlock.SatisfiesKey(itemToUse) || !pawnToUnlock.IsWornLockedSlaveApparel(apparelToUnlock))
             {
+                yield return EndIncompletableToil();
                 yield break;
             }
 
@@ -134,7 +137,7 @@ namespace Mugirl
             }
 
             Toil wait = Toils_General.WaitWith(itar, apparel.SlaveDef.unlockTick, true);
-            wait.FailOn(() => !TargetStillWearsApparel(pawnToUnlock, apparelToUnlock));
+            wait.FailOn(() => !pawnToUnlock.IsWornLockedSlaveApparel(apparelToUnlock));
             if (targetToReserve != pawn)
             {
                 wait.FailOnCannotTouch(itar, PathEndMode.Touch);
@@ -157,10 +160,22 @@ namespace Mugirl
                     {
                         apparel.isLocked = false;
                         apparel.lockCount = 0;
+                        pawnToUnlock.apparel.Unlock(apparelToUnlock);
 
                         if (pawnToUnlock.apparel.WornApparel.Contains(apparelToUnlock))
                         {
-                            if (pawnToUnlock.apparel.TryDrop(apparelToUnlock, out Apparel _, DropCellFor(targetToReserve, pawnToUnlock), false))
+                            bool dropped = false;
+                            SlaveApparelAutoStageContext.BeginSuppressNextStage();
+                            try
+                            {
+                                dropped = pawnToUnlock.apparel.TryDrop(apparelToUnlock, out Apparel _, DropCellFor(targetToReserve, pawnToUnlock), false);
+                            }
+                            finally
+                            {
+                                SlaveApparelAutoStageContext.EndSuppressNextStage();
+                            }
+
+                            if (dropped)
                             {
                                 Messages.Message("Mugirl.SlaveApparelFullyUnlocked".Translate(pawnToUnlock.LabelShort), pawnToUnlock, MessageTypeDefOf.PositiveEvent);
                             }
@@ -180,6 +195,18 @@ namespace Mugirl
 
                     if (itemToUse != null && !itemToUse.Destroyed)
                         itemToUse.Destroy();
+                },
+                defaultCompleteMode = ToilCompleteMode.Instant
+            };
+        }
+
+        private Toil EndIncompletableToil()
+        {
+            return new Toil
+            {
+                initAction = () =>
+                {
+                    pawn.jobs.curDriver.EndJobWith(JobCondition.Incompletable);
                 },
                 defaultCompleteMode = ToilCompleteMode.Instant
             };

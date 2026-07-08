@@ -16,11 +16,12 @@ namespace Mugirl
             base.DoEffect(p);
 
             Apparel lockedApparel = null;
-            for (int i = 0; i < p.apparel.LockedApparel.Count; i++)
+            for (int i = 0; i < p.apparel.WornApparel.Count; i++)
             {
-                if (p.apparel.LockedApparel[i].SatisfiesKey(parent))
+                Apparel wornApparel = p.apparel.WornApparel[i];
+                if (p.IsWornLockedSlaveApparel(wornApparel) && wornApparel.SatisfiesKey(parent))
                 {
-                    lockedApparel = p.apparel.LockedApparel[i];
+                    lockedApparel = wornApparel;
                     break;
                 }
             }
@@ -34,8 +35,20 @@ namespace Mugirl
                 {
                     apparel.isLocked = false;
                     apparel.lockCount = 0;
+                    p.apparel.Unlock(lockedApparel);
 
-                    if (p.apparel.TryDrop(lockedApparel, out Apparel _, p.PositionHeld, false))
+                    bool dropped = false;
+                    SlaveApparelAutoStageContext.BeginSuppressNextStage();
+                    try
+                    {
+                        dropped = p.apparel.TryDrop(lockedApparel, out Apparel _, p.PositionHeld, false);
+                    }
+                    finally
+                    {
+                        SlaveApparelAutoStageContext.EndSuppressNextStage();
+                    }
+
+                    if (dropped)
                     {
                         parent.Destroy();
                     }
@@ -43,6 +56,7 @@ namespace Mugirl
                     {
                         apparel.lockCount = previousLockCount > 0 ? previousLockCount : 1;
                         apparel.isLocked = true;
+                        p.apparel.Lock(lockedApparel);
                     }
                 }
                 else if (!parent.Destroyed)

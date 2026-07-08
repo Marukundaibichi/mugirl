@@ -17,8 +17,16 @@ namespace Mugirl
         {
             base.DoEffect(p);
             var app = parent as Apparel;
-            if ((p.apparel != null) && (app != null))
+            if (p?.apparel != null && app != null)
+            {
+                if (SlaveApparelWearGuard.WouldReplaceLockedSlaveApparel(p, app))
+                {
+                    SlaveApparelDropGuard.RejectDropMessage();
+                    return;
+                }
+
                 p.apparel.Wear(app);
+            }
         }
     }
 }
