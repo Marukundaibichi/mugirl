@@ -123,6 +123,32 @@ namespace Mugirl
             RemoveTag(pawn, FusionInvestorTag);
         }
 
+        internal static bool ClearMigrationPawn(Pawn pawn)
+        {
+            bool hadMigrationTag = IsMigrationPawn(pawn);
+            RemoveTag(pawn, MigrationTag);
+            if (hadMigrationTag && !IsPassiveEventPawn(pawn))
+            {
+                UnlockEventBikini(pawn);
+            }
+
+            return hadMigrationTag;
+        }
+
+        internal static int ClearPlayerMigrationPawns()
+        {
+            int cleared = 0;
+            foreach (Pawn pawn in PawnsFinder.All_AliveOrDead)
+            {
+                if (pawn != null && MugirlWildSlaveUtility.IsPlayerFaction(pawn.Faction) && ClearMigrationPawn(pawn))
+                {
+                    cleared++;
+                }
+            }
+
+            return cleared;
+        }
+
         internal static void ClearTemporaryEventTags(Pawn pawn)
         {
             bool hadTemporaryEventTag = IsPassiveEventPawn(pawn);

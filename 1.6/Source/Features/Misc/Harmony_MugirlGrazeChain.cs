@@ -13,7 +13,12 @@ namespace Mugirl
 
         internal static bool ShouldUseFixedNutrition(Pawn pawn)
         {
-            return MugirlEventUtility.IsMigrationPawn(pawn) && pawn?.needs?.food != null;
+            if (pawn?.needs?.food == null || MugirlWildSlaveUtility.IsPlayerFaction(pawn.Faction))
+            {
+                return false;
+            }
+
+            return MugirlEventUtility.IsMigrationPawn(pawn);
         }
     }
 

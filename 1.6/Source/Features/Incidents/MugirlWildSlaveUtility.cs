@@ -73,6 +73,11 @@ namespace Mugirl
             }
 
             bool changed = false;
+            if (MugirlEventUtility.ClearMigrationPawn(pawn))
+            {
+                changed = true;
+            }
+
             bool shouldUseNonWildKind = wasEscapeWildSlave || IsWildMugirl(pawn);
             if (shouldUseNonWildKind && Mugirl_DefOf.Mugirl_PreEscapeWildSlave != null && pawn.kindDef != Mugirl_DefOf.Mugirl_PreEscapeWildSlave)
             {

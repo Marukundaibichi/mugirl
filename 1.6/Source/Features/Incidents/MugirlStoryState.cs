@@ -54,6 +54,7 @@ namespace Mugirl
             ResetStoryServiceSchedule();
             ResetTransientRuntimeState();
             NormalizeJuvenileGraphics();
+            MugirlEventUtility.ClearPlayerMigrationPawns();
         }
 
         public override void GameComponentTick()
