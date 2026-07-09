@@ -143,7 +143,7 @@ namespace Mugirl
                 return false;
             }
 
-            return FoodUtility.FoodIsSuitable(pawn, thing.def);
+            return pawn.WillEat(thing, pawn);
         }
     }
 
@@ -282,7 +282,7 @@ namespace Mugirl
                 label = string.Format("{0} ({1})", label, "WarningFoodDisliked".Translate());
             }
 
-            if (!plant.def.ingestible.nonDrugIngestibleWithoutFoodNeed && !pawn.FoodIsSuitable(plant.def))
+            if (!plant.def.ingestible.nonDrugIngestibleWithoutFoodNeed && !pawn.WillEat(plant, pawn))
             {
                 return new FloatMenuOption(label + ": " + "FoodNotSuitable".Translate().CapitalizeFirst(), null);
             }

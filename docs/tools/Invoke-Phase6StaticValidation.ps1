@@ -744,12 +744,14 @@ try {
         $dynamicRecipeSafetyChecks++
         $drugAdministerUsersSafe = $drugAdministerText -match 'PopulateRecipeUsers\(recipeDef\)' `
             -and $drugAdministerText -match 'DefDatabase<ThingDef>\.AllDefsListForReading' `
-            -and $drugAdministerText -match 'MugirlIdentity\.IsMugirlPawnDef\(pawnDef\)' `
-            -and $drugAdministerText -notmatch 'race\.IsFlesh' `
+            -and $drugAdministerText -match 'pawnDef\?\.category\s*==\s*ThingCategory\.Pawn' `
+            -and $drugAdministerText -match 'pawnDef\.race\s*!=\s*null' `
+            -and $drugAdministerText -match 'pawnDef\.race\.IsFlesh' `
+            -and $drugAdministerText -notmatch 'MugirlIdentity\.IsMugirlPawnDef\(pawnDef\)' `
             -and $drugAdministerText -notmatch 'Mugirl_DefOf\.MugirlBody' `
             -and $drugAdministerText -notmatch 'DefDatabase<ThingDef>\.AllDefs(?!ListForReading)'
         if (-not $drugAdministerUsersSafe) {
-            $dynamicRecipeSafetyIssues += "$drugAdministerPath :: administer milk recipeUsers must stay limited to Mugirl race/body and avoid broad flesh-pawn scans"
+            $dynamicRecipeSafetyIssues += "$drugAdministerPath :: administer milk recipeUsers must follow vanilla drug administer flesh-pawn scanning"
         }
     }
     else {
@@ -807,7 +809,6 @@ try {
         '1.6\Source\Features\Milk\WorkGiver_GatherBodyResources.cs' = 'MugirlIdentity\.HasMugirlBody\(pawn2\)'
         '1.6\Source\Features\Newborn\LifeStageVisualService.cs' = 'MugirlIdentity\.HasMugirlBody\(pawn\)'
         '1.6\Source\Features\Newborn\Harmony_PawnGenerator_NewbornVisuals.cs' = 'MugirlIdentity\.HasMugirlBody\(__result\)'
-        '1.6\Source\Features\Misc\Harmony_DrugAdministerDefs.cs' = 'MugirlIdentity\.IsMugirlPawnDef\(pawnDef\)'
     }
     foreach ($entry in $identityCallSites.GetEnumerator()) {
         if (-not (Test-Path -LiteralPath $entry.Key)) {
