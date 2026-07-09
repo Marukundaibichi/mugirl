@@ -32,7 +32,7 @@ namespace Mugirl
                 allowGay: true,
                 allowPregnant: false,
                 forceRecruitable: true,
-                validatorPostGear: null,
+                validatorPostGear: IsValidOpeningPodPawn,
                 fixedBiologicalAge: OpeningPodPawnAgeYears,
                 fixedChronologicalAge: OpeningPodPawnAgeYears,
                 fixedGender: Gender.Female,
@@ -65,6 +65,7 @@ namespace Mugirl
                 && MugirlIdentity.IsMugirlDef(pawn)
                 && pawn.kindDef == Mugirl_DefOf.Mugirl_Beginning_Slave
                 && pawn.Faction == null
+                && MugirlGeneratedPawnUtility.HasMugirlSlaveBackstories(pawn)
                 && !pawn.WorkTagIsDisabled(WorkTags.Violent);
         }
 

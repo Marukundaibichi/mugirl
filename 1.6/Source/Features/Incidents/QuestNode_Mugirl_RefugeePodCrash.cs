@@ -96,6 +96,7 @@ namespace Mugirl
                 && MugirlIdentity.IsMugirlDef(pawn)
                 && pawn.kindDef == Mugirl_DefOf.Mugirl_EscapeSpaceSlave
                 && pawn.Faction == null
+                && MugirlGeneratedPawnUtility.HasMugirlSlaveBackstories(pawn)
                 && !pawn.WorkTagIsDisabled(WorkTags.Violent);
         }
 

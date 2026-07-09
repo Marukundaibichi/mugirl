@@ -40,6 +40,8 @@ namespace Mugirl
 
         public bool enableFastMilking = false;
 
+        public bool enableVanillaMilkGauge = false;
+
         public override void ExposeData()
         {
             base.ExposeData();
@@ -49,6 +51,7 @@ namespace Mugirl
             Scribe_Values.Look(ref enableMugirlFusionInvestmentEvent, "enableMugirlFusionInvestmentEvent", true);
             Scribe_Values.Look(ref enableRunawayMugirlFarmQuest, "enableRunawayMugirlFarmQuest", true);
             Scribe_Values.Look(ref enableFastMilking, "enableFastMilking", false);
+            Scribe_Values.Look(ref enableVanillaMilkGauge, "enableVanillaMilkGauge", false);
         }
     }
 }

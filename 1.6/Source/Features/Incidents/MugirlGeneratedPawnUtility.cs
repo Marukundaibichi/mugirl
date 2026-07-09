@@ -1,3 +1,4 @@
+using RimWorld;
 using RimWorld.Planet;
 using Verse;
 
@@ -5,6 +6,25 @@ namespace Mugirl
 {
     internal static class MugirlGeneratedPawnUtility
     {
+        private const string MugirlSlaveBackstoryCategory = "Mugirl_Slave";
+
+        public static bool HasMugirlSlaveBackstories(Pawn pawn)
+        {
+            if (pawn?.story == null)
+            {
+                return false;
+            }
+
+            return BackstoryHasCategory(pawn.story.Childhood, MugirlSlaveBackstoryCategory)
+                && BackstoryHasCategory(pawn.story.Adulthood, MugirlSlaveBackstoryCategory);
+        }
+
+        private static bool BackstoryHasCategory(BackstoryDef backstory, string category)
+        {
+            return backstory?.spawnCategories != null
+                && backstory.spawnCategories.Contains(category);
+        }
+
         public static bool TryPassToWorld(Pawn pawn)
         {
             if (pawn == null || pawn.Destroyed)

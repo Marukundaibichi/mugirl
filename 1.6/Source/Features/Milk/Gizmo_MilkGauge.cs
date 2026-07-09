@@ -22,6 +22,7 @@ namespace Mugirl
         private static readonly Rect GaugeTextureCoords = SourceRectToTextureCoords(GaugeSourceCropRect);
 
         private CompMooHasBodyResource comp;
+        private string label;
         private string desc;
 
         private static Texture2D gaugeTexture;
@@ -34,6 +35,7 @@ namespace Mugirl
         public Gizmo_MilkGauge(CompMooHasBodyResource comp, string label, string desc)
         {
             this.comp = comp;
+            this.label = label;
             this.desc = desc;
         }
 
@@ -53,9 +55,16 @@ namespace Mugirl
 
             float fullness = Mathf.Clamp01(comp.Fullness);
 
-            Rect gaugeRect = FillRectCentered(totalRect, GaugeSourceCropRect.width / GaugeSourceCropRect.height);
-            gaugeRect = ScaleRectCentered(gaugeRect, GaugeDrawScale);
-            interacted = DrawGauge(gaugeRect, fullness) || interacted;
+            if (UseVanillaMilkGauge)
+            {
+                interacted = DrawVanillaGauge(totalRect, fullness) || interacted;
+            }
+            else
+            {
+                Rect gaugeRect = FillRectCentered(totalRect, GaugeSourceCropRect.width / GaugeSourceCropRect.height);
+                gaugeRect = ScaleRectCentered(gaugeRect, GaugeDrawScale);
+                interacted = DrawGauge(gaugeRect, fullness) || interacted;
+            }
 
             // Tooltip 文本会随奶量变化，必须使用稳定 ID 避免悬浮提示闪烁。
             TooltipHandler.TipRegion(totalRect, new TipSignal(GetMainTooltip, StableTooltipId(MainTooltipSeed)));
@@ -95,6 +104,34 @@ namespace Mugirl
 
             bool interacted = HandleThresholdDrag(milkSlotRect);
             DrawThresholdLine(milkSlotRect, comp.MilkThreshold);
+
+            return interacted;
+        }
+
+        private bool DrawVanillaGauge(Rect totalRect, float fullness)
+        {
+            Rect innerRect = totalRect.ContractedBy(6f);
+            Rect labelRect = new Rect(innerRect.x, innerRect.y, innerRect.width, 24f);
+            Rect milkSlotRect = new Rect(innerRect.x, innerRect.yMax - 28f, innerRect.width, 24f);
+
+            GameFont oldFont = Text.Font;
+            TextAnchor oldAnchor = Text.Anchor;
+
+            Text.Font = GameFont.Tiny;
+            Text.Anchor = TextAnchor.UpperLeft;
+            Widgets.Label(labelRect, label ?? string.Empty);
+
+            Rect interactiveRect = Widgets.FillableBar(milkSlotRect, fullness);
+
+            Text.Font = GameFont.Small;
+            Text.Anchor = TextAnchor.MiddleCenter;
+            Widgets.Label(milkSlotRect, fullness.ToStringPercent());
+
+            Text.Font = oldFont;
+            Text.Anchor = oldAnchor;
+
+            bool interacted = HandleThresholdDrag(interactiveRect);
+            DrawThresholdLine(interactiveRect, comp.MilkThreshold);
 
             return interacted;
         }
@@ -224,6 +261,14 @@ namespace Mugirl
                 }
 
                 return gaugeTexture;
+            }
+        }
+
+        private static bool UseVanillaMilkGauge
+        {
+            get
+            {
+                return MugirlMod.Settings != null && MugirlMod.Settings.enableVanillaMilkGauge;
             }
         }
 

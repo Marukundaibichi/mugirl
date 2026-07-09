@@ -32,6 +32,10 @@ namespace Mugirl
             listingStandard.CheckboxLabeled("Mugirl.Settings.FastMilking.Label".Translate(), ref settings.enableFastMilking,
                 "Mugirl.Settings.FastMilking.Desc".Translate());
 
+            listingStandard.Gap(12f);
+            listingStandard.CheckboxLabeled("Mugirl.Settings.VanillaMilkGauge.Label".Translate(), ref settings.enableVanillaMilkGauge,
+                "Mugirl.Settings.VanillaMilkGauge.Desc".Translate());
+
             listingStandard.End();
         }
     }

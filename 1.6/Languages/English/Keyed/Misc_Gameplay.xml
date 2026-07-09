@@ -63,6 +63,8 @@
     <Mugirl.Settings.StructuralCrashEvent.Desc>Controls whether the Mugirl crash event can trigger. Disable this to prevent the event from firing.</Mugirl.Settings.StructuralCrashEvent.Desc>
     <Mugirl.Settings.FastMilking.Label>Fast milking</Mugirl.Settings.FastMilking.Label>
     <Mugirl.Settings.FastMilking.Desc>When enabled, self-milking and assisted milking work time for Mugirls is shortened to 1 second.</Mugirl.Settings.FastMilking.Desc>
+    <Mugirl.Settings.VanillaMilkGauge.Label>Use vanilla-style milk gauge</Mugirl.Settings.VanillaMilkGauge.Label>
+    <Mugirl.Settings.VanillaMilkGauge.Desc>When enabled, the selected Mugirl milk gauge uses a vanilla-style long rectangular bar instead of the custom texture gauge.</Mugirl.Settings.VanillaMilkGauge.Desc>
     <Mugirl.Settings.MigrationEvent.Label>Enable Mugirl migration</Mugirl.Settings.MigrationEvent.Label>
     <Mugirl.Settings.MigrationEvent.Desc>Controls whether the wild Mugirl migration event can trigger.</Mugirl.Settings.MigrationEvent.Desc>
     <Mugirl.Settings.FusionInvestmentEvent.Label>Enable bovine fusion investment</Mugirl.Settings.FusionInvestmentEvent.Label>

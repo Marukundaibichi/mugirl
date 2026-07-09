@@ -126,6 +126,10 @@
     <Mugirl.Settings.FastMilking.Label>快速榨乳</Mugirl.Settings.FastMilking.Label>
     <!-- When enabled, self-milking and assisted milking work time for Mugirls is shortened to 1 second. -->
     <Mugirl.Settings.FastMilking.Desc>开启后，雪牛娘的自己榨乳和他人榨乳工作时间都会缩短为 1 秒。</Mugirl.Settings.FastMilking.Desc>
+    <!-- Use vanilla-style milk gauge -->
+    <Mugirl.Settings.VanillaMilkGauge.Label>启用原版风格的乳量槽</Mugirl.Settings.VanillaMilkGauge.Label>
+    <!-- When enabled, the selected Mugirl milk gauge uses a vanilla-style long rectangular bar instead of the custom texture gauge. -->
+    <Mugirl.Settings.VanillaMilkGauge.Desc>开启后，选中雪牛娘时的乳量槽会使用原版风格的长矩形状态条，而不是贴图乳量槽。</Mugirl.Settings.VanillaMilkGauge.Desc>
     <!-- Enable Mugirl migration event -->
     <Mugirl.Settings.MigrationEvent.Label>启用雪牛娘大迁徙</Mugirl.Settings.MigrationEvent.Label>
     <!-- Controls whether the wild Mugirl migration event can trigger. -->

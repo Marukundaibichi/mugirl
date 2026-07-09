@@ -6,13 +6,13 @@
         <itemQuality>Poor</itemQuality>
         <chemicalAddictionChance>0.06</chemicalAddictionChance>
         <backstoryCryptosleepCommonality>0</backstoryCryptosleepCommonality>
-        <backstoryFilters>
+        <backstoryFiltersOverride>
             <li>
                 <categories>
                     <li>Mugirl_Slave</li>
                 </categories>
             </li>
-        </backstoryFilters>
+        </backstoryFiltersOverride>
         <isFighter>true</isFighter> <!-- 是否具有战斗能力 -->
         <chemicalAddictionChance>0.01</chemicalAddictionChance> <!-- 生成时有概率有化学成瘾 -->
         <gearHealthRange>0.8~1</gearHealthRange> <!-- 装备耐久度 -->
