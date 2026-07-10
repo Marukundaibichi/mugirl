@@ -77,6 +77,7 @@
         <Compile Include="Core\MugirlTickUtility.cs" />
         <Compile Include="Compatibility\MeleeAnimation\MeleeAnimationCompat.cs" />
         <Compile Include="Compatibility\OtherMods\ExternalBreastHediffDefs.cs" />
+        <Compile Include="Compatibility\OtherMods\LactationExpansionCompat.cs" />
         <Compile Include="DefOf\MugirlContentDefOf.cs" />
         <Compile Include="DefOf\Mugirl_DefOf.cs" />
         <Compile Include="Features\Apparel\MugirlApparelTagUtility.cs" />
