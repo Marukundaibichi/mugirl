@@ -72,14 +72,25 @@ namespace Mugirl
         }
     }
 
-    [HarmonyPatch(typeof(Pawn_ApparelTracker), nameof(Pawn_ApparelTracker.IsLocked))]
-    public static class Pawn_ApparelTracker_IsLocked_SlaveApparel_Patch
+    [HarmonyPatch(typeof(Pawn_ApparelTracker), nameof(Pawn_ApparelTracker.Unlock))]
+    public static class Pawn_ApparelTracker_Unlock_SlaveApparel_Patch
     {
-        public static void Postfix(Apparel apparel, ref bool __result)
+        public static bool Prefix(Pawn_ApparelTracker __instance, Apparel apparel)
         {
-            if (apparel is SlaveApparel slaveApparel && slaveApparel.isLocked)
+            // Key and crack flows clear the custom lock first; removal callbacks run after WornApparel is updated.
+            return !apparel.IsLockedSlaveApparel()
+                || __instance?.WornApparel?.Contains(apparel) != true;
+        }
+    }
+
+    [HarmonyPatch(typeof(Pawn_ApparelTracker), nameof(Pawn_ApparelTracker.ExposeData))]
+    public static class Pawn_ApparelTracker_ExposeData_SlaveApparel_Patch
+    {
+        public static void Postfix(Pawn_ApparelTracker __instance)
+        {
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                __result = true;
+                __instance?.pawn.EnsureWornSlaveApparelLocks();
             }
         }
     }

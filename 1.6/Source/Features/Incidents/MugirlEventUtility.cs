@@ -42,62 +42,6 @@ namespace Mugirl
             return IsMigrationPawn(pawn);
         }
 
-        internal static void WearBikiniOnly(Pawn pawn)
-        {
-            EnsureBikiniOnly(pawn);
-        }
-
-        internal static void EnsureBikiniOnly(Pawn pawn)
-        {
-            if (pawn?.apparel == null)
-            {
-                return;
-            }
-
-            ThingDef bikiniDef = MugirlContentDefOf.Mugirl_Bikini;
-            if (bikiniDef == null)
-            {
-                return;
-            }
-
-            SlaveApparelAutoStageContext.BeginSuppressNextStage();
-            try
-            {
-                Apparel wornBikini = null;
-                System.Collections.Generic.List<Apparel> wornApparel = pawn.apparel.WornApparel;
-                for (int i = wornApparel.Count - 1; i >= 0; i--)
-                {
-                    Apparel removedApparel = wornApparel[i];
-                    if (removedApparel?.def == bikiniDef && wornBikini == null)
-                    {
-                        wornBikini = removedApparel;
-                        pawn.apparel.Lock(wornBikini);
-                        continue;
-                    }
-
-                    pawn.apparel.Unlock(removedApparel);
-                    pawn.apparel.Remove(removedApparel);
-                    removedApparel.Destroy(DestroyMode.Vanish);
-                }
-
-                if (wornBikini != null)
-                {
-                    return;
-                }
-
-                ThingDef stuff = bikiniDef.MadeFromStuff ? GenStuff.RandomStuffFor(bikiniDef) : null;
-                Apparel apparel = ThingMaker.MakeThing(bikiniDef, stuff) as Apparel;
-                if (apparel != null)
-                {
-                    pawn.apparel.Wear(apparel, dropReplacedApparel: false, locked: true);
-                }
-            }
-            finally
-            {
-                SlaveApparelAutoStageContext.EndSuppressNextStage();
-            }
-        }
-
         internal static void MarkMigrationPawn(Pawn pawn)
         {
             AddTag(pawn, MigrationTag);
@@ -127,11 +71,6 @@ namespace Mugirl
         {
             bool hadMigrationTag = IsMigrationPawn(pawn);
             RemoveTag(pawn, MigrationTag);
-            if (hadMigrationTag && !IsPassiveEventPawn(pawn))
-            {
-                UnlockEventBikini(pawn);
-            }
-
             return hadMigrationTag;
         }
 
@@ -151,13 +90,8 @@ namespace Mugirl
 
         internal static void ClearTemporaryEventTags(Pawn pawn)
         {
-            bool hadTemporaryEventTag = IsPassiveEventPawn(pawn);
             RemoveTag(pawn, MigrationTag);
             RemoveTag(pawn, RunawayTag);
-            if (hadTemporaryEventTag && !IsPassiveEventPawn(pawn))
-            {
-                UnlockEventBikini(pawn);
-            }
         }
 
         internal static void ClearRunawayPanic(Pawn pawn)
@@ -213,23 +147,6 @@ namespace Mugirl
             pawn?.questTags?.Remove(tag);
         }
 
-        private static void UnlockEventBikini(Pawn pawn)
-        {
-            if (pawn?.apparel == null || MugirlContentDefOf.Mugirl_Bikini == null)
-            {
-                return;
-            }
-
-            System.Collections.Generic.List<Apparel> wornApparel = pawn.apparel.WornApparel;
-            for (int i = 0; i < wornApparel.Count; i++)
-            {
-                Apparel apparel = wornApparel[i];
-                if (apparel?.def == MugirlContentDefOf.Mugirl_Bikini)
-                {
-                    pawn.apparel.Unlock(apparel);
-                }
-            }
-        }
     }
 
     [HarmonyPatch(typeof(Pawn_MindState), "CheckStartMentalStateBecauseRecruitAttempted")]

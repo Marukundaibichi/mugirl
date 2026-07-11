@@ -197,7 +197,7 @@
                 <storedMoteText></storedMoteText>
                 <releaseThingDefName>Mugirl_Milk</releaseThingDefName>
                 <spawnFilthOnRelease>true</spawnFilthOnRelease>
-                <filthDefName>MugirlMilkFilth</filthDefName>
+                <filthDefName>MugirlMilkStain</filthDefName>
                 <spawnFilthInFacingDirection>true</spawnFilthInFacingDirection>
                 <filthCountRange>
                     <min>1</min>
@@ -303,7 +303,7 @@
                 <storedMoteText></storedMoteText>
                 <releaseThingDefName>Mugirl_Milk</releaseThingDefName>
                 <spawnFilthOnRelease>true</spawnFilthOnRelease>
-                <filthDefName>MugirlMilkFilth</filthDefName>
+                <filthDefName>MugirlMilkStain</filthDefName>
                 <spawnFilthInFacingDirection>true</spawnFilthInFacingDirection>
                 <filthCountRange>
                     <min>1</min>

@@ -6,7 +6,7 @@ namespace Mugirl
     {
         public static void Postfix(Pawn __result)
         {
-            __result.LockGeneratedSlaveApparel();
+            __result.EnsureWornSlaveApparelLocks();
         }
     }
 }

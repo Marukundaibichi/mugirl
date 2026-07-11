@@ -55,7 +55,6 @@ namespace Mugirl
                 Pawn pawn = pawns[i];
                 IntVec3 cell = CellFinder.RandomClosewalkCellNear(start, map, 10);
                 GenSpawn.Spawn(pawn, cell, map, rot);
-                MugirlEventUtility.EnsureBikiniOnly(pawn);
             }
 
             MapComponent_MugirlMigration migration = map.GetComponent<MapComponent_MugirlMigration>();
@@ -102,7 +101,6 @@ namespace Mugirl
                     continue;
                 }
 
-                MugirlEventUtility.WearBikiniOnly(pawn);
                 MugirlEventUtility.MarkMigrationPawn(pawn);
                 MugirlEventUtility.PreparePassiveWildPawn(pawn);
 
@@ -173,6 +171,7 @@ namespace Mugirl
 
     public class MapComponent_MugirlMigration : MapComponent
     {
+        private const int CurrentDataVersion = 1;
         private const int ForcedGrazeIntervalTicks = 300;
         private const float ForcedGrazeSearchRadius = 30f;
         private const float FoodSatisfiedTolerance = 0.02f;
@@ -181,6 +180,7 @@ namespace Mugirl
         private List<int> nextGrazeTicks = new List<int>();
         private IntVec3 exitCell = IntVec3.Invalid;
         private int ticksUntilDeparture;
+        private int dataVersion = CurrentDataVersion;
 
         public MapComponent_MugirlMigration(Map map) : base(map)
         {
@@ -246,7 +246,6 @@ namespace Mugirl
                     continue;
                 }
 
-                MugirlEventUtility.EnsureBikiniOnly(pawn);
                 TryForcedGraze(pawn, i);
             }
 
@@ -395,6 +394,38 @@ namespace Mugirl
             }
         }
 
+        private void ReleaseLegacyBikiniLocks()
+        {
+            foreach (Pawn pawn in PawnsFinder.All_AliveOrDead)
+            {
+                if (!MugirlEventUtility.IsMigrationPawn(pawn) || MugirlEventUtility.IsRunawayFarmPawn(pawn))
+                {
+                    continue;
+                }
+
+                UnlockLegacyBikini(pawn);
+            }
+        }
+
+        private static void UnlockLegacyBikini(Pawn pawn)
+        {
+            ThingDef bikiniDef = MugirlContentDefOf.Mugirl_Bikini;
+            if (pawn?.apparel == null || bikiniDef == null)
+            {
+                return;
+            }
+
+            List<Apparel> wornApparel = pawn.apparel.WornApparel;
+            for (int i = 0; i < wornApparel.Count; i++)
+            {
+                Apparel apparel = wornApparel[i];
+                if (apparel?.def == bikiniDef)
+                {
+                    pawn.apparel.Unlock(apparel);
+                }
+            }
+        }
+
         private void BeginDeparture()
         {
             BeginDeparture(LocomotionUrgency.Walk);
@@ -441,6 +472,7 @@ namespace Mugirl
             Scribe_Collections.Look(ref nextGrazeTicks, "nextGrazeTicks", LookMode.Value);
             Scribe_Values.Look(ref exitCell, "exitCell", IntVec3.Invalid);
             Scribe_Values.Look(ref ticksUntilDeparture, "ticksUntilDeparture", 0);
+            Scribe_Values.Look(ref dataVersion, "dataVersion", 0);
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
@@ -450,6 +482,11 @@ namespace Mugirl
                 }
 
                 EnsureGrazeTicksAligned();
+                if (dataVersion < CurrentDataVersion)
+                {
+                    ReleaseLegacyBikiniLocks();
+                    dataVersion = CurrentDataVersion;
+                }
             }
         }
     }

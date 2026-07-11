@@ -419,7 +419,7 @@ try {
     }
 
     Write-Step "Forbidden production patterns"
-    $forbidden = 'Apperal|Heiffs|\bHai\b|Gloden|MechanoidWorkControlSettings|allArmorDefs|milking\(V1\)|south \.png|EyeInHead _backpack|Ldloc_S|MugirlSkinApplied|Analyzer|Mugirl_FactionUtility|AdvancedSlaveApparel\s*\|\|[^\r\n]*BrainWashSlaveApparel'
+    $forbidden = 'Apperal|Heiffs|\bHai\b|Gloden|MechanoidWorkControlSettings|allArmorDefs|milking\(V1\)|south \.png|EyeInHead _backpack|Ldloc_S|MugirlSkinApplied|Analyzer|Mugirl_FactionUtility|AdvancedSlaveApparel\s*\|\|[^\r\n]*BrainWashSlaveApparel|EnsureBikiniOnly|WearBikiniOnly|UnlockEventBikini|Pawn_ApparelTracker_IsLocked_SlaveApparel_Patch'
     $hits = & rg -n $forbidden @ProductionRoots
     if ($LASTEXITCODE -eq 0) {
         $hits
@@ -2445,6 +2445,66 @@ try {
     }
 
     $incidentInteractionSafetyChecks++
+    $fusionInvestmentPath = '1.6\Source\Features\Incidents\IncidentWorker_Mugirl_FusionInvestment.cs'
+    if (Test-Path -LiteralPath $fusionInvestmentPath) {
+        $fusionInvestmentText = Get-Content -LiteralPath $fusionInvestmentPath -Encoding utf8 -Raw
+        $fusionRewardSafe = $fusionInvestmentText -match 'Mugirl_DefOf\.Mugirl_WildMugirl' `
+            -and $fusionInvestmentText -match 'MugirlWildSlaveUtility\.PlayerFaction' `
+            -and $fusionInvestmentText -match 'dontGiveWeapon:\s*true' `
+            -and $fusionInvestmentText -match 'request\.ForceNoIdeoGear\s*=\s*true' `
+            -and $fusionInvestmentText -notmatch 'Mugirl_DefOf\.Mugirl_Slave\s*,' `
+            -and $fusionInvestmentText -notmatch 'EnsureBikiniOnly|WearBikiniOnly'
+        if (-not $fusionRewardSafe) {
+            $incidentInteractionSafetyIssues += "$fusionInvestmentPath :: fusion rewards must use the bikini-only WildMugirl PawnKind without event-side apparel cleanup"
+        }
+    }
+    else {
+        $incidentInteractionSafetyIssues += "$fusionInvestmentPath :: missing file for fusion reward PawnKind safety"
+    }
+
+    $incidentInteractionSafetyChecks++
+    $slavePawnKindsPath = '1.6\Defs\PawnKindDefs\PawnKinds_Slave.xml'
+    if (Test-Path -LiteralPath $slavePawnKindsPath) {
+        $slavePawnKinds = Get-XmlDocument $slavePawnKindsPath
+        $wildMugirlKind = $slavePawnKinds.SelectSingleNode('/Defs/PawnKindDef[defName="Mugirl_WildMugirl"]')
+        $requiredApparel = $null
+        $apparelMoney = $null
+        if ($wildMugirlKind) {
+            $requiredApparel = $wildMugirlKind.SelectNodes('apparelRequired/li')
+            $apparelMoney = $wildMugirlKind.SelectSingleNode('apparelMoney')
+        }
+        if ($wildMugirlKind -eq $null `
+            -or $apparelMoney -eq $null `
+            -or $apparelMoney.InnerText -ne '0~0' `
+            -or $requiredApparel -eq $null `
+            -or $requiredApparel.Count -ne 1 `
+            -or $requiredApparel.Item(0).InnerText -ne 'Mugirl_Bikini') {
+            $incidentInteractionSafetyIssues += "$slavePawnKindsPath :: Mugirl_WildMugirl must generate with no apparel budget and require only Mugirl_Bikini"
+        }
+    }
+    else {
+        $incidentInteractionSafetyIssues += "$slavePawnKindsPath :: missing file for WildMugirl apparel safety"
+    }
+
+    $incidentInteractionSafetyChecks++
+    $migrationIncidentPath = '1.6\Source\Features\Incidents\IncidentWorker_Mugirl_Migration.cs'
+    if (Test-Path -LiteralPath $migrationIncidentPath) {
+        $migrationIncidentText = Get-Content -LiteralPath $migrationIncidentPath -Encoding utf8 -Raw
+        $legacyBikiniMigrationSafe = $migrationIncidentText -match 'CurrentDataVersion\s*=\s*1' `
+            -and $migrationIncidentText -match 'Scribe_Values\.Look\(ref\s+dataVersion,\s*"dataVersion",\s*0\)' `
+            -and $migrationIncidentText -match 'ReleaseLegacyBikiniLocks\(\)' `
+            -and $migrationIncidentText -match 'UnlockLegacyBikini\(pawn\)' `
+            -and $migrationIncidentText -match 'dataVersion\s*<\s*CurrentDataVersion' `
+            -and $migrationIncidentText -notmatch 'EnsureBikiniOnly|WearBikiniOnly'
+        if (-not $legacyBikiniMigrationSafe) {
+            $incidentInteractionSafetyIssues += "$migrationIncidentPath :: active bikini cleanup must stay removed while the versioned one-time legacy unlock remains available for old saves"
+        }
+    }
+    else {
+        $incidentInteractionSafetyIssues += "$migrationIncidentPath :: missing file for legacy migration bikini-lock safety"
+    }
+
+    $incidentInteractionSafetyChecks++
     $directIncidentGlobalAccess = @()
     if (Test-Path -LiteralPath '1.6\Source\Features\Incidents') {
         Get-ChildItem -LiteralPath '1.6\Source\Features\Incidents' -Recurse -Filter '*.cs' | Select-String -Pattern 'Find\.(WindowStack|LetterStack|QuestManager|TickManager|WorldPawns|FactionManager|AnyPlayerHomeMap|Maps)|WindowStack\.Add' | ForEach-Object {
@@ -3142,7 +3202,7 @@ try {
     if (Test-Path -LiteralPath $pawnGeneratorPatchPath) {
         $pawnGeneratorPatchText = Get-Content -LiteralPath $pawnGeneratorPatchPath -Encoding utf8 -Raw
         $pawnGeneratorPatchSafe = $pawnGeneratorPatchText -match 'PawnGenerator_GeneratePawn_Patch' `
-            -and $pawnGeneratorPatchText -match '__result\.LockGeneratedSlaveApparel\(\)' `
+            -and $pawnGeneratorPatchText -match '__result\.EnsureWornSlaveApparelLocks\(\)' `
             -and $pawnGeneratorPatchText -notmatch '__result\.apparel\.Lock' `
             -and $pawnGeneratorPatchText -notmatch '__result\.apparel\.WornApparel'
         if (-not $pawnGeneratorPatchSafe) {
@@ -3157,12 +3217,12 @@ try {
     $slaveApparelExtensionsPath = '1.6\Source\Features\Restraints\SlaveApparelExtensions.cs'
     if (Test-Path -LiteralPath $slaveApparelExtensionsPath) {
         $slaveApparelExtensionsText = Get-Content -LiteralPath $slaveApparelExtensionsPath -Encoding utf8 -Raw
-        $generatedLockHelperSafe = $slaveApparelExtensionsText -match 'LockGeneratedSlaveApparel\(this\s+Pawn\s+pawn\)' `
+        $generatedLockHelperSafe = $slaveApparelExtensionsText -match 'EnsureWornSlaveApparelLocks\(this\s+Pawn\s+pawn\)' `
             -and $slaveApparelExtensionsText -match 'pawn\?\.apparel\?\.WornApparel\s*==\s*null' `
             -and $slaveApparelExtensionsText -match 'List<Apparel>\s+wornApparel\s*=\s*pawn\.apparel\.WornApparel' `
             -and $slaveApparelExtensionsText -match 'for\s*\(\s*int\s+i\s*=\s*0;\s*i\s*<\s*wornApparel\.Count;\s*i\+\+\s*\)' `
             -and $slaveApparelExtensionsText -match 'Apparel\s+apparel\s*=\s*wornApparel\[i\]' `
-            -and $slaveApparelExtensionsText -match 'apparel\s+is\s+SlaveApparel\s+&&\s+!pawn\.apparel\.IsLocked\(apparel\)' `
+            -and $slaveApparelExtensionsText -match 'apparel\.IsLockedSlaveApparel\(\)\s+&&\s+!pawn\.apparel\.IsLocked\(apparel\)' `
             -and $slaveApparelExtensionsText -match 'pawn\.apparel\.Lock\(apparel\)'
         if (-not $generatedLockHelperSafe) {
             $generatedApparelLockSafetyIssues += "$slaveApparelExtensionsPath :: generated slave-apparel lock helper must guard pawn/apparel state, iterate by index and avoid duplicate locked-apparel entries"
@@ -3170,6 +3230,25 @@ try {
     }
     else {
         $generatedApparelLockSafetyIssues += "$slaveApparelExtensionsPath :: missing file for generated apparel lock helper safety"
+    }
+
+    $generatedApparelLockSafetyChecks++
+    $apparelTrackerPatchPath = '1.6\Source\Features\Restraints\Harmony_DropThingTooltip.cs'
+    if (Test-Path -LiteralPath $apparelTrackerPatchPath) {
+        $apparelTrackerPatchText = Get-Content -LiteralPath $apparelTrackerPatchPath -Encoding utf8 -Raw
+        $apparelTrackerLockBoundarySafe = $apparelTrackerPatchText -notmatch 'nameof\(Pawn_ApparelTracker\.IsLocked\)' `
+            -and $apparelTrackerPatchText -match 'nameof\(Pawn_ApparelTracker\.Unlock\)' `
+            -and $apparelTrackerPatchText -match 'return\s+!apparel\.IsLockedSlaveApparel\(\)' `
+            -and $apparelTrackerPatchText -match 'WornApparel\?\.Contains\(apparel\)\s*!=\s*true' `
+            -and $apparelTrackerPatchText -match 'nameof\(Pawn_ApparelTracker\.ExposeData\)' `
+            -and $apparelTrackerPatchText -match 'Scribe\.mode\s*==\s*LoadSaveMode\.PostLoadInit' `
+            -and $apparelTrackerPatchText -match 'EnsureWornSlaveApparelLocks\(\)'
+        if (-not $apparelTrackerLockBoundarySafe) {
+            $generatedApparelLockSafetyIssues += "$apparelTrackerPatchPath :: slave apparel must preserve base IsLocked semantics, block invalid worn unlocks and restore native locks after loading"
+        }
+    }
+    else {
+        $generatedApparelLockSafetyIssues += "$apparelTrackerPatchPath :: missing file for slave-apparel tracker lock boundary safety"
     }
 
     $generatedApparelLockSafetyChecks++

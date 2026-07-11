@@ -185,6 +185,9 @@
                 <li>HandTailoringBench</li>
             </recipeUsers>
         </recipeMaker>
+        <thingCategories>
+            <li>ApparelArmor</li>
+        </thingCategories>
     </ThingDef>
 
 </Defs>

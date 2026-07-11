@@ -417,7 +417,6 @@ namespace Mugirl
                 return null;
             }
 
-            MugirlEventUtility.WearBikiniOnly(pawn);
             MugirlEventUtility.MarkRunawayFarmPawn(pawn);
             MugirlEventUtility.PreparePassiveWildPawn(pawn);
 
@@ -655,7 +654,6 @@ namespace Mugirl
                     continue;
                 }
 
-                MugirlEventUtility.EnsureBikiniOnly(pawn);
                 if (pawn.CurJob == null || pawn.jobs?.curDriver == null || pawn.CurJob.def != JobDefOf.GotoWander)
                 {
                     Job job = JobMaker.MakeJob(JobDefOf.GotoWander, CellFinder.RandomClosewalkCellNear(pawn.Position, pawn.Map, 12));

@@ -28,7 +28,7 @@ namespace Mugirl
 
         private static void SpawnSprayFilth(Pawn pawn)
         {
-            ThingDef milkFilth = MugirlOptionalDefs.ThingDefs.MugirlMilkFilth;
+            ThingDef milkFilth = MugirlOptionalDefs.ThingDefs.MugirlMilkStain;
             if (milkFilth == null)
             {
                 return;

@@ -11,6 +11,7 @@ namespace Mugirl
         {
             internal static readonly ThingDef MugirlMilk = DefDatabase<ThingDef>.GetNamedSilentFail("Mugirl_Milk");
             internal static readonly ThingDef MugirlMilkFilth = DefDatabase<ThingDef>.GetNamedSilentFail("MugirlMilkFilth");
+            internal static readonly ThingDef MugirlMilkStain = DefDatabase<ThingDef>.GetNamedSilentFail("MugirlMilkStain");
         }
 
         internal static class SoundDefs

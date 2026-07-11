@@ -23,6 +23,28 @@
     </ThingDef>
 
     <ThingDef ParentName="BaseFilth">
+        <defName>MugirlMilkStain</defName>
+        <!-- 普通挤奶产生的奶渍；旧 MugirlMilkFilth 保留给电击路径与旧存档。 -->
+        <label>Mugirl milk stain</label>
+        <statBases>
+            <Beauty>-10</Beauty>
+            <Cleanliness>-5</Cleanliness>
+        </statBases>
+        <graphicData>
+            <texPath>Things/Filth/Mugirl_PoolSoft</texPath>
+            <color>(1, 1, 1, 1)</color>
+        </graphicData>
+        <filth>
+            <ignoreFilthMultiplierStat>true</ignoreFilthMultiplierStat>
+            <disappearsInDays>35~40</disappearsInDays>
+            <rainWashes>true</rainWashes>
+            <cleaningWorkToReduceThickness>50</cleaningWorkToReduceThickness>
+            <canFilthAttach>true</canFilthAttach>
+            <cleaningSound>Interact_CleanFilth_Fluid</cleaningSound>
+        </filth>
+    </ThingDef>
+
+    <ThingDef ParentName="BaseFilth">
         <defName>MugirlWaterFilth</defName>
         <!-- 电击流下的液体 -->
         <label>The liquid flowing down from electrocution.</label>

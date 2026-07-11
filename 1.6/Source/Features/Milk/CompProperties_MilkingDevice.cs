@@ -29,7 +29,7 @@ namespace Mugirl
         public string powerReleaseToggleDesc = "";
         public string releaseThingDefName = "Mugirl_Milk";
         public bool spawnFilthOnRelease = false;
-        public string filthDefName = "MugirlMilkFilth";
+        public string filthDefName = "MugirlMilkStain";
         public IntRange filthCountRange = new IntRange(1, 2);
         public bool spawnFilthInFacingDirection = false;
         public string powerFilthDefName = "MugirlWaterFilth";

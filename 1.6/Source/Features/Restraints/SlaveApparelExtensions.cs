@@ -14,7 +14,9 @@ namespace Mugirl
 
         public static bool IsLockedSlaveApparel(this Apparel apparel)
         {
-            return apparel is SlaveApparel slaveApparel && slaveApparel.isLocked;
+            return apparel is SlaveApparel slaveApparel
+                && slaveApparel.isLocked
+                && (!(slaveApparel is AdvancedSlaveApparel advanced) || !advanced.IsCracked());
         }
 
         public static bool IsWornLockedSlaveApparel(this Pawn pawn, Apparel apparel)
@@ -140,7 +142,7 @@ namespace Mugirl
             return false;
         }
 
-        public static void LockGeneratedSlaveApparel(this Pawn pawn)
+        public static void EnsureWornSlaveApparelLocks(this Pawn pawn)
         {
             if (pawn?.apparel?.WornApparel == null)
             {
@@ -151,7 +153,7 @@ namespace Mugirl
             for (int i = 0; i < wornApparel.Count; i++)
             {
                 Apparel apparel = wornApparel[i];
-                if (apparel is SlaveApparel && !pawn.apparel.IsLocked(apparel))
+                if (apparel.IsLockedSlaveApparel() && !pawn.apparel.IsLocked(apparel))
                 {
                     pawn.apparel.Lock(apparel);
                 }

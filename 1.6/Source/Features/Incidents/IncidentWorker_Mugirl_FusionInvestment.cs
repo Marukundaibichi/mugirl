@@ -420,7 +420,7 @@ namespace Mugirl
 
             List<Thing> rewards = new List<Thing>();
             AddMilkFoodRewards(rewards, MilkFoodRewardCountForTier(tier));
-            AddSlaveRewards(rewards, tier);
+            AddWildMugirlRewards(rewards, tier);
 
             IntVec3 dropCell = DropCellFinder.TradeDropSpot(map);
             DropPodUtility.DropThingsNear(dropCell, map, rewards, 110, canInstaDropDuringInit: false, leaveSlag: false, canRoofPunch: true, forbid: false);
@@ -570,12 +570,12 @@ namespace Mugirl
             }
         }
 
-        private static void AddSlaveRewards(List<Thing> rewards, int count)
+        private static void AddWildMugirlRewards(List<Thing> rewards, int count)
         {
             for (int i = 0; i < count; i++)
             {
                 PawnGenerationRequest request = new PawnGenerationRequest(
-                    Mugirl_DefOf.Mugirl_Slave,
+                    Mugirl_DefOf.Mugirl_WildMugirl,
                     MugirlWildSlaveUtility.PlayerFaction,
                     PawnGenerationContext.NonPlayer,
                     forceGenerateNewPawn: true,
@@ -587,13 +587,14 @@ namespace Mugirl
                     allowGay: true,
                     allowPregnant: false,
                     forceRecruitable: true,
+                    dontGiveWeapon: true,
                     fixedGender: Gender.Female,
                     developmentalStages: DevelopmentalStage.Adult);
+                request.ForceNoIdeoGear = true;
 
                 Pawn pawn = PawnGenerator.GeneratePawn(request);
                 if (pawn != null)
                 {
-                    MugirlEventUtility.EnsureBikiniOnly(pawn);
                     rewards.Add(pawn);
                 }
             }
