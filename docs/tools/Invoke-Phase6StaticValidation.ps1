@@ -1406,6 +1406,34 @@ try {
         $ropingTargetSafetyIssues += "$ropeToHitchPath :: missing file for rope-to-hitch pending spot-rope safety"
     }
 
+    $ropingTargetSafetyChecks++
+    if ((Test-Path -LiteralPath $ropeToHitchPath) -and (Test-Path -LiteralPath $ropingServicePath)) {
+        $ropeToHitchText = Get-Content -LiteralPath $ropeToHitchPath -Encoding utf8 -Raw
+        $ropingServiceText = Get-Content -LiteralPath $ropingServicePath -Encoding utf8 -Raw
+        $ropeToHitchPreservesOtherRopees = $ropeToHitchText -match 'DropPawnRopeAndNotify\(roper,\s*ropee\)' `
+            -and $ropeToHitchText -notmatch 'BreakAllRopesAndNotify\(roper\)' `
+            -and $ropingServiceText -match 'public\s+static\s+void\s+DropPawnRopeAndNotify\(Pawn\s+roper,\s*Pawn\s+ropee\)[\s\S]*DropRope\(ropee\)[\s\S]*NotifyPawnNoLongerRopedToTarget\(ropee\)'
+        if (-not $ropeToHitchPreservesOtherRopees) {
+            $ropingTargetSafetyIssues += "$ropeToHitchPath :: rope-to-hitch job must drop only the selected ropee and preserve the roper's remaining pawn ropes"
+        }
+    }
+    else {
+        $ropingTargetSafetyIssues += "$ropeToHitchPath :: missing file for multi-ropee rope-to-hitch safety"
+    }
+
+    $ropingTargetSafetyChecks++
+    $followRoperPath = '1.6\Source\Features\Roping\JobDriver_FollowRoper.cs'
+    if (Test-Path -LiteralPath $followRoperPath) {
+        $followRoperText = Get-Content -LiteralPath $followRoperPath -Encoding utf8 -Raw
+        $followRoperRejectsOrphanJob = $followRoperText -match 'pawn\.roping\?\.RopedByPawn\s*!=\s*roper[\s\S]*EndJobWith\(JobCondition\.Incompletable\)'
+        if (-not $followRoperRejectsOrphanJob) {
+            $ropingTargetSafetyIssues += "$followRoperPath :: follow-roper job must stop when its RopeTracker no longer points to the job target"
+        }
+    }
+    else {
+        $ropingTargetSafetyIssues += "$followRoperPath :: missing file for orphan follow-roper job safety"
+    }
+
     if (Test-Path -LiteralPath $ropingServicePath) {
         $ropingServiceText = Get-Content -LiteralPath $ropingServicePath -Encoding utf8 -Raw
         $ropingServicePendingSafe = $ropingServiceText -match 'public\s+static\s+void\s+ClearPendingSpotRope\(Pawn\s+pawn,\s*Map\s+map\)' `

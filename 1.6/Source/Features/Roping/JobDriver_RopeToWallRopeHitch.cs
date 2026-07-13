@@ -50,7 +50,7 @@ namespace Mugirl
                     if (ropee.roping != null)
                     {
                         Pawn roper = RopingService.RoperFor(ropee);
-                        RopingService.BreakAllRopesAndNotify(roper);
+                        RopingService.DropPawnRopeAndNotify(roper, ropee);
                         RopingService.BreakAllRopesAndNotify(ropee);
 
                         if (ropee.jobs != null)

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <ResearchProjectDef>
+        <defName>Mugirl_Autoloading</defName>
+        <label>self-propelled autoloading</label>
+        <description>Develop a wearable autonomous loading mechanism capable of servicing an entire Mugirl weapon wheel between volleys. Completing this project also unlocks the wheel's remaining three weapon slots.</description>
+        <baseCost>2500</baseCost>
+        <techLevel>Spacer</techLevel>
+        <prerequisites>
+            <li>Fabrication</li>
+            <li>PrecisionRifling</li>
+        </prerequisites>
+        <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+        <researchViewX>19.00</researchViewX>
+        <researchViewY>2.40</researchViewY>
+    </ResearchProjectDef>
+</Defs>

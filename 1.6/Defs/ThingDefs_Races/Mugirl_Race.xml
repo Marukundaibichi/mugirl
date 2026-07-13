@@ -549,6 +549,7 @@
                     <li>Mugirl_RA_Unionary</li>
                     <li>Mugirl_RA_PowerArmor</li>
                     <li>Mugirl_RA_Carrying_Equipment</li>
+                    <li>Mugirl_AutoloadingSystem</li>
                     <li MayRequire="Ludeon.RimWorld.Biotech">Mugirl_RA_MechanicBackpack</li>
                     <li MayRequire="Ludeon.RimWorld.Biotech">Mugirl_RA_MechanicBackpack_B</li>
                     <li MayRequire="Ludeon.RimWorld.Biotech">Mugirl_RA_MechanicBackpack_C</li>
@@ -884,6 +885,14 @@
         </recipes>
         <comps>
             <!-- <li Class="Mugirl.CompProperties_ShowRopedBy" /> -->
+            <li Class="Mugirl.CompProperties_WeaponWheel">
+                <maxSlots>6</maxSlots>
+                <baseUnlockedSlots>3</baseUnlockedSlots>
+                <equipAnimationTicks>42</equipAnimationTicks>
+                <outgoingAnimationTicks>18</outgoingAnimationTicks>
+                <snapTick>38</snapTick>
+                <switchSnapTick>30</switchSnapTick>
+            </li>
             <li Class="Mugirl.CompProperties_MugirlMount" />
             <li Class="Mugirl.CompProperties_MooMilkable">
                 <!-- 雪牛奶 -->
@@ -913,5 +922,8 @@
                 <requiresImprisonment>true</requiresImprisonment>
             </li>
         </comps>
+        <inspectorTabs>
+            <li>Mugirl.Features.WeaponWheel.ITab_Pawn_WeaponWheel</li>
+        </inspectorTabs>
     </AlienRace.ThingDef_AlienRace>
 </Defs>

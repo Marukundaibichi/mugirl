@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using RimWorld;
 using RimWorld.Planet;
@@ -25,6 +26,17 @@ namespace Mugirl
             }
 
             windowStack.Add(window);
+            return true;
+        }
+
+        internal static bool TryBeginTargeting(TargetingParameters parameters, Action<LocalTargetInfo> action, Pawn caster)
+        {
+            if (parameters == null || action == null || Find.Targeter == null)
+            {
+                return false;
+            }
+
+            Find.Targeter.BeginTargeting(parameters, action, caster);
             return true;
         }
 
@@ -94,6 +106,13 @@ namespace Mugirl
         internal static bool IsPlaying()
         {
             return Current.ProgramState == ProgramState.Playing;
+        }
+
+        internal static bool IsResearchFinished(ResearchProjectDef project)
+        {
+            return project != null
+                && Current.Game?.researchManager != null
+                && project.IsFinished;
         }
 
         internal static bool TryGetGameComponent<T>(out T component) where T : GameComponent

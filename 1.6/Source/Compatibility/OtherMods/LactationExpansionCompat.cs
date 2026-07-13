@@ -25,9 +25,9 @@ namespace Mugirl
         }
     }
 
-    [HarmonyPatch(typeof(ChildcareUtility), nameof(ChildcareUtility.CanBreastfeedNow))]
     [HarmonyPriority(Priority.First)]
     [HarmonyBefore(LactationExpansionCompatibility.HarmonyId)]
+    [HarmonyPatch(typeof(ChildcareUtility), nameof(ChildcareUtility.CanBreastfeedNow))]
     internal static class Harmony_LactationExpansion_CanBreastfeedNow_Mugirl
     {
         public static bool Prefix(Pawn mom, ref ChildcareUtility.BreastfeedFailReason? reason, ref bool __result)
@@ -42,9 +42,9 @@ namespace Mugirl
         }
     }
 
-    [HarmonyPatch(typeof(ChildcareUtility), nameof(ChildcareUtility.SuckleFromLactatingPawn))]
     [HarmonyPriority(Priority.First)]
     [HarmonyBefore(LactationExpansionCompatibility.HarmonyId)]
+    [HarmonyPatch(typeof(ChildcareUtility), nameof(ChildcareUtility.SuckleFromLactatingPawn))]
     internal static class Harmony_LactationExpansion_SuckleFromLactatingPawn_Mugirl
     {
         public static bool Prefix(Pawn baby, Pawn feeder, int delta, ref bool __result)

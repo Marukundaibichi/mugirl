@@ -26,6 +26,14 @@ namespace Mugirl
                     return;
                 }
 
+                // 兼容旧存档及异常中断留下的孤儿跟随 Job：
+                // AI 跟随不能脱离 RopeTracker 的实际牵引关系独立存在。
+                if (this.pawn.roping?.RopedByPawn != roper)
+                {
+                    base.EndJobWith(JobCondition.Incompletable);
+                    return;
+                }
+
                 TraverseParms traverseParms = TraverseParms.For(this.pawn, Danger.Deadly, TraverseMode.ByPawn, canBashDoors: false);
                 if (!this.pawn.Map.reachability.CanReach(this.pawn.Position, roper, PathEndMode.Touch, traverseParms))
                 {

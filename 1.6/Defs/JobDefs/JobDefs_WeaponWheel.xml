@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <JobDef>
+        <defName>Job_LoadWeaponWheel</defName>
+        <driverClass>Mugirl.JobDriver_LoadWeaponWheel</driverClass>
+        <reportString>loading TargetA into the weapon wheel.</reportString>
+        <suspendable>false</suspendable>
+    </JobDef>
+</Defs>

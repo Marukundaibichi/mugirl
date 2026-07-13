@@ -167,6 +167,21 @@ namespace Mugirl
             NotifyBreakAllRopes(pawn);
         }
 
+        public static void DropPawnRopeAndNotify(Pawn roper, Pawn ropee)
+        {
+            if (ropee == null)
+            {
+                return;
+            }
+
+            // RopeTracker 是绳索真值来源；地图索引仅用于查询兜底。
+            // 优先使用 tracker 中的实际牵引者，避免旧索引误伤其他 ropee。
+            Pawn actualRoper = ropee.roping?.RopedByPawn;
+            Pawn ropeOwner = actualRoper ?? roper;
+            ropeOwner?.roping?.DropRope(ropee);
+            NotifyPawnNoLongerRopedToTarget(ropee);
+        }
+
         public static void MarkPendingSpotRope(Pawn pawn)
         {
             MapRopingIndex index = IndexFor(pawn);

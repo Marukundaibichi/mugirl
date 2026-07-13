@@ -32,6 +32,12 @@ namespace Mugirl
 
         public static JobDef Job_DismountMugirl;
 
+        public static JobDef Job_LoadWeaponWheel;
+
+        public static ThingDef Mugirl_AutoloadingSystem;
+
+        public static ResearchProjectDef Mugirl_Autoloading;
+
         public static HediffDef Mugirl_Armbinder;
 
         public static HediffDef Mugirl_Abasia;

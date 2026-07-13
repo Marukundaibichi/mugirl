@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <ThingDef ParentName="ApparelBase">
+        <defName>Mugirl_AutoloadingSystem</defName>
+        <label>self-propelled autoloading system</label>
+        <description>A heavy waist-mounted loading mechanism designed for a Mugirl weapon wheel. During full-firepower operation it services every weapon automatically, eliminating the combined reload pause between volleys. It does not accelerate the physical weapon-switching sequence.</description>
+        <techLevel>Spacer</techLevel>
+        <graphicData>
+            <texPath>Things/Apparel/Mugirl_AutoloadingSystem/Mugirl_AutoloadingSystem</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>0.75</drawSize>
+        </graphicData>
+        <uiIconPath>Things/Apparel/Mugirl_AutoloadingSystem/Mugirl_AutoloadingSystem</uiIconPath>
+        <statBases>
+            <MaxHitPoints>160</MaxHitPoints>
+            <Mass>8</Mass>
+            <WorkToMake>36000</WorkToMake>
+            <Flammability>0.2</Flammability>
+            <EquipDelay>3</EquipDelay>
+        </statBases>
+        <costList>
+            <Plasteel>80</Plasteel>
+            <ComponentIndustrial>6</ComponentIndustrial>
+            <ComponentSpacer>2</ComponentSpacer>
+        </costList>
+        <apparel>
+            <countsAsClothingForNudity>false</countsAsClothingForNudity>
+            <careIfWornByCorpse>false</careIfWornByCorpse>
+            <careIfDamaged>false</careIfDamaged>
+            <wearPerDay>0</wearPerDay>
+            <bodyPartGroups>
+                <li>Waist</li>
+            </bodyPartGroups>
+            <layers>
+                <li>Belt</li>
+            </layers>
+            <tags>
+                <li>MugirlAutoloadingSystem</li>
+            </tags>
+        </apparel>
+        <comps>
+            <li Class="Mugirl.CompProperties_AutoloadingSystem">
+                <skipCycleReload>true</skipCycleReload>
+            </li>
+        </comps>
+        <recipeMaker>
+            <unfinishedThingDef>UnfinishedBelt</unfinishedThingDef>
+            <researchPrerequisite>Mugirl_Autoloading</researchPrerequisite>
+            <recipeUsers>
+                <li>FabricationBench</li>
+            </recipeUsers>
+            <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+            <workSkill>Crafting</workSkill>
+            <effectWorking>Smith</effectWorking>
+            <soundWorking>Recipe_Machining</soundWorking>
+            <skillRequirements>
+                <Crafting>8</Crafting>
+            </skillRequirements>
+            <displayPriority>315</displayPriority>
+        </recipeMaker>
+        <thingCategories>
+            <li>ApparelUtility</li>
+        </thingCategories>
+        <tradeTags>
+            <li>Armor</li>
+        </tradeTags>
+        <smeltable>true</smeltable>
+    </ThingDef>
+</Defs>

@@ -1,4 +1,5 @@
 using HarmonyLib;
+using Mugirl.Features.WeaponWheel;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -28,7 +29,10 @@ namespace Mugirl
     {
         public static void Prefix(ThingWithComps eq)
         {
-            MountedCombatController.NotifyEquipmentRemoved(eq);
+            if (!WeaponWheelTransferScope.IsInternalTransfer)
+            {
+                MountedCombatController.NotifyEquipmentRemoved(eq);
+            }
         }
     }
 }

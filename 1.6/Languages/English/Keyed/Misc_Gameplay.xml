@@ -260,4 +260,32 @@
     <Mugirl.RefugeePodCrash.Log.MissingMap>Refugee pod crash quest could not resolve a usable target map.</Mugirl.RefugeePodCrash.Log.MissingMap>
     <LetterLabelWandererJoins>Wanderer Joins: {PAWN_nameDef}</LetterLabelWandererJoins>
     <LetterWandererJoins>A {PAWN_title} named {PAWN_nameDef} has arrived here; she escaped from a slave caravan, with tattered restraints still bound to [PAWN_objective], telling of [PAWN_possessive] tragic past. With nowhere to go, she is willing to contribute to your colony. {PAWN_objective} won't leave voluntarily; you can choose to refuse [PAWN_objective] and send [PAWN_objective] away, but your colonists will feel uneasy about turning away someone in need.\n\nWill you give this pitiful yet resilient escapee a chance at freedom and a new life?</LetterWandererJoins>
+    <Mugirl.WeaponWheel.Tab>Weapon wheel</Mugirl.WeaponWheel.Tab>
+    <Mugirl.WeaponWheel.HeaderSlots>{0} / {1}</Mugirl.WeaponWheel.HeaderSlots>
+    <Mugirl.WeaponWheel.Locked>Locked</Mugirl.WeaponWheel.Locked>
+    <Mugirl.WeaponWheel.LockedDesc>Complete the self-propelled autoloading research to unlock this wheel slot.</Mugirl.WeaponWheel.LockedDesc>
+    <Mugirl.WeaponWheel.DevUnlock>Unlock</Mugirl.WeaponWheel.DevUnlock>
+    <Mugirl.WeaponWheel.EmptySlotDesc>Click, then select a weapon on the map to load it into this wheel slot.</Mugirl.WeaponWheel.EmptySlotDesc>
+    <Mugirl.WeaponWheel.DropWeapon>Unequip {0}</Mugirl.WeaponWheel.DropWeapon>
+    <Mugirl.WeaponWheel.InvalidWeapon>The target is not an equippable primary weapon.</Mugirl.WeaponWheel.InvalidWeapon>
+    <Mugirl.WeaponWheel.SlotLocked>This wheel slot is locked.</Mugirl.WeaponWheel.SlotLocked>
+    <Mugirl.WeaponWheel.SlotOccupied>This wheel slot already contains a weapon.</Mugirl.WeaponWheel.SlotOccupied>
+    <Mugirl.WeaponWheel.Busy>The weapon wheel cannot be edited while firing, switching or reloading.</Mugirl.WeaponWheel.Busy>
+    <Mugirl.WeaponWheel.AlreadyStored>This weapon is already in the wheel.</Mugirl.WeaponWheel.AlreadyStored>
+    <Mugirl.WeaponWheel.CannotStore>This weapon cannot be stored in the wheel.</Mugirl.WeaponWheel.CannotStore>
+    <Mugirl.WeaponWheel.CannotSwap>These wheel slots cannot be swapped.</Mugirl.WeaponWheel.CannotSwap>
+    <Mugirl.WeaponWheel.CannotDrop>This weapon cannot be unequipped right now.</Mugirl.WeaponWheel.CannotDrop>
+    <Mugirl.WeaponWheel.StatusMounted>Mounted: weapon storage only</Mugirl.WeaponWheel.StatusMounted>
+    <Mugirl.WeaponWheel.StatusEquipping>Raising primary weapon</Mugirl.WeaponWheel.StatusEquipping>
+    <Mugirl.WeaponWheel.StatusSwitching>Full firepower: switching weapons</Mugirl.WeaponWheel.StatusSwitching>
+    <Mugirl.WeaponWheel.StatusReloading>Volley reload: {0}</Mugirl.WeaponWheel.StatusReloading>
+    <Mugirl.WeaponWheel.StatusFull>Full firepower enabled</Mugirl.WeaponWheel.StatusFull>
+    <Mugirl.WeaponWheel.StatusFullAutoload>Full firepower available: self-propelled autoloading system connected</Mugirl.WeaponWheel.StatusFullAutoload>
+    <Mugirl.WeaponWheel.StatusInactive>Full firepower inactive: {0}</Mugirl.WeaponWheel.StatusInactive>
+    <Mugirl.WeaponWheel.ReasonNoEquipment>No equipment tracker</Mugirl.WeaponWheel.ReasonNoEquipment>
+    <Mugirl.WeaponWheel.ReasonMounted>mounted</Mugirl.WeaponWheel.ReasonMounted>
+    <Mugirl.WeaponWheel.ReasonViolenceDisabled>incapable of violence</Mugirl.WeaponWheel.ReasonViolenceDisabled>
+    <Mugirl.WeaponWheel.ReasonNotRanged>{0} is not a usable ranged weapon</Mugirl.WeaponWheel.ReasonNotRanged>
+    <Mugirl.WeaponWheel.ReasonNeedTwo>at least two ranged weapons are required</Mugirl.WeaponWheel.ReasonNeedTwo>
+    <Mugirl.WeaponWheel.ReasonNoPrimary>the primary slot is empty</Mugirl.WeaponWheel.ReasonNoPrimary>
 </LanguageData>
