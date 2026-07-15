@@ -108,6 +108,7 @@ namespace Mugirl.Features.WeaponWheel
             TickReserveVerbs();
             TickMountedState();
             TickWeaponOpenState();
+            TickSwordDanceDashAnimation();
             TickPendingSwordDanceCompletion();
             TickCombatState();
         }
@@ -301,6 +302,7 @@ namespace Mugirl.Features.WeaponWheel
             aimHandoffUntilTick = -1;
             ClearPendingCast();
             ClearPendingSwordDance();
+            ClearSwordDanceDashAnimation();
             wasWeaponOpenlyHeld = false;
             wasMountedDisabled = false;
         }

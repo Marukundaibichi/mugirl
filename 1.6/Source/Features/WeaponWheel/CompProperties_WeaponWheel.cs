@@ -14,6 +14,7 @@ namespace Mugirl
         public float swordDanceChance = 0.33f;
         public int swordDanceStunTicks = 60;
         public int swordDanceHasteTicks = 300;
+        public int swordDanceDashAnimationTicks = 42;
         public float swordDanceRamDamage = 10f;
         public float swordDanceRamArmorPenetration = 0.2f;
 

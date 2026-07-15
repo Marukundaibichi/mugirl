@@ -64,6 +64,10 @@ namespace Mugirl.Features.WeaponWheel
             snapshot.Progress = Mathf.Clamp01((float)elapsed / duration);
             snapshot.OutgoingProgress = Mathf.Clamp01((float)elapsed / outgoingDuration);
             snapshot.AimAngle = animationAimAngle;
+            if (combatState == WeaponWheelCombatState.SwordDanceSwitching)
+            {
+                snapshot.AimAngle = SwordDanceDashAimAngle(snapshot.AimAngle);
+            }
             snapshot.IsSwitching = combatState == WeaponWheelCombatState.Switching
                 || combatState == WeaponWheelCombatState.SwordDanceSwitching;
             snapshot.SnapStartProgress = Mathf.Clamp01((float)snapTick / duration);
@@ -101,6 +105,14 @@ namespace Mugirl.Features.WeaponWheel
             Vector3 pawnDrawPosition = pawn.DrawPos;
             if (!comp.TryGetAnimationSnapshot(out WeaponWheelAnimationSnapshot snapshot))
             {
+                if (comp.TryGetSwordDanceDashHeldWeapon(out ThingWithComps dashWeapon, out float dashAimAngle))
+                {
+                    Vector3 dashWeaponPosition = pawnDrawPosition
+                        + new Vector3(0f, 0f, 0.4f + dashWeapon.def.equippedDistanceOffset).RotatedBy(dashAimAngle) * distanceFactor;
+                    dashWeaponPosition.y += 0.040f;
+                    DrawWeapon(dashWeapon, dashWeaponPosition, dashAimAngle, 1f, 1f, true);
+                    return;
+                }
                 if (!comp.TryGetAimHandoff(out ThingWithComps handoffWeapon, out float handoffAngle))
                 {
                     return;

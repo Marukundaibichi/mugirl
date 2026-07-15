@@ -13,7 +13,23 @@ namespace Mugirl.Features.WeaponWheel
         private Pawn pendingSwordDanceTarget;
         private int pendingSwordDanceNextSlot = -1;
         private bool pendingSwordDanceStrikeResolved;
+        private bool pendingSwordDanceStrikeDelayed;
+        private bool resolvingDelayedSwordDanceStrike;
         private int swordDanceFailureStreak;
+        private const float SwordDanceDashPauseEnd = 5f / 42f;
+        private const float SwordDanceDashRecoilEnd = 15f / 42f;
+        private const float SwordDanceDashRushEnd = 24f / 42f;
+        private const float SwordDanceDashOvershootEnd = 31f / 42f;
+        private const float SwordDanceDashBufferDistance = 0.5f;
+
+        private Vector3 swordDanceDashOrigin;
+        private Vector3 swordDanceDashDestination;
+        private Vector3 swordDanceDashDirection;
+        private Rot4 swordDanceDashForwardRotation = Rot4.Invalid;
+        private Rot4 swordDanceDashReturnRotation = Rot4.Invalid;
+        private int swordDanceDashStartTick = -1;
+        private int swordDanceDashDurationTicks;
+        private float swordDanceDashImpactProgress = 0.5f;
 
         public bool IsSwordDanceEligible()
         {
@@ -60,14 +76,23 @@ namespace Mugirl.Features.WeaponWheel
             return true;
         }
 
-        internal void PrepareSwordDanceStrike(Verb verb)
+        internal bool TryDelaySwordDanceStrikeUntilImpact(Verb verb)
         {
+            if (resolvingDelayedSwordDanceStrike)
+            {
+                return false;
+            }
+            if (IsSwordDanceStrikeAwaitingImpact(verb))
+            {
+                return true;
+            }
+
             ClearPendingSwordDance();
             if (verb?.verbProps?.IsMeleeAttack != true
                 || !IsSwordDanceAttack(verb)
                 || !IsSwordDanceEligible())
             {
-                return;
+                return false;
             }
 
             Pawn pawn = Pawn;
@@ -79,30 +104,251 @@ namespace Mugirl.Features.WeaponWheel
                 || nextSlot < 0 || !TryFindSwordDanceDestination(target, out IntVec3 destination)
                 || !RollSwordDanceChance())
             {
-                return;
+                return false;
             }
 
             pendingSwordDanceVerb = verb;
             pendingSwordDanceTarget = target;
             pendingSwordDanceNextSlot = nextSlot;
             pendingSwordDanceStrikeResolved = false;
+            pendingSwordDanceStrikeDelayed = true;
 
             Map map = pawn.Map;
             IntVec3 origin = pawn.Position;
+            bool dashStarted = false;
             if (origin != destination)
             {
                 FleckMaker.ThrowDustPuff(origin, map, 1.15f);
+                BeginSwordDanceDashAnimation(destination, target.Position.ToVector3Shifted());
                 pawn.Position = destination;
-                // 保留绘制插值，让角色从原位置穿过目标移动到对侧；只重置寻路器，不重置 PawnTweener。
+                // 逻辑位置立即完成换位，绘制位置与朝向由剑舞自己的分段冲刺动画接管。
                 pawn.Notify_Teleported(endCurrentJob: false, resetTweenedPos: false);
-                FleckMaker.ThrowDustPuff(destination, map, 1.35f);
+                dashStarted = true;
             }
-            pawn.rotationTracker?.Face(target.DrawPos);
+            if (!dashStarted)
+            {
+                pawn.rotationTracker?.Face(target.DrawPos);
+            }
             target.stances?.stunner?.StunFor(
                 Mathf.Max(1, Props.swordDanceStunTicks),
                 pawn,
                 addBattleLog: false);
             ApplySwordDanceHaste(pawn);
+            return dashStarted;
+        }
+
+        internal bool IsSwordDanceStrikeAwaitingImpact(Verb verb)
+        {
+            return pendingSwordDanceStrikeDelayed
+                && !pendingSwordDanceStrikeResolved
+                && pendingSwordDanceVerb == verb;
+        }
+
+        private void BeginSwordDanceDashAnimation(IntVec3 destination, Vector3 targetPosition)
+        {
+            Pawn pawn = Pawn;
+            Vector3 origin = CurrentSwordDanceDashRootPosition();
+            origin.y = 0f;
+            Vector3 end = destination.ToVector3Shifted();
+            end.y = 0f;
+            Vector3 direction = end - origin;
+            direction.y = 0f;
+            direction = direction.sqrMagnitude > 0.0001f ? direction.normalized : Vector3.forward;
+
+            swordDanceDashOrigin = origin;
+            swordDanceDashDestination = end;
+            swordDanceDashDirection = direction;
+            swordDanceDashForwardRotation = Rot4.FromAngleFlat(direction.AngleFlat());
+            swordDanceDashReturnRotation = swordDanceDashForwardRotation.Opposite;
+            swordDanceDashStartTick = CurrentTick;
+            swordDanceDashDurationTicks = Mathf.Max(1, Props.swordDanceDashAnimationTicks);
+            Vector3 recoil = origin - direction * SwordDanceDashBufferDistance;
+            Vector3 rush = end - recoil;
+            float targetFraction = rush.sqrMagnitude <= 0.0001f
+                ? 0.5f
+                : Mathf.Clamp01(Vector3.Dot(targetPosition - recoil, rush) / rush.sqrMagnitude);
+            swordDanceDashImpactProgress = Mathf.Lerp(
+                SwordDanceDashRecoilEnd,
+                SwordDanceDashRushEnd,
+                Mathf.Sqrt(targetFraction));
+            if (pawn != null)
+            {
+                pawn.Rotation = swordDanceDashForwardRotation;
+            }
+        }
+
+        internal bool TryGetSwordDanceDashDrawPosition(Vector3 vanillaDrawPosition, out Vector3 drawPosition)
+        {
+            drawPosition = vanillaDrawPosition;
+            Pawn pawn = Pawn;
+            if (swordDanceDashStartTick < 0 || pawn?.Drawer?.tweener == null)
+            {
+                return false;
+            }
+
+            Vector3 dashRoot = CurrentSwordDanceDashRootPosition();
+            Vector3 vanillaRoot = pawn.Drawer.tweener.TweenedPos;
+            drawPosition = dashRoot + (vanillaDrawPosition - vanillaRoot);
+            return true;
+        }
+
+        private Vector3 CurrentSwordDanceDashRootPosition()
+        {
+            if (swordDanceDashStartTick < 0)
+            {
+                Pawn pawn = Pawn;
+                return pawn?.Drawer?.tweener?.TweenedPos ?? pawn?.Position.ToVector3Shifted() ?? Vector3.zero;
+            }
+
+            int duration = Mathf.Max(1, swordDanceDashDurationTicks);
+            float progress = Mathf.Clamp01((float)(CurrentTick - swordDanceDashStartTick) / duration);
+            Vector3 recoil = swordDanceDashOrigin - swordDanceDashDirection * SwordDanceDashBufferDistance;
+            Vector3 overshoot = swordDanceDashDestination + swordDanceDashDirection * SwordDanceDashBufferDistance;
+
+            if (progress < SwordDanceDashPauseEnd)
+            {
+                return swordDanceDashOrigin;
+            }
+            if (progress < SwordDanceDashRecoilEnd)
+            {
+                float phase = Mathf.InverseLerp(SwordDanceDashPauseEnd, SwordDanceDashRecoilEnd, progress);
+                return Vector3.LerpUnclamped(swordDanceDashOrigin, recoil, SmoothStep01(phase));
+            }
+            if (progress < SwordDanceDashRushEnd)
+            {
+                float phase = Mathf.InverseLerp(SwordDanceDashRecoilEnd, SwordDanceDashRushEnd, progress);
+                return Vector3.LerpUnclamped(recoil, swordDanceDashDestination, phase * phase);
+            }
+            if (progress < SwordDanceDashOvershootEnd)
+            {
+                float phase = Mathf.InverseLerp(SwordDanceDashRushEnd, SwordDanceDashOvershootEnd, progress);
+                float decelerating = 1f - (1f - phase) * (1f - phase);
+                return Vector3.LerpUnclamped(swordDanceDashDestination, overshoot, decelerating);
+            }
+
+            float returnPhase = Mathf.InverseLerp(SwordDanceDashOvershootEnd, 1f, progress);
+            return Vector3.LerpUnclamped(overshoot, swordDanceDashDestination, SmoothStep01(returnPhase));
+        }
+
+        private static float SmoothStep01(float value)
+        {
+            value = Mathf.Clamp01(value);
+            return value * value * (3f - 2f * value);
+        }
+
+        internal bool MaintainSwordDanceDashFacing()
+        {
+            Pawn pawn = Pawn;
+            if (swordDanceDashStartTick < 0 || pawn == null)
+            {
+                return false;
+            }
+
+            int duration = Mathf.Max(1, swordDanceDashDurationTicks);
+            float progress = Mathf.Clamp01((float)(CurrentTick - swordDanceDashStartTick) / duration);
+            pawn.Rotation = progress < SwordDanceDashOvershootEnd
+                ? swordDanceDashForwardRotation
+                : swordDanceDashReturnRotation;
+            return true;
+        }
+
+        internal float SwordDanceDashAimAngle(float fallbackAngle)
+        {
+            if (swordDanceDashStartTick < 0 || swordDanceDashDirection.sqrMagnitude <= 0.0001f)
+            {
+                return fallbackAngle;
+            }
+
+            int duration = Mathf.Max(1, swordDanceDashDurationTicks);
+            float progress = Mathf.Clamp01((float)(CurrentTick - swordDanceDashStartTick) / duration);
+            Vector3 facingDirection = progress < SwordDanceDashOvershootEnd
+                ? swordDanceDashDirection
+                : -swordDanceDashDirection;
+            return facingDirection.AngleFlat();
+        }
+
+        internal bool TryGetSwordDanceDashHeldWeapon(out ThingWithComps weapon, out float aimAngle)
+        {
+            weapon = Pawn?.equipment?.Primary;
+            aimAngle = SwordDanceDashAimAngle(0f);
+            return weapon != null
+                && pendingSwordDanceStrikeDelayed
+                && !pendingSwordDanceStrikeResolved
+                && swordDanceDashStartTick >= 0;
+        }
+
+        private void TickSwordDanceDashAnimation()
+        {
+            if (swordDanceDashStartTick < 0)
+            {
+                return;
+            }
+
+            int duration = Mathf.Max(1, swordDanceDashDurationTicks);
+            int elapsed = CurrentTick - swordDanceDashStartTick;
+            float progress = Mathf.Clamp01((float)elapsed / duration);
+            if (pendingSwordDanceStrikeDelayed
+                && !pendingSwordDanceStrikeResolved
+                && progress >= swordDanceDashImpactProgress)
+            {
+                ResolveDelayedSwordDanceStrike();
+            }
+            if (elapsed < duration)
+            {
+                return;
+            }
+
+            if (pendingSwordDanceStrikeDelayed && !pendingSwordDanceStrikeResolved)
+            {
+                ResolveDelayedSwordDanceStrike();
+            }
+            Pawn pawn = Pawn;
+            if (pawn?.Spawned == true)
+            {
+                FleckMaker.ThrowDustPuff(swordDanceDashDestination, pawn.Map, 1.35f);
+                pawn.Drawer?.tweener?.ResetTweenedPosToRoot();
+                pawn.Rotation = swordDanceDashReturnRotation;
+            }
+            ClearSwordDanceDashAnimation();
+        }
+
+        private void ResolveDelayedSwordDanceStrike()
+        {
+            Verb verb = pendingSwordDanceVerb;
+            if (verb == null || resolvingDelayedSwordDanceStrike)
+            {
+                return;
+            }
+
+            resolvingDelayedSwordDanceStrike = true;
+            bool invoked;
+            try
+            {
+                invoked = Harmony_WeaponWheel_BurstCompleted.TryInvokeDelayedMeleeBurst(verb);
+            }
+            finally
+            {
+                resolvingDelayedSwordDanceStrike = false;
+                MaintainSwordDanceDashFacing();
+            }
+
+            if (!invoked)
+            {
+                verb.Reset();
+                ClearPendingSwordDance();
+            }
+        }
+
+        private void ClearSwordDanceDashAnimation()
+        {
+            swordDanceDashOrigin = Vector3.zero;
+            swordDanceDashDestination = Vector3.zero;
+            swordDanceDashDirection = Vector3.zero;
+            swordDanceDashForwardRotation = Rot4.Invalid;
+            swordDanceDashReturnRotation = Rot4.Invalid;
+            swordDanceDashStartTick = -1;
+            swordDanceDashDurationTicks = 0;
+            swordDanceDashImpactProgress = 0.5f;
         }
 
         private bool RollSwordDanceChance()
@@ -167,11 +413,14 @@ namespace Mugirl.Features.WeaponWheel
         {
             Pawn pawn = Pawn;
             ThingWithComps primary = pawn?.equipment?.Primary;
+            ThingWithComps attackEquipment = verb?.EquipmentSource;
             return verb?.verbProps?.IsMeleeAttack == true
                 && verb.CasterPawn == pawn
-                && verb.EquipmentSource == primary
                 && primary?.def?.IsMeleeWeapon == true
-                && ContainsWeapon(primary);
+                && ContainsWeapon(primary)
+                // Horns, fists and other body tools have no equipment source. They still count as
+                // the pawn's melee attacks while a weapon-wheel melee weapon is actively equipped.
+                && (attackEquipment == null || attackEquipment == primary);
         }
 
         internal bool ShouldSuppressExternalMeleeAttackAnimation()
@@ -387,6 +636,7 @@ namespace Mugirl.Features.WeaponWheel
             pendingSwordDanceTarget = null;
             pendingSwordDanceNextSlot = -1;
             pendingSwordDanceStrikeResolved = false;
+            pendingSwordDanceStrikeDelayed = false;
         }
     }
 }

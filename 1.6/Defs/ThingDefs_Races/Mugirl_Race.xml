@@ -895,6 +895,7 @@
                 <swordDanceChance>0.33</swordDanceChance>
                 <swordDanceStunTicks>60</swordDanceStunTicks>
                 <swordDanceHasteTicks>300</swordDanceHasteTicks>
+                <swordDanceDashAnimationTicks>42</swordDanceDashAnimationTicks>
                 <swordDanceRamDamage>10</swordDanceRamDamage>
                 <swordDanceRamArmorPenetration>0.2</swordDanceRamArmorPenetration>
             </li>

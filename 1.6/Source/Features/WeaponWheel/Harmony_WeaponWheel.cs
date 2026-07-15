@@ -3,10 +3,29 @@ using System.Collections.Generic;
 using HarmonyLib;
 using Mugirl.Features.WeaponWheel;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Mugirl
 {
+    [HarmonyPatch(typeof(Pawn), nameof(Pawn.DrawPos), MethodType.Getter)]
+    public static class Harmony_WeaponWheel_SwordDanceDashDrawPosition
+    {
+        public static void Postfix(Pawn __instance, ref Vector3 __result)
+        {
+            if (!MugirlIdentity.IsMugirlPawn(__instance))
+            {
+                return;
+            }
+
+            Comp_WeaponWheel comp = __instance.TryGetComp<Comp_WeaponWheel>();
+            if (comp != null && comp.TryGetSwordDanceDashDrawPosition(__result, out Vector3 dashPosition))
+            {
+                __result = dashPosition;
+            }
+        }
+    }
+
     [HarmonyPatch(typeof(PawnGenerator), nameof(PawnGenerator.GeneratePawn), new Type[] { typeof(PawnGenerationRequest) })]
     public static class Harmony_WeaponWheel_EnemyLoadout
     {
@@ -53,11 +72,21 @@ namespace Mugirl
     [HarmonyPatch(typeof(Verb), "TryCastNextBurstShot")]
     public static class Harmony_WeaponWheel_BurstCompleted
     {
+        public static bool Prefix(Verb __instance)
+        {
+            Comp_WeaponWheel comp = __instance?.CasterPawn?.TryGetComp<Comp_WeaponWheel>();
+            return comp?.TryDelaySwordDanceStrikeUntilImpact(__instance) != true;
+        }
+
         public static void Postfix(Verb __instance)
         {
             if (__instance?.verbProps?.IsMeleeAttack == true)
             {
-                __instance.CasterPawn?.TryGetComp<Comp_WeaponWheel>()?.NotifyMeleeAttackCompleted(__instance);
+                Comp_WeaponWheel comp = __instance.CasterPawn?.TryGetComp<Comp_WeaponWheel>();
+                if (comp?.IsSwordDanceStrikeAwaitingImpact(__instance) != true)
+                {
+                    comp?.NotifyMeleeAttackCompleted(__instance);
+                }
                 return;
             }
             if (__instance == null || __instance.state != VerbState.Idle
@@ -68,16 +97,36 @@ namespace Mugirl
             }
             __instance.CasterPawn?.TryGetComp<Comp_WeaponWheel>()?.NotifyBurstCompleted(__instance);
         }
+
+        internal static bool TryInvokeDelayedMeleeBurst(Verb verb)
+        {
+            try
+            {
+                System.Reflection.MethodInfo method = AccessTools.Method(typeof(Verb), "TryCastNextBurstShot");
+                if (method == null)
+                {
+                    MugirlLog.WarningOnce(
+                        "WeaponWheel.DelayedSwordDanceBurstMissing",
+                        "Unable to resolve Verb.TryCastNextBurstShot for delayed sword-dance impact.");
+                    return false;
+                }
+
+                method.Invoke(verb, null);
+                return true;
+            }
+            catch (Exception exception)
+            {
+                MugirlLog.WarningOnce(
+                    "WeaponWheel.DelayedSwordDanceBurstFailed",
+                    "Delayed sword-dance impact failed: " + exception.GetBaseException().Message);
+                return false;
+            }
+        }
     }
 
     [HarmonyPatch(typeof(Verb_MeleeAttack), "TryCastShot")]
     public static class Harmony_WeaponWheel_MeleeAttack
     {
-        public static void Prefix(Verb_MeleeAttack __instance)
-        {
-            __instance?.CasterPawn?.TryGetComp<Comp_WeaponWheel>()?.PrepareSwordDanceStrike(__instance);
-        }
-
         public static void Postfix(Verb_MeleeAttack __instance)
         {
             __instance?.CasterPawn?.TryGetComp<Comp_WeaponWheel>()?.NotifySwordDanceStrikeResolved(__instance);

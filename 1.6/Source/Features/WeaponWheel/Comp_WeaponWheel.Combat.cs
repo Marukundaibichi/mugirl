@@ -183,6 +183,9 @@ namespace Mugirl.Features.WeaponWheel
             return combatState == WeaponWheelCombatState.EquippingPrimary
                 || combatState == WeaponWheelCombatState.Switching
                 || combatState == WeaponWheelCombatState.SwordDanceSwitching
+                || (pendingSwordDanceStrikeDelayed
+                    && !pendingSwordDanceStrikeResolved
+                    && swordDanceDashStartTick >= 0)
                 || (weapon == aimHandoffWeapon && CurrentTick <= aimHandoffUntilTick);
         }
 
@@ -200,6 +203,11 @@ namespace Mugirl.Features.WeaponWheel
         internal void MaintainCombatFacing()
         {
             Pawn pawn = Pawn;
+            if (MaintainSwordDanceDashFacing())
+            {
+                return;
+            }
+
             LocalTargetInfo target = LocalTargetInfo.Invalid;
             if (cycleActive && IsTargetStillValid(cycleTarget))
             {
