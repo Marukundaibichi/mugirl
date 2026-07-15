@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <ToolCapacityDef>
+        <defName>Mugirl_PunisherBlowCapacity</defName>
+        <!-- 惩戒重击 -->
+        <label>punishing blow</label>
+    </ToolCapacityDef>
+
+    <ManeuverDef>
+        <defName>Mugirl_PunisherBlowManeuver</defName>
+        <requiredCapacity>Mugirl_PunisherBlowCapacity</requiredCapacity>
+        <verb>
+            <verbClass>Verb_MeleeAttackDamage</verbClass>
+            <meleeDamageDef>Mugirl_PunisherBlow</meleeDamageDef>
+        </verb>
+        <combatLogRulesHit>Maneuver_Smash_MeleeHit</combatLogRulesHit>
+        <combatLogRulesDeflect>Maneuver_Smash_MeleeDeflect</combatLogRulesDeflect>
+        <combatLogRulesMiss>Maneuver_Smash_MeleeMiss</combatLogRulesMiss>
+        <combatLogRulesDodge>Maneuver_Smash_MeleeDodge</combatLogRulesDodge>
+        <logEntryDef>MeleeAttack</logEntryDef>
+    </ManeuverDef>
+
+    <DamageDef ParentName="BluntBase">
+        <defName>Mugirl_PunisherBlow</defName>
+        <!-- 惩戒重击 -->
+        <label>punishing blow</label>
+        <workerClass>Mugirl.DamageWorker_MugirlPunisherBlow</workerClass>
+        <!-- {0}意外被雪牛惩戒者碾碎了。 -->
+        <deathMessage>{0} was accidentally crushed by a snow-bovine punisher.</deathMessage>
+        <buildingDamageFactor>1</buildingDamageFactor>
+        <bluntStunDuration>0</bluntStunDuration>
+    </DamageDef>
+</Defs>

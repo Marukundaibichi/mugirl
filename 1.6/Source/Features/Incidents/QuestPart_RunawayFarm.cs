@@ -774,13 +774,12 @@ namespace Mugirl
                 pawn.jobs.EndCurrentJob(JobCondition.InterruptForced);
             }
 
-            bool wasEscapeWildSlave = MugirlWildSlaveUtility.IsWildMugirl(pawn);
             if (!MugirlWildSlaveUtility.TrySetPlayerFaction(pawn))
             {
                 return false;
             }
 
-            MugirlWildSlaveUtility.NormalizeAfterJoiningPlayer(pawn, wasEscapeWildSlave);
+            MugirlWildSlaveUtility.CleanupAfterJoiningPlayer(pawn);
             return MugirlWildSlaveUtility.IsPlayerFaction(pawn.Faction);
         }
 

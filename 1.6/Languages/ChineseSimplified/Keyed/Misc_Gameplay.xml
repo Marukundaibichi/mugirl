@@ -520,32 +520,46 @@
     <LetterLabelWandererJoins>流浪者加入：{PAWN_nameDef}</LetterLabelWandererJoins>
     <!-- A {PAWN_title} named {PAWN_nameDef} has arrived here; she escaped from a slave caravan, with tattered restraints still bound to [PAWN_objective], telling of [PAWN_possessive] tragic past. With nowhere to go, she is willing to contribute to your colony. {PAWN_objective} won't leave voluntarily; you can choose to refuse [PAWN_objective] and send [PAWN_objective] away, but your colonists will feel uneasy about turning away someone in need.\n\nWill you give this pitiful yet resilient escapee a chance at freedom and a new life? -->
     <LetterWandererJoins>一位名叫{PAWN_nameDef}的{PAWN_title}来到这里，她从奴隶商队逃脱，身上破旧的束具仍缠绕着她，诉说着悲惨的遭遇。她无处可去，愿意为你的殖民地贡献力量。{PAWN_objective}不会主动离开，你可以选择拒绝她，把她送走，但你的殖民者们会为送走一个需要帮助的人而感到不安。你是否愿意给这位可怜又坚强的逃亡者一次自由与新生活的机会？</LetterWandererJoins>
+    <!-- Weapon wheel -->
     <Mugirl.WeaponWheel.Tab>武器轮盘</Mugirl.WeaponWheel.Tab>
+    <!-- {0} / {1} -->
     <Mugirl.WeaponWheel.HeaderSlots>{0} / {1}</Mugirl.WeaponWheel.HeaderSlots>
+    <!-- Locked -->
     <Mugirl.WeaponWheel.Locked>未解锁</Mugirl.WeaponWheel.Locked>
+    <!-- Complete the self-propelled autoloading research to unlock this wheel slot. -->
     <Mugirl.WeaponWheel.LockedDesc>完成“自驱装填”研究后解锁该轮盘格。</Mugirl.WeaponWheel.LockedDesc>
+    <!-- Unlock -->
     <Mugirl.WeaponWheel.DevUnlock>解锁</Mugirl.WeaponWheel.DevUnlock>
+    <!-- Click, then select a weapon on the map to load it into this wheel slot. -->
     <Mugirl.WeaponWheel.EmptySlotDesc>点击后选择地图上的一把武器，将其装入该轮盘格。</Mugirl.WeaponWheel.EmptySlotDesc>
+    <!-- Unequip {0} -->
     <Mugirl.WeaponWheel.DropWeapon>卸下 {0}</Mugirl.WeaponWheel.DropWeapon>
+    <!-- The target is not an equippable primary weapon. -->
     <Mugirl.WeaponWheel.InvalidWeapon>目标不是可装备的主武器。</Mugirl.WeaponWheel.InvalidWeapon>
+    <!-- This wheel slot is locked. -->
     <Mugirl.WeaponWheel.SlotLocked>该轮盘格尚未解锁。</Mugirl.WeaponWheel.SlotLocked>
+    <!-- This wheel slot already contains a weapon. -->
     <Mugirl.WeaponWheel.SlotOccupied>该轮盘格已有武器。</Mugirl.WeaponWheel.SlotOccupied>
+    <!-- The weapon wheel cannot be edited while firing, switching or reloading. -->
     <Mugirl.WeaponWheel.Busy>武器轮盘正在战斗或装弹，暂时不能调整。</Mugirl.WeaponWheel.Busy>
+    <!-- This weapon is already in the wheel. -->
     <Mugirl.WeaponWheel.AlreadyStored>这把武器已经在轮盘中。</Mugirl.WeaponWheel.AlreadyStored>
+    <!-- This weapon cannot be stored in the wheel. -->
     <Mugirl.WeaponWheel.CannotStore>无法将这把武器存入轮盘。</Mugirl.WeaponWheel.CannotStore>
+    <!-- These wheel slots cannot be swapped. -->
     <Mugirl.WeaponWheel.CannotSwap>无法交换这两个轮盘格。</Mugirl.WeaponWheel.CannotSwap>
+    <!-- This weapon cannot be unequipped right now. -->
     <Mugirl.WeaponWheel.CannotDrop>目前无法卸下这把武器。</Mugirl.WeaponWheel.CannotDrop>
-    <Mugirl.WeaponWheel.StatusMounted>骑乘中：仅保留武器储备</Mugirl.WeaponWheel.StatusMounted>
-    <Mugirl.WeaponWheel.StatusEquipping>正在架起主武器</Mugirl.WeaponWheel.StatusEquipping>
-    <Mugirl.WeaponWheel.StatusSwitching>火力满载：正在切换武器</Mugirl.WeaponWheel.StatusSwitching>
-    <Mugirl.WeaponWheel.StatusReloading>整轮装弹：{0}</Mugirl.WeaponWheel.StatusReloading>
-    <Mugirl.WeaponWheel.StatusFull>火力满载已启用</Mugirl.WeaponWheel.StatusFull>
-    <Mugirl.WeaponWheel.StatusFullAutoload>火力满载可用：自驱装弹系统已接入</Mugirl.WeaponWheel.StatusFullAutoload>
-    <Mugirl.WeaponWheel.StatusInactive>火力满载未启用：{0}</Mugirl.WeaponWheel.StatusInactive>
-    <Mugirl.WeaponWheel.ReasonNoEquipment>没有装备追踪器</Mugirl.WeaponWheel.ReasonNoEquipment>
-    <Mugirl.WeaponWheel.ReasonMounted>骑乘状态</Mugirl.WeaponWheel.ReasonMounted>
-    <Mugirl.WeaponWheel.ReasonViolenceDisabled>无法从事暴力工作</Mugirl.WeaponWheel.ReasonViolenceDisabled>
-    <Mugirl.WeaponWheel.ReasonNotRanged>{0} 不是可用的远程武器</Mugirl.WeaponWheel.ReasonNotRanged>
-    <Mugirl.WeaponWheel.ReasonNeedTwo>至少需要两把远程武器</Mugirl.WeaponWheel.ReasonNeedTwo>
-    <Mugirl.WeaponWheel.ReasonNoPrimary>第一格没有主武器</Mugirl.WeaponWheel.ReasonNoPrimary>
+    <!-- Weapon wheel: Full firepower enabled -->
+    <Mugirl.WeaponWheel.StatusFull>武器轮盘：火力满载已启用</Mugirl.WeaponWheel.StatusFull>
+    <!-- Weapon wheel: Linked sword dance enabled -->
+    <Mugirl.WeaponWheel.StatusSwordDance>武器轮盘：连携剑舞已启用</Mugirl.WeaponWheel.StatusSwordDance>
+    <!-- Each melee attack has a 33% chance to dash behind the enemy, stunning them, dealing impact damage and melee attack damage, then switching to the next melee weapon and increasing melee attack speed by 200% for 5 seconds. -->
+    <Mugirl.WeaponWheel.StatusSwordDanceDesc>每次近战攻击有33%的概率冲刺到敌人身后，造成一次眩晕，一次冲撞伤害，一次近战攻击伤害，随后切换到下一把近战武器，并使近战攻击速度提高200%，持续5秒。</Mugirl.WeaponWheel.StatusSwordDanceDesc>
+    <!-- Snow-bovine punisher -->
+    <Mugirl.Punisher.LetterLabel>雪牛惩戒者</Mugirl.Punisher.LetterLabel>
+    <!-- You have cruelly slaughtered innocent Mugirls! The god of the snow-bovines will punish you! -->
+    <Mugirl.Punisher.LetterText>你竟然残忍的杀害了无辜的雪牛娘！雪牛之神会惩罚你的！</Mugirl.Punisher.LetterText>
+    <!-- The snow-bovine punisher has completed its punishment and departed. -->
+    <Mugirl.Punisher.Departed>雪牛惩戒者已经结束惩戒，扬长而去。</Mugirl.Punisher.Departed>
 </LanguageData>

@@ -2,7 +2,9 @@
 <Defs>
     <ResearchProjectDef>
         <defName>Mugirl_Autoloading</defName>
+        <!-- 自驱装填 -->
         <label>self-propelled autoloading</label>
+        <!-- 研发一种可穿戴的自动装填机构，在两轮齐射之间为雪牛娘武器轮盘中的全部武器完成装填。完成该项目还会解锁武器轮盘剩余的三个槽位。 -->
         <description>Develop a wearable autonomous loading mechanism capable of servicing an entire Mugirl weapon wheel between volleys. Completing this project also unlocks the wheel's remaining three weapon slots.</description>
         <baseCost>2500</baseCost>
         <techLevel>Spacer</techLevel>

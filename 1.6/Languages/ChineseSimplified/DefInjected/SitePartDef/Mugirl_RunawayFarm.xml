@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
+    <!-- runaway Mugirl ranch -->
     <Mugirl_RunawayFarm.label>失控的雪牛娘牧场</Mugirl_RunawayFarm.label>
+    <!-- A ranch where the Mugirls have suddenly begun running wild. -->
     <Mugirl_RunawayFarm.description>一处雪牛娘们突然撒欢乱跑的牧场。</Mugirl_RunawayFarm.description>
 </LanguageData>

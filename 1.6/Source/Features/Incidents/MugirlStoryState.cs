@@ -55,6 +55,7 @@ namespace Mugirl
             ResetTransientRuntimeState();
             NormalizeJuvenileGraphics();
             MugirlEventUtility.ClearPlayerMigrationPawns();
+            MugirlWildSlaveUtility.NormalizeLoadedPlayerPawnKinds();
         }
 
         public override void GameComponentTick()

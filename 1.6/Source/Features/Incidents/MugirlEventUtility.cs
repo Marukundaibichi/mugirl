@@ -149,6 +149,21 @@ namespace Mugirl
 
     }
 
+    [HarmonyPatch(typeof(JobGiver_DropRandomGearOrApparel), "TryGiveJob")]
+    internal static class JobGiver_DropRandomGearOrApparel_MugirlMigration_Patch
+    {
+        public static bool Prefix(Pawn pawn, ref Job __result)
+        {
+            if (!MugirlEventUtility.IsMigrationPawn(pawn))
+            {
+                return true;
+            }
+
+            __result = null;
+            return false;
+        }
+    }
+
     [HarmonyPatch(typeof(Pawn_MindState), "CheckStartMentalStateBecauseRecruitAttempted")]
     internal static class PawnMindState_CheckStartMentalStateBecauseRecruitAttempted_MugirlEvents_Patch
     {
@@ -171,23 +186,28 @@ namespace Mugirl
         public static bool Prefix(Pawn_MindState __instance)
         {
             Pawn pawn = __instance.pawn;
+            bool passiveEventPawn = MugirlEventUtility.IsPassiveEventPawn(pawn);
             if (MugirlEventUtility.IsMigrationPawn(pawn))
             {
                 MapComponent_MugirlMigration.NotifyMigrationPawnAttacked(pawn);
             }
+            else if (MugirlEventUtility.IsFusionInvestor(pawn))
+            {
+                MugirlFusionInvestmentUtility.NotifyInvestorAttacked(pawn);
+            }
 
-            return !MugirlEventUtility.IsPassiveEventPawn(pawn);
+            return !passiveEventPawn;
         }
     }
 
-    [HarmonyPatch(typeof(Pawn), "PreApplyDamage")]
-    internal static class Pawn_PreApplyDamage_MugirlMigrationFlee_Patch
+    [HarmonyPatch(typeof(Pawn), nameof(Pawn.Kill))]
+    internal static class Pawn_Kill_MugirlMigrationOutcome_Patch
     {
-        public static void Prefix(Pawn __instance)
+        public static void Prefix(Pawn __instance, DamageInfo? dinfo)
         {
             if (MugirlEventUtility.IsMigrationPawn(__instance))
             {
-                MapComponent_MugirlMigration.NotifyMigrationPawnAttacked(__instance);
+                MapComponent_MugirlMigration.NotifyMigrationPawnKilled(__instance, dinfo);
             }
         }
     }

@@ -48,7 +48,9 @@ namespace Mugirl.Features.WeaponWheel
         internal bool TryGetAnimationSnapshot(out WeaponWheelAnimationSnapshot snapshot)
         {
             snapshot = default(WeaponWheelAnimationSnapshot);
-            if (combatState != WeaponWheelCombatState.EquippingPrimary && combatState != WeaponWheelCombatState.Switching)
+            if (combatState != WeaponWheelCombatState.EquippingPrimary
+                && combatState != WeaponWheelCombatState.Switching
+                && combatState != WeaponWheelCombatState.SwordDanceSwitching)
             {
                 return false;
             }
@@ -62,7 +64,8 @@ namespace Mugirl.Features.WeaponWheel
             snapshot.Progress = Mathf.Clamp01((float)elapsed / duration);
             snapshot.OutgoingProgress = Mathf.Clamp01((float)elapsed / outgoingDuration);
             snapshot.AimAngle = animationAimAngle;
-            snapshot.IsSwitching = combatState == WeaponWheelCombatState.Switching;
+            snapshot.IsSwitching = combatState == WeaponWheelCombatState.Switching
+                || combatState == WeaponWheelCombatState.SwordDanceSwitching;
             snapshot.SnapStartProgress = Mathf.Clamp01((float)snapTick / duration);
             snapshot.SnapProgress = elapsed < snapTick || duration <= snapTick
                 ? 0f
@@ -95,26 +98,27 @@ namespace Mugirl.Features.WeaponWheel
             }
 
             float distanceFactor = pawn.ageTracker?.CurLifeStage?.equipmentDrawDistanceFactor ?? 1f;
+            Vector3 pawnDrawPosition = pawn.DrawPos;
             if (!comp.TryGetAnimationSnapshot(out WeaponWheelAnimationSnapshot snapshot))
             {
                 if (!comp.TryGetAimHandoff(out ThingWithComps handoffWeapon, out float handoffAngle))
                 {
                     return;
                 }
-                Vector3 handoffPosition = pawn.DrawPos
+                Vector3 handoffPosition = pawnDrawPosition
                     + new Vector3(0f, 0f, 0.4f + handoffWeapon.def.equippedDistanceOffset).RotatedBy(handoffAngle) * distanceFactor;
                 handoffPosition.y += 0.040f;
                 DrawWeapon(handoffWeapon, handoffPosition, handoffAngle, 1f, 1f, true);
                 return;
             }
 
-            Vector3 holdPosition = pawn.DrawPos
+            Vector3 holdPosition = pawnDrawPosition
                 + new Vector3(0f, 0f, 0.4f + (snapshot.IncomingWeapon?.def?.equippedDistanceOffset ?? 0f)).RotatedBy(snapshot.AimAngle) * distanceFactor;
             holdPosition.y += 0.040f;
 
             if (snapshot.OutgoingWeapon != null && snapshot.OutgoingProgress < 1f)
             {
-                Vector3 outgoingPosition = pawn.DrawPos
+                Vector3 outgoingPosition = pawnDrawPosition
                     + new Vector3(0f, 0f, 0.4f + snapshot.OutgoingWeapon.def.equippedDistanceOffset).RotatedBy(snapshot.AimAngle) * distanceFactor;
                 outgoingPosition += new Vector3(0f, 0f, -0.62f * snapshot.OutgoingProgress);
                 outgoingPosition.y += 0.039f;
@@ -132,7 +136,7 @@ namespace Mugirl.Features.WeaponWheel
             float incomingAngle;
             if (snapshot.IsSwitching)
             {
-                Vector3 offsetPosition = pawn.DrawPos
+                Vector3 offsetPosition = pawnDrawPosition
                     + new Vector3(0f, 0f, 0.72f).RotatedBy(snapshot.AimAngle - 58f);
                 offsetPosition.z += 0.22f;
                 offsetPosition.y = holdPosition.y;
@@ -173,7 +177,7 @@ namespace Mugirl.Features.WeaponWheel
                     float slow = Mathf.SmoothStep(0f, 1f, progress / 0.72f);
                     float orbitAngle = Mathf.Lerp(snapshot.AimAngle - 115f, snapshot.AimAngle - 32f, slow);
                     float radius = Mathf.Lerp(0.92f, 0.62f, slow);
-                    incomingPosition = pawn.DrawPos + new Vector3(0f, 0f, radius).RotatedBy(orbitAngle);
+                    incomingPosition = pawnDrawPosition + new Vector3(0f, 0f, radius).RotatedBy(orbitAngle);
                     incomingPosition.z += Mathf.Lerp(0.58f, 0.16f, slow);
                     incomingAngle = Mathf.Lerp(snapshot.AimAngle - 165f, snapshot.AimAngle + 38f, slow);
                 }
@@ -181,7 +185,7 @@ namespace Mugirl.Features.WeaponWheel
                 {
                     float fast = Mathf.Clamp01((progress - 0.72f) / 0.28f);
                     fast *= fast;
-                    Vector3 arcEnd = pawn.DrawPos + new Vector3(0f, 0f, 0.62f).RotatedBy(snapshot.AimAngle - 32f);
+                    Vector3 arcEnd = pawnDrawPosition + new Vector3(0f, 0f, 0.62f).RotatedBy(snapshot.AimAngle - 32f);
                     arcEnd.z += 0.16f;
                     incomingPosition = Vector3.Lerp(arcEnd, holdPosition, fast);
                     incomingAngle = Mathf.Lerp(snapshot.AimAngle + 38f, snapshot.AimAngle + 398f, fast);

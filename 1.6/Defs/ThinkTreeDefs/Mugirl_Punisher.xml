@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <ThinkTreeDef>
+        <defName>MugirlPunisher</defName>
+        <thinkRoot Class="ThinkNode_Priority">
+            <subNodes>
+                <li Class="Mugirl.JobGiver_MugirlPunisher" />
+                <li Class="ThinkNode_Subtree">
+                    <treeDef>LordDuty</treeDef>
+                </li>
+                <li Class="JobGiver_IdleError" />
+            </subNodes>
+        </thinkRoot>
+    </ThinkTreeDef>
+</Defs>

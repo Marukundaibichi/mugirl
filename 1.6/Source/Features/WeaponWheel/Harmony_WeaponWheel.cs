@@ -55,6 +55,11 @@ namespace Mugirl
     {
         public static void Postfix(Verb __instance)
         {
+            if (__instance?.verbProps?.IsMeleeAttack == true)
+            {
+                __instance.CasterPawn?.TryGetComp<Comp_WeaponWheel>()?.NotifyMeleeAttackCompleted(__instance);
+                return;
+            }
             if (__instance == null || __instance.state != VerbState.Idle
                 || !MugirlTickUtility.TryGetCurrentGameTick(out int currentTick)
                 || __instance.LastShotTick != currentTick)
@@ -62,6 +67,20 @@ namespace Mugirl
                 return;
             }
             __instance.CasterPawn?.TryGetComp<Comp_WeaponWheel>()?.NotifyBurstCompleted(__instance);
+        }
+    }
+
+    [HarmonyPatch(typeof(Verb_MeleeAttack), "TryCastShot")]
+    public static class Harmony_WeaponWheel_MeleeAttack
+    {
+        public static void Prefix(Verb_MeleeAttack __instance)
+        {
+            __instance?.CasterPawn?.TryGetComp<Comp_WeaponWheel>()?.PrepareSwordDanceStrike(__instance);
+        }
+
+        public static void Postfix(Verb_MeleeAttack __instance)
+        {
+            __instance?.CasterPawn?.TryGetComp<Comp_WeaponWheel>()?.NotifySwordDanceStrikeResolved(__instance);
         }
     }
 
@@ -120,16 +139,6 @@ namespace Mugirl
         public static bool Prefix(Thing eq)
         {
             ThingWithComps weapon = eq as ThingWithComps;
-            Pawn_EquipmentTracker tracker = weapon?.ParentHolder as Pawn_EquipmentTracker;
-            return tracker?.pawn?.TryGetComp<Comp_WeaponWheel>()?.ShouldSuppressVanillaWeaponDraw(weapon) != true;
-        }
-    }
-
-    [HarmonyPatch(typeof(PawnRenderUtility), nameof(PawnRenderUtility.DrawCarriedWeapon))]
-    public static class Harmony_WeaponWheel_DrawCarriedWeapon
-    {
-        public static bool Prefix(ThingWithComps weapon)
-        {
             Pawn_EquipmentTracker tracker = weapon?.ParentHolder as Pawn_EquipmentTracker;
             return tracker?.pawn?.TryGetComp<Comp_WeaponWheel>()?.ShouldSuppressVanillaWeaponDraw(weapon) != true;
         }

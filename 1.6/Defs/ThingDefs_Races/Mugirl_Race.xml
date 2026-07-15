@@ -892,6 +892,11 @@
                 <outgoingAnimationTicks>18</outgoingAnimationTicks>
                 <snapTick>38</snapTick>
                 <switchSnapTick>30</switchSnapTick>
+                <swordDanceChance>0.33</swordDanceChance>
+                <swordDanceStunTicks>60</swordDanceStunTicks>
+                <swordDanceHasteTicks>300</swordDanceHasteTicks>
+                <swordDanceRamDamage>10</swordDanceRamDamage>
+                <swordDanceRamArmorPenetration>0.2</swordDanceRamArmorPenetration>
             </li>
             <li Class="Mugirl.CompProperties_MugirlMount" />
             <li Class="Mugirl.CompProperties_MooMilkable">

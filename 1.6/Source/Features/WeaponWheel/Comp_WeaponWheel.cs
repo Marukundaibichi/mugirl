@@ -48,6 +48,7 @@ namespace Mugirl.Features.WeaponWheel
         public int ActiveSlotIndex => activeSlotIndex;
         public bool IsBusy => combatState == WeaponWheelCombatState.EquippingPrimary
             || combatState == WeaponWheelCombatState.Switching
+            || combatState == WeaponWheelCombatState.SwordDanceSwitching
             || combatState == WeaponWheelCombatState.CycleCooldown
             || combatState == WeaponWheelCombatState.Firing;
         internal WeaponWheelCombatState CombatState => combatState;
@@ -73,9 +74,11 @@ namespace Mugirl.Features.WeaponWheel
             Scribe_Deep.Look(ref reserveWeapons, "weaponWheelReserveWeapons", this);
             Scribe_Collections.Look(ref slots, "weaponWheelSlots", LookMode.Reference);
             Scribe_Collections.Look(ref unlockedSlots, "weaponWheelUnlockedSlots", LookMode.Value);
+            Scribe_Values.Look(ref swordDanceFailureStreak, "weaponWheelSwordDanceFailureStreak", 0);
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                swordDanceFailureStreak = Mathf.Clamp(swordDanceFailureStreak, 0, SwordDanceGuaranteeFailures - 1);
                 EnsureCollections();
                 ValidateSlotReferences();
                 normalizeAfterLoad = true;
@@ -105,6 +108,7 @@ namespace Mugirl.Features.WeaponWheel
             TickReserveVerbs();
             TickMountedState();
             TickWeaponOpenState();
+            TickPendingSwordDanceCompletion();
             TickCombatState();
         }
 
@@ -296,6 +300,7 @@ namespace Mugirl.Features.WeaponWheel
             aimHandoffWeapon = null;
             aimHandoffUntilTick = -1;
             ClearPendingCast();
+            ClearPendingSwordDance();
             wasWeaponOpenlyHeld = false;
             wasMountedDisabled = false;
         }

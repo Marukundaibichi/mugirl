@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
+    <!-- runaway panic -->
     <Mugirl_RunawayPanic.label>撒欢乱跑</Mugirl_RunawayPanic.label>
+    <!-- This Mugirl is in a harmless but extremely energetic runaway state. -->
     <Mugirl_RunawayPanic.description>这位雪牛娘处于无害但异常有劲的失控奔跑状态。</Mugirl_RunawayPanic.description>
 </LanguageData>

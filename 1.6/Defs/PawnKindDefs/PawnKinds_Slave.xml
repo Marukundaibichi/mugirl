@@ -108,6 +108,7 @@
 
     <PawnKindDef ParentName="Mugirl_SlaveBase">
         <defName>Mugirl_PreEscapeWildSlave</defName>
+        <!-- 仅保留给旧存档中的历史角色解析；新代码不再转换到此 PawnKind。 -->
         <!-- 雪牛流浪者 -->
         <label>Mugirl Wanderer</label>
         <acceptArrestChanceFactor>0.5</acceptArrestChanceFactor>

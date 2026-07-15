@@ -59,6 +59,10 @@ namespace Mugirl
         public static QuestScriptDef Mugirl_RunawayFarmQuest;
         public static SitePartDef Mugirl_RunawayFarm;
         public static HediffDef Mugirl_RunawayPanic;
+        public static ThingDef Mugirl_PunisherRace;
+        public static PawnKindDef Mugirl_Punisher;
+        public static HediffDef Mugirl_PunisherKnockout;
+        public static FleckDef ShockwaveFast;
 
         // 快递事件交互 Job 引用。
         public static JobDef Mugirl_ReadCourierDiary;

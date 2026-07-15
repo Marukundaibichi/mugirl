@@ -13,7 +13,7 @@ namespace Mugirl
         {
             if (pawn == null) return;
 
-            if (MugirlWildSlaveUtility.IsNonPlayerEscapeWildSlave(pawn))
+            if (MugirlWildSlaveUtility.IsNonPlayerWildMugirl(pawn))
             {
                 __result = true;
             }
@@ -31,7 +31,7 @@ namespace Mugirl
             Pawn pawn = t as Pawn;
             if (pawn == null) return;
 
-            if (MugirlWildSlaveUtility.IsNonPlayerEscapeWildSlave(pawn))
+            if (MugirlWildSlaveUtility.IsNonPlayerWildMugirl(pawn))
             {
                 __result = true;
             }

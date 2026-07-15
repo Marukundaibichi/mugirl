@@ -13,33 +13,24 @@ namespace Mugirl
         {
             if (__result) return;
 
-            if (MugirlWildSlaveUtility.IsNonPlayerEscapeWildSlave(p) && !p.IsSubhuman)
+            if (MugirlWildSlaveUtility.IsNonPlayerWildMugirl(p) && !p.IsSubhuman)
             {
                 __result = true;
             }
         }
     }
 
-    // 招募成功后清理野生奴隶状态，避免后续仍被野人逻辑识别。
+    // 招募成功后只清理事件与动物式状态；野人行为资格由 PawnKind 与阵营共同决定。
     [HarmonyPatch(typeof(RecruitUtility), "Recruit")]
     public static class RecruitUtility_Recruit_Patch
     {
-        public static void Prefix(Pawn pawn, out bool __state)
-        {
-            __state = MugirlWildSlaveUtility.IsWildMugirl(pawn);
-        }
-
-        public static void Postfix(Pawn pawn, Faction faction, bool __state)
+        public static void Postfix(Pawn pawn, Faction faction)
         {
             if (pawn == null) return;
 
             if (MugirlWildSlaveUtility.IsPlayerFaction(faction))
             {
-                MugirlWildSlaveUtility.NormalizeAfterJoiningPlayer(pawn, __state);
-            }
-            else if (__state && MugirlWildSlaveUtility.IsWildMugirl(pawn) && Mugirl_DefOf.Mugirl_PreEscapeWildSlave != null)
-            {
-                pawn.ChangeKind(Mugirl_DefOf.Mugirl_PreEscapeWildSlave);
+                MugirlWildSlaveUtility.CleanupAfterJoiningPlayer(pawn);
             }
         }
     }

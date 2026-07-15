@@ -249,6 +249,28 @@ namespace Mugirl
         {
         }
 
+        internal static void NotifyInvestorAttacked(Pawn investor)
+        {
+            if (investor == null || !MugirlEventUtility.IsFusionInvestor(investor))
+            {
+                return;
+            }
+
+            if (MugirlGameUtility.TryGetGameComponent(out MugirlStoryState state))
+            {
+                state.fusionInvestmentInvestorActive = false;
+                state.fusionInvestmentInvestor = null;
+                state.WakeStoryService();
+                if (!state.fusionInvestmentAccepted && !state.fusionInvestmentPending)
+                {
+                    ScheduleNextOffer(PostponeDelayTicks);
+                }
+            }
+
+            MugirlEventUtility.ClearFusionInvestor(investor);
+            StartLeaving(investor);
+        }
+
         internal static void DevDeliverPendingResult()
         {
             if (!MugirlGameUtility.TryGetGameComponent(out MugirlStoryState state) || !state.fusionInvestmentPending)
@@ -595,6 +617,7 @@ namespace Mugirl
                 Pawn pawn = PawnGenerator.GeneratePawn(request);
                 if (pawn != null)
                 {
+                    MugirlWildSlaveUtility.CleanupAfterJoiningPlayer(pawn);
                     rewards.Add(pawn);
                 }
             }

@@ -11,42 +11,42 @@ namespace Mugirl.Features.WeaponWheel
         {
             get
             {
-                if (!IsFullFirepowerEligible(out _))
+                if (IsSwordDanceEligible())
+                {
+                    return "Mugirl.WeaponWheel.StatusSwordDance".Translate();
+                }
+                if (!IsFullFirepowerEligible())
                 {
                     return "Mugirl.WeaponWheel.Tab".Translate();
                 }
-                return HasAutoloadingSystem
-                    ? "Mugirl.WeaponWheel.StatusFullAutoload".Translate()
-                    : "Mugirl.WeaponWheel.StatusFull".Translate();
+                return "Mugirl.WeaponWheel.StatusFull".Translate();
             }
         }
 
-        public bool IsFullFirepowerEligible(out string reason)
+        public string StatusTooltip => IsSwordDanceEligible()
+            ? "Mugirl.WeaponWheel.StatusSwordDanceDesc".Translate().ToString()
+            : StatusLabel;
+
+        public bool IsFullFirepowerEligible()
         {
-            reason = null;
             EnsureCollections();
             Pawn pawn = Pawn;
             if (pawn == null || pawn.equipment == null)
             {
-                reason = "Mugirl.WeaponWheel.ReasonNoEquipment".Translate();
                 return false;
             }
             if (IsCombatDisabledByMount())
             {
-                reason = "Mugirl.WeaponWheel.ReasonMounted".Translate();
                 return false;
             }
             if (pawn.WorkTagIsDisabled(WorkTags.Violent))
             {
-                reason = "Mugirl.WeaponWheel.ReasonViolenceDisabled".Translate();
                 return false;
             }
             if (slots[0] == null)
             {
-                reason = "Mugirl.WeaponWheel.ReasonNoPrimary".Translate();
                 return false;
             }
-
             int weaponCount = 0;
             for (int i = 0; i < slots.Count; i++)
             {
@@ -59,13 +59,11 @@ namespace Mugirl.Features.WeaponWheel
                 CompEquippable equippable = weapon.GetComp<CompEquippable>();
                 if (!weapon.def.IsRangedWeapon || equippable?.PrimaryVerb == null || equippable.PrimaryVerb.verbProps == null)
                 {
-                    reason = "Mugirl.WeaponWheel.ReasonNotRanged".Translate(weapon.LabelCap);
                     return false;
                 }
             }
             if (weaponCount < 2)
             {
-                reason = "Mugirl.WeaponWheel.ReasonNeedTwo".Translate();
                 return false;
             }
             return true;
@@ -91,7 +89,8 @@ namespace Mugirl.Features.WeaponWheel
             {
                 return true;
             }
-            if (combatState == WeaponWheelCombatState.Switching)
+            if (combatState == WeaponWheelCombatState.Switching
+                || combatState == WeaponWheelCombatState.SwordDanceSwitching)
             {
                 return true;
             }
@@ -119,7 +118,12 @@ namespace Mugirl.Features.WeaponWheel
             {
                 return;
             }
-            combatState = WeaponWheelCombatState.Firing;
+            if (combatState != WeaponWheelCombatState.Switching
+                && combatState != WeaponWheelCombatState.SwordDanceSwitching
+                && combatState != WeaponWheelCombatState.CycleCooldown)
+            {
+                combatState = WeaponWheelCombatState.Firing;
+            }
         }
 
         internal void NotifyBurstCompleted(Verb verb)
@@ -129,7 +133,7 @@ namespace Mugirl.Features.WeaponWheel
                 return;
             }
 
-            if (!IsFullFirepowerEligible(out _))
+            if (!IsFullFirepowerEligible())
             {
                 combatState = wasWeaponOpenlyHeld ? WeaponWheelCombatState.Ready : WeaponWheelCombatState.Holstered;
                 cycleActive = false;
@@ -178,6 +182,7 @@ namespace Mugirl.Features.WeaponWheel
             }
             return combatState == WeaponWheelCombatState.EquippingPrimary
                 || combatState == WeaponWheelCombatState.Switching
+                || combatState == WeaponWheelCombatState.SwordDanceSwitching
                 || (weapon == aimHandoffWeapon && CurrentTick <= aimHandoffUntilTick);
         }
 
@@ -298,7 +303,9 @@ namespace Mugirl.Features.WeaponWheel
             }
 
             int elapsed = stateStartTick < 0 ? 0 : CurrentTick - stateStartTick;
-            if ((combatState == WeaponWheelCombatState.EquippingPrimary || combatState == WeaponWheelCombatState.Switching)
+            if ((combatState == WeaponWheelCombatState.EquippingPrimary
+                    || combatState == WeaponWheelCombatState.Switching
+                    || combatState == WeaponWheelCombatState.SwordDanceSwitching)
                 && !animationSnapSoundPlayed && elapsed >= CurrentAnimationSnapTick)
             {
                 animationSnapSoundPlayed = true;
@@ -312,6 +319,10 @@ namespace Mugirl.Features.WeaponWheel
             else if (combatState == WeaponWheelCombatState.Switching && elapsed >= stateDurationTicks)
             {
                 FinishSwitchAnimationAndFire();
+            }
+            else if (combatState == WeaponWheelCombatState.SwordDanceSwitching && elapsed >= stateDurationTicks)
+            {
+                FinishSwordDanceSwitchAnimation();
             }
             else if (combatState == WeaponWheelCombatState.CycleCooldown && CurrentTick >= cooldownUntilTick)
             {
@@ -502,6 +513,7 @@ namespace Mugirl.Features.WeaponWheel
             aimHandoffWeapon = null;
             aimHandoffUntilTick = -1;
             ClearPendingCast();
+            ClearPendingSwordDance();
             NormalizeToPrimarySlot();
             combatState = wasWeaponOpenlyHeld ? WeaponWheelCombatState.Ready : WeaponWheelCombatState.Holstered;
             MarkBackWeaponsDirty();
@@ -634,7 +646,9 @@ namespace Mugirl.Features.WeaponWheel
         }
 
         private int CurrentAnimationSnapTick => Mathf.Clamp(
-            combatState == WeaponWheelCombatState.Switching ? Props.switchSnapTick : Props.snapTick,
+            combatState == WeaponWheelCombatState.Switching || combatState == WeaponWheelCombatState.SwordDanceSwitching
+                ? Props.switchSnapTick
+                : Props.snapTick,
             0,
             stateDurationTicks);
     }

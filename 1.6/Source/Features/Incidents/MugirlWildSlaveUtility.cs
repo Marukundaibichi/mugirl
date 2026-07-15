@@ -19,7 +19,15 @@ namespace Mugirl
             return IsEscapeWildSlave(pawn) || pawn?.kindDef == Mugirl_DefOf.Mugirl_WildMugirl;
         }
 
-        public static bool IsNonPlayerEscapeWildSlave(Pawn pawn)
+        public static bool HasLegacyPlayerMugirlKind(Pawn pawn)
+        {
+            return pawn != null
+                && (pawn.kindDef == Mugirl_DefOf.Mugirl_EscapeWildSlave
+                    || pawn.kindDef == Mugirl_DefOf.Mugirl_WildMugirl
+                    || pawn.kindDef == Mugirl_DefOf.Mugirl_PreEscapeWildSlave);
+        }
+
+        public static bool IsNonPlayerWildMugirl(Pawn pawn)
         {
             return IsWildMugirl(pawn) && !IsPlayerFaction(pawn.Faction);
         }
@@ -65,7 +73,7 @@ namespace Mugirl
             return pawn != null && IsHostileToPlayer(pawn.Faction);
         }
 
-        public static bool NormalizeAfterJoiningPlayer(Pawn pawn, bool wasEscapeWildSlave = false)
+        public static bool CleanupAfterJoiningPlayer(Pawn pawn)
         {
             if (pawn == null || pawn.Destroyed || !IsPlayerFaction(pawn.Faction))
             {
@@ -73,15 +81,13 @@ namespace Mugirl
             }
 
             bool changed = false;
-            if (MugirlEventUtility.ClearMigrationPawn(pawn))
+            if (NormalizePlayerKindToFactionDefault(pawn))
             {
                 changed = true;
             }
 
-            bool shouldUseNonWildKind = wasEscapeWildSlave || IsWildMugirl(pawn);
-            if (shouldUseNonWildKind && Mugirl_DefOf.Mugirl_PreEscapeWildSlave != null && pawn.kindDef != Mugirl_DefOf.Mugirl_PreEscapeWildSlave)
+            if (MugirlEventUtility.ClearMigrationPawn(pawn))
             {
-                pawn.ChangeKind(Mugirl_DefOf.Mugirl_PreEscapeWildSlave);
                 changed = true;
             }
 
@@ -135,19 +141,39 @@ namespace Mugirl
             return changed;
         }
 
-        public static bool NormalizePlayerPawnIfNeeded(Pawn pawn)
+        public static int NormalizeLoadedPlayerPawnKinds()
         {
-            if (pawn == null || !IsPlayerFaction(pawn.Faction))
+            int changed = 0;
+            foreach (Pawn pawn in PawnsFinder.All_AliveOrDead)
+            {
+                if (NormalizePlayerKindToFactionDefault(pawn))
+                {
+                    RefreshPawn(pawn);
+                    changed++;
+                }
+            }
+
+            return changed;
+        }
+
+        private static bool NormalizePlayerKindToFactionDefault(Pawn pawn)
+        {
+            if (!HasLegacyPlayerMugirlKind(pawn)
+                || !IsPlayerFaction(pawn.Faction)
+                || pawn.RaceProps?.Humanlike != true
+                || pawn.IsQuestLodger())
             {
                 return false;
             }
 
-            if (!IsMugirlPawn(pawn) && !IsWildMugirl(pawn))
+            PawnKindDef targetKind = pawn.Faction?.def?.basicMemberKind;
+            if (targetKind == null || pawn.kindDef == targetKind)
             {
                 return false;
             }
 
-            return NormalizeAfterJoiningPlayer(pawn);
+            pawn.ChangeKind(targetKind);
+            return true;
         }
 
         public static void RefreshPawn(Pawn pawn)
@@ -167,43 +193,13 @@ namespace Mugirl
     [HarmonyPatch(typeof(Pawn), nameof(Pawn.SetFaction))]
     internal static class Pawn_SetFaction_MugirlWildSlaveCleanup_Patch
     {
-        public static void Prefix(Pawn __instance, out bool __state)
-        {
-            __state = MugirlWildSlaveUtility.IsWildMugirl(__instance);
-        }
-
-        public static void Postfix(Pawn __instance, Faction newFaction, bool __state)
+        public static void Postfix(Pawn __instance, Faction newFaction)
         {
             if (MugirlWildSlaveUtility.IsPlayerFaction(newFaction) && MugirlWildSlaveUtility.IsMugirlPawn(__instance))
             {
-                MugirlWildSlaveUtility.NormalizeAfterJoiningPlayer(__instance, __state);
+                MugirlWildSlaveUtility.CleanupAfterJoiningPlayer(__instance);
             }
         }
     }
 
-    [HarmonyPatch(typeof(PawnGenerator), nameof(PawnGenerator.GeneratePawn), new Type[] { typeof(PawnGenerationRequest) })]
-    internal static class PawnGenerator_GeneratePawn_MugirlWildSlaveBirth_Patch
-    {
-        public static void Prefix(ref PawnGenerationRequest request)
-        {
-            if (MugirlWildSlaveUtility.IsPlayerFaction(request.Faction)
-                && request.KindDef == Mugirl_DefOf.Mugirl_EscapeWildSlave
-                && request.AllowedDevelopmentalStages.Newborn()
-                && Mugirl_DefOf.Mugirl_PreEscapeWildSlave != null)
-            {
-                request.KindDef = Mugirl_DefOf.Mugirl_PreEscapeWildSlave;
-            }
-        }
-
-        public static void Postfix(Pawn __result, PawnGenerationRequest request)
-        {
-            if (__result != null
-                && MugirlWildSlaveUtility.IsPlayerFaction(request.Faction)
-                && request.AllowedDevelopmentalStages.Newborn()
-                && __result.kindDef == Mugirl_DefOf.Mugirl_EscapeWildSlave)
-            {
-                MugirlWildSlaveUtility.NormalizeAfterJoiningPlayer(__result, true);
-            }
-        }
-    }
 }

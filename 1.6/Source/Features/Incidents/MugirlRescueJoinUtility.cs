@@ -49,8 +49,6 @@ namespace Mugirl
 
             pawn.mindState.WillJoinColonyIfRescued = false;
             Mugirl_IdeoUtility.AdoptPlayerPrimaryIdeo(pawn);
-            bool wasEscapeWildSlave = MugirlWildSlaveUtility.IsEscapeWildSlave(pawn);
-
             string letterLabel;
             string letterText;
             InteractionWorker_RecruitAttempt.DoRecruit(
@@ -64,7 +62,7 @@ namespace Mugirl
             Mugirl_IdeoUtility.AdoptPlayerPrimaryIdeo(pawn);
             if (MugirlWildSlaveUtility.IsPlayerFaction(pawn.Faction))
             {
-                MugirlWildSlaveUtility.NormalizeAfterJoiningPlayer(pawn, wasEscapeWildSlave);
+                MugirlWildSlaveUtility.CleanupAfterJoiningPlayer(pawn);
             }
 
             if (pawn.needs?.mood?.thoughts?.memories != null)

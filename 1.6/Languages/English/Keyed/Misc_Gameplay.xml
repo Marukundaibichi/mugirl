@@ -275,17 +275,10 @@
     <Mugirl.WeaponWheel.CannotStore>This weapon cannot be stored in the wheel.</Mugirl.WeaponWheel.CannotStore>
     <Mugirl.WeaponWheel.CannotSwap>These wheel slots cannot be swapped.</Mugirl.WeaponWheel.CannotSwap>
     <Mugirl.WeaponWheel.CannotDrop>This weapon cannot be unequipped right now.</Mugirl.WeaponWheel.CannotDrop>
-    <Mugirl.WeaponWheel.StatusMounted>Mounted: weapon storage only</Mugirl.WeaponWheel.StatusMounted>
-    <Mugirl.WeaponWheel.StatusEquipping>Raising primary weapon</Mugirl.WeaponWheel.StatusEquipping>
-    <Mugirl.WeaponWheel.StatusSwitching>Full firepower: switching weapons</Mugirl.WeaponWheel.StatusSwitching>
-    <Mugirl.WeaponWheel.StatusReloading>Volley reload: {0}</Mugirl.WeaponWheel.StatusReloading>
-    <Mugirl.WeaponWheel.StatusFull>Full firepower enabled</Mugirl.WeaponWheel.StatusFull>
-    <Mugirl.WeaponWheel.StatusFullAutoload>Full firepower available: self-propelled autoloading system connected</Mugirl.WeaponWheel.StatusFullAutoload>
-    <Mugirl.WeaponWheel.StatusInactive>Full firepower inactive: {0}</Mugirl.WeaponWheel.StatusInactive>
-    <Mugirl.WeaponWheel.ReasonNoEquipment>No equipment tracker</Mugirl.WeaponWheel.ReasonNoEquipment>
-    <Mugirl.WeaponWheel.ReasonMounted>mounted</Mugirl.WeaponWheel.ReasonMounted>
-    <Mugirl.WeaponWheel.ReasonViolenceDisabled>incapable of violence</Mugirl.WeaponWheel.ReasonViolenceDisabled>
-    <Mugirl.WeaponWheel.ReasonNotRanged>{0} is not a usable ranged weapon</Mugirl.WeaponWheel.ReasonNotRanged>
-    <Mugirl.WeaponWheel.ReasonNeedTwo>at least two ranged weapons are required</Mugirl.WeaponWheel.ReasonNeedTwo>
-    <Mugirl.WeaponWheel.ReasonNoPrimary>the primary slot is empty</Mugirl.WeaponWheel.ReasonNoPrimary>
+    <Mugirl.WeaponWheel.StatusFull>Weapon wheel: Full firepower enabled</Mugirl.WeaponWheel.StatusFull>
+    <Mugirl.WeaponWheel.StatusSwordDance>Weapon wheel: Linked sword dance enabled</Mugirl.WeaponWheel.StatusSwordDance>
+    <Mugirl.WeaponWheel.StatusSwordDanceDesc>Each melee attack has a 33% chance to dash behind the enemy, stunning them, dealing impact damage and melee attack damage, then switching to the next melee weapon and increasing melee attack speed by 200% for 5 seconds.</Mugirl.WeaponWheel.StatusSwordDanceDesc>
+    <Mugirl.Punisher.LetterLabel>Snow-bovine punisher</Mugirl.Punisher.LetterLabel>
+    <Mugirl.Punisher.LetterText>You have cruelly slaughtered innocent Mugirls! The god of the snow-bovines will punish you!</Mugirl.Punisher.LetterText>
+    <Mugirl.Punisher.Departed>The snow-bovine punisher has completed its punishment and departed.</Mugirl.Punisher.Departed>
 </LanguageData>

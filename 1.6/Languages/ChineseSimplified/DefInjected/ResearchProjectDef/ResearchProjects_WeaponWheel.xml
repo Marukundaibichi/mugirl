@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
+    <!-- self-propelled autoloading -->
     <Mugirl_Autoloading.label>自驱装填</Mugirl_Autoloading.label>
+    <!-- Develop a wearable autonomous loading mechanism capable of servicing an entire Mugirl weapon wheel between volleys. Completing this project also unlocks the wheel's remaining three weapon slots. -->
     <Mugirl_Autoloading.description>研发一种可穿戴的自动装填机构，在两轮齐射之间为雪牛娘武器轮盘中的全部武器完成装填。完成该项目还会解锁武器轮盘剩余的三个槽位。</Mugirl_Autoloading.description>
 </LanguageData>

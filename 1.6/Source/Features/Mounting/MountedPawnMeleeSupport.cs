@@ -173,10 +173,7 @@ namespace Mugirl
 
             Vector3 drawPos = comp.WeaponDrawPos;
             drawPos += MountedPawnUtility.MountedWeaponSideOffset(carrier.Rotation, 0.12f);
-            using (MeleeAnimationCompat.SuspendIdleWeaponAnimation())
-            {
-                PawnRenderUtility.DrawCarriedWeapon(weapon, drawPos, carrier.Rotation, MountedPawnUtility.EquipmentDrawDistanceFactor(rider));
-            }
+            PawnRenderUtility.DrawCarriedWeapon(weapon, drawPos, carrier.Rotation, MountedPawnUtility.EquipmentDrawDistanceFactor(rider));
         }
 
         public static Thing CurrentMeleeTarget(Pawn carrier)

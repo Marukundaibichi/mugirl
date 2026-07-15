@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <ThingDef ParentName="AnimalThingBase">
+        <defName>Mugirl_PunisherRace</defName>
+        <!-- 雪牛惩戒者 -->
+        <label>snow-bovine punisher</label>
+        <!-- 在雪牛娘遭到屠杀后现身的巨型装甲惩戒单位。 -->
+        <description>A colossal armored enforcer that appears after Mugirls are slaughtered.</description>
+        <statBases>
+            <MoveSpeed>1.7</MoveSpeed>
+            <MarketValue>12000</MarketValue>
+            <Mass>1200</Mass>
+            <ComfyTemperatureMin>-100</ComfyTemperatureMin>
+            <ComfyTemperatureMax>100</ComfyTemperatureMax>
+            <ArmorRating_Sharp>1.2</ArmorRating_Sharp>
+            <ArmorRating_Blunt>1.0</ArmorRating_Blunt>
+            <ArmorRating_Heat>2.0</ArmorRating_Heat>
+            <Flammability>0</Flammability>
+            <ToxicResistance>1</ToxicResistance>
+            <PainShockThreshold>1</PainShockThreshold>
+            <Wildness>1</Wildness>
+        </statBases>
+        <tools>
+            <li>
+                <!-- 装甲冲撞 -->
+                <label>armored ram</label>
+                <capacities>
+                    <li>Mugirl_PunisherBlowCapacity</li>
+                </capacities>
+                <power>350</power>
+                <cooldownTime>2.5</cooldownTime>
+                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+            </li>
+        </tools>
+        <race>
+            <thinkTreeMain>MugirlPunisher</thinkTreeMain>
+            <thinkTreeConstant>AnimalConstant</thinkTreeConstant>
+            <renderTree>Animal</renderTree>
+            <body>QuadrupedAnimalWithHooves</body>
+            <hasGenders>false</hasGenders>
+            <trainability>None</trainability>
+            <herdMigrationAllowed>false</herdMigrationAllowed>
+            <deathAction>
+                <workerClass>Mugirl.DeathActionWorker_MugirlPunisher</workerClass>
+            </deathAction>
+            <baseBodySize>5</baseBodySize>
+            <baseHungerRate>0</baseHungerRate>
+            <baseHealthScale>12</baseHealthScale>
+            <foodType>None</foodType>
+            <lifeExpectancy>500</lifeExpectancy>
+            <manhunterOnDamageChance>0</manhunterOnDamageChance>
+            <lifeStageAges>
+                <li>
+                    <def>AnimalAdult</def>
+                    <minAge>0</minAge>
+                </li>
+            </lifeStageAges>
+            <soundMeleeHitPawn>Pawn_Melee_BigBash_HitPawn</soundMeleeHitPawn>
+            <soundMeleeHitBuilding>Pawn_Melee_BigBash_HitBuilding</soundMeleeHitBuilding>
+            <soundMeleeMiss>Pawn_Melee_BigBash_Miss</soundMeleeMiss>
+        </race>
+        <uiIconScale>1.8</uiIconScale>
+    </ThingDef>
+
+    <PawnKindDef ParentName="AnimalKindBase">
+        <defName>Mugirl_Punisher</defName>
+        <!-- 雪牛惩戒者 -->
+        <label>snow-bovine punisher</label>
+        <race>Mugirl_PunisherRace</race>
+        <combatPower>2500</combatPower>
+        <hostileToAll>true</hostileToAll>
+        <isBoss>true</isBoss>
+        <isFighter>true</isFighter>
+        <canArriveManhunter>false</canArriveManhunter>
+        <canStrip>false</canStrip>
+        <forceDeathOnDowned>true</forceDeathOnDowned>
+        <ignoresPainShock>true</ignoresPainShock>
+        <fleeHealthThresholdRange>0~0</fleeHealthThresholdRange>
+        <lifeStages>
+            <li>
+                <bodyGraphicData>
+                    <texPath>Things/Pawn/MugirlPunisher/MugirlPunisher</texPath>
+                    <drawSize>5.5</drawSize>
+                    <shadowData>
+                        <volume>(1.2, 0.8, 0.6)</volume>
+                        <offset>(0,0,-0.35)</offset>
+                    </shadowData>
+                </bodyGraphicData>
+            </li>
+        </lifeStages>
+    </PawnKindDef>
+</Defs>

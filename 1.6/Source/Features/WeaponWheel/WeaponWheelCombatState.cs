@@ -7,6 +7,7 @@ namespace Mugirl.Features.WeaponWheel
         Ready,
         Firing,
         Switching,
+        SwordDanceSwitching,
         CycleCooldown,
         DisabledMounted
     }

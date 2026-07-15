@@ -26,7 +26,9 @@ namespace Mugirl
                 return false;
             }
 
-            return CountWildGrazePlants(map, MinWildPlants) >= MinWildPlants
+            MapComponent_MugirlMigration migration = map.GetComponent<MapComponent_MugirlMigration>();
+            return migration?.HasActiveMigration != true
+                && CountWildGrazePlants(map, MinWildPlants) >= MinWildPlants
                 && TryFindStartAndEndCells(map, out _, out _);
         }
 
@@ -34,6 +36,12 @@ namespace Mugirl
         {
             Map map = parms.target as Map;
             if (map == null || CountWildGrazePlants(map, MinWildPlants) < MinWildPlants)
+            {
+                return false;
+            }
+
+            MapComponent_MugirlMigration migration = map.GetComponent<MapComponent_MugirlMigration>();
+            if (migration?.HasActiveMigration == true)
             {
                 return false;
             }
@@ -57,7 +65,6 @@ namespace Mugirl
                 GenSpawn.Spawn(pawn, cell, map, rot);
             }
 
-            MapComponent_MugirlMigration migration = map.GetComponent<MapComponent_MugirlMigration>();
             migration?.RegisterMigration(pawns, end, StayTicks.RandomInRange);
 
             SendStandardLetter(
@@ -171,16 +178,25 @@ namespace Mugirl
 
     public class MapComponent_MugirlMigration : MapComponent
     {
-        private const int CurrentDataVersion = 1;
+        private const int CurrentDataVersion = 2;
         private const int ForcedGrazeIntervalTicks = 300;
+        private const int PunisherKillWindowTicks = 15000;
         private const float ForcedGrazeSearchRadius = 30f;
         private const float FoodSatisfiedTolerance = 0.02f;
 
         private List<Pawn> migrationPawns = new List<Pawn>();
         private List<int> nextGrazeTicks = new List<int>();
+        private List<int> playerKilledMigrationPawnIds = new List<int>();
         private IntVec3 exitCell = IntVec3.Invalid;
         private int ticksUntilDeparture;
+        private int killWindowTicksRemaining;
+        private int originalMigrationCount;
+        private int killedMigrationPawns;
+        private bool migrationOutcomeFailed;
+        private bool departureStarted;
         private int dataVersion = CurrentDataVersion;
+
+        public bool HasActiveMigration => migrationPawns != null && migrationPawns.Count > 0;
 
         public MapComponent_MugirlMigration(Map map) : base(map)
         {
@@ -203,6 +219,12 @@ namespace Mugirl
 
             exitCell = exit;
             ticksUntilDeparture = stayTicks;
+            originalMigrationCount = migrationPawns.Count;
+            killedMigrationPawns = 0;
+            playerKilledMigrationPawnIds.Clear();
+            killWindowTicksRemaining = PunisherKillWindowTicks;
+            migrationOutcomeFailed = originalMigrationCount == 0;
+            departureStarted = false;
         }
 
         internal static void NotifyMigrationPawnAttacked(Pawn pawn)
@@ -218,7 +240,37 @@ namespace Mugirl
                 return;
             }
 
-            BeginDeparture(LocomotionUrgency.Sprint);
+            BeginDeparture(LocomotionUrgency.Sprint, preferBestExit: true);
+        }
+
+        internal static void NotifyMigrationPawnKilled(Pawn pawn, DamageInfo? dinfo)
+        {
+            Map map = pawn?.MapHeld;
+            MapComponent_MugirlMigration component = map?.GetComponent<MapComponent_MugirlMigration>();
+            if (component == null || pawn == null || !component.migrationPawns.Contains(pawn))
+            {
+                return;
+            }
+
+            if (WasDirectlyKilledByPlayer(dinfo)
+                && !component.playerKilledMigrationPawnIds.Contains(pawn.thingIDNumber))
+            {
+                component.playerKilledMigrationPawnIds.Add(pawn.thingIDNumber);
+            }
+        }
+
+        private static bool WasDirectlyKilledByPlayer(DamageInfo? dinfo)
+        {
+            if (!dinfo.HasValue)
+            {
+                return false;
+            }
+
+            DamageInfo fatalDamage = dinfo.Value;
+            return fatalDamage.Def != null
+                && fatalDamage.Category != DamageInfo.SourceCategory.Collapse
+                && fatalDamage.Instigator != null
+                && MugirlWildSlaveUtility.IsPlayerFaction(fatalDamage.Instigator.Faction);
         }
 
         public override void MapComponentTick()
@@ -233,25 +285,67 @@ namespace Mugirl
             for (int i = migrationPawns.Count - 1; i >= 0; i--)
             {
                 Pawn pawn = migrationPawns[i];
-                if (pawn == null || pawn.Destroyed)
+                if (pawn != null && pawn.Dead)
                 {
+                    bool killedByPlayer = playerKilledMigrationPawnIds.Contains(pawn.thingIDNumber);
+                    playerKilledMigrationPawnIds.Remove(pawn.thingIDNumber);
+                    if (!migrationOutcomeFailed && killWindowTicksRemaining > 0 && killedByPlayer)
+                    {
+                        killedMigrationPawns++;
+                    }
+                    else
+                    {
+                        migrationOutcomeFailed = true;
+                    }
+
+                    RemoveMigrationPawnAt(i);
+                    continue;
+                }
+
+                if (pawn == null || pawn.Destroyed || !pawn.Spawned || pawn.Map != map)
+                {
+                    migrationOutcomeFailed = true;
                     RemoveMigrationPawnAt(i);
                     continue;
                 }
 
                 if (MugirlWildSlaveUtility.IsPlayerFaction(pawn.Faction))
                 {
+                    migrationOutcomeFailed = true;
                     MugirlEventUtility.ClearTemporaryEventTags(pawn);
                     RemoveMigrationPawnAt(i);
                     continue;
                 }
 
-                TryForcedGraze(pawn, i);
+                if (!departureStarted)
+                {
+                    TryForcedGraze(pawn, i);
+                }
             }
 
             if (migrationPawns.Count == 0)
             {
+                ResolveMigrationOutcome();
                 ticksUntilDeparture = 0;
+                return;
+            }
+
+            if (killWindowTicksRemaining > 0)
+            {
+                killWindowTicksRemaining--;
+                if (killWindowTicksRemaining <= 0)
+                {
+                    migrationOutcomeFailed = true;
+                    if (departureStarted)
+                    {
+                        AbandonMigrationTracking();
+                        return;
+                    }
+                }
+            }
+
+            if (departureStarted)
+            {
                 return;
             }
 
@@ -428,11 +522,37 @@ namespace Mugirl
 
         private void BeginDeparture()
         {
-            BeginDeparture(LocomotionUrgency.Walk);
+            BeginDeparture(LocomotionUrgency.Walk, preferBestExit: false);
         }
 
-        private void BeginDeparture(LocomotionUrgency urgency)
+        private void BeginDeparture(LocomotionUrgency urgency, bool preferBestExit)
         {
+            if (departureStarted)
+            {
+                if (!preferBestExit)
+                {
+                    return;
+                }
+
+                bool needsBestExitReroute = false;
+                for (int i = 0; i < migrationPawns.Count; i++)
+                {
+                    Pawn pawn = migrationPawns[i];
+                    if (pawn != null && pawn.Spawned && !pawn.Dead && pawn.Map == map
+                        && !(pawn.GetLord()?.LordJob is LordJob_ExitMapBest))
+                    {
+                        needsBestExitReroute = true;
+                        break;
+                    }
+                }
+
+                if (!needsBestExitReroute)
+                {
+                    return;
+                }
+            }
+
+            departureStarted = true;
             List<Pawn> departing = new List<Pawn>();
             for (int i = 0; i < migrationPawns.Count; i++)
             {
@@ -447,22 +567,58 @@ namespace Mugirl
                     continue;
                 }
 
+                pawn.GetLord()?.RemovePawn(pawn);
                 pawn.jobs?.EndCurrentJob(JobCondition.InterruptForced, false, false);
                 departing.Add(pawn);
             }
 
             if (departing.Count > 0)
             {
-                LordJob lordJob = exitCell.IsValid
+                LordJob lordJob = !preferBestExit && exitCell.IsValid
                     ? (LordJob)new LordJob_ExitMapNear(exitCell, urgency)
                     : new LordJob_ExitMapBest(urgency, canDig: false, canDefendSelf: false);
                 LordMaker.MakeNewLord(null, lordJob, map, departing);
             }
 
+            ticksUntilDeparture = 0;
+            if (migrationOutcomeFailed || killWindowTicksRemaining <= 0)
+            {
+                AbandonMigrationTracking();
+            }
+        }
+
+        private void AbandonMigrationTracking()
+        {
             migrationPawns.Clear();
             nextGrazeTicks.Clear();
+            playerKilledMigrationPawnIds.Clear();
             ticksUntilDeparture = 0;
             exitCell = IntVec3.Invalid;
+            ResetMigrationOutcome();
+        }
+
+        private void ResolveMigrationOutcome()
+        {
+            bool summonPunisher = !migrationOutcomeFailed
+                && killWindowTicksRemaining > 0
+                && originalMigrationCount > 0
+                && killedMigrationPawns == originalMigrationCount;
+
+            ResetMigrationOutcome();
+            if (summonPunisher)
+            {
+                MapComponent_MugirlPunisher.TrySpawnPunisher(map);
+            }
+        }
+
+        private void ResetMigrationOutcome()
+        {
+            killWindowTicksRemaining = 0;
+            originalMigrationCount = 0;
+            killedMigrationPawns = 0;
+            playerKilledMigrationPawnIds.Clear();
+            migrationOutcomeFailed = false;
+            departureStarted = false;
         }
 
         public override void ExposeData()
@@ -470,8 +626,14 @@ namespace Mugirl
             base.ExposeData();
             Scribe_Collections.Look(ref migrationPawns, "migrationPawns", LookMode.Reference);
             Scribe_Collections.Look(ref nextGrazeTicks, "nextGrazeTicks", LookMode.Value);
+            Scribe_Collections.Look(ref playerKilledMigrationPawnIds, "playerKilledMigrationPawnIds", LookMode.Value);
             Scribe_Values.Look(ref exitCell, "exitCell", IntVec3.Invalid);
             Scribe_Values.Look(ref ticksUntilDeparture, "ticksUntilDeparture", 0);
+            Scribe_Values.Look(ref killWindowTicksRemaining, "killWindowTicksRemaining", 0);
+            Scribe_Values.Look(ref originalMigrationCount, "originalMigrationCount", 0);
+            Scribe_Values.Look(ref killedMigrationPawns, "killedMigrationPawns", 0);
+            Scribe_Values.Look(ref migrationOutcomeFailed, "migrationOutcomeFailed", false);
+            Scribe_Values.Look(ref departureStarted, "departureStarted", false);
             Scribe_Values.Look(ref dataVersion, "dataVersion", 0);
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
@@ -481,10 +643,19 @@ namespace Mugirl
                     migrationPawns = new List<Pawn>();
                 }
 
+                if (playerKilledMigrationPawnIds == null)
+                {
+                    playerKilledMigrationPawnIds = new List<int>();
+                }
+
                 EnsureGrazeTicksAligned();
                 if (dataVersion < CurrentDataVersion)
                 {
                     ReleaseLegacyBikiniLocks();
+                    if (dataVersion < 2)
+                    {
+                        migrationOutcomeFailed = true;
+                    }
                     dataVersion = CurrentDataVersion;
                 }
             }

@@ -246,7 +246,7 @@ namespace Mugirl.Features.WeaponWheel
         private static void DrawSummary(Rect rect, Comp_WeaponWheel comp, int occupiedCount, int unlockedCount)
         {
             bool mounted = comp.IsCombatDisabledByMount();
-            bool eligible = comp.IsFullFirepowerEligible(out _);
+            bool eligible = comp.IsFullFirepowerEligible() || comp.IsSwordDanceEligible();
             Color accent = mounted
                 ? new Color(0.40f, 0.60f, 0.72f, 0.92f)
                 : comp.IsBusy
@@ -272,7 +272,7 @@ namespace Mugirl.Features.WeaponWheel
             GUI.color = Color.white;
             Text.Font = previousFont;
             Text.Anchor = previousAnchor;
-            TooltipHandler.TipRegion(statusRect, comp.StatusLabel);
+            TooltipHandler.TipRegion(statusRect, comp.StatusTooltip);
         }
 
         private static void DrawSlotTray(Rect rect)

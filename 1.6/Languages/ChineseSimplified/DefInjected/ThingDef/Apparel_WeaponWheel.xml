@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
+    <!-- self-propelled autoloading system -->
     <Mugirl_AutoloadingSystem.label>自驱装弹系统</Mugirl_AutoloadingSystem.label>
+    <!-- A heavy waist-mounted loading mechanism designed for a Mugirl weapon wheel. During full-firepower operation it services every weapon automatically, eliminating the combined reload pause between volleys. It does not accelerate the physical weapon-switching sequence. -->
     <Mugirl_AutoloadingSystem.description>为雪牛娘武器轮盘设计的重型腰挂装填机构。火力满载期间，它会自动处理全部武器，从而取消两轮齐射之间的累计装弹时间，但不会加快实际的武器切换动作。</Mugirl_AutoloadingSystem.description>
 </LanguageData>

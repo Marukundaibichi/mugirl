@@ -42,6 +42,8 @@ namespace Mugirl
 
         public static HediffDef Mugirl_Abasia;
 
+        public static HediffDef Mugirl_LinkedSwordDance;
+
         [MayRequire("Ludeon.RimWorld.Biotech")]
         public static HediffDef Mugirl_Stun;
 

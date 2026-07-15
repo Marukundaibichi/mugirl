@@ -2518,7 +2518,7 @@ try {
     $migrationIncidentPath = '1.6\Source\Features\Incidents\IncidentWorker_Mugirl_Migration.cs'
     if (Test-Path -LiteralPath $migrationIncidentPath) {
         $migrationIncidentText = Get-Content -LiteralPath $migrationIncidentPath -Encoding utf8 -Raw
-        $legacyBikiniMigrationSafe = $migrationIncidentText -match 'CurrentDataVersion\s*=\s*1' `
+        $legacyBikiniMigrationSafe = $migrationIncidentText -match 'CurrentDataVersion\s*=\s*[1-9]\d*' `
             -and $migrationIncidentText -match 'Scribe_Values\.Look\(ref\s+dataVersion,\s*"dataVersion",\s*0\)' `
             -and $migrationIncidentText -match 'ReleaseLegacyBikiniLocks\(\)' `
             -and $migrationIncidentText -match 'UnlockLegacyBikini\(pawn\)' `
@@ -2530,6 +2530,22 @@ try {
     }
     else {
         $incidentInteractionSafetyIssues += "$migrationIncidentPath :: missing file for legacy migration bikini-lock safety"
+    }
+
+    $incidentInteractionSafetyChecks++
+    $mugirlEventUtilityPath = '1.6\Source\Features\Incidents\MugirlEventUtility.cs'
+    if (Test-Path -LiteralPath $mugirlEventUtilityPath) {
+        $mugirlEventUtilityText = Get-Content -LiteralPath $mugirlEventUtilityPath -Encoding utf8 -Raw
+        $migrationApparelDropGuardSafe = $mugirlEventUtilityText -match 'HarmonyPatch\(typeof\(JobGiver_DropRandomGearOrApparel\),\s*"TryGiveJob"\)' `
+            -and $mugirlEventUtilityText -match 'class\s+JobGiver_DropRandomGearOrApparel_MugirlMigration_Patch' `
+            -and $mugirlEventUtilityText -match 'if\s*\(\s*!MugirlEventUtility\.IsMigrationPawn\(pawn\)\s*\)\s*\{\s*return\s+true\s*;\s*\}' `
+            -and $mugirlEventUtilityText -match '__result\s*=\s*null\s*;\s*return\s+false\s*;'
+        if (-not $migrationApparelDropGuardSafe) {
+            $incidentInteractionSafetyIssues += "$mugirlEventUtilityPath :: migration pawns must suppress the vanilla wild-man random gear/apparel drop job"
+        }
+    }
+    else {
+        $incidentInteractionSafetyIssues += "$mugirlEventUtilityPath :: missing file for migration apparel-drop guard safety"
     }
 
     $incidentInteractionSafetyChecks++
@@ -2726,8 +2742,11 @@ try {
     $wildManPath = '1.6\Source\Features\Incidents\Harmony_IsWildMan_WildManUtility.cs'
     if (Test-Path -LiteralPath $wildManPath) {
         $wildManText = Get-Content -LiteralPath $wildManPath -Encoding utf8 -Raw
-        if ($wildManText -notmatch 'IsNonPlayerEscapeWildSlave\(p\)' -or $wildManText -notmatch 'IsPlayerFaction\(faction\)' -or $wildManText -notmatch 'Mugirl_PreEscapeWildSlave\s*!=\s*null') {
-            $harmonyBoundarySafetyIssues += "$wildManPath :: wild-slave global patches must guard null pawn and missing fallback kind"
+        if ($wildManText -notmatch 'IsNonPlayerWildMugirl\(p\)' `
+            -or $wildManText -notmatch 'IsPlayerFaction\(faction\)' `
+            -or $wildManText -notmatch 'CleanupAfterJoiningPlayer\(pawn\)' `
+            -or $wildManText -match 'ChangeKind\(') {
+            $harmonyBoundarySafetyIssues += "$wildManPath :: wild-slave global patches must use player-faction behavior gating and must not convert PawnKind"
         }
     }
     else {
@@ -2738,12 +2757,46 @@ try {
     $designatorTamePath = '1.6\Source\Features\Incidents\Harmony_DesignatorTame.cs'
     if (Test-Path -LiteralPath $designatorTamePath) {
         $designatorTameText = Get-Content -LiteralPath $designatorTamePath -Encoding utf8 -Raw
-        if ($designatorTameText -notmatch 'IsNonPlayerEscapeWildSlave\(pawn\)' -or $designatorTameText -match 'Faction\.OfPlayer') {
+        if ($designatorTameText -notmatch 'IsNonPlayerWildMugirl\(pawn\)' -or $designatorTameText -match 'Faction\.OfPlayer') {
             $harmonyBoundarySafetyIssues += "$designatorTamePath :: tame designator patches must share wild-slave player-faction validation"
         }
     }
     else {
         $harmonyBoundarySafetyIssues += "$designatorTamePath :: missing file for tame designator safety"
+    }
+
+    $harmonyBoundarySafetyChecks++
+    $wildSlaveUtilityPath = '1.6\Source\Features\Incidents\MugirlWildSlaveUtility.cs'
+    $wildThinkNodePath = '1.6\Source\Features\Incidents\ThinkNode_ConditionalNonPlayerWildMugirl.cs'
+    $mugirlThinkTreePath = '1.6\Defs\ThinkTreeDefs\Mugirl_ThinkTreeDefs.xml'
+    $mugirlStoryStatePath = '1.6\Source\Features\Incidents\MugirlStoryState.cs'
+    $fusionInvestmentPath = '1.6\Source\Features\Incidents\IncidentWorker_Mugirl_FusionInvestment.cs'
+    if ((Test-Path -LiteralPath $wildSlaveUtilityPath) `
+        -and (Test-Path -LiteralPath $wildThinkNodePath) `
+        -and (Test-Path -LiteralPath $mugirlThinkTreePath) `
+        -and (Test-Path -LiteralPath $mugirlStoryStatePath) `
+        -and (Test-Path -LiteralPath $fusionInvestmentPath)) {
+        $wildSlaveUtilityText = Get-Content -LiteralPath $wildSlaveUtilityPath -Encoding utf8 -Raw
+        $wildThinkNodeText = Get-Content -LiteralPath $wildThinkNodePath -Encoding utf8 -Raw
+        $mugirlThinkTreeText = Get-Content -LiteralPath $mugirlThinkTreePath -Encoding utf8 -Raw
+        $mugirlStoryStateText = Get-Content -LiteralPath $mugirlStoryStatePath -Encoding utf8 -Raw
+        $fusionInvestmentText = Get-Content -LiteralPath $fusionInvestmentPath -Encoding utf8 -Raw
+        $wildBehaviorGateCount = ([regex]::Matches($mugirlThinkTreeText, 'Class="Mugirl\.ThinkNode_ConditionalNonPlayerWildMugirl"')).Count
+        if ($wildSlaveUtilityText -notmatch 'return IsWildMugirl\(pawn\)\s*&&\s*!IsPlayerFaction\(pawn\.Faction\)' `
+            -or $wildSlaveUtilityText -notmatch 'pawn\.Faction\?\.def\?\.basicMemberKind' `
+            -or $wildSlaveUtilityText -notmatch 'pawn\.ChangeKind\(targetKind\)' `
+            -or $wildSlaveUtilityText -match 'ChangeKind\(Mugirl_DefOf\.Mugirl_PreEscapeWildSlave\)' `
+            -or $wildSlaveUtilityText -match 'PawnGenerator_GeneratePawn_MugirlWildSlaveBirth_Patch' `
+            -or $wildThinkNodeText -notmatch 'IsNonPlayerWildMugirl\(pawn\)' `
+            -or $wildBehaviorGateCount -ne 2 `
+            -or $mugirlThinkTreeText -match '<pawnKind>Mugirl_(EscapeWildSlave|WildMugirl)</pawnKind>' `
+            -or $mugirlStoryStateText -notmatch 'LoadedGame\(\)[\s\S]*NormalizeLoadedPlayerPawnKinds\(\)' `
+            -or $fusionInvestmentText -notmatch 'PawnGenerator\.GeneratePawn\(request\)[\s\S]*CleanupAfterJoiningPlayer\(pawn\)') {
+            $harmonyBoundarySafetyIssues += "$wildSlaveUtilityPath :: wild Mugirl behavior must be faction-gated, while joined and legacy player pawns normalize only to the player faction basic member kind"
+        }
+    }
+    else {
+        $harmonyBoundarySafetyIssues += "$wildSlaveUtilityPath :: missing wild Mugirl behavior-gate, load migration, reward, or think-tree source file"
     }
 
     $harmonyBoundarySafetyChecks++

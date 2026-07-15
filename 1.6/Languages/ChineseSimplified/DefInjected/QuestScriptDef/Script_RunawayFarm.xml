@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
+    <!-- Runaway Mugirls, baffled farmers -->
     <Mugirl_RunawayFarmQuest.questAvailableLetterLabel>疯牛满地跑，农民傻了</Mugirl_RunawayFarmQuest.questAvailableLetterLabel>
+    <!-- questName->Runaway Mugirls, baffled farmers -->
     <Mugirl_RunawayFarmQuest.questNameRules.rulesStrings>
         <li>questName->疯牛满地跑，农民傻了</li>
     </Mugirl_RunawayFarmQuest.questNameRules.rulesStrings>
+    <!-- questDescription->A nearby Mugirl ranch has sent bad news: the Mugirls ate something strange and are now running wild. The rancher says that if this continues, crops will be ruined and the Mugirls may scatter who knows where. Travel to the ranch and rope every runaway Mugirl back to a hitch. After the work is done, the rancher says there will be a proper reward. -->
     <Mugirl_RunawayFarmQuest.questDescriptionRules.rulesStrings>
         <li>questDescription->附近一处雪牛娘牧场传来噩耗：雪牛娘们不知吃错了什么，现在正撒欢乱跑。农场主说，再放任下去，庄稼会被糟蹋，雪牛娘也可能跑得不知去向。前往牧场，把所有失控的雪牛娘重新系回栓点。事成之后，农场主表示一定另有谢礼。</li>
     </Mugirl_RunawayFarmQuest.questDescriptionRules.rulesStrings>

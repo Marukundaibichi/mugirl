@@ -3,6 +3,7 @@
     <JobDef>
         <defName>Job_LoadWeaponWheel</defName>
         <driverClass>Mugirl.JobDriver_LoadWeaponWheel</driverClass>
+        <!-- 正在将 TargetA 装入武器轮盘。 -->
         <reportString>loading TargetA into the weapon wheel.</reportString>
         <suspendable>false</suspendable>
     </JobDef>

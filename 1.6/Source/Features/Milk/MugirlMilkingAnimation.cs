@@ -14,6 +14,7 @@ namespace Mugirl
     public static partial class MugirlMilkingAnimation
     {
         private const int PulseDurationTicks = 18;
+        private const float MugirlHelperHeadDownOffset = 0.03f;
 
         public static void Start(Pawn doer, Pawn target)
         {
@@ -204,7 +205,8 @@ namespace Mugirl
         {
             int age = Mathf.Max(0, MugirlTickUtility.CurrentGameTickOrFallback(state.lastTick) - state.startTick);
             Vector3 toTarget = DirectionToPartner(state);
-            offset += new Vector3(0f, 0f, 0.045f + Mathf.Sin(age * 0.12f) * 0.01f);
+            float headDownOffset = MugirlIdentity.IsMugirlPawn(state.pawn) ? MugirlHelperHeadDownOffset : 0f;
+            offset += new Vector3(0f, 0f, 0.045f - headDownOffset + Mathf.Sin(age * 0.12f) * 0.01f);
             offset += toTarget * 0.025f;
             rotation *= Quaternion.AngleAxis(-LeanAngleForDirection(toTarget, 6f), Vector3.up);
             scale = new Vector3(scale.x * 0.985f, scale.y, scale.z * 1.025f);
