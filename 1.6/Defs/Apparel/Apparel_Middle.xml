@@ -30,8 +30,8 @@
         <defName>Mugirl_Shirt</defName>
         <!-- 雪牛娘 衬衫 「惑光半透」 -->
         <label>Mugirl Shirt "Lumière Trompeuse Translucide"</label>
-        <!-- 「八重·朱 服装」出品珍珠光泽雪纺深V无领条纹衬衫，第三颗纽扣故意留空。若隐若现的肌肤暗示，钢铁丛林中的心机武器。 -->
-        <description>"Vache Rousse" presents a chiffon shirt with a soft lustre and fine striped detailing. Its poised, elegant cut makes it well suited for everyday wear or office settings while preserving a refined sense of fashion.</description>
+        <!-- 珍珠光泽雪纺深V无领条纹衬衫，第三颗纽扣故意留空。若隐若现的肌肤暗示，钢铁丛林中的心机武器。 -->
+        <description>A chiffon shirt with a soft lustre and fine striped detailing. Its poised, elegant cut makes it well suited for everyday wear or office settings while preserving a refined sense of fashion.</description>
         <graphicData>
             <texPath>Things/Apparel/Mugirl_Shirt/Mugirl_Shirt</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -49,6 +49,7 @@
             <StuffEffectMultiplierInsulation_Heat>0.10</StuffEffectMultiplierInsulation_Heat>
         </statBases>
         <apparel>
+            <developmentalStageFilter>Child, Adult</developmentalStageFilter>
             <useWornGraphicMask>false</useWornGraphicMask>
             <bodyPartGroups>
                 <li>Torso</li>
@@ -62,8 +63,8 @@
         <defName>Mugirl_Gambeson</defName>
         <!-- 雪牛娘 骑士甲胄内衬 -->
         <label>Mugirl Knightly Gambeson</label>
-        <!-- 「八重·朱 服装」中世纪裁缝手法缝制的柔韧内衬，以绵羽层层叠压，贴身却不失轻盈。为雪牛娘的甲胄量身定制，能在穿戴重甲时缓冲冲击、稳定体态，亦能单独作为轻装战衣穿着。绣纹隐隐散发暖意，使穿戴者在寒风中依旧保持从容优雅。 -->
-        <description>"Vache Rousse" presents a supple padded underlayer tailored with medieval craftsmanship, built from overlapping quilting that sits close to the body without losing its lightness. Made to fit Mugirl armour, it cushions impacts and stabilises the wearer beneath heavy plate, yet can also be worn alone as a light battle garment. Its stitched patterns seem to carry a gentle warmth, allowing elegance to endure even in the cold wind.</description>
+        <!-- 中世纪裁缝手法缝制的柔韧内衬，以绵羽层层叠压，贴身却不失轻盈。为雪牛娘的甲胄量身定制，能在穿戴重甲时缓冲冲击、稳定体态，亦能单独作为轻装战衣穿着。绣纹隐隐散发暖意，使穿戴者在寒风中依旧保持从容优雅。 -->
+        <description>A supple padded underlayer tailored with medieval craftsmanship, built from overlapping quilting that sits close to the body without losing its lightness. Made to fit Mugirl armour, it cushions impacts and stabilises the wearer beneath heavy plate, yet can also be worn alone as a light battle garment. Its stitched patterns seem to carry a gentle warmth, allowing elegance to endure even in the cold wind.</description>
         <graphicData>
             <texPath>Things/Apparel/Mugirl_Gambeson/Mugirl_Gambeson</texPath>
             <graphicClass>Graphic_Single</graphicClass>

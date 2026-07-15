@@ -36,8 +36,8 @@
         <defName>Mugirl_Suspenders</defName>
         <!-- 雪牛娘 吊带袜 「欲望蛛网」 -->
         <label>Mugirl Suspenders "Toile du Désir"</label>
-        <!-- 「八重·朱 服装」出品低丹尼尔黑丝吊带袜，蕾丝点缀诱人边缘。用丝线编织陷阱，俘获所有凝视者。 -->
-        <description>"Vache Rousse" presents low-denier black silk suspenders, adorned with enticing lace edging.\nA trap woven from silk threads, designed to captivate all who gaze upon them.</description>
+        <!-- 低丹尼尔黑丝吊带袜，蕾丝点缀诱人边缘。用丝线编织陷阱，俘获所有凝视者。 -->
+        <description>Low-denier black silk suspenders, adorned with enticing lace edging.\nA trap woven from silk threads, designed to captivate all who gaze upon them.</description>
         <graphicData>
             <texPath>Things/Apparel/Mugirl_Suspenders/Mugirl_Suspenders</texPath>
         </graphicData>
@@ -63,7 +63,7 @@
         <!-- 雪牛娘 兔女郎连裤袜 「银河丝缚」 -->
         <label>Mugirl Bunny Girl Stockings "Lien de Soie Galactique"</label>
         <!-- 透肉渐变网格裤袜，足尖心形透肤设计。从腿到趾的致命包裹，令性感无死角延伸。 -->
-        <description>"Vache Rousse" presents sheer gradient fishnet tights, featuring a heart-shaped toe window.\nThis lethal encasement from leg to toe ensures allure is conveyed without compromise.</description>
+        <description>Sheer gradient fishnet tights featuring a heart-shaped toe window.\nThis lethal encasement from leg to toe ensures allure is conveyed without compromise.</description>
         <graphicData>
             <texPath>Things/Apparel/Mugirl_BunnyGirlStocking/Mugirl_BunnyGirlStocking</texPath>
         </graphicData>
@@ -88,8 +88,8 @@
         <defName>Mugirl_Bodystocking</defName>
         <!-- 雪牛娘 连体丝袜 -->
         <label>Mugirl Bodystocking</label>
-        <!-- 「八重·朱 服装」出品连体光感丝袜，一体成型贴合身线，自肩至踝如流光包覆。轻薄却不失张力，拉伸之间勾勒比例美学，让肌理与曲线自然呼吸。不喧哗、不退场，行走即是姿态——柔韧与魅力并存的隐秘武装。 -->
-        <description>A glossy bodystocking from "Vache Rousse", seamless and close to the body, wrapping from shoulder to ankle like flowing light. Thin yet resilient, it traces proportion and movement through every stretch, letting texture and curves breathe naturally. Quiet but unmistakable, every step becomes posture: a hidden armament of flexibility and charm.</description>
+        <!-- 连体光感丝袜，一体成型贴合身线，自肩至踝如流光包覆。轻薄却不失张力，拉伸之间勾勒比例美学，让肌理与曲线自然呼吸。不喧哗、不退场，行走即是姿态——柔韧与魅力并存的隐秘武装。 -->
+        <description>A glossy bodystocking, seamless and close to the body, wrapping from shoulder to ankle like flowing light. Thin yet resilient, it traces proportion and movement through every stretch, letting texture and curves breathe naturally. Quiet but unmistakable, every step becomes posture: a hidden armament of flexibility and charm.</description>
         <graphicData>
             <texPath>Things/Apparel/Mugirl_Bodystocking/Mugirl_Bodystocking</texPath>
         </graphicData>

@@ -210,6 +210,19 @@ namespace Mugirl
             }
         }
 
+        public override void Notify_RecipeProduced(Pawn pawn)
+        {
+            base.Notify_RecipeProduced(pawn);
+
+            // 玩家制造的电击项圈直接以已破解、未锁定状态产出；其他来源仍保留默认状态。
+            if (def == MugirlContentDefOf.Mugirl_ShockCollar && MugirlWildSlaveUtility.IsPlayerFaction(pawn?.Faction))
+            {
+                isCracked = true;
+                isLocked = false;
+                lockCount = 0;
+            }
+        }
+
         public override void ExposeData()
         {
             base.ExposeData();

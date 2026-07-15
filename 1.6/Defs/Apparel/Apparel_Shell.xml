@@ -70,7 +70,7 @@
         <!-- 雪牛娘 特化防弹钢甲 -->
         <label>Mugirl Recon Armour "Rapidité Écarlate"</label>
         <!-- 胸口和背部插有装甲板的背心，对牛娘胸部进行特化。主要保护躯干与主要器官，没有四肢防御能力 -->
-        <description>Vache Rousse presents lightweight reconnaissance armour, providing protection for the torso's key areas.\nIt achieves a perfect balance between defence and provocation; distracting the enemy is itself a strategy.</description>
+        <description>Lightweight reconnaissance armour that protects the torso's key areas.\nIt achieves a balance between defence and mobility, making it suitable for scouting and outdoor operations.</description>
         <graphicData>
             <texPath>Things/Apparel/Mugirl_ReconArmor/Mugirl_ReconArmor</texPath>
         </graphicData>
@@ -133,6 +133,7 @@
             <ComponentSpacer>6</ComponentSpacer>
         </costList>
         <apparel>
+            <developmentalStageFilter>Child, Adult</developmentalStageFilter>
             <layers>
                 <li>Shell</li>
                 <li>Middle</li>
@@ -424,6 +425,7 @@
             <RangedCooldownFactor>-0.25</RangedCooldownFactor>
         </equippedStatOffsets>
         <apparel>
+            <developmentalStageFilter>Child, Adult</developmentalStageFilter>
             <tags>
                 <li>Mugirl_Shell</li>
             </tags>

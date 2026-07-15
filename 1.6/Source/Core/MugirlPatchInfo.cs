@@ -53,7 +53,7 @@ namespace Mugirl
         // StaticCacheLifecycle: 进程级不可变 patch 元数据；不持有游戏对象或 Def 实例。
         private static readonly List<MugirlPatchInfo> patchInfos = new List<MugirlPatchInfo>
         {
-            Info(moduleName: "Apparel", patchClassName: "Harmony_Apparel_DrawColor", targetTypeName: "RimWorld.Apparel", targetMethodName: "DrawColor", patchKind: "Prefix", maySkipOriginal: true, compatibilityRisk: MugirlPatchRiskLevel.High, failureBehavior: "The spacesuit uses the base apparel draw color path."),
+            Info(moduleName: "Apparel", patchClassName: "Harmony_Apparel_DrawColor", targetTypeName: "RimWorld.Apparel", targetMethodName: "DrawColor", patchKind: "Prefix", maySkipOriginal: true, compatibilityRisk: MugirlPatchRiskLevel.High, failureBehavior: "Fixed-color apparel uses the base apparel draw color path."),
 
             Info(moduleName: "Genes", patchClassName: "Harmony_PawnUtility_TrySpawnHatchedOrBornPawn_MugirlXenotype", targetTypeName: "RimWorld.PawnUtility", targetMethodName: "TrySpawnHatchedOrBornPawn", patchKind: "Prefix/Postfix", maySkipOriginal: false, compatibilityRisk: MugirlPatchRiskLevel.High, failureBehavior: "Birth-time xenotype correction is skipped; the low-frequency game component remains as fallback."),
 

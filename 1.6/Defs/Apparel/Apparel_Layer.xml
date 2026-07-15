@@ -15,6 +15,13 @@
     <drawOrder>-6</drawOrder>
 </ApparelLayerDef>
 
+<ApparelLayerDef>
+    <defName>Mugirl_FairyOverlay</defName>
+    <!-- 保留 OnSkin 冲突规则，仅将仙子服稳定绘制在同层裤装之上。 -->
+    <label>fairy overlay</label>
+    <drawOrder>1</drawOrder>
+</ApparelLayerDef>
+
     <ApparelLayerDef>
     <defName>Mugirl_Ornament</defName>
     <!-- 外饰 -->

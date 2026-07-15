@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-    <!-- A Mugirl silk cheongsam from "Vache Rousse", with ornate floral embroidery and a flowing white silhouette shaped by eastern aesthetics. -->
-    <Mugirl_ChildCheongsam.description>「八重·朱 服装」出品高开衩真丝旗袍，纷繁花绣衬出超低胸襟。东方美学与现代性感碰撞，化身移动的纯白焦点。</Mugirl_ChildCheongsam.description>
+    <!-- A Mugirl silk cheongsam with ornate floral embroidery and a flowing white silhouette shaped by eastern aesthetics. -->
+    <Mugirl_ChildCheongsam.description>高开衩真丝旗袍，纷繁花绣衬出超低胸襟。东方美学与现代性感碰撞，化身移动的纯白焦点。</Mugirl_ChildCheongsam.description>
     <!-- Mugirl Child Cheongsam "Cloud-Cut Bright Moon" -->
     <Mugirl_ChildCheongsam.label>雪牛娘 儿童旗袍 「皎月裁云」</Mugirl_ChildCheongsam.label>
 </LanguageData>

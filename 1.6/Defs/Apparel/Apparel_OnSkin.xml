@@ -26,8 +26,8 @@
         <defName>Mugirl_Uniform</defName>
         <!-- 雪牛娘 制式服装 「权力禁区」 -->
         <label>Mugirl Uniform "Zone Interdite du Pouvoir"</label>
-        <!-- 「八重·朱 服装」出品雪牛娘标准制服，收腰西装搭配超短裙尽显窈窕身材，膝上十公分剪裁彰显绝对领域。办公室里的致命武器，每一步都踏在规则与欲望的边界线上，唤醒禁忌幻想。 -->
-        <description>"Vache Rousse" presents the standard Mugirl uniform: a tailored blazer paired with an ultra-short skirt that accentuates a slender figure.\nThe ten-centimetre-above-knee cut highlights the absolute territory.\nA lethal weapon in the office environment, each step treads the line between propriety and desire, awakening forbidden fantasies.</description>
+        <!-- 雪牛娘标准制服，收腰西装搭配超短裙尽显窈窕身材，膝上十公分剪裁彰显绝对领域。办公室里的致命武器，每一步都踏在规则与欲望的边界线上，唤醒禁忌幻想。 -->
+        <description>The standard Mugirl uniform: a tailored blazer paired with an ultra-short skirt that accentuates a slender figure.\nThe ten-centimetre-above-knee cut highlights the absolute territory.\nA lethal weapon in the office environment, each step treads the line between propriety and desire, awakening forbidden fantasies.</description>
         <graphicData>
             <texPath>Things/Apparel/Mugirl_Uniform/Mugirl_Uniform</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -51,6 +51,7 @@
             <SocialImpact>0.1</SocialImpact>
         </equippedStatOffsets>
         <apparel>
+            <developmentalStageFilter>Child, Adult</developmentalStageFilter>
             <useWornGraphicMask>false</useWornGraphicMask>
             <bodyPartGroups>
                 <li>Torso</li>
@@ -64,8 +65,8 @@
         <defName>Mugirl_Hipwrappingskirt</defName>
         <!-- 雪牛娘 包臀裙 「黑曜禁锢」 -->
         <label>Mugirl Pencil Skirt "Captivité d'Obsidienne"</label>
-        <!-- 「八重·朱 服装」出品液态反光包臀裙，膝上二十厘米剪裁难掩春光。每步皆如律动枷锁，囚禁旁观者的视线。 -->
-        <description>"Vache Rousse" presents a liquid-reflect pencil skirt, with a hemline twenty centimetres above the knee that hints at concealed delights.\nEach step creates a rhythmic shackle, imprisoning the gaze of onlookers.</description>
+        <!-- 液态反光包臀裙，膝上二十厘米剪裁难掩春光。每步皆如律动枷锁，囚禁旁观者的视线。 -->
+        <description>A liquid-reflect pencil skirt, with a hemline twenty centimetres above the knee that hints at concealed delights.\nEach step creates a rhythmic shackle, imprisoning the gaze of onlookers.</description>
         <graphicData>
             <texPath>Things/Apparel/Mugirl_Hipwrappingskirt/Mugirl_Hipwrappingskirt</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -98,8 +99,8 @@
         <defName>Mugirl_BunnyGirlTop</defName>
         <!-- 雪牛娘 兔女郎上衣 -->
         <label>Mugirl Bunny Girl Top Suit</label>
-        <!-- 「八重·朱 服装」出品露背深V光亮胶皮紧身衣，尾部绣有雪绒兔尾球。领结衬出天鹅颈项，胸部曲线如雕塑般呈现，魅惑即是最强武装。 -->
-        <description>"Vache Rousse" presents a backless, deep-V glossy latex catsuit, complete with a snow-pompom tail.\nThe collar bow accentuates a swan-like neck, while the bust curve is presented with sculptural precision; allurement is the ultimate armour.</description>
+        <!-- 露背深V光亮胶皮紧身衣，尾部绣有雪绒兔尾球。领结衬出天鹅颈项，胸部曲线如雕塑般呈现，魅惑即是最强武装。 -->
+        <description>A backless, deep-V glossy latex catsuit, complete with a snow-pompom tail.\nThe collar bow accentuates a swan-like neck, while the bust curve is presented with sculptural precision; allurement is the ultimate armour.</description>
         <graphicData>
             <texPath>Things/Apparel/Mugirl_BunnyGirlTop/Mugirl_BunnyGirlTop</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -134,8 +135,8 @@
         <defName>Mugirl_ImmortalFairy</defName>
         <!-- 雪牛娘 仙女服装 -->
         <label>Mugirl Fairy Raiment</label>
-        <!-- 「八重·朱 服装」出品云烟缭绕的轻纱羽衣，衣背裁作流瀑般敞开，绛色绸带随步伐微浮。袖口绣有星辰金线，步时如碎光飞落。腰间一抹冰丝流苏衬出纤柔柳腰，胸前曲线若清光勾勒，若隐若现，宛如仙气凝成的弧度。华美非为炫耀，而是修仙者玄力外放的自然流转，美韵本就是最锋利的法器。 -->
-        <description>"Vache Rousse" presents an ethereal robe of drifting gauze, its back falling open like a cascading waterfall while crimson ribbons rise and settle with each step. Golden threads of starlight glimmer along the sleeves, and a frost-silk tassel at the waist traces a willow-slender figure. The curve of the chest appears and fades like moonlit mist, as though immortal grace itself had taken shape. Its splendour is not mere display, but the natural outward flow of cultivated power, with beauty itself serving as the keenest weapon.</description>
+        <!-- 云烟缭绕的轻纱羽衣，衣背裁作流瀑般敞开，绛色绸带随步伐微浮。袖口绣有星辰金线，步时如碎光飞落。腰间一抹冰丝流苏衬出纤柔柳腰，胸前曲线若清光勾勒，若隐若现，宛如仙气凝成的弧度。华美非为炫耀，而是修仙者玄力外放的自然流转，美韵本就是最锋利的法器。 -->
+        <description>An ethereal robe of drifting gauze, its back falling open like a cascading waterfall while crimson ribbons rise and settle with each step. Golden threads of starlight glimmer along the sleeves, and a frost-silk tassel at the waist traces a willow-slender figure. The curve of the chest appears and fades like moonlit mist, as though immortal grace itself had taken shape. Its splendour is not mere display, but the natural outward flow of cultivated power, with beauty itself serving as the keenest weapon.</description>
         <graphicData>
             <texPath>Things/Apparel/Mugirl_ImmortalFairy/Mugirl_ImmortalFairy</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -161,6 +162,7 @@
             <StuffEffectMultiplierInsulation_Heat>0.25</StuffEffectMultiplierInsulation_Heat>
         </statBases>
         <apparel>
+            <developmentalStageFilter>Child, Adult</developmentalStageFilter>
             <useWornGraphicMask>false</useWornGraphicMask>
             <bodyPartGroups>
                 <li>Torso</li>
@@ -213,8 +215,8 @@
         <defName>Mugirl_Cheongsam</defName>
         <!-- 雪牛娘 旗袍 「皎月裁云」 -->
         <label>Mugirl Cheongsam "Cloud-Cut Bright Moon"</label>
-        <!-- 「八重·朱 服装」出品高开衩真丝旗袍，纷繁花绣衬出超低胸襟。东方美学与现代性感碰撞，化身移动的纯白焦点。 -->
-        <description>A Mugirl silk cheongsam from "Vache Rousse", with ornate floral embroidery and a flowing white silhouette shaped by eastern aesthetics.</description>
+        <!-- 高开衩真丝旗袍，纷繁花绣衬出超低胸襟。东方美学与现代性感碰撞，化身移动的纯白焦点。 -->
+        <description>A Mugirl silk cheongsam with ornate floral embroidery and a flowing white silhouette shaped by eastern aesthetics.</description>
         <graphicData>
             <texPath>Things/Apparel/Mugirl_Cheongsam/Mugirl_Cheongsam</texPath>
         </graphicData>
@@ -247,8 +249,8 @@
         <defName>Mugirl_WeddingDress</defName>
         <!-- 雪牛娘 婚纱 -->
         <label>Mugirl Wedding Dress</label>
-        <!-- 「八重·朱 服装」出品曳地真丝婚纱，流线剪裁自肩颈倾泻而下，轻纱层叠映出纯净光泽。利落轮廓勾勒身形比例，低调细节暗藏锋芒，让圣洁与自信并肩而立。不止是仪式的主角，更是步入人群时无法忽视的纯白焦点。 -->
-        <description>A floor-length silk wedding dress from "Vache Rousse". Streamlined tailoring flows down from the shoulders and neck, while layered gauze reflects a pure sheen. Clean contours shape the figure, and restrained details hide a sharp edge, letting sanctity and confidence stand together. More than the focus of a ceremony, it becomes a white presence no crowd can ignore.</description>
+        <!-- 曳地真丝婚纱，流线剪裁自肩颈倾泻而下，轻纱层叠映出纯净光泽。利落轮廓勾勒身形比例，低调细节暗藏锋芒，让圣洁与自信并肩而立。不止是仪式的主角，更是步入人群时无法忽视的纯白焦点。 -->
+        <description>A floor-length silk wedding dress. Streamlined tailoring flows down from the shoulders and neck, while layered gauze reflects a pure sheen. Clean contours shape the figure, and restrained details hide a sharp edge, letting sanctity and confidence stand together. More than the focus of a ceremony, it becomes a white presence no crowd can ignore.</description>
         <graphicData>
             <texPath>Things/Apparel/Mugirl_Wedding_Dress/Mugirl_Wedding_Dress</texPath>
         </graphicData>
@@ -280,8 +282,8 @@
         <defName>Mugirl_OL</defName>
         <!-- 雪牛娘 OL套装 -->
         <label>Mugirl Office Lady Suit</label>
-        <!-- 「八重·朱 服装」出品利落丝质OL套装，修身剪裁自肩颈延展至裙摆，流畅线条勾勒干练身形。细节低调却暗藏精致设计，轻盈面料在光影间闪现职业质感。不仅是办公场合的端庄象征，更在步入人群时彰显自信与优雅气场。 -->
-        <description>A crisp silk office lady suit from "Vache Rousse". The fitted cut extends from shoulders and neck to the skirt, drawing a capable figure with smooth lines. Understated details conceal refined design, and the light fabric flashes with a professional texture in shifting light. It is not only a dignified symbol for the workplace, but also a confident and elegant presence in any crowd.</description>
+        <!-- 利落丝质OL套装，修身剪裁自肩颈延展至裙摆，流畅线条勾勒干练身形。细节低调却暗藏精致设计，轻盈面料在光影间闪现职业质感。不仅是办公场合的端庄象征，更在步入人群时彰显自信与优雅气场。 -->
+        <description>A crisp silk office lady suit. The fitted cut extends from shoulders and neck to the skirt, drawing a capable figure with smooth lines. Understated details conceal refined design, and the light fabric flashes with a professional texture in shifting light. It is not only a dignified symbol for the workplace, but also a confident and elegant presence in any crowd.</description>
         <graphicData>
             <texPath>Things/Apparel/Mugirl_OL/Mugirl_OL</texPath>
         </graphicData>
@@ -306,6 +308,87 @@
             </bodyPartGroups>
             <wornGraphicPath>Things/Apparel/Mugirl_OL/Mugirl_OL</wornGraphicPath>
             <useWornGraphicMask>false</useWornGraphicMask>
+        </apparel>
+    </ThingDef>
+
+    <ThingDef ParentName="Mugirl_OnSkinBase">
+        <defName>Mugirl_ImmortalFairyAzure</defName>
+        <!-- 雪牛娘 霜蓝仙子服 「流霜垂云」 -->
+        <label>Mugirl Azure Fairy Raiment "Frostfall Cloudveil"</label>
+        <!-- 霜蓝轻纱羽衣，层叠裙摆如云气垂落，银铃与束带随步伐轻响。冷色绸面映出柔和光泽，轻盈剪裁让日常行走与仪式场合都从容自如。 -->
+        <description>A frost-blue fairy raiment of layered gauze, its cloudlike skirt falling around a light sash while a silver bell chimes with each step. The cool-toned fabric carries a soft sheen, giving the garment an effortless presence in everyday wear and ceremonial settings alike.</description>
+        <graphicData>
+            <texPath>Things/Apparel/Mugirl_ImmortalFairyAzure/Mugirl_ImmortalFairyAzure</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <comps Inherit="False">
+            <li Class="CompProperties_Forbiddable" />
+        </comps>
+        <costStuffCount>50</costStuffCount>
+        <stuffCategories>
+            <li>Fabric</li>
+            <li>Leathery</li>
+        </stuffCategories>
+        <equippedStatOffsets>
+            <SocialImpact>0.35</SocialImpact>
+            <PsychicSensitivity>0.15</PsychicSensitivity>
+        </equippedStatOffsets>
+        <statBases>
+            <MaxHitPoints>140</MaxHitPoints>
+            <WorkToMake>7500</WorkToMake>
+            <Mass>0.6</Mass>
+            <ArmorRating_Sharp>0.08</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.02</ArmorRating_Blunt>
+            <ArmorRating_Heat>0.10</ArmorRating_Heat>
+            <StuffEffectMultiplierArmor>0.18</StuffEffectMultiplierArmor>
+            <StuffEffectMultiplierInsulation_Cold>0.40</StuffEffectMultiplierInsulation_Cold>
+            <StuffEffectMultiplierInsulation_Heat>0.25</StuffEffectMultiplierInsulation_Heat>
+        </statBases>
+        <apparel>
+            <useWornGraphicMask>false</useWornGraphicMask>
+            <layers Inherit="False">
+                <li>OnSkin</li>
+                <li>Mugirl_FairyOverlay</li>
+            </layers>
+            <bodyPartGroups>
+                <li>Torso</li>
+                <li>Shoulders</li>
+            </bodyPartGroups>
+            <wornGraphicPath>Things/Apparel/Mugirl_ImmortalFairyAzure/Mugirl_ImmortalFairyAzure</wornGraphicPath>
+        </apparel>
+    </ThingDef>
+
+    <ThingDef ParentName="Mugirl_OnSkinBase">
+        <defName>Mugirl_Jeans</defName>
+        <!-- 雪牛娘 牛仔长裤 「蓝境远行」 -->
+        <label>Mugirl Jeans "Bluebound Journey"</label>
+        <!-- 修身牛仔长裤，耐磨斜纹布沿腿部收束，腰带与金属扣件兼顾固定和装饰。利落剪裁适合劳动、远行或日常穿着，在实用与时尚之间保持平衡。 -->
+        <description>Fitted Mugirl jeans cut from durable twill, with a sturdy belt and metal fittings that balance utility and ornament. Their clean tailoring suits work, travel and everyday wear without giving up a polished silhouette.</description>
+        <graphicData>
+            <texPath>Things/Apparel/Mugirl_Jeans/Mugirl_Jeans</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <costStuffCount>50</costStuffCount>
+        <stuffCategories>
+            <li>Fabric</li>
+            <li>Leathery</li>
+        </stuffCategories>
+        <equippedStatOffsets>
+            <SocialImpact>0.1</SocialImpact>
+        </equippedStatOffsets>
+        <statBases>
+            <MaxHitPoints>130</MaxHitPoints>
+            <WorkToMake>6000</WorkToMake>
+            <StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
+            <StuffEffectMultiplierInsulation_Cold>0.00</StuffEffectMultiplierInsulation_Cold>
+            <StuffEffectMultiplierInsulation_Heat>0.50</StuffEffectMultiplierInsulation_Heat>
+        </statBases>
+        <apparel>
+            <useWornGraphicMask>false</useWornGraphicMask>
+            <bodyPartGroups>
+                <li>Legs</li>
+            </bodyPartGroups>
+            <wornGraphicPath>Things/Apparel/Mugirl_Jeans/Mugirl_Jeans</wornGraphicPath>
         </apparel>
     </ThingDef>
 

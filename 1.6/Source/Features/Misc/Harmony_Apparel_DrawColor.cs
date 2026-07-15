@@ -10,7 +10,8 @@ namespace Mugirl
     {
         public static bool Prefix(Apparel __instance, ref Color __result)
         {
-            if (__instance?.def?.defName != "Mugirl_Spacesuit")
+            string defName = __instance?.def?.defName;
+            if (defName != "Mugirl_Spacesuit" && defName != "Mugirl_ImmortalFairyAzure")
             {
                 return true;
             }

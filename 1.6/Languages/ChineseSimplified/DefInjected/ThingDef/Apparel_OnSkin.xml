@@ -1,35 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-    <!-- "Vache Rousse" presents a backless, deep-V glossy latex catsuit, complete with a snow-pompom tail.\nThe collar bow accentuates a swan-like neck, while the bust curve is presented with sculptural precision; allurement is the ultimate armour. -->
-    <Mugirl_BunnyGirlTop.description>「八重·朱 服装」出品光亮紧身衣，后部饰有可爱兔尾球，领结设计凸显优雅颈部线条，整体造型时尚又活泼，适合节日或活动穿着。</Mugirl_BunnyGirlTop.description>
+    <!-- A backless, deep-V glossy latex catsuit, complete with a snow-pompom tail.\nThe collar bow accentuates a swan-like neck, while the bust curve is presented with sculptural precision; allurement is the ultimate armour. -->
+    <Mugirl_BunnyGirlTop.description>光亮紧身衣，后部饰有可爱兔尾球，领结设计凸显优雅颈部线条，整体造型时尚又活泼，适合节日或活动穿着。</Mugirl_BunnyGirlTop.description>
     <!-- Mugirl Bunny Girl Top Suit -->
     <Mugirl_BunnyGirlTop.label>雪牛娘 兔女郎上衣</Mugirl_BunnyGirlTop.label>
-    <!-- A Mugirl silk cheongsam from "Vache Rousse", with ornate floral embroidery and a flowing white silhouette shaped by eastern aesthetics. -->
-    <Mugirl_Cheongsam.description>「八重·朱 服装」出品高开衩真丝旗袍，纷繁花绣衬出超低胸襟。东方美学与现代性感碰撞，化身移动的纯白焦点。</Mugirl_Cheongsam.description>
+    <!-- A Mugirl silk cheongsam with ornate floral embroidery and a flowing white silhouette shaped by eastern aesthetics. -->
+    <Mugirl_Cheongsam.description>高开衩真丝旗袍，纷繁花绣衬出超低胸襟。东方美学与现代性感碰撞，化身移动的纯白焦点。</Mugirl_Cheongsam.description>
     <!-- Mugirl Cheongsam "Cloud-Cut Bright Moon" -->
     <Mugirl_Cheongsam.label>雪牛娘 旗袍 「皎月裁云」</Mugirl_Cheongsam.label>
-    <!-- "Vache Rousse" presents a liquid-reflect pencil skirt, with a hemline twenty centimetres above the knee that hints at concealed delights.\nEach step creates a rhythmic shackle, imprisoning the gaze of onlookers. -->
-    <Mugirl_Hipwrappingskirt.description>「八重·朱 服装」出品光泽包臀裙，修身剪裁凸显身形线条，每一步都显得优雅灵动，整体造型兼具现代感与美感。</Mugirl_Hipwrappingskirt.description>
+    <!-- A liquid-reflect pencil skirt, with a hemline twenty centimetres above the knee that hints at concealed delights.\nEach step creates a rhythmic shackle, imprisoning the gaze of onlookers. -->
+    <Mugirl_Hipwrappingskirt.description>光泽包臀裙，修身剪裁凸显身形线条，每一步都显得优雅灵动，整体造型兼具现代感与美感。</Mugirl_Hipwrappingskirt.description>
     <!-- Mugirl Pencil Skirt "Captivité d'Obsidienne" -->
     <Mugirl_Hipwrappingskirt.label>雪牛娘 包臀裙 「黑曜禁锢」</Mugirl_Hipwrappingskirt.label>
-    <!-- "Vache Rousse" presents an ethereal robe of drifting gauze, its back falling open like a cascading waterfall while crimson ribbons rise and settle with each step. Golden threads of starlight glimmer along the sleeves, and a frost-silk tassel at the waist traces a willow-slender figure. The curve of the chest appears and fades like moonlit mist, as though immortal grace itself had taken shape. Its splendour is not mere display, but the natural outward flow of cultivated power, with beauty itself serving as the keenest weapon. -->
-    <Mugirl_ImmortalFairy.description>「八重·朱 服装」出品云烟缭绕的轻纱羽衣，衣背裁作流瀑般敞开，绛色绸带随步伐微浮。袖口绣有星辰金线，步时如碎光飞落。腰间一抹冰丝流苏衬出纤柔柳腰，胸前曲线若清光勾勒，若隐若现，宛如仙气凝成的弧度。华美非为炫耀，而是修仙者玄力外放的自然流转，美韵本就是最锋利的法器。</Mugirl_ImmortalFairy.description>
+    <!-- An ethereal robe of drifting gauze, its back falling open like a cascading waterfall while crimson ribbons rise and settle with each step. Golden threads of starlight glimmer along the sleeves, and a frost-silk tassel at the waist traces a willow-slender figure. The curve of the chest appears and fades like moonlit mist, as though immortal grace itself had taken shape. Its splendour is not mere display, but the natural outward flow of cultivated power, with beauty itself serving as the keenest weapon. -->
+    <Mugirl_ImmortalFairy.description>云烟缭绕的轻纱羽衣，衣背裁作流瀑般敞开，绛色绸带随步伐微浮。袖口绣有星辰金线，步时如碎光飞落。腰间一抹冰丝流苏衬出纤柔柳腰，胸前曲线若清光勾勒，若隐若现，宛如仙气凝成的弧度。华美非为炫耀，而是修仙者玄力外放的自然流转，美韵本就是最锋利的法器。</Mugirl_ImmortalFairy.description>
     <!-- Mugirl Fairy Raiment -->
     <Mugirl_ImmortalFairy.label>雪牛娘 仙女服装</Mugirl_ImmortalFairy.label>
-    <!-- A crisp silk office lady suit from "Vache Rousse". The fitted cut extends from shoulders and neck to the skirt, drawing a capable figure with smooth lines. Understated details conceal refined design, and the light fabric flashes with a professional texture in shifting light. It is not only a dignified symbol for the workplace, but also a confident and elegant presence in any crowd. -->
-    <Mugirl_OL.description>「八重·朱 服装」出品利落丝质OL套装，修身剪裁自肩颈延展至裙摆，流畅线条勾勒干练身形。细节低调却暗藏精致设计，轻盈面料在光影间闪现职业质感。不仅是办公场合的端庄象征，更在步入人群时彰显自信与优雅气场。</Mugirl_OL.description>
+    <!-- A crisp silk office lady suit. The fitted cut extends from shoulders and neck to the skirt, drawing a capable figure with smooth lines. Understated details conceal refined design, and the light fabric flashes with a professional texture in shifting light. It is not only a dignified symbol for the workplace, but also a confident and elegant presence in any crowd. -->
+    <Mugirl_OL.description>利落丝质OL套装，修身剪裁自肩颈延展至裙摆，流畅线条勾勒干练身形。细节低调却暗藏精致设计，轻盈面料在光影间闪现职业质感。不仅是办公场合的端庄象征，更在步入人群时彰显自信与优雅气场。</Mugirl_OL.description>
     <!-- Mugirl Office Lady Suit -->
     <Mugirl_OL.label>雪牛娘 OL套装</Mugirl_OL.label>
     <!-- A specialised combat uniform developed for Mugirls by the revolutionary army during the Mareko Revolutionary War. -->
     <Mugirl_RA_Unionary.description>迈瑞科革命战争时期革命军为雪牛娘设置的特化战斗军服。</Mugirl_RA_Unionary.description>
     <!-- Mugirl Revolutionary Combat Uniform -->
     <Mugirl_RA_Unionary.label>雪牛娘 革命军作战服</Mugirl_RA_Unionary.label>
-    <!-- "Vache Rousse" presents the standard Mugirl uniform: a tailored blazer paired with an ultra-short skirt that accentuates a slender figure.\nThe ten-centimetre-above-knee cut highlights the absolute territory.\nA lethal weapon in the office environment, each step treads the line between propriety and desire, awakening forbidden fantasies. -->
-    <Mugirl_Uniform.description>「八重·朱 服装」出品雪牛娘标准制服，收腰西装搭配短裙，整体造型干练利落，适合办公或正式场合，展现专业与时尚的结合。</Mugirl_Uniform.description>
+    <!-- The standard Mugirl uniform: a tailored blazer paired with an ultra-short skirt that accentuates a slender figure.\nThe ten-centimetre-above-knee cut highlights the absolute territory.\nA lethal weapon in the office environment, each step treads the line between propriety and desire, awakening forbidden fantasies. -->
+    <Mugirl_Uniform.description>雪牛娘标准制服，收腰西装搭配短裙，整体造型干练利落，适合办公或正式场合，展现专业与时尚的结合。</Mugirl_Uniform.description>
     <!-- Mugirl Uniform "Zone Interdite du Pouvoir" -->
     <Mugirl_Uniform.label>雪牛娘 制服 「权力禁区」</Mugirl_Uniform.label>
-    <!-- A floor-length silk wedding dress from "Vache Rousse". Streamlined tailoring flows down from the shoulders and neck, while layered gauze reflects a pure sheen. Clean contours shape the figure, and restrained details hide a sharp edge, letting sanctity and confidence stand together. More than the focus of a ceremony, it becomes a white presence no crowd can ignore. -->
-    <Mugirl_WeddingDress.description>「八重·朱 服装」出品曳地真丝婚纱，流线剪裁自肩颈倾泻而下，轻纱层叠映出纯净光泽。利落轮廓勾勒身形比例，低调细节暗藏锋芒，让圣洁与自信并肩而立。不止是仪式的主角，更是步入人群时无法忽视的纯白焦点。</Mugirl_WeddingDress.description>
+    <!-- A floor-length silk wedding dress. Streamlined tailoring flows down from the shoulders and neck, while layered gauze reflects a pure sheen. Clean contours shape the figure, and restrained details hide a sharp edge, letting sanctity and confidence stand together. More than the focus of a ceremony, it becomes a white presence no crowd can ignore. -->
+    <Mugirl_WeddingDress.description>曳地真丝婚纱，流线剪裁自肩颈倾泻而下，轻纱层叠映出纯净光泽。利落轮廓勾勒身形比例，低调细节暗藏锋芒，让圣洁与自信并肩而立。不止是仪式的主角，更是步入人群时无法忽视的纯白焦点。</Mugirl_WeddingDress.description>
     <!-- Mugirl Wedding Dress -->
     <Mugirl_WeddingDress.label>雪牛娘 婚纱</Mugirl_WeddingDress.label>
+    <!-- A frost-blue fairy raiment of layered gauze, its cloudlike skirt falling around a light sash while a silver bell chimes with each step. The cool-toned fabric carries a soft sheen, giving the garment an effortless presence in everyday wear and ceremonial settings alike. -->
+    <Mugirl_ImmortalFairyAzure.description>霜蓝轻纱羽衣，层叠裙摆如云气垂落，银铃与束带随步伐轻响。冷色绸面映出柔和光泽，轻盈剪裁让日常行走与仪式场合都从容自如。</Mugirl_ImmortalFairyAzure.description>
+    <!-- Mugirl Azure Fairy Raiment "Frostfall Cloudveil" -->
+    <Mugirl_ImmortalFairyAzure.label>雪牛娘 霜蓝仙子服 「流霜垂云」</Mugirl_ImmortalFairyAzure.label>
+    <!-- Fitted Mugirl jeans cut from durable twill, with a sturdy belt and metal fittings that balance utility and ornament. Their clean tailoring suits work, travel and everyday wear without giving up a polished silhouette. -->
+    <Mugirl_Jeans.description>修身牛仔长裤，耐磨斜纹布沿腿部收束，腰带与金属扣件兼顾固定和装饰。利落剪裁适合劳动、远行或日常穿着，在实用与时尚之间保持平衡。</Mugirl_Jeans.description>
+    <!-- Mugirl Jeans "Bluebound Journey" -->
+    <Mugirl_Jeans.label>雪牛娘 牛仔长裤 「蓝境远行」</Mugirl_Jeans.label>
 </LanguageData>

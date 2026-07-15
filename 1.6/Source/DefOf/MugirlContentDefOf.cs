@@ -17,6 +17,9 @@ namespace Mugirl
         public static ThingDef Mugirl_Bikini;
         public static ThingDef Mugirl_Bikini_Stocking;
 
+        // 高科技束具引用。
+        public static ThingDef Mugirl_ShockCollar;
+
         // PMC 敌对单位服装引用。
         public static ThingDef PMC_Helmet;
         public static ThingDef PMC_CaptainHelmet;

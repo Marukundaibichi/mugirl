@@ -2,18 +2,22 @@
 <LanguageData>
     <!-- Mugirl Bra "Pouvoir Impérial de la Nuit" -->
     <Mugirl_Bar.label>雪牛娘 文胸 「夜庭皇权」</Mugirl_Bar.label>
-    <!-- "Vache Rousse" presents a black Gothic lace full-cup bra, with ornate silver-thread embroidery gracing the cups.\nIt lifts the silhouette like a coronation, a secret declaration of luxury flowing beneath outer garments. -->
+    <!-- A black Gothic lace full-cup bra, with ornate silver-thread embroidery gracing the cups.\nIt lifts the silhouette like a coronation, a secret declaration of luxury flowing beneath outer garments. -->
     <Mugirl_Bar.description>黑色哥特蕾丝全罩文胸，银色刺绣点缀杯面，设计精巧，兼顾支撑与美观，适合日常或正式穿着。</Mugirl_Bar.description>
     <!-- Mugirl Bikini "Carillon des Neiges" -->
     <Mugirl_Bikini.label>雪牛娘 比基尼 「雪域响铃」</Mugirl_Bikini.label>
-    <!-- "Vache Rousse" presents a cow-print bikini, where a black leather neck collar with a silver bell cannot constrain the graceful bust.\nThe dappled black and white pattern sways with the hips, the clear chime a manifesto poised between innocence and desire. -->
+    <!-- A cow-print bikini, where a black leather neck collar with a silver bell cannot constrain the graceful bust.\nThe dappled black and white pattern sways with the hips, the clear chime a manifesto poised between innocence and desire. -->
     <Mugirl_Bikini.description>奶牛斑纹比基尼，颈环和腰部细节设计巧妙，动静之间展现活泼气质，适合泳池或海滩休闲穿着。</Mugirl_Bikini.description>
     <!-- Mugirl Bikini (With Stockings) "Flamme Marbrée" -->
     <Mugirl_Bikini_Stocking.label>雪牛娘 比基尼（带长筒袜） 「斑驳热焰」</Mugirl_Bikini_Stocking.label>
-    <!-- "Vache Rousse" presents a cow-print strappy bikini paired with over-knee socks, where the neck bell resonates with the wearer's movements.\nThe clash of black and white ignites a visual wildness, each step stirring the primal instinct to hunt. -->
+    <!-- A cow-print strappy bikini paired with over-knee socks, where the neck bell resonates with the wearer's movements.\nThe clash of black and white ignites a visual wildness, each step stirring the primal instinct to hunt. -->
     <Mugirl_Bikini_Stocking.description>奶牛纹比基尼搭配过膝袜，整体设计突出动感与趣味性，适合活动或舞蹈场合。</Mugirl_Bikini_Stocking.description>
     <!-- Mugirl Erotic Underpants "Mystère du Jardin de Miel" -->
     <Mugirl_Eroticpanties.label>雪牛娘 轻薄内裤 「蜜境迷踪」</Mugirl_Eroticpanties.label>
-    <!-- "Vache Rousse" presents black Gothic lace panties, with intricate silver embroidery creating a labyrinth at the hip line.\nA glorious breaching of the final defence, luring adventurers one step closer into forbidden territory. -->
+    <!-- Black Gothic lace panties, with intricate silver embroidery creating a labyrinth at the hip line.\nA glorious breaching of the final defence, luring adventurers one step closer into forbidden territory. -->
     <Mugirl_Eroticpanties.description>黑色轻薄内裤，蕾丝镂空设计精巧，舒适贴身，适合日常穿着或搭配服装使用。</Mugirl_Eroticpanties.description>
+    <!-- A light white bustier with soft fabric, clean shaping and reinforced seams for comfortable support. It can be paired with trousers or worn as a simple underlayer beneath outer clothing. -->
+    <Mugirl_WhiteBustier.description>白色轻质胸衣，柔软布面以简洁弧线贴合身形，细窄肩带与加固缝线兼顾支撑和舒适。可单独搭配长裤，也可作为外衣之下的轻便内着。</Mugirl_WhiteBustier.description>
+    <!-- Mugirl White Bustier "First Snow Embrace" -->
+    <Mugirl_WhiteBustier.label>雪牛娘 白色胸衣 「初雪轻拥」</Mugirl_WhiteBustier.label>
 </LanguageData>

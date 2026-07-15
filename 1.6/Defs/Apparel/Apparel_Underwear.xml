@@ -37,8 +37,8 @@
         <defName>Mugirl_Bikini</defName>
         <!-- 雪牛娘 比基尼 「雪域响铃 -->
         <label>Mugirl Bikini "Carillon des Neiges"</label>
-        <!-- 「八重·朱 服装」出品奶牛斑纹比基尼，颈环黑皮带系银铃难掩前胸曼妙。黑白斑驳随腰肢晃动铃音清响，堪称纯真与情欲的临界点宣言。 -->
-        <description>"Vache Rousse" presents a cow-print bikini, where a black leather neck collar with a silver bell cannot constrain the graceful bust.\nThe dappled black and white pattern sways with the hips, the clear chime a manifesto poised between innocence and desire.</description>
+        <!-- 奶牛斑纹比基尼，颈环黑皮带系银铃难掩前胸曼妙。黑白斑驳随腰肢晃动铃音清响，堪称纯真与情欲的临界点宣言。 -->
+        <description>A cow-print bikini, where a black leather neck collar with a silver bell cannot constrain the graceful bust.\nThe dappled black and white pattern sways with the hips, the clear chime a manifesto poised between innocence and desire.</description>
         <graphicData>
             <texPath>Things/Apparel/Mugirl_Bikini/Mugirl_Bikini</texPath>
         </graphicData>
@@ -63,8 +63,8 @@
         <defName>Mugirl_Bikini_Stocking</defName>
         <!-- 雪牛娘 比基尼（带长筒袜） 「斑驳热焰」 -->
         <label>Mugirl Bikini (With Stockings) "Flamme Marbrée"</label>
-        <!-- 「八重·朱 服装」出品奶牛纹绑带比基尼搭配过膝袜，颈铃与腰身共振。黑白碰撞点燃视觉野性，每一步皆诱发狩猎本能。 -->
-        <description>"Vache Rousse" presents a cow-print strappy bikini paired with over-knee socks, where the neck bell resonates with the wearer's movements.\nThe clash of black and white ignites a visual wildness, each step stirring the primal instinct to hunt.</description>
+        <!-- 奶牛纹绑带比基尼搭配过膝袜，颈铃与腰身共振。黑白碰撞点燃视觉野性，每一步皆诱发狩猎本能。 -->
+        <description>A cow-print strappy bikini paired with over-knee socks, where the neck bell resonates with the wearer's movements.\nThe clash of black and white ignites a visual wildness, each step stirring the primal instinct to hunt.</description>
         <graphicData>
             <texPath>Things/Apparel/Mugirl_Bikini_Stocking/Mugirl_Bikini_Stocking</texPath>
         </graphicData>
@@ -73,6 +73,7 @@
             <SocialImpact>0.2</SocialImpact>
         </equippedStatOffsets>
         <apparel>
+            <developmentalStageFilter>Child, Adult</developmentalStageFilter>
             <bodyPartGroups>
                 <li>Torso</li>
                 <li>Shoulders</li>
@@ -90,8 +91,8 @@
         <defName>Mugirl_Bar</defName>
         <!-- 雪牛娘 文胸 「夜庭皇权」 -->
         <label>Mugirl Bra "Pouvoir Impérial de la Nuit"</label>
-        <!-- 「八重·朱 服装」出品黑色哥特蕾丝全罩杯文胸，暗银丝线刺绣覆盖杯面。如女皇加冕般托起饱满曲线，于外着下流淌隐秘的奢华宣言。 -->
-        <description>"Vache Rousse" presents a black Gothic lace full-cup bra, with ornate silver-thread embroidery gracing the cups.\nIt lifts the silhouette like a coronation, a secret declaration of luxury flowing beneath outer garments.</description>
+        <!-- 黑色哥特蕾丝全罩杯文胸，暗银丝线刺绣覆盖杯面。如女皇加冕般托起饱满曲线，于外着下流淌隐秘的奢华宣言。 -->
+        <description>A black Gothic lace full-cup bra, with ornate silver-thread embroidery gracing the cups.\nIt lifts the silhouette like a coronation, a secret declaration of luxury flowing beneath outer garments.</description>
         <graphicData>
             <texPath>Things/Apparel/Mugirl_Bar/Mugirl_Bar</texPath>
             <shaderType>CutoutComplex</shaderType>
@@ -113,8 +114,8 @@
         <defName>Mugirl_Eroticpanties</defName>
         <!-- 雪牛娘 轻薄内裤 「蜜境迷踪」 -->
         <label>Mugirl Erotic Underpants "Mystère du Jardin de Miel"</label>
-        <!-- 「八重·朱 服装」出品黑色哥特蕾丝丁字裤，暗银刺绣镂空臀线迷宫。最终防线的华丽失守，引诱冒险者向未知禁域更进一步。 -->
-        <description>"Vache Rousse" presents black Gothic lace panties, with intricate silver embroidery creating a labyrinth at the hip line.\nA glorious breaching of the final defence, luring adventurers one step closer into forbidden territory.</description>
+        <!-- 黑色哥特蕾丝丁字裤，暗银刺绣镂空臀线迷宫。最终防线的华丽失守，引诱冒险者向未知禁域更进一步。 -->
+        <description>Black Gothic lace panties, with intricate silver embroidery creating a labyrinth at the hip line.\nA glorious breaching of the final defence, luring adventurers one step closer into forbidden territory.</description>
         <graphicData>
             <texPath>Things/Apparel/Mugirl_Eroticpanties/Mugirl_Eroticpanties</texPath>
             <shaderType>CutoutComplex</shaderType>
@@ -129,6 +130,28 @@
             </bodyPartGroups>
             <wornGraphicPath>Things/Apparel/Mugirl_Eroticpanties/Mugirl_Eroticpanties</wornGraphicPath>
             <useWornGraphicMask>true</useWornGraphicMask>
+        </apparel>
+    </ThingDef>
+
+    <ThingDef ParentName="Mugirl_UnderwearBase">
+        <defName>Mugirl_WhiteBustier</defName>
+        <!-- 雪牛娘 白色胸衣 「初雪轻拥」 -->
+        <label>Mugirl White Bustier "First Snow Embrace"</label>
+        <!-- 白色轻质胸衣，柔软布面以简洁弧线贴合身形，细窄肩带与加固缝线兼顾支撑和舒适。可单独搭配长裤，也可作为外衣之下的轻便内着。 -->
+        <description>A light white bustier with soft fabric, clean shaping and reinforced seams for comfortable support. It can be paired with trousers or worn as a simple underlayer beneath outer clothing.</description>
+        <graphicData>
+            <texPath>Things/Apparel/Mugirl_WhiteBustier/Mugirl_WhiteBustier</texPath>
+        </graphicData>
+        <costStuffCount>50</costStuffCount>
+        <equippedStatOffsets>
+            <SocialImpact>0.2</SocialImpact>
+        </equippedStatOffsets>
+        <apparel>
+            <bodyPartGroups>
+                <li>Shoulders</li>
+            </bodyPartGroups>
+            <wornGraphicPath>Things/Apparel/Mugirl_WhiteBustier/Mugirl_WhiteBustier</wornGraphicPath>
+            <useWornGraphicMask>false</useWornGraphicMask>
         </apparel>
     </ThingDef>
 
