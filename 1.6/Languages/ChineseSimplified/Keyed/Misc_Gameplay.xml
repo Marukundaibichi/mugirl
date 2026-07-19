@@ -522,6 +522,8 @@
     <LetterWandererJoins>一位名叫{PAWN_nameDef}的{PAWN_title}来到这里，她从奴隶商队逃脱，身上破旧的束具仍缠绕着她，诉说着悲惨的遭遇。她无处可去，愿意为你的殖民地贡献力量。{PAWN_objective}不会主动离开，你可以选择拒绝她，把她送走，但你的殖民者们会为送走一个需要帮助的人而感到不安。你是否愿意给这位可怜又坚强的逃亡者一次自由与新生活的机会？</LetterWandererJoins>
     <!-- Weapon wheel -->
     <Mugirl.WeaponWheel.Tab>武器轮盘</Mugirl.WeaponWheel.Tab>
+    <!-- Weapons -->
+    <Mugirl.WeaponWheel.TabShort>武器轮盘</Mugirl.WeaponWheel.TabShort>
     <!-- {0} / {1} -->
     <Mugirl.WeaponWheel.HeaderSlots>{0} / {1}</Mugirl.WeaponWheel.HeaderSlots>
     <!-- Locked -->
@@ -562,4 +564,15 @@
     <Mugirl.Punisher.LetterText>你竟然残忍的杀害了无辜的雪牛娘！雪牛之神会惩罚你的！</Mugirl.Punisher.LetterText>
     <!-- The snow-bovine punisher has completed its punishment and departed. -->
     <Mugirl.Punisher.Departed>雪牛惩戒者已经结束惩戒，扬长而去。</Mugirl.Punisher.Departed>
+    <!-- TEMPORARILY DISABLED: unfinished Mugirl throw/dunk system.
+    <Mugirl.Throw.InvalidTarget>这个目标无法被抓起。</Mugirl.Throw.InvalidTarget>
+    <Mugirl.Dunk.InvalidDestination>灌篮落点必须位于物体 {0} 格以内。</Mugirl.Dunk.InvalidDestination>
+    <Mugirl.Throw.IndestructibleTarget>{0}无法被移动。</Mugirl.Throw.IndestructibleTarget>
+    <Mugirl.Throw.AlreadyHolding>已经抓着一个东西了。</Mugirl.Throw.AlreadyHolding>
+    <Mugirl.Throw.TooHeavy>太重了：重量 {0} kg，当前力量 {1} kg。</Mugirl.Throw.TooHeavy>
+    <Mugirl.Throw.PickupReadout>重量 {0} kg / 力量 {1} kg</Mugirl.Throw.PickupReadout>
+    <Mugirl.Throw.OutOfRange>超出投掷距离（最大 {0} 格）。</Mugirl.Throw.OutOfRange>
+    <Mugirl.Throw.AimReadout>伤害 {0} / 爆炸半径 {1} / 最大距离 {2}</Mugirl.Throw.AimReadout>
+    <Mugirl.Throw.PlaceFailed>无法安全放置 {0}：{1}</Mugirl.Throw.PlaceFailed>
+    END TEMPORARILY DISABLED -->
 </LanguageData>

@@ -261,6 +261,7 @@
     <LetterLabelWandererJoins>Wanderer Joins: {PAWN_nameDef}</LetterLabelWandererJoins>
     <LetterWandererJoins>A {PAWN_title} named {PAWN_nameDef} has arrived here; she escaped from a slave caravan, with tattered restraints still bound to [PAWN_objective], telling of [PAWN_possessive] tragic past. With nowhere to go, she is willing to contribute to your colony. {PAWN_objective} won't leave voluntarily; you can choose to refuse [PAWN_objective] and send [PAWN_objective] away, but your colonists will feel uneasy about turning away someone in need.\n\nWill you give this pitiful yet resilient escapee a chance at freedom and a new life?</LetterWandererJoins>
     <Mugirl.WeaponWheel.Tab>Weapon wheel</Mugirl.WeaponWheel.Tab>
+    <Mugirl.WeaponWheel.TabShort>Weapons</Mugirl.WeaponWheel.TabShort>
     <Mugirl.WeaponWheel.HeaderSlots>{0} / {1}</Mugirl.WeaponWheel.HeaderSlots>
     <Mugirl.WeaponWheel.Locked>Locked</Mugirl.WeaponWheel.Locked>
     <Mugirl.WeaponWheel.LockedDesc>Complete the self-propelled autoloading research to unlock this wheel slot.</Mugirl.WeaponWheel.LockedDesc>
@@ -281,4 +282,15 @@
     <Mugirl.Punisher.LetterLabel>Snow-bovine punisher</Mugirl.Punisher.LetterLabel>
     <Mugirl.Punisher.LetterText>You have cruelly slaughtered innocent Mugirls! The god of the snow-bovines will punish you!</Mugirl.Punisher.LetterText>
     <Mugirl.Punisher.Departed>The snow-bovine punisher has completed its punishment and departed.</Mugirl.Punisher.Departed>
+    <!-- TEMPORARILY DISABLED: unfinished Mugirl throw/dunk system.
+    <Mugirl.Throw.InvalidTarget>This target cannot be picked up.</Mugirl.Throw.InvalidTarget>
+    <Mugirl.Dunk.InvalidDestination>The dunk destination must be within {0} cells of the object.</Mugirl.Dunk.InvalidDestination>
+    <Mugirl.Throw.IndestructibleTarget>{0} cannot be moved.</Mugirl.Throw.IndestructibleTarget>
+    <Mugirl.Throw.AlreadyHolding>Already holding something.</Mugirl.Throw.AlreadyHolding>
+    <Mugirl.Throw.TooHeavy>Too heavy: mass {0} kg, current strength {1} kg.</Mugirl.Throw.TooHeavy>
+    <Mugirl.Throw.PickupReadout>Mass {0} kg / strength {1} kg</Mugirl.Throw.PickupReadout>
+    <Mugirl.Throw.OutOfRange>Out of throwing range (maximum {0} cells).</Mugirl.Throw.OutOfRange>
+    <Mugirl.Throw.AimReadout>Damage {0} / blast radius {1} / max range {2}</Mugirl.Throw.AimReadout>
+    <Mugirl.Throw.PlaceFailed>Could not safely place {0}: {1}</Mugirl.Throw.PlaceFailed>
+    END TEMPORARILY DISABLED -->
 </LanguageData>

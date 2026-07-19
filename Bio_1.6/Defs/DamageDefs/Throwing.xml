@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <!-- TEMPORARILY DISABLED: unfinished Mugirl throw/dunk system.
+    <DamageDef ParentName="Bomb">
+        <defName>Mugirl_ThrownImpact</defName>
+        <label>thrown impact</label>
+        <armorCategory>Blunt</armorCategory>
+        <buildingDamageFactorImpassable>1.5</buildingDamageFactorImpassable>
+        <buildingDamageFactorPassable>1.25</buildingDamageFactorPassable>
+        <deathMessage>{0} has been obliterated by a massive thrown object.</deathMessage>
+        <hediff>Crush</hediff>
+        <hediffSkin>Cut</hediffSkin>
+        <hediffSolid>Crack</hediffSolid>
+        <impactSoundType>Blunt</impactSoundType>
+        <explosionHeatEnergyPerCell>0</explosionHeatEnergyPerCell>
+    </DamageDef>
+    END TEMPORARILY DISABLED -->
+</Defs>

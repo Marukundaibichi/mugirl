@@ -10,4 +10,12 @@
     <Mugirl_Shout.description>RUAAAAAAAAA！（丢人的叫声）</Mugirl_Shout.description>
     <!-- Mugirl Shout! -->
     <Mugirl_Shout.label>雪牛大叫！</Mugirl_Shout.label>
+    <!-- TEMPORARILY DISABLED: unfinished Mugirl throw/dunk system.
+    <Mugirl_Throw.description>抓起身边的实体，将它作为临时炮弹狠狠丢出去。</Mugirl_Throw.description>
+    <Mugirl_Throw.label>雪牛投掷！</Mugirl_Throw.label>
+    <Mugirl_Throw.verbProperties.label>抓起来！</Mugirl_Throw.verbProperties.label>
+    <Mugirl_Dunk.description>把任何举得动的东西当成篮球，一路运球冲刺，转身起跳后将它狠狠灌进地里。</Mugirl_Dunk.description>
+    <Mugirl_Dunk.label>雪牛流星灌篮！</Mugirl_Dunk.label>
+    <Mugirl_Dunk.verbProperties.label>选择篮球！</Mugirl_Dunk.verbProperties.label>
+    END TEMPORARILY DISABLED -->
 </LanguageData>

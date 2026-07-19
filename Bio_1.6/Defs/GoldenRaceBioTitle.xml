@@ -18,6 +18,7 @@
         <genes>
             <li>Mugirl_Charge</li>
             <li>Mugirl_Shout</li>
+            <!-- TEMPORARILY DISABLED: Mugirl_Throw and Mugirl_Dunk. -->
             <li>Mugirl_Shooting</li>
             <li>Mugirl_NobelPrize</li>
             <li>NakedSpeed</li>

@@ -20,6 +20,43 @@
         <biostatCpx>6</biostatCpx>
     </GeneDef>
 
+    <!-- TEMPORARILY DISABLED: unfinished Mugirl throw/dunk system.
+    <GeneDef>
+        <defName>Mugirl_Throw</defName>
+        <label>Mugirl throw</label>
+        <description>Carriers of this gene can lift nearby objects and hurl them as devastating improvised projectiles.</description>
+        <iconPath>UI/Mugirl_Charge</iconPath>
+        <displayCategory>Ability</displayCategory>
+        <displayOrderInCategory>3</displayOrderInCategory>
+        <abilities>
+            <li>Mugirl_Throw</li>
+        </abilities>
+        <descriptionHyperlinks>
+            <AbilityDef>Mugirl_Throw</AbilityDef>
+        </descriptionHyperlinks>
+        <biostatMet>-3</biostatMet>
+        <biostatCpx>6</biostatCpx>
+    </GeneDef>
+
+    <GeneDef>
+        <defName>Mugirl_Dunk</defName>
+        <label>Mugirl meteor dunk</label>
+        <description>Carriers of this gene can briefly mistake any sufficiently light object for a basketball, with catastrophic results.</description>
+        <iconPath>UI/Mugirl_Charge</iconPath>
+        <displayCategory>Ability</displayCategory>
+        <displayOrderInCategory>4</displayOrderInCategory>
+        <abilities>
+            <li>Mugirl_Dunk</li>
+        </abilities>
+        <descriptionHyperlinks>
+            <AbilityDef>Mugirl_Dunk</AbilityDef>
+        </descriptionHyperlinks>
+        <biostatMet>-3</biostatMet>
+        <biostatCpx>6</biostatCpx>
+    </GeneDef>
+
+    END TEMPORARILY DISABLED -->
+
     <GeneDef>
         <defName>Mugirl_Shout</defName>
         <!-- 雪牛大叫！ -->

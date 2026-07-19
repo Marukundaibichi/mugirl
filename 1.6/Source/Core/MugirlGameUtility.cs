@@ -40,6 +40,46 @@ namespace Mugirl
             return true;
         }
 
+        internal static bool TryBeginTargeting(
+            ITargetingSource source,
+            Action actionWhenFinished,
+            bool allowNonSelectedTargetingSource,
+            bool requiresAvailableVerb)
+        {
+            if (source == null || Find.Targeter == null)
+            {
+                return false;
+            }
+
+            Find.Targeter.BeginTargeting(
+                source,
+                parent: null,
+                allowNonSelectedTargetingSource: allowNonSelectedTargetingSource,
+                extraSourceGetter: null,
+                actionWhenFinished: actionWhenFinished,
+                requiresAvailableVerb: requiresAvailableVerb);
+            return true;
+        }
+
+        internal static bool IsTargetingSource(ITargetingSource source)
+        {
+            return source != null
+                && Find.Targeter != null
+                && Find.Targeter.IsTargeting
+                && Find.Targeter.targetingSource == source;
+        }
+
+        internal static bool TryStopTargeting(ITargetingSource source)
+        {
+            if (!IsTargetingSource(source))
+            {
+                return false;
+            }
+
+            Find.Targeter.StopTargeting();
+            return true;
+        }
+
         internal static bool TryReceiveLetter(Letter letter, string debugInfo = null, int delayTicks = 0, bool playSound = true)
         {
             if (letter == null || !CanReceiveLetter())

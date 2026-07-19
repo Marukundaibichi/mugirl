@@ -2,4 +2,5 @@
 <LanguageData>
     <!-- Charging TargetA. -->
     <Job_Charge.reportString>冲锋 TargetA.</Job_Charge.reportString>
+    <!-- TEMPORARILY DISABLED: <Job_MugirlDunk.reportString>正把 TargetA 灌向 TargetB。</Job_MugirlDunk.reportString> -->
 </LanguageData>

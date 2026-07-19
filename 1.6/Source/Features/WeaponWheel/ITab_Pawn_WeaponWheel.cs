@@ -40,7 +40,7 @@ namespace Mugirl.Features.WeaponWheel
         public ITab_Pawn_WeaponWheel()
         {
             size = WindowSize;
-            labelKey = "Mugirl.WeaponWheel.Tab";
+            labelKey = "Mugirl.WeaponWheel.TabShort";
         }
 
         public override void Notify_ClickOutsideWindow()

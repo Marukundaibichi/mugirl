@@ -60,4 +60,79 @@
         </comps>
     </AbilityDef>
 
+    <!-- TEMPORARILY DISABLED: unfinished Mugirl throw/dunk system.
+    <AbilityDef>
+        <defName>Mugirl_Throw</defName>
+        <label>Mugirl throw</label>
+        <description>Pick up a nearby physical object, then hurl it with overwhelming force.</description>
+        <iconPath>UI/Mugirl_Charge</iconPath>
+        <cooldownTicksRange>600</cooldownTicksRange>
+        <sendMessageOnCooldownComplete>true</sendMessageOnCooldownComplete>
+        <hostile>true</hostile>
+        <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+        <verbProperties>
+            <verbClass>Verb_CastAbility</verbClass>
+            <label>Pick up</label>
+            <warmupTime>0.35</warmupTime>
+            <range>1.5</range>
+            <requireLineOfSight>true</requireLineOfSight>
+            <targetParams>
+                <canTargetLocations>false</canTargetLocations>
+                <canTargetPawns>true</canTargetPawns>
+                <canTargetBuildings>true</canTargetBuildings>
+                <canTargetItems>true</canTargetItems>
+                <canTargetCorpses>true</canTargetCorpses>
+                <canTargetAnimals>true</canTargetAnimals>
+                <canTargetHumans>true</canTargetHumans>
+                <canTargetMechs>true</canTargetMechs>
+                <canTargetPlants>true</canTargetPlants>
+                <mapObjectTargetsMustBeAutoAttackable>false</mapObjectTargetsMustBeAutoAttackable>
+            </targetParams>
+        </verbProperties>
+        <comps>
+            <li Class="Mugirl.CompProperties_AbilityEffect_PickupThrow" />
+        </comps>
+    </AbilityDef>
+
+    <AbilityDef>
+        <defName>Mugirl_Dunk</defName>
+        <label>Mugirl meteor dunk</label>
+        <description>Dribble any liftable object into a spinning leap, then dunk it hard enough to erase its structural integrity.</description>
+        <iconPath>UI/Mugirl_Charge</iconPath>
+        <cooldownTicksRange>1200</cooldownTicksRange>
+        <sendMessageOnCooldownComplete>true</sendMessageOnCooldownComplete>
+        <hostile>true</hostile>
+        <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+        <verbProperties>
+            <verbClass>Verb_CastAbility</verbClass>
+            <label>Choose the ball</label>
+            <warmupTime>0</warmupTime>
+            <range>30</range>
+            <requireLineOfSight>false</requireLineOfSight>
+            <targetParams>
+                <canTargetLocations>false</canTargetLocations>
+                <canTargetPawns>true</canTargetPawns>
+                <canTargetBuildings>true</canTargetBuildings>
+                <canTargetItems>true</canTargetItems>
+                <canTargetCorpses>true</canTargetCorpses>
+                <canTargetAnimals>true</canTargetAnimals>
+                <canTargetHumans>true</canTargetHumans>
+                <canTargetMechs>true</canTargetMechs>
+                <canTargetPlants>true</canTargetPlants>
+                <mapObjectTargetsMustBeAutoAttackable>false</mapObjectTargetsMustBeAutoAttackable>
+            </targetParams>
+        </verbProperties>
+        <jobDef>Job_MugirlDunk</jobDef>
+        <comps>
+            <li Class="Mugirl.CompProperties_AbilityEffect_Dunk">
+                <destination>Selected</destination>
+                <range>35</range>
+                <requiresLineOfSight>false</requiresLineOfSight>
+                <screenShakeIntensity>0.3</screenShakeIntensity>
+            </li>
+        </comps>
+    </AbilityDef>
+
+    END TEMPORARILY DISABLED -->
+
 </Defs>

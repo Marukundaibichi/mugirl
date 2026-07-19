@@ -5,4 +5,12 @@
     <Mugirl_Charge.verbProperties.label>Charge!</Mugirl_Charge.verbProperties.label>
     <Mugirl_Shout.description>RUAAAAAAAAA! (an embarrassing cry)</Mugirl_Shout.description>
     <Mugirl_Shout.label>Mugirl Shout!</Mugirl_Shout.label>
+    <!-- TEMPORARILY DISABLED: unfinished Mugirl throw/dunk system.
+    <Mugirl_Throw.description>Pick up a nearby physical object, then hurl it with overwhelming force.</Mugirl_Throw.description>
+    <Mugirl_Throw.label>Mugirl Throw!</Mugirl_Throw.label>
+    <Mugirl_Throw.verbProperties.label>Pick up!</Mugirl_Throw.verbProperties.label>
+    <Mugirl_Dunk.description>Dribble any liftable object into a spinning leap, then dunk it hard enough to erase its structural integrity.</Mugirl_Dunk.description>
+    <Mugirl_Dunk.label>Mugirl Meteor Dunk!</Mugirl_Dunk.label>
+    <Mugirl_Dunk.verbProperties.label>Choose the ball!</Mugirl_Dunk.verbProperties.label>
+    END TEMPORARILY DISABLED -->
 </LanguageData>

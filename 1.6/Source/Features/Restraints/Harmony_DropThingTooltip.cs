@@ -197,6 +197,26 @@ namespace Mugirl
         }
     }
 
+    // Wear 会在加入新服装前卸下冲突服装。该内部卸装不应触发束具的“下一阶段”生成，
+    // 否则用脚铐替换同层下身束具时会凭空制造并穿上一双奴隶袜。
+    [HarmonyPatch(typeof(Pawn_ApparelTracker), nameof(Pawn_ApparelTracker.Wear))]
+    public static class Pawn_ApparelTracker_Wear_SlaveApparelAutoStage_Patch
+    {
+        public static void Prefix(out bool __state)
+        {
+            SlaveApparelAutoStageContext.BeginSuppressNextStage();
+            __state = true;
+        }
+
+        public static void Finalizer(bool __state)
+        {
+            if (__state)
+            {
+                SlaveApparelAutoStageContext.EndSuppressNextStage();
+            }
+        }
+    }
+
     [HarmonyPatch(typeof(FloatMenuOptionProvider_Wear), "GetSingleOptionFor", new[] { typeof(Thing), typeof(FloatMenuContext) })]
     public static class FloatMenuOptionProvider_Wear_SlaveApparel_Patch
     {
@@ -234,15 +254,28 @@ namespace Mugirl
     [HarmonyPatch(typeof(JobDriver_Wear), "TryUnequipSomething")]
     public static class JobDriver_Wear_TryUnequipSomething_SlaveApparel_Patch
     {
-        public static bool Prefix(JobDriver_Wear __instance)
+        public static bool Prefix(JobDriver_Wear __instance, out bool __state)
         {
+            __state = false;
             if (SlaveApparelWearGuard.WouldReplaceLockedSlaveApparel(__instance.GetActor(), SlaveApparelWearGuard.JobTargetApparel(__instance.job)))
             {
                 __instance.EndJobWith(JobCondition.Incompletable);
                 return false;
             }
 
+            // JobDriver_Wear 会先单独卸下冲突服装，之后才调用 ApparelTracker.Wear；
+            // 因此这里也要覆盖这段替换窗口。
+            SlaveApparelAutoStageContext.BeginSuppressNextStage();
+            __state = true;
             return true;
+        }
+
+        public static void Finalizer(bool __state)
+        {
+            if (__state)
+            {
+                SlaveApparelAutoStageContext.EndSuppressNextStage();
+            }
         }
     }
 

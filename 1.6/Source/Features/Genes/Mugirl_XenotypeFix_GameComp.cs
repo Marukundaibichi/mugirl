@@ -147,6 +147,8 @@ namespace Mugirl
     public class Mugirl_XenotypeFix_GameComp : GameComponent
     {
         public bool xenotypeFixed;
+        public bool throwGeneFixed;
+        public bool dunkGeneFixed;
         public int checkTimer = 300;
 
         public Mugirl_XenotypeFix_GameComp() { }
@@ -155,7 +157,7 @@ namespace Mugirl
 
         public override void GameComponentTick()
         {
-            if (!ModsConfig.BiotechActive || xenotypeFixed)
+            if (!ModsConfig.BiotechActive || (xenotypeFixed && throwGeneFixed && dunkGeneFixed))
             {
                 return;
             }
@@ -168,6 +170,8 @@ namespace Mugirl
 
             TryFixMugirlXenotype();
             xenotypeFixed = true;
+            throwGeneFixed = true;
+            dunkGeneFixed = true;
         }
 
         private void TryFixMugirlXenotype()
@@ -188,6 +192,8 @@ namespace Mugirl
         {
             base.ExposeData();
             Scribe_Values.Look(ref xenotypeFixed, "xenotypeFixed", false);
+            Scribe_Values.Look(ref throwGeneFixed, "throwGeneFixed", false);
+            Scribe_Values.Look(ref dunkGeneFixed, "dunkGeneFixed", false);
             Scribe_Values.Look(ref checkTimer, "checkTimer", 300);
         }
     }

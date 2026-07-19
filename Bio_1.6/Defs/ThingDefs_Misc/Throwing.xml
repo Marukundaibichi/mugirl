@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <!-- TEMPORARILY DISABLED: unfinished Mugirl throw/dunk system.
+    <ThingDef>
+        <defName>Mugirl_ThrowController</defName>
+        <label>held thrown object controller</label>
+        <thingClass>Mugirl.Thing_MugirlThrownObject</thingClass>
+        <category>Ethereal</category>
+        <drawerType>RealtimeOnly</drawerType>
+        <tickerType>Normal</tickerType>
+        <altitudeLayer>MoteOverhead</altitudeLayer>
+        <selectable>false</selectable>
+        <useHitPoints>false</useHitPoints>
+        <destroyable>true</destroyable>
+        <saveCompressible>false</saveCompressible>
+    </ThingDef>
+
+    <ThingDef>
+        <defName>Mugirl_DunkProp</defName>
+        <label>dunk prop controller</label>
+        <thingClass>Mugirl.Thing_MugirlDunkProp</thingClass>
+        <category>Ethereal</category>
+        <drawerType>RealtimeOnly</drawerType>
+        <tickerType>Normal</tickerType>
+        <altitudeLayer>MoteOverhead</altitudeLayer>
+        <selectable>false</selectable>
+        <useHitPoints>false</useHitPoints>
+        <destroyable>true</destroyable>
+        <saveCompressible>false</saveCompressible>
+    </ThingDef>
+
+    <ThingDef ParentName="PawnFlyerBase">
+        <defName>Mugirl_DunkFlyer</defName>
+        <label>dunking Mugirl</label>
+        <pawnFlyer>
+            <flightDurationMin>0.82</flightDurationMin>
+            <flightSpeed>7</flightSpeed>
+            <workerClass>Mugirl.PawnFlyerWorker_MugirlDunk</workerClass>
+            <heightFactor>3.4</heightFactor>
+        </pawnFlyer>
+    </ThingDef>
+    END TEMPORARILY DISABLED -->
+</Defs>

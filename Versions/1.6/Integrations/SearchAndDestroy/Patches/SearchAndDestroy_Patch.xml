@@ -2,18 +2,19 @@
 <Patch>
     <!-- PatchGovernance:
     Targets: Search and Destroy 启用时的 MugirlLike ThinkTreeDef。
-    Scope: 可选 SearchAndDestroy 集成；向雪牛娘闲置战斗树插入一个 SearchAndDestroy 分支。
-    Duplicate guard: 外层条件在 SearchAndDestroy 节点已存在时跳过；内层目标使用唯一的殖民者闲置分支。
+    Scope: 可选 SearchAndDestroy 集成；在雪牛娘的征召命令分支前插入一个 SearchAndDestroy 分支。
+    Duplicate guard: 外层条件在 SearchAndDestroy 节点已存在时跳过；内层目标使用唯一的 DraftedOrder 分支。
     Failure: 目标缺失或上游行为树结构变化时允许无操作，保留基础 MugirlLike 行为树。
     -->
     <!-- Search and Destroy 的行为树目标可能随版本变化；目标缺失或已插入时静默跳过。 -->
     <Operation Class="PatchOperationConditional">
         <xpath>Defs/ThinkTreeDef[defName="MugirlLike"]//li[@Class="SearchAndDestroy.ThinkNode_ConditionalSearchAndDestroy"]</xpath>
         <nomatch Class="PatchOperationConditional">
-            <xpath>Defs/ThinkTreeDef[defName="MugirlLike"]/thinkRoot[@Class="ThinkNode_Priority"]/subNodes/li[@Class="ThinkNode_ConditionalColonist"][subNodes/li[@Class="ThinkNode_Tagger"]/tagToGive[text()="Idle"]]</xpath>
+            <xpath>Defs/ThinkTreeDef[defName="MugirlLike"]/thinkRoot[@Class="ThinkNode_Priority"]/subNodes/li[@Class="ThinkNode_ConditionalColonist"][subNodes/li[@Class="ThinkNode_Tagger"][tagToGive[text()="DraftedOrder"]][subNodes/li[@Class="JobGiver_Orders"]]]</xpath>
             <match Class="PatchOperationInsert">
-                <!-- 插入到唯一的殖民者闲置分支之前，避免命中多个殖民者节点。 -->
-                <xpath>Defs/ThinkTreeDef[defName="MugirlLike"]/thinkRoot[@Class="ThinkNode_Priority"]/subNodes/li[@Class="ThinkNode_ConditionalColonist"][subNodes/li[@Class="ThinkNode_Tagger"]/tagToGive[text()="Idle"]]</xpath>
+                <!-- 必须优先于 JobGiver_Orders；后者会为任何已征召角色返回 Wait_Combat。 -->
+                <xpath>Defs/ThinkTreeDef[defName="MugirlLike"]/thinkRoot[@Class="ThinkNode_Priority"]/subNodes/li[@Class="ThinkNode_ConditionalColonist"][subNodes/li[@Class="ThinkNode_Tagger"][tagToGive[text()="DraftedOrder"]][subNodes/li[@Class="JobGiver_Orders"]]]</xpath>
+                <order>Prepend</order>
                 <value>
                     <!-- 执行主动搜索歼灭，而不是原地等待。 -->
                     <li Class="SearchAndDestroy.ThinkNode_ConditionalSearchAndDestroy">

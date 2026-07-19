@@ -22,20 +22,7 @@ namespace Mugirl
 
             IntVec3 originCell = corpse.Position;
             Vector3 origin = originCell.ToVector3Shifted();
-            FleckMaker.Static(origin, map, MugirlContentDefOf.ShockwaveFast, 0.025f);
-            FleckMaker.Static(origin, map, FleckDefOf.ExplosionFlash, 4.5f);
-            FleckMaker.ThrowLightningGlow(origin, map, 3f);
-            FleckMaker.ThrowSmoke(origin, map, 3.4f);
-            FleckMaker.ThrowDustPuff(origin, map, 4.2f);
-            for (int i = 0; i < 8; i++)
-            {
-                Vector3 burstPosition = origin + Gen.RandomHorizontalVector(Rand.Range(0.3f, 1.8f));
-                FleckMaker.ThrowMicroSparks(burstPosition, map);
-                if (i % 2 == 0)
-                {
-                    FleckMaker.ThrowDustPuffThick(burstPosition, map, Rand.Range(0.7f, 1.5f), Color.white);
-                }
-            }
+            MugirlPunisherDeathEffectUtility.Play(origin, map);
 
             List<Thing> loot = new List<Thing>();
             Corpse muffaloCorpse = MakeMuffaloCorpse(map);
@@ -78,6 +65,34 @@ namespace Mugirl
             Thing thing = ThingMaker.MakeThing(def);
             thing.stackCount = count;
             return thing;
+        }
+    }
+
+    internal static class MugirlPunisherDeathEffectUtility
+    {
+        internal static void Play(Vector3 origin, Map map, float scale = 1f)
+        {
+            if (map == null)
+            {
+                return;
+            }
+
+            scale = Mathf.Max(0.1f, scale);
+            FleckMaker.Static(origin, map, MugirlContentDefOf.ShockwaveFast, 0.025f * scale);
+            FleckMaker.Static(origin, map, FleckDefOf.ExplosionFlash, 4.5f * scale);
+            FleckMaker.ThrowLightningGlow(origin, map, 3f * scale);
+            FleckMaker.ThrowSmoke(origin, map, 3.4f * scale);
+            FleckMaker.ThrowDustPuff(origin, map, 4.2f * scale);
+            int burstCount = Mathf.RoundToInt(8f * scale);
+            for (int i = 0; i < burstCount; i++)
+            {
+                Vector3 burstPosition = origin + Gen.RandomHorizontalVector(Rand.Range(0.3f, 1.8f) * scale);
+                FleckMaker.ThrowMicroSparks(burstPosition, map);
+                if (i % 2 == 0)
+                {
+                    FleckMaker.ThrowDustPuffThick(burstPosition, map, Rand.Range(0.7f, 1.5f) * scale, Color.white);
+                }
+            }
         }
     }
 

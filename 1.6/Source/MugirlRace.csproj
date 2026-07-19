@@ -12,6 +12,8 @@
         <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
         <Deterministic>true</Deterministic>
+        <!-- Temporary feature gate: keep the unfinished throw/dunk system out of builds. -->
+        <EnableMugirlThrowSystem>false</EnableMugirlThrowSystem>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <DebugSymbols>true</DebugSymbols>
@@ -33,6 +35,9 @@
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
         <LangVersion>7.2</LangVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(EnableMugirlThrowSystem)' == 'true' ">
+        <DefineConstants>$(DefineConstants);MUGIRL_THROW_SYSTEM</DefineConstants>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="0Harmony">
@@ -80,15 +85,23 @@
         <Compile Include="Compatibility\OtherMods\LactationExpansionCompat.cs" />
         <Compile Include="Compatibility\WeaponWheel\DualWieldCompatibility.cs" />
         <Compile Include="Compatibility\WeaponWheel\RunAndGunCompatibility.cs" />
+        <Compile Include="Compatibility\WeaponWheel\TrainingFacilityCompatibility.cs" />
         <Compile Include="Compatibility\WeaponWheel\YayoAnimationCompatibility.cs" />
         <Compile Include="Compatibility\WeaponWheel\YayoCombatCompatibility.cs" />
         <Compile Include="DefOf\MugirlContentDefOf.cs" />
         <Compile Include="DefOf\Mugirl_DefOf.cs" />
         <Compile Include="Features\Apparel\MugirlApparelTagUtility.cs" />
         <Compile Include="Features\Genes\CompProperties_AbilityEffect_ForceJob.cs" />
+        <Compile Include="Features\Genes\CompAbilityEffect_PickupThrow.cs" Condition=" '$(EnableMugirlThrowSystem)' == 'true' " />
+        <Compile Include="Features\Genes\CompAbilityEffect_Dunk.cs" Condition=" '$(EnableMugirlThrowSystem)' == 'true' " />
         <Compile Include="Features\Genes\HediffCompProperties_CheckJobOrRemove.cs" />
         <Compile Include="Features\Genes\JobDriver_CastCharge.cs" />
+        <Compile Include="Features\Genes\JobDriver_MugirlDunk.cs" Condition=" '$(EnableMugirlThrowSystem)' == 'true' " />
+        <Compile Include="Features\Genes\MugirlThrowUtility.cs" Condition=" '$(EnableMugirlThrowSystem)' == 'true' " />
+        <Compile Include="Features\Genes\PawnFlyer_MugirlDunk.cs" Condition=" '$(EnableMugirlThrowSystem)' == 'true' " />
         <Compile Include="Features\Genes\Mugirl_XenotypeFix_GameComp.cs" />
+        <Compile Include="Features\Genes\Thing_MugirlThrownObject.cs" Condition=" '$(EnableMugirlThrowSystem)' == 'true' " />
+        <Compile Include="Features\Genes\Thing_MugirlDunkProp.cs" Condition=" '$(EnableMugirlThrowSystem)' == 'true' " />
         <Compile Include="Features\Incidents\CompReadableBook.cs" />
         <Compile Include="Features\Incidents\Dialog_ReadBook.cs" />
         <Compile Include="Features\Incidents\Harmony_DesignatorTame.cs" />

@@ -50,6 +50,29 @@ namespace Mugirl
         [MayRequire("Ludeon.RimWorld.Biotech")]
         public static HediffDef Mugirl_Charge;
 
+        #if MUGIRL_THROW_SYSTEM
+        [MayRequire("Ludeon.RimWorld.Biotech")]
+        public static AbilityDef Mugirl_Throw;
+
+        [MayRequire("Ludeon.RimWorld.Biotech")]
+        public static ThingDef Mugirl_ThrowController;
+
+        [MayRequire("Ludeon.RimWorld.Biotech")]
+        public static DamageDef Mugirl_ThrownImpact;
+
+        [MayRequire("Ludeon.RimWorld.Biotech")]
+        public static AbilityDef Mugirl_Dunk;
+
+        [MayRequire("Ludeon.RimWorld.Biotech")]
+        public static JobDef Job_MugirlDunk;
+
+        [MayRequire("Ludeon.RimWorld.Biotech")]
+        public static ThingDef Mugirl_DunkProp;
+
+        [MayRequire("Ludeon.RimWorld.Biotech")]
+        public static ThingDef Mugirl_DunkFlyer;
+        #endif
+
         public static FleckDef MugirlWashMentalEyes;
 
         public static TraitDef Mugirl_BrainWashObey;

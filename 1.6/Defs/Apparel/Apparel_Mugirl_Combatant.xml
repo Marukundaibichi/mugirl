@@ -317,6 +317,10 @@
         <apparel>
             <bodyPartGroups>
                 <li>Torso</li>
+                <li>Neck</li>
+                <li>Shoulders</li>
+                <li>Arms</li>
+                <li>Legs</li>
             </bodyPartGroups>
             <wornGraphicPath>Things/Apparel/Mugirl_Militarydress/Mugirl_Militarydress</wornGraphicPath>
             <tags>
@@ -372,6 +376,10 @@
         <apparel>
             <bodyPartGroups>
                 <li>Torso</li>
+                <li>Neck</li>
+                <li>Shoulders</li>
+                <li>Arms</li>
+                <li>Legs</li>
             </bodyPartGroups>
             <wornGraphicPath>Things/Apparel/Mugirl_militaryuniform/Mugirl_militaryuniform</wornGraphicPath>
             <tags>

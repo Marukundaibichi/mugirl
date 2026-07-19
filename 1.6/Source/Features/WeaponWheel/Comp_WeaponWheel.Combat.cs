@@ -80,6 +80,10 @@ namespace Mugirl.Features.WeaponWheel
             out bool result)
         {
             result = false;
+            if (TrainingFacilityCompatibility.ShouldBypassWeaponWheelCombat(Pawn))
+            {
+                return false;
+            }
             if (!IsCurrentWheelVerb(verb) || WeaponWheelWarmupScope.IsSkipping(verb) || IsCombatDisabledByMount())
             {
                 return false;
@@ -114,7 +118,8 @@ namespace Mugirl.Features.WeaponWheel
 
         internal void NotifyCastStarted(Verb verb, bool started)
         {
-            if (!started || !IsCurrentWheelVerb(verb) || IsCombatDisabledByMount())
+            if (TrainingFacilityCompatibility.ShouldBypassWeaponWheelCombat(Pawn)
+                || !started || !IsCurrentWheelVerb(verb) || IsCombatDisabledByMount())
             {
                 return;
             }
@@ -128,7 +133,8 @@ namespace Mugirl.Features.WeaponWheel
 
         internal void NotifyBurstCompleted(Verb verb)
         {
-            if (!IsCurrentWheelVerb(verb))
+            if (TrainingFacilityCompatibility.ShouldBypassWeaponWheelCombat(Pawn)
+                || !IsCurrentWheelVerb(verb))
             {
                 return;
             }
