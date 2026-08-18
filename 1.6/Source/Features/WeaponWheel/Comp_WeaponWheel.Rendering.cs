@@ -236,7 +236,11 @@ namespace Mugirl.Features.WeaponWheel
                 return;
             }
 
-            Material material = weapon.Graphic.MatSingleFor(weapon);
+            // 与原版 DrawEquipmentAiming 保持一致：MatSingleFor 按武器实例解析文化风格差分，
+            // 可堆叠武器取单个贴图而不是堆叠贴图。
+            Material material = weapon.Graphic is Graphic_StackCount stackCountGraphic
+                ? stackCountGraphic.SubGraphicForStackCount(1, weapon.def).MatSingleFor(weapon)
+                : weapon.Graphic.MatSingleFor(weapon);
             if (material == null)
             {
                 return;

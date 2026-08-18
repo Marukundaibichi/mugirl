@@ -10,13 +10,13 @@ namespace Mugirl
     public static class Harmony_Patch_RopingDraw
     {
         // StaticCacheLifecycle: 进程级 Pawn_RopeTracker 绘制字段反射缓存；不持有游戏对象。
-        private static readonly FieldInfo fieldPawn;
         private static readonly FieldInfo fieldRopeLineMat;
+        private static readonly Material ropeLineMat;
 
         static Harmony_Patch_RopingDraw()
         {
-            fieldPawn = AccessTools.Field(typeof(Pawn_RopeTracker), "pawn");
             fieldRopeLineMat = AccessTools.Field(typeof(Pawn_RopeTracker), "RopeLineMat");
+            ropeLineMat = fieldRopeLineMat?.GetValue(null) as Material;
         }
 
         static MethodBase TargetMethod()
@@ -24,29 +24,30 @@ namespace Mugirl
             return AccessTools.Method(typeof(Pawn_RopeTracker), "RopingDraw");
         }
 
-        public static bool Prefix(Pawn_RopeTracker __instance)
+        public static bool Prefix(Pawn_RopeTracker __instance, Pawn ___pawn)
         {
-            if (fieldPawn == null || fieldRopeLineMat == null)
+            // RopingDraw 会为每个正在绘制的 Pawn 调用。绝大多数 Pawn 没有拴到地点，
+            // 必须在反射、地图索引和格子查询之前走完这个快路径。
+            if (__instance?.IsRopedToSpot != true)
             {
                 return true;
             }
 
-            Pawn pawn = fieldPawn.GetValue(__instance) as Pawn;
+            Pawn pawn = ___pawn;
             if (pawn?.Map == null)
             {
                 return true;
             }
 
-            Material ropeLineMat = fieldRopeLineMat.GetValue(null) as Material;
-            if (ropeLineMat == null)
+            if (fieldRopeLineMat == null || ropeLineMat == null)
             {
                 return true;
             }
 
-            // 墙栓绘制只读取当前绳索状态，不扫描地图角色。
-            if (RopingService.IsRopedToSpot(pawn) && pawn.roping?.RopedTo.IsValid == true)
+            LocalTargetInfo ropedTo = __instance.RopedTo;
+            if (ropedTo.IsValid)
             {
-                IntVec3 ropeCell = pawn.roping.RopedTo.Cell;
+                IntVec3 ropeCell = ropedTo.Cell;
                 if (ropeCell.IsValid)
                 {
                     Building hitch = ropeCell.GetFirstThing(pawn.Map, Mugirl_DefOf.WallRopeHitch) as Building;

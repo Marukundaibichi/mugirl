@@ -72,6 +72,28 @@
         </value>
     </Operation>
 
+    <!-- 稀有品商队有 50% 概率携带一个洗脑头盔。 -->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_Exotic"]/stockGenerators</xpath>
+        <value>
+            <li Class="StockGenerator_SingleDef">
+                <thingDef>Mugirl_BrainwashHelmet</thingDef>
+                <countRange>0~1</countRange>
+            </li>
+        </value>
+    </Operation>
+
+    <!-- 轨道稀有品商有 50% 概率携带一个洗脑头盔。 -->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/TraderKindDef[defName="Orbital_Exotic"]/stockGenerators</xpath>
+        <value>
+            <li Class="StockGenerator_SingleDef">
+                <thingDef>Mugirl_BrainwashHelmet</thingDef>
+                <countRange>0~1</countRange>
+            </li>
+        </value>
+    </Operation>
+
     <!-- 让电熔炉可以处理束具回收配方。 -->
     <Operation Class="PatchOperationAdd">
         <xpath>Defs/ThingDef[defName="ElectricSmelter"]/recipes</xpath>

@@ -82,24 +82,39 @@ namespace Mugirl.Features.WeaponWheel
             result = false;
             if (TrainingFacilityCompatibility.ShouldBypassWeaponWheelCombat(Pawn))
             {
+                WeaponWheelDevLog.CastDecision(this, verb, "TryStartCastOn: bypassed by training facility compatibility");
                 return false;
             }
-            if (!IsCurrentWheelVerb(verb) || WeaponWheelWarmupScope.IsSkipping(verb) || IsCombatDisabledByMount())
+            if (!IsCurrentWheelVerb(verb))
             {
+                WeaponWheelDevLog.CastDecision(this, verb, "TryStartCastOn: ignored, verb is not the current wheel primary verb");
+                return false;
+            }
+            if (WeaponWheelWarmupScope.IsSkipping(verb))
+            {
+                WeaponWheelDevLog.CastDecision(this, verb, "TryStartCastOn: wheel-initiated cast (warmup skip scope), passing through");
+                return false;
+            }
+            if (IsCombatDisabledByMount())
+            {
+                WeaponWheelDevLog.CastDecision(this, verb, "TryStartCastOn: ignored, combat disabled by mount");
                 return false;
             }
 
             if (combatState == WeaponWheelCombatState.CycleCooldown && CurrentTick < cooldownUntilTick)
             {
+                WeaponWheelDevLog.CastDecision(this, verb, "TryStartCastOn: blocked, waiting for cycle cooldown until tick " + cooldownUntilTick);
                 return true;
             }
             if (combatState == WeaponWheelCombatState.Switching
                 || combatState == WeaponWheelCombatState.SwordDanceSwitching)
             {
+                WeaponWheelDevLog.CastDecision(this, verb, "TryStartCastOn: blocked, switch animation in progress");
                 return true;
             }
             if (combatState == WeaponWheelCombatState.EquippingPrimary)
             {
+                WeaponWheelDevLog.CastDecision(this, verb, "TryStartCastOn: deferred, equip animation in progress (cast remembered)");
                 RememberPendingCast(castTarget, destinationTarget, surpriseAttack, canHitNonTargetPawns, preventFriendlyFire, nonInterruptingSelfCast);
                 return true;
             }
@@ -107,12 +122,14 @@ namespace Mugirl.Features.WeaponWheel
             bool openlyHeld = PawnRenderUtility.CarryWeaponOpenly(Pawn);
             if (!wasWeaponOpenlyHeld || !openlyHeld || combatState == WeaponWheelCombatState.Holstered)
             {
+                WeaponWheelDevLog.CastDecision(this, verb, "TryStartCastOn: deferred, starting primary equip animation (cast remembered)");
                 wasWeaponOpenlyHeld = true;
                 RememberPendingCast(castTarget, destinationTarget, surpriseAttack, canHitNonTargetPawns, preventFriendlyFire, nonInterruptingSelfCast);
                 BeginPrimaryEquipAnimation(castTarget);
                 return true;
             }
 
+            WeaponWheelDevLog.CastDecision(this, verb, "TryStartCastOn: passing through to vanilla warmup");
             return false;
         }
 
@@ -129,6 +146,7 @@ namespace Mugirl.Features.WeaponWheel
             {
                 combatState = WeaponWheelCombatState.Firing;
             }
+            WeaponWheelDevLog.CastDecision(this, verb, "cast started");
         }
 
         internal void NotifyBurstCompleted(Verb verb)
@@ -136,11 +154,17 @@ namespace Mugirl.Features.WeaponWheel
             if (TrainingFacilityCompatibility.ShouldBypassWeaponWheelCombat(Pawn)
                 || !IsCurrentWheelVerb(verb))
             {
+                WeaponWheelDevLog.CastDecision(this, verb, "BurstCompleted: ignored (training facility bypass or not the current wheel verb)");
                 return;
             }
 
             if (!IsFullFirepowerEligible())
             {
+                if (WeaponWheelDevLog.Enabled)
+                {
+                    WeaponWheelDevLog.CastDecision(this, verb, "BurstCompleted: full firepower NOT eligible, no cycling"
+                        + WeaponWheelDevLog.DescribeSlots(this, verb.CurrentTarget));
+                }
                 combatState = wasWeaponOpenlyHeld ? WeaponWheelCombatState.Ready : WeaponWheelCombatState.Holstered;
                 cycleActive = false;
                 accumulatedCooldownTicks = 0;
@@ -153,6 +177,7 @@ namespace Mugirl.Features.WeaponWheel
             {
                 if (activeSlotIndex != 0)
                 {
+                    WeaponWheelDevLog.CastDecision(this, verb, "BurstCompleted: not on slot 0 outside a cycle, finishing with cooldown");
                     FinishCycleWithCooldown(verb, target);
                     return;
                 }
@@ -160,23 +185,31 @@ namespace Mugirl.Features.WeaponWheel
                 cycleTarget = target;
                 combatSourceJob = Pawn?.CurJob;
                 accumulatedCooldownTicks = 0;
+                WeaponWheelDevLog.CastDecision(this, verb, "BurstCompleted: cycle started, target=" + target);
             }
 
             accumulatedCooldownTicks += Mathf.Max(0, verb.verbProps.AdjustedCooldownTicks(verb, Pawn));
             int nextSlot = FindNextFireableSlot(activeSlotIndex + 1, cycleTarget);
             if (nextSlot >= 0)
             {
+                WeaponWheelDevLog.CastDecision(this, verb, "BurstCompleted: switching to slot " + nextSlot);
                 BeginSwitchTo(nextSlot, cycleTarget, verb);
                 return;
             }
 
             if (HasAutoloadingSystem && IsTargetStillValid(cycleTarget) && CanSlotFireAt(0, cycleTarget))
             {
+                WeaponWheelDevLog.CastDecision(this, verb, "BurstCompleted: autoloading system active, restarting from slot 0");
                 accumulatedCooldownTicks = 0;
                 BeginSwitchTo(0, cycleTarget, verb);
                 return;
             }
 
+            if (WeaponWheelDevLog.Enabled)
+            {
+                WeaponWheelDevLog.CastDecision(this, verb, "BurstCompleted: no next fireable slot, entering cycle cooldown ("
+                    + accumulatedCooldownTicks + " ticks)" + WeaponWheelDevLog.DescribeSlots(this, cycleTarget));
+            }
             FinishCycleWithCooldown(verb, cycleTarget);
         }
 
@@ -197,13 +230,22 @@ namespace Mugirl.Features.WeaponWheel
 
         internal bool IsCombatDisabledByMount()
         {
+            int currentTick = CurrentTick;
+            if (mountStateCacheTick == currentTick)
+            {
+                return mountStateCacheValue;
+            }
+
+            mountStateCacheTick = currentTick;
             Pawn pawn = Pawn;
             if (pawn == null)
             {
-                return false;
+                mountStateCacheValue = false;
+                return mountStateCacheValue;
             }
             Comp_MugirlMount carrierComp = pawn.TryGetComp<Comp_MugirlMount>();
-            return carrierComp?.HasMountedPawn == true || MountedPawnUtility.IsMounted(pawn, out _);
+            mountStateCacheValue = carrierComp?.HasMountedPawn == true || MountedPawnUtility.IsMounted(pawn, out _);
+            return mountStateCacheValue;
         }
 
         internal void MaintainCombatFacing()
@@ -312,6 +354,10 @@ namespace Mugirl.Features.WeaponWheel
 
             if (ShouldAbortActiveCombat())
             {
+                if (WeaponWheelDevLog.Enabled)
+                {
+                    WeaponWheelDevLog.CastDecision(this, null, "TickCombatState: aborting active combat, reason: " + DevAbortReason());
+                }
                 StopActiveCombatAndRestorePrimary();
                 return;
             }
@@ -415,6 +461,8 @@ namespace Mugirl.Features.WeaponWheel
             ThingWithComps incoming = WeaponAt(slotIndex);
             if (incoming == null || !MoveActiveWeaponTo(slotIndex))
             {
+                WeaponWheelDevLog.CastDecision(this, completedVerb, "BeginSwitchTo: weapon transfer to slot " + slotIndex
+                    + " FAILED (equipment tracker or container rejected the move), ending cycle");
                 FinishCycleWithCooldown(completedVerb, target);
                 return;
             }
@@ -452,6 +500,7 @@ namespace Mugirl.Features.WeaponWheel
             Verb verb = PrimaryVerbFor(incoming);
             if (verb == null || !IsTargetStillValid(cycleTarget))
             {
+                WeaponWheelDevLog.CastDecision(this, verb, "FinishSwitch: no primary verb or target no longer valid, ending cycle");
                 FinishCycleWithCooldown(verb, cycleTarget);
                 return;
             }
@@ -464,12 +513,18 @@ namespace Mugirl.Features.WeaponWheel
             }
             if (!started)
             {
+                WeaponWheelDevLog.CastDecision(this, verb, "FinishSwitch: TryStartCastOn returned FALSE for the next weapon, ending cycle");
                 FinishCycleWithCooldown(verb, cycleTarget);
             }
             else if (combatState == WeaponWheelCombatState.Firing && verb.state == VerbState.Idle)
             {
                 // TryStartCastOn 可以返回 true，但特殊 Verb 仍可能在第一发失败；此时没有 burst 完成回调可负责收尾。
+                WeaponWheelDevLog.CastDecision(this, verb, "FinishSwitch: cast started but verb went idle immediately (special verb?), ending cycle");
                 FinishCycleWithCooldown(verb, cycleTarget);
+            }
+            else
+            {
+                WeaponWheelDevLog.CastDecision(this, verb, "FinishSwitch: next weapon firing");
             }
         }
 
@@ -606,6 +661,33 @@ namespace Mugirl.Features.WeaponWheel
             return verb != null && equipment != null && equipment == Pawn?.equipment?.Primary && ContainsWeapon(equipment);
         }
 
+        // 兼容会把轮盘备用武器注册进 Pawn 攻击 Verb 池的框架。
+        // 普通攻击入口只允许返回真实主武器；轮射直接调用各槽位 Verb，不经过 Pawn.TryGetAttackVerb。
+        internal bool TryCorrectAttackVerbSelection(
+            Verb selectedVerb,
+            bool allowManualCastWeapons,
+            out Verb correctedVerb)
+        {
+            correctedVerb = selectedVerb;
+            Pawn pawn = Pawn;
+            ThingWithComps selectedEquipment = selectedVerb?.EquipmentSource;
+            ThingWithComps primary = pawn?.equipment?.Primary;
+            if (selectedEquipment == null || selectedEquipment == primary || !ContainsWeapon(selectedEquipment))
+            {
+                return false;
+            }
+
+            Verb primaryVerb = PrimaryVerbFor(primary);
+            bool primaryUsable = primaryVerb != null
+                && primaryVerb.verbProps != null
+                && primaryVerb.Available()
+                && (!primaryVerb.verbProps.onlyManualCast
+                    || (pawn.CurJob != null && pawn.CurJob.def != JobDefOf.Wait_Combat)
+                    || allowManualCastWeapons);
+            correctedVerb = primaryUsable ? primaryVerb : null;
+            return true;
+        }
+
         private float AimAngleFor(LocalTargetInfo target)
         {
             Pawn pawn = Pawn;
@@ -657,6 +739,41 @@ namespace Mugirl.Features.WeaponWheel
             aimHandoffWeapon = weapon;
             aimHandoffAngle = aimAngle;
             aimHandoffUntilTick = CurrentTick + 1;
+        }
+
+        // 以下两个方法仅供 WeaponWheelDevLog 使用：汇总私有战斗状态，未开启开发者日志时不会被调用。
+        internal string DevDescribeCombat()
+        {
+            Pawn pawn = Pawn;
+            return "state=" + combatState
+                + " activeSlot=" + activeSlotIndex
+                + " cycleActive=" + cycleActive
+                + " cycleTarget=" + (cycleTarget.IsValid ? cycleTarget.ToString() : "none")
+                + " eligible=" + IsFullFirepowerEligible()
+                + " autoloading=" + HasAutoloadingSystem
+                + " openlyHeld=" + wasWeaponOpenlyHeld
+                + " job=" + (pawn?.CurJob?.def?.defName ?? "none")
+                + " fireAtWill=" + (pawn?.drafter == null ? "n/a" : pawn.drafter.FireAtWill.ToString())
+                + " primary=" + (pawn?.equipment?.Primary?.def?.defName ?? "none");
+        }
+
+        private string DevAbortReason()
+        {
+            Pawn pawn = Pawn;
+            if (combatSourceJob != null && pawn?.CurJob != combatSourceJob)
+            {
+                return "job changed (was " + (combatSourceJob.def?.defName ?? "unknown") + ", now "
+                    + (pawn?.CurJob?.def?.defName ?? "none") + "; another mod interrupting jobs breaks the cycle)";
+            }
+            if (cycleActive && !IsTargetStillValid(cycleTarget))
+            {
+                return "cycle target no longer valid (" + cycleTarget + ")";
+            }
+            if (cycleActive && combatSourceJob?.def == JobDefOf.Wait_Combat && pawn?.drafter != null && !pawn.drafter.FireAtWill)
+            {
+                return "fire-at-will disabled while drafted";
+            }
+            return "unknown";
         }
 
         private int CurrentAnimationSnapTick => Mathf.Clamp(

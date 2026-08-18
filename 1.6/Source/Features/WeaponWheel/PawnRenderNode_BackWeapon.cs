@@ -27,7 +27,19 @@ namespace Mugirl.Features.WeaponWheel
 
         public override Graphic GraphicFor(Pawn pawn)
         {
-            return Weapon?.Graphic;
+            ThingWithComps weapon = Weapon;
+            Graphic graphic = weapon?.Graphic;
+            if (graphic == null)
+            {
+                return null;
+            }
+            // NodeGetMat 用 parms.pawn 而不是武器实例解析 Graphic_Random 等集合贴图，
+            // 会选中与手持时不同的文化风格差分；这里先按武器本体解析到具体子贴图。
+            if (graphic is Graphic_StackCount stackCountGraphic)
+            {
+                return stackCountGraphic.SubGraphicForStackCount(1, weapon.def);
+            }
+            return graphic.ExtractInnerGraphicFor(weapon);
         }
 
         protected override IEnumerable<Graphic> GraphicsFor(Pawn pawn)

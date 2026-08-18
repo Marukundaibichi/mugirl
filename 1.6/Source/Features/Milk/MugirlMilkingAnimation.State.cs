@@ -48,7 +48,12 @@ namespace Mugirl
 
             for (int i = 0; i < tmpStateKeysToRemove.Count; i++)
             {
-                states.Remove(tmpStateKeysToRemove[i]);
+                int key = tmpStateKeysToRemove[i];
+                if (states.TryGetValue(key, out MilkingVisualState state))
+                {
+                    StopNativeAnimation(state.pawn);
+                }
+                states.Remove(key);
             }
 
             tmpStateKeysToRemove.Clear();
@@ -56,6 +61,10 @@ namespace Mugirl
 
         public static void ResetTransientState()
         {
+            foreach (MilkingVisualState state in states.Values)
+            {
+                StopNativeAnimation(state.pawn);
+            }
             states.Clear();
             tmpStateKeysToRemove.Clear();
         }
@@ -87,20 +96,27 @@ namespace Mugirl
                 state.partner = partner;
                 state.lastTick = now;
             }
+            EnsureNativeAnimation(state);
             return state;
         }
 
         private static bool TryGetState(Pawn pawn, out MilkingVisualState state)
         {
             state = null;
-            if (pawn == null || !states.TryGetValue(pawn.thingIDNumber, out state))
+            if (pawn == null)
             {
+                return false;
+            }
+
+            if (!states.TryGetValue(pawn.thingIDNumber, out state))
+            {
+                StopNativeAnimation(pawn);
                 return false;
             }
 
             if (!MugirlTickUtility.TryGetCurrentGameTick(out int now))
             {
-                states.Clear();
+                ResetTransientState();
                 state = null;
                 return false;
             }
@@ -108,6 +124,7 @@ namespace Mugirl
             if (state.pawn != pawn || !Valid(state.pawn) || now - state.lastTick > StaleAfterTicks)
             {
                 states.Remove(pawn.thingIDNumber);
+                StopNativeAnimation(pawn);
                 state = null;
                 return false;
             }
@@ -116,6 +133,7 @@ namespace Mugirl
             {
                 RemoveIfMatches(state.partner, state.pawn);
                 states.Remove(pawn.thingIDNumber);
+                StopNativeAnimation(pawn);
                 state = null;
                 return false;
             }
@@ -133,7 +151,61 @@ namespace Mugirl
             if (states.TryGetValue(pawn.thingIDNumber, out MilkingVisualState state) && state.pawn == pawn && state.partner == expectedPartner)
             {
                 states.Remove(pawn.thingIDNumber);
+                StopNativeAnimation(pawn);
             }
+        }
+
+        private static void EnsureNativeAnimation(MilkingVisualState state)
+        {
+            PawnRenderer renderer = state?.pawn?.Drawer?.renderer;
+            AnimationDef desired = AnimationFor(state);
+            if (renderer == null || desired == null || renderer.CurAnimation == desired)
+            {
+                return;
+            }
+
+            // 其他原生动画优先；仅在动画槽为空或切换 Mugirl 自己的角色动画时接管。
+            if (renderer.CurAnimation == null || IsMugirlMilkingAnimation(renderer.CurAnimation))
+            {
+                renderer.SetAnimation(desired);
+            }
+        }
+
+        private static void StopNativeAnimation(Pawn pawn)
+        {
+            PawnRenderer renderer = pawn?.Drawer?.renderer;
+            if (renderer != null && IsMugirlMilkingAnimation(renderer.CurAnimation))
+            {
+                renderer.SetAnimation(null);
+            }
+        }
+
+        private static AnimationDef AnimationFor(MilkingVisualState state)
+        {
+            if (state == null)
+            {
+                return null;
+            }
+
+            switch (state.role)
+            {
+                case MugirlMilkingVisualRole.SelfMilking:
+                    return Mugirl_DefOf.Mugirl_MilkingSelfAnimation;
+                case MugirlMilkingVisualRole.AssistedTarget:
+                    return Mugirl_DefOf.Mugirl_MilkingTargetAnimation;
+                case MugirlMilkingVisualRole.Helper:
+                    return Mugirl_DefOf.Mugirl_MilkingHelperAnimation;
+                default:
+                    return null;
+            }
+        }
+
+        private static bool IsMugirlMilkingAnimation(AnimationDef animation)
+        {
+            return animation != null &&
+                (animation == Mugirl_DefOf.Mugirl_MilkingSelfAnimation ||
+                 animation == Mugirl_DefOf.Mugirl_MilkingTargetAnimation ||
+                 animation == Mugirl_DefOf.Mugirl_MilkingHelperAnimation);
         }
 
         private static bool StateNeedsPartner(MilkingVisualState state)

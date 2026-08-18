@@ -8,9 +8,16 @@ namespace Mugirl.Features.WeaponWheel
 {
     public sealed partial class Comp_WeaponWheel : ThingComp, IThingHolder
     {
+        private const int MaintenanceIntervalTicks = 60;
+
         private ThingOwner<ThingWithComps> reserveWeapons;
         private List<ThingWithComps> slots;
         private List<bool> unlockedSlots;
+        private bool collectionsReady;
+        private bool researchUnlockApplied;
+        private int nextMaintenanceTick = -1;
+        private int mountStateCacheTick = int.MinValue;
+        private bool mountStateCacheValue;
 
         private int activeSlotIndex;
         private bool normalizeAfterLoad;
@@ -41,6 +48,11 @@ namespace Mugirl.Features.WeaponWheel
         private bool pendingNonInterruptingSelfCast;
 
         private readonly List<PawnRenderNode_BackWeapon> backWeaponNodes = new List<PawnRenderNode_BackWeapon>();
+        private readonly List<CompEquippable> reserveVerbTickers = new List<CompEquippable>();
+        private bool reserveVerbTickersDirty = true;
+        private bool backWeaponCacheDirty = true;
+        private ThingWithComps firstBackWeapon;
+        private ThingWithComps secondBackWeapon;
 
         public CompProperties_WeaponWheel Props => (CompProperties_WeaponWheel)props;
         public Pawn Pawn => parent as Pawn;
@@ -79,6 +91,7 @@ namespace Mugirl.Features.WeaponWheel
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 swordDanceFailureStreak = Mathf.Clamp(swordDanceFailureStreak, 0, SwordDanceGuaranteeFailures - 1);
+                collectionsReady = false;
                 EnsureCollections();
                 ValidateSlotReferences();
                 normalizeAfterLoad = true;
@@ -103,8 +116,13 @@ namespace Mugirl.Features.WeaponWheel
                 NormalizeToPrimarySlot();
             }
 
-            TrackWeaponsRemovedFromReserve();
-            TrackExternalPrimaryIfNeeded();
+            int currentTick = CurrentTick;
+            if (ShouldRunMaintenance(currentTick))
+            {
+                RefreshResearchUnlocks();
+                TrackWeaponsRemovedFromReserve();
+                TrackExternalPrimaryIfNeeded();
+            }
             TickReserveVerbs();
             TickMountedState();
             TickWeaponOpenState();
@@ -119,6 +137,9 @@ namespace Mugirl.Features.WeaponWheel
             reserveWeapons?.ClearAndDestroyContents(mode);
             slots?.Clear();
             backWeaponNodes.Clear();
+            reserveVerbTickers.Clear();
+            firstBackWeapon = null;
+            secondBackWeapon = null;
         }
 
         public ThingOwner GetDirectlyHeldThings()
@@ -202,12 +223,22 @@ namespace Mugirl.Features.WeaponWheel
 
         private void EnsureCollections()
         {
+            int slotCount = MaxSlots;
+            if (collectionsReady
+                && reserveWeapons != null
+                && slots != null
+                && slots.Count == slotCount
+                && unlockedSlots != null
+                && unlockedSlots.Count == slotCount)
+            {
+                return;
+            }
+
             if (reserveWeapons == null)
             {
                 reserveWeapons = new ThingOwner<ThingWithComps>(this);
             }
 
-            int slotCount = MaxSlots;
             if (slots == null)
             {
                 slots = new List<ThingWithComps>(slotCount);
@@ -226,12 +257,8 @@ namespace Mugirl.Features.WeaponWheel
                 unlockedSlots = new List<bool>(slotCount);
             }
             int baseUnlocked = Mathf.Clamp(Props?.baseUnlockedSlots ?? 3, 0, slotCount);
-            int unlockedCount = baseUnlocked;
-            bool researchFinished = MugirlGameUtility.IsResearchFinished(Mugirl_DefOf.Mugirl_Autoloading);
-            if (researchFinished)
-            {
-                unlockedCount = slotCount;
-            }
+            researchUnlockApplied = MugirlGameUtility.IsResearchFinished(Mugirl_DefOf.Mugirl_Autoloading);
+            int unlockedCount = researchUnlockApplied ? slotCount : baseUnlocked;
             while (unlockedSlots.Count < slotCount)
             {
                 unlockedSlots.Add(unlockedSlots.Count < unlockedCount);
@@ -243,6 +270,49 @@ namespace Mugirl.Features.WeaponWheel
             for (int i = 0; i < unlockedCount; i++)
             {
                 unlockedSlots[i] = true;
+            }
+            collectionsReady = true;
+            reserveVerbTickersDirty = true;
+            backWeaponCacheDirty = true;
+        }
+
+        private bool ShouldRunMaintenance(int currentTick)
+        {
+            if (nextMaintenanceTick < 0)
+            {
+                int stagger = Pawn == null ? 0 : Mathf.Abs(Pawn.thingIDNumber % MaintenanceIntervalTicks);
+                nextMaintenanceTick = currentTick + stagger;
+            }
+            if (currentTick < nextMaintenanceTick)
+            {
+                return false;
+            }
+
+            nextMaintenanceTick = currentTick + MaintenanceIntervalTicks;
+            return true;
+        }
+
+        private void RefreshResearchUnlocks()
+        {
+            if (researchUnlockApplied
+                || !MugirlGameUtility.IsResearchFinished(Mugirl_DefOf.Mugirl_Autoloading))
+            {
+                return;
+            }
+
+            researchUnlockApplied = true;
+            bool changed = false;
+            for (int i = 0; i < unlockedSlots.Count; i++)
+            {
+                if (!unlockedSlots[i])
+                {
+                    unlockedSlots[i] = true;
+                    changed = true;
+                }
+            }
+            if (changed)
+            {
+                MarkBackWeaponsDirty();
             }
         }
 
@@ -305,24 +375,39 @@ namespace Mugirl.Features.WeaponWheel
             ClearSwordDanceDashAnimation();
             wasWeaponOpenlyHeld = false;
             wasMountedDisabled = false;
+            nextMaintenanceTick = -1;
+            mountStateCacheTick = int.MinValue;
+            reserveVerbTickersDirty = true;
+            backWeaponCacheDirty = true;
         }
 
         private void TickReserveVerbs()
         {
-            if (reserveWeapons == null)
+            if (reserveVerbTickersDirty)
             {
-                return;
+                reserveVerbTickersDirty = false;
+                reserveVerbTickers.Clear();
+                if (reserveWeapons != null)
+                {
+                    for (int i = 0; i < reserveWeapons.Count; i++)
+                    {
+                        ThingWithComps weapon = reserveWeapons[i];
+                        if (weapon?.def?.tickerType == TickerType.Normal)
+                        {
+                            continue;
+                        }
+                        CompEquippable equippable = weapon?.GetComp<CompEquippable>();
+                        if (equippable != null)
+                        {
+                            reserveVerbTickers.Add(equippable);
+                        }
+                    }
+                }
             }
 
-            for (int i = 0; i < reserveWeapons.Count; i++)
+            for (int i = 0; i < reserveVerbTickers.Count; i++)
             {
-                ThingWithComps weapon = reserveWeapons[i];
-                if (weapon?.def?.tickerType == TickerType.Normal)
-                {
-                    continue;
-                }
-                CompEquippable equippable = weapon?.GetComp<CompEquippable>();
-                equippable?.verbTracker?.VerbsTick();
+                reserveVerbTickers[i]?.verbTracker?.VerbsTick();
             }
         }
 
@@ -336,6 +421,8 @@ namespace Mugirl.Features.WeaponWheel
 
         internal void MarkBackWeaponsDirty()
         {
+            backWeaponCacheDirty = true;
+            reserveVerbTickersDirty = true;
             for (int i = backWeaponNodes.Count - 1; i >= 0; i--)
             {
                 PawnRenderNode_BackWeapon node = backWeaponNodes[i];

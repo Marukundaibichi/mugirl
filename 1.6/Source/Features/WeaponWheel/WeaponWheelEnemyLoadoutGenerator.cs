@@ -12,9 +12,14 @@ namespace Mugirl.Features.WeaponWheel
 
         internal static void TryGenerateFor(Pawn pawn, PawnGenerationRequest request)
         {
+            if (!MugirlIdentity.IsMugirlPawn(pawn))
+            {
+                return;
+            }
+
             Faction playerFaction = Faction.OfPlayerSilentFail;
             Comp_WeaponWheel wheel = pawn?.TryGetComp<Comp_WeaponWheel>();
-            if (wheel == null || !MugirlIdentity.IsMugirlPawn(pawn)
+            if (wheel == null
                 || playerFaction == null || pawn.Faction == null || !pawn.Faction.HostileTo(playerFaction)
                 || pawn.WorkTagIsDisabled(WorkTags.Violent) || pawn.WorkTagIsDisabled(WorkTags.Shooting)
                 || pawn.equipment?.Primary == null || !pawn.equipment.Primary.def.IsRangedWeapon)

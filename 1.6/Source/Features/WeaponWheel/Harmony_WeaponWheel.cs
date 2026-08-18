@@ -8,17 +8,22 @@ using Verse;
 
 namespace Mugirl
 {
+    internal static class WeaponWheelHarmonyUtility
+    {
+        internal static Comp_WeaponWheel CompFor(Pawn pawn)
+        {
+            return MugirlIdentity.IsMugirlPawn(pawn)
+                ? pawn.TryGetComp<Comp_WeaponWheel>()
+                : null;
+        }
+    }
+
     [HarmonyPatch(typeof(Pawn), nameof(Pawn.DrawPos), MethodType.Getter)]
     public static class Harmony_WeaponWheel_SwordDanceDashDrawPosition
     {
         public static void Postfix(Pawn __instance, ref Vector3 __result)
         {
-            if (!MugirlIdentity.IsMugirlPawn(__instance))
-            {
-                return;
-            }
-
-            Comp_WeaponWheel comp = __instance.TryGetComp<Comp_WeaponWheel>();
+            Comp_WeaponWheel comp = WeaponWheelHarmonyUtility.CompFor(__instance);
             if (comp != null && comp.TryGetSwordDanceDashDrawPosition(__result, out Vector3 dashPosition))
             {
                 __result = dashPosition;
@@ -47,7 +52,7 @@ namespace Mugirl
         {
             if (!WeaponWheelTransferScope.IsWheelOperation)
             {
-                __instance?.pawn?.TryGetComp<Comp_WeaponWheel>()?.NotifyExternalEquipmentAdded(eq);
+                WeaponWheelHarmonyUtility.CompFor(__instance?.pawn)?.NotifyExternalEquipmentAdded(eq);
             }
         }
     }
@@ -64,7 +69,7 @@ namespace Mugirl
         {
             if (!WeaponWheelTransferScope.IsWheelOperation)
             {
-                __instance?.pawn?.TryGetComp<Comp_WeaponWheel>()?.NotifyExternalEquipmentRemoved(eq);
+                WeaponWheelHarmonyUtility.CompFor(__instance?.pawn)?.NotifyExternalEquipmentRemoved(eq);
             }
         }
     }
@@ -74,7 +79,7 @@ namespace Mugirl
     {
         public static bool Prefix(Verb __instance)
         {
-            Comp_WeaponWheel comp = __instance?.CasterPawn?.TryGetComp<Comp_WeaponWheel>();
+            Comp_WeaponWheel comp = WeaponWheelHarmonyUtility.CompFor(__instance?.CasterPawn);
             return comp?.TryDelaySwordDanceStrikeUntilImpact(__instance) != true;
         }
 
@@ -82,20 +87,21 @@ namespace Mugirl
         {
             if (__instance?.verbProps?.IsMeleeAttack == true)
             {
-                Comp_WeaponWheel comp = __instance.CasterPawn?.TryGetComp<Comp_WeaponWheel>();
+                Comp_WeaponWheel comp = WeaponWheelHarmonyUtility.CompFor(__instance.CasterPawn);
                 if (comp?.IsSwordDanceStrikeAwaitingImpact(__instance) != true)
                 {
                     comp?.NotifyMeleeAttackCompleted(__instance);
                 }
                 return;
             }
+            WeaponWheelDevLog.BurstShotPostfix(__instance);
             if (__instance == null || __instance.state != VerbState.Idle
                 || !MugirlTickUtility.TryGetCurrentGameTick(out int currentTick)
                 || __instance.LastShotTick != currentTick)
             {
                 return;
             }
-            __instance.CasterPawn?.TryGetComp<Comp_WeaponWheel>()?.NotifyBurstCompleted(__instance);
+            WeaponWheelHarmonyUtility.CompFor(__instance.CasterPawn)?.NotifyBurstCompleted(__instance);
         }
 
         internal static bool TryInvokeDelayedMeleeBurst(Verb verb)
@@ -129,7 +135,7 @@ namespace Mugirl
     {
         public static void Postfix(Verb_MeleeAttack __instance)
         {
-            __instance?.CasterPawn?.TryGetComp<Comp_WeaponWheel>()?.NotifySwordDanceStrikeResolved(__instance);
+            WeaponWheelHarmonyUtility.CompFor(__instance?.CasterPawn)?.NotifySwordDanceStrikeResolved(__instance);
         }
     }
 
@@ -146,7 +152,7 @@ namespace Mugirl
             bool nonInterruptingSelfCast,
             ref bool __result)
         {
-            Comp_WeaponWheel comp = __instance?.CasterPawn?.TryGetComp<Comp_WeaponWheel>();
+            Comp_WeaponWheel comp = WeaponWheelHarmonyUtility.CompFor(__instance?.CasterPawn);
             if (comp == null || !comp.HandleBeforeTryStartCast(
                 __instance,
                 castTarg,
@@ -166,7 +172,43 @@ namespace Mugirl
 
         public static void Postfix(Verb __instance, bool __result)
         {
-            __instance?.CasterPawn?.TryGetComp<Comp_WeaponWheel>()?.NotifyCastStarted(__instance, __result);
+            WeaponWheelHarmonyUtility.CompFor(__instance?.CasterPawn)?.NotifyCastStarted(__instance, __result);
+        }
+    }
+
+    [HarmonyPatch(typeof(Pawn), nameof(Pawn.TryGetAttackVerb), new Type[] { typeof(Thing), typeof(bool), typeof(bool) })]
+    public static class Harmony_WeaponWheel_TryGetAttackVerb_Diagnostics
+    {
+        // Harmony Postfix 以低优先级先执行；int.MaxValue 确保本防线尽可能最后运行，
+        // 在其他框架完成 Verb 替换之后再校验最终结果。
+        [HarmonyPriority(int.MaxValue)]
+        public static void Postfix(
+            Pawn __instance,
+            Thing target,
+            bool allowManualCastWeapons,
+            bool allowTurrets,
+            ref Verb __result)
+        {
+            Verb selectedResult = __result;
+            bool corrected = false;
+            Comp_WeaponWheel comp = WeaponWheelHarmonyUtility.CompFor(__instance);
+            if (comp != null && comp.TryCorrectAttackVerbSelection(
+                selectedResult,
+                allowManualCastWeapons,
+                out Verb correctedResult))
+            {
+                __result = correctedResult;
+                corrected = true;
+            }
+
+            WeaponWheelDevLog.AttackVerbSelected(
+                __instance,
+                target,
+                allowManualCastWeapons,
+                allowTurrets,
+                selectedResult,
+                __result,
+                corrected);
         }
     }
 
@@ -189,7 +231,7 @@ namespace Mugirl
         {
             ThingWithComps weapon = eq as ThingWithComps;
             Pawn_EquipmentTracker tracker = weapon?.ParentHolder as Pawn_EquipmentTracker;
-            return tracker?.pawn?.TryGetComp<Comp_WeaponWheel>()?.ShouldSuppressVanillaWeaponDraw(weapon) != true;
+            return WeaponWheelHarmonyUtility.CompFor(tracker?.pawn)?.ShouldSuppressVanillaWeaponDraw(weapon) != true;
         }
     }
 
@@ -198,7 +240,10 @@ namespace Mugirl
     {
         public static void Postfix(Pawn __instance, DrawPhase phase)
         {
-            WeaponWheelAnimationRenderer.Draw(__instance, phase);
+            if (MugirlIdentity.IsMugirlPawn(__instance))
+            {
+                WeaponWheelAnimationRenderer.Draw(__instance, phase);
+            }
         }
     }
 
@@ -207,7 +252,7 @@ namespace Mugirl
     {
         public static void Postfix(Pawn ___pawn)
         {
-            ___pawn?.TryGetComp<Comp_WeaponWheel>()?.MaintainCombatFacing();
+            WeaponWheelHarmonyUtility.CompFor(___pawn)?.MaintainCombatFacing();
         }
     }
 
@@ -216,7 +261,7 @@ namespace Mugirl
     {
         public static void Postfix(Pawn p, ref float __result)
         {
-            Comp_WeaponWheel comp = p?.TryGetComp<Comp_WeaponWheel>();
+            Comp_WeaponWheel comp = WeaponWheelHarmonyUtility.CompFor(p);
             if (comp != null)
             {
                 __result += comp.ReserveWeaponMass;
@@ -229,7 +274,7 @@ namespace Mugirl
     {
         public static void Postfix(Pawn __instance, List<IThingHolder> outChildren)
         {
-            Comp_WeaponWheel comp = __instance?.TryGetComp<Comp_WeaponWheel>();
+            Comp_WeaponWheel comp = WeaponWheelHarmonyUtility.CompFor(__instance);
             if (comp != null && outChildren != null && !outChildren.Contains(comp))
             {
                 outChildren.Add(comp);
@@ -242,7 +287,7 @@ namespace Mugirl
     {
         public static void Prefix(Pawn __instance, bool keepInventoryAndEquipmentIfInBed)
         {
-            __instance?.TryGetComp<Comp_WeaponWheel>()?.HandleDropAndForbidEverything(keepInventoryAndEquipmentIfInBed);
+            WeaponWheelHarmonyUtility.CompFor(__instance)?.HandleDropAndForbidEverything(keepInventoryAndEquipmentIfInBed);
         }
     }
 
@@ -254,7 +299,7 @@ namespace Mugirl
             Pawn pawn = __instance?.pawn;
             if (pawn != null && pawn.Downed && !pawn.GetPosture().InBed())
             {
-                pawn.TryGetComp<Comp_WeaponWheel>()?.HandleDropAndForbidEverything(false);
+                WeaponWheelHarmonyUtility.CompFor(pawn)?.HandleDropAndForbidEverything(false);
             }
         }
     }

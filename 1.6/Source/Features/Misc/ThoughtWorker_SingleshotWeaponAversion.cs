@@ -7,6 +7,11 @@ namespace Mugirl
     {
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
+            if (!MugirlIdentity.IsMugirlPawn(p))
+            {
+                return false;
+            }
+
             ThingDef weaponDef = p.equipment?.Primary?.def;
             if (weaponDef?.Verbs == null)
             {

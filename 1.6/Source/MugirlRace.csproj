@@ -157,6 +157,7 @@
         <Compile Include="Features\Milk\MugirlMilkOutputUtility.cs" />
         <Compile Include="Features\Milk\MugirlMilkingAnimation.cs" />
         <Compile Include="Features\Milk\MugirlMilkingAnimation.State.cs" />
+        <Compile Include="Features\Milk\MugirlMilkingAnimationWorker.cs" />
         <Compile Include="Features\Milk\MugirlNurtureUtility.cs" />
         <Compile Include="Features\Milk\Thought_Hediff.cs" />
         <Compile Include="Features\Milk\WorkGiver_GatherBodyResources.cs" />
@@ -203,6 +204,7 @@
         <Compile Include="Features\WeaponWheel\JobDriver_LoadWeaponWheel.cs" />
         <Compile Include="Features\WeaponWheel\PawnRenderNode_BackWeapon.cs" />
         <Compile Include="Features\WeaponWheel\WeaponWheelCombatState.cs" />
+        <Compile Include="Features\WeaponWheel\WeaponWheelDevLog.cs" />
         <Compile Include="Features\WeaponWheel\WeaponWheelEnemyLoadoutGenerator.cs" />
         <Compile Include="Features\WeaponWheel\WeaponWheelTransferScope.cs" />
         <Compile Include="Features\WeaponWheel\WeaponWheelWarmupScope.cs" />

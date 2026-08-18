@@ -3,6 +3,8 @@
 
     <TraitDef>
         <defName>Mugirl_SingleshotWeaponAversion</defName>
+        <!-- 仅由雪牛娘 RaceDef 的 forcedRaceTraitEntries 赋予，不进入其他 Pawn 的随机特质池。 -->
+        <commonality>0</commonality>
         <degreeDatas>
             <li>
                 <!-- 单发武器厌恶 -->

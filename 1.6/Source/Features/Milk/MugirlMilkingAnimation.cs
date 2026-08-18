@@ -113,23 +113,34 @@ namespace Mugirl
             }
         }
 
-        public static bool TryGetPawnTransform(Pawn pawn, PawnRenderFlags flags, out Vector3 offset, out Quaternion rotation, out Vector3 scale)
+        internal static bool TryGetAnimationTransform(PawnRenderNodeTagDef tagDef, PawnDrawParms parms, out Vector3 offset, out float angle, out Vector3 scale)
         {
             offset = Vector3.zero;
-            rotation = Quaternion.identity;
+            angle = 0f;
             scale = Vector3.one;
 
-            if (flags.FlagSet(PawnRenderFlags.Portrait) || flags.FlagSet(PawnRenderFlags.Cache) || !TryGetState(pawn, out MilkingVisualState state))
+            if (parms.flags.FlagSet(PawnRenderFlags.Portrait) || !TryGetState(parms.pawn, out MilkingVisualState state))
             {
                 return false;
             }
 
+            if (tagDef == PawnRenderNodeTagDefOf.Head)
+            {
+                return TryGetHeadTransform(state, parms, ref offset, ref angle, ref scale);
+            }
+
+            if (tagDef != Mugirl_DefOf.Root)
+            {
+                return false;
+            }
+
+            Pawn pawn = parms.pawn;
             int now = MugirlTickUtility.CurrentGameTickOrFallback(state.lastTick);
             int age = Mathf.Max(0, now - state.startTick);
             switch (state.role)
             {
                 case MugirlMilkingVisualRole.SelfMilking:
-                    ApplySelfMilkingBodyMotion(state, age, ref offset, ref rotation, ref scale);
+                    ApplySelfMilkingBodyMotion(state, age, ref offset, ref scale);
                     AddPulseTransform(state, 1f, ref offset, ref scale);
                     return true;
 
@@ -137,14 +148,14 @@ namespace Mugirl
                     Vector3 toHelper = DirectionToPartner(state);
                     offset += toHelper * 0.13f + new Vector3(0f, 0f, -0.08f);
                     offset += Vector3.right * (Mathf.Sin(age * 0.13f + pawn.thingIDNumber * 0.17f) * 0.014f);
-                    rotation *= Quaternion.AngleAxis(LeanAngleForDirection(toHelper, 7f), Vector3.up);
+                    angle += LeanAngleForDirection(toHelper, 7f);
                     AddPulseTransform(state, 1f, ref offset, ref scale);
                     return true;
 
                 case MugirlMilkingVisualRole.Helper:
                     Vector3 toTarget = DirectionToPartner(state);
                     offset += toTarget * 0.08f;
-                    rotation *= Quaternion.AngleAxis(-LeanAngleForDirection(toTarget, 3f), Vector3.up);
+                    angle -= LeanAngleForDirection(toTarget, 3f);
                     AddPulseTransform(state, 0.45f, ref offset, ref scale);
                     return true;
             }
@@ -152,7 +163,7 @@ namespace Mugirl
             return false;
         }
 
-        private static void ApplySelfMilkingBodyMotion(MilkingVisualState state, int age, ref Vector3 offset, ref Quaternion rotation, ref Vector3 scale)
+        private static void ApplySelfMilkingBodyMotion(MilkingVisualState state, int age, ref Vector3 offset, ref Vector3 scale)
         {
             float counterSway = Mathf.Sin(age * 0.15f + 1.2f);
             float pulse = PulseEnvelope(state);
@@ -164,55 +175,35 @@ namespace Mugirl
                 scale.z * (1f - counterSway * 0.01f + pulse * 0.028f));
         }
 
-        public static void AdjustDrawFacing(Pawn pawn, PawnRenderFlags flags, ref Rot4 bodyFacing)
+        private static bool TryGetHeadTransform(MilkingVisualState state, PawnDrawParms parms, ref Vector3 offset, ref float angle, ref Vector3 scale)
         {
-            if (flags.FlagSet(PawnRenderFlags.Portrait) || flags.FlagSet(PawnRenderFlags.Cache) || !TryGetState(pawn, out MilkingVisualState state) || !Valid(state.partner))
-            {
-                return;
-            }
-
-            bodyFacing = RotFacingPartner(state);
-        }
-
-        public static void ModifyNodeTransform(PawnRenderNode node, PawnDrawParms parms, ref Vector3 offset, ref Vector3 pivot, ref Quaternion rotation, ref Vector3 scale)
-        {
-            if (parms.flags.FlagSet(PawnRenderFlags.Portrait) || !TryGetState(parms.pawn, out MilkingVisualState state))
-            {
-                return;
-            }
-
-            PawnRenderNodeTagDef tagDef = node?.Props?.tagDef;
-            if (tagDef != PawnRenderNodeTagDefOf.Head && tagDef != PawnRenderNodeTagDefOf.ApparelHead)
-            {
-                return;
-            }
-
             if (parms.pawn?.ageTracker != null && !parms.pawn.ageTracker.Adult)
             {
-                return;
+                return false;
             }
 
             if (state.role == MugirlMilkingVisualRole.Helper)
             {
-                ApplyHelperHeadLift(state, ref offset, ref rotation, ref scale);
-                return;
+                ApplyHelperHeadLift(state, ref offset, ref angle, ref scale);
+                return true;
             }
 
-            ApplyMugirlHeadRhythm(state, parms, ref offset, ref pivot, ref rotation);
+            ApplyMugirlHeadRhythm(state, parms, ref offset, ref angle);
+            return true;
         }
 
-        private static void ApplyHelperHeadLift(MilkingVisualState state, ref Vector3 offset, ref Quaternion rotation, ref Vector3 scale)
+        private static void ApplyHelperHeadLift(MilkingVisualState state, ref Vector3 offset, ref float angle, ref Vector3 scale)
         {
             int age = Mathf.Max(0, MugirlTickUtility.CurrentGameTickOrFallback(state.lastTick) - state.startTick);
             Vector3 toTarget = DirectionToPartner(state);
             float headDownOffset = MugirlIdentity.IsMugirlPawn(state.pawn) ? MugirlHelperHeadDownOffset : 0f;
             offset += new Vector3(0f, 0f, 0.045f - headDownOffset + Mathf.Sin(age * 0.12f) * 0.01f);
             offset += toTarget * 0.025f;
-            rotation *= Quaternion.AngleAxis(-LeanAngleForDirection(toTarget, 6f), Vector3.up);
+            angle -= LeanAngleForDirection(toTarget, 6f);
             scale = new Vector3(scale.x * 0.985f, scale.y, scale.z * 1.025f);
         }
 
-        private static void ApplyMugirlHeadRhythm(MilkingVisualState state, PawnDrawParms parms, ref Vector3 offset, ref Vector3 pivot, ref Quaternion rotation)
+        private static void ApplyMugirlHeadRhythm(MilkingVisualState state, PawnDrawParms parms, ref Vector3 offset, ref float angle)
         {
             int age = Mathf.Max(0, MugirlTickUtility.CurrentGameTickOrFallback(state.lastTick) - state.startTick);
             float wave = Mathf.Sin(age * 0.075f);
@@ -226,8 +217,7 @@ namespace Mugirl
             else if (parms.facing == Rot4.East || parms.facing == Rot4.West)
             {
                 float sideSign = parms.facing == Rot4.East ? -1f : 1f;
-                pivot += new Vector3(0f, 0f, -0.08f);
-                rotation *= Quaternion.AngleAxis(sideSign * beat * 5.5f, Vector3.up);
+                angle += sideSign * beat * 5.5f;
                 offset += new Vector3(0f, 0f, pulse * 0.012f);
             }
         }
@@ -324,22 +314,6 @@ namespace Mugirl
                 doer.rotationTracker?.Face(target.DrawPos);
                 target.rotationTracker?.Face(doer.DrawPos);
             }
-        }
-
-        private static Rot4 RotFacingPartner(MilkingVisualState state)
-        {
-            Vector3 direction = state.partner.DrawPos - state.pawn.DrawPos;
-            direction.y = 0f;
-            if (direction.sqrMagnitude < 0.0001f)
-            {
-                direction = (state.partner.Position - state.pawn.Position).ToVector3();
-                direction.y = 0f;
-            }
-            if (direction.sqrMagnitude < 0.0001f)
-            {
-                return state.pawn.Rotation;
-            }
-            return Pawn_RotationTracker.RotFromAngleBiased(direction.AngleFlat());
         }
 
         private static Vector3 DirectionToPartner(MilkingVisualState state)

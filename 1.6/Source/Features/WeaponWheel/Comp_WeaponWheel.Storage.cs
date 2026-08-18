@@ -241,6 +241,22 @@ namespace Mugirl.Features.WeaponWheel
             return true;
         }
 
+        private static void ResetBurstingVerbs(ThingWithComps weapon)
+        {
+            List<Verb> verbs = weapon?.GetComp<CompEquippable>()?.AllVerbs;
+            if (verbs == null)
+            {
+                return;
+            }
+            for (int i = 0; i < verbs.Count; i++)
+            {
+                if (verbs[i].state == VerbState.Bursting)
+                {
+                    verbs[i].Reset();
+                }
+            }
+        }
+
         internal bool MoveActiveWeaponTo(int slotIndex)
         {
             EnsureCollections();
@@ -269,6 +285,7 @@ namespace Mugirl.Features.WeaponWheel
 
             using (WeaponWheelTransferScope.InternalTransfer())
             {
+                ResetBurstingVerbs(current);
                 if (current != null && !pawn.equipment.TryTransferEquipmentToContainer(current, reserveWeapons))
                 {
                     return false;
@@ -314,6 +331,7 @@ namespace Mugirl.Features.WeaponWheel
             {
                 if (current != null && ContainsWeapon(current))
                 {
+                    ResetBurstingVerbs(current);
                     if (!pawn.equipment.TryTransferEquipmentToContainer(current, reserveWeapons))
                     {
                         return false;
@@ -432,7 +450,20 @@ namespace Mugirl.Features.WeaponWheel
         internal ThingWithComps GetBackWeapon(int displayIndex)
         {
             EnsureCollections();
-            int found = 0;
+            if (backWeaponCacheDirty)
+            {
+                RebuildBackWeaponCache();
+            }
+            return displayIndex == 0
+                ? firstBackWeapon
+                : displayIndex == 1 ? secondBackWeapon : null;
+        }
+
+        private void RebuildBackWeaponCache()
+        {
+            backWeaponCacheDirty = false;
+            firstBackWeapon = null;
+            secondBackWeapon = null;
             ThingWithComps primary = Pawn?.equipment?.Primary;
             for (int i = 0; i < slots.Count; i++)
             {
@@ -442,13 +473,16 @@ namespace Mugirl.Features.WeaponWheel
                 {
                     continue;
                 }
-                if (found == displayIndex)
+                if (firstBackWeapon == null)
                 {
-                    return weapon;
+                    firstBackWeapon = weapon;
                 }
-                found++;
+                else
+                {
+                    secondBackWeapon = weapon;
+                    break;
+                }
             }
-            return null;
         }
 
         internal void HandleDropAndForbidEverything(bool keepInventoryAndEquipmentIfInBed)

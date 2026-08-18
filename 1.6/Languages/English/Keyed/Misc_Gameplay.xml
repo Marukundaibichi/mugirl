@@ -72,6 +72,9 @@
     <Mugirl.Settings.FusionInvestmentEvent.DevDeliver>Dev: deliver bovine fusion reward now</Mugirl.Settings.FusionInvestmentEvent.DevDeliver>
     <Mugirl.Settings.RunawayFarmQuest.Label>Enable runaway Mugirl ranch quest</Mugirl.Settings.RunawayFarmQuest.Label>
     <Mugirl.Settings.RunawayFarmQuest.Desc>Controls whether the runaway Mugirl ranch quest can appear.</Mugirl.Settings.RunawayFarmQuest.Desc>
+    <Mugirl.Settings.WeaponWheelDevLog.Label>Weapon wheel developer log</Mugirl.Settings.WeaponWheelDevLog.Label>
+    <Mugirl.Settings.WeaponWheelDevLog.Desc>When enabled, every Mugirl shot and every weapon wheel combat decision prints diagnostics to the debug log (verb type and owning mod, burst completion checks, full firepower eligibility, per-slot fireability, cycle abort reasons), plus a Harmony patch ownership report for the vanilla methods the wheel relies on. Use only for troubleshooting full-firepower conflicts with other mods; produces a lot of log output.</Mugirl.Settings.WeaponWheelDevLog.Desc>
+    <Mugirl.Settings.WeaponWheelDevLog.DumpPatches>Print Harmony patch report now</Mugirl.Settings.WeaponWheelDevLog.DumpPatches>
     <Mugirl.Migration.LetterLabel>Mugirl migration</Mugirl.Migration.LetterLabel>
     <Mugirl.Migration.LetterText>A small herd of wild Mugirls in bikinis wanders in from the map edge. They seem drawn by the plants here and will stay nearby for a while, constantly lowering their heads to graze, sometimes even chewing on trees. They are gentle; you can try to tame them, and when they have milk you can manually milk them. Once they are full, any Mugirls that are still wild will leave on their own. If you do not want them to keep eating plants, attack any one of them to drive them off; once one is hit, the whole herd will immediately flee the map.</Mugirl.Migration.LetterText>
     <Mugirl.FusionInvestment.LetterLabel>Bovine fusion investment</Mugirl.FusionInvestment.LetterLabel>
@@ -282,7 +285,6 @@
     <Mugirl.Punisher.LetterLabel>Snow-bovine punisher</Mugirl.Punisher.LetterLabel>
     <Mugirl.Punisher.LetterText>You have cruelly slaughtered innocent Mugirls! The god of the snow-bovines will punish you!</Mugirl.Punisher.LetterText>
     <Mugirl.Punisher.Departed>The snow-bovine punisher has completed its punishment and departed.</Mugirl.Punisher.Departed>
-    <!-- TEMPORARILY DISABLED: unfinished Mugirl throw/dunk system.
     <Mugirl.Throw.InvalidTarget>This target cannot be picked up.</Mugirl.Throw.InvalidTarget>
     <Mugirl.Dunk.InvalidDestination>The dunk destination must be within {0} cells of the object.</Mugirl.Dunk.InvalidDestination>
     <Mugirl.Throw.IndestructibleTarget>{0} cannot be moved.</Mugirl.Throw.IndestructibleTarget>
@@ -292,5 +294,4 @@
     <Mugirl.Throw.OutOfRange>Out of throwing range (maximum {0} cells).</Mugirl.Throw.OutOfRange>
     <Mugirl.Throw.AimReadout>Damage {0} / blast radius {1} / max range {2}</Mugirl.Throw.AimReadout>
     <Mugirl.Throw.PlaceFailed>Could not safely place {0}: {1}</Mugirl.Throw.PlaceFailed>
-    END TEMPORARILY DISABLED -->
 </LanguageData>

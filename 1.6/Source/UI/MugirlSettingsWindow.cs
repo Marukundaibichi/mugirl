@@ -1,3 +1,4 @@
+using Mugirl.Features.WeaponWheel;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -35,6 +36,15 @@ namespace Mugirl
             listingStandard.Gap(12f);
             listingStandard.CheckboxLabeled("Mugirl.Settings.VanillaMilkGauge.Label".Translate(), ref settings.enableVanillaMilkGauge,
                 "Mugirl.Settings.VanillaMilkGauge.Desc".Translate());
+
+            listingStandard.Gap(12f);
+            listingStandard.CheckboxLabeled("Mugirl.Settings.WeaponWheelDevLog.Label".Translate(), ref settings.enableWeaponWheelDevLog,
+                "Mugirl.Settings.WeaponWheelDevLog.Desc".Translate());
+            if (settings.enableWeaponWheelDevLog
+                && listingStandard.ButtonText("Mugirl.Settings.WeaponWheelDevLog.DumpPatches".Translate()))
+            {
+                WeaponWheelDevLog.PrintPatchReport();
+            }
 
             listingStandard.End();
         }

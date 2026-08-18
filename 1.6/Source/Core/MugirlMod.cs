@@ -42,6 +42,9 @@ namespace Mugirl
 
         public bool enableVanillaMilkGauge = false;
 
+        // 开发者日志：输出雪牛娘武器轮盘射击诊断和 Harmony 补丁归属报告，用于排查 mod 冲突。
+        public bool enableWeaponWheelDevLog = false;
+
         public override void ExposeData()
         {
             base.ExposeData();
@@ -52,6 +55,7 @@ namespace Mugirl
             Scribe_Values.Look(ref enableRunawayMugirlFarmQuest, "enableRunawayMugirlFarmQuest", true);
             Scribe_Values.Look(ref enableFastMilking, "enableFastMilking", false);
             Scribe_Values.Look(ref enableVanillaMilkGauge, "enableVanillaMilkGauge", false);
+            Scribe_Values.Look(ref enableWeaponWheelDevLog, "enableWeaponWheelDevLog", false);
         }
     }
 }

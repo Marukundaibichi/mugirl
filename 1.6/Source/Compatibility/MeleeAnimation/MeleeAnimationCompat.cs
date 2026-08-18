@@ -164,7 +164,7 @@ namespace Mugirl
         [HarmonyPriority(Priority.First)]
         public static void Prefix(Pawn ___pawn, ref IDisposable __state)
         {
-            if (___pawn?.TryGetComp<Comp_WeaponWheel>()?.ShouldSuppressExternalMeleeAttackAnimation() == true)
+            if (WeaponWheelHarmonyUtility.CompFor(___pawn)?.ShouldSuppressExternalMeleeAttackAnimation() == true)
             {
                 __state = MeleeAnimationCompat.SuspendIdleWeaponAnimation();
             }

@@ -18,6 +18,14 @@ namespace Mugirl
 
         public static JobDef Job_MugirlMilkingTargetWait;
 
+        public static AnimationDef Mugirl_MilkingSelfAnimation;
+
+        public static AnimationDef Mugirl_MilkingTargetAnimation;
+
+        public static AnimationDef Mugirl_MilkingHelperAnimation;
+
+        public static PawnRenderNodeTagDef Root;
+
         public static JobDef JobDriver_RopeMoo;
 
         public static JobDef JobDriver_RemoveRopeMoo;

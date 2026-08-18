@@ -144,6 +144,12 @@
     <Mugirl.Settings.RunawayFarmQuest.Label>启用失控雪牛娘牧场任务</Mugirl.Settings.RunawayFarmQuest.Label>
     <!-- Controls whether the runaway Mugirl ranch quest can appear. -->
     <Mugirl.Settings.RunawayFarmQuest.Desc>控制是否启用“疯牛满地跑，农民傻了”任务。取消勾选后，该任务不会出现。</Mugirl.Settings.RunawayFarmQuest.Desc>
+    <!-- Weapon wheel developer log -->
+    <Mugirl.Settings.WeaponWheelDevLog.Label>武器轮盘开发者日志</Mugirl.Settings.WeaponWheelDevLog.Label>
+    <!-- When enabled, prints shot-by-shot weapon wheel diagnostics and a Harmony patch ownership report. -->
+    <Mugirl.Settings.WeaponWheelDevLog.Desc>启用后，雪牛娘每次射击和武器轮盘的每次战斗决策都会输出诊断日志（Verb 类型与所属 mod、burst 完成判定、火力满载资格、逐槽位可开火检查、连锁中止原因），并附带一份轮盘关键原版方法的 Harmony 补丁归属报告，用于排查其他 mod 导致的火力满载轮射失效。仅供排查问题时开启，会产生大量日志。</Mugirl.Settings.WeaponWheelDevLog.Desc>
+    <!-- Print Harmony patch report now -->
+    <Mugirl.Settings.WeaponWheelDevLog.DumpPatches>立即输出 Harmony 补丁归属报告</Mugirl.Settings.WeaponWheelDevLog.DumpPatches>
     <!-- Mugirl migration -->
     <Mugirl.Migration.LetterLabel>雪牛娘大迁徙</Mugirl.Migration.LetterLabel>
     <!-- A herd of wild Mugirls arrives from the map edge. -->
@@ -564,7 +570,6 @@
     <Mugirl.Punisher.LetterText>你竟然残忍的杀害了无辜的雪牛娘！雪牛之神会惩罚你的！</Mugirl.Punisher.LetterText>
     <!-- The snow-bovine punisher has completed its punishment and departed. -->
     <Mugirl.Punisher.Departed>雪牛惩戒者已经结束惩戒，扬长而去。</Mugirl.Punisher.Departed>
-    <!-- TEMPORARILY DISABLED: unfinished Mugirl throw/dunk system.
     <Mugirl.Throw.InvalidTarget>这个目标无法被抓起。</Mugirl.Throw.InvalidTarget>
     <Mugirl.Dunk.InvalidDestination>灌篮落点必须位于物体 {0} 格以内。</Mugirl.Dunk.InvalidDestination>
     <Mugirl.Throw.IndestructibleTarget>{0}无法被移动。</Mugirl.Throw.IndestructibleTarget>
@@ -574,5 +579,4 @@
     <Mugirl.Throw.OutOfRange>超出投掷距离（最大 {0} 格）。</Mugirl.Throw.OutOfRange>
     <Mugirl.Throw.AimReadout>伤害 {0} / 爆炸半径 {1} / 最大距离 {2}</Mugirl.Throw.AimReadout>
     <Mugirl.Throw.PlaceFailed>无法安全放置 {0}：{1}</Mugirl.Throw.PlaceFailed>
-    END TEMPORARILY DISABLED -->
 </LanguageData>

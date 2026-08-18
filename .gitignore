@@ -6,3 +6,4 @@ TMP/
 *.sai2
 *.user
 *.suo
+*.zstd

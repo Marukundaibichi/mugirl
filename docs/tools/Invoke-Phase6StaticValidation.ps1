@@ -2681,8 +2681,8 @@ try {
     $ropingDrawPath = '1.6\Source\Features\Roping\Harmony_RopingDraw.cs'
     if (Test-Path -LiteralPath $ropingDrawPath) {
         $ropingDrawText = Get-Content -LiteralPath $ropingDrawPath -Encoding utf8 -Raw
-        if ($ropingDrawText -notmatch 'fieldPawn\s*==\s*null' -or $ropingDrawText -notmatch 'fieldRopeLineMat\s*==\s*null' -or $ropingDrawText -notmatch 'as\s+Material') {
-            $harmonyBoundarySafetyIssues += "$ropingDrawPath :: roping draw patch must fall back when private fields are unavailable"
+        if ($ropingDrawText -notmatch '__instance\?\.IsRopedToSpot\s*!=\s*true' -or $ropingDrawText -notmatch 'Pawn\s+___pawn' -or $ropingDrawText -notmatch 'fieldRopeLineMat\s*==\s*null' -or $ropingDrawText -notmatch 'ropeLineMat\s*==\s*null' -or $ropingDrawText -notmatch 'as\s+Material') {
+            $harmonyBoundarySafetyIssues += "$ropingDrawPath :: roping draw patch must use the unroped fast path, injected pawn field and cached rope material with reflection fallback"
         }
     }
     else {
@@ -2693,17 +2693,25 @@ try {
     $milkingAnimationPaths = @(
         '1.6\Source\Features\Milk\MugirlMilkingAnimation.cs',
         '1.6\Source\Features\Milk\MugirlMilkingAnimation.State.cs',
-        '1.6\Source\Features\Milk\Harmony_MugirlMilkingAnimation.cs'
+        '1.6\Source\Features\Milk\MugirlMilkingAnimationWorker.cs',
+        '1.6\Source\Features\Milk\Harmony_MugirlMilkingAnimation.cs',
+        '1.6\Defs\AnimationDefs\Mugirl_Milking.xml'
     )
     $missingMilkingAnimationPaths = @($milkingAnimationPaths | Where-Object { -not (Test-Path -LiteralPath $_) })
     if ($missingMilkingAnimationPaths.Count -eq 0) {
         $milkingAnimationText = ($milkingAnimationPaths | ForEach-Object { Get-Content -LiteralPath $_ -Encoding utf8 -Raw }) -join "`n"
-        $milkingAnimationSafe = $milkingAnimationText -match 'PawnField\?\.GetValue' `
+        $milkingAnimationSafe = $milkingAnimationText -match 'class\s+MugirlMilkingAnimationWorker\s*:\s*BaseAnimationWorker' `
+            -and $milkingAnimationText -match 'renderer\.CurAnimation\s*==\s*null\s*\|\|\s*IsMugirlMilkingAnimation' `
+            -and $milkingAnimationText -match 'renderer\.SetAnimation\(desired\)' `
+            -and $milkingAnimationText -match 'IsMugirlMilkingAnimation\(renderer\.CurAnimation\)' `
+            -and $milkingAnimationText -match '<key>Root</key>' `
+            -and $milkingAnimationText -match '<key>Head</key>' `
+            -and $milkingAnimationText -notmatch 'Harmony_MugirlMilkingAnimation_NodeTransform' `
+            -and $milkingAnimationText -notmatch 'Harmony_MugirlMilkingAnimation_DisableCachedPawnRender' `
             -and $milkingAnimationText -match 'MugirlTickUtility\.TryGetCurrentGameTick' `
             -and $milkingAnimationText -match 'MugirlTickUtility\.CurrentGameTickOrFallback' `
             -and $milkingAnimationText -notmatch 'Find\.TickManager' `
             -and $milkingAnimationText -match 'states\.Clear\(\)' `
-            -and $milkingAnimationText -match 'node\?\.Props\?\.tagDef' `
             -and $milkingAnimationText -match 'tmpStateKeysToRemove' `
             -and $milkingAnimationText -match 'state\.pawn\s*!=\s*pawn\s*\|\|\s*state\.role\s*!=\s*role' `
             -and $milkingAnimationText -match 'state\.pawn\s*!=\s*pawn' `
@@ -2712,7 +2720,7 @@ try {
             -and $milkingAnimationText -match 'RemoveIfMatches\(state\.partner,\s*state\.pawn\)' `
             -and $milkingAnimationText -match 'tmpStateKeysToRemove\.Clear\(\)'
         if (-not $milkingAnimationSafe) {
-            $harmonyBoundarySafetyIssues += "MugirlMilkingAnimation split files :: milking render patches must guard reflection, centralized tick access, stale/cross-pawn/partner state and missing render node props"
+            $harmonyBoundarySafetyIssues += "MugirlMilkingAnimation files :: native animation must yield to foreign CurAnimation values and preserve centralized tick access plus stale/cross-pawn/partner cleanup"
         }
     }
     else {

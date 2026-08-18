@@ -198,7 +198,7 @@ namespace Mugirl
                 return;
             }
 
-            ThingOwner<ThingWithComps> reserveWeapons = pawn?.TryGetComp<Comp_WeaponWheel>()?.ReserveWeapons;
+            ThingOwner<ThingWithComps> reserveWeapons = WeaponWheelHarmonyUtility.CompFor(pawn)?.ReserveWeapons;
             if (reserveWeapons == null)
             {
                 return;
