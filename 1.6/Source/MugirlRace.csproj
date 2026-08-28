@@ -90,6 +90,7 @@
         <Compile Include="Compatibility\WeaponWheel\YayoCombatCompatibility.cs" />
         <Compile Include="DefOf\MugirlContentDefOf.cs" />
         <Compile Include="DefOf\Mugirl_DefOf.cs" />
+        <Compile Include="Features\Appearance\MugirlBodyAccessoryAddon.cs" />
         <Compile Include="Features\Apparel\MugirlApparelTagUtility.cs" />
         <Compile Include="Features\Genes\CompProperties_AbilityEffect_ForceJob.cs" />
         <Compile Include="Features\Genes\CompAbilityEffect_PickupThrow.cs" Condition=" '$(EnableMugirlThrowSystem)' == 'true' " />
@@ -156,12 +157,17 @@
         <Compile Include="Features\Milk\MugirlMilkInteractionUtility.cs" />
         <Compile Include="Features\Milk\MugirlMilkOutputUtility.cs" />
         <Compile Include="Features\Milk\MugirlMilkingAnimation.cs" />
+        <Compile Include="Features\Milk\MugirlMilkingAnimation.Interaction.cs" />
         <Compile Include="Features\Milk\MugirlMilkingAnimation.State.cs" />
         <Compile Include="Features\Milk\MugirlMilkingAnimationWorker.cs" />
         <Compile Include="Features\Milk\MugirlNurtureUtility.cs" />
         <Compile Include="Features\Milk\Thought_Hediff.cs" />
         <Compile Include="Features\Milk\WorkGiver_GatherBodyResources.cs" />
         <Compile Include="Features\Milk\WorkGiver_GatherMilk.cs" />
+        <Compile Include="Features\Mechanoids\CompProperties_SegmentedMechTail.cs" />
+        <Compile Include="Features\Mechanoids\Comp_SegmentedMechTail.cs" />
+        <Compile Include="Features\Mechanoids\PawnRenderNode_SegmentedMechTail.cs" />
+        <Compile Include="Features\Mechanoids\Verb_MeleeAttack_SegmentedTailAssist.cs" />
         <Compile Include="Features\Misc\Harmony_Apparel_DrawColor.cs" />
         <Compile Include="Features\Misc\Harmony_DrugAdministerDefs.cs" />
         <Compile Include="Features\Misc\Harmony_GhoulRenderingRefresh.cs" />

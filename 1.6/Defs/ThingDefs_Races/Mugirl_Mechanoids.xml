@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <!-- Base for the snow-bovine mechanoid line. Production is intentionally defined elsewhere. -->
+    <ThingDef Name="Mugirl_SnowBovineMechanoidBase" ParentName="BaseMechanoidWalker" Abstract="True">
+        <label>snow-bovine mechanoid</label>
+        <race>
+            <soundMeleeHitPawn>Pawn_Melee_MechanoidSlash_HitPawn</soundMeleeHitPawn>
+            <soundMeleeHitBuilding>Pawn_Melee_MechanoidSlash_HitBuilding</soundMeleeHitBuilding>
+            <soundMeleeMiss>Pawn_Melee_MechanoidSlash_Miss</soundMeleeMiss>
+        </race>
+    </ThingDef>
+
+    <ThingDef ParentName="Mugirl_SnowBovineMechanoidBase">
+        <defName>Mugirl_MechanoidBulldog</defName>
+        <label>Bulldog</label>
+        <description>The first mechanoid pattern in the snow-bovine series. The Bulldog closes quickly behind a low armored chassis. Its freely articulated segmented tail keeps moving at rest and drives a chainsaw into the same target whenever its foreclaws strike. No production method for this pattern is currently available.</description>
+        <statBases>
+            <MoveSpeed>4.6</MoveSpeed>
+            <MarketValue>1450</MarketValue>
+            <Mass>95</Mass>
+            <ArmorRating_Blunt>0.35</ArmorRating_Blunt>
+            <ArmorRating_Sharp>0.55</ArmorRating_Sharp>
+            <ArmorRating_Heat>1.8</ArmorRating_Heat>
+            <BandwidthCost MayRequire="Ludeon.RimWorld.Biotech">2</BandwidthCost>
+        </statBases>
+        <tools>
+            <li>
+                <label>left armored foreclaw</label>
+                <labelNoLocation>armored foreclaw</labelNoLocation>
+                <capacities>
+                    <li>Mugirl_BulldogTailAssistedCut</li>
+                </capacities>
+                <power>13</power>
+                <cooldownTime>1.9</cooldownTime>
+                <linkedBodyPartsGroup>Mugirl_BulldogLeftForeclaw</linkedBodyPartsGroup>
+                <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+            </li>
+            <li>
+                <label>right armored foreclaw</label>
+                <labelNoLocation>armored foreclaw</labelNoLocation>
+                <capacities>
+                    <li>Mugirl_BulldogTailAssistedCut</li>
+                </capacities>
+                <power>13</power>
+                <cooldownTime>1.9</cooldownTime>
+                <linkedBodyPartsGroup>Mugirl_BulldogRightForeclaw</linkedBodyPartsGroup>
+                <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+            </li>
+        </tools>
+        <race>
+            <body>Mugirl_MechanoidBulldogBody</body>
+            <baseBodySize>1.2</baseBodySize>
+            <baseHealthScale>1.45</baseHealthScale>
+            <detritusLeavings>
+                <li>
+                    <def>ChunkMechanoidSlag</def>
+                    <texOverrideIndex>18</texOverrideIndex>
+                    <spawnChance>0.15</spawnChance>
+                </li>
+                <li>
+                    <def>ChunkMechanoidSlag</def>
+                    <texOverrideIndex>15</texOverrideIndex>
+                    <spawnChance>0.15</spawnChance>
+                </li>
+            </detritusLeavings>
+        </race>
+        <comps>
+            <li Class="Mugirl.CompProperties_SegmentedMechTail">
+                <segmentTexPath>Things/Pawn/Mechanoid/MugirlBulldog/TailSegment</segmentTexPath>
+                <tipTexPath>Things/Pawn/Mechanoid/MugirlBulldog/Chainsaw</tipTexPath>
+                <activeTipTexPath>Things/Pawn/Mechanoid/MugirlBulldog/Chainsaw_Active</activeTipTexPath>
+                <segmentCount>6</segmentCount>
+                <segmentLength>0.25</segmentLength>
+                <segmentOverlap>1.08</segmentOverlap>
+                <texturePixelSize>512</texturePixelSize>
+                <segmentVisibleWidthPixels>222</segmentVisibleWidthPixels>
+                <segmentVisibleCenterPixels>(274,238)</segmentVisibleCenterPixels>
+                <tipCanvasDrawSize>(1.3,1.3)</tipCanvasDrawSize>
+                <tipHingePixels>(87,252)</tipHingePixels>
+                <!-- Side view: leave the rear coccyx, curl upward, then point forward. -->
+                <eastAnchor>(-0.36,0.28)</eastAnchor>
+                <eastStartAngle>165</eastStartAngle>
+                <eastBendPerSegment>-33</eastBendPerSegment>
+                <requiredTailPart>Mugirl_MechanoidTailChainsaw</requiredTailPart>
+                <tailBodyPartGroup>Mugirl_MechanoidTail</tailBodyPartGroup>
+                <assistDamage>9</assistDamage>
+                <assistArmorPenetration>0.28</assistArmorPenetration>
+            </li>
+        </comps>
+    </ThingDef>
+</Defs>

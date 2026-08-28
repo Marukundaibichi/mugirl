@@ -65,4 +65,67 @@
             </li>
         </keyframeParts>
     </AnimationDef>
+
+    <AnimationDef>
+        <defName>Mugirl_MilkInteractionSourceAnimation</defName>
+        <durationTicks>1</durationTicks>
+        <loopMode>Loop</loopMode>
+        <keyframeParts>
+            <li>
+                <key>Root</key>
+                <value>
+                    <workerType>Mugirl.MugirlMilkingAnimationWorker</workerType>
+                </value>
+            </li>
+            <li>
+                <key>Head</key>
+                <value>
+                    <workerType>Mugirl.MugirlMilkingAnimationWorker</workerType>
+                    <pivot>(0.5, 0.42)</pivot>
+                </value>
+            </li>
+        </keyframeParts>
+    </AnimationDef>
+
+    <AnimationDef>
+        <defName>Mugirl_MilkInteractionRecipientAnimation</defName>
+        <durationTicks>1</durationTicks>
+        <loopMode>Loop</loopMode>
+        <keyframeParts>
+            <li>
+                <key>Root</key>
+                <value>
+                    <workerType>Mugirl.MugirlMilkingAnimationWorker</workerType>
+                </value>
+            </li>
+            <li>
+                <key>Head</key>
+                <value>
+                    <workerType>Mugirl.MugirlMilkingAnimationWorker</workerType>
+                    <pivot>(0.5, 0.42)</pivot>
+                </value>
+            </li>
+        </keyframeParts>
+    </AnimationDef>
+
+    <AnimationDef>
+        <defName>Mugirl_MilkInteractionDrinkerAnimation</defName>
+        <durationTicks>1</durationTicks>
+        <loopMode>Loop</loopMode>
+        <keyframeParts>
+            <li>
+                <key>Root</key>
+                <value>
+                    <workerType>Mugirl.MugirlMilkingAnimationWorker</workerType>
+                </value>
+            </li>
+            <li>
+                <key>Head</key>
+                <value>
+                    <workerType>Mugirl.MugirlMilkingAnimationWorker</workerType>
+                    <pivot>(0.5, 0.42)</pivot>
+                </value>
+            </li>
+        </keyframeParts>
+    </AnimationDef>
 </Defs>

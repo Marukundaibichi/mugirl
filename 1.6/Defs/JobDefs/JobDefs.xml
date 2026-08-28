@@ -90,4 +90,13 @@
         <reportString>Feed milk to {TargetA}.</reportString>
     </JobDef>
 
+    <JobDef>
+        <defName>Job_MugirlMilkInteractionWait</defName>
+        <driverClass>JobDriver_WaitMaintainPosture</driverClass>
+        <carryThingAfterJob>true</carryThingAfterJob>
+        <dropThingBeforeJob>false</dropThingBeforeJob>
+        <ifFlyingKeepFlying>true</ifFlyingKeepFlying>
+        <reportString>Participating in milk feeding.</reportString>
+    </JobDef>
+
 </Defs>

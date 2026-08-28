@@ -1712,7 +1712,7 @@ try {
         @{
             Path = '1.6\Source\Features\Milk\JobDriver_FeedMilkToDowned.cs'
             Pattern = '\(\s*Pawn\s*\)\s*job\.GetTarget'
-            Description = 'feed downed job directly casts job target'
+            Description = 'feed milk job directly casts job target'
         },
         @{
             Path = '1.6\Source\Features\Milk\JobDriver_GatherBodyResources.cs'
@@ -1742,11 +1742,14 @@ try {
     $milkUtilityPath = '1.6\Source\Features\Milk\MugirlMilkInteractionUtility.cs'
     if (Test-Path -LiteralPath $milkUtilityPath) {
         $milkUtilityText = Get-Content -LiteralPath $milkUtilityPath -Encoding utf8 -Raw
-        if ($milkUtilityText -match 'internal\s+static\s+void\s+Apply(AdultDrink|DownedFeed|ChildBreastfeed)\s*\(') {
+        if ($milkUtilityText -match 'internal\s+static\s+void\s+Apply(AdultDrink|Feed|ChildBreastfeed)\s*\(') {
             $milkInteractionSafetyIssues += "$milkUtilityPath :: direct milk Apply methods must return bool and fail when milk cannot be consumed"
         }
         if ($milkUtilityText -notmatch 'CanChildBreastfeedNow' -or $milkUtilityText -notmatch 'ChildBreastfeedConsumption' -or $milkUtilityText -notmatch 'TryConsumeMilk') {
             $milkInteractionSafetyIssues += "$milkUtilityPath :: child breastfeed must use its own consumption threshold and atomic milk consumption"
+        }
+        if ($milkUtilityText -notmatch 'target\.Downed\s*\|\|\s*target\.IsColonist') {
+            $milkInteractionSafetyIssues += "$milkUtilityPath :: direct feeding must support both downed humanlikes and standing colonists"
         }
     }
     else {
@@ -1766,6 +1769,22 @@ try {
     }
     else {
         $milkInteractionSafetyIssues += "$milkFloatMenuPath :: missing file for milk float menu safety"
+    }
+
+    $milkInteractionSafetyChecks++
+    $feedMilkPath = '1.6\Source\Features\Milk\JobDriver_FeedMilkToDowned.cs'
+    if (Test-Path -LiteralPath $feedMilkPath) {
+        $feedMilkText = Get-Content -LiteralPath $feedMilkPath -Encoding utf8 -Raw
+        $feedMilkSafe = $feedMilkText -match 'ForceMilkInteractionWait' `
+            -and $feedMilkText -match 'forcedWaitJobLoadId' `
+            -and $feedMilkText -match 'CleanupForcedWait\(\)' `
+            -and $feedMilkText -match 'FeedingRecipientFacing'
+        if (-not $feedMilkSafe) {
+            $milkInteractionSafetyIssues += "$feedMilkPath :: standing feed recipients must be held in a tracked wait job and safely released"
+        }
+    }
+    else {
+        $milkInteractionSafetyIssues += "$feedMilkPath :: missing file for standing recipient wait safety"
     }
 
     $milkInteractionSafetyChecks++
@@ -2692,6 +2711,7 @@ try {
     $harmonyBoundarySafetyChecks++
     $milkingAnimationPaths = @(
         '1.6\Source\Features\Milk\MugirlMilkingAnimation.cs',
+        '1.6\Source\Features\Milk\MugirlMilkingAnimation.Interaction.cs',
         '1.6\Source\Features\Milk\MugirlMilkingAnimation.State.cs',
         '1.6\Source\Features\Milk\MugirlMilkingAnimationWorker.cs',
         '1.6\Source\Features\Milk\Harmony_MugirlMilkingAnimation.cs',
@@ -2711,6 +2731,13 @@ try {
             -and $milkingAnimationText -match 'MugirlTickUtility\.TryGetCurrentGameTick' `
             -and $milkingAnimationText -match 'MugirlTickUtility\.CurrentGameTickOrFallback' `
             -and $milkingAnimationText -notmatch 'Find\.TickManager' `
+            -and $milkingAnimationText -match 'FallbackHeadRegionFraction\s*=\s*0\.3f' `
+            -and $milkingAnimationText -match 'PawnRenderNodeTagDefOf\.Head' `
+            -and $milkingAnimationText -match 'StartFeeding' `
+            -and $milkingAnimationText -match 'StartDrinking' `
+            -and $milkingAnimationText -match 'source\.Rotation\s*=\s*Rot4\.South' `
+            -and $milkingAnimationText -match 'recipient\.Rotation\s*=\s*FeedingRecipientFacing' `
+            -and $milkingAnimationText -match 'source\.rotationTracker\?\.FaceTarget\(recipient\)' `
             -and $milkingAnimationText -match 'states\.Clear\(\)' `
             -and $milkingAnimationText -match 'tmpStateKeysToRemove' `
             -and $milkingAnimationText -match 'state\.pawn\s*!=\s*pawn\s*\|\|\s*state\.role\s*!=\s*role' `

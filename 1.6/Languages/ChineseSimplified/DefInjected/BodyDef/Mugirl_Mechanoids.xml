@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+    <!-- Bulldog chassis -->
+    <Mugirl_MechanoidBulldogBody.label>斗牛犬机体</Mugirl_MechanoidBulldogBody.label>
+    <!-- sensor labels -->
+    <Mugirl_MechanoidBulldogBody.corePart.parts.MechanicalNeck.parts.MechanicalHead.parts.left_sight_sensor.customLabel>左视觉传感器</Mugirl_MechanoidBulldogBody.corePart.parts.MechanicalNeck.parts.MechanicalHead.parts.left_sight_sensor.customLabel>
+    <Mugirl_MechanoidBulldogBody.corePart.parts.MechanicalNeck.parts.MechanicalHead.parts.right_sight_sensor.customLabel>右视觉传感器</Mugirl_MechanoidBulldogBody.corePart.parts.MechanicalNeck.parts.MechanicalHead.parts.right_sight_sensor.customLabel>
+    <Mugirl_MechanoidBulldogBody.corePart.parts.MechanicalNeck.parts.MechanicalHead.parts.left_sound_sensor.customLabel>左声音传感器</Mugirl_MechanoidBulldogBody.corePart.parts.MechanicalNeck.parts.MechanicalHead.parts.left_sound_sensor.customLabel>
+    <Mugirl_MechanoidBulldogBody.corePart.parts.MechanicalNeck.parts.MechanicalHead.parts.right_sound_sensor.customLabel>右声音传感器</Mugirl_MechanoidBulldogBody.corePart.parts.MechanicalNeck.parts.MechanicalHead.parts.right_sound_sensor.customLabel>
+    <!-- limb labels -->
+    <Mugirl_MechanoidBulldogBody.corePart.parts.left_foreleg.customLabel>左前腿</Mugirl_MechanoidBulldogBody.corePart.parts.left_foreleg.customLabel>
+    <Mugirl_MechanoidBulldogBody.corePart.parts.left_foreleg.parts.left_armored_foreclaw.customLabel>左装甲前爪</Mugirl_MechanoidBulldogBody.corePart.parts.left_foreleg.parts.left_armored_foreclaw.customLabel>
+    <Mugirl_MechanoidBulldogBody.corePart.parts.right_foreleg.customLabel>右前腿</Mugirl_MechanoidBulldogBody.corePart.parts.right_foreleg.customLabel>
+    <Mugirl_MechanoidBulldogBody.corePart.parts.right_foreleg.parts.right_armored_foreclaw.customLabel>右装甲前爪</Mugirl_MechanoidBulldogBody.corePart.parts.right_foreleg.parts.right_armored_foreclaw.customLabel>
+    <Mugirl_MechanoidBulldogBody.corePart.parts.left_hind_leg.customLabel>左后腿</Mugirl_MechanoidBulldogBody.corePart.parts.left_hind_leg.customLabel>
+    <Mugirl_MechanoidBulldogBody.corePart.parts.left_hind_leg.parts.left_hind_foot.customLabel>左后足</Mugirl_MechanoidBulldogBody.corePart.parts.left_hind_leg.parts.left_hind_foot.customLabel>
+    <Mugirl_MechanoidBulldogBody.corePart.parts.right_hind_leg.customLabel>右后腿</Mugirl_MechanoidBulldogBody.corePart.parts.right_hind_leg.customLabel>
+    <Mugirl_MechanoidBulldogBody.corePart.parts.right_hind_leg.parts.right_hind_foot.customLabel>右后足</Mugirl_MechanoidBulldogBody.corePart.parts.right_hind_leg.parts.right_hind_foot.customLabel>
+    <!-- internal labels -->
+    <Mugirl_MechanoidBulldogBody.corePart.parts.left_fluid_reprocessor.customLabel>左流体再处理器</Mugirl_MechanoidBulldogBody.corePart.parts.left_fluid_reprocessor.customLabel>
+    <Mugirl_MechanoidBulldogBody.corePart.parts.right_fluid_reprocessor.customLabel>右流体再处理器</Mugirl_MechanoidBulldogBody.corePart.parts.right_fluid_reprocessor.customLabel>
+</LanguageData>

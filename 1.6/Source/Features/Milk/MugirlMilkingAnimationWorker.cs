@@ -3,7 +3,7 @@ using Verse;
 
 namespace Mugirl
 {
-    // 只会被正在播放 Mugirl 挤奶 AnimationDef 的 Pawn 调用；避免在所有 Pawn、所有节点上安装全局 Harmony Postfix。
+    // 只会被正在播放 Mugirl 挤奶/喂奶 AnimationDef 的 Pawn 调用；避免在所有 Pawn、所有节点上安装全局 Harmony Postfix。
     public class MugirlMilkingAnimationWorker : BaseAnimationWorker
     {
         public override bool Enabled(AnimationDef def, PawnRenderNode node, AnimationPart part, PawnDrawParms parms)

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <!-- Shared health-part defaults for the snow-bovine mechanoid series. -->
+    <BodyPartDef Name="Mugirl_MechanicalBodyPartBase" Abstract="True">
+        <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
+        <skinCovered>false</skinCovered>
+        <solid>true</solid>
+        <alive>false</alive>
+        <bleedRate>0</bleedRate>
+    </BodyPartDef>
+
+    <BodyPartDef ParentName="Mugirl_MechanicalBodyPartBase">
+        <defName>Mugirl_MechanoidTailAssembly</defName>
+        <label>segmented mechanical tail</label>
+        <hitPoints>26</hitPoints>
+    </BodyPartDef>
+
+    <BodyPartDef ParentName="Mugirl_MechanicalBodyPartBase">
+        <defName>Mugirl_MechanoidTailChainsaw</defName>
+        <label>tail chainsaw</label>
+        <hitPoints>22</hitPoints>
+    </BodyPartDef>
+
+    <BodyPartGroupDef>
+        <defName>Mugirl_BulldogLeftForeclaw</defName>
+        <label>left armored foreclaw</label>
+        <listOrder>120</listOrder>
+    </BodyPartGroupDef>
+
+    <BodyPartGroupDef>
+        <defName>Mugirl_BulldogRightForeclaw</defName>
+        <label>right armored foreclaw</label>
+        <listOrder>121</listOrder>
+    </BodyPartGroupDef>
+
+    <BodyPartGroupDef>
+        <defName>Mugirl_MechanoidTail</defName>
+        <label>segmented chainsaw tail</label>
+        <listOrder>122</listOrder>
+    </BodyPartGroupDef>
+
+    <BodyDef>
+        <defName>Mugirl_MechanoidBulldogBody</defName>
+        <label>Bulldog chassis</label>
+        <corePart>
+            <def>MechanicalThoraxCanManipulate</def>
+            <height>Middle</height>
+            <depth>Outside</depth>
+            <parts>
+                <li>
+                    <def>MechanicalNeck</def>
+                    <coverage>0.09</coverage>
+                    <height>Top</height>
+                    <parts>
+                        <li>
+                            <def>MechanicalHead</def>
+                            <coverage>0.82</coverage>
+                            <groups>
+                                <li>HeadAttackTool</li>
+                            </groups>
+                            <parts>
+                                <li>
+                                    <def>ArtificialBrain</def>
+                                    <coverage>0.12</coverage>
+                                    <depth>Inside</depth>
+                                </li>
+                                <li>
+                                    <def>SightSensor</def>
+                                    <customLabel>left sight sensor</customLabel>
+                                    <coverage>0.14</coverage>
+                                </li>
+                                <li>
+                                    <def>SightSensor</def>
+                                    <customLabel>right sight sensor</customLabel>
+                                    <coverage>0.14</coverage>
+                                </li>
+                                <li>
+                                    <def>HearingSensor</def>
+                                    <customLabel>left sound sensor</customLabel>
+                                    <coverage>0.10</coverage>
+                                </li>
+                                <li>
+                                    <def>HearingSensor</def>
+                                    <customLabel>right sound sensor</customLabel>
+                                    <coverage>0.10</coverage>
+                                </li>
+                                <li>
+                                    <def>SmellSensor</def>
+                                    <coverage>0.08</coverage>
+                                </li>
+                            </parts>
+                        </li>
+                    </parts>
+                </li>
+                <li>
+                    <def>MechanicalLeg</def>
+                    <customLabel>left foreleg</customLabel>
+                    <coverage>0.17</coverage>
+                    <height>Bottom</height>
+                    <parts>
+                        <li>
+                            <def>MechanicalFoot</def>
+                            <customLabel>left armored foreclaw</customLabel>
+                            <coverage>0.25</coverage>
+                            <groups>
+                                <li>Mugirl_BulldogLeftForeclaw</li>
+                            </groups>
+                        </li>
+                    </parts>
+                </li>
+                <li>
+                    <def>MechanicalLeg</def>
+                    <customLabel>right foreleg</customLabel>
+                    <coverage>0.17</coverage>
+                    <height>Bottom</height>
+                    <parts>
+                        <li>
+                            <def>MechanicalFoot</def>
+                            <customLabel>right armored foreclaw</customLabel>
+                            <coverage>0.25</coverage>
+                            <groups>
+                                <li>Mugirl_BulldogRightForeclaw</li>
+                            </groups>
+                        </li>
+                    </parts>
+                </li>
+                <li>
+                    <def>MechanicalLeg</def>
+                    <customLabel>left hind leg</customLabel>
+                    <coverage>0.18</coverage>
+                    <height>Bottom</height>
+                    <parts>
+                        <li>
+                            <def>MechanicalFoot</def>
+                            <customLabel>left hind foot</customLabel>
+                            <coverage>0.24</coverage>
+                        </li>
+                    </parts>
+                </li>
+                <li>
+                    <def>MechanicalLeg</def>
+                    <customLabel>right hind leg</customLabel>
+                    <coverage>0.18</coverage>
+                    <height>Bottom</height>
+                    <parts>
+                        <li>
+                            <def>MechanicalFoot</def>
+                            <customLabel>right hind foot</customLabel>
+                            <coverage>0.24</coverage>
+                        </li>
+                    </parts>
+                </li>
+                <li>
+                    <def>Mugirl_MechanoidTailAssembly</def>
+                    <coverage>0.11</coverage>
+                    <height>Bottom</height>
+                    <parts>
+                        <li>
+                            <def>Mugirl_MechanoidTailChainsaw</def>
+                            <coverage>0.35</coverage>
+                            <groups>
+                                <li>Mugirl_MechanoidTail</li>
+                            </groups>
+                        </li>
+                    </parts>
+                </li>
+                <li>
+                    <def>Reactor</def>
+                    <coverage>0.04</coverage>
+                    <depth>Inside</depth>
+                </li>
+                <li>
+                    <def>FluidReprocessor</def>
+                    <customLabel>left fluid reprocessor</customLabel>
+                    <coverage>0.02</coverage>
+                    <depth>Inside</depth>
+                </li>
+                <li>
+                    <def>FluidReprocessor</def>
+                    <customLabel>right fluid reprocessor</customLabel>
+                    <coverage>0.02</coverage>
+                    <depth>Inside</depth>
+                </li>
+            </parts>
+        </corePart>
+    </BodyDef>
+</Defs>

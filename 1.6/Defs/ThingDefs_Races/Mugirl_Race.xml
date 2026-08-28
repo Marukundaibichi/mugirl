@@ -184,6 +184,7 @@
                         <!-- 尾巴附加图层。 -->
                         <li>
                             <path>Mugirl/Tail/Tail</path>
+                            <userCustomizable>false</userCustomizable>
                             <conditions>
                                 <RotStage>Fresh,Rotting</RotStage>
                                 <BodyPart>
@@ -213,6 +214,7 @@
                         <!-- 左角附加图层。 -->
                         <li>
                             <path>Mugirl/Horn/Left/LeftHorn</path>
+                            <userCustomizable>false</userCustomizable>
                             <drawSize>1</drawSize>
                             <defaultOffset>Center</defaultOffset>
                             <alignWithHead>true</alignWithHead>
@@ -247,6 +249,7 @@
                         <!-- 婴儿左角附加图层。 -->
                         <li>
                             <path>Mugirl/Horn/Left/LeftHorn</path>
+                            <userCustomizable>false</userCustomizable>
                             <drawSize>0.5</drawSize>
                             <defaultOffset>Center</defaultOffset>
                             <alignWithHead>true</alignWithHead>
@@ -281,6 +284,7 @@
                         <!-- 右角附加图层。 -->
                         <li>
                             <path>Mugirl/Horn/Right/RightHorn</path>
+                            <userCustomizable>false</userCustomizable>
                             <drawSize>1</drawSize>
                             <defaultOffset>Center</defaultOffset>
                             <alignWithHead>true</alignWithHead>
@@ -315,6 +319,7 @@
                         <!-- 婴儿右角附加图层。 -->
                         <li>
                             <path>Mugirl/Horn/Right/RightHorn</path>
+                            <userCustomizable>false</userCustomizable>
                             <drawSize>0.5</drawSize>
                             <defaultOffset>Center</defaultOffset>
                             <alignWithHead>true</alignWithHead>
@@ -349,6 +354,7 @@
                         <!-- 儿童左角附加图层。 -->
                         <li>
                             <path>Mugirl/Horn/Left/LeftHorn</path>
+                            <userCustomizable>false</userCustomizable>
                             <drawSize>0.75</drawSize>
                             <defaultOffset>Center</defaultOffset>
                             <alignWithHead>true</alignWithHead>
@@ -383,6 +389,7 @@
                         <!-- 儿童右角附加图层。 -->
                         <li>
                             <path>Mugirl/Horn/Right/RightHorn</path>
+                            <userCustomizable>false</userCustomizable>
                             <drawSize>0.75</drawSize>
                             <defaultOffset>Center</defaultOffset>
                             <alignWithHead>true</alignWithHead>
@@ -412,6 +419,57 @@
                                 <west>
                                     <layerOffset>-0.5</layerOffset>
                                 </west>
+                            </offsets>
+                        </li>
+                        <!--
+                            梳妆台中的独立身体附件栏。变体顺序：
+                            0 无、1 咬痕、2 屁股掌印、3 条形码、4 私处毛发、5 化学疤痕。
+                            新生成的成年雪牛娘有 35% 概率携带其中一种附件。
+                        -->
+                        <li Class="Mugirl.Features.Appearance.MugirlBodyAccessoryAddon">
+                            <path>Mugirl/BodyAccessories/Mugirl_BodyAccessory</path>
+                            <generationChance>0.35</generationChance>
+                            <conditions>
+                                <RotStage>Fresh,Rotting</RotStage>
+                                <BodyType>Female</BodyType>
+                            </conditions>
+                            <inFrontOfBody>true</inFrontOfBody>
+                            <layerInvert>false</layerInvert>
+                            <drawSize>1</drawSize>
+                            <defaultOffset>Center</defaultOffset>
+                            <scaleWithPawnDrawsize>true</scaleWithPawnDrawsize>
+                            <!-- HAR 前置层为 0.3；抵消后落在约第 3 层，低于第 20 层服装根。 -->
+                            <offsets>
+                                <south><layerOffset>-0.2989</layerOffset></south>
+                                <north><layerOffset>-0.2989</layerOffset></north>
+                                <east><layerOffset>-0.2989</layerOffset></east>
+                                <west><layerOffset>-0.2989</layerOffset></west>
+                            </offsets>
+                        </li>
+                        <!-- 化学疤痕的脸部层与上一项共用变体，不在梳妆台重复显示。 -->
+                        <li>
+                            <name>身体附件（脸部联动层）</name>
+                            <path>Mugirl/BodyAccessories/Mugirl_FaceAccessory</path>
+                            <userCustomizable>false</userCustomizable>
+                            <linkVariantIndexWithPrevious>true</linkVariantIndexWithPrevious>
+                            <conditions>
+                                <RotStage>Fresh,Rotting</RotStage>
+                                <BodyType>Female</BodyType>
+                            </conditions>
+                            <alignWithHead>true</alignWithHead>
+                            <inFrontOfBody>true</inFrontOfBody>
+                            <layerInvert>false</layerInvert>
+                            <colorChannel>skin</colorChannel>
+                            <drawSize>1</drawSize>
+                            <defaultOffset>Center</defaultOffset>
+                            <scaleWithPawnDrawsize>true</scaleWithPawnDrawsize>
+                            <shaderType>CutoutSkinOverlay</shaderType>
+                            <!-- 抵消 HAR 前置层后落在约第 53 层，低于第 70 层头部服装根。 -->
+                            <offsets>
+                                <south><layerOffset>-0.28061</layerOffset></south>
+                                <north><layerOffset>-0.28061</layerOffset></north>
+                                <east><layerOffset>-0.28061</layerOffset></east>
+                                <west><layerOffset>-0.28061</layerOffset></west>
                             </offsets>
                         </li>
                     </bodyAddons>

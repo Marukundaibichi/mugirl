@@ -5,7 +5,7 @@ using Verse.AI;
 
 namespace Mugirl
 {
-    // 为雪牛娘添加右键菜单：榨乳、找奶喝、喝奶、给倒地者喂奶
+    // 为雪牛娘添加右键菜单：榨乳、找奶喝、喝奶、给倒地者或站立殖民者喂奶
     public class FloatMenuProvider_MilkMugirl : FloatMenuOptionProvider
     {
         protected override bool Drafted => true;
@@ -149,7 +149,7 @@ namespace Mugirl
                 label,
                 delegate
                 {
-                    if (!MugirlMilkInteractionUtility.CanFeedDownedPawnNow(feeder, target)
+                    if (!MugirlMilkInteractionUtility.CanFeedPawnNow(feeder, target)
                         || !feeder.CanReserveAndReach(target, PathEndMode.Touch, Danger.Deadly))
                     {
                         return;
@@ -219,7 +219,7 @@ namespace Mugirl
 
         private static bool IsValidFeedTarget(Pawn target)
         {
-            return target != null && target.Spawned && !target.Dead && target.Downed && target.RaceProps?.Humanlike == true;
+            return target != null && target.Spawned && MugirlMilkInteractionUtility.IsDirectFeedTarget(target);
         }
     }
 }

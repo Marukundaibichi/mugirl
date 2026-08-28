@@ -8,7 +8,11 @@ namespace Mugirl
     {
         SelfMilking,
         AssistedTarget,
-        Helper
+        Helper,
+        FeedingSource,
+        FeedingRecipient,
+        DrinkingSource,
+        Drinker
     }
 
     public static partial class MugirlMilkingAnimation
@@ -158,6 +162,13 @@ namespace Mugirl
                     angle -= LeanAngleForDirection(toTarget, 3f);
                     AddPulseTransform(state, 0.45f, ref offset, ref scale);
                     return true;
+
+                case MugirlMilkingVisualRole.FeedingSource:
+                case MugirlMilkingVisualRole.DrinkingSource:
+                case MugirlMilkingVisualRole.FeedingRecipient:
+                case MugirlMilkingVisualRole.Drinker:
+                    ApplyMilkInteractionBodyMotion(state, parms, age, ref offset, ref angle, ref scale);
+                    return true;
             }
 
             return false;
@@ -177,6 +188,23 @@ namespace Mugirl
 
         private static bool TryGetHeadTransform(MilkingVisualState state, PawnDrawParms parms, ref Vector3 offset, ref float angle, ref Vector3 scale)
         {
+            switch (state.role)
+            {
+                case MugirlMilkingVisualRole.FeedingSource:
+                case MugirlMilkingVisualRole.DrinkingSource:
+                    ApplyMilkSourceHeadMotion(state, ref offset, ref angle);
+                    return true;
+
+                case MugirlMilkingVisualRole.FeedingRecipient:
+                case MugirlMilkingVisualRole.Drinker:
+                    if (!state.hasExplicitHead)
+                    {
+                        return false;
+                    }
+                    ApplyMilkRecipientHeadMotion(state, ref offset, ref angle);
+                    return true;
+            }
+
             if (parms.pawn?.ageTracker != null && !parms.pawn.ageTracker.Adult)
             {
                 return false;

@@ -28,6 +28,7 @@ namespace Mugirl
             this.FailOn(() => !MugirlMilkInteractionUtility.CanDrinkMilkNow(Drinker, MooPawn));
             this.AddFinishAction(delegate (JobCondition condition)
             {
+                MugirlMilkingAnimation.EndDrinking(Drinker, MooPawn);
                 CleanupForcedWait();
             });
 
@@ -46,6 +47,11 @@ namespace Mugirl
                 pawn.pather.StopDead();
                 PawnUtility.ForceWait(mooPawn, MugirlMilkInteractionUtility.DirectMilkInteractionTicks + 60, pawn, true);
                 forcedWaitJobLoadId = mooPawn.CurJob != null ? mooPawn.CurJob.loadID : -1;
+                MugirlMilkingAnimation.StartDrinking(Drinker, mooPawn);
+            };
+            drink.tickAction = delegate ()
+            {
+                MugirlMilkingAnimation.TickDrinking(Drinker, MooPawn);
             };
             drink.WithProgressBarToilDelay(MooInd);
             drink.FailOnCannotTouch(MooInd, PathEndMode.Touch);

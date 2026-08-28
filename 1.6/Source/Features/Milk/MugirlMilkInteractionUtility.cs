@@ -1,5 +1,6 @@
 using RimWorld;
 using Verse;
+using Verse.AI;
 
 namespace Mugirl
 {
@@ -33,6 +34,33 @@ namespace Mugirl
             return HasEnoughMilk(milkComp, ChildBreastfeedConsumption);
         }
 
+        internal static int ForceMilkInteractionWait(Pawn pawn, int ticks, Rot4 facing)
+        {
+            JobDef waitDef = Mugirl_DefOf.Job_MugirlMilkInteractionWait;
+            if (pawn == null || pawn.Destroyed || waitDef == null)
+            {
+                return -1;
+            }
+
+            Job waitJob = JobMaker.MakeJob(waitDef);
+            waitJob.expiryInterval = ticks;
+            waitJob.overrideFacing = facing;
+            pawn.jobs.StartJob(waitJob, JobCondition.InterruptForced, null, resumeCurJobAfterwards: true);
+            return pawn.CurJob != null ? pawn.CurJob.loadID : -1;
+        }
+
+        internal static void EndMilkInteractionWait(Pawn pawn, int expectedLoadId)
+        {
+            if (pawn != null
+                && !pawn.Destroyed
+                && pawn.CurJobDef == Mugirl_DefOf.Job_MugirlMilkInteractionWait
+                && pawn.CurJob != null
+                && pawn.CurJob.loadID == expectedLoadId)
+            {
+                pawn.jobs.EndCurrentJob(JobCondition.InterruptForced, true);
+            }
+        }
+
         internal static bool IsChildMilkSeeker(Pawn pawn)
         {
             return pawn?.RaceProps?.Humanlike == true
@@ -61,14 +89,17 @@ namespace Mugirl
             return HasEnoughForChildBreastfeed(milkSource.TryGetComp<CompMooMilkable>());
         }
 
-        internal static bool CanFeedDownedPawnNow(Pawn feeder, Pawn target)
+        internal static bool IsDirectFeedTarget(Pawn target)
         {
-            if (!CanActAsMilkConsumer(feeder) || target == null || target.Dead || !target.Downed)
-            {
-                return false;
-            }
+            return target != null
+                && !target.Dead
+                && target.RaceProps?.Humanlike == true
+                && (target.Downed || target.IsColonist);
+        }
 
-            if (target.RaceProps?.Humanlike != true)
+        internal static bool CanFeedPawnNow(Pawn feeder, Pawn target)
+        {
+            if (!CanActAsMilkConsumer(feeder) || feeder == target || !IsDirectFeedTarget(target))
             {
                 return false;
             }
@@ -95,9 +126,9 @@ namespace Mugirl
             return true;
         }
 
-        internal static bool ApplyDownedFeed(Pawn target, Pawn milkSource)
+        internal static bool ApplyFeed(Pawn target, Pawn milkSource)
         {
-            if (!CanFeedDownedPawnNow(milkSource, target) || !TryConsumeMilk(milkSource, DirectMilkConsumption))
+            if (!CanFeedPawnNow(milkSource, target) || !TryConsumeMilk(milkSource, DirectMilkConsumption))
             {
                 return false;
             }

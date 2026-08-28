@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-    <FacialAnimation.EmotionShapeDef>
+    <!-- The lovin animation uses the head overlay, not an emotion overlay. -->
+    <!-- <FacialAnimation.EmotionShapeDef>
         <defName>lovinblush</defName>
-    </FacialAnimation.EmotionShapeDef>
+    </FacialAnimation.EmotionShapeDef> -->
 
     <FacialAnimation.EmotionShapeDef>
         <defName>gloomy</defName>
@@ -46,10 +47,11 @@
         <altShapeDef>normal</altShapeDef>
     </FacialAnimation.HeadShapeDef>
 
-    <FacialAnimation.EyeballShapeDef>
+    <!-- The standard heart shape plus heart_highlight replaces Mugirl_heart. -->
+    <!-- <FacialAnimation.EyeballShapeDef>
         <defName>Mugirl_heart</defName>
         <altShapeDef>normal</altShapeDef>
-    </FacialAnimation.EyeballShapeDef>
+    </FacialAnimation.EyeballShapeDef> -->
 
     <FacialAnimation.EyeballShapeDef>
         <defName>heart</defName>

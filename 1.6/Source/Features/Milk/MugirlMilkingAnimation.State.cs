@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 using Verse;
 
 namespace Mugirl
@@ -22,6 +23,10 @@ namespace Mugirl
             public int nextPulseTick;
             public int pulseStartTick = -99999;
             public int pulseSeed;
+            public Vector3 rootWorldOffset;
+            public float rootWorldAngle;
+            public bool hasExplicitHead;
+            public float bodyHeight = 1.5f;
         }
 
         public static void NotifyPawnLifecycleEnded(Pawn pawn)
@@ -74,7 +79,7 @@ namespace Mugirl
             return TryGetState(pawn, out _);
         }
 
-        private static MilkingVisualState EnsureState(Pawn pawn, Pawn partner, MugirlMilkingVisualRole role, int now)
+        private static MilkingVisualState EnsureState(Pawn pawn, Pawn partner, MugirlMilkingVisualRole role, int now, InteractionPose? pose = null)
         {
             int key = pawn.thingIDNumber;
             if (!states.TryGetValue(key, out MilkingVisualState state) || state.pawn != pawn || state.role != role || state.partner != partner)
@@ -96,6 +101,16 @@ namespace Mugirl
                 state.partner = partner;
                 state.lastTick = now;
             }
+
+            if (pose.HasValue)
+            {
+                InteractionPose value = pose.Value;
+                state.rootWorldOffset = value.rootWorldOffset;
+                state.rootWorldAngle = value.rootWorldAngle;
+                state.hasExplicitHead = value.hasExplicitHead;
+                state.bodyHeight = value.bodyHeight;
+            }
+
             EnsureNativeAnimation(state);
             return state;
         }
@@ -195,6 +210,13 @@ namespace Mugirl
                     return Mugirl_DefOf.Mugirl_MilkingTargetAnimation;
                 case MugirlMilkingVisualRole.Helper:
                     return Mugirl_DefOf.Mugirl_MilkingHelperAnimation;
+                case MugirlMilkingVisualRole.FeedingSource:
+                case MugirlMilkingVisualRole.DrinkingSource:
+                    return Mugirl_DefOf.Mugirl_MilkInteractionSourceAnimation;
+                case MugirlMilkingVisualRole.FeedingRecipient:
+                    return Mugirl_DefOf.Mugirl_MilkInteractionRecipientAnimation;
+                case MugirlMilkingVisualRole.Drinker:
+                    return Mugirl_DefOf.Mugirl_MilkInteractionDrinkerAnimation;
                 default:
                     return null;
             }
@@ -205,7 +227,10 @@ namespace Mugirl
             return animation != null &&
                 (animation == Mugirl_DefOf.Mugirl_MilkingSelfAnimation ||
                  animation == Mugirl_DefOf.Mugirl_MilkingTargetAnimation ||
-                 animation == Mugirl_DefOf.Mugirl_MilkingHelperAnimation);
+                 animation == Mugirl_DefOf.Mugirl_MilkingHelperAnimation ||
+                 animation == Mugirl_DefOf.Mugirl_MilkInteractionSourceAnimation ||
+                 animation == Mugirl_DefOf.Mugirl_MilkInteractionRecipientAnimation ||
+                 animation == Mugirl_DefOf.Mugirl_MilkInteractionDrinkerAnimation);
         }
 
         private static bool StateNeedsPartner(MilkingVisualState state)

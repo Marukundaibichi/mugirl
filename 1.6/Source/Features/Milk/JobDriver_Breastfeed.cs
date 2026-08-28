@@ -28,12 +28,14 @@ namespace Mugirl
             this.FailOn(() => !MugirlMilkInteractionUtility.CanChildBreastfeedNow(Child, MooPawn));
             this.AddFinishAction(delegate (JobCondition condition)
             {
+                MugirlMilkingAnimation.EndFeeding(MooPawn, Child);
                 CleanupForcedWait();
             });
 
             yield return Toils_Goto.GotoThing(MooInd, PathEndMode.Touch);
 
-            Toil feed = Toils_General.Wait(MugirlMilkInteractionUtility.ChildBreastfeedInteractionTicks, MooInd);
+            Toil feed = Toils_General.Wait(MugirlMilkInteractionUtility.ChildBreastfeedInteractionTicks);
+            feed.handlingFacing = true;
             feed.initAction = delegate ()
             {
                 Pawn mooPawn = MooPawn;
@@ -44,8 +46,15 @@ namespace Mugirl
                 }
 
                 pawn.pather.StopDead();
-                PawnUtility.ForceWait(mooPawn, MugirlMilkInteractionUtility.ChildBreastfeedInteractionTicks + 60, pawn, true);
-                forcedWaitJobLoadId = mooPawn.CurJob != null ? mooPawn.CurJob.loadID : -1;
+                forcedWaitJobLoadId = MugirlMilkInteractionUtility.ForceMilkInteractionWait(
+                    mooPawn,
+                    MugirlMilkInteractionUtility.ChildBreastfeedInteractionTicks + 60,
+                    Rot4.South);
+                MugirlMilkingAnimation.StartFeeding(mooPawn, Child);
+            };
+            feed.tickAction = delegate ()
+            {
+                MugirlMilkingAnimation.TickFeeding(MooPawn, Child);
             };
             feed.WithProgressBarToilDelay(MooInd);
             feed.FailOnCannotTouch(MooInd, PathEndMode.Touch);
@@ -64,16 +73,7 @@ namespace Mugirl
 
         private void CleanupForcedWait()
         {
-            Pawn mooPawn = MooPawn;
-            if (mooPawn != null
-                && !mooPawn.Destroyed
-                && mooPawn.CurJobDef == JobDefOf.Wait_MaintainPosture
-                && mooPawn.CurJob != null
-                && mooPawn.CurJob.loadID == forcedWaitJobLoadId)
-            {
-                mooPawn.jobs.EndCurrentJob(JobCondition.InterruptForced, true);
-            }
-
+            MugirlMilkInteractionUtility.EndMilkInteractionWait(MooPawn, forcedWaitJobLoadId);
             forcedWaitJobLoadId = -1;
         }
     }

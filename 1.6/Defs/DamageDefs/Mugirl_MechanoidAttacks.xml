@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <ToolCapacityDef>
+        <defName>Mugirl_BulldogTailAssistedCut</defName>
+        <label>tail-assisted cut</label>
+    </ToolCapacityDef>
+
+    <ManeuverDef>
+        <defName>Mugirl_BulldogTailAssistedCutManeuver</defName>
+        <requiredCapacity>Mugirl_BulldogTailAssistedCut</requiredCapacity>
+        <verb>
+            <verbClass>Mugirl.Verb_MeleeAttack_SegmentedTailAssist</verbClass>
+            <meleeDamageDef>Cut</meleeDamageDef>
+        </verb>
+        <combatLogRulesHit>Maneuver_Slash_MeleeHit</combatLogRulesHit>
+        <combatLogRulesDeflect>Maneuver_Slash_MeleeDeflect</combatLogRulesDeflect>
+        <combatLogRulesMiss>Maneuver_Slash_MeleeMiss</combatLogRulesMiss>
+        <combatLogRulesDodge>Maneuver_Slash_MeleeDodge</combatLogRulesDodge>
+        <logEntryDef>MeleeAttack</logEntryDef>
+    </ManeuverDef>
+</Defs>

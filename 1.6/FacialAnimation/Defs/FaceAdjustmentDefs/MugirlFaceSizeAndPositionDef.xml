@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <FacialAnimation.FaceAdjustmentDef>
+        <defName>DefaultFaceSizeAndPositionDef</defName>
+        <RaceName>Mugirl</RaceName>
+        <Size>(1.63,1.63)</Size>
+        <RightEyeLabel>right eye</RightEyeLabel>
+        <LeftEyeLabel>left eye</LeftEyeLabel>
+    </FacialAnimation.FaceAdjustmentDef>
+</Defs>

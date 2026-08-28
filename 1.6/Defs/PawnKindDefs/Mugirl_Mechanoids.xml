@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <PawnKindDef Name="Mugirl_SnowBovineMechanoidKindBase" ParentName="BaseMechanoidKind" Abstract="True">
+        <weaponMoney>0~0</weaponMoney>
+        <defendPointRadius>0</defendPointRadius>
+        <weaponTags />
+    </PawnKindDef>
+
+    <PawnKindDef ParentName="Mugirl_SnowBovineMechanoidKindBase">
+        <defName>Mugirl_MechanoidBulldog</defName>
+        <label>Bulldog</label>
+        <race>Mugirl_MechanoidBulldog</race>
+        <combatPower>175</combatPower>
+        <lifeStages>
+            <li MayRequire="Ludeon.RimWorld.Biotech">
+                <bodyGraphicData>
+                    <texPath>Things/Pawn/Mechanoid/MugirlBulldog/Bulldog</texPath>
+                    <shaderType>Cutout</shaderType>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <drawSize>1.75</drawSize>
+                    <shadowData>
+                        <volume>(0.5,0.8,0.5)</volume>
+                    </shadowData>
+                </bodyGraphicData>
+            </li>
+            <li>
+                <bodyGraphicData>
+                    <texPath>Things/Pawn/Mechanoid/MugirlBulldog/Bulldog</texPath>
+                    <shaderType>Cutout</shaderType>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <drawSize>1.75</drawSize>
+                    <shadowData>
+                        <volume>(0.5,0.8,0.5)</volume>
+                    </shadowData>
+                </bodyGraphicData>
+            </li>
+        </lifeStages>
+        <techHediffsChance>1</techHediffsChance>
+        <techHediffsMoney>9999~9999</techHediffsMoney>
+    </PawnKindDef>
+</Defs>

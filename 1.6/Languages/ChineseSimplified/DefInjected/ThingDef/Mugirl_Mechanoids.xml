@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+    <!-- Bulldog -->
+    <Mugirl_MechanoidBulldog.label>斗牛犬</Mugirl_MechanoidBulldog.label>
+    <!-- The first mechanoid pattern in the snow-bovine series. -->
+    <Mugirl_MechanoidBulldog.description>雪牛娘系列的第一种机械体。斗牛犬以低矮的装甲机身迅速逼近目标；分节尾部在待机时也会自由摆动，并在前爪发动近战攻击时驱动尾端电锯协同撕切。目前尚无任何可用的制作方式。</Mugirl_MechanoidBulldog.description>
+    <!-- left armored foreclaw -->
+    <Mugirl_MechanoidBulldog.tools.0.label>左装甲前爪</Mugirl_MechanoidBulldog.tools.0.label>
+    <!-- armored foreclaw -->
+    <Mugirl_MechanoidBulldog.tools.0.labelNoLocation>装甲前爪</Mugirl_MechanoidBulldog.tools.0.labelNoLocation>
+    <!-- right armored foreclaw -->
+    <Mugirl_MechanoidBulldog.tools.1.label>右装甲前爪</Mugirl_MechanoidBulldog.tools.1.label>
+    <!-- armored foreclaw -->
+    <Mugirl_MechanoidBulldog.tools.1.labelNoLocation>装甲前爪</Mugirl_MechanoidBulldog.tools.1.labelNoLocation>
+</LanguageData>
