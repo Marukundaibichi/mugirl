@@ -27,6 +27,10 @@ namespace Mugirl
     {
         private Comp_MilkingDevice cachedMilkingDevice;
 
+        // 仅缓存列表位置，不保存 Hediff 引用或缺失结果。每次使用都检查当前位置，
+        // 移除、重排、读档或替换 hediffSet 后会自动重新定位，无需延后恢复哺乳状态。
+        private int cachedLactationHediffIndex = -1;
+
         protected override float GatherResourcesIntervalDays
         {
             get
@@ -124,8 +128,7 @@ namespace Mugirl
         {
             get
             {
-                bool temporaryMilk = MugirlEventUtility.CanUseTemporaryMilk(MooPawn);
-                if (!base.Active && !temporaryMilk)
+                if (!base.Active && !MugirlEventUtility.CanUseTemporaryMilk(MooPawn))
                 {
                     return false;
                 }
@@ -191,18 +194,49 @@ namespace Mugirl
 
         private void EnsureLactationHediff()
         {
-            // 当前行为是在 comp 激活后尽快添加哺乳期 hediff。
-            // 改为事件驱动或低频检查会改变添加时机。
             Pawn pawn = MooPawn;
-            if (!Active || pawn?.health?.hediffSet == null)
+            List<Hediff> hediffs = pawn?.health?.hediffSet?.hediffs;
+            HediffDef lactationDef = MugirlRequiredDefs.Hediffs.MugirlLactation;
+            if (hediffs == null || lactationDef == null)
+            {
+                cachedLactationHediffIndex = -1;
+                return;
+            }
+
+            // 常态只做 O(1) 位置校验；存在目标时不必重复基础 CompTick 的 Active 判断。
+            if (cachedLactationHediffIndex >= 0 && cachedLactationHediffIndex < hediffs.Count
+                && hediffs[cachedLactationHediffIndex].def == lactationDef)
             {
                 return;
             }
 
-            HediffDef lactationDef = MugirlRequiredDefs.Hediffs.MugirlLactation;
-            if (lactationDef != null && !pawn.health.hediffSet.HasHediff(lactationDef))
+            cachedLactationHediffIndex = -1;
+            if (!Active)
             {
-                pawn.health.AddHediff(lactationDef);
+                return;
+            }
+
+            for (int i = 0; i < hediffs.Count; i++)
+            {
+                if (hediffs[i].def == lactationDef)
+                {
+                    cachedLactationHediffIndex = i;
+                    return;
+                }
+            }
+
+            // 保留原来的逐 tick 添加时机；AddHediff 可能被兼容补丁阻止或重入修改列表，
+            // 不假定新条目一定追加成功，下一次 tick 再按实际列表定位。
+            pawn.health.AddHediff(lactationDef);
+        }
+
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                cachedLactationHediffIndex = -1;
+                cachedMilkingDevice = null;
             }
         }
 

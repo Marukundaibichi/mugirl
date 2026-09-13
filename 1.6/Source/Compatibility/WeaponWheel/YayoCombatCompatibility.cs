@@ -25,9 +25,10 @@ namespace Mugirl
         internal static void TryAutoReloadReserveWeapon(Comp_WeaponWheel wheel)
         {
             Pawn pawn = wheel?.Pawn;
-            if (pawn == null || wheel.IsBusy || reloadInvocationFailed || !AmmoEnabled
+            if (pawn == null || wheel.IsBusy || reloadInvocationFailed
                 || !pawn.Drafted || !Gen.IsHashIntervalTick(pawn, 60)
-                || (pawn.CurJobDef != JobDefOf.Wait_Combat && pawn.CurJobDef != JobDefOf.AttackStatic))
+                || (pawn.CurJobDef != JobDefOf.Wait_Combat && pawn.CurJobDef != JobDefOf.AttackStatic)
+                || !AmmoEnabled)
             {
                 return;
             }

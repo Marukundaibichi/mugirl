@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+    <!-- PatchGovernance:
+    Targets: 雪牛娘专属 FaceAnimationDef 的 targetJobs 与 headOffset。
+    Scope: FacialAnimation 条件目录；内部另用 FindMod 限定可选动画集成。
+    Duplicate guard: 原有 Job 列表按加载流程单次追加，没有逐项去重；本次仅补说明，不改变补丁行为。
+    Failure: 可选目标缺失时沿用 success Always；未启用相关 mod 时不执行 match。
+    -->
     <!-- Extend Mugirl's custom face animations to RJW jobs. -->
     <Operation Class="PatchOperationFindMod">
         <mods>

@@ -11,6 +11,7 @@ namespace Mugirl.Features.Appearance
     /// </summary>
     public sealed class MugirlBodyAccessoryAddon : AlienPartGenerator.BodyAddon
     {
+        // StaticCacheLifecycle: 进程级 HAR 字段元数据；不持有 Pawn、地图或存档对象。
         private static readonly FieldInfo NameField = typeof(AlienPartGenerator.BodyAddon).GetField(
             "name",
             BindingFlags.Instance | BindingFlags.NonPublic);

@@ -378,6 +378,12 @@ namespace Mugirl
             }
 
             nextGrazeTicks[index] = ticksGame + ForcedGrazeIntervalTicks;
+            // 仍然消费本次重试间隔；被牵引/正在进食等情况不进入植物搜索和可达性检查。
+            if (!CanStartGrazeJob(pawn))
+            {
+                return;
+            }
+
             Thing plant = FindGrazePlant(pawn);
             if (plant == null)
             {
@@ -412,33 +418,7 @@ namespace Mugirl
 
         private static void TryStartGrazeJob(Pawn pawn, Thing plant)
         {
-            if (pawn?.jobs == null || plant == null || !plant.Spawned || plant.Destroyed)
-            {
-                return;
-            }
-
-            if (RopingService.HasAnyRope(pawn) || pawn.Drafted || pawn.InMentalState)
-            {
-                return;
-            }
-
-            if (!ShouldGrazeForFood(pawn))
-            {
-                return;
-            }
-
-            if (pawn.Map?.physicalInteractionReservationManager?.IsReserved(pawn) == true)
-            {
-                return;
-            }
-
-            Job curJob = pawn.CurJob;
-            if (curJob?.def == JobDefOf.Ingest)
-            {
-                return;
-            }
-
-            if (curJob != null && !curJob.def.isIdle && curJob.def != JobDefOf.GotoWander)
+            if (plant == null || !plant.Spawned || plant.Destroyed || !CanStartGrazeJob(pawn))
             {
                 return;
             }
@@ -452,6 +432,42 @@ namespace Mugirl
             job.count = 1;
             job.overeat = true;
             pawn.jobs.StartJob(job, JobCondition.InterruptForced, tag: JobTag.Misc);
+        }
+
+        private static bool CanStartGrazeJob(Pawn pawn)
+        {
+            if (pawn?.jobs == null)
+            {
+                return false;
+            }
+
+            if (RopingService.HasAnyRope(pawn) || pawn.Drafted || pawn.InMentalState)
+            {
+                return false;
+            }
+
+            if (!ShouldGrazeForFood(pawn))
+            {
+                return false;
+            }
+
+            if (pawn.Map?.physicalInteractionReservationManager?.IsReserved(pawn) == true)
+            {
+                return false;
+            }
+
+            Job curJob = pawn.CurJob;
+            if (curJob?.def == JobDefOf.Ingest)
+            {
+                return false;
+            }
+
+            if (curJob != null && !curJob.def.isIdle && curJob.def != JobDefOf.GotoWander)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private static bool ShouldGrazeForFood(Pawn pawn)

@@ -104,6 +104,8 @@ namespace Mugirl
             private Pawn pawn;
             private HediffDef sourceHediffDef;
             private BrainwashPerformancePlayer player = new BrainwashPerformancePlayer();
+            // 表演所属 Def 的配置引用；运行期实例缓存，读档时从 sourceHediffDef 重建。
+            private CompProperties_PerformanceEffect performanceProps;
 
             public Pawn Pawn => pawn;
 
@@ -111,6 +113,7 @@ namespace Mugirl
             {
                 this.pawn = pawn;
                 this.sourceHediffDef = sourceHediffDef;
+                performanceProps = props;
                 if (player == null)
                 {
                     player = new BrainwashPerformancePlayer();
@@ -120,14 +123,13 @@ namespace Mugirl
 
             public bool Tick()
             {
-                CompProperties_PerformanceEffect props = GetPerformanceProps(sourceHediffDef);
                 if (player == null)
                 {
                     player = new BrainwashPerformancePlayer();
-                    player.Start(props);
+                    player.Start(performanceProps);
                 }
 
-                return player.Tick(pawn, props);
+                return player.Tick(pawn, performanceProps);
             }
 
             public void Stop()
@@ -141,9 +143,13 @@ namespace Mugirl
                 Scribe_Defs.Look(ref sourceHediffDef, "sourceHediffDef");
                 Scribe_Deep.Look(ref player, "player");
 
-                if (Scribe.mode == LoadSaveMode.PostLoadInit && player == null)
+                if (Scribe.mode == LoadSaveMode.PostLoadInit)
                 {
-                    player = new BrainwashPerformancePlayer();
+                    performanceProps = GetPerformanceProps(sourceHediffDef);
+                    if (player == null)
+                    {
+                        player = new BrainwashPerformancePlayer();
+                    }
                 }
             }
         }

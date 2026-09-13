@@ -18,6 +18,9 @@ namespace Mugirl
         private bool stunMessageSent = false;
         private Mote attachedMote;
         private bool active = false;
+        // Def 配置在单次表演期间稳定；此实例缓存不进存档，开始/读档/配置引用变化时重建。
+        private CompProperties_PerformanceEffect cachedTimingProps;
+        private int completionTick;
 
         public bool Active => active;
 
@@ -64,6 +67,8 @@ namespace Mugirl
                     nextFleckTicks.Add(fleckParams == null ? -1 : Mathf.Max(0, fleckParams.startTick));
                 }
             }
+
+            CacheTimingProps(props);
         }
 
         public bool Tick(Pawn pawn, CompProperties_PerformanceEffect props, bool sendMessages = true)
@@ -77,7 +82,11 @@ namespace Mugirl
                 return true;
             }
 
-            EnsureTimingLists(props);
+            if (cachedTimingProps != props)
+            {
+                EnsureTimingLists(props);
+                CacheTimingProps(props);
+            }
 
             age++;
 
@@ -87,7 +96,7 @@ namespace Mugirl
             TickStun(pawn, props, sendMessages);
             TickAttachedMote(pawn, props);
 
-            if (age >= GetCompletionTick(props))
+            if (age >= completionTick)
             {
                 Stop();
                 return true;
@@ -99,6 +108,8 @@ namespace Mugirl
         public void Stop()
         {
             active = false;
+            cachedTimingProps = null;
+            completionTick = 0;
             DestroyAttachedMote();
         }
 
@@ -116,6 +127,8 @@ namespace Mugirl
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                cachedTimingProps = null;
+                completionTick = 0;
                 if (nextTextShowTicks == null) nextTextShowTicks = new List<int>();
                 if (nextSoundTicks == null) nextSoundTicks = new List<int>();
                 if (nextFleckTicks == null) nextFleckTicks = new List<int>();
@@ -337,6 +350,12 @@ namespace Mugirl
             }
 
             return completionTick;
+        }
+
+        private void CacheTimingProps(CompProperties_PerformanceEffect props)
+        {
+            cachedTimingProps = props;
+            completionTick = GetCompletionTick(props);
         }
 
         private void DestroyAttachedMote()

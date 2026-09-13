@@ -54,7 +54,7 @@ namespace Mugirl
                 return true;
             }
 
-            if (MugirlBabyFeedingUtility.AvailableMilkNutrition(milkComp) <= 0f)
+            if (MugirlBabyFeedingUtility.AvailableMilkNutrition(milkComp, out float nutritionPerFullness) <= 0f)
             {
                 if (MugirlBabyFeedingUtility.HasVanillaLactation(feeder))
                 {
@@ -65,7 +65,7 @@ namespace Mugirl
                 return false;
             }
 
-            __result = MugirlBabyFeedingUtility.SuckleFromMugirl(baby, feeder, milkComp, delta);
+            __result = MugirlBabyFeedingUtility.SuckleFromMugirl(baby, feeder, milkComp, delta, nutritionPerFullness);
             return false;
         }
     }

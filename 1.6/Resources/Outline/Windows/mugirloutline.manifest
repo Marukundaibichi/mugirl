@@ -1,0 +1,20 @@
+ManifestFileVersion: 0
+CRC: 673626737
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 70403d52dbd112d8504c7843c6ad99e0
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 0df1dec30b5d061d422d3e6493d27647
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 70403d52dbd112d8504c7843c6ad99e0
+HashAppended: 0
+ClassTypes:
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/MugirlExtraOutline.shader
+Dependencies: []

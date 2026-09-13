@@ -294,4 +294,9 @@
     <Mugirl.Throw.OutOfRange>Out of throwing range (maximum {0} cells).</Mugirl.Throw.OutOfRange>
     <Mugirl.Throw.AimReadout>Damage {0} / blast radius {1} / max range {2}</Mugirl.Throw.AimReadout>
     <Mugirl.Throw.PlaceFailed>Could not safely place {0}: {1}</Mugirl.Throw.PlaceFailed>
+    <Mugirl.Settings.ExtraOutline.Label>Enable extra outlines</Mugirl.Settings.ExtraOutline.Label>
+    <Mugirl.Settings.ExtraOutline.Desc>Add black outer outlines to Mugirls. The body, hair and apparel share one silhouette; held and back-mounted weapons are outlined separately. Disabled by default. Distant pawns retain the game's texture caching.</Mugirl.Settings.ExtraOutline.Desc>
+    <Mugirl.Settings.ExtraOutline.Width>Outline thickness: {0}x</Mugirl.Settings.ExtraOutline.Width>
+    <Mugirl.Outline.Unavailable>Could not load the extra-outline shader. Normal pawn rendering is preserved. Details: {0}</Mugirl.Outline.Unavailable>
+    <Mugirl.Outline.WeaponPatchUnavailable>No unique weapon draw call was found. Original drawing is preserved; held-weapon outlines are skipped.</Mugirl.Outline.WeaponPatchUnavailable>
 </LanguageData>

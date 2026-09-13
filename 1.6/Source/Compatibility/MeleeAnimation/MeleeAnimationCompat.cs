@@ -14,28 +14,28 @@ namespace Mugirl
 
         internal static bool Active => ModLister.GetActiveModWithIdentifier(PackageId) != null;
 
-        internal static IDisposable SuspendIdleWeaponAnimation()
+        internal static IdleAnimationState SuspendIdleWeaponAnimation()
         {
-            object settings = ReflectionCache.SettingsField?.GetValue(null);
-            if (settings == null || ReflectionCache.AnimateAtIdleField == null)
+            if (ReflectionCache.SettingsAccessor == null || ReflectionCache.AnimateAtIdleAccessor == null)
             {
-                return NullDisposable.Instance;
+                return default;
             }
 
             try
             {
-                object originalValueObj = ReflectionCache.AnimateAtIdleField.GetValue(settings);
-                if (!(originalValueObj is bool originalValue) || !originalValue)
+                // 读取当前 Settings 实例，允许对方运行期替换设置；只缓存字段访问器。
+                object settings = ReflectionCache.SettingsAccessor();
+                if (settings == null || !ReflectionCache.AnimateAtIdleAccessor(settings))
                 {
-                    return NullDisposable.Instance;
+                    return default;
                 }
 
-                ReflectionCache.AnimateAtIdleField.SetValue(settings, false);
-                return new RestoreAnimateAtIdle(settings, originalValue);
+                ReflectionCache.AnimateAtIdleAccessor(settings) = false;
+                return new IdleAnimationState(settings);
             }
             catch
             {
-                return NullDisposable.Instance;
+                return default;
             }
         }
 
@@ -81,45 +81,66 @@ namespace Mugirl
                 ?.GetField("Settings", BindingFlags.Public | BindingFlags.Static);
             internal static readonly FieldInfo AnimateAtIdleField = AccessTools.TypeByName("AM.AMSettings.Settings")
                 ?.GetField("AnimateAtIdle", BindingFlags.Public | BindingFlags.Instance);
-        }
+            internal static readonly AccessTools.FieldRef<object> SettingsAccessor = CreateSettingsAccessor();
+            internal static readonly AccessTools.FieldRef<object, bool> AnimateAtIdleAccessor = CreateAnimateAtIdleAccessor();
 
-        private sealed class RestoreAnimateAtIdle : IDisposable
-        {
-            private readonly object settings;
-            private readonly bool originalValue;
-            private bool disposed;
-
-            internal RestoreAnimateAtIdle(object settings, bool originalValue)
+            private static AccessTools.FieldRef<object> CreateSettingsAccessor()
             {
-                this.settings = settings;
-                this.originalValue = originalValue;
+                try
+                {
+                    return SettingsField != null && !SettingsField.FieldType.IsValueType
+                        ? AccessTools.StaticFieldRefAccess<object>(SettingsField)
+                        : null;
+                }
+                catch
+                {
+                    return null;
+                }
             }
 
-            public void Dispose()
+            private static AccessTools.FieldRef<object, bool> CreateAnimateAtIdleAccessor()
             {
-                if (disposed)
+                try
+                {
+                    return AnimateAtIdleField?.FieldType == typeof(bool)
+                        ? AccessTools.FieldRefAccess<object, bool>(AnimateAtIdleField)
+                        : null;
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        internal struct IdleAnimationState
+        {
+            private object settings;
+
+            internal IdleAnimationState(object settings)
+            {
+                this.settings = settings;
+            }
+
+            internal void Restore()
+            {
+                object originalSettings = settings;
+                if (originalSettings == null)
                 {
                     return;
                 }
 
-                disposed = true;
+                // Postfix 与 Finalizer 共享 ref __state；先清标记，确保只恢复一次。
+                // 嵌套调用看到 false 时返回默认状态，由最外层恢复原来的 true。
+                settings = null;
                 try
                 {
-                    ReflectionCache.AnimateAtIdleField?.SetValue(settings, originalValue);
+                    ReflectionCache.AnimateAtIdleAccessor(originalSettings) = true;
                 }
                 catch
                 {
                     // 兼容层不能因为对方 mod 内部字段变化而打断渲染流程。
                 }
-            }
-        }
-
-        private sealed class NullDisposable : IDisposable
-        {
-            internal static readonly NullDisposable Instance = new NullDisposable();
-
-            public void Dispose()
-            {
             }
         }
     }
@@ -162,7 +183,7 @@ namespace Mugirl
         }
 
         [HarmonyPriority(Priority.First)]
-        public static void Prefix(Pawn ___pawn, ref IDisposable __state)
+        public static void Prefix(Pawn ___pawn, ref MeleeAnimationCompat.IdleAnimationState __state)
         {
             if (WeaponWheelHarmonyUtility.CompFor(___pawn)?.ShouldSuppressExternalMeleeAttackAnimation() == true)
             {
@@ -170,14 +191,14 @@ namespace Mugirl
             }
         }
 
-        public static void Postfix(IDisposable __state)
+        public static void Postfix(ref MeleeAnimationCompat.IdleAnimationState __state)
         {
-            __state?.Dispose();
+            __state.Restore();
         }
 
-        public static Exception Finalizer(Exception __exception, IDisposable __state)
+        public static Exception Finalizer(Exception __exception, ref MeleeAnimationCompat.IdleAnimationState __state)
         {
-            __state?.Dispose();
+            __state.Restore();
             return __exception;
         }
     }
@@ -190,7 +211,7 @@ namespace Mugirl
             return MeleeAnimationCompat.Active;
         }
 
-        public static void Prefix(Comp_MugirlMount comp, ref IDisposable __state)
+        public static void Prefix(Comp_MugirlMount comp, ref MeleeAnimationCompat.IdleAnimationState __state)
         {
             ThingWithComps weapon = comp?.MountedPawn?.equipment?.Primary;
             if (weapon?.def?.IsMeleeWeapon == true)
@@ -199,14 +220,14 @@ namespace Mugirl
             }
         }
 
-        public static void Postfix(IDisposable __state)
+        public static void Postfix(ref MeleeAnimationCompat.IdleAnimationState __state)
         {
-            __state?.Dispose();
+            __state.Restore();
         }
 
-        public static Exception Finalizer(Exception __exception, IDisposable __state)
+        public static Exception Finalizer(Exception __exception, ref MeleeAnimationCompat.IdleAnimationState __state)
         {
-            __state?.Dispose();
+            __state.Restore();
             return __exception;
         }
     }

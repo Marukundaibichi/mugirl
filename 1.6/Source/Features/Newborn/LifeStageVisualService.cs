@@ -41,11 +41,6 @@ namespace Mugirl
 
             if (pawn.story.bodyType == expectedBodyType)
             {
-                if (queueRenderRefresh)
-                {
-                    RefreshVisuals(pawn, queueRenderRefresh: true);
-                }
-
                 return false;
             }
 
@@ -61,12 +56,16 @@ namespace Mugirl
                 return;
             }
 
-            pawn.Drawer?.renderer?.SetAllGraphicsDirty();
-            PortraitsCache.SetDirty(pawn);
-            if (queueRenderRefresh)
+            if (queueRenderRefresh && MountedPawnUtility.IsMugirl(pawn))
             {
+                // NotifyPawnChanged 本身会立即刷新，避免同一调用重复标记渲染树。
                 PawnRenderingRefreshUtility.NotifyPawnChanged(pawn);
             }
+            else
+            {
+                pawn.Drawer?.renderer?.SetAllGraphicsDirty();
+            }
+            PortraitsCache.SetDirty(pawn);
         }
 
         public static int NormalizeLoadedPawns()

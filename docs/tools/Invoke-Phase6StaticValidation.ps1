@@ -1359,9 +1359,10 @@ try {
     $mapRopingIndexPath = '1.6\Source\Features\Roping\MapRopingIndex.cs'
     if (Test-Path -LiteralPath $mapRopingIndexPath) {
         $mapRopingIndexText = Get-Content -LiteralPath $mapRopingIndexPath -Encoding utf8 -Raw
-        $mapRopingIndexSafe = $mapRopingIndexText -match 'private\s+int\s+rebuildTickCounter' `
-            -and $mapRopingIndexText -match 'MugirlTickUtility\.Add\(ref\s+rebuildTickCounter,\s*1\)' `
-            -and $mapRopingIndexText -match 'MugirlTickUtility\.ConsumeReady\(ref\s+rebuildTickCounter,\s*250,\s*out\s+_\)' `
+        $mapRopingIndexSafe = $mapRopingIndexText -match 'private\s+int\s+reconcileTickCounter' `
+            -and $mapRopingIndexText -match '\+\+reconcileTickCounter\s*>=\s*ReconcileBatchTicks' `
+            -and $mapRopingIndexText -match 'ReconcileNextBatch\(\)' `
+            -and $mapRopingIndexText -match 'PruneInvalidIndexedRopes\(\)' `
             -and $mapRopingIndexText -notmatch 'Find\.TickManager'
         if (-not $mapRopingIndexSafe) {
             $ropingTargetSafetyIssues += "$mapRopingIndexPath :: roping index rebuild cadence must use a map-local counter instead of direct Find.TickManager modulo checks"
@@ -2762,8 +2763,8 @@ try {
             -and $ghoulRenderingText -match 'MugirlGameUtility\.IsPlaying\(\)' `
             -and $ghoulRenderingText -match 'MugirlTickUtility\.TryGetCurrentGameTick' `
             -and $ghoulRenderingText -notmatch 'Find\.TickManager' `
-            -and $ghoulRenderingText -match 'pendingRefreshUntilTick\.Clear\(\)' `
-            -and $ghoulRenderingText -match 'tmpPawnsToRemove\.Clear\(\)' `
+            -and $ghoulRenderingText -match 'pendingRefreshes\.Clear\(\)' `
+            -and $ghoulRenderingText -match 'tmpPawnsToProcess\.Clear\(\)' `
             -and $ghoulRenderingText -match 'pawn\.Destroyed'
         if (-not $ghoulRenderingSafe) {
             $harmonyBoundarySafetyIssues += "$ghoulRenderingPath :: ghoul rendering refresh must clear static pawn caches and use centralized tick access"
@@ -2907,8 +2908,10 @@ try {
     $meleeAnimationCompatPath = '1.6\Source\Compatibility\MeleeAnimation\MeleeAnimationCompat.cs'
     if (Test-Path -LiteralPath $meleeAnimationCompatPath) {
         $meleeAnimationCompatText = Get-Content -LiteralPath $meleeAnimationCompatPath -Encoding utf8 -Raw
-        if ($meleeAnimationCompatText -notmatch 'originalValueObj\s+is\s+bool') {
-            $harmonyBoundarySafetyIssues += "$meleeAnimationCompatPath :: melee animation compat reflection value must be type-checked"
+        if ($meleeAnimationCompatText -notmatch 'AnimateAtIdleField\?\.FieldType\s*==\s*typeof\(bool\)' -or
+            $meleeAnimationCompatText -notmatch 'FieldRefAccess<object,\s*bool>' -or
+            $meleeAnimationCompatText -notmatch 'ref\s+MeleeAnimationCompat\.IdleAnimationState\s+__state') {
+            $harmonyBoundarySafetyIssues += "$meleeAnimationCompatPath :: melee animation compat must validate the bool field before binding and restore shared state by reference"
         }
     }
     else {
@@ -3785,10 +3788,13 @@ try {
 
     Write-Step "Mugirl XML type references"
     $classNames = New-Object 'System.Collections.Generic.HashSet[string]'
+    $qualifiedClassNames = New-Object 'System.Collections.Generic.HashSet[string]'
     Get-ChildItem -LiteralPath '1.6\Source' -Recurse -Filter '*.cs' | ForEach-Object {
         $text = Get-Content -LiteralPath $_.FullName -Raw -Encoding utf8
+        $sourceNamespace = [regex]::Match($text, '(?m)^\s*namespace\s+([A-Za-z_][A-Za-z0-9_.]*)').Groups[1].Value
         foreach ($match in [regex]::Matches($text, '\b(?:class|struct|enum|interface)\s+([A-Za-z_][A-Za-z0-9_]*)')) {
             [void]$classNames.Add($match.Groups[1].Value)
+            [void]$qualifiedClassNames.Add("$sourceNamespace.$($match.Groups[1].Value)")
         }
     }
 
@@ -3809,8 +3815,8 @@ try {
                     $value = $node.Attributes[$field].Value.Trim()
                     if ($value.StartsWith('Mugirl.')) {
                         [void]$typeRefs.Add($value)
-                        $shortName = $value.Substring('Mugirl.'.Length).Split(',')[0].Trim()
-                        if (-not $classNames.Contains($shortName)) {
+                        $qualifiedName = $value.Split(',')[0].Trim()
+                        if (-not $qualifiedClassNames.Contains($qualifiedName)) {
                             $missingTypeRefs += "$(Get-RelativePath $file.FullName) :: @$field=$value"
                         }
                     }
@@ -3823,8 +3829,8 @@ try {
                 $value = $node.InnerText.Trim()
                 if ($value.StartsWith('Mugirl.')) {
                     [void]$typeRefs.Add($value)
-                    $shortName = $value.Substring('Mugirl.'.Length).Split(',')[0].Trim()
-                    if (-not $classNames.Contains($shortName)) {
+                    $qualifiedName = $value.Split(',')[0].Trim()
+                    if (-not $qualifiedClassNames.Contains($qualifiedName)) {
                         $missingTypeRefs += "$(Get-RelativePath $file.FullName) :: <$($node.LocalName)>$value"
                     }
                 }
@@ -4373,7 +4379,7 @@ try {
     }
 
     Write-Step "Texture paths"
-    $textureRoots = @('Textures', '1.6\Textures', 'Bio_1.6\Textures', 'Odyssey_1.6\Textures', 'Versions\1.6\Textures') | Where-Object { Test-Path -LiteralPath $_ }
+    $textureRoots = @('Textures', '1.6\Textures', '1.6\FacialAnimation\Textures', 'Bio_1.6\Textures', 'Odyssey_1.6\Textures', 'Versions\1.6\Textures') | Where-Object { Test-Path -LiteralPath $_ }
     $vanillaPaths = New-Object 'System.Collections.Generic.HashSet[string]'
     foreach ($root in @('..\..\Data\Core\Defs', '..\..\Data\Royalty\Defs', '..\..\Data\Ideology\Defs', '..\..\Data\Biotech\Defs', '..\..\Data\Anomaly\Defs', '..\..\Data\Odyssey\Defs') | Where-Object { Test-Path -LiteralPath $_ }) {
         Get-ChildItem -LiteralPath $root -Recurse -Filter '*.xml' | ForEach-Object {
@@ -4530,6 +4536,7 @@ try {
     Write-Host "  Def types indexed: $($defsByType.Keys.Count)"
     Write-Host "  Optional DLC Def refs: $optionalDlcRefCount"
     Write-Host "  clipPath nodes: $clipPathCount"
+    & (Join-Path $PSScriptRoot 'Invoke-TextureAssetValidation.ps1')
     Write-Host "  texture paths: $texturePathCount"
     Write-Host "  vanilla texture refs: $($vanillaTextureRefs.Count)"
 }

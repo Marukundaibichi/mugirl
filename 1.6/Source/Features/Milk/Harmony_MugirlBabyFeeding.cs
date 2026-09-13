@@ -66,14 +66,29 @@ namespace Mugirl
 
         public static float AvailableMilkNutrition(CompMooMilkable milkComp)
         {
+            return AvailableMilkNutrition(milkComp, out _);
+        }
+
+        internal static float AvailableMilkNutrition(CompMooMilkable milkComp, out float nutritionPerFullness)
+        {
+            nutritionPerFullness = 0f;
             if (milkComp == null)
             {
                 return 0f;
             }
-            return Mathf.Max(0f, milkComp.Fullness) * NutritionPerFullness(milkComp);
+
+            nutritionPerFullness = NutritionPerFullness(milkComp);
+            return Mathf.Max(0f, milkComp.Fullness) * nutritionPerFullness;
         }
 
         public static bool SuckleFromMugirl(Pawn baby, Pawn feeder, CompMooMilkable milkComp, int delta)
+        {
+            return SuckleFromMugirl(baby, feeder, milkComp, delta, null);
+        }
+
+        // 营养倍率只在本次喂食调用内传递，不跨 tick 缓存，保留其他 mod 动态修改属性的能力。
+        internal static bool SuckleFromMugirl(Pawn baby, Pawn feeder, CompMooMilkable milkComp, int delta,
+            float? nutritionPerFullness)
         {
             Need_Food food = baby?.needs?.food;
             if (food == null || feeder == null || milkComp == null || delta <= 0 || food.MaxLevel <= 0f)
@@ -83,7 +98,7 @@ namespace Mugirl
 
             float nutritionWanted = Mathf.Max(0f, food.NutritionWanted);
             float desiredNutrition = Mathf.Min(food.MaxLevel / 5000f * delta, nutritionWanted);
-            float consumedNutrition = ConsumeMilkNutrition(milkComp, desiredNutrition);
+            float consumedNutrition = ConsumeMilkNutrition(milkComp, desiredNutrition, nutritionPerFullness);
             if (consumedNutrition <= 0f)
             {
                 return false;
@@ -109,20 +124,22 @@ namespace Mugirl
             return consumedNutrition >= desiredNutrition;
         }
 
-        private static float ConsumeMilkNutrition(CompMooMilkable milkComp, float desiredNutrition)
+        private static float ConsumeMilkNutrition(CompMooMilkable milkComp, float desiredNutrition,
+            float? knownNutritionPerFullness)
         {
             if (milkComp == null || desiredNutrition <= 0f)
             {
                 return 0f;
             }
 
-            float nutritionPerFullness = NutritionPerFullness(milkComp);
+            float nutritionPerFullness = knownNutritionPerFullness ?? NutritionPerFullness(milkComp);
             if (nutritionPerFullness <= 0f)
             {
                 return 0f;
             }
 
-            float consumedNutrition = Mathf.Min(desiredNutrition, AvailableMilkNutrition(milkComp));
+            float availableNutrition = Mathf.Max(0f, milkComp.Fullness) * nutritionPerFullness;
+            float consumedNutrition = Mathf.Min(desiredNutrition, availableNutrition);
             if (consumedNutrition <= 0f)
             {
                 return 0f;
@@ -194,7 +211,7 @@ namespace Mugirl
                 return true;
             }
 
-            if (MugirlBabyFeedingUtility.AvailableMilkNutrition(milkComp) <= 0f)
+            if (MugirlBabyFeedingUtility.AvailableMilkNutrition(milkComp, out float nutritionPerFullness) <= 0f)
             {
                 if (MugirlBabyFeedingUtility.HasVanillaLactation(feeder))
                 {
@@ -205,7 +222,7 @@ namespace Mugirl
                 return false;
             }
 
-            __result = MugirlBabyFeedingUtility.SuckleFromMugirl(baby, feeder, milkComp, delta);
+            __result = MugirlBabyFeedingUtility.SuckleFromMugirl(baby, feeder, milkComp, delta, nutritionPerFullness);
             return false;
         }
     }

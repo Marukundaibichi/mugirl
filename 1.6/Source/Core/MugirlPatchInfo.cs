@@ -53,6 +53,8 @@ namespace Mugirl
         // StaticCacheLifecycle: 进程级不可变 patch 元数据；不持有游戏对象或 Def 实例。
         private static readonly List<MugirlPatchInfo> patchInfos = new List<MugirlPatchInfo>
         {
+            Info(moduleName: "Appearance", patchClassName: "Harmony_ExtraOutline_Body", targetTypeName: "Verse.PawnRenderTree", targetMethodName: "Draw", patchKind: "Prefix", maySkipOriginal: false, compatibilityRisk: MugirlPatchRiskLevel.Medium, failureBehavior: "Optional Mugirl body/apparel and back-weapon outlines are absent; original drawing is preserved."),
+            Info(moduleName: "Appearance", patchClassName: "Harmony_ExtraOutline_Weapon", targetTypeName: "Verse.PawnRenderUtility", targetMethodName: "DrawEquipmentAiming", patchKind: "Transpiler", maySkipOriginal: false, compatibilityRisk: MugirlPatchRiskLevel.Medium, failureBehavior: "An unmatched DrawMesh anchor leaves the original instructions intact and disables held-weapon outlines."),
             Info(moduleName: "Apparel", patchClassName: "Harmony_Apparel_DrawColor", targetTypeName: "RimWorld.Apparel", targetMethodName: "DrawColor", patchKind: "Prefix", maySkipOriginal: true, compatibilityRisk: MugirlPatchRiskLevel.High, failureBehavior: "Fixed-color apparel uses the base apparel draw color path."),
 
             Info(moduleName: "Genes", patchClassName: "Harmony_PawnUtility_TrySpawnHatchedOrBornPawn_MugirlXenotype", targetTypeName: "RimWorld.PawnUtility", targetMethodName: "TrySpawnHatchedOrBornPawn", patchKind: "Prefix/Postfix", maySkipOriginal: false, compatibilityRisk: MugirlPatchRiskLevel.High, failureBehavior: "Birth-time xenotype correction is skipped; the low-frequency game component remains as fallback."),

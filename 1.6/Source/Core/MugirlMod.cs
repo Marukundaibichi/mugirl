@@ -10,11 +10,13 @@ namespace Mugirl
 
         public MugirlMod(ModContentPack modContentPack) : base(modContentPack)
         {
+            ContentRoot = modContentPack.RootDir;
             MugirlBootstrap.Initialize();
             settings = GetSettings<MugirlSettings>();
         }
 
         internal static MugirlSettings Settings => settings;
+        internal static string ContentRoot { get; private set; }
 
         public override string SettingsCategory()
         {
@@ -42,6 +44,10 @@ namespace Mugirl
 
         public bool enableVanillaMilkGauge = false;
 
+        public bool enableExtraOutline = false;
+
+        public float extraOutlineWidth = MugirlExtraOutline.DefaultWidth;
+
         // 开发者日志：输出雪牛娘武器轮盘射击诊断和 Harmony 补丁归属报告，用于排查 mod 冲突。
         public bool enableWeaponWheelDevLog = false;
 
@@ -55,6 +61,11 @@ namespace Mugirl
             Scribe_Values.Look(ref enableRunawayMugirlFarmQuest, "enableRunawayMugirlFarmQuest", true);
             Scribe_Values.Look(ref enableFastMilking, "enableFastMilking", false);
             Scribe_Values.Look(ref enableVanillaMilkGauge, "enableVanillaMilkGauge", false);
+            Scribe_Values.Look(ref enableExtraOutline, "enableExtraOutline", false);
+            Scribe_Values.Look(ref extraOutlineWidth, "extraOutlineWidth", MugirlExtraOutline.DefaultWidth);
+            if (float.IsNaN(extraOutlineWidth) || float.IsInfinity(extraOutlineWidth))
+                extraOutlineWidth = MugirlExtraOutline.DefaultWidth;
+            extraOutlineWidth = Mathf.Clamp(extraOutlineWidth, MugirlExtraOutline.MinWidth, MugirlExtraOutline.MaxWidth);
             Scribe_Values.Look(ref enableWeaponWheelDevLog, "enableWeaponWheelDevLog", false);
         }
     }

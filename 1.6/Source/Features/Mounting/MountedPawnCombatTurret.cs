@@ -138,16 +138,34 @@ namespace Mugirl
 
         public static void TickAim(Comp_MugirlMount comp, int delta)
         {
-            if (!CanUseMountedRangedWeapon(comp, out _))
+            if (comp == null)
             {
-                CancelMountedCast(comp, GetPrimaryRangedVerb(comp));
-                ClearAim(comp);
                 return;
             }
 
             Pawn carrier = comp.MooPawn;
-            Pawn rider = comp.MountedPawn;
             Verb verb = GetPrimaryRangedVerb(comp);
+            // CompTickInterval 已先推进 VerbTick。完全空闲时跳过健康、能力与 caster 的重复检查；
+            // 仍有目标、施放、暖机或骑乘 busy stance 时必须走原来的取消和收尾路径。
+            if (!comp.turretAimTarget.IsValid && !WasMountedCastStarted(comp)
+                && comp.turretAimTicksLeft == 0 && comp.turretAimTicksTotal == 0
+                && (verb == null || (verb.state == VerbState.Idle
+                    && !verb.CurrentTarget.IsValid && !verb.CurrentDestination.IsValid
+                    && verb.castCompleteCallback == null))
+                && !(carrier?.stances?.curStance is Stance_Busy busyStance
+                    && (busyStance.verb == verb || (verb == null && IsMountedVerb(busyStance.verb)))))
+            {
+                return;
+            }
+
+            if (!CanUseMountedRangedWeapon(comp, out _))
+            {
+                CancelMountedCast(comp, verb);
+                ClearAim(comp);
+                return;
+            }
+
+            Pawn rider = comp.MountedPawn;
             if (carrier == null || verb == null)
             {
                 ClearAim(comp);

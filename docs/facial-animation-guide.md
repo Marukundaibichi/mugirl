@@ -1,6 +1,8 @@
 # Facial Animation 维护指南
 
-本文记录雪牛娘接入 `[NL] Facial Animation - WIP` 的实际运作逻辑和后续更新规则。结论基于当前本 mod 的 `1.6/FacialAnimation`、`Textures/FA`，以及对 FA `1.6/Assemblies/FacialAnimation.dll` 的反编译核对。
+本文记录雪牛娘接入 `[NL] Facial Animation - WIP` 的实际运作逻辑和后续更新规则。结论基于当前本 mod 的 `1.6/FacialAnimation`、`1.6/FacialAnimation/Textures/FA`，以及对 FA `1.6/Assemblies/FacialAnimation.dll` 的反编译核对。
+
+FA 贴图和 Def 使用同一个条件加载目录，未启用 FA 时不加载这些贴图；虚拟路径仍为 `FA/...`。2026-09-07 已将原 555×555 素材整图等比缩放至 512×512，保持透明留白、归一化位置与 drawSize。不要把 FA 素材重新放回根 `Textures/FA`。素材检查命令：`docs/tools/Invoke-TextureAssetValidation.ps1`。
 
 ## 接入入口
 
@@ -18,7 +20,7 @@
   - `FacialAnimationControllerComp`
 - `1.6/FacialAnimation/Defs/FaceAdjustmentDefs/MugirlFaceSizeAndPositionDef.xml` 将 Mugirl 的 FA 脸缩放到 `(1.63,1.63)`，用于补偿 FA 脸相对原始头部偏小的问题。
 - `1.6/FacialAnimation/Patches/MugirlFacialAnimation_compatibility.xml` 在 RJW 存在时把相关 Job 补进 Mugirl 的专属动画池，并在 `Rimworld-Animations` 存在时移除会和外部姿态冲突的 Lovin 头部偏移。
-- FA 还支持 `SkinControllerComp`，但本 mod 当前没有追加它，也没有维护 `Textures/FA/Skins`。不要因为看到 FA 支持 Skin 层就顺手补贴图；除非明确决定启用 Skin 层，否则保持不用。
+- FA 还支持 `SkinControllerComp`，但本 mod 当前没有追加它，也没有维护 `1.6/FacialAnimation/Textures/FA/Skins`。不要因为看到 FA 支持 Skin 层就顺手补贴图；除非明确决定启用 Skin 层，否则保持不用。
 
 ## FA 数据模型
 
@@ -82,13 +84,13 @@ Axolotl 的实际素材集中在 `Common/Textures/Things/Pawn/Axolotl`，顶层�
 - `Eyes/Normal1..4/Unisex` 维护 `normal`、`heart` 眼睛及对应 `*_highlight_*`；`Eyes/Common/Unisex` 维护 `normal_L_*`、`normal_R_*` 左右眼 mask。它的 `altMaskPath` 和实际 mask 目录是闭合的，可作为 Mugirl 未来重新启用左右眼 mask 时的参考。
 - `Lids/Normal1..4/Unisex` 使用 `*_bottom_*` 与 `*_cover_*` 拆分眼皮。它有些 shape 只提供 cover 或只提供 bottom，并通过回退补足另一层；Mugirl 的 `half` 也有意只维护 cover，让底层沿用 `normal_bottom`。
 - `Mouth/Normal1..3/Unisex` 每套都维护同一组 mouth shape，例如 `normal`、`open`、`smile`、`down`、`sleep1/2`、`cry1/2`、`lovin1/2/3`、`drowsiness` 等。这说明多嘴型 TypeDef 的前提是每套目录都要覆盖完整动画词表。
-- `Skins/*/Unisex` 是 SkinControllerComp 的装饰叠层，提供 `normal_south/east/north/west`，不少目录同时有 PNG 和 DDS。它和 `Heads_Blank` 不是同一层；如果 Mugirl 不启用 `SkinControllerComp`，不需要维护 `Textures/FA/Skins`。
+- `Skins/*/Unisex` 是 SkinControllerComp 的装饰叠层，提供 `normal_south/east/north/west`，不少目录同时有 PNG 和 DDS。它和 `Heads_Blank` 不是同一层；如果 Mugirl 不启用 `SkinControllerComp`，不需要维护 `1.6/FacialAnimation/Textures/FA/Skins`。
 - 参考包大量使用 `Unisex` 目录，是因为 TypeDef 明确开启了 `enableUnisexTexPath`。不要把这一点误读成 FA 默认会找 `Unisex`。
 
 对 Mugirl 的可执行结论：
 
 - 当前 comp 补丁比 Axolotl 的批量追加更安全，继续保持逐 comp duplicate guard。
-- 不启用 Skin 层时，不要新增空的 `SkinControllerComp`、`SkinTypeDef` 或 `Textures/FA/Skins`；启用 Skin 时必须同时补 TypeDef、shape/动画引用逻辑和完整贴图。
+- 不启用 Skin 层时，不要新增空的 `SkinControllerComp`、`SkinTypeDef` 或 `1.6/FacialAnimation/Textures/FA/Skins`；启用 Skin 时必须同时补 TypeDef、shape/动画引用逻辑和完整贴图。
 - 当前 Mugirl 眼睛 TypeDef 不使用 `altMaskPath`，按整张眼睛贴图和高光绘制；只有明确要做左右眼 mask 时，才新增 `FA/Eyes/Common/Female/*_L_*`、`*_R_*` 并把 `altMaskPath` 加回来。
 - 多眼型/多嘴型随机变体必须保持素材矩阵完整；当前 `Normal` 到 `Normal7` 每套都覆盖现有动画会引用的 shape。
 - Mugirl 已使用 `FaceAdjustmentDef` 把 FA 脸缩放到 `(1.63,1.63)`；常规新增表情不应再改这个全局比例，除非整套脸部素材重新对位。
@@ -104,8 +106,8 @@ FA 的基础贴图路径格式是：
 例如：
 
 ```text
-Textures/FA/Mouth/Normal/Female/smile_south.png
-Textures/FA/Mouth/Normal/Female/smile_east.png
+1.6/FacialAnimation/Textures/FA/Mouth/Normal/Female/smile_south.png
+1.6/FacialAnimation/Textures/FA/Mouth/Normal/Female/smile_east.png
 ```
 
 FA 判断某个 shape 是否存在时只检查 `{Shape}_south`。如果 `_south` 存在，实际方向交给 RimWorld 的 `Graphic_Multi` 处理；通常至少应提供 `south` 和 `east`，需要正面/背面特化时再补 `north`、`west`。
@@ -154,7 +156,7 @@ close_cover_south/east.png
 {altMaskPath}/{Gender}/{shape}_R_south.png
 ```
 
-当前 `Mugirl_EyeNormal` 到 `Mugirl_EyeNormal7` 都不写 `altMaskPath`，因此不需要 `Textures/FA/Eyes/Common`。若未来重新启用左右眼 mask，必须一次性补齐所有会被引用的眼睛 shape 的 `*_L_*` 与 `*_R_*` mask，并重点验证普通眼、异色眼、`heart` 眼和高光层。
+当前 `Mugirl_EyeNormal` 到 `Mugirl_EyeNormal7` 都不写 `altMaskPath`，因此不需要 `1.6/FacialAnimation/Textures/FA/Eyes/Common`。若未来重新启用左右眼 mask，必须一次性补齐所有会被引用的眼睛 shape 的 `*_L_*` 与 `*_R_*` mask，并重点验证普通眼、异色眼、`heart` 眼和高光层。
 
 爱心眼的语义是“爱心替代眼睛高光”，不是“整张瞳孔换成爱心”。`EyeballShapeDef heart` 通过 `altShapeDef=normal` 沿用普通眼基础层，因此不保留重复的 `heart_south/east`；真正的爱心图只放在 `heart_highlight_south/east`。动画需要显示爱心眼时引用 `eyeballShapeDef=heart`。
 
@@ -220,7 +222,7 @@ FA 会在渲染前移除原版 head draw request，用 FA 的空白 head 和各�
 
 ## 贴图引入矩阵
 
-下表按当前 `Textures/FA` 实物贴图复检。`已接入` 表示已有 ShapeDef 且至少一个动画会引用；`待接线` 表示贴图或 ShapeDef 已存在，但缺少动画入口；`基础 Def` 表示由 FA 原 mod 提供同名 ShapeDef，本 mod 不需要重复声明。
+下表按当前 `1.6/FacialAnimation/Textures/FA` 实物贴图复检。`已接入` 表示已有 ShapeDef 且至少一个动画会引用；`待接线` 表示贴图或 ShapeDef 已存在，但缺少动画入口；`基础 Def` 表示由 FA 原 mod 提供同名 ShapeDef，本 mod 不需要重复声明。
 
 | 类别 | shape | 当前状态 | 引入方式 |
 | --- | --- | --- | --- |
@@ -269,7 +271,7 @@ FA 会在渲染前移除原版 head draw request，用 FA 的空白 head 和各�
 
 1. 先决定新增的是贴图 shape、动画 Def，还是二者都要。
 2. 新 shape 必须确认对应 `*ShapeDef` 是否已经存在。FA 基础 Def 已提供 `normal`、`open`、`close`、`blush` 等通用 shape，不要重复定义同名 Def。
-3. 贴图放在 `Textures/FA/{Category}/{Normal变体}/Female/`，文件名和 shape 精确一致；多 TypeDef 变体要覆盖每个会被动画引用的 shape。
+3. 贴图放在 `1.6/FacialAnimation/Textures/FA/{Category}/{Normal变体}/Female/`，文件名和 shape 精确一致；多 TypeDef 变体要覆盖每个会被动画引用的 shape。
 4. 新动画放在 `1.6/FacialAnimation/Defs/AnimationDefs/Mugirl/` 下，写 `raceName=Mugirl`。
 5. 常驻情绪、疼痛、思想动画留在 `Constant`；Job 触发动画放在 `ForJobs`。
 6. 新常驻动画要检查 priority，不要意外盖掉疼痛、倒地、穿脱衣等高优先级状态。

@@ -246,7 +246,8 @@ namespace Mugirl
 
         public static Pawn FirstMugirlFollowing(Pawn roper)
         {
-            List<Pawn> ropees = RopeesFor(roper);
+            // 建筑系绳默认选中原版牵引列表的首位；地图索引的重建/分批发现顺序不代表牵引顺序。
+            List<Pawn> ropees = roper?.roping?.Ropees;
             if (ropees == null)
             {
                 return null;
@@ -255,7 +256,8 @@ namespace Mugirl
             for (int i = 0; i < ropees.Count; i++)
             {
                 Pawn ropee = ropees[i];
-                if (IsMugirlRopee(ropee) && IsFollowingRoper(ropee) && ropee.CurJob.targetA.Thing == roper)
+                if (ropee?.roping?.RopedByPawn == roper &&
+                    IsMugirlRopee(ropee) && IsFollowingRoper(ropee) && ropee.CurJob.targetA.Thing == roper)
                 {
                     return ropee;
                 }
@@ -326,7 +328,11 @@ namespace Mugirl
             List<Pawn> ropees = roper.roping.Ropees;
             for (int i = 0; i < ropees.Count; i++)
             {
-                index.RegisterPawnRope(roper, ropees[i]);
+                Pawn ropee = ropees[i];
+                if (ropee?.roping?.RopedByPawn == roper)
+                {
+                    index.RegisterPawnRope(roper, ropee);
+                }
             }
         }
 

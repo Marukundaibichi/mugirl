@@ -11,6 +11,7 @@
 - `weapon-wheel-design.md`：雪牛娘武器轮盘、火力满载、换枪动画与自驱装弹系统的设计和验收标准。
 - `localization-and-comments.md`：翻译键、玩家可见文本和中文注释风格。
 - `validation-runbook.md`：静态验证、游戏内验证和 fresh `Player.log` 记录模板。
+- `performance-optimization-2026-09-07.md`：性能优化的实施结果、原图备份和行为验证；优化前分析保留在 `performance-review-2026-09-07.md`。
 - `release-checklist.md`：打包前的发布检查和 Workshop 包生成方式。
 - `architecture/`：长期架构决策记录，解释单 DLL、Harmony 注册、兼容层范围和根命名空间保留规则。
 - `tools/`：维护脚本，包括静态验证、日志扫描、验证配置生成和发布包生成。
