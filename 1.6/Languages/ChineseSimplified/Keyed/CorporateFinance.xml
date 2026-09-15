@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Mugirl.CorporateFinance.Title>贷款与抵押</Mugirl.CorporateFinance.Title>
+  <Mugirl.CorporateFinance.Terms>每满一个游戏日按剩余本金计息：正常日息 {0}%，逾期日息 {1}%，期限 {2} 日。先还利息再还本金，不计复利。逾期新增利息上限为初始本金；达到上限仍会继续追偿。</Mugirl.CorporateFinance.Terms>
+  <Mugirl.CorporateFinance.Summary>剩余本金：{0}\n已产生利息：{1}\n当前结清：{2}\n距到期：{3} 日\n按当前本金估计到期应还：{4}</Mugirl.CorporateFinance.Summary>
+  <Mugirl.CorporateFinance.Collection>账户违约：与巨企强制敌对，普通业务暂停。距离下次追偿尝试约 {0} 日。还清后停止新追偿，但不抹除其他外交后果，现有追偿人员仍遵循战斗或撤退流程。</Mugirl.CorporateFinance.Collection>
+  <Mugirl.CorporateFinance.Repayment>本次还款</Mugirl.CorporateFinance.Repayment>
+  <Mugirl.CorporateFinance.PayAmount>支付 {0}</Mugirl.CorporateFinance.PayAmount>
+  <Mugirl.CorporateFinance.PayAll>全部结清</Mugirl.CorporateFinance.PayAll>
+  <Mugirl.CorporateFinance.HeldValue>签约时抵押估值：{0}。以下原物由巨企保管，全部结清后归还：</Mugirl.CorporateFinance.HeldValue>
+  <Mugirl.CorporateFinance.Liquidate>以抵押物抵债</Mugirl.CorporateFinance.Liquidate>
+  <Mugirl.CorporateFinance.LiquidateConfirm>确认处置以下抵押物？\n\n{0}\n\n清算金额：{1}\n清算后剩余欠款：{2}\n\n清算款先抵利息再抵本金，超出部分可领取。物品将永久转让，无法再取回；有剩余欠款仍会追偿。</Mugirl.CorporateFinance.LiquidateConfirm>
+  <Mugirl.CorporateFinance.ReadyToClaim>以下抵押物已可归还。另有待领取白银：{0}。领取完成后才能签订新借款。</Mugirl.CorporateFinance.ReadyToClaim>
+  <Mugirl.CorporateFinance.Claim>领取可归还资产</Mugirl.CorporateFinance.Claim>
+  <Mugirl.CorporateFinance.CollateralRules>输入要抵押的数量；0 表示不提交。本金最多为抵押实际估值的 {0}%，范围 {1}–{2} 白银。仅接受稳定的一般物资或装备；不接受白银、人员、易腐品、任务物及装有其他物品的容器。</Mugirl.CorporateFinance.CollateralRules>
+  <Mugirl.CorporateFinance.EmptyCollateral>当前贸易范围没有可抵押的物品。</Mugirl.CorporateFinance.EmptyCollateral>
+  <Mugirl.CorporateFinance.Unit>件</Mugirl.CorporateFinance.Unit>
+  <Mugirl.CorporateFinance.SelectedValue>已选抵押估值：{0} · 当前最大本金：{1}</Mugirl.CorporateFinance.SelectedValue>
+  <Mugirl.CorporateFinance.BorrowAmount>申请本金</Mugirl.CorporateFinance.BorrowAmount>
+  <Mugirl.CorporateFinance.PreviewDue>若不提前还款，{1} 日到期预计应还 {0}。</Mugirl.CorporateFinance.PreviewDue>
+  <Mugirl.CorporateFinance.Sign>审核合同并签约</Mugirl.CorporateFinance.Sign>
+  <Mugirl.CorporateFinance.SignConfirm>到手本金：{0}\n期限：{3} 日\n按期应还：{2}\n\n立即交付以下实物抵押：\n{1}\n\n还款先冲利息再冲本金，结清才退还原物。逾期自动锁定敌对并派出追偿队；抵押物不会自动清算，需要您在违约页另行确认处置。确认签约？</Mugirl.CorporateFinance.SignConfirm>
+  <Mugirl.CorporateFinance.Existing>请先结清已有借款并领取剩余托管资产。</Mugirl.CorporateFinance.Existing>
+  <Mugirl.CorporateFinance.InvalidAmount>请输入有效本金并选择抵押物。</Mugirl.CorporateFinance.InvalidAmount>
+  <Mugirl.CorporateFinance.CollateralChanged>抵押物、数量或可交易范围已经变化，请重新选择。</Mugirl.CorporateFinance.CollateralChanged>
+  <Mugirl.CorporateFinance.InsufficientCollateral>抵押估值不足以支持申请金额。</Mugirl.CorporateFinance.InsufficientCollateral>
+  <Mugirl.CorporateFinance.TransferFailed>交付未完成。已移交物品保留在托管中，请使用“领取可归还资产”取回；没有为失败的放款建立债务。</Mugirl.CorporateFinance.TransferFailed>
+  <Mugirl.CorporateFinance.NoDebt>没有可偿还的欠款，或还款金额无效。</Mugirl.CorporateFinance.NoDebt>
+  <Mugirl.CorporateFinance.NoSilver>当前交易范围内的可用白银不足。</Mugirl.CorporateFinance.NoSilver>
+  <Mugirl.CorporateFinance.CannotLiquidate>只有违约且尚未处置的抵押物可以抵债。</Mugirl.CorporateFinance.CannotLiquidate>
+  <Mugirl.CorporateFinance.InvalidContext>当前通讯或交货地点失效，请从有效终端重新办理。</Mugirl.CorporateFinance.InvalidContext>
+  <Mugirl.CorporateFinance.ReminderTitle>巨企贷款即将到期</Mugirl.CorporateFinance.ReminderTitle>
+  <Mugirl.CorporateFinance.Reminder>您的巨企借款将在约 {0} 日后到期。请在终端核对本息并办理还款；逾期将启动武力追偿。</Mugirl.CorporateFinance.Reminder>
+  <Mugirl.CorporateFinance.DefaultTitle>巨企债务进入追偿</Mugirl.CorporateFinance.DefaultTitle>
+  <Mugirl.CorporateFinance.DefaultLetter>您的贷款已到期，尚欠 {0} 白银。巨企已启动敌对追偿，准备派出追偿队。抵押物继续保管；您可在终端现金偿还，或主动清算抵押物抵债。未结清前无法通过普通外交解除敌对。</Mugirl.CorporateFinance.DefaultLetter>
+  <Mugirl.CorporateFinance.SettledTitle>巨企贷款已结清</Mugirl.CorporateFinance.SettledTitle>
+  <Mugirl.CorporateFinance.SettledLetter>本息已结清，巨企停止安排新追偿。尚未处置的抵押物可在终端领取。其他原因造成的外交后果继续保留。</Mugirl.CorporateFinance.SettledLetter>
+  <Mugirl.CorporateFinance.LoanSigned>贷款签约</Mugirl.CorporateFinance.LoanSigned>
+  <Mugirl.CorporateFinance.Payment>贷款还款</Mugirl.CorporateFinance.Payment>
+  <Mugirl.CorporateFinance.Liquidated>抵押物清算</Mugirl.CorporateFinance.Liquidated>
+  <Mugirl.CorporateFinance.Success>贷款业务处理完成。</Mugirl.CorporateFinance.Success>
+</LanguageData>

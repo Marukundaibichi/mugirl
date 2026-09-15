@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Mugirl.Corporate.InvalidContext>The connection has been lost. Reconnect through an operational comms console or a corporate settlement.</Mugirl.Corporate.InvalidContext>
+  <Mugirl.Corporate.Locked>Commercial contact has not been established. Complete the corporate representative's visit first.</Mugirl.Corporate.Locked>
+  <Mugirl.Corporate.NoFaction>No corporate representative is available. Existing contracts remain on your account.</Mugirl.Corporate.NoFaction>
+  <Mugirl.Corporate.Hostile>The corporation has suspended new business. Debt payments and existing deliveries remain available.</Mugirl.Corporate.Hostile>
+  <Mugirl.Corporate.DeliveryError>Corporate delivery could not finish: {0}</Mugirl.Corporate.DeliveryError>
+  <Mugirl.Corporate.GenerationError>Could not prepare {0}: {1}</Mugirl.Corporate.GenerationError>
+  <Mugirl.Corporate.GoodsChanged>The goods or quotation have changed. Select them again.</Mugirl.Corporate.GoodsChanged>
+  <Mugirl.Corporate.DeliveryUnavailable>No delivery destination is available. Goods in signed contracts remain in storage.</Mugirl.Corporate.DeliveryUnavailable>
+  <Mugirl.Corporate.InsufficientSilver>Requires {0} silver. Check the trade beacon area or this caravan's inventory.</Mugirl.Corporate.InsufficientSilver>
+  <Mugirl.Corporate.CannotMake>These goods cannot be prepared at present. Your silver has not been charged.</Mugirl.Corporate.CannotMake>
+  <Mugirl.Corporate.InvalidOrder>The item, material, quality or quantity on this order is invalid.</Mugirl.Corporate.InvalidOrder>
+  <Mugirl.Corporate.OrderLimit>At most {0} unclaimed orders may be open at once.</Mugirl.Corporate.OrderLimit>
+  <Mugirl.Corporate.CannotCancel>This order can no longer be cancelled, or delivery has already begun.</Mugirl.Corporate.CannotCancel>
+  <Mugirl.Corporate.RecordSale>Product purchase</Mugirl.Corporate.RecordSale>
+  <Mugirl.Corporate.RecordPurchase>Goods ordered</Mugirl.Corporate.RecordPurchase>
+  <Mugirl.Corporate.RecordRefund>Order refund</Mugirl.Corporate.RecordRefund>
+  <Mugirl.Corporate.OrderArrivedTitle>Corporate order ready</Mugirl.Corporate.OrderArrivedTitle>
+  <Mugirl.Corporate.OrderArrivedText>Your order of {0} ×{1} is ready to collect through the corporate network.
+
+The goods will remain in storage until you provide a delivery destination. Your wait is over. The company's obligations are almost fulfilled.</Mugirl.Corporate.OrderArrivedText>
+  <Mugirl.Corporate.Maximum>Max</Mugirl.Corporate.Maximum>
+  <Mugirl.Corporate.Success>The corporation has confirmed the transaction.</Mugirl.Corporate.Success>
+  <Mugirl.Corporate.WeeklyStock>Weekly supplies</Mugirl.Corporate.WeeklyStock>
+  <Mugirl.Corporate.ProductPurchase>Sell produce</Mugirl.Corporate.ProductPurchase>
+  <Mugirl.Corporate.ProductHint>The corporation buys Mugirl milk, wool and products with verifiable ingredients. Quality determines the price. Origin determines the treatment.</Mugirl.Corporate.ProductHint>
+  <Mugirl.Corporate.StockHint>Limited supplies are available for purchase only. Inventory rotates every seven days; sold-out goods must await the next shipment.</Mugirl.Corporate.StockHint>
+  <Mugirl.Corporate.SearchGoods>Search item names…</Mugirl.Corporate.SearchGoods>
+  <Mugirl.Corporate.StockRow>Unit price {0}
+Available {1}</Mugirl.Corporate.StockRow>
+  <Mugirl.Corporate.EmptyGoods>No matching goods. Change the search or check for eligible products within trade beacon range.</Mugirl.Corporate.EmptyGoods>
+  <Mugirl.Corporate.SelectGoods>Select goods to review the price and quantity.</Mugirl.Corporate.SelectGoods>
+  <Mugirl.Corporate.ConfirmSale>Confirm sale</Mugirl.Corporate.ConfirmSale>
+  <Mugirl.Corporate.ConfirmPurchase>Confirm purchase</Mugirl.Corporate.ConfirmPurchase>
+  <Mugirl.Corporate.CaravanWeight>This quantity weighs about {0} kg. Check your caravan's carrying capacity.</Mugirl.Corporate.CaravanWeight>
+  <Mugirl.Corporate.BeaconHint>Uses goods and silver within trade beacon range on this map.</Mugirl.Corporate.BeaconHint>
+  <Mugirl.Corporate.OrderCatalog>Order catalogue</Mugirl.Corporate.OrderCatalog>
+  <Mugirl.Corporate.MyOrders>My orders</Mugirl.Corporate.MyOrders>
+  <Mugirl.Corporate.OrderHint>Rare goods have a price too. Choose material, quality and quantity. Quest items and goods requiring special preparation are not included.</Mugirl.Corporate.OrderHint>
+  <Mugirl.Corporate.NoStuff>Fixed material</Mugirl.Corporate.NoStuff>
+  <Mugirl.Corporate.OrderTerms>Preparation: {0}–{1} days. Cancellation within one day refunds {2}%; later cancellations are unavailable. Collect the finished order at a terminal.</Mugirl.Corporate.OrderTerms>
+  <Mugirl.Corporate.PlaceOrder>Pay and order</Mugirl.Corporate.PlaceOrder>
+  <Mugirl.Corporate.OrderReceipt>Paid {0} · {1} days until ready</Mugirl.Corporate.OrderReceipt>
+  <Mugirl.Corporate.Claim>Collect</Mugirl.Corporate.Claim>
+  <Mugirl.Corporate.CancelOrder>Cancel order</Mugirl.Corporate.CancelOrder>
+  <Mugirl.Corporate.NoOrders>There are no goods orders on this account.</Mugirl.Corporate.NoOrders>
+  <Mugirl.Corporate.OrderState.Preparing>Preparing</Mugirl.Corporate.OrderState.Preparing>
+  <Mugirl.Corporate.OrderState.Ready>Ready to collect</Mugirl.Corporate.OrderState.Ready>
+  <Mugirl.Corporate.OrderState.Completed>Delivered</Mugirl.Corporate.OrderState.Completed>
+  <Mugirl.Corporate.OrderState.Cancelled>Cancelled</Mugirl.Corporate.OrderState.Cancelled>
+  <Mugirl.Corporate.OrderState.RefundDue>Goods unavailable; refund due</Mugirl.Corporate.OrderState.RefundDue>
+  <Mugirl.Corporate.OrderState.Refunded>Refunded</Mugirl.Corporate.OrderState.Refunded>
+</LanguageData>

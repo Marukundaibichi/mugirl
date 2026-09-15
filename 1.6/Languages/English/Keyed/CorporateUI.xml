@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Mugirl.CorporateUI.Title>MEGACORP / COMMERCIAL NETWORK</Mugirl.CorporateUI.Title>
+  <Mugirl.CorporateUI.Silver>silver</Mugirl.CorporateUI.Silver>
+  <Mugirl.CorporateUI.HeaderStatus>Available: {0}    ·    Catalog rotates in {1} days</Mugirl.CorporateUI.HeaderStatus>
+  <Mugirl.CorporateUI.Context>Service location: {0}</Mugirl.CorporateUI.Context>
+  <Mugirl.CorporateUI.Motto>CLIENT RELATIONS\nEvery asset has a purpose.</Mugirl.CorporateUI.Motto>
+  <Mugirl.CorporateUI.Page.Overview>Overview</Mugirl.CorporateUI.Page.Overview>
+  <Mugirl.CorporateUI.Page.Trade>Supplies</Mugirl.CorporateUI.Page.Trade>
+  <Mugirl.CorporateUI.Page.Orders>Special orders</Mugirl.CorporateUI.Page.Orders>
+  <Mugirl.CorporateUI.Page.People>Mugirl exchange</Mugirl.CorporateUI.Page.People>
+  <Mugirl.CorporateUI.Page.Finance>Loans and collateral</Mugirl.CorporateUI.Page.Finance>
+  <Mugirl.CorporateUI.Page.Missions>Contracts</Mugirl.CorporateUI.Page.Missions>
+  <Mugirl.CorporateUI.Page.Introduction>Corporate story</Mugirl.CorporateUI.Page.Introduction>
+  <Mugirl.CorporateUI.Page.History>Account records</Mugirl.CorporateUI.Page.History>
+  <Mugirl.CorporateUI.ConnectionLost>Connection lost. The operator, console or trading location is no longer available. Reconnect through a valid terminal.</Mugirl.CorporateUI.ConnectionLost>
+  <Mugirl.CorporateUI.Locked>Commercial contact has not been established. Speak to the visiting client relations representative. See the quest list for progress.</Mugirl.CorporateUI.Locked>
+  <Mugirl.CorporateUI.Unavailable>This communications console cannot be operated now.</Mugirl.CorporateUI.Unavailable>
+  <Mugirl.CorporateUI.NoPower>The console has no power or electricity is disrupted.</Mugirl.CorporateUI.NoPower>
+  <Mugirl.CorporateUI.CannotTalk>The operator cannot speak.</Mugirl.CorporateUI.CannotTalk>
+  <Mugirl.CorporateUI.NoPath>Cannot reach or reserve the interaction target.</Mugirl.CorporateUI.NoPath>
+  <Mugirl.CorporateUI.CallOption>Contact the corporate network</Mugirl.CorporateUI.CallOption>
+  <Mugirl.CorporateUI.SettlementOption>Corporate terminal</Mugirl.CorporateUI.SettlementOption>
+  <Mugirl.CorporateUI.SettlementDescription>Access the settlement terminal using this caravan's silver and goods. Account access and debt repayment remain available during hostilities.</Mugirl.CorporateUI.SettlementDescription>
+  <Mugirl.CorporateUI.Welcome>Welcome, client.</Mugirl.CorporateUI.Welcome>
+  <Mugirl.CorporateUI.WelcomeText>Client relations has opened your colony's account. All terminals share catalogs, stock and contracts. Payments and deliveries use the service location shown below.</Mugirl.CorporateUI.WelcomeText>
+  <Mugirl.CorporateUI.Hostile>Services restricted: your factions remain hostile. Review records, settle existing obligations and repay debt here. New business is suspended.</Mugirl.CorporateUI.Hostile>
+  <Mugirl.CorporateUI.AccountReady>Account active. Prices, delivery locations and deadlines are specified before each transaction is confirmed.</Mugirl.CorporateUI.AccountReady>
+  <Mugirl.CorporateUI.Summary.Trade>Premium purchasing for Mugirl products. Weekly supplies have limited stock.</Mugirl.CorporateUI.Summary.Trade>
+  <Mugirl.CorporateUI.Summary.Orders>Order specific goods from the catalog. Track preparation and collection on the order page.</Mugirl.CorporateUI.Summary.Orders>
+  <Mugirl.CorporateUI.Summary.People>Inspect the weekly Mugirl exhibition and eligible sellers. All transfers are slave trades.</Mugirl.CorporateUI.Summary.People>
+  <Mugirl.CorporateUI.Summary.Finance>Borrow against physical collateral. Review interest, deadlines, pledged assets and repayment terms.</Mugirl.CorporateUI.Summary.Finance>
+  <Mugirl.CorporateUI.Summary.Missions>Weekly assignments and separate story contracts. Accepted contracts continue through catalog rotations.</Mugirl.CorporateUI.Summary.Missions>
+  <Mugirl.CorporateUI.HistoryHint>Recent account activity. Manage outstanding orders, personnel, loans and assignments on their respective pages.</Mugirl.CorporateUI.HistoryHint>
+  <Mugirl.CorporateUI.NoHistory>No account activity yet.</Mugirl.CorporateUI.NoHistory>
+  <Mugirl.CorporateUI.RecordTitle>Day {0} · {1} · {2}</Mugirl.CorporateUI.RecordTitle>
+  <Mugirl.CorporateIntro.Title>Establishing commercial contact</Mugirl.CorporateIntro.Title>
+  <Mugirl.CorporateIntro.QuestDescription>The megacorporation's client relations department wishes to introduce its commercial network. A representative will visit to discuss the earlier courier contact, the Mugirls, and a goodwill gift.\n\nWhen the representative arrives, select a colonist who can speak and right-click the visitor to talk. No communications console is needed to complete this chapter. Accepting commercial contact unlocks both console and settlement terminals.</Mugirl.CorporateIntro.QuestDescription>
+  <Mugirl.CorporateIntro.QuestProgress>The client relations representative waits at a safe player colony. The contact request remains active if talks are postponed or the representative departs or suffers an accident. Watch for another visit.</Mugirl.CorporateIntro.QuestProgress>
+  <Mugirl.CorporateIntro.ArrivalTitle>Corporate representative arrives</Mugirl.CorporateIntro.ArrivalTitle>
+  <Mugirl.CorporateIntro.ArrivalText>{0} has arrived, identifying themselves as a megacorporate client relations representative. They say the transport department's previous difficulties are no longer important: the company wants to discuss the future.\n\nSelect a colonist who can speak, right-click the representative and choose "Talk to corporate representative". Your Mugirls will not be reclaimed.</Mugirl.CorporateIntro.ArrivalText>
+  <Mugirl.CorporateIntro.Talk>Talk to corporate representative</Mugirl.CorporateIntro.Talk>
+  <Mugirl.CorporateIntro.Opening>Good day. I represent corporate client relations. I am here to establish formal commercial contact with your colony. Transport has completed its part. It is our turn now.</Mugirl.CorporateIntro.Opening>
+  <Mugirl.CorporateIntro.OpeningOldSave>Good day. We are completing the client register for this region. Whatever became of the earlier transport handover does not affect today's proposal.</Mugirl.CorporateIntro.OpeningOldSave>
+  <Mugirl.CorporateIntro.OpeningLong>This formal visit is rather overdue. Your transport contact file circulated between departments until client relations noticed that your colony was already worth a long-term partnership. Please excuse our administrative efficiency. Fortunately, commercial opportunities tend to outlive employee reports.</Mugirl.CorporateIntro.OpeningLong>
+  <Mugirl.CorporateIntro.OpeningLate>We have only recently completed this region's client records. Introducing our services this late to such an established colony is admittedly discourteous. Please accept these supplies as well.</Mugirl.CorporateIntro.OpeningLate>
+  <Mugirl.CorporateIntro.Reaction.Killed>Transport has forwarded the courier's file to personnel. That is an attrition matter and has no bearing on today's discussion. The company is more interested in how much business we can do together.</Mugirl.CorporateIntro.Reaction.Killed>
+  <Mugirl.CorporateIntro.Reaction.DeadUnknown>We understand the courier is no longer with us. Transport will file the circumstances; I brought no investigation forms. Client relations is more interested in the next contract.</Mugirl.CorporateIntro.Reaction.DeadUnknown>
+  <Mugirl.CorporateIntro.Reaction.Released>The courier has filed the report. Thank you for preserving at least some dignity in the handover. Naturally, the way that assignment was described does not influence the company's assessment of this partnership.</Mugirl.CorporateIntro.Reaction.Released>
+  <Mugirl.CorporateIntro.Reaction.Conflict>I understand there were disagreements during the handover. Transport will handle our colleague's circumstances. Today I represent client relations.</Mugirl.CorporateIntro.Reaction.Conflict>
+  <Mugirl.CorporateIntro.Reaction.Unresolved>Transport appears to be handling its handover still. I can introduce our long-term services in the meantime. Our partnership need not wait for their paperwork.</Mugirl.CorporateIntro.Reaction.Unresolved>
+  <Mugirl.CorporateIntro.Reaction.Unknown>Our records of earlier contact are incomplete. Nevertheless, the outcome of that handover does not prevent us from establishing contact afresh.</Mugirl.CorporateIntro.Reaction.Unknown>
+  <Mugirl.CorporateIntro.KeepMugirl>As for the Mugirls, you may keep them at your colony. The company will not demand their return. Rather than dispute former ownership, let us consider the value they may bring both parties in future.</Mugirl.CorporateIntro.KeepMugirl>
+  <Mugirl.CorporateIntro.NoReclaim>The company will make no restitution claim over the previous handover. Wherever those Mugirls are now does not affect this account opening. Client relations does not collect former assets.</Mugirl.CorporateIntro.NoReclaim>
+  <Mugirl.CorporateIntro.Proposal>Client relations has prepared a modest goodwill gift. We hope to maintain friendly relations with your colony and offer access to our purchasing, supply, personnel and financial services. Contact us through a communications console or visit one of our settlements.</Mugirl.CorporateIntro.Proposal>
+  <Mugirl.CorporateIntro.Question.Courier>Why overlook what happened to the courier?</Mugirl.CorporateIntro.Question.Courier>
+  <Mugirl.CorporateIntro.Question.Mugirl>Why let us keep the Mugirls?</Mugirl.CorporateIntro.Question.Mugirl>
+  <Mugirl.CorporateIntro.Question.Services>What services does the corporation offer?</Mugirl.CorporateIntro.Question.Services>
+  <Mugirl.CorporateIntro.Answer.Courier>The courier's job was to complete a handover, not decide whom the company should trade with. Personnel attrition has a budget allocation. Forgoing a long-term client to pursue an old claim would require an explanation to the board.</Mugirl.CorporateIntro.Answer.Courier>
+  <Mugirl.CorporateIntro.Answer.Mugirl>They will produce at your colony too. We can purchase the output, supply equipment and provide financing when required. Owning assets is one source of revenue. Owning the channels through which those assets move is another.</Mugirl.CorporateIntro.Answer.Mugirl>
+  <Mugirl.CorporateIntro.Answer.Services>We offer ongoing purchasing of Mugirl products, limited weekly supplies, special orders, personnel transfers and secured loans. Our contract center handles manufacturing, elimination, investment and distribution assignments. Terms are displayed before signing. Client trust matters; the signature matters more.</Mugirl.CorporateIntro.Answer.Services>
+  <Mugirl.CorporateIntro.Back>Back to the partnership.</Mugirl.CorporateIntro.Back>
+  <Mugirl.CorporateIntro.Accept>Accept the gift and establish commercial contact.</Mugirl.CorporateIntro.Accept>
+  <Mugirl.CorporateIntro.Postpone>Leave the information. I will think it over.</Mugirl.CorporateIntro.Postpone>
+  <Mugirl.CorporateIntro.CompletedStatus>Commercial contact established</Mugirl.CorporateIntro.CompletedStatus>
+  <Mugirl.CorporateIntro.CompletedLetter>Corporate client relations has registered your colony as a commercial client. Delivery of the goodwill gift has been arranged. If no delivery location is available, supplies are held until delivery becomes possible.\n\nOrder a colonist to use a communications console and select "Contact the corporate network", or stop a caravan at a corporate settlement and open its "Corporate terminal". Further business will proceed under contract.\n\nThe first story chapter is complete. Further chapters: coming soon.</Mugirl.CorporateIntro.CompletedLetter>
+  <Mugirl.CorporateIntro.HostilityRemains>Separate diplomatic disputes remain. Opening this account does not erase hostilities resulting from attacks against the corporation. New business remains restricted until relations are repaired; account access and repayment remain available.</Mugirl.CorporateIntro.HostilityRemains>
+  <Mugirl.CorporateIntro.ChapterCompleted>The client relations visit is complete. The courier's circumstances were filed as a transport matter. The corporation waived claims to the Mugirls and established commercial contact with a goodwill gift.\n\nConsole and corporate settlement terminals share one account. Each contract has its own payments, deliveries, deadlines and consequences.</Mugirl.CorporateIntro.ChapterCompleted>
+  <Mugirl.CorporateIntro.ComingSoon>Further story chapters: coming soon.</Mugirl.CorporateIntro.ComingSoon>
+  <Mugirl.CorporateIntro.GiftError>Could not prepare the corporate goodwill gift; account opening has not completed: {0}</Mugirl.CorporateIntro.GiftError>
+  <Mugirl.CorporateIntro.GiftStorageError>The goodwill gift could not be stored for delivery.</Mugirl.CorporateIntro.GiftStorageError>
+</LanguageData>

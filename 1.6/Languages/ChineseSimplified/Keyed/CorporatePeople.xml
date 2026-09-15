@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Mugirl.CorporatePeople.Title>雪牛娘交易</Mugirl.CorporatePeople.Title>
+  <Mugirl.CorporatePeople.Intro>本周展出的雪牛娘可作为奴隶加入殖民地。请查看她们的能力、健康和装备；巨企同时收购成年、可合法转交的囚犯或奴隶。</Mugirl.CorporatePeople.Intro>
+  <Mugirl.CorporatePeople.BuyTab>本周展览</Mugirl.CorporatePeople.BuyTab>
+  <Mugirl.CorporatePeople.SellTab>巨企收购</Mugirl.CorporatePeople.SellTab>
+  <Mugirl.CorporatePeople.ClaimSilver>领取应收款 {0}</Mugirl.CorporatePeople.ClaimSilver>
+  <Mugirl.CorporatePeople.RequiresIdeology>购买需要启用 Ideology DLC，才能以殖民地奴隶身份加入。未启用时此功能禁用；不会改为自由殖民者。</Mugirl.CorporatePeople.RequiresIdeology>
+  <Mugirl.CorporatePeople.NoOffers>本周没有可购买的人员。已售展品将在下次周轮换时补充。</Mugirl.CorporatePeople.NoOffers>
+  <Mugirl.CorporatePeople.ClaimPerson>领取已付款人员</Mugirl.CorporatePeople.ClaimPerson>
+  <Mugirl.CorporatePeople.BuyPrice>购买为奴隶 · {0}</Mugirl.CorporatePeople.BuyPrice>
+  <Mugirl.CorporatePeople.BuyConfirm>支付 {1}，将 {0} 作为奴隶购入并交付至 {2}？\n\n能力、健康和装备以本页信息为准。交易完成后需要安排奴隶生活与抑制度管理。远行队接收时请考虑新增人员与装备的负载。</Mugirl.CorporatePeople.BuyConfirm>
+  <Mugirl.CorporatePeople.SaleWarning>出售会被计为奴隶贸易，保留原版亲友与意识形态后果；殖民者额外获得“把雪牛娘送去了黑心企业”记忆（-8 心情，8 日，再次出售刷新持续时间）。</Mugirl.CorporatePeople.SaleWarning>
+  <Mugirl.CorporatePeople.NoCandidates>当前地点没有符合条件的成年雪牛娘囚犯或奴隶。自由殖民者、访客、任务临时成员与未安全关押的人员不在收购范围。</Mugirl.CorporatePeople.NoCandidates>
+  <Mugirl.CorporatePeople.SellPrice>出售给巨企 · {0}</Mugirl.CorporatePeople.SellPrice>
+  <Mugirl.CorporatePeople.MapGear>本地图交易：身穿服装随人交付；武器、背包与武器轮盘储备遵循原版交易卸下，留在原地。</Mugirl.CorporatePeople.MapGear>
+  <Mugirl.CorporatePeople.CaravanGear>远行队交易：人员的服装、装备、背包与武器轮盘储备随人交付。需要保留的物品请先转给其他队员。</Mugirl.CorporatePeople.CaravanGear>
+  <Mugirl.CorporatePeople.SellConfirm>将 {0} 永久出售给巨企，获得 {1}？\n\n这是奴隶贸易，会触发原版亲友与意识形态后果。殖民者额外获得 -8 心情、持续 8 日的“把雪牛娘送去了黑心企业”记忆。\n\n{2}\n\n确认后人员不再属于殖民地。</Mugirl.CorporatePeople.SellConfirm>
+  <Mugirl.CorporatePeople.AgeHealth>{0} 岁 · 整体健康 {1}</Mugirl.CorporatePeople.AgeHealth>
+  <Mugirl.CorporatePeople.Skills>主要技能：{0}（* 热情，** 强烈热情）</Mugirl.CorporatePeople.Skills>
+  <Mugirl.CorporatePeople.Traits>特性：{0}</Mugirl.CorporatePeople.Traits>
+  <Mugirl.CorporatePeople.Health>健康状况：{0}</Mugirl.CorporatePeople.Health>
+  <Mugirl.CorporatePeople.Apparel>服装：{0}</Mugirl.CorporatePeople.Apparel>
+  <Mugirl.CorporatePeople.Relations>殖民地关系：{0}</Mugirl.CorporatePeople.Relations>
+  <Mugirl.CorporatePeople.NoSilver>当前贸易范围内可用白银不足。</Mugirl.CorporatePeople.NoSilver>
+  <Mugirl.CorporatePeople.NoNegotiator>当前地点没有可执行人员交易的清醒自由殖民者。</Mugirl.CorporatePeople.NoNegotiator>
+  <Mugirl.CorporatePeople.OfferChanged>人员、资格或报价已变化，请重新选择。</Mugirl.CorporatePeople.OfferChanged>
+  <Mugirl.CorporatePeople.InvalidContext>交易地点或通讯权限已失效，请重新连接。</Mugirl.CorporatePeople.InvalidContext>
+  <Mugirl.CorporatePeople.IdeoRefusal>交涉者的意识形态不允许完成此奴隶交易。</Mugirl.CorporatePeople.IdeoRefusal>
+  <Mugirl.CorporatePeople.DismountFirst>请先让人员解除骑乘关系，再进行交易。</Mugirl.CorporatePeople.DismountFirst>
+  <Mugirl.CorporatePeople.DeliveryPending>交付暂未完成。已付款人员或应收款已保留，可在有效终端免费领取。</Mugirl.CorporatePeople.DeliveryPending>
+  <Mugirl.CorporatePeople.GenerationError>巨企人员展览生成失败：{0}</Mugirl.CorporatePeople.GenerationError>
+  <Mugirl.CorporatePeople.TraderName>巨企人力资源部</Mugirl.CorporatePeople.TraderName>
+  <Mugirl.CorporatePeople.Purchased>购入雪牛娘</Mugirl.CorporatePeople.Purchased>
+  <Mugirl.CorporatePeople.Sold>出售雪牛娘</Mugirl.CorporatePeople.Sold>
+  <Mugirl.CorporatePeople.Success>人员交易处理完成。</Mugirl.CorporatePeople.Success>
+</LanguageData>

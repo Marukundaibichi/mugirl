@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Mugirl.Corporate.InvalidContext>当前连接已中断。请从有效的通讯台或巨企据点重新接入。</Mugirl.Corporate.InvalidContext>
+  <Mugirl.Corporate.Locked>尚未建立商业联系。请先完成巨企员工的来访。</Mugirl.Corporate.Locked>
+  <Mugirl.Corporate.NoFaction>巨企目前没有可用的业务代表。已有合同仍保留在账户中。</Mugirl.Corporate.NoFaction>
+  <Mugirl.Corporate.Hostile>巨企已暂停新的业务。您仍可还款和领取已履约的货物。</Mugirl.Corporate.Hostile>
+  <Mugirl.Corporate.DeliveryError>巨企交付未正常完成：{0}</Mugirl.Corporate.DeliveryError>
+  <Mugirl.Corporate.GenerationError>无法备妥{0}：{1}</Mugirl.Corporate.GenerationError>
+  <Mugirl.Corporate.GoodsChanged>这批货物或报价已经改变。请重新选择。</Mugirl.Corporate.GoodsChanged>
+  <Mugirl.Corporate.DeliveryUnavailable>目前没有有效的收货地点。已签合同中的货物会继续保管。</Mugirl.Corporate.DeliveryUnavailable>
+  <Mugirl.Corporate.InsufficientSilver>需要 {0} 白银，请检查贸易信标范围或当前远行队的库存。</Mugirl.Corporate.InsufficientSilver>
+  <Mugirl.Corporate.CannotMake>这件货物暂时无法备妥。您的白银尚未扣除。</Mugirl.Corporate.CannotMake>
+  <Mugirl.Corporate.InvalidOrder>订单的货物、材料、品质或数量无效。</Mugirl.Corporate.InvalidOrder>
+  <Mugirl.Corporate.OrderLimit>最多同时保留 {0} 笔未领取订单。</Mugirl.Corporate.OrderLimit>
+  <Mugirl.Corporate.CannotCancel>这份订单已超过撤销期限，或已经开始交付。</Mugirl.Corporate.CannotCancel>
+  <Mugirl.Corporate.RecordSale>产品收购</Mugirl.Corporate.RecordSale>
+  <Mugirl.Corporate.RecordPurchase>货物采购</Mugirl.Corporate.RecordPurchase>
+  <Mugirl.Corporate.RecordRefund>订单退款</Mugirl.Corporate.RecordRefund>
+  <Mugirl.Corporate.OrderArrivedTitle>巨企订单已备妥</Mugirl.Corporate.OrderArrivedTitle>
+  <Mugirl.Corporate.OrderArrivedText>您订购的{0} ×{1}已备妥，可通过巨企商业网络领取。
+
+货物将继续保管，直到您指定有效的收货地点。客户的等待已经结束，公司的责任也即将完成。</Mugirl.Corporate.OrderArrivedText>
+  <Mugirl.Corporate.Maximum>最大</Mugirl.Corporate.Maximum>
+  <Mugirl.Corporate.Success>巨企已确认本次业务。</Mugirl.Corporate.Success>
+  <Mugirl.Corporate.WeeklyStock>本周供应</Mugirl.Corporate.WeeklyStock>
+  <Mugirl.Corporate.ProductPurchase>产品收购</Mugirl.Corporate.ProductPurchase>
+  <Mugirl.Corporate.ProductHint>巨企长期收购雪牛娘奶、毛及可确认来源的制品。质量影响报价，来源影响待遇。</Mugirl.Corporate.ProductHint>
+  <Mugirl.Corporate.StockHint>本期货物仅供购买，数量有限。库存每七日更新，售罄后请等待下一批补给。</Mugirl.Corporate.StockHint>
+  <Mugirl.Corporate.SearchGoods>搜索物品名称…</Mugirl.Corporate.SearchGoods>
+  <Mugirl.Corporate.StockRow>单价 {0}
+余量 {1}</Mugirl.Corporate.StockRow>
+  <Mugirl.Corporate.EmptyGoods>没有符合条件的货物。可调整搜索，或检查贸易信标内是否有合格产品。</Mugirl.Corporate.EmptyGoods>
+  <Mugirl.Corporate.SelectGoods>选择一项货物以查看报价和办理数量。</Mugirl.Corporate.SelectGoods>
+  <Mugirl.Corporate.ConfirmSale>确认出售</Mugirl.Corporate.ConfirmSale>
+  <Mugirl.Corporate.ConfirmPurchase>确认购买</Mugirl.Corporate.ConfirmPurchase>
+  <Mugirl.Corporate.CaravanWeight>本次数量约 {0} kg。请留意远行队载重。</Mugirl.Corporate.CaravanWeight>
+  <Mugirl.Corporate.BeaconHint>使用当前地图贸易信标内的货物和白银。</Mugirl.Corporate.BeaconHint>
+  <Mugirl.Corporate.OrderCatalog>订购目录</Mugirl.Corporate.OrderCatalog>
+  <Mugirl.Corporate.MyOrders>我的订单</Mugirl.Corporate.MyOrders>
+  <Mugirl.Corporate.OrderHint>稀有物资也有价格。选择材料、品质与数量；特殊任务物品和需要独立生成流程的货物不在本目录内。</Mugirl.Corporate.OrderHint>
+  <Mugirl.Corporate.NoStuff>固定材料</Mugirl.Corporate.NoStuff>
+  <Mugirl.Corporate.OrderTerms>备货 {0}–{1} 日。首日撤单返还 {2}%；之后不可撤单。货物备妥后在终端领取。</Mugirl.Corporate.OrderTerms>
+  <Mugirl.Corporate.PlaceOrder>支付并订购</Mugirl.Corporate.PlaceOrder>
+  <Mugirl.Corporate.OrderReceipt>已付 {0} · 剩余备货 {1} 日</Mugirl.Corporate.OrderReceipt>
+  <Mugirl.Corporate.Claim>领取</Mugirl.Corporate.Claim>
+  <Mugirl.Corporate.CancelOrder>撤销订单</Mugirl.Corporate.CancelOrder>
+  <Mugirl.Corporate.NoOrders>账户中尚无货物订单。</Mugirl.Corporate.NoOrders>
+  <Mugirl.Corporate.OrderState.Preparing>备货中</Mugirl.Corporate.OrderState.Preparing>
+  <Mugirl.Corporate.OrderState.Ready>待领取</Mugirl.Corporate.OrderState.Ready>
+  <Mugirl.Corporate.OrderState.Completed>已交付</Mugirl.Corporate.OrderState.Completed>
+  <Mugirl.Corporate.OrderState.Cancelled>已撤销</Mugirl.Corporate.OrderState.Cancelled>
+  <Mugirl.Corporate.OrderState.RefundDue>货物异常，待退款</Mugirl.Corporate.OrderState.RefundDue>
+  <Mugirl.Corporate.OrderState.Refunded>已退款</Mugirl.Corporate.OrderState.Refunded>
+</LanguageData>

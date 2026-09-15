@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Mugirl.CorporateUI.Title>巨企 / 商业网络</Mugirl.CorporateUI.Title>
+  <Mugirl.CorporateUI.Silver>白银</Mugirl.CorporateUI.Silver>
+  <Mugirl.CorporateUI.HeaderStatus>可用资产：{0}    ·    本期目录剩余 {1} 日</Mugirl.CorporateUI.HeaderStatus>
+  <Mugirl.CorporateUI.Context>服务地点：{0}</Mugirl.CorporateUI.Context>
+  <Mugirl.CorporateUI.Motto>客户关系部\n让每一项资产创造价值。</Mugirl.CorporateUI.Motto>
+  <Mugirl.CorporateUI.Page.Overview>业务总览</Mugirl.CorporateUI.Page.Overview>
+  <Mugirl.CorporateUI.Page.Trade>物资交易</Mugirl.CorporateUI.Page.Trade>
+  <Mugirl.CorporateUI.Page.Orders>物资订单</Mugirl.CorporateUI.Page.Orders>
+  <Mugirl.CorporateUI.Page.People>雪牛娘交易</Mugirl.CorporateUI.Page.People>
+  <Mugirl.CorporateUI.Page.Finance>贷款与抵押</Mugirl.CorporateUI.Page.Finance>
+  <Mugirl.CorporateUI.Page.Missions>委托中心</Mugirl.CorporateUI.Page.Missions>
+  <Mugirl.CorporateUI.Page.Introduction>主线档案</Mugirl.CorporateUI.Page.Introduction>
+  <Mugirl.CorporateUI.Page.History>合同记录</Mugirl.CorporateUI.Page.History>
+  <Mugirl.CorporateUI.ConnectionLost>连接中断。操作人员、通讯台或交易地点已不可用，请通过有效入口重新接入。</Mugirl.CorporateUI.ConnectionLost>
+  <Mugirl.CorporateUI.Locked>尚未建立商业联系。请完成客户关系员工的来访交谈；进度可从任务列表查看。</Mugirl.CorporateUI.Locked>
+  <Mugirl.CorporateUI.Unavailable>当前无法操作此通讯台。</Mugirl.CorporateUI.Unavailable>
+  <Mugirl.CorporateUI.NoPower>通讯台无电或受到电力干扰。</Mugirl.CorporateUI.NoPower>
+  <Mugirl.CorporateUI.CannotTalk>操作人员无法说话。</Mugirl.CorporateUI.CannotTalk>
+  <Mugirl.CorporateUI.NoPath>无法抵达或预留交互目标。</Mugirl.CorporateUI.NoPath>
+  <Mugirl.CorporateUI.CallOption>联系巨企商业网络</Mugirl.CorporateUI.CallOption>
+  <Mugirl.CorporateUI.SettlementOption>巨企商业终端</Mugirl.CorporateUI.SettlementOption>
+  <Mugirl.CorporateUI.SettlementDescription>接入据点商业终端，以当前远行队的白银和货物办理业务。敌对期间仍可查看账户并偿还债务。</Mugirl.CorporateUI.SettlementDescription>
+  <Mugirl.CorporateUI.Welcome>欢迎，合作客户。</Mugirl.CorporateUI.Welcome>
+  <Mugirl.CorporateUI.WelcomeText>客户关系部门已为您的殖民地建立商业账户。各地终端共享目录、库存与合同；付款及交货使用下方注明的服务地点。</Mugirl.CorporateUI.WelcomeText>
+  <Mugirl.CorporateUI.Hostile>账户服务受限：双方仍处于敌对状态。您可以查阅记录、处理已签合同并偿还欠款；新业务暂不开放。</Mugirl.CorporateUI.Hostile>
+  <Mugirl.CorporateUI.AccountReady>账户已开放。价格、交付地点与合同期限均以确认页列明的条款为准。</Mugirl.CorporateUI.AccountReady>
+  <Mugirl.CorporateUI.Summary.Trade>高价收购雪牛娘产品。本周供应数量有限，售罄后请等待轮换。</Mugirl.CorporateUI.Summary.Trade>
+  <Mugirl.CorporateUI.Summary.Orders>为目录内的指定物资备货。付款后可在订单页追踪到货及领取。</Mugirl.CorporateUI.Summary.Orders>
+  <Mugirl.CorporateUI.Summary.People>查看本周雪牛娘展示与当前可出售人员。所有转交均按奴隶交易处理。</Mugirl.CorporateUI.Summary.People>
+  <Mugirl.CorporateUI.Summary.Finance>实物抵押，高息借款。查看到期金额、抵押资产与还款条款。</Mugirl.CorporateUI.Summary.Finance>
+  <Mugirl.CorporateUI.Summary.Missions>本期日常委托与独立支线。已接任务继续履行，不随目录轮换消失。</Mugirl.CorporateUI.Summary.Missions>
+  <Mugirl.CorporateUI.HistoryHint>近期账户记录。未完订单、人员交易、贷款与委托仍在各业务页办理。</Mugirl.CorporateUI.HistoryHint>
+  <Mugirl.CorporateUI.NoHistory>暂无账户记录。</Mugirl.CorporateUI.NoHistory>
+  <Mugirl.CorporateUI.RecordTitle>第 {0} 日 · {1} · {2}</Mugirl.CorporateUI.RecordTitle>
+  <Mugirl.CorporateIntro.Title>建立商业联系</Mugirl.CorporateIntro.Title>
+  <Mugirl.CorporateIntro.QuestDescription>巨企客户关系部门准备向殖民地介绍其商业网络。一名代表将亲自来访，谈论此前的送货员接触、雪牛娘的归属，以及一份见面礼。\n\n代表抵达后，选择一名能够说话的殖民者，右键代表进行交谈。您不需要通讯台即可完成本章。接受商业联系后，通讯台与巨企据点的终端将一并开放。</Mugirl.CorporateIntro.QuestDescription>
+  <Mugirl.CorporateIntro.QuestProgress>客户关系代表会在安全的玩家殖民地等候。交谈暂缓、代表离开或遭遇意外时，联系请求仍然保留；请留意后续来访。</Mugirl.CorporateIntro.QuestProgress>
+  <Mugirl.CorporateIntro.ArrivalTitle>巨企客户关系代表来访</Mugirl.CorporateIntro.ArrivalTitle>
+  <Mugirl.CorporateIntro.ArrivalText>{0} 来到殖民地，自称是巨企客户关系部门的代表。他说，运输部门此前的问题已经不重要了——公司希望谈谈未来。\n\n选择一名能够说话的殖民者，右键代表并选择“与巨企代表交谈”。代表不会收走您的雪牛娘。</Mugirl.CorporateIntro.ArrivalText>
+  <Mugirl.CorporateIntro.Talk>与巨企代表交谈</Mugirl.CorporateIntro.Talk>
+  <Mugirl.CorporateIntro.Opening>您好。我代表巨企客户关系部门，来为贵殖民地办理正式商业联系。运输部门已经完成了他们那部分工作，现在轮到我们。</Mugirl.CorporateIntro.Opening>
+  <Mugirl.CorporateIntro.OpeningOldSave>您好。我们正在补办这一地区的客户登记手续。此前与运输部门的交接如何收尾，不影响今天的提议。</Mugirl.CorporateIntro.OpeningOldSave>
+  <Mugirl.CorporateIntro.OpeningLong>这次正式拜访确实来得迟了一些。您与运输部门的接触档案在几个部门之间转了很久，直到客户关系部发现，这里早已是一处值得长期合作的殖民地。请原谅我们的行政效率。好在商业机会通常比员工报告活得更久。</Mugirl.CorporateIntro.OpeningLong>
+  <Mugirl.CorporateIntro.OpeningLate>我们最近才完成对这片区域的客户档案整理。对一处已经经营了这么久的殖民地，现在才来正式介绍业务，的确有些失礼。这份补给也请一并收下。</Mugirl.CorporateIntro.OpeningLate>
+  <Mugirl.CorporateIntro.Reaction.Killed>运输部门已经把他的档案转交给人事了。那属于人员损耗，不影响我今天来谈的事情。公司更关心接下来能和您做成多少生意。</Mugirl.CorporateIntro.Reaction.Killed>
+  <Mugirl.CorporateIntro.Reaction.DeadUnknown>我们知道那位送货员已经不在了。事故原因由运输部门归档，我没有带调查表来。客户关系部门更关心下一份合同。</Mugirl.CorporateIntro.Reaction.DeadUnknown>
+  <Mugirl.CorporateIntro.Reaction.Released>他已经提交了报告。感谢您让交接至少保留了一点体面。当然，他如何描述这趟差事，并不影响公司对合作的判断。</Mugirl.CorporateIntro.Reaction.Released>
+  <Mugirl.CorporateIntro.Reaction.Conflict>我听说交接出现了一些分歧。那位同事的处境由运输部门处理，我今天代表客户关系部门。</Mugirl.CorporateIntro.Reaction.Conflict>
+  <Mugirl.CorporateIntro.Reaction.Unresolved>运输部门似乎还在处理他们的交接。我可以先来介绍公司的长期业务，我们的合作不必等他们把报告填完。</Mugirl.CorporateIntro.Reaction.Unresolved>
+  <Mugirl.CorporateIntro.Reaction.Unknown>关于此前的接触，我们收到的记录并不完整。不过过去的交接如何收尾，不影响我们重新建立联系。</Mugirl.CorporateIntro.Reaction.Unknown>
+  <Mugirl.CorporateIntro.KeepMugirl>至于那些雪牛娘，您可以继续留在殖民地。公司不要求您把她们交回来。与其为既往的归属争执，不如考虑她们往后能为双方带来的价值。</Mugirl.CorporateIntro.KeepMugirl>
+  <Mugirl.CorporateIntro.NoReclaim>公司不会就既往交接提出返还要求。那些雪牛娘如今在哪里，不影响本次开户。客户关系部门不负责追收旧资产。</Mugirl.CorporateIntro.NoReclaim>
+  <Mugirl.CorporateIntro.Proposal>这是客户关系部门准备的一点见面礼。我们希望与您的殖民地保持友好关系，也愿意向您开放我们的采购、供应、人员和金融服务。今后可以通过通讯台联系我们，或者直接到我们的据点办理业务。</Mugirl.CorporateIntro.Proposal>
+  <Mugirl.CorporateIntro.Question.Courier>为什么不追究送货员的事？</Mugirl.CorporateIntro.Question.Courier>
+  <Mugirl.CorporateIntro.Question.Mugirl>为什么让我们保留雪牛娘？</Mugirl.CorporateIntro.Question.Mugirl>
+  <Mugirl.CorporateIntro.Question.Services>巨企提供哪些服务？</Mugirl.CorporateIntro.Question.Services>
+  <Mugirl.CorporateIntro.Answer.Courier>他的工作是完成交接，不是决定公司该与谁做生意。人员损耗已经有预算科目。为了追回一笔旧账而放弃一位长期客户，才需要向董事会解释。</Mugirl.CorporateIntro.Answer.Courier>
+  <Mugirl.CorporateIntro.Answer.Mugirl>她们在您这里也会生产。公司可以收购产出、供应设备，或在您需要时提供融资。拥有资产是一种收益方式，拥有资产流经的渠道是另一种。</Mugirl.CorporateIntro.Answer.Mugirl>
+  <Mugirl.CorporateIntro.Answer.Services>雪牛娘产品的长期收购、按周更新的有限供应、指定物资的备货订单、人员交易和抵押贷款。委托中心另有加工、肃清、投资与分销合同。条款在签约前展示；客户的信任很重要，签字更重要。</Mugirl.CorporateIntro.Answer.Services>
+  <Mugirl.CorporateIntro.Back>继续谈合作。</Mugirl.CorporateIntro.Back>
+  <Mugirl.CorporateIntro.Accept>接受见面礼，建立商业联系。</Mugirl.CorporateIntro.Accept>
+  <Mugirl.CorporateIntro.Postpone>先把资料留下，我考虑一下。</Mugirl.CorporateIntro.Postpone>
+  <Mugirl.CorporateIntro.CompletedStatus>商业联系已建立</Mugirl.CorporateIntro.CompletedStatus>
+  <Mugirl.CorporateIntro.CompletedLetter>巨企客户关系部门已将您的殖民地登记为商业客户。见面礼已安排交付；若目前无可用交付地点，补给将保留至下一次有效交付。\n\n您可以让殖民者操作通讯台并选择“联系巨企商业网络”，或让远行队在巨企据点停留后打开“巨企商业终端”。双方将按合同开展后续业务。\n\n主线第一章已完成。后续：敬请期待。</Mugirl.CorporateIntro.CompletedLetter>
+  <Mugirl.CorporateIntro.HostilityRemains>当前还存在独立的外交纠纷。本次开户不会取消攻击巨企等行为造成的敌对后果；修复关系前，新业务仍受限制。账户查看和偿债入口继续保留。</Mugirl.CorporateIntro.HostilityRemains>
+  <Mugirl.CorporateIntro.ChapterCompleted>客户关系员工已完成来访。送货员的遭遇被归档为运输部门事务；巨企不追收雪牛娘，并以见面礼建立了商业联系。\n\n通讯台和巨企据点共用同一账户。每份合同仍有自己的付款、交货、期限与后果。</Mugirl.CorporateIntro.ChapterCompleted>
+  <Mugirl.CorporateIntro.ComingSoon>后续主线：敬请期待。</Mugirl.CorporateIntro.ComingSoon>
+  <Mugirl.CorporateIntro.GiftError>巨企见面礼准备失败，尚未完成开户：{0}</Mugirl.CorporateIntro.GiftError>
+  <Mugirl.CorporateIntro.GiftStorageError>见面礼无法存入待交付保管区。</Mugirl.CorporateIntro.GiftStorageError>
+</LanguageData>

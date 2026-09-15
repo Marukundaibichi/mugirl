@@ -35,6 +35,7 @@ namespace Mugirl
         private BodyPartRecord requiredTailPartRecord;
         private bool requiredTailPartResolved;
         private bool resourcesReady;
+        private bool runtimeResourcesQueued;
 
         private int cachedTick = int.MinValue;
         private int cachedFacing = -1;
@@ -56,9 +57,24 @@ namespace Mugirl
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
-            EnsureRuntimeResources();
-            Pawn pawn = Pawn;
-            pawn?.Drawer?.renderer?.renderTree?.SetDirty();
+            if (runtimeResourcesQueued)
+            {
+                return;
+            }
+            runtimeResourcesQueued = true;
+            // 建图可能在长事件工作线程生成此 Pawn；Unity 网格和图形资源
+            // 必须等事件结束、回到主线程后再创建。
+            LongEventHandler.ExecuteWhenFinished(() =>
+            {
+                runtimeResourcesQueued = false;
+                if (parent == null || parent.Destroyed || !parent.Spawned)
+                {
+                    return;
+                }
+                EnsureRuntimeResources();
+                Pawn pawn = Pawn;
+                pawn?.Drawer?.renderer?.renderTree?.SetDirty();
+            });
         }
 
         public override List<PawnRenderNode> CompRenderNodes()

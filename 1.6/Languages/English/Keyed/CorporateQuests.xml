@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Mugirl.CQ.Kind.Processing>Contract manufacturing</Mugirl.CQ.Kind.Processing>
+  <Mugirl.CQ.Kind.Purge>Clearance</Mugirl.CQ.Kind.Purge>
+  <Mugirl.CQ.Kind.Investment>Venture investment</Mugirl.CQ.Kind.Investment>
+  <Mugirl.CQ.Kind.Distribution>Distribution</Mugirl.CQ.Kind.Distribution>
+  <Mugirl.CQ.Kind.Native>Partner assignment</Mugirl.CQ.Kind.Native>
+  <Mugirl.CQ.Kind.Fusion>Clearance: the fusion investors</Mugirl.CQ.Kind.Fusion>
+  <Mugirl.CQ.State.Available>Available</Mugirl.CQ.State.Available>
+  <Mugirl.CQ.State.Active>Active</Mugirl.CQ.State.Active>
+  <Mugirl.CQ.State.Ready>Ready to settle</Mugirl.CQ.State.Ready>
+  <Mugirl.CQ.State.Completed>Completed</Mugirl.CQ.State.Completed>
+  <Mugirl.CQ.State.Failed>Failed</Mugirl.CQ.State.Failed>
+  <Mugirl.CQ.State.Expired>Expired</Mugirl.CQ.State.Expired>
+  <Mugirl.CQ.State.Abandoned>Abandoned</Mugirl.CQ.State.Abandoned>
+  <Mugirl.CQ.HighRisk>High risk</Mugirl.CQ.HighRisk>
+  <Mugirl.CQ.AnyMaterial>Any</Mugirl.CQ.AnyMaterial>
+  <Mugirl.CQ.ProcessingDesc>Recipe: {0}, {1} batches. Deliver {3} × {2}, material: {7}. Normal quality or better, at least 90% durability; no rotten or tainted goods.\nRefundable deposit: {4} silver. Net processing fee: {5} silver. Supplied ingredients: {6}.\nSchedule production at your own workbench. Partial deliveries are accepted. Default forfeits the deposit and reduces goodwill.</Mugirl.CQ.ProcessingDesc>
+  <Mugirl.CQ.PurgeDesc>Target faction: {0}. Estimated threat: {1} points.\nKill or capture every designated defender to earn {2} silver. Downed enemies do not count; escaped targets fail the assignment. Finish before the contract deadline.</Mugirl.CQ.PurgeDesc>
+  <Mugirl.CQ.InvestmentDesc>Principal: {0} silver, regular project.\nReturns include principal: 30% chance of 0.6×, 45% chance of 1.05×, 25% chance of 1.6×. Collect at maturity; investments cannot be withdrawn. Losses create no debt or collection raids.</Mugirl.CQ.InvestmentDesc>
+  <Mugirl.CQ.InvestmentHighDesc>Principal: {0} silver, high-risk project.\nReturns include principal: 45% chance of 0.2×, 35% chance of 1.2×, 20% chance of 2.6×. Collect at maturity; investments cannot be withdrawn. Losses create no debt or collection raids.</Mugirl.CQ.InvestmentHighDesc>
+  <Mugirl.CQ.DistributionDesc>Lot: {0} × {1}. Wholesale total: {2} silver. Sales target: {3}.\nOnly ordinary sales to non-corporate traders count. Gifts, consumption, destruction and corporate buybacks do not. Profit depends on actual sale prices. Failed contracts retain unsold goods without an additional fine.</Mugirl.CQ.DistributionDesc>
+  <Mugirl.CQ.NativeDesc>The partner network has referred an outside assignment. Request the introduction, then review its full terms in the quest log before accepting. The client sets the objectives, deadline and payment.</Mugirl.CQ.NativeDesc>
+  <Mugirl.CQ.FusionDesc>Following your investment in the fusion project, the corporation asks you to investigate an independent station accused of unauthorized Mugirl research.\nContact the researchers on arrival before choosing a course of action. Complete the assignment before its deadline. Enforcement requires actually killing or capturing the responsible researchers and guards.</Mugirl.CQ.FusionDesc>
+  <Mugirl.CQ.OfferGone>This offer is no longer available.</Mugirl.CQ.OfferGone>
+  <Mugirl.CQ.Limit>At most {0} daily contracts may be active.</Mugirl.CQ.Limit>
+  <Mugirl.CQ.NeedSilver>Requires {0} available silver.</Mugirl.CQ.NeedSilver>
+  <Mugirl.CQ.NoWorkshop>Requires the unlocked recipe and a matching colony workbench.</Mugirl.CQ.NoWorkshop>
+  <Mugirl.CQ.NoMap>No colony map is available for this assignment.</Mugirl.CQ.NoMap>
+  <Mugirl.CQ.GenerationFailed>This assignment cannot be generated under current conditions; no fee was taken.</Mugirl.CQ.GenerationFailed>
+  <Mugirl.CQ.NoSite>No suitable nearby site is available; no fee was taken.</Mugirl.CQ.NoSite>
+  <Mugirl.CQ.ReadyLetter>Corporation: contract ready</Mugirl.CQ.ReadyLetter>
+  <Mugirl.CQ.ReadyText>{0} is ready for settlement. Collect its payment or reward through the corporate terminal.</Mugirl.CQ.ReadyText>
+  <Mugirl.CQ.FailedLetter>Corporation: contract incomplete</Mugirl.CQ.FailedLetter>
+  <Mugirl.CQ.FailedText>{0} failed or was abandoned. Deposits, inventory and rewards are handled according to its agreed terms.</Mugirl.CQ.FailedText>
+  <Mugirl.CQ.FusionInvitation>Corporation: intellectual property enforcement</Mugirl.CQ.FusionInvitation>
+  <Mugirl.CQ.ResearchOriginal>It's you. I'm the fusion investment contact who visited your colony.</Mugirl.CQ.ResearchOriginal>
+  <Mugirl.CQ.ResearchRepresentative>I represent the original fusion research project. Your previous contact was {0}; today I speak on behalf of the team.</Mugirl.CQ.ResearchRepresentative>
+  <Mugirl.CQ.OriginalTeam>the original project team</Mugirl.CQ.OriginalTeam>
+  <Mugirl.CQ.ResearchDialogue>We sent the first results back and kept our promise. The corporation never invested a single silver in this project. Now they claim that even our methods of researching Mugirls are their intellectual property. Are you really here to enforce that contract?</Mugirl.CQ.ResearchDialogue>
+  <Mugirl.CQ.ResearchMore>Our research relies on willing participation and open exchange. The corporation has stretched licensing claims into ownership of research itself. We signed no exclusive agreement and will not surrender our participants.\nRefusing will damage your corporate standing. But the people here will live.</Mugirl.CQ.ResearchMore>
+  <Mugirl.CQ.Back>Back</Mugirl.CQ.Back>
+  <Mugirl.CQ.AskResearch>Ask about the research and accusations</Mugirl.CQ.AskResearch>
+  <Mugirl.CQ.Execute>Enforce the corporate contract</Mugirl.CQ.Execute>
+  <Mugirl.CQ.ExecuteConfirm>The researchers and guards will resist. You must actually kill or capture the designated targets before collecting the corporate reward. This decision is final.</Mugirl.CQ.ExecuteConfirm>
+  <Mugirl.CQ.Protect>Refuse and protect the researchers</Mugirl.CQ.Protect>
+  <Mugirl.CQ.ProtectConfirm>Refusing forfeits all corporate payment. Base goodwill change: {0}. At the current relationship, the expected change is {1} ({2} → {3}). The researchers will thank you. Attacking them later does not restore the contract. Withdraw?</Mugirl.CQ.ProtectConfirm>
+  <Mugirl.CQ.Later>Decide later</Mugirl.CQ.Later>
+  <Mugirl.CQ.ResearchTitle>Contact the researchers</Mugirl.CQ.ResearchTitle>
+  <Mugirl.CQ.ReopenDialogue>Resume the on-site conversation and decide whether to enforce the corporate contract.</Mugirl.CQ.ReopenDialogue>
+  <Mugirl.CQ.CombatLetter>The research station resists</Mugirl.CQ.CombatLetter>
+  <Mugirl.CQ.CombatText>You chose to enforce the corporate contract. The researchers and guards will resist. Kill or capture the designated targets before collecting payment at the terminal.</Mugirl.CQ.CombatText>
+  <Mugirl.CQ.ThanksTitle>Thanks from the investment team</Mugirl.CQ.ThanksTitle>
+  <Mugirl.CQ.ThanksText>“Thank you for treating us as people instead of figures to erase from a ledger. Your investment kept the research going; your decision today lets us live to continue it.”\nYou refused the corporate clearance contract, forfeiting its payment and accepting the diplomatic cost. The researchers remain friendly.</Mugirl.CQ.ThanksText>
+  <Mugirl.CQ.ThanksRevokedTitle>The researchers withdraw their thanks</Mugirl.CQ.ThanksRevokedTitle>
+  <Mugirl.CQ.ThanksRevokedText>You attacked the researchers after promising protection. They withdraw their thanks. The corporate contract remains closed and the goodwill loss is not reversed.</Mugirl.CQ.ThanksRevokedText>
+  <Mugirl.CQ.Daily>Daily contracts</Mugirl.CQ.Daily>
+  <Mugirl.CQ.Side>Side stories</Mugirl.CQ.Side>
+  <Mugirl.CQ.Main>Main story</Mugirl.CQ.Main>
+  <Mugirl.CQ.BoardHelp>{0} daily contracts are active. Unaccepted offers rotate weekly; signed contracts retain their own deadlines.</Mugirl.CQ.BoardHelp>
+  <Mugirl.CQ.NoSide>After the fusion investment pays out, the corporation will send a one-time intellectual property assignment. Delivery takes 1–3 days after the terminal is unlocked.</Mugirl.CQ.NoSide>
+  <Mugirl.CQ.NoMissions>No contracts are available.</Mugirl.CQ.NoMissions>
+  <Mugirl.CQ.Progress>Progress {0}/{1}</Mugirl.CQ.Progress>
+  <Mugirl.CQ.OfferTime>Offer expires in {0} days</Mugirl.CQ.OfferTime>
+  <Mugirl.CQ.DueTime>Due in {0} days</Mugirl.CQ.DueTime>
+  <Mugirl.CQ.Accept>Accept</Mugirl.CQ.Accept>
+  <Mugirl.CQ.SignConfirm>Payment on signing: {0} silver. Confirm that you have reviewed the costs, deadline and failure consequences.</Mugirl.CQ.SignConfirm>
+  <Mugirl.CQ.Submit>Deliver products</Mugirl.CQ.Submit>
+  <Mugirl.CQ.NoProducts>No products in the current trade inventory meet the material, quality and durability requirements.</Mugirl.CQ.NoProducts>
+  <Mugirl.CQ.Claim>Settle: {0} silver</Mugirl.CQ.Claim>
+  <Mugirl.CQ.DeliveryFailed>Delivery could not be completed. The settlement remains available.</Mugirl.CQ.DeliveryFailed>
+  <Mugirl.CQ.Locate>Locate</Mugirl.CQ.Locate>
+  <Mugirl.CQ.Talk>Talk</Mugirl.CQ.Talk>
+  <Mugirl.CQ.QuestLog>Quest log</Mugirl.CQ.QuestLog>
+  <Mugirl.CQ.Abandon>Abandon</Mugirl.CQ.Abandon>
+  <Mugirl.CQ.AbandonConfirm>Abandon this contract? Manufacturing deposits are forfeited with a goodwill penalty, and clearance assignments end. Purchased distribution inventory remains yours.</Mugirl.CQ.AbandonConfirm>
+  <Mugirl.CQ.ReceiveGoods>Collect pending contract goods</Mugirl.CQ.ReceiveGoods>
+  <Mugirl.CQ.AcceptedRecord>Contract signed</Mugirl.CQ.AcceptedRecord>
+  <Mugirl.CQ.ClaimedRecord>Contract settled</Mugirl.CQ.ClaimedRecord>
+  <Mugirl.CQ.FailedRecord>Contract incomplete</Mugirl.CQ.FailedRecord>
+  <Mugirl.CQ.ProtectedRecord>Researchers protected</Mugirl.CQ.ProtectedRecord>
+  <Mugirl.CQ.Terms>Deadline after signing: {0} days. Goodwill change on completion: {1}.</Mugirl.CQ.Terms>
+  <Mugirl.CQ.FusionTerms>Enforcement reward: {0} silver. Refusing forfeits payment and changes corporate goodwill by {1}.</Mugirl.CQ.FusionTerms>
+</LanguageData>

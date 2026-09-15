@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <Mugirl.CorporatePeopleConfigDef>
+    <defName>Mugirl_CorporatePeople</defName>
+    <weeklyCount>4</weeklyCount>
+    <purchaseMultiplier>2.0</purchaseMultiplier>
+    <saleMultiplier>1.5</saleMultiplier>
+  </Mugirl.CorporatePeopleConfigDef>
+  <TraderKindDef>
+    <defName>Mugirl_CorporatePersonnelTrader</defName>
+    <label>corporate human resources</label>
+    <commonality>0</commonality>
+    <orbital>false</orbital>
+    <requestable>false</requestable>
+    <stockGenerators />
+  </TraderKindDef>
+  <ThoughtDef>
+    <defName>Mugirl_CorporateSoldMugirl</defName>
+    <thoughtClass>Thought_Memory</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>sent a mugirl to a ruthless corporation</label>
+        <description>We sold her to the megacorporation. Their contracts call her an asset, but I know she is a person.</description>
+        <baseMoodEffect>-8</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+</Defs>

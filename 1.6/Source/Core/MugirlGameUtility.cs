@@ -9,6 +9,19 @@ namespace Mugirl
 {
     internal static class MugirlGameUtility
     {
+        // 巨企跨地图合同在同一局游戏中查询这些服务；不保存全局静态游戏对象引用。
+        internal static List<Map> LoadedMaps => Current.Game?.Maps;
+        internal static FactionManager Factions => Current.Game?.World?.factionManager;
+        internal static WorldObjectsHolder WorldObjects => Find.WorldObjects;
+        internal static WorldPawns WorldPawns => Find.WorldPawns;
+        internal static WindowStack Windows => Find.WindowStack;
+        internal static LetterStack Letters => Find.LetterStack;
+        internal static QuestManager Quests => Find.QuestManager;
+        internal static Storyteller Storyteller => Current.Game?.storyteller;
+        internal static HistoryEventsManager HistoryEvents => Find.HistoryEventsManager;
+        internal static MainTabsRoot MainTabs => Find.MainTabsRoot;
+        internal static T GameComponent<T>() where T : GameComponent => Current.Game?.GetComponent<T>();
+
         internal static bool TryAddWindow(Window window)
         {
             if (window == null)

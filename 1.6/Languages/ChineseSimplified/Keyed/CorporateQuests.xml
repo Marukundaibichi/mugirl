@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Mugirl.CQ.Kind.Processing>委托加工</Mugirl.CQ.Kind.Processing>
+  <Mugirl.CQ.Kind.Purge>肃清</Mugirl.CQ.Kind.Purge>
+  <Mugirl.CQ.Kind.Investment>风险投资</Mugirl.CQ.Kind.Investment>
+  <Mugirl.CQ.Kind.Distribution>分销</Mugirl.CQ.Kind.Distribution>
+  <Mugirl.CQ.Kind.Native>合作事务转介</Mugirl.CQ.Kind.Native>
+  <Mugirl.CQ.Kind.Fusion>肃清·牛聚变投资者</Mugirl.CQ.Kind.Fusion>
+  <Mugirl.CQ.State.Available>可接</Mugirl.CQ.State.Available>
+  <Mugirl.CQ.State.Active>进行中</Mugirl.CQ.State.Active>
+  <Mugirl.CQ.State.Ready>待结算</Mugirl.CQ.State.Ready>
+  <Mugirl.CQ.State.Completed>已完成</Mugirl.CQ.State.Completed>
+  <Mugirl.CQ.State.Failed>已失败</Mugirl.CQ.State.Failed>
+  <Mugirl.CQ.State.Expired>已过期</Mugirl.CQ.State.Expired>
+  <Mugirl.CQ.State.Abandoned>已放弃</Mugirl.CQ.State.Abandoned>
+  <Mugirl.CQ.HighRisk>高风险</Mugirl.CQ.HighRisk>
+  <Mugirl.CQ.AnyMaterial>不限</Mugirl.CQ.AnyMaterial>
+  <Mugirl.CQ.ProcessingDesc>配方：{0} × {1} 批。交付 {3} 个{2}，材质：{7}，普通品质以上、耐久至少90%，不接受变质或尸体污染制品。\n可退保证金：{4} 白银；净加工费：{5} 白银。原料：{6}。\n请自行在现有工作台安排生产；可分批交付。超期或放弃扣留保证金并降低好感。</Mugirl.CQ.ProcessingDesc>
+  <Mugirl.CQ.PurgeDesc>目标势力：{0}。预计战斗强度：{1} 点。\n消灭或俘获指定守军后领取 {2} 白银。仅倒地不算完成，逃离目标使任务失败；请在合同期限内完成行动。</Mugirl.CQ.PurgeDesc>
+  <Mugirl.CQ.InvestmentDesc>本金：{0} 白银，常规项目。\n回款包含本金：30%概率获得0.6倍，45%概率获得1.05倍，25%概率获得1.6倍。到期后领取回款；签约后不可撤回。亏损不产生债务或追偿。</Mugirl.CQ.InvestmentDesc>
+  <Mugirl.CQ.InvestmentHighDesc>本金：{0} 白银，高风险项目。\n回款包含本金：45%概率获得0.2倍，35%概率获得1.2倍，20%概率获得2.6倍。到期后领取回款；签约后不可撤回。亏损不产生债务或追偿。</Mugirl.CQ.InvestmentHighDesc>
+  <Mugirl.CQ.DistributionDesc>批次：{0} 个{1}，批发总价 {2} 白银；销量目标 {3} 个。\n向巨企以外的商人正常出售可计销量；赠送、消费、销毁或卖回巨企均不计入。利润取决于实际成交价。失败时保留剩余货物，不另收罚金。</Mugirl.CQ.DistributionDesc>
+  <Mugirl.CQ.NativeDesc>合作网络转介了一份外部委托。接洽后，请在任务列表查看完整条件并决定是否接受。目标、期限与报酬由委托方安排。</Mugirl.CQ.NativeDesc>
+  <Mugirl.CQ.FusionDesc>您曾投资牛聚变项目。巨企要求您前往一处独立研究站，处理未经授权开展雪牛娘研究的“侵权者”。\n进入现场后联系研究团队，再决定是否执行合同。接受后需在期限内处理现场；执行需实际消灭或俘获责任人员与守卫。</Mugirl.CQ.FusionDesc>
+  <Mugirl.CQ.OfferGone>这份委托已经失效。</Mugirl.CQ.OfferGone>
+  <Mugirl.CQ.Limit>最多同时进行 {0} 份日常委托。</Mugirl.CQ.Limit>
+  <Mugirl.CQ.NeedSilver>需要可交易白银 {0}。</Mugirl.CQ.NeedSilver>
+  <Mugirl.CQ.NoWorkshop>需要已解锁配方及玩家殖民地中的对应工作台。</Mugirl.CQ.NoWorkshop>
+  <Mugirl.CQ.NoMap>目前没有可用于生成原版委托的殖民地地图。</Mugirl.CQ.NoMap>
+  <Mugirl.CQ.GenerationFailed>当前条件无法生成该任务；未收取费用。</Mugirl.CQ.GenerationFailed>
+  <Mugirl.CQ.NoSite>附近没有合适的任务地点；未收取费用。</Mugirl.CQ.NoSite>
+  <Mugirl.CQ.ReadyLetter>巨企：合同可结算</Mugirl.CQ.ReadyLetter>
+  <Mugirl.CQ.ReadyText>{0} 已达到结算条件。请通过巨企终端领取一次性回款或合同奖励。</Mugirl.CQ.ReadyText>
+  <Mugirl.CQ.FailedLetter>巨企：合同未完成</Mugirl.CQ.FailedLetter>
+  <Mugirl.CQ.FailedText>{0} 未能完成或已被放弃。保证金、库存和报酬按签约条款处理。</Mugirl.CQ.FailedText>
+  <Mugirl.CQ.FusionInvitation>巨企：知识产权维护邀请</Mugirl.CQ.FusionInvitation>
+  <Mugirl.CQ.ResearchOriginal>是你们？我是当初来拜访的牛聚变投资联系人。</Mugirl.CQ.ResearchOriginal>
+  <Mugirl.CQ.ResearchRepresentative>我是原牛聚变项目的研究代表。你们之前联系的投资人是{0}；今天由我代表团队说明情况。</Mugirl.CQ.ResearchRepresentative>
+  <Mugirl.CQ.OriginalTeam>原项目团队</Mugirl.CQ.OriginalTeam>
+  <Mugirl.CQ.ResearchDialogue>我们把第一批成果送回去了，也兑现了当初的承诺。巨企从未为这个项目投入过一枚白银。现在他们声称，连我们研究雪牛娘的方式都属于他们的“知识产权”。你们真的是来替他们执行这份合同的吗？</Mugirl.CQ.ResearchDialogue>
+  <Mugirl.CQ.ResearchMore>这里的研究依赖自愿参与和公开交流。巨企把技术授权扩张成了对研究本身的所有权。我们没有签过他们的独占协议，也不愿意把参与者交给他们。\n如果你们拒绝，他们会把这记在你们的合作信用上。但至少这里的人还能活下去。</Mugirl.CQ.ResearchMore>
+  <Mugirl.CQ.Back>返回</Mugirl.CQ.Back>
+  <Mugirl.CQ.AskResearch>询问研究与侵权指控</Mugirl.CQ.AskResearch>
+  <Mugirl.CQ.Execute>执行巨企合同</Mugirl.CQ.Execute>
+  <Mugirl.CQ.ExecuteConfirm>执行后研究团队和守卫会进行抵抗。你必须在实际战斗中消灭或俘获合同目标，才能领取巨企报酬。此选择不能撤回。</Mugirl.CQ.ExecuteConfirm>
+  <Mugirl.CQ.Protect>拒绝执行，保护研究团队</Mugirl.CQ.Protect>
+  <Mugirl.CQ.ProtectConfirm>拒绝后放弃巨企的全部报酬。基础好感变更 {0}；按双方当前关系，预计实际变更 {1}（{2} → {3}）。研究团队将致谢；后续攻击他们不会恢复企业合同。确定退出？</Mugirl.CQ.ProtectConfirm>
+  <Mugirl.CQ.Later>暂不决定</Mugirl.CQ.Later>
+  <Mugirl.CQ.ResearchTitle>联系研究团队</Mugirl.CQ.ResearchTitle>
+  <Mugirl.CQ.ReopenDialogue>与研究负责人继续现场交谈，决定是否执行巨企合同。</Mugirl.CQ.ReopenDialogue>
+  <Mugirl.CQ.CombatLetter>研究站开始抵抗</Mugirl.CQ.CombatLetter>
+  <Mugirl.CQ.CombatText>你选择执行巨企合同。研究团队和守卫已经准备抵抗。消灭或俘获指定目标后，才可在终端领取报酬。</Mugirl.CQ.CombatText>
+  <Mugirl.CQ.ThanksTitle>投资团队的感谢</Mugirl.CQ.ThanksTitle>
+  <Mugirl.CQ.ThanksText>“谢谢你们没有把我们当作可以随手抹掉的账目。此前的投资让研究得以继续，这次的选择让我们能活着继续它。”\n你已拒绝企业的清除合同，放弃报酬并承担关系损失。研究团队保持友好。</Mugirl.CQ.ThanksText>
+  <Mugirl.CQ.ThanksRevokedTitle>研究团队收回感谢</Mugirl.CQ.ThanksRevokedTitle>
+  <Mugirl.CQ.ThanksRevokedText>你在承诺保护后攻击了研究人员。他们收回感谢；巨企合同不会恢复，已经降低的好感也不会返还。</Mugirl.CQ.ThanksRevokedText>
+  <Mugirl.CQ.Daily>日常委托</Mugirl.CQ.Daily>
+  <Mugirl.CQ.Side>支线任务</Mugirl.CQ.Side>
+  <Mugirl.CQ.Main>主线任务</Mugirl.CQ.Main>
+  <Mugirl.CQ.BoardHelp>已进行 {0} 份日常委托。未接任务每周轮换；已接合同按各自期限结算。</Mugirl.CQ.BoardHelp>
+  <Mugirl.CQ.NoSide>完成牛聚变投资并收到回报后，巨企会发出一次性的知识产权委托。邀请需要1–3日送达，且终端必须已解锁。</Mugirl.CQ.NoSide>
+  <Mugirl.CQ.NoMissions>目前没有可展示的委托。</Mugirl.CQ.NoMissions>
+  <Mugirl.CQ.Progress>进度 {0}/{1}</Mugirl.CQ.Progress>
+  <Mugirl.CQ.OfferTime>报价余 {0} 日</Mugirl.CQ.OfferTime>
+  <Mugirl.CQ.DueTime>期限余 {0} 日</Mugirl.CQ.DueTime>
+  <Mugirl.CQ.Accept>接受委托</Mugirl.CQ.Accept>
+  <Mugirl.CQ.SignConfirm>签约时支付：{0} 白银。请确认已阅读本合同的费用、期限和失败后果。</Mugirl.CQ.SignConfirm>
+  <Mugirl.CQ.Submit>交付成品</Mugirl.CQ.Submit>
+  <Mugirl.CQ.NoProducts>当前交易范围内没有符合材质、品质及耐久要求的制品。</Mugirl.CQ.NoProducts>
+  <Mugirl.CQ.Claim>结算：{0} 白银</Mugirl.CQ.Claim>
+  <Mugirl.CQ.DeliveryFailed>当前无法完成交付，结算记录已保留。</Mugirl.CQ.DeliveryFailed>
+  <Mugirl.CQ.Locate>定位地点</Mugirl.CQ.Locate>
+  <Mugirl.CQ.Talk>继续对话</Mugirl.CQ.Talk>
+  <Mugirl.CQ.QuestLog>任务列表</Mugirl.CQ.QuestLog>
+  <Mugirl.CQ.Abandon>放弃</Mugirl.CQ.Abandon>
+  <Mugirl.CQ.AbandonConfirm>确认放弃此合同？加工保证金将被扣留并降低好感；清剿任务将结束。已购买的分销库存仍归你所有。</Mugirl.CQ.AbandonConfirm>
+  <Mugirl.CQ.ReceiveGoods>领取尚未交付的合同货物</Mugirl.CQ.ReceiveGoods>
+  <Mugirl.CQ.AcceptedRecord>接受委托</Mugirl.CQ.AcceptedRecord>
+  <Mugirl.CQ.ClaimedRecord>委托结算</Mugirl.CQ.ClaimedRecord>
+  <Mugirl.CQ.FailedRecord>委托未完成</Mugirl.CQ.FailedRecord>
+  <Mugirl.CQ.ProtectedRecord>保护研究团队</Mugirl.CQ.ProtectedRecord>
+  <Mugirl.CQ.Terms>签约后期限：{0} 日；完成后巨企好感变化：{1}。</Mugirl.CQ.Terms>
+  <Mugirl.CQ.FusionTerms>执行奖励：{0} 白银。拒绝执行放弃报酬，巨企好感变化：{1}。</Mugirl.CQ.FusionTerms>
+</LanguageData>

@@ -90,6 +90,8 @@ namespace Mugirl
                 map,
                 new List<Pawn> { courier });
 
+            CorporateIntroduction.Current?.RememberCourier(courier, map);
+
             MugirlGameUtility.TryReceiveLetter(
                 "Mugirl.CourierContactLetterLabel".Translate(),
                 "Mugirl.CourierContactLetterText".Translate(),
@@ -205,6 +207,7 @@ namespace Mugirl
 
             courier.inventory.DropAllNearPawn(courier.Position, forbid: false, unforbid: true);
             StartLeaving(courier);
+            CorporateIntroduction.Current?.NotifyCourierChoice(courier, released: true);
             EndRelatedQuest(courier, QuestEndOutcome.Success);
             Messages.Message("Mugirl.CourierItemsDroppedMessage".Translate(courier.Named("COURIER")), courier, MessageTypeDefOf.PositiveEvent);
         }
@@ -235,6 +238,7 @@ namespace Mugirl
                 forced: true,
                 forceWake: true,
                 transitionSilently: true);
+            CorporateIntroduction.Current?.NotifyCourierChoice(courier, released: false);
             EndRelatedQuest(courier, QuestEndOutcome.Unknown);
             Messages.Message("Mugirl.CourierFightMessage".Translate(courier.Named("COURIER")), courier, MessageTypeDefOf.ThreatSmall);
             MugirlGameUtility.TrySignalForceNormalSpeedShort();

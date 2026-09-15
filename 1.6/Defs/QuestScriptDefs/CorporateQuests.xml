@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- Balance defaults: one shared seven-day board, three active daily contracts. -->
+  <Mugirl.CorporateQuestConfigDef>
+    <defName>Mugirl_CorporateQuestConfig</defName>
+    <weeklyOffers>6</weeklyOffers><activeLimit>3</activeLimit>
+    <processingDays>7</processingDays><batchMin>5</batchMin><batchMax>20</batchMax>
+    <processingFeeMin>0.25</processingFeeMin><processingFeeMax>0.4</processingFeeMax>
+    <processingMinimumFee>150</processingMinimumFee><processingMaxDeposit>20000</processingMaxDeposit>
+    <processingFailureGoodwill>-5</processingFailureGoodwill>
+    <purgeDays>10</purgeDays><purgeMinReward>1000</purgeMinReward><purgeMaxReward>5000</purgeMaxReward><purgeGoodwill>5</purgeGoodwill>
+    <distributionDays>10</distributionDays><wholesaleFactor>0.45</wholesaleFactor><salesTarget>0.8</salesTarget><distributionGoodwill>3</distributionGoodwill>
+    <investmentDays>7</investmentDays><investmentMin>1000</investmentMin><investmentMax>3000</investmentMax>
+    <highInvestmentDays>10</highInvestmentDays><highInvestmentMin>3000</highInvestmentMin><highInvestmentMax>8000</highInvestmentMax>
+    <fusionInviteMinDays>1</fusionInviteMinDays><fusionInviteMaxDays>3</fusionInviteMaxDays>
+    <fusionOfferDays>15</fusionOfferDays><fusionActionDays>10</fusionActionDays>
+    <fusionReward>4000</fusionReward><fusionGoodwill>10</fusionGoodwill><fusionRefusalGoodwill>-60</fusionRefusalGoodwill>
+  </Mugirl.CorporateQuestConfigDef>
+  <QuestScriptDef>
+    <defName>Mugirl_CorporateMission</defName>
+    <rootSelectionWeight>0</rootSelectionWeight>
+    <autoAccept>true</autoAccept>
+    <questNameRules><rulesStrings><li>questName->Corporate field contract</li></rulesStrings></questNameRules>
+    <questDescriptionRules><rulesStrings><li>questDescription->A corporate contract is active. Open the corporate terminal to inspect its conditions and claim the completed contract.</li></rulesStrings></questDescriptionRules>
+    <root Class="Mugirl.QuestNode_Root_CorporateMission"/>
+  </QuestScriptDef>
+  <SitePartDef>
+    <defName>Mugirl_CorporatePurgeSite</defName>
+    <label>corporate clearance target</label>
+    <description>An armed camp marked for clearance by the corporation. Every listed defender must be killed or taken prisoner.</description>
+    <workerClass>Mugirl.SitePartWorker_Corporate</workerClass>
+    <siteTexture>World/WorldObjects/Sites/GenericSite</siteTexture>
+    <expandingIconTexture>World/WorldObjects/Expanding/Sites/ItemStash</expandingIconTexture>
+    <considerEnteringAsAttack>true</considerEnteringAsAttack>
+    <requiresFaction>true</requiresFaction>
+    <wantsThreatPoints>true</wantsThreatPoints><minThreatPoints>150</minThreatPoints>
+    <forceExitAndRemoveMapCountdownDurationDays>4</forceExitAndRemoveMapCountdownDurationDays>
+  </SitePartDef>
+  <SitePartDef>
+    <defName>Mugirl_CorporateResearchSite</defName>
+    <label>independent fusion research station</label>
+    <description>An independent research team accused of infringing corporate intellectual property. Contact the researchers before deciding the contract's outcome.</description>
+    <workerClass>Mugirl.SitePartWorker_Corporate</workerClass>
+    <siteTexture>World/WorldObjects/Sites/GenericSite</siteTexture>
+    <expandingIconTexture>World/WorldObjects/Expanding/Sites/ItemStash</expandingIconTexture>
+    <considerEnteringAsAttack>false</considerEnteringAsAttack>
+    <forceExitAndRemoveMapCountdownDurationDays>4</forceExitAndRemoveMapCountdownDurationDays>
+  </SitePartDef>
+</Defs>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <Mugirl.CorporateFinanceConfigDef>
+    <defName>Mugirl_CorporateFinance</defName>
+    <dailyRate>0.02</dailyRate>
+    <overdueDailyRate>0.03</overdueDailyRate>
+    <collateralRatio>0.7</collateralRatio>
+    <liquidationRatio>0.5</liquidationRatio>
+    <termDays>14</termDays>
+    <minimumPrincipal>500</minimumPrincipal>
+    <maximumPrincipal>30000</maximumPrincipal>
+    <firstRaidDelayDays>1</firstRaidDelayDays>
+    <repeatRaidDays>2~4</repeatRaidDays>
+    <maximumRaidMultiplier>1.5</maximumRaidMultiplier>
+    <minimumRaidPoints>250</minimumRaidPoints>
+    <maximumRaidPoints>10000</maximumRaidPoints>
+  </Mugirl.CorporateFinanceConfigDef>
+</Defs>

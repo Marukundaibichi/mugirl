@@ -26,7 +26,9 @@ namespace Mugirl
             patchedClassNames.Clear();
             RegisterAttributePatches(Harmony);
             MugirlPatchRegistry.RegisterManualPatches(Harmony);
-            MugirlPatchCatalog.LogDevSummary(patchedClassNames, MugirlPatchRegistry.ManualPatchNames);
+            // 等延迟的 UI 补丁注册完毕，再统计实际成功注册的补丁。
+            LongEventHandler.ExecuteWhenFinished(() =>
+                MugirlPatchCatalog.LogDevSummary(patchedClassNames, MugirlPatchRegistry.ManualPatchNames));
         }
 
         private static void RegisterAttributePatches(Harmony harmony)
@@ -39,6 +41,14 @@ namespace Mugirl
             List<Type> patchTypes = GetHarmonyPatchTypes();
             for (int i = 0; i < patchTypes.Count; i++)
             {
+                if (patchTypes[i] == typeof(Harmony_StylingStationRefresh))
+                {
+                    // Harmony 编译目标方法时可能触发 HAR StylingStation 的静态构造，
+                    // 其中会加载 UI 贴图。仅此补丁等加载长事件结束后在主线程注册。
+                    Type patchClass = patchTypes[i];
+                    LongEventHandler.ExecuteWhenFinished(() => TryPatchClass(harmony, patchClass));
+                    continue;
+                }
                 TryPatchClass(harmony, patchTypes[i]);
             }
         }

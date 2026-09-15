@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Mugirl.CorporateFinance.Title>Loans and collateral</Mugirl.CorporateFinance.Title>
+  <Mugirl.CorporateFinance.Terms>Interest accrues after each full game day on remaining principal: {0}% daily, {1}% overdue, with a {2}-day term. Payments cover interest first. There is no compound interest. Additional overdue interest is capped at the original principal; collection continues after the cap.</Mugirl.CorporateFinance.Terms>
+  <Mugirl.CorporateFinance.Summary>Remaining principal: {0}\nAccrued interest: {1}\nSettle now: {2}\nDays until due: {3}\nProjected amount due at current principal: {4}</Mugirl.CorporateFinance.Summary>
+  <Mugirl.CorporateFinance.Collection>Account in default: corporate relations are locked hostile and new business is suspended. Next collection attempt in about {0} days. Settlement stops new raids, preserves other diplomatic consequences, and lets existing collectors follow normal combat or retreat behavior.</Mugirl.CorporateFinance.Collection>
+  <Mugirl.CorporateFinance.Repayment>Payment amount</Mugirl.CorporateFinance.Repayment>
+  <Mugirl.CorporateFinance.PayAmount>Pay {0}</Mugirl.CorporateFinance.PayAmount>
+  <Mugirl.CorporateFinance.PayAll>Settle in full</Mugirl.CorporateFinance.PayAll>
+  <Mugirl.CorporateFinance.HeldValue>Appraisal at signing: {0}. The corporation holds these original items until full settlement:</Mugirl.CorporateFinance.HeldValue>
+  <Mugirl.CorporateFinance.Liquidate>Liquidate collateral</Mugirl.CorporateFinance.Liquidate>
+  <Mugirl.CorporateFinance.LiquidateConfirm>Dispose of this collateral?\n\n{0}\n\nLiquidation proceeds: {1}\nRemaining debt afterward: {2}\n\nProceeds pay interest before principal; any excess can be claimed. Items are permanently surrendered. Collection continues while any debt remains.</Mugirl.CorporateFinance.LiquidateConfirm>
+  <Mugirl.CorporateFinance.ReadyToClaim>The following collateral is ready for return. Unclaimed silver: {0}. Claim remaining assets before taking another loan.</Mugirl.CorporateFinance.ReadyToClaim>
+  <Mugirl.CorporateFinance.Claim>Claim returnable assets</Mugirl.CorporateFinance.Claim>
+  <Mugirl.CorporateFinance.CollateralRules>Enter quantities to pledge; 0 excludes an item. Borrow up to {0}% of actual collateral value, between {1} and {2} silver. Stable ordinary goods and equipment only; silver, people, perishables, quest items and loaded containers are excluded.</Mugirl.CorporateFinance.CollateralRules>
+  <Mugirl.CorporateFinance.EmptyCollateral>No eligible collateral is available in the current trade area.</Mugirl.CorporateFinance.EmptyCollateral>
+  <Mugirl.CorporateFinance.Unit>unit</Mugirl.CorporateFinance.Unit>
+  <Mugirl.CorporateFinance.SelectedValue>Selected appraisal: {0} · Maximum principal: {1}</Mugirl.CorporateFinance.SelectedValue>
+  <Mugirl.CorporateFinance.BorrowAmount>Principal requested</Mugirl.CorporateFinance.BorrowAmount>
+  <Mugirl.CorporateFinance.PreviewDue>Without early payments, an estimated {0} is due in {1} days.</Mugirl.CorporateFinance.PreviewDue>
+  <Mugirl.CorporateFinance.Sign>Review and sign</Mugirl.CorporateFinance.Sign>
+  <Mugirl.CorporateFinance.SignConfirm>Principal received: {0}\nTerm: {3} days\nAmount due on time: {2}\n\nPledge these physical items immediately:\n{1}\n\nPayments cover interest before principal. Original items return only after full settlement. Default locks hostile relations and triggers collection raids. Collateral is not automatically liquidated; you must confirm that separately. Sign this contract?</Mugirl.CorporateFinance.SignConfirm>
+  <Mugirl.CorporateFinance.Existing>Settle the existing loan and claim remaining assets first.</Mugirl.CorporateFinance.Existing>
+  <Mugirl.CorporateFinance.InvalidAmount>Enter a valid principal and select collateral.</Mugirl.CorporateFinance.InvalidAmount>
+  <Mugirl.CorporateFinance.CollateralChanged>Collateral, quantity or trade access has changed. Select it again.</Mugirl.CorporateFinance.CollateralChanged>
+  <Mugirl.CorporateFinance.InsufficientCollateral>The selected appraisal does not support this principal.</Mugirl.CorporateFinance.InsufficientCollateral>
+  <Mugirl.CorporateFinance.TransferFailed>Delivery is incomplete. Transferred items remain in custody and can be reclaimed using “Claim returnable assets”. No debt was created for a failed loan disbursement.</Mugirl.CorporateFinance.TransferFailed>
+  <Mugirl.CorporateFinance.NoDebt>No debt is payable, or the payment amount is invalid.</Mugirl.CorporateFinance.NoDebt>
+  <Mugirl.CorporateFinance.NoSilver>Insufficient silver in the current trade area.</Mugirl.CorporateFinance.NoSilver>
+  <Mugirl.CorporateFinance.CannotLiquidate>Only unliquidated collateral on a defaulted loan can be surrendered.</Mugirl.CorporateFinance.CannotLiquidate>
+  <Mugirl.CorporateFinance.InvalidContext>The communication or delivery location is no longer valid. Reconnect through a valid terminal.</Mugirl.CorporateFinance.InvalidContext>
+  <Mugirl.CorporateFinance.ReminderTitle>Corporate loan due soon</Mugirl.CorporateFinance.ReminderTitle>
+  <Mugirl.CorporateFinance.Reminder>Your corporate loan is due in about {0} days. Check principal and interest at the terminal and arrange payment. Overdue accounts face armed collection.</Mugirl.CorporateFinance.Reminder>
+  <Mugirl.CorporateFinance.DefaultTitle>Corporate debt collection</Mugirl.CorporateFinance.DefaultTitle>
+  <Mugirl.CorporateFinance.DefaultLetter>Your loan is overdue with {0} silver outstanding. The corporation has locked hostile relations and is preparing collectors. Collateral remains in custody. Repay in cash or voluntarily liquidate collateral at the terminal. Ordinary diplomacy cannot remove the debt lock.</Mugirl.CorporateFinance.DefaultLetter>
+  <Mugirl.CorporateFinance.SettledTitle>Corporate loan settled</Mugirl.CorporateFinance.SettledTitle>
+  <Mugirl.CorporateFinance.SettledLetter>Principal and interest have been settled. No further collection raids will be arranged. Claim any unliquidated collateral at the terminal. Diplomatic consequences from other actions remain.</Mugirl.CorporateFinance.SettledLetter>
+  <Mugirl.CorporateFinance.LoanSigned>Loan signed</Mugirl.CorporateFinance.LoanSigned>
+  <Mugirl.CorporateFinance.Payment>Loan payment</Mugirl.CorporateFinance.Payment>
+  <Mugirl.CorporateFinance.Liquidated>Collateral liquidated</Mugirl.CorporateFinance.Liquidated>
+  <Mugirl.CorporateFinance.Success>Loan transaction completed.</Mugirl.CorporateFinance.Success>
+</LanguageData>

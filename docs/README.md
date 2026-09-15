@@ -9,6 +9,8 @@
 - `compatibility-guide.md`：DLC、HAR、Facial Animation、Search and Destroy、VCookE 以及其他可选 mod 的兼容规则。
 - `facial-animation-guide.md`：雪牛娘 Facial Animation 接入、贴图命名、动画调度和新增 FA 内容检查项。
 - `weapon-wheel-design.md`：雪牛娘武器轮盘、火力满载、换枪动画与自驱装弹系统的设计和验收标准。
+- [giant-corporation-design.md](giant-corporation-design.md)：巨企员工来访解锁主线、白色科幻通讯终端、交易、贷款、每周委托及牛聚变投资者支线的完整设计。
+- [giant-corporation-v1-validation.md](giant-corporation-v1-validation.md)：巨企首版使用方式、已实现规则、真实游戏验证记录、复现步骤及已知限制。
 - `localization-and-comments.md`：翻译键、玩家可见文本和中文注释风格。
 - `validation-runbook.md`：静态验证、游戏内验证和 fresh `Player.log` 记录模板。
 - `performance-optimization-2026-09-07.md`：性能优化的实施结果、原图备份和行为验证；优化前分析保留在 `performance-review-2026-09-07.md`。

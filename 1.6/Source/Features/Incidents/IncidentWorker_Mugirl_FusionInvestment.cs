@@ -234,6 +234,7 @@ namespace Mugirl
             }
 
             Messages.Message("Mugirl.FusionInvestment.MessageAccepted".Translate(amount), MessageTypeDefOf.PositiveEvent);
+            CorporateNetwork.Current?.RememberFusionInvestor(investor);
             ResolveInvestor(investor);
             return true;
         }

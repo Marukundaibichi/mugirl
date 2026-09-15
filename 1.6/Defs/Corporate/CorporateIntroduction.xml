@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <QuestScriptDef>
+    <defName>Mugirl_CorporateIntroductionQuest</defName>
+    <rootSelectionWeight>0</rootSelectionWeight>
+    <autoAccept>true</autoAccept>
+    <questNameRules><rulesStrings><li>questName->Establishing corporate contact</li></rulesStrings></questNameRules>
+    <questDescriptionRules><rulesStrings><li>questDescription->A corporate representative wants to introduce the company's commercial network. Meet the representative to complete the introduction and unlock the corporate terminal.</li></rulesStrings></questDescriptionRules>
+    <root Class="Mugirl.QuestNode_Root_CorporateIntroduction"/>
+  </QuestScriptDef>
+  <Mugirl.CorporateIntroductionDef>
+    <defName>Mugirl_CorporateIntroduction</defName>
+    <longAbsenceTicks>900000</longAbsenceTicks>
+    <retryTicks>2500</retryTicks>
+    <representativeStayTicks>240000</representativeStayTicks>
+    <attackRetryTicks>120000</attackRetryTicks>
+    <gifts>
+      <Silver>500</Silver>
+      <Steel>100</Steel>
+      <ComponentIndustrial>10</ComponentIndustrial>
+      <MedicineIndustrial>10</MedicineIndustrial>
+    </gifts>
+  </Mugirl.CorporateIntroductionDef>
+  <JobDef>
+    <defName>Mugirl_CorporateUseComms</defName>
+    <driverClass>Mugirl.JobDriver_CorporateUseComms</driverClass>
+    <reportString>contacting the corporate network.</reportString>
+  </JobDef>
+  <JobDef>
+    <defName>Mugirl_CorporateTalkRepresentative</defName>
+    <driverClass>Mugirl.JobDriver_CorporateTalkRepresentative</driverClass>
+    <reportString>talking to the corporate representative.</reportString>
+  </JobDef>
+</Defs>

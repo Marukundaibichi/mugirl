@@ -87,6 +87,7 @@
         <Compile Include="Compatibility\MeleeAnimation\MeleeAnimationCompat.cs" />
         <Compile Include="Compatibility\OtherMods\ExternalBreastHediffDefs.cs" />
         <Compile Include="Compatibility\OtherMods\LactationExpansionCompat.cs" />
+        <Compile Include="Compatibility\OtherMods\Harmony_StylingStationRefresh.cs" />
         <Compile Include="Compatibility\WeaponWheel\DualWieldCompatibility.cs" />
         <Compile Include="Compatibility\WeaponWheel\RunAndGunCompatibility.cs" />
         <Compile Include="Compatibility\WeaponWheel\TrainingFacilityCompatibility.cs" />
@@ -282,8 +283,40 @@
         <Compile Include="Features\Roping\ThinkNode_ConditionalRoped.cs" />
         <Compile Include="Features\Roping\ThoughtWorker_Roped.cs" />
         <Compile Include="Features\Roping\ThoughtWorker_Roper.cs" />
+        <Compile Include="Features\Corporate\CorporateIntroduction.cs" />
+        <Compile Include="Features\Corporate\CorporateNetwork.cs" />
+        <Compile Include="Features\Corporate\CorporateNetwork.Finance.cs" />
+        <Compile Include="Features\Corporate\CorporateNetwork.People.cs" />
+        <Compile Include="Features\Corporate\CorporateNetwork.Quests.cs" />
+        <Compile Include="Features\Corporate\CorporateNetwork.Trade.cs" />
+        <Compile Include="Features\Corporate\CorporateQuestContract.cs" />
+        <Compile Include="Features\Corporate\CorporateQuestSite.cs" />
+        <Compile Include="Features\Corporate\CorporateTradeContext.cs" />
+        <Compile Include="Features\Corporate\CorporateTradeSettings.cs" />
+        <Compile Include="Features\Corporate\CorporateUI.cs" />
+        <Compile Include="Features\Corporate\Harmony_CorporateComms.cs" />
+        <Compile Include="Features\Corporate\Window_CorporateComms.cs" />
+        <Compile Include="Features\Corporate\Window_CorporateComms.Trade.cs" />
+        <Compile Include="Features\Corporate\Window_CorporateComms.Finance.cs" />
+        <Compile Include="Features\Corporate\Window_CorporateComms.People.cs" />
+        <Compile Include="Features\Corporate\Window_CorporateComms.Missions.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="UI\MugirlSettingsWindow.cs" />
+    </ItemGroup>
+    <!-- Explicitly enabled only for disposable, command-line-gated runtime checks. -->
+    <ItemGroup Condition=" '$(EnableCorporateValidation)' == 'true' ">
+        <Reference Include="UnityEngine.ScreenCaptureModule">
+            <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ScreenCaptureModule.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Compile Include="..\..\docs\tools\CorporateRuntimeValidation.cs" />
+        <Compile Include="..\..\docs\tools\CorporateIntroRuntimeChecks.cs" />
+        <Compile Include="..\..\docs\tools\CorporateFinanceRuntimeChecks.cs" />
+        <Compile Include="..\..\docs\tools\CorporateQuestRuntimeChecks.cs" />
+        <Compile Include="..\..\docs\tools\CorporateVisualValidation.cs" />
+    </ItemGroup>
+    <ItemGroup Condition=" '$(EnableStylingValidation)' == 'true' ">
+        <Compile Include="..\..\docs\tools\StylingStartupValidation.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
