@@ -19,8 +19,9 @@ namespace Mugirl
         static StylingStartupValidation()
         {
             if (!GenCommandLine.CommandLineArgPassed("mugirlStylingStartupChecks")) return;
-            string temporaryRoot = Path.GetFullPath(Path.Combine(
-                Path.GetDirectoryName(typeof(StylingStartupValidation).Assembly.Location), "..", "..", "TMP"))
+            // Prepatcher 从内存加载程序集，Assembly.Location 可能为空；使用实际 Mod 根目录。
+            if (string.IsNullOrEmpty(MugirlMod.ContentRoot)) return;
+            string temporaryRoot = Path.GetFullPath(Path.Combine(MugirlMod.ContentRoot, "TMP"))
                 .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar) + Path.DirectorySeparatorChar;
             string actualRoot = Path.GetFullPath(GenFilePaths.SaveDataFolderPath)
                 .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
@@ -41,6 +42,8 @@ namespace Mugirl
                 bool expectedYaOpt = GenCommandLine.CommandLineArgPassed("mugirlStylingWithYaOpt");
                 Check("YaOpt activation matches the requested fixture (actual=" + withYaOpt
                     + ", expected=" + expectedYaOpt + ")", withYaOpt == expectedYaOpt);
+                if (expectedYaOpt)
+                    Check("YaOpt fixture includes Prepatcher for lazy texture loading", ModsConfig.IsActive("zetrith.prepatcher"));
                 CheckTexture("ChainTex", "AlienRace/UI/LinkChain");
                 CheckTexture("ClearTex", "AlienRace/UI/ClearButton");
                 CheckTexture("ChainVanillaTex", "AlienRace/UI/LinkVanilla");

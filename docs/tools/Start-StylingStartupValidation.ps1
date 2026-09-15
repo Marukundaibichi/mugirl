@@ -11,7 +11,10 @@ if (-not $saveRoot.StartsWith($temporaryRoot + '\', [StringComparison]::OrdinalI
 if (Test-Path -LiteralPath $saveRoot) { throw 'Use a fresh RunName.' }
 New-Item -ItemType Directory -Path (Join-Path $saveRoot 'Config') -Force | Out-Null
 $expansions = @('royalty', 'ideology', 'biotech', 'anomaly', 'odyssey') | ForEach-Object { 'ludeon.rimworld.' + $_ }
-$active = @('brrainz.harmony', 'ludeon.rimworld') + $expansions
+$active = @()
+# YaOpt 的延迟纹理加载依赖 Prepatcher；包含它才能覆盖用户报告中的 ContentManager 路径。
+if ($WithYaOpt) { $active += 'zetrith.prepatcher' }
+$active += @('brrainz.harmony', 'ludeon.rimworld') + $expansions
 if ($WithYaOpt) { $active += 'sz.yaopt' }
 $active += @('erdelf.humanoidalienraces', 'har.mugirlrace')
 $activeXml = ($active | ForEach-Object { '<li>' + $_ + '</li>' }) -join ''
