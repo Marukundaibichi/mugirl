@@ -54,6 +54,7 @@
             <Private>False</Private>
         </Reference>
         <Reference Include="System" />
+        <Reference Include="System.Xml" />
         <Reference Include="UnityEngine.CoreModule">
             <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
             <Private>False</Private>
@@ -88,6 +89,7 @@
         <Compile Include="Compatibility\OtherMods\ExternalBreastHediffDefs.cs" />
         <Compile Include="Compatibility\OtherMods\LactationExpansionCompat.cs" />
         <Compile Include="Compatibility\OtherMods\Harmony_StylingStationRefresh.cs" />
+        <Compile Include="Compatibility\Savegames\CorporateValidationSaveMigration.cs" />
         <Compile Include="Compatibility\WeaponWheel\DualWieldCompatibility.cs" />
         <Compile Include="Compatibility\WeaponWheel\RunAndGunCompatibility.cs" />
         <Compile Include="Compatibility\WeaponWheel\TrainingFacilityCompatibility.cs" />
@@ -294,6 +296,8 @@
         <Compile Include="Features\Corporate\CorporateTradeContext.cs" />
         <Compile Include="Features\Corporate\CorporateTradeSettings.cs" />
         <Compile Include="Features\Corporate\CorporateUI.cs" />
+        <Compile Include="Features\Corporate\CorporateMotion.cs" />
+        <Compile Include="Features\Corporate\CorporateDialogs.cs" />
         <Compile Include="Features\Corporate\Harmony_CorporateComms.cs" />
         <Compile Include="Features\Corporate\Window_CorporateComms.cs" />
         <Compile Include="Features\Corporate\Window_CorporateComms.Trade.cs" />
@@ -310,10 +314,14 @@
             <Private>False</Private>
         </Reference>
         <Compile Include="..\..\docs\tools\CorporateRuntimeValidation.cs" />
+        <Compile Include="..\..\docs\tools\CorporateValidationDriver.cs" />
+        <Compile Include="..\..\docs\tools\CorporateSaveMigrationChecks.cs" />
+        <Compile Include="..\..\docs\tools\CorporateCatalogCleanupChecks.cs" />
         <Compile Include="..\..\docs\tools\CorporateIntroRuntimeChecks.cs" />
         <Compile Include="..\..\docs\tools\CorporateFinanceRuntimeChecks.cs" />
         <Compile Include="..\..\docs\tools\CorporateQuestRuntimeChecks.cs" />
         <Compile Include="..\..\docs\tools\CorporateVisualValidation.cs" />
+        <Compile Include="..\..\docs\tools\CorporatePricingChecks.cs" />
     </ItemGroup>
     <ItemGroup Condition=" '$(EnableStylingValidation)' == 'true' ">
         <Compile Include="..\..\docs\tools\StylingStartupValidation.cs" />

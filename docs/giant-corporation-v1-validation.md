@@ -18,7 +18,7 @@
 | --- | --- |
 | 产品收购 | 原奶、原毛按市场价值 ×1.6；认可制品 ×1.3。识别实际毛料制品及保留奶原料记录的食品；拒绝变质、尸体污染和生物编码货物。普通钢铁等物资没有出售入口。 |
 | 常驻物资 | 每 7 日刷新 16 项有限库存，只能购买。重复打开和读档不会重抽同一周库存。 |
-| 特别订单 | 常见物品 ×2.2、备货 3–5 日；稀有物品 ×2.8、备货 7–12 日。最多 5 单，首日可取消并退 80%；付款后保存实物，按期领取。 |
+| 特别订单 | 当前规则：普通 ×2.2、3–5 日；稀有 ×6、12–20 日；执政官级 ×10、20–35 日；特供 ×20 且每件至少 20,000 白银、30–60 日。最多 5 单，首日可取消并退 80%；付款后保存实物和签约到货时刻。历史测试结果不代表新价格规则已完成运行验证；新规则由 CorporatePricingChecks 验证。 |
 | 人员业务 | 每周 4 名实际成年雪牛娘，购入 ×2.0、收购 ×1.5。只收购符合条件的囚犯或奴隶；保留原版奴隶贸易历史、信仰限制及额外 -8 心情、8 日记忆。购入后作为奴隶加入，需要 Ideology。 |
 | 抵押贷款 | 一笔 500–30,000 白银，本金不超过抵押估值 70%；期限 14 日，剩余本金每日 2% 单利，逾期 3%。首轮追偿在违约后 1 日，随后每 2–4 日真实袭击；还清解除债务敌对锁并停止新增追偿。 |
 | 抵押处理 | 保管实际抵押物，保留材质、品质、耐久与身份；还清后取回。违约后可主动按签约估值 50% 清算抵债；不会无提示没收后仍索取全部原债。 |
@@ -69,18 +69,17 @@
 
 ## 复现与构建
 
-可选驱动在 `docs/tools/Corporate*Validation.cs` 与 `Corporate*RuntimeChecks.cs`。只有显式传入 `EnableCorporateValidation=true` 才编译；运行时还同时要求命令行标记及实际存档路径位于本仓库 `TMP`。
+可选驱动在 `docs/tools/Corporate*Validation.cs` 与 `Corporate*RuntimeChecks.cs`。启动器将验证程序集编译到独立游戏目录，保留正式 DLL；运行时同时要求命令行标记及实际存档路径位于允许的临时目录。驱动不再继承 `GameComponent`，不会自动写入存档。
 
 ```powershell
-& 'C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe' `
-  '1.6\Source\MugirlRace.csproj' /t:Rebuild /p:Configuration=Release /p:EnableCorporateValidation=true
 & '.\docs\tools\Start-CorporateValidation.ps1' -Mode Economy -RunName MyFreshRun
-# 另可选择 -Mode WithoutIdeology 或 -Mode Visual；每次使用新的 RunName。
+# 另可选择 -Mode WithoutIdeology 或 -Mode Visual；Visual 可加 -SkipCompact。
+# 每次使用新的 RunName，不要将验证程序集输出到正式 Assemblies 目录。
 ```
 
 启动器创建独立配置并使用真实图形设备。不要用 `-nographics` 验证依赖纹理图集的 RimWorld。Steam 和 Workshop 依赖需要正常访问权限；未加载 Harmony/HAR 的失败启动不作为业务结果。
 
-测试结束后必须重新执行不含测试开关的 Release Rebuild，再运行 `docs/tools/Invoke-Phase6StaticValidation.ps1`。正式 DLL 中不应包含 CorporateRuntimeValidation、CorporateVisualValidation 或相应检查驱动。
+生产代码变动后执行不含测试开关的 Release Rebuild，再运行 `docs/tools/Invoke-Phase6StaticValidation.ps1`。正式 DLL 中不应定义 CorporateRuntimeValidation、CorporateVisualValidation 或相应检查驱动类型；兼容迁移有意保留两个旧类名字符串，因此应检查类型定义，不能仅搜索字符串。
 
 ### 巨企首版初次构建（后续启动修复前）
 

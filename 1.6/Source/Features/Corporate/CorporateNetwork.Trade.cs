@@ -68,7 +68,7 @@ namespace Mugirl
         {
             if (def == null || def.category != ThingCategory.Item || def == ThingDefOf.Silver
                 || def.tradeability == Tradeability.None || def.BaseMarketValue <= 0f
-                || def.destroyOnDrop || def.isUnfinishedThing) return false;
+                || !def.destroyable || def.destroyOnDrop || def.isUnfinishedThing) return false;
             Type type = def.thingClass;
             // 需要专用生成内容的对象不通过通用工厂制造空壳；常规物资/装备均可订购。
             return type == typeof(Thing) || type == typeof(ThingWithComps)
@@ -77,7 +77,7 @@ namespace Mugirl
 
         public float ProductFactor(Thing thing)
         {
-            if (thing == null || thing.Destroyed || thing.def.category != ThingCategory.Item || thing.IsNotFresh()
+            if (thing == null || thing.Destroyed || !thing.def.destroyable || thing.def.category != ThingCategory.Item || thing.IsNotFresh()
                 || (thing is Apparel apparel && apparel.WornByCorpse) || CompBiocodable.IsBiocoded(thing)) return 0f;
             if (thing.def == Mugirl_DefOf.Mugirl_Milk || thing.def == CorporateTradeDefOf.Mugirl_Wool)
                 return TradeSettings.rawProductPriceFactor;
@@ -129,15 +129,72 @@ namespace Mugirl
         }
 
         public static int MaxOrderQuantity(ThingDef def) => def != null && def.stackLimit > 1 ? 2500 : 10;
-        public bool IsRareOrder(ThingDef def) => def.techLevel >= TechLevel.Spacer || def.BaseMarketValue >= 500f;
-        public int OrderQuote(Thing preview, int quantity) => preview == null ? 0 : Price(preview.MarketValue
-            * (IsRareOrder(preview.def) ? TradeSettings.rareOrderPriceFactor : TradeSettings.orderPriceFactor), quantity);
+        // Some reward-only items are tradeable in both directions but have no vanilla supplier.
+        public bool IsSpecialOrder(ThingDef def) => def != null
+            && (def.tradeability == Tradeability.Sellable || TradeSettings.specialOrderDefs.Contains(def));
+        public bool IsRareOrder(ThingDef def) => def != null
+            && (IsSpecialOrder(def) || TradeSettings.rareOrderDefs.Contains(def)
+                || def.techLevel >= TechLevel.Spacer || def.BaseMarketValue >= 500f);
+
+        private void OrderTerms(ThingDef def, out float factor, out IntRange days)
+        {
+            CorporateTradeSettingsDef settings = TradeSettings;
+            factor = settings.orderPriceFactor;
+            days = settings.orderDays;
+            if (IsRareOrder(def))
+                ApplyOrderTier(ref factor, ref days, settings.rareOrderPriceFactor, settings.rareOrderDays);
+            if (def != null && def.techLevel >= TechLevel.Archotech)
+                ApplyOrderTier(ref factor, ref days, settings.archotechOrderPriceFactor, settings.archotechOrderDays);
+            if (IsSpecialOrder(def))
+                ApplyOrderTier(ref factor, ref days, settings.specialOrderPriceFactor, settings.specialOrderDays);
+        }
+
+        private static void ApplyOrderTier(ref float factor, ref IntRange days, float tierFactor, IntRange tierDays)
+        {
+            factor = Math.Max(factor, tierFactor);
+            days = new IntRange(Math.Max(days.min, tierDays.min), Math.Max(days.max, tierDays.max));
+        }
+
+        public IntRange OrderLeadTime(ThingDef def)
+        {
+            OrderTerms(def, out _, out IntRange days);
+            return days;
+        }
+
+        public int OrderQuote(Thing preview, int quantity)
+        {
+            if (preview == null || preview.Destroyed) return 0;
+            OrderTerms(preview.def, out float factor, out _);
+            float unitPrice = preview.MarketValue * factor;
+            if (IsSpecialOrder(preview.def))
+                unitPrice = Math.Max(unitPrice, TradeSettings.specialOrderMinimumUnitPrice);
+            return Price(unitPrice, quantity);
+        }
+
+        public int StockUnitPrice(CorporateStock offer)
+        {
+            if (offer?.sample == null || offer.sample.Destroyed) return 0;
+            return IsRareOrder(offer.sample.def)
+                ? Math.Max(offer.unitPrice, OrderQuote(offer.sample, 1)) : offer.unitPrice;
+        }
 
         public static Thing MakeProduct(ThingDef def, ThingDef stuff, QualityCategory quality)
         {
             Thing thing = ThingMaker.MakeThing(def, def.MadeFromStuff ? stuff ?? GenStuff.DefaultStuffFor(def) : null);
             thing.TryGetComp<CompQuality>()?.SetQuality(quality, ArtGenerationContext.Outsider);
             return thing;
+        }
+
+        // Only temporary manufactured goods and corporate escrow may use this path.
+        // Protected legacy samples must leave custody without invoking Destroy or
+        // changing the shared Def/global destruction rules.
+        internal static void DiscardUnspawnedProduct(Thing thing)
+        {
+            if (thing == null || thing.Destroyed) return;
+            if (thing.Spawned || thing is Pawn)
+                throw new InvalidOperationException("Corporate product cleanup requires an unspawned item.");
+            if (thing.def.destroyable) thing.Destroy(DestroyMode.Vanish);
+            else thing.holdingOwner?.Remove(thing);
         }
 
         private bool TryMakeGoods(ThingDef def, ThingDef stuff, QualityCategory quality, int quantity, out List<Thing> goods)
@@ -157,7 +214,7 @@ namespace Mugirl
             }
             catch (Exception ex)
             {
-                foreach (Thing thing in goods) thing.Destroy();
+                foreach (Thing thing in goods) DiscardUnspawnedProduct(thing);
                 goods.Clear();
                 MugirlLog.WarningOnce("Corporate.MakeProduct." + def.defName,
                     "Mugirl.Corporate.GenerationError".Translate(def.LabelCap, ex.Message));
@@ -170,9 +227,10 @@ namespace Mugirl
             if (!CanTrade(context, out reason)) return false;
             EnsureWeeklyOffers();
             if (offer == null || !stock.Contains(offer) || offer.sample == null || offer.sample.Destroyed
+                || !IsOrderable(offer.sample.def) || IsSpecialOrder(offer.sample.def)
                 || quantity <= 0 || quantity > offer.count)
             { reason = "Mugirl.Corporate.GoodsChanged".Translate(); return false; }
-            int cost = Price(offer.unitPrice, quantity);
+            int cost = Price(StockUnitPrice(offer), quantity);
             QualityCategory quality;
             if (!offer.sample.TryGetQuality(out quality)) quality = QualityCategory.Normal;
             if (cost <= 0 || context.SilverCount < cost)
@@ -181,7 +239,7 @@ namespace Mugirl
             { reason = "Mugirl.Corporate.CannotMake".Translate(); return false; }
             if (!context.TrySpendSilver(cost))
             {
-                foreach (Thing thing in goods) thing.Destroy();
+                foreach (Thing thing in goods) DiscardUnspawnedProduct(thing);
                 reason = "Mugirl.Corporate.InsufficientSilver".Translate(cost); return false;
             }
             offer.count -= quantity;
@@ -207,10 +265,10 @@ namespace Mugirl
             int cost = OrderQuote(goods[0], quantity);
             if (cost <= 0 || !context.TrySpendSilver(cost))
             {
-                foreach (Thing thing in goods) thing.Destroy();
+                foreach (Thing thing in goods) DiscardUnspawnedProduct(thing);
                 reason = "Mugirl.Corporate.InsufficientSilver".Translate(cost); return false;
             }
-            IntRange days = IsRareOrder(def) ? TradeSettings.rareOrderDays : TradeSettings.orderDays;
+            IntRange days = OrderLeadTime(def);
             SaveOrder(def, quantity, cost, Now + days.RandomInRange * DayTicks, goods);
             reason = null;
             return true;
@@ -285,18 +343,18 @@ namespace Mugirl
         private static void DestroyGoods(CorporateOrder order)
         {
             foreach (Thing thing in order.goods)
-                if (thing != null && !thing.Destroyed && thing.holdingOwner == Current?.Vault) thing.Destroy();
+                if (thing != null && !thing.Destroyed && thing.holdingOwner == Current?.Vault) DiscardUnspawnedProduct(thing);
             order.goods.Clear();
         }
 
         partial void TradeRefreshWeekly()
         {
             foreach (CorporateStock previous in stock)
-                if (previous.sample != null && !previous.sample.Destroyed) previous.sample.Destroy();
+                DiscardUnspawnedProduct(previous.sample);
             stock.Clear();
-            List<ThingDef> candidates = TradeSettings.stapleDefs.Where(IsOrderable).Distinct().ToList();
+            List<ThingDef> candidates = TradeSettings.stapleDefs.Where(d => IsOrderable(d) && !IsSpecialOrder(d)).Distinct().ToList();
             List<ThingDef> supplements = OrderCatalog.Where(d => d.BaseMarketValue < 500f && d.techLevel <= TechLevel.Industrial
-                && !candidates.Contains(d)).InRandomOrder().Take(TradeSettings.weeklyStockCount).ToList();
+                && !IsSpecialOrder(d) && !candidates.Contains(d)).InRandomOrder().Take(TradeSettings.weeklyStockCount).ToList();
             candidates = candidates.InRandomOrder().Take(Math.Max(1, TradeSettings.weeklyStockCount - 4)).Concat(supplements)
                 .Take(TradeSettings.weeklyStockCount).ToList();
             foreach (ThingDef def in candidates)
@@ -307,7 +365,8 @@ namespace Mugirl
                 int count = def.stackLimit == 1 ? Rand.RangeInclusive(1, 3)
                     : def.BaseMarketValue <= 5f ? Rand.RangeInclusive(100, 600) : Rand.RangeInclusive(10, 60);
                 int price = Price(sample.MarketValue * Math.Max(TradeSettings.stockPriceFactor, ProductFactor(sample) + 0.15f), 1);
-                if (price <= 0) { sample.Destroy(); continue; }
+                if (IsRareOrder(def)) price = Math.Max(price, OrderQuote(sample, 1));
+                if (price <= 0) { DiscardUnspawnedProduct(sample); continue; }
                 stock.Add(new CorporateStock { id = NewId(), sample = sample, count = count, unitPrice = price });
             }
         }

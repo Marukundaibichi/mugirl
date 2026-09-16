@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
+  <Mugirl.CorporateUI.Dialog.ConfirmTitle>Confirm operation</Mugirl.CorporateUI.Dialog.ConfirmTitle>
+  <Mugirl.CorporateUI.Dialog.Authorization>CLIENT RELATIONS / CONTRACT</Mugirl.CorporateUI.Dialog.Authorization>
+  <Mugirl.CorporateUI.Dialog.ReviewRequired>ASSET MANAGEMENT / DISPOSAL</Mugirl.CorporateUI.Dialog.ReviewRequired>
+  <Mugirl.CorporateUI.Dialog.ChooseTitle>Select an option</Mugirl.CorporateUI.Dialog.ChooseTitle>
+  <Mugirl.CorporateUI.Dialog.AvailableOptions>MEGACORP / AVAILABLE OPTIONS</Mugirl.CorporateUI.Dialog.AvailableOptions>
+  <Mugirl.CorporateUI.Dialog.NoOptions>No options are currently available.</Mugirl.CorporateUI.Dialog.NoOptions>
   <Mugirl.CorporateUI.Title>MEGACORP / COMMERCIAL NETWORK</Mugirl.CorporateUI.Title>
   <Mugirl.CorporateUI.Silver>silver</Mugirl.CorporateUI.Silver>
-  <Mugirl.CorporateUI.HeaderStatus>Available: {0}    ·    Catalog rotates in {1} days</Mugirl.CorporateUI.HeaderStatus>
-  <Mugirl.CorporateUI.Context>Service location: {0}</Mugirl.CorporateUI.Context>
+  <Mugirl.CorporateUI.HeaderStatus>Available: {0}    ·    Next shipment: {1} days</Mugirl.CorporateUI.HeaderStatus>
+  <Mugirl.CorporateUI.Context>Delivery point: {0}</Mugirl.CorporateUI.Context>
   <Mugirl.CorporateUI.Motto>CLIENT RELATIONS\nEvery asset has a purpose.</Mugirl.CorporateUI.Motto>
   <Mugirl.CorporateUI.Page.Overview>Overview</Mugirl.CorporateUI.Page.Overview>
   <Mugirl.CorporateUI.Page.Trade>Supplies</Mugirl.CorporateUI.Page.Trade>
@@ -23,15 +29,15 @@
   <Mugirl.CorporateUI.SettlementOption>Corporate terminal</Mugirl.CorporateUI.SettlementOption>
   <Mugirl.CorporateUI.SettlementDescription>Access the settlement terminal using this caravan's silver and goods. Account access and debt repayment remain available during hostilities.</Mugirl.CorporateUI.SettlementDescription>
   <Mugirl.CorporateUI.Welcome>Welcome, client.</Mugirl.CorporateUI.Welcome>
-  <Mugirl.CorporateUI.WelcomeText>Client relations has opened your colony's account. All terminals share catalogs, stock and contracts. Payments and deliveries use the service location shown below.</Mugirl.CorporateUI.WelcomeText>
-  <Mugirl.CorporateUI.Hostile>Services restricted: your factions remain hostile. Review records, settle existing obligations and repay debt here. New business is suspended.</Mugirl.CorporateUI.Hostile>
-  <Mugirl.CorporateUI.AccountReady>Account active. Prices, delivery locations and deadlines are specified before each transaction is confirmed.</Mugirl.CorporateUI.AccountReady>
-  <Mugirl.CorporateUI.Summary.Trade>Premium purchasing for Mugirl products. Weekly supplies have limited stock.</Mugirl.CorporateUI.Summary.Trade>
-  <Mugirl.CorporateUI.Summary.Orders>Order specific goods from the catalog. Track preparation and collection on the order page.</Mugirl.CorporateUI.Summary.Orders>
-  <Mugirl.CorporateUI.Summary.People>Inspect the weekly Mugirl exhibition and eligible sellers. All transfers are slave trades.</Mugirl.CorporateUI.Summary.People>
-  <Mugirl.CorporateUI.Summary.Finance>Borrow against physical collateral. Review interest, deadlines, pledged assets and repayment terms.</Mugirl.CorporateUI.Summary.Finance>
-  <Mugirl.CorporateUI.Summary.Missions>Weekly assignments and separate story contracts. Accepted contracts continue through catalog rotations.</Mugirl.CorporateUI.Summary.Missions>
-  <Mugirl.CorporateUI.HistoryHint>Recent account activity. Manage outstanding orders, personnel, loans and assignments on their respective pages.</Mugirl.CorporateUI.HistoryHint>
+  <Mugirl.CorporateUI.WelcomeText>Your requirements. Our next opportunity.</Mugirl.CorporateUI.WelcomeText>
+  <Mugirl.CorporateUI.Hostile>New business suspended. Signed contracts remain binding; interest continues to accrue.</Mugirl.CorporateUI.Hostile>
+  <Mugirl.CorporateUI.AccountReady>Account in good standing. Our departments await your business.</Mugirl.CorporateUI.AccountReady>
+  <Mugirl.CorporateUI.Summary.Trade>Immediate delivery. Milk, wool and finished goods purchased year-round.</Mugirl.CorporateUI.Summary.Trade>
+  <Mugirl.CorporateUI.Summary.Orders>Dedicated procurement. Scarcity is a matter of price.</Mugirl.CorporateUI.Summary.Orders>
+  <Mugirl.CorporateUI.Summary.People>This week's personnel dossiers and transfer quotes.</Mugirl.CorporateUI.Summary.People>
+  <Mugirl.CorporateUI.Summary.Finance>Put idle inventory to work. Collateral in, capital out.</Mugirl.CorporateUI.Summary.Finance>
+  <Mugirl.CorporateUI.Summary.Missions>Our funding. Your execution.</Mugirl.CorporateUI.Summary.Missions>
+  <Mugirl.CorporateUI.HistoryHint>Every delivery, accounted for.</Mugirl.CorporateUI.HistoryHint>
   <Mugirl.CorporateUI.NoHistory>No account activity yet.</Mugirl.CorporateUI.NoHistory>
   <Mugirl.CorporateUI.RecordTitle>Day {0} · {1} · {2}</Mugirl.CorporateUI.RecordTitle>
   <Mugirl.CorporateIntro.Title>Establishing commercial contact</Mugirl.CorporateIntro.Title>
@@ -65,8 +71,15 @@
   <Mugirl.CorporateIntro.CompletedStatus>Commercial contact established</Mugirl.CorporateIntro.CompletedStatus>
   <Mugirl.CorporateIntro.CompletedLetter>Corporate client relations has registered your colony as a commercial client. Delivery of the goodwill gift has been arranged. If no delivery location is available, supplies are held until delivery becomes possible.\n\nOrder a colonist to use a communications console and select "Contact the corporate network", or stop a caravan at a corporate settlement and open its "Corporate terminal". Further business will proceed under contract.\n\nThe first story chapter is complete. Further chapters: coming soon.</Mugirl.CorporateIntro.CompletedLetter>
   <Mugirl.CorporateIntro.HostilityRemains>Separate diplomatic disputes remain. Opening this account does not erase hostilities resulting from attacks against the corporation. New business remains restricted until relations are repaired; account access and repayment remain available.</Mugirl.CorporateIntro.HostilityRemains>
-  <Mugirl.CorporateIntro.ChapterCompleted>The client relations visit is complete. The courier's circumstances were filed as a transport matter. The corporation waived claims to the Mugirls and established commercial contact with a goodwill gift.\n\nConsole and corporate settlement terminals share one account. Each contract has its own payments, deliveries, deadlines and consequences.</Mugirl.CorporateIntro.ChapterCompleted>
+  <Mugirl.CorporateIntro.ChapterCompleted>Client registration: complete.\nTransport case: archived; no recovery ordered.\n\nClient relations looks forward to a profitable partnership.</Mugirl.CorporateIntro.ChapterCompleted>
   <Mugirl.CorporateIntro.ComingSoon>Further story chapters: coming soon.</Mugirl.CorporateIntro.ComingSoon>
   <Mugirl.CorporateIntro.GiftError>Could not prepare the corporate goodwill gift; account opening has not completed: {0}</Mugirl.CorporateIntro.GiftError>
   <Mugirl.CorporateIntro.GiftStorageError>The goodwill gift could not be stored for delivery.</Mugirl.CorporateIntro.GiftStorageError>
+  <Mugirl.CorporateUI.PrivateChannel>PRIVATE CHANNEL</Mugirl.CorporateUI.PrivateChannel>
+  <Mugirl.CorporateUI.CloseHint>Close terminal · Esc</Mugirl.CorporateUI.CloseHint>
+  <Mugirl.CorporateUI.Services>SERVICE DIRECTORY</Mugirl.CorporateUI.Services>
+  <Mugirl.CorporateUI.MetricStock>CATALOG</Mugirl.CorporateUI.MetricStock>
+  <Mugirl.CorporateUI.MetricContracts>ACTIVE CONTRACTS</Mugirl.CorporateUI.MetricContracts>
+  <Mugirl.CorporateUI.MetricRecords>ACCOUNT RECORDS</Mugirl.CorporateUI.MetricRecords>
+  <Mugirl.CorporateUI.OpenService>Open service</Mugirl.CorporateUI.OpenService>
 </LanguageData>

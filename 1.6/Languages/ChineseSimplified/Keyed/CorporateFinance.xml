@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <Mugirl.CorporateFinance.Title>贷款与抵押</Mugirl.CorporateFinance.Title>
-  <Mugirl.CorporateFinance.Terms>每满一个游戏日按剩余本金计息：正常日息 {0}%，逾期日息 {1}%，期限 {2} 日。先还利息再还本金，不计复利。逾期新增利息上限为初始本金；达到上限仍会继续追偿。</Mugirl.CorporateFinance.Terms>
+  <Mugirl.CorporateFinance.Terms>日息 {0}% · 逾期 {1}% · 期限 {2} 日</Mugirl.CorporateFinance.Terms>
+  <Mugirl.CorporateFinance.FinePrint>按剩余本金逐日计息，不计复利。先还息，后还本。逾期新增利息最多等于初始本金，但追偿不会因此停止。\n\n结清后停止派出新追偿队；已在场人员与其他外交纠纷不受影响。</Mugirl.CorporateFinance.FinePrint>
+  <Mugirl.CorporateFinance.CollateralFinePrint>接受一般耐储物资及装备。不接受白银、人员、易腐品、任务物及装有物品的容器。托管原物于结清后退还。</Mugirl.CorporateFinance.CollateralFinePrint>
+  <Mugirl.CorporateFinance.TermsButton>合同细则</Mugirl.CorporateFinance.TermsButton>
   <Mugirl.CorporateFinance.Summary>剩余本金：{0}\n已产生利息：{1}\n当前结清：{2}\n距到期：{3} 日\n按当前本金估计到期应还：{4}</Mugirl.CorporateFinance.Summary>
-  <Mugirl.CorporateFinance.Collection>账户违约：与巨企强制敌对，普通业务暂停。距离下次追偿尝试约 {0} 日。还清后停止新追偿，但不抹除其他外交后果，现有追偿人员仍遵循战斗或撤退流程。</Mugirl.CorporateFinance.Collection>
+  <Mugirl.CorporateFinance.Collection>账户违约，武力追偿已立案。下次行动预计 {0} 日后。</Mugirl.CorporateFinance.Collection>
   <Mugirl.CorporateFinance.Repayment>本次还款</Mugirl.CorporateFinance.Repayment>
   <Mugirl.CorporateFinance.PayAmount>支付 {0}</Mugirl.CorporateFinance.PayAmount>
   <Mugirl.CorporateFinance.PayAll>全部结清</Mugirl.CorporateFinance.PayAll>
-  <Mugirl.CorporateFinance.HeldValue>签约时抵押估值：{0}。以下原物由巨企保管，全部结清后归还：</Mugirl.CorporateFinance.HeldValue>
+  <Mugirl.CorporateFinance.HeldValue>托管资产 · 签约估值 {0}</Mugirl.CorporateFinance.HeldValue>
   <Mugirl.CorporateFinance.Liquidate>以抵押物抵债</Mugirl.CorporateFinance.Liquidate>
   <Mugirl.CorporateFinance.LiquidateConfirm>确认处置以下抵押物？\n\n{0}\n\n清算金额：{1}\n清算后剩余欠款：{2}\n\n清算款先抵利息再抵本金，超出部分可领取。物品将永久转让，无法再取回；有剩余欠款仍会追偿。</Mugirl.CorporateFinance.LiquidateConfirm>
-  <Mugirl.CorporateFinance.ReadyToClaim>以下抵押物已可归还。另有待领取白银：{0}。领取完成后才能签订新借款。</Mugirl.CorporateFinance.ReadyToClaim>
+  <Mugirl.CorporateFinance.ReadyToClaim>资产已解除抵押，待领白银 {0}。交割后可再次授信。</Mugirl.CorporateFinance.ReadyToClaim>
   <Mugirl.CorporateFinance.Claim>领取可归还资产</Mugirl.CorporateFinance.Claim>
-  <Mugirl.CorporateFinance.CollateralRules>输入要抵押的数量；0 表示不提交。本金最多为抵押实际估值的 {0}%，范围 {1}–{2} 白银。仅接受稳定的一般物资或装备；不接受白银、人员、易腐品、任务物及装有其他物品的容器。</Mugirl.CorporateFinance.CollateralRules>
-  <Mugirl.CorporateFinance.EmptyCollateral>当前贸易范围没有可抵押的物品。</Mugirl.CorporateFinance.EmptyCollateral>
+  <Mugirl.CorporateFinance.CollateralRules>授信比例 {0}% · 本金 {1}–{2} 白银</Mugirl.CorporateFinance.CollateralRules>
+  <Mugirl.CorporateFinance.EmptyCollateral>本交割点暂无合格抵押物。</Mugirl.CorporateFinance.EmptyCollateral>
   <Mugirl.CorporateFinance.Unit>件</Mugirl.CorporateFinance.Unit>
-  <Mugirl.CorporateFinance.SelectedValue>已选抵押估值：{0} · 当前最大本金：{1}</Mugirl.CorporateFinance.SelectedValue>
+  <Mugirl.CorporateFinance.SelectedValue>抵押估值 {0} · 可贷 {1}</Mugirl.CorporateFinance.SelectedValue>
   <Mugirl.CorporateFinance.BorrowAmount>申请本金</Mugirl.CorporateFinance.BorrowAmount>
-  <Mugirl.CorporateFinance.PreviewDue>若不提前还款，{1} 日到期预计应还 {0}。</Mugirl.CorporateFinance.PreviewDue>
-  <Mugirl.CorporateFinance.Sign>审核合同并签约</Mugirl.CorporateFinance.Sign>
+  <Mugirl.CorporateFinance.PreviewDue>{1} 日后应还 {0}</Mugirl.CorporateFinance.PreviewDue>
+  <Mugirl.CorporateFinance.Sign>签订借款合同</Mugirl.CorporateFinance.Sign>
   <Mugirl.CorporateFinance.SignConfirm>到手本金：{0}\n期限：{3} 日\n按期应还：{2}\n\n立即交付以下实物抵押：\n{1}\n\n还款先冲利息再冲本金，结清才退还原物。逾期自动锁定敌对并派出追偿队；抵押物不会自动清算，需要您在违约页另行确认处置。确认签约？</Mugirl.CorporateFinance.SignConfirm>
   <Mugirl.CorporateFinance.Existing>请先结清已有借款并领取剩余托管资产。</Mugirl.CorporateFinance.Existing>
   <Mugirl.CorporateFinance.InvalidAmount>请输入有效本金并选择抵押物。</Mugirl.CorporateFinance.InvalidAmount>

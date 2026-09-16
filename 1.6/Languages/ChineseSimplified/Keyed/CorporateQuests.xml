@@ -15,13 +15,13 @@
   <Mugirl.CQ.State.Abandoned>已放弃</Mugirl.CQ.State.Abandoned>
   <Mugirl.CQ.HighRisk>高风险</Mugirl.CQ.HighRisk>
   <Mugirl.CQ.AnyMaterial>不限</Mugirl.CQ.AnyMaterial>
-  <Mugirl.CQ.ProcessingDesc>配方：{0} × {1} 批。交付 {3} 个{2}，材质：{7}，普通品质以上、耐久至少90%，不接受变质或尸体污染制品。\n可退保证金：{4} 白银；净加工费：{5} 白银。原料：{6}。\n请自行在现有工作台安排生产；可分批交付。超期或放弃扣留保证金并降低好感。</Mugirl.CQ.ProcessingDesc>
-  <Mugirl.CQ.PurgeDesc>目标势力：{0}。预计战斗强度：{1} 点。\n消灭或俘获指定守军后领取 {2} 白银。仅倒地不算完成，逃离目标使任务失败；请在合同期限内完成行动。</Mugirl.CQ.PurgeDesc>
-  <Mugirl.CQ.InvestmentDesc>本金：{0} 白银，常规项目。\n回款包含本金：30%概率获得0.6倍，45%概率获得1.05倍，25%概率获得1.6倍。到期后领取回款；签约后不可撤回。亏损不产生债务或追偿。</Mugirl.CQ.InvestmentDesc>
-  <Mugirl.CQ.InvestmentHighDesc>本金：{0} 白银，高风险项目。\n回款包含本金：45%概率获得0.2倍，35%概率获得1.2倍，20%概率获得2.6倍。到期后领取回款；签约后不可撤回。亏损不产生债务或追偿。</Mugirl.CQ.InvestmentHighDesc>
-  <Mugirl.CQ.DistributionDesc>批次：{0} 个{1}，批发总价 {2} 白银；销量目标 {3} 个。\n向巨企以外的商人正常出售可计销量；赠送、消费、销毁或卖回巨企均不计入。利润取决于实际成交价。失败时保留剩余货物，不另收罚金。</Mugirl.CQ.DistributionDesc>
-  <Mugirl.CQ.NativeDesc>合作网络转介了一份外部委托。接洽后，请在任务列表查看完整条件并决定是否接受。目标、期限与报酬由委托方安排。</Mugirl.CQ.NativeDesc>
-  <Mugirl.CQ.FusionDesc>您曾投资牛聚变项目。巨企要求您前往一处独立研究站，处理未经授权开展雪牛娘研究的“侵权者”。\n进入现场后联系研究团队，再决定是否执行合同。接受后需在期限内处理现场；执行需实际消灭或俘获责任人员与守卫。</Mugirl.CQ.FusionDesc>
+  <Mugirl.CQ.ProcessingDesc>加工单：{0} × {1} 批\n交货：{2} × {3} · 材质 {7} · 普通以上 · 耐久≥90%\n保证金 {4} · 加工费 {5} 白银 · 配料 {6}\n可分批验收；拒收变质及尸体污染品。逾期或弃单扣押保证金并降级合作信用。</Mugirl.CQ.ProcessingDesc>
+  <Mugirl.CQ.PurgeDesc>行动对象：{0} · 武装评估 {1}\n酬金 {2} 白银。期限内消灭或俘获指定守军；逃脱视为违约。</Mugirl.CQ.PurgeDesc>
+  <Mugirl.CQ.InvestmentDesc>认购 {0} 白银\n含本金回款：30% → 0.6倍 / 45% → 1.05倍 / 25% → 1.6倍\n到期结算，不予赎回。亏损不追加债务。</Mugirl.CQ.InvestmentDesc>
+  <Mugirl.CQ.InvestmentHighDesc>高风险认购 {0} 白银\n含本金回款：45% → 0.2倍 / 35% → 1.2倍 / 20% → 2.6倍\n到期结算，不予赎回。亏损不追加债务。</Mugirl.CQ.InvestmentHighDesc>
+  <Mugirl.CQ.DistributionDesc>配货 {1} × {0} · 货款 {2} 白银 · 考核销量 {3}\n仅认可对外销售；自用、赠送、损毁及回售不计。未达标不罚款，余货自理。</Mugirl.CQ.DistributionDesc>
+  <Mugirl.CQ.NativeDesc>合作部门来函。具体报酬与条款由委托方另行送达。</Mugirl.CQ.NativeDesc>
+  <Mugirl.CQ.FusionDesc>知识产权部委托：前往独立研究站，与负责人交涉后执行清除。\n须在期限内消灭或俘获责任人员与守卫。</Mugirl.CQ.FusionDesc>
   <Mugirl.CQ.OfferGone>这份委托已经失效。</Mugirl.CQ.OfferGone>
   <Mugirl.CQ.Limit>最多同时进行 {0} 份日常委托。</Mugirl.CQ.Limit>
   <Mugirl.CQ.NeedSilver>需要可交易白银 {0}。</Mugirl.CQ.NeedSilver>
@@ -57,9 +57,9 @@
   <Mugirl.CQ.Daily>日常委托</Mugirl.CQ.Daily>
   <Mugirl.CQ.Side>支线任务</Mugirl.CQ.Side>
   <Mugirl.CQ.Main>主线任务</Mugirl.CQ.Main>
-  <Mugirl.CQ.BoardHelp>已进行 {0} 份日常委托。未接任务每周轮换；已接合同按各自期限结算。</Mugirl.CQ.BoardHelp>
-  <Mugirl.CQ.NoSide>完成牛聚变投资并收到回报后，巨企会发出一次性的知识产权委托。邀请需要1–3日送达，且终端必须已解锁。</Mugirl.CQ.NoSide>
-  <Mugirl.CQ.NoMissions>目前没有可展示的委托。</Mugirl.CQ.NoMissions>
+  <Mugirl.CQ.BoardHelp>履约中 {0} 份 · 本期招募每周更新</Mugirl.CQ.BoardHelp>
+  <Mugirl.CQ.NoSide>暂无专属邀约。客户关系部将另行联系。</Mugirl.CQ.NoSide>
+  <Mugirl.CQ.NoMissions>本期暂无在招委托。</Mugirl.CQ.NoMissions>
   <Mugirl.CQ.Progress>进度 {0}/{1}</Mugirl.CQ.Progress>
   <Mugirl.CQ.OfferTime>报价余 {0} 日</Mugirl.CQ.OfferTime>
   <Mugirl.CQ.DueTime>期限余 {0} 日</Mugirl.CQ.DueTime>

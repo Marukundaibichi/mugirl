@@ -11,12 +11,19 @@ namespace Mugirl
         public float productPriceFactor = 1.3f;
         public float stockPriceFactor = 1.65f;
         public float orderPriceFactor = 2.2f;
-        public float rareOrderPriceFactor = 2.8f;
+        public float rareOrderPriceFactor = 6f;
+        public float archotechOrderPriceFactor = 10f;
+        public float specialOrderPriceFactor = 20f;
+        public int specialOrderMinimumUnitPrice = 20000;
         public IntRange orderDays = new IntRange(3, 5);
-        public IntRange rareOrderDays = new IntRange(7, 12);
+        public IntRange rareOrderDays = new IntRange(12, 20);
+        public IntRange archotechOrderDays = new IntRange(20, 35);
+        public IntRange specialOrderDays = new IntRange(30, 60);
         public int maxActiveOrders = 5;
         public int cancelWindowDays = 1;
         public float cancelRefundFactor = 0.8f;
+        public List<ThingDef> rareOrderDefs = new List<ThingDef>();
+        public List<ThingDef> specialOrderDefs = new List<ThingDef>();
         public List<ThingDef> productDefs = new List<ThingDef>();
         public List<ThingDef> stapleDefs = new List<ThingDef>();
     }

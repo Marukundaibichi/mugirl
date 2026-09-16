@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <Mugirl.CorporatePeople.Title>Mugirl trading</Mugirl.CorporatePeople.Title>
-  <Mugirl.CorporatePeople.Intro>This week's Mugirls can join your colony as slaves. Review their skills, health and equipment. The corporation also purchases adult, legally transferable prisoners and slaves.</Mugirl.CorporatePeople.Intro>
+  <Mugirl.CorporatePeople.Intro>Human resources · Delivered as listed. Enrolled as slaves.</Mugirl.CorporatePeople.Intro>
   <Mugirl.CorporatePeople.BuyTab>Weekly roster</Mugirl.CorporatePeople.BuyTab>
   <Mugirl.CorporatePeople.SellTab>Corporate procurement</Mugirl.CorporatePeople.SellTab>
   <Mugirl.CorporatePeople.ClaimSilver>Claim proceeds: {0}</Mugirl.CorporatePeople.ClaimSilver>
-  <Mugirl.CorporatePeople.RequiresIdeology>Purchases require Ideology to join as colony slaves. This feature is disabled without it; purchases will not become free colonists.</Mugirl.CorporatePeople.RequiresIdeology>
-  <Mugirl.CorporatePeople.NoOffers>No personnel are available this week. Sold places are replenished at the weekly rotation.</Mugirl.CorporatePeople.NoOffers>
+  <Mugirl.CorporatePeople.RequiresIdeology>Slave purchases require the Ideology DLC.</Mugirl.CorporatePeople.RequiresIdeology>
+  <Mugirl.CorporatePeople.NoOffers>This week's roster is sold out. New arrivals next week.</Mugirl.CorporatePeople.NoOffers>
   <Mugirl.CorporatePeople.ClaimPerson>Receive paid personnel</Mugirl.CorporatePeople.ClaimPerson>
   <Mugirl.CorporatePeople.BuyPrice>Buy as slave · {0}</Mugirl.CorporatePeople.BuyPrice>
-  <Mugirl.CorporatePeople.BuyConfirm>Pay {1} to purchase {0} as a slave and deliver them to {2}?\n\nAbilities, health and gear are shown on this page. Arrange slave living conditions and suppression after arrival. Caravan deliveries add a person and their carried equipment.</Mugirl.CorporatePeople.BuyConfirm>
-  <Mugirl.CorporatePeople.SaleWarning>Selling counts as slave trading, retaining vanilla family and ideology consequences. Colonists also receive “sent a mugirl to a ruthless corporation” (-8 mood for 8 days; another sale refreshes the duration).</Mugirl.CorporatePeople.SaleWarning>
-  <Mugirl.CorporatePeople.NoCandidates>No eligible adult mugirl prisoners or slaves are available here. Free colonists, visitors, temporary quest members and unsecured captives are excluded.</Mugirl.CorporatePeople.NoCandidates>
+  <Mugirl.CorporatePeople.BuyConfirm>Purchase: {0} (slave)\nPayment: {1}\nDelivery: {2}\n\nDelivered as listed. The buyer handles accommodation and suppression. Caravans assume the added person and equipment load.\n\nAuthorize payment?</Mugirl.CorporatePeople.BuyConfirm>
+  <Mugirl.CorporatePeople.SaleWarning>Slave trade · Family and ideology consequences; colonists suffer -8 mood for 8 days.</Mugirl.CorporatePeople.SaleWarning>
+  <Mugirl.CorporatePeople.NoCandidates>No eligible personnel. We purchase secured adult mugirl prisoners and slaves; free colonists, visitors and temporary quest members are excluded.</Mugirl.CorporatePeople.NoCandidates>
   <Mugirl.CorporatePeople.SellPrice>Sell to corporation · {0}</Mugirl.CorporatePeople.SellPrice>
-  <Mugirl.CorporatePeople.MapGear>Map transaction: worn apparel travels with the person. Weapons, inventory and weapon-wheel reserves are dropped locally through the vanilla trade process.</Mugirl.CorporatePeople.MapGear>
-  <Mugirl.CorporatePeople.CaravanGear>Caravan transaction: apparel, equipment, inventory and weapon-wheel reserves travel with the person. Transfer anything you want to keep to another caravan member first.</Mugirl.CorporatePeople.CaravanGear>
-  <Mugirl.CorporatePeople.SellConfirm>Permanently sell {0} to the corporation for {1}?\n\nThis is slave trading and triggers vanilla family and ideology consequences. Colonists also receive -8 mood for 8 days for sending a mugirl to a ruthless corporation.\n\n{2}\n\nThe person will no longer belong to the colony.</Mugirl.CorporatePeople.SellConfirm>
+  <Mugirl.CorporatePeople.MapGear>Apparel travels with the person. Weapons, inventory and weapon-wheel reserves are left on site.</Mugirl.CorporatePeople.MapGear>
+  <Mugirl.CorporatePeople.CaravanGear>All carried items transfer with the person, including weapon-wheel reserves. Move anything you intend to keep first.</Mugirl.CorporatePeople.CaravanGear>
+  <Mugirl.CorporatePeople.SellConfirm>Transfer: {0}\nReceivable: {1}\n\nSlave trading triggers family and ideology consequences. Colonists receive “sent a mugirl to a ruthless corporation”: -8 mood for 8 days; another sale refreshes the duration.\n\n{2}\n\nTransfer is permanent. The person leaves your colony's ownership. Sign the agreement?</Mugirl.CorporatePeople.SellConfirm>
   <Mugirl.CorporatePeople.AgeHealth>Age {0} · Overall health {1}</Mugirl.CorporatePeople.AgeHealth>
   <Mugirl.CorporatePeople.Skills>Main skills: {0} (* passion, ** burning passion)</Mugirl.CorporatePeople.Skills>
   <Mugirl.CorporatePeople.Traits>Traits: {0}</Mugirl.CorporatePeople.Traits>

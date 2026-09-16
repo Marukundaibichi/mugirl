@@ -24,24 +24,24 @@ The goods will remain in storage until you provide a delivery destination. Your 
   <Mugirl.Corporate.Success>The corporation has confirmed the transaction.</Mugirl.Corporate.Success>
   <Mugirl.Corporate.WeeklyStock>Weekly supplies</Mugirl.Corporate.WeeklyStock>
   <Mugirl.Corporate.ProductPurchase>Sell produce</Mugirl.Corporate.ProductPurchase>
-  <Mugirl.Corporate.ProductHint>The corporation buys Mugirl milk, wool and products with verifiable ingredients. Quality determines the price. Origin determines the treatment.</Mugirl.Corporate.ProductHint>
-  <Mugirl.Corporate.StockHint>Limited supplies are available for purchase only. Inventory rotates every seven days; sold-out goods must await the next shipment.</Mugirl.Corporate.StockHint>
+  <Mugirl.Corporate.ProductHint>Milk, wool and approved products. Procurement is always buying.</Mugirl.Corporate.ProductHint>
+  <Mugirl.Corporate.StockHint>This week's stock. Payment received, shipment released.</Mugirl.Corporate.StockHint>
   <Mugirl.Corporate.SearchGoods>Search item names…</Mugirl.Corporate.SearchGoods>
   <Mugirl.Corporate.StockRow>Unit price {0}
 Available {1}</Mugirl.Corporate.StockRow>
-  <Mugirl.Corporate.EmptyGoods>No matching goods. Change the search or check for eligible products within trade beacon range.</Mugirl.Corporate.EmptyGoods>
-  <Mugirl.Corporate.SelectGoods>Select goods to review the price and quantity.</Mugirl.Corporate.SelectGoods>
+  <Mugirl.Corporate.EmptyGoods>No quotes in this category.</Mugirl.Corporate.EmptyGoods>
+  <Mugirl.Corporate.SelectGoods>Procurement awaits your selection.</Mugirl.Corporate.SelectGoods>
   <Mugirl.Corporate.ConfirmSale>Confirm sale</Mugirl.Corporate.ConfirmSale>
   <Mugirl.Corporate.ConfirmPurchase>Confirm purchase</Mugirl.Corporate.ConfirmPurchase>
-  <Mugirl.Corporate.CaravanWeight>This quantity weighs about {0} kg. Check your caravan's carrying capacity.</Mugirl.Corporate.CaravanWeight>
-  <Mugirl.Corporate.BeaconHint>Uses goods and silver within trade beacon range on this map.</Mugirl.Corporate.BeaconHint>
+  <Mugirl.Corporate.CaravanWeight>Shipment mass: {0} kg</Mugirl.Corporate.CaravanWeight>
+  <Mugirl.Corporate.BeaconHint>Delivery within trade beacon range.</Mugirl.Corporate.BeaconHint>
   <Mugirl.Corporate.OrderCatalog>Order catalogue</Mugirl.Corporate.OrderCatalog>
   <Mugirl.Corporate.MyOrders>My orders</Mugirl.Corporate.MyOrders>
-  <Mugirl.Corporate.OrderHint>Rare goods have a price too. Choose material, quality and quantity. Quest items and goods requiring special preparation are not included.</Mugirl.Corporate.OrderHint>
+  <Mugirl.Corporate.OrderHint>Scarce goods. Dedicated procurement. Patience has a price.</Mugirl.Corporate.OrderHint>
   <Mugirl.Corporate.NoStuff>Fixed material</Mugirl.Corporate.NoStuff>
-  <Mugirl.Corporate.OrderTerms>Preparation: {0}–{1} days. Cancellation within one day refunds {2}%; later cancellations are unavailable. Collect the finished order at a terminal.</Mugirl.Corporate.OrderTerms>
+  <Mugirl.Corporate.OrderTerms>Lead time {0}–{1} days · First-day cancellation returns {2}%</Mugirl.Corporate.OrderTerms>
   <Mugirl.Corporate.PlaceOrder>Pay and order</Mugirl.Corporate.PlaceOrder>
-  <Mugirl.Corporate.OrderReceipt>Paid {0} · {1} days until ready</Mugirl.Corporate.OrderReceipt>
+  <Mugirl.Corporate.OrderReceipt>Paid {0} · Ready in {1} days</Mugirl.Corporate.OrderReceipt>
   <Mugirl.Corporate.Claim>Collect</Mugirl.Corporate.Claim>
   <Mugirl.Corporate.CancelOrder>Cancel order</Mugirl.Corporate.CancelOrder>
   <Mugirl.Corporate.NoOrders>There are no goods orders on this account.</Mugirl.Corporate.NoOrders>

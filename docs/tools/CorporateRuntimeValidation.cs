@@ -10,7 +10,7 @@ using Verse;
 
 namespace Mugirl
 {
-    public sealed class CorporateRuntimeValidation : GameComponent
+    internal sealed class CorporateRuntimeValidation
     {
         private int phase;
         private int persistedOrder;
@@ -31,14 +31,12 @@ namespace Mugirl
             }
         }
 
-        public override void ExposeData()
-        {
-            Scribe_Values.Look(ref phase, "validationPhase", 0);
-            Scribe_Values.Look(ref persistedOrder, "validationOrder", 0);
-            Scribe_Values.Look(ref persistedStockId, "validationStock", 0);
-        }
+        // Test-only roundtrip expectations stay in this process, outside game data.
+        internal bool AwaitingReload => phase == 1 && running;
 
-        public override void GameComponentUpdate()
+        internal void ResumeAfterReload() { running = false; }
+
+        internal void Update()
         {
             if (!Enabled || running || Current.ProgramState != ProgramState.Playing || Find.CurrentMap?.mapPawns.FreeColonistsSpawned.Count < 1) return;
             running = true;

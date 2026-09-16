@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Mugirl.CorporateTradeBrowser.All>All supplies</Mugirl.CorporateTradeBrowser.All>
+  <Mugirl.CorporateTradeBrowser.Materials>Materials</Mugirl.CorporateTradeBrowser.Materials>
+  <Mugirl.CorporateTradeBrowser.Food>Food</Mugirl.CorporateTradeBrowser.Food>
+  <Mugirl.CorporateTradeBrowser.Medicine>Medicine</Mugirl.CorporateTradeBrowser.Medicine>
+  <Mugirl.CorporateTradeBrowser.Weapons>Weapons</Mugirl.CorporateTradeBrowser.Weapons>
+  <Mugirl.CorporateTradeBrowser.Apparel>Apparel</Mugirl.CorporateTradeBrowser.Apparel>
+  <Mugirl.CorporateTradeBrowser.Rare>Rare goods</Mugirl.CorporateTradeBrowser.Rare>
+  <Mugirl.CorporateTradeBrowser.Other>Other goods</Mugirl.CorporateTradeBrowser.Other>
+  <Mugirl.CorporateTradeBrowser.SortName>By name</Mugirl.CorporateTradeBrowser.SortName>
+  <Mugirl.CorporateTradeBrowser.SortPriceLow>Price: low</Mugirl.CorporateTradeBrowser.SortPriceLow>
+  <Mugirl.CorporateTradeBrowser.SortPriceHigh>Price: high</Mugirl.CorporateTradeBrowser.SortPriceHigh>
+  <Mugirl.CorporateTradeBrowser.GridView>Product display</Mugirl.CorporateTradeBrowser.GridView>
+  <Mugirl.CorporateTradeBrowser.ListView>Price list</Mugirl.CorporateTradeBrowser.ListView>
+  <Mugirl.CorporateTradeBrowser.Results>{0} products</Mugirl.CorporateTradeBrowser.Results>
+  <Mugirl.CorporateTradeBrowser.PurchaseDesk>Mugirl product acquisition</Mugirl.CorporateTradeBrowser.PurchaseDesk>
+  <Mugirl.CorporateTradeBrowser.ProcurementDesk>Corporate supply chain / made to order</Mugirl.CorporateTradeBrowser.ProcurementDesk>
+  <Mugirl.CorporateTradeBrowser.RefreshIn>Next shipment in {0} days</Mugirl.CorporateTradeBrowser.RefreshIn>
+  <Mugirl.CorporateTradeBrowser.Available>{0} available</Mugirl.CorporateTradeBrowser.Available>
+  <Mugirl.CorporateTradeBrowser.SoldOut>Sold out</Mugirl.CorporateTradeBrowser.SoldOut>
+  <Mugirl.CorporateTradeBrowser.UnitPrice>Unit price</Mugirl.CorporateTradeBrowser.UnitPrice>
+  <Mugirl.CorporateTradeBrowser.PurchasePrice>Acquisition price</Mugirl.CorporateTradeBrowser.PurchasePrice>
+  <Mugirl.CorporateTradeBrowser.Stock>Available</Mugirl.CorporateTradeBrowser.Stock>
+  <Mugirl.CorporateTradeBrowser.Quantity>Quantity</Mugirl.CorporateTradeBrowser.Quantity>
+  <Mugirl.CorporateTradeBrowser.Total>Total</Mugirl.CorporateTradeBrowser.Total>
+  <Mugirl.CorporateTradeBrowser.InsufficientFunds>Insufficient available silver.</Mugirl.CorporateTradeBrowser.InsufficientFunds>
+  <Mugirl.CorporateTradeBrowser.Mass>Shipment mass: {0} kg</Mugirl.CorporateTradeBrowser.Mass>
+  <Mugirl.CorporateTradeBrowser.DeliveryTo>Delivery: {0}</Mugirl.CorporateTradeBrowser.DeliveryTo>
+  <Mugirl.CorporateTradeBrowser.Lead>Ready in {0}-{1} days</Mugirl.CorporateTradeBrowser.Lead>
+  <Mugirl.CorporateTradeBrowser.SpecialLead>Special sourcing / {0}-{1} days</Mugirl.CorporateTradeBrowser.SpecialLead>
+  <Mugirl.CorporateTradeBrowser.Days>{0}-{1} days</Mugirl.CorporateTradeBrowser.Days>
+  <Mugirl.CorporateTradeBrowser.Preparation>Preparation</Mugirl.CorporateTradeBrowser.Preparation>
+  <Mugirl.CorporateTradeBrowser.Material>Material</Mugirl.CorporateTradeBrowser.Material>
+  <Mugirl.CorporateTradeBrowser.Quality>Quality</Mugirl.CorporateTradeBrowser.Quality>
+  <Mugirl.CorporateTradeBrowser.Cancellation>Cancel within {0} days: {1}% refund</Mugirl.CorporateTradeBrowser.Cancellation>
+  <Mugirl.CorporateTradeBrowser.NoResults>No matching supplies.</Mugirl.CorporateTradeBrowser.NoResults>
+  <Mugirl.CorporateTradeBrowser.ResetFilters>All supplies</Mugirl.CorporateTradeBrowser.ResetFilters>
+  <Mugirl.CorporateTradeBrowser.SelectProduct>Awaiting product selection</Mugirl.CorporateTradeBrowser.SelectProduct>
+  <Mugirl.CorporateTradeBrowser.ProductDetails>Product dossier</Mugirl.CorporateTradeBrowser.ProductDetails>
+  <Mugirl.CorporateTradeBrowser.StandardSourcing>Standard supply</Mugirl.CorporateTradeBrowser.StandardSourcing>
+  <Mugirl.CorporateTradeBrowser.RareSourcing>Rare goods / priority procurement</Mugirl.CorporateTradeBrowser.RareSourcing>
+  <Mugirl.CorporateTradeBrowser.SpecialSourcing>Special sourcing / off-market supply</Mugirl.CorporateTradeBrowser.SpecialSourcing>
+  <Mugirl.CorporateTradeBrowser.Unavailable>Quote unavailable</Mugirl.CorporateTradeBrowser.Unavailable>
+  <Mugirl.CorporateTradeBrowser.RemainingDays>{0} days remaining</Mugirl.CorporateTradeBrowser.RemainingDays>
+  <Mugirl.CorporateTradeBrowser.Paid>Paid {0}</Mugirl.CorporateTradeBrowser.Paid>
+  <Mugirl.CorporateTradeBrowser.ConfirmCancellation>Cancel order #{0}? The corporation will refund {1}% of the amount paid under the contract.</Mugirl.CorporateTradeBrowser.ConfirmCancellation>
+</LanguageData>

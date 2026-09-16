@@ -15,13 +15,13 @@
   <Mugirl.CQ.State.Abandoned>Abandoned</Mugirl.CQ.State.Abandoned>
   <Mugirl.CQ.HighRisk>High risk</Mugirl.CQ.HighRisk>
   <Mugirl.CQ.AnyMaterial>Any</Mugirl.CQ.AnyMaterial>
-  <Mugirl.CQ.ProcessingDesc>Recipe: {0}, {1} batches. Deliver {3} × {2}, material: {7}. Normal quality or better, at least 90% durability; no rotten or tainted goods.\nRefundable deposit: {4} silver. Net processing fee: {5} silver. Supplied ingredients: {6}.\nSchedule production at your own workbench. Partial deliveries are accepted. Default forfeits the deposit and reduces goodwill.</Mugirl.CQ.ProcessingDesc>
-  <Mugirl.CQ.PurgeDesc>Target faction: {0}. Estimated threat: {1} points.\nKill or capture every designated defender to earn {2} silver. Downed enemies do not count; escaped targets fail the assignment. Finish before the contract deadline.</Mugirl.CQ.PurgeDesc>
-  <Mugirl.CQ.InvestmentDesc>Principal: {0} silver, regular project.\nReturns include principal: 30% chance of 0.6×, 45% chance of 1.05×, 25% chance of 1.6×. Collect at maturity; investments cannot be withdrawn. Losses create no debt or collection raids.</Mugirl.CQ.InvestmentDesc>
-  <Mugirl.CQ.InvestmentHighDesc>Principal: {0} silver, high-risk project.\nReturns include principal: 45% chance of 0.2×, 35% chance of 1.2×, 20% chance of 2.6×. Collect at maturity; investments cannot be withdrawn. Losses create no debt or collection raids.</Mugirl.CQ.InvestmentHighDesc>
-  <Mugirl.CQ.DistributionDesc>Lot: {0} × {1}. Wholesale total: {2} silver. Sales target: {3}.\nOnly ordinary sales to non-corporate traders count. Gifts, consumption, destruction and corporate buybacks do not. Profit depends on actual sale prices. Failed contracts retain unsold goods without an additional fine.</Mugirl.CQ.DistributionDesc>
-  <Mugirl.CQ.NativeDesc>The partner network has referred an outside assignment. Request the introduction, then review its full terms in the quest log before accepting. The client sets the objectives, deadline and payment.</Mugirl.CQ.NativeDesc>
-  <Mugirl.CQ.FusionDesc>Following your investment in the fusion project, the corporation asks you to investigate an independent station accused of unauthorized Mugirl research.\nContact the researchers on arrival before choosing a course of action. Complete the assignment before its deadline. Enforcement requires actually killing or capturing the responsible researchers and guards.</Mugirl.CQ.FusionDesc>
+  <Mugirl.CQ.ProcessingDesc>Production: {0} × {1} batches\nDelivery: {2} × {3} · Material {7} · Normal+ · Condition 90%+\nDeposit {4} · Fee {5} silver · Inputs {6}\nPartial deliveries accepted. Spoiled or corpse-tainted goods rejected. Late or abandoned work forfeits the deposit and goodwill.</Mugirl.CQ.ProcessingDesc>
+  <Mugirl.CQ.PurgeDesc>Target: {0} · Force estimate {1}\nFee: {2} silver. Eliminate or capture the designated garrison before the deadline. Escapes breach the contract.</Mugirl.CQ.PurgeDesc>
+  <Mugirl.CQ.InvestmentDesc>Subscription: {0} silver\nReturns include principal: 30% → 0.6× / 45% → 1.05× / 25% → 1.6×\nPayment at maturity. No withdrawal; losses incur no debt.</Mugirl.CQ.InvestmentDesc>
+  <Mugirl.CQ.InvestmentHighDesc>High-risk subscription: {0} silver\nReturns include principal: 45% → 0.2× / 35% → 1.2× / 20% → 2.6×\nPayment at maturity. No withdrawal; losses incur no debt.</Mugirl.CQ.InvestmentHighDesc>
+  <Mugirl.CQ.DistributionDesc>Shipment: {1} × {0} · Cost {2} silver · Sales target {3}\nOnly external sales count. Use, gifts, destruction and returns excluded. No failure penalty; unsold stock remains yours.</Mugirl.CQ.DistributionDesc>
+  <Mugirl.CQ.NativeDesc>A referral from our partners. The client will forward payment terms and conditions.</Mugirl.CQ.NativeDesc>
+  <Mugirl.CQ.FusionDesc>Intellectual Property Division: visit the independent research station and speak to its lead before enforcement.\nEliminate or capture the designated personnel and guards before the deadline.</Mugirl.CQ.FusionDesc>
   <Mugirl.CQ.OfferGone>This offer is no longer available.</Mugirl.CQ.OfferGone>
   <Mugirl.CQ.Limit>At most {0} daily contracts may be active.</Mugirl.CQ.Limit>
   <Mugirl.CQ.NeedSilver>Requires {0} available silver.</Mugirl.CQ.NeedSilver>
@@ -57,9 +57,9 @@
   <Mugirl.CQ.Daily>Daily contracts</Mugirl.CQ.Daily>
   <Mugirl.CQ.Side>Side stories</Mugirl.CQ.Side>
   <Mugirl.CQ.Main>Main story</Mugirl.CQ.Main>
-  <Mugirl.CQ.BoardHelp>{0} daily contracts are active. Unaccepted offers rotate weekly; signed contracts retain their own deadlines.</Mugirl.CQ.BoardHelp>
-  <Mugirl.CQ.NoSide>After the fusion investment pays out, the corporation will send a one-time intellectual property assignment. Delivery takes 1–3 days after the terminal is unlocked.</Mugirl.CQ.NoSide>
-  <Mugirl.CQ.NoMissions>No contracts are available.</Mugirl.CQ.NoMissions>
+  <Mugirl.CQ.BoardHelp>{0} contracts in progress · Weekly recruitment</Mugirl.CQ.BoardHelp>
+  <Mugirl.CQ.NoSide>No private assignments. Client relations will be in touch.</Mugirl.CQ.NoSide>
+  <Mugirl.CQ.NoMissions>No open contracts this period.</Mugirl.CQ.NoMissions>
   <Mugirl.CQ.Progress>Progress {0}/{1}</Mugirl.CQ.Progress>
   <Mugirl.CQ.OfferTime>Offer expires in {0} days</Mugirl.CQ.OfferTime>
   <Mugirl.CQ.DueTime>Due in {0} days</Mugirl.CQ.DueTime>

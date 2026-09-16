@@ -24,24 +24,24 @@
   <Mugirl.Corporate.Success>巨企已确认本次业务。</Mugirl.Corporate.Success>
   <Mugirl.Corporate.WeeklyStock>本周供应</Mugirl.Corporate.WeeklyStock>
   <Mugirl.Corporate.ProductPurchase>产品收购</Mugirl.Corporate.ProductPurchase>
-  <Mugirl.Corporate.ProductHint>巨企长期收购雪牛娘奶、毛及可确认来源的制品。质量影响报价，来源影响待遇。</Mugirl.Corporate.ProductHint>
-  <Mugirl.Corporate.StockHint>本期货物仅供购买，数量有限。库存每七日更新，售罄后请等待下一批补给。</Mugirl.Corporate.StockHint>
+  <Mugirl.Corporate.ProductHint>奶、毛与合格制品，采购部长期收购。</Mugirl.Corporate.ProductHint>
+  <Mugirl.Corporate.StockHint>本周现货，款到即发。</Mugirl.Corporate.StockHint>
   <Mugirl.Corporate.SearchGoods>搜索物品名称…</Mugirl.Corporate.SearchGoods>
   <Mugirl.Corporate.StockRow>单价 {0}
 余量 {1}</Mugirl.Corporate.StockRow>
-  <Mugirl.Corporate.EmptyGoods>没有符合条件的货物。可调整搜索，或检查贸易信标内是否有合格产品。</Mugirl.Corporate.EmptyGoods>
-  <Mugirl.Corporate.SelectGoods>选择一项货物以查看报价和办理数量。</Mugirl.Corporate.SelectGoods>
+  <Mugirl.Corporate.EmptyGoods>本栏暂无报价。</Mugirl.Corporate.EmptyGoods>
+  <Mugirl.Corporate.SelectGoods>采购部等待您的选品。</Mugirl.Corporate.SelectGoods>
   <Mugirl.Corporate.ConfirmSale>确认出售</Mugirl.Corporate.ConfirmSale>
   <Mugirl.Corporate.ConfirmPurchase>确认购买</Mugirl.Corporate.ConfirmPurchase>
-  <Mugirl.Corporate.CaravanWeight>本次数量约 {0} kg。请留意远行队载重。</Mugirl.Corporate.CaravanWeight>
-  <Mugirl.Corporate.BeaconHint>使用当前地图贸易信标内的货物和白银。</Mugirl.Corporate.BeaconHint>
+  <Mugirl.Corporate.CaravanWeight>本批货重 {0} kg</Mugirl.Corporate.CaravanWeight>
+  <Mugirl.Corporate.BeaconHint>贸易信标范围内交割。</Mugirl.Corporate.BeaconHint>
   <Mugirl.Corporate.OrderCatalog>订购目录</Mugirl.Corporate.OrderCatalog>
   <Mugirl.Corporate.MyOrders>我的订单</Mugirl.Corporate.MyOrders>
-  <Mugirl.Corporate.OrderHint>稀有物资也有价格。选择材料、品质与数量；特殊任务物品和需要独立生成流程的货物不在本目录内。</Mugirl.Corporate.OrderHint>
+  <Mugirl.Corporate.OrderHint>稀缺物资，专线调拨。价格包含等待的成本。</Mugirl.Corporate.OrderHint>
   <Mugirl.Corporate.NoStuff>固定材料</Mugirl.Corporate.NoStuff>
-  <Mugirl.Corporate.OrderTerms>备货 {0}–{1} 日。首日撤单返还 {2}%；之后不可撤单。货物备妥后在终端领取。</Mugirl.Corporate.OrderTerms>
+  <Mugirl.Corporate.OrderTerms>交期 {0}–{1} 日 · 首日撤单返还 {2}%</Mugirl.Corporate.OrderTerms>
   <Mugirl.Corporate.PlaceOrder>支付并订购</Mugirl.Corporate.PlaceOrder>
-  <Mugirl.Corporate.OrderReceipt>已付 {0} · 剩余备货 {1} 日</Mugirl.Corporate.OrderReceipt>
+  <Mugirl.Corporate.OrderReceipt>已付 {0} · 备货剩余 {1} 日</Mugirl.Corporate.OrderReceipt>
   <Mugirl.Corporate.Claim>领取</Mugirl.Corporate.Claim>
   <Mugirl.Corporate.CancelOrder>撤销订单</Mugirl.Corporate.CancelOrder>
   <Mugirl.Corporate.NoOrders>账户中尚无货物订单。</Mugirl.Corporate.NoOrders>

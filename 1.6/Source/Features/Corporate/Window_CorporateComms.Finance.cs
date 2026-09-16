@@ -22,14 +22,19 @@ namespace Mugirl
         {
             network.UpdateLoanAccrual();
             float width = rect.width - 20f;
-            Widgets.BeginScrollView(rect, ref financeScroll, new Rect(0f, 0f, width, financeHeight));
+            CorporateUI.BeginScrollView(rect, ref financeScroll, new Rect(0f, 0f, width, financeHeight), "finance/page-scroll");
             float y = 0f;
             try
             {
-                CorporateUI.Heading(ref y, width, "Mugirl.CorporateFinance.Title".Translate(),
+                CorporateUI.Heading(ref y, width - 128f, "Mugirl.CorporateFinance.Title".Translate(),
                     "Mugirl.CorporateFinance.Terms".Translate(
                         (network.CurrentLoanDailyRate * 100f).ToString("0.#"),
                         (network.CurrentLoanOverdueRate * 100f).ToString("0.#"), CorporateNetwork.LoanTermDays));
+                Rect terms = new Rect(width - 116f, 4f, 116f, 28f);
+                CorporateUI.Label(terms, "Mugirl.CorporateFinance.TermsButton".Translate(), GameFont.Tiny,
+                    CorporateUI.Muted, TextAnchor.MiddleRight);
+                TooltipHandler.TipRegion(terms, "Mugirl.CorporateFinance.FinePrint".Translate().ToString()
+                    + "\n\n" + "Mugirl.CorporateFinance.CollateralFinePrint".Translate());
                 if (network.HasLoan)
                 {
                     string status = "Mugirl.CorporateFinance.Summary".Translate(
@@ -46,19 +51,19 @@ namespace Mugirl
                             Math.Max(0f, (network.LoanNextRaidTick - CorporateNetwork.Now) / 60000f).ToString("0.0")), true);
                     }
                     CorporateUI.Label(new Rect(0f, y, 140f, 30f), "Mugirl.CorporateFinance.Repayment".Translate());
-                    Widgets.TextFieldNumeric(new Rect(145f, y, Mathf.Min(160f, width - 145f), 30f),
-                        ref financeRepay, ref financeRepayBuffer, 1, int.MaxValue);
+                    CorporateNumeric(new Rect(145f, y, Mathf.Min(160f, width - 145f), 30f),
+                        ref financeRepay, ref financeRepayBuffer, 1, int.MaxValue, "finance/repay");
                     y += 38f;
                     int amount = Math.Min(financeRepay, network.LoanBalance);
                     if (CorporateUI.Button(new Rect(0f, y, (width - 8f) / 2f, 36f),
                         "Mugirl.CorporateFinance.PayAmount".Translate(CorporateUI.Money(amount)),
-                        amount > 0 && context.SilverCount >= amount, true))
+                        amount > 0 && context.SilverCount >= amount, true, "finance/pay-amount"))
                     {
                         string reason;
                         FinanceResult(network.TryRepayLoan(context, amount, out reason), reason);
                     }
                     if (CorporateUI.Button(new Rect((width + 8f) / 2f, y, (width - 8f) / 2f, 36f),
-                        "Mugirl.CorporateFinance.PayAll".Translate(), context.SilverCount >= network.LoanBalance))
+                        "Mugirl.CorporateFinance.PayAll".Translate(), context.SilverCount >= network.LoanBalance, id: "finance/pay-all"))
                     {
                         string reason;
                         FinanceResult(network.TryRepayLoan(context, network.LoanBalance, out reason), reason);
@@ -71,17 +76,17 @@ namespace Mugirl
                         if (thing != null && !thing.Destroyed) FinanceText(ref y, width, "• " + thing.LabelCap);
                     if (network.LoanDefaulted && network.HasCollateral)
                     {
-                        if (CorporateUI.Button(new Rect(0f, y, width, 36f), "Mugirl.CorporateFinance.Liquidate".Translate()))
+                        if (CorporateUI.Button(new Rect(0f, y, width, 36f), "Mugirl.CorporateFinance.Liquidate".Translate(), id: "finance/liquidate"))
                         {
                             int proceeds = network.LoanLiquidationValue;
                             string items = string.Join("\n", network.LoanCollateral.Select(t => t.LabelCap.ToString()).ToArray());
-                            MugirlGameUtility.Windows.Add(Dialog_MessageBox.CreateConfirmation(
+                            Confirm(
                                 "Mugirl.CorporateFinance.LiquidateConfirm".Translate(items, CorporateUI.Money(proceeds),
                                     CorporateUI.Money(Math.Max(0, network.LoanBalance - proceeds))), () =>
                                 {
                                     string reason;
                                     FinanceResult(network.TryLiquidateCollateral(context, out reason), reason);
-                                }, true));
+                                }, true);
                         }
                         y += 44f;
                     }
@@ -98,7 +103,7 @@ namespace Mugirl
                 }
                 if ((!network.HasLoan && network.HasCollateral) || network.FinancePendingSilver > 0)
                 {
-                    if (CorporateUI.Button(new Rect(0f, y, width, 36f), "Mugirl.CorporateFinance.Claim".Translate(), true, true))
+                    if (CorporateUI.Button(new Rect(0f, y, width, 36f), "Mugirl.CorporateFinance.Claim".Translate(), true, true, "finance/claim"))
                     {
                         string reason;
                         FinanceResult(network.TryClaimFinanceAssets(context, out reason), reason);
@@ -106,7 +111,7 @@ namespace Mugirl
                     y += 44f;
                 }
             }
-            finally { Widgets.EndScrollView(); }
+            finally { CorporateUI.EndScrollView(); }
             if (Event.current.type == EventType.Layout) financeHeight = y + 12f;
         }
 
@@ -131,7 +136,8 @@ namespace Mugirl
                 string buffer = financeQuantityBuffers.TryGetValue(thing, out string text) ? text : "0";
                 CorporateUI.Label(new Rect(0f, y, width - 110f, 43f),
                     thing.LabelCap + " · " + CorporateUI.Money(thing.MarketValue) + "/" + "Mugirl.CorporateFinance.Unit".Translate());
-                Widgets.TextFieldNumeric(new Rect(width - 100f, y, 100f, 30f), ref quantity, ref buffer, 0, thing.stackCount);
+                CorporateNumeric(new Rect(width - 100f, y, 100f, 30f), ref quantity, ref buffer, 0, thing.stackCount,
+                    "finance/collateral/" + thing.thingIDNumber);
                 financeSelection[thing] = Math.Min(quantity, thing.stackCount);
                 financeQuantityBuffers[thing] = buffer;
                 y += 48f;
@@ -140,25 +146,26 @@ namespace Mugirl
             int maximum = Math.Min(CorporateNetwork.LoanMaximum, Mathf.FloorToInt(value * CorporateNetwork.LoanCollateralRatio));
             FinanceText(ref y, width, "Mugirl.CorporateFinance.SelectedValue".Translate(CorporateUI.Money(value), CorporateUI.Money(maximum)));
             CorporateUI.Label(new Rect(0f, y, 140f, 30f), "Mugirl.CorporateFinance.BorrowAmount".Translate());
-            Widgets.TextFieldNumeric(new Rect(145f, y, Mathf.Min(160f, width - 145f), 30f),
-                ref financeBorrow, ref financeBorrowBuffer, CorporateNetwork.LoanMinimum, CorporateNetwork.LoanMaximum);
+            CorporateNumeric(new Rect(145f, y, Mathf.Min(160f, width - 145f), 30f),
+                ref financeBorrow, ref financeBorrowBuffer, CorporateNetwork.LoanMinimum, CorporateNetwork.LoanMaximum, "finance/borrow");
             y += 40f;
             int due = Mathf.CeilToInt(financeBorrow * (1f + CorporateNetwork.LoanDailyRate * CorporateNetwork.LoanTermDays));
             FinanceText(ref y, width, "Mugirl.CorporateFinance.PreviewDue".Translate(CorporateUI.Money(due), CorporateNetwork.LoanTermDays));
             bool enough = financeBorrow >= CorporateNetwork.LoanMinimum && financeBorrow <= maximum;
-            if (CorporateUI.Button(new Rect(0f, y, width, 36f), "Mugirl.CorporateFinance.Sign".Translate(), allowed && enough, true))
+            if (CorporateUI.Button(new Rect(0f, y, width, 36f), "Mugirl.CorporateFinance.Sign".Translate(), allowed && enough, true, "finance/sign"))
             {
                 Dictionary<Thing, int> pledge = financeSelection.Where(p => p.Value > 0).ToDictionary(p => p.Key, p => p.Value);
                 int amount = financeBorrow;
                 string items = string.Join("\n", pledge.Select(p => p.Key.LabelNoCount + " × " + p.Value).ToArray());
-                MugirlGameUtility.Windows.Add(Dialog_MessageBox.CreateConfirmation("Mugirl.CorporateFinance.SignConfirm".Translate(
-                    CorporateUI.Money(amount), items, CorporateUI.Money(due), CorporateNetwork.LoanTermDays), () =>
+                Confirm("Mugirl.CorporateFinance.SignConfirm".Translate(
+                    CorporateUI.Money(amount), items, CorporateUI.Money(due), CorporateNetwork.LoanTermDays)
+                    + "\n\n" + "Mugirl.CorporateFinance.FinePrint".Translate(), () =>
                     {
                         string reason;
                         bool success = network.TryTakeLoan(context, amount, pledge, out reason);
                         if (success) { financeSelection.Clear(); financeQuantityBuffers.Clear(); }
                         FinanceResult(success, reason);
-                    }, true));
+                    }, true);
             }
             y += 44f;
             if (!enough) FinanceText(ref y, width, "Mugirl.CorporateFinance.InsufficientCollateral".Translate(), true);
@@ -171,10 +178,9 @@ namespace Mugirl
             y += height + 8f;
         }
 
-        private static void FinanceResult(bool success, string reason)
+        private void FinanceResult(bool success, string reason)
         {
-            Messages.Message(success ? "Mugirl.CorporateFinance.Success".Translate().ToString() : reason,
-                success ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.RejectInput, false);
+            ShowFeedback(success, success ? "Mugirl.CorporateFinance.Success".Translate().ToString() : reason);
         }
     }
 }

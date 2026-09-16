@@ -4250,6 +4250,8 @@ try {
     Write-Step "Keyed translations"
     $directKeys = New-Object 'System.Collections.Generic.HashSet[string]'
     $broadKeys = New-Object 'System.Collections.Generic.HashSet[string]'
+    # Exact historical class names in the save migration are not translation keys.
+    $legacySerializedTypes = @('Mugirl.CorporateRuntimeValidation', 'Mugirl.CorporateVisualValidation')
     $skipPrefixes = @(
         'Mugirl.Comp', 'Mugirl.Hediff', 'Mugirl.JobDriver', 'Mugirl.Quest',
         'Mugirl.CompProperties', 'Mugirl.Thought', 'Mugirl.Incident',
@@ -4265,7 +4267,7 @@ try {
         }
         foreach ($match in [regex]::Matches($text, '"(Mugirl\.[A-Za-z0-9_.-]+)"')) {
             $key = $match.Groups[1].Value
-            $isType = $false
+            $isType = $key -in $legacySerializedTypes
             foreach ($prefix in $skipPrefixes) {
                 if ($key.StartsWith($prefix)) {
                     $isType = $true
@@ -4293,6 +4295,11 @@ try {
             }
         }
         foreach ($key in $broadKeys) {
+            # A trailing dot denotes a dynamically composed namespace, not a complete key.
+            # Require the namespace to exist; direct Translate calls still require exact keys.
+            if ($key.EndsWith('.') -and @($languageKeys | Where-Object { $_.StartsWith($key) }).Count -gt 0) {
+                continue
+            }
             if (-not $languageKeys.Contains($key)) {
                 $missingKeyed += "$language broad :: $key"
             }
