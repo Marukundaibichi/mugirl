@@ -189,6 +189,7 @@ namespace Mugirl
 
         private void SaveForRoundtrip(CorporateNetwork network, CorporateTradeContext context)
         {
+            CorporateServicesRuntimeChecks.Run(context.Map, network, context, Check);
             // 保存一份仍在履行的真实订单，在完整存档往返后检查引用和金额。
             network.EnsureWeeklyOffers();
             network.CorporateFaction.TryAffectGoodwillWith(Faction.OfPlayer, 100 - network.CorporateFaction.PlayerGoodwill, false, false);
@@ -271,6 +272,7 @@ namespace Mugirl
             Check("order objects have a single restored vault owner", order != null && order.goods.Count > 0 && order.goods.All(t => t != null && t.holdingOwner == network.Vault));
             Check("weekly stock is not rerolled on load", network.Stock.Any(s => s.id == persistedStockId));
             Check("escrow inventory has no duplicate references", network.Vault.Distinct().Count() == network.Vault.Count);
+            CorporateServicesRuntimeChecks.VerifyReload(network, Check);
             Check("gameplay DLL has expected Harmony patches", MugirlBootstrap.PatchedClassNames.Contains(typeof(Harmony_CorporateCommsConsole).FullName)
                 && MugirlBootstrap.PatchedClassNames.Contains(typeof(CorporateDebt_HostileTo_Patch).FullName));
             Finish();

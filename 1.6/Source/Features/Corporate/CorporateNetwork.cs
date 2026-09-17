@@ -82,6 +82,7 @@ namespace Mugirl
             FinanceExposeData();
             PeopleExposeData();
             QuestsExposeData();
+            ServicesExposeData();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (vault == null) vault = new ThingOwner<Thing>(this, false, LookMode.Deep);

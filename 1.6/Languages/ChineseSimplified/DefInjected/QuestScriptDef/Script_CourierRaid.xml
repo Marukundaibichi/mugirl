@@ -4,8 +4,8 @@
     <Mugirl_CourierRaid.questNameRules.rulesStrings>
         <li>questName->运货员接触</li>
     </Mugirl_CourierRaid.questNameRules.rulesStrings>
-    <!-- A mega corporation courier carrying important items has arrived near your colony. You can send a colonist to negotiate with him. -->
+    <!-- A corporate courier carrying important items has arrived near your colony. He looks exhausted and afraid. You can send a colonist to negotiate with him. -->
     <Mugirl_CourierRaid.questDescriptionRules.rulesStrings>
-        <li>questDescription->一名巨型企业的运货员携带重要物品来到你的殖民地附近。你可以派殖民者与他交涉。</li>
+        <li>questDescription->一名巨企运货员携带重要物品来到你的殖民地附近。他看起来又累又怕。你可以派殖民者与他交涉。</li>
     </Mugirl_CourierRaid.questDescriptionRules.rulesStrings>
 </LanguageData>

@@ -48,7 +48,8 @@ namespace Mugirl
                 return;
             }
 
-            Faction courierFaction = faction != null && !MugirlWildSlaveUtility.IsHostileToPlayer(faction) ? faction : null;
+            // 运货员始终以巨企雇员身份入场；开战时对话逻辑会另行切断派系归属，避免影响外交。
+            Faction courierFaction = faction;
             PawnGenerationRequest request = new PawnGenerationRequest(
                 MugirlContentDefOf.AI_GC_Courier,
                 courierFaction,

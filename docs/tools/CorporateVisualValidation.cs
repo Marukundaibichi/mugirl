@@ -212,11 +212,20 @@ namespace Mugirl
                 case 7:
                     if ((int)typeof(Window_CorporateComms).GetField("selectedPage", Fields).GetValue(terminal) != page)
                         throw new InvalidOperationException("Animated navigation did not commit the requested page.");
-                    string[] names = { "overview", "supplies", "orders", "people", "finance", "missions", "story", "records" };
+                    string[] names = { "overview", "supplies", "orders", "people", "finance", "missions", "story", "records", "services" };
                     Capture(CapturePrefix + names[page]);
                     int capturedPage = page;
                     page++;
-                    phase = capturedPage == 2 ? 32 : capturedPage == 3 ? 30 : page < names.Length ? 6 : 8;
+                    phase = capturedPage == 2 ? 32 : capturedPage == 3 ? 30 : capturedPage == 8 ? 80 : page < names.Length ? 6 : 8;
+                    return;
+                case 80:
+                    Set(terminal, "servicesScroll", new Vector2(0f, 10000f));
+                    phase = 81;
+                    Wait(0.6f);
+                    return;
+                case 81:
+                    Capture(CapturePrefix + "services-actions");
+                    phase = 8;
                     return;
                 case 8:
                     if (!compactPass)
@@ -488,6 +497,7 @@ namespace Mugirl
             CorporatePricingChecks.RunContract(network, trade, CheckPricing);
             CorporateSaveMigrationChecks.Run(CheckPricing);
             CorporateCatalogCleanupChecks.Run(network, trade, CheckPricing);
+            network.AddTradeTurnover(Math.Max(0L, CorporateNetwork.ServiceThreshold(CorporateNetwork.MaxServiceLevel) - network.TradeTurnover));
             report.steps.Add("Prepared real goods, weekly personnel and funded trade context in the disposable colony.");
         }
 

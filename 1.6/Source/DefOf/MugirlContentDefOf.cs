@@ -48,6 +48,8 @@ namespace Mugirl
         public static PawnKindDef AI_GC_Soldiers;
         public static PawnKindDef AI_GC_Elites;
         public static PawnKindDef AI_GC_MugirlRaider;
+        public static PawnKindDef Mugirl_CorporateRepresentative;
+        public static PawnKindDef Mugirl_CorporateSupport;
 
         // 快递事件任务引用。
         public static QuestScriptDef Mugirl_CourierRaid;

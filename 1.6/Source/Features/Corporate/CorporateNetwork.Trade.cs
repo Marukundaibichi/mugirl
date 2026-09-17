@@ -31,6 +31,7 @@ namespace Mugirl
         public string savedLabel;
         public int quantity;
         public int deliveredQuantity;
+        public int creditedTurnover;
         public int paid;
         public int createdTick;
         public int readyTick;
@@ -43,12 +44,16 @@ namespace Mugirl
             Scribe_Values.Look(ref savedLabel, "savedLabel", null);
             Scribe_Values.Look(ref quantity, "quantity", 0);
             Scribe_Values.Look(ref deliveredQuantity, "deliveredQuantity", 0);
+            Scribe_Values.Look(ref creditedTurnover, "creditedTurnover", -1);
             Scribe_Values.Look(ref paid, "paid", 0);
             Scribe_Values.Look(ref createdTick, "createdTick", 0);
             Scribe_Values.Look(ref readyTick, "readyTick", 0);
             Scribe_Values.Look(ref state, "state", CorporateOrderState.Preparing);
             Scribe_Collections.Look(ref goods, "goods", LookMode.Reference);
             if (Scribe.mode == LoadSaveMode.PostLoadInit && goods == null) goods = new List<Thing>();
+            // Legacy partial deliveries predate the ledger; only later deliveries should count.
+            if (Scribe.mode == LoadSaveMode.PostLoadInit && creditedTurnover < 0)
+                creditedTurnover = quantity <= 0 ? 0 : (int)((long)paid * Math.Min(quantity, deliveredQuantity) / quantity);
         }
     }
 
@@ -116,6 +121,7 @@ namespace Mugirl
             string label = taken.LabelCap;
             taken.Destroy();
             Record("Mugirl.Corporate.RecordSale", label, value);
+            AddTradeTurnover(value);
             reason = null;
             return true;
         }
@@ -168,7 +174,7 @@ namespace Mugirl
             float unitPrice = preview.MarketValue * factor;
             if (IsSpecialOrder(preview.def))
                 unitPrice = Math.Max(unitPrice, TradeSettings.specialOrderMinimumUnitPrice);
-            return Price(unitPrice, quantity);
+            return Price(unitPrice * OrderDiscountFactor, quantity);
         }
 
         public int StockUnitPrice(CorporateStock offer)
@@ -316,6 +322,7 @@ namespace Mugirl
                 if (context.Deliver(thing))
                 {
                     order.deliveredQuantity += delivered;
+                    CreditOrderTurnover(order);
                     order.goods.RemoveAt(i);
                 }
             }
@@ -352,11 +359,14 @@ namespace Mugirl
             foreach (CorporateStock previous in stock)
                 DiscardUnspawnedProduct(previous.sample);
             stock.Clear();
+            int weeklyCount = WeeklyStockCount;
             List<ThingDef> candidates = TradeSettings.stapleDefs.Where(d => IsOrderable(d) && !IsSpecialOrder(d)).Distinct().ToList();
-            List<ThingDef> supplements = OrderCatalog.Where(d => d.BaseMarketValue < 500f && d.techLevel <= TechLevel.Industrial
-                && !IsSpecialOrder(d) && !candidates.Contains(d)).InRandomOrder().Take(TradeSettings.weeklyStockCount).ToList();
-            candidates = candidates.InRandomOrder().Take(Math.Max(1, TradeSettings.weeklyStockCount - 4)).Concat(supplements)
-                .Take(TradeSettings.weeklyStockCount).ToList();
+            List<ThingDef> supplements = OrderCatalog.Where(d => (ServiceLevel >= 3
+                    ? d.BaseMarketValue < 2500f && d.techLevel <= TechLevel.Spacer
+                    : d.BaseMarketValue < 500f && d.techLevel <= TechLevel.Industrial)
+                && !IsSpecialOrder(d) && !candidates.Contains(d)).InRandomOrder().Take(weeklyCount).ToList();
+            candidates = candidates.InRandomOrder().Take(Math.Max(1, weeklyCount - 4)).Concat(supplements)
+                .Take(weeklyCount).ToList();
             foreach (ThingDef def in candidates)
             {
                 if (!TryMakeGoods(def, GenStuff.DefaultStuffFor(def), QualityCategory.Normal, 1, out List<Thing> samples)) continue;

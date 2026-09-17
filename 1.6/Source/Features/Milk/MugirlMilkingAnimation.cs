@@ -335,6 +335,35 @@ namespace Mugirl
             }
         }
 
+        internal static void AdjustDrawFacing(Pawn pawn, PawnRenderFlags flags, ref Rot4 bodyFacing)
+        {
+            // 原生 AnimationWorker 只能调整位移/角度/缩放，不能选择朝向贴图。
+            // 等待姿态、征召和其他转向逻辑可能覆盖 tick 中的 Face，因此在生成绘制参数时修正。
+            // 渲染路径只读状态，避免清理动画或修改 Pawn 的实际朝向。
+            if (flags.FlagSet(PawnRenderFlags.Portrait) || flags.FlagSet(PawnRenderFlags.Cache)
+                || flags.FlagSet(PawnRenderFlags.Statue) || !Valid(pawn)
+                || !states.TryGetValue(pawn.thingIDNumber, out MilkingVisualState state)
+                || state.pawn != pawn
+                || (state.role != MugirlMilkingVisualRole.AssistedTarget && state.role != MugirlMilkingVisualRole.Helper)
+                || !Valid(state.partner) || state.partner.Map != pawn.Map
+                || !MugirlTickUtility.TryGetCurrentGameTick(out int now) || now - state.lastTick > StaleAfterTicks)
+            {
+                return;
+            }
+
+            Vector3 direction = state.partner.DrawPos - pawn.DrawPos;
+            direction.y = 0f;
+            if (direction.sqrMagnitude < 0.0001f)
+            {
+                direction = (state.partner.Position - pawn.Position).ToVector3();
+            }
+
+            if (direction.sqrMagnitude >= 0.0001f)
+            {
+                bodyFacing = Pawn_RotationTracker.RotFromAngleBiased(direction.AngleFlat());
+            }
+        }
+
         private static void FaceEachOther(Pawn doer, Pawn target)
         {
             if (Valid(doer) && Valid(target))

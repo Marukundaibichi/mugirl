@@ -31,6 +31,7 @@ namespace Mugirl
         public int price;
         public bool paid;
         public bool delivered;
+        public int paidAmount = -1;
         public void ExposeData()
         {
             Scribe_Values.Look(ref id, "id", 0);
@@ -38,6 +39,7 @@ namespace Mugirl
             Scribe_Values.Look(ref price, "price", 0);
             Scribe_Values.Look(ref paid, "paid", false);
             Scribe_Values.Look(ref delivered, "delivered", false);
+            Scribe_Values.Look(ref paidAmount, "paidAmount", -1);
         }
     }
 
@@ -63,7 +65,7 @@ namespace Mugirl
                 {
                     if (offer.pawn == null || offer.pawn.Destroyed || offer.pawn.Dead)
                     {
-                        if (offer.paid && !offer.delivered) peoplePendingSilver += offer.price;
+                        if (offer.paid && !offer.delivered) peoplePendingSilver += offer.paidAmount < 0 ? offer.price : offer.paidAmount;
                         peopleOffers.Remove(offer);
                     }
                 }
@@ -167,6 +169,7 @@ namespace Mugirl
 
         public bool TryPurchasePerson(CorporateTradeContext context, CorporatePersonOffer offer, out string reason)
         {
+            EnsureWeeklyOffers();
             if (!ModsConfig.IdeologyActive) return PeopleReject("Mugirl.CorporatePeople.RequiresIdeology", out reason);
             if (offer == null || !peopleOffers.Contains(offer) || offer.delivered || offer.pawn == null
                 || offer.pawn.Dead || offer.pawn.Destroyed)
@@ -178,9 +181,12 @@ namespace Mugirl
             if (!offer.paid)
             {
                 if (!CanTrade(context, out reason)) return false;
-                if (!context.TrySpendSilver(offer.price)) return PeopleReject("Mugirl.CorporatePeople.NoSilver", out reason);
+                int cost = PeoplePurchasePrice(offer);
+                if (!context.TrySpendSilver(cost)) return PeopleReject("Mugirl.CorporatePeople.NoSilver", out reason);
+                offer.paidAmount = cost;
+                if (cost == 0) freePersonWeek = nextRefreshTick;
                 offer.paid = true;
-                Record("Mugirl.CorporatePeople.Purchased", offer.pawn.LabelShortCap, -offer.price);
+                Record("Mugirl.CorporatePeople.Purchased", offer.pawn.LabelShortCap, -cost);
             }
             Pawn pawn = offer.pawn;
             if (!pawn.IsSlaveOfColony)
@@ -190,6 +196,7 @@ namespace Mugirl
             }
             if (!context.Deliver(pawn)) return PeopleReject("Mugirl.CorporatePeople.DeliveryPending", out reason);
             offer.delivered = true;
+            AddTradeTurnover(offer.paidAmount < 0 ? offer.price : offer.paidAmount);
             reason = null;
             return true;
         }
@@ -227,6 +234,7 @@ namespace Mugirl
                 member.needs.mood.thoughts.memories.TryGainMemory(memory);
             }
             peoplePendingSilver += acceptedPrice;
+            AddTradeTurnover(acceptedPrice);
             Record("Mugirl.CorporatePeople.Sold", pawn.LabelShortCap, acceptedPrice);
             TryClaimPeopleSilver(context, out reason);
             reason = null;

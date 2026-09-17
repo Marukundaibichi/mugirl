@@ -410,8 +410,8 @@
     <Mugirl.Mount.ReasonNoRangedWeapon>骑乘者没有远程武器</Mugirl.Mount.ReasonNoRangedWeapon>
     <!-- Corporate Courier -->
     <Mugirl.CourierContactLetterLabel>巨企运货员</Mugirl.CourierContactLetterLabel>
-    <!-- A mega corporation courier is approaching from the edge of the map. He has not opened fire, but he looks extremely nervous. You can send a colonist to negotiate with him. -->
-    <Mugirl.CourierContactLetterText>一名巨型企业运货员从地图边缘接近殖民地。他没有立刻开火，但看起来非常紧张。你可以派一名殖民者与他交涉。</Mugirl.CourierContactLetterText>
+    <!-- A corporate courier limps in from the edge of the map, uniform scuffed with dirt. He keeps one hand hovering beside his weapon but never draws it. He looks exhausted - and afraid. You can send a colonist to negotiate with him. -->
+    <Mugirl.CourierContactLetterText>一名巨企运货员一瘸一拐地走近殖民地，制服上全是灰，袖口还缝着工号。他停下来喘了好一会儿，才开口打听那两位雪牛娘的下落。你可以派一名殖民者与他交涉。</Mugirl.CourierContactLetterText>
     <!-- Negotiate with the corporate courier -->
     <Mugirl.CourierTalkOption>与巨企运货员交涉</Mugirl.CourierTalkOption>
     <!-- cannot reach -->
@@ -422,16 +422,16 @@
     <Mugirl.CourierAlreadyResolved>这个运货员已经无法交涉。</Mugirl.CourierAlreadyResolved>
     <!-- Corporate Courier -->
     <Mugirl.CourierDialogTitle>巨企运货员</Mugirl.CourierDialogTitle>
-    <!-- The mega corporation courier watches you nervously, one hand never leaving his weapon.\n\n\"I'm just a delivery worker. The ship went down, the cargo is gone, and the company will not listen to excuses. If you want the goods, let me drop the diary and keys I am carrying, then I leave right now. Do not force me to shoot. I do not want this reaching the company level either.\" -->
-    <Mugirl.CourierDialogText>这名巨型企业运货员紧张地看着你们，手一直没有离开武器。\n\n“我只是个送货的。飞船掉了，货也没保住，公司不会听我解释。你们要是想拿东西，就让我把身上的日记和钥匙扔下，然后我立刻离开。别逼我开火，我也不想把事情闹到公司层面。”</Mugirl.CourierDialogText>
+    <!-- The corporate courier stops a few paces away, one hand half-raised, eyes darting between you and the way he came. He tries to hold a professional posture, but the fingers resting on his holster keep trembling.\n\n\"Easy... everyone stay easy. The name's {COURIER} - just a courier, the kind with an employee number stitched into his sleeve.\" He licks his cracked lips. \"The ship broke up in orbit. The cargo scattered across the crash site. I've been walking three days on this leg, trying to find it before the system logs me as a runner...\"\n\nHe lets out a small, bitter laugh. \"Listen to me, pouring it all out. Here's the deal - the diary and the restraint keys I'm carrying are yours. Write the cargo off as 'lost in transit.' Let me walk, and nobody reports this upstairs. What do you say, {NEGOTIATOR}? Better for both of us.\" -->
+    <Mugirl.CourierDialogText>“劳驾，打听一下。两位雪牛娘，你们见过吧？我是押这趟货的，叫{COURIER}。”\n\n他撑着膝盖喘了口气，见你没接话，又赶紧补了一句：“别紧张，我没说要带她们走。船都摔成那样了，我上哪儿再找一艘？公司倒好，先问货，再问钥匙，最后问我还能不能接着送。”\n\n他从兜里摸出一串束具钥匙，攥了攥，递到你面前。\n\n“都在这儿，一把不留。她们身上的束具，你们拿这个开。按规矩我得把钥匙交回去……算了，就当给你们添麻烦的赔礼。”\n\n他往前凑了凑，压低声音：“{NEGOTIATOR}，帮我个忙。回去我就报货没找着，公司要是问起来，你们也别提钥匙的事。真让我照价赔，我这辈子的工资都得搭进去。东西你们收好，让我走，行吗？”</Mugirl.CourierDialogText>
     <!-- Leave the items and go -->
-    <Mugirl.CourierDialogLeaveItems>留下物品并离开</Mugirl.CourierDialogLeaveItems>
+    <Mugirl.CourierDialogLeaveItems>钥匙留下。我们不提，你走吧</Mugirl.CourierDialogLeaveItems>
     <!-- Open fire now -->
     <Mugirl.CourierDialogFight>立刻开战</Mugirl.CourierDialogFight>
-    <!-- The corporate courier dropped his carried items and is leaving. -->
-    <Mugirl.CourierItemsDroppedMessage>巨企运货员丢下了身上的物品，正在离开。</Mugirl.CourierItemsDroppedMessage>
-    <!-- The corporate courier draws his weapon. This clash will not change your relationship with the mega corporation. -->
-    <Mugirl.CourierFightMessage>巨企运货员拔出了武器。这次冲突不会改变你与巨型企业的关系。</Mugirl.CourierFightMessage>
+    <!-- The courier drops the diary and restraint keys and hurries toward the map edge without looking back. -->
+    <Mugirl.CourierItemsDroppedMessage>运货员放下整串束具钥匙，连声道谢，转身便往外赶。一本卷了角的日记从他兜里滑落，他也没察觉，只顾着一瘸一拐地走远。</Mugirl.CourierItemsDroppedMessage>
+    <!-- The negotiation breaks down. The courier mutters a curse and draws his weapon. This fight will not affect your formal standing with the corporation. -->
+    <Mugirl.CourierFightMessage>谈判破裂了。运货员低声骂了一句，拔出了武器。这次冲突不会影响你与巨企的正式关系。</Mugirl.CourierFightMessage>
     <!-- Negotiations broke down. -->
     <Mugirl.CourierFightReason>谈判破裂。</Mugirl.CourierFightReason>
     <!-- CourierRaid quest aborted: no valid map target. -->

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Mugirl.CorporateServices.Page>客户服务</Mugirl.CorporateServices.Page>
+  <Mugirl.CorporateServices.Summary>累计双向交易额，解锁订购优惠、扩充货物、周礼、免费人员和定点空投支援。</Mugirl.CorporateServices.Summary>
+  <Mugirl.CorporateServices.Status>客户等级 {0} · 累计交易额 {1} 白银</Mugirl.CorporateServices.Status>
+  <Mugirl.CorporateServices.Counting>向巨企购买与出售的成交额都会累计，包括现货、订购、人员及普通商队/据点交易。订购按实际交付计入；退款、赠礼和金融资金划转不计入。旧存档从更新后的交易开始累计。</Mugirl.CorporateServices.Counting>
+  <Mugirl.CorporateServices.Current>订购优惠 {0}% · 下次周常货物 {1} 类 · 距离刷新 {2} 天</Mugirl.CorporateServices.Current>
+  <Mugirl.CorporateServices.Tier>等级 {0} / 累计 {1} 白银 / {2}</Mugirl.CorporateServices.Tier>
+  <Mugirl.CorporateServices.Active>已解锁</Mugirl.CorporateServices.Active>
+  <Mugirl.CorporateServices.Locked>未解锁</Mugirl.CorporateServices.Locked>
+  <Mugirl.CorporateServices.Tier1>签约客户：订购享受 9.5 折。</Mugirl.CorporateServices.Tier1>
+  <Mugirl.CorporateServices.Tier2>优选客户：订购 9.2 折，周常货物增加 8 类。</Mugirl.CorporateServices.Tier2>
+  <Mugirl.CorporateServices.Tier3>贵宾客户：订购 9 折，周常货物增加 12 类并纳入更多太空级物资。每周赠送 10 份工业医药及 20 份便携式生存食品。</Mugirl.CorporateServices.Tier3>
+  <Mugirl.CorporateServices.Tier4>战略客户：订购 8.8 折，周常货物增加 16 类。每周首次购买一位雪牛娘免费，可从本周人员名单中任选一位；需要 Ideology DLC。</Mugirl.CorporateServices.Tier4>
+  <Mugirl.CorporateServices.Tier5>尊享客户：订购 8.5 折，周常货物增加 24 类。每周可免费呼叫 1 次，每次派出 4 人雪牛娘打击小队，空投至指定地图的露天落点。全员精良装备、不因伤亡撤退，支援一天后撤离。</Mugirl.CorporateServices.Tier5>
+  <Mugirl.CorporateServices.Tier6>最高级客户：保留全部尊享权益，支援升级为每次 8 人、每周可免费呼叫 2 次。本周已经使用的呼叫次数会保留。</Mugirl.CorporateServices.Tier6>
+  <Mugirl.CorporateServices.SupportAllowance>支援规模：{0} 人 · 本周剩余 {1} / {2} 次</Mugirl.CorporateServices.SupportAllowance>
+  <Mugirl.CorporateServices.ClaimGift>领取本周礼物</Mugirl.CorporateServices.ClaimGift>
+  <Mugirl.CorporateServices.GiftSuccess>本周礼物已发出；尚未交付的包裹可在订单页领取。</Mugirl.CorporateServices.GiftSuccess>
+  <Mugirl.CorporateServices.FreeAvailable>本周免费雪牛娘名额：可用。人员页面已显示免费价格。</Mugirl.CorporateServices.FreeAvailable>
+  <Mugirl.CorporateServices.FreeUnavailable>本周免费雪牛娘名额：尚未解锁或已经使用。</Mugirl.CorporateServices.FreeUnavailable>
+  <Mugirl.CorporateServices.FreePerson>使用本周免费名额</Mugirl.CorporateServices.FreePerson>
+  <Mugirl.CorporateServices.OpenPeople>前往人员交易</Mugirl.CorporateServices.OpenPeople>
+  <Mugirl.CorporateServices.CallSupport>呼叫定点支援 · 选择地图</Mugirl.CorporateServices.CallSupport>
+  <Mugirl.CorporateServices.WeeklyHint>所有周福利与货物同时刷新，不补发错过的周次。灰色按钮表示未解锁、本周已经使用或当前无法交易。取消落点选择不消耗次数。</Mugirl.CorporateServices.WeeklyHint>
+  <Mugirl.CorporateServices.TargetHint>选择未被遮蔽、无屋顶且可站立的空投落点。右键或 Esc 取消，不消耗次数。</Mugirl.CorporateServices.TargetHint>
+  <Mugirl.CorporateServices.InvalidTarget>请选择已加载地图上未被遮蔽、无屋顶且可站立的落点。</Mugirl.CorporateServices.InvalidTarget>
+  <Mugirl.CorporateServices.SupportSuccess>雪牛娘打击小队已出发，正在空投至指定位置。</Mugirl.CorporateServices.SupportSuccess>
+  <Mugirl.CorporateServices.Unavailable>该服务尚未解锁，或本周名额已经使用。</Mugirl.CorporateServices.Unavailable>
+  <Mugirl.CorporateServices.LevelUp>巨企客户等级升至 {0}，请在“客户服务”查看新增权益。</Mugirl.CorporateServices.LevelUp>
+  <Mugirl.CorporateServices.Unlocked>客户服务升级</Mugirl.CorporateServices.Unlocked>
+  <Mugirl.CorporateServices.GiftRecord>领取周礼</Mugirl.CorporateServices.GiftRecord>
+  <Mugirl.CorporateServices.SupportRecord>定点支援</Mugirl.CorporateServices.SupportRecord>
+</LanguageData>

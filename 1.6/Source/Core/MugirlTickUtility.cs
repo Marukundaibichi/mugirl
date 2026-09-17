@@ -2,6 +2,12 @@ namespace Mugirl
 {
     internal static class MugirlTickUtility
     {
+        internal static void Pause()
+        {
+            if (Verse.Current.ProgramState == Verse.ProgramState.Playing)
+                Verse.Find.TickManager?.Pause();
+        }
+
         internal static bool TryGetCurrentGameTick(out int tick)
         {
             if (Verse.Current.ProgramState == Verse.ProgramState.Playing && Verse.Find.TickManager != null)

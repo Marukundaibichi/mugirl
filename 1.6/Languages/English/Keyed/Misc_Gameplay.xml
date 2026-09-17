@@ -205,17 +205,17 @@
     <Mugirl.Mount.ReasonTurretHoldFire>Rider is holding fire</Mugirl.Mount.ReasonTurretHoldFire>
     <Mugirl.Mount.ReasonNoRangedWeapon>Rider has no ranged weapon</Mugirl.Mount.ReasonNoRangedWeapon>
     <Mugirl.CourierContactLetterLabel>Corporate Courier</Mugirl.CourierContactLetterLabel>
-    <Mugirl.CourierContactLetterText>A mega corporation courier is approaching from the edge of the map. He has not opened fire, but he looks extremely nervous. You can send a colonist to negotiate with him.</Mugirl.CourierContactLetterText>
+    <Mugirl.CourierContactLetterText>A corporate courier limps in from the edge of the map, uniform scuffed with dirt. He keeps one hand hovering beside his weapon but never draws it. He looks exhausted - and afraid. You can send a colonist to negotiate with him.</Mugirl.CourierContactLetterText>
     <Mugirl.CourierTalkOption>Negotiate with the corporate courier</Mugirl.CourierTalkOption>
     <Mugirl.CourierTalkCannotReach>cannot reach</Mugirl.CourierTalkCannotReach>
     <Mugirl.CourierTalkOptionDisabled>{0} ({1})</Mugirl.CourierTalkOptionDisabled>
     <Mugirl.CourierAlreadyResolved>This courier can no longer negotiate.</Mugirl.CourierAlreadyResolved>
     <Mugirl.CourierDialogTitle>Corporate Courier</Mugirl.CourierDialogTitle>
-    <Mugirl.CourierDialogText>The mega corporation courier watches you nervously, one hand never leaving his weapon.\n\n\"I'm just a delivery worker. The ship went down, the cargo is gone, and the company will not listen to excuses. If you want the goods, let me drop the diary and keys I am carrying, then I leave right now. Do not force me to shoot. I do not want this reaching the company level either.\"</Mugirl.CourierDialogText>
+    <Mugirl.CourierDialogText>The corporate courier stops a few paces away, one hand half-raised, eyes darting between you and the way he came. He tries to hold a professional posture, but the fingers resting on his holster keep trembling.\n\n\"Easy... everyone stay easy. The name's {COURIER} - just a courier, the kind with an employee number stitched into his sleeve.\" He licks his cracked lips. \"The ship broke up in orbit. The cargo scattered across the crash site. I've been walking three days on this leg, trying to find it before the system logs me as a runner...\"\n\nHe lets out a small, bitter laugh. \"Listen to me, pouring it all out. Here's the deal - the diary and the restraint keys I'm carrying are yours. Write the cargo off as 'lost in transit.' Let me walk, and nobody reports this upstairs. What do you say, {NEGOTIATOR}? Better for both of us.\"</Mugirl.CourierDialogText>
     <Mugirl.CourierDialogLeaveItems>Leave the items and go</Mugirl.CourierDialogLeaveItems>
     <Mugirl.CourierDialogFight>Open fire now</Mugirl.CourierDialogFight>
-    <Mugirl.CourierItemsDroppedMessage>The corporate courier dropped his carried items and is leaving.</Mugirl.CourierItemsDroppedMessage>
-    <Mugirl.CourierFightMessage>The corporate courier draws his weapon. This clash will not change your relationship with the mega corporation.</Mugirl.CourierFightMessage>
+    <Mugirl.CourierItemsDroppedMessage>The courier drops the diary and restraint keys and hurries toward the map edge without looking back.</Mugirl.CourierItemsDroppedMessage>
+    <Mugirl.CourierFightMessage>The negotiation breaks down. The courier mutters a curse and draws his weapon. This fight will not affect your formal standing with the corporation.</Mugirl.CourierFightMessage>
     <Mugirl.CourierFightReason>Negotiations broke down.</Mugirl.CourierFightReason>
     <Mugirl.CourierRaid.Log.NoMap>CourierRaid quest aborted: no valid map target.</Mugirl.CourierRaid.Log.NoMap>
     <Mugirl.CourierRaid.Log.NoFaction>CourierRaid quest aborted: hostile giant corporation faction not found.</Mugirl.CourierRaid.Log.NoFaction>

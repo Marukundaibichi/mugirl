@@ -123,21 +123,19 @@
         <maxGenerationAge>60</maxGenerationAge>
         <minGenerationAge>20</minGenerationAge>
         <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
-        <apparelColor>(0.5,0.5,0.5)</apparelColor>
+        <apparelColor>(0.24,0.34,0.46)</apparelColor>
         <forceNormalGearQuality>true</forceNormalGearQuality>
         <initialResistanceRange>6~10</initialResistanceRange>
         <initialWillRange>0~1</initialWillRange>
-        <apparelMoney>2200~5000</apparelMoney>
+        <apparelMoney>0~0</apparelMoney>
         <weaponMoney>1200~1800</weaponMoney>
-        <apparelTags>
-            <li>IndustrialAdvanced</li>
-            <li>IndustrialMilitaryBasic</li>
-            <li>IndustrialMilitaryAdvanced</li>
-            <li>PMC</li>
-        </apparelTags>
+        <apparelTags />
         <apparelRequired>
-            <li>PMC_CombatUniform</li>
-            <li>PMC_Helmet</li>
+            <li>Apparel_CollarShirt</li>
+            <li>Apparel_Pants</li>
+            <li>Apparel_FlakVest</li>
+            <li>Apparel_Jacket</li>
+            <li>Apparel_Tuque</li>
         </apparelRequired>
         <weaponTags>
             <li>GC_Weapon_Tier2</li>

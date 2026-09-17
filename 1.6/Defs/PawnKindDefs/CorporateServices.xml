@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <PawnKindDef>
+    <defName>Mugirl_CorporateRepresentative</defName>
+    <initialResistanceRange>13~21</initialResistanceRange>
+    <initialWillRange>0~0</initialWillRange>
+    <label>corporate representative</label>
+    <race>Human</race>
+    <defaultFactionDef>Mugirl_GiantCorporations_Hostile</defaultFactionDef>
+    <combatPower>50</combatPower>
+    <minGenerationAge>28</minGenerationAge>
+    <maxGenerationAge>60</maxGenerationAge>
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <apparelColor>(0.18,0.20,0.24)</apparelColor>
+    <itemQuality>Good</itemQuality>
+    <minApparelQuality>Good</minApparelQuality>
+    <maxApparelQuality>Good</maxApparelQuality>
+    <apparelMoney>0~0</apparelMoney>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li><li>Apparel_Pants</li>
+      <li>Apparel_Duster</li><li>Apparel_BowlerHat</li>
+    </apparelRequired>
+    <skills><li><skill>Social</skill><range>12~16</range></li></skills>
+  </PawnKindDef>
+  <PawnKindDef>
+    <defName>Mugirl_CorporateSupport</defName>
+    <initialResistanceRange>17~27</initialResistanceRange>
+    <initialWillRange>3~5</initialWillRange>
+    <label>corporate Mugirl strike trooper</label>
+    <race>Mugirl</race>
+    <defaultFactionDef>Mugirl_GiantCorporations_Hostile</defaultFactionDef>
+    <combatPower>1800</combatPower>
+    <isFighter>true</isFighter>
+    <minGenerationAge>22</minGenerationAge>
+    <maxGenerationAge>40</maxGenerationAge>
+    <fleeHealthThresholdRange>0~0</fleeHealthThresholdRange>
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <apparelColor>(0.55,0.60,0.65)</apparelColor>
+    <itemQuality>Excellent</itemQuality>
+    <forceWeaponQuality>Excellent</forceWeaponQuality>
+    <minApparelQuality>Excellent</minApparelQuality>
+    <maxApparelQuality>Excellent</maxApparelQuality>
+    <apparelMoney>0~0</apparelMoney>
+    <apparelRequired>
+      <li>Mugirl_Combatant_Clothes</li><li>Mugirl_Combatant_Helmet</li>
+      <li>Mugirl_Combatant_Underwear</li><li>Mugirl_Combatant_BulletproofVest</li>
+    </apparelRequired>
+    <weaponMoney>1200~3600</weaponMoney>
+    <weaponTags><li>GC_Weapon_Tier3</li></weaponTags>
+    <skills>
+      <li><skill>Shooting</skill><range>14~18</range></li>
+      <li><skill>Melee</skill><range>12~16</range></li>
+    </skills>
+    <backstoryFilters><li><categories><li>Mugirl_Slave</li></categories></li></backstoryFilters>
+    <xenotypeSet><xenotypeChances><Mugirl_Xenotype MayRequire="Ludeon.RimWorld.Biotech">1</Mugirl_Xenotype></xenotypeChances></xenotypeSet>
+    <useFactionXenotypes>false</useFactionXenotypes>
+  </PawnKindDef>
+</Defs>

@@ -16,6 +16,8 @@ namespace Mugirl
         public int retryTicks = 2500;
         public int representativeStayTicks = 240000;
         public int attackRetryTicks = 120000;
+        public int contactDelayTicks = 120000;       // 运货员事件后约两天到访。
+        public int contactDelayJitterTicks = 9000;   // ±3.6 小时随机浮动。
         public List<ThingDefCountClass> gifts = new List<ThingDefCountClass>();
     }
 
@@ -50,6 +52,7 @@ namespace Mugirl
         private ThingOwner<Thing> gifts;
         private bool factionMigrationPending;
         private int nextFactionMigrationTick;
+        private int representativeArrivalTick = -1;
 
         public CorporateIntroduction(Game game) { gifts = new ThingOwner<Thing>(this, false, LookMode.Deep); }
         public static CorporateIntroduction Current => MugirlGameUtility.GameComponent<CorporateIntroduction>();
@@ -131,9 +134,12 @@ namespace Mugirl
                 courierDied |= courier.Dead;
                 pending = true;
                 if (contactTick < 0) contactTick = now;
+                if (representativeArrivalTick < 0) ScheduleRepresentativeVisit(now);
             }
             if (!pending) return;
             EnsureQuest();
+            // 运货员事件后先给殖民地约两天的缓冲，代表才动身到访。
+            if (representativeArrivalTick > 0 && now < representativeArrivalTick) return;
             if (representative != null && !representative.Dead && representative.Spawned) return;
             Map map = ResolveMap();
             Faction corporation = CorporateNetwork.Current?.CorporateFaction;
@@ -141,7 +147,7 @@ namespace Mugirl
             if (courier?.Spawned == true && courier.InAggroMentalState && !courier.Downed) return;
             // 未苏醒或仍在迷雾中的古代危险不应永久阻断来访；遵循原版活跃威胁判定。
             if (GenHostility.AnyHostileActiveThreatToPlayer(map)) return;
-            TrySpawnRepresentative(map);
+            TrySpawnRepresentative(map, corporation);
         }
 
         public void RememberCourier(Pawn pawn, Map map)
@@ -159,6 +165,7 @@ namespace Mugirl
             contactTick = CorporateNetwork.Now;
             pending = true;
             nextServiceTick = 0;
+            ScheduleRepresentativeVisit(CorporateNetwork.Now);
         }
 
         internal void NotifyDamage(Pawn target, DamageInfo damage)
@@ -186,8 +193,39 @@ namespace Mugirl
                 pending = true;
                 if (contactTick < 0) contactTick = CorporateNetwork.Now;
                 nextServiceTick = 0;
+                ScheduleRepresentativeVisit(CorporateNetwork.Now);
             }
         }
+
+        internal string DevTriggerRepresentative(Map map)
+        {
+            if (!Prefs.DevMode || map?.IsPlayerHome != true) return "RequiresHomeMap";
+            if (completed) return "AlreadyTriggered";
+            if (representative != null && !representative.Dead && representative.Spawned) return "AlreadyTriggered";
+            Faction corporation = EnsureCorporateFactionAvailable();
+            if (corporation == null || corporation.defeated) return "NoFaction";
+
+            // 只提前来访，不伪造运货员结局、不重置开户状态，也不重新发放见面礼。
+            preferredMap = map;
+            pending = true;
+            representativeArrivalTick = CorporateNetwork.Now;
+            nextServiceTick = CorporateNetwork.Now + Config.retryTicks;
+            EnsureQuest();
+            TrySpawnRepresentative(map, corporation);
+            return representative?.Spawned == true ? null : "Failed";
+        }
+
+        private void ScheduleRepresentativeVisit(int now)
+        {
+            int delay = Math.Max(0, Config.contactDelayTicks);
+            if (Config.contactDelayJitterTicks > 0)
+                delay += Rand.RangeInclusive(-Config.contactDelayJitterTicks, Config.contactDelayJitterTicks);
+            representativeArrivalTick = now + Math.Max(0, delay);
+        }
+
+        internal int RemainingRepresentativeDelay => completed || representativeArrivalTick <= 0
+            ? 0
+            : Math.Max(0, representativeArrivalTick - CorporateNetwork.Now);
 
         private void RecoverCourierHistory()
         {
@@ -233,13 +271,13 @@ namespace Mugirl
             return preferredMap;
         }
 
-        private void TrySpawnRepresentative(Map map)
+        private void TrySpawnRepresentative(Map map, Faction corporation)
         {
             if (!RCellFinder.TryFindRandomPawnEntryCell(out IntVec3 entry, map, 0f)) return;
             if (representative == null || representative.Dead || representative.Destroyed)
             {
-                representative = PawnGenerator.GeneratePawn(new PawnGenerationRequest(PawnKindDefOf.Villager,
-                    null, PawnGenerationContext.NonPlayer, map.Tile, forceGenerateNewPawn: true,
+                representative = PawnGenerator.GeneratePawn(new PawnGenerationRequest(MugirlContentDefOf.Mugirl_CorporateRepresentative,
+                    corporation, PawnGenerationContext.NonPlayer, map.Tile, forceGenerateNewPawn: true,
                     allowDead: false, allowDowned: false, canGeneratePawnRelations: false,
                     mustBeCapableOfViolence: false, forceRecruitable: false, allowPregnant: false,
                     developmentalStages: DevelopmentalStage.Adult));
@@ -247,12 +285,12 @@ namespace Mugirl
             if (representative == null || representative.IsPrisoner || representative.IsColonist || representative.IsSlave
                 || representative.holdingOwner != null || representative.GetCaravan() != null) return;
             if (MugirlGameUtility.WorldPawns.Contains(representative)) MugirlGameUtility.WorldPawns.RemovePawn(representative);
-            // 代表使用中立个人身份入场；其业务属于巨企，入场本身不重写巨企外交。
-            if (representative.Faction != null) representative.SetFaction(null);
+            // 代表以巨企派系身份入场；开户前的派系好感由主线逻辑自行处理。
+            if (representative.Faction != corporation) representative.SetFaction(corporation);
             GenSpawn.Spawn(representative, entry, map);
             IntVec3 center = map.mapPawns.FreeColonistsSpawned.FirstOrDefault()?.Position ?? map.Center;
             if (!CellFinder.TryFindRandomCellNear(center, map, 10, c => c.Standable(map) && !c.Fogged(map), out IntVec3 waitCell)) waitCell = entry;
-            LordMaker.MakeNewLord(null, new LordJob_WaitForDurationThenExit(waitCell, Config.representativeStayTicks), map, Gen.YieldSingle(representative));
+            LordMaker.MakeNewLord(corporation, new LordJob_WaitForDurationThenExit(waitCell, Config.representativeStayTicks), map, Gen.YieldSingle(representative));
             MugirlGameUtility.Letters.ReceiveLetter("Mugirl.CorporateIntro.ArrivalTitle".Translate(),
                 "Mugirl.CorporateIntro.ArrivalText".Translate(representative.LabelShortCap), LetterDefOf.NeutralEvent, representative);
             MugirlGameUtility.TrySignalForceNormalSpeedShort();
@@ -383,6 +421,7 @@ namespace Mugirl
             Scribe_Values.Look(ref courierChoice, "courierChoice", 0);
             Scribe_Values.Look(ref contactTick, "contactTick", -1);
             Scribe_Values.Look(ref nextServiceTick, "nextServiceTick", 0);
+            Scribe_Values.Look(ref representativeArrivalTick, "representativeArrivalTick", -1);
             Scribe_References.Look(ref courier, "courier");
             Scribe_References.Look(ref representative, "representative");
             Scribe_References.Look(ref preferredMap, "preferredMap");
@@ -407,7 +446,17 @@ namespace Mugirl
 
     public class QuestPart_CorporateIntroduction : QuestPart
     {
-        public override string DescriptionPart => "Mugirl.CorporateIntro.QuestProgress".Translate();
+        public override string DescriptionPart
+        {
+            get
+            {
+                string text = "Mugirl.CorporateIntro.QuestProgress".Translate();
+                int remaining = CorporateIntroduction.Current?.RemainingRepresentativeDelay ?? 0;
+                if (remaining > 0)
+                    text += "\n" + "Mugirl.CorporateIntro.QuestProgressWait".Translate(GenDate.ToStringTicksToPeriod(remaining));
+                return text;
+            }
+        }
         public override IEnumerable<GlobalTargetInfo> QuestLookTargets
         {
             get

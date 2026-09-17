@@ -22,6 +22,14 @@ namespace Mugirl
         internal static MainTabsRoot MainTabs => Find.MainTabsRoot;
         internal static T GameComponent<T>() where T : GameComponent => Current.Game?.GetComponent<T>();
 
+        internal static bool TryShowMap(Map map)
+        {
+            if (map == null || LoadedMaps?.Contains(map) != true) return false;
+            Current.Game.CurrentMap = map;
+            Find.World.renderer.wantedMode = WorldRenderMode.None;
+            return true;
+        }
+
         internal static bool TryAddWindow(Window window)
         {
             if (window == null)

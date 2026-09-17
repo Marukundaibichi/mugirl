@@ -41,33 +41,34 @@
   <Mugirl.CorporateUI.NoHistory>暂无账户记录。</Mugirl.CorporateUI.NoHistory>
   <Mugirl.CorporateUI.RecordTitle>第 {0} 日 · {1} · {2}</Mugirl.CorporateUI.RecordTitle>
   <Mugirl.CorporateIntro.Title>建立商业联系</Mugirl.CorporateIntro.Title>
-  <Mugirl.CorporateIntro.QuestDescription>巨企客户关系部门准备向殖民地介绍其商业网络。一名代表将亲自来访，谈论此前的送货员接触、雪牛娘的归属，以及一份见面礼。\n\n代表抵达后，选择一名能够说话的殖民者，右键代表进行交谈。您不需要通讯台即可完成本章。接受商业联系后，通讯台与巨企据点的终端将一并开放。</Mugirl.CorporateIntro.QuestDescription>
-  <Mugirl.CorporateIntro.QuestProgress>客户关系代表会在安全的玩家殖民地等候。交谈暂缓、代表离开或遭遇意外时，联系请求仍然保留；请留意后续来访。</Mugirl.CorporateIntro.QuestProgress>
+  <Mugirl.CorporateIntro.QuestDescription>巨企客户关系部准备向殖民地介绍其商业网络。运货员的交接报告归档后，代表会在大约两天内亲自来访，谈论此前的送货员接触、雪牛娘的归属，以及一份见面礼。\n\n代表抵达后，选择一名能够说话的殖民者，右键代表进行交谈。您不需要通讯台即可完成本章。接受商业联系后，通讯台与巨企据点的终端将一并开放。</Mugirl.CorporateIntro.QuestDescription>
+  <Mugirl.CorporateIntro.QuestProgress>客户关系代表会在安全的玩家殖民地等候。若代表尚未抵达，任务栏会显示预计到访时间。交谈暂缓、代表离开或遭遇意外时，联系请求仍然保留；请留意后续来访。</Mugirl.CorporateIntro.QuestProgress>
+  <Mugirl.CorporateIntro.QuestProgressWait>运输部门的交接报告正在归档流转。客户关系部预计{0}后派代表到访。</Mugirl.CorporateIntro.QuestProgressWait>
   <Mugirl.CorporateIntro.ArrivalTitle>巨企客户关系代表来访</Mugirl.CorporateIntro.ArrivalTitle>
-  <Mugirl.CorporateIntro.ArrivalText>{0} 来到殖民地，自称是巨企客户关系部门的代表。他说，运输部门此前的问题已经不重要了——公司希望谈谈未来。\n\n选择一名能够说话的殖民者，右键代表并选择“与巨企代表交谈”。代表不会收走您的雪牛娘。</Mugirl.CorporateIntro.ArrivalText>
+  <Mugirl.CorporateIntro.ArrivalText>{0} 带着文件夹来到殖民地，自称是巨企客户关系部的专员。他先打听这里平时缺什么物资，聊了几句，才提起之前那位运货员：“那件事也归我接手了。找个地方坐坐？有个生意想跟你们谈。”\n\n选择一名能够说话的殖民者，右键代表并选择“与巨企代表交谈”。代表不会收走您的雪牛娘。</Mugirl.CorporateIntro.ArrivalText>
   <Mugirl.CorporateIntro.Talk>与巨企代表交谈</Mugirl.CorporateIntro.Talk>
-  <Mugirl.CorporateIntro.Opening>您好。我代表巨企客户关系部门，来为贵殖民地办理正式商业联系。运输部门已经完成了他们那部分工作，现在轮到我们。</Mugirl.CorporateIntro.Opening>
-  <Mugirl.CorporateIntro.OpeningOldSave>您好。我们正在补办这一地区的客户登记手续。此前与运输部门的交接如何收尾，不影响今天的提议。</Mugirl.CorporateIntro.OpeningOldSave>
-  <Mugirl.CorporateIntro.OpeningLong>这次正式拜访确实来得迟了一些。您与运输部门的接触档案在几个部门之间转了很久，直到客户关系部发现，这里早已是一处值得长期合作的殖民地。请原谅我们的行政效率。好在商业机会通常比员工报告活得更久。</Mugirl.CorporateIntro.OpeningLong>
-  <Mugirl.CorporateIntro.OpeningLate>我们最近才完成对这片区域的客户档案整理。对一处已经经营了这么久的殖民地，现在才来正式介绍业务，的确有些失礼。这份补给也请一并收下。</Mugirl.CorporateIntro.OpeningLate>
-  <Mugirl.CorporateIntro.Reaction.Killed>运输部门已经把他的档案转交给人事了。那属于人员损耗，不影响我今天来谈的事情。公司更关心接下来能和您做成多少生意。</Mugirl.CorporateIntro.Reaction.Killed>
-  <Mugirl.CorporateIntro.Reaction.DeadUnknown>我们知道那位送货员已经不在了。事故原因由运输部门归档，我没有带调查表来。客户关系部门更关心下一份合同。</Mugirl.CorporateIntro.Reaction.DeadUnknown>
-  <Mugirl.CorporateIntro.Reaction.Released>他已经提交了报告。感谢您让交接至少保留了一点体面。当然，他如何描述这趟差事，并不影响公司对合作的判断。</Mugirl.CorporateIntro.Reaction.Released>
-  <Mugirl.CorporateIntro.Reaction.Conflict>我听说交接出现了一些分歧。那位同事的处境由运输部门处理，我今天代表客户关系部门。</Mugirl.CorporateIntro.Reaction.Conflict>
-  <Mugirl.CorporateIntro.Reaction.Unresolved>运输部门似乎还在处理他们的交接。我可以先来介绍公司的长期业务，我们的合作不必等他们把报告填完。</Mugirl.CorporateIntro.Reaction.Unresolved>
-  <Mugirl.CorporateIntro.Reaction.Unknown>关于此前的接触，我们收到的记录并不完整。不过过去的交接如何收尾，不影响我们重新建立联系。</Mugirl.CorporateIntro.Reaction.Unknown>
-  <Mugirl.CorporateIntro.KeepMugirl>至于那些雪牛娘，您可以继续留在殖民地。公司不要求您把她们交回来。与其为既往的归属争执，不如考虑她们往后能为双方带来的价值。</Mugirl.CorporateIntro.KeepMugirl>
-  <Mugirl.CorporateIntro.NoReclaim>公司不会就既往交接提出返还要求。那些雪牛娘如今在哪里，不影响本次开户。客户关系部门不负责追收旧资产。</Mugirl.CorporateIntro.NoReclaim>
-  <Mugirl.CorporateIntro.Proposal>这是客户关系部门准备的一点见面礼。我们希望与您的殖民地保持友好关系，也愿意向您开放我们的采购、供应、人员和金融服务。今后可以通过通讯台联系我们，或者直接到我们的据点办理业务。</Mugirl.CorporateIntro.Proposal>
-  <Mugirl.CorporateIntro.Question.Courier>为什么不追究送货员的事？</Mugirl.CorporateIntro.Question.Courier>
-  <Mugirl.CorporateIntro.Question.Mugirl>为什么让我们保留雪牛娘？</Mugirl.CorporateIntro.Question.Mugirl>
-  <Mugirl.CorporateIntro.Question.Services>巨企提供哪些服务？</Mugirl.CorporateIntro.Question.Services>
-  <Mugirl.CorporateIntro.Answer.Courier>他的工作是完成交接，不是决定公司该与谁做生意。人员损耗已经有预算科目。为了追回一笔旧账而放弃一位长期客户，才需要向董事会解释。</Mugirl.CorporateIntro.Answer.Courier>
-  <Mugirl.CorporateIntro.Answer.Mugirl>她们在您这里也会生产。公司可以收购产出、供应设备，或在您需要时提供融资。拥有资产是一种收益方式，拥有资产流经的渠道是另一种。</Mugirl.CorporateIntro.Answer.Mugirl>
-  <Mugirl.CorporateIntro.Answer.Services>雪牛娘产品的长期收购、按周更新的有限供应、指定物资的备货订单、人员交易和抵押贷款。委托中心另有加工、肃清、投资与分销合同。条款在签约前展示；客户的信任很重要，签字更重要。</Mugirl.CorporateIntro.Answer.Services>
-  <Mugirl.CorporateIntro.Back>继续谈合作。</Mugirl.CorporateIntro.Back>
-  <Mugirl.CorporateIntro.Accept>接受见面礼，建立商业联系。</Mugirl.CorporateIntro.Accept>
-  <Mugirl.CorporateIntro.Postpone>先把资料留下，我考虑一下。</Mugirl.CorporateIntro.Postpone>
+  <Mugirl.CorporateIntro.Opening>“你们好，我是巨企客户关系部的，这一带的生意归我管。路上看了一圈，你们这儿还挺像样。”他把文件夹换到另一只手上。“能找个地方坐坐吗？有点运输部门的事要收尾，顺便跟你们谈谈以后的买卖。”</Mugirl.CorporateIntro.Opening>
+  <Mugirl.CorporateIntro.OpeningOldSave>“你们好，巨企客户关系部的。这一带最近交给我负责，我来认认门。”他翻开文件夹。“你们的客户登记还缺着呢，买卖总不能一直这么耽搁着。正好，今天把旧记录也一起理了。”</Mugirl.CorporateIntro.OpeningOldSave>
+  <Mugirl.CorporateIntro.OpeningLong>“可算见着面了。你们那份记录在公司压了好久，我接手才翻出来。”他拉开文件夹，抽出几张纸。“这段时间缺东西，没少费劲吧？往后可以找我们买。我也得赶紧做几笔生意，不然下个月开会又没话讲。”</Mugirl.CorporateIntro.OpeningLong>
+  <Mugirl.CorporateIntro.OpeningLate>“你们在这儿住这么久，我们才找上门，生意都让别人做去了。”他笑着摇摇头。“我是巨企客户关系部的，来跟你们认个熟脸。带了点补给，待会儿一起看看合作的事？”</Mugirl.CorporateIntro.OpeningLate>
+  <Mugirl.CorporateIntro.Reaction.Killed>“运货员死在你们手上的事，我知道。”他看了你一眼。“这趟我只处理这件运输旧案，没打算再往大了闹。追下去，公司还得搭人搭钱，我这边的业务也别想做了。咱们往后有分歧，先谈，别一上来就动枪。”</Mugirl.CorporateIntro.Reaction.Killed>
+  <Mugirl.CorporateIntro.Reaction.DeadUnknown>“运货员没能活下来，这事我听说了。人是怎么没的，我手上的记录也说不清。”他停了停。“再耗下去也没个结果，我准备按运输事故结掉。公司还要在这儿做生意，总得有人来跟你们把话说开。”</Mugirl.CorporateIntro.Reaction.DeadUnknown>
+  <Mugirl.CorporateIntro.Reaction.Released>“那位运货员，你们放他走了，挺好。他那份货物遗失的报告，我看过了。”他抬眼看了看你。“有些地方写得含含糊糊，不过够结案了，我也没打回去让他重写。他少赔点钱，我少接几个催办电话，大家都省心。”</Mugirl.CorporateIntro.Reaction.Released>
+  <Mugirl.CorporateIntro.Reaction.Conflict>“听说你们跟运货员动了手。我手上就这么点记录，也懒得把两边叫来吵一遍。”他把那页纸翻过去。“这趟运输的事，我会按损失结案。往后还要来往，总不能每送一趟货，都得先算算要带几个保镖。”</Mugirl.CorporateIntro.Reaction.Conflict>
+  <Mugirl.CorporateIntro.Reaction.Unresolved>“运货员那边还没交接完？那就让他自己把手续补上。”他往文件上做了个记号。“你们有什么没谈拢的，慢慢谈。我先把合作的事办了，省得回头为这几张纸再跑一趟。”</Mugirl.CorporateIntro.Reaction.Unresolved>
+  <Mugirl.CorporateIntro.Reaction.Unknown>“之前运输那边的记录不全，我也不拿着半张单子跟你们对账了。”他合上那一页。“我准备把旧案收掉。你们这里能做什么、缺什么，这些得当面聊，光坐在办公室里可看不出来。”</Mugirl.CorporateIntro.Reaction.Unknown>
+  <Mugirl.CorporateIntro.KeepMugirl>“还有那两位雪牛娘，公司这边不追收了，你们安心留下。她们在这儿安顿好了，奶和毛都可以卖给我们。我来之前算过，比再派船接回去划算，也省得你们一见公司的人就关门。”</Mugirl.CorporateIntro.KeepMugirl>
+  <Mugirl.CorporateIntro.NoReclaim>“原来那两位雪牛娘的去向，我也不查了，更不会拿着货单找你们要人。这趟运输的损失，我会一并结掉。你们以后有奶和毛要卖，记得找我们问个价就行。”</Mugirl.CorporateIntro.NoReclaim>
+  <Mugirl.CorporateIntro.Proposal>“我带了点补给，算见面礼。你们点头，我就给殖民地开个商业账户，往后买东西、卖货、接委托都方便。”他把资料递过来。“先看看，不用今天就下单。真做成了生意，公司有得赚，我也能交差。下回来，我就好申请路费了。”</Mugirl.CorporateIntro.Proposal>
+  <Mugirl.CorporateIntro.Question.Courier>关于那位运货员...</Mugirl.CorporateIntro.Question.Courier>
+  <Mugirl.CorporateIntro.Question.Mugirl>关于那两位雪牛娘...</Mugirl.CorporateIntro.Question.Mugirl>
+  <Mugirl.CorporateIntro.Question.Services>你们有哪些业务？</Mugirl.CorporateIntro.Question.Services>
+  <Mugirl.CorporateIntro.Answer.Courier>“他的事，我会连着这趟运输事故一起处理。你们要补充什么，我听着。”他把文件夹搁在膝上。“不过先说好，我不打算再往大了查。查来查去，最后又得找总部要人要钱，还把你们得罪了。我这个月的正事就全耽误了。”\n\n他往椅背上一靠。“要是能跟你们做上长期生意，这次的损失以后还能赚回来，我交报告也好交代。旧案的手续我去办，往后你们有货要卖、缺东西要买，记得先找我问问。”</Mugirl.CorporateIntro.Answer.Courier>
+  <Mugirl.CorporateIntro.Answer.Mugirl>“她们啊，公司这边已经不打算追回了。你们要是担心以后有人拿着货单来要人，这件事我会在结案时写清楚。”他摊开手。“接回去要派船、安排押运，路上还得供吃供住。这些钱总得有人批，最后多半又要我去解释为什么超了预算。”\n\n“她们要是在你们这儿安顿下来，我们就收奶、收毛；你们有了进账，也能从公司买点需要的东西。这买卖能做好多年，我何必为了追回这一趟货，把以后的生意都推掉？你们把她们照顾好，我也盼着供货稳当些。”</Mugirl.CorporateIntro.Answer.Mugirl>
+  <Mugirl.CorporateIntro.Answer.Services>“奶、毛，还有你们做的制品，我们长期收。日常物资按周补货，想要指定的东西可以下备货单；缺人手可以租，急用钱可以拿东西抵押。”他把资料翻到业务那页。“想接活的话，也有加工、肃清、投资和分销的合同。价格、期限都写在里面，挑合适的做就行。我当然盼着你们多签几单，可也得让你们手里留得下钱，下回才好继续做生意。”</Mugirl.CorporateIntro.Answer.Services>
+  <Mugirl.CorporateIntro.Back>好，接着谈</Mugirl.CorporateIntro.Back>
+  <Mugirl.CorporateIntro.Accept>行，东西我们收下了</Mugirl.CorporateIntro.Accept>
+  <Mugirl.CorporateIntro.Postpone>资料留下，我们再想想</Mugirl.CorporateIntro.Postpone>
   <Mugirl.CorporateIntro.CompletedStatus>商业联系已建立</Mugirl.CorporateIntro.CompletedStatus>
   <Mugirl.CorporateIntro.CompletedLetter>巨企客户关系部门已将您的殖民地登记为商业客户。见面礼已安排交付；若目前无可用交付地点，补给将保留至下一次有效交付。\n\n您可以让殖民者操作通讯台并选择“联系巨企商业网络”，或让远行队在巨企据点停留后打开“巨企商业终端”。双方将按合同开展后续业务。\n\n主线第一章已完成。后续：敬请期待。</Mugirl.CorporateIntro.CompletedLetter>
   <Mugirl.CorporateIntro.HostilityRemains>当前还存在独立的外交纠纷。本次开户不会取消攻击巨企等行为造成的敌对后果；修复关系前，新业务仍受限制。账户查看和偿债入口继续保留。</Mugirl.CorporateIntro.HostilityRemains>

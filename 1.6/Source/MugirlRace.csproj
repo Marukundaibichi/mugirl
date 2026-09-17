@@ -285,12 +285,16 @@
         <Compile Include="Features\Roping\ThinkNode_ConditionalRoped.cs" />
         <Compile Include="Features\Roping\ThoughtWorker_Roped.cs" />
         <Compile Include="Features\Roping\ThoughtWorker_Roper.cs" />
+        <Compile Include="Features\Incidents\MugirlStoryDebugActions.cs" />
         <Compile Include="Features\Corporate\CorporateIntroduction.cs" />
         <Compile Include="Features\Corporate\CorporateNetwork.cs" />
         <Compile Include="Features\Corporate\CorporateNetwork.Finance.cs" />
         <Compile Include="Features\Corporate\CorporateNetwork.People.cs" />
         <Compile Include="Features\Corporate\CorporateNetwork.Quests.cs" />
         <Compile Include="Features\Corporate\CorporateNetwork.Trade.cs" />
+        <Compile Include="Features\Corporate\CorporateNetwork.Services.cs" />
+        <Compile Include="Features\Corporate\CorporateUniforms.cs" />
+        <Compile Include="Features\Corporate\Window_CorporateComms.Services.cs" />
         <Compile Include="Features\Corporate\CorporateQuestContract.cs" />
         <Compile Include="Features\Corporate\CorporateQuestSite.cs" />
         <Compile Include="Features\Corporate\CorporateTradeContext.cs" />
@@ -322,6 +326,7 @@
         <Compile Include="..\..\docs\tools\CorporateQuestRuntimeChecks.cs" />
         <Compile Include="..\..\docs\tools\CorporateVisualValidation.cs" />
         <Compile Include="..\..\docs\tools\CorporatePricingChecks.cs" />
+        <Compile Include="..\..\docs\tools\CorporateServicesRuntimeChecks.cs" />
     </ItemGroup>
     <ItemGroup Condition=" '$(EnableStylingValidation)' == 'true' ">
         <Compile Include="..\..\docs\tools\StylingStartupValidation.cs" />

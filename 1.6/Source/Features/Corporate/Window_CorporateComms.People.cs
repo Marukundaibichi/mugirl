@@ -60,7 +60,7 @@ namespace Mugirl
             else DrawPeopleRoster(roster, people, offers);
 
             CorporatePersonOffer offer = peopleSelling ? null : offers.FirstOrDefault(o => o.pawn == selected);
-            int price = peopleSelling ? network.PeopleSalePrice(selected) : offer?.price ?? 0;
+            int price = peopleSelling ? network.PeopleSalePrice(selected) : network.PeoplePurchasePrice(offer);
             bool needsSilver = offer != null && !offer.paid && context.SilverCount < price;
             float footerHeight = needsSilver ? 73f : 48f;
             Rect viewport = new Rect(dossier.x, dossier.y, dossier.width, Mathf.Max(1f, dossier.height - footerHeight));
@@ -168,7 +168,7 @@ namespace Mugirl
                 {
                     Pawn pawn = people[i];
                     CorporatePersonOffer offer = peopleSelling ? null : offers.FirstOrDefault(o => o.pawn == pawn);
-                    int price = peopleSelling ? network.PeopleSalePrice(pawn) : offer?.price ?? 0;
+                    int price = peopleSelling ? network.PeopleSalePrice(pawn) : network.PeoplePurchasePrice(offer);
                     Rect row = new Rect(0f, i * (rowHeight + 6f), width, rowHeight);
                     if (CorporateUI.Row(row, pawn.thingIDNumber == peopleSelectedId, "people/select/" + pawn.thingIDNumber) && peopleSelectedId != pawn.thingIDNumber)
                     {
@@ -206,6 +206,7 @@ namespace Mugirl
             }
             if (offer == null) return;
             string label = offer.paid ? "Mugirl.CorporatePeople.ClaimPerson".Translate().ToString()
+                : price == 0 ? "Mugirl.CorporateServices.FreePerson".Translate().ToString()
                 : "Mugirl.CorporatePeople.BuyPrice".Translate(CorporateUI.Money(price)).ToString();
             bool enabled = ModsConfig.IdeologyActive && (offer.paid || canTrade && !needsSilver);
             if (CorporateUI.Button(button, label, enabled, true, "people/purchase/" + pawn.thingIDNumber))

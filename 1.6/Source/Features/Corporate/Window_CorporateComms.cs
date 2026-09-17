@@ -32,13 +32,15 @@ namespace Mugirl
         {
             "Mugirl.CorporateUI.Page.Overview", "Mugirl.CorporateUI.Page.Trade", "Mugirl.CorporateUI.Page.Orders",
             "Mugirl.CorporateUI.Page.People", "Mugirl.CorporateUI.Page.Finance", "Mugirl.CorporateUI.Page.Missions",
-            "Mugirl.CorporateUI.Page.Introduction", "Mugirl.CorporateUI.Page.History"
+            "Mugirl.CorporateUI.Page.Introduction", "Mugirl.CorporateUI.Page.History", "Mugirl.CorporateServices.Page"
         };
         private static readonly string[] SummaryKeys =
         {
             string.Empty, "Mugirl.CorporateUI.Summary.Trade", "Mugirl.CorporateUI.Summary.Orders",
-            "Mugirl.CorporateUI.Summary.People", "Mugirl.CorporateUI.Summary.Finance", "Mugirl.CorporateUI.Summary.Missions"
+            "Mugirl.CorporateUI.Summary.People", "Mugirl.CorporateUI.Summary.Finance", "Mugirl.CorporateUI.Summary.Missions",
+            string.Empty, string.Empty, "Mugirl.CorporateServices.Summary"
         };
+        private static readonly int[] OverviewPages = { 1, 2, 3, 4, 5, 8 };
 
         public override Vector2 InitialSize => new Vector2(Mathf.Min(1180f, UI.screenWidth - 32f), Mathf.Min(800f, UI.screenHeight - 32f));
         protected override float Margin => 0f;
@@ -184,6 +186,7 @@ namespace Mugirl
                 case 5: DrawMissions(rect); break;
                 case 6: DrawIntroduction(rect); break;
                 case 7: DrawHistory(rect); break;
+                case 8: DrawServices(rect); break;
                 default: DrawOverview(rect); break;
             }
         }
@@ -204,7 +207,7 @@ namespace Mugirl
 
         private void DrawNavigation(ref Rect body)
         {
-            if (body.width < 850f || body.height < 455f)
+            if (body.width < 850f || body.height < 36f + PageKeys.Length * 47f + 65f)
             {
                 if (CorporateUI.Button(new Rect(body.x, body.y, body.width, 35f),
                     (requestedPage + 1).ToString("00") + "  /  " + PageKeys[requestedPage].Translate() + "  ▾", id: "navigation-menu"))
@@ -244,9 +247,9 @@ namespace Mugirl
             int columns = width >= 630f ? 2 : 1;
             float cardWidth = (width - (columns - 1) * 12f) / columns;
             float cardHeight = 116f;
-            for (int i = 1; i <= 5; i++) cardHeight = Mathf.Max(cardHeight, Text.CalcHeight(SummaryKeys[i].Translate(), cardWidth - 28f) + 82f);
+            foreach (int page in OverviewPages) cardHeight = Mathf.Max(cardHeight, Text.CalcHeight(SummaryKeys[page].Translate(), cardWidth - 28f) + 82f);
             float heroHeight = welcomeHeight + 60f;
-            float contentHeight = heroHeight + 18f + 78f + 18f + noticeHeight + 22f + Mathf.Ceil(5f / columns) * (cardHeight + 12f);
+            float contentHeight = heroHeight + 18f + 78f + 18f + noticeHeight + 22f + Mathf.Ceil((float)OverviewPages.Length / columns) * (cardHeight + 12f);
             Rect view = new Rect(0f, 0f, width, Mathf.Max(rect.height, contentHeight));
             CorporateUI.BeginScrollView(rect, ref overviewScroll, view, "overview");
             try
@@ -262,9 +265,9 @@ namespace Mugirl
                 y += 96f;
                 CorporateUI.Notice(new Rect(0f, y, width, noticeHeight), notice, hostile);
                 y += noticeHeight + 22f;
-                for (int i = 1; i <= 5; i++)
+                for (int index = 0; index < OverviewPages.Length; index++)
                 {
-                    int index = i - 1;
+                    int i = OverviewPages[index];
                     Rect card = new Rect((index % columns) * (cardWidth + 12f), y + (index / columns) * (cardHeight + 12f), cardWidth, cardHeight);
                     if (CorporateUI.Row(card, false, "service/" + i)) RequestPage(i);
                     CorporateUI.Label(new Rect(card.x + 14f, card.y + 11f, card.width - 28f, 27f),

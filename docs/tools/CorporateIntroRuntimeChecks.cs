@@ -223,6 +223,9 @@ namespace Mugirl
         private static void CheckDormantArrival(CorporateIntroduction intro, Map map, Pawn originalRepresentative,
             List<Pawn> fixtures, Action<string, bool> check)
         {
+            int originalArrival = (int)typeof(CorporateIntroduction).GetField("representativeArrivalTick", PrivateInstance).GetValue(intro);
+            // Exercise the threat gate after the courier's scheduled two-day delay has elapsed.
+            Set(intro, "representativeArrivalTick", 0);
             PawnKindDef kind = DefDatabase<PawnKindDef>.AllDefsListForReading.First(d => d.race?.race?.IsMechanoid == true
                 && d.race.comps.Any(c => typeof(CompCanBeDormant).IsAssignableFrom(c.compClass)));
             Pawn threat = PawnGenerator.GeneratePawn(new PawnGenerationRequest(kind, Faction.OfMechanoids,
@@ -255,6 +258,7 @@ namespace Mugirl
                 if (arriving.Spawned) arriving.DeSpawn();
             }
             Set(intro, "representative", originalRepresentative);
+            Set(intro, "representativeArrivalTick", originalArrival);
             threat.DeSpawn();
         }
 

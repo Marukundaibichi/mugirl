@@ -5,7 +5,7 @@
     <rootSelectionWeight>0</rootSelectionWeight>
     <autoAccept>true</autoAccept>
     <questNameRules><rulesStrings><li>questName->Establishing corporate contact</li></rulesStrings></questNameRules>
-    <questDescriptionRules><rulesStrings><li>questDescription->A corporate representative wants to introduce the company's commercial network. Meet the representative to complete the introduction and unlock the corporate terminal.</li></rulesStrings></questDescriptionRules>
+    <questDescriptionRules><rulesStrings><li>questDescription->About two days after the courier incident, a corporate representative arrives to introduce the company's commercial network. Meet the representative to complete the introduction and unlock the corporate terminal.</li></rulesStrings></questDescriptionRules>
     <root Class="Mugirl.QuestNode_Root_CorporateIntroduction"/>
   </QuestScriptDef>
   <Mugirl.CorporateIntroductionDef>
@@ -14,6 +14,8 @@
     <retryTicks>2500</retryTicks>
     <representativeStayTicks>240000</representativeStayTicks>
     <attackRetryTicks>120000</attackRetryTicks>
+    <contactDelayTicks>120000</contactDelayTicks>
+    <contactDelayJitterTicks>9000</contactDelayJitterTicks>
     <gifts>
       <Silver>500</Silver>
       <Steel>100</Steel>
