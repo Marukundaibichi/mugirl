@@ -299,4 +299,6 @@
     <Mugirl.Settings.ExtraOutline.Width>Outline thickness: {0}x</Mugirl.Settings.ExtraOutline.Width>
     <Mugirl.Outline.Unavailable>Could not load the extra-outline shader. Normal pawn rendering is preserved. Details: {0}</Mugirl.Outline.Unavailable>
     <Mugirl.Outline.WeaponPatchUnavailable>No unique weapon draw call was found. Original drawing is preserved; held-weapon outlines are skipped.</Mugirl.Outline.WeaponPatchUnavailable>
+    <!-- Grazing food policy preset label: wild vanilla plants only, excluding sown crops. -->
+    <Mugirl.FoodPolicy.Grass.Label>Grass</Mugirl.FoodPolicy.Grass.Label>
 </LanguageData>

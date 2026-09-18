@@ -60,6 +60,20 @@
     </TraitDef>
 
     <TraitDef>
+        <defName>Mugirl_CorporateDiehard</defName>
+        <!-- 仅由巨企支援小队生成时赋予，不进入随机特质池；机制见 CorporateDiehard.cs。 -->
+        <commonality>0</commonality>
+        <degreeDatas>
+            <li>
+                <!-- 巨企死士 -->
+                <label>corporate diehard</label>
+                <!-- {PAWN_nameDef} 签署了巨企的死战条款：绝不撤退，也不会陷入恐慌逃亡。友方误伤造成的派系关系损失降低 95%。 -->
+                <description>{PAWN_nameDef} signed the corporation's no-retreat clause: {PAWN_nameDef} never retreats and never breaks into a panic flee. Friendly-fire goodwill losses are reduced by 95%.</description>
+            </li>
+        </degreeDatas>
+    </TraitDef>
+
+    <TraitDef>
         <defName>Mugirl_NurturedByMugirl</defName>
         <commonality>0</commonality>
         <degreeDatas>

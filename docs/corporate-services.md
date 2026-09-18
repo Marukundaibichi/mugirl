@@ -28,6 +28,8 @@
 
 一个空投舱直接落在选定格子，等级 5 每次派出四位、每周一次；等级 6 每次派出八位、每周两次。队员使用精良品质武器与战斗服、头盔、内衣和防弹背心；不允许个体逃跑，队伍状态机不因伤亡撤退。落地后采用原版友军的搜敌职责，清理对巨企敌对的目标，无目标时回到落点附近。支援持续一天，之后转为撤离地图。她们不加入玩家殖民者名单。
 
+每位队员随队携带两份包装生存食品和两份普通品质工业医药。饥饿急迫且手上没有战斗任务时，会按原版 LordDuty 兜底先吃背包食物；本地安全（邻近区域无活跃威胁）且索敌拿不到目标时，会通过 `JobGiver_CorporateSupportTend` 为自己或附近 45 格内受伤的友方小人（队员、玩家殖民者与玩家派系奴隶）处理伤口。医疗只消耗队员自己的背包医药，不会去玩家库存或地图取药；给玩家小人治疗时遵守其医疗护理设定。伤势处理仍保留原版 NPC 紧急自我医疗入口。
+
 界面显示当前小队人数及本周剩余次数。本周升级保留已经使用的次数，只增加新的额度；新周恢复当前等级的完整额度。旧版存档保存的本周呼叫记录迁移为已使用一次，读档不会重置次数。
 
 ## 职业服装
@@ -46,4 +48,4 @@
 
 `CorporateVisualValidation.cs` 检查普通、1280×720 紧凑与 940 像素窄窗口；新增客户服务及其底部操作区截图。所有游戏测试使用独立游戏目录及独立存档路径。
 
-初始数值表集中在 `CorporateNetwork.Services.cs`；人员与支援装备集中在 `Defs/PawnKindDefs/CorporateServices.xml`，运货员配置位于 `PawnKinds_GiantCorp.xml`。
+初始数值表集中在 `CorporateNetwork.Services.cs`；人员与支援装备集中在 `Defs/PawnKindDefs/CorporateServices.xml`，运货员配置位于 `PawnKinds_GiantCorp.xml`。支援小队的随队补给与空闲医疗在 `Source/Features/Corporate/CorporateSupportTending.cs`，对应搜敌 duty 位于 `Defs/Corporate/CorporateSupportDuty.xml`（结构与原版 `HuntEnemiesIndividual` 相同，仅在索敌后插入医疗节点）。

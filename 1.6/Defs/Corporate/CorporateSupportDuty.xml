@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <!-- 巨企支援小队的搜敌职责：结构与原版 HuntEnemiesIndividual 相同，
+         仅在索敌之后插入 JobGiver_CorporateSupportTend，让队员本地安全时
+         处理自己或附近受伤友方小人的伤口。搜敌目标依旧优先。 -->
+    <DutyDef>
+        <defName>Mugirl_CorporateSupportHunt</defName>
+        <alwaysShowWeapon>true</alwaysShowWeapon>
+        <thinkNode Class="ThinkNode_Priority">
+            <subNodes>
+                <li Class="JobGiver_TakeCombatEnhancingDrug" />
+                <li Class="JobGiver_AIFightEnemies">
+                    <targetAcquireRadius>65</targetAcquireRadius>
+                    <targetKeepRadius>72</targetKeepRadius>
+                </li>
+                <li Class="Mugirl.JobGiver_CorporateSupportTend" />
+                <li Class="JobGiver_AITrashColonyClose" />
+                <li Class="JobGiver_AITrashBuildingsDistant" />
+                <li Class="JobGiver_AIGotoNearestHostile" />
+            </subNodes>
+        </thinkNode>
+    </DutyDef>
+</Defs>

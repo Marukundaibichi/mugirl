@@ -12,7 +12,7 @@
   <Mugirl.CorporateServices.Tier2>优选客户：订购 9.2 折，周常货物增加 8 类。</Mugirl.CorporateServices.Tier2>
   <Mugirl.CorporateServices.Tier3>贵宾客户：订购 9 折，周常货物增加 12 类并纳入更多太空级物资。每周赠送 10 份工业医药及 20 份便携式生存食品。</Mugirl.CorporateServices.Tier3>
   <Mugirl.CorporateServices.Tier4>战略客户：订购 8.8 折，周常货物增加 16 类。每周首次购买一位雪牛娘免费，可从本周人员名单中任选一位；需要 Ideology DLC。</Mugirl.CorporateServices.Tier4>
-  <Mugirl.CorporateServices.Tier5>尊享客户：订购 8.5 折，周常货物增加 24 类。每周可免费呼叫 1 次，每次派出 4 人雪牛娘打击小队，空投至指定地图的露天落点。全员精良装备、不因伤亡撤退，支援一天后撤离。</Mugirl.CorporateServices.Tier5>
+  <Mugirl.CorporateServices.Tier5>尊享客户：订购 8.5 折，周常货物增加 24 类。每周可免费呼叫 1 次，每次派出 4 人雪牛娘打击小队，空投至指定地图的露天落点。全员精良装备、身负「巨企死士」特性（绝不撤退，友方误伤造成的派系关系损失降低 95%），支援一天后撤离。</Mugirl.CorporateServices.Tier5>
   <Mugirl.CorporateServices.Tier6>最高级客户：保留全部尊享权益，支援升级为每次 8 人、每周可免费呼叫 2 次。本周已经使用的呼叫次数会保留。</Mugirl.CorporateServices.Tier6>
   <Mugirl.CorporateServices.SupportAllowance>支援规模：{0} 人 · 本周剩余 {1} / {2} 次</Mugirl.CorporateServices.SupportAllowance>
   <Mugirl.CorporateServices.ClaimGift>领取本周礼物</Mugirl.CorporateServices.ClaimGift>

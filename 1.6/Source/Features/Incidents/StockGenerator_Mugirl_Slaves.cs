@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using RimWorld;
 using RimWorld.Planet;
@@ -54,8 +55,22 @@ namespace Mugirl
                     prohibitedTraits: null,
                     developmentalStages: stage);
 
-                Pawn pawn = PawnGenerator.GeneratePawn(request);
-                MugirlApparelTagUtility.TryWearIdeoSuppressedKindApparel(pawn);
+                Pawn pawn;
+                try
+                {
+                    // 据点进货（Settlement_TraderTracker.RegenerateStock）会先销毁旧库存再逐个
+                    // 生成器产出；这里任何一次抛异常都会中断整个枚举，把据点商品连同白银一起清空。
+                    // 因此单个奴隶生成失败只跳过该个，绝不让异常穿透到库存生成流程。
+                    pawn = PawnGenerator.GeneratePawn(request);
+                    MugirlApparelTagUtility.TryWearIdeoSuppressedKindApparel(pawn);
+                }
+                catch (Exception ex)
+                {
+                    MugirlLog.WarningOnce(
+                        "StockGeneratorMugirlSlaves.GenerationFailed",
+                        "Slave stock generation failed, skipping one mugirl slave. " + ex.GetType().Name + ": " + ex.Message);
+                    continue;
+                }
 
                 yield return pawn;
             }

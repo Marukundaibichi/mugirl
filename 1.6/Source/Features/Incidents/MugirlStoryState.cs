@@ -208,8 +208,15 @@ namespace Mugirl
                 slate.Set("points", OpeningCrashQuestPoints);
                 slate.Set("map", map);
                 QuestUtility.GenerateQuestAndMakeAvailable(Mugirl_DefOf.Mugirl_SlaveOpeningPodCrash, slate);
-                state.openingCrashStarted = true;
-                state.openingCrashCheckTimer = -1;
+                if (QuestNode_Root_Mugirl_OpeningPodCrash.LastRunDeliveredPawns)
+                {
+                    state.openingCrashStarted = true;
+                    state.openingCrashCheckTimer = -1;
+                    return;
+                }
+
+                // pawn 生成或投放失败时不烧掉一次性开场事件，稍后换一批随机结果重试。
+                state.openingCrashCheckTimer = OpeningCrashRetryTicks;
                 return;
             }
 

@@ -2,6 +2,12 @@
 
 静态脚本只能证明结构、引用和常见风险没有明显问题，不能替代 RimWorld 实际加载和游玩验证。涉及交互、渲染、事件、读档或第三方 mod 的改动，都应按本文档做 fresh log 验证。
 
+## 测试游戏目录必须位于模组扫描范围之外
+
+本机曾因测试游戏通过 Junction 指回模组而触发 RimSort #2450。不要在任何 Mods、Workshop 或 Data 扫描目录下创建带联接的测试游戏；`.gitignore` 和 `LoadFolders.xml` 无法排除 RimSort 的目录大小统计。详情见 [事故与应急处理记录](rimsort-directory-cycles-2026-09-18.md)。
+
+`Start-CorporateValidation.ps1` 的测试游戏现在输出到 `%LOCALAPPDATA%\RimWorldModTests\Mugirl\CorporateValidation-<RunName>-Game`。普通配置和日志可以留在仓库 `TMP`，但不要把外部测试环境再用联接挂回仓库。改动测试脚本后须运行 `Audit-RimSortDirectoryCycles.py`，确认无环路且扫描无错误。
+
 ## 静态验证
 
 完整验证：
@@ -42,7 +48,7 @@
 TMP\GameValidationConfigs
 ```
 
-使用方式：先备份当前 `ModsConfig.xml`，再把对应模板复制为当前配置。验证完成后恢复用户原配置。`TMP` 是临时输出目录，可以随时删除，需要时重新生成。
+使用方式：先备份当前 `ModsConfig.xml`，再把对应模板复制为当前配置。验证完成后恢复用户原配置。`TMP` 用于普通临时输出；清理前确认待删内容不含目录联接，并保留仍需追溯的验证日志。
 
 ## 日志和配置路径
 

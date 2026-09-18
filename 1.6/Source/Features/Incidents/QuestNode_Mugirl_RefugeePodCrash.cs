@@ -66,7 +66,8 @@ namespace Mugirl
                     continue;
                 }
 
-                HealthUtility.DamageUntilDowned(pawn, true);
+                // 原版 DamageUntilDowned 对高抗倒地种族存在累计伤势致死风险，改用无伤安全倒地。
+                MugirlPawnDowningUtility.DownRescuePawnSafely(pawn);
                 if (pawn.Downed && !pawn.Dead)
                 {
                     return pawn;

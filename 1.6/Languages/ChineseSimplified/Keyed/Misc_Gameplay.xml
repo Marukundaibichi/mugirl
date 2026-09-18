@@ -584,4 +584,6 @@
     <Mugirl.Settings.ExtraOutline.Width>描边粗细：{0} 倍</Mugirl.Settings.ExtraOutline.Width>
     <Mugirl.Outline.Unavailable>额外描边着色器加载失败，已保留正常人物绘制。详情：{0}</Mugirl.Outline.Unavailable>
     <Mugirl.Outline.WeaponPatchUnavailable>未找到唯一的武器绘制调用，已保留原始绘制并跳过手持武器描边。</Mugirl.Outline.WeaponPatchUnavailable>
+    <!-- Grazing food policy preset label: wild vanilla plants only, excluding sown crops. -->
+    <Mugirl.FoodPolicy.Grass.Label>草</Mugirl.FoodPolicy.Grass.Label>
 </LanguageData>

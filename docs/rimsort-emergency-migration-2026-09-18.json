@@ -1,0 +1,259 @@
+{
+  "ArchiveRoot": "C:\\Users\\Fishiv\\AppData\\Local\\RimWorldModTests\\RimSortEmergency-20260918-010258",
+  "CreatedAt": "2026-09-18T01:02:58.1138904+08:00",
+  "Moves": [
+    {
+      "ModRoot": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Archo Avatar StarCraftII Expansion",
+      "Source": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Archo Avatar StarCraftII Expansion\\validation\\game",
+      "Destination": "C:\\Users\\Fishiv\\AppData\\Local\\RimWorldModTests\\RimSortEmergency-20260918-010258\\Archo Avatar StarCraftII Expansion\\validation\\game",
+      "Status": "moved-and-verified",
+      "Before": {
+        "Files": 6,
+        "DirectoryLinks": 8,
+        "FileBytes": 31700399,
+        "InventorySha256": "A42BDE4F48D2B747A0BE7873376E347BDB7615995D1BA6C1602E19F68057B540"
+      },
+      "After": {
+        "Files": 6,
+        "DirectoryLinks": 8,
+        "FileBytes": 31700399,
+        "InventorySha256": "A42BDE4F48D2B747A0BE7873376E347BDB7615995D1BA6C1602E19F68057B540"
+      }
+    },
+    {
+      "ModRoot": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\mugirl",
+      "Source": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\mugirl\\tmp\\corporatevalidation-motiongame",
+      "Destination": "C:\\Users\\Fishiv\\AppData\\Local\\RimWorldModTests\\RimSortEmergency-20260918-010258\\mugirl\\tmp\\corporatevalidation-motiongame",
+      "Status": "moved-and-verified",
+      "Before": {
+        "Files": 4,
+        "DirectoryLinks": 6,
+        "FileBytes": 32776070,
+        "InventorySha256": "2A6658A37EDC4636D162EB7A6B5D786F5A0F7E21501D12F38CF569B2D453110C"
+      },
+      "After": {
+        "Files": 4,
+        "DirectoryLinks": 6,
+        "FileBytes": 32776070,
+        "InventorySha256": "2A6658A37EDC4636D162EB7A6B5D786F5A0F7E21501D12F38CF569B2D453110C"
+      }
+    },
+    {
+      "ModRoot": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\mugirl",
+      "Source": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\mugirl\\tmp\\corporatevalidation-services01-game",
+      "Destination": "C:\\Users\\Fishiv\\AppData\\Local\\RimWorldModTests\\RimSortEmergency-20260918-010258\\mugirl\\tmp\\corporatevalidation-services01-game",
+      "Status": "moved-and-verified",
+      "Before": {
+        "Files": 21,
+        "DirectoryLinks": 17,
+        "FileBytes": 58273512,
+        "InventorySha256": "C6430DEBAB80F659D839ED53EC7C051EBFA966773C50148286FFAD42508C425B"
+      },
+      "After": {
+        "Files": 21,
+        "DirectoryLinks": 17,
+        "FileBytes": 58273512,
+        "InventorySha256": "C6430DEBAB80F659D839ED53EC7C051EBFA966773C50148286FFAD42508C425B"
+      }
+    },
+    {
+      "ModRoot": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\mugirl",
+      "Source": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\mugirl\\tmp\\corporatevalidation-services03-game",
+      "Destination": "C:\\Users\\Fishiv\\AppData\\Local\\RimWorldModTests\\RimSortEmergency-20260918-010258\\mugirl\\tmp\\corporatevalidation-services03-game",
+      "Status": "moved-and-verified",
+      "Before": {
+        "Files": 21,
+        "DirectoryLinks": 17,
+        "FileBytes": 46516756,
+        "InventorySha256": "57C9CB73D0CB7DC41A21205EBAFFE1C0E3E834863F5D52783A9C0E7DA1CF69AA"
+      },
+      "After": {
+        "Files": 21,
+        "DirectoryLinks": 17,
+        "FileBytes": 46516756,
+        "InventorySha256": "57C9CB73D0CB7DC41A21205EBAFFE1C0E3E834863F5D52783A9C0E7DA1CF69AA"
+      }
+    },
+    {
+      "ModRoot": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\mugirl",
+      "Source": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\mugirl\\tmp\\corporatevalidation-servicesnoideo02-game",
+      "Destination": "C:\\Users\\Fishiv\\AppData\\Local\\RimWorldModTests\\RimSortEmergency-20260918-010258\\mugirl\\tmp\\corporatevalidation-servicesnoideo02-game",
+      "Status": "moved-and-verified",
+      "Before": {
+        "Files": 21,
+        "DirectoryLinks": 17,
+        "FileBytes": 39278703,
+        "InventorySha256": "34B489862F4C325D97CAA518226BA424B97F02A08367BB29930D6DDBA46545A0"
+      },
+      "After": {
+        "Files": 21,
+        "DirectoryLinks": 17,
+        "FileBytes": 39278703,
+        "InventorySha256": "34B489862F4C325D97CAA518226BA424B97F02A08367BB29930D6DDBA46545A0"
+      }
+    },
+    {
+      "ModRoot": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\mugirl",
+      "Source": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\mugirl\\tmp\\corporatevalidation-servicesnoideo03-game",
+      "Destination": "C:\\Users\\Fishiv\\AppData\\Local\\RimWorldModTests\\RimSortEmergency-20260918-010258\\mugirl\\tmp\\corporatevalidation-servicesnoideo03-game",
+      "Status": "moved-and-verified",
+      "Before": {
+        "Files": 21,
+        "DirectoryLinks": 17,
+        "FileBytes": 45341922,
+        "InventorySha256": "24D51CA27BE9D1EEA4DC1B6A91AD97B2F777482355E74F96C87732170542ED7B"
+      },
+      "After": {
+        "Files": 21,
+        "DirectoryLinks": 17,
+        "FileBytes": 45341922,
+        "InventorySha256": "24D51CA27BE9D1EEA4DC1B6A91AD97B2F777482355E74F96C87732170542ED7B"
+      }
+    },
+    {
+      "ModRoot": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\mugirl",
+      "Source": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\mugirl\\tmp\\corporatevalidation-servicesvisual02-game",
+      "Destination": "C:\\Users\\Fishiv\\AppData\\Local\\RimWorldModTests\\RimSortEmergency-20260918-010258\\mugirl\\tmp\\corporatevalidation-servicesvisual02-game",
+      "Status": "moved-and-verified",
+      "Before": {
+        "Files": 11,
+        "DirectoryLinks": 17,
+        "FileBytes": 34546477,
+        "InventorySha256": "265C48063C4C4B82D8D8829E0D1972B2B298885B8D53518A5F8065612C92C3D4"
+      },
+      "After": {
+        "Files": 11,
+        "DirectoryLinks": 17,
+        "FileBytes": 34546477,
+        "InventorySha256": "265C48063C4C4B82D8D8829E0D1972B2B298885B8D53518A5F8065612C92C3D4"
+      }
+    },
+    {
+      "ModRoot": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\mugirl",
+      "Source": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\mugirl\\tmp\\corporatevalidation-servicesvisualzh03-game",
+      "Destination": "C:\\Users\\Fishiv\\AppData\\Local\\RimWorldModTests\\RimSortEmergency-20260918-010258\\mugirl\\tmp\\corporatevalidation-servicesvisualzh03-game",
+      "Status": "moved-and-verified",
+      "Before": {
+        "Files": 11,
+        "DirectoryLinks": 17,
+        "FileBytes": 34549557,
+        "InventorySha256": "934EBE922DDE55B473288075BC876279ED17A7032B2E273AAD74D9C4ACD9558E"
+      },
+      "After": {
+        "Files": 11,
+        "DirectoryLinks": 17,
+        "FileBytes": 34549557,
+        "InventorySha256": "934EBE922DDE55B473288075BC876279ED17A7032B2E273AAD74D9C4ACD9558E"
+      }
+    },
+    {
+      "ModRoot": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\mugirl",
+      "Source": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\mugirl\\tmp\\corporatevalidation-supporttiers01-game",
+      "Destination": "C:\\Users\\Fishiv\\AppData\\Local\\RimWorldModTests\\RimSortEmergency-20260918-010258\\mugirl\\tmp\\corporatevalidation-supporttiers01-game",
+      "Status": "moved-and-verified",
+      "Before": {
+        "Files": 21,
+        "DirectoryLinks": 17,
+        "FileBytes": 41182070,
+        "InventorySha256": "EB13799236769C8539A169DE394826488D9632F58CF573F04994C3E7A94E991F"
+      },
+      "After": {
+        "Files": 21,
+        "DirectoryLinks": 17,
+        "FileBytes": 41182070,
+        "InventorySha256": "EB13799236769C8539A169DE394826488D9632F58CF573F04994C3E7A94E991F"
+      }
+    },
+    {
+      "ModRoot": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\mugirl",
+      "Source": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\mugirl\\tmp\\corporatevalidation-uierrorfix1-game",
+      "Destination": "C:\\Users\\Fishiv\\AppData\\Local\\RimWorldModTests\\RimSortEmergency-20260918-010258\\mugirl\\tmp\\corporatevalidation-uierrorfix1-game",
+      "Status": "moved-and-verified",
+      "Before": {
+        "Files": 11,
+        "DirectoryLinks": 17,
+        "FileBytes": 34490137,
+        "InventorySha256": "57141583E81652C0E8430B4A16DE045CCC396D52A6A6AB5EDE05E1ADBA070964"
+      },
+      "After": {
+        "Files": 11,
+        "DirectoryLinks": 17,
+        "FileBytes": 34490137,
+        "InventorySha256": "57141583E81652C0E8430B4A16DE045CCC396D52A6A6AB5EDE05E1ADBA070964"
+      }
+    },
+    {
+      "ModRoot": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\mugirl",
+      "Source": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\mugirl\\tmp\\corporatevalidation-uierrorfix2-game",
+      "Destination": "C:\\Users\\Fishiv\\AppData\\Local\\RimWorldModTests\\RimSortEmergency-20260918-010258\\mugirl\\tmp\\corporatevalidation-uierrorfix2-game",
+      "Status": "moved-and-verified",
+      "Before": {
+        "Files": 11,
+        "DirectoryLinks": 17,
+        "FileBytes": 34491161,
+        "InventorySha256": "8D470CF053BA27F8937BBF7B79A83E7C3777A710B533F640961EFE61126ABF1D"
+      },
+      "After": {
+        "Files": 11,
+        "DirectoryLinks": 17,
+        "FileBytes": 34491161,
+        "InventorySha256": "8D470CF053BA27F8937BBF7B79A83E7C3777A710B533F640961EFE61126ABF1D"
+      }
+    },
+    {
+      "ModRoot": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\mugirl",
+      "Source": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\mugirl\\tmp\\corporatevalidation-uierrorfix3-game",
+      "Destination": "C:\\Users\\Fishiv\\AppData\\Local\\RimWorldModTests\\RimSortEmergency-20260918-010258\\mugirl\\tmp\\corporatevalidation-uierrorfix3-game",
+      "Status": "moved-and-verified",
+      "Before": {
+        "Files": 11,
+        "DirectoryLinks": 17,
+        "FileBytes": 34492185,
+        "InventorySha256": "40D8439AEE77346A2CD5FF55F64BE656A1FFDD440E33484143FCFE019994F45F"
+      },
+      "After": {
+        "Files": 11,
+        "DirectoryLinks": 17,
+        "FileBytes": 34492185,
+        "InventorySha256": "40D8439AEE77346A2CD5FF55F64BE656A1FFDD440E33484143FCFE019994F45F"
+      }
+    },
+    {
+      "ModRoot": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\mugirl",
+      "Source": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\mugirl\\tmp\\whitefluffgame",
+      "Destination": "C:\\Users\\Fishiv\\AppData\\Local\\RimWorldModTests\\RimSortEmergency-20260918-010258\\mugirl\\tmp\\whitefluffgame",
+      "Status": "moved-and-verified",
+      "Before": {
+        "Files": 3,
+        "DirectoryLinks": 8,
+        "FileBytes": 32776064,
+        "InventorySha256": "B579AB4460C350AEA46451A702D6F0B825B12F6D83EA9BDC5D4B4585ACF67CE3"
+      },
+      "After": {
+        "Files": 3,
+        "DirectoryLinks": 8,
+        "FileBytes": 32776064,
+        "InventorySha256": "B579AB4460C350AEA46451A702D6F0B825B12F6D83EA9BDC5D4B4585ACF67CE3"
+      }
+    },
+    {
+      "ModRoot": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\乳牛娘 白绒物语",
+      "Source": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\乳牛娘 白绒物语\\tmp\\game",
+      "Destination": "C:\\Users\\Fishiv\\AppData\\Local\\RimWorldModTests\\RimSortEmergency-20260918-010258\\乳牛娘 白绒物语\\tmp\\game",
+      "Status": "moved-and-verified",
+      "Before": {
+        "Files": 3,
+        "DirectoryLinks": 8,
+        "FileBytes": 32776064,
+        "InventorySha256": "B579AB4460C350AEA46451A702D6F0B825B12F6D83EA9BDC5D4B4585ACF67CE3"
+      },
+      "After": {
+        "Files": 3,
+        "DirectoryLinks": 8,
+        "FileBytes": 32776064,
+        "InventorySha256": "B579AB4460C350AEA46451A702D6F0B825B12F6D83EA9BDC5D4B4585ACF67CE3"
+      }
+    }
+  ],
+  "InventoryDescription": "SHA256 of relative file names, lengths, modification timestamps, directory names and link targets; file contents are not rehashed."
+}

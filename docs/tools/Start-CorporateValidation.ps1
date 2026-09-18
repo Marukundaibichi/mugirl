@@ -6,7 +6,8 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $repository = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))
-$temporaryRoot = Join-Path $repository 'TMP'
+# 含目录联接的测试游戏必须位于所有模组目录之外，避免 RimSort #2450。
+$temporaryRoot = Join-Path ([Environment]::GetFolderPath('LocalApplicationData')) 'RimWorldModTests\Mugirl'
 $stage = Join-Path $temporaryRoot ('CorporateValidation-' + $RunName + '-Game')
 $saveRoot = if ($Mode -eq 'Visual') {
     [System.IO.Path]::GetFullPath((Join-Path ([System.IO.Path]::GetTempPath()) ('CorporateValidation-' + $RunName)))

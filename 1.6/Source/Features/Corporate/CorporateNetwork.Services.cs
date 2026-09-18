@@ -111,8 +111,9 @@ namespace Mugirl
                         allowDead: false, allowDowned: false, canGeneratePawnRelations: false,
                         mustBeCapableOfViolence: true, allowPregnant: false, developmentalStages: DevelopmentalStage.Adult));
                     pawns.Add(pawn);
-                    pawn.mindState.canFleeIndividual = false;
+                    CorporateDiehardUtility.MakeDiehard(pawn);
                     CorporateUniforms.EnsureRequiredApparel(pawn);
+                    CorporateSupportUtility.EquipFieldSupplies(pawn);
                 }
             }
             catch (Exception ex)
@@ -167,7 +168,8 @@ namespace Mugirl
         public override StateGraph CreateGraph()
         {
             var graph = new StateGraph();
-            var fight = new LordToil_HuntEnemies(fallback);
+            // 搜敌 toil 使用本模组 duty，空闲时队员会处理自己或附近友方小人的伤口。
+            var fight = new LordToil_CorporateSupportHunt(fallback);
             var exit = new LordToil_ExitMap(LocomotionUrgency.Jog, canDig: true);
             graph.AddToil(fight);
             graph.AddToil(exit);

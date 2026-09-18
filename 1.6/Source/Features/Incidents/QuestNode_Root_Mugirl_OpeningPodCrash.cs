@@ -12,6 +12,10 @@ namespace Mugirl
         private const int MaxFactionlessGenerationAttempts = 5;
         private const float OpeningPodPawnAgeYears = 18f;
 
+        // StaticCacheLifecycle: 进程内标记，供 MugirlStoryService 判断本次 RunInt 是否真正投放了 pawn；
+        // 跨存档的完成状态仍由 MugirlStoryState.openingCrashStarted 持久化。
+        internal static bool LastRunDeliveredPawns { get; private set; }
+
         public override Pawn GeneratePawn()
         {
             // 逃亡奴隶保持无派系；敌对巨企派系只用于袭击与索赔分支。
@@ -53,8 +57,9 @@ namespace Mugirl
             MugirlApparelTagUtility.TryWearIdeoSuppressedKindApparel(pawn);
 
             // 开局救援对象需要倒地出现，并带行动不能症作为事件状态。
+            // 原版 DamageUntilDowned 对高抗倒地种族存在累计伤势致死风险，改用无伤安全倒地。
             pawn.health.AddHediff(Mugirl_DefOf.Mugirl_Abasia);
-            HealthUtility.DamageUntilDowned(pawn, true);
+            MugirlPawnDowningUtility.DownRescuePawnSafely(pawn);
 
             return pawn;
         }
@@ -137,6 +142,8 @@ namespace Mugirl
                 return;
             }
 
+            LastRunDeliveredPawns = false;
+
             if (!slate.TryGet<Map>("map", out var map) || map == null)
             {
                 bool canBeSpace = CanBeSpace;
@@ -179,6 +186,8 @@ namespace Mugirl
                 DiscardGeneratedPawns(pawns);
                 return;
             }
+
+            LastRunDeliveredPawns = true;
 
             slate.Set("pawns", pawns);
 

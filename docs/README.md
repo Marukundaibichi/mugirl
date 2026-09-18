@@ -4,6 +4,7 @@
 
 ## 常用入口
 
+- `rimsort-directory-cycles-2026-09-18.md`：RimSort 点击模组卡死的本机扫描、应急迁移及防复发规则；调整测试游戏目录或目录联接前必读。
 - `maintenance-guide.md`：日常改代码、改 Def、改资源前后的基本流程。
 - `content-update-guide.md`：新增服装、物品、Hediff、Job、事件、种族外观等内容时的检查项。
 - `compatibility-guide.md`：DLC、HAR、Facial Animation、Search and Destroy、VCookE 以及其他可选 mod 的兼容规则。
@@ -33,4 +34,4 @@
 2. 阅读相关功能目录和对应维护文档，确认改动边界。
 3. 修改代码、Def 或资源；避免混入无关整理。
 4. 再跑静态验证，必要时按 `validation-runbook.md` 做游戏内验证。
-5. 发布前按 `release-checklist.md` 生成发布包并检查 `TMP` 输出。
+5. 发布前按 `release-checklist.md` 生成发布包并检查 `TMP` 输出。`TMP` 仅用于普通文件；含目录联接的测试游戏必须放在 `%LOCALAPPDATA%\RimWorldModTests\`。

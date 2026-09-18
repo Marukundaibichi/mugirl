@@ -1,0 +1,326 @@
+{
+  "generated_at": "2026-09-18T01:06:14.398155+08:00",
+  "sources": [
+    {
+      "path": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods",
+      "kind": "local"
+    },
+    {
+      "path": "C:\\Program Files (x86)\\Steam\\steamapps\\workshop\\content\\294100",
+      "kind": "workshop"
+    },
+    {
+      "path": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Data",
+      "kind": "data"
+    }
+  ],
+  "summary": {
+    "seconds": 16.877,
+    "candidate_directories": 2842,
+    "sources": {
+      "local": 118,
+      "workshop": 2718,
+      "data": 6
+    },
+    "about_xml_present": 2840,
+    "physical_directories": 211317,
+    "files": 737331,
+    "directory_links": 38,
+    "cycle_components": 0,
+    "affected_candidates": 0,
+    "scan_errors": 0
+  },
+  "affected_mods": [],
+  "mods_with_directory_links": [
+    {
+      "path": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\海战DEMO",
+      "physical_path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo",
+      "source": "local",
+      "name": "风帆海战实验室 / Naval Combat Lab",
+      "package_id": "fishiv.naval.demo",
+      "about_xml": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\海战DEMO\\About\\About.xml",
+      "reachable_cycle_ids": [],
+      "contained_directory_links": 33
+    },
+    {
+      "path": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\疯狂喷气机",
+      "physical_path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\疯狂喷气机",
+      "source": "local",
+      "name": "Rimpack Joyride",
+      "package_id": "marukun.rimpackjoyride",
+      "about_xml": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\疯狂喷气机\\About\\About.xml",
+      "reachable_cycle_ids": [],
+      "contained_directory_links": 5
+    }
+  ],
+  "cycles": [],
+  "directory_links": [
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\疯狂喷气机\\artifacts\\traversal-02\\runtime\\Data",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\疯狂喷气机\\artifacts\\traversal-02\\runtime",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\data",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\疯狂喷气机\\artifacts\\traversal-02\\runtime\\MonoBleedingEdge",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\疯狂喷气机\\artifacts\\traversal-02\\runtime",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\monobleedingedge",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\疯狂喷气机\\artifacts\\traversal-02\\runtime\\RimWorldWin64_Data",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\疯狂喷气机\\artifacts\\traversal-02\\runtime",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\rimworldwin64_data",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\疯狂喷气机\\artifacts\\traversal-01\\runtime\\Data",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\疯狂喷气机\\artifacts\\traversal-01\\runtime",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\data",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\疯狂喷气机\\artifacts\\traversal-01\\runtime\\RimWorldWin64_Data",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\疯狂喷气机\\artifacts\\traversal-01\\runtime",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\rimworldwin64_data",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\Data",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\data",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\MonoBleedingEdge",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\monobleedingedge",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\RimWorldWin64_Data",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\rimworldwin64_data",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\1783630214",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\workshop\\content\\294100\\1783630214",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\1874644848",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\workshop\\content\\294100\\1874644848",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\2023507013",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\workshop\\content\\294100\\2023507013",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\2024971883",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\workshop\\content\\294100\\2024971883",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\2038874626",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\workshop\\content\\294100\\2038874626",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\2664723367",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\workshop\\content\\294100\\2664723367",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\2924800081",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\workshop\\content\\294100\\2924800081",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\2934420800",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\workshop\\content\\294100\\2934420800",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\2985662865",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\workshop\\content\\294100\\2985662865",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\3232415388",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\workshop\\content\\294100\\3232415388",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\3524116050",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\workshop\\content\\294100\\3524116050",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\3621644930",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\workshop\\content\\294100\\3621644930",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\3676343434",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\workshop\\content\\294100\\3676343434",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\3691858170",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\workshop\\content\\294100\\3691858170",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\3692498711",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\workshop\\content\\294100\\3692498711",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\3696700829",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\workshop\\content\\294100\\3696700829",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\3703858685",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\workshop\\content\\294100\\3703858685",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\3711543433",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\workshop\\content\\294100\\3711543433",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\3712928623",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\workshop\\content\\294100\\3712928623",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\3755504957",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\workshop\\content\\294100\\3755504957",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\839005762",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\workshop\\content\\294100\\839005762",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\Harmony",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\workshop\\content\\294100\\2009463077",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\MRK's assorted little gadgets",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\mrk's assorted little gadgets",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\MRKDebugtools",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\mrkdebugtools",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\NavalDemo",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\mod",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\Research Tab Optimizer",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\research tab optimizer",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\RimSearcher_DataMod",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\rimsearcher_datamod",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\Small Furniture_zh",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\small furniture_zh",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\YaOpt",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\workshop\\content\\294100\\3718308218",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    },
+    {
+      "path": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods\\建筑菜单优化",
+      "parent": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\海战demo\\dev-runtime\\game\\mods",
+      "target": "c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\建筑菜单优化",
+      "attributes": "0x410",
+      "reparse_tag": 2684354563
+    }
+  ],
+  "scan_errors": []
+}

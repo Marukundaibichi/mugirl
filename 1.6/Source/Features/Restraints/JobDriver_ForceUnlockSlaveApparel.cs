@@ -46,20 +46,24 @@ namespace Mugirl
         {
             Pawn wearer = TargetPawn;
             Apparel apparel = TargetApparel;
-            if (!CanForceUnlockNow(pawn, wearer, apparel))
-            {
-                yield return EndIncompletableToil();
-                yield break;
-            }
+            bool unlockSelf = wearer == pawn;
 
-            if (wearer != pawn)
+            // JobDriver.ExposeData 会强制保存 curToilIndex，并在读档时重新执行 MakeNewToils；
+            // 读档阶段 pawn 尚未生成，CanReach 等依赖生成状态的判定必然失败。若在此处按这些
+            // 条件裁剪 toil，读档后 toil 数量就会小于存档里的下标，触发
+            // "tried to get CurToil with curToilIndex=N but only has M toils"。
+            // 因此 toil 数量只依赖存档稳定的条件（wearer 是否为施术者本人），
+            // 有效性一律交给 FailOn 在运行时判定。
+            this.FailOn(() => !CanForceUnlockNow(pawn, wearer, apparel));
+
+            if (!unlockSelf)
             {
                 yield return Toils_Reserve.Reserve(TargetPawnInd);
             }
 
             yield return Toils_Reserve.Reserve(ApparelInd);
 
-            if (wearer != pawn)
+            if (!unlockSelf)
             {
                 yield return Toils_Goto.GotoThing(TargetPawnInd, PathEndMode.Touch);
             }
@@ -67,7 +71,7 @@ namespace Mugirl
             int woundTickCounter = 0;
             Toil wait = Toils_General.WaitWith(TargetPawnInd, ForceUnlockRestraintUtility.WorkTicks, true);
             wait.FailOn(() => !CanForceUnlockNow(pawn, wearer, apparel));
-            if (wearer != pawn)
+            if (!unlockSelf)
             {
                 wait.FailOnCannotTouch(TargetPawnInd, PathEndMode.Touch);
             }
@@ -99,18 +103,6 @@ namespace Mugirl
                     }
 
                     CompleteForceUnlock(wearer, apparel);
-                },
-                defaultCompleteMode = ToilCompleteMode.Instant
-            };
-        }
-
-        private Toil EndIncompletableToil()
-        {
-            return new Toil
-            {
-                initAction = delegate
-                {
-                    pawn.jobs.curDriver.EndJobWith(JobCondition.Incompletable);
                 },
                 defaultCompleteMode = ToilCompleteMode.Instant
             };

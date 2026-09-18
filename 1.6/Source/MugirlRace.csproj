@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
     <PropertyGroup>
@@ -117,6 +117,7 @@
         <Compile Include="Features\Incidents\Harmony_DesignatorTame.cs" />
         <Compile Include="Features\Incidents\Harmony_GiantCorpRaidTiers.cs" />
         <Compile Include="Features\Incidents\Harmony_IsWildMan_WildManUtility.cs" />
+        <Compile Include="Features\Incidents\Harmony_NullRacePawnKindGuard.cs" />
         <Compile Include="Features\Incidents\IncidentWorker_Mugirl_CourierRaid.cs" />
         <Compile Include="Features\Incidents\IncidentWorker_Mugirl_FusionInvestment.cs" />
         <Compile Include="Features\Incidents\IncidentWorker_Mugirl_Migration.cs" />
@@ -126,6 +127,7 @@
         <Compile Include="Features\Incidents\MugirlPunisher.cs" />
         <Compile Include="Features\Incidents\MugirlPunisherDeath.cs" />
         <Compile Include="Features\Incidents\MugirlGeneratedPawnUtility.cs" />
+        <Compile Include="Features\Incidents\MugirlPawnDowningUtility.cs" />
         <Compile Include="Features\Incidents\MugirlRescueJoinUtility.cs" />
         <Compile Include="Features\Incidents\MugirlStoryState.cs" />
         <Compile Include="Features\Incidents\MugirlWildSlaveUtility.cs" />
@@ -181,6 +183,7 @@
         <Compile Include="Features\Misc\Harmony_DrugAdministerDefs.cs" />
         <Compile Include="Features\Misc\Harmony_GhoulRenderingRefresh.cs" />
         <Compile Include="Features\Misc\Harmony_MugirlGrazeChain.cs" />
+        <Compile Include="Features\Misc\Harmony_MugirlFoodPolicyGrass.cs" />
         <Compile Include="Features\Misc\InteractionWorker_Nuzzle.cs" />
         <Compile Include="Features\Misc\JobDriver_Nuzzle.cs" />
         <Compile Include="Features\Misc\JobGiver_Nuzzle.cs" />
@@ -302,6 +305,8 @@
         <Compile Include="Features\Corporate\CorporateUI.cs" />
         <Compile Include="Features\Corporate\CorporateMotion.cs" />
         <Compile Include="Features\Corporate\CorporateDialogs.cs" />
+        <Compile Include="Features\Corporate\CorporateDiehard.cs" />
+        <Compile Include="Features\Corporate\CorporateSupportTending.cs" />
         <Compile Include="Features\Corporate\Harmony_CorporateComms.cs" />
         <Compile Include="Features\Corporate\Window_CorporateComms.cs" />
         <Compile Include="Features\Corporate\Window_CorporateComms.Trade.cs" />
