@@ -64,7 +64,7 @@
     <ThingDef ParentName="Mugirl_0920CasualBase">
         <defName>Mugirl_SisterMask</defName><label>Mugirl big-sister mask</label><description>A fashionable mask favored by energetic older-sister types who prefer to keep a little mystery.</description>
         <graphicData><texPath>Things/Apparel/Mugirl_SisterMask/Mugirl_SisterMask</texPath></graphicData><costStuffCount>18</costStuffCount>
-        <apparel><bodyPartGroups><li>HeadAttackTool</li></bodyPartGroups><layers><li>Mugirl_Ornament</li></layers><wornGraphicPath>Things/Apparel/Mugirl_SisterMask/Mugirl_SisterMask</wornGraphicPath><countsAsClothingForNudity>false</countsAsClothingForNudity></apparel>
+        <apparel><bodyPartGroups><li>HeadAttackTool</li></bodyPartGroups><layers><li>Overhead</li></layers><wornGraphicPath>Things/Apparel/Mugirl_SisterMask/Mugirl_SisterMask</wornGraphicPath><countsAsClothingForNudity>false</countsAsClothingForNudity></apparel>
     </ThingDef>
     <ThingDef ParentName="Mugirl_0920CasualBase">
         <defName>Mugirl_BrandBag</defName><label>Mugirl designer handbag</label><description>A mysterious designer accessory that makes its wearer look immediately ready for the most fashionable street in town.</description>
@@ -91,8 +91,31 @@
     <!-- 修女服 -->
     <ThingDef ParentName="Mugirl_0920CasualBase"><defName>Mugirl_NunDressClassic</defName><label>Mugirl classic nun dress</label><description>A costly formal habit worn by Mugirl sisters who hear confessions and care for children and the wounded.</description><graphicData><texPath>Things/Apparel/Mugirl_NunDressClassic/Mugirl_NunDressClassic</texPath></graphicData><costStuffCount>100</costStuffCount><statBases><MaxHitPoints>170</MaxHitPoints><WorkToMake>9000</WorkToMake><Mass>1.4</Mass><Beauty>2</Beauty></statBases><apparel><bodyPartGroups><li>Torso</li><li>Shoulders</li><li>Legs</li></bodyPartGroups><layers><li>OnSkin</li></layers><wornGraphicPath>Things/Apparel/Mugirl_NunDressClassic/Mugirl_NunDressClassic</wornGraphicPath></apparel></ThingDef>
     <ThingDef ParentName="Mugirl_0920CasualBase"><defName>Mugirl_NunDressSimple</defName><label>Mugirl simple nun dress</label><description>A modest, inexpensive habit for sisters who value a clear conscience and practical service over strict dress codes.</description><graphicData><texPath>Things/Apparel/Mugirl_NunDressSimple/Mugirl_NunDressSimple</texPath></graphicData><costStuffCount>55</costStuffCount><statBases><MaxHitPoints>130</MaxHitPoints><WorkToMake>5200</WorkToMake><Mass>1</Mass></statBases><apparel><bodyPartGroups><li>Torso</li><li>Shoulders</li><li>Legs</li></bodyPartGroups><layers><li>OnSkin</li></layers><wornGraphicPath>Things/Apparel/Mugirl_NunDressSimple/Mugirl_NunDressSimple</wornGraphicPath></apparel></ThingDef>
-    <ThingDef ParentName="Mugirl_HeadBase"><defName>Mugirl_NunVeil</defName><label>Mugirl nun veil</label><description>A black-and-white veil symbolizing solemn duty and the promise to heal both body and spirit.</description><graphicData><texPath>Things/Apparel/Mugirl_NunVeil/Mugirl_NunVeil</texPath><ignoreThingDrawColor>true</ignoreThingDrawColor></graphicData><costStuffCount>40</costStuffCount><stuffCategories><li>Fabric</li></stuffCategories><statBases><MaxHitPoints>80</MaxHitPoints><WorkToMake>3200</WorkToMake><Mass>0.3</Mass></statBases><apparel><bodyPartGroups><li>HeadAttackTool</li></bodyPartGroups><wornGraphicPath>Things/Apparel/Mugirl_NunVeil/Mugirl_NunVeil</wornGraphicPath><useWornGraphicMask>false</useWornGraphicMask></apparel></ThingDef>
-    <ThingDef ParentName="Mugirl_0920CasualBase"><defName>Mugirl_NunBlindfold</defName><label>Mugirl nun blindfold</label><description>A soft blindfold used by sisters seeking quiet concentration during prayer.</description><graphicData><texPath>Things/Apparel/Mugirl_NunBlindfold/Mugirl_NunBlindfold</texPath></graphicData><costStuffCount>16</costStuffCount><apparel><bodyPartGroups><li>HeadAttackTool</li></bodyPartGroups><layers><li>Mugirl_Ornament</li></layers><wornGraphicPath>Things/Apparel/Mugirl_NunBlindfold/Mugirl_NunBlindfold</wornGraphicPath><countsAsClothingForNudity>false</countsAsClothingForNudity></apparel></ThingDef>
+    <ThingDef ParentName="Mugirl_HeadBase">
+        <defName>Mugirl_NunVeil</defName><label>Mugirl nun veil</label><description>A black-and-white veil symbolizing solemn duty and the promise to heal both body and spirit.</description>
+        <graphicData><texPath>Things/Apparel/Mugirl_NunVeil/Mugirl_NunVeil</texPath><ignoreThingDrawColor>true</ignoreThingDrawColor></graphicData><costStuffCount>40</costStuffCount>
+        <stuffCategories><li>Fabric</li></stuffCategories><statBases><MaxHitPoints>80</MaxHitPoints><WorkToMake>3200</WorkToMake><Mass>0.3</Mass></statBases>
+        <apparel>
+            <bodyPartGroups><li>HeadAttackTool</li></bodyPartGroups>
+            <wornGraphicPath>Things/Apparel/Mugirl_NunVeil/Mugirl_NunVeil</wornGraphicPath><useWornGraphicMask>false</useWornGraphicMask>
+            <renderNodeProperties>
+                <li>
+                    <debugLabel>Mugirl nun veil rear layer</debugLabel>
+                    <nodeClass>Mugirl.Features.Appearance.PawnRenderNode_NunVeilBack</nodeClass>
+                    <workerClass>PawnRenderNodeWorker_Apparel_Head</workerClass>
+                    <parentTagDef>Head</parentTagDef>
+                    <baseLayer>-1</baseLayer>
+                    <texPath>Things/Apparel/Mugirl_NunVeil/Mugirl_NunVeil_Back</texPath>
+                    <shaderTypeDef>Cutout</shaderTypeDef>
+                    <useGraphic>true</useGraphic>
+                    <colorType>Custom</colorType>
+                    <visibleFacing><li>South</li></visibleFacing>
+                    <pawnType>HumanlikeOnly</pawnType>
+                </li>
+            </renderNodeProperties>
+        </apparel>
+    </ThingDef>
+    <ThingDef ParentName="Mugirl_0920CasualBase"><defName>Mugirl_NunBlindfold</defName><label>Mugirl nun blindfold</label><description>A soft blindfold used by sisters seeking quiet concentration during prayer.</description><graphicData><texPath>Things/Apparel/Mugirl_NunBlindfold/Mugirl_NunBlindfold</texPath></graphicData><costStuffCount>16</costStuffCount><apparel><bodyPartGroups><li>HeadAttackTool</li></bodyPartGroups><layers><li>EyeCover</li></layers><wornGraphicPath>Things/Apparel/Mugirl_NunBlindfold/Mugirl_NunBlindfold</wornGraphicPath><countsAsClothingForNudity>false</countsAsClothingForNudity></apparel></ThingDef>
 
     <!-- 骑士坐骑甲 -->
     <ThingDef ParentName="Mugirl_ArmorSmithableBase"><defName>Mugirl_KnightMountPlateWhite</defName><label>Mugirl white mounted plate</label><description>Polished white plate shaped for a mounted Mugirl, combining broad protection with a ceremonial silhouette.</description><graphicData><texPath>Things/Apparel/Mugirl_KnightMountPlateWhite/Mugirl_KnightMountPlateWhite</texPath><graphicClass>Graphic_Single</graphicClass><ignoreThingDrawColor>true</ignoreThingDrawColor></graphicData><techLevel>Medieval</techLevel><costList><Steel>170</Steel></costList><statBases><WorkToMake>42000</WorkToMake><MaxHitPoints>320</MaxHitPoints><Mass>17</Mass><ArmorRating_Sharp>0.95</ArmorRating_Sharp><ArmorRating_Blunt>0.5</ArmorRating_Blunt><ArmorRating_Heat>0.25</ArmorRating_Heat><Insulation_Cold>28</Insulation_Cold><EquipDelay>16</EquipDelay></statBases><equippedStatOffsets><MoveSpeed>-0.65</MoveSpeed></equippedStatOffsets><apparel><bodyPartGroups><li>Torso</li><li>Neck</li><li>Shoulders</li><li>Arms</li><li>Legs</li></bodyPartGroups><layers><li>Shell</li></layers><wornGraphicPath>Things/Apparel/Mugirl_KnightMountPlateWhite/Mugirl_KnightMountPlateWhite</wornGraphicPath><useWornGraphicMask>false</useWornGraphicMask><tags><li>Mugirl_Armor</li></tags></apparel><recipeMaker><researchPrerequisite>PlateArmor</researchPrerequisite><skillRequirements><Crafting>8</Crafting></skillRequirements></recipeMaker></ThingDef>
@@ -101,22 +124,17 @@
 
     <!-- 神经接入战斗套装 -->
     <ThingDef ParentName="Mugirl_ArmorBase">
-        <defName>Mugirl_NeuralCombatArmor</defName><label>Mugirl neural combat armor</label><description>Ancient Mugirl combat armor using neural interfaces to amplify reaction speed, strength, endurance and physical tolerance.</description>
+        <defName>Mugirl_NeuralCombatArmor</defName><label>Mugirl neural combat armor</label><description>Ancient Mugirl combat armor using neural interfaces to amplify reaction speed, strength, endurance and physical tolerance. Integrated shoulder plates each have a 12% chance to deflect an incoming bullet before normal armor protection; successful deflections wear down the armor.</description>
         <graphicData><texPath>Things/Apparel/Mugirl_NeuralCombatArmor/Mugirl_NeuralCombatArmor</texPath><graphicClass>Graphic_Single</graphicClass><ignoreThingDrawColor>true</ignoreThingDrawColor></graphicData>
         <techLevel>Ultra</techLevel><costList><Plasteel>150</Plasteel><Uranium>50</Uranium><ComponentSpacer>6</ComponentSpacer></costList>
         <statBases><WorkToMake>60000</WorkToMake><MaxHitPoints>500</MaxHitPoints><Mass>14</Mass><Flammability>0.1</Flammability><ArmorRating_Sharp>1.35</ArmorRating_Sharp><ArmorRating_Blunt>0.65</ArmorRating_Blunt><ArmorRating_Heat>0.75</ArmorRating_Heat><Insulation_Cold>120</Insulation_Cold><Insulation_Heat>60</Insulation_Heat><EquipDelay>12</EquipDelay></statBases>
         <equippedStatOffsets><MoveSpeed>0.6</MoveSpeed><MeleeDamageFactor>0.25</MeleeDamageFactor><MeleeCooldownFactor>-0.20</MeleeCooldownFactor><CarryingCapacity>35</CarryingCapacity></equippedStatOffsets>
-        <apparel><developmentalStageFilter>Adult</developmentalStageFilter><bodyPartGroups><li>Torso</li><li>Neck</li><li>Arms</li><li>Legs</li></bodyPartGroups><layers><li>Shell</li><li>Middle</li></layers><wornGraphicPath>Things/Apparel/Mugirl_NeuralCombatArmor/Mugirl_NeuralCombatArmor</wornGraphicPath><useWornGraphicMask>false</useWornGraphicMask><tags><li>Mugirl_Armor</li></tags></apparel>
-        <comps><li Class="Mugirl.Features.AdvancedArmor.CompProperties_NeuralCombatArmor"><hediff>Mugirl_NeuralCombatConsciousness</hediff></li></comps>
+        <apparel><developmentalStageFilter>Adult</developmentalStageFilter><bodyPartGroups><li>Torso</li><li>Neck</li><li>Shoulders</li><li>Arms</li><li>Legs</li></bodyPartGroups><layers><li>Shell</li><li>Middle</li></layers><wornGraphicPath>Things/Apparel/Mugirl_NeuralCombatArmor/Mugirl_NeuralCombatArmor</wornGraphicPath><useWornGraphicMask>false</useWornGraphicMask><useDeflectMetalEffect>true</useDeflectMetalEffect><tags><li>Mugirl_Armor</li></tags></apparel>
+        <comps>
+            <li Class="Mugirl.Features.AdvancedArmor.CompProperties_NeuralCombatArmor"><hediff>Mugirl_NeuralCombatConsciousness</hediff></li>
+            <li Class="Mugirl.Features.AdvancedArmor.CompProperties_NeuralShoulderDeflection"><deflectionChancePerShoulder>0.12</deflectionChancePerShoulder><shoulderCount>2</shoulderCount></li>
+        </comps>
         <recipeMaker><unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef><researchPrerequisite>Mugirl_NeuralCombatSystems</researchPrerequisite><recipeUsers><li>FabricationBench</li></recipeUsers><skillRequirements><Crafting>10</Crafting></skillRequirements><displayPriority>325</displayPriority></recipeMaker>
-    </ThingDef>
-    <ThingDef ParentName="ApparelMakeableBase">
-        <defName>Mugirl_NeuralCombatShoulders</defName><label>Mugirl neural deflection shoulders</label><description>Independent neural-linked shoulder plates that can knock incoming bullets aside before conventional armor is tested.</description>
-        <graphicData><texPath>Things/Apparel/Mugirl_NeuralCombatShoulders/Mugirl_NeuralCombatShoulders</texPath><graphicClass>Graphic_Single</graphicClass><ignoreThingDrawColor>true</ignoreThingDrawColor></graphicData><techLevel>Ultra</techLevel><costList><Plasteel>60</Plasteel><ComponentSpacer>2</ComponentSpacer></costList>
-        <statBases><WorkToMake>24000</WorkToMake><MaxHitPoints>280</MaxHitPoints><Mass>4</Mass><Flammability>0.1</Flammability><ArmorRating_Sharp>1.1</ArmorRating_Sharp><ArmorRating_Blunt>0.55</ArmorRating_Blunt><ArmorRating_Heat>0.6</ArmorRating_Heat><EquipDelay>2</EquipDelay></statBases>
-        <apparel><bodyPartGroups><li>Shoulders</li></bodyPartGroups><layers><li>Mugirl_Ornament</li></layers><wornGraphicPath>Things/Apparel/Mugirl_NeuralCombatShoulders/Mugirl_NeuralCombatShoulders</wornGraphicPath><useWornGraphicMask>false</useWornGraphicMask><useDeflectMetalEffect>true</useDeflectMetalEffect><tags><li>Mugirl_Armor</li></tags></apparel>
-        <comps><li Class="Mugirl.Features.AdvancedArmor.CompProperties_NeuralShoulderDeflection"><deflectionChancePerShoulder>0.12</deflectionChancePerShoulder><shoulderCount>2</shoulderCount></li></comps>
-        <recipeMaker><unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef><researchPrerequisite>Mugirl_NeuralCombatSystems</researchPrerequisite><recipeUsers><li>FabricationBench</li></recipeUsers><workSpeedStat>GeneralLaborSpeed</workSpeedStat><workSkill>Crafting</workSkill><effectWorking>Smith</effectWorking><soundWorking>Recipe_Machining</soundWorking><skillRequirements><Crafting>10</Crafting></skillRequirements><displayPriority>326</displayPriority></recipeMaker><thingCategories><li>ApparelArmor</li></thingCategories><smeltable>true</smeltable>
     </ThingDef>
     <ThingDef ParentName="Mugirl_ArmorHelmetBase">
         <defName>Mugirl_NeuralAmplifierHelmet</defName><label>Mugirl neural amplifier helmet</label><description>A sealed neural-amplifier helmet that feeds a panoramic tactical display directly to its wearer, sharpening aim and screening harmful environmental signals.</description>

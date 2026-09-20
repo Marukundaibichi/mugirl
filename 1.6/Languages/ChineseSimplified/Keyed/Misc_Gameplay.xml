@@ -580,10 +580,9 @@
     <Mugirl.Throw.AimReadout>伤害 {0} / 爆炸半径 {1} / 最大距离 {2}</Mugirl.Throw.AimReadout>
     <Mugirl.Throw.PlaceFailed>无法安全放置 {0}：{1}</Mugirl.Throw.PlaceFailed>
     <Mugirl.Settings.ExtraOutline.Label>启用额外描边</Mugirl.Settings.ExtraOutline.Label>
-    <Mugirl.Settings.ExtraOutline.Desc>为雪牛娘添加黑色外描边。身体、头发和衣服共用整体轮廓，手持与背挂武器单独描边。默认关闭；远处人物沿用游戏的贴图缓存。</Mugirl.Settings.ExtraOutline.Desc>
+    <Mugirl.Settings.ExtraOutline.Desc>为雪牛娘的身体、头发和衣服添加黑色整体外描边，不描绘武器。默认关闭；远处人物沿用游戏的贴图缓存。</Mugirl.Settings.ExtraOutline.Desc>
     <Mugirl.Settings.ExtraOutline.Width>描边粗细：{0} 倍</Mugirl.Settings.ExtraOutline.Width>
     <Mugirl.Outline.Unavailable>额外描边着色器加载失败，已保留正常人物绘制。详情：{0}</Mugirl.Outline.Unavailable>
-    <Mugirl.Outline.WeaponPatchUnavailable>未找到唯一的武器绘制调用，已保留原始绘制并跳过手持武器描边。</Mugirl.Outline.WeaponPatchUnavailable>
     <!-- Grazing food policy preset label: wild vanilla plants only, excluding sown crops. -->
     <Mugirl.FoodPolicy.Grass.Label>草</Mugirl.FoodPolicy.Grass.Label>
 </LanguageData>

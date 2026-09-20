@@ -37,8 +37,20 @@ namespace Mugirl
                 missions = missions ?? new List<CorporateMission>();
                 missions.RemoveAll(m => m == null);
                 foreach (CorporateMission mission in missions) RepairMissionQuestRoot(mission);
+                RepairFusionSiteGenerationLockout();
                 nextMissionCheck = 0;
             }
+        }
+
+        private void RepairFusionSiteGenerationLockout()
+        {
+            // Older builds permanently consumed the one-time invitation when PostMapGenerate failed.
+            // Only unlock a replacement when the latest fusion contract reached a real map but never
+            // spawned its team; normal expiry, abandonment, and post-spawn gameplay failures stay final.
+            CorporateMission latest = missions.Where(m => m.IsSide).OrderByDescending(m => m.id).FirstOrDefault();
+            if (latest == null || latest.state != CorporateMissionState.Failed || latest.spawned || latest.site?.HasMap != true) return;
+            fusionInvitationCreated = false;
+            fusionInvitationTick = Now;
         }
 
         public void RememberFusionInvestor(Pawn pawn)

@@ -14,6 +14,7 @@
 ## 服装与装备
 
 - 确认 `apparel.layers`、`bodyPartGroups`、`wornGraphicPath` 和贴图路径一致。
+- 普通身体和自定义饰品层的穿戴贴图须使用 `<wornGraphicPath>_Female_<方向>.png`；允许儿童穿戴的还需 `_Child` 版本。`Overhead`、`EyeCover` 和背包的路径规则不同，不能统一添加体型。`useWornGraphicMask` 只控制染色遮罩，不控制体型后缀；遮罩也必须沿用相同体型前缀。物品图标存在不能证明穿戴贴图可用。
 - 生成用标签要和 PawnKind、商人库存、配方解锁配套。
 - 束具类装备如果会添加 Hediff，检查穿戴、卸下、破解、销毁、保存读档路径。
 - 需要特殊 Gizmo 的装备要确认按钮文本、冷却、佩戴者过期对象检查。

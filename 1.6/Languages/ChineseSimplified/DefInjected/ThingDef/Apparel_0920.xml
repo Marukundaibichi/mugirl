@@ -47,9 +47,7 @@
   <Mugirl_KnightMountHelmet.description>带有强化面甲、装饰角和染色盔缨的华丽骑士头盔。</Mugirl_KnightMountHelmet.description>
 
   <Mugirl_NeuralCombatArmor.label>雪牛娘 神经接入战斗护甲</Mugirl_NeuralCombatArmor.label>
-  <Mugirl_NeuralCombatArmor.description>源自雪牛娘母星的先进装备，采用神经接入技术大幅提高反应速度、力量、耐力与物理耐受。巨企精锐部队用它执行突击、火力支援和冲锋任务。</Mugirl_NeuralCombatArmor.description>
-  <Mugirl_NeuralCombatShoulders.label>雪牛娘 神经偏转肩甲</Mugirl_NeuralCombatShoulders.label>
-  <Mugirl_NeuralCombatShoulders.description>独立计算来袭弹道的神经联动肩甲。左右肩各有一次偏转机会，成功时会在原版护甲计算之前将子弹弹开。</Mugirl_NeuralCombatShoulders.description>
+  <Mugirl_NeuralCombatArmor.description>源自雪牛娘母星的先进装备，采用神经接入技术大幅提高反应速度、力量、耐力与物理耐受。巨企精锐部队用它执行突击、火力支援和冲锋任务。内置神经偏转肩部结构，左右肩各有一次12%的子弹偏转判定，成功时会在原版护甲计算之前弹开子弹并消耗本装甲耐久；爆炸不参与偏转。</Mugirl_NeuralCombatArmor.description>
   <Mugirl_NeuralAmplifierHelmet.label>雪牛娘 神经增幅头盔</Mugirl_NeuralAmplifierHelmet.label>
   <Mugirl_NeuralAmplifierHelmet.description>源自雪牛娘母星的覆面式神经增幅头盔。外部画面和战术数据会直接显示并传入神经连接，使佩戴者及时接收命令并隔绝多种环境干扰。</Mugirl_NeuralAmplifierHelmet.description>
 </LanguageData>

@@ -229,8 +229,8 @@ namespace Mugirl.Features.WeaponWheel
         {
             if (parms.facing == Rot4.South)
             {
-                // 原版 utility pack 南向层为 -3；武器略高一层，仍保持在身体之后。
-                return -2f;
+                // 南向时由装弹系统本体遮住四个凹槽武器，表现为枪械插在背架之后。
+                return -4f;
             }
             if (parms.facing == Rot4.North)
             {

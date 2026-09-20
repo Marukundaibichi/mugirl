@@ -112,21 +112,25 @@ namespace Mugirl
             for (int i = 0; i < requests.Count; i++)
             {
                 PawnGraphicDrawRequest request = requests[i];
-                if (!(request.node is PawnRenderNode_BackWeapon) && IsSilhouette(request.material))
-                    lowest = Mathf.Min(lowest, request.preDrawnComputedMatrix.m13);
+                if (IsWeaponNode(request.node) || !IsSilhouette(request.material)) continue;
+                lowest = Mathf.Min(lowest, request.preDrawnComputedMatrix.m13);
             }
             for (int i = 0; i < requests.Count; i++)
             {
                 PawnGraphicDrawRequest request = requests[i];
-                if (!IsSilhouette(request.material)) continue;
+                if (IsWeaponNode(request.node) || !IsSilhouette(request.material)) continue;
                 Matrix4x4 matrix = request.preDrawnComputedMatrix;
                 // Dilation distributes over a union. Put ALL body/apparel silhouettes
                 // behind ALL normal body layers, so overlapping clothes get no seams.
-                // Back weapons keep their own depth, independent of that union.
-                matrix.m13 = request.node is PawnRenderNode_BackWeapon
-                    ? matrix.m13 - DepthOffset : lowest - DepthOffset;
+                matrix.m13 = lowest - DepthOffset;
                 Draw(request.mesh, matrix, request.material, parms.DrawNow, parms.tint.a);
             }
+        }
+
+        private static bool IsWeaponNode(PawnRenderNode node)
+        {
+            // 额外描边只处理人物轮廓；背挂与自动装填槽武器仍由原绘制路径显示。
+            return node is PawnRenderNode_BackWeapon || node is PawnRenderNode_AutoloadingWeapon;
         }
 
         private static bool IsSilhouette(Material material)
@@ -137,14 +141,6 @@ namespace Mugirl
             return shader == ShaderDatabase.Cutout || shader == ShaderDatabase.CutoutComplex
                 || shader == ShaderDatabase.CutoutHair || shader == ShaderDatabase.CutoutSkin
                 || shader == ShaderDatabase.CutoutSkinColorOverride || shader == ShaderDatabase.CutoutWithOverlay;
-        }
-
-        internal static void DrawWeapon(Pawn pawn, Mesh mesh, Matrix4x4 matrix, Material material, float opacity = 1f)
-        {
-            if (!Enabled || !MugirlIdentity.IsMugirlPawn(pawn) || pawn.IsHiddenFromPlayer()
-                || pawn.IsPsychologicallyInvisible() || !EnsureMaterial()) return;
-            matrix.m13 -= DepthOffset;
-            Draw(mesh, matrix, material, false, opacity);
         }
 
         private static void Draw(Mesh mesh, Matrix4x4 matrix, Material source, bool drawNow, float opacity)

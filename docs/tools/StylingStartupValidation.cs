@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using AlienRace;
 using HarmonyLib;
+using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -48,6 +49,7 @@ namespace Mugirl
                 CheckTexture("ClearTex", "AlienRace/UI/ClearButton");
                 CheckTexture("ChainVanillaTex", "AlienRace/UI/LinkVanilla");
                 CheckPatches("initial startup");
+                CheckNewApparelGraphics();
                 MugirlBootstrap.Initialize();
                 // Observe again after any callbacks from the repeated initialization.
                 LongEventHandler.ExecuteWhenFinished(() =>
@@ -65,6 +67,60 @@ namespace Mugirl
             {
                 try { Check("startup exception: " + exception, false); }
                 finally { Finish(); }
+            }
+        }
+
+        private static void CheckNewApparelGraphics()
+        {
+            string[] names =
+            {
+                "CorporateBaseballCap", "CorporateSunHat", "HighCutSweater", "SisterMask", "BrandBag", "LeatherHeels",
+                "PoliceShirt", "PoliceShorts", "PoliceThong", "PoliceZipperBra", "PoliceBra", "PoliceCrossStickers",
+                "PoliceBoots", "PoliceCap", "NunDressClassic", "NunDressSimple", "NunVeil", "NunBlindfold",
+                "KnightMountPlateWhite", "KnightMountCoat", "KnightMountHelmet",
+                "NeuralCombatArmor", "NeuralAmplifierHelmet"
+            };
+            foreach (string name in names)
+            {
+                ThingDef def = DefDatabase<ThingDef>.GetNamed("Mugirl_" + name);
+                if (name == "SisterMask")
+                {
+                    Check("Mugirl_SisterMask uses the head apparel render layer", def.apparel.LastLayer == ApparelLayerDefOf.Overhead);
+                }
+                else if (name == "NunBlindfold")
+                {
+                    Check("Mugirl_NunBlindfold uses the eye-cover render layer", def.apparel.LastLayer == ApparelLayerDefOf.EyeCover);
+                }
+                else if (name == "NunVeil")
+                {
+                    PawnRenderNodeProperties rearLayer = def.apparel.RenderNodeProperties
+                        .FirstOrDefault(props => props.nodeClass == typeof(Features.Appearance.PawnRenderNode_NunVeilBack));
+                    Check("Mugirl_NunVeil has one rear head layer", rearLayer != null
+                        && rearLayer.parentTagDef == PawnRenderNodeTagDefOf.Head
+                        && rearLayer.baseLayer < 0f);
+                    Texture2D rearTexture = rearLayer == null
+                        ? null
+                        : ContentFinder<Texture2D>.Get(rearLayer.texPath, false);
+                    Check("Mugirl_NunVeil rear layer texture is loaded", rearTexture != null && rearTexture != BaseContent.BadTex);
+                }
+                // 启动界面尚无游戏或物品 ID 管理器，只构造贴图解析所需的服装对象。
+                Apparel apparel = (Apparel)Activator.CreateInstance(def.thingClass);
+                apparel.def = def;
+                apparel.SetStuffDirect(GenStuff.DefaultStuffFor(def));
+                foreach (BodyTypeDef bodyType in new[] { BodyTypeDefOf.Female, BodyTypeDefOf.Child })
+                {
+                    if (bodyType == BodyTypeDefOf.Child
+                        && (!ModsConfig.BiotechActive || !def.apparel.developmentalStageFilter.HasFlag(DevelopmentalStage.Child))) continue;
+                    string label = def.defName + "/" + bodyType.defName;
+                    bool found = ApparelGraphicRecordGetter.TryGetGraphicApparel(apparel, bodyType, false, out ApparelGraphicRecord record);
+                    Check(label + " resolves a worn graphic", found && record.graphic != null);
+                    if (!found || record.graphic == null) continue;
+                    foreach (Rot4 rotation in new[] { Rot4.North, Rot4.East, Rot4.South, Rot4.West })
+                    {
+                        Texture texture = record.graphic.MatAt(rotation).mainTexture;
+                        Check(label + "/" + rotation + " has a loaded worn texture", texture != null && texture != BaseContent.BadTex);
+                    }
+                }
             }
         }
 

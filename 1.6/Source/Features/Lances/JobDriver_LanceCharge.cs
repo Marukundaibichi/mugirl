@@ -8,10 +8,8 @@ namespace Mugirl.Features.Lances
 {
     public sealed class JobDriver_LanceCharge : JobDriver
     {
-        private const float PassingAttackRadius = 1.42f;
-        private readonly HashSet<Thing> hitThings = new HashSet<Thing>();
-        private int smokeTick;
-
+        private LocalTargetInfo ChargeTarget => job.GetTarget(TargetIndex.A);
+        private LocalTargetInfo PointTargetCell => job.GetTarget(TargetIndex.B);
         private Pawn TargetPawn => job.GetTarget(TargetIndex.A).Thing as Pawn;
         private bool IsPointCharge => job.def == Mugirl_DefOf.Job_MugirlLancePointCharge;
         private ThingWithComps Lance => pawn?.equipment?.Primary;
@@ -19,123 +17,88 @@ namespace Mugirl.Features.Lances
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
+            if (!IsPointCharge)
+            {
+                return ChargeTarget.IsValid;
+            }
+
             Pawn target = TargetPawn;
-            return target != null && pawn.Reserve(target, job, 1, -1, null, errorOnFailed);
+            // 冲锋在起飞时锁定目标引用，不需要独占敌人；强行预约敌对 Pawn 会偶发失败并产生任务警告。
+            return target != null && !target.Destroyed && !target.Dead;
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            this.FailOnDestroyedOrNull(TargetIndex.A);
-            this.FailOn(() => TargetPawn == null || TargetPawn.Dead || LanceComp == null);
-
-            Toil charge = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
-            charge.tickAction = () =>
+            if (IsPointCharge)
             {
-                if (!IsPointCharge)
-                {
-                    AttackPassingTargets();
-                }
+                this.FailOnDestroyedOrNull(TargetIndex.A);
+                this.FailOn(() => TargetPawn == null || TargetPawn.Dead || LanceComp == null);
+            }
+            else
+            {
+                this.FailOn(() => !ChargeTarget.IsValid || pawn.Map == null
+                    || !ChargeTarget.Cell.InBounds(pawn.Map) || LanceComp == null);
+            }
 
-                if (LanceComp?.Props.steamTrail == true && ++smokeTick >= 8)
-                {
-                    smokeTick = 0;
-                    FleckMaker.ThrowSmoke(pawn.Position.ToVector3Shifted(), pawn.Map, Rand.Range(0.8f, 1.25f));
-                }
-            };
-            yield return charge;
-
-            Toil impact = new Toil
+            Toil charge = new Toil
             {
                 defaultCompleteMode = ToilCompleteMode.Instant,
                 initAction = () =>
                 {
-                    if (IsPointCharge)
+                    // PawnFlyer 会挂起当前任务；落地恢复后 count 保留为 1，避免再次发射。
+                    if (job.count <= 0 && !TryLaunchDirectCharge())
                     {
-                        ApplyPointImpact(TargetPawn);
-                    }
-                    else
-                    {
-                        ApplyLineImpact(TargetPawn);
+                        EndJobWith(JobCondition.Incompletable);
                     }
                 }
             };
-            yield return impact;
+            yield return charge;
+
         }
 
-        private void AttackPassingTargets()
+        private bool TryLaunchDirectCharge()
         {
             Map map = pawn.Map;
-            if (map == null)
+            CompLanceCharge comp = LanceComp;
+            ThingDef flyerDef = Mugirl_DefOf.Mugirl_LanceChargeFlyer;
+            IntVec3 targetCell = IsPointCharge && PointTargetCell.IsValid
+                ? PointTargetCell.Cell
+                : ChargeTarget.Cell;
+            if (map == null || comp == null || flyerDef == null
+                || !typeof(PawnFlyer_LanceCharge).IsAssignableFrom(flyerDef.thingClass)
+                || !LanceChargeDestinationUtility.TryFindLandingCell(pawn, targetCell, IsPointCharge, out IntVec3 destination))
             {
-                return;
+                return false;
             }
 
-            foreach (Thing thing in GenRadial.RadialDistinctThingsAround(pawn.Position, map, PassingAttackRadius, true))
+            Vector3 direction = (targetCell - pawn.Position).ToVector3();
+            if (direction.sqrMagnitude > 0.001f)
             {
-                if (!(thing is Pawn target) || !CanHit(target) || hitThings.Contains(target))
-                {
-                    continue;
-                }
-
-                ApplyLineImpact(target);
-            }
-        }
-
-        private void ApplyLineImpact(Pawn target)
-        {
-            if (!CanHit(target) || hitThings.Contains(target))
-            {
-                return;
+                pawn.Rotation = Rot4.FromAngleFlat(direction.AngleFlat());
             }
 
-            hitThings.Add(target);
-            CompProperties_LanceCharge properties = LanceComp.Props;
-            Tool tool = Lance.def.tools.NullOrEmpty() ? null : Lance.def.tools[0];
-            float damage = tool?.AdjustedBaseMeleeDamageAmount(Lance, DamageDefOf.Stab) ?? 10f;
-            damage *= pawn.GetStatValue(StatDefOf.MeleeDamageFactor);
-            DamageInfo damageInfo = new DamageInfo(DamageDefOf.Stab, damage, tool?.armorPenetration ?? 0.5f, -1f, pawn, null, Lance.def);
-            damageInfo.SetTool(tool);
-            target.TakeDamage(damageInfo);
-            Stun(target, properties.lineStunTicks);
-            DamageLance(properties.lineDurabilityCost);
-            MountedPawnMeleeSupport.TryAttackAlongCharge(MountedPawnUtility.GetMountComp(pawn), target);
-        }
-
-        private void ApplyPointImpact(Pawn target)
-        {
-            if (!CanHit(target))
+            job.count = 1;
+            LanceChargeEffects.ThrowShockwave(pawn.DrawPos, map);
+            PawnFlyer_LanceCharge flyer = PawnFlyer.MakeFlyer(
+                flyerDef,
+                pawn,
+                destination,
+                null,
+                null) as PawnFlyer_LanceCharge;
+            if (flyer == null)
             {
-                return;
+                job.count = 0;
+                return false;
             }
 
-            CompProperties_LanceCharge properties = LanceComp.Props;
-            float damage = Mathf.Min(Lance.HitPoints, properties.maximumPointDamage);
-            damage *= pawn.GetStatValue(StatDefOf.MeleeDamageFactor);
-            target.TakeDamage(new DamageInfo(DamageDefOf.Stab, damage, 0.5f, -1f, pawn, null, Lance.def));
-            Stun(target, properties.pointStunTicks);
-            DamageLance(properties.pointDurabilityCost);
-            MountedPawnMeleeSupport.TryAttackAlongCharge(MountedPawnUtility.GetMountComp(pawn), target);
+            flyer.Configure(!IsPointCharge, comp.Props.steamTrail, IsPointCharge ? TargetPawn : null);
+            GenSpawn.Spawn(flyer, destination, map, WipeMode.Vanish);
+            MugirlSelectionUtility.ReselectIfSelectedInPlaying(
+                pawn,
+                playSound: false,
+                forceDesignatorDeselect: false);
+            return true;
         }
 
-        private bool CanHit(Pawn target)
-        {
-            return target?.Spawned == true && !target.Dead && target != pawn && target.Map == pawn.Map && pawn.HostileTo(target);
-        }
-
-        private void Stun(Pawn target, int ticks)
-        {
-            if (ticks > 0 && target?.stances?.stunner != null && !target.Dead)
-            {
-                target.stances.stunner.StunFor(ticks, pawn);
-            }
-        }
-
-        private void DamageLance(int amount)
-        {
-            if (amount > 0 && Lance != null && !Lance.Destroyed)
-            {
-                Lance.TakeDamage(new DamageInfo(DamageDefOf.Deterioration, amount));
-            }
-        }
     }
 }

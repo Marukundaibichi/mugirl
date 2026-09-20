@@ -35,6 +35,68 @@ foreach ($root in $roots) {
     }
 }
 
+# FA 脸红必须预合成进完整头图。独立 cover 会作为第二个 render node 绘制，
+# 在 FaceAdjustment 缩放和线性采样时于脸颊下缘产生接缝。
+$headTextureRoot = Join-Path $faTextureRoot 'FA\Heads_Blank'
+$faceVariants = @('Normal', 'Normal2', 'Normal3', 'Normal4', 'Normal5', 'Normal6', 'Normal7')
+$blushShapes = @('blush', 'lovinblush')
+$headDirections = @('north', 'east', 'south')
+$missingBakedHeads = @()
+$legacyBlushCovers = @()
+foreach ($variant in $faceVariants) {
+    $variantRoot = Join-Path (Join-Path $headTextureRoot $variant) 'Female'
+    foreach ($shape in $blushShapes) {
+        foreach ($direction in $headDirections) {
+            $asset = Join-Path $variantRoot "${shape}_${direction}.png"
+            if (-not (Test-Path -LiteralPath $asset -PathType Leaf)) { $missingBakedHeads += $asset }
+        }
+        $legacyBlushCovers += @(Get-ChildItem -LiteralPath $variantRoot -File -Filter "${shape}_cover_*.png" |
+            Select-Object -ExpandProperty FullName)
+    }
+}
+if ($missingBakedHeads.Count) {
+    throw "Missing baked FA blush heads ($($missingBakedHeads.Count)): $($missingBakedHeads -join ', ')"
+}
+if ($legacyBlushCovers.Count) {
+    throw "Legacy FA blush cover layers would reintroduce face seams: $($legacyBlushCovers -join ', ')"
+}
+Write-Host '[textures] Passed: 42 baked FA blush/lovinblush head textures and no legacy blush covers.'
+
+# 9.20 服装资源契约：这里只检查源码约定和打包文件，合并后的 Def 另由启动验证检查。
+# 身体和自定义饰品层会追加体型；useWornGraphicMask 只控制染色遮罩，不能省略体型后缀。
+[xml]$newApparel = Get-Content -LiteralPath (Join-Path $repoPath '1.6\Defs\Apparel\Apparel_0920.xml') -Raw
+$apparelTextureCount = 0
+$missingApparelTextures = @()
+foreach ($definition in $newApparel.Defs.ThingDef | Where-Object { $_.defName }) {
+    $path = Join-Path (Join-Path $repoPath 'Textures') $definition.apparel.wornGraphicPath
+    $bodySuffixes = @('')
+    $apparelLayers = @($definition.apparel.layers.li)
+    $usesHeadGraphic = $definition.ParentName -in @('Mugirl_HeadBase', 'Mugirl_ArmorHelmetBase') `
+        -or $apparelLayers -contains 'Overhead' `
+        -or $apparelLayers -contains 'EyeCover'
+    if (-not $usesHeadGraphic) {
+        $bodySuffixes = @('_Female')
+        if ($definition.ParentName -eq 'Mugirl_0920CasualBase') { $bodySuffixes += '_Child' }
+    }
+    $directions = @('north', 'east', 'south')
+    if ($definition.defName -eq 'Mugirl_HighCutSweater') { $directions += 'west' }
+    $maskSuffixes = @('')
+    if ($definition.apparel.useWornGraphicMask -eq 'true') { $maskSuffixes += 'm' }
+    foreach ($bodySuffix in $bodySuffixes) {
+        foreach ($direction in $directions) {
+            foreach ($maskSuffix in $maskSuffixes) {
+                $asset = "${path}${bodySuffix}_${direction}${maskSuffix}.png"
+                if (-not (Test-Path -LiteralPath $asset -PathType Leaf)) { $missingApparelTextures += $asset }
+                $apparelTextureCount++
+            }
+        }
+    }
+}
+if ($missingApparelTextures.Count) {
+    throw "Missing worn apparel textures ($($missingApparelTextures.Count)): $($missingApparelTextures -join ', ')"
+}
+Write-Host "[textures] Passed: $apparelTextureCount worn apparel direction/body-type/mask paths."
+
 $pngCount = 0
 $residual555 = @()
 foreach ($root in @('Textures', '1.6\Textures', '1.6\FacialAnimation\Textures')) {

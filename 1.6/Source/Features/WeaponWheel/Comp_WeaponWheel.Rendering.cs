@@ -130,7 +130,7 @@ namespace Mugirl.Features.WeaponWheel
                     Vector3 dashWeaponPosition = pawnDrawPosition
                         + new Vector3(0f, 0f, 0.4f + dashWeapon.def.equippedDistanceOffset).RotatedBy(dashAimAngle) * distanceFactor;
                     dashWeaponPosition.y += 0.040f;
-                    DrawWeapon(pawn, dashWeapon, dashWeaponPosition, dashAimAngle, 1f, 1f, true);
+                    DrawWeapon(dashWeapon, dashWeaponPosition, dashAimAngle, 1f, 1f, true);
                     return;
                 }
                 if (!comp.TryGetAimHandoff(out ThingWithComps handoffWeapon, out float handoffAngle))
@@ -140,7 +140,7 @@ namespace Mugirl.Features.WeaponWheel
                 Vector3 handoffPosition = pawnDrawPosition
                     + new Vector3(0f, 0f, 0.4f + handoffWeapon.def.equippedDistanceOffset).RotatedBy(handoffAngle) * distanceFactor;
                 handoffPosition.y += 0.040f;
-                DrawWeapon(pawn, handoffWeapon, handoffPosition, handoffAngle, 1f, 1f, true);
+                DrawWeapon(handoffWeapon, handoffPosition, handoffAngle, 1f, 1f, true);
                 return;
             }
 
@@ -154,7 +154,7 @@ namespace Mugirl.Features.WeaponWheel
                     + new Vector3(0f, 0f, 0.4f + snapshot.OutgoingWeapon.def.equippedDistanceOffset).RotatedBy(snapshot.AimAngle) * distanceFactor;
                 outgoingPosition += new Vector3(0f, 0f, -0.62f * snapshot.OutgoingProgress);
                 outgoingPosition.y += 0.039f;
-                DrawWeapon(pawn, snapshot.OutgoingWeapon, outgoingPosition, snapshot.AimAngle + 145f * snapshot.OutgoingProgress, 1f, 1f - snapshot.OutgoingProgress);
+                DrawWeapon(snapshot.OutgoingWeapon, outgoingPosition, snapshot.AimAngle + 145f * snapshot.OutgoingProgress, 1f, 1f - snapshot.OutgoingProgress);
             }
 
             if (snapshot.IncomingWeapon == null)
@@ -232,7 +232,7 @@ namespace Mugirl.Features.WeaponWheel
                 float expansion = Mathf.Pow(snapshot.SnapProgress, 1.35f);
                 float fade = Mathf.SmoothStep(0f, 1f, snapshot.SnapProgress);
                 DrawWeapon(
-                    pawn, snapshot.IncomingWeapon,
+                    snapshot.IncomingWeapon,
                     flashPosition,
                     snapshot.AimAngle,
                     Mathf.Lerp(1.04f, 2f, expansion),
@@ -240,11 +240,10 @@ namespace Mugirl.Features.WeaponWheel
                     true);
             }
 
-            DrawWeapon(pawn, snapshot.IncomingWeapon, incomingPosition, incomingAngle, 1f, incomingAlpha, true);
+            DrawWeapon(snapshot.IncomingWeapon, incomingPosition, incomingAngle, 1f, incomingAlpha, true);
         }
 
         private static void DrawWeapon(
-            Pawn drawingPawn,
             ThingWithComps weapon,
             Vector3 position,
             float angle,
@@ -296,9 +295,6 @@ namespace Mugirl.Features.WeaponWheel
                 position,
                 Quaternion.AngleAxis(drawAngle, Vector3.up),
                 new Vector3(drawSize.x * scale, 1f, drawSize.y * scale));
-            // The animation renderer is Mugirl-scoped; pass its pawn explicitly even
-            // while a switching weapon is held by the wheel's ThingOwner.
-            MugirlExtraOutline.DrawWeapon(drawingPawn, mesh, matrix, material);
             Graphics.DrawMesh(mesh, matrix, material, 0);
         }
     }

@@ -5,12 +5,12 @@
 ## 渲染方式
 
 - 读取 `PawnRenderTree.Draw` 中已经筛选好的绘制请求及最终矩阵。身体、头发、种族附件和衣服的黑色膨胀轮廓统一放在所有身体层后方，由正常人物贴图遮盖内部交叠处。
-- 背挂武器保留自身深度。手持武器在原版 `DrawEquipmentAiming` 最终 `Graphics.DrawMesh` 调用处加描边，复用原有后坐力、角度和左右翻转结果。武器轮盘的切换、剑舞和瞄准交接绘制也接入同一入口。
-- 各可见部件增加一次 GPU 绘制；着色器最多采样 25 次，实心区域提前返回。共用一个材质和属性块，网格元数据使用弱引用缓存。运行期不读回像素、不生成贴图、不分配渲染目标、不扫描全地图人物，也不重算动画。
-- 网格外扩方向由真实 UV 角点与绘制矩阵计算，在着色器转换到世界坐标后应用。Unity 动态合批会预先转换顶点，不能再以局部原点判断顶点位于哪一侧；当前算法保留动态合批，兼容镜像 UV 和人物/武器旋转缩放。
+- 所有武器都不参与额外描边，包括手持武器、背挂武器、自动装填槽武器，以及武器轮盘切换、剑舞和瞄准交接动画中的武器。
+- 各可见人物部件增加一次 GPU 绘制；着色器最多采样 25 次，实心区域提前返回。共用一个材质和属性块，网格元数据使用弱引用缓存。运行期不读回像素、不生成贴图、不分配渲染目标、不扫描全地图人物，也不重算动画。
+- 网格外扩方向由真实 UV 角点与绘制矩阵计算，在着色器转换到世界坐标后应用。Unity 动态合批会预先转换顶点，不能再以局部原点判断顶点位于哪一侧；当前算法保留动态合批，兼容镜像 UV 和人物旋转缩放。
 - 与本机原版 `Custom/Cutout*` 使用相同的 `Transparent-100` 队列，保留深度测试但不写入描边深度，避免半透明边缘遮挡其他部件的实心轮廓。透明度采样在分支前计算梯度，避免分支中的隐式 LOD 导致边缘不稳定。
 - 远处人物和头像通过原版 `DrawNow` 路径把描边烘进缓存；不关闭原版图集优化。`DrawNow` 不支持属性块，因此分别处理即时材质参数和延迟绘制属性块，并验证两条路径一致。
-- 跳过隐身、雕像、伤口及特效材质；保留深度测试。兼容正常 XZ 四边形及镜像 UV。第三方完全替换人物/武器绘制、使用非标准几何或自定义材质的路径需要另外接入。
+- 跳过武器、隐身、雕像、伤口及特效材质；保留深度测试。兼容正常 XZ 四边形及镜像 UV。第三方完全替换人物绘制、使用非标准几何或自定义材质的路径需要另外接入。
 
 ## 资源构建
 
@@ -26,13 +26,13 @@
 
 - 身体/衣服交叠的原有像素不变，轮廓外有黑边；
 - 粗细增加时黑边面积随之增加；
-- 独立武器在衣服前方仍有轮廓；
+- 背挂与自动装填槽武器不生成额外描边；
 - 翻转 UV 的粗细一致，接触贴图边界的轮廓不被裁掉；
 - 即时和延迟绘制结果一致；
 - 隐身标志不生成描边；设置变化使图集和头像失效。
 
-QA 图片位于 `TMP/OutlineShaderBuild/QA`。这些是受控 GPU 测试，不代表已经完成真实存档和所有兼容模组的游戏内验收。游戏内还应检查四朝向、穿脱衣服、换发型、倒地/躺床、开关描边、缩放跨越图集阈值，以及轮盘切换时的武器淡出。未提供实际存档的 FPS 测量。
+QA 图片位于 `TMP/OutlineShaderBuild/QA`。这些是受控 GPU 测试，不代表已经完成真实存档和所有兼容模组的游戏内验收。游戏内还应检查四朝向、穿脱衣服、换发型、倒地/躺床、开关描边、缩放跨越图集阈值，以及手持、背挂和轮盘动画武器均保持无描边。未提供实际存档的 FPS 测量。
 
-接口证据：本机 RimWorld 1.6 `Assembly-CSharp.dll`，MVID `61e4173561894da49d210260257b5097`。核对了 `PawnRenderTree.Draw/ParallelPreDraw`、`PawnRenderer.RenderPawnAt/ParallelGetPreRenderResults/RenderCache`、`GenDraw.DrawMeshNowOrLater`，以及 `PawnRenderUtility.DrawEquipmentAiming` 的 IL（唯一的四参数 `Graphics.DrawMesh` 调用）。武器补丁匹配失败会原样返回指令。
+接口证据：本机 RimWorld 1.6 `Assembly-CSharp.dll`，MVID `61e4173561894da49d210260257b5097`。核对了 `PawnRenderTree.Draw/ParallelPreDraw`、`PawnRenderer.RenderPawnAt/ParallelGetPreRenderResults/RenderCache` 和 `GenDraw.DrawMeshNowOrLater`。武器绘制路径不再安装额外描边补丁。
 
 合批行为参考：[Unity：Disable dynamic batching of a shader](https://docs.unity.cn/6000.0/Documentation/Manual/writing-shader-tags-disable-dynamic-batching.html)。本机游戏资源中的 `Custom/Cutout`、`Custom/CutoutRecolor`、`Custom/CutoutHair` 的序列化渲染状态确认为 `Transparent-100`、`ZTest LEqual`、透明混合；旧版描边误用了 `AlphaTest` 队列。临时逐部件诊断日志已移除。

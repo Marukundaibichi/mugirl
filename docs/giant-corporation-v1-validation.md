@@ -66,6 +66,14 @@
 5. 研究站未表态时的非玩家死亡会中断任务并保留“未决定”，不会替玩家选择执行；选择保护时展示按原版外交机制计算的预计变化。
 6. 测试外勤地图在完整初始化之后清理，再执行存档；避免测试过早卸图引起的 MapDrawer 空引用。测试驱动不进入正式 DLL。
 7. 真实建图暴露已有机械尾组件在工作线程创建 Unity Mesh 的崩溃。`Comp_SegmentedMechTail.PostSpawnSetup` 改为长事件结束后在主线程初始化，防止重复排队且跳过已经销毁或离图的对象。两次最终运行均实际异步生成带尾机械体，确认工作线程不分配网格、回到主线程后两套网格正常创建。
+8. 后续试玩发现研究站可能落在轻型桥梁等 foundation 上。RimWorld 1.6 的承载力查询会优先读取 foundation，原逻辑只把表层改成 `Concrete`，因此日志虽然显示混凝土地面，奶发电机仍会因下层承载力不足而令整张任务地图生成失败。现在建筑实际占地会移除承载力不足的 foundation、再按需补混凝土，同时清除残留的地形施工蓝图；满足承载力的重型 foundation 仍会保留。
+9. 历史失败日志还记录了 `ChunkGranite` 与新生成的 `Filth_RubbleRock` 占据 Prefab 建筑落点。`GenSpawn.CanSpawnAt` 会先因石块的 `PassThroughOnly` 通行性拒绝该格，尚未进入实际生成时的 wipe；旧清场只处理建筑、植物、Filth 和地形蓝图，所以结果取决于随机地形。现在清场会以最多四轮的有界循环移除建筑销毁后新产生的残渣，以及所有非 Pawn 的非 `Standable` 阻塞物。后续随机图又抓到 `SteamGeyser`：它属于不可销毁的自然建筑，普通 `Destroy` 只报错而不会清除；现仿照原版 `LayoutWorker`，仅在清除该对象的 `try/finally` 范围内临时开启 `Thing.allowDestroyNonDestroyable` 并恢复旧值。失败日志会记录任务、地块、生态、地图尺寸、父对象和完整异常堆栈。旧版若已在 `PostMapGenerate` 失败，还会永久消耗一次性邀请；载入旧档时现仅对“最新聚变合同已失败、地图存在、队伍从未生成”这一故障指纹重新开放邀请，不会复活正常超时、放弃或进图后的剧情失败。
+
+修复后使用 `CorporateValidation-FusionFoundationFix-20260920` 隔离运行实际生成三张研究站地图，三次 `PostMapGenerate`、团队生成与分支流程全部通过，fresh `Player.log` 未出现 Error、Exception 或同类地形校验警告。整轮共 245 PASS / 2 FAIL；两项失败均属于本轮未改动的高级支援小队人数/职责断言，因此该次运行只作为研究站修复的针对性证据，不记为整套巨企业务全通过。
+
+石块清场修复后又使用 `CorporateValidation-FusionBlockerFix-NoIdeology-20260920` 运行独立真实游戏：显式放置花岗岩块的回归断言通过，三张研究站地图均完成真实 `PostMapGenerate`、生成四人团队并打开到场对白；日志中没有研究站 Prefab、地形或建图异常。整轮为 236 PASS / 2 FAIL，两项仍是与本轮无关的支援小队装备/职责断言。另一次全 DLC 运行在到达外勤阶段前被测试夹具缺少 `Slavery_Abhorrent` 中止，不作为研究站结果。运行时检查现在也会把真实研究站夹具模拟成旧版“地图存在但队伍未生成”的失败状态，确认旧档恢复逻辑会解锁一个替代邀请。
+
+补齐不可销毁自然物后，`CorporateValidation-FusionNaturalBlockerFix-20260920` 最终隔离实机为 239 PASS / 1 FAIL：显式花岗岩块、显式蒸汽喷泉、`Thing.allowDestroyNonDestroyable` 恢复、旧档替代邀请、三张随机研究站的真实 `PostMapGenerate`、四人团队与到场对白全部通过；日志不再出现不可销毁物清理错误或研究站生成异常。唯一失败仍是未改动的支援小队落地职责断言。随后 RimSort 目录审计为 `cycle_components=0`、`affected_candidates=0`、`scan_errors=0`。
 
 原版 `Faction.CalculateAdjustedGoodwillChange` 会将向自然好感靠拢的关系变化放大 25%；因此现场从 100 好感输入基础 -60，实际变为 -75，结果为 25。首版保留原版外交规则；对白显示基础值及当前预计结果，测试核对实际基础好感和显示好感均符合该 API，不把额外幅度当作重复处罚。
 

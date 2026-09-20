@@ -62,6 +62,10 @@ namespace Mugirl
 
         public static JobDef Job_MugirlLanceLineCharge;
 
+        public static HediffDef Mugirl_LanceChargeSpeed;
+
+        public static ThingDef Mugirl_LanceChargeFlyer;
+
         public static HediffDef Mugirl_Armbinder;
 
         public static HediffDef Mugirl_Abasia;

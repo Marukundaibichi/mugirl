@@ -123,7 +123,7 @@ FA 判断某个 shape 是否存在时只检查 `{Shape}_south`。如果 `_south`
 
 ## 特殊层规则
 
-`HeadControllerComp` 会加载基础头图，还会尝试加载 `{shape}_cover` 和 `{shape}_highlight`。Mugirl 的 blush 类表情必须走 head 基础层：`blush`、`lovinblush` 由 `headShapeDef` 引用，基础头通过 `altShapeDef=normal` 回退，脸红叠层放在 `Heads_Blank/Normal*/Female/{shape}_cover_*`。不要把脸红作为 `emotionShapeDef` 接到动画里；Emotion 层在眼白之上，会把脸红盖到眼白上方。
+`HeadControllerComp` 会加载基础头图，还会尝试加载 `{shape}_cover` 和 `{shape}_highlight`。Mugirl 的 blush 类表情必须走 head 基础层：`blush`、`lovinblush` 由 `headShapeDef` 引用，并使用 `Heads_Blank/Normal*/Female/{shape}_south/east/north.png` 完整头图。不要把这两类脸红重新拆成 `{shape}_cover_*`；FA 会把基础头和 cover 作为两个 render node 绘制，缩放和线性采样时会在半透明 cover 的边缘形成脸颊接缝。也不要把脸红作为 `emotionShapeDef` 接到动画里；Emotion 层在眼白之上，会把脸红盖到眼白上方。
 
 `LidControllerComp` 有两种模式：
 
@@ -209,7 +209,7 @@ FA 会在渲染前移除原版 head draw request，用 FA 的空白 head 和各�
 | `Mouth/Normal*/Female` | `normal`、`open`、`sad`、`smile`、`surprise`、`tight`、`puzzle`、`Mugirl_lovin`、`hot1/2`、`cold_tight1/2`、`pain1/2/3`、`hungry1/2`、`milking1..4` |
 | `LidOptions/Normal*/Female` | `tear`、`Mugirl_cry` |
 | `Emotions/Normal*/Female` | `gloomy`、`heart`，只维护 south/east |
-| `Heads_Blank/Normal*/Female` | `normal`、`blush_cover`、`lovinblush_cover`、`cold_cover`、`sweat_cover`、`heavy_sweat_cover`、`hot_cover`、`hot_highlight`、`hot_heavy_sweat_cover`、`hot_heavy_sweat_highlight` |
+| `Heads_Blank/Normal*/Female` | `normal`、完整头图 `blush`、`lovinblush`；以及 `cold_cover`、`sweat_cover`、`heavy_sweat_cover`、`hot_cover`、`hot_highlight`、`hot_heavy_sweat_cover`、`hot_heavy_sweat_highlight` |
 
 需要注意的未闭合项：
 
@@ -259,7 +259,7 @@ FA 会在渲染前移除原版 head draw request，用 FA 的空白 head 和各�
 
 `HeadShapeDef gloomy` 目前只是预留。若预计新增头部表情贴图，需要补 `Heads_Blank/Normal*/Female/gloomy_*`，再在 mood、pain 或特定 Job 动画中引用。若短期不做头部变形，可以保留声明但不要在动画中引用它。
 
-脸红类表情必须保持在眼白下方。新增高兴、害羞、Lovin、穿脱衣等动画时，使用 `headShapeDef=blush` 或 `headShapeDef=lovinblush`，不要使用 `emotionShapeDef=blush/lovinblush`。如果要调整脸红图案，修改 `Heads_Blank/Normal*/Female/{shape}_cover_south/east.png`；`Emotions` 下不再保留同名图。
+脸红类表情必须保持在眼白下方。新增高兴、害羞、Lovin、穿脱衣等动画时，使用 `headShapeDef=blush` 或 `headShapeDef=lovinblush`，不要使用 `emotionShapeDef=blush/lovinblush`。如果要调整脸红图案，应把效果预合成进 `Heads_Blank/Normal*/Female/{shape}_south/east/north.png` 完整头图，并保持 `blush/lovinblush` 的独立 cover 不存在；`Emotions` 下也不保留同名图。
 
 嘴型语义不要按文件名过度收窄：`sad` 同时代表低心情和严肃嘴，适合静态攻击、警戒、沉默紧张等“不开口、不咬牙”的状态；`tight` 才是咬牙切齿或明显用力，适合近战、挖矿、劳动、咀嚼等场景。`Wait_Combat` 需要警戒感但不能咬牙切齿，也不能全程 `lidShapeDef=half`；保留 `angled` 眉毛和扫视，眼皮以 `normal` 为主，只允许短暂半眯作为凝视变化。
 

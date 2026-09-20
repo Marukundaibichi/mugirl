@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-    <ThingDef ParentName="ApparelBase">
+    <ThingDef ParentName="ApparelNoQualityBase">
         <defName>Mugirl_AutoloadingSystem</defName>
         <!-- 自驱装弹系统 -->
         <label>self-propelled autoloading system</label>
@@ -43,6 +43,7 @@
             </tags>
         </apparel>
         <comps>
+            <li Class="CompProperties_Styleable" />
             <li Class="Mugirl.CompProperties_AutoloadingSystem">
                 <skipCycleReload>true</skipCycleReload>
             </li>

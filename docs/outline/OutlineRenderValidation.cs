@@ -61,8 +61,9 @@ ENDCG } } }");
         Check(differences < 10, "deferred and atlas DrawNow paths match");
         var mirrored = Render("flipped", true, false, 3, true, false);
         Check(Math.Abs(BlackCount(mirrored)-BlackCount(thick))<30, "flipped UV thickness is preserved");
-        var armed = Render("weapon", true, false, 3, false, true);
-        Check(BlackCount(armed)>BlackCount(thick)+100, "front weapon has an independent outline over clothing");
+        var armed = Render("weapons-excluded", true, false, 3, false, true);
+        Check(Math.Abs(BlackCount(armed)-BlackCount(thick))<30,
+            "back and autoloading weapons must not receive extra outlines");
         // RimWorld GraphicMeshSet uses MeshMakerPlanes.NewPlaneMesh(backLift:true),
         // NOT the completely flat quads used in the original smoke test.
         quad = MakeQuad(false, true); flipped = MakeQuad(true, true);
@@ -78,7 +79,7 @@ ENDCG } } }");
         MugirlExtraOutline.SettingsChanged();
         Check(GlobalTextureAtlasManager.DirtyCount>0 && RimWorld.PortraitsCache.DirtyCount>0,
             "settings invalidate both atlas and portrait caches");
-        Debug.Log("MUGIRL_OUTLINE_RENDER_OK: union, thickness, independent weapon, flipped UVs, texture edges, invisible flag, cache invalidation, DrawNow/deferred parity");
+        Debug.Log("MUGIRL_OUTLINE_RENDER_OK: union, thickness, weapons excluded, flipped UVs, texture edges, invisible flag, cache invalidation, DrawNow/deferred parity");
     }
 
     private static Color[] Render(string name, bool enabled, bool deferred, float width,
@@ -91,10 +92,12 @@ ENDCG } } }");
         requests.Add(Request(clothes, new Vector3(0,.05f,0), new Vector3(1.25f,1,1.65f), flip ? flipped : quad));
         if (armed)
         {
-            var r = Request(weapon, new Vector3(.18f,.07f,-.1f), new Vector3(.8f,1,.8f), quad);
-            r.node = new PawnRenderNode_BackWeapon();
-            r.preDrawnComputedMatrix *= Matrix4x4.Rotate(Quaternion.Euler(0,45,0));
-            requests.Add(r);
+            var back = Request(weapon, new Vector3(.82f,.07f,0), new Vector3(.28f,1,.55f), quad);
+            back.node = new PawnRenderNode_BackWeapon();
+            requests.Add(back);
+            var autoloading = Request(weapon, new Vector3(-.82f,.07f,0), new Vector3(.28f,1,.55f), quad);
+            autoloading.node = new PawnRenderNode_AutoloadingWeapon();
+            requests.Add(autoloading);
         }
         var target = new RenderTexture(512,512,24,RenderTextureFormat.ARGB32);
         target.Create();
@@ -171,7 +174,11 @@ namespace Mugirl
     internal static class MugirlGameUtility { internal static bool IsPlaying()=>true; }
     internal static class MugirlLog { internal static void WarningOnce(string key,string message) { throw new Exception(message); } }
 }
-namespace Mugirl.Features.WeaponWheel { public class PawnRenderNode_BackWeapon:PawnRenderNode {} }
+namespace Mugirl.Features.WeaponWheel
+{
+    public class PawnRenderNode_BackWeapon:PawnRenderNode {}
+    public class PawnRenderNode_AutoloadingWeapon:PawnRenderNode {}
+}
 namespace RimWorld
 {
     public static class PawnsFinder { public static List<Pawn> AllMapsWorldAndTemporary_AliveOrDead = new List<Pawn>(); }

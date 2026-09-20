@@ -90,7 +90,41 @@ namespace Mugirl
             }
         }
 
-        private static void TryMountedMeleeAttack(Pawn rider, Pawn carrier, Thing target, Verb verb)
+        public static bool TryAttackAlongFlyingCharge(Comp_MugirlMount comp, Thing target, Map map, IntVec3 carrierPosition)
+        {
+            Pawn carrier = comp?.MooPawn;
+            Pawn rider = comp?.MountedPawn;
+            if (!CanRiderMeleeAt(carrier, rider, target, map, carrierPosition, requireSpawnedCarrier: false))
+            {
+                return false;
+            }
+
+            Verb verb = MountedPawnUtility.TryGetMeleeVerb(rider, target);
+            if (verb == null)
+            {
+                return false;
+            }
+
+            Stance originalStance = carrier.stances?.curStance;
+            try
+            {
+                using (new MountedVerbScope(verb, carrier, rider))
+                {
+                    carrier.stances?.SetStance(new Stance_Mobile());
+                    TryMountedMeleeAttack(rider, carrier, target, verb, carrierPosition);
+                    return true;
+                }
+            }
+            finally
+            {
+                if (carrier.stances != null && carrier.stances.curStance != originalStance)
+                {
+                    carrier.stances.SetStance(originalStance ?? new Stance_Mobile());
+                }
+            }
+        }
+
+        private static void TryMountedMeleeAttack(Pawn rider, Pawn carrier, Thing target, Verb verb, IntVec3? carrierPosition = null)
         {
             if (!(verb is Verb_MeleeAttack meleeVerb) || verb.verbProps == null)
             {
@@ -125,7 +159,7 @@ namespace Mugirl
                 damageDef,
                 damageAmount,
                 armorPenetration,
-                (target.Position - carrier.Position).AngleFlat,
+                (target.Position - (carrierPosition ?? carrier.Position)).AngleFlat,
                 rider,
                 hitPart,
                 verb.EquipmentSource?.def,
@@ -245,17 +279,35 @@ namespace Mugirl
 
         private static bool CanRiderMelee(Pawn carrier, Pawn rider, Thing target)
         {
+            return CanRiderMeleeAt(
+                carrier,
+                rider,
+                target,
+                carrier?.Map,
+                carrier?.Position ?? IntVec3.Invalid,
+                requireSpawnedCarrier: true);
+        }
+
+        private static bool CanRiderMeleeAt(
+            Pawn carrier,
+            Pawn rider,
+            Thing target,
+            Map map,
+            IntVec3 carrierPosition,
+            bool requireSpawnedCarrier)
+        {
             if (carrier == null || rider == null || target == null || target.Destroyed)
             {
                 return false;
             }
 
-            if (!carrier.Spawned || carrier.Map == null || target.Map != carrier.Map || target == carrier || target == rider)
+            if ((requireSpawnedCarrier && !carrier.Spawned) || map == null
+                || target.Map != map || target == carrier || target == rider)
             {
                 return false;
             }
 
-            if (!carrier.HostileTo(target) || !target.Position.AdjacentTo8WayOrInside(carrier.Position))
+            if (!carrier.HostileTo(target) || !target.Position.AdjacentTo8WayOrInside(carrierPosition))
             {
                 return false;
             }

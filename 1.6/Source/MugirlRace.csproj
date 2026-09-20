@@ -90,6 +90,7 @@
         <Compile Include="Compatibility\OtherMods\LactationExpansionCompat.cs" />
         <Compile Include="Compatibility\OtherMods\Harmony_StylingStationRefresh.cs" />
         <Compile Include="Compatibility\Savegames\CorporateValidationSaveMigration.cs" />
+        <Compile Include="Compatibility\Savegames\NeuralShoulderSaveMigration.cs" />
         <Compile Include="Compatibility\WeaponWheel\DualWieldCompatibility.cs" />
         <Compile Include="Compatibility\WeaponWheel\RunAndGunCompatibility.cs" />
         <Compile Include="Compatibility\WeaponWheel\TrainingFacilityCompatibility.cs" />
@@ -98,9 +99,11 @@
         <Compile Include="DefOf\MugirlContentDefOf.cs" />
         <Compile Include="DefOf\Mugirl_DefOf.cs" />
         <Compile Include="Features\Appearance\CompMugirlBodyAccessory.cs" />
+        <Compile Include="Features\Appearance\Harmony_MugirlHairColor.cs" />
         <Compile Include="Features\Appearance\Harmony_LovinBodyAccessory.cs" />
         <Compile Include="Features\Appearance\MugirlBodyAccessoryAddon.cs" />
         <Compile Include="Features\Appearance\MugirlExtraOutline.cs" />
+        <Compile Include="Features\Appearance\PawnRenderNode_NunVeilBack.cs" />
         <Compile Include="Features\Appearance\Harmony_ExtraOutline.cs" />
         <Compile Include="Features\AdvancedArmor\CompProperties_NeuralCombatArmor.cs" />
         <Compile Include="Features\AdvancedArmor\CompProperties_NeuralShoulderDeflection.cs" />
@@ -181,7 +184,10 @@
         <Compile Include="Features\Milk\WorkGiver_GatherBodyResources.cs" />
         <Compile Include="Features\Milk\WorkGiver_GatherMilk.cs" />
         <Compile Include="Features\Lances\CompLanceCharge.cs" />
+        <Compile Include="Features\Lances\Harmony_LanceGizmos.cs" />
+        <Compile Include="Features\Lances\Harmony_LanceChargeRendering.cs" />
         <Compile Include="Features\Lances\JobDriver_LanceCharge.cs" />
+        <Compile Include="Features\Lances\PawnFlyer_LanceCharge.cs" />
         <Compile Include="Features\Mechanoids\CompProperties_SegmentedMechTail.cs" />
         <Compile Include="Features\Mechanoids\Comp_SegmentedMechTail.cs" />
         <Compile Include="Features\Mechanoids\PawnRenderNode_SegmentedMechTail.cs" />
@@ -343,6 +349,14 @@
     </ItemGroup>
     <ItemGroup Condition=" '$(EnableStylingValidation)' == 'true' ">
         <Compile Include="..\..\docs\tools\StylingStartupValidation.cs" />
+    </ItemGroup>
+    <ItemGroup Condition=" '$(EnableLanceValidation)' == 'true' ">
+        <Reference Include="UnityEngine.ScreenCaptureModule">
+            <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ScreenCaptureModule.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Compile Include="..\..\docs\tools\LanceRuntimeValidation.cs" />
+        <Compile Include="..\..\docs\tools\NeuralArmorRuntimeChecks.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -97,7 +97,12 @@ namespace Mugirl
             }
             catch (Exception e)
             {
-                MugirlLog.WarningOnce("CorporateQuestSite." + m.id, "Corporate mission site generation failed: " + e.Message);
+                string mapContext = map == null
+                    ? "map=null"
+                    : "tile=" + map.Tile + ", biome=" + (map.Biome?.defName ?? "null")
+                        + ", size=" + map.Size + ", parent=" + (map.Parent?.def?.defName ?? "null");
+                MugirlLog.WarningOnce("CorporateQuestSite." + m.id,
+                    "Corporate mission site generation failed (mission=" + m.id + ", " + mapContext + "): " + e);
                 foreach (Pawn pawn in m.targets.Where(p => p != null && !p.Spawned).ToList()) MugirlGeneratedPawnUtility.TryPassToWorld(pawn);
                 FailMission(m);
             }
@@ -152,6 +157,11 @@ namespace Mugirl
                 {
                     if (!cell.InBounds(map))
                         throw new InvalidOperationException("Corporate fusion research building footprint exceeds the map bounds.");
+                    // RimWorld 1.6 的 FoundationAt 优先于表层 TerrainAt 提供承载力。
+                    // 仅铺 Concrete 会留下轻型桥梁等 foundation，原版仍会判定建筑不可放置。
+                    TerrainDef foundation = map.terrainGrid.FoundationAt(cell);
+                    if (foundation != null && !foundation.affordances.Contains(affordance))
+                        map.terrainGrid.RemoveFoundation(cell, doLeavings: false);
                     if (!cell.GetAffordances(map).Contains(affordance))
                         map.terrainGrid.SetTerrain(cell, TerrainDefOf.Concrete);
                 }
@@ -228,17 +238,54 @@ namespace Mugirl
             return Mathf.Sqrt(dx * dx + dz * dz);
         }
 
-        private static void ClearFusionResearchCell(Map map, IntVec3 cell, bool removePlants)
+        internal static void ClearFusionResearchCell(Map map, IntVec3 cell, bool removePlants)
         {
-            foreach (Thing thing in cell.GetThingList(map).ToList())
+            // Destroying mineables and buildings can leave fresh rubble after the original thing-list
+            // snapshot was taken, so repeat a few bounded passes. PassThroughOnly items such as stone
+            // chunks also make GenSpawn.CanSpawnAt reject an otherwise wipeable prefab building.
+            for (int pass = 0; pass < 4; pass++)
             {
-                if (thing is Building || thing.def.category == ThingCategory.Filth
-                    || removePlants && thing.def.category == ThingCategory.Plant)
-                    thing.Destroy(DestroyMode.Vanish);
+                List<Thing> blockers = cell.GetThingList(map)
+                    .Where(thing => ShouldClearFusionResearchThing(thing, removePlants)).ToList();
+                if (blockers.Count == 0) break;
+                foreach (Thing thing in blockers)
+                    if (!thing.Destroyed) DestroyFusionResearchBlocker(thing);
             }
             map.roofGrid.SetRoof(cell, null);
             if (cell.GetTerrain(map).passability == Traversability.Impassable)
                 map.terrainGrid.SetTerrain(cell, TerrainDefOf.Soil);
+        }
+
+        private static bool ShouldClearFusionResearchThing(Thing thing, bool removePlants)
+        {
+            if (thing == null || thing.Destroyed || thing is Pawn) return false;
+            return thing is Building
+                || thing.def.category == ThingCategory.Filth
+                || thing.def.entityDefToBuild is TerrainDef
+                || removePlants && thing.def.category == ThingCategory.Plant
+                || thing.def.passability != Traversability.Standable;
+        }
+
+        private static void DestroyFusionResearchBlocker(Thing thing)
+        {
+            if (thing.def.destroyable)
+            {
+                thing.Destroy(DestroyMode.Vanish);
+                return;
+            }
+
+            // Natural blockers such as SteamGeyser are deliberately non-destroyable during play.
+            // Vanilla LayoutWorker temporarily enables the same guard while wiping a structure site.
+            bool previous = Thing.allowDestroyNonDestroyable;
+            try
+            {
+                Thing.allowDestroyNonDestroyable = true;
+                thing.Destroy(DestroyMode.Vanish);
+            }
+            finally
+            {
+                Thing.allowDestroyNonDestroyable = previous;
+            }
         }
 
         private void TickMissionSite(CorporateMission m)

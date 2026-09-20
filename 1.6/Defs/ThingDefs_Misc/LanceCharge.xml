@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="PawnFlyerBase">
+    <defName>Mugirl_LanceChargeFlyer</defName>
+    <label>lance charge</label>
+    <thingClass>Mugirl.Features.Lances.PawnFlyer_LanceCharge</thingClass>
+    <pawnFlyer>
+      <flightDurationMin>0.08</flightDurationMin>
+      <flightSpeed>32</flightSpeed>
+      <heightFactor>0</heightFactor>
+      <workerClass>Mugirl.Features.Lances.PawnFlyerWorker_LanceCharge</workerClass>
+    </pawnFlyer>
+  </ThingDef>
+</Defs>

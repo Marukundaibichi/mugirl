@@ -192,6 +192,18 @@ namespace Mugirl
             return map != null && Current.Game?.CurrentMap == map;
         }
 
+        internal static bool TryShakeCamera(Map map, float magnitude, int durationTicks)
+        {
+            CameraDriver cameraDriver = Find.CameraDriver;
+            if (!IsCurrentMap(map) || magnitude <= 0f || durationTicks <= 0 || cameraDriver?.shaker == null)
+            {
+                return false;
+            }
+
+            cameraDriver.shaker.DoShake(magnitude, durationTicks);
+            return true;
+        }
+
         internal static bool TryDeinitAndRemoveMap(Map map, bool notifyPlayer)
         {
             if (map == null || Current.Game == null)

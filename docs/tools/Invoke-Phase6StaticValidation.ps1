@@ -160,6 +160,35 @@ try {
         Fail "XML parse failed: $($xmlErrors.Count) file(s)"
     }
 
+    Write-Step "ThingDef defName numeric suffixes"
+    $thingDefNumericSuffixes = @()
+    foreach ($defRoot in Get-ModDefRoots) {
+        Get-ChildItem -LiteralPath $defRoot -Recurse -Filter '*.xml' | ForEach-Object {
+            $full = $_.FullName
+            $doc = Get-XmlDocument $full
+            foreach ($node in @($doc.DocumentElement.ChildNodes | Where-Object { $_.NodeType -eq [System.Xml.XmlNodeType]::Element })) {
+                if ((Get-NormalizedDefType $node.LocalName) -ne 'ThingDef' `
+                    -or ($node.Attributes['Abstract'] -and $node.Attributes['Abstract'].Value -eq 'true')) {
+                    continue
+                }
+
+                $defNameNode = $node.SelectSingleNode('defName')
+                if (-not $defNameNode) {
+                    continue
+                }
+
+                $defName = $defNameNode.InnerText.Trim()
+                if ($defName -match '\p{N}$') {
+                    $thingDefNumericSuffixes += "$(Get-RelativePath $full): $defName"
+                }
+            }
+        }
+    }
+    if ($thingDefNumericSuffixes.Count) {
+        $thingDefNumericSuffixes | Select-Object -First 100
+        Fail "ThingDef defName numeric suffix scan failed: $($thingDefNumericSuffixes.Count) invalid defName(s)"
+    }
+
     Write-Step "Language duplicate keys"
     $languageTranslationNodes = 0
     $languageDuplicateKeys = @()

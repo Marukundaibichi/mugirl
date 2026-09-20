@@ -441,7 +441,18 @@
         </apparel>
     </ThingDef>
 
-    <ThingDef ParentName="ApparelMakeableBase" MayRequire="Ludeon.RimWorld.Biotech">
+    <!-- 机械师背包保留可制作服装的配方默认值、染色与样式，只移除品质 Comp。 -->
+    <ThingDef Name="Mugirl_ApparelMakeableNoQualityBase" ParentName="ApparelMakeableBase" Abstract="True">
+        <comps Inherit="False">
+            <li Class="CompProperties_Forbiddable" />
+            <li>
+                <compClass>CompColorable</compClass>
+            </li>
+            <li Class="CompProperties_Styleable" />
+        </comps>
+    </ThingDef>
+
+    <ThingDef ParentName="Mugirl_ApparelMakeableNoQualityBase" MayRequire="Ludeon.RimWorld.Biotech">
         <defName>Mugirl_RA_MechanicBackpack</defName>
         <!-- 雪牛娘 Lv1机械师背包 -->
         <label>Mugirl Mechanic Backpack Lv1</label>
@@ -490,7 +501,7 @@
         </apparel>
     </ThingDef>
 
-    <ThingDef ParentName="ApparelMakeableBase" MayRequire="Ludeon.RimWorld.Biotech">
+    <ThingDef ParentName="Mugirl_ApparelMakeableNoQualityBase" MayRequire="Ludeon.RimWorld.Biotech">
         <defName>Mugirl_RA_MechanicBackpack_B</defName>
         <!-- 雪牛娘 Lv2机械师背包 -->
         <label>Mugirl Mechanic Backpack Lv2</label>
@@ -541,7 +552,7 @@
         </apparel>
     </ThingDef>
 
-    <ThingDef ParentName="ApparelMakeableBase" MayRequire="Ludeon.RimWorld.Biotech">
+    <ThingDef ParentName="Mugirl_ApparelMakeableNoQualityBase" MayRequire="Ludeon.RimWorld.Biotech">
         <defName>Mugirl_RA_MechanicBackpack_C</defName>
         <!-- 雪牛娘 Lv3机械师背包 -->
         <label>Mugirl Mechanic Backpack Lv3</label>
@@ -593,7 +604,7 @@
         </apparel>
     </ThingDef>
 
-    <ThingDef ParentName="ApparelMakeableBase" MayRequire="Ludeon.RimWorld.Biotech">
+    <ThingDef ParentName="Mugirl_ApparelMakeableNoQualityBase" MayRequire="Ludeon.RimWorld.Biotech">
         <defName>Mugirl_RA_MechanicBackpack_D</defName>
         <!-- 雪牛娘 Lv4机械师背包 -->
         <label>Mugirl Mechanic Backpack Lv4</label>

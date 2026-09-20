@@ -238,6 +238,19 @@ public static class CorporateQuestRuntimeChecks
             // 避免取走测试存档已经保留的原投资人。
             Field("retainedFusionInvestor").SetValue(network, null);
             Field("retainedFusionInvestorName").SetValue(network, "site validation team");
+            ThingDef chunkDef = DefDatabase<ThingDef>.GetNamedSilentFail("ChunkGranite");
+            IntVec3 blockerCell = CellFinder.RandomClosewalkCellNear(homeMap.Center, homeMap, 30);
+            Thing chunk = chunkDef == null ? null : ThingMaker.MakeThing(chunkDef);
+            if (chunk != null) GenSpawn.Spawn(chunk, blockerCell, homeMap);
+            CorporateNetwork.ClearFusionResearchCell(homeMap, blockerCell, removePlants: true);
+            check("Research-site cleanup removes pass-through item blockers before prefab validation",
+                chunk != null && chunk.Destroyed && blockerCell.Walkable(homeMap));
+            ThingDef geyserDef = DefDatabase<ThingDef>.GetNamedSilentFail("SteamGeyser");
+            Thing geyser = geyserDef == null ? null : ThingMaker.MakeThing(geyserDef);
+            if (geyser != null) GenSpawn.Spawn(geyser, blockerCell, homeMap);
+            CorporateNetwork.ClearFusionResearchCell(homeMap, blockerCell, removePlants: true);
+            check("Research-site cleanup removes non-destroyable natural blockers without leaking the vanilla override",
+                geyser != null && geyser.Destroyed && !Thing.allowDestroyNonDestroyable && blockerCell.Walkable(homeMap));
             for (int branch = 0; branch < 3; branch++)
             {
                 network.CorporateFaction.TryAffectGoodwillWith(Faction.OfPlayer, 100 - network.CorporateFaction.PlayerGoodwill, false, false);
@@ -311,6 +324,16 @@ public static class CorporateQuestRuntimeChecks
                     check("Research protection quest ends successfully: actual=" + mission.quest?.State, mission.quest?.State == QuestState.EndedSuccess);
                 }
             }
+            CorporateMission failedGeneration = fixtures.Last(m => m.IsSide);
+            failedGeneration.state = CorporateMissionState.Failed;
+            failedGeneration.spawned = false;
+            Field("fusionInvitationCreated").SetValue(network, true);
+            Field("fusionInvitationTick").SetValue(network, CorporateNetwork.Now + 60000);
+            Invoke(network, "RepairFusionSiteGenerationLockout");
+            check("A failed pre-fix research map unlocks one replacement invitation for old saves",
+                !(bool)Field("fusionInvitationCreated").GetValue(network)
+                && (int)Field("fusionInvitationTick").GetValue(network) <= CorporateNetwork.Now);
+            failedGeneration.spawned = true;
             network.CorporateFaction.TryAffectGoodwillWith(Faction.OfPlayer, 100 - network.CorporateFaction.PlayerGoodwill, false, false);
             CorporateMission purge = (CorporateMission)Invoke(network, "BuildPurgeOffer", homeMap);
             check("Real purge offer generator finds an eligible enemy and world tile", purge != null);

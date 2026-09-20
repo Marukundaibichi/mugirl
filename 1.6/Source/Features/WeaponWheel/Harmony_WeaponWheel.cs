@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using HarmonyLib;
+using Mugirl.Features.Lances;
 using Mugirl.Features.WeaponWheel;
 using RimWorld;
 using UnityEngine;
@@ -231,7 +232,13 @@ namespace Mugirl
         {
             ThingWithComps weapon = eq as ThingWithComps;
             Pawn_EquipmentTracker tracker = weapon?.ParentHolder as Pawn_EquipmentTracker;
-            return WeaponWheelHarmonyUtility.CompFor(tracker?.pawn)?.ShouldSuppressVanillaWeaponDraw(weapon) != true;
+            Pawn pawn = tracker?.pawn;
+            if (pawn?.ParentHolder is PawnFlyer_LanceCharge)
+            {
+                return false;
+            }
+
+            return WeaponWheelHarmonyUtility.CompFor(pawn)?.ShouldSuppressVanillaWeaponDraw(weapon) != true;
         }
     }
 

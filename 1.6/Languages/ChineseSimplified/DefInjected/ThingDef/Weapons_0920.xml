@@ -2,11 +2,14 @@
 <LanguageData>
   <Mugirl_NormanLance.label>诺曼长矛</Mugirl_NormanLance.label>
   <Mugirl_NormanLance.description>结构平衡的诺曼式骑枪。其他种族也能装备，但只有雪牛娘能发挥沿途冲锋技能。</Mugirl_NormanLance.description>
+  <Mugirl_NormanLance.tools.0.label>枪尖</Mugirl_NormanLance.tools.0.label>
   <Mugirl_HeavyKnightLance.label>重型牛用骑士枪</Mugirl_HeavyKnightLance.label>
   <Mugirl_HeavyKnightLance.description>为雪牛娘力量打造的超重型气动骑枪。它既能扫过整条战线，也能将自身剩余结构强度化作一次毁灭性的定点冲锋。</Mugirl_HeavyKnightLance.description>
+  <Mugirl_HeavyKnightLance.tools.0.label>枪尖</Mugirl_HeavyKnightLance.tools.0.label>
   <Mugirl_SteamKnightLance.label>蒸汽骑士枪</Mugirl_SteamKnightLance.label>
   <Mugirl_SteamKnightLance.description>以化合燃料驱动的巨型蒸汽骑枪。冲锋时会留下蒸汽轨迹，并把惊人的力量集中到强化矛尖。</Mugirl_SteamKnightLance.description>
+  <Mugirl_SteamKnightLance.tools.0.label>枪尖</Mugirl_SteamKnightLance.tools.0.label>
   <Mugirl_AT23Autocannon.label>雪牛娘 AT-23机炮</Mugirl_AT23Autocannon.label>
   <Mugirl_AT23Autocannon.description>一门火力强大的机炮。普通人的肉身无法强行使用，否则会在撕碎敌人的同时被后坐力夺走生命。优秀的性能使它一度被称为“战场电锯”。</Mugirl_AT23Autocannon.description>
-  <Bullet_Mugirl_AT23.label>AT-23机炮弹</Bullet_Mugirl_AT23.label>
+  <Bullet_Mugirl_AT23_Autocannon.label>AT-23机炮弹</Bullet_Mugirl_AT23_Autocannon.label>
 </LanguageData>
