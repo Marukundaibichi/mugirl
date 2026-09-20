@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
     <!-- make Mugirl milk pudding -->
-    <Mugirl_MakeMilkPudding.label>制作雪牛娘奶布丁</Mugirl_MakeMilkPudding.label>
+    <Mugirl_MakeMilkPudding.label>制作雪牛娘奶布丁 x4</Mugirl_MakeMilkPudding.label>
     <!-- Make milk pudding with Mugirl milk and vegetarian ingredients. -->
     <Mugirl_MakeMilkPudding.description>用雪牛娘奶和素食制作奶布丁</Mugirl_MakeMilkPudding.description>
     <!-- Making Mugirl milk pudding. -->
     <Mugirl_MakeMilkPudding.jobString>正在制作雪牛娘奶布丁</Mugirl_MakeMilkPudding.jobString>
     <!-- make Mugirl cheese -->
-    <Mugirl_MakeCheese.label>制作雪牛娘奶酪</Mugirl_MakeCheese.label>
+    <Mugirl_MakeCheese.label>制作雪牛娘奶酪 x4</Mugirl_MakeCheese.label>
     <!-- Make cheese with Mugirl milk. -->
     <Mugirl_MakeCheese.description>用雪牛娘奶制作奶酪</Mugirl_MakeCheese.description>
     <!-- Making Mugirl cheese. -->
     <Mugirl_MakeCheese.jobString>正在制作雪牛娘奶酪</Mugirl_MakeCheese.jobString>
     <!-- make aged Mugirl cheese -->
-    <Mugirl_MakeAgedCheese.label>制作雪牛娘陈年奶酪</Mugirl_MakeAgedCheese.label>
+    <Mugirl_MakeAgedCheese.label>制作雪牛娘陈年奶酪 x4</Mugirl_MakeAgedCheese.label>
     <!-- Make aged cheese with Mugirl milk and hops. -->
     <Mugirl_MakeAgedCheese.description>用雪牛娘奶和啤酒花制作陈年奶酪</Mugirl_MakeAgedCheese.description>
     <!-- Making aged Mugirl cheese. -->
     <Mugirl_MakeAgedCheese.jobString>正在制作雪牛娘陈年奶酪</Mugirl_MakeAgedCheese.jobString>
     <!-- make Mugirl milk baota candy -->
-    <Mugirl_MakeBaotaSugar.label>制作雪牛娘奶宝塔糖</Mugirl_MakeBaotaSugar.label>
+    <Mugirl_MakeBaotaSugar.label>制作雪牛娘奶宝塔糖 x4</Mugirl_MakeBaotaSugar.label>
     <!-- Make candy dewormer with Mugirl milk and herbal medicine. -->
     <Mugirl_MakeBaotaSugar.description>用雪牛娘奶和草药制作糖果打虫药</Mugirl_MakeBaotaSugar.description>
     <!-- Making Mugirl milk baota candy. -->
     <Mugirl_MakeBaotaSugar.jobString>正在制作雪牛娘奶宝塔糖</Mugirl_MakeBaotaSugar.jobString>
     <!-- make big cow milk candy -->
-    <Mugirl_MakeMilkCandy.label>制作大肥牛奶糖</Mugirl_MakeMilkCandy.label>
+    <Mugirl_MakeMilkCandy.label>制作大肥牛奶糖 x4</Mugirl_MakeMilkCandy.label>
     <!-- Make milk candy with Mugirl milk. -->
     <Mugirl_MakeMilkCandy.description>用雪牛娘奶制作奶糖</Mugirl_MakeMilkCandy.description>
     <!-- Making big cow milk candy. -->
     <Mugirl_MakeMilkCandy.jobString>正在制作大肥牛奶糖</Mugirl_MakeMilkCandy.jobString>
     <!-- make Mugirl milk cake -->
-    <Mugirl_MakeCowCake.label>制作雪牛娘牛乳蛋糕</Mugirl_MakeCowCake.label>
+    <Mugirl_MakeCowCake.label>制作雪牛娘牛乳蛋糕 x4</Mugirl_MakeCowCake.label>
     <!-- Make cake with Mugirl milk and vegetarian ingredients. -->
-    <Mugirl_MakeCowCake.description>用雪牛娘奶和素食制作蛋糕</Mugirl_MakeCowCake.description>
+    <Mugirl_MakeCowCake.description>用雪牛娘奶和未受精蛋制作蛋糕</Mugirl_MakeCowCake.description>
     <!-- Making Mugirl milk cake. -->
     <Mugirl_MakeCowCake.jobString>正在制作雪牛娘牛乳蛋糕</Mugirl_MakeCowCake.jobString>
     <!-- make Mugirl milk powder -->
-    <Mugirl_MakeMilkPowder.label>制作雪牛娘奶粉</Mugirl_MakeMilkPowder.label>
+    <Mugirl_MakeMilkPowder.label>制作雪牛娘奶粉 x4</Mugirl_MakeMilkPowder.label>
     <!-- Make milk powder with Mugirl milk. -->
     <Mugirl_MakeMilkPowder.description>用雪牛娘奶制作奶粉</Mugirl_MakeMilkPowder.description>
     <!-- Making Mugirl milk powder. -->
     <Mugirl_MakeMilkPowder.jobString>正在制作雪牛娘奶粉</Mugirl_MakeMilkPowder.jobString>
     <!-- make Mugirl milk tablets -->
-    <Mugirl_MakeMilkTablet.label>制作雪牛娘奶片</Mugirl_MakeMilkTablet.label>
+    <Mugirl_MakeMilkTablet.label>制作雪牛娘奶片 x4</Mugirl_MakeMilkTablet.label>
     <!-- Make milk tablets with Mugirl milk and herbal medicine. -->
     <Mugirl_MakeMilkTablet.description>用雪牛娘奶和药草制作奶片</Mugirl_MakeMilkTablet.description>
     <!-- Making Mugirl milk tablets. -->
     <Mugirl_MakeMilkTablet.jobString>正在制作雪牛娘奶片</Mugirl_MakeMilkTablet.jobString>
     <!-- make milk cream apple -->
-    <Mugirl_MakeMilkCreamApple.label>制作奶霜苹果</Mugirl_MakeMilkCreamApple.label>
+    <Mugirl_MakeMilkCreamApple.label>制作奶霜苹果 x4</Mugirl_MakeMilkCreamApple.label>
     <!-- Make milk cream apple with Mugirl milk and vegetarian ingredients. -->
     <Mugirl_MakeMilkCreamApple.description>用雪牛娘奶和素食制作奶霜苹果</Mugirl_MakeMilkCreamApple.description>
     <!-- Making milk cream apple. -->

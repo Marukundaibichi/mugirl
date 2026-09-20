@@ -7,7 +7,7 @@
     <!-- militia rifle cartridge -->
     <Bullet_Mugirl_Militia_Rifle.label>民兵步枪弹</Bullet_Mugirl_Militia_Rifle.label>
     <!-- A long-range rifle used by Mugirls. Although it is only an ordinary gunpowder rifle, it is designed around the powerful Mugirl physique and performs better than a standard rifle. -->
-    <Mugirl_Gun_Defense_Rifle.description>雪牛娘使用的长射程步枪，尽管只是普通的火药步枪，但基于雪牛娘那强大的体格进行设计，这把枪拥有着强于普通步枪的性能</Mugirl_Gun_Defense_Rifle.description>
+    <Mugirl_Gun_Defense_Rifle.description>雪牛娘开动脑筋、在有限条件下制造的防卫步枪，特化阵地防御与反器材，半自动漏夹装填迅捷，扩膛大口径弹头力沉千钧。胡桃木护木与枪托以白胶布固牢外露枪管，坚实耐用。“一枪崩得铁疙瘩开花，胶布比啥都牢靠，管用！”</Mugirl_Gun_Defense_Rifle.description>
     <!-- Mugirl Defense Rifle -->
     <Mugirl_Gun_Defense_Rifle.label>雪牛娘防卫步枪</Mugirl_Gun_Defense_Rifle.label>
     <!-- bayonet -->
@@ -15,7 +15,7 @@
     <!-- Mugirl Defense Rifle -->
     <Mugirl_Gun_Defense_Rifle.verbs.Verb_Shoot.label>雪牛娘防卫步枪</Mugirl_Gun_Defense_Rifle.verbs.Verb_Shoot.label>
     <!-- A basic pistol used by Mugirls. Although it uses ordinary gunpowder, it is designed around the powerful Mugirl physique and has firepower far beyond a standard autopistol. -->
-    <Mugirl_Gun_Machine_Pistol.description>雪牛娘使用的基础手枪，尽管用的只是普通的火药，但基于雪牛娘那强大的体格进行设计，这把枪拥有着远强于普通自动手枪的火力</Mugirl_Gun_Machine_Pistol.description>
+    <Mugirl_Gun_Machine_Pistol.description>雪牛娘开动脑筋、在有限条件下制造的冲锋手枪，专攻近距离突击与指挥员自卫，肘节闭锁搭配长弹匣，射速凶猛、换弹利落。胡桃木握把由白胶布缠紧防滑，拼凑出可靠压制火力。“胶布缠得丑，近战泼水贼利索，咱自造的胆气就是壮！”</Mugirl_Gun_Machine_Pistol.description>
     <!-- Mugirl Machine Pistol -->
     <Mugirl_Gun_Machine_Pistol.label>雪牛娘冲锋手枪</Mugirl_Gun_Machine_Pistol.label>
     <!-- grip -->
@@ -25,7 +25,7 @@
     <!-- Mugirl Machine Pistol -->
     <Mugirl_Gun_Machine_Pistol.verbs.Verb_Shoot.label>雪牛娘冲锋手枪</Mugirl_Gun_Machine_Pistol.verbs.Verb_Shoot.label>
     <!-- A heavy-firepower rifle used by Mugirls. Although it is only an ordinary gunpowder rifle, it is designed around the powerful Mugirl physique and has firepower far beyond a standard light machine gun. -->
-    <Mugirl_Gun_Support_Assault_Rifle.description>雪牛娘使用的大火力步枪，尽管只是普通的火药步枪，但基于雪牛娘那强大的体格进行设计，这把枪拥有着远强于普通轻机枪的火力</Mugirl_Gun_Support_Assault_Rifle.description>
+    <Mugirl_Gun_Support_Assault_Rifle.description>雪牛娘开动脑筋、在有限条件下制造的支援突击步枪，缴获机枪改制，专注持续压制，弹链由右侧斜入下挂弹盒供弹，胡桃木枪托配前握把控枪；弹盒与枪管密缠白胶布防震加固。“弹雨泼过去抬不起头，胶布一贴弹盒服帖，穷人的机枪也够劲！”</Mugirl_Gun_Support_Assault_Rifle.description>
     <!-- Mugirl Support Assault Rifle -->
     <Mugirl_Gun_Support_Assault_Rifle.label>雪牛娘支援突击步枪</Mugirl_Gun_Support_Assault_Rifle.label>
     <!-- stock -->

@@ -4,6 +4,15 @@ using Verse;
 
 namespace Mugirl.Features.Appearance
 {
+    internal static class MugirlBodyAccessoryVariants
+    {
+        internal const int None = 0;
+        internal const int LovinBite = 1;
+        internal const int LovinHandprint = 2;
+        internal const int Barcode = 3;
+        internal const int ChemicalScar = 5;
+    }
+
     /// <summary>
     /// A HAR body-addon whose first variant is the empty option and whose
     /// remaining variants are selected with a configurable combined chance.
@@ -16,7 +25,8 @@ namespace Mugirl.Features.Appearance
             "name",
             BindingFlags.Instance | BindingFlags.NonPublic);
 
-        public float generationChance = 0.35f;
+        public float experimentalMarkChance = 0.35f;
+        public float chemicalScarShare = 0.5f;
 
         public MugirlBodyAccessoryAddon()
         {
@@ -30,11 +40,16 @@ namespace Mugirl.Features.Appearance
             int? savedIndex = 0,
             string pathAppendix = null)
         {
+            CompMugirlBodyAccessory markComp = pawn?.TryGetComp<CompMugirlBodyAccessory>();
+            int temporaryVariant = markComp?.TemporaryVariant ?? MugirlBodyAccessoryVariants.None;
+            if (temporaryVariant != MugirlBodyAccessoryVariants.None)
+            {
+                return base.GetPath(pawn, ref sharedIndex, temporaryVariant, pathAppendix);
+            }
+
             if (!savedIndex.HasValue && !linkVariantIndexWithPrevious && VariantCountMax > 1)
             {
-                int generatedVariant = Rand.Chance(generationChance)
-                    ? Rand.Range(1, VariantCountMax)
-                    : 0;
+                int generatedVariant = GenerateInitialVariant(pawn);
 
                 return base.GetPath(pawn, ref sharedIndex, generatedVariant, pathAppendix);
             }
@@ -64,6 +79,19 @@ namespace Mugirl.Features.Appearance
                 savedIndex,
                 precheckCompare,
                 preGraphic);
+        }
+
+        private int GenerateInitialVariant(Pawn pawn)
+        {
+            if (pawn?.story?.Childhood != Mugirl_DefOf.Mugirl_ExperimentalChild
+                || !Rand.Chance(experimentalMarkChance))
+            {
+                return MugirlBodyAccessoryVariants.None;
+            }
+
+            return Rand.Chance(chemicalScarShare)
+                ? MugirlBodyAccessoryVariants.ChemicalScar
+                : MugirlBodyAccessoryVariants.Barcode;
         }
     }
 }

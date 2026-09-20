@@ -69,8 +69,8 @@ namespace Mugirl
             QuestsTick();
         }
 
-        public override void LoadedGame() { nextServiceTick = 0; }
-        public override void StartedNewGame() { nextServiceTick = 0; }
+        public override void LoadedGame() { nextServiceTick = 0; PrepareOrderCatalog(); }
+        public override void StartedNewGame() { nextServiceTick = 0; PrepareOrderCatalog(); }
 
         public override void ExposeData()
         {

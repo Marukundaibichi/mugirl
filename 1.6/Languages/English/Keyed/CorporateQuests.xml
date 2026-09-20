@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
+  <Mugirl.CQ.DebugMapSpawned>Fusion research site test map generated at the center of the current map.</Mugirl.CQ.DebugMapSpawned>
+  <Mugirl.CQ.DebugMapUnavailable>Open a map in development mode before using the fusion research site test.</Mugirl.CQ.DebugMapUnavailable>
+  <Mugirl.CQ.DebugMapFailed>Fusion research site test map could not be generated: {0}</Mugirl.CQ.DebugMapFailed>
   <Mugirl.CQ.Kind.Processing>Contract manufacturing</Mugirl.CQ.Kind.Processing>
   <Mugirl.CQ.Kind.Purge>Clearance</Mugirl.CQ.Kind.Purge>
   <Mugirl.CQ.Kind.Investment>Venture investment</Mugirl.CQ.Kind.Investment>

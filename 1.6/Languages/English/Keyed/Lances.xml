@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Mugirl.Lance.PointCharge.Label>Point charge</Mugirl.Lance.PointCharge.Label>
+  <Mugirl.Lance.PointCharge.Desc>Charge a distant hostile target. Damage is based on the lance's current durability, then the lance loses durability and the survivor is stunned.</Mugirl.Lance.PointCharge.Desc>
+  <Mugirl.Lance.LineCharge.Label>Line charge</Mugirl.Lance.LineCharge.Label>
+  <Mugirl.Lance.LineCharge.Desc>Charge a distant hostile target, striking and stunning each hostile pawn passed. A mounted rider also attacks those targets.</Mugirl.Lance.LineCharge.Desc>
+  <Mugirl.Lance.MustBeDrafted>The wielder must be drafted.</Mugirl.Lance.MustBeDrafted>
+  <Mugirl.Lance.Cooldown>Ready in {0}.</Mugirl.Lance.Cooldown>
+  <Mugirl.Lance.InvalidTarget>Select a living hostile pawn beyond the minimum charge distance.</Mugirl.Lance.InvalidTarget>
+  <Mugirl.Weapon.MugirlOnly>Only a Mugirl can safely equip this weapon.</Mugirl.Weapon.MugirlOnly>
+</LanguageData>

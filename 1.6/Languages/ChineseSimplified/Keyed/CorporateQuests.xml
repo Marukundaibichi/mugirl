@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
+  <Mugirl.CQ.DebugMapSpawned>已在当前地图中央生成牛聚变研究站测试地图。</Mugirl.CQ.DebugMapSpawned>
+  <Mugirl.CQ.DebugMapUnavailable>请先在开发者模式下打开一张地图，再使用牛聚变研究站测试。</Mugirl.CQ.DebugMapUnavailable>
+  <Mugirl.CQ.DebugMapFailed>牛聚变研究站测试地图生成失败：{0}</Mugirl.CQ.DebugMapFailed>
   <Mugirl.CQ.Kind.Processing>委托加工</Mugirl.CQ.Kind.Processing>
   <Mugirl.CQ.Kind.Purge>肃清</Mugirl.CQ.Kind.Purge>
   <Mugirl.CQ.Kind.Investment>风险投资</Mugirl.CQ.Kind.Investment>

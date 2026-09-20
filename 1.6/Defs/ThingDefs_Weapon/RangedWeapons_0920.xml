@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_Mugirl_AT23</defName>
+    <label>AT-23 autocannon round</label>
+    <graphicData><texPath>Things/Projectile/Bullet_Small</texPath><graphicClass>Graphic_Single</graphicClass></graphicData>
+    <projectile><damageDef>Bullet</damageDef><damageAmountBase>26</damageAmountBase><stoppingPower>3.5</stoppingPower><speed>95</speed><armorPenetrationBase>0.65</armorPenetrationBase></projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseHumanMakeableGun">
+    <defName>Mugirl_AT23Autocannon</defName>
+    <label>AT-23 handheld autocannon</label>
+    <description>A crew-served autocannon redesigned as a neural-braced personal weapon for Mugirls. Its punishing mass and recoil make it unsafe for ordinary humans.</description>
+    <graphicData><texPath>Things/Item/Equipment/MugirlWeapon/AT23_Autocannon</texPath><graphicClass>Graphic_Single</graphicClass><drawSize>3.2</drawSize></graphicData>
+    <techLevel>Spacer</techLevel><soundInteract>Interact_ChargeRifle</soundInteract>
+    <statBases><WorkToMake>75000</WorkToMake><Mass>18</Mass><AccuracyTouch>0.28</AccuracyTouch><AccuracyShort>0.42</AccuracyShort><AccuracyMedium>0.55</AccuracyMedium><AccuracyLong>0.50</AccuracyLong><RangedWeapon_Cooldown>2.2</RangedWeapon_Cooldown></statBases>
+    <costList><Steel>180</Steel><ComponentIndustrial>16</ComponentIndustrial><Plasteel>40</Plasteel></costList>
+    <recipeMaker><recipeUsers Inherit="False"><li>FabricationBench</li></recipeUsers><researchPrerequisite>Mugirl_NeuralCombatSystems</researchPrerequisite><skillRequirements><Crafting>10</Crafting></skillRequirements><displayPriority>340</displayPriority></recipeMaker>
+    <verbs><li><verbClass>Verb_Shoot</verbClass><hasStandardCommand>true</hasStandardCommand><defaultProjectile>Bullet_Mugirl_AT23</defaultProjectile><warmupTime>2.4</warmupTime><range>38.9</range><burstShotCount>10</burstShotCount><ticksBetweenBurstShots>4</ticksBetweenBurstShots><soundCast>Shot_Autocannon</soundCast><soundCastTail>GunTail_Heavy</soundCastTail><muzzleFlashScale>20</muzzleFlashScale></li></verbs>
+    <tools><li><label>reinforced stock</label><capacities><li>Blunt</li></capacities><power>14</power><cooldownTime>2.8</cooldownTime></li></tools>
+    <weaponTags><li>MugirlTech</li></weaponTags><weaponClasses><li>RangedHeavy</li></weaponClasses><tradeTags><li>WeaponRanged</li></tradeTags>
+    <modExtensions><li Class="Mugirl.MugirlRaceRestrictedExtension"/></modExtensions>
+  </ThingDef>
+</Defs>

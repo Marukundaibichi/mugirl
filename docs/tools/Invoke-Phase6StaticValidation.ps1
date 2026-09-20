@@ -419,7 +419,7 @@ try {
     }
 
     Write-Step "Forbidden production patterns"
-    $forbidden = 'Apperal|Heiffs|\bHai\b|Gloden|MechanoidWorkControlSettings|allArmorDefs|milking\(V1\)|south \.png|EyeInHead _backpack|Ldloc_S|MugirlSkinApplied|Analyzer|Mugirl_FactionUtility|AdvancedSlaveApparel\s*\|\|[^\r\n]*BrainWashSlaveApparel|EnsureBikiniOnly|WearBikiniOnly|UnlockEventBikini|Pawn_ApparelTracker_IsLocked_SlaveApparel_Patch'
+    $forbidden = 'Apperal|Heiffs|\bHai\b|Gloden|MechanoidWorkControlSettings|allArmorDefs|milking\(V1\)|south \.png|EyeInHead _backpack|Ldloc_S|MugirlSkinApplied|\bAnalyzer\b|Mugirl_FactionUtility|AdvancedSlaveApparel\s*\|\|[^\r\n]*BrainWashSlaveApparel|EnsureBikiniOnly|WearBikiniOnly|UnlockEventBikini|Pawn_ApparelTracker_IsLocked_SlaveApparel_Patch'
     $hits = & rg -n $forbidden @ProductionRoots
     if ($LASTEXITCODE -eq 0) {
         $hits

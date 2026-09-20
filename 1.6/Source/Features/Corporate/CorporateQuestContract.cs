@@ -162,6 +162,7 @@ namespace Mugirl
         public static CorporateQuestConfigDef Mugirl_CorporateQuestConfig;
         public static SitePartDef Mugirl_CorporatePurgeSite;
         public static SitePartDef Mugirl_CorporateResearchSite;
+        public static PrefabDef Mugirl_CorporateFusionResearchSite;
         public static QuestScriptDef Mugirl_CorporateMission;
         static CorporateQuestDefOf() { DefOfHelper.EnsureInitializedInCtor(typeof(CorporateQuestDefOf)); }
     }

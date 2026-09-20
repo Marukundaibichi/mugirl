@@ -10,7 +10,7 @@
         <description>Make milk pudding with Mugirl milk and vegetarian ingredients.</description>
         <!-- 正在制作雪牛娘奶布丁 -->
         <jobString>Making Mugirl milk pudding.</jobString>
-        <workAmount>300</workAmount>
+        <workAmount>2400</workAmount>
         <recipeUsers>
             <li>ElectricStove</li>
             <li>FueledStove</li>
@@ -22,7 +22,7 @@
                         <li>Mugirl_Milk</li>
                     </thingDefs>
                 </filter>
-                <count>10</count>
+                <count>24</count>
             </li>
             <li>
                 <filter>
@@ -30,7 +30,7 @@
                         <li>PlantFoodRaw</li>
                     </categories>
                 </filter>
-                <count>0.1</count>
+                <count>4</count>
             </li>
         </ingredients>
         <fixedIngredientFilter>
@@ -55,7 +55,7 @@
         <description>Make cheese with Mugirl milk.</description>
         <!-- 正在制作雪牛娘奶酪 -->
         <jobString>Making Mugirl cheese.</jobString>
-        <workAmount>300</workAmount>
+        <workAmount>3600</workAmount>
         <recipeUsers>
             <li>ElectricStove</li>
             <li>FueledStove</li>
@@ -67,7 +67,7 @@
                         <li>Mugirl_Milk</li>
                     </thingDefs>
                 </filter>
-                <count>10</count>
+                <count>40</count>
             </li>
         </ingredients>
         <fixedIngredientFilter>
@@ -89,7 +89,7 @@
         <description>Make aged cheese with Mugirl milk and hops.</description>
         <!-- 正在制作雪牛娘陈年奶酪 -->
         <jobString>Making aged Mugirl cheese.</jobString>
-        <workAmount>600</workAmount>
+        <workAmount>3600</workAmount>
         <recipeUsers>
             <li>ElectricStove</li>
             <li>FueledStove</li>
@@ -101,7 +101,7 @@
                         <li>Mugirl_Milk</li>
                     </thingDefs>
                 </filter>
-                <count>20</count>
+                <count>40</count>
             </li>
             <li>
                 <filter>
@@ -109,7 +109,7 @@
                         <li>RawHops</li>
                     </thingDefs>
                 </filter>
-                <count>10</count>
+                <count>16</count>
             </li>
         </ingredients>
         <fixedIngredientFilter>
@@ -132,7 +132,7 @@
         <description>Make candy dewormer with Mugirl milk and herbal medicine.</description>
         <!-- 正在制作雪牛娘奶宝塔糖 -->
         <jobString>Making Mugirl milk baota candy.</jobString>
-        <workAmount>300</workAmount>
+        <workAmount>2400</workAmount>
         <recipeUsers>
             <li>DrugLab</li>
         </recipeUsers>
@@ -143,7 +143,7 @@
                         <li>Mugirl_Milk</li>
                     </thingDefs>
                 </filter>
-                <count>5</count>
+                <count>4</count>
             </li>
             <li>
                 <filter>
@@ -151,7 +151,7 @@
                         <li>MedicineHerbal</li>
                     </thingDefs>
                 </filter>
-                <count>5</count>
+                <count>4</count>
             </li>
         </ingredients>
         <fixedIngredientFilter>
@@ -174,7 +174,7 @@
         <description>Make milk candy with Mugirl milk.</description>
         <!-- 正在制作大肥牛奶糖 -->
         <jobString>Making big cow milk candy.</jobString>
-        <workAmount>300</workAmount>
+        <workAmount>1500</workAmount>
         <recipeUsers>
             <li>ElectricStove</li>
             <li>FueledStove</li>
@@ -186,7 +186,7 @@
                         <li>Mugirl_Milk</li>
                     </thingDefs>
                 </filter>
-                <count>2</count>
+                <count>8</count>
             </li>
         </ingredients>
         <fixedIngredientFilter>
@@ -205,10 +205,10 @@
         <!-- 制作雪牛娘牛乳蛋糕 -->
         <label>make Mugirl milk cake</label>
         <!-- 用雪牛娘奶和素食制作蛋糕 -->
-        <description>Make cake with Mugirl milk and vegetarian ingredients.</description>
+        <description>Make cake with Mugirl milk and unfertilized eggs.</description>
         <!-- 正在制作雪牛娘牛乳蛋糕 -->
         <jobString>Making Mugirl milk cake.</jobString>
-        <workAmount>300</workAmount>
+        <workAmount>3600</workAmount>
         <recipeUsers>
             <li>ElectricStove</li>
             <li>FueledStove</li>
@@ -220,15 +220,15 @@
                         <li>Mugirl_Milk</li>
                     </thingDefs>
                 </filter>
-                <count>20</count>
+                <count>24</count>
             </li>
             <li>
                 <filter>
                     <categories>
-                        <li>PlantFoodRaw</li>
+                        <li>EggsUnfertilized</li>
                     </categories>
                 </filter>
-                <count>20</count>
+                <count>8</count>
             </li>
         </ingredients>
         <fixedIngredientFilter>
@@ -236,7 +236,7 @@
                 <li>Mugirl_Milk</li>
             </thingDefs>
             <categories>
-                <li>PlantFoodRaw</li>
+                <li>EggsUnfertilized</li>
             </categories>
         </fixedIngredientFilter>
         <products>
@@ -253,7 +253,7 @@
         <description>Make milk powder with Mugirl milk.</description>
         <!-- 正在制作雪牛娘奶粉 -->
         <jobString>Making Mugirl milk powder.</jobString>
-        <workAmount>300</workAmount>
+        <workAmount>1200</workAmount>
         <recipeUsers>
             <li>ElectricStove</li>
             <li>FueledStove</li>
@@ -265,7 +265,7 @@
                         <li>Mugirl_Milk</li>
                     </thingDefs>
                 </filter>
-                <count>5</count>
+                <count>8</count>
             </li>
         </ingredients>
         <fixedIngredientFilter>
@@ -287,7 +287,7 @@
         <description>Make milk tablets with Mugirl milk and herbal medicine.</description>
         <!-- 正在制作雪牛娘奶片 -->
         <jobString>Making Mugirl milk tablets.</jobString>
-        <workAmount>300</workAmount>
+        <workAmount>1200</workAmount>
         <recipeUsers>
             <li>ElectricStove</li>
             <li>FueledStove</li>
@@ -299,7 +299,7 @@
                         <li>Mugirl_Milk</li>
                     </thingDefs>
                 </filter>
-                <count>5</count>
+                <count>4</count>
             </li>
             <li>
                 <filter>
@@ -307,7 +307,7 @@
                         <li>MedicineHerbal</li>
                     </thingDefs>
                 </filter>
-                <count>2</count>
+                <count>4</count>
             </li>
         </ingredients>
         <fixedIngredientFilter>
@@ -330,7 +330,7 @@
         <description>Make milk cream apple with Mugirl milk and vegetarian ingredients.</description>
         <!-- 正在制作奶霜苹果 -->
         <jobString>Making milk cream apple.</jobString>
-        <workAmount>300</workAmount>
+        <workAmount>2400</workAmount>
         <recipeUsers>
             <li>ElectricStove</li>
             <li>FueledStove</li>
@@ -342,7 +342,7 @@
                         <li>Mugirl_Milk</li>
                     </thingDefs>
                 </filter>
-                <count>5</count>
+                <count>20</count>
             </li>
             <li>
                 <filter>
@@ -350,7 +350,7 @@
                         <li>PlantFoodRaw</li>
                     </categories>
                 </filter>
-                <count>0.1</count>
+                <count>4</count>
             </li>
         </ingredients>
         <fixedIngredientFilter>

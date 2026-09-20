@@ -103,16 +103,18 @@
                 </li>
                 <li Class="ScenPart_StartingThing_Defined">
                     <def>StartingThing_Defined</def>
-                    <thingDef>Apparel_FlakPants</thingDef>
+                    <thingDef>Mugirl_Combatant_Clothes</thingDef>
+                    <stuff>Cloth</stuff>
                 </li>
                 <li Class="ScenPart_StartingThing_Defined">
                     <def>StartingThing_Defined</def>
-                    <thingDef>Apparel_FlakVest</thingDef>
+                    <thingDef>Mugirl_Combatant_BulletproofVest</thingDef>
+                    <stuff>Steel</stuff>
                 </li>
                 <li Class="ScenPart_StartingThing_Defined">
                     <def>StartingThing_Defined</def>
-                    <thingDef>Apparel_AdvancedHelmet</thingDef>
-                    <stuff>Plasteel</stuff>
+                    <thingDef>Mugirl_Combatant_Helmet</thingDef>
+                    <stuff>Steel</stuff>
                 </li>
                 <li Class="ScenPart_StartingAnimal">
                     <def>StartingAnimal</def>

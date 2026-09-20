@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
+    <defName>Mugirl_NormanLance</defName>
+    <label>Norman lance</label>
+    <description>A balanced cavalry lance patterned after an old Norman design. Its straightforward construction makes repeated line charges practical.</description>
+    <graphicData><texPath>Things/Item/Equipment/MugirlWeapon/Mugirl_NormanLance</texPath><graphicClass>Graphic_Single</graphicClass><shaderType>CutoutComplex</shaderType><drawSize>2.7</drawSize></graphicData>
+    <techLevel>Medieval</techLevel>
+    <weaponTags><li>MedievalMeleeAdvanced</li><li>Spear</li></weaponTags>
+    <weaponClasses><li>MeleePiercer</li></weaponClasses>
+    <costStuffCount>75</costStuffCount>
+    <statBases><WorkToMake>12000</WorkToMake><Mass>2</Mass></statBases>
+    <equippedAngleOffset>-25</equippedAngleOffset>
+    <stuffCategories><li>Metallic</li><li>Woody</li></stuffCategories>
+    <tools Inherit="False"><li><label>point</label><capacities><li>Stab</li></capacities><power>23</power><armorPenetration>0.50</armorPenetration><cooldownTime>2.6</cooldownTime></li></tools>
+    <comps><li Class="Mugirl.Features.Lances.CompProperties_LanceCharge"><hasPointCharge>false</hasPointCharge><hasLineCharge>true</hasLineCharge><minimumLineRange>7</minimumLineRange><lineCooldownTicks>360</lineCooldownTicks><lineStunTicks>180</lineStunTicks><lineIconPath>UI/Commands/Lances/Mugirl_NormanLance_Line</lineIconPath></li></comps>
+    <recipeMaker><researchPrerequisite>Mugirl_PneumaticWeapons</researchPrerequisite><skillRequirements><Crafting>5</Crafting></skillRequirements><displayPriority>331</displayPriority></recipeMaker>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
+    <defName>Mugirl_HeavyKnightLance</defName>
+    <label>heavy knight lance</label>
+    <description>An oversized pneumatic lance built for the strength of a Mugirl. It can sweep through a battle line or commit its remaining structure to a devastating point charge.</description>
+    <graphicData><texPath>Things/Item/Equipment/MugirlWeapon/Mugirl_HeavyKnightLance</texPath><graphicClass>Graphic_Single</graphicClass><shaderType>CutoutComplex</shaderType><drawSize>3.1</drawSize></graphicData>
+    <techLevel>Industrial</techLevel>
+    <weaponTags><li>MugirlTech</li><li>Spear</li></weaponTags>
+    <weaponClasses><li>MeleePiercer</li></weaponClasses>
+    <costStuffCount>150</costStuffCount>
+    <statBases><MaxHitPoints>220</MaxHitPoints><WorkToMake>32000</WorkToMake><Mass>10</Mass></statBases>
+    <equippedAngleOffset>-25</equippedAngleOffset>
+    <stuffCategories><li>Metallic</li></stuffCategories>
+    <tools Inherit="False"><li><label>point</label><capacities><li>Stab</li></capacities><power>32</power><armorPenetration>0.55</armorPenetration><cooldownTime>2.6</cooldownTime></li></tools>
+    <comps><li Class="Mugirl.Features.Lances.CompProperties_LanceCharge"><minimumPointRange>13</minimumPointRange><minimumLineRange>15</minimumLineRange><pointCooldownTicks>1800</pointCooldownTicks><lineCooldownTicks>900</lineCooldownTicks><pointStunTicks>300</pointStunTicks><lineStunTicks>120</lineStunTicks><pointDurabilityCost>99</pointDurabilityCost><lineDurabilityCost>40</lineDurabilityCost><maximumPointDamage>180</maximumPointDamage><pointIconPath>UI/Commands/Lances/Mugirl_HeavyLance_Point</pointIconPath><lineIconPath>UI/Commands/Lances/Mugirl_HeavyLance_Line</lineIconPath></li></comps>
+    <modExtensions><li Class="Mugirl.MugirlRaceRestrictedExtension"/></modExtensions>
+    <recipeMaker><researchPrerequisite>Mugirl_PneumaticWeapons</researchPrerequisite><skillRequirements><Crafting>8</Crafting></skillRequirements><displayPriority>332</displayPriority></recipeMaker>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
+    <defName>Mugirl_SteamKnightLance</defName>
+    <label>steam knight lance</label>
+    <description>A massive chemical-fuel lance with a roaring steam drive. It leaves a smoke trail during a charge and transfers extraordinary force into its reinforced point.</description>
+    <graphicData><texPath>Things/Item/Equipment/MugirlWeapon/Mugirl_SteamKnightLance</texPath><graphicClass>Graphic_Single</graphicClass><drawSize>3.3</drawSize></graphicData>
+    <techLevel>Industrial</techLevel>
+    <weaponTags><li>MugirlTech</li><li>Spear</li></weaponTags>
+    <weaponClasses><li>MeleePiercer</li></weaponClasses>
+    <costList><Plasteel>60</Plasteel><Steel>100</Steel><ComponentIndustrial>20</ComponentIndustrial><Chemfuel>60</Chemfuel></costList>
+    <statBases><MaxHitPoints>300</MaxHitPoints><WorkToMake>120000</WorkToMake><MarketValue>2000</MarketValue><Mass>20</Mass></statBases>
+    <equippedAngleOffset>-25</equippedAngleOffset>
+    <tools Inherit="False"><li><label>point</label><capacities><li>Stab</li></capacities><power>40</power><armorPenetration>0.50</armorPenetration><cooldownTime>2.6</cooldownTime></li></tools>
+    <comps><li Class="Mugirl.Features.Lances.CompProperties_LanceCharge"><minimumPointRange>13</minimumPointRange><minimumLineRange>4</minimumLineRange><pointCooldownTicks>1800</pointCooldownTicks><lineCooldownTicks>600</lineCooldownTicks><pointStunTicks>300</pointStunTicks><lineStunTicks>180</lineStunTicks><pointDurabilityCost>20</pointDurabilityCost><lineDurabilityCost>0</lineDurabilityCost><maximumPointDamage>220</maximumPointDamage><steamTrail>true</steamTrail><pointIconPath>UI/Commands/Lances/Mugirl_SteamLance_Point</pointIconPath><lineIconPath>UI/Commands/Lances/Mugirl_SteamLance_Line</lineIconPath></li></comps>
+    <modExtensions><li Class="Mugirl.MugirlRaceRestrictedExtension"/></modExtensions>
+    <recipeMaker><researchPrerequisite>Mugirl_PneumaticWeapons</researchPrerequisite><recipeUsers Inherit="False"><li>TableMachining</li></recipeUsers><skillRequirements><Crafting>10</Crafting></skillRequirements><displayPriority>333</displayPriority></recipeMaker>
+  </ThingDef>
+</Defs>

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using RimWorld;
 using UnityEngine;
@@ -38,8 +39,53 @@ namespace Mugirl
         private float tradeResultsStarted = -10f;
         private float orderResultsStarted = -10f;
         private readonly Dictionary<ThingDef, int> catalogPrices = new Dictionary<ThingDef, int>();
+        private readonly Dictionary<ThingDef, float> catalogMarketValues = new Dictionary<ThingDef, float>();
+        private readonly List<CatalogEntry> orderEntries = new List<CatalogEntry>();
+        private readonly Dictionary<ThingDef, CatalogEntry> orderEntryByDef = new Dictionary<ThingDef, CatalogEntry>();
+        private List<CatalogEntry> orderView = new List<CatalogEntry>();
+        private IReadOnlyList<ThingDef> orderCatalogSource;
+        private CatalogViewTask orderViewTask;
+        private int orderIndexPosition;
+        private bool orderIndexComplete;
+        private int orderViewVersion;
+        private int orderViewCommittedVersion = -1;
+        private int catalogPriceServiceLevel = -1;
+        private int orderVisibleQuoteStart;
+        private int orderVisibleQuoteEnd;
+        private int orderVisibleQuoteCursor;
+        private const double CatalogWorkBudgetMilliseconds = 0.75;
         private static readonly string[] CatalogCategoryKeys = { "All", "Materials", "Food", "Medicine", "Weapons", "Apparel", "Rare", "Other" };
         private static readonly string[] CatalogSortKeys = { "SortName", "SortPriceLow", "SortPriceHigh" };
+
+        private struct CatalogEntry
+        {
+            internal ThingDef def;
+            internal string label;
+            internal int categoryMask;
+            internal IntRange lead;
+            internal bool special;
+        }
+
+        private sealed class CatalogViewTask : IDisposable
+        {
+            internal int version;
+            internal string search;
+            internal int category;
+            internal int sort;
+            internal int scanIndex;
+            internal readonly List<CatalogEntry> results = new List<CatalogEntry>();
+            internal SortedDictionary<int, List<CatalogEntry>> priceBuckets;
+            internal IEnumerator<KeyValuePair<int, List<CatalogEntry>>> bucketEnumerator;
+            internal List<CatalogEntry> currentBucket;
+            internal int currentBucketIndex;
+            internal bool flattening;
+
+            public void Dispose()
+            {
+                bucketEnumerator?.Dispose();
+                bucketEnumerator = null;
+            }
+        }
 
         // Only the selected product fades. The search field keeps its focus and the
         // catalogue remains usable when the player rapidly compares several items.
@@ -77,6 +123,210 @@ namespace Mugirl
                 pending = null; committed = true; started = -10f;
             }
         }
+
+        // 大型模组列表可产生数万条目录记录。所有全量工作都在 WindowUpdate 中按时间预算推进；
+        // DrawContents 只读取已提交快照和可见区报价，绝不在 GUI 事件中同步扫描完整目录。
+        private void UpdateOrderCatalogWork()
+        {
+            if (network == null || showExistingOrders || selectedPage != 2 && requestedPage != 2) return;
+
+            int serviceLevel = network.ServiceLevel;
+            if (catalogPriceServiceLevel < 0) catalogPriceServiceLevel = serviceLevel;
+            else if (catalogPriceServiceLevel != serviceLevel)
+            {
+                catalogPriceServiceLevel = serviceLevel;
+                catalogPrices.Clear();
+                RequestOrderViewRefresh();
+            }
+
+            if (orderCatalogSource == null)
+            {
+                orderCatalogSource = network.OrderCatalog;
+            }
+
+            long started = Stopwatch.GetTimestamp();
+            long budget = Math.Max(1L, (long)(Stopwatch.Frequency * CatalogWorkBudgetMilliseconds / 1000d));
+            bool didAny = false;
+            while (!didAny || Stopwatch.GetTimestamp() - started < budget)
+            {
+                bool progressed = false;
+                if (!orderIndexComplete)
+                {
+                    BuildNextCatalogEntry();
+                    progressed = true;
+                    didAny = true;
+                }
+
+                if (orderViewTask == null && orderViewCommittedVersion != orderViewVersion)
+                    StartOrderViewTask();
+
+                if (orderViewTask != null)
+                {
+                    progressed |= AdvanceOrderViewTask();
+                    didAny = true;
+                }
+                else if (orderViewCommittedVersion == orderViewVersion)
+                {
+                    progressed |= WarmNextVisibleCatalogQuote();
+                    didAny |= progressed;
+                }
+
+                if (!progressed) break;
+            }
+        }
+
+        private void BuildNextCatalogEntry()
+        {
+            if (orderCatalogSource == null || orderIndexPosition >= orderCatalogSource.Count)
+            {
+                orderIndexComplete = true;
+                return;
+            }
+
+            ThingDef def = orderCatalogSource[orderIndexPosition++];
+            var entry = new CatalogEntry
+            {
+                def = def,
+                label = def.LabelCap.ToString(),
+                categoryMask = CatalogCategoryMask(def),
+                lead = network.OrderLeadTime(def),
+                special = network.IsSpecialOrder(def)
+            };
+            orderEntries.Add(entry);
+            orderEntryByDef[def] = entry;
+            if (orderIndexPosition >= orderCatalogSource.Count) orderIndexComplete = true;
+        }
+
+        private int CatalogCategoryMask(ThingDef def)
+        {
+            int mask = 1;
+            if (def.IsStuff) mask |= 1 << 1;
+            if (def.IsNutritionGivingIngestible && !def.IsCorpse) mask |= 1 << 2;
+            if (def.IsMedicine) mask |= 1 << 3;
+            if (def.IsWeapon) mask |= 1 << 4;
+            if (def.IsApparel) mask |= 1 << 5;
+            if (network.IsRareOrder(def) || network.IsSpecialOrder(def)) mask |= 1 << 6;
+            if (!def.IsStuff && !def.IsNutritionGivingIngestible && !def.IsMedicine && !def.IsWeapon && !def.IsApparel)
+                mask |= 1 << 7;
+            return mask;
+        }
+
+        private void StartOrderViewTask()
+        {
+            orderViewTask?.Dispose();
+            orderViewTask = new CatalogViewTask
+            {
+                version = orderViewVersion,
+                search = (orderSearch ?? string.Empty).Trim(),
+                category = orderCategory,
+                sort = orderSort,
+                priceBuckets = orderSort == 0 ? null : new SortedDictionary<int, List<CatalogEntry>>()
+            };
+        }
+
+        private bool AdvanceOrderViewTask()
+        {
+            CatalogViewTask task = orderViewTask;
+            if (task == null) return false;
+            if (task.version != orderViewVersion)
+            {
+                task.Dispose();
+                orderViewTask = null;
+                return true;
+            }
+
+            if (task.scanIndex < orderEntries.Count)
+            {
+                CatalogEntry entry = orderEntries[task.scanIndex++];
+                if (MatchesOrderCatalog(entry, task.search, task.category))
+                {
+                    if (task.sort == 0) task.results.Add(entry);
+                    else
+                    {
+                        int price = CatalogUnitPrice(entry.def);
+                        if (!task.priceBuckets.TryGetValue(price, out List<CatalogEntry> bucket))
+                        {
+                            bucket = new List<CatalogEntry>();
+                            task.priceBuckets.Add(price, bucket);
+                        }
+                        // orderEntries 已按名称排序，因此同价桶天然保持 ThenBy(name) 的原有语义。
+                        bucket.Add(entry);
+                    }
+                }
+                return true;
+            }
+
+            if (!orderIndexComplete) return false;
+            if (task.sort == 0)
+            {
+                CommitOrderView(task);
+                return true;
+            }
+
+            if (!task.flattening)
+            {
+                IEnumerable<KeyValuePair<int, List<CatalogEntry>>> buckets = task.sort == 1
+                    ? task.priceBuckets : task.priceBuckets.Reverse();
+                task.bucketEnumerator = buckets.GetEnumerator();
+                task.flattening = true;
+                return true;
+            }
+
+            if (task.currentBucket != null && task.currentBucketIndex < task.currentBucket.Count)
+            {
+                task.results.Add(task.currentBucket[task.currentBucketIndex++]);
+                return true;
+            }
+
+            while (task.bucketEnumerator.MoveNext())
+            {
+                task.currentBucket = task.bucketEnumerator.Current.Value;
+                task.currentBucketIndex = 0;
+                if (task.currentBucket.Count == 0) continue;
+                task.results.Add(task.currentBucket[task.currentBucketIndex++]);
+                return true;
+            }
+
+            CommitOrderView(task);
+            return true;
+        }
+
+        private void CommitOrderView(CatalogViewTask task)
+        {
+            if (task != orderViewTask || task.version != orderViewVersion) return;
+            task.Dispose();
+            orderView = task.results;
+            orderViewCommittedVersion = task.version;
+            orderViewTask = null;
+            orderVisibleQuoteCursor = orderVisibleQuoteStart;
+        }
+
+        private void RequestOrderViewRefresh()
+        {
+            orderViewVersion++;
+            orderViewTask?.Dispose();
+            orderViewTask = null;
+            orderVisibleQuoteCursor = orderVisibleQuoteStart;
+        }
+
+        private bool WarmNextVisibleCatalogQuote()
+        {
+            int end = Math.Min(orderVisibleQuoteEnd, orderView.Count);
+            if (orderVisibleQuoteCursor < orderVisibleQuoteStart || orderVisibleQuoteCursor >= end)
+                orderVisibleQuoteCursor = orderVisibleQuoteStart;
+            while (orderVisibleQuoteCursor < end)
+            {
+                CatalogEntry entry = orderView[orderVisibleQuoteCursor++];
+                if (catalogPrices.ContainsKey(entry.def)) continue;
+                CatalogUnitPrice(entry.def);
+                return true;
+            }
+            return false;
+        }
+
+        private bool OrderCatalogBusy => !orderIndexComplete || orderViewTask != null
+            || orderViewCommittedVersion != orderViewVersion;
+
         private static string CorporateInput(Rect rect, string value, string id, string placeholder = null)
         {
             return CorporateUI.Input(rect, value, placeholder, id);
@@ -239,27 +489,34 @@ namespace Mugirl
                 RequestContentTransition(() => { showExistingOrders = true; orderScroll = Vector2.zero; }, "orders/receipts");
             if (showExistingOrders) { DrawOrderReceipts(new Rect(0f, 43f, w, rect.height - 43f)); return; }
             DrawCatalogToolbar(new Rect(0f, 46f, w, 32f), true);
-            List<ThingDef> defs = network.OrderCatalog.Where(d => MatchesCatalog(d, d.LabelCap, orderSearch, orderCategory)).ToList();
-            defs = SortCatalog(defs, d => d.label, CatalogUnitPrice, orderSort);
-            DrawCatalogSummary(new Rect(0f, 83f, w, 24f), defs.Count, BrowserText("ProcurementDesk"));
+            List<CatalogEntry> entries = orderView;
+            DrawCatalogSummary(new Rect(0f, 83f, w, 24f), entries.Count,
+                BrowserText(OrderCatalogBusy ? "UpdatingCatalog" : "ProcurementDesk"));
             CatalogLayout(new Rect(0f, 116f, w, rect.height - 116f), out Rect listing, out Rect detail, true);
             bool listMode = orderListView || listing.width < 360f;
-            CatalogGrid(listing, defs.Count, listMode, out int columns, out float cardWidth, out float stride, out Rect view);
+            CatalogGrid(listing, entries.Count, listMode, out int columns, out float cardWidth, out float stride, out Rect view);
             using (CorporateUI.BeginFrame(motion, "orders/results", ResultOpacity(orderResultsStarted)))
             {
                 CorporateUI.BeginScrollView(listing, ref orderScroll, view, "orders/catalog-scroll");
                 try
                 {
-                    for (int i = 0; i < defs.Count; i++)
+                    CatalogVisibleRange(entries.Count, columns, stride, orderScroll.y, listing.height, out int firstVisible, out int lastVisible);
+                    if (firstVisible != orderVisibleQuoteStart || lastVisible != orderVisibleQuoteEnd)
+                    {
+                        orderVisibleQuoteStart = firstVisible;
+                        orderVisibleQuoteEnd = lastVisible;
+                        orderVisibleQuoteCursor = firstVisible;
+                    }
+                    for (int i = firstVisible; i < lastVisible; i++)
                     {
                         Rect card = new Rect(i % columns * (cardWidth + 10f), i / columns * stride, cardWidth, stride - 8f);
-                        if (card.yMax < orderScroll.y || card.y > orderScroll.y + listing.height) continue;
-                        ThingDef def = defs[i];
-                        IntRange lead = network.OrderLeadTime(def);
-                        string leadLabel = BrowserText(network.IsSpecialOrder(def) ? "SpecialLead" : "Lead", lead.min, lead.max);
-                        int quoted = CatalogUnitPrice(def);
-                        if (DrawCatalogItem(card, def, null, def.LabelCap,
-                            quoted > 0 ? CorporateUI.Money(quoted) : BrowserText("Unavailable"), leadLabel,
+                        CatalogEntry entry = entries[i];
+                        ThingDef def = entry.def;
+                        IntRange lead = entry.lead;
+                        string leadLabel = BrowserText(entry.special ? "SpecialLead" : "Lead", lead.min, lead.max);
+                        bool quoteReady = catalogPrices.TryGetValue(def, out int quoted);
+                        if (DrawCatalogItem(card, def, null, entry.label,
+                            quoteReady ? quoted > 0 ? CorporateUI.Money(quoted) : BrowserText("Unavailable") : BrowserText("QuotePending"), leadLabel,
                             orderDef == def, listMode, "orders/item/" + def.defName) && orderDef != def)
                         {
                             orderSelectionMotion.Request(() =>
@@ -272,16 +529,24 @@ namespace Mugirl
                             GUI.FocusControl(null);
                         }
                     }
-                    if (defs.Count == 0) DrawCatalogEmpty(view, true);
+                    if (entries.Count == 0)
+                    {
+                        if (OrderCatalogBusy) DrawCatalogWorking(view);
+                        else DrawCatalogEmpty(view, true);
+                    }
                 }
                 finally { CorporateUI.EndScrollView(); }
             }
-            DrawCatalogDetailFrame(detail, orderSelectionMotion, "orders/detail", r => DrawOrderDetails(r, defs));
+            DrawCatalogDetailFrame(detail, orderSelectionMotion, "orders/detail", DrawOrderDetails);
         }
 
-        private void DrawOrderDetails(Rect rect, List<ThingDef> defs)
+        private void DrawOrderDetails(Rect rect)
         {
-            if (orderPreview == null || orderPreview.Destroyed || !defs.Contains(orderDef)) { DrawDetailEmpty(rect); return; }
+            string search = (orderSearch ?? string.Empty).Trim();
+            if (orderPreview == null || orderPreview.Destroyed
+                || !orderEntryByDef.TryGetValue(orderDef, out CatalogEntry selectedEntry)
+                || !MatchesOrderCatalog(selectedEntry, search, orderCategory))
+            { DrawDetailEmpty(rect); return; }
             float w = rect.width;
             DrawProductHeading(rect, orderPreview, "orders/info");
             IntRange days = network.OrderLeadTime(orderDef);
@@ -342,7 +607,13 @@ namespace Mugirl
 
         private void CatalogChanged(bool ordering)
         {
-            if (ordering) { orderScroll = Vector2.zero; orderResultsStarted = Time.realtimeSinceStartup; orderSelectionMotion.Clear(); }
+            if (ordering)
+            {
+                orderScroll = Vector2.zero;
+                orderResultsStarted = Time.realtimeSinceStartup;
+                orderSelectionMotion.Clear();
+                RequestOrderViewRefresh();
+            }
             else { tradeScroll = Vector2.zero; tradeResultsStarted = Time.realtimeSinceStartup; tradeSelectionMotion.Clear(); }
         }
 
@@ -436,6 +707,14 @@ namespace Mugirl
             }
         }
 
+        private static bool MatchesOrderCatalog(CatalogEntry entry, string search, int category)
+        {
+            if (!string.IsNullOrEmpty(search)
+                && entry.label.IndexOf(search, StringComparison.CurrentCultureIgnoreCase) < 0) return false;
+            return category <= 0 || category < CatalogCategoryKeys.Length
+                && (entry.categoryMask & 1 << category) != 0;
+        }
+
         private static List<T> SortCatalog<T>(List<T> items, Func<T, string> name, Func<T, int> price, int sort)
         {
             if (sort == 1) return items.OrderBy(price).ThenBy(name).ToList();
@@ -446,18 +725,31 @@ namespace Mugirl
         private int CatalogUnitPrice(ThingDef def)
         {
             if (!network.IsOrderable(def)) return 0;
-            if (catalogPrices.TryGetValue(def, out int price)) return price;
-            Thing preview = null;
-            // A catalogue quote must not advance the colony's random sequence.
-            using (Rand.Block(def.shortHash))
+            int serviceLevel = network.ServiceLevel;
+            if (catalogPriceServiceLevel != serviceLevel)
             {
-                try
+                catalogPriceServiceLevel = serviceLevel;
+                catalogPrices.Clear();
+            }
+            if (catalogPrices.TryGetValue(def, out int price)) return price;
+            if (catalogMarketValues.TryGetValue(def, out float marketValue))
+                price = network.OrderQuote(def, marketValue, 1);
+            else
+            {
+                Thing preview = null;
+                // A catalogue quote must not advance the colony's random sequence.
+                using (Rand.Block(def.shortHash))
                 {
-                    preview = CorporateNetwork.MakeProduct(def, GenStuff.DefaultStuffFor(def), QualityCategory.Normal);
-                    price = network.OrderQuote(preview, 1);
+                    try
+                    {
+                        preview = CorporateNetwork.MakeProduct(def, GenStuff.DefaultStuffFor(def), QualityCategory.Normal);
+                        marketValue = preview.MarketValue;
+                        catalogMarketValues[def] = marketValue;
+                        price = network.OrderQuote(def, marketValue, 1);
+                    }
+                    catch (Exception) { price = 0; }
+                    finally { CorporateNetwork.DiscardUnspawnedProduct(preview); }
                 }
-                catch (Exception) { price = 0; }
-                finally { CorporateNetwork.DiscardUnspawnedProduct(preview); }
             }
             catalogPrices[def] = price;
             return price;
@@ -486,6 +778,23 @@ namespace Mugirl
             width = (viewWidth - (columns - 1) * 10f) / columns;
             stride = list ? 80f : 173f;
             view = new Rect(0f, 0f, viewWidth, Mathf.Max(rect.height, Mathf.CeilToInt(count / (float)columns) * stride));
+        }
+
+        private static void CatalogVisibleRange(int count, int columns, float stride, float scrollY, float viewportHeight,
+            out int first, out int last)
+        {
+            if (count <= 0)
+            {
+                first = last = 0;
+                return;
+            }
+            int rows = Mathf.CeilToInt(count / (float)columns);
+            float maximumScroll = Math.Max(0f, rows * stride - viewportHeight);
+            scrollY = Mathf.Clamp(scrollY, 0f, maximumScroll);
+            int firstRow = Math.Max(0, Mathf.FloorToInt(scrollY / stride) - 1);
+            int lastRow = Math.Min(rows, Mathf.CeilToInt((scrollY + viewportHeight) / stride) + 1);
+            first = Math.Min(count, firstRow * columns);
+            last = Math.Min(count, Math.Max(first, lastRow * columns));
         }
 
         private bool DrawCatalogItem(Rect rect, ThingDef def, Thing thing, string label, string price, string status, bool selected, bool list, string id)
@@ -537,6 +846,12 @@ namespace Mugirl
                 if (ordering) { orderSearch = ""; orderCategory = 0; } else { tradeSearch = ""; tradeCategory = 0; }
                 CatalogChanged(ordering);
             }
+        }
+
+        private static void DrawCatalogWorking(Rect rect)
+        {
+            CorporateUI.Label(new Rect(10f, 16f, rect.width - 20f, 65f), BrowserText("UpdatingCatalog"),
+                color: CorporateUI.Muted, anchor: TextAnchor.MiddleCenter);
         }
 
         private static void DrawDetailEmpty(Rect rect)
@@ -604,7 +919,14 @@ namespace Mugirl
             orderPreview = null;
             tradeSelectionMotion.Clear();
             orderSelectionMotion.Clear();
+            orderViewTask?.Dispose();
+            orderViewTask = null;
             catalogPrices.Clear();
+            catalogMarketValues.Clear();
+            orderEntries.Clear();
+            orderEntryByDef.Clear();
+            orderView.Clear();
+            orderCatalogSource = null;
             base.PostClose();
         }
 

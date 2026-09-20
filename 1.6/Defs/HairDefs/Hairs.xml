@@ -91,4 +91,22 @@
         </styleTags>
     </HairDef>
 
+    <HairDef>
+        <defName>Mugirl_LongCascade</defName>
+        <label>Mugirl long cascade</label>
+        <hairGender>Female</hairGender>
+        <category>Mugirl_Hair</category>
+        <texPath>Mugirl/Hair/Mugirl_LongCascade</texPath>
+        <styleTags><li>Mugirl_Hair</li></styleTags>
+    </HairDef>
+
+    <HairDef>
+        <defName>Mugirl_ShortBob9</defName>
+        <label>Mugirl short bob</label>
+        <hairGender>Female</hairGender>
+        <category>Mugirl_Hair</category>
+        <texPath>Mugirl/Hair/Mugirl_ShortBob9</texPath>
+        <styleTags><li>Mugirl_Hair</li></styleTags>
+    </HairDef>
+
 </Defs>

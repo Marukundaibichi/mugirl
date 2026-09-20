@@ -48,9 +48,11 @@ namespace Mugirl.Features.WeaponWheel
         private bool pendingNonInterruptingSelfCast;
 
         private readonly List<PawnRenderNode_BackWeapon> backWeaponNodes = new List<PawnRenderNode_BackWeapon>();
+        private readonly List<PawnRenderNode_AutoloadingWeapon> autoloadingWeaponNodes = new List<PawnRenderNode_AutoloadingWeapon>();
         private readonly List<CompEquippable> reserveVerbTickers = new List<CompEquippable>();
         private bool reserveVerbTickersDirty = true;
         private bool backWeaponCacheDirty = true;
+        private bool backWeaponCacheAutoloadingLayout;
         private ThingWithComps firstBackWeapon;
         private ThingWithComps secondBackWeapon;
 
@@ -137,6 +139,7 @@ namespace Mugirl.Features.WeaponWheel
             reserveWeapons?.ClearAndDestroyContents(mode);
             slots?.Clear();
             backWeaponNodes.Clear();
+            autoloadingWeaponNodes.Clear();
             reserveVerbTickers.Clear();
             firstBackWeapon = null;
             secondBackWeapon = null;
@@ -419,6 +422,14 @@ namespace Mugirl.Features.WeaponWheel
             }
         }
 
+        internal void RegisterAutoloadingWeaponNode(PawnRenderNode_AutoloadingWeapon node)
+        {
+            if (node != null && !autoloadingWeaponNodes.Contains(node))
+            {
+                autoloadingWeaponNodes.Add(node);
+            }
+        }
+
         internal void MarkBackWeaponsDirty()
         {
             backWeaponCacheDirty = true;
@@ -429,6 +440,18 @@ namespace Mugirl.Features.WeaponWheel
                 if (node == null)
                 {
                     backWeaponNodes.RemoveAt(i);
+                }
+                else
+                {
+                    node.requestRecache = true;
+                }
+            }
+            for (int i = autoloadingWeaponNodes.Count - 1; i >= 0; i--)
+            {
+                PawnRenderNode_AutoloadingWeapon node = autoloadingWeaponNodes[i];
+                if (node == null)
+                {
+                    autoloadingWeaponNodes.RemoveAt(i);
                 }
                 else
                 {

@@ -16,6 +16,7 @@
   <Mugirl.CorporateTradeBrowser.Results>{0} products</Mugirl.CorporateTradeBrowser.Results>
   <Mugirl.CorporateTradeBrowser.PurchaseDesk>Mugirl product acquisition</Mugirl.CorporateTradeBrowser.PurchaseDesk>
   <Mugirl.CorporateTradeBrowser.ProcurementDesk>Corporate supply chain / made to order</Mugirl.CorporateTradeBrowser.ProcurementDesk>
+  <Mugirl.CorporateTradeBrowser.UpdatingCatalog>Preparing the supply index…</Mugirl.CorporateTradeBrowser.UpdatingCatalog>
   <Mugirl.CorporateTradeBrowser.RefreshIn>Next shipment in {0} days</Mugirl.CorporateTradeBrowser.RefreshIn>
   <Mugirl.CorporateTradeBrowser.Available>{0} available</Mugirl.CorporateTradeBrowser.Available>
   <Mugirl.CorporateTradeBrowser.SoldOut>Sold out</Mugirl.CorporateTradeBrowser.SoldOut>
@@ -42,6 +43,7 @@
   <Mugirl.CorporateTradeBrowser.RareSourcing>Rare goods / priority procurement</Mugirl.CorporateTradeBrowser.RareSourcing>
   <Mugirl.CorporateTradeBrowser.SpecialSourcing>Special sourcing / off-market supply</Mugirl.CorporateTradeBrowser.SpecialSourcing>
   <Mugirl.CorporateTradeBrowser.Unavailable>Quote unavailable</Mugirl.CorporateTradeBrowser.Unavailable>
+  <Mugirl.CorporateTradeBrowser.QuotePending>Preparing quote…</Mugirl.CorporateTradeBrowser.QuotePending>
   <Mugirl.CorporateTradeBrowser.RemainingDays>{0} days remaining</Mugirl.CorporateTradeBrowser.RemainingDays>
   <Mugirl.CorporateTradeBrowser.Paid>Paid {0}</Mugirl.CorporateTradeBrowser.Paid>
   <Mugirl.CorporateTradeBrowser.ConfirmCancellation>Cancel order #{0}? The corporation will refund {1}% of the amount paid under the contract.</Mugirl.CorporateTradeBrowser.ConfirmCancellation>

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
     <!-- Bulletproof armor for Mugirl combatants, providing excellent sharp protection. -->
-    <Mugirl_Combatant_BulletproofVest.description>雪牛娘战斗员专用的防弹护甲，提供优秀的利器防护。</Mugirl_Combatant_BulletproofVest.description>
+    <Mugirl_Combatant_BulletproofVest.description>以前后双板实现“战术轻量化”，是企业维稳最具性价比的选择。有限的防护面积恰好展露腰肢曲线，正面三连弹挂与腰间小口袋则为您献上“机能美学”的视觉陈列。插扣肩带一拉即卸，快捷更胜安全。你的制服，你的剧本。</Mugirl_Combatant_BulletproofVest.description>
     <!-- Mugirl Combatant Bulletproof Vest -->
     <Mugirl_Combatant_BulletproofVest.label>雪牛娘战斗员防弹衣</Mugirl_Combatant_BulletproofVest.label>
     <!-- Standard combat clothing for Mugirl combatants, covering the whole body. -->
-    <Mugirl_Combatant_Clothes.description>雪牛娘战斗员的标准战斗服装，覆盖全身。</Mugirl_Combatant_Clothes.description>
+    <Mugirl_Combatant_Clothes.description>将基础装具与高帮无绳作战靴组合，搭配黄铜铃铛项圈，步步清音，完美契合监控系统的定位美学。两腰对称口袋与大腿双侧六袋布局，容量恰够携带公司财产，杜绝私藏。叮当作响，无处可藏。</Mugirl_Combatant_Clothes.description>
     <!-- Mugirl Combatant Clothes -->
     <Mugirl_Combatant_Clothes.label>雪牛娘战斗员服装</Mugirl_Combatant_Clothes.label>
     <!-- A fully enclosed protective helmet for Mugirl combatants. -->
-    <Mugirl_Combatant_Helmet.description>雪牛娘战斗员的全覆盖保护头盔。</Mugirl_Combatant_Helmet.description>
+    <Mugirl_Combatant_Helmet.description>基于 FAST 盔型升级，透明可掀防弹面罩让您的表情始终向摄像头敞开。牛角凸起护罩兼具束缚与保护，内置夜视仪基座与双侧导轨，确保装备比头脑更值钱。保护你，直到最后一点价值。</Mugirl_Combatant_Helmet.description>
     <!-- Mugirl Combatant Helmet -->
     <Mugirl_Combatant_Helmet.label>雪牛娘战斗员头盔</Mugirl_Combatant_Helmet.label>
     <!-- Protective underwear worn close to the body by Mugirl combatants. -->
-    <Mugirl_Combatant_Underwear.description>雪牛娘战斗员的贴身穿着的防护内衣。</Mugirl_Combatant_Underwear.description>
+    <Mugirl_Combatant_Underwear.description>深灰比基尼以丁字裤配前系绳文胸，将“极致简约”升华为品牌宣言。覆盖面的最小化带来活动度的最大化，绳结一拉即散的设计，体贴每一位深夜加班后需要快速重置的状态。够少，才够自由。</Mugirl_Combatant_Underwear.description>
     <!-- Mugirl Combatant Underwear -->
     <Mugirl_Combatant_Underwear.label>雪牛娘战斗员内衣</Mugirl_Combatant_Underwear.label>
     <!-- A full Mugirl regulation military dress uniform finalized by the Equipment Design Bureau in 5495. Made throughout from advanced military synthetic fibers, it balances durability with a dignified tailored fit and is praised for its excellent windproof warmth. This model covers the whole body, and its memory fabric quickly adapts to body contours to improve appearance. Within Mugirl armed forces, it is gradually replacing older regulations as the standard for formal occasions. -->
@@ -25,7 +25,7 @@
     <!-- Mugirl Lightweight Military Dress Uniform -->
     <Mugirl_MilitaryUniform.label>雪牛娘轻量化军礼服</Mugirl_MilitaryUniform.label>
     <!-- Special stockings made for Mugirls, combining protection and comfort. -->
-    <Mugirl_SpeciallyStockings.description>雪牛娘专用的特制丝袜，兼具防护与舒适。</Mugirl_SpeciallyStockings.description>
+    <Mugirl_SpeciallyStockings.description>全包裹连体黑棕油光丝袜，半透面料如第二层肌肤般无缝贴合。每一步皆流淌熔岩般的野性光泽，傲人曲线尽显无遗。</Mugirl_SpeciallyStockings.description>
     <!-- Mugirl Special Stockings -->
     <Mugirl_SpeciallyStockings.label>雪牛娘特制丝袜</Mugirl_SpeciallyStockings.label>
 </LanguageData>

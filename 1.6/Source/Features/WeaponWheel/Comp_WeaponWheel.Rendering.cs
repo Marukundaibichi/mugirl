@@ -27,7 +27,8 @@ namespace Mugirl.Features.WeaponWheel
             }
 
             backWeaponNodes.Clear();
-            List<PawnRenderNode> nodes = new List<PawnRenderNode>(2);
+            autoloadingWeaponNodes.Clear();
+            List<PawnRenderNode> nodes = new List<PawnRenderNode>(6);
             for (int i = 0; i < 2; i++)
             {
                 PawnRenderNodeProperties nodeProps = new PawnRenderNodeProperties
@@ -41,6 +42,25 @@ namespace Mugirl.Features.WeaponWheel
                     drawSize = Vector2.one
                 };
                 nodes.Add(new PawnRenderNode_BackWeapon(pawn, nodeProps, pawn.Drawer.renderer.renderTree, this, i));
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                PawnRenderNodeProperties nodeProps = new PawnRenderNodeProperties
+                {
+                    debugLabel = "Mugirl autoloading groove weapon " + i,
+                    nodeClass = typeof(PawnRenderNode_AutoloadingWeapon),
+                    workerClass = typeof(PawnRenderNodeWorker_AutoloadingWeapon),
+                    pawnType = PawnRenderNodeProperties.RenderNodePawnType.HumanlikeOnly,
+                    useGraphic = true,
+                    baseLayer = 0f,
+                    drawSize = Vector2.one
+                };
+                nodes.Add(new PawnRenderNode_AutoloadingWeapon(
+                    pawn,
+                    nodeProps,
+                    pawn.Drawer.renderer.renderTree,
+                    this,
+                    i));
             }
             return nodes;
         }

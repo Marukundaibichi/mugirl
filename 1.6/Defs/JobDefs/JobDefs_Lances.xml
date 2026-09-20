@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <JobDef><defName>Job_MugirlLancePointCharge</defName><driverClass>Mugirl.Features.Lances.JobDriver_LanceCharge</driverClass><reportString>point-charging TargetA.</reportString><casualInterruptible>false</casualInterruptible><playerInterruptible>true</playerInterruptible></JobDef>
+  <JobDef><defName>Job_MugirlLanceLineCharge</defName><driverClass>Mugirl.Features.Lances.JobDriver_LanceCharge</driverClass><reportString>line-charging TargetA.</reportString><casualInterruptible>false</casualInterruptible><playerInterruptible>true</playerInterruptible></JobDef>
+</Defs>

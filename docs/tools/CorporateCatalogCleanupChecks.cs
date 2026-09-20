@@ -1,5 +1,6 @@
 // Conditional validation only. Uses real loaded Defs and the funded disposable colony.
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -33,7 +34,7 @@ public static class CorporateCatalogCleanupChecks
             var prices = defs.ToDictionary(d => d, quote);
             check("All " + defs.Count + " loaded catalogue goods can be quoted and cached repeatedly",
                 prices.All(pair => quote(pair.Key) == pair.Value)
-                && Cache(window).Count == defs.Count);
+                && Cache(window).Count == defs.Count && MarketCache(window).Count == defs.Count);
             check("Catalogue quoting does not add goods to corporate custody", SameVault(network, initialVault));
 
             MethodInfo sort = typeof(Window_CorporateComms).GetMethod("SortCatalog", BindingFlags.Static | BindingFlags.NonPublic)
@@ -42,6 +43,7 @@ public static class CorporateCatalogCleanupChecks
             {
                 // A fresh cache exercises temporary product cleanup inside the sort's price selector.
                 Cache(window).Clear();
+                MarketCache(window).Clear();
                 var sorted = (List<ThingDef>)sort.Invoke(null,
                     new object[] { defs, new Func<ThingDef, string>(d => d.label), quote, direction });
                 bool monotonic = true;
@@ -73,6 +75,8 @@ public static class CorporateCatalogCleanupChecks
         }
         finally { window.PostClose(); }
 
+        CheckLargeCatalogBudget(context, check);
+
         CheckRejectedOrder(network, context, node, check);
         CheckLegacyStock(network, context, node, check);
         CheckLegacyEscrow(network, context, node, check);
@@ -80,6 +84,62 @@ public static class CorporateCatalogCleanupChecks
             originalFlags.All(pair => pair.Key.destroyable == pair.Value)
             && Equals(originalOverride, destructionOverride?.GetValue(null)));
     }
+
+    private static void CheckLargeCatalogBudget(CorporateTradeContext context, Action<string, bool> check)
+    {
+        const int count = 50000;
+        var source = Enumerable.Repeat(ThingDefOf.Steel, count).ToList();
+        var window = new Window_CorporateComms(context);
+        MethodInfo update = typeof(Window_CorporateComms).GetMethod("UpdateOrderCatalogWork", InstanceFields);
+        MethodInfo refresh = typeof(Window_CorporateComms).GetMethod("RequestOrderViewRefresh", InstanceFields);
+        MethodInfo visible = typeof(Window_CorporateComms).GetMethod("CatalogVisibleRange",
+            BindingFlags.Static | BindingFlags.NonPublic);
+        try
+        {
+            Set(window, "selectedPage", 2);
+            Set(window, "requestedPage", 2);
+            Set(window, "orderCatalogSource", source);
+
+            update.Invoke(window, null);
+            int firstPass = Get<int>(window, "orderIndexPosition");
+            check("A 50,000-item catalogue is not indexed in one UI update",
+                firstPass > 0 && firstPass < count && !Get<bool>(window, "orderIndexComplete"));
+
+            bool nameReady = AdvanceUntilSettled(window, update, 5000);
+            check("A 50,000-item name catalogue completes through bounded update slices",
+                nameReady && CollectionCount(window, "orderView") == count);
+
+            Set(window, "orderSort", 1);
+            refresh.Invoke(window, null);
+            update.Invoke(window, null);
+            check("A 50,000-item price sort keeps its previous stable snapshot while work is pending",
+                !IsSettled(window) && CollectionCount(window, "orderView") == count);
+            bool priceReady = AdvanceUntilSettled(window, update, 5000);
+            check("A 50,000-item price sort completes without a synchronous full-list UI pass",
+                priceReady && CollectionCount(window, "orderView") == count);
+
+            object[] range = { count, 4, 173f, 750000f, 520f, 0, 0 };
+            visible.Invoke(null, range);
+            int first = (int)range[5];
+            int last = (int)range[6];
+            check("A 50,000-item grid only submits visible rows and a small buffer for drawing",
+                first >= 0 && last <= count && last > first && last - first <= 24);
+        }
+        finally { window.PostClose(); }
+    }
+
+    private static bool AdvanceUntilSettled(Window_CorporateComms window, MethodInfo update, int maximumPasses)
+    {
+        for (int i = 0; i < maximumPasses && !IsSettled(window); i++) update.Invoke(window, null);
+        return IsSettled(window);
+    }
+
+    private static bool IsSettled(Window_CorporateComms window)
+        => Get<bool>(window, "orderIndexComplete") && Get<object>(window, "orderViewTask") == null
+            && Get<int>(window, "orderViewCommittedVersion") == Get<int>(window, "orderViewVersion");
+
+    private static int CollectionCount(Window_CorporateComms window, string field)
+        => ((ICollection)Get<object>(window, field)).Count;
 
     private static void CheckPreviewLifecycle(Window_CorporateComms window, ThingDef node, Action<string, bool> check)
     {
@@ -185,8 +245,14 @@ public static class CorporateCatalogCleanupChecks
     private static Dictionary<ThingDef, int> Cache(Window_CorporateComms window)
         => (Dictionary<ThingDef, int>)typeof(Window_CorporateComms).GetField("catalogPrices", InstanceFields).GetValue(window);
 
+    private static Dictionary<ThingDef, float> MarketCache(Window_CorporateComms window)
+        => (Dictionary<ThingDef, float>)typeof(Window_CorporateComms).GetField("catalogMarketValues", InstanceFields).GetValue(window);
+
     private static Thing Preview(Window_CorporateComms window)
         => (Thing)typeof(Window_CorporateComms).GetField("orderPreview", InstanceFields).GetValue(window);
+
+    private static T Get<T>(Window_CorporateComms window, string field)
+        => (T)typeof(Window_CorporateComms).GetField(field, InstanceFields).GetValue(window);
 
     private static void Set(Window_CorporateComms window, string field, object value)
         => typeof(Window_CorporateComms).GetField(field, InstanceFields).SetValue(window, value);

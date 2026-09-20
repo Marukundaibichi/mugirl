@@ -450,20 +450,40 @@ namespace Mugirl.Features.WeaponWheel
         internal ThingWithComps GetBackWeapon(int displayIndex)
         {
             EnsureCollections();
-            if (backWeaponCacheDirty)
+            bool useAutoloadingLayout = HasAutoloadingSystem;
+            if (backWeaponCacheDirty || backWeaponCacheAutoloadingLayout != useAutoloadingLayout)
             {
-                RebuildBackWeaponCache();
+                RebuildBackWeaponCache(useAutoloadingLayout);
             }
             return displayIndex == 0
                 ? firstBackWeapon
                 : displayIndex == 1 ? secondBackWeapon : null;
         }
 
-        private void RebuildBackWeaponCache()
+        internal ThingWithComps GetAutoloadingWeapon(int displayIndex)
+        {
+            EnsureCollections();
+            if (!HasAutoloadingSystem || displayIndex < 0 || displayIndex >= 4)
+            {
+                return null;
+            }
+            return WeaponVisibleInStorageSlot(displayIndex + 2);
+        }
+
+        private void RebuildBackWeaponCache(bool useAutoloadingLayout)
         {
             backWeaponCacheDirty = false;
+            backWeaponCacheAutoloadingLayout = useAutoloadingLayout;
             firstBackWeapon = null;
             secondBackWeapon = null;
+            if (useAutoloadingLayout)
+            {
+                // 装备自驱装弹系统时，第 2 格仍按普通背负武器显示；第 3–6 格固定进入四个凹槽。
+                // 固定槽位映射可避免轮射切枪时其余武器在凹槽之间跳位。
+                firstBackWeapon = WeaponVisibleInStorageSlot(1);
+                return;
+            }
+
             ThingWithComps primary = Pawn?.equipment?.Primary;
             for (int i = 0; i < slots.Count; i++)
             {
@@ -483,6 +503,21 @@ namespace Mugirl.Features.WeaponWheel
                     break;
                 }
             }
+        }
+
+        private ThingWithComps WeaponVisibleInStorageSlot(int slotIndex)
+        {
+            if (slotIndex < 0 || slotIndex >= slots.Count || !unlockedSlots[slotIndex])
+            {
+                return null;
+            }
+            ThingWithComps weapon = slots[slotIndex];
+            if (weapon == null || weapon == Pawn?.equipment?.Primary
+                || weapon == animationOutgoingWeapon || weapon == animationIncomingWeapon)
+            {
+                return null;
+            }
+            return weapon;
         }
 
         internal void HandleDropAndForbidEverything(bool keepInventoryAndEquipmentIfInBed)

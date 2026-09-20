@@ -66,8 +66,22 @@ namespace Mugirl
         public IReadOnlyList<CorporateStock> Stock => stock;
         public IReadOnlyList<CorporateOrder> Orders => orders;
         public CorporateTradeSettingsDef TradeSettings => CorporateTradeDefOf.Mugirl_CorporateTradeSettings;
-        public IReadOnlyList<ThingDef> OrderCatalog => orderCatalog ?? (orderCatalog = DefDatabase<ThingDef>.AllDefsListForReading
-            .Where(IsOrderable).OrderBy(d => d.label).ToList());
+        public IReadOnlyList<ThingDef> OrderCatalog
+        {
+            get
+            {
+                PrepareOrderCatalog();
+                return orderCatalog;
+            }
+        }
+
+        // 在读档/开局长事件中预建一次完整目录，避免首次打开终端时同步扫描大型模组列表。
+        private void PrepareOrderCatalog()
+        {
+            if (orderCatalog != null) return;
+            orderCatalog = DefDatabase<ThingDef>.AllDefsListForReading
+                .Where(IsOrderable).OrderBy(d => d.label).ToList();
+        }
 
         public bool IsOrderable(ThingDef def)
         {
@@ -170,9 +184,16 @@ namespace Mugirl
         public int OrderQuote(Thing preview, int quantity)
         {
             if (preview == null || preview.Destroyed) return 0;
-            OrderTerms(preview.def, out float factor, out _);
-            float unitPrice = preview.MarketValue * factor;
-            if (IsSpecialOrder(preview.def))
+            return OrderQuote(preview.def, preview.MarketValue, quantity);
+        }
+
+        // 目录只需制造一次默认样品并缓存其真实市值；服务等级变化时可用同一市值重算折扣。
+        internal int OrderQuote(ThingDef def, float marketValue, int quantity)
+        {
+            if (def == null || marketValue <= 0f) return 0;
+            OrderTerms(def, out float factor, out _);
+            float unitPrice = marketValue * factor;
+            if (IsSpecialOrder(def))
                 unitPrice = Math.Max(unitPrice, TradeSettings.specialOrderMinimumUnitPrice);
             return Price(unitPrice * OrderDiscountFactor, quantity);
         }

@@ -110,6 +110,14 @@
                         <li>Mugirl_Female_D</li>
                         <li>Mugirl_Female_E</li>
                         <li>Mugirl_Female_F</li>
+                        <li>Mugirl_Female_G</li>
+                        <li>Mugirl_Female_H</li>
+                        <li>Mugirl_Female_I</li>
+                        <li>Mugirl_Female_J</li>
+                        <li>Mugirl_Female_K</li>
+                        <li>Mugirl_Female_L</li>
+                        <li>Mugirl_Female_M</li>
+                        <li>Mugirl_Female_N</li>
                     </headTypes>
                     <bodyTypes>
                         <li MayRequire="Ludeon.RimWorld.Biotech">Baby</li>
@@ -423,12 +431,14 @@
                         </li>
                         <!--
                             梳妆台中的独立身体附件栏。变体顺序：
-                            0 无、1 咬痕、2 屁股掌印、3 条形码、4 私处毛发、5 化学疤痕。
-                            新生成的成年雪牛娘有 35% 概率携带其中一种附件。
+                            0 无、1 牙印（伊伊思的盖章）、2 屁股掌印、3 条形码、4 私处毛发、5 化学疤痕。
+                            牙印与屁股掌印由 Lovin 临时触发；条形码与化学疤痕仅随“增产实验对象”背景生成。
                         -->
                         <li Class="Mugirl.Features.Appearance.MugirlBodyAccessoryAddon">
                             <path>Mugirl/BodyAccessories/Mugirl_BodyAccessory</path>
-                            <generationChance>0.35</generationChance>
+                            <!-- 实验对象有 35% 总概率获得永久标记；命中后两种标记等概率。 -->
+                            <experimentalMarkChance>0.35</experimentalMarkChance>
+                            <chemicalScarShare>0.5</chemicalScarShare>
                             <conditions>
                                 <RotStage>Fresh,Rotting</RotStage>
                                 <BodyType>Female</BodyType>
@@ -631,6 +641,30 @@
                     <li>Mugirl_SpeciallyStockings</li>
                     <li>Mugirl_MilitaryDress</li>
                     <li>Mugirl_MilitaryUniform</li>
+                    <li>Mugirl_CorporateBaseballCap</li>
+                    <li>Mugirl_CorporateSunHat</li>
+                    <li>Mugirl_HighCutSweater</li>
+                    <li>Mugirl_SisterMask</li>
+                    <li>Mugirl_BrandBag</li>
+                    <li>Mugirl_LeatherHeels</li>
+                    <li>Mugirl_PoliceShirt</li>
+                    <li>Mugirl_PoliceShorts</li>
+                    <li>Mugirl_PoliceThong</li>
+                    <li>Mugirl_PoliceZipperBra</li>
+                    <li>Mugirl_PoliceBra</li>
+                    <li>Mugirl_PoliceCrossStickers</li>
+                    <li>Mugirl_PoliceBoots</li>
+                    <li>Mugirl_PoliceCap</li>
+                    <li>Mugirl_NunDressClassic</li>
+                    <li>Mugirl_NunDressSimple</li>
+                    <li>Mugirl_NunVeil</li>
+                    <li>Mugirl_NunBlindfold</li>
+                    <li>Mugirl_KnightMountPlateWhite</li>
+                    <li>Mugirl_KnightMountCoat</li>
+                    <li>Mugirl_KnightMountHelmet</li>
+                    <li>Mugirl_NeuralCombatArmor</li>
+                    <li>Mugirl_NeuralCombatShoulders</li>
+                    <li>Mugirl_NeuralAmplifierHelmet</li>
 
                     <li>Mugirl_Mask</li>
                     <li>Mugirl_Veil</li>
@@ -656,6 +690,9 @@
                     <li>Mugirl_Gun_Machine_Pistol</li>
                     <li>Mugirl_Gun_Defense_Rifle</li>
                     <li MayRequire="Ludeon.RimWorld.Biotech">Mugirl_Gun_Flame_Thrower</li>
+                    <li>Mugirl_HeavyKnightLance</li>
+                    <li>Mugirl_SteamKnightLance</li>
+                    <li>Mugirl_AT23Autocannon</li>
 
                 </weaponList>
 
@@ -946,6 +983,15 @@
         </recipes>
         <comps>
             <!-- <li Class="Mugirl.CompProperties_ShowRopedBy" /> -->
+            <li Class="Mugirl.Features.Appearance.CompProperties_MugirlBodyAccessory">
+                <!-- 每次 Lovin：牙印 25%、屁股掌印 25%、无印记 50%；持续 1–3 天。 -->
+                <lovinBiteChance>0.25</lovinBiteChance>
+                <lovinHandprintChance>0.25</lovinHandprintChance>
+                <lovinMarkDurationTicks>
+                    <min>60000</min>
+                    <max>180000</max>
+                </lovinMarkDurationTicks>
+            </li>
             <li Class="Mugirl.CompProperties_WeaponWheel">
                 <maxSlots>6</maxSlots>
                 <baseUnlockedSlots>3</baseUnlockedSlots>

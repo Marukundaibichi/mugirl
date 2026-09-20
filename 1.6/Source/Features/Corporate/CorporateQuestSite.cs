@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
+using LudeonTK;
 using RimWorld;
 using RimWorld.Planet;
 using RimWorld.QuestGen;
@@ -54,11 +55,13 @@ namespace Mugirl
         {
             CorporateMission m = missions.FirstOrDefault(x => x.site == map.Parent && x.state == CorporateMissionState.Active);
             if (m == null || m.spawned) return;
-            IntVec3 center = CellFinder.RandomClosewalkCellNear(map.Center, map, 12);
+            IntVec3 center = map.Center;
             try
             {
                 if (m.IsSide)
                 {
+                    SpawnFusionResearchSite(map, center);
+                    center = CellFinder.RandomClosewalkCellNear(center, map, 12);
                     Pawn original = retainedFusionInvestor;
                     if (original != null && !original.Destroyed && !original.Dead && !original.Spawned && original.IsWorldPawn()
                         && !original.IsColonist && !original.IsPrisoner && !QuestUtility.IsReservedByQuestOrQuestBeingGenerated(original))
@@ -74,7 +77,6 @@ namespace Mugirl
                     for (int i = 0; i < 3; i++)
                         m.targets.Add(PawnGenerator.GeneratePawn(new PawnGenerationRequest(CorporateQuestDefs.Guard, null,
                             PawnGenerationContext.NonPlayer, map.Tile, forceGenerateNewPawn: true, developmentalStages: DevelopmentalStage.Adult)));
-                    SpawnResearchFurniture(map, center);
                 }
                 else
                 {
@@ -101,17 +103,142 @@ namespace Mugirl
             }
         }
 
-        private static void SpawnResearchFurniture(Map map, IntVec3 center)
+        internal static void DevSpawnFusionResearchSite(Map map)
         {
-            ThingDef[] defs = { CorporateQuestDefs.ResearchBench, CorporateQuestDefs.Table, CorporateQuestDefs.Bed };
-            for (int i = 0; i < defs.Length; i++)
+            if (map == null) throw new ArgumentNullException(nameof(map));
+            SpawnFusionResearchSite(map, map.Center);
+        }
+
+        private static void SpawnFusionResearchSite(Map map, IntVec3 center)
+        {
+            PrefabDef prefab = CorporateQuestDefOf.Mugirl_CorporateFusionResearchSite;
+            if (prefab == null)
+                throw new InvalidOperationException("Corporate fusion research prefab is missing.");
+
+            CellRect siteRect = GenAdj.OccupiedRect(center, Rot4.North, prefab.size);
+            CellRect clearanceBounds = siteRect.ExpandedBy(12);
+            foreach (IntVec3 cell in siteRect.Cells)
             {
-                ThingDef def = defs[i];
-                if (def == null) continue;
-                IntVec3 cell = CellFinder.RandomClosewalkCellNear(center + new IntVec3(i * 4 - 4, 0, 3), map, 3);
-                Thing thing = ThingMaker.MakeThing(def, def.MadeFromStuff ? ThingDefOf.WoodLog : null);
-                GenPlace.TryPlaceThing(thing, cell, map, ThingPlaceMode.Near);
+                if (!cell.InBounds(map))
+                    throw new InvalidOperationException("Corporate fusion research prefab footprint exceeds the map bounds.");
+                ClearFusionResearchCell(map, cell, removePlants: true);
             }
+            foreach (IntVec3 cell in clearanceBounds.Cells)
+            {
+                if (!cell.InBounds(map))
+                    throw new InvalidOperationException("Corporate fusion research prefab clearance exceeds the map bounds.");
+                float distance = DistanceOutside(cell, siteRect);
+                float edgeNoise = Mathf.PerlinNoise(cell.x * 0.115f + 17.3f, cell.z * 0.115f + 41.9f);
+                if (distance > 0f && distance <= 4f + edgeNoise * 7f)
+                    ClearFusionResearchCell(map, cell, removePlants: false);
+            }
+            ClearFusionResearchApproaches(map, siteRect);
+            EnsureFusionResearchTerrainSupport(prefab, map, center);
+
+            if (!PrefabUtility.CanSpawnPrefab(prefab, map, center, Rot4.North))
+                throw new InvalidOperationException(DescribePrefabSpawnFailure(prefab, map, center));
+            PrefabUtility.SpawnPrefab(prefab, map, center, Rot4.North, onSpawned: InitializeFusionResearchThing);
+        }
+
+        private static void EnsureFusionResearchTerrainSupport(PrefabDef prefab, Map map, IntVec3 center)
+        {
+            foreach (var entry in PrefabUtility.GetThings(prefab, center, Rot4.North))
+            {
+                PrefabThingData data = entry.Item1;
+                if (data.def.category != ThingCategory.Building || data.def.building?.isAttachment == true) continue;
+                TerrainAffordanceDef affordance = data.def.GetTerrainAffordanceNeed(data.stuff);
+                if (affordance == null) continue;
+                foreach (IntVec3 cell in GenAdj.OccupiedRect(entry.Item2, entry.Item3, data.def.Size))
+                {
+                    if (!cell.InBounds(map))
+                        throw new InvalidOperationException("Corporate fusion research building footprint exceeds the map bounds.");
+                    if (!cell.GetAffordances(map).Contains(affordance))
+                        map.terrainGrid.SetTerrain(cell, TerrainDefOf.Concrete);
+                }
+            }
+        }
+
+        private static void InitializeFusionResearchThing(Thing thing)
+        {
+            CompRefuelable refuelable = thing.TryGetComp<CompRefuelable>();
+            if (refuelable != null && !refuelable.IsFull)
+                refuelable.Refuel(refuelable.Props.fuelCapacity);
+        }
+
+        private static string DescribePrefabSpawnFailure(PrefabDef prefab, Map map, IntVec3 center)
+        {
+            foreach (var entry in PrefabUtility.GetThings(prefab, center, Rot4.North))
+            {
+                PrefabThingData data = entry.Item1;
+                IntVec3 cell = entry.Item2;
+                Rot4 rot = entry.Item3;
+                if ((data.def.building == null || !data.def.building.isAttachment)
+                    && !GenSpawn.CanSpawnAt(data.def, cell, map, rot))
+                {
+                    if (data.def.category == ThingCategory.Building && !GenConstruct.CanBuildOnTerrain(data.def, cell, map, rot))
+                        return "Corporate fusion research prefab terrain validation failed for " + data.def.defName + " at " + cell
+                            + " on terrain " + cell.GetTerrain(map).defName + ".";
+                    if (data.def.HasSingleOrMultipleInteractionCells && !GenConstruct.InteractionCellStandable(data.def, cell, rot, map))
+                        return "Corporate fusion research prefab interaction cells are blocked for " + data.def.defName + " at " + cell + ".";
+                    if (!GenConstruct.NotBlockingAnyInteractionCells(data.def, cell, rot, map))
+                        return "Corporate fusion research prefab would block an existing interaction cell near " + data.def.defName + " at " + cell + ".";
+                    string blockers = string.Join(", ", cell.GetThingList(map).Select(t => t.def.defName).Distinct().ToArray());
+                    return "Corporate fusion research prefab cannot spawn " + data.def.defName + " at " + cell
+                        + " on terrain " + cell.GetTerrain(map).defName
+                        + (blockers.NullOrEmpty() ? "." : "; cell contains: " + blockers + ".");
+                }
+            }
+            return "Corporate fusion research prefab failed validation for an unknown nested-prefab condition.";
+        }
+
+        private static void ClearFusionResearchApproaches(Map map, CellRect siteRect)
+        {
+            int centerX = (siteRect.minX + siteRect.maxX) / 2;
+            int centerZ = (siteRect.minZ + siteRect.maxZ) / 2;
+            for (int z = 0; z <= siteRect.minZ; z++)
+                ClearVerticalApproach(map, centerX, z, 3.7f);
+            for (int z = siteRect.maxZ; z < map.Size.z; z++)
+                ClearVerticalApproach(map, centerX, z, 29.1f);
+            for (int x = 0; x <= siteRect.minX; x++)
+                ClearHorizontalApproach(map, centerZ, x, 53.4f);
+            for (int x = siteRect.maxX; x < map.Size.x; x++)
+                ClearHorizontalApproach(map, centerZ, x, 77.8f);
+        }
+
+        private static void ClearVerticalApproach(Map map, int centerX, int z, float seed)
+        {
+            int offset = Mathf.RoundToInt((Mathf.PerlinNoise(z * 0.055f + seed, seed) - 0.5f) * 8f);
+            int halfWidth = Mathf.PerlinNoise(z * 0.12f + seed, seed + 11f) > 0.68f ? 2 : 1;
+            for (int x = centerX + offset - halfWidth; x <= centerX + offset + halfWidth; x++)
+                ClearFusionResearchCell(map, new IntVec3(x, 0, z), removePlants: false);
+        }
+
+        private static void ClearHorizontalApproach(Map map, int centerZ, int x, float seed)
+        {
+            int offset = Mathf.RoundToInt((Mathf.PerlinNoise(x * 0.055f + seed, seed) - 0.5f) * 8f);
+            int halfWidth = Mathf.PerlinNoise(x * 0.12f + seed, seed + 11f) > 0.68f ? 2 : 1;
+            for (int z = centerZ + offset - halfWidth; z <= centerZ + offset + halfWidth; z++)
+                ClearFusionResearchCell(map, new IntVec3(x, 0, z), removePlants: false);
+        }
+
+        private static float DistanceOutside(IntVec3 cell, CellRect rect)
+        {
+            int dx = cell.x < rect.minX ? rect.minX - cell.x : cell.x > rect.maxX ? cell.x - rect.maxX : 0;
+            int dz = cell.z < rect.minZ ? rect.minZ - cell.z : cell.z > rect.maxZ ? cell.z - rect.maxZ : 0;
+            return Mathf.Sqrt(dx * dx + dz * dz);
+        }
+
+        private static void ClearFusionResearchCell(Map map, IntVec3 cell, bool removePlants)
+        {
+            foreach (Thing thing in cell.GetThingList(map).ToList())
+            {
+                if (thing is Building || thing.def.category == ThingCategory.Filth
+                    || removePlants && thing.def.category == ThingCategory.Plant)
+                    thing.Destroy(DestroyMode.Vanish);
+            }
+            map.roofGrid.SetRoof(cell, null);
+            if (cell.GetTerrain(map).passability == Traversability.Impassable)
+                map.terrainGrid.SetTerrain(cell, TerrainDefOf.Soil);
         }
 
         private void TickMissionSite(CorporateMission m)
@@ -200,6 +327,30 @@ namespace Mugirl
             {
                 m.gratitudeRevoked = true;
                 MugirlGameUtility.Letters.ReceiveLetter("Mugirl.CQ.ThanksRevokedTitle".Translate(), "Mugirl.CQ.ThanksRevokedText".Translate(), LetterDefOf.NegativeEvent, m.site);
+            }
+        }
+    }
+
+    internal static class CorporateQuestSiteDebugActions
+    {
+        [DebugAction("Mugirl", "Test map: fusion research site", actionType = DebugActionType.Action, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void SpawnFusionResearchSiteAtMapCenter()
+        {
+            Map map = MugirlGameUtility.LoadedMaps?.FirstOrDefault(MugirlGameUtility.IsCurrentMap);
+            if (!Prefs.DevMode || map == null)
+            {
+                Messages.Message("Mugirl.CQ.DebugMapUnavailable".Translate(), MessageTypeDefOf.RejectInput, historical: false);
+                return;
+            }
+            try
+            {
+                CorporateNetwork.DevSpawnFusionResearchSite(map);
+                Messages.Message("Mugirl.CQ.DebugMapSpawned".Translate(), MessageTypeDefOf.PositiveEvent, historical: false);
+            }
+            catch (Exception e)
+            {
+                MugirlLog.WarningOnce("CorporateQuestSite.Debug", "Corporate fusion research map debug spawn failed: " + e.Message);
+                Messages.Message("Mugirl.CQ.DebugMapFailed".Translate(e.Message), MessageTypeDefOf.RejectInput, historical: false);
             }
         }
     }

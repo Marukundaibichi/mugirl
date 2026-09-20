@@ -68,6 +68,7 @@ namespace Mugirl
         {
             base.WindowUpdate();
             navigationMarker = CorporateMotion.Approach(navigationMarker, requestedPage * 47f, 17f, Time.unscaledDeltaTime);
+            if (!Closing) UpdateOrderCatalogWork();
             if (contentStarted < 0f || Closing) return;
             float elapsed = Time.realtimeSinceStartup - contentStarted;
             if (!contentCommitted && elapsed >= ContentOut)

@@ -4,8 +4,8 @@
         <defName>Mugirl_AutoloadingSystem</defName>
         <!-- 自驱装弹系统 -->
         <label>self-propelled autoloading system</label>
-        <!-- 为雪牛娘武器轮盘设计的重型腰挂装填机构。火力满载期间，它会自动处理全部武器，从而取消两轮齐射之间的累计装弹时间，但不会加快实际的武器切换动作。 -->
-        <description>A heavy waist-mounted loading mechanism designed for a Mugirl weapon wheel. During full-firepower operation it services every weapon automatically, eliminating the combined reload pause between volleys. It does not accelerate the physical weapon-switching sequence.</description>
+        <!-- 源自雪牛娘母星遗留的先进装备套装之一，左右两端各有一个装弹口，能在射击时迅速为其他枪械完成装填。部分型号也会将支架改造成喷射口。 -->
+        <description>An advanced system preserved from the Mugirl homeworld. Loading ports at both ends rapidly service compatible firearms while the wearer shoots; some variants replace the ports with thrusters for powerful mobility.</description>
         <techLevel>Spacer</techLevel>
         <graphicData>
             <texPath>Things/Apparel/Mugirl_AutoloadingSystem/Mugirl_AutoloadingSystem</texPath>
@@ -30,6 +30,8 @@
             <careIfWornByCorpse>false</careIfWornByCorpse>
             <careIfDamaged>false</careIfDamaged>
             <wearPerDay>0</wearPerDay>
+            <wornGraphicPath>Things/Apparel/Mugirl_AutoloadingSystem/Mugirl_AutoloadingSystem</wornGraphicPath>
+            <useWornGraphicMask>false</useWornGraphicMask>
             <bodyPartGroups>
                 <li>Waist</li>
             </bodyPartGroups>

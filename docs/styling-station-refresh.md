@@ -25,6 +25,27 @@ HAR 原有 `ResetPostfix(true)` 仍负责恢复数据并刷新图形，确认时
 4. 更换款式后分别使用重置和取消，检查原来的外观恢复。
 5. 检查普通人类的发型更改仍按原有梳妆台工作流程应用。
 
+## 2026-09-20：身体附件的来源与临时印记
+
+身体附件的基础变体继续由 HAR `addonVariants` 保存，梳妆台选择与旧存档兼容。
+新生成 Pawn 不再从全部特殊附件中无条件随机：只有 Childhood 为
+`Mugirl_ExperimentalChild`（增产实验对象）的雪牛娘，才有 35% 总概率获得永久标记，
+命中后化学疤痕与条形码各占一半。
+
+Vanilla `JobDriver_Lovin.GenerateRandomMinTicksToNextLovin(Pawn)` 只在 Lovin 完成路径调用。
+低侵入 Postfix 对拥有 `CompMugirlBodyAccessory` 的参与者分别判定：牙印 25%、屁股掌印
+25%、无印记 50%。临时印记持续 60000–180000 tick（1–3 天），状态随 Pawn 存档；
+渲染时它覆盖但不改写 HAR 基础变体，到期后恢复原来的梳妆台选择、条形码或化学疤痕。
+应用和到期都会刷新人物渲染树与头像缓存。
+
+数值集中在 `Mugirl_Race.xml` 的身体附件 addon 与 Comp 配置中，修改概率或持续时间
+不需要改 C#。补丁不跳过 Vanilla 方法；失效时只是不再产生临时印记。
+`docs/tools/Test-BodyAccessoryLifecycle.ps1` 使用可控随机数与 tick 执行生产代码，覆盖背景分支、
+两种 Lovin 印记、临时覆盖、到期恢复和渲染缓存刷新。
+
+验证结果：Release 编译 0 警告 / 0 错误；身体附件生命周期 15 项断言通过；原梳妆台刷新
+10 项断言通过；完整 Phase 6 静态验证通过。尚未完成游戏内 Lovin 与生成视觉回归。
+
 ## 2026-09-16：启动时 HAR 图标在错误线程加载
 
 用户日志明确指向 `MugirlBootstrap.TryPatchClass → Harmony/Mono 方法编译 → AlienRace.StylingStation..cctor`。

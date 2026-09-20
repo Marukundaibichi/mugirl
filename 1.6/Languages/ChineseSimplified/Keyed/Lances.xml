@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Mugirl.Lance.PointCharge.Label>定点冲锋</Mugirl.Lance.PointCharge.Label>
+  <Mugirl.Lance.PointCharge.Desc>向远处敌人发起冲锋，按骑枪当前耐久造成伤害；随后骑枪损失耐久，未死亡的目标会被击晕。</Mugirl.Lance.PointCharge.Desc>
+  <Mugirl.Lance.LineCharge.Label>沿途冲锋</Mugirl.Lance.LineCharge.Label>
+  <Mugirl.Lance.LineCharge.Desc>向远处敌人发起冲锋，攻击并击晕沿途首次接触的敌人；骑乘对象也会用手中武器攻击这些目标。</Mugirl.Lance.LineCharge.Desc>
+  <Mugirl.Lance.MustBeDrafted>持有者必须处于征召状态。</Mugirl.Lance.MustBeDrafted>
+  <Mugirl.Lance.Cooldown>{0}后就绪。</Mugirl.Lance.Cooldown>
+  <Mugirl.Lance.InvalidTarget>请选择超过最小冲锋距离的存活敌对角色。</Mugirl.Lance.InvalidTarget>
+  <Mugirl.Weapon.MugirlOnly>只有雪牛娘能够安全装备这件武器。</Mugirl.Weapon.MugirlOnly>
+</LanguageData>

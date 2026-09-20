@@ -43,4 +43,13 @@
         <gender>Female</gender>
         <eyeOffsetEastWest>(0.13, 0, 0.17)</eyeOffsetEastWest>
     </HeadTypeDef>
+
+    <HeadTypeDef ParentName="AverageBase"><defName>Mugirl_Female_G</defName><graphicPath>Mugirl/Heads/Female/Mugirl_Female_G</graphicPath><gender>Female</gender><eyeOffsetEastWest>(0.13, 0, 0.17)</eyeOffsetEastWest></HeadTypeDef>
+    <HeadTypeDef ParentName="AverageBase"><defName>Mugirl_Female_H</defName><graphicPath>Mugirl/Heads/Female/Mugirl_Female_H</graphicPath><gender>Female</gender><eyeOffsetEastWest>(0.13, 0, 0.17)</eyeOffsetEastWest></HeadTypeDef>
+    <HeadTypeDef ParentName="AverageBase"><defName>Mugirl_Female_I</defName><graphicPath>Mugirl/Heads/Female/Mugirl_Female_I</graphicPath><gender>Female</gender><eyeOffsetEastWest>(0.13, 0, 0.17)</eyeOffsetEastWest></HeadTypeDef>
+    <HeadTypeDef ParentName="AverageBase"><defName>Mugirl_Female_J</defName><graphicPath>Mugirl/Heads/Female/Mugirl_Female_J</graphicPath><gender>Female</gender><eyeOffsetEastWest>(0.13, 0, 0.17)</eyeOffsetEastWest></HeadTypeDef>
+    <HeadTypeDef ParentName="AverageBase"><defName>Mugirl_Female_K</defName><graphicPath>Mugirl/Heads/Female/Mugirl_Female_K</graphicPath><gender>Female</gender><eyeOffsetEastWest>(0.13, 0, 0.17)</eyeOffsetEastWest></HeadTypeDef>
+    <HeadTypeDef ParentName="AverageBase"><defName>Mugirl_Female_L</defName><graphicPath>Mugirl/Heads/Female/Mugirl_Female_L</graphicPath><gender>Female</gender><eyeOffsetEastWest>(0.13, 0, 0.17)</eyeOffsetEastWest></HeadTypeDef>
+    <HeadTypeDef ParentName="AverageBase"><defName>Mugirl_Female_M</defName><graphicPath>Mugirl/Heads/Female/Mugirl_Female_M</graphicPath><gender>Female</gender><eyeOffsetEastWest>(0.13, 0, 0.17)</eyeOffsetEastWest></HeadTypeDef>
+    <HeadTypeDef ParentName="AverageBase"><defName>Mugirl_Female_N</defName><graphicPath>Mugirl/Heads/Female/Mugirl_Female_N</graphicPath><gender>Female</gender><eyeOffsetEastWest>(0.13, 0, 0.17)</eyeOffsetEastWest></HeadTypeDef>
 </Defs>

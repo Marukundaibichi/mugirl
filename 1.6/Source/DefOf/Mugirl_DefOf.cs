@@ -54,6 +54,14 @@ namespace Mugirl
 
         public static ResearchProjectDef Mugirl_Autoloading;
 
+        public static ThingDef Mugirl_NeuralCombatArmor;
+
+        public static ThingDef Mugirl_NeuralAmplifierHelmet;
+
+        public static JobDef Job_MugirlLancePointCharge;
+
+        public static JobDef Job_MugirlLanceLineCharge;
+
         public static HediffDef Mugirl_Armbinder;
 
         public static HediffDef Mugirl_Abasia;
@@ -116,6 +124,8 @@ namespace Mugirl
         public static RimWorld.BackstoryDef Mugirl_Newborn;
 
         public static RimWorld.BackstoryDef Mugirl_Colonist;
+
+        public static RimWorld.BackstoryDef Mugirl_ExperimentalChild;
 
         [MayRequire("Ludeon.RimWorld.Biotech")]
         public static XenotypeDef Mugirl_Xenotype;

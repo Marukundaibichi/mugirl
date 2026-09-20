@@ -97,9 +97,14 @@
         <Compile Include="Compatibility\WeaponWheel\YayoCombatCompatibility.cs" />
         <Compile Include="DefOf\MugirlContentDefOf.cs" />
         <Compile Include="DefOf\Mugirl_DefOf.cs" />
+        <Compile Include="Features\Appearance\CompMugirlBodyAccessory.cs" />
+        <Compile Include="Features\Appearance\Harmony_LovinBodyAccessory.cs" />
         <Compile Include="Features\Appearance\MugirlBodyAccessoryAddon.cs" />
         <Compile Include="Features\Appearance\MugirlExtraOutline.cs" />
         <Compile Include="Features\Appearance\Harmony_ExtraOutline.cs" />
+        <Compile Include="Features\AdvancedArmor\CompProperties_NeuralCombatArmor.cs" />
+        <Compile Include="Features\AdvancedArmor\CompProperties_NeuralShoulderDeflection.cs" />
+        <Compile Include="Features\AdvancedArmor\Harmony_AdvancedArmor.cs" />
         <Compile Include="Features\Apparel\MugirlApparelTagUtility.cs" />
         <Compile Include="Features\Genes\CompProperties_AbilityEffect_ForceJob.cs" />
         <Compile Include="Features\Genes\CompAbilityEffect_PickupThrow.cs" Condition=" '$(EnableMugirlThrowSystem)' == 'true' " />
@@ -175,6 +180,8 @@
         <Compile Include="Features\Milk\Thought_Hediff.cs" />
         <Compile Include="Features\Milk\WorkGiver_GatherBodyResources.cs" />
         <Compile Include="Features\Milk\WorkGiver_GatherMilk.cs" />
+        <Compile Include="Features\Lances\CompLanceCharge.cs" />
+        <Compile Include="Features\Lances\JobDriver_LanceCharge.cs" />
         <Compile Include="Features\Mechanoids\CompProperties_SegmentedMechTail.cs" />
         <Compile Include="Features\Mechanoids\Comp_SegmentedMechTail.cs" />
         <Compile Include="Features\Mechanoids\PawnRenderNode_SegmentedMechTail.cs" />
@@ -226,6 +233,7 @@
         <Compile Include="Features\WeaponWheel\WeaponWheelEnemyLoadoutGenerator.cs" />
         <Compile Include="Features\WeaponWheel\WeaponWheelTransferScope.cs" />
         <Compile Include="Features\WeaponWheel\WeaponWheelWarmupScope.cs" />
+        <Compile Include="Features\Weapons\Harmony_MugirlRaceRestrictedWeapons.cs" />
         <Compile Include="Features\Newborn\Harmony_PawnGenerator_NewbornVisuals.cs" />
         <Compile Include="Features\Newborn\Harmony_PawnRenderNode_Hair_MugirlBaby.cs" />
         <Compile Include="Features\Newborn\LifeStageVisualService.cs" />

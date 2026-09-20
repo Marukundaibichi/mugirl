@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
     <!-- A close-fitting Mugirl-exclusive spacesuit that provides all-weather environmental protection while avoiding interference with outer equipment as much as possible. -->
-    <Mugirl_Spacesuit.description>贴身设计的雪牛娘专属太空服，在尽量不干扰外层装备的前提下提供全天候环境防护。</Mugirl_Spacesuit.description>
+    <Mugirl_Spacesuit.description>于5499年设计定型的太空服。为满足日益增长的新世纪深空科研探索及在轨作战需要，设计师们大胆使用兼具保温、防护和机动性能的先进复合银色面料，并将生命监测与通信系统的管线集成为覆盖躯干的若干六边形网络，为该型太空服增添了几分科幻色彩。该型太空服也成为与雪牛宇航员形象相绑定的经典符号。</Mugirl_Spacesuit.description>
     <!-- Mugirl Spacesuit -->
     <Mugirl_Spacesuit.label>雪牛娘 太空服</Mugirl_Spacesuit.label>
     <!-- Lightweight headgear prepared for the Mugirl spacesuit, built within the existing Mugirl headwear system to complete environmental sealing. -->
-    <Mugirl_SpacesuitHeadgear.description>为雪牛娘太空服准备的轻量头部面罩，按现有雪牛娘头饰体系制作，用于补足环境密封。</Mugirl_SpacesuitHeadgear.description>
+    <Mugirl_SpacesuitHeadgear.description>于5499年设计定型的太空面罩。为满足日益增长的新世纪深空科研探索及在轨作战需要，设计师们大胆使用兼具保温、防护和机动性能的先进复合银色面料，在外观上模仿头纱风格，实现了视野、美观与耐用的共赢。设计师们还将生命监测与通信系统的管线集成为覆盖头部的若干六边形网络，为该型太空面罩增添了几分科幻色彩。该型太空面罩也成为与雪牛宇航员形象相绑定的经典符号。</Mugirl_SpacesuitHeadgear.description>
     <!-- Mugirl Spacesuit Headgear -->
     <Mugirl_SpacesuitHeadgear.label>雪牛娘 太空面罩</Mugirl_SpacesuitHeadgear.label>
 </LanguageData>

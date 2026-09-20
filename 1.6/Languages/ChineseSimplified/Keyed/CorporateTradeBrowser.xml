@@ -16,6 +16,7 @@
   <Mugirl.CorporateTradeBrowser.Results>{0} 项物资</Mugirl.CorporateTradeBrowser.Results>
   <Mugirl.CorporateTradeBrowser.PurchaseDesk>雪牛娘产品收购处</Mugirl.CorporateTradeBrowser.PurchaseDesk>
   <Mugirl.CorporateTradeBrowser.ProcurementDesk>巨企供应链 · 按单备货</Mugirl.CorporateTradeBrowser.ProcurementDesk>
+  <Mugirl.CorporateTradeBrowser.UpdatingCatalog>正在整理供应目录…</Mugirl.CorporateTradeBrowser.UpdatingCatalog>
   <Mugirl.CorporateTradeBrowser.RefreshIn>距下期补给 {0} 日</Mugirl.CorporateTradeBrowser.RefreshIn>
   <Mugirl.CorporateTradeBrowser.Available>库存 {0}</Mugirl.CorporateTradeBrowser.Available>
   <Mugirl.CorporateTradeBrowser.SoldOut>本期售罄</Mugirl.CorporateTradeBrowser.SoldOut>
@@ -42,6 +43,7 @@
   <Mugirl.CorporateTradeBrowser.RareSourcing>稀有物资 · 优先采购渠道</Mugirl.CorporateTradeBrowser.RareSourcing>
   <Mugirl.CorporateTradeBrowser.SpecialSourcing>专案调拨 · 非公开市场货源</Mugirl.CorporateTradeBrowser.SpecialSourcing>
   <Mugirl.CorporateTradeBrowser.Unavailable>暂停报价</Mugirl.CorporateTradeBrowser.Unavailable>
+  <Mugirl.CorporateTradeBrowser.QuotePending>正在准备报价…</Mugirl.CorporateTradeBrowser.QuotePending>
   <Mugirl.CorporateTradeBrowser.RemainingDays>余 {0} 日</Mugirl.CorporateTradeBrowser.RemainingDays>
   <Mugirl.CorporateTradeBrowser.Paid>已支付 {0}</Mugirl.CorporateTradeBrowser.Paid>
   <Mugirl.CorporateTradeBrowser.ConfirmCancellation>撤销订单 #{0}？巨企将按合同退还已付款的 {1}%。</Mugirl.CorporateTradeBrowser.ConfirmCancellation>

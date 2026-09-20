@@ -56,6 +56,40 @@ namespace Mugirl
             }
         }
 
+        public static bool TryAttackAlongCharge(Comp_MugirlMount comp, Thing target)
+        {
+            Pawn carrier = comp?.MooPawn;
+            Pawn rider = comp?.MountedPawn;
+            if (!CanRiderMelee(carrier, rider, target))
+            {
+                return false;
+            }
+
+            Verb verb = MountedPawnUtility.TryGetMeleeVerb(rider, target);
+            if (verb == null)
+            {
+                return false;
+            }
+
+            Stance originalStance = carrier.stances?.curStance;
+            try
+            {
+                using (new MountedVerbScope(verb, carrier, rider))
+                {
+                    carrier.stances?.SetStance(new Stance_Mobile());
+                    TryMountedMeleeAttack(rider, carrier, target, verb);
+                    return true;
+                }
+            }
+            finally
+            {
+                if (carrier.stances != null && carrier.stances.curStance != originalStance)
+                {
+                    carrier.stances.SetStance(originalStance ?? new Stance_Mobile());
+                }
+            }
+        }
+
         private static void TryMountedMeleeAttack(Pawn rider, Pawn carrier, Thing target, Verb verb)
         {
             if (!(verb is Verb_MeleeAttack meleeVerb) || verb.verbProps == null)
