@@ -47,16 +47,18 @@
   <Mugirl.CQ.Execute>Enforce the corporate contract</Mugirl.CQ.Execute>
   <Mugirl.CQ.ExecuteConfirm>The researchers and guards will resist. You must actually kill or capture the designated targets before collecting the corporate reward. This decision is final.</Mugirl.CQ.ExecuteConfirm>
   <Mugirl.CQ.Protect>Refuse and protect the researchers</Mugirl.CQ.Protect>
-  <Mugirl.CQ.ProtectConfirm>Refusing forfeits all corporate payment. Base goodwill change: {0}. At the current relationship, the expected change is {1} ({2} → {3}). The researchers will thank you. Attacking them later does not restore the contract. Withdraw?</Mugirl.CQ.ProtectConfirm>
+  <Mugirl.CQ.ProtectConfirm>Refusing forfeits all corporate payment. Base goodwill change: {0}. At the current relationship, the expected change is {1} ({2} → {3}).\nThe researchers will send you a gift: {4}, delivered to your colony by transport pod. Attacking them before dispatch cancels any undelivered gifts and does not restore the corporate contract. Withdraw?</Mugirl.CQ.ProtectConfirm>
   <Mugirl.CQ.Later>Decide later</Mugirl.CQ.Later>
   <Mugirl.CQ.ResearchTitle>Contact the researchers</Mugirl.CQ.ResearchTitle>
   <Mugirl.CQ.ReopenDialogue>Resume the on-site conversation and decide whether to enforce the corporate contract.</Mugirl.CQ.ReopenDialogue>
   <Mugirl.CQ.CombatLetter>The research station resists</Mugirl.CQ.CombatLetter>
   <Mugirl.CQ.CombatText>You chose to enforce the corporate contract. The researchers and guards will resist. Kill or capture the designated targets before collecting payment at the terminal.</Mugirl.CQ.CombatText>
   <Mugirl.CQ.ThanksTitle>Thanks from the investment team</Mugirl.CQ.ThanksTitle>
-  <Mugirl.CQ.ThanksText>“Thank you for treating us as people instead of figures to erase from a ledger. Your investment kept the research going; your decision today lets us live to continue it.”\nYou refused the corporate clearance contract, forfeiting its payment and accepting the diplomatic cost. The researchers remain friendly.</Mugirl.CQ.ThanksText>
+  <Mugirl.CQ.ThanksText>“Thank you for treating us as people instead of figures to erase from a ledger. Your investment kept the research going; your decision today lets us live to continue it. We have set aside a treasured techprof core and our emergency mech serums. We hope they will help protect the people you care about, too. There are some dairy products for everyone back home as well.”\nThe researchers have prepared a gift: {0}. It will be delivered to your colony by transport pod shortly. If you have no colony, the goods will be held until you establish a home.\nYou refused the corporate clearance contract, forfeiting its payment and accepting the diplomatic cost. The researchers remain friendly.</Mugirl.CQ.ThanksText>
+  <Mugirl.CQ.ProtectionReward>Gift for protecting the researchers: {0}, delivered to your colony.</Mugirl.CQ.ProtectionReward>
+  <Mugirl.CQ.ThanksPreparationFailed>Could not prepare the researchers' gift; the protection choice has not been settled: {0}</Mugirl.CQ.ThanksPreparationFailed>
   <Mugirl.CQ.ThanksRevokedTitle>The researchers withdraw their thanks</Mugirl.CQ.ThanksRevokedTitle>
-  <Mugirl.CQ.ThanksRevokedText>You attacked the researchers after promising protection. They withdraw their thanks. The corporate contract remains closed and the goodwill loss is not reversed.</Mugirl.CQ.ThanksRevokedText>
+  <Mugirl.CQ.ThanksRevokedText>You attacked the researchers after promising protection. They withdraw their thanks and cancel any undelivered gifts. The corporate contract remains closed and the goodwill loss is not reversed.</Mugirl.CQ.ThanksRevokedText>
   <Mugirl.CQ.Daily>Daily contracts</Mugirl.CQ.Daily>
   <Mugirl.CQ.Side>Side stories</Mugirl.CQ.Side>
   <Mugirl.CQ.Main>Main story</Mugirl.CQ.Main>

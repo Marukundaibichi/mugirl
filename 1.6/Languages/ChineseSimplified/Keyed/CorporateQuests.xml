@@ -47,16 +47,18 @@
   <Mugirl.CQ.Execute>执行巨企合同</Mugirl.CQ.Execute>
   <Mugirl.CQ.ExecuteConfirm>执行后研究团队和守卫会进行抵抗。你必须在实际战斗中消灭或俘获合同目标，才能领取巨企报酬。此选择不能撤回。</Mugirl.CQ.ExecuteConfirm>
   <Mugirl.CQ.Protect>拒绝执行，保护研究团队</Mugirl.CQ.Protect>
-  <Mugirl.CQ.ProtectConfirm>拒绝后放弃巨企的全部报酬。基础好感变更 {0}；按双方当前关系，预计实际变更 {1}（{2} → {3}）。研究团队将致谢；后续攻击他们不会恢复企业合同。确定退出？</Mugirl.CQ.ProtectConfirm>
+  <Mugirl.CQ.ProtectConfirm>拒绝后放弃巨企的全部报酬。基础好感变更 {0}；按双方当前关系，预计实际变更 {1}（{2} → {3}）。\n研究团队将赠送：{4}，通过运输舱送往你的殖民地。发货前攻击他们会取消尚未交付的谢礼，企业合同也不会恢复。确定退出？</Mugirl.CQ.ProtectConfirm>
   <Mugirl.CQ.Later>暂不决定</Mugirl.CQ.Later>
   <Mugirl.CQ.ResearchTitle>联系研究团队</Mugirl.CQ.ResearchTitle>
   <Mugirl.CQ.ReopenDialogue>与研究负责人继续现场交谈，决定是否执行巨企合同。</Mugirl.CQ.ReopenDialogue>
   <Mugirl.CQ.CombatLetter>研究站开始抵抗</Mugirl.CQ.CombatLetter>
   <Mugirl.CQ.CombatText>你选择执行巨企合同。研究团队和守卫已经准备抵抗。消灭或俘获指定目标后，才可在终端领取报酬。</Mugirl.CQ.CombatText>
   <Mugirl.CQ.ThanksTitle>投资团队的感谢</Mugirl.CQ.ThanksTitle>
-  <Mugirl.CQ.ThanksText>“谢谢你们没有把我们当作可以随手抹掉的账目。此前的投资让研究得以继续，这次的选择让我们能活着继续它。”\n你已拒绝企业的清除合同，放弃报酬并承担关系损失。研究团队保持友好。</Mugirl.CQ.ThanksText>
+  <Mugirl.CQ.ThanksText>“谢谢你们没有把我们当作可以随手抹掉的账目。此前的投资让研究得以继续，这次的选择让我们能活着继续它。我们拿出了一份珍藏的科技核心和应急机械液，希望它们也能守住你们珍视的人。还有些奶制成果，请带回去给大家。”\n研究团队已备好谢礼：{0}，即将通过运输舱送往你的殖民地。暂时没有殖民地时会保留货物，待建立家园后送达。\n你已拒绝企业的清除合同，放弃巨企报酬并承担关系损失。研究团队保持友好。</Mugirl.CQ.ThanksText>
+  <Mugirl.CQ.ProtectionReward>保护研究团队可获谢礼：{0}，送往殖民地。</Mugirl.CQ.ProtectionReward>
+  <Mugirl.CQ.ThanksPreparationFailed>研究团队谢礼准备失败，尚未结算保护选择：{0}</Mugirl.CQ.ThanksPreparationFailed>
   <Mugirl.CQ.ThanksRevokedTitle>研究团队收回感谢</Mugirl.CQ.ThanksRevokedTitle>
-  <Mugirl.CQ.ThanksRevokedText>你在承诺保护后攻击了研究人员。他们收回感谢；巨企合同不会恢复，已经降低的好感也不会返还。</Mugirl.CQ.ThanksRevokedText>
+  <Mugirl.CQ.ThanksRevokedText>你在承诺保护后攻击了研究人员。他们收回感谢，并取消尚未交付的谢礼；巨企合同不会恢复，已经降低的好感也不会返还。</Mugirl.CQ.ThanksRevokedText>
   <Mugirl.CQ.Daily>日常委托</Mugirl.CQ.Daily>
   <Mugirl.CQ.Side>支线任务</Mugirl.CQ.Side>
   <Mugirl.CQ.Main>主线任务</Mugirl.CQ.Main>

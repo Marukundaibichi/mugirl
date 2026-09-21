@@ -8,6 +8,17 @@ namespace Mugirl
     {
         public static void DrawWeapon(Comp_MugirlMount comp)
         {
+            Pawn carrier = comp?.MooPawn;
+            if (carrier == null)
+            {
+                return;
+            }
+
+            DrawWeapon(comp, carrier.DrawPos);
+        }
+
+        internal static void DrawWeapon(Comp_MugirlMount comp, Vector3 carrierDrawPos)
+        {
             Pawn rider = comp?.MountedPawn;
             Pawn carrier = comp?.MooPawn;
             ThingWithComps weapon = rider?.equipment?.Primary;
@@ -18,7 +29,7 @@ namespace Mugirl
 
             if (weapon.def.IsMeleeWeapon)
             {
-                MountedPawnMeleeSupport.DrawWeapon(comp);
+                MountedPawnMeleeSupport.DrawWeapon(comp, carrierDrawPos);
                 return;
             }
 
@@ -27,7 +38,7 @@ namespace Mugirl
                 return;
             }
 
-            Vector3 drawPos = comp.WeaponDrawPos;
+            Vector3 drawPos = comp.WeaponDrawPosAt(carrierDrawPos);
             LocalTargetInfo aimTarget = comp.turretAimTarget;
             Verb mountedVerb = GetPrimaryRangedVerb(comp);
             if (!aimTarget.IsValid && mountedVerb?.state == VerbState.Bursting && mountedVerb.CurrentTarget.IsValid)
@@ -42,7 +53,7 @@ namespace Mugirl
                 {
                     float drawDistanceFactor = MountedPawnUtility.EquipmentDrawDistanceFactor(rider);
                     Vector3 targetPos = aimTarget.HasThing ? targetThing.DrawPos : aimTarget.Cell.ToVector3Shifted();
-                    float aimAngle = (targetPos - comp.RiderDrawPos).AngleFlat();
+                    float aimAngle = (targetPos - comp.RiderDrawPosAt(carrierDrawPos)).AngleFlat();
                     drawPos += new Vector3(0f, 0f, 0.4f + weapon.def.equippedDistanceOffset).RotatedBy(aimAngle) * drawDistanceFactor;
                     PawnRenderUtility.DrawEquipmentAiming(weapon, drawPos, aimAngle);
                     return;

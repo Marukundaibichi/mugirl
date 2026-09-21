@@ -8,7 +8,7 @@ using RimWorld.Planet;
 namespace Mugirl
 {
     // 巨企支援小队的"死战条款"：特性本体只负责展示与判定，
-    // 不撤退与友伤折扣由本文件的两个补丁在原版入口处强制执行。
+    // 个人恐慌与友伤折扣由本文件补丁处理，集体减员撤退由支援 LordJob 禁用。
     internal static class CorporateDiehardUtility
     {
         // 原版 Faction.Notify_MemberTookDamage 的友伤惩罚为 -1.3×伤害(上限100)；
@@ -47,21 +47,17 @@ namespace Mugirl
     internal static class Harmony_CorporateDiehard_FriendlyFireGoodwill
     {
         internal static void Prefix(Faction __instance, Faction other, ref int goodwillChange,
-            HistoryEventDef reason, LookTargets lookTarget)
+            HistoryEventDef reason, GlobalTargetInfo? lookTarget)
         {
             Faction playerFaction = Faction.OfPlayerSilentFail;
             if (goodwillChange >= 0 || reason != HistoryEventDefOf.AttackedMember || other == null
-                || playerFaction == null || __instance != playerFaction || lookTarget == null)
+                || playerFaction == null || __instance != playerFaction || !lookTarget.HasValue)
             {
                 return;
             }
-            foreach (GlobalTargetInfo target in lookTarget.targets)
+            if (lookTarget.Value.Thing is Pawn pawn && pawn.Faction == other && CorporateDiehardUtility.IsDiehard(pawn))
             {
-                if (target.Thing is Pawn pawn && CorporateDiehardUtility.IsDiehard(pawn))
-                {
-                    goodwillChange = Mathf.RoundToInt(goodwillChange * CorporateDiehardUtility.FriendlyFireGoodwillFactor);
-                    return;
-                }
+                goodwillChange = Mathf.RoundToInt(goodwillChange * CorporateDiehardUtility.FriendlyFireGoodwillFactor);
             }
         }
     }

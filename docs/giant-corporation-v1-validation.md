@@ -1,5 +1,31 @@
 # 巨企首版：使用与验证记录
 
+## 2026-09-21 牛聚变保护分支稀有谢礼
+
+- 选择保护研究团队后，赠送科技核心 ×1、复活机械液 ×2、治愈机械液 ×2、雪牛娘陈年奶酪 ×30。科技核心是 `TechprofSubpersonaCore`，不是飞船 AI 核心。奖励在 XML 集中配置，确认对白、任务面板和感谢信读取同一份内容。
+- 谢礼沿用 `Vault` 和 `pendingGoods` 保存，自动空投至家园；无家园时保留。发货不受巨企交易权限限制，攻击团队会销毁尚未交付的谢礼。完成状态防止重发，旧档已完成的结局不补发；巨企合同报酬和基础 -60 好感规则保持原样。
+- `Start-CorporateValidation.ps1 -Mode Fusion -RunName <新名称>` 新增专门的任务结算与完整存读档验证，避免依赖人员买卖信仰夹具和随机站点地形。验证按存档前的原物品 ID 检查 Vault 或运输舱中的货物；`Game.UpdatePlay` 首帧可能已自动发出谢礼，不能将空的待发列表误判成丢失。
+
+北京时间 2026-09-21 17:53，`FusionRareRewardsTwo-Focused-20260921` 完成 **57 PASS / 0 FAIL**。覆盖奖励准确数量与分堆、发货失败保留、重复保护、攻击撤回、自动送货、巨企报酬关闭及完整保存读档。读档后记录为 `pending=0, restored=6, expected=6`，原有六堆货物均已交付到家园运输舱，数量符合配置，重复选择不生成新物品。
+
+- 证据副本：`TMP/FusionRareRewards-Final/Player.log`、`corporate-checks.txt`、`checks-complete.txt`。日志扫描仍有一条测试夹具已销毁 Pawn 的 `DirectPawnRelation` 引用提示（`Thing_Human5076`）；奖励物品与任务记录没有引用错误，不将此次测试记作零日志警告。
+- 真实站点与确认对白已在 `FusionRareRewardsTwo-20260921` 通过。此前宽范围运行还遇到随机 `ThinIce` 导致研究站 ToyBox 地形验证失败，以及既有信仰夹具 `Slavery_Abhorrent` 无效；这两项不属于奖励逻辑，本次没有改动。
+- 正式 Release Rebuild 与完整静态检查通过；正式 DLL 元数据不含运行时验证驱动类型，仅保留原有 `CorporateValidationSaveMigration`。DLL SHA256：`BCE939AEFCC2038FCC353F07B6F79FD4438F7C41A1A445481C4BA025335A9B6A`。
+- `TMP/FusionRareRewards-directory-audit.json`：`cycle_components=0`、`affected_candidates=0`、`scan_errors=0`。全部测试游戏位于 `%LOCALAPPDATA%/RimWorldModTests/`，未使用玩家正式存档。
+
+## 2026-09-21 支援队撤退、友伤红字与包扎修复
+
+- 原版 `Lord.SetJob` 会依据派系 `autoFlee` 自动追加减员逃亡，即使自定义图没有撤退分支仍然生效。支援 `LordJob` 现关闭 `AddFleeToil`，保留一天支援期满离场。旧档通过新增 `supportGraphVersion` 区分：缺失字段为 0，先按原图恢复 toil/trigger 索引，再于首个 tick 移除自动逃亡分支；已逃跑的队伍回到战斗，仍在战斗的队伍保留计时。旧版原生包扎 Job 同时重新分配。
+- `Faction.TryAffectGoodwillWith` 的实际参数为 `GlobalTargetInfo?`，旧补丁错误声明为 `LookTargets`，导致子弹命中支援队时空引用。修正参数类型及目标派系校验，保留 95% 友伤折扣；空目标和格子目标保持原版惩罚。好感最终数值仍经过原版自然好感修正。
+- 支援队使用专用 `JobDriver_CorporateSupportTend`，预约成功后让可行动的伤员等待医生，覆盖接近、取背包医药和包扎过程。只释放本次 Job 创建的等待；医生中断、患者接受新指令或等待到期时终止追逐。征召、战斗中及已有玩家强制指令的伤员不被自动打断；自疗、卧床和倒地目标仍走原版治疗流程，医药耗尽时可徒手处理。
+- 新增隔离验证入口：`Start-CorporateValidation.ps1 -Mode Support -RunName <新名称>`。原服务回归中的旧 `HuntEnemiesIndividual` 职责断言同步改为当前专用职责。
+
+验证时间：北京时间 2026-09-21 01:54。RimWorld 1.6.4871 rev591，Harmony + Core + 全 DLC + HAR + Mugirl；运行 `SupportFixes-0921-final`，**64 PASS / 0 FAIL**，游戏自动退出。覆盖 23 件新服装成人限制、4/8 人队伍损失至仅剩一人仍不退、一天后正常离场、真实友伤回调、空/格子目标、移动患者治疗完成、中断与玩家命令、自疗、医药耗尽，以及治疗中、旧战斗图和旧逃亡图的完整游戏存读档。该结果不代表用户完整第三方模组组合的兼容验收。
+
+- 日志与检查副本：`TMP/SupportFixes-0921-final/Player.log`、`support-checks.txt`、`checks-complete.txt`；`Invoke-PlayerLogScan.ps1` 无可疑行。完成标记：`PASS checks=64 failures=0 2026-09-20T17:54:48.4359321Z`。
+- 完整 `Invoke-Phase6StaticValidation.ps1` 通过，正式 Release DLL 已更新；SHA256：`2D94A5981746D4263602981B6FC8C084DA51B9069F701B0F28B9EFA2DDA55F80`。验证构建使用外部测试游戏，未覆盖正式程序集或使用玩家存档。
+- `TMP/rimsort-directory-audit-support-0921-final.json`：`affected_candidates=0`、`scan_errors=0`、`cycle_components=0`。
+
 更新：2026-09-16。适用：RimWorld 1.6.4871。完整玩法设计见 [巨企通讯与业务系统设计方案](giant-corporation-design.md)。
 
 ## 如何开始
@@ -23,7 +49,7 @@
 | 抵押贷款 | 一笔 500–30,000 白银，本金不超过抵押估值 70%；期限 14 日，剩余本金每日 2% 单利，逾期 3%。首轮追偿在违约后 1 日，随后每 2–4 日真实袭击；还清解除债务敌对锁并停止新增追偿。 |
 | 抵押处理 | 保管实际抵押物，保留材质、品质、耐久与身份；还清后取回。违约后可主动按签约估值 50% 清算抵债；不会无提示没收后仍索取全部原债。 |
 | 每周委托 | 默认 6 份、同时进行 3 份。加工供应实际原料并收取可退保证金；肃清生成敌方站点；投资签约固定结算结果；分销按真实对外销售记进度；适用的外部委托转介到任务列表。 |
-| 牛聚变支线 | 原投资结算后，商业网络解锁时在 1–3 日发一次邀请。任务地图中央生成 `Mugirl_CorporateFusionResearchSite` 蓝图；占地先清除建筑、植物和 Filth，保留原有地板，只在建筑实际占地缺少承载力时补混凝土，生成后填满现场耗燃料设施；周边按噪声生成自然渐变的无岩顶可通行空间，并保留四条弯曲、宽窄变化的边缘通道。到研究站交谈，执行后通过实际敌对和目标状态履约，报酬 4,000 白银、基础 +10 好感；保护研究团队则关闭企业报酬、获得感谢并承担基础 -60 好感。好感遵循原版自然好感调整，确认时显示预计扣减。 |
+| 牛聚变支线 | 原投资结算后，商业网络解锁时在 1–3 日发一次邀请。任务地图中央生成 `Mugirl_CorporateFusionResearchSite` 蓝图；占地先清除建筑、植物和 Filth，保留原有地板，只在建筑实际占地缺少承载力时补混凝土，生成后填满现场耗燃料设施；周边按噪声生成自然渐变的无岩顶可通行空间，并保留四条弯曲、宽窄变化的边缘通道。到研究站交谈，执行后通过实际敌对和目标状态履约，报酬 4,000 白银、基础 +10 好感；保护研究团队则关闭企业报酬，获得 1 枚科技核心、2 份复活机械液、2 份治愈机械液及 30 份陈年奶酪，并承担基础 -60 好感。好感遵循原版自然好感调整，确认时显示预计扣减。 |
 
 报价、轮换、利率、人数与奖励等主要参数位于 `1.6/Defs/Misc/`、`1.6/Defs/QuestScriptDefs/CorporateQuests.xml` 和 `1.6/Defs/Corporate/CorporateIntroduction.xml`。已签约的重要条款随合同保存；改配置不会重抽投资结果或改变已有分销销量目标。
 
@@ -107,6 +133,6 @@
 - 加工候选排除特殊 RecipeWorker、手术和随机复杂产物。检查研究与工作台存在，但不替玩家保证殖民者技能、供电、燃料或生产时间；允许已有合格库存履约。
 - 外部委托首批为 TradeRequest 和 OpportunitySite_ItemStash。已接入原版生成及任务列表，未手动完整通关这两类转介任务。
 - 分销按商品类型和材质累计真实销量，同类合格库存可以履约；不逐件追踪初始批次。
-- 研究站首版为简洁场景和实际人物。保护分支的感谢使用对白与信件，不额外发放设计中可选的实物研究成果。
+- 保护分支在 2026-09-21 增加稀有谢礼：1 枚科技核心、2 份复活机械液、2 份治愈机械液及 30 份雪牛娘陈年奶酪（基础总价值 7,300 白银），通过运输舱送至家园。无家园时保留，发货前攻击研究人员会取消未交付的谢礼；旧档已完成的结局不追溯补发。
 - 不启用 Ideology 时不提供购入奴隶，不会自动改成免费殖民者。旧档缺失巨企时补建派系而不追加世界据点，通讯台可用。
 - 初次运行存在其他已安装模组的 About.xml 元数据提示，以及 HAR 三个造型台图标的线程错误。后者经用户提供完整堆栈确认由 Mugirl 提前注册造型台补丁触发，后续修复及新的 DLL 记录见 [造型台修复记录](styling-station-refresh.md)；原先将其统称为环境提示不准确。

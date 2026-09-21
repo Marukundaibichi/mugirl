@@ -103,6 +103,7 @@
         <Compile Include="Features\Appearance\Harmony_LovinBodyAccessory.cs" />
         <Compile Include="Features\Appearance\MugirlBodyAccessoryAddon.cs" />
         <Compile Include="Features\Appearance\MugirlExtraOutline.cs" />
+        <Compile Include="Features\Appearance\LongCascadeBackHair.cs" />
         <Compile Include="Features\Appearance\PawnRenderNode_NunVeilBack.cs" />
         <Compile Include="Features\Appearance\Harmony_ExtraOutline.cs" />
         <Compile Include="Features\AdvancedArmor\CompProperties_NeuralCombatArmor.cs" />
@@ -284,6 +285,7 @@
         <Compile Include="Features\Roping\Comp_ShowRopedBy.cs" />
         <Compile Include="Features\Roping\FloatMenuProvider_RopeMoo.cs" />
         <Compile Include="Features\Roping\Harmony_Door_PawnCanOpen.cs" />
+        <Compile Include="Features\Roping\Harmony_MugirlPredation.cs" />
         <Compile Include="Features\Roping\Harmony_PawnDraftController.cs" />
         <Compile Include="Features\Roping\Harmony_PreventEscape.cs" />
         <Compile Include="Features\Roping\Harmony_RopingDraw.cs" />
@@ -346,9 +348,19 @@
         <Compile Include="..\..\docs\tools\CorporateVisualValidation.cs" />
         <Compile Include="..\..\docs\tools\CorporatePricingChecks.cs" />
         <Compile Include="..\..\docs\tools\CorporateServicesRuntimeChecks.cs" />
+        <Compile Include="..\..\docs\tools\CorporateSupportRuntimeChecks.cs" />
     </ItemGroup>
     <ItemGroup Condition=" '$(EnableStylingValidation)' == 'true' ">
+        <Reference Include="UnityEngine.ImageConversionModule">
+            <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.ScreenCaptureModule">
+            <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ScreenCaptureModule.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
         <Compile Include="..\..\docs\tools\StylingStartupValidation.cs" />
+        <Compile Include="..\..\docs\tools\FaceAccessoryRuntimeValidation.cs" />
     </ItemGroup>
     <ItemGroup Condition=" '$(EnableLanceValidation)' == 'true' ">
         <Reference Include="UnityEngine.ScreenCaptureModule">

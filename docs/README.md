@@ -8,6 +8,7 @@
 - `maintenance-guide.md`：日常改代码、改 Def、改资源前后的基本流程。
 - `content-update-guide.md`：新增服装、物品、Hediff、Job、事件、种族外观等内容时的检查项。
 - `compatibility-guide.md`：DLC、HAR、Facial Animation、Search and Destroy、VCookE 以及其他可选 mod 的兼容规则。
+- `bootstrap-startup-2026-09-21.md`：启动阶段 Harmony 失败日志再次触发语言空引用的问题、修复与冷启动验证。
 - `facial-animation-guide.md`：雪牛娘 Facial Animation 接入、贴图命名、动画调度和新增 FA 内容检查项。
 - `weapon-wheel-design.md`：雪牛娘武器轮盘、火力满载、换枪动画与自驱装弹系统的设计和验收标准。
 - `update-2026-09-20.md`：9.20 新服装、头型发型、骑枪、AT-23、神经战斗套装与食品调整的实现和验证记录。

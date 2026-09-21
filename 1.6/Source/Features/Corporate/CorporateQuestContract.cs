@@ -200,6 +200,7 @@ namespace Mugirl
         public int fusionReward = 4000;
         public int fusionGoodwill = 10;
         public int fusionRefusalGoodwill = -60;
+        public List<ThingDefCountClass> fusionProtectionRewards = new List<ThingDefCountClass>();
     }
 
     internal static class CorporateQuestDefs

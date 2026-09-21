@@ -11,7 +11,7 @@ namespace Mugirl
         {
             if (__instance?.Rotation == Rot4.South)
             {
-                DrawRider(__instance, phase);
+                DrawRider(__instance, phase, drawLoc);
             }
         }
 
@@ -19,11 +19,11 @@ namespace Mugirl
         {
             if (__instance?.Rotation != Rot4.South)
             {
-                DrawRider(__instance, phase);
+                DrawRider(__instance, phase, drawLoc);
             }
         }
 
-        private static void DrawRider(Pawn pawn, DrawPhase phase)
+        private static void DrawRider(Pawn pawn, DrawPhase phase, Vector3 carrierDrawPos)
         {
             if (phase != DrawPhase.Draw || pawn == null)
             {
@@ -37,8 +37,12 @@ namespace Mugirl
                 return;
             }
 
-            rider.Drawer.renderer.DynamicDrawPhaseAt(phase, comp.RiderDrawPos, pawn.Rotation, neverAimWeapon: true);
-            MountedCombatController.DrawWeapon(comp);
+            rider.Drawer.renderer.DynamicDrawPhaseAt(
+                phase,
+                comp.RiderDrawPosAt(carrierDrawPos),
+                pawn.Rotation,
+                neverAimWeapon: true);
+            MountedCombatController.DrawWeapon(comp, carrierDrawPos);
         }
     }
 }

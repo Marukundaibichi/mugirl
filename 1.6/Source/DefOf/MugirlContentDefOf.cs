@@ -56,6 +56,7 @@ namespace Mugirl
 
         // 巨企支援小队搜敌 duty 引用（含空闲医疗节点）。
         public static Verse.AI.DutyDef Mugirl_CorporateSupportHunt;
+        public static JobDef Mugirl_CorporateSupportTend;
 
         // 快递事件任务引用。
         public static QuestScriptDef Mugirl_CourierRaid;

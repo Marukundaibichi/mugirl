@@ -36,7 +36,7 @@ foreach ($root in $roots) {
 }
 
 # FA 脸红必须预合成进完整头图。独立 cover 会作为第二个 render node 绘制，
-# 在 FaceAdjustment 缩放和线性采样时于脸颊下缘产生接缝。
+# 在缩放和线性采样时于脸颊下缘产生接缝。
 $headTextureRoot = Join-Path $faTextureRoot 'FA\Heads_Blank'
 $faceVariants = @('Normal', 'Normal2', 'Normal3', 'Normal4', 'Normal5', 'Normal6', 'Normal7')
 $blushShapes = @('blush', 'lovinblush')
@@ -68,6 +68,9 @@ Write-Host '[textures] Passed: 42 baked FA blush/lovinblush head textures and no
 $apparelTextureCount = 0
 $missingApparelTextures = @()
 foreach ($definition in $newApparel.Defs.ThingDef | Where-Object { $_.defName }) {
+    if ($definition.apparel.developmentalStageFilter -ne 'Adult') {
+        throw "9.20 apparel must be adult-only: $($definition.defName)"
+    }
     $path = Join-Path (Join-Path $repoPath 'Textures') $definition.apparel.wornGraphicPath
     $bodySuffixes = @('')
     $apparelLayers = @($definition.apparel.layers.li)
@@ -76,7 +79,6 @@ foreach ($definition in $newApparel.Defs.ThingDef | Where-Object { $_.defName })
         -or $apparelLayers -contains 'EyeCover'
     if (-not $usesHeadGraphic) {
         $bodySuffixes = @('_Female')
-        if ($definition.ParentName -eq 'Mugirl_0920CasualBase') { $bodySuffixes += '_Child' }
     }
     $directions = @('north', 'east', 'south')
     if ($definition.defName -eq 'Mugirl_HighCutSweater') { $directions += 'west' }
@@ -99,6 +101,7 @@ Write-Host "[textures] Passed: $apparelTextureCount worn apparel direction/body-
 
 $pngCount = 0
 $residual555 = @()
+$legacyFa555Count = 0
 foreach ($root in @('Textures', '1.6\Textures', '1.6\FacialAnimation\Textures')) {
     foreach ($file in Get-ChildItem -LiteralPath (Join-Path $repoPath $root) -Recurse -File -Filter '*.png') {
         $stream = [IO.File]::OpenRead($file.FullName)
@@ -107,11 +110,17 @@ foreach ($root in @('Textures', '1.6\Textures', '1.6\FacialAnimation\Textures'))
             if ($stream.Read($header, 0, 24) -ne 24) { throw "Invalid PNG: $($file.FullName)" }
             $width = [int64]$header[16] * 16777216 + $header[17] * 65536 + $header[18] * 256 + $header[19]
             $height = [int64]$header[20] * 16777216 + $header[21] * 65536 + $header[22] * 256 + $header[23]
-            if ($width -eq 555 -and $height -eq 555) { $residual555 += $file.FullName }
+            if ($width -eq 555 -and $height -eq 555) {
+                # FA 已回退到 0.5.0，保留历史原图尺寸；其他资源仍执行优化检查。
+                if ($file.FullName.StartsWith($faTextureRoot + '\', [StringComparison]::OrdinalIgnoreCase)) {
+                    $legacyFa555Count++
+                }
+                else { $residual555 += $file.FullName }
+            }
             $pngCount++
         }
         finally { $stream.Dispose() }
     }
 }
 if ($residual555.Count) { throw "Unoptimized 555x555 textures remain: $($residual555 -join ', ')" }
-Write-Host "[textures] Passed: $pngCount PNG headers, $referenceCount FA source references, conditional loading, no 555x555 textures."
+Write-Host "[textures] Passed: $pngCount PNG headers, $referenceCount FA source references, conditional loading, $legacyFa555Count original 0.5.0 FA textures at 555x555; no 555x555 textures outside FA."

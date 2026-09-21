@@ -61,34 +61,44 @@ namespace Mugirl
                     return Vector3.zero;
                 }
 
-                Vector3 drawPos = carrier.DrawPos;
-                Vector3 headOffset = Vector3.zero;
-                if (carrier.Drawer?.renderer != null && carrier.story?.bodyType != null)
-                {
-                    headOffset = carrier.Drawer.renderer.BaseHeadOffsetAt(carrier.Rotation);
-                }
+                return RiderDrawPosAt(carrier.DrawPos);
+            }
+        }
 
-                CompProperties_MugirlMount mountProps = Props;
-                Vector3 result = drawPos + headOffset + MountedPawnUtility.OffsetForRot(mountProps, carrier.Rotation);
-                if (mountProps == null)
-                {
-                    result.y = drawPos.y;
-                    return result;
-                }
+        internal Vector3 RiderDrawPosAt(Vector3 carrierDrawPos)
+        {
+            Pawn carrier = MooPawn;
+            if (carrier == null)
+            {
+                return Vector3.zero;
+            }
 
-                float altitudeOffset = mountProps.riderAltitudeOffset;
-                if (carrier.Rotation == Rot4.North)
-                {
-                    altitudeOffset = mountProps.northRiderAltitudeOffset;
-                }
-                else if (carrier.Rotation == Rot4.South)
-                {
-                    altitudeOffset = mountProps.southRiderAltitudeOffset;
-                }
+            Vector3 headOffset = Vector3.zero;
+            if (carrier.Drawer?.renderer != null && carrier.story?.bodyType != null)
+            {
+                headOffset = carrier.Drawer.renderer.BaseHeadOffsetAt(carrier.Rotation);
+            }
 
-                result.y = drawPos.y + altitudeOffset;
+            CompProperties_MugirlMount mountProps = Props;
+            Vector3 result = carrierDrawPos + headOffset + MountedPawnUtility.OffsetForRot(mountProps, carrier.Rotation);
+            if (mountProps == null)
+            {
+                result.y = carrierDrawPos.y;
                 return result;
             }
+
+            float altitudeOffset = mountProps.riderAltitudeOffset;
+            if (carrier.Rotation == Rot4.North)
+            {
+                altitudeOffset = mountProps.northRiderAltitudeOffset;
+            }
+            else if (carrier.Rotation == Rot4.South)
+            {
+                altitudeOffset = mountProps.southRiderAltitudeOffset;
+            }
+
+            result.y = carrierDrawPos.y + altitudeOffset;
+            return result;
         }
 
         public Vector3 WeaponDrawPos
@@ -106,6 +116,20 @@ namespace Mugirl
                 pos.y += 0.01f;
                 return pos;
             }
+        }
+
+        internal Vector3 WeaponDrawPosAt(Vector3 carrierDrawPos)
+        {
+            Pawn carrier = MooPawn;
+            Vector3 pos = RiderDrawPosAt(carrierDrawPos);
+            if (carrier == null)
+            {
+                return pos;
+            }
+
+            pos += MountedPawnUtility.MountedWeaponSideOffset(carrier.Rotation, 0.14f);
+            pos.y += 0.01f;
+            return pos;
         }
 
         public Comp_MugirlMount()

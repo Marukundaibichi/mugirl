@@ -330,7 +330,8 @@ namespace Mugirl
             int projectedBase = Mathf.Clamp((corporation?.BaseGoodwillWith(MugirlWildSlaveUtility.PlayerFaction) ?? goodwill) + adjustedPenalty, -100, 100);
             // 负向变更保留原版自然好感加成及情势上限，显示实际预计损失。
             int projectedGoodwill = Mathf.Min(goodwill, projectedBase);
-            DiaNode protect = new DiaNode("Mugirl.CQ.ProtectConfirm".Translate(basePenalty, projectedGoodwill - goodwill, goodwill, projectedGoodwill));
+            DiaNode protect = new DiaNode("Mugirl.CQ.ProtectConfirm".Translate(basePenalty, projectedGoodwill - goodwill, goodwill, projectedGoodwill,
+                FusionProtectionRewardDescription));
             protect.options.Add(new DiaOption("Mugirl.CQ.Protect".Translate()) { action = () => ProtectResearchers(m), resolveTree = true });
             protect.options.Add(new DiaOption("Mugirl.CQ.Back".Translate()) { link = root });
             root.options.Add(new DiaOption("Mugirl.CQ.Protect".Translate()) { link = protect });
@@ -352,9 +353,26 @@ namespace Mugirl
             MugirlGameUtility.Letters.ReceiveLetter("Mugirl.CQ.CombatLetter".Translate(), "Mugirl.CQ.CombatText".Translate(), LetterDefOf.ThreatSmall, m.site);
         }
 
+        internal static string FusionProtectionRewardDescription => string.Join(", ", MissionConfig.fusionProtectionRewards
+            .Select(reward => reward.count + " × " + reward.thingDef.LabelCap).ToArray());
+
         private void ProtectResearchers(CorporateMission m)
         {
-            if (m.state != CorporateMissionState.Active || m.choice != CorporateResearchChoice.Undecided) return;
+            if (m == null || !missions.Contains(m) || !m.IsSide || m.state != CorporateMissionState.Active
+                || m.choice != CorporateResearchChoice.Undecided) return;
+            try
+            {
+                // 复用 Vault 和 pendingGoods 的存档所有权；准备成功后才锁定结局，重进对白不会重发。
+                foreach (ThingDefCountClass reward in MissionConfig.fusionProtectionRewards)
+                    PrepareMissionGoods(m, reward.thingDef, reward.count);
+            }
+            catch (Exception e)
+            {
+                DiscardPendingMissionGoods(m);
+                MugirlLog.WarningOnce("CorporateFusionGift." + m.id, "Mugirl.CQ.ThanksPreparationFailed".Translate(e.Message));
+                Messages.Message("Mugirl.CQ.DeliveryFailed".Translate(), MessageTypeDefOf.RejectInput, false);
+                return;
+            }
             m.choice = CorporateResearchChoice.Protect;
             m.reward = 0;
             m.goodwill = 0;
@@ -362,7 +380,7 @@ namespace Mugirl
             CorporateFaction?.TryAffectGoodwillWith(MugirlWildSlaveUtility.PlayerFaction, MissionConfig.fusionRefusalGoodwill);
             Record("Mugirl.CQ.ProtectedRecord", m.Title);
             EndMissionQuest(m, QuestEndOutcome.Success);
-            MugirlGameUtility.Letters.ReceiveLetter("Mugirl.CQ.ThanksTitle".Translate(), "Mugirl.CQ.ThanksText".Translate(), LetterDefOf.PositiveEvent, m.site);
+            MugirlGameUtility.Letters.ReceiveLetter("Mugirl.CQ.ThanksTitle".Translate(), "Mugirl.CQ.ThanksText".Translate(FusionProtectionRewardDescription), LetterDefOf.PositiveEvent, m.site);
         }
 
         internal void ResearcherAttacked(Pawn pawn)
@@ -373,6 +391,7 @@ namespace Mugirl
             else if (m.choice == CorporateResearchChoice.Protect && !m.gratitudeRevoked)
             {
                 m.gratitudeRevoked = true;
+                DiscardPendingMissionGoods(m);
                 MugirlGameUtility.Letters.ReceiveLetter("Mugirl.CQ.ThanksRevokedTitle".Translate(), "Mugirl.CQ.ThanksRevokedText".Translate(), LetterDefOf.NegativeEvent, m.site);
             }
         }

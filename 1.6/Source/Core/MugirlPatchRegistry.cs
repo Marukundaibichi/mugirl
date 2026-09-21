@@ -17,7 +17,9 @@ namespace Mugirl
         {
             if (harmony == null)
             {
-                MugirlLog.WarningOnce("PatchRegistry.NullHarmony", "Mugirl.PatchRegistry.NullHarmony".Translate().ToString());
+                MugirlLog.StartupWarningOnce("PatchRegistry.NullHarmony",
+                    () => "Mugirl.PatchRegistry.NullHarmony".Translate().ToString(),
+                    "Manual patches skipped because the Harmony instance is missing.");
                 return;
             }
 
@@ -38,17 +40,19 @@ namespace Mugirl
         {
             if (target == null)
             {
-                MugirlLog.WarningOnce(
+                MugirlLog.StartupWarningOnce(
                     "PatchRegistry.MissingTarget." + nameKey,
-                    "Mugirl.PatchRegistry.MissingTarget".Translate(nameKey.Translate()).ToString());
+                    () => "Mugirl.PatchRegistry.MissingTarget".Translate(nameKey.Translate()).ToString(),
+                    "Manual patch target missing: " + nameKey);
                 return;
             }
 
             if (prefix == null && postfix == null)
             {
-                MugirlLog.WarningOnce(
+                MugirlLog.StartupWarningOnce(
                     "PatchRegistry.MissingPatchMethod." + nameKey,
-                    "Mugirl.PatchRegistry.MissingPatchMethod".Translate(nameKey.Translate()).ToString());
+                    () => "Mugirl.PatchRegistry.MissingPatchMethod".Translate(nameKey.Translate()).ToString(),
+                    "Manual patch method missing: " + nameKey);
                 return;
             }
 
@@ -62,10 +66,11 @@ namespace Mugirl
             }
             catch (Exception ex)
             {
-                string detail = ex.GetType().Name + ": " + ex.Message;
-                MugirlLog.WarningOnce(
+                string detail = ex.ToString();
+                MugirlLog.StartupWarningOnce(
                     "PatchRegistry.PatchFailed." + nameKey,
-                    "Mugirl.PatchRegistry.PatchFailed".Translate(nameKey.Translate(), detail).ToString());
+                    () => "Mugirl.PatchRegistry.PatchFailed".Translate(nameKey.Translate(), detail).ToString(),
+                    "Manual patch failed: " + nameKey + ". " + detail);
             }
         }
     }

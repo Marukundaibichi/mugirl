@@ -151,14 +151,40 @@ public static class CorporateQuestRuntimeChecks
             check("Protection closes corporate payment and leaves researchers alive", protect.state == CorporateMissionState.Completed
                 && protect.choice == CorporateResearchChoice.Protect && protect.reward == 0 && !protectedResearcher.Dead);
             check("Protection applies the configured relationship penalty", relationAfter <= relationBefore);
+            List<Thing> gift = protect.pendingGoods.ToList();
+            check("Protection prepares the exact configured gift with saved vault ownership", gift.Count > 0
+                && gift.All(t => t.holdingOwner == network.Vault && t.stackCount <= t.def.stackLimit)
+                && CorporateNetwork.MissionConfig.fusionProtectionRewards.All(reward =>
+                    gift.Where(t => t.def == reward.thingDef).Sum(t => t.stackCount) == reward.count));
+            check("Unavailable delivery preserves the researchers' gift", !network.ReceiveMissionGoods(protect, new CorporateTradeContext(map, () => false))
+                && protect.pendingGoods.SequenceEqual(gift));
             Call(network, "ProtectResearchers", protect);
-            check("Repeated protection cannot apply goodwill twice", network.CorporateFaction.GoodwillWith(Faction.OfPlayer) == relationAfter);
+            check("Repeated protection cannot apply goodwill or prepare gifts twice", network.CorporateFaction.GoodwillWith(Faction.OfPlayer) == relationAfter
+                && protect.pendingGoods.SequenceEqual(gift));
             Call(network, "ResearcherAttacked", protectedResearcher);
             check("Attacking after protection revokes thanks without reopening payment", protect.gratitudeRevoked
-                && protect.state == CorporateMissionState.Completed && protect.reward == 0 && !network.ClaimMission(protect, context));
+                && protect.state == CorporateMissionState.Completed && protect.reward == 0 && !network.ClaimMission(protect, context)
+                && protect.pendingGoods.Count == 0 && gift.All(t => t.Destroyed && !network.Vault.Contains(t)));
+
+            CorporateMission delivered = new CorporateMission { id = id++, kind = CorporateMissionKind.Fusion,
+                state = CorporateMissionState.Active, reward = 4000, goodwill = 10 };
+            missions.Add(delivered);
+            Call(network, "ProtectResearchers", delivered);
+            List<Thing> deliveredGift = delivered.pendingGoods.ToList();
+            typeof(CorporateNetwork).GetField("nextMissionCheck", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(network, 0);
+            Call(network, "QuestsTick");
+            check("Protection gifts dispatch automatically to the home map", delivered.pendingGoods.Count == 0
+                && deliveredGift.Count > 0 && deliveredGift.All(t => !t.Destroyed && t.holdingOwner != network.Vault
+                    && (t.Spawned || t.holdingOwner != null)));
+            int vaultCount = network.Vault.Count;
+            Call(network, "ProtectResearchers", delivered);
+            check("Delivered protection gifts cannot be regenerated or claimed as corporate silver", delivered.pendingGoods.Count == 0
+                && network.Vault.Count == vaultCount && !network.ClaimMission(delivered, context));
         }
         finally
         {
+            foreach (CorporateMission mission in missions.Where(m => !previous.Contains(m)))
+                Call(network, "DiscardPendingMissionGoods", mission);
             foreach (Thing thing in spawned) if (thing != null && !thing.Destroyed) thing.Destroy();
             missions.Clear();
             missions.AddRange(previous);
@@ -312,6 +338,7 @@ public static class CorporateQuestRuntimeChecks
                 {
                     int alive = mission.targets.Count(p => p != null && !p.Dead);
                     int goodwillAfterChoice = network.CorporateFaction.PlayerGoodwill;
+                    check("Research protection confirmation previews its configured gift", confirmation.text.ToString().Contains(CorporateNetwork.FusionProtectionRewardDescription));
                     check("Research protection selected choice: actual=" + mission.choice, mission.choice == CorporateResearchChoice.Protect);
                     check("Research protection contract state: actual=" + mission.state, mission.state == CorporateMissionState.Completed);
                     check("Research protection leaves generated team alive: alive=" + alive + ", total=" + mission.targets.Count,
@@ -322,6 +349,8 @@ public static class CorporateQuestRuntimeChecks
                         goodwillAfterChoice == expectedGoodwill && network.CorporateFaction.BaseGoodwillWith(Faction.OfPlayer) == expectedBaseGoodwill);
                     check("Research protection closes corporate payment: reward=" + mission.reward, mission.reward == 0);
                     check("Research protection quest ends successfully: actual=" + mission.quest?.State, mission.quest?.State == QuestState.EndedSuccess);
+                    check("Research protection prepares gifts on the actual quest site", mission.pendingGoods.Count > 0
+                        && mission.pendingGoods.All(t => t.holdingOwner == network.Vault));
                 }
             }
             CorporateMission failedGeneration = fixtures.Last(m => m.IsSide);
@@ -369,6 +398,7 @@ public static class CorporateQuestRuntimeChecks
                     }
                     foreach (CorporateMission mission in fixtures)
                     {
+                        Call(network, "DiscardPendingMissionGoods", mission);
                         foreach (Pawn target in mission.targets.Where(p => p != null && !p.Destroyed).ToList()) target.Destroy();
                         if (mission.quest?.State == QuestState.Ongoing) mission.quest.End(QuestEndOutcome.Unknown, false, false);
                         if (mission.site?.HasMap == true) Current.Game.DeinitAndRemoveMap(mission.site.Map, false);

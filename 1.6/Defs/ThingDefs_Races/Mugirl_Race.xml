@@ -235,6 +235,11 @@
                                     <bodyPartLabel>left horn</bodyPartLabel>
                                     <drawWithoutPart>true</drawWithoutPart>
                                 </BodyPart>
+                                <Apparel>
+                                    <hiddenUnderApparelTag>
+                                        <li>Mugirl_HideHorns</li>
+                                    </hiddenUnderApparelTag>
+                                </Apparel>
                                 <BodyType>Female</BodyType>
                             </conditions>
                             <offsets>
@@ -270,6 +275,11 @@
                                     <bodyPartLabel>left horn</bodyPartLabel>
                                     <drawWithoutPart>true</drawWithoutPart>
                                 </BodyPart>
+                                <Apparel>
+                                    <hiddenUnderApparelTag>
+                                        <li>Mugirl_HideHorns</li>
+                                    </hiddenUnderApparelTag>
+                                </Apparel>
                                 <BodyType>Baby</BodyType>
                             </conditions>
                             <offsets>
@@ -305,6 +315,11 @@
                                     <bodyPartLabel>right horn</bodyPartLabel>
                                     <drawWithoutPart>true</drawWithoutPart>
                                 </BodyPart>
+                                <Apparel>
+                                    <hiddenUnderApparelTag>
+                                        <li>Mugirl_HideHorns</li>
+                                    </hiddenUnderApparelTag>
+                                </Apparel>
                                 <BodyType>Female</BodyType>
                             </conditions>
                             <offsets>
@@ -340,6 +355,11 @@
                                     <bodyPartLabel>right horn</bodyPartLabel>
                                     <drawWithoutPart>true</drawWithoutPart>
                                 </BodyPart>
+                                <Apparel>
+                                    <hiddenUnderApparelTag>
+                                        <li>Mugirl_HideHorns</li>
+                                    </hiddenUnderApparelTag>
+                                </Apparel>
                                 <BodyType>Baby</BodyType>
                             </conditions>
                             <offsets>
@@ -375,6 +395,11 @@
                                     <bodyPartLabel>left horn</bodyPartLabel>
                                     <drawWithoutPart>true</drawWithoutPart>
                                 </BodyPart>
+                                <Apparel>
+                                    <hiddenUnderApparelTag>
+                                        <li>Mugirl_HideHorns</li>
+                                    </hiddenUnderApparelTag>
+                                </Apparel>
                                 <BodyType>Child</BodyType>
                             </conditions>
                             <offsets>
@@ -410,6 +435,11 @@
                                     <bodyPartLabel>right horn</bodyPartLabel>
                                     <drawWithoutPart>true</drawWithoutPart>
                                 </BodyPart>
+                                <Apparel>
+                                    <hiddenUnderApparelTag>
+                                        <li>Mugirl_HideHorns</li>
+                                    </hiddenUnderApparelTag>
+                                </Apparel>
                                 <BodyType>Child</BodyType>
                             </conditions>
                             <offsets>
@@ -474,12 +504,12 @@
                             <defaultOffset>Center</defaultOffset>
                             <scaleWithPawnDrawsize>true</scaleWithPawnDrawsize>
                             <shaderType>CutoutSkinOverlay</shaderType>
-                            <!-- 抵消 HAR 前置层后落在约第 53 层，低于第 70 层头部服装根。 -->
+                            <!-- 抵消 HAR 前置层后落在约第 58.5 层：高于 FA 的 head cover/highlight/emotion，低于眼泪、眉毛和第 70 层头部服装根。 -->
                             <offsets>
-                                <south><layerOffset>-0.28061</layerOffset></south>
-                                <north><layerOffset>-0.28061</layerOffset></north>
-                                <east><layerOffset>-0.28061</layerOffset></east>
-                                <west><layerOffset>-0.28061</layerOffset></west>
+                                <south><layerOffset>-0.27860</layerOffset></south>
+                                <north><layerOffset>-0.27860</layerOffset></north>
+                                <east><layerOffset>-0.27860</layerOffset></east>
+                                <west><layerOffset>-0.27860</layerOffset></west>
                             </offsets>
                         </li>
                     </bodyAddons>
@@ -984,6 +1014,8 @@
         </recipes>
         <comps>
             <!-- <li Class="Mugirl.CompProperties_ShowRopedBy" /> -->
+            <!-- XNN_Hairs8F：LongCascade 的南/东西向后发层，北向由主图完整绘制。 -->
+            <li Class="Mugirl.Features.Appearance.CompProperties_LongCascadeBackHair" />
             <li Class="Mugirl.Features.Appearance.CompProperties_MugirlBodyAccessory">
                 <!-- 每次 Lovin：牙印 25%、屁股掌印 25%、无印记 50%；持续 1–3 天。 -->
                 <lovinBiteChance>0.25</lovinBiteChance>

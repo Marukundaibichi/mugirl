@@ -15,6 +15,13 @@
     <fusionInviteMinDays>1</fusionInviteMinDays><fusionInviteMaxDays>3</fusionInviteMaxDays>
     <fusionOfferDays>15</fusionOfferDays><fusionActionDays>10</fusionActionDays>
     <fusionReward>4000</fusionReward><fusionGoodwill>10</fusionGoodwill><fusionRefusalGoodwill>-60</fusionRefusalGoodwill>
+    <!-- 支线后期谢礼以稀有研究和救命物资为主，奶制成果作为剧情赠礼。 -->
+    <fusionProtectionRewards>
+      <TechprofSubpersonaCore>1</TechprofSubpersonaCore>
+      <MechSerumResurrector>2</MechSerumResurrector>
+      <MechSerumHealer>2</MechSerumHealer>
+      <Mugirl_AgedCheese>30</Mugirl_AgedCheese>
+    </fusionProtectionRewards>
   </Mugirl.CorporateQuestConfigDef>
   <QuestScriptDef>
     <defName>Mugirl_CorporateMission</defName>

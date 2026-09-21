@@ -1,5 +1,8 @@
 """Normalize fully transparent texture pixels to black without altering alpha.
 
+FA lid cover images are shader masks, so their RGB remains meaningful even where
+alpha is zero. Those files are deliberately excluded from normalization.
+
 python docs/tools/Normalize-TransparentPixels.py          # Read-only scan
 python docs/tools/Normalize-TransparentPixels.py --apply  # Back up, fix, verify
 
@@ -27,6 +30,13 @@ DIRECTORIES = (
     "Versions/1.6/Integrations/VCookE/Textures",
     "Versions/1.6/Integrations/SearchAndDestroy/Textures",
 )
+
+
+def preserves_transparent_rgb(relative):
+    """Return whether transparent RGB is shader data rather than disposable color."""
+    parts = relative.parts
+    return (parts[:5] == ("1.6", "FacialAnimation", "Textures", "FA", "Lids")
+            and "_cover_" in relative.stem)
 
 
 def digest(data):
@@ -94,6 +104,7 @@ def main(apply=False):
                    and "备份" not in path.parts)
     rows, groups = [], Counter()
     total_pixels, changed_files = 0, 0
+    protected_files, protected_pixels = 0, 0
     for index, path in enumerate(files, 1):
         if not path.resolve().is_relative_to(ROOT):
             raise ValueError(f"Texture outside mod workspace: {path}")
@@ -101,9 +112,16 @@ def main(apply=False):
         original = path.read_bytes()
         original_mode, pixels = load(original)
         transparent = pixels[:, :, 3] == 0
-        count = int(np.count_nonzero(transparent & np.any(pixels[:, :, :3] != 0, axis=2)))
+        nonblack_transparent = int(np.count_nonzero(
+            transparent & np.any(pixels[:, :, :3] != 0, axis=2)))
+        protected = preserves_transparent_rgb(relative)
+        count = 0 if protected else nonblack_transparent
+        if protected:
+            protected_files += 1
+            protected_pixels += nonblack_transparent
         row = {"path": relative.as_posix(), "before_sha256": digest(original),
-               "after_sha256": digest(original), "changed_pixels": count}
+               "after_sha256": digest(original), "changed_pixels": count,
+               "preserves_transparent_rgb": protected}
         if count and apply:
             expected = pixels.copy()
             expected[transparent, :3] = 0
@@ -138,7 +156,10 @@ def main(apply=False):
                 "changed_pixels": total_pixels, "groups": dict(groups), "files": rows}
     if not apply:
         print(json.dumps({"files": len(files), "files_needing_change": changed_files,
-                          "pixels_needing_change": total_pixels, "groups": dict(groups)},
+                          "pixels_needing_change": total_pixels,
+                          "protected_shader_mask_files": protected_files,
+                          "protected_nonblack_transparent_pixels": protected_pixels,
+                          "groups": dict(groups)},
                          ensure_ascii=False, indent=2))
         return
     (work / "manifest.json").write_text(json.dumps(manifest, indent=2, ensure_ascii=False),
@@ -160,10 +181,13 @@ def main(apply=False):
         if digest(data) != row["after_sha256"]:
             raise ValueError(f"Final file hash mismatch: {row['path']}")
         _, pixels = load(data)
-        if np.any(pixels[pixels[:, :, 3] == 0, :3] != 0):
+        if (not preserves_transparent_rgb(Path(row["path"]))
+                and np.any(pixels[pixels[:, :, 3] == 0, :3] != 0)):
             raise ValueError(f"Nonblack transparent pixels remain: {row['path']}")
     report = {key: value for key, value in manifest.items() if key != "files"}
     report.update({"verified_files": len(rows), "remaining_nonblack_transparent_pixels": 0,
+                   "protected_shader_mask_files": protected_files,
+                   "protected_nonblack_transparent_pixels": protected_pixels,
                    "alpha_and_visible_pixels_preserved": True,
                    "backup_directory": str(work / "OriginalTextures")})
     (work / "verification.json").write_text(json.dumps(report, indent=2), encoding="utf-8")

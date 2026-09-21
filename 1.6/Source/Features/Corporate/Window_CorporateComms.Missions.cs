@@ -50,6 +50,8 @@ namespace Mugirl
                     description += "\n" + "Mugirl.CQ.Terms".Translate(mission.duration / 60000f, mission.goodwill).ToString();
                 if (mission.kind == CorporateMissionKind.Fusion)
                     description += "\n" + "Mugirl.CQ.FusionTerms".Translate(mission.reward, CorporateNetwork.MissionConfig.fusionRefusalGoodwill).ToString();
+                if (mission.IsSide && mission.choice == CorporateResearchChoice.Undecided)
+                    description += "\n" + "Mugirl.CQ.ProtectionReward".Translate(CorporateNetwork.FusionProtectionRewardDescription).ToString();
                 float descHeight = Text.CalcHeight(description, view.width - 24);
                 bool canLocate = mission.site != null && mission.site.Spawned;
                 bool canTalk = mission.IsSide && mission.state == CorporateMissionState.Active && mission.choice == CorporateResearchChoice.Undecided

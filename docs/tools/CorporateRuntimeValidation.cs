@@ -15,8 +15,11 @@ namespace Mugirl
         private int phase;
         private int persistedOrder;
         private int persistedStockId;
+        private int persistedProtection;
+        private int[] persistedGiftIds;
         private readonly List<string> results = new List<string>();
         private bool running;
+        private bool FusionOnly => GenCommandLine.CommandLineArgPassed("mugirlCorporateFusionChecks");
 
         public CorporateRuntimeValidation(Game game) { }
 
@@ -162,6 +165,13 @@ namespace Mugirl
             network.EnsureWeeklyOffers();
             Check("reopening does not reroll weekly stock", ids.SequenceEqual(network.Stock.Select(s => s.id)));
             Check("order catalogue includes advanced ordinary goods", network.OrderCatalog.Any(d => d.techLevel >= TechLevel.Spacer));
+            if (FusionOnly)
+            {
+                // 谢礼存读档不依赖人员买卖信仰夹具或随机研究站地形。
+                CorporateQuestRuntimeChecks.Run(map, network, context, Check);
+                SaveForRoundtrip(network, context);
+                return;
+            }
             CorporateIntroRuntimeChecks.Run(map, network, context, Check);
             RunTradeChecks(map, context, network);
             CorporateFinanceRuntimeChecks.Run(map, network, context, Check);
@@ -189,7 +199,7 @@ namespace Mugirl
 
         private void SaveForRoundtrip(CorporateNetwork network, CorporateTradeContext context)
         {
-            CorporateServicesRuntimeChecks.Run(context.Map, network, context, Check);
+            if (!FusionOnly) CorporateServicesRuntimeChecks.Run(context.Map, network, context, Check);
             // 保存一份仍在履行的真实订单，在完整存档往返后检查引用和金额。
             network.EnsureWeeklyOffers();
             network.CorporateFaction.TryAffectGoodwillWith(Faction.OfPlayer, 100 - network.CorporateFaction.PlayerGoodwill, false, false);
@@ -197,6 +207,14 @@ namespace Mugirl
             Check("persistence fixture order created: " + reason, placed);
             persistedOrder = network.Orders.Last().id;
             persistedStockId = network.Stock.First().id;
+            // 保留未发出的谢礼跨完整存读档，确认真实物品与任务引用一并恢复。
+            CorporateMission protection = new CorporateMission { id = network.Missions.Max(m => m.id) + 1,
+                kind = CorporateMissionKind.Fusion, state = CorporateMissionState.Active, reward = 4000, goodwill = 10 };
+            ((List<CorporateMission>)network.Missions).Add(protection);
+            typeof(CorporateNetwork).GetMethod("ProtectResearchers", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(network, new object[] { protection });
+            persistedProtection = protection.id;
+            persistedGiftIds = protection.pendingGoods.Select(t => t.thingIDNumber).ToArray();
+            Check("persistence fixture has pending protection gifts", protection.pendingGoods.Count > 0);
             phase = 1;
             GameDataSaveLoader.SaveGame("CorporateRoundtrip");
             Check("full game save produced", File.Exists(GenFilePaths.FilePathForSavedGame("CorporateRoundtrip")));
@@ -272,7 +290,36 @@ namespace Mugirl
             Check("order objects have a single restored vault owner", order != null && order.goods.Count > 0 && order.goods.All(t => t != null && t.holdingOwner == network.Vault));
             Check("weekly stock is not rerolled on load", network.Stock.Any(s => s.id == persistedStockId));
             Check("escrow inventory has no duplicate references", network.Vault.Distinct().Count() == network.Vault.Count);
-            CorporateServicesRuntimeChecks.VerifyReload(network, Check);
+            // 读档后的首个 Game.UpdatePlay 可能已推进业务 tick；按原物品 ID 检查 Vault 或运输舱中的真实货物。
+            CorporateMission protection = network.Missions.FirstOrDefault(m => m.id == persistedProtection);
+            List<Thing> restoredGifts = network.Vault.ToList();
+            foreach (Map map in Find.Maps)
+            {
+                List<Thing> mapThings = new List<Thing>();
+                ThingOwnerUtility.GetAllThingsRecursively(map, ThingRequest.ForGroup(ThingRequestGroup.Everything), mapThings);
+                restoredGifts.AddRange(mapThings);
+            }
+            restoredGifts = restoredGifts.Distinct().Where(t => persistedGiftIds.Contains(t.thingIDNumber)).ToList();
+            Check("protection result and exact gifts survive full save/load: pending=" + protection?.pendingGoods.Count
+                + ", restored=" + restoredGifts.Count + ", expected=" + persistedGiftIds.Length, protection != null
+                && protection.choice == CorporateResearchChoice.Protect && protection.state == CorporateMissionState.Completed
+                && protection.reward == 0 && restoredGifts.Count == persistedGiftIds.Length && restoredGifts.Count > 0
+                && restoredGifts.All(t => !t.Destroyed && (t.holdingOwner == network.Vault
+                    ? protection.pendingGoods.Contains(t) : t.MapHeld?.IsPlayerHome == true))
+                && CorporateNetwork.MissionConfig.fusionProtectionRewards.All(reward =>
+                    restoredGifts.Where(t => t.def == reward.thingDef).Sum(t => t.stackCount) == reward.count));
+            if (protection != null)
+            {
+                typeof(CorporateNetwork).GetField("nextMissionCheck", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(network, 0);
+                typeof(CorporateNetwork).GetMethod("QuestsTick", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(network, null);
+                Check("restored protection gifts dispatch once", restoredGifts.Count == persistedGiftIds.Length && restoredGifts.Count > 0
+                    && protection.pendingGoods.Count == 0
+                    && restoredGifts.All(t => !t.Destroyed && t.holdingOwner != network.Vault && t.MapHeld?.IsPlayerHome == true));
+                int vaultCount = network.Vault.Count;
+                typeof(CorporateNetwork).GetMethod("ProtectResearchers", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(network, new object[] { protection });
+                Check("completed protection after reload cannot generate another gift", protection.pendingGoods.Count == 0 && network.Vault.Count == vaultCount);
+            }
+            if (!FusionOnly) CorporateServicesRuntimeChecks.VerifyReload(network, Check);
             Check("gameplay DLL has expected Harmony patches", MugirlBootstrap.PatchedClassNames.Contains(typeof(Harmony_CorporateCommsConsole).FullName)
                 && MugirlBootstrap.PatchedClassNames.Contains(typeof(CorporateDebt_HostileTo_Patch).FullName));
             Finish();

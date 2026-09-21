@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Defs>
+    <!-- 只调整雪牛娘，使用独立名称以免覆盖 FA 的全种族默认调整。 -->
     <FacialAnimation.FaceAdjustmentDef>
-        <defName>DefaultFaceSizeAndPositionDef</defName>
+        <defName>MugirlFaceSizeAndPositionDef</defName>
         <RaceName>Mugirl</RaceName>
         <Size>(1.63,1.63)</Size>
         <RightEyeLabel>right eye</RightEyeLabel>

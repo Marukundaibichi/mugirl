@@ -66,15 +66,15 @@ namespace Mugirl
             catch (ReflectionTypeLoadException ex)
             {
                 types = ex.Types ?? new Type[0];
-                MugirlLog.WarningOnce(
+                WarnPatchFailure(
                     "Bootstrap.PatchClassDiscoveryPartial",
-                    "Mugirl.Bootstrap.HarmonyPatchFailed".Translate(assembly.GetName().Name, ExceptionSummary(ex)).ToString());
+                    assembly.GetName().Name, ex);
             }
             catch (Exception ex)
             {
-                MugirlLog.WarningOnce(
+                WarnPatchFailure(
                     "Bootstrap.PatchClassDiscoveryFailed",
-                    "Mugirl.Bootstrap.HarmonyPatchFailed".Translate(assembly.GetName().Name, ExceptionSummary(ex)).ToString());
+                    assembly.GetName().Name, ex);
                 return patchTypes;
             }
 
@@ -104,9 +104,9 @@ namespace Mugirl
             catch (Exception ex)
             {
                 string typeName = type.FullName ?? type.Name;
-                MugirlLog.WarningOnce(
+                WarnPatchFailure(
                     "Bootstrap.PatchClassAttributeFailed." + typeName,
-                    "Mugirl.Bootstrap.HarmonyPatchFailed".Translate(typeName, ExceptionSummary(ex)).ToString());
+                    typeName, ex);
                 return false;
             }
         }
@@ -126,15 +126,19 @@ namespace Mugirl
             }
             catch (Exception ex)
             {
-                MugirlLog.WarningOnce(
+                WarnPatchFailure(
                     "Bootstrap.PatchClassFailed." + patchClassName,
-                    "Mugirl.Bootstrap.HarmonyPatchFailed".Translate(patchClassName, ExceptionSummary(ex)).ToString());
+                    patchClassName, ex);
             }
         }
 
-        private static string ExceptionSummary(Exception ex)
+        private static void WarnPatchFailure(string warningKey, string targetName, Exception exception)
         {
-            return ex.GetType().Name + ": " + ex.Message;
+            // Harmony 的外层异常通常只有目标信息；保留内部异常和堆栈才能定位失败原因。
+            string detail = exception.ToString();
+            MugirlLog.StartupWarningOnce(warningKey,
+                () => "Mugirl.Bootstrap.HarmonyPatchFailed".Translate(targetName, detail).ToString(),
+                "Harmony patch skipped: " + targetName + ". " + detail);
         }
     }
 }

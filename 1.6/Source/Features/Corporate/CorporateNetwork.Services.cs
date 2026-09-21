@@ -163,6 +163,12 @@ namespace Mugirl
     public sealed class LordJob_CorporateSupport : LordJob
     {
         private IntVec3 fallback;
+        private int supportGraphVersion = 1;
+
+        // Lord.SetJob 会在 CreateGraph 之后自动追加减员逃跑分支，必须在此关闭。
+        // 旧档先还原原有索引与计时数据，再于首个 tick 移除自动逃跑分支。
+        public override bool AddFleeToil => supportGraphVersion == 0 && Scribe.mode == LoadSaveMode.PostLoadInit;
+
         public LordJob_CorporateSupport() { }
         public LordJob_CorporateSupport(IntVec3 fallback) { this.fallback = fallback; }
         public override StateGraph CreateGraph()
@@ -180,7 +186,33 @@ namespace Mugirl
             // No casualty, damage, or morale retreat transition.
             return graph;
         }
-        public override void ExposeData() { Scribe_Values.Look(ref fallback, "fallback"); }
+        public override void LordJobTick()
+        {
+            if (supportGraphVersion != 0) return;
+            supportGraphVersion = 1;
+            bool wasFleeing = lord.CurLordToil is LordToil_PanicFlee;
+            if (wasFleeing)
+            {
+                lord.GotoToil(lord.Graph.lordToils[0]);
+            }
+            foreach (Pawn pawn in lord.ownedPawns)
+            {
+                // 旧版原生 TendPatient 没有协同等待，读档后重新分配专用医疗 Job。
+                if (wasFleeing || pawn.CurJobDef == JobDefOf.TendPatient)
+                {
+                    pawn.jobs?.EndCurrentJob(JobCondition.InterruptForced);
+                }
+            }
+            lord.Graph.transitions.RemoveAll(t => t.target is LordToil_PanicFlee);
+            lord.Graph.lordToils.RemoveAll(t => t is LordToil_PanicFlee);
+        }
+
+        public override void ExposeData()
+        {
+            Scribe_Values.Look(ref fallback, "fallback");
+            // 缺失字段代表旧图；新建小队使用版本 1，保留原有 fallback 存档键。
+            Scribe_Values.Look(ref supportGraphVersion, "supportGraphVersion", 0);
+        }
     }
 
     // Vanilla caravan/settlement/orbital deals also contribute both gross directions.

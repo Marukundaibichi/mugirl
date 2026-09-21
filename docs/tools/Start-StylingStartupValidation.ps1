@@ -1,6 +1,8 @@
 param(
     [Parameter(Mandatory)][ValidatePattern('^[A-Za-z0-9-]+$')][string]$RunName,
-    [switch]$WithYaOpt
+    [switch]$WithYaOpt,
+    [switch]$FaceAccessories,
+    [switch]$WithFacialAnimation
 )
 
 $ErrorActionPreference = 'Stop'
@@ -17,6 +19,7 @@ if ($WithYaOpt) { $active += 'zetrith.prepatcher' }
 $active += @('brrainz.harmony', 'ludeon.rimworld') + $expansions
 if ($WithYaOpt) { $active += 'sz.yaopt' }
 $active += @('erdelf.humanoidalienraces', 'har.mugirlrace')
+if ($WithFacialAnimation) { $active += 'nals.facialanimation' }
 $activeXml = ($active | ForEach-Object { '<li>' + $_ + '</li>' }) -join ''
 $knownXml = ($expansions | ForEach-Object { '<li>' + $_ + '</li>' }) -join ''
 $encoding = New-Object System.Text.UTF8Encoding $false
@@ -25,10 +28,12 @@ $encoding = New-Object System.Text.UTF8Encoding $false
 [System.IO.File]::WriteAllText((Join-Path $saveRoot 'Config\Prefs.xml'),
     '<PrefsData><langFolderName>ChineseSimplified (简体中文)</langFolderName><runInBackground>true</runInBackground><volumeGame>0</volumeGame><volumeMusic>0</volumeMusic><fullscreen>false</fullscreen></PrefsData>', $encoding)
 $gameRoot = [System.IO.Path]::GetFullPath((Join-Path $repository '..\..'))
-$arguments = @('-mugirlStylingStartupChecks', '-screen-fullscreen', '0', '-screen-width', '1280', '-screen-height', '720',
+$arguments = @('-screen-fullscreen', '0', '-screen-width', '1280', '-screen-height', '720',
     ('-savedatafolder="' + $saveRoot + '"'), ('-logFile "' + (Join-Path $saveRoot 'Player.log') + '"'))
 if ($WithYaOpt) { $arguments += '-mugirlStylingWithYaOpt' }
-# 需先显式构建 EnableStylingValidation=true；驱动在启动时检查图标和补丁后退出，不生成世界。
+if ($FaceAccessories) { $arguments += @('-quicktest', '-mugirlFaceAccessoryChecks') }
+else { $arguments += '-mugirlStylingStartupChecks' }
+# 需先显式构建 EnableStylingValidation=true；默认只检查启动，FaceAccessories 在独立 quicktest 地图穿戴截图后退出。
 $process = Start-Process -FilePath (Join-Path $gameRoot 'RimWorldWin64.exe') -WorkingDirectory $gameRoot -ArgumentList $arguments -WindowStyle Hidden -PassThru
 $process.Id | Set-Content -LiteralPath (Join-Path $saveRoot 'process-id.txt')
 [PSCustomObject]@{ WithYaOpt = [bool]$WithYaOpt; ProcessId = $process.Id; SaveRoot = $saveRoot }

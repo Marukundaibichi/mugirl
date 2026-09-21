@@ -1,82 +1,230 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
     <!-- PatchGovernance:
-    Targets: 雪牛娘专属 FaceAnimationDef 的 targetJobs 与 headOffset。
-    Scope: FacialAnimation 条件目录；内部另用 FindMod 限定可选动画集成。
-    Duplicate guard: 原有 Job 列表按加载流程单次追加，没有逐项去重；本次仅补说明，不改变补丁行为。
-    Failure: 可选目标缺失时沿用 success Always；未启用相关 mod 时不执行 match。
+    Targets: 雪牛娘专属 FaceAnimationDef 的 targetJobs 与原包指定的 Lovin headOffset。
+    Scope: FA 条件目录；RJW 的 mod 名称、21 个动作映射与位移删除范围均以用户提供的原包为准。
+    Duplicate guard: 每个 targetJobs 列表逐项排除已有 Job；位移仅在原包指定节点存在时删除。
+    Failure: 可选 mod、动画或目标节点缺失时静默跳过；不根据本机已安装 mod 改写兼容范围。
     -->
-    <!-- Extend Mugirl's custom face animations to RJW jobs. -->
     <Operation Class="PatchOperationFindMod">
         <mods>
             <li>RimJobWorld</li>
         </mods>
         <match Class="PatchOperationSequence">
-            <success>Always</success>
             <operations>
-                <li Class="PatchOperationAdd">
-                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs</xpath>
-                    <success>Always</success>
-                    <value>
-                        <li>RJW_Masturbate</li>
-                        <li>GettinBred</li>
-                        <li>Bestiality</li>
-                        <li>BestialityForFemale</li>
-                        <li>ViolateCorpse</li>
-                        <li>Quickie</li>
-                        <li>GettingQuickie</li>
-                        <li>GettinRaped</li>
-                        <li>JoinInBed</li>
-                        <li>GettinLoved</li>
-                        <li>GettinLicked</li>
-                        <li>GettinSucked</li>
-                        <li>WhoreIsServingVisitors</li>
-                        <li>JoinInBedAnimation</li>
-                        <li>GettinLovedAnimation</li>
-                    </value>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="RJW_Masturbate")]</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="RJW_Masturbate")]</xpath>
+                        <value>
+                            <li>RJW_Masturbate</li>
+                        </value>
+                    </match>
                 </li>
-                <li Class="PatchOperationAdd">
-                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="WaitCombat_Mugirl"]/targetJobs</xpath>
-                    <success>Always</success>
-                    <value>
-                        <li>RapeComfortPawn</li>
-                        <li>RandomRape</li>
-                        <li>RapeEnemy</li>
-                    </value>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="GettinBred")]</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="GettinBred")]</xpath>
+                        <value>
+                            <li>GettinBred</li>
+                        </value>
+                    </match>
                 </li>
-                <li Class="PatchOperationAdd">
-                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="StandAndBeSociallyActive_Mugirl"]/targetJobs</xpath>
-                    <success>Always</success>
-                    <value>
-                        <li>WhoreInvitingVisitors</li>
-                    </value>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="Bestiality")]</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="Bestiality")]</xpath>
+                        <value>
+                            <li>Bestiality</li>
+                        </value>
+                    </match>
                 </li>
-                <li Class="PatchOperationAdd">
-                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="Wear_Mugirl"]/targetJobs</xpath>
-                    <success>Always</success>
-                    <value>
-                        <li>CleanSelf</li>
-                        <li>StruggleInBondageGear</li>
-                    </value>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="BestialityForFemale")]</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="BestialityForFemale")]</xpath>
+                        <value>
+                            <li>BestialityForFemale</li>
+                        </value>
+                    </match>
                 </li>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="ViolateCorpse")]</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="ViolateCorpse")]</xpath>
+                        <value>
+                            <li>ViolateCorpse</li>
+                        </value>
+                    </match>
+                </li>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="Quickie")]</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="Quickie")]</xpath>
+                        <value>
+                            <li>Quickie</li>
+                        </value>
+                    </match>
+                </li>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="GettingQuickie")]</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="GettingQuickie")]</xpath>
+                        <value>
+                            <li>GettingQuickie</li>
+                        </value>
+                    </match>
+                </li>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="GettinRaped")]</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="GettinRaped")]</xpath>
+                        <value>
+                            <li>GettinRaped</li>
+                        </value>
+                    </match>
+                </li>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="JoinInBed")]</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="JoinInBed")]</xpath>
+                        <value>
+                            <li>JoinInBed</li>
+                        </value>
+                    </match>
+                </li>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="GettinLoved")]</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="GettinLoved")]</xpath>
+                        <value>
+                            <li>GettinLoved</li>
+                        </value>
+                    </match>
+                </li>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="GettinLicked")]</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="GettinLicked")]</xpath>
+                        <value>
+                            <li>GettinLicked</li>
+                        </value>
+                    </match>
+                </li>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="GettinSucked")]</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="GettinSucked")]</xpath>
+                        <value>
+                            <li>GettinSucked</li>
+                        </value>
+                    </match>
+                </li>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="WhoreIsServingVisitors")]</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="WhoreIsServingVisitors")]</xpath>
+                        <value>
+                            <li>WhoreIsServingVisitors</li>
+                        </value>
+                    </match>
+                </li>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="JoinInBedAnimation")]</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="JoinInBedAnimation")]</xpath>
+                        <value>
+                            <li>JoinInBedAnimation</li>
+                        </value>
+                    </match>
+                </li>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="GettinLovedAnimation")]</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/targetJobs[not(li="GettinLovedAnimation")]</xpath>
+                        <value>
+                            <li>GettinLovedAnimation</li>
+                        </value>
+                    </match>
+                </li>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="WaitCombat_Mugirl"]/targetJobs[not(li="RapeComfortPawn")]</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="WaitCombat_Mugirl"]/targetJobs[not(li="RapeComfortPawn")]</xpath>
+                        <value>
+                            <li>RapeComfortPawn</li>
+                        </value>
+                    </match>
+                </li>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="WaitCombat_Mugirl"]/targetJobs[not(li="RandomRape")]</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="WaitCombat_Mugirl"]/targetJobs[not(li="RandomRape")]</xpath>
+                        <value>
+                            <li>RandomRape</li>
+                        </value>
+                    </match>
+                </li>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="WaitCombat_Mugirl"]/targetJobs[not(li="RapeEnemy")]</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="WaitCombat_Mugirl"]/targetJobs[not(li="RapeEnemy")]</xpath>
+                        <value>
+                            <li>RapeEnemy</li>
+                        </value>
+                    </match>
+                </li>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="StandAndBeSociallyActive_Mugirl"]/targetJobs[not(li="WhoreInvitingVisitors")]</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="StandAndBeSociallyActive_Mugirl"]/targetJobs[not(li="WhoreInvitingVisitors")]</xpath>
+                        <value>
+                            <li>WhoreInvitingVisitors</li>
+                        </value>
+                    </match>
+                </li>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="Wear_Mugirl"]/targetJobs[not(li="CleanSelf")]</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="Wear_Mugirl"]/targetJobs[not(li="CleanSelf")]</xpath>
+                        <value>
+                            <li>CleanSelf</li>
+                        </value>
+                    </match>
+                </li>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="Wear_Mugirl"]/targetJobs[not(li="StruggleInBondageGear")]</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="Wear_Mugirl"]/targetJobs[not(li="StruggleInBondageGear")]</xpath>
+                        <value>
+                            <li>StruggleInBondageGear</li>
+                        </value>
+                    </match>
+                </li>
+                <!-- 按原包仅识别 Rimworld-Animations，并只移除原包指定的帧，不扩展至本机其他框架版本。 -->
                 <li Class="PatchOperationFindMod">
                     <mods>
                         <li>Rimworld-Animations</li>
                     </mods>
                     <match Class="PatchOperationSequence">
-                        <success>Always</success>
                         <operations>
-                            <li Class="PatchOperationRemove">
+                            <li Class="PatchOperationConditional">
                                 <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/animationFrames/li[1]/headOffset</xpath>
-                                <success>Always</success>
+                                <match Class="PatchOperationRemove">
+                                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl" or defName="Lovin2_Mugirl"]/animationFrames/li[1]/headOffset</xpath>
+                                </match>
                             </li>
-                            <li Class="PatchOperationRemove">
+                            <li Class="PatchOperationConditional">
                                 <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl"]/animationFrames/li[2]/headOffset</xpath>
-                                <success>Always</success>
+                                <match Class="PatchOperationRemove">
+                                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl"]/animationFrames/li[2]/headOffset</xpath>
+                                </match>
                             </li>
-                            <li Class="PatchOperationRemove">
+                            <li Class="PatchOperationConditional">
                                 <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl"]/animationFrames/li[3]/headOffset</xpath>
-                                <success>Always</success>
+                                <match Class="PatchOperationRemove">
+                                    <xpath>/Defs/FacialAnimation.FaceAnimationDef[defName="LovinRepeat_Mugirl"]/animationFrames/li[3]/headOffset</xpath>
+                                </match>
                             </li>
                         </operations>
                     </match>

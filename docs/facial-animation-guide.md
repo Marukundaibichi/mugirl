@@ -1,8 +1,31 @@
 # Facial Animation 维护指南
 
-本文记录雪牛娘接入 `[NL] Facial Animation - WIP` 的实际运作逻辑和后续更新规则。结论基于当前本 mod 的 `1.6/FacialAnimation`、`1.6/FacialAnimation/Textures/FA`，以及对 FA `1.6/Assemblies/FacialAnimation.dll` 的反编译核对。
+2026-09-21 先将 FA 还原到 0.5.0（`46d2190fb691b4e2fe783d21f1c50eccec81ff77`），随后按要求整合 `TMP/3578882219_雪牛娘調整FA臉及增加RJWFA補丁`，引入其中 9 张眼皮遮罩，并启用雪牛娘专属 `(1.63,1.63)` FaceAdjustment 和经过修正的 RJW/Rimworld Animations 兼容补丁。同日按用户最新要求，将全部 847 张 FA 贴图统一为 512×512；眼皮遮罩仍禁止透明区 RGB 清理。
 
-FA 贴图和 Def 使用同一个条件加载目录，未启用 FA 时不加载这些贴图；虚拟路径仍为 `FA/...`。2026-09-07 已将原 555×555 素材整图等比缩放至 512×512，保持透明留白、归一化位置与 drawSize。不要把 FA 素材重新放回根 `Textures/FA`。素材检查命令：`docs/tools/Invoke-TextureAssetValidation.ps1`。
+## 2026-09-21 统一贴图尺寸
+
+- 范围为 `1.6/FacialAnimation/Textures/FA` 下全部 847 张 PNG。385 张 555×555 整图等比缩放至 512×512，42 张 1×1 占位图按原像素 RGBA 铺满 512×512，其余 420 张原有 512×512 文件逐字节保留。
+- 使用 GDI+ 高质量双三次插值，不裁边、不改变画布内的相对位置。普通贴图使用预乘 alpha 插值；眼皮 `*_cover_*` 的 RGB 与 alpha 分开缩放，保留透明区内有意义的遮罩颜色。
+- 缩放不改变 FaceAdjustment、Def、动画或游戏中的绘制尺寸。缩放前后最大 alpha 重心偏移折算为输出图约 0.183 像素。
+- 427 张改动贴图的原图、缩放结果、全部 847 张贴图的 SHA256 清单和执行脚本保存在 `TMP/FA-Resize512-20260921/`。后续新增 FA 贴图也使用 512×512；本节尺寸约定取代此前导入时保留原始尺寸的要求。
+- 验证：847 张最终贴图尺寸和 SHA256 全部通过；42 张占位图像素值保持一致；改动的 21 张眼皮遮罩中，17 张原本含透明区 RGB 数据的贴图均保留该数据，其余 4 张原本不含此类数据。修改前后 `Invoke-Phase6StaticValidation.ps1 -SkipBuild` 均通过，日志为 `static-before.log`、`static-after.log`。本轮未运行游戏内验证。
+
+## 2026-09-21 外部 FA 补丁整合
+
+- 源包包含一份旧版完整模组；本次只提取 FA 差异，不覆盖旧 DLL、种族、装备或其他内容。
+- `MugirlFaceSizeAndPositionDef` 的 `RaceName=Mugirl`、`Size=(1.63,1.63)`。原包使用了 FA 自带的 `DefaultFaceSizeAndPositionDef` 名称，现改成独立名称，避免污染其他种族的默认调整。
+- 9 张 `Lids/Normal`、`Lids/Normal2` 的 `*_cover_*.png` 在导入时按源文件原样复制，保留 alpha、透明区 RGB 和尺寸；导入前资源及 SHA256 清单保存在 `TMP/FA-Import-20260921`。后续统一尺寸见上节。
+- 原包的 28 张 `blush/lovinblush` cover 与正常头图合成后，和当前 28 张对应南/东完整头图逐像素一致，因此继续使用现有完整头图；不引入重复 cover，避免脸红叠加和脸部接缝。北向头图、爱心眼基础层和半闭眼底层也继续保留。
+- 动画、TypeDef 和 comp 补丁的 XML 结构与当前版本一致，只有格式和注释差异；保留现有文件。原包删掉的 `EmotionShapeDef lovinblush` 和 `EyeballShapeDef Mugirl_heart` 继续作为旧存档/外部引用兼容定义保留。
+- RJW 部分以用户指定原包为准，不以本机安装情况调整。`RimJobWorld` 启用时，将原包的 21 个动作名称接到 Lovin、警戒、社交、穿衣四组动画；`targetJobs` 在 FA 中是字符串列表，保留全部映射，不按本机 JobDef 裁剪。每个动画列表独立去重，并修正原包社交动画 XPath 缺少 `defName=` 的笔误。
+- 动画框架只识别原包名称 `Rimworld-Animations`。按原包范围删除 `LovinRepeat_Mugirl` / `Lovin2_Mugirl` 第一帧，以及 `LovinRepeat_Mugirl` 第二、三帧的 `headOffset`；其余帧保持原状。没有额外加入本机 `Rimworld Animations 2.0` 名称，也没有扩大删除范围。
+- 全部内容仍在 `1.6/FacialAnimation` 条件目录，未启用 FA 时不会加载；RJW 或动画框架缺失时补丁静默跳过。
+
+本轮验证：`Invoke-Phase6StaticValidation.ps1 -SkipBuild` 通过。RimWorld `1.6.4871 rev591` 在外部隔离环境实际加载全 DLC、HAR、FA 和当前 Mugirl；独立探针的 28 项检查全部通过，包括专属缩放、默认调整未被覆盖，以及游戏原生 `PatchOperation` 在无可选 mod、仅 RJW、原包动画框架、其他框架名称、缺失动画和重复执行时与源包预期一致。RJW 分支使用源包映射及 mod 名称夹具，未加载本机 RJW 或按本机内容改写规则；本轮未进入地图、未目视检查实际 RJW 互动。最终启用图形初始化的 fresh log 扫描通过。早期 `-nographics` 探测触发 Unity 图集初始化异常，仅作为废弃的 headless 日志保留，不作为验收结果。
+
+证据位于 `TMP/FA-Import-20260921/`：`manifest.json`、`static-validation.log`、`runtime-checks.txt`、`Player.log`、`directory-audit.json`。目录审计结果为 `affected_candidates=0`、`scan_errors=0`；测试游戏仅位于 `%LOCALAPPDATA%/RimWorldModTests/Mugirl/FA-Import-20260921-Game`，未在模组内创建联接。
+
+本文记录雪牛娘接入 `[NL] Facial Animation - WIP` 的实际运作逻辑和后续更新规则。结论基于当前本 mod 的 `1.6/FacialAnimation`、`1.6/FacialAnimation/Textures/FA`，以及对 FA `1.6/Assemblies/FacialAnimation.dll` 的反编译核对。
 
 ## 接入入口
 
@@ -18,8 +41,6 @@ FA 贴图和 Def 使用同一个条件加载目录，未启用 FA 时不加载�
   - `LidOptionControllerComp`
   - `EmotionControllerComp`
   - `FacialAnimationControllerComp`
-- `1.6/FacialAnimation/Defs/FaceAdjustmentDefs/MugirlFaceSizeAndPositionDef.xml` 将 Mugirl 的 FA 脸缩放到 `(1.63,1.63)`，用于补偿 FA 脸相对原始头部偏小的问题。
-- `1.6/FacialAnimation/Patches/MugirlFacialAnimation_compatibility.xml` 在 RJW 存在时把相关 Job 补进 Mugirl 的专属动画池，并在 `Rimworld-Animations` 存在时移除会和外部姿态冲突的 Lovin 头部偏移。
 - FA 还支持 `SkinControllerComp`，但本 mod 当前没有追加它，也没有维护 `1.6/FacialAnimation/Textures/FA/Skins`。不要因为看到 FA 支持 Skin 层就顺手补贴图；除非明确决定启用 Skin 层，否则保持不用。
 
 ## FA 数据模型
@@ -60,7 +81,7 @@ FA 的控制器是按层独立随机 TypeDef，不会自动保证 `Normal4` 的�
 
 这个补丁可作为入口结构参考，但不要照抄它的追加方式：它只检查 `comps` 是否存在，没有像 Mugirl 现在这样逐个 `compClass` 做 duplicate guard。若目标种族或其他兼容补丁已提前追加过部分 FA comp，这种批量追加可能制造重复 comp。Mugirl 现有 `Mugirl_FacialAnimation.xml` 的逐项条件追加更稳，应继续保留。
 
-`Common/Patches/AxolotlFA_compatibility.xml` 展示了另一个关键原则：一旦种族写了自己的 `raceName=Axolotl` 动画池，FA 就不会自然混用人类默认动画，所以兼容 mod 新增的 Job 也要补到对应 `FaceAnimationDef.targetJobs`。该补丁在 RJW 存在时把 RJW Job 追加到自定义 Lovin、Combat、Wear 动画；在 `Rimworld Animations 2.0` 存在时移除部分 Lovin 的 `headOffset`，避免和外部动画姿态冲突。Mugirl 现已采用同样方案；未来接入其他 mod Job 时，也应继续使用“补 targetJobs 或新增同 raceName 动画”的方式。
+`Common/Patches/AxolotlFA_compatibility.xml` 展示了另一个关键原则：一旦种族写了自己的 `raceName=Axolotl` 动画池，FA 就不会自然混用人类默认动画，所以兼容 mod 新增的 Job 也要补到对应 `FaceAnimationDef.targetJobs`。该补丁在 RJW 存在时把 RJW Job 追加到自定义 Lovin、Combat、Wear 动画；在 `Rimworld Animations 2.0` 存在时移除部分 Lovin 的 `headOffset`，避免和外部动画姿态冲突。Mugirl 未来若给挤奶、束具、骑乘、RJW 或其他 Job 写专属动画，也应采用“补 targetJobs 或新增同 raceName 动画”的思路。
 
 ### Axolotl 的 Type / Shape 组织
 
@@ -82,7 +103,7 @@ Axolotl 的实际素材集中在 `Common/Textures/Things/Pawn/Axolotl`，顶层�
 
 - `Heads_Blank/AxolotlHead/Unisex` 有 `normal_south/east/north`，也有 `surprise_*` 基础头图；`blush_cover_*`、`hot_cover_*`、`cold_cover_*` 则是 head cover 叠层，不是完整头底图。
 - `Eyes/Normal1..4/Unisex` 维护 `normal`、`heart` 眼睛及对应 `*_highlight_*`；`Eyes/Common/Unisex` 维护 `normal_L_*`、`normal_R_*` 左右眼 mask。它的 `altMaskPath` 和实际 mask 目录是闭合的，可作为 Mugirl 未来重新启用左右眼 mask 时的参考。
-- `Lids/Normal1..4/Unisex` 使用 `*_bottom_*` 与 `*_cover_*` 拆分眼皮。它有些 shape 只提供 cover 或只提供 bottom，并通过回退补足另一层；Mugirl 的 `half` 也有意只维护 cover，让底层沿用 `normal_bottom`。
+- `Lids/Normal1..4/Unisex` 使用 `*_bottom_*` 与 `*_cover_*` 拆分眼皮。它有些 shape 只提供 cover 或只提供 bottom，靠回退/透明承担缺口；Mugirl 若维护单一高质量脸型，仍建议每个眼皮 shape 成对补齐，减少方向或层级异常。
 - `Mouth/Normal1..3/Unisex` 每套都维护同一组 mouth shape，例如 `normal`、`open`、`smile`、`down`、`sleep1/2`、`cry1/2`、`lovin1/2/3`、`drowsiness` 等。这说明多嘴型 TypeDef 的前提是每套目录都要覆盖完整动画词表。
 - `Skins/*/Unisex` 是 SkinControllerComp 的装饰叠层，提供 `normal_south/east/north/west`，不少目录同时有 PNG 和 DDS。它和 `Heads_Blank` 不是同一层；如果 Mugirl 不启用 `SkinControllerComp`，不需要维护 `1.6/FacialAnimation/Textures/FA/Skins`。
 - 参考包大量使用 `Unisex` 目录，是因为 TypeDef 明确开启了 `enableUnisexTexPath`。不要把这一点误读成 FA 默认会找 `Unisex`。
@@ -93,7 +114,7 @@ Axolotl 的实际素材集中在 `Common/Textures/Things/Pawn/Axolotl`，顶层�
 - 不启用 Skin 层时，不要新增空的 `SkinControllerComp`、`SkinTypeDef` 或 `1.6/FacialAnimation/Textures/FA/Skins`；启用 Skin 时必须同时补 TypeDef、shape/动画引用逻辑和完整贴图。
 - 当前 Mugirl 眼睛 TypeDef 不使用 `altMaskPath`，按整张眼睛贴图和高光绘制；只有明确要做左右眼 mask 时，才新增 `FA/Eyes/Common/Female/*_L_*`、`*_R_*` 并把 `altMaskPath` 加回来。
 - 多眼型/多嘴型随机变体必须保持素材矩阵完整；当前 `Normal` 到 `Normal7` 每套都覆盖现有动画会引用的 shape。
-- Mugirl 已使用 `FaceAdjustmentDef` 把 FA 脸缩放到 `(1.63,1.63)`；常规新增表情不应再改这个全局比例，除非整套脸部素材重新对位。
+- 只有当空白头和各部件整体比例明显不贴合时，再考虑新增 `FaceAdjustmentDef`；常规新增表情不需要它。
 
 ## 贴图命名和回退
 
@@ -123,22 +144,25 @@ FA 判断某个 shape 是否存在时只检查 `{Shape}_south`。如果 `_south`
 
 ## 特殊层规则
 
-`HeadControllerComp` 会加载基础头图，还会尝试加载 `{shape}_cover` 和 `{shape}_highlight`。Mugirl 的 blush 类表情必须走 head 基础层：`blush`、`lovinblush` 由 `headShapeDef` 引用，并使用 `Heads_Blank/Normal*/Female/{shape}_south/east/north.png` 完整头图。不要把这两类脸红重新拆成 `{shape}_cover_*`；FA 会把基础头和 cover 作为两个 render node 绘制，缩放和线性采样时会在半透明 cover 的边缘形成脸颊接缝。也不要把脸红作为 `emotionShapeDef` 接到动画里；Emotion 层在眼白之上，会把脸红盖到眼白上方。
+`HeadControllerComp` 会加载基础头图，还会尝试加载 `{shape}_cover` 和 `{shape}_highlight`。Mugirl 的 blush 类表情必须走 head 基础层：`blush`、`lovinblush` 由 `headShapeDef` 引用，并放在 `Heads_Blank/Normal*/Female/{shape}_*`。不要把脸红作为 `emotionShapeDef` 接到动画里；Emotion 层在眼白之上，会把脸红盖到眼白上方。
 
 `LidControllerComp` 有两种模式：
 
 - 如果存在 `normal_cover_south`，FA 使用拆分模式：`*_bottom` 画眼皮底层，`*_cover` 作为头部皮肤遮罩。
 - 否则走普通基础贴图模式。
 
-Mugirl 当前眼皮使用拆分模式。`normal` 和 `close` 维护 bottom/cover 两层；`half` 只需要 cover，底层会沿用 `normal_bottom`：
+Mugirl 当前眼皮使用拆分模式，因此每个眼皮 shape 至少应成对维护：
 
 ```text
 normal_bottom_south/east.png
 normal_cover_south/east.png
+half_bottom_south/east.png
 half_cover_south/east.png
 close_bottom_south/east.png
 close_cover_south/east.png
 ```
+
+`*_cover_*` 在这里会作为 `maskPath` 传给皮肤材质，而不是普通 RGBA 叠层；因此即使 alpha 为 0，RGB 也仍是有效的遮罩数据。尤其 `Normal2`、`Normal4` 的 east cover，透明区必须保留原始白色 RGB，使遮罩连续覆盖整张头图，只在眼睛开口处让出下层。不要对 `Lids/**/_cover_*.png` 运行“透明像素 RGB 清黑”；清黑会把白色遮罩切成眼周小块，并在线性采样时形成脸部接缝。仓库的 `Normalize-TransparentPixels.py` 已将这些文件列为保护对象。
 
 `MouthControllerComp` 会额外尝试 `{shape}_cover`。Mugirl 当前没有 mouth cover，普通 mouth 贴图即可。
 
@@ -156,9 +180,9 @@ close_cover_south/east.png
 {altMaskPath}/{Gender}/{shape}_R_south.png
 ```
 
-当前 `Mugirl_EyeNormal` 到 `Mugirl_EyeNormal7` 都不写 `altMaskPath`，因此不需要 `1.6/FacialAnimation/Textures/FA/Eyes/Common`。若未来重新启用左右眼 mask，必须一次性补齐所有会被引用的眼睛 shape 的 `*_L_*` 与 `*_R_*` mask，并重点验证普通眼、异色眼、`heart` 眼和高光层。
+当前 `Mugirl_EyeNormal` 到 `Mugirl_EyeNormal7` 都不写 `altMaskPath`，因此不需要 `1.6/FacialAnimation/Textures/FA/Eyes/Common`。若未来重新启用左右眼 mask，必须一次性补齐所有会被引用的眼睛 shape 的 `*_L_*` 与 `*_R_*` mask，并重点验证普通眼、异色眼、`heart` / `Mugirl_heart` 眼和高光层。
 
-爱心眼的语义是“爱心替代眼睛高光”，不是“整张瞳孔换成爱心”。`EyeballShapeDef heart` 通过 `altShapeDef=normal` 沿用普通眼基础层，因此不保留重复的 `heart_south/east`；真正的爱心图只放在 `heart_highlight_south/east`。动画需要显示爱心眼时引用 `eyeballShapeDef=heart`。
+爱心眼的语义是“爱心替代眼睛高光”，不是“整张瞳孔换成爱心”。因此 `Eyes/Normal*/Female/heart_*` 和 `Mugirl_heart_*` 基础层必须与同目录 `normal_*` 保持一致；真正的爱心图放在 `heart_highlight_*` 和 `Mugirl_heart_highlight_*`。动画需要显示爱心眼时引用 `eyeballShapeDef=heart`，FA 会用 normal 基础眼加 heart highlight 叠出效果。
 
 ## 动画调度
 
@@ -195,7 +219,9 @@ FA 会在渲染前移除原版 head draw request，用 FA 的空白 head 和各�
 | 59 | 眼皮附加层，例如眼泪 |
 | 60 或 100 | 眉毛；由 FA 设置 `DrawBrowsAboveHat` 决定是否盖过帽子 |
 
-多数部件在北向不绘制，头部底图仍可用 north 贴图。Mugirl 当前至少要保证 south/east 表现正确；Emotions 不维护不会显示的 north，也不保留与 east 重复的 west。
+多数部件在北向不绘制，头部底图仍可用 north 贴图。Mugirl 当前至少要保证 south/east 表现正确；north 主要影响空白头和情绪叠层。
+
+HAR 的“身体附件（脸部联动层）”使用 `alignWithHead=true`，但仍是 FA 头节点的同级节点。它的有效高度保持在约 58.5 层：高于 FA 的 head cover、highlight 和 emotion（最高 58），低于眼泪（59）、眉毛（60/100）及头部服装根（70）。若把它放回 53 层，FA 编辑器的即时绘制仍可能看见疤痕，但地图的延迟绘制会被 57–58 层的 FA 头部叠层遮住。
 
 ## 当前 Mugirl 内容状态
 
@@ -204,12 +230,12 @@ FA 会在渲染前移除原版 head draw request，用 FA 的空白 head 和各�
 | 目录 | 当前 shape |
 | --- | --- |
 | `Brows/Normal*/Female` | `normal`、`flat`、`angled`、`s-shaped` |
-| `Eyes/Normal*/Female` | `normal` 基础眼与 `normal_highlight`；`heart` 只维护 `heart_highlight`，基础眼回退到 `normal` |
-| `Lids/Normal*/Female` | `normal`、`close` 有 `bottom`/`cover`；`half` 只有 `cover` 并沿用 `normal_bottom` |
+| `Eyes/Normal*/Female` | `normal`、`Mugirl_heart`、`heart`，并有 `normal_highlight`、`heart_highlight`、`Mugirl_heart_highlight` |
+| `Lids/Normal*/Female` | `normal`、`half`、`close`，且都有 `bottom`/`cover` |
 | `Mouth/Normal*/Female` | `normal`、`open`、`sad`、`smile`、`surprise`、`tight`、`puzzle`、`Mugirl_lovin`、`hot1/2`、`cold_tight1/2`、`pain1/2/3`、`hungry1/2`、`milking1..4` |
 | `LidOptions/Normal*/Female` | `tear`、`Mugirl_cry` |
-| `Emotions/Normal*/Female` | `gloomy`、`heart`，只维护 south/east |
-| `Heads_Blank/Normal*/Female` | `normal`、完整头图 `blush`、`lovinblush`；以及 `cold_cover`、`sweat_cover`、`heavy_sweat_cover`、`hot_cover`、`hot_highlight`、`hot_heavy_sweat_cover`、`hot_heavy_sweat_highlight` |
+| `Emotions/Normal*/Female` | `blush`、`gloomy`、`lovinblush`、`heart`；其中 `blush/lovinblush` 只保留为旧素材来源，不应由动画直接引用 |
+| `Heads_Blank/Normal*/Female` | `normal`、`blush`、`lovinblush`、`cold_cover`、`sweat_cover`、`heavy_sweat_cover`、`hot_cover`、`hot_highlight`、`hot_heavy_sweat_cover`、`hot_heavy_sweat_highlight` |
 
 需要注意的未闭合项：
 
@@ -233,6 +259,7 @@ FA 会在渲染前移除原版 head draw request，用 FA 的空白 head 和各�
 | `Brows` | `normal`、`flat`、`angled`、`s-shaped` | 已接入 | `normal` 来自 FA 基础 Def；其余来自 Mugirl ShapeDef。常驻、心情、战斗、工作、Lovin 等动画已引用。 |
 | `Eyes` | `normal` | 已接入 | `normal_Mugirl` 和多个动画引用；当前使用整张眼睛贴图与高光，不启用左右眼 mask。 |
 | `Eyes` | `heart` | 已接入 | Mugirl `EyeballShapeDef` 已声明，Lovin 动画已引用。基础层等同 `normal`，爱心绘制在 `heart_highlight`。普通穿衣、脱衣不使用爱心眼。 |
+| `Eyes` | `Mugirl_heart` | 兼容保留 | Mugirl `EyeballShapeDef` 已声明；当前动画统一引用 `heart`。基础层同样等同 `normal`，爱心绘制在 `Mugirl_heart_highlight`。 |
 | `Lids` | `normal`、`close` | 已接入 | FA 基础 Def 提供；常驻、眨眼、Lovin、工作等动画引用。 |
 | `Lids` | `half` | 已接入 | Mugirl ShapeDef 提供；眨眼、战斗、心情、工作等动画引用。 |
 | `Mouth` | `normal`、`open` | 已接入 | FA 基础 Def 提供；常驻、吃饭、Lovin、倒地等动画引用。 |
@@ -241,6 +268,7 @@ FA 会在渲染前移除原版 head draw request，用 FA 的空白 head 和各�
 | `Mouth` | `puzzle` | 待接线 | ShapeDef 和贴图都存在，但当前没有动画引用；适合接到困惑、科研失败、被脑洗等场景。 |
 | `LidOptions` | `tear`、`Mugirl_cry` | 已接入 | 低心情、倒地和 Lovin 后段会引用；疼痛动画不使用哭泣层。`Mugirl_cry` 回退到 `normal`，缺贴图时会透明。 |
 | `Emotions` | `gloomy` | 已接入 | 倒地、极低心情等动画引用。 |
+| `Emotions` | `blush`、`lovinblush` | 保留不用 | 旧脸红素材仍保留，但动画不得直接引用；需要脸红时用 `Heads_Blank` 的同名 head shape。 |
 | `Emotions` | `heart` | 待接线 | ShapeDef 和贴图都存在，但当前没有动画引用；要作为爱心叠层使用，需要新增或调整动画帧。 |
 
 因此，当前所有新增/已有贴图都已被分类考虑：
@@ -248,7 +276,6 @@ FA 会在渲染前移除原版 head draw request，用 FA 的空白 head 和各�
 - 已接入贴图会被现有动画自然加载，不需要额外 XML。
 - `Mouth/puzzle` 与 `Emotions/heart` 已有 ShapeDef 和贴图，只缺动画帧引用。
 - `Head/gloomy` 已有 ShapeDef 但没有贴图；要么继续作为预留，要么补贴图并新增动画引用。
-- `EmotionShapeDef lovinblush`、`EyeballShapeDef Mugirl_heart` 及其重复贴图已停用；不要重新接线。
 - 眼睛类贴图若重新启用 `altMaskPath`，必须同时补 `FA/Eyes/Common` 左右眼 mask。
 
 ## 推荐更新决策
@@ -259,7 +286,7 @@ FA 会在渲染前移除原版 head draw request，用 FA 的空白 head 和各�
 
 `HeadShapeDef gloomy` 目前只是预留。若预计新增头部表情贴图，需要补 `Heads_Blank/Normal*/Female/gloomy_*`，再在 mood、pain 或特定 Job 动画中引用。若短期不做头部变形，可以保留声明但不要在动画中引用它。
 
-脸红类表情必须保持在眼白下方。新增高兴、害羞、Lovin、穿脱衣等动画时，使用 `headShapeDef=blush` 或 `headShapeDef=lovinblush`，不要使用 `emotionShapeDef=blush/lovinblush`。如果要调整脸红图案，应把效果预合成进 `Heads_Blank/Normal*/Female/{shape}_south/east/north.png` 完整头图，并保持 `blush/lovinblush` 的独立 cover 不存在；`Emotions` 下也不保留同名图。
+脸红类表情必须保持在眼白下方。新增高兴、害羞、Lovin、穿脱衣等动画时，使用 `headShapeDef=blush` 或 `headShapeDef=lovinblush`，不要使用 `emotionShapeDef=blush/lovinblush`。如果要调整脸红图案，先改 `Heads_Blank/Normal*/Female/{shape}_*`；`Emotions` 下的同名图只作为旧素材来源保留。
 
 嘴型语义不要按文件名过度收窄：`sad` 同时代表低心情和严肃嘴，适合静态攻击、警戒、沉默紧张等“不开口、不咬牙”的状态；`tight` 才是咬牙切齿或明显用力，适合近战、挖矿、劳动、咀嚼等场景。`Wait_Combat` 需要警戒感但不能咬牙切齿，也不能全程 `lidShapeDef=half`；保留 `angled` 眉毛和扫视，眼皮以 `normal` 为主，只允许短暂半眯作为凝视变化。
 

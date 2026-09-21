@@ -50,6 +50,8 @@ namespace Mugirl
                 CheckTexture("ChainVanillaTex", "AlienRace/UI/LinkVanilla");
                 CheckPatches("initial startup");
                 CheckNewApparelGraphics();
+                CheckLongCascadeBackHair();
+                CheckHornHidingHelmetTags();
                 MugirlBootstrap.Initialize();
                 // Observe again after any callbacks from the repeated initialization.
                 LongEventHandler.ExecuteWhenFinished(() =>
@@ -83,13 +85,15 @@ namespace Mugirl
             foreach (string name in names)
             {
                 ThingDef def = DefDatabase<ThingDef>.GetNamed("Mugirl_" + name);
-                if (name == "SisterMask")
+                Check(def.defName + " is adult-only", def.apparel.developmentalStageFilter == DevelopmentalStage.Adult);
+                if (name == "SisterMask" || name == "NunBlindfold")
                 {
-                    Check("Mugirl_SisterMask uses the head apparel render layer", def.apparel.LastLayer == ApparelLayerDefOf.Overhead);
-                }
-                else if (name == "NunBlindfold")
-                {
-                    Check("Mugirl_NunBlindfold uses the eye-cover render layer", def.apparel.LastLayer == ApparelLayerDefOf.EyeCover);
+                    Check(def.defName + " uses the head apparel layer and mesh without extra transforms",
+                        def.apparel.LastLayer == (name == "SisterMask" ? ApparelLayerDefOf.Overhead : ApparelLayerDefOf.EyeCover)
+                        && def.apparel.parentTagDef == PawnRenderNodeTagDefOf.ApparelHead
+                        && def.apparel.drawData == null
+                        && def.apparel.wornGraphicData == null
+                        && def.graphicData.drawSize == Vector2.one);
                 }
                 else if (name == "NunVeil")
                 {
@@ -122,6 +126,67 @@ namespace Mugirl
                     }
                 }
             }
+        }
+
+        private static void CheckHornHidingHelmetTags()
+        {
+            string[] expectedDefs =
+            {
+                "Mugirl_Combatant_Helmet",
+                "Mugirl_KnightMountHelmet",
+                "Mugirl_PowerArmorHelmet"
+            };
+            foreach (string defName in expectedDefs)
+            {
+                ThingDef def = DefDatabase<ThingDef>.GetNamed(defName);
+                Check(defName + " hides Mugirl horns", def.apparel?.tags?.Contains("Mugirl_HideHorns") == true);
+            }
+
+            string[] actualDefs = DefDatabase<ThingDef>.AllDefsListForReading
+                .Where(def => def.apparel?.tags?.Contains("Mugirl_HideHorns") == true)
+                .Select(def => def.defName)
+                .OrderBy(defName => defName)
+                .ToArray();
+            Check("only the three requested helmets hide Mugirl horns",
+                actualDefs.SequenceEqual(expectedDefs.OrderBy(defName => defName)));
+        }
+
+        private static void CheckLongCascadeBackHair()
+        {
+            HairDef hairDef = DefDatabase<HairDef>.GetNamed("Mugirl_LongCascade");
+            Check("Mugirl_LongCascade DefOf resolves to the registered hair",
+                Mugirl_DefOf.Mugirl_LongCascade == hairDef);
+
+            ThingDef raceDef = DefDatabase<ThingDef>.GetNamed("Mugirl");
+            Check("Mugirl race installs the LongCascade rear-layer comp",
+                raceDef.comps?.Any(props => props is Features.Appearance.CompProperties_LongCascadeBackHair) == true);
+
+            PawnRenderNodeProperties nodeProps = Features.Appearance.Comp_LongCascadeBackHair.CreateNodeProperties();
+            Check("LongCascade rear layer follows Head and stays behind it",
+                nodeProps.parentTagDef == PawnRenderNodeTagDefOf.Head
+                && nodeProps.baseLayer < 0f
+                && nodeProps.drawSize == Vector2.one);
+            Check("LongCascade rear layer is limited to south/east/west and honors hidden hair",
+                nodeProps.visibleFacing != null
+                && nodeProps.visibleFacing.Count == 3
+                && nodeProps.visibleFacing.Contains(Rot4.South)
+                && nodeProps.visibleFacing.Contains(Rot4.East)
+                && nodeProps.visibleFacing.Contains(Rot4.West)
+                && !nodeProps.visibleFacing.Contains(Rot4.North)
+                && nodeProps.skipFlag == RenderSkipFlagDefOf.Hair);
+
+            CheckTextureDimensions("LongCascade rear south", "Mugirl/Hair/Mugirl_LongCascadeBack_south", 512, 512);
+            CheckTextureDimensions("LongCascade rear east/west", "Mugirl/Hair/Mugirl_LongCascadeBack_east", 512, 512);
+        }
+
+        private static void CheckTextureDimensions(string label, string contentPath, int width, int height)
+        {
+            Texture2D texture = ContentFinder<Texture2D>.Get(contentPath, false);
+            Check(label + " texture is loaded at " + width + "x" + height,
+                texture != null
+                && texture != BaseContent.BadTex
+                && texture.width == width
+                && texture.height == height);
         }
 
         private static void CheckTexture(string fieldName, string contentPath)

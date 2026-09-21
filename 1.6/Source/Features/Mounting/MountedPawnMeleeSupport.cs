@@ -231,6 +231,17 @@ namespace Mugirl
 
         public static void DrawWeapon(Comp_MugirlMount comp)
         {
+            Pawn carrier = comp?.MooPawn;
+            if (carrier == null)
+            {
+                return;
+            }
+
+            DrawWeapon(comp, carrier.DrawPos);
+        }
+
+        internal static void DrawWeapon(Comp_MugirlMount comp, Vector3 carrierDrawPos)
+        {
             Pawn rider = comp?.MountedPawn;
             Pawn carrier = comp?.MooPawn;
             ThingWithComps weapon = rider?.equipment?.Primary;
@@ -239,7 +250,7 @@ namespace Mugirl
                 return;
             }
 
-            Vector3 drawPos = comp.WeaponDrawPos;
+            Vector3 drawPos = comp.WeaponDrawPosAt(carrierDrawPos);
             drawPos += MountedPawnUtility.MountedWeaponSideOffset(carrier.Rotation, 0.12f);
             PawnRenderUtility.DrawCarriedWeapon(weapon, drawPos, carrier.Rotation, MountedPawnUtility.EquipmentDrawDistanceFactor(rider));
         }

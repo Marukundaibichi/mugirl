@@ -232,6 +232,7 @@
             <wornGraphicPath>Things/Apparel/Mugirl_PowerArmorHelmet/Mugirl_PowerArmorHelmet</wornGraphicPath>
             <tags>
                 <li>Mugirl_Helmet</li>
+                <li>Mugirl_HideHorns</li>
             </tags>
         </apparel>
         <recipeMaker>

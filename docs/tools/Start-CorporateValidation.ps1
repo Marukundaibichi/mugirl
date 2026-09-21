@@ -1,5 +1,5 @@
 param(
-    [ValidateSet('Economy', 'Visual', 'WithoutIdeology')][string]$Mode = 'Economy',
+    [ValidateSet('Economy', 'Visual', 'WithoutIdeology', 'Support', 'Fusion')][string]$Mode = 'Economy',
     [Parameter(Mandatory)][ValidatePattern('^[A-Za-z0-9-]+$')][string]$RunName,
     [switch]$SkipCompact
 )
@@ -58,10 +58,12 @@ $encoding = New-Object System.Text.UTF8Encoding $false
 [System.IO.File]::WriteAllText((Join-Path $saveRoot 'Config\Prefs.xml'),
     '<PrefsData><langFolderName>ChineseSimplified (简体中文)</langFolderName><runInBackground>true</runInBackground><volumeGame>0</volumeGame><volumeMusic>0</volumeMusic><fullscreen>false</fullscreen></PrefsData>', $encoding)
 $flag = if ($Mode -eq 'Visual') { '-mugirlCorporateVisual' } else { '-mugirlCorporateChecks' }
+if ($Mode -eq 'Support') { $flag = '-mugirlCorporateSupportChecks' }
 $arguments = @('-quicktest', $flag, '-screen-fullscreen', '0', '-screen-width', '1280', '-screen-height', '720',
     ('-savedatafolder="' + $saveRoot + '"'), ('-logFile "' + (Join-Path $saveRoot 'Player.log') + '"'))
 if ($Mode -eq 'Visual' -and -not $SkipCompact) { $arguments += '-mugirlCorporateVisualCompact' }
 if ($Mode -eq 'WithoutIdeology') { $arguments += '-mugirlCorporateNoIdeology' }
+if ($Mode -eq 'Fusion') { $arguments += '-mugirlCorporateFusionChecks' }
 # Each driver also checks its explicit flag and actual save path inside the game.
 $process = Start-Process -FilePath (Join-Path $stage 'RimWorldWin64.exe') -WorkingDirectory $stage -ArgumentList $arguments -WindowStyle Hidden -PassThru
 $process.Id | Set-Content -LiteralPath (Join-Path $saveRoot 'process-id.txt')

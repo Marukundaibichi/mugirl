@@ -12,6 +12,8 @@ namespace Mugirl
 
         public static ThingDef Mugirl_Milk;
 
+        public static HairDef Mugirl_LongCascade;
+
         public static BodyDef MugirlBody;
 
         public static JobDef Job_GatherMilk;

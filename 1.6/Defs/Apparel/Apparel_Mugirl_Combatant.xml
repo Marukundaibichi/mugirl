@@ -154,6 +154,7 @@
             <wornGraphicPath>Things/Apparel/Mugirl_combatant_helmet/Mugirl_combatant_helmet</wornGraphicPath>
             <tags>
                 <li>Mugirl_Combatant</li>
+                <li>Mugirl_HideHorns</li>
             </tags>
         </apparel>
         <recipeMaker>

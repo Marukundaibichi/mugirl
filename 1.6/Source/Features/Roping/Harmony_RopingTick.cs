@@ -68,7 +68,16 @@ namespace Mugirl
                 pawn.Downed ||
                 (!pawn.Awake() && tracker.IsRopedByPawn) ||
                 ShouldDropRopesDueToMentalState(pawn) ||
+                ShouldBreakSpotRopeDueToStarvation(pawn, tracker) ||
                 pawn.IsBurning();
+        }
+
+        private static bool ShouldBreakSpotRopeDueToStarvation(Pawn pawn, Pawn_RopeTracker tracker)
+        {
+            // 饥饿只允许雪牛娘挣脱固定栓点；被 Pawn 牵引时仍保留绳索。
+            return tracker.IsRopedToSpot &&
+                RopingService.IsMugirlRopee(pawn) &&
+                pawn.needs?.food?.CurCategory == HungerCategory.Starving;
         }
 
         private static bool ShouldUseMugirlRopeeTick(Pawn pawn, Pawn_RopeTracker tracker)

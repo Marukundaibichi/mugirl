@@ -3431,12 +3431,13 @@ try {
         $patchRegistryText = Get-Content -LiteralPath $patchRegistryPath -Encoding utf8 -Raw
         $manualPatchFailureSafe = $patchRegistryText -match 'using\s+System;' `
             -and $patchRegistryText -match 'catch\s*\(\s*Exception\s+ex\s*\)' `
-            -and $patchRegistryText -match 'ex\.GetType\(\)\.Name\s*\+\s*": "\s*\+\s*ex\.Message' `
+            -and $patchRegistryText -match 'ex\.ToString\(\)' `
+            -and $patchRegistryText -match 'MugirlLog\.StartupWarningOnce' `
             -and $patchRegistryText -match 'Mugirl\.PatchRegistry\.PatchFailed' `
             -and $patchRegistryText -match 'PatchRegistry\.PatchFailed\.\s*"\s*\+\s*nameKey' `
             -and $patchRegistryText -match '(?s)try\s*\{.*harmony\.Patch\s*\(.*manualPatchNames\.Add\(nameKey\);.*\}\s*catch\s*\(\s*Exception\s+ex\s*\)'
         if (-not $manualPatchFailureSafe) {
-            $manualPatchRegistrySafetyIssues += "$patchRegistryPath :: manual Harmony patch registration must catch patch failures, log a localized WarningOnce and record patch names only after successful Patch calls"
+            $manualPatchRegistrySafetyIssues += "$patchRegistryPath :: manual Harmony patch registration must preserve full exceptions, use startup-safe localized warnings and record patch names only after successful Patch calls"
         }
     }
     else {

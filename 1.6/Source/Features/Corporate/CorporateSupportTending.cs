@@ -14,6 +14,20 @@ namespace Mugirl
         public const int SurvivalPackCount = 2;
         public const int MedicineCount = 2;
 
+        internal static bool CanAcceptFieldTending(Pawn medic, Pawn patient)
+        {
+            if (patient == null || patient.Dead || !patient.Spawned || patient.Map != medic.Map
+                || patient.InMentalState || patient.Drafted) return false;
+            if (patient == medic || patient.Downed || patient.InBed()) return true;
+            // 尊重玩家正在执行的命令，也不让两名医护互相打断治疗或拦下离图人员。
+            Job current = patient.CurJob;
+            return current == null || (!current.playerForced && !current.exitMapOnArrival
+                && current.def != JobDefOf.TendPatient
+                && current.def != MugirlContentDefOf.Mugirl_CorporateSupportTend
+                && current.def != JobDefOf.AttackMelee && current.def != JobDefOf.AttackStatic
+                && current.def != JobDefOf.Wait_Combat);
+        }
+
         public static void EquipFieldSupplies(Pawn pawn)
         {
             if (pawn?.inventory == null) return;
@@ -63,10 +77,11 @@ namespace Mugirl
 
                 Thing medicine = BestInventoryMedicine(pawn, patient);
                 Job job = medicine != null
-                    ? JobMaker.MakeJob(JobDefOf.TendPatient, patient, medicine)
-                    : JobMaker.MakeJob(JobDefOf.TendPatient, patient);
+                    ? JobMaker.MakeJob(MugirlContentDefOf.Mugirl_CorporateSupportTend, patient, medicine)
+                    : JobMaker.MakeJob(MugirlContentDefOf.Mugirl_CorporateSupportTend, patient);
                 // 单次处理后结束，避免原版 FindMoreMedicineToil 把 NPC 引向地图上的玩家医药库存。
                 job.endAfterTendedOnce = true;
+                job.expiryInterval = GenDate.TicksPerHour;
                 return job;
             }
             return null;
@@ -90,7 +105,7 @@ namespace Mugirl
             for (int i = 0; i < pawns.Count; i++)
             {
                 Pawn patient = pawns[i];
-                if (patient == null || !patient.RaceProps.Humanlike) continue;
+                if (!CorporateSupportUtility.CanAcceptFieldTending(medic, patient) || !patient.RaceProps.Humanlike) continue;
                 if (patient.InAggroMentalState) continue;
                 if (patient.guest?.IsPrisoner == true) continue;
                 if (patient.IsMutant && !patient.mutant.Def.entitledToMedicalCare) continue;
@@ -140,6 +155,51 @@ namespace Mugirl
                 }
             }
             return best;
+        }
+    }
+
+    // 预约成功后才暂停伤员；接近、取背包医药和包扎共用同一等待任务。
+    // 等待被玩家命令或紧急行为打断时立即结束治疗，避免重新追逐移动中的目标。
+    public class JobDriver_CorporateSupportTend : JobDriver_TendPatient
+    {
+        private int patientWaitJobId = -1;
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look(ref patientWaitJobId, "patientWaitJobId", -1);
+        }
+
+        protected override IEnumerable<Toil> MakeNewToils()
+        {
+            this.FailOnDespawnedNullOrForbidden(TargetIndex.A);
+            AddFailCondition(() => patientWaitJobId >= 0 && TargetPawnA?.CurJob?.loadID != patientWaitJobId);
+            AddFinishAction(_ => ReleasePatient());
+            Toil waitForDoctor = ToilMaker.MakeToil("CorporatePatientWait");
+            waitForDoctor.initAction = delegate
+            {
+                Pawn patient = TargetPawnA;
+                if (!CorporateSupportUtility.CanAcceptFieldTending(pawn, patient))
+                {
+                    EndJobWith(JobCondition.Incompletable);
+                    return;
+                }
+                if (patient == pawn || patient.Downed || patient.InBed()) return;
+                PawnUtility.ForceWait(patient, GenDate.TicksPerHour, pawn, maintainPosture: true, maintainSleep: true);
+                patientWaitJobId = patient.CurJob?.loadID ?? -1;
+                if (patientWaitJobId < 0) EndJobWith(JobCondition.Incompletable);
+            };
+            waitForDoctor.defaultCompleteMode = ToilCompleteMode.Instant;
+            yield return waitForDoctor;
+            foreach (Toil toil in base.MakeNewToils()) yield return toil;
+        }
+
+        private void ReleasePatient()
+        {
+            Pawn patient = TargetPawnA;
+            if (patientWaitJobId < 0 || patient?.CurJob?.loadID != patientWaitJobId) return;
+            patientWaitJobId = -1;
+            patient.jobs.EndCurrentJob(JobCondition.InterruptForced);
         }
     }
 

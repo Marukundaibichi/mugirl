@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Verse;
@@ -29,6 +30,13 @@ namespace Mugirl
         private static void Warning(string message)
         {
             Log.Warning(Prefix + message);
+        }
+
+        // Mod 构造阶段早于语言初始化；此时不能调用 Translate 或 Verse 的 Formatted。
+        // 保留即时诊断，语言就绪后仍使用原翻译键；fallback 应与该键的英文语义一致。
+        internal static void StartupWarningOnce(string key, Func<string> localizedMessage, string fallback)
+        {
+            WarningOnce(key, LanguageDatabase.activeLanguage == null ? fallback : localizedMessage());
         }
 
         internal static void WarningOnce(

@@ -22,6 +22,8 @@ namespace Mugirl
         private static int failures;
         private static float nextAt;
         private static Pawn liveCharger;
+        private static Pawn liveRider;
+        private static Comp_MugirlMount liveMount;
         private static Pawn liveTarget;
         private static IntVec3 validationOrigin;
         private static IntVec3 liveTargetStart;
@@ -39,11 +41,15 @@ namespace Mugirl
         private static int pointLanceHitPointsBefore;
         private static int pointStartTick;
         private static bool sawPointFlyer;
+        private static IntVec3 jumpDestination;
+        private static int jumpStartTick;
+        private static bool sawVanillaJumpFlyer;
+        private static bool jumpScreenshotRequested;
 
         private static void Postfix()
         {
             if (!GenCommandLine.CommandLineArgPassed("mugirlLanceChecks")
-                || Current.ProgramState != ProgramState.Playing || Find.CurrentMap == null || phase == 11) return;
+                || Current.ProgramState != ProgramState.Playing || Find.CurrentMap == null || phase == 13) return;
             string allowedRoot = Path.GetFullPath(Path.Combine(MugirlMod.ContentRoot, "TMP")) + Path.DirectorySeparatorChar;
             outputRoot = Path.GetFullPath(GenFilePaths.SaveDataFolderPath);
             if (!outputRoot.StartsWith(allowedRoot, StringComparison.OrdinalIgnoreCase)) return;
@@ -86,6 +92,18 @@ namespace Mugirl
                 else if (phase == 9)
                 {
                     TickPointChargeTest();
+                    return;
+                }
+                else if (phase == 10)
+                {
+                    StartVanillaJumpTest();
+                    phase = 11;
+                    nextAt = Time.realtimeSinceStartup + 0.02f;
+                    return;
+                }
+                else if (phase == 11)
+                {
+                    TickVanillaJumpTest();
                     return;
                 }
                 else
@@ -213,10 +231,15 @@ namespace Mugirl
             IntVec3 origin = validationOrigin + new IntVec3(0, 0, 7);
             liveDestination = origin + new IntVec3(18, 0, 0);
             liveCharger = MakePawn(DefDatabase<PawnKindDef>.GetNamed("Mugirl_Colony"), Faction.OfPlayer, origin, map);
+            liveRider = MakePawn(PawnKindDefOf.Colonist, Faction.OfPlayer, origin + new IntVec3(0, 0, 1), map);
+            liveMount = MountedPawnUtility.GetMountComp(liveCharger);
             liveTarget = MakePawn(PawnKindDefOf.Colonist, enemyFaction, origin + new IntVec3(9, 0, 0), map);
             liveTargetStart = liveTarget.Position;
             liveTarget.stances.stunner.StunFor(6000, null);
             liveCharger.drafter.Drafted = true;
+            Check("live line-charge fixture mounts its rider before flight",
+                liveMount != null && liveMount.TryMount(liveRider)
+                && liveMount.MountedPawn == liveRider && !liveRider.Spawned);
             ThingWithComps weapon = Equip(liveCharger, DefDatabase<ThingDef>.GetNamed("Mugirl_NormanLance"));
             CompLanceCharge comp = weapon.TryGetComp<CompLanceCharge>();
             AccessTools.Method(typeof(CompLanceCharge), "StartChargeJob").Invoke(
@@ -248,6 +271,13 @@ namespace Mugirl
                     lanceFlyer?.AfterimagesDrawnLastFrame >= 4);
                 Check("live line charge explicitly draws the lance in its forward pose",
                     lanceFlyer?.ForwardLanceDrawnLastFrame == true);
+                Check("live line charge keeps the rider attached inside the flying carrier",
+                    liveMount?.MountedPawn == liveRider
+                    && MountedPawnUtility.GetMountForRider(liveRider) == liveMount);
+                Vector3 interpolatedRiderPos = liveMount?.RiderDrawPosAt(lanceFlyer.DrawPos) ?? Vector3.zero;
+                Vector3 legacyRiderPos = liveMount?.RiderDrawPos ?? Vector3.zero;
+                Check("mounted rider has a distinct interpolated flight draw position",
+                    liveMount != null && (interpolatedRiderPos - legacyRiderPos).sqrMagnitude > 0.0001f);
                 Find.CameraDriver.SetRootPosAndSize(flyers[0].DrawPos, 8f);
                 ScreenCapture.CaptureScreenshot(Path.Combine(outputRoot, "lance-direct-flight.png"));
                 liveScreenshotRequested = true;
@@ -263,6 +293,9 @@ namespace Mugirl
             Check("live charge spawned the dedicated direct flyer", sawLanceFlyer);
             Check("live charge landed at the selected fixed endpoint",
                 liveCharger?.Spawned == true && liveCharger.Position.DistanceTo(liveDestination) <= 1f);
+            Check("live charge lands without dismounting its rider",
+                liveMount?.MountedPawn == liveRider
+                && MountedPawnUtility.GetMountForRider(liveRider) == liveMount);
             Check("live line charge hit and knocked the passing enemy away",
                 liveTarget != null && !liveTarget.Dead && liveTarget.Position != liveTargetStart
                 && liveTarget.health.hediffSet.hediffs.Any(h => h is Hediff_Injury));
@@ -337,6 +370,66 @@ namespace Mugirl
             nextAt = Time.realtimeSinceStartup + 0.5f;
         }
 
+        private static void StartVanillaJumpTest()
+        {
+            Map map = Find.CurrentMap;
+            jumpDestination = liveCharger.Position + new IntVec3(-10, 0, 0);
+            liveCharger.jobs.StopAll();
+            bool launched = JumpUtility.DoJump(
+                liveCharger,
+                new LocalTargetInfo(jumpDestination),
+                null,
+                new VerbProperties());
+            sawVanillaJumpFlyer = map.listerThings.ThingsOfDef(ThingDefOf.PawnFlyer)
+                .OfType<PawnFlyer>()
+                .Any(flyer => flyer.FlyingPawn == liveCharger);
+            jumpScreenshotRequested = false;
+            Check("vanilla JumpUtility launches the mounted carrier in the standard PawnFlyer",
+                launched && !liveCharger.Spawned && sawVanillaJumpFlyer);
+            jumpStartTick = Find.TickManager.TicksGame;
+            Find.TickManager.CurTimeSpeed = TimeSpeed.Normal;
+        }
+
+        private static void TickVanillaJumpTest()
+        {
+            Map map = Find.CurrentMap;
+            PawnFlyer flyer = map.listerThings.ThingsOfDef(ThingDefOf.PawnFlyer)
+                .OfType<PawnFlyer>()
+                .FirstOrDefault(candidate => candidate.FlyingPawn == liveCharger);
+            sawVanillaJumpFlyer |= flyer != null;
+            int elapsed = Find.TickManager.TicksGame - jumpStartTick;
+            if (!jumpScreenshotRequested && elapsed >= 10 && flyer != null)
+            {
+                Vector3 interpolatedRiderPos = liveMount?.RiderDrawPosAt(flyer.DrawPos) ?? Vector3.zero;
+                Vector3 legacyRiderPos = liveMount?.RiderDrawPos ?? Vector3.zero;
+                Check("vanilla jump keeps the rider attached inside the flying carrier",
+                    liveMount?.MountedPawn == liveRider
+                    && MountedPawnUtility.GetMountForRider(liveRider) == liveMount);
+                Check("vanilla jump provides a distinct interpolated rider draw position",
+                    liveMount != null && (interpolatedRiderPos - legacyRiderPos).sqrMagnitude > 0.0001f);
+                Find.CameraDriver.SetRootPosAndSize(flyer.DrawPos, 8f);
+                ScreenCapture.CaptureScreenshot(Path.Combine(outputRoot, "jump-pack-flight.png"));
+                jumpScreenshotRequested = true;
+            }
+
+            if (elapsed < 120)
+            {
+                Find.TickManager.CurTimeSpeed = TimeSpeed.Normal;
+                nextAt = Time.realtimeSinceStartup + 0.05f;
+                return;
+            }
+
+            Find.TickManager.CurTimeSpeed = TimeSpeed.Paused;
+            Check("vanilla jump spawned the standard PawnFlyer", sawVanillaJumpFlyer);
+            Check("vanilla jump lands the carrier at its destination",
+                liveCharger?.Spawned == true && liveCharger.Position == jumpDestination);
+            Check("vanilla jump lands without dismounting its rider",
+                liveMount?.MountedPawn == liveRider
+                && MountedPawnUtility.GetMountForRider(liveRider) == liveMount);
+            phase = 12;
+            nextAt = Time.realtimeSinceStartup + 0.5f;
+        }
+
         private static Pawn MakePawn(PawnKindDef kind, Faction faction, IntVec3 cell, Map map)
         {
             Pawn pawn = PawnGenerator.GeneratePawn(new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer,
@@ -385,7 +478,7 @@ namespace Mugirl
 
         private static void Finish()
         {
-            phase = 11;
+            phase = 13;
             File.WriteAllText(Path.Combine(outputRoot, "lance-complete.txt"),
                 (failures == 0 ? "PASS" : "FAIL") + " failures=" + failures + " " + DateTime.UtcNow.ToString("O"));
             Application.Quit();

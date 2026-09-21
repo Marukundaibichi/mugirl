@@ -1,5 +1,23 @@
 # 梳妆台首次选择不刷新（2026-09-14）
 
+## 2026-09-21：脸部差分越界与身体断颈截面
+
+梳妆台正面预览中的化学疤痕并非窗口裁切：`Mugirl_FaceAccessory5_south.png`
+有约两成可见像素落在头部 alpha 轮廓之外。该方向曾从 555×555 整图缩到
+512×512，但身体底图和身体差分一直是 512×512，未参加该缩放批次。侧面身体的
+“截断”来自 `Naked_Female_*` 原图自带的红色断颈截面和白色骨面；长发露出颈部时
+会直接看到它。
+
+运行时三方向成人身体已只在颈部顶端重绘为连续皮肤，并恢复连续的两像素黑色外描边；
+身体 alpha 轮廓、位置和其余像素保持不变。此前以脸部中心为锚点缩至 95% 的正面化学疤痕
+已取消，改为直接使用用户提供的 512×512 RGBA 成图，不再进行二次缩放或轮廓裁切；侧面和空白方向不做无关改动。确定性修复与复查入口为
+`python docs/tools/Repair-AppearanceTextureArtifacts.py`；需要重新生成时加 `--apply`，
+该参数现在只重新生成三张身体贴图，原图备份写入 `TMP/AppearanceTextureRepair-20260921/OriginalTextures`。
+
+FA 启用时，脸部联动层必须保留在约第 58.5 层。原来的第 53 层在 FA 编辑器即时绘制中可见，
+但地图延迟绘制会被 FA 第 57–58 层的 head cover、highlight 或 emotion 覆盖；当前层级位于这些
+皮肤叠层之上，同时仍低于第 59 层眼泪、第 60/100 层眉毛与第 70 层头部服装。
+
 已安装 HAR `AlienRace.dll`（MVID `71176dfdd54d4f06985e6706cfd7af4e`）的
 `StylingStation.DoAddonInfo` 会直接写入 `alienComp.addonVariants`，但没有使人物图形失效。
 附件颜色分支只标记头像缓存，`DoChannelInfo` 的颜色编辑也没有重建人物渲染树。

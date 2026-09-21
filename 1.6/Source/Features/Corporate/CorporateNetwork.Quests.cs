@@ -417,6 +417,13 @@ namespace Mugirl
             TickFusionInvitation();
             foreach (CorporateMission m in missions.ToList())
             {
+                // 谢礼独立于巨企交易权限自动送往家园；无家园时保留，旧档已完成且无待发货物时不补发。
+                if (m.IsSide && m.state == CorporateMissionState.Completed && m.choice == CorporateResearchChoice.Protect
+                    && !m.gratitudeRevoked && m.pendingGoods.Count > 0)
+                {
+                    Map home = MugirlGameUtility.LoadedMaps.FirstOrDefault(map => map.IsPlayerHome);
+                    if (home != null) ReceiveMissionGoods(m, new CorporateTradeContext(home));
+                }
                 if (m.state == CorporateMissionState.Available && Now >= m.acceptByTick) m.state = CorporateMissionState.Expired;
                 if (m.state == CorporateMissionState.Ready && (m.kind == CorporateMissionKind.Purge || m.IsSide))
                 {

@@ -181,7 +181,7 @@ namespace Mugirl
                 for (int tick = 0; tick < 500; tick++) Find.TickManager.DoSingleTick();
                 check("Saved incoming pod really opens and deploys all eight troopers", lord.ownedPawns.Count == 8 && lord.ownedPawns.All(p => p.Spawned && p.Map == lord.Map));
                 check("Landed squad retains hunt-enemies duties and fearless state", lord.ownedPawns.All(p => !p.mindState.canFleeIndividual
-                    && p.mindState.duty?.def == DutyDefOf.HuntEnemiesIndividual));
+                    && p.mindState.duty?.def == MugirlContentDefOf.Mugirl_CorporateSupportHunt));
                 Pawn casualty = lord.ownedPawns.First();
                 casualty.Kill(null);
                 lord.LordTick();

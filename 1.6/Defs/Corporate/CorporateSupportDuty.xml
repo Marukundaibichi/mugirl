@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
+    <JobDef>
+        <defName>Mugirl_CorporateSupportTend</defName>
+        <driverClass>Mugirl.JobDriver_CorporateSupportTend</driverClass>
+        <reportString>tending to TargetA.</reportString>
+        <casualInterruptible>false</casualInterruptible>
+        <isCrawlingIfDowned>true</isCrawlingIfDowned>
+    </JobDef>
     <!-- 巨企支援小队的搜敌职责：结构与原版 HuntEnemiesIndividual 相同，
          仅在索敌之后插入 JobGiver_CorporateSupportTend，让队员本地安全时
          处理自己或附近受伤友方小人的伤口。搜敌目标依旧优先。 -->
