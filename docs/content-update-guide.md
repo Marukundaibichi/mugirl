@@ -48,7 +48,7 @@
 
 ## Facial Animation 内容
 
-- 新增或修改 `Textures/FA`、`1.6/FacialAnimation/Defs` 前先看 `facial-animation-guide.md`。
+- 新增或修改 `Textures/FA`、`1.6/FacialAnimation/Defs` 前先看 `features/facial-animation-guide.md`。
 - 新 FA 动画必须写 `raceName=Mugirl`，否则当前雪牛娘专属动画池不会使用它。
 - 新 shape 要同时确认 `*ShapeDef` 和 `{shape}_south` 贴图；缺贴图会按 `altShapeDef`、`normal`、透明 dummy 静默回退。
 - 不要删除或限制 `normal_Mugirl`，它是所有动画合成的基础帧。

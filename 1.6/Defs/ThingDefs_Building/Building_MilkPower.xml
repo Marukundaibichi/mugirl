@@ -89,7 +89,9 @@
         <uiOrder>2105</uiOrder>
         <designationHotKey>Misc4</designationHotKey>
         <constructEffect>ConstructMetal</constructEffect>
+        <!-- 双门槛：乳能利用（种族）+ Electricity（原版，接入电网） -->
         <researchPrerequisites>
+            <li>Mugirl_MilkPowerUtilization</li>
             <li>Electricity</li>
         </researchPrerequisites>
         <constructionSkillPrerequisite>6</constructionSkillPrerequisite>

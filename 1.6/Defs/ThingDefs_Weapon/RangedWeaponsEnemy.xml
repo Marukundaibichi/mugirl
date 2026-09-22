@@ -34,7 +34,7 @@
             <li>RangedHeavy</li>
         </weaponClasses>
         <recipeMaker>
-            <researchPrerequisite>GasOperation</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_Firearms</li><li>GasOperation</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>5</Crafting>
             </skillRequirements>
@@ -127,7 +127,7 @@
         </graphicData>
         <soundInteract>Interact_Rifle</soundInteract>
         <recipeMaker>
-            <researchPrerequisite>PrecisionRifling</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_Firearms</li><li>PrecisionRifling</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>6</Crafting>
             </skillRequirements>
@@ -220,7 +220,7 @@
         </graphicData>
         <soundInteract>Interact_Rifle</soundInteract>
         <recipeMaker>
-            <researchPrerequisite>PrecisionRifling</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_Firearms</li><li>PrecisionRifling</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>6</Crafting>
             </skillRequirements>
@@ -316,7 +316,7 @@
             <li>RangedHeavy</li>
         </weaponClasses>
         <recipeMaker>
-            <researchPrerequisite>GasOperation</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_Firearms</li><li>GasOperation</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>6</Crafting>
             </skillRequirements>
@@ -409,7 +409,7 @@
         <uiIconScale>1.5</uiIconScale>
         <soundInteract>Interact_Autopistol</soundInteract>
         <recipeMaker>
-            <researchPrerequisite>BlowbackOperation</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_Firearms</li><li>BlowbackOperation</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>4</Crafting>
             </skillRequirements>
@@ -525,6 +525,8 @@
             <ComponentIndustrial>4</ComponentIndustrial>
         </costList>
         <recipeMaker>
+            <!-- 补研究前置：与 BlowbackOperation 级民用枪械同调（见研究树设计） -->
+            <researchPrerequisites Inherit="False"><li>Mugirl_Firearms</li><li>BlowbackOperation</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>5</Crafting>
             </skillRequirements>
@@ -620,6 +622,8 @@
             <ComponentIndustrial>4</ComponentIndustrial>
         </costList>
         <recipeMaker>
+            <!-- 补研究前置：与 PMC 霰弹/机枪同调 GasOperation（见研究树设计） -->
+            <researchPrerequisites Inherit="False"><li>Mugirl_Firearms</li><li>GasOperation</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>5</Crafting>
             </skillRequirements>
@@ -689,7 +693,7 @@
         </graphicData>
         <soundInteract>Interact_Rifle</soundInteract>
         <recipeMaker>
-            <researchPrerequisite>PrecisionRifling</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_Firearms</li><li>PrecisionRifling</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>6</Crafting>
             </skillRequirements>

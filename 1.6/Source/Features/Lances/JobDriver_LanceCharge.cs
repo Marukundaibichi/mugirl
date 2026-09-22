@@ -78,7 +78,6 @@ namespace Mugirl.Features.Lances
             }
 
             job.count = 1;
-            LanceChargeEffects.ThrowShockwave(pawn.DrawPos, map);
             PawnFlyer_LanceCharge flyer = PawnFlyer.MakeFlyer(
                 flyerDef,
                 pawn,

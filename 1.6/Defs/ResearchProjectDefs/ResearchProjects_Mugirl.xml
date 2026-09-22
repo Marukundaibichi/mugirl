@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <!-- 雪牛娘专属研究项目。节点按阶段网格紧凑排列，原版科技下沉到物品层双门槛，
+         详见 docs/features/research-tree-design.md。 -->
+    <ResearchProjectDef>
+        <defName>Mugirl_DairyProcessing</defName>
+        <!-- 雪牛娘乳品加工 -->
+        <label>Mugirl dairy processing</label>
+        <!-- 将雪牛娘奶的日常加工标准化：在灶台上制作奶布丁、奶酪、大肥牛奶糖与奶霜苹果。更精制的乳品还需要更先进的保鲜与制药设施。 -->
+        <description>Standardize everyday processing of Mugirl milk: make milk pudding, cheese, plain milk candy and milk cream apples on the stove. Finer products still call for better preservation and pharmaceutical facilities.</description>
+        <baseCost>400</baseCost>
+        <techLevel>Industrial</techLevel>
+        <tab>Mugirl_ResearchTab</tab>
+        <researchViewX>0.80</researchViewX><researchViewY>0.90</researchViewY>
+    </ResearchProjectDef>
+    <ResearchProjectDef>
+        <defName>Mugirl_MilkPowerUtilization</defName>
+        <!-- 乳能利用 -->
+        <label>Mugirl milk power utilization</label>
+        <!-- 建造以雪牛娘奶为燃料的专用发电机，把富余的奶转化为电力。发电机接入电网还需要掌握电力技术。 -->
+        <description>Build a dedicated generator that burns Mugirl milk, turning surplus dairy into electrical power. Wiring it into a grid still requires Electricity.</description>
+        <baseCost>600</baseCost>
+        <techLevel>Industrial</techLevel>
+        <prerequisites><li>Mugirl_DairyProcessing</li></prerequisites>
+        <tab>Mugirl_ResearchTab</tab>
+        <researchViewX>2.35</researchViewX><researchViewY>0.55</researchViewY>
+    </ResearchProjectDef>
+    <ResearchProjectDef>
+        <defName>Mugirl_AdvancedDairy</defName>
+        <!-- 精制乳品 -->
+        <label>Mugirl advanced dairy</label>
+        <!-- 精研雪牛娘奶的深加工：陈年奶酪、牛乳蛋糕、奶粉与奶片需要冷藏技术保鲜，奶宝塔糖则要在制药台上制作。 -->
+        <description>Master the deep processing of Mugirl milk: aged cheese, milk cake, milk powder and milk tablets need refrigerated storage, while baota dewormer candy is prepared at a drug lab.</description>
+        <baseCost>1000</baseCost>
+        <techLevel>Industrial</techLevel>
+        <prerequisites><li>Mugirl_DairyProcessing</li></prerequisites>
+        <tab>Mugirl_ResearchTab</tab>
+        <researchViewX>2.35</researchViewX><researchViewY>1.25</researchViewY>
+    </ResearchProjectDef>
+    <ResearchProjectDef>
+        <defName>Mugirl_RopeHandling</defName>
+        <!-- 束具与拴系 -->
+        <label>Mugirl restraints and roping</label>
+        <!-- 掌握雪牛娘的基础束具与拴系工艺：制作感官、四肢及全身束具，在墙上安装拴环，并加工中世纪与工业级束具钥匙。 -->
+        <description>Master basic Mugirl restraint and roping craft: make sensory, limb and full-body restraints, mount wall rope hitches, and cut medieval and industrial restraint keys.</description>
+        <baseCost>300</baseCost>
+        <techLevel>Industrial</techLevel>
+        <tab>Mugirl_ResearchTab</tab>
+        <researchViewX>0.80</researchViewX><researchViewY>2.15</researchViewY>
+    </ResearchProjectDef>
+    <ResearchProjectDef>
+        <defName>Mugirl_RegulatedMilking</defName>
+        <!-- 规范采乳 -->
+        <label>Mugirl regulated milking</label>
+        <!-- 建立规范的机械化采乳流程：制作穿戴式与隐藏式采奶器，实现稳定、集中的乳品采集。 -->
+        <description>Establish a regulated mechanized milking routine: craft wearable and concealable milking devices for stable, centralized collection.</description>
+        <baseCost>700</baseCost>
+        <techLevel>Industrial</techLevel>
+        <prerequisites><li>Mugirl_RopeHandling</li></prerequisites>
+        <tab>Mugirl_ResearchTab</tab>
+        <researchViewX>2.35</researchViewX><researchViewY>2.15</researchViewY>
+    </ResearchProjectDef>
+    <ResearchProjectDef>
+        <defName>Mugirl_BehavioralConditioning</defName>
+        <!-- 高阶管制技术 -->
+        <label>Mugirl advanced control systems</label>
+        <!-- 发展电子束缚与精神管制技术：制作电击项圈、洗脑头盔、高科技束具钥匙与束具破解器，并复原巨企风格的磁力镣铐。 -->
+        <description>Develop electronic restraint and psychological control systems: craft shock collars, brainwashing helmets, spacer restraint keys and decryptors, and reproduce corporate-style magnetic shackles.</description>
+        <baseCost>1200</baseCost>
+        <techLevel>Industrial</techLevel>
+        <prerequisites><li>Mugirl_RegulatedMilking</li></prerequisites>
+        <tab>Mugirl_ResearchTab</tab>
+        <researchViewX>3.90</researchViewX><researchViewY>2.15</researchViewY>
+    </ResearchProjectDef>
+    <ResearchProjectDef>
+        <defName>Mugirl_DailyAttire</defName>
+        <!-- 雪牛娘服装工艺 -->
+        <label>Mugirl garment tailoring</label>
+        <!-- 建立适配雪牛娘体型的服装工艺：裁制便服、礼服、职业制服、丝袜、内衣与装饰件。大部分衣物还需要复杂服装技术。 -->
+        <description>Establish tailoring for the Mugirl frame: make casual wear, formal dress, occupational uniforms, stockings, underwear and ornaments. Most garments also require Complex clothing.</description>
+        <baseCost>400</baseCost>
+        <techLevel>Industrial</techLevel>
+        <tab>Mugirl_ResearchTab</tab>
+        <researchViewX>0.80</researchViewX><researchViewY>3.40</researchViewY>
+    </ResearchProjectDef>
+    <ResearchProjectDef>
+        <defName>Mugirl_CombatAttire</defName>
+        <!-- 雪牛娘战斗装具 -->
+        <label>Mugirl combat attire</label>
+        <!-- 规范雪牛娘的战斗与佣兵装具：战斗服、携行具、防弹套装、侦察盔与骑士板甲。 -->
+        <description>Standardize Mugirl combat and PMC gear: battle uniforms, field gear, flak sets, recon helmets and knight plate sized for a Mugirl frame.</description>
+        <baseCost>1000</baseCost>
+        <techLevel>Industrial</techLevel>
+        <prerequisites><li>Mugirl_DailyAttire</li></prerequisites>
+        <tab>Mugirl_ResearchTab</tab>
+        <researchViewX>2.35</researchViewX><researchViewY>3.40</researchViewY>
+    </ResearchProjectDef>
+    <ResearchProjectDef>
+        <defName>Mugirl_AdvancedGear</defName>
+        <!-- 雪牛娘高阶装备 -->
+        <label>Mugirl advanced gear</label>
+        <!-- 为雪牛娘适配太空级装备：动力装甲、太空服、机械师背包与战术目镜。 -->
+        <description>Adapt spacer-grade equipment for Mugirl use: powered armor, spacesuits, mechanitor backpacks and tactical optics.</description>
+        <baseCost>1800</baseCost>
+        <techLevel>Spacer</techLevel>
+        <prerequisites><li>Mugirl_CombatAttire</li></prerequisites>
+        <tab>Mugirl_ResearchTab</tab>
+        <researchViewX>3.90</researchViewX><researchViewY>3.40</researchViewY>
+    </ResearchProjectDef>
+    <ResearchProjectDef>
+        <defName>Mugirl_Firearms</defName>
+        <!-- 雪牛娘枪械 -->
+        <label>Mugirl firearms</label>
+        <!-- 建立雪牛娘式枪械与缴获 PMC/OPC 枪械的仿制产线，从自由枪机手枪到精密步枪。 -->
+        <description>Set up workshop lines for Mugirl-pattern and captured PMC/OPC firearms, from blowback pistols to precision rifles.</description>
+        <baseCost>800</baseCost>
+        <techLevel>Industrial</techLevel>
+        <tab>Mugirl_ResearchTab</tab>
+        <researchViewX>0.80</researchViewX><researchViewY>4.65</researchViewY>
+    </ResearchProjectDef>
+</Defs>

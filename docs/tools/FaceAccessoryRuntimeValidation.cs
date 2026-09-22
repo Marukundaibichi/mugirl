@@ -68,7 +68,9 @@ namespace Mugirl
                         Mesh headMesh = HumanlikeMeshPoolUtility.GetHumanlikeHeadSetForPawn(pawn).MeshAt(facing);
                         Check(label + " matches the head canvas size", mesh.bounds.size == headMesh.bounds.size);
                         Check(label + " has no added offset or scale",
-                            node.Props.drawData == null && node.Props.drawSize == Vector2.one
+                            (defName == "Mugirl_NunBlindfold"
+                                ? StylingStartupValidation.HasOnlyLayerOverride(node.Props.drawData, 61f)
+                                : node.Props.drawData == null) && node.Props.drawSize == Vector2.one
                             && !node.Props.overrideMeshSize.HasValue && accessory.def.apparel.wornGraphicData == null);
                         bool found = ApparelGraphicRecordGetter.TryGetGraphicApparel(accessory, pawn.story.bodyType, false, out ApparelGraphicRecord graphic);
                         Check(label + " resolves the unsuffixed head texture", found && graphic.graphic.path == accessory.def.apparel.wornGraphicPath

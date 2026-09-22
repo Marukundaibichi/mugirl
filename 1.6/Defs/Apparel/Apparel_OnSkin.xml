@@ -18,7 +18,7 @@
             <li>Mugirl_OnSkin</li>
         </thingCategories>
         <recipeMaker>
-            <researchPrerequisite>ComplexClothing</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_DailyAttire</li><li>ComplexClothing</li></researchPrerequisites>
         </recipeMaker>
     </ThingDef>
 
@@ -209,6 +209,9 @@
             </bodyPartGroups>
             <wornGraphicPath>Things/Apparel/Mugirl_RA_Unionary/Mugirl_RA_Unionary</wornGraphicPath>
         </apparel>
+        <recipeMaker>
+            <researchPrerequisites Inherit="False"><li>Mugirl_CombatAttire</li><li>ComplexClothing</li></researchPrerequisites>
+        </recipeMaker>
     </ThingDef>
 
     <ThingDef ParentName="Mugirl_OnSkinBase">

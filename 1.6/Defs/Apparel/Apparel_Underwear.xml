@@ -29,7 +29,7 @@
             <li>Mugirl_Underwear</li>
         </thingCategories>
         <recipeMaker>
-            <researchPrerequisite>ComplexClothing</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_DailyAttire</li><li>ComplexClothing</li></researchPrerequisites>
         </recipeMaker>
     </ThingDef>
 

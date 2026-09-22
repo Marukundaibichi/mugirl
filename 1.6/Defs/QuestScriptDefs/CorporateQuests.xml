@@ -51,6 +51,8 @@
     <siteTexture>World/WorldObjects/Sites/GenericSite</siteTexture>
     <expandingIconTexture>World/WorldObjects/Expanding/Sites/ItemStash</expandingIconTexture>
     <considerEnteringAsAttack>false</considerEnteringAsAttack>
+    <!-- 51×42 的站点、自然清场边缘与四向通道需要完整的生成空间。 -->
+    <minMapSize>(100,1,100)</minMapSize>
     <forceExitAndRemoveMapCountdownDurationDays>4</forceExitAndRemoveMapCountdownDurationDays>
   </SitePartDef>
 </Defs>

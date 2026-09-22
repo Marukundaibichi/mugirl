@@ -22,7 +22,7 @@
             <li>Mugirl_Middle</li>
         </thingCategories>
         <recipeMaker>
-            <researchPrerequisite>ComplexClothing</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_DailyAttire</li><li>ComplexClothing</li></researchPrerequisites>
         </recipeMaker>
     </ThingDef>
 
@@ -94,5 +94,8 @@
             </bodyPartGroups>
             <wornGraphicPath>Things/Apparel/Mugirl_Gambeson/Mugirl_Gambeson</wornGraphicPath>
         </apparel>
+        <recipeMaker>
+            <researchPrerequisites Inherit="False"><li>Mugirl_CombatAttire</li><li>ComplexClothing</li></researchPrerequisites>
+        </recipeMaker>
     </ThingDef>
 </Defs>

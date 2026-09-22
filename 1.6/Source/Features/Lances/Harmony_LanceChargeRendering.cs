@@ -5,21 +5,13 @@ using Verse;
 
 namespace Mugirl.Features.Lances
 {
-    internal static class LanceChargeAfterimageRenderScope
+    [HarmonyPatch(typeof(Pawn), nameof(Pawn.DynamicDrawPhaseAt))]
+    internal static class Harmony_LanceCharge_BlurRecovery
     {
-        [System.ThreadStatic]
-        private static bool active;
-
-        internal static bool Active => active;
-
-        internal static void Begin()
+        private static void Postfix(Pawn __instance, DrawPhase phase)
         {
-            active = true;
-        }
-
-        internal static void End()
-        {
-            active = false;
+            if (phase == DrawPhase.Draw)
+                LanceMotionBlur.DrawRecovery(__instance);
         }
     }
 
@@ -31,11 +23,6 @@ namespace Mugirl.Features.Lances
             Vector3 drawPos,
             float equipmentDrawDistanceFactor)
         {
-            if (LanceChargeAfterimageRenderScope.Active)
-            {
-                return false;
-            }
-
             Pawn_EquipmentTracker tracker = weapon?.ParentHolder as Pawn_EquipmentTracker;
             Pawn pawn = tracker?.pawn;
             PawnFlyer_LanceCharge flyer = pawn?.ParentHolder as PawnFlyer_LanceCharge;

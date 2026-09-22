@@ -6,7 +6,7 @@ alpha is zero. Those files are deliberately excluded from normalization.
 python docs/tools/Normalize-TransparentPixels.py          # Read-only scan
 python docs/tools/Normalize-TransparentPixels.py --apply  # Back up, fix, verify
 
-Requires Pillow and numpy. Backups and reports are stored in TMP.
+Requires Pillow and numpy. Backups and reports are stored in DevData/Backups.
 """
 import argparse
 import hashlib
@@ -25,7 +25,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[2]
 DIRECTORIES = (
-    "Textures", "1.6/Textures", "1.6/FacialAnimation/Textures",
+    "Textures", "1.6/FacialAnimation/Textures",
     "Bio_1.6/Textures", "Odyssey_1.6/Textures",
     "Versions/1.6/Integrations/VCookE/Textures",
     "Versions/1.6/Integrations/SearchAndDestroy/Textures",
@@ -95,7 +95,7 @@ def replace_pixels(original, pixels):
 
 
 def main(apply=False):
-    work = ROOT / "TMP" / ("TransparentBlack-" + datetime.now().strftime("%Y%m%d-%H%M%S-%f"))
+    work = ROOT / "DevData" / "Backups" / ("TransparentBlack-" + datetime.now().strftime("%Y%m%d-%H%M%S-%f"))
     if apply:
         work.mkdir(parents=True, exist_ok=False)
     files = sorted(path for directory in DIRECTORIES

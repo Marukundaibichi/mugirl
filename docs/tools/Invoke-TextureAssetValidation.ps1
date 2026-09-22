@@ -102,7 +102,7 @@ Write-Host "[textures] Passed: $apparelTextureCount worn apparel direction/body-
 $pngCount = 0
 $residual555 = @()
 $legacyFa555Count = 0
-foreach ($root in @('Textures', '1.6\Textures', '1.6\FacialAnimation\Textures')) {
+foreach ($root in @('Textures', '1.6\FacialAnimation\Textures')) {
     foreach ($file in Get-ChildItem -LiteralPath (Join-Path $repoPath $root) -Recurse -File -Filter '*.png') {
         $stream = [IO.File]::OpenRead($file.FullName)
         try {

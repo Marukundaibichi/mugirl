@@ -71,8 +71,7 @@ namespace Mugirl
             }
 
             AddToInventory(courier, MugirlContentDefOf.Mugirl_CourierDiary, 1);
-            AddToInventory(courier, MugirlContentDefOf.Mugirl_SlaveApparelKey_Medieval, 6);
-            AddToInventory(courier, MugirlContentDefOf.Mugirl_SlaveApparelKey_Industrial, 4);
+            AddOpeningCrashKeys(courier);
 
             GenSpawn.Spawn(courier, spawnCell, map);
             if (!courier.Spawned)
@@ -104,17 +103,96 @@ namespace Mugirl
         private static void AddToInventory(Pawn pawn, ThingDef thingDef, int count)
         {
             if (pawn?.inventory?.innerContainer == null || thingDef == null || count <= 0) return;
-            Thing thing = ThingMaker.MakeThing(thingDef);
-            if (thing == null)
+            for (int i = 0; i < count; i++)
             {
+                Thing thing = ThingMaker.MakeThing(thingDef);
+                if (thing == null)
+                {
+                    return;
+                }
+
+                if (!pawn.inventory.innerContainer.TryAdd(thing))
+                {
+                    thing.Destroy();
+                }
+            }
+        }
+
+        private static void AddOpeningCrashKeys(Pawn courier)
+        {
+            List<Pawn> pawns = FindOpeningCrashPawns();
+            if (pawns == null || pawns.Count == 0)
+            {
+                MugirlLog.WarningOnce("CourierKeys.MissingOpeningPawns", "Mugirl.CourierRaid.Log.MissingOpeningPawns".Translate().ToString());
                 return;
             }
 
-            thing.stackCount = count;
-            if (!pawn.inventory.innerContainer.TryAdd(thing))
+            AddOpeningCrashKeys(courier, pawns);
+        }
+
+        private static List<Pawn> FindOpeningCrashPawns()
+        {
+            List<Pawn> pawns = MugirlGameUtility.GameComponent<MugirlStoryState>()?.openingCrashPawns;
+            if (pawns == null || pawns.Count == 0)
             {
+                // 旧存档没有专用 Pawn 引用时，从尚保留的开局任务恢复目标。
+                if (MugirlGameUtility.TryGetQuestsListForReading(out var quests))
+                {
+                    for (int i = 0; i < quests.Count && (pawns == null || pawns.Count == 0); i++)
+                    {
+                        if (quests[i]?.root != Mugirl_DefOf.Mugirl_SlaveOpeningPodCrash) continue;
+                        List<QuestPart> parts = quests[i].PartsListForReading;
+                        for (int j = 0; j < parts.Count; j++)
+                        {
+                            if (parts[j] is QuestPart_MugirlRescueJoin rescuePart)
+                            {
+                                pawns = rescuePart.pawns;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return pawns;
+        }
+
+        private static void AddOpeningCrashKeys(Pawn courier, List<Pawn> pawns)
+        {
+            for (int i = 0; i < pawns.Count; i++)
+            {
+                Pawn pawn = pawns[i];
+                if (pawn?.apparel?.WornApparel == null) continue;
+                List<Apparel> apparel = pawn.apparel.WornApparel;
+                for (int j = 0; j < apparel.Count; j++)
+                {
+                    if (!(apparel[j] is SlaveApparel locked) || !apparel[j].IsLockedSlaveApparel() || locked.lockCount <= 0) continue;
+                    ThingDef keyDef = locked.SlaveDef?.keytype ?? MugirlContentDefOf.Mugirl_SlaveApparelKey_Medieval;
+                    AddToInventory(courier, keyDef, locked.lockCount);
+                }
+            }
+        }
+
+        internal static void RefreshOpeningCrashKeys(Pawn courier)
+        {
+            List<Pawn> pawns = FindOpeningCrashPawns();
+            ThingOwner<Thing> inventory = courier?.inventory?.innerContainer;
+            if (pawns == null || pawns.Count == 0)
+            {
+                MugirlLog.WarningOnce("CourierKeys.MissingOpeningPawns", "Mugirl.CourierRaid.Log.MissingOpeningPawns".Translate().ToString());
+                return;
+            }
+            if (inventory == null) return;
+
+            // 旧档已经生成的运货员可能仍携带两个写入了虚假 stackCount 的钥匙物品。
+            for (int i = inventory.Count - 1; i >= 0; i--)
+            {
+                if (!(inventory[i] is ThingWithComps thing) || thing.GetComp<CompSlaveApparelKey>() == null) continue;
+                inventory.Remove(thing);
                 thing.Destroy();
             }
+
+            AddOpeningCrashKeys(courier, pawns);
         }
 
         public override void ExposeData()
@@ -155,14 +233,16 @@ namespace Mugirl
                 return;
             }
 
-            Dialog_MessageBox dialog = new Dialog_MessageBox(
-                "Mugirl.CourierDialogText".Translate(courier.Named("COURIER"), negotiator.Named("NEGOTIATOR")),
-                "Mugirl.CourierDialogFight".Translate(),
-                () => TryStartFight(courier),
-                "Mugirl.CourierDialogLeaveItems".Translate(),
-                () => TryDropItemsAndLeave(courier),
-                "Mugirl.CourierDialogTitle".Translate(),
-                buttonADestructive: true);
+            DiaNode main = new DiaNode("Mugirl.CourierDialogText".Translate(courier.Named("COURIER"), negotiator.Named("NEGOTIATOR")));
+            main.options.Add(new DiaOption("Mugirl.CourierDialogLeaveItems".Translate())
+            {
+                action = () => TryDropItemsAndLeave(courier), resolveTree = true
+            });
+            main.options.Add(new DiaOption("Mugirl.CourierDialogFight".Translate())
+            {
+                action = () => TryStartFight(courier), resolveTree = true
+            });
+            Dialog_NodeTree dialog = new Dialog_NodeTree(main, delayInteractivity: true, title: "Mugirl.CourierDialogTitle".Translate());
             MugirlGameUtility.TryAddWindow(dialog);
         }
 
@@ -206,6 +286,7 @@ namespace Mugirl
                 return;
             }
 
+            QuestPart_SpawnCourier.RefreshOpeningCrashKeys(courier);
             courier.inventory.DropAllNearPawn(courier.Position, forbid: false, unforbid: true);
             StartLeaving(courier);
             CorporateIntroduction.Current?.NotifyCourierChoice(courier, released: true);

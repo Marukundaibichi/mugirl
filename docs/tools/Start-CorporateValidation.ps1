@@ -1,5 +1,5 @@
 param(
-    [ValidateSet('Economy', 'Visual', 'WithoutIdeology', 'Support', 'Fusion')][string]$Mode = 'Economy',
+    [ValidateSet('Economy', 'Visual', 'WithoutIdeology', 'Support', 'Fusion', 'FusionFloors')][string]$Mode = 'Economy',
     [Parameter(Mandatory)][ValidatePattern('^[A-Za-z0-9-]+$')][string]$RunName,
     [switch]$SkipCompact
 )
@@ -64,6 +64,7 @@ $arguments = @('-quicktest', $flag, '-screen-fullscreen', '0', '-screen-width', 
 if ($Mode -eq 'Visual' -and -not $SkipCompact) { $arguments += '-mugirlCorporateVisualCompact' }
 if ($Mode -eq 'WithoutIdeology') { $arguments += '-mugirlCorporateNoIdeology' }
 if ($Mode -eq 'Fusion') { $arguments += '-mugirlCorporateFusionChecks' }
+if ($Mode -eq 'FusionFloors') { $arguments += '-mugirlCorporateFusionFloorChecks' }
 # Each driver also checks its explicit flag and actual save path inside the game.
 $process = Start-Process -FilePath (Join-Path $stage 'RimWorldWin64.exe') -WorkingDirectory $stage -ArgumentList $arguments -WindowStyle Hidden -PassThru
 $process.Id | Set-Content -LiteralPath (Join-Path $saveRoot 'process-id.txt')

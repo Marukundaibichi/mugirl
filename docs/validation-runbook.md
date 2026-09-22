@@ -8,6 +8,8 @@
 
 `Start-CorporateValidation.ps1` 的测试游戏现在输出到 `%LOCALAPPDATA%\RimWorldModTests\Mugirl\CorporateValidation-<RunName>-Game`。普通配置和日志可以留在仓库 `TMP`，但不要把外部测试环境再用联接挂回仓库。改动测试脚本后须运行 `Audit-RimSortDirectoryCycles.py`，确认无环路且扫描无错误。
 
+专项脚本与资源工具统一列在本文后半部分。本轮输出写入 `TMP`，需追溯的已完成测试归档到 `DevData/Evidence`，原图和 DLL 回退备份放在 `DevData/Backups`。历史记录中的证据路径已按 2026-09-21 归档位置更新；日志正文内的旧绝对路径可查 `DevData/Evidence/MaintenanceCleanup-20260921/moves.json`。清理前遵守[目录与清理约定](../README.md)。
+
 ## 静态验证
 
 完整验证：
@@ -88,7 +90,7 @@ Mugirl 相关异常：无/有，摘要：
 
 - 最小必需：Harmony、Core、HAR、Mugirl。
 - 全 DLC：Royalty、Ideology、Biotech、Anomaly、Odyssey 全开。
-- Facial Animation：按 `facial-animation-guide.md` 检查头部 comp、表情动画、贴图回退和渲染日志。重点看 `normal_Mugirl`、眨眼、疼痛不哭泣、倒地、穿脱衣不用爱心眼、Lovin、`blush/lovinblush` 位于眼白下方、`AttackStatic`/`Wait_Combat` 使用 `sad` 严肃嘴、`Wait_Combat` 不全程半眯、整张眼睛贴图与高光；只有重新启用左右眼 mask 时才检查 `FA/Eyes/Common`。
+- Facial Animation：按 `features/facial-animation-guide.md` 检查头部 comp、表情动画、贴图回退和渲染日志。重点看 `normal_Mugirl`、眨眼、疼痛不哭泣、倒地、穿脱衣不用爱心眼、Lovin、`blush/lovinblush` 位于眼白下方、`AttackStatic`/`Wait_Combat` 使用 `sad` 严肃嘴、`Wait_Combat` 不全程半眯、整张眼睛贴图与高光；只有重新启用左右眼 mask 时才检查 `FA/Eyes/Common`。
 - Search and Destroy：检查雪牛娘闲置战斗行为树不红字。
 - VCookE：检查奶酪压制机工序是否追加且不重复。
 - 全集成：所有上面组合一起加载。
@@ -102,3 +104,35 @@ Mugirl 相关异常：无/有，摘要：
 - 牵引、被牵引、牵到建筑、混合牵引普通 pawn。
 - 骑乘、下骑、骑乘近战、装备绘制。
 - 事件和任务：开局坠舱、逃奴加入、野人事件、快递事件。
+
+## 专项验证
+
+| 入口 | 范围 |
+| --- | --- |
+| `Test-BootstrapStartup.ps1` | 启动期间日志、翻译与补丁失败处理 |
+| `Test-MilkCache.ps1`、`Test-MilkingFacing.ps1` | 产奶缓存与挤奶朝向 |
+| `Test-RopingIndex.ps1` | 牵引索引 |
+| `Test-RenderingRefresh.ps1`、`Test-StylingStationRefresh.ps1` | 渲染缓存与造型台刷新 |
+| `Test-BodyAccessoryLifecycle.ps1` | 身体附件生命周期 |
+| `Test-MeleeAnimationScope.ps1` | 近战动画兼容边界 |
+| `Start-CorporateValidation.ps1` | 巨企隔离游戏测试，参数见[巨企验证](features/giant-corporation-v1-validation.md) |
+| `Start-LanceRuntimeValidation.ps1` | 骑枪破墙、连续运动模糊及落地回收；自动构建外部隔离 DLL，见[骑枪专题](features/lance-charge.md) |
+| `Start-StylingStartupValidation.ps1` | 外观及造型台冷启动验证 |
+| `Start-PregnancyMoodValidation.ps1` | 怀孕心情隔离测试；`-WithoutBiotech` 检查无 Biotech 配置 |
+
+`docs/tools` 中的 `.cs` 文件是相应验证驱动或检查实现，包括 `Corporate*`、`LanceRuntimeValidation`、`StylingStartupValidation`、`FaceAccessoryRuntimeValidation`、`LongCascadeRuntimeValidation`、`NeuralArmorRuntimeChecks` 和 `PregnancyMoodProbe`。它们不是清理对象，也不能当作正式模组源码自动加入发布 DLL。
+
+启动真实游戏的测试会生成配置、日志或测试存档，部分脚本使用外部含联接测试游戏。运行前阅读脚本参数与相关功能文档；测试后检查 fresh log，涉及测试目录或脚本改动后运行目录环路审计。不要在模组内重建测试游戏联接。
+
+## 资源处理
+
+| 工具 | 行为 |
+| --- | --- |
+| `Invoke-TextureAssetValidation.ps1` | 只读检查资源路径、PNG 与 FA 纹理约定 |
+| `Build-OutlineAssets.ps1` | 在 `TMP` 建立 Unity 工程，构建正式描边资源；`-ValidateOnly` 执行离屏验证 |
+| `Build-LanceMotionBlurAssets.ps1` | 在 `TMP` 建立无联接 Unity 工程，构建骑枪连续运动模糊资源 |
+| `Optimize-TextureAssets.py` | 555→512 纹理转换的准备、应用和验证；`--verify` 只读复查 |
+| `Normalize-TransparentPixels.py` | 默认只读扫描；`--apply` 备份后修正透明像素，保留受保护遮罩 |
+| `Repair-AppearanceTextureArtifacts.py` | 默认只读验证；`--apply` 备份后执行指定身体纹理修复 |
+
+Python 资源工具需要 Pillow、numpy。原图和处理清单存入 `DevData/Backups`；不要因目录未被 Git 跟踪而删除它们。描边源码和详细验收边界见[描边维护](features/outline-guide.md)。

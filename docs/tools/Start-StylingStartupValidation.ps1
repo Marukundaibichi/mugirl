@@ -2,10 +2,12 @@ param(
     [Parameter(Mandatory)][ValidatePattern('^[A-Za-z0-9-]+$')][string]$RunName,
     [switch]$WithYaOpt,
     [switch]$FaceAccessories,
+    [switch]$LongCascadeHair,
     [switch]$WithFacialAnimation
 )
 
 $ErrorActionPreference = 'Stop'
+if ($FaceAccessories -and $LongCascadeHair) { throw 'Select only one runtime check mode.' }
 $repository = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))
 $temporaryRoot = Join-Path $repository 'TMP'
 $saveRoot = [System.IO.Path]::GetFullPath((Join-Path $temporaryRoot ('StylingStartup-' + $RunName)))
@@ -31,9 +33,10 @@ $gameRoot = [System.IO.Path]::GetFullPath((Join-Path $repository '..\..'))
 $arguments = @('-screen-fullscreen', '0', '-screen-width', '1280', '-screen-height', '720',
     ('-savedatafolder="' + $saveRoot + '"'), ('-logFile "' + (Join-Path $saveRoot 'Player.log') + '"'))
 if ($WithYaOpt) { $arguments += '-mugirlStylingWithYaOpt' }
-if ($FaceAccessories) { $arguments += @('-quicktest', '-mugirlFaceAccessoryChecks') }
+if ($LongCascadeHair) { $arguments += @('-quicktest', '-mugirlLongCascadeChecks') }
+elseif ($FaceAccessories) { $arguments += @('-quicktest', '-mugirlFaceAccessoryChecks') }
 else { $arguments += '-mugirlStylingStartupChecks' }
-# 需先显式构建 EnableStylingValidation=true；默认只检查启动，FaceAccessories 在独立 quicktest 地图穿戴截图后退出。
+# 需先显式构建 EnableStylingValidation=true；外观专项模式在独立 quicktest 地图检查并截图后退出。
 $process = Start-Process -FilePath (Join-Path $gameRoot 'RimWorldWin64.exe') -WorkingDirectory $gameRoot -ArgumentList $arguments -WindowStyle Hidden -PassThru
 $process.Id | Set-Content -LiteralPath (Join-Path $saveRoot 'process-id.txt')
 [PSCustomObject]@{ WithYaOpt = [bool]$WithYaOpt; ProcessId = $process.Id; SaveRoot = $saveRoot }

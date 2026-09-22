@@ -9,7 +9,7 @@
 3. 对涉及玩家行为的改动做 fresh `Player.log` 验证。
 4. 检查 `About/About.xml`、`LoadFolders.xml` 和可选集成目录。
 5. 确认翻译 key 对齐，玩家可见文本不缺 key。
-6. 确认 `TMP` 可以删除；发布脚本会按需重新生成输出。
+6. 按[目录与清理约定](../README.md)核查 `TMP`：先归档原始素材、回退 DLL、存档和需追溯的证据，再清理可再生成输出，不能整目录盲删。
 
 ## 生成发布包
 
@@ -37,7 +37,10 @@ TMP\WorkshopPackage\MugirlRace
 - `.sai2`、`.tmp`、`.bak`
 - `TMP`
 - `docs`
+- `DevData`、`SourceAssets`
 - 备份目录或源素材
+
+发布脚本只复制明确列出的游戏目录，不复制上述开发资料目录。需要保留的发布 ZIP 放在 `DevData/Releases`；展开副本经逐文件哈希与 ZIP 核对一致后可清理。
 
 ## 发布包应包含
 

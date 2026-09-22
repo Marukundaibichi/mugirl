@@ -13,6 +13,7 @@ namespace Mugirl
         internal static List<Map> LoadedMaps => Current.Game?.Maps;
         internal static FactionManager Factions => Current.Game?.World?.factionManager;
         internal static WorldObjectsHolder WorldObjects => Find.WorldObjects;
+        internal static WorldGrid WorldGrid => Find.WorldGrid;
         internal static WorldPawns WorldPawns => Find.WorldPawns;
         internal static WindowStack Windows => Find.WindowStack;
         internal static LetterStack Letters => Find.LetterStack;

@@ -226,7 +226,9 @@ namespace Mugirl
             {
                 Map map = ResolveMissionMap(context);
                 PlanetTile origin = context.Caravan?.Tile ?? (map != null ? map.Tile : PlanetTile.Invalid);
-                if (!origin.Valid || !TileFinder.TryFindNewSiteTile(out PlanetTile tile, origin, 2, 10, allowCaravans: false))
+                PlanetTile tile = PlanetTile.Invalid;
+                if (!origin.Valid || !(m.IsSide ? TryFindFusionResearchSiteTile(origin, out tile)
+                    : TileFinder.TryFindNewSiteTile(out tile, origin, 2, 10, allowCaravans: false)))
                 { reason = "Mugirl.CQ.NoSite".Translate(); return false; }
                 if (!m.IsSide && (m.enemy == null || m.enemy.defeated || !m.enemy.HostileTo(MugirlWildSlaveUtility.PlayerFaction)))
                 { reason = "Mugirl.CQ.GenerationFailed".Translate(); return false; }

@@ -188,6 +188,10 @@ namespace Mugirl
             }
 
             LastRunDeliveredPawns = true;
+            if (MugirlGameUtility.TryGetGameComponent(out MugirlStoryState storyState))
+            {
+                storyState.RecordOpeningCrashPawns(pawns);
+            }
 
             slate.Set("pawns", pawns);
 

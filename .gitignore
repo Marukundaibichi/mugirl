@@ -2,6 +2,9 @@
 1.6/Source/obj/
 1.6/Assemblies/*.pdb
 TMP/
+DevData/
+**/__pycache__/
+*.pyc
 **/备份/
 *.sai2
 *.user

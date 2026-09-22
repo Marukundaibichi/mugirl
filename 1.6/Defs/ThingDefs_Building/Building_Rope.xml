@@ -47,7 +47,9 @@
         <placeWorkers>
             <li>Placeworker_AttachedToWall</li>
         </placeWorkers>
+        <!-- 双门槛：束具与拴系（种族）+ ComplexFurniture（原版） -->
         <researchPrerequisites>
+            <li>Mugirl_RopeHandling</li>
             <li>ComplexFurniture</li>
         </researchPrerequisites>
         <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>

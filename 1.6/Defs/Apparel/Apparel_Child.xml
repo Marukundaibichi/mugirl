@@ -3,7 +3,7 @@
 
     <ThingDef Name="Mugirl_ChildBase" ParentName="Mugirl_ApparelBase" Abstract="True">
     <recipeMaker>
-        <researchPrerequisite>ComplexClothing</researchPrerequisite>
+        <researchPrerequisites Inherit="False"><li>Mugirl_DailyAttire</li><li>ComplexClothing</li></researchPrerequisites>
     </recipeMaker>
         <apparel>
             <developmentalStageFilter>Child</developmentalStageFilter>
@@ -18,7 +18,7 @@
             <li>Mugirl_OnSkin</li>
         </thingCategories>
         <recipeMaker>
-            <researchPrerequisite>ComplexClothing</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_DailyAttire</li><li>ComplexClothing</li></researchPrerequisites>
         </recipeMaker>
     </ThingDef>
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Mugirl_DairyProcessing.label>雪牛娘乳品加工</Mugirl_DairyProcessing.label>
+  <Mugirl_DairyProcessing.description>将雪牛娘奶的日常加工标准化：在灶台上制作奶布丁、奶酪、大肥牛奶糖与奶霜苹果。更精制的乳品还需要更先进的保鲜与制药设施。</Mugirl_DairyProcessing.description>
+  <Mugirl_MilkPowerUtilization.label>乳能利用</Mugirl_MilkPowerUtilization.label>
+  <Mugirl_MilkPowerUtilization.description>建造以雪牛娘奶为燃料的专用发电机，把富余的奶转化为电力。发电机接入电网还需要掌握电力技术。</Mugirl_MilkPowerUtilization.description>
+  <Mugirl_AdvancedDairy.label>精制乳品</Mugirl_AdvancedDairy.label>
+  <Mugirl_AdvancedDairy.description>精研雪牛娘奶的深加工：陈年奶酪、牛乳蛋糕、奶粉与奶片需要冷藏技术保鲜，奶宝塔糖则要在制药台上制作。</Mugirl_AdvancedDairy.description>
+  <Mugirl_RopeHandling.label>束具与拴系</Mugirl_RopeHandling.label>
+  <Mugirl_RopeHandling.description>掌握雪牛娘的基础束具与拴系工艺：制作感官、四肢及全身束具，在墙上安装拴环，并加工中世纪与工业级束具钥匙。</Mugirl_RopeHandling.description>
+  <Mugirl_RegulatedMilking.label>规范采乳</Mugirl_RegulatedMilking.label>
+  <Mugirl_RegulatedMilking.description>建立规范的机械化采乳流程：制作穿戴式与隐藏式采奶器，实现稳定、集中的乳品采集。</Mugirl_RegulatedMilking.description>
+  <Mugirl_BehavioralConditioning.label>高阶管制技术</Mugirl_BehavioralConditioning.label>
+  <Mugirl_BehavioralConditioning.description>发展电子束缚与精神管制技术：制作电击项圈、洗脑头盔、高科技束具钥匙与束具破解器，并复原巨企风格的磁力镣铐。</Mugirl_BehavioralConditioning.description>
+  <Mugirl_DailyAttire.label>雪牛娘服装工艺</Mugirl_DailyAttire.label>
+  <Mugirl_DailyAttire.description>建立适配雪牛娘体型的服装工艺：裁制便服、礼服、职业制服、丝袜、内衣与装饰件。大部分衣物还需要复杂服装技术。</Mugirl_DailyAttire.description>
+  <Mugirl_CombatAttire.label>雪牛娘战斗装具</Mugirl_CombatAttire.label>
+  <Mugirl_CombatAttire.description>规范雪牛娘的战斗与佣兵装具：战斗服、携行具、防弹套装、侦察盔与骑士板甲。</Mugirl_CombatAttire.description>
+  <Mugirl_AdvancedGear.label>雪牛娘高阶装备</Mugirl_AdvancedGear.label>
+  <Mugirl_AdvancedGear.description>为雪牛娘适配太空级装备：动力装甲、太空服、机械师背包与战术目镜。</Mugirl_AdvancedGear.description>
+  <Mugirl_Firearms.label>雪牛娘枪械</Mugirl_Firearms.label>
+  <Mugirl_Firearms.description>建立雪牛娘式枪械与缴获 PMC/OPC 枪械的仿制产线，从自由枪机手枪到精密步枪。</Mugirl_Firearms.description>
+</LanguageData>

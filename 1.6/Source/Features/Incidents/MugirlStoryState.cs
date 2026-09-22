@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using RimWorld;
 using RimWorld.QuestGen;
 using Verse;
@@ -7,10 +8,11 @@ namespace Mugirl
     public class MugirlStoryState : GameComponent
     {
         public const int OpeningCrashInitialCheckTicks = 360;
-        public const int CourierRaidInitialDelayTicks = 5 * 60000;
+        public const int CourierRaidInitialDelayTicks = 60000;
 
         public bool openingCrashStarted;
         public int openingCrashCheckTimer = OpeningCrashInitialCheckTicks;
+        public List<Pawn> openingCrashPawns = new List<Pawn>();
 
         public bool courierRaidTriggered;
         public int courierRaidTimer = CourierRaidInitialDelayTicks;
@@ -95,11 +97,19 @@ namespace Mugirl
             storyServiceNextTick = -1;
         }
 
+        internal void RecordOpeningCrashPawns(Pawn[] pawns)
+        {
+            openingCrashPawns = new List<Pawn>(pawns);
+            courierRaidTimer = CourierRaidInitialDelayTicks;
+            WakeStoryService();
+        }
+
         public override void ExposeData()
         {
             base.ExposeData();
             Scribe_Values.Look(ref openingCrashStarted, "openingCrashStarted", false);
             Scribe_Values.Look(ref openingCrashCheckTimer, "openingCrashCheckTimer", OpeningCrashInitialCheckTicks);
+            Scribe_Collections.Look(ref openingCrashPawns, "openingCrashPawns", LookMode.Reference);
             Scribe_Values.Look(ref courierRaidTriggered, "courierRaidTriggered", false);
             Scribe_Values.Look(ref courierRaidTimer, "courierRaidTimer", CourierRaidInitialDelayTicks);
             Scribe_Values.Look(ref courierRaidQuestStarted, "courierRaidQuestStarted", false);
@@ -148,8 +158,8 @@ namespace Mugirl
 
             bool checkFusionInvestor = ShouldCheckFusionInvestor(state, currentTick);
 
-            TickOpeningCrash(state, elapsedTicks);
             TickCourierRaid(state, elapsedTicks);
+            TickOpeningCrash(state, elapsedTicks);
             MugirlFusionInvestmentUtility.Tick(state, elapsedTicks, checkFusionInvestor);
             ScheduleNextWake(state, currentTick);
         }
@@ -225,7 +235,7 @@ namespace Mugirl
 
         private static void TickCourierRaid(MugirlStoryState state, int elapsedTicks)
         {
-            if (state.courierRaidTriggered)
+            if (state.courierRaidTriggered || !state.openingCrashStarted)
             {
                 return;
             }
@@ -275,7 +285,7 @@ namespace Mugirl
                 IncludeWakeDelay(ref delayTicks, state.openingCrashCheckTimer);
             }
 
-            if (!state.courierRaidTriggered)
+            if (!state.courierRaidTriggered && state.openingCrashStarted)
             {
                 IncludeWakeDelay(ref delayTicks, state.courierRaidTimer);
             }

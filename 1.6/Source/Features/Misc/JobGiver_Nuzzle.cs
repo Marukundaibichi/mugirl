@@ -19,7 +19,8 @@ namespace Mugirl
             }
 
             Job job = JobMaker.MakeJob(Mugirl_DefOf.Job_Nuzzle, target);
-            job.locomotionUrgency = LocomotionUrgency.Walk;
+            // 使用正常移动速度接近目标，避免散步限速导致追不上移动中的互动对象。
+            job.locomotionUrgency = LocomotionUrgency.Jog;
             job.expiryInterval = 3000;
             return job;
         }

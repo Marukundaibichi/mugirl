@@ -1,6 +1,6 @@
 """验证雪牛娘脸部差分并修复成人身体断颈贴图。
 
-``--apply`` 会先把原图备份到 TMP，再执行确定性的像素修复；默认只验证。
+``--apply`` 会先把原图备份到 DevData/Backups，再执行确定性的像素修复；默认只验证。
 需要 Pillow 与 numpy。
 """
 
@@ -14,7 +14,7 @@ from PIL import Image, ImageDraw, ImageFilter
 
 
 ROOT = Path(__file__).resolve().parents[2]
-BACKUP_ROOT = ROOT / "TMP" / "AppearanceTextureRepair-20260921" / "OriginalTextures"
+BACKUP_ROOT = ROOT / "DevData" / "Backups" / "AppearanceTextureRepair-20260921" / "OriginalTextures"
 BODY_LIMITS = {
     "south": (230, 284, 154, 188),
     "north": (230, 284, 154, 188),
@@ -22,7 +22,7 @@ BODY_LIMITS = {
 }
 FACE_PATH = Path("Textures/Mugirl/BodyAccessories/Mugirl_FaceAccessory5_south.png")
 HEAD_TYPES = "ABCDEFGHIJKLMN"
-QA_PATH = ROOT / "TMP" / "AppearanceTextureRepair-20260921" / "appearance-before-after.png"
+QA_PATH = ROOT / "DevData" / "Backups" / "AppearanceTextureRepair-20260921" / "appearance-before-after.png"
 
 
 def safe(path):

@@ -422,12 +422,12 @@
     <Mugirl.CourierAlreadyResolved>这个运货员已经无法交涉。</Mugirl.CourierAlreadyResolved>
     <!-- Corporate Courier -->
     <Mugirl.CourierDialogTitle>巨企运货员</Mugirl.CourierDialogTitle>
-    <!-- The corporate courier stops a few paces away, one hand half-raised, eyes darting between you and the way he came. He tries to hold a professional posture, but the fingers resting on his holster keep trembling.\n\n\"Easy... everyone stay easy. The name's {COURIER} - just a courier, the kind with an employee number stitched into his sleeve.\" He licks his cracked lips. \"The ship broke up in orbit. The cargo scattered across the crash site. I've been walking three days on this leg, trying to find it before the system logs me as a runner...\"\n\nHe lets out a small, bitter laugh. \"Listen to me, pouring it all out. Here's the deal - the diary and the restraint keys I'm carrying are yours. Write the cargo off as 'lost in transit.' Let me walk, and nobody reports this upstairs. What do you say, {NEGOTIATOR}? Better for both of us.\" -->
+    <!-- The corporate courier stops a few paces away, one hand half-raised, eyes darting between you and the way he came. He tries to hold a professional posture, but the fingers resting on his holster keep trembling.\n\n\"Easy... everyone stay easy. The name's {COURIER} - just a courier, the kind with an employee number stitched into his sleeve.\" He licks his cracked lips. \"The ship broke up in orbit. The cargo scattered across the crash site. I've been walking since the crash, trying to find it before the system logs me as a runner...\"\n\nHe lets out a small, bitter laugh. \"Listen to me, pouring it all out. Here's the deal - the diary and the restraint keys I'm carrying are yours. Write the cargo off as 'lost in transit.' Let me walk, and nobody reports this upstairs. What do you say, {NEGOTIATOR}? Better for both of us.\" -->
     <Mugirl.CourierDialogText>“劳驾，打听一下。两位雪牛娘，你们见过吧？我是押这趟货的，叫{COURIER}。”\n\n他撑着膝盖喘了口气，见你没接话，又赶紧补了一句：“别紧张，我没说要带她们走。船都摔成那样了，我上哪儿再找一艘？公司倒好，先问货，再问钥匙，最后问我还能不能接着送。”\n\n他从兜里摸出一串束具钥匙，攥了攥，递到你面前。\n\n“都在这儿，一把不留。她们身上的束具，你们拿这个开。按规矩我得把钥匙交回去……算了，就当给你们添麻烦的赔礼。”\n\n他往前凑了凑，压低声音：“{NEGOTIATOR}，帮我个忙。回去我就报货没找着，公司要是问起来，你们也别提钥匙的事。真让我照价赔，我这辈子的工资都得搭进去。东西你们收好，让我走，行吗？”</Mugirl.CourierDialogText>
-    <!-- Leave the items and go -->
-    <Mugirl.CourierDialogLeaveItems>钥匙留下。我们不提，你走吧</Mugirl.CourierDialogLeaveItems>
-    <!-- Open fire now -->
-    <Mugirl.CourierDialogFight>立刻开战</Mugirl.CourierDialogFight>
+    <!-- Accept the proposal -->
+    <Mugirl.CourierDialogLeaveItems>接受提案</Mugirl.CourierDialogLeaveItems>
+    <!-- Fight now -->
+    <Mugirl.CourierDialogFight>立即开战</Mugirl.CourierDialogFight>
     <!-- The courier drops the diary and restraint keys and hurries toward the map edge without looking back. -->
     <Mugirl.CourierItemsDroppedMessage>运货员放下整串束具钥匙，连声道谢，转身便往外赶。一本卷了角的日记从他兜里滑落，他也没察觉，只顾着一瘸一拐地走远。</Mugirl.CourierItemsDroppedMessage>
     <!-- The negotiation breaks down. The courier mutters a curse and draws his weapon. This fight will not affect your formal standing with the corporation. -->
@@ -440,6 +440,8 @@
     <Mugirl.CourierRaid.Log.NoFaction>运货员袭击任务中止：未找到敌对巨型企业派系。</Mugirl.CourierRaid.Log.NoFaction>
     <!-- CourierRaid quest aborted: no valid spawn cell. -->
     <Mugirl.CourierRaid.Log.NoSpawnCell>运货员袭击任务中止：缺少有效生成位置。</Mugirl.CourierRaid.Log.NoSpawnCell>
+    <!-- Courier could not find the opening crash pawns to count their restraint keys. -->
+    <Mugirl.CourierRaid.Log.MissingOpeningPawns>运货员无法找到开局坠落的两只雪牛娘，因此无法计算所需束具钥匙。</Mugirl.CourierRaid.Log.MissingOpeningPawns>
     <!-- CourierRaid spawn aborted: map is null. -->
     <Mugirl.CourierRaid.SpawnLog.NoMap>运货员生成中止：地图为空。</Mugirl.CourierRaid.SpawnLog.NoMap>
     <!-- CourierRaid spawn aborted: faction is null. -->

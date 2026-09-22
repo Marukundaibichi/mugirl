@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <!-- 雪牛娘专属研究页签。所有 Mugirl_* 研究项目通过 <tab> 归入本页，
+         visibleByDefault 保证页签对任何殖民地始终可见（含未研究状态）。 -->
+    <ResearchTabDef>
+        <defName>Mugirl_ResearchTab</defName>
+        <label>Mugirl</label>
+        <generalTitle>Mugirl technology</generalTitle>
+        <generalDescription>Research into Mugirl dairy industry, husbandry and recovered homeworld weaponry.</generalDescription>
+        <visibleByDefault>true</visibleByDefault>
+    </ResearchTabDef>
+</Defs>

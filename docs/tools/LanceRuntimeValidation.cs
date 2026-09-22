@@ -31,6 +31,8 @@ namespace Mugirl
         private static int liveStartTick;
         private static bool sawLanceFlyer;
         private static bool liveScreenshotRequested;
+        private static int recoveryStartTick = -1;
+        private static bool recoveryMiddleCaptured;
         private static Pawn pointCharger;
         private static Pawn pointTarget;
         private static IntVec3 pointOriginalTargetCell;
@@ -222,6 +224,127 @@ namespace Mugirl
             Equip(target, DefDatabase<ThingDef>.GetNamed(names[1]));
             Check("hostile pawn has no player charge buttons", Commands(target).Count == 0);
             NeuralArmorRuntimeChecks.Run(pawns[0], target, Check);
+            RunWallChargeChecks();
+        }
+
+        private static void RunWallChargeChecks()
+        {
+            Map map = Find.CurrentMap;
+            IntVec3 origin = validationOrigin + new IntVec3(0, 0, 16);
+            var tick = AccessTools.Method(typeof(PawnFlyer_LanceCharge), "TickInterval");
+            var remainingField = AccessTools.Field(typeof(PawnFlyer_LanceCharge), "wallHitPointsRemaining");
+            var safeCellField = AccessTools.Field(typeof(PawnFlyer_LanceCharge), "lastPassableCell");
+            int[][] hitPoints = { new[] { 500, 500 }, new[] { 500, 500, 550 },
+                new[] { 600, 600, 600 }, new[] { 1600 }, new[] { 500, 500, 550, 100 }, new[] { 1600 } };
+            int[] expectedBudgets = { 550, 0, 0, 0, 0, 0 };
+            for (int scenario = 0; scenario < hitPoints.Length; scenario++)
+            {
+                ClearWallCorridor(origin, map);
+                Pawn charger = MakePawn(DefDatabase<PawnKindDef>.GetNamed("Mugirl_Colony"), Faction.OfPlayer, origin, map);
+                Equip(charger, DefDatabase<ThingDef>.GetNamed("Mugirl_HeavyKnightLance"));
+                charger.drafter.Drafted = true;
+                List<Building> walls = new List<Building>();
+                for (int i = 0; i < hitPoints[scenario].Length; i++)
+                {
+                    Building wall = (Building)ThingMaker.MakeThing(ThingDefOf.Wall, ThingDefOf.Plasteel);
+                    if (scenario != 5) GenSpawn.Spawn(wall, origin + new IntVec3(3 + i * 2, 0, 0), map);
+                    wall.HitPoints = hitPoints[scenario][i];
+                    walls.Add(wall);
+                }
+                IntVec3 destination = origin + new IntVec3(14, 0, 0);
+                PawnFlyer_LanceCharge flyer = (PawnFlyer_LanceCharge)PawnFlyer.MakeFlyer(
+                    Mugirl_DefOf.Mugirl_LanceChargeFlyer, charger, destination, null, null);
+                flyer.Configure(true, false);
+                GenSpawn.Spawn(flyer, destination, map);
+                if (scenario == 5)
+                {
+                    // 起飞后落点出现墙壁，仍须沿原直线撞墙，不能被原版跳跃的落点改选绕过。
+                    flyer.Position = origin;
+                    GenSpawn.Spawn(walls[0], destination, map);
+                }
+                Check("wall scenario " + scenario + ": launch does not damage distant walls", walls.All(w => !w.Destroyed));
+                int iterations = 0;
+                while (!flyer.Destroyed && iterations++ < 120)
+                    tick.Invoke(flyer, new object[] { scenario == 2 ? 60 : 1 });
+                int removed = walls.Select((wall, i) => hitPoints[scenario][i] - (wall.Destroyed ? 0 : wall.HitPoints)).Sum();
+                Check("wall scenario " + scenario + ": total actual HP respects 1550 budget (" + removed + ")",
+                    removed == Mathf.Min(1550, hitPoints[scenario].Sum())
+                    && (int)remainingField.GetValue(flyer) == expectedBudgets[scenario]);
+                Building blocker = walls.FirstOrDefault(w => !w.Destroyed);
+                Check("wall scenario " + scenario + ": stops before surviving wall or reaches endpoint",
+                    charger.Spawned && charger.Position == (blocker == null ? destination : blocker.Position + IntVec3.West));
+                Check("wall scenario " + scenario + ": flyer is removed and charger remains drafted", flyer.Destroyed && charger.Drafted);
+                charger.Destroy();
+            }
+
+            // 斜线格段很短时也要检查，反向路径必须覆盖同一组格子。
+            Vector3 from = origin.ToVector3Shifted();
+            Vector3 to = from + new Vector3(8f, 0f, 3f);
+            var forward = LanceChargeWallUtility.CrossedCells(from, to).Take(100).ToList();
+            var backward = LanceChargeWallUtility.CrossedCells(to, from).Take(100).Reverse().ToList();
+            Check("wall grid traversal includes shallow-angle cells in both directions",
+                forward.SequenceEqual(backward) && forward.Count > 9 && forward.Last() == to.ToIntVec3());
+            ClearWallCorridor(origin, map);
+            Building diagonalWall = (Building)ThingMaker.MakeThing(ThingDefOf.Wall, ThingDefOf.Plasteel);
+            IntVec3 diagonalCell = forward[4];
+            GenSpawn.Spawn(diagonalWall, diagonalCell, map);
+            diagonalWall.HitPoints = 1600;
+            Pawn diagonalCharger = MakePawn(DefDatabase<PawnKindDef>.GetNamed("Mugirl_Colony"), Faction.OfPlayer, origin, map);
+            Equip(diagonalCharger, DefDatabase<ThingDef>.GetNamed("Mugirl_HeavyKnightLance"));
+            Faction enemyFaction = Find.FactionManager.AllFactionsListForReading.First(f => !f.IsPlayer && f.HostileTo(Faction.OfPlayer));
+            Pawn behindWall = MakePawn(PawnKindDefOf.Colonist, enemyFaction, to.ToIntVec3() + IntVec3.East, map);
+            float healthBefore = behindWall.health.summaryHealth.SummaryHealthPercent;
+            ThingWithComps lance = diagonalCharger.equipment.Primary;
+            int lanceHp = lance.HitPoints;
+            PawnFlyer_LanceCharge pointFlyer = (PawnFlyer_LanceCharge)PawnFlyer.MakeFlyer(
+                Mugirl_DefOf.Mugirl_LanceChargeFlyer, diagonalCharger, to.ToIntVec3(), null, null);
+            pointFlyer.Configure(false, false, behindWall);
+            GenSpawn.Spawn(pointFlyer, to.ToIntVec3(), map);
+            for (int i = 0; i < 120 && !pointFlyer.Destroyed; i++) tick.Invoke(pointFlyer, new object[] { 1 });
+            Check("diagonal point charge stops at the last clear cell and leaves 50 wall HP",
+                diagonalWall.HitPoints == 50 && diagonalCharger.Spawned && diagonalCharger.Position == forward[3]);
+            Check("blocked point charge cannot hit remote target or spend impact durability",
+                behindWall.health.summaryHealth.SummaryHealthPercent == healthBefore && lance.HitPoints == lanceHp);
+            diagonalCharger.Destroy();
+            behindWall.Destroy();
+
+            // 用实际飞行器的 ExposeData 验证新增状态；空容器避免在验证地图复制角色关系。
+            PawnFlyer_LanceCharge state = (PawnFlyer_LanceCharge)ThingMaker.MakeThing(Mugirl_DefOf.Mugirl_LanceChargeFlyer);
+            remainingField.SetValue(state, 350);
+            safeCellField.SetValue(state, origin);
+            string saveFile = Path.Combine(outputRoot, "wall-charge-state.xml");
+            Scribe.saver.InitSaving(saveFile, "WallChargeState");
+            Scribe_Deep.Look(ref state, "flyer");
+            Scribe.saver.FinalizeSaving();
+            state = null;
+            Scribe.loader.InitLoading(saveFile);
+            Scribe_Deep.Look(ref state, "flyer");
+            Scribe.loader.FinalizeLoading();
+            Check("wall charge save/load preserves remaining budget and last safe cell",
+                (int)remainingField.GetValue(state) == 350 && (IntVec3)safeCellField.GetValue(state) == origin);
+            string xml = File.ReadAllText(saveFile);
+            xml = System.Text.RegularExpressions.Regex.Replace(xml, @"\s*<(wallHitPointsRemaining|lastPassableCell)>[^<]*</\1>", "");
+            File.WriteAllText(saveFile, xml);
+            state = null;
+            Scribe.loader.InitLoading(saveFile);
+            Scribe_Deep.Look(ref state, "flyer");
+            Scribe.loader.FinalizeLoading();
+            Check("old charge saves default to full wall budget and an unset safe cell",
+                (int)remainingField.GetValue(state) == 1550 && !( (IntVec3)safeCellField.GetValue(state)).IsValid);
+            ClearWallCorridor(origin, map);
+        }
+
+        private static void ClearWallCorridor(IntVec3 origin, Map map)
+        {
+            foreach (IntVec3 cell in new CellRect(origin.x - 2, origin.z - 2, 20, 9).Cells)
+            {
+                if (!cell.InBounds(map)) continue;
+                foreach (Thing thing in cell.GetThingList(map).ToList())
+                    if (thing is Building || thing is Plant) thing.Destroy();
+                map.terrainGrid.SetTerrain(cell, TerrainDefOf.Soil);
+                map.fogGrid.Unfog(cell);
+            }
+            map.pathing.RecalculateAllPerceivedPathCosts();
         }
 
         private static void StartLiveChargeTest()
@@ -267,8 +390,13 @@ namespace Mugirl
             if (!liveScreenshotRequested && elapsed >= 10 && flyers.Count > 0)
             {
                 PawnFlyer_LanceCharge lanceFlyer = flyers[0] as PawnFlyer_LanceCharge;
-                Check("live line charge renders historical Pawn copies instead of relying on ShockwaveFast",
-                    lanceFlyer?.AfterimagesDrawnLastFrame >= 4);
+                Check("live line charge draws continuous shader blur on actual pawn layers",
+                    lanceFlyer?.MotionBlurLayersDrawnLastFrame > 0);
+                var drawRequests = (List<PawnGraphicDrawRequest>)AccessTools.Field(typeof(PawnRenderTree), "drawRequests")
+                    .GetValue(liveCharger.Drawer.renderer.renderTree);
+                File.WriteAllLines(Path.Combine(outputRoot, "blur-materials.txt"), drawRequests
+                    .Where(r => r.material != null).Select(r => r.material.name + " shader=" + r.material.shader.name
+                        + " color=" + r.material.color + " texture=" + r.material.mainTexture?.name + " matrix=" + r.preDrawnComputedMatrix));
                 Check("live line charge explicitly draws the lance in its forward pose",
                     lanceFlyer?.ForwardLanceDrawnLastFrame == true);
                 Check("live line charge keeps the rider attached inside the flying carrier",
@@ -281,6 +409,19 @@ namespace Mugirl
                 Find.CameraDriver.SetRootPosAndSize(flyers[0].DrawPos, 8f);
                 ScreenCapture.CaptureScreenshot(Path.Combine(outputRoot, "lance-direct-flight.png"));
                 liveScreenshotRequested = true;
+            }
+            if (liveCharger?.Spawned == true && recoveryStartTick < 0)
+            {
+                recoveryStartTick = Find.TickManager.TicksGame;
+                Check("landing keeps a retracting blur attached to the caster", LanceMotionBlur.RecoveryScale(liveCharger) > 0.8f);
+                ScreenCapture.CaptureScreenshot(Path.Combine(outputRoot, "lance-blur-landing.png"));
+            }
+            if (recoveryStartTick >= 0 && !recoveryMiddleCaptured && Find.TickManager.TicksGame - recoveryStartTick >= 6)
+            {
+                float scale = LanceMotionBlur.RecoveryScale(liveCharger);
+                Check("landing blur contracts smoothly before disappearing", scale > 0f && scale < 0.9f);
+                ScreenCapture.CaptureScreenshot(Path.Combine(outputRoot, "lance-blur-retracting.png"));
+                recoveryMiddleCaptured = true;
             }
             if (elapsed < 180)
             {
@@ -301,6 +442,7 @@ namespace Mugirl
                 && liveTarget.health.hediffSet.hediffs.Any(h => h is Hediff_Injury));
             Check("live charge completed without the legacy walking-speed Hediff",
                 liveCharger?.health?.hediffSet.GetFirstHediffOfDef(Mugirl_DefOf.Mugirl_LanceChargeSpeed) == null);
+            Check("landing blur finishes retracting and releases its visual state", LanceMotionBlur.RecoveryScale(liveCharger) == 0f);
             phase = 8;
             nextAt = Time.realtimeSinceStartup + 0.5f;
         }

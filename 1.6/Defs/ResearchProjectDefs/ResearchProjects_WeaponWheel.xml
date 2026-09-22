@@ -6,14 +6,17 @@
         <label>self-propelled autoloading</label>
         <!-- 研发一种可穿戴的自动装填机构，在两轮齐射之间为雪牛娘武器轮盘中的全部武器完成装填。完成该项目还会解锁武器轮盘剩余的三个槽位。 -->
         <description>Develop a wearable autonomous loading mechanism capable of servicing an entire Mugirl weapon wheel between volleys. Completing this project also unlocks the wheel's remaining three weapon slots.</description>
-        <baseCost>2500</baseCost>
+        <!-- 成本 2500→2000：原版前置 Fabrication+PrecisionRifling 已吸收 Spacer 深度（见研究树设计）。 -->
+        <baseCost>2000</baseCost>
         <techLevel>Spacer</techLevel>
         <prerequisites>
             <li>Fabrication</li>
             <li>PrecisionRifling</li>
+            <li>Mugirl_PneumaticWeapons</li>
         </prerequisites>
         <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
-        <researchViewX>19.00</researchViewX>
-        <researchViewY>2.40</researchViewY>
+        <tab>Mugirl_ResearchTab</tab>
+        <researchViewX>3.90</researchViewX>
+        <researchViewY>4.65</researchViewY>
     </ResearchProjectDef>
 </Defs>

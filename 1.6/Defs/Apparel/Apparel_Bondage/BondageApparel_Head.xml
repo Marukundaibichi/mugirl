@@ -8,7 +8,7 @@
             <li>Metallic</li>
         </stuffCategories>
         <recipeMaker>
-            <researchPrerequisite>FlakArmor</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_RopeHandling</li><li>ComplexClothing</li></researchPrerequisites>
             <displayPriority>260</displayPriority> <!-- 配方显示优先级 -->
             <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
             <workSkill>Crafting</workSkill>

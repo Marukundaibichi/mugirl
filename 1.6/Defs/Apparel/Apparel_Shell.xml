@@ -11,7 +11,7 @@
                 <li>TableMachining</li>
             </recipeUsers>
             <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-            <researchPrerequisite>FlakArmor</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_CombatAttire</li><li>FlakArmor</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>6</Crafting>
             </skillRequirements>
@@ -124,6 +124,10 @@
             <texPath>Things/Apparel/Mugirl_RA_PowerArmor/Mugirl_RA_PowerArmor</texPath>
         </graphicData>
         <techLevel>Ultra</techLevel>
+        <recipeMaker>
+            <!-- 覆盖基类门槛：Ultra 级护甲应与动力甲同调（原为 FlakArmor，见研究树设计） -->
+            <researchPrerequisites Inherit="False"><li>Mugirl_AdvancedGear</li><li>PoweredArmor</li></researchPrerequisites>
+        </recipeMaker>
         <equippedStatOffsets>
             <MoveSpeed>0.25</MoveSpeed>
         </equippedStatOffsets>
@@ -206,7 +210,7 @@
         <possessionCount>1</possessionCount>
         <recipeMaker>
             <unfinishedThingDef>UnfinishedMetallicTechArmor</unfinishedThingDef>
-            <researchPrerequisite>PlateArmor</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_CombatAttire</li><li>PlateArmor</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>7</Crafting>
             </skillRequirements>
@@ -305,7 +309,7 @@
             <EquipDelay>1.5</EquipDelay>
         </statBases>
         <recipeMaker>
-            <researchPrerequisite>ComplexClothing</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_DailyAttire</li><li>ComplexClothing</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>3</Crafting>
             </skillRequirements>
@@ -361,7 +365,7 @@
             <EquipDelay>1.5</EquipDelay>
         </statBases>
         <recipeMaker>
-            <researchPrerequisite>ComplexClothing</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_DailyAttire</li><li>ComplexClothing</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>3</Crafting>
             </skillRequirements>
@@ -412,7 +416,7 @@
             <EquipDelay>1.5</EquipDelay>
         </statBases>
         <recipeMaker>
-            <researchPrerequisite>ComplexClothing</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_CombatAttire</li><li>ComplexClothing</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>3</Crafting>
             </skillRequirements>
@@ -473,7 +477,7 @@
             <Mass>0.5</Mass>
         </statBases>
         <recipeMaker>
-            <researchPrerequisite>BasicMechtech</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_AdvancedGear</li><li>BasicMechtech</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>3</Crafting>
             </skillRequirements>
@@ -524,7 +528,7 @@
             <Mass>0.5</Mass>
         </statBases>
         <recipeMaker>
-            <researchPrerequisite>StandardMechtech</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_AdvancedGear</li><li>StandardMechtech</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>3</Crafting>
             </skillRequirements>
@@ -576,7 +580,7 @@
             <Mass>0.5</Mass>
         </statBases>
         <recipeMaker>
-            <researchPrerequisite>HighMechtech</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_AdvancedGear</li><li>HighMechtech</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>3</Crafting>
             </skillRequirements>
@@ -628,7 +632,7 @@
             <Mass>0.5</Mass>
         </statBases>
         <recipeMaker>
-            <researchPrerequisite>UltraMechtech</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_AdvancedGear</li><li>UltraMechtech</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>3</Crafting>
             </skillRequirements>

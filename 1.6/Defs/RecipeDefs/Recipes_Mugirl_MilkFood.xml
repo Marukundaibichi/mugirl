@@ -4,6 +4,8 @@
     <!-- ============== 雪牛娘奶布丁配方 ============== -->
     <RecipeDef ParentName="CookMealBase">
         <defName>Mugirl_MakeMilkPudding</defName>
+        <!-- 研究前置：乳品加工 -->
+        <researchPrerequisites><li>Mugirl_DairyProcessing</li></researchPrerequisites>
         <!-- 制作雪牛娘奶布丁 -->
         <label>make Mugirl milk pudding</label>
         <!-- 用雪牛娘奶和素食制作奶布丁 -->
@@ -49,6 +51,8 @@
     <!-- ============== 雪牛娘奶酪配方 ============== -->
     <RecipeDef ParentName="CookMealBase">
         <defName>Mugirl_MakeCheese</defName>
+        <!-- 研究前置：乳品加工 -->
+        <researchPrerequisites><li>Mugirl_DairyProcessing</li></researchPrerequisites>
         <!-- 制作雪牛娘奶酪 -->
         <label>make Mugirl cheese</label>
         <!-- 用雪牛娘奶制作奶酪 -->
@@ -83,6 +87,8 @@
     <!-- ============== 雪牛娘陈年奶酪配方 ============== -->
     <RecipeDef ParentName="CookMealBase">
         <defName>Mugirl_MakeAgedCheese</defName>
+        <!-- 双门槛：精制乳品（种族）+ AirConditioning（原版，陈化保鲜） -->
+        <researchPrerequisites><li>Mugirl_AdvancedDairy</li><li>AirConditioning</li></researchPrerequisites>
         <!-- 制作雪牛娘陈年奶酪 -->
         <label>make aged Mugirl cheese</label>
         <!-- 用雪牛娘奶和啤酒花制作陈年奶酪 -->
@@ -126,6 +132,8 @@
     <!-- ============== 雪牛娘奶宝塔糖配方 ============== -->
     <RecipeDef ParentName="CookMealBase">
         <defName>Mugirl_MakeBaotaSugar</defName>
+        <!-- 双门槛：精制乳品（种族）+ DrugProduction（原版，制药台） -->
+        <researchPrerequisites><li>Mugirl_AdvancedDairy</li><li>DrugProduction</li></researchPrerequisites>
         <!-- 制作雪牛娘奶宝塔糖 -->
         <label>make Mugirl milk baota candy</label>
         <!-- 用雪牛娘奶和草药制作糖果打虫药 -->
@@ -168,6 +176,8 @@
     <!-- ============== 大肥牛奶糖配方 ============== -->
     <RecipeDef ParentName="CookMealBase">
         <defName>Mugirl_MakeMilkCandy</defName>
+        <!-- 研究前置：乳品加工 -->
+        <researchPrerequisites><li>Mugirl_DairyProcessing</li></researchPrerequisites>
         <!-- 制作大肥牛奶糖 -->
         <label>make big cow milk candy</label>
         <!-- 用雪牛娘奶制作奶糖 -->
@@ -202,6 +212,8 @@
     <!-- ============== 雪牛娘牛乳蛋糕配方 ============== -->
     <RecipeDef ParentName="CookMealBase">
         <defName>Mugirl_MakeCowCake</defName>
+        <!-- 双门槛：精制乳品（种族）+ AirConditioning（原版） -->
+        <researchPrerequisites><li>Mugirl_AdvancedDairy</li><li>AirConditioning</li></researchPrerequisites>
         <!-- 制作雪牛娘牛乳蛋糕 -->
         <label>make Mugirl milk cake</label>
         <!-- 用雪牛娘奶和素食制作蛋糕 -->
@@ -247,6 +259,8 @@
     <!-- ============== 雪牛娘奶粉配方 ============== -->
     <RecipeDef ParentName="CookMealBase">
         <defName>Mugirl_MakeMilkPowder</defName>
+        <!-- 双门槛：精制乳品（种族）+ AirConditioning（原版，长期保存） -->
+        <researchPrerequisites><li>Mugirl_AdvancedDairy</li><li>AirConditioning</li></researchPrerequisites>
         <!-- 制作雪牛娘奶粉 -->
         <label>make Mugirl milk powder</label>
         <!-- 用雪牛娘奶制作奶粉 -->
@@ -281,6 +295,8 @@
     <!-- ============== 雪牛娘奶片配方 ============== -->
     <RecipeDef ParentName="CookMealBase">
         <defName>Mugirl_MakeMilkTablet</defName>
+        <!-- 双门槛：精制乳品（种族）+ AirConditioning（原版） -->
+        <researchPrerequisites><li>Mugirl_AdvancedDairy</li><li>AirConditioning</li></researchPrerequisites>
         <!-- 制作雪牛娘奶片 -->
         <label>make Mugirl milk tablets</label>
         <!-- 用雪牛娘奶和药草制作奶片 -->
@@ -324,6 +340,8 @@
     <!-- ============== 奶霜苹果配方 ============== -->
     <RecipeDef ParentName="CookMealBase">
         <defName>Mugirl_MakeMilkCreamApple</defName>
+        <!-- 研究前置：乳品加工 -->
+        <researchPrerequisites><li>Mugirl_DairyProcessing</li></researchPrerequisites>
         <!-- 制作奶霜苹果 -->
         <label>make milk cream apple</label>
         <!-- 用雪牛娘奶和素食制作奶霜苹果 -->

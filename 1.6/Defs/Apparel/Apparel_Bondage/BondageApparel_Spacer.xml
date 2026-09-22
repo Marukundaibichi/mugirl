@@ -32,9 +32,29 @@
             <Plasteel>150</Plasteel>
             <Uranium>50</Uranium>
         </costList>
+        <recipeMaker>
+            <!-- 双门槛：高阶管制技术（种族）+ Fabrication（原版，Spacer 材料与工艺） -->
+            <researchPrerequisites>
+                <li>Mugirl_BehavioralConditioning</li>
+                <li>Fabrication</li>
+            </researchPrerequisites>
+            <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+            <workSkill>Crafting</workSkill>
+            <effectWorking>Smelt</effectWorking>
+            <soundWorking>Recipe_Smith</soundWorking>
+            <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+            <recipeUsers>
+                <li>FabricationBench</li>
+            </recipeUsers>
+            <skillRequirements>
+                <Crafting>8</Crafting>
+            </skillRequirements>
+            <displayPriority>259</displayPriority>
+        </recipeMaker>
         <statBases>
             <MaxHitPoints>80</MaxHitPoints>
-            <WorkToMake>180</WorkToMake>
+            <!-- 占位值 180→12000：纳入科技树后按同类束具手工量级定价（见研究树设计） -->
+            <WorkToMake>12000</WorkToMake>
             <Mass>0.14</Mass>
             <EquipDelay>2.0</EquipDelay>
         </statBases>
@@ -150,7 +170,11 @@
             <SocialImpact>0.2</SocialImpact>
         </equippedStatOffsets>
         <recipeMaker>
-            <researchPrerequisite>ComplexClothing</researchPrerequisite>
+            <!-- 双门槛：规范采乳（种族）+ Machining（原版，精密器械） -->
+            <researchPrerequisites>
+                <li>Mugirl_RegulatedMilking</li>
+                <li>Machining</li>
+            </researchPrerequisites>
             <skillRequirements>
                 <Crafting>3</Crafting>
             </skillRequirements>
@@ -251,7 +275,11 @@
             <SocialImpact>0.2</SocialImpact>
         </equippedStatOffsets>
         <recipeMaker>
-            <researchPrerequisite>ComplexClothing</researchPrerequisite>
+            <!-- 双门槛：规范采乳（种族）+ Machining（原版，精密器械） -->
+            <researchPrerequisites>
+                <li>Mugirl_RegulatedMilking</li>
+                <li>Machining</li>
+            </researchPrerequisites>
             <skillRequirements>
                 <Crafting>3</Crafting>
             </skillRequirements>
@@ -357,7 +385,11 @@
             </drawData>
         </apparel>
         <recipeMaker>
-            <researchPrerequisite>Electricity</researchPrerequisite>
+            <!-- 双门槛：高阶管制技术（种族）+ Electricity（原版，电极供能） -->
+            <researchPrerequisites>
+                <li>Mugirl_BehavioralConditioning</li>
+                <li>Electricity</li>
+            </researchPrerequisites>
             <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
             <workSkill>Crafting</workSkill>
             <effectWorking>Smelt</effectWorking>
@@ -458,6 +490,13 @@
                 <li>Overhead</li>
             </layers>
         </apparel>
+        <recipeMaker>
+            <!-- 双门槛：高阶管制技术（种族）+ MicroelectronicsBasics（原版，神经接口） -->
+            <researchPrerequisites>
+                <li>Mugirl_BehavioralConditioning</li>
+                <li>MicroelectronicsBasics</li>
+            </researchPrerequisites>
+        </recipeMaker>
         <BoundBodyPartGroupDefs>
             <li>HeadAttackTool</li>
         </BoundBodyPartGroupDefs>

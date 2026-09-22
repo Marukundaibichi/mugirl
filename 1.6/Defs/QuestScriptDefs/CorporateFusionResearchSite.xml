@@ -3,6 +3,46 @@
 <PrefabDef>
   <defName>Mugirl_CorporateFusionResearchSite</defName>
   <size>(51,42)</size>
+  <!-- 地板必须单独导出到 terrain；things 中的建筑不会自动携带地面。 -->
+  <terrain>
+    <WoodPlankFloor>
+      <rects>
+        <!-- 育婴室、生活区、餐厅与宿舍，包含墙下及门槛。 -->
+        <li>(11,5,17,11)</li>
+        <li>(18,3,28,13)</li>
+        <li>(18,16,28,25)</li>
+        <li>(36,29,46,39)</li>
+      </rects>
+    </WoodPlankFloor>
+    <SterileTile>
+      <rects>
+        <!-- 医疗室与研究室。 -->
+        <li>(37,1,46,7)</li>
+        <li>(18,29,27,39)</li>
+      </rects>
+    </SterileTile>
+    <Concrete>
+      <rects>
+        <!-- 发电机房与运输舱平台。 -->
+        <li>(37,10,46,15)</li>
+        <li>(47,19,49,24)</li>
+      </rects>
+    </Concrete>
+    <PavedTile>
+      <rects>
+        <!-- 厨房、仓库及连接各房间的步道；围栏内仍保留自然地面。 -->
+        <li>(36,16,46,25)</li>
+        <li>(30,3,32,36)</li>
+        <li>(29,7,29,9)</li>
+        <li>(33,3,36,5)</li>
+        <li>(33,12,36,14)</li>
+        <li>(28,33,29,35)</li>
+        <li>(33,33,35,35)</li>
+        <li>(22,26,24,28)</li>
+        <li>(39,26,43,28)</li>
+      </rects>
+    </PavedTile>
+  </terrain>
   <things>
     <Mugirl_MilkPoweredGenerator>
       <positions>

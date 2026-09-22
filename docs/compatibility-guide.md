@@ -48,8 +48,8 @@ Failure: 目标缺失或上游变化时的预期行为。
 ## 当前重点兼容对象
 
 - HAR：硬依赖。种族、body、渲染节点相关路径要谨慎。
-- Facial Animation：条件目录加载；只在雪牛娘种族 Def 存在时追加 comp 和动画。新增或调整 FA 内容前先看 `facial-animation-guide.md`，尤其是 `raceName=Mugirl` 专属池、`normal_Mugirl` 底座动画、贴图回退、脸红必须走 head 层，以及当前整张眼睛贴图/高光路径。
-- RJW / Rimworld-Animations：FA 条件目录内的动作映射、mod 名称和头部位移删除范围以用户提供的原包为准，不按本机安装情况扩展或裁剪；只修正社交动画 XPath 并增加逐列表去重和目标缺失保护。详情见 `facial-animation-guide.md` 的 2026-09-21 整合记录。
+- Facial Animation：条件目录加载；只在雪牛娘种族 Def 存在时追加 comp 和动画。新增或调整 FA 内容前先看 `features/facial-animation-guide.md`，尤其是 `raceName=Mugirl` 专属池、`normal_Mugirl` 底座动画、贴图回退、脸红必须走 head 层，以及当前整张眼睛贴图/高光路径。
+- RJW / Rimworld-Animations：FA 条件目录内的动作映射、mod 名称和头部位移删除范围以用户提供的原包为准，不按本机安装情况扩展或裁剪；只修正社交动画 XPath 并增加逐列表去重和目标缺失保护。详情见 `features/facial-animation-guide.md` 的 2026-09-21 整合记录。
 - Search and Destroy：只向雪牛娘行为树插入主动搜索歼灭分支，目标漂移时 no-op。
 - VCookE/PipeSystem：只追加雪牛奶转奶酪工序，工序已存在或目标缺失时 no-op。
 - Melee Animation：渲染兼容层不能因为对方内部字段变化打断绘制。

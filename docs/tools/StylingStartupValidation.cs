@@ -91,7 +91,7 @@ namespace Mugirl
                     Check(def.defName + " uses the head apparel layer and mesh without extra transforms",
                         def.apparel.LastLayer == (name == "SisterMask" ? ApparelLayerDefOf.Overhead : ApparelLayerDefOf.EyeCover)
                         && def.apparel.parentTagDef == PawnRenderNodeTagDefOf.ApparelHead
-                        && def.apparel.drawData == null
+                        && (name == "NunBlindfold" ? HasOnlyLayerOverride(def.apparel.drawData, 61f) : def.apparel.drawData == null)
                         && def.apparel.wornGraphicData == null
                         && def.graphicData.drawSize == Vector2.one);
                 }
@@ -126,6 +126,16 @@ namespace Mugirl
                     }
                 }
             }
+        }
+
+        internal static bool HasOnlyLayerOverride(DrawData data, float layer)
+        {
+            return data != null && data.scale == 1f && data.childScale == 1f
+                && !data.useBodyPartAnchor && !data.scaleOffsetByBodySize
+                && new[] { Rot4.North, Rot4.East, Rot4.South, Rot4.West }.All(facing =>
+                    data.LayerForRot(facing, 70f) == layer && data.OffsetForRot(facing) == Vector3.zero
+                    && data.RotationOffsetForRot(facing) == 0f && !data.FlipForRot(facing)
+                    && data.PivotForRot(facing) == DrawData.PivotCenter);
         }
 
         private static void CheckHornHidingHelmetTags()

@@ -67,7 +67,7 @@
             <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.4</VacuumResistance>
         </equippedStatOffsets>
         <recipeMaker>
-            <researchPrerequisite>OrbitalTech</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_AdvancedGear</li><li>OrbitalTech</li></researchPrerequisites>
             <recipeUsers>
                 <li>TableMachining</li>
             </recipeUsers>
@@ -175,7 +175,7 @@
             <useWornGraphicMask>false</useWornGraphicMask>
         </apparel>
         <recipeMaker>
-            <researchPrerequisite>ComplexClothing</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_DailyAttire</li><li>ComplexClothing</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>3</Crafting>
             </skillRequirements>
@@ -238,7 +238,7 @@
         <recipeMaker>
             <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
             <workAmount>1400</workAmount>
-            <researchPrerequisite>PoweredArmor</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_AdvancedGear</li><li>PoweredArmor</li></researchPrerequisites>
             <defaultIngredientFilter>
                 <categories>
                     <li>Root</li>
@@ -296,7 +296,7 @@
         </apparel>
         <recipeMaker>
             <unfinishedThingDef>UnfinishedMetallicTechArmor</unfinishedThingDef>
-            <researchPrerequisite>PlateArmor</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_CombatAttire</li><li>PlateArmor</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>7</Crafting>
             </skillRequirements>
@@ -353,7 +353,7 @@
         </apparel>
         <recipeMaker>
             <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-            <researchPrerequisite>FlakArmor</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_CombatAttire</li><li>FlakArmor</li></researchPrerequisites>
             <defaultIngredientFilter>
                 <categories>
                     <li>Root</li>
@@ -410,7 +410,7 @@
             <ToxicEnvironmentResistance>1</ToxicEnvironmentResistance>
         </equippedStatOffsets>
         <recipeMaker>
-            <researchPrerequisite>OrbitalTech</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_AdvancedGear</li><li>OrbitalTech</li></researchPrerequisites>
             <recipeUsers>
                 <li>TableMachining</li>
             </recipeUsers>
@@ -475,7 +475,7 @@
         <recipeMaker>
             <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
             <workAmount>60000</workAmount>
-            <researchPrerequisite>PoweredArmor</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_AdvancedGear</li><li>PoweredArmor</li></researchPrerequisites>
             <defaultIngredientFilter>
                 <categories>
                     <li>Root</li>
@@ -552,7 +552,7 @@
         </equippedStatOffsets>
         <recipeMaker>
             <unfinishedThingDef>UnfinishedMetallicTechArmor</unfinishedThingDef>
-            <researchPrerequisite>FlakArmor</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_CombatAttire</li><li>FlakArmor</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>8</Crafting>
             </skillRequirements>

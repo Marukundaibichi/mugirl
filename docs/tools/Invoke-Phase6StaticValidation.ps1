@@ -393,14 +393,14 @@ try {
     $architectureDocumentationChecks = 0
     $architectureDocumentationIssues = @()
     $requiredArchitectureDocs = @(
-        'docs\README.md',
-        'docs\maintenance-guide.md',
+        'README.md',
+        'AGENTS.md',
         'docs\content-update-guide.md',
         'docs\compatibility-guide.md',
         'docs\localization-and-comments.md',
         'docs\validation-runbook.md',
         'docs\release-checklist.md',
-        'docs\architecture\README.md',
+        'docs\features\outline-guide.md',
         'docs\architecture\ADR-001-single-dll.md',
         'docs\architecture\ADR-002-harmony-registration.md',
         'docs\architecture\ADR-003-compatibility-scope.md',
@@ -428,10 +428,10 @@ try {
     }
 
     $architectureDocumentationChecks++
-    $overviewPath = 'docs\README.md'
+    $overviewPath = 'README.md'
     if (Test-Path -LiteralPath $overviewPath) {
         $overviewText = Get-Content -LiteralPath $overviewPath -Encoding utf8 -Raw
-        if ($overviewText -notmatch 'maintenance-guide\.md' -or
+        if ($overviewText -notmatch 'content-update-guide\.md' -or
             $overviewText -notmatch 'validation-runbook\.md' -or
             $overviewText -notmatch 'release-checklist\.md' -or
             $overviewText -notmatch 'architecture/') {
@@ -4416,7 +4416,7 @@ try {
     }
 
     Write-Step "Texture paths"
-    $textureRoots = @('Textures', '1.6\Textures', '1.6\FacialAnimation\Textures', 'Bio_1.6\Textures', 'Odyssey_1.6\Textures', 'Versions\1.6\Textures') | Where-Object { Test-Path -LiteralPath $_ }
+    $textureRoots = @('Textures', '1.6\FacialAnimation\Textures', 'Bio_1.6\Textures', 'Odyssey_1.6\Textures', 'Versions\1.6\Textures') | Where-Object { Test-Path -LiteralPath $_ }
     $vanillaPaths = New-Object 'System.Collections.Generic.HashSet[string]'
     foreach ($root in @('..\..\Data\Core\Defs', '..\..\Data\Royalty\Defs', '..\..\Data\Ideology\Defs', '..\..\Data\Biotech\Defs', '..\..\Data\Anomaly\Defs', '..\..\Data\Odyssey\Defs') | Where-Object { Test-Path -LiteralPath $_ }) {
         Get-ChildItem -LiteralPath $root -Recurse -Filter '*.xml' | ForEach-Object {

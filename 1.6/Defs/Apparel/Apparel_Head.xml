@@ -28,7 +28,7 @@
             <li>Mugirl_Head</li>
         </thingCategories>
         <recipeMaker>
-            <researchPrerequisite>ComplexClothing</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_DailyAttire</li><li>ComplexClothing</li></researchPrerequisites>
         </recipeMaker>
     </ThingDef>
 
@@ -164,7 +164,7 @@
         <techLevel>Industrial</techLevel>
         <recipeMaker>
             <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-            <researchPrerequisite>FlakArmor</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_CombatAttire</li><li>FlakArmor</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>6</Crafting>
             </skillRequirements>
@@ -385,7 +385,7 @@
         </tradeTags>
         <recipeMaker>
             <displayPriority>110</displayPriority>
-            <researchPrerequisite MayRequire="Ludeon.RimWorld.Royalty">Gunlink</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_AdvancedGear</li><li MayRequire="Ludeon.RimWorld.Royalty">Gunlink</li></researchPrerequisites>
         </recipeMaker>
     </ThingDef>
 

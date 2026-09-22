@@ -11,6 +11,8 @@
 
     <RecipeDef ParentName="Make_MugirlKeys">
         <defName>Mugirl_MakeKey_Medieval</defName>
+        <!-- 研究前置：束具与拴系 -->
+        <researchPrerequisites><li>Mugirl_RopeHandling</li></researchPrerequisites>
         <!-- 制作粗糙束具钥匙 -->
         <label>Make Rough Restraint Key</label>
         <!-- 制作一把粗糙束具钥匙 -->
@@ -57,6 +59,8 @@
 
     <RecipeDef ParentName="Make_MugirlKeys">
         <defName>Mugirl_MakeKey_Industrial</defName>
+        <!-- 研究前置：束具与拴系 -->
+        <researchPrerequisites><li>Mugirl_RopeHandling</li></researchPrerequisites>
         <!-- 制作精致束具钥匙 -->
         <label>Make Exquisite Restraint Key</label>
         <!-- 制作一把精致束具钥匙 -->
@@ -110,6 +114,8 @@
 
     <RecipeDef ParentName="Make_MugirlKeys">
         <defName>Mugirl_MakeKey_Spacer</defName>
+        <!-- 研究前置：高阶管制技术 -->
+        <researchPrerequisites><li>Mugirl_BehavioralConditioning</li></researchPrerequisites>
         <!-- 制作精致束具钥匙 -->
         <label>Make Spacer Restraint Key</label>
         <!-- 制作一把精致束具钥匙 -->
@@ -163,6 +169,8 @@
 
     <RecipeDef ParentName="Make_MugirlKeys">
         <defName>Mugirl_MakeKey_Advance</defName>
+        <!-- 研究前置：高阶管制技术 -->
+        <researchPrerequisites><li>Mugirl_BehavioralConditioning</li></researchPrerequisites>
         <!-- 制作束具破解器 -->
         <label>Make Restraint Decryptor</label>
         <!-- 制作一个束具破解器 -->

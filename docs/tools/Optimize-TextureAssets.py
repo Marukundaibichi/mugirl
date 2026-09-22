@@ -1,6 +1,6 @@
 """Prepare, apply, or verify the approved 555 -> 512 texture conversion.
 
-Run without arguments to back up originals and produce review images in TMP.
+Run without arguments to back up originals and produce review images in DevData/Backups.
 --apply changes only the files recorded in the prepared manifest.
 --verify also understands the FA conditional texture directory.
 Requires Pillow and numpy. Original backups are never overwritten.
@@ -16,7 +16,7 @@ from PIL import Image, ImageDraw
 
 
 ROOT = Path(__file__).resolve().parents[2]
-WORK = ROOT / "TMP" / "PerformanceOptimization-20260907"
+WORK = ROOT / "DevData" / "Backups" / "PerformanceOptimization-20260907"
 MANIFEST = WORK / "textures.json"
 SIZE = (512, 512)
 
@@ -53,7 +53,7 @@ def prepare():
     if MANIFEST.exists():
         raise RuntimeError(f"Backup already exists; use --apply or --verify: {MANIFEST}")
     rows = []
-    for directory in (ROOT / "Textures", ROOT / "1.6/Textures"):
+    for directory in (ROOT / "Textures",):
         for path in sorted(directory.rglob("*.png")):
             with Image.open(path) as source:
                 if source.size != (555, 555):

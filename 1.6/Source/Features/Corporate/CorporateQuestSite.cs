@@ -114,6 +114,24 @@ namespace Mugirl
             SpawnFusionResearchSite(map, map.Center);
         }
 
+        internal static bool TryFindFusionResearchSiteTile(PlanetTile origin, out PlanetTile tile)
+        {
+            // 保持原有 2–10 格距离，优先避开山地、水域、冻土和特殊地貌。
+            // 没有优选地块时仍接受普通可到达站点，局部整地负责兜底。
+            return TileFinder.TryFindNewSiteTile(out tile, origin, 2, 10, allowCaravans: false,
+                       selectLandmarkChance: 0f, validator: IsPreferredFusionResearchTile)
+                || TileFinder.TryFindNewSiteTile(out tile, origin, 2, 10, allowCaravans: false, selectLandmarkChance: 0f);
+        }
+
+        internal static bool IsPreferredFusionResearchTile(PlanetTile candidate)
+        {
+            Tile tile = MugirlGameUtility.WorldGrid[candidate];
+            return tile is SurfaceTile surface && !tile.WaterCovered && !tile.IsCoastal
+                && (tile.hilliness == Hilliness.Flat || tile.hilliness == Hilliness.SmallHills)
+                && tile.temperature > 0f && tile.swampiness < 0.25f
+                && surface.Rivers.NullOrEmpty() && tile.Mutators.Count == 0;
+        }
+
         private static void SpawnFusionResearchSite(Map map, IntVec3 center)
         {
             PrefabDef prefab = CorporateQuestDefOf.Mugirl_CorporateFusionResearchSite;
@@ -122,6 +140,7 @@ namespace Mugirl
 
             CellRect siteRect = GenAdj.OccupiedRect(center, Rot4.North, prefab.size);
             CellRect clearanceBounds = siteRect.ExpandedBy(12);
+            clearanceBounds.ClipInsideMap(map);
             foreach (IntVec3 cell in siteRect.Cells)
             {
                 if (!cell.InBounds(map))
@@ -130,8 +149,6 @@ namespace Mugirl
             }
             foreach (IntVec3 cell in clearanceBounds.Cells)
             {
-                if (!cell.InBounds(map))
-                    throw new InvalidOperationException("Corporate fusion research prefab clearance exceeds the map bounds.");
                 float distance = DistanceOutside(cell, siteRect);
                 float edgeNoise = Mathf.PerlinNoise(cell.x * 0.115f + 17.3f, cell.z * 0.115f + 41.9f);
                 if (distance > 0f && distance <= 4f + edgeNoise * 7f)
@@ -141,12 +158,58 @@ namespace Mugirl
             EnsureFusionResearchTerrainSupport(prefab, map, center);
 
             if (!PrefabUtility.CanSpawnPrefab(prefab, map, center, Rot4.North))
-                throw new InvalidOperationException(DescribePrefabSpawnFailure(prefab, map, center));
+            {
+                // 自定义地表或地图修饰器仍可能拒绝放置；整平本区域后继续生成，不能消耗任务并留下空图。
+                MugirlLog.DiagnosticMessage("Corporate fusion research site requires forced terrain preparation: "
+                    + DescribePrefabSpawnFailure(prefab, map, center));
+                CellRect fallbackRect = siteRect.ExpandedBy(1);
+                fallbackRect.ClipInsideMap(map);
+                foreach (IntVec3 cell in fallbackRect)
+                {
+                    ClearFusionResearchCell(map, cell, removePlants: true);
+                    if (map.terrainGrid.FoundationAt(cell) != null)
+                        map.terrainGrid.RemoveFoundation(cell, doLeavings: false);
+                    map.terrainGrid.SetTerrain(cell, TerrainDefOf.Soil);
+                }
+                EnsureFusionResearchTerrainSupport(prefab, map, center);
+            }
             PrefabUtility.SpawnPrefab(prefab, map, center, Rot4.North, onSpawned: InitializeFusionResearchThing);
+            EnsureFusionResearchThings(prefab, map, center);
+        }
+
+        private static void EnsureFusionResearchThings(PrefabDef prefab, Map map, IntVec3 center)
+        {
+            // 原版 SpawnPrefab 会静默跳过不能正常放置的单件物品。此固定蓝图必须完整生成；
+            // 补建只针对本次生成中缺失的条目，保留已经生成的建筑，不对旧地图执行。
+            foreach (var entry in PrefabUtility.GetThings(prefab, center, Rot4.North))
+            {
+                PrefabThingData data = entry.Item1;
+                IntVec3 cell = entry.Item2;
+                if (cell.GetThingList(map).Any(existing => existing.def == data.def && existing.Position == cell)) continue;
+                Thing thing = ThingMaker.MakeThing(data.def, data.stuff);
+                thing.stackCount = data.stackCountRange.RandomInRange;
+                if (data.hp > 0) thing.HitPoints = data.hp;
+                if (data.quality.HasValue)
+                    thing.TryGetComp<CompQuality>()?.SetQuality(data.quality.Value, ArtGenerationContext.Outsider);
+                GenSpawn.Spawn(thing, cell, map, entry.Item3);
+                InitializeFusionResearchThing(thing);
+            }
         }
 
         private static void EnsureFusionResearchTerrainSupport(PrefabDef prefab, Map map, IntVec3 center)
         {
+            // CanSpawnPrefab 先检查当前地面，SpawnPrefab 才铺设 terrain。
+            // 先铺研究站的固定地板，避免薄冰等原地表在地板落地前阻止整座站点生成。
+            IntVec3 root = PrefabUtility.GetRoot(prefab, center, Rot4.North);
+            foreach (var entry in prefab.GetTerrain())
+            {
+                IntVec3 cell = root + entry.cell;
+                if (!cell.InBounds(map))
+                    throw new InvalidOperationException("Corporate fusion research floor plan exceeds the map bounds.");
+                // 薄冰属于独立的临时地形层，仅 SetTerrain 不会移除它，也不会露出新地板。
+                map.terrainGrid.RemoveTempTerrain(cell, doLeavings: false, preventDestroyEffects: true);
+                map.terrainGrid.SetTerrain(cell, entry.data.def);
+            }
             foreach (var entry in PrefabUtility.GetThings(prefab, center, Rot4.North))
             {
                 PrefabThingData data = entry.Item1;
@@ -157,6 +220,7 @@ namespace Mugirl
                 {
                     if (!cell.InBounds(map))
                         throw new InvalidOperationException("Corporate fusion research building footprint exceeds the map bounds.");
+                    map.terrainGrid.RemoveTempTerrain(cell, doLeavings: false, preventDestroyEffects: true);
                     // RimWorld 1.6 的 FoundationAt 优先于表层 TerrainAt 提供承载力。
                     // 仅铺 Concrete 会留下轻型桥梁等 foundation，原版仍会判定建筑不可放置。
                     TerrainDef foundation = map.terrainGrid.FoundationAt(cell);
@@ -240,6 +304,7 @@ namespace Mugirl
 
         internal static void ClearFusionResearchCell(Map map, IntVec3 cell, bool removePlants)
         {
+            if (!cell.InBounds(map)) return;
             // Destroying mineables and buildings can leave fresh rubble after the original thing-list
             // snapshot was taken, so repeat a few bounded passes. PassThroughOnly items such as stone
             // chunks also make GenSpawn.CanSpawnAt reject an otherwise wipeable prefab building.
@@ -252,8 +317,14 @@ namespace Mugirl
                     if (!thing.Destroyed) DestroyFusionResearchBlocker(thing);
             }
             map.roofGrid.SetRoof(cell, null);
+            // 临时冰层或其他临时地表会遮住新地板，也可能在人员进场后融化成水。
+            map.terrainGrid.RemoveTempTerrain(cell, doLeavings: false, preventDestroyEffects: true);
             if (cell.GetTerrain(map).passability == Traversability.Impassable)
+            {
+                if (map.terrainGrid.FoundationAt(cell) != null)
+                    map.terrainGrid.RemoveFoundation(cell, doLeavings: false);
                 map.terrainGrid.SetTerrain(cell, TerrainDefOf.Soil);
+            }
         }
 
         private static bool ShouldClearFusionResearchThing(Thing thing, bool removePlants)

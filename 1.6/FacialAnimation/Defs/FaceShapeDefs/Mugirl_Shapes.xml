@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-    <FacialAnimation.EmotionShapeDef>
+<!-- 9/21調整紋理位置及演出代碼並無使用到該紋理故無註解掉
+     <FacialAnimation.EmotionShapeDef>
         <defName>lovinblush</defName>
-    </FacialAnimation.EmotionShapeDef>
+    </FacialAnimation.EmotionShapeDef> -->
 
     <FacialAnimation.EmotionShapeDef>
         <defName>gloomy</defName>
@@ -46,10 +47,11 @@
         <altShapeDef>normal</altShapeDef>
     </FacialAnimation.HeadShapeDef>
 
+<!--9/21調整紋理位置及演出代碼並無使用到該紋理故無註解掉
     <FacialAnimation.EyeballShapeDef>
         <defName>Mugirl_heart</defName>
         <altShapeDef>normal</altShapeDef>
-    </FacialAnimation.EyeballShapeDef>
+    </FacialAnimation.EyeballShapeDef> -->
 
     <FacialAnimation.EyeballShapeDef>
         <defName>heart</defName>

@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using HarmonyLib;
 using RimWorld;
+using RimWorld.Planet;
 using UnityEngine;
 using Verse;
 
@@ -20,6 +22,10 @@ namespace Mugirl
         private readonly List<string> results = new List<string>();
         private bool running;
         private bool FusionOnly => GenCommandLine.CommandLineArgPassed("mugirlCorporateFusionChecks");
+        private bool FusionFloorsOnly => GenCommandLine.CommandLineArgPassed("mugirlCorporateFusionFloorChecks");
+        private Dictionary<IntVec3, string> persistedFloors;
+        private int persistedFloorMapId;
+        private int persistedFloorMissionId;
 
         public CorporateRuntimeValidation(Game game) { }
 
@@ -47,7 +53,22 @@ namespace Mugirl
             Find.TickManager.CurTimeSpeed = TimeSpeed.Paused;
             try
             {
-                if (phase == 0) QueueAsyncTailInitializationCheck();
+                if (FusionFloorsOnly)
+                {
+                    if (phase == 0) RunFusionFloorChecks();
+                    else if (phase == 1)
+                    {
+                        Map restoredMap = Find.Maps.FirstOrDefault(map => map.uniqueID == persistedFloorMapId);
+                        Check("Research mission map survives full save/load", restoredMap != null);
+                        if (restoredMap != null) VerifyFusionFloors(restoredMap, "after full save/load");
+                        CorporateMission mission = CorporateNetwork.Current.FindMission(persistedFloorMissionId);
+                        Check("Research team and active mission survive full save/load", mission?.spawned == true
+                            && mission.state == CorporateMissionState.Active && mission.targets.Count == 4
+                            && mission.targets.All(pawn => pawn.Spawned && pawn.Map == restoredMap));
+                        Finish();
+                    }
+                }
+                else if (phase == 0) QueueAsyncTailInitializationCheck();
                 else if (phase == 1) VerifyReload();
             }
             catch (Exception exception)
@@ -64,6 +85,176 @@ namespace Mugirl
             Directory.CreateDirectory(GenFilePaths.SaveDataFolderPath);
             File.AppendAllText(Path.Combine(GenFilePaths.SaveDataFolderPath, "corporate-checks.txt"), line + Environment.NewLine);
             MugirlLog.DiagnosticMessage("[CorporateValidation] " + line);
+        }
+
+        private void RunFusionFloorChecks()
+        {
+            Map map = Find.CurrentMap;
+            PrefabDef prefab = CorporateQuestDefOf.Mugirl_CorporateFusionResearchSite;
+            var floors = prefab.GetTerrain().ToList();
+            Check("Research prefab loads a nonempty floor plan", floors.Count > 0);
+            if (floors.Count == 0) throw new InvalidOperationException("Research prefab has no terrain data.");
+            Check("Research floor plan contains no overlapping cells", floors.Select(entry => entry.cell).Distinct().Count() == floors.Count);
+            Check("Research floor plan stays inside the prefab", floors.All(entry => entry.cell.x >= 0 && entry.cell.x < prefab.size.x
+                && entry.cell.z >= 0 && entry.cell.z < prefab.size.z));
+            Check("Research floor plan has four intended materials", floors.Select(entry => entry.data.def.defName).Distinct()
+                .OrderBy(name => name).SequenceEqual(new[] { "Concrete", "PavedTile", "SterileTile", "WoodPlankFloor" }));
+            IntVec3 root = PrefabUtility.GetRoot(prefab, map.Center, Rot4.North);
+            persistedFloors = floors.ToDictionary(entry => root + entry.cell, entry => entry.data.def.defName);
+            CellRect siteRect = GenAdj.OccupiedRect(map.Center, Rot4.North, prefab.size);
+            // 夹具仅运行于隔离游戏；将殖民者移到清场范围之外，避免建筑挤走验证入口 Pawn。
+            foreach (Pawn pawn in map.mapPawns.FreeColonistsSpawned.ToList())
+            {
+                IntVec3 destination = CellFinder.RandomClosewalkCellNear(new IntVec3(8, 0, 8), map, 6);
+                pawn.DeSpawn();
+                GenSpawn.Spawn(pawn, destination, map);
+            }
+            foreach (string terrainName in new[] { "Soil", "ThinIce", "WaterDeep", "Mud", "Bridge", "RockAndGeyser", "ForcedFallback" })
+            {
+                TerrainDef terrain = DefDatabase<TerrainDef>.GetNamed(terrainName == "ForcedFallback" || terrainName == "RockAndGeyser" ? "Soil" : terrainName);
+                foreach (IntVec3 cell in siteRect)
+                {
+                    CorporateNetwork.ClearFusionResearchCell(map, cell, removePlants: true);
+                    if (map.terrainGrid.FoundationAt(cell) != null) map.terrainGrid.RemoveFoundation(cell, doLeavings: false);
+                    map.terrainGrid.SetTerrain(cell, TerrainDefOf.Soil);
+                    map.terrainGrid.SetTerrain(cell, terrain);
+                }
+                if (terrainName == "RockAndGeyser")
+                {
+                    ThingDef rock = DefDatabase<ThingDef>.GetNamed("Granite");
+                    foreach (IntVec3 cell in siteRect.ExpandedBy(8))
+                    {
+                        CorporateNetwork.ClearFusionResearchCell(map, cell, removePlants: true);
+                        GenSpawn.Spawn(ThingMaker.MakeThing(rock), cell, map);
+                        map.roofGrid.SetRoof(cell, RoofDefOf.RoofRockThick);
+                    }
+                    GenSpawn.Spawn(ThingMaker.MakeThing(DefDatabase<ThingDef>.GetNamed("SteamGeyser")), map.Center, map);
+                }
+                Harmony rejection = new Harmony("Mugirl.Validation.FusionFloorFallback");
+                MethodInfo canSpawn = AccessTools.Method(typeof(GenSpawn), nameof(GenSpawn.CanSpawnAt));
+                try
+                {
+                    // 模拟第三方放置条件拒绝发电机：走真实整地与原版静默跳过后的补建分支。
+                    if (terrainName == "ForcedFallback")
+                        rejection.Patch(canSpawn, prefix: new HarmonyMethod(typeof(CorporateRuntimeValidation), nameof(RejectResearchGenerator)));
+                    CorporateNetwork.DevSpawnFusionResearchSite(map);
+                }
+                finally { rejection.Unpatch(canSpawn, HarmonyPatchType.Prefix, rejection.Id); }
+                VerifyFusionFloors(map, "generated over " + terrainName);
+                TerrainDef expectedPasture = terrain.temporary || terrain.passability == Traversability.Impassable ? TerrainDefOf.Soil : terrain;
+                IntVec3 pasture = root + new IntVec3(2, 0, 20);
+                // 山岩生成会铺设天然石地面；清场应保留可通行石地面，无需强改回土壤。
+                Check("Research pasture remains safe over " + terrainName + ": " + pasture.GetTerrain(map).defName,
+                    pasture.Walkable(map) && (terrainName == "RockAndGeyser"
+                        ? !pasture.GetTerrain(map).temporary : pasture.GetTerrain(map) == expectedPasture));
+                Check("Research generators spawn with fuel over " + terrainName, map.listerThings.AllThings
+                    .Where(thing => thing.def.defName == "Mugirl_MilkPoweredGenerator").Count() == 6
+                    && map.listerThings.AllThings.Where(thing => thing.def.defName == "Mugirl_MilkPoweredGenerator")
+                        .All(thing => thing.TryGetComp<CompRefuelable>()?.IsFull == true));
+            }
+            RunFusionFloorMissionCheck(map);
+        }
+
+        private static bool RejectResearchGenerator(ThingDef thingDef, ref bool __result)
+        {
+            if (thingDef.defName != "Mugirl_MilkPoweredGenerator") return true;
+            __result = false;
+            return false;
+        }
+
+        private static bool RejectPreferredResearchTile(Predicate<PlanetTile> validator, ref PlanetTile tile, ref bool __result)
+        {
+            if (validator == null) return true;
+            tile = PlanetTile.Invalid;
+            __result = false;
+            return false;
+        }
+
+        private void RunFusionFloorMissionCheck(Map homeMap)
+        {
+            bool preferredExists = TileFinder.TryFindNewSiteTile(out PlanetTile preferred, homeMap.Tile, 2, 10,
+                allowCaravans: false, selectLandmarkChance: 0f, validator: CorporateNetwork.IsPreferredFusionResearchTile);
+            bool found = CorporateNetwork.TryFindFusionResearchSiteTile(homeMap.Tile, out PlanetTile selected);
+            Check("Research selection prefers suitable terrain when available: preferred=" + preferredExists,
+                found && (!preferredExists || CorporateNetwork.IsPreferredFusionResearchTile(selected)));
+            CorporateNetwork network = CorporateNetwork.Current;
+            typeof(CorporateIntroduction).GetField("completed", BindingFlags.NonPublic | BindingFlags.Instance)
+                .SetValue(CorporateIntroduction.Current, true);
+            network.CorporateFaction.TryAffectGoodwillWith(Faction.OfPlayer, 100 - network.CorporateFaction.PlayerGoodwill, false, false);
+            CorporateMission mission = new CorporateMission { id = network.Missions.Select(item => item.id).DefaultIfEmpty().Max() + 1,
+                kind = CorporateMissionKind.Fusion, state = CorporateMissionState.Available,
+                acceptByTick = CorporateNetwork.Now + 60000, duration = 600000 };
+            ((List<CorporateMission>)network.Missions).Add(mission);
+            Harmony rejection = new Harmony("Mugirl.Validation.FusionPreferredTileFallback");
+            MethodInfo findTile = typeof(TileFinder).GetMethods().Single(method => method.Name == nameof(TileFinder.TryFindNewSiteTile)
+                && method.GetParameters()[1].ParameterType == typeof(PlanetTile));
+            try
+            {
+                rejection.Patch(findTile, prefix: new HarmonyMethod(typeof(CorporateRuntimeValidation), nameof(RejectPreferredResearchTile)));
+                bool accepted = network.AcceptMission(mission, new CorporateTradeContext(homeMap), out string reason);
+                Check("Research mission accepts without any preferred terrain: " + reason, accepted && mission.site != null);
+                if (!accepted) throw new InvalidOperationException(reason);
+            }
+            finally { rejection.Unpatch(findTile, HarmonyPatchType.Prefix, rejection.Id); }
+            persistedFloorMissionId = mission.id;
+            LongEventHandler.QueueLongEvent(() =>
+            {
+                try
+                {
+                    Map siteMap = GetOrGenerateMapUtility.GetOrGenerateMap(mission.site.Tile, new IntVec3(125, 1, 125), mission.site.def);
+                    Check("Research real PostMapGenerate creates a complete active team", mission.spawned
+                        && mission.state == CorporateMissionState.Active && mission.targets.Count == 4
+                        && mission.targets.All(pawn => pawn.Spawned && pawn.Map == siteMap));
+                    persistedFloorMapId = siteMap.uniqueID;
+                    PrefabDef prefab = CorporateQuestDefOf.Mugirl_CorporateFusionResearchSite;
+                    IntVec3 root = PrefabUtility.GetRoot(prefab, siteMap.Center, Rot4.North);
+                    persistedFloors = prefab.GetTerrain().ToDictionary(entry => root + entry.cell, entry => entry.data.def.defName);
+                    VerifyFusionFloors(siteMap, "on actual mission map");
+                    LongEventHandler.ExecuteWhenFinished(() =>
+                    {
+                        try
+                        {
+                            phase = 1;
+                            GameDataSaveLoader.SaveGame("CorporateFusionFloorsRoundtrip");
+                            Check("Research floor full game save produced", File.Exists(GenFilePaths.FilePathForSavedGame("CorporateFusionFloorsRoundtrip")));
+                            GameDataSaveLoader.LoadGame("CorporateFusionFloorsRoundtrip");
+                        }
+                        catch (Exception exception) { Check("floor save exception: " + exception, false); Finish(); }
+                    });
+                }
+                catch (Exception exception) { Check("floor mission exception: " + exception, false); Finish(); }
+            }, "GeneratingMap", false, null);
+        }
+
+        private void VerifyFusionFloors(Map map, string stage)
+        {
+            int matched = persistedFloors.Count(entry => entry.Key.GetTerrain(map).defName == entry.Value);
+            Check("Research floors " + stage + ": " + matched + "/" + persistedFloors.Count, matched == persistedFloors.Count);
+            PrefabDef prefab = CorporateQuestDefOf.Mugirl_CorporateFusionResearchSite;
+            var expected = PrefabUtility.GetThings(prefab, map.Center, Rot4.North).ToList();
+            int buildings = expected.Count(entry => entry.Item2.GetThingList(map)
+                .Any(thing => thing.Position == entry.Item2 && thing.def == entry.Item1.def));
+            Check("Research prefab contents " + stage + ": " + buildings + "/" + expected.Count, buildings == expected.Count);
+            IntVec3 start = PrefabUtility.GetRoot(prefab, map.Center, Rot4.North) + new IntVec3(31, 0, 20);
+            HashSet<IntVec3> visited = new HashSet<IntVec3> { start };
+            Queue<IntVec3> pending = new Queue<IntVec3>();
+            pending.Enqueue(start);
+            int edges = 0;
+            IntVec3[] directions = { new IntVec3(1, 0, 0), new IntVec3(-1, 0, 0), new IntVec3(0, 0, 1), new IntVec3(0, 0, -1) };
+            while (pending.Count > 0 && edges != 15)
+            {
+                IntVec3 cell = pending.Dequeue();
+                if (cell.x == 0) edges |= 1;
+                if (cell.x == map.Size.x - 1) edges |= 2;
+                if (cell.z == 0) edges |= 4;
+                if (cell.z == map.Size.z - 1) edges |= 8;
+                foreach (IntVec3 direction in directions)
+                {
+                    IntVec3 next = cell + direction;
+                    if (next.InBounds(map) && next.Walkable(map) && visited.Add(next)) pending.Enqueue(next);
+                }
+            }
+            Check("Research courtyard reaches all four map edges " + stage, start.Walkable(map) && edges == 15);
         }
 
         private void QueueAsyncTailInitializationCheck()

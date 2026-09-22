@@ -80,12 +80,8 @@ namespace Mugirl.Features.Appearance
 
         public override GraphicMeshSet MeshSetFor(Pawn pawn)
         {
+            // 头发网格的西向已经镜像；额外 FlipGraphic 会再次翻转，让前后发朝向相反。
             return HumanlikeMeshPoolUtility.GetHumanlikeHairSetForPawn(pawn);
-        }
-
-        public override bool FlipGraphic(PawnDrawParms parms)
-        {
-            return base.FlipGraphic(parms) ^ (parms.facing == Rot4.West);
         }
 
         internal Graphic GraphicForFacing(Pawn pawn, Rot4 facing)

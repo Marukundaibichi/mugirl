@@ -49,7 +49,7 @@
             <recipeUsers>
                 <li>TableMachining</li>
             </recipeUsers>
-            <researchPrerequisite>PrecisionRifling</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_Firearms</li><li>PrecisionRifling</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>6</Crafting>
             </skillRequirements>
@@ -143,7 +143,7 @@
             <recipeUsers>
                 <li>TableMachining</li>
             </recipeUsers>
-            <researchPrerequisite>BlowbackOperation</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_Firearms</li><li>BlowbackOperation</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>4</Crafting>
             </skillRequirements>
@@ -233,7 +233,7 @@
             <ComponentIndustrial>6</ComponentIndustrial>
         </costList>
         <recipeMaker>
-            <researchPrerequisite>BlowbackOperation</researchPrerequisite>
+            <researchPrerequisites Inherit="False"><li>Mugirl_Firearms</li><li>BlowbackOperation</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>5</Crafting>
             </skillRequirements>

@@ -211,15 +211,16 @@
     <Mugirl.CourierTalkOptionDisabled>{0} ({1})</Mugirl.CourierTalkOptionDisabled>
     <Mugirl.CourierAlreadyResolved>This courier can no longer negotiate.</Mugirl.CourierAlreadyResolved>
     <Mugirl.CourierDialogTitle>Corporate Courier</Mugirl.CourierDialogTitle>
-    <Mugirl.CourierDialogText>The corporate courier stops a few paces away, one hand half-raised, eyes darting between you and the way he came. He tries to hold a professional posture, but the fingers resting on his holster keep trembling.\n\n\"Easy... everyone stay easy. The name's {COURIER} - just a courier, the kind with an employee number stitched into his sleeve.\" He licks his cracked lips. \"The ship broke up in orbit. The cargo scattered across the crash site. I've been walking three days on this leg, trying to find it before the system logs me as a runner...\"\n\nHe lets out a small, bitter laugh. \"Listen to me, pouring it all out. Here's the deal - the diary and the restraint keys I'm carrying are yours. Write the cargo off as 'lost in transit.' Let me walk, and nobody reports this upstairs. What do you say, {NEGOTIATOR}? Better for both of us.\"</Mugirl.CourierDialogText>
-    <Mugirl.CourierDialogLeaveItems>Leave the items and go</Mugirl.CourierDialogLeaveItems>
-    <Mugirl.CourierDialogFight>Open fire now</Mugirl.CourierDialogFight>
+    <Mugirl.CourierDialogText>The corporate courier stops a few paces away, one hand half-raised, eyes darting between you and the way he came. He tries to hold a professional posture, but the fingers resting on his holster keep trembling.\n\n\"Easy... everyone stay easy. The name's {COURIER} - just a courier, the kind with an employee number stitched into his sleeve.\" He licks his cracked lips. \"The ship broke up in orbit. The cargo scattered across the crash site. I've been walking since the crash, trying to find it before the system logs me as a runner...\"\n\nHe lets out a small, bitter laugh. \"Listen to me, pouring it all out. Here's the deal - the diary and the restraint keys I'm carrying are yours. Write the cargo off as 'lost in transit.' Let me walk, and nobody reports this upstairs. What do you say, {NEGOTIATOR}? Better for both of us.\"</Mugirl.CourierDialogText>
+    <Mugirl.CourierDialogLeaveItems>Accept the proposal</Mugirl.CourierDialogLeaveItems>
+    <Mugirl.CourierDialogFight>Fight now</Mugirl.CourierDialogFight>
     <Mugirl.CourierItemsDroppedMessage>The courier drops the diary and restraint keys and hurries toward the map edge without looking back.</Mugirl.CourierItemsDroppedMessage>
     <Mugirl.CourierFightMessage>The negotiation breaks down. The courier mutters a curse and draws his weapon. This fight will not affect your formal standing with the corporation.</Mugirl.CourierFightMessage>
     <Mugirl.CourierFightReason>Negotiations broke down.</Mugirl.CourierFightReason>
     <Mugirl.CourierRaid.Log.NoMap>CourierRaid quest aborted: no valid map target.</Mugirl.CourierRaid.Log.NoMap>
     <Mugirl.CourierRaid.Log.NoFaction>CourierRaid quest aborted: hostile giant corporation faction not found.</Mugirl.CourierRaid.Log.NoFaction>
     <Mugirl.CourierRaid.Log.NoSpawnCell>CourierRaid quest aborted: no valid spawn cell.</Mugirl.CourierRaid.Log.NoSpawnCell>
+    <Mugirl.CourierRaid.Log.MissingOpeningPawns>Courier could not find the opening crash pawns to count their restraint keys.</Mugirl.CourierRaid.Log.MissingOpeningPawns>
     <Mugirl.CourierRaid.SpawnLog.NoMap>CourierRaid spawn aborted: map is null.</Mugirl.CourierRaid.SpawnLog.NoMap>
     <Mugirl.CourierRaid.SpawnLog.NoFaction>CourierRaid spawn aborted: faction is null.</Mugirl.CourierRaid.SpawnLog.NoFaction>
     <Mugirl.CourierRaid.SpawnLog.NoSpawnCell>CourierRaid spawn aborted: no valid spawn cell.</Mugirl.CourierRaid.SpawnLog.NoSpawnCell>
