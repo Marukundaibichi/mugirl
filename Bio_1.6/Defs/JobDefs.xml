@@ -9,13 +9,10 @@
         <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
     </JobDef>
 
-    <!-- TEMPORARILY DISABLED: unfinished Mugirl throw/dunk system.
     <JobDef>
         <defName>Job_MugirlDunk</defName>
         <driverClass>Mugirl.JobDriver_MugirlDunk</driverClass>
-        <reportString>Dunking TargetA at TargetB.</reportString>
+        <reportString>Dribbling TargetA's head toward TargetB.</reportString>
         <playerInterruptible>true</playerInterruptible>
     </JobDef>
-    END TEMPORARILY DISABLED -->
-
 </Defs>

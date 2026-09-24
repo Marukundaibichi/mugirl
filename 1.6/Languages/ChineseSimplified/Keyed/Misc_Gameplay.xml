@@ -573,11 +573,16 @@
     <!-- The snow-bovine punisher has completed its punishment and departed. -->
     <Mugirl.Punisher.Departed>雪牛惩戒者已经结束惩戒，扬长而去。</Mugirl.Punisher.Departed>
     <Mugirl.Throw.InvalidTarget>这个目标无法被抓起。</Mugirl.Throw.InvalidTarget>
-    <Mugirl.Dunk.InvalidDestination>灌篮落点必须位于物体 {0} 格以内。</Mugirl.Dunk.InvalidDestination>
+    <Mugirl.Dunk.InvalidDestination>灌篮落点必须位于目标 {0} 格以内。</Mugirl.Dunk.InvalidDestination>
+    <Mugirl.Dunk.PickupReadout>摘下{0}的头运球灌篮。</Mugirl.Dunk.PickupReadout>
+    <Mugirl.Dunk.InvalidTarget>整蛊对象必须是人形角色。</Mugirl.Dunk.InvalidTarget>
+    <Mugirl.Dunk.NoHead>{0}已经没脑袋了，拿什么当篮球？</Mugirl.Dunk.NoHead>
+    <Mugirl.Dunk.DevOnly>仅开发者模式可用。</Mugirl.Dunk.DevOnly>
     <Mugirl.Throw.IndestructibleTarget>{0}无法被移动。</Mugirl.Throw.IndestructibleTarget>
+    <Mugirl.Throw.ConnectedTarget>{0}与其他结构相连，不能举起来。</Mugirl.Throw.ConnectedTarget>
     <Mugirl.Throw.AlreadyHolding>已经抓着一个东西了。</Mugirl.Throw.AlreadyHolding>
-    <Mugirl.Throw.TooHeavy>太重了：重量 {0} kg，当前力量 {1} kg。</Mugirl.Throw.TooHeavy>
-    <Mugirl.Throw.PickupReadout>重量 {0} kg / 力量 {1} kg</Mugirl.Throw.PickupReadout>
+    <Mugirl.Throw.TooHeavy>太重了：重量 {0} kg，搬运上限 {1} kg。</Mugirl.Throw.TooHeavy>
+    <Mugirl.Throw.PickupReadout>重量 {0} kg / 搬运上限 {1} kg</Mugirl.Throw.PickupReadout>
     <Mugirl.Throw.OutOfRange>超出投掷距离（最大 {0} 格）。</Mugirl.Throw.OutOfRange>
     <Mugirl.Throw.AimReadout>伤害 {0} / 爆炸半径 {1} / 最大距离 {2}</Mugirl.Throw.AimReadout>
     <Mugirl.Throw.PlaceFailed>无法安全放置 {0}：{1}</Mugirl.Throw.PlaceFailed>

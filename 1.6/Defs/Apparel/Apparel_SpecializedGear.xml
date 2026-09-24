@@ -524,6 +524,9 @@
             <texPath>Things/Apparel/Mugirl_WarriorCombatArmor/Mugirl_WarriorCombatArmor</texPath>
         </graphicData>
         <techLevel>Industrial</techLevel>
+        <tradeTags>
+            <li>Mugirl_CombatApparelBuyOnly</li>
+        </tradeTags>
         <costStuffCount>60</costStuffCount>
         <stuffCategories Inherit="False">
             <li>Metallic</li>

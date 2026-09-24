@@ -3,8 +3,10 @@
   <Mugirl.CorporatePeopleConfigDef>
     <defName>Mugirl_CorporatePeople</defName>
     <weeklyCount>4</weeklyCount>
-    <purchaseMultiplier>2.0</purchaseMultiplier>
-    <saleMultiplier>1.5</saleMultiplier>
+    <basePriceMultiplier>1.5</basePriceMultiplier>
+    <colonistPriceMultiplier>1.5</colonistPriceMultiplier>
+    <handlingFeeFactor>0.05</handlingFeeFactor>
+    <shippingFeeFactor>0.05</shippingFeeFactor>
   </Mugirl.CorporatePeopleConfigDef>
   <TraderKindDef>
     <defName>Mugirl_CorporatePersonnelTrader</defName>

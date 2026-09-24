@@ -406,6 +406,7 @@ namespace Mugirl
             persistedProtection = protection.id;
             persistedGiftIds = protection.pendingGoods.Select(t => t.thingIDNumber).ToArray();
             Check("persistence fixture has pending protection gifts", protection.pendingGoods.Count > 0);
+            if (!FusionOnly) CorporateFinanceRuntimeChecks.PrepareOutfitReload(network, Check);
             phase = 1;
             GameDataSaveLoader.SaveGame("CorporateRoundtrip");
             Check("full game save produced", File.Exists(GenFilePaths.FilePathForSavedGame("CorporateRoundtrip")));
@@ -436,6 +437,26 @@ namespace Mugirl
                 && GenStuff.AllowedStuffsFor(d).Contains(wool.def));
             Thing apparel = CorporateNetwork.MakeProduct(apparelDef, wool.def, QualityCategory.Good);
             Check("real wool apparel is recognized from its material", network.ProductQuote(apparel, 1) > apparel.MarketValue);
+            ThingDef armchair = DefDatabase<ThingDef>.GetNamed("Armchair");
+            Thing installedWoolChair = ThingMaker.MakeThing(armchair, wool.def);
+            Check("Installed wool furniture cannot bypass removal and beacon delivery",
+                network.ProductFactor(installedWoolChair) == 0f);
+            MinifiedThing packedWoolChair = installedWoolChair.MakeMinified();
+            Check("Packed wool furniture preserves its actual inner material and receives the product quote",
+                packedWoolChair.InnerThing.Stuff == wool.def
+                && network.ProductQuote(packedWoolChair, 1) > packedWoolChair.MarketValue);
+            MinifiedThing packedClothChair = ThingMaker.MakeThing(armchair, ThingDefOf.Cloth).MakeMinified();
+            Check("Same furniture made from ordinary cloth is not a Mugirl wool product",
+                network.ProductFactor(packedClothChair) == 0f);
+            int furnitureQuote = network.ProductQuote(packedWoolChair, 1);
+            long furnitureTurnover = network.TradeTurnover;
+            GenSpawn.Spawn(packedWoolChair, context.AvailableThings.First(t => t.def == ThingDefOf.Silver).Position, map);
+            context.Invalidate();
+            Check("Packed wool furniture in the powered beacon range can be sold once",
+                context.AvailableContractThings.Contains(packedWoolChair)
+                && network.SellProduct(context, packedWoolChair, 1, out reason)
+                && packedWoolChair.Destroyed && network.TradeTurnover == furnitureTurnover + furnitureQuote);
+            packedClothChair.Destroy();
             Thing meal = ThingMaker.MakeThing(ThingDefOf.MealSimple);
             Check("food without evidence of Mugirl milk is excluded", network.ProductFactor(meal) == 0f);
             meal.TryGetComp<CompIngredients>().ingredients.Add(Mugirl_DefOf.Mugirl_Milk);
@@ -510,7 +531,11 @@ namespace Mugirl
                 typeof(CorporateNetwork).GetMethod("ProtectResearchers", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(network, new object[] { protection });
                 Check("completed protection after reload cannot generate another gift", protection.pendingGoods.Count == 0 && network.Vault.Count == vaultCount);
             }
-            if (!FusionOnly) CorporateServicesRuntimeChecks.VerifyReload(network, Check);
+            if (!FusionOnly)
+            {
+                CorporateFinanceRuntimeChecks.VerifyReload(network, Check);
+                CorporateServicesRuntimeChecks.VerifyReload(network, Check);
+            }
             Check("gameplay DLL has expected Harmony patches", MugirlBootstrap.PatchedClassNames.Contains(typeof(Harmony_CorporateCommsConsole).FullName)
                 && MugirlBootstrap.PatchedClassNames.Contains(typeof(CorporateDebt_HostileTo_Patch).FullName));
             Finish();

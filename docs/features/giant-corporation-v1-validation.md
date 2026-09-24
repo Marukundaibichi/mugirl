@@ -1,5 +1,93 @@
 # 巨企首版：使用与验证记录
 
+> 2026-09-24 人员交易及雪牛娘毛制家具收购已调整。下文“首版已包含”的旧人员报价、奴隶购买限制与产品收购范围用于解释当时的运行证据；当前规则见[巨企设计方案第 5、6 节](giant-corporation-design.md)，客户交易额去重见[客户服务规则](corporate-services.md)。既有通过记录不能替代本轮游戏内验证。
+
+## 2026-09-24 补充白衬衫牛仔休闲套
+
+将白色条纹衬衫「惑光半透」`Mugirl_Shirt` 与牛仔长裤「蓝境远行」`Mugirl_Jeans` 固定搭配加入展销清单，现共十二套。保留白蓝原色，沿用裤装贴图自带的鞋饰，不额外叠穿袜靴。两件服装分别位于 Middle / Torso、Shoulders 和 OnSkin / Legs，实际穿戴无冲突。
+
+全 DLC 隔离运行 `CasualSet-20260924a` 为 **338 PASS / 2 FAIL**。十二套服装的 60 项检查全部通过，包含新增休闲套的完整穿戴、排除战斗服饰、原色保留、重验不换件及缺件拒绝；实际人员购买与完整存读档衣装检查也通过。两项失败分别为通讯台靠近移动断言（job 与 driver 正确，但 `moving=False`）及既有八人支援队装备断言，不记作全量通过。fresh `Player.log` 扫描仅命中 5 条测试 PASS 文本中的 `missing` / `failed`。证据位于 `%LOCALAPPDATA%/RimWorldModTests/Mugirl/CorporateValidation-CasualSet-20260924a-Game/Mods/Mugirl/TMP/CorporateValidation-CasualSet-20260924a/`。
+
+普通 Release 构建已更新正式 DLL，SHA-256 为 `E9F0E0173BF921E63894688960B08E4E95B11BA053F1862DF8AF829DD730881C`；原 DLL 备份于 `DevData/Backups/CasualSet-20260924/MugirlRace-before.dll`。静态主体通过，资源阶段仍缺既有 42 张 FA 烘焙脸红贴图，基线与本轮结果分别见 `TMP/CasualSet-baseline-20260924.log`、`TMP/CasualSet-static-20260924.log`。`TMP/CasualSet-cycle-audit-20260924.json` 的 `cycle_components=0`、`affected_candidates=0`、`scan_errors=0`。
+
+视觉运行 `CasualSetVisual-20260924a` 为 **PASS**，87 张图包含 51 张界面截图与 36 张游戏原生三向肖像，完整读档再保存检查通过；fresh `Player.log` 扫描有一条对 `Thing_Human5703` 的 `DirectPawnRelation` 引用警告，不记作零日志警告。本轮使用 `-SkipCompact`，未改界面布局，紧凑及窄窗口沿用上一轮独立验证记录。新增休闲套的正面、侧面、背面已目视确认白蓝原色、上下装腰线衔接和原有鞋饰。截图位于 `%TEMP%/CorporateValidation-CasualSetVisual-20260924a/ValidationShots/outfit-11-detail-2.png`（正面）、`outfit-11-detail-1.png`（侧面）、`outfit-11-detail-0.png`（背面）。
+
+## 2026-09-24 展销非战斗主题套装扩充
+
+在原有六套基础上加入五套固定搭配，共十一套。展销清单排除明显用于作战的盔甲、战斗服和战术装备，保留警察角色装束；配饰允许按风格复用，不再要求所有配件必须具有相同系列名。颜色仍保留贴图原色，每人按整套抽取，不分别随机抽衣裤或配饰。
+
+| 新套装 | 固定搭配 | 搭配依据 |
+| --- | --- | --- |
+| OL | OL 套装、墨镜、链条手袋 | 黑白通勤配色，沿用主衣自带的裙装、丝袜和鞋 |
+| 婚纱 | 婚纱、白金色面纱 | 呼应白色礼服与金色领饰，保留原有成套腿饰 |
+| 旗袍 | 旗袍、链条手袋 | 白色花纹旗袍配小型黑色链条包，保留完整裙摆 |
+| 仙女服 | 仙女服、白金色面纱 | 白金色与青色系带，保留轻薄长袖和衣摆 |
+| 霜蓝仙子服 | 霜蓝仙子服、白金色面纱 | 保留霜蓝原色，以轻薄白纱呼应浅色袖口和金色领饰 |
+
+普通 Release 构建通过并更新正式 DLL，原 DLL 备份于 `DevData/Backups/CivilianSets-20260924/MugirlRace-before.dll`。静态检查主体通过，资源检查仍因既有 42 张 FA 烘焙脸红贴图缺失退出；本轮未修改这些资源。基线和最终复查分别记录于 `TMP/CivilianSets-baseline-20260924.log`、`TMP/CivilianSets-final-static-20260924.log`。最终目录审计 `TMP/CivilianSets-final-cycle-audit-20260924.json` 为 `cycle_components=0`、`affected_candidates=0`、`scan_errors=0`。
+
+全 DLC 隔离运行 `CivilianSets-20260924c` 完成 **333 PASS / 2 FAIL**。十一套的完整穿戴、无作战服饰、实际显示色不受材质染灰、重验保留原件和拒绝缺件共 55 项全部通过；人员购买交付及完整存读档中的未付款旧装修复、已付款衣装保留也通过。失败为四人和八人支援队装备断言 `Strike team contains four corporate Mugirl with excellent weapons`、`Advanced support really deploys eight equipped corporate troopers`，不记作整套通过。fresh `Player.log` 有一条 AncientMechs 地图散布失败提示与一条 `DirectPawnRelation` 引用警告；其余扫描命中为测试 PASS 文本中的 `missing` / `failed`，不能写作零日志警告。证据位于 `%LOCALAPPDATA%/RimWorldModTests/Mugirl/CorporateValidation-CivilianSets-20260924c-Game/Mods/Mugirl/TMP/CorporateValidation-CivilianSets-20260924c/`。
+
+中间运行 `CivilianSets-20260924b` 为 323 PASS / 1 FAIL，但 `CivilianSetsVisual-20260924b` 暴露了两个着色问题：原版 `CompColorable.SetColor` 对默认白色直接返回，未激活颜色覆盖，导致婚纱、旗袍等继续使用灰色材质底色；霜蓝仙子服没有 `CompColorable`，直接调用通用染色扩展方法还会报错。现只对可染色衣物先激活颜色覆盖再设白色，不可染色衣物保留自身渲染，且加入每套实际 `DrawColor` 回归检查。中间视觉运行虽输出 108 张图，但结果为 FAIL，不作最终验收依据。
+
+前一次 `CivilianSets-20260924a` 已通过全部服装检查，但随机生成的测试信仰强制支持奴役，导致切换到 `Slavery_Abhorrent` 时中断。根据原版 `IdeoFoundation.CanAdd` 与 Meme 的 `requireOne` 规则，隔离夹具在原有 Raider 排除项之外再排除 Supremacist、Inhuman；未改动正式游戏的信仰规则。三向大图导出所需的 `UnityEngine.ImageConversionModule` 也仅对验证构建添加引用。
+
+最终视觉运行 `CivilianSetsVisual-20260924c` 为 **PASS**，共 108 张图（75 张界面截图、33 张游戏原生三向肖像），完整读档再保存检查通过，fresh `Player.log` 扫描为 **OK**。逐套目视复核十一套正面，并检查新增五套的侧面与背面：OL、婚纱、旗袍与仙女服恢复贴图原色，霜蓝仙子服保留原有霜蓝色，手袋与面纱未覆盖裙摆或袖口。证据位于 `%TEMP%/CorporateValidation-CivilianSetsVisual-20260924c/ValidationShots/`，新增五套对应 `outfit-6` 至 `outfit-10`；`-detail-2.png` 为正面、`-detail-1.png` 为侧面、`-detail-0.png` 为背面。最终正式 DLL SHA-256：`B7EFA27999979C8DA53F1B641CD743F94EB297182E504EC4380E6C9A504ED38A`。
+
+## 2026-09-24 展销同系列套装修正
+
+用户澄清“成套”指修女套、警察套等同系列上下装与配饰。旧实现把制服、牛仔裤、通用内衣等跨系列拼装，而第一次复查又误改成所有人只穿单件 `Mugirl_Uniform`；这两个方案均不符合设计意图。
+
+上一轮按整套清单随机选择六种组合：修女经典款/清廉款、警察普通胸衣款/拉链胸衣款、兔女郎和高叉毛衣；配件严格属于相应系列，保留原配色。警察上衣与短裤同时生成，互斥胸衣只选一款；修女服对应头纱与眼罩。旧档只修复未付款的混搭或单件制服并重算报价，已有完整套装保留原件，已付款待交付人员保留签约衣装与金额。
+
+验证驱动逐套实际穿戴，检查缺件、等件数跨系列混搭、完整套装重验不换件、购买交付及完整存读档。视觉驱动为六套分别拍摄实际人员肖像和衣装栏。
+
+全 DLC 隔离运行 `MatchingSets-20260924a` 完成 **298 PASS / 0 FAIL**，六套穿戴、缺件/混搭拒绝、原件保留和完整存档迁移全部通过。fresh `Player.log` 扫描仅命中 5 条测试 PASS 文本中的 `missing` / `failed` 单词，未发现运行异常。普通 Release 构建通过；静态检查主体通过，资源阶段仍因根 README 已记录的 42 张 FA 烘焙脸红贴图缺失而失败，本轮未恢复或更改这些素材。目录审计 `TMP/MatchingSets-cycle-audit-20260924.json` 的 `cycle_components=0`、`affected_candidates=0`、`scan_errors=0`。
+
+视觉运行 `MatchingSetsVisual-20260924a` 为 **PASS**，65 张截图覆盖正常、紧凑、窄窗口与六套各自的肖像/衣装栏；逐套目视确认配件来自同一系列，修女两款及警察两款的差异正确显示。截图位于 `%TEMP%/CorporateValidation-MatchingSetsVisual-20260924a/ValidationShots/outfit-0~5-portrait.png` 与对应 `-apparel.png`。fresh `Player.log` 扫描为 **OK**。
+
+历史运行 `UniformReview-20260924a`（274 PASS / 0 FAIL）与 `UniformVisual-20260924a`（53 张截图）只证明误解后的单件制服实现能运行，**其设计验收结论已撤回**，不可作为当前套装方案通过的证据。
+
+## 2026-09-24 人员购买布局与自驱装弹显示
+
+人员页移除顶部的奴隶/殖民者双按钮，购买按钮右侧改为原版下拉菜单；有 Ideology 时列出两种身份，无 Ideology 时仅列“购买为殖民者”。正常、紧凑和窄窗口截图均显示操作区完整。`PeopleUIAutoloading-Fixed-20260924a` 全 DLC 隔离游戏的 Visual 检查为 **PASS**，共 52 张截图，并在实际游戏菜单中断言两种身份选项。
+
+上一轮自驱装弹检查仅给第 3–6 格装枪，没有覆盖完整六格；将凹槽枪改为 `-2` 后虽然看似消除了横向断口，却把枪放到了装弹架前面。此渲染结论已撤回；当时的前后截图只作为错误层序对照，分别位于 `%TEMP%/CorporateValidation-PeopleUIAutoloading-Loaded-20260924a/ValidationShots/` 与 `%TEMP%/CorporateValidation-PeopleUIAutoloading-Fixed-20260924a/ValidationShots/`。
+
+按用户明确的南向遮挡要求，装弹架保留原版 Belt 的 `-3` 层，第 3–6 格枪分别在 `-4` 至 `-7`，第 2 格备用枪在穿戴装弹系统时位于 `-8`；主手持武器和其他朝向不变。架体的实心横梁自然遮挡其后方枪身，四把凹槽枪不再共面重叠。隔离游戏 `AutoloadingBehind-FullWheel-20260924a` 的 Visual 结果为 **PASS**，共 53 张截图；先逐槽验证第 3–6 格的四向显示，再将第 1、2 格装枪，断言六格全部有枪、南向第 2–6 格均在架体后方且凹槽层级各异。截图位于 `%TEMP%/CorporateValidation-AutoloadingBehind-FullWheel-20260924a/ValidationShots/`，其中 `autoloading-south-full-wheel.png` 是完整六格南向图。fresh `Player.log` 扫描无可疑行。
+
+无 Ideology 隔离运行 `PeopleUIAutoloading-NoIdeology-20260924b` 的菜单断言与人员交易均通过；整套检查为 **266 PASS / 1 FAIL**。失败项是既有的四人支援小队装备复合断言，此断言曾在 2026-09-20 同配置运行失败，后续又通过；本次日志没有逐 Pawn 细节，不能把整套结果写成通过。证据位于 `%LOCALAPPDATA%/RimWorldModTests/Mugirl/CorporateValidation-PeopleUIAutoloading-NoIdeology-20260924b-Game/Mods/Mugirl/TMP/CorporateValidation-PeopleUIAutoloading-NoIdeology-20260924b/`。
+
+南向层级修正的不含验证驱动 Release Rebuild 成功，正式 `1.6/Assemblies/MugirlRace.dll` SHA-256 为 `B1E4221A2CF16BA7E2186C81B77CB71B9A25DF783A5CEAFF3FCE9BB353746331`。前一正式 DLL 已备份于 `DevData/Backups/AutoloadingBehind-20260924/MugirlRace-before.dll`，SHA-256 为 `3142947AB884EC3322F7CBE66E30DE04BE2C9F9C0B3EC4CD539A70D8EDA312C4`；再前一个版本的备份仍在 `DevData/Backups/CorporateUIReload-20260924/`。`Invoke-Phase6StaticValidation.ps1 -SkipBuild` 的静态主体通过，最终仍因工作区既有 42 张 FA blush 贴图缺失而在资源检查退出。最终 RimSort 目录审计 `TMP/AutoloadingBehindCycleAudit-20260924.json` 的 `cycle_components=0`、`affected_candidates=0`、`scan_errors=0`。
+
+## 2026-09-24 最终构建与复查
+
+无 Ideology 修复后，全 DLC 隔离游戏 `PersonFurnitureFinal-20260924a` 完成 **272 PASS / 1 FAIL**。共同人员报价、两种身份的实际购入、同一 Pawn 交易额去重、雪牛娘毛制家具成交、完整存读档及派系 Ideo 断言均通过；唯一失败仍是既有的 `Advanced support really deploys eight equipped corporate troopers`，故不记作整套通过。fresh `Player.log` 未见其他异常或 `DirectPawnRelation` 警告。证据位于 `%LOCALAPPDATA%/RimWorldModTests/Mugirl/CorporateValidation-PersonFurnitureFinal-20260924a-Game/Mods/Mugirl/TMP/CorporateValidation-PersonFurnitureFinal-20260924a/`。
+
+不含验证驱动的 Release Rebuild 成功。更新正式 `1.6/Assemblies/MugirlRace.dll` 前，原 DLL 已备份至 `DevData/Backups/CorporateTrade-20260924/MugirlRace-before.dll`（SHA-256 `B333AD29C73FAD9C1AFDFEB09CB82A35742F7434A07E3292F5699661195BACD8`）；新 DLL 为 854,016 字节，SHA-256 `D8066391094399778D4F00C9047ACBF8F3DB49B9E61A3EB6D11701A4F1A4A9FD`。`Invoke-Phase6StaticValidation.ps1 -SkipBuild` 的静态检查全部通过，仅在资源检查中因工作区既有的 42 张 FA blush 贴图缺失而退出。最终 RimSort 目录审计见 `TMP/CorpTradeCycleAudit-Final-20260924.json`：`cycle_components=0`、`affected_candidates=0`、`scan_errors=0`。
+
+## 2026-09-24 界面与展销服装目视验证
+
+隔离游戏 `PersonOutfitVisual-20260924a` 的 `visual-result.txt` 为 **PASS**，生成 48 张截图，覆盖正常、紧凑及窄窗口界面。实际截图确认人员页的奴隶/殖民者购买选项、基础报价和两项费用、展销人员肖像，以及衣装详情中的成套服装均可见；紧凑界面的操作按钮仍位于可见区域。正式游戏存档未用于测试。截图和结果位于 `%TEMP%/CorporateValidation-PersonOutfitVisual-20260924a/ValidationShots/`。
+
+## 2026-09-24 无 Ideology 的展销人员修复
+
+首轮无 Ideology 隔离运行 `PersonFurnitureNoIdeo-20260924a` 虽为 265 PASS / 0 FAIL，完整存读档后的 `Player.log` 仍出现一次 `IdeoManager.Remove` 空引用。展销 Pawn 当时以无派系身份生成，原版为她随机分配了未受派系持有的 Ideo；卸载 Ideology DLC 后，该 Ideo 被排队移除时会访问不存在的 `ChangedIdeo` 历史事件。现在展销 Pawn 以巨企派系生成，使用该派系持有的稳定 Ideo；购买后仍按所选身份加入玩家派系。
+
+修复后的隔离运行 `PersonNoIdeoStable-20260924b` 完成 **266 PASS / 0 FAIL**，新增断言确认未售展销 Pawn 的 Ideo 由巨企派系持有，人员购买、家具出售和完整存读档均通过；fresh `Player.log` 未再出现该空引用。日志仍有两条 `DirectPawnRelation` 引用解析警告，不记作零警告。证据位于 `%LOCALAPPDATA%/RimWorldModTests/Mugirl/CorporateValidation-PersonNoIdeoStable-20260924b-Game/Mods/Mugirl/TMP/CorporateValidation-PersonNoIdeoStable-20260924b/`。中间一次运行 `PersonNoIdeoStable-20260924a` 因轨道交易夹具未提供约定商品提前终止，不作为完整运行结果。
+
+## 2026-09-24 毛制家具收购
+
+北京时间 2026-09-24 11:07，隔离游戏 `WoolFurniture-20260924a` 完成 **271 PASS / 1 FAIL**。新增四项家具检查全部通过：已安装家具不能直接出售，打包雪牛娘毛椅按内部实际材质获得制品报价，普通布料制作的同款家具不符合收购条件，供电贸易信标范围内的打包毛制家具可实际成交且计入交易额。前述人员交易回归检查也通过。
+
+唯一失败为既有高级支援队检查 `Advanced support really deploys eight equipped corporate troopers`；本次结果不能写作整套验证通过，此失败不属于家具收购检查。fresh `Player.log` 未见实际 Error 或 Exception，且未出现上一轮的 `DirectPawnRelation` 引用警告。证据位于 `%LOCALAPPDATA%/RimWorldModTests/Mugirl/CorporateValidation-WoolFurniture-20260924a-Game/Mods/Mugirl/TMP/CorporateValidation-WoolFurniture-20260924a/` 的 `corporate-checks.txt`、`checks-complete.txt` 与 `Player.log`。游戏使用测试目录中的隔离 DLL，未覆盖正式 DLL。
+
+## 2026-09-24 人员交易定价、身份与展销衣装
+
+北京时间 2026-09-24 11:00，隔离游戏 `PersonTrade-20260924a` 完成 **268 PASS / 0 FAIL**。实际运行覆盖共同基础报价、手续费与运费、殖民者 50% 加价、奴隶与殖民者购入、展销人员成套服装、同一 Pawn 买入再卖出仅计一次客户交易额、巨企派系原版交易去重、免费名额、意识形态拒绝及完整游戏保存读档。读档后已计额人员 ID、交易额和客户等级仍保留。此轮还未覆盖新加的毛制家具收购。
+
+证据位于 `%LOCALAPPDATA%/RimWorldModTests/Mugirl/CorporateValidation-PersonTrade-20260924a-Game/Mods/Mugirl/TMP/CorporateValidation-PersonTrade-20260924a/`：`corporate-checks.txt`、`checks-complete.txt`、fresh `Player.log` 和 `Saves/CorporateRoundtrip.rws`。隔离验证 DLL 在该测试游戏的 `Mods/Mugirl/1.6/Assemblies/MugirlRace.dll`，未覆盖正式 DLL。`Player.log` 有一条 `DirectPawnRelation` 对 `Thing_Human69411` 的引用无法解析警告，与此前巨企夹具的同类警告一致；因此不记作零日志警告，也不能据此断言本轮全部存档关系引用正常。
+
 ## 2026-09-23 运货员钥匙、时序与对话
 
 - 运货员原先给不够钥匙的原因是粗糙/精致钥匙各只创建一个物品，再分别写入 `stackCount=6/4`；钥匙禁止堆叠。现在记录开局坠落的两只 Pawn，运货员按两人仍穿戴的锁定束具、剩余锁数和对应钥匙 Def 逐把生成，接受提案时重新核对并替换背包钥匙，兼容已生成运货员的旧档。运货员在坠落成功后一个游戏日触发，对话使用标准 `Dialog_NodeTree`，按钮为“接受提案”“立即开战”。
@@ -76,7 +164,7 @@
 
 ## 验证方法与实际证据
 
-全部游戏测试使用仓库 `TMP/CorporateValidation-*` 下独立的配置、存档和日志；不使用玩家正式存档。驱动操作真实 RimWorld 对象、任务、交易、地图和界面，同时记录具体断言。
+下方首版历史测试使用仓库 `TMP/CorporateValidation-*` 下独立的配置、存档和日志；本轮 2026-09-24 测试游戏位于 `%LOCALAPPDATA%/RimWorldModTests/Mugirl/`，Visual 的截图和存档位于 `%TEMP%`。均不使用玩家正式存档。驱动操作真实 RimWorld 对象、任务、交易、地图和界面，同时记录具体断言。
 
 快速目视验证可开启开发者模式，在调试操作菜单选择 `Mugirl → Test map: fusion research site`；它会在当前地图中央调用与正式任务相同的 Prefab、自然清场和通道生成逻辑。该操作会覆盖中央区域，仅用于测试存档。
 

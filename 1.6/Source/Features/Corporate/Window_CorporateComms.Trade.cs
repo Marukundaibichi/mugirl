@@ -18,6 +18,15 @@ namespace Mugirl
         private string orderQuantityText = "1";
         private int tradeQuantity = 1;
         private int orderQuantity = 1;
+        // 周购/收购列表的筛选排序结果缓存：输入搜索词、切分类/排序或操作（版本号）后重建，
+        // 替代每 GUI 事件对全部候选跑 ProductFactor 与 OrderBy。
+        private readonly List<Thing> tradeProductsView = new List<Thing>();
+        private readonly List<CorporateStock> tradeOffersView = new List<CorporateStock>();
+        private int tradeViewVersion = -1;
+        private bool tradeViewSelling;
+        private string tradeViewSearch;
+        private int tradeViewCategory = -1;
+        private int tradeViewSort = -1;
         private Vector2 tradeScroll;
         private Vector2 orderScroll;
         private Vector2 tradePageScroll;
@@ -383,16 +392,40 @@ namespace Mugirl
             float w = rect.width;
             if (CorporateUI.Button(new Rect(0f, 0f, w / 2f - 4f, 34f), "Mugirl.Corporate.WeeklyStock".Translate(), primary: !productSelling, id: "trade/buy") && productSelling)
                 RequestContentTransition(() => { productSelling = false; ResetTradeCatalog(); }, "trade/buy");
-            if (CorporateUI.Button(new Rect(w / 2f + 4f, 0f, w / 2f - 4f, 34f), "Mugirl.Corporate.ProductPurchase".Translate(), primary: productSelling, id: "trade/sell") && !productSelling)
+            Rect productTab = new Rect(w / 2f + 4f, 0f, w / 2f - 4f, 34f);
+            if (CorporateUI.Button(productTab, "Mugirl.Corporate.ProductPurchase".Translate(), primary: productSelling, id: "trade/sell") && !productSelling)
                 RequestContentTransition(() => { productSelling = true; ResetTradeCatalog(); }, "trade/sell");
+            if (Mouse.IsOver(productTab))
+                TooltipHandler.TipRegion(productTab, "Mugirl.Corporate.ProductHint".Translate());
             DrawCatalogToolbar(new Rect(0f, 46f, w, 32f), false);
-            List<Thing> products = productSelling ? context.AvailableContractThings.Where(t => network.ProductFactor(t) > 0f
-                && MatchesCatalog(t.def, t.Label, tradeSearch, tradeCategory)).ToList() : null;
-            List<CorporateStock> offers = productSelling ? null : network.Stock.Where(s => s.sample != null && !s.sample.Destroyed
-                && network.IsOrderable(s.sample.def) && !network.IsSpecialOrder(s.sample.def)
-                && MatchesCatalog(s.sample.def, s.sample.Label, tradeSearch, tradeCategory)).ToList();
-            if (productSelling) products = SortCatalog(products, t => t.Label, t => network.ProductQuote(t, 1), tradeSort);
-            else offers = SortCatalog(offers, s => s.sample.Label, s => network.StockUnitPrice(s), tradeSort);
+            if (tradeViewVersion != frameCacheVersion || tradeViewSelling != productSelling
+                || tradeViewSearch != tradeSearch || tradeViewCategory != tradeCategory || tradeViewSort != tradeSort)
+            {
+                tradeViewVersion = frameCacheVersion;
+                tradeViewSelling = productSelling;
+                tradeViewSearch = tradeSearch;
+                tradeViewCategory = tradeCategory;
+                tradeViewSort = tradeSort;
+                tradeProductsView.Clear();
+                tradeOffersView.Clear();
+                if (productSelling)
+                {
+                    tradeProductsView.AddRange(SortCatalog(
+                        context.AvailableContractThings.Where(t => network.ProductFactor(t) > 0f
+                            && MatchesCatalog(t.def, t.Label, tradeSearch, tradeCategory)).ToList(),
+                        t => t.Label, t => network.ProductQuote(t, 1), tradeSort));
+                }
+                else
+                {
+                    tradeOffersView.AddRange(SortCatalog(
+                        network.Stock.Where(s => s.sample != null && !s.sample.Destroyed
+                            && network.IsOrderable(s.sample.def) && !network.IsSpecialOrder(s.sample.def)
+                            && MatchesCatalog(s.sample.def, s.sample.Label, tradeSearch, tradeCategory)).ToList(),
+                        s => s.sample.Label, s => network.StockUnitPrice(s), tradeSort));
+                }
+            }
+            List<Thing> products = productSelling ? tradeProductsView : null;
+            List<CorporateStock> offers = productSelling ? null : tradeOffersView;
             int count = productSelling ? products.Count : offers.Count;
             DrawCatalogSummary(new Rect(0f, 83f, w, 24f), count, productSelling
                 ? BrowserText("PurchaseDesk") : BrowserText("RefreshIn", Mathf.Max(0f, (network.NextRefreshTick - CorporateNetwork.Now) / 60000f).ToString("0.0")));

@@ -14,8 +14,10 @@ namespace Mugirl
         private readonly Func<bool> accessCheck;
         private List<Thing> cachedThings;
         private List<Thing> cachedContractThings;
+        private List<Pawn> cachedPawns;
         private float refreshAt;
         private float contractRefreshAt;
+        private float pawnRefreshAt;
         public Map Map { get; }
         public Caravan Caravan { get; }
         public Pawn Negotiator { get; set; }
@@ -39,9 +41,20 @@ namespace Mugirl
             }
         }
 
-        public IEnumerable<Pawn> AvailablePawns => !IsValid ? Enumerable.Empty<Pawn>()
-            : Map != null ? TradeUtility.AllSellableColonyPawns(Map, false).ToList()
-            : Caravan.PawnsListForReading.Where(p => p.IsPrisonerOfColony || p.IsSlaveOfColony).ToList();
+        // 与 AvailableThings 同款 0.5s 缓存：People 页每 GUI 事件读取，
+        // 避免每次重新枚举全图可售殖民者/囚犯。
+        public IEnumerable<Pawn> AvailablePawns
+        {
+            get
+            {
+                if (!IsValid) return Enumerable.Empty<Pawn>();
+                if (cachedPawns != null && Time.realtimeSinceStartup < pawnRefreshAt) return cachedPawns;
+                pawnRefreshAt = Time.realtimeSinceStartup + 0.5f;
+                return cachedPawns = Map != null
+                    ? TradeUtility.AllSellableColonyPawns(Map, false).ToList()
+                    : Caravan.PawnsListForReading.Where(p => p.IsPrisonerOfColony || p.IsSlaveOfColony).ToList();
+            }
+        }
         public int SilverCount => (int)Math.Min(int.MaxValue, AvailableThings.Where(t => t.def == ThingDefOf.Silver).Sum(t => (long)t.stackCount));
 
         // 合同交货不受轨道商人的收购目录限制，例如原版简单餐仅允许买入。
@@ -97,7 +110,7 @@ namespace Mugirl
             return true;
         }
 
-        public void Invalidate() { cachedThings = null; cachedContractThings = null; refreshAt = contractRefreshAt = 0f; }
+        public void Invalidate() { cachedThings = null; cachedContractThings = null; cachedPawns = null; refreshAt = contractRefreshAt = pawnRefreshAt = 0f; }
 
         public bool CanReceive(Thing thing)
         {

@@ -109,13 +109,13 @@ namespace Mugirl.Features.WeaponWheel
 
     internal static class WeaponWheelAnimationRenderer
     {
-        internal static void Draw(Pawn pawn, DrawPhase phase)
+        // comp 由补丁入口（WeaponWheelHarmonyUtility.CompFor）传入，避免每帧重复线性扫描 AllComps。
+        internal static void Draw(Pawn pawn, DrawPhase phase, Comp_WeaponWheel comp)
         {
             if (phase != DrawPhase.Draw || pawn == null || pawn.Dead || !pawn.Spawned)
             {
                 return;
             }
-            Comp_WeaponWheel comp = pawn.TryGetComp<Comp_WeaponWheel>();
             if (comp == null || comp.IsCombatDisabledByMount())
             {
                 return;

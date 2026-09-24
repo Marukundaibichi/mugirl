@@ -2,6 +2,14 @@
 
 2026-09-21 先将 FA 还原到 0.5.0（`46d2190fb691b4e2fe783d21f1c50eccec81ff77`），随后按要求整合 `DevData/Assets/3578882219_雪牛娘調整FA臉及增加RJWFA補丁`，引入其中 9 张眼皮遮罩，并启用雪牛娘专属 `(1.63,1.63)` FaceAdjustment 和经过修正的 RJW/Rimworld Animations 兼容补丁。同日按用户最新要求，将全部 847 张 FA 贴图统一为 512×512；眼皮遮罩仍禁止透明区 RGB 清理。
 
+## 2026-09-24 脸红方案基线修正（Talos cover 方案）
+
+- 用户提供的参考包 `TMP/FacialAnimation_0921_Talos修改版`（9/21 调整完成的 FA 最终版）与当前 `1.6/FacialAnimation` 做过全量比对：717 个文件清单一致，707 张 PNG 与其余 XML 的 SHA256 逐字节一致，唯一差异是 `Mugirl_Shapes.xml` 3 行行尾空格（仓库侧已清理）。当前内容即权威参考，不需要再对贴图做任何改动。
+- 该方案下脸红的运作方式：动画仍通过 `headShapeDef=blush/lovinblush` 引用；`Heads_Blank` 中没有烘焙的 `{shape}_north/east/south` 完整头图，基础头经 `altShapeDef` 回退到 `normal`，脸红实际由 `{shape}_cover_east/south` 叠层绘制（头 cover 层，约 57 层；眼睛区域靠 cover 自身透明度让出）。`blush/lovinblush/normal` 的 `*_highlight_*` 均为 70 字节空白占位，即 highlight 层有意保持关闭。
+- 0.6.4-0.6.5 曾采用"42 张烘焙完整头图 + 禁止 cover"方案，该方案已被 Talos 包废弃，相关贴图与 `Emotions` 下的旧脸红素材均已删除；`EmotionShapeDef lovinblush` 与 `EyeballShapeDef Mugirl_heart` 已注释停用。
+- `Invoke-TextureAssetValidation.ps1` 的 FA 脸红契约同步改为：每个 `Normal~Normal7/Female` 必须有 `blush/lovinblush` 的 `cover_east/south`（共 28 张）；烘焙头图与旧 Emotions 脸红素材不得回流。
+- 本节取代下文 2026-09-21 两节中与脸红方案相关的结论（烘焙头图、"继续使用完整头图"、"保留 lovinblush EmotionShapeDef 作兼容"等表述均已成为历史）；其余内容仍然有效。
+
 ## 2026-09-21 统一贴图尺寸
 
 - 范围为 `1.6/FacialAnimation/Textures/FA` 下全部 847 张 PNG。385 张 555×555 整图等比缩放至 512×512，42 张 1×1 占位图按原像素 RGBA 铺满 512×512，其余 420 张原有 512×512 文件逐字节保留。
@@ -144,7 +152,7 @@ FA 判断某个 shape 是否存在时只检查 `{Shape}_south`。如果 `_south`
 
 ## 特殊层规则
 
-`HeadControllerComp` 会加载基础头图，还会尝试加载 `{shape}_cover` 和 `{shape}_highlight`。Mugirl 的 blush 类表情必须走 head 基础层：`blush`、`lovinblush` 由 `headShapeDef` 引用，并放在 `Heads_Blank/Normal*/Female/{shape}_*`。不要把脸红作为 `emotionShapeDef` 接到动画里；Emotion 层在眼白之上，会把脸红盖到眼白上方。
+`HeadControllerComp` 会加载基础头图，还会尝试加载 `{shape}_cover` 和 `{shape}_highlight`。Mugirl 的 blush 类表情仍由动画的 `headShapeDef=blush/lovinblush` 引用，但按 Talos 基线不再提供烘焙的 `{shape}_north/east/south` 完整头图：基础头经 `altShapeDef` 回退到 `normal`，脸红实际绘制在 `Heads_Blank/Normal*/Female/{shape}_cover_east/south` 叠层上（cover 的眼睛区域保持透明，不得遮住眼白）。不要把脸红作为 `emotionShapeDef` 接到动画里；Emotion 层在眼白之上，会把脸红盖到眼白上方。
 
 `LidControllerComp` 有两种模式：
 
@@ -210,11 +218,11 @@ FA 会在渲染前移除原版 head draw request，用 FA 的空白 head 和各�
 
 | 图层 | 用途 |
 | --- | --- |
-| 50 | 空白头底图；`blush`、`lovinblush` 也在这里作为 head 基础图绘制 |
+| 50 | 空白头底图（Talos 方案下恒为 normal；blush/lovinblush 烘焙头图已移除，由上层 cover 表现） |
 | 50.25-50.875 | 眼皮底层、眼睛、眼睛高光、眼皮遮罩 |
 | 55 | Skin 层，Mugirl 当前未启用 |
 | 56-56.5 | 嘴与嘴 cover |
-| 57-57.5 | 头 cover/highlight |
+| 57-57.5 | 头 cover/highlight；`blush`、`lovinblush` 脸红 cover 叠层也在这里绘制 |
 | 58 | 情绪叠层 |
 | 59 | 眼皮附加层，例如眼泪 |
 | 60 或 100 | 眉毛；由 FA 设置 `DrawBrowsAboveHat` 决定是否盖过帽子 |
@@ -234,8 +242,8 @@ HAR 的“身体附件（脸部联动层）”使用 `alignWithHead=true`，但�
 | `Lids/Normal*/Female` | `normal`、`half`、`close`，且都有 `bottom`/`cover` |
 | `Mouth/Normal*/Female` | `normal`、`open`、`sad`、`smile`、`surprise`、`tight`、`puzzle`、`Mugirl_lovin`、`hot1/2`、`cold_tight1/2`、`pain1/2/3`、`hungry1/2`、`milking1..4` |
 | `LidOptions/Normal*/Female` | `tear`、`Mugirl_cry` |
-| `Emotions/Normal*/Female` | `blush`、`gloomy`、`lovinblush`、`heart`；其中 `blush/lovinblush` 只保留为旧素材来源，不应由动画直接引用 |
-| `Heads_Blank/Normal*/Female` | `normal`、`blush`、`lovinblush`、`cold_cover`、`sweat_cover`、`heavy_sweat_cover`、`hot_cover`、`hot_highlight`、`hot_heavy_sweat_cover`、`hot_heavy_sweat_highlight` |
+| `Emotions/Normal*/Female` | `gloomy`、`heart`（各 east/south）；旧 `blush/lovinblush` 素材已删除，不得回流 |
+| `Heads_Blank/Normal*/Female` | `normal`、`blush_cover`、`lovinblush_cover`（各 east/south）、`cold_cover`、`sweat_cover`、`heavy_sweat_cover`、`hot_cover`、`hot_highlight`、`hot_heavy_sweat_cover`、`hot_heavy_sweat_highlight`；`blush/lovinblush/normal` 的 highlight 为空白占位 |
 
 需要注意的未闭合项：
 
@@ -253,7 +261,7 @@ HAR 的“身体附件（脸部联动层）”使用 `alignWithHead=true`，但�
 | 类别 | shape | 当前状态 | 引入方式 |
 | --- | --- | --- | --- |
 | `Heads_Blank` | `normal` | 已接入 | `normal_Mugirl` 的 `headShapeDef=normal` 使用；这是空白头底图。 |
-| `Heads_Blank` | `blush`、`lovinblush` | 已接入 | 高心情、社交、穿脱衣、Lovin 等动画通过 `headShapeDef` 引用；脸红画在 head 基础层，位于眼白下方。 |
+| `Heads_Blank` | `blush`、`lovinblush` | 已接入 | 高心情、社交、穿脱衣、Lovin 等动画通过 `headShapeDef` 引用；基础头回退 normal，脸红由 `{shape}_cover_east/south` 叠层绘制。 |
 | `Heads_Blank` | `cold`、`sweat`、`heavy_sweat`、`hot`、`hot_heavy_sweat` | 已接入 | 环境冷热、疼痛和挤奶相关动画会引用；head 层以 cover/highlight 叠层表现。 |
 | `Heads_Blank` | `gloomy` | 仅声明 | 已有 Mugirl `HeadShapeDef`，但无贴图、无动画引用；补贴图后还要在动画帧里引用。 |
 | `Brows` | `normal`、`flat`、`angled`、`s-shaped` | 已接入 | `normal` 来自 FA 基础 Def；其余来自 Mugirl ShapeDef。常驻、心情、战斗、工作、Lovin 等动画已引用。 |
@@ -268,7 +276,7 @@ HAR 的“身体附件（脸部联动层）”使用 `alignWithHead=true`，但�
 | `Mouth` | `puzzle` | 待接线 | ShapeDef 和贴图都存在，但当前没有动画引用；适合接到困惑、科研失败、被脑洗等场景。 |
 | `LidOptions` | `tear`、`Mugirl_cry` | 已接入 | 低心情、倒地和 Lovin 后段会引用；疼痛动画不使用哭泣层。`Mugirl_cry` 回退到 `normal`，缺贴图时会透明。 |
 | `Emotions` | `gloomy` | 已接入 | 倒地、极低心情等动画引用。 |
-| `Emotions` | `blush`、`lovinblush` | 保留不用 | 旧脸红素材仍保留，但动画不得直接引用；需要脸红时用 `Heads_Blank` 的同名 head shape。 |
+| `Emotions` | `blush`、`lovinblush` | 已移除 | 旧 Emotions 脸红素材已删除，不得回流；需要脸红时用 `headShapeDef` 引用，由 head cover 叠层表现。 |
 | `Emotions` | `heart` | 待接线 | ShapeDef 和贴图都存在，但当前没有动画引用；要作为爱心叠层使用，需要新增或调整动画帧。 |
 
 因此，当前所有新增/已有贴图都已被分类考虑：
@@ -286,7 +294,7 @@ HAR 的“身体附件（脸部联动层）”使用 `alignWithHead=true`，但�
 
 `HeadShapeDef gloomy` 目前只是预留。若预计新增头部表情贴图，需要补 `Heads_Blank/Normal*/Female/gloomy_*`，再在 mood、pain 或特定 Job 动画中引用。若短期不做头部变形，可以保留声明但不要在动画中引用它。
 
-脸红类表情必须保持在眼白下方。新增高兴、害羞、Lovin、穿脱衣等动画时，使用 `headShapeDef=blush` 或 `headShapeDef=lovinblush`，不要使用 `emotionShapeDef=blush/lovinblush`。如果要调整脸红图案，先改 `Heads_Blank/Normal*/Female/{shape}_*`；`Emotions` 下的同名图只作为旧素材来源保留。
+脸红类表情不得盖住眼白。新增高兴、害羞、Lovin、穿脱衣等动画时，使用 `headShapeDef=blush` 或 `headShapeDef=lovinblush`，不要使用 `emotionShapeDef=blush/lovinblush`。如果要调整脸红图案，改 `Heads_Blank/Normal*/Female/{shape}_cover_east/south`（cover 眼睛区域保持透明）；`Emotions` 下的旧脸红素材已删除，`{shape}_north/east/south` 烘焙头图属于废弃方案不得回流。
 
 嘴型语义不要按文件名过度收窄：`sad` 同时代表低心情和严肃嘴，适合静态攻击、警戒、沉默紧张等“不开口、不咬牙”的状态；`tight` 才是咬牙切齿或明显用力，适合近战、挖矿、劳动、咀嚼等场景。`Wait_Combat` 需要警戒感但不能咬牙切齿，也不能全程 `lidShapeDef=half`；保留 `angled` 眉毛和扫视，眼皮以 `normal` 为主，只允许短暂半眯作为凝视变化。
 
@@ -330,7 +338,7 @@ FA 改动后的 fresh log 不应出现 Mugirl 或 FacialAnimation 相关红字�
 
 - `normal_Mugirl` 基础脸是否正常。
 - 眨眼时 `half`、`close` 眼皮是否遮盖眼睛。
-- `blush`、`lovinblush` 是否位于眼白下方，没有盖住眼白。
+- `blush`、`lovinblush` cover 叠层是否不遮眼白，脸颊边缘在缩放下无接缝。
 - `heart` 眼睛是否保持普通瞳孔，只把爱心画在高光层。
 - `Mugirl_lovin` 嘴型是否从 `open` 回退正确。
 - `tear` 与 `Mugirl_cry` 是否只在低心情、倒地、Lovin 后段等状态出现。

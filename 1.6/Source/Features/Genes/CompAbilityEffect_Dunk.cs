@@ -1,9 +1,53 @@
+using System.Collections.Generic;
 using RimWorld;
 using UnityEngine;
 using Verse;
 
 namespace Mugirl
 {
+    internal static class MugirlDunkUtility
+    {
+        internal static bool CanDunk(Pawn caster, Pawn victim, out BodyPartRecord head, out string reason)
+        {
+            head = null;
+            reason = null;
+            if (!Prefs.DevMode)
+            {
+                reason = "Mugirl.Dunk.DevOnly".Translate().ToString();
+                return false;
+            }
+
+            if (caster == null || victim == null || caster == victim || victim.Destroyed || victim.Dead
+                || !victim.Spawned || victim.Map != caster.Map || !victim.RaceProps.Humanlike
+                || victim.story?.headType == null)
+            {
+                reason = "Mugirl.Dunk.InvalidTarget".Translate().ToString();
+                return false;
+            }
+
+            if (MugirlThrowUtility.FindHeldController(caster) != null
+                || MugirlThrowUtility.FindDunkController(caster) != null)
+            {
+                reason = "Mugirl.Throw.AlreadyHolding".Translate().ToString();
+                return false;
+            }
+
+            List<BodyPartRecord> parts = victim.RaceProps.body.AllParts;
+            for (int i = 0; i < parts.Count; i++)
+            {
+                BodyPartRecord part = parts[i];
+                if (part.def == BodyPartDefOf.Head && !victim.health.hediffSet.PartIsMissing(part))
+                {
+                    head = part;
+                    return true;
+                }
+            }
+
+            reason = "Mugirl.Dunk.NoHead".Translate(victim.LabelCap).ToString();
+            return false;
+        }
+    }
+
     public class CompProperties_AbilityEffect_Dunk : CompProperties_EffectWithDest
     {
         public CompProperties_AbilityEffect_Dunk()
@@ -15,6 +59,9 @@ namespace Mugirl
 
     public class CompAbilityEffect_Dunk : CompAbilityEffect_WithDest
     {
+        public override bool ShouldHideGizmo => !Prefs.DevMode;
+        public override bool CanCast => Prefs.DevMode && base.CanCast;
+
         public override TargetingParameters targetParams => new TargetingParameters
         {
             canTargetLocations = true,
@@ -27,21 +74,22 @@ namespace Mugirl
         public override bool Valid(LocalTargetInfo target, bool throwMessages = false)
         {
             Pawn caster = parent?.pawn;
-            Thing thing = target.Thing;
+            Pawn victim = target.Thing as Pawn;
+            BodyPartRecord head;
             string reason;
             if (!base.Valid(target, throwMessages))
             {
                 return false;
             }
 
-            if (MugirlThrowUtility.CanPickUp(caster, thing, out reason))
+            if (MugirlDunkUtility.CanDunk(caster, victim, out head, out reason))
             {
                 return true;
             }
 
             if (throwMessages && !reason.NullOrEmpty())
             {
-                Messages.Message(reason, thing ?? caster, MessageTypeDefOf.RejectInput, historical: false);
+                Messages.Message(reason, (Thing)victim ?? caster, MessageTypeDefOf.RejectInput, historical: false);
             }
             return false;
         }
@@ -52,7 +100,8 @@ namespace Mugirl
                 && parent?.pawn?.Map != null
                 && target.Cell.InBounds(parent.pawn.Map)
                 && selectedTarget.IsValid
-                && selectedTarget.Cell.DistanceTo(target.Cell) <= Props.range;
+                && selectedTarget.Cell.DistanceTo(target.Cell) <= Props.range
+                && Thing_MugirlDunkProp.TryFindLandingCell(parent.pawn, target.Cell, out _);
         }
 
         public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true)
@@ -71,16 +120,13 @@ namespace Mugirl
 
         public override string ExtraLabelMouseAttachment(LocalTargetInfo target)
         {
-            Thing thing = target.Thing;
-            Pawn caster = parent?.pawn;
-            if (thing == null || caster == null)
+            Pawn victim = target.Thing as Pawn;
+            if (victim == null)
             {
                 return null;
             }
 
-            float mass = MugirlThrowUtility.EffectiveMass(thing);
-            float strength = MugirlThrowUtility.ThrowStrength(caster);
-            return "Mugirl.Throw.PickupReadout".Translate(mass.ToString("0.#"), strength.ToString("0.#")).ToString();
+            return "Mugirl.Dunk.PickupReadout".Translate(victim.LabelShortCap).ToString();
         }
     }
 }

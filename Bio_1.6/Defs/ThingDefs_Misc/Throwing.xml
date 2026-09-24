@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-    <!-- TEMPORARILY DISABLED: unfinished Mugirl throw/dunk system.
     <ThingDef>
         <defName>Mugirl_ThrowController</defName>
         <label>held thrown object controller</label>
         <thingClass>Mugirl.Thing_MugirlThrownObject</thingClass>
         <category>Ethereal</category>
         <drawerType>RealtimeOnly</drawerType>
+        <drawOffscreen>true</drawOffscreen>
         <tickerType>Normal</tickerType>
         <altitudeLayer>MoteOverhead</altitudeLayer>
         <selectable>false</selectable>
@@ -21,6 +21,7 @@
         <thingClass>Mugirl.Thing_MugirlDunkProp</thingClass>
         <category>Ethereal</category>
         <drawerType>RealtimeOnly</drawerType>
+        <drawOffscreen>true</drawOffscreen>
         <tickerType>Normal</tickerType>
         <altitudeLayer>MoteOverhead</altitudeLayer>
         <selectable>false</selectable>
@@ -29,9 +30,28 @@
         <saveCompressible>false</saveCompressible>
     </ThingDef>
 
+    <ThingDef>
+        <defName>Mugirl_DunkHead</defName>
+        <label>detached head</label>
+        <thingClass>Mugirl.Thing_MugirlDunkHead</thingClass>
+        <category>Item</category>
+        <stackLimit>1</stackLimit>
+        <drawerType>RealtimeOnly</drawerType>
+        <graphicData>
+            <texPath>Mugirl/Heads/Female/Mugirl_Female_A</texPath>
+            <graphicClass>Graphic_Multi</graphicClass>
+        </graphicData>
+        <useHitPoints>true</useHitPoints>
+        <statBases>
+            <MaxHitPoints>20</MaxHitPoints>
+            <Mass>2</Mass>
+        </statBases>
+    </ThingDef>
+
     <ThingDef ParentName="PawnFlyerBase">
         <defName>Mugirl_DunkFlyer</defName>
         <label>dunking Mugirl</label>
+        <thingClass>Mugirl.PawnFlyer_MugirlDunk</thingClass>
         <pawnFlyer>
             <flightDurationMin>0.82</flightDurationMin>
             <flightSpeed>7</flightSpeed>
@@ -39,5 +59,15 @@
             <heightFactor>3.4</heightFactor>
         </pawnFlyer>
     </ThingDef>
-    END TEMPORARILY DISABLED -->
+
+    <FleckDef ParentName="FleckBase_Thrown">
+        <defName>Mugirl_DunkBloodSplash</defName>
+        <altitudeLayer>MoteOverhead</altitudeLayer>
+        <solidTime>0.5</solidTime>
+        <fadeOutTime>0.2</fadeOutTime>
+        <graphicData>
+            <texPath>Things/Mote/BloodSplash</texPath>
+            <shaderType>Mote</shaderType>
+        </graphicData>
+    </FleckDef>
 </Defs>

@@ -72,26 +72,39 @@ namespace Mugirl
                 return;
             }
 
-            // 每 tick 只遍历能力半径内的实体，避免在热路径上分配过滤枚举对象。
-            foreach (Thing thing in GenRadial.RadialDistinctThingsAround(pawn.Position, pawn.Map, ImpactRadius, useCenter: true))
+            // 冲锋持续期间每 tick 执行；按 RadialPattern 直接遍历格内实体，
+            // 等价于 RadialDistinctThingsAround(useCenter:true)——pawn 恒为 1×1 单格，
+            // 原版的占格去重集合对本分支无作用，hitPawns 已完成命中去重——且不再分配枚举器。
+            int cellCount = GenRadial.NumCellsInRadius(ImpactRadius);
+            for (int i = 0; i < cellCount; i++)
             {
-                Pawn hitPawn = thing as Pawn;
-                if (hitPawn == null || hitPawn == pawn || hitPawn == target || hitPawns.Contains(hitPawn))
+                IntVec3 cell = GenRadial.RadialPattern[i] + pawn.Position;
+                if (!cell.InBounds(pawn.Map))
                 {
                     continue;
                 }
 
-                DamageInfo damageInfo = hitPawn.BodySize < SmallPawnThreshold
-                    ? new DamageInfo(DamageDefOf.Crush, Rand.Range(3f, 5f), 0f, -1, pawn)
-                    : new DamageInfo(DamageDefOf.Blunt, Rand.Range(2f, 3f), 0f, -1, pawn);
-
-                hitPawn.TakeDamage(damageInfo);
-                hitPawns.Add(hitPawn);
-
-                if (!hitPawn.Dead)
+                List<Thing> thingList = cell.GetThingList(pawn.Map);
+                for (int j = 0; j < thingList.Count; j++)
                 {
-                    IntVec3 flyTargetPosition = hitPawn.Position + GetDirectionFromCaster(hitPawn).ToIntVec3();
-                    DoJump(hitPawn, flyTargetPosition, DefaultJumpVerbProps);
+                    Pawn hitPawn = thingList[j] as Pawn;
+                    if (hitPawn == null || hitPawn == pawn || hitPawn == target || hitPawns.Contains(hitPawn))
+                    {
+                        continue;
+                    }
+
+                    DamageInfo damageInfo = hitPawn.BodySize < SmallPawnThreshold
+                        ? new DamageInfo(DamageDefOf.Crush, Rand.Range(3f, 5f), 0f, -1, pawn)
+                        : new DamageInfo(DamageDefOf.Blunt, Rand.Range(2f, 3f), 0f, -1, pawn);
+
+                    hitPawn.TakeDamage(damageInfo);
+                    hitPawns.Add(hitPawn);
+
+                    if (!hitPawn.Dead)
+                    {
+                        IntVec3 flyTargetPosition = hitPawn.Position + GetDirectionFromCaster(hitPawn).ToIntVec3();
+                        DoJump(hitPawn, flyTargetPosition, DefaultJumpVerbProps);
+                    }
                 }
             }
         }

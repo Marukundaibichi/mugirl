@@ -32,6 +32,7 @@ namespace Mugirl
     public static class CorporateTradeDefOf
     {
         public static ThingDef Mugirl_Wool;
+        public static DesignationCategoryDef Furniture;
         public static CorporateTradeSettingsDef Mugirl_CorporateTradeSettings;
     }
 }

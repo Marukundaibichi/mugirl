@@ -13,6 +13,8 @@ namespace Mugirl
     {
         // Monotonic, per-save totals. Money transfers and gifts are not merchandise.
         private long tradeTurnover;
+        // Pawn.thingIDNumber 在同一存档内稳定；保留曾产生非免费成交额的人员 ID。
+        private List<int> creditedPersonIds = new List<int>();
         private int giftWeek = -1;
         private int freePersonWeek = -1;
         private int supportWeek = -1;
@@ -29,7 +31,7 @@ namespace Mugirl
         public float OrderDiscountFactor => OrderDiscounts[ServiceLevel];
         public int WeeklyStockCount => TradeSettings.weeklyStockCount + ExtraStock[ServiceLevel];
         public bool WeeklyGiftAvailable => ServiceLevel >= 3 && nextRefreshTick > Now && giftWeek != nextRefreshTick;
-        public bool WeeklyPersonAvailable => ModsConfig.IdeologyActive && ServiceLevel >= 4
+        public bool WeeklyPersonAvailable => ServiceLevel >= 4
             && nextRefreshTick > Now && freePersonWeek != nextRefreshTick;
         public int SupportSquadSize => ServiceLevel >= 6 ? 8 : ServiceLevel >= 5 ? 4 : 0;
         public int WeeklySupportLimit => ServiceLevel >= 6 ? 2 : ServiceLevel >= 5 ? 1 : 0;
@@ -49,6 +51,13 @@ namespace Mugirl
             }
         }
 
+        internal void CreditPersonTurnover(Pawn pawn, long amount)
+        {
+            if (pawn == null || amount <= 0 || creditedPersonIds.Contains(pawn.thingIDNumber)) return;
+            creditedPersonIds.Add(pawn.thingIDNumber);
+            AddTradeTurnover(amount);
+        }
+
         private void CreditOrderTurnover(CorporateOrder order)
         {
             if (order.quantity <= 0 || order.paid <= 0) return;
@@ -57,11 +66,11 @@ namespace Mugirl
             order.creditedTurnover = Math.Max(order.creditedTurnover, settled);
         }
 
-        public int PeoplePurchasePrice(CorporatePersonOffer offer)
+        public int PeoplePurchasePrice(CorporatePersonOffer offer, bool asColonist = false)
         {
             if (offer == null) return 0;
             if (offer.paid) return offer.paidAmount < 0 ? offer.price : offer.paidAmount;
-            return WeeklyPersonAvailable ? 0 : offer.price;
+            return WeeklyPersonAvailable ? 0 : PeoplePurchaseQuote(offer, asColonist).total;
         }
 
         public bool TryClaimWeeklyGift(CorporateTradeContext context, out string reason)
@@ -147,6 +156,7 @@ namespace Mugirl
         private void ServicesExposeData()
         {
             Scribe_Values.Look(ref tradeTurnover, "corporateTradeTurnover", 0L);
+            Scribe_Collections.Look(ref creditedPersonIds, "corporateCreditedPersonIds", LookMode.Value);
             Scribe_Values.Look(ref giftWeek, "corporateGiftWeek", -1);
             Scribe_Values.Look(ref freePersonWeek, "corporateFreePersonWeek", -1);
             Scribe_Values.Look(ref supportWeek, "corporateSupportWeek", -1);
@@ -154,6 +164,8 @@ namespace Mugirl
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 tradeTurnover = Math.Max(0L, tradeTurnover);
+                if (creditedPersonIds == null) creditedPersonIds = new List<int>();
+                creditedPersonIds = creditedPersonIds.Where(id => id > 0).Distinct().ToList();
                 // Previous versions stored only the week of a single successful call.
                 if (supportCallsUsed < 0) supportCallsUsed = supportWeek >= 0 ? 1 : 0;
             }
@@ -215,23 +227,64 @@ namespace Mugirl
         }
     }
 
-    // Vanilla caravan/settlement/orbital deals also contribute both gross directions.
-    // Capture before TryExecute resets its tradeables; silver itself and gifts are excluded.
+    internal struct CorporatePersonTradeAmount
+    {
+        internal Pawn pawn;
+        internal double amount;
+    }
+
+    internal sealed class CorporateTurnoverCapture
+    {
+        internal double otherAmount;
+        internal readonly List<CorporatePersonTradeAmount> personAmounts = new List<CorporatePersonTradeAmount>();
+    }
+
+    // 原版巨企商队、据点和轨道交易同样入账；先捕获交易中的实际 Pawn 引用。
+    // TryExecute 成功后才入账，货币、赠礼与同一雪牛娘的后续买卖均不重复计入。
     [HarmonyPatch(typeof(TradeDeal), nameof(TradeDeal.TryExecute))]
     internal static class Harmony_CorporateTradeTurnover
     {
-        internal static void Prefix(TradeDeal __instance, out long __state)
+        internal static void Prefix(TradeDeal __instance, out CorporateTurnoverCapture __state)
         {
-            __state = 0;
+            __state = new CorporateTurnoverCapture();
             if (TradeSession.giftMode || TradeSession.trader?.Faction?.def != MugirlContentDefOf.Mugirl_GiantCorporations_Hostile) return;
-            double value = __instance.AllTradeables.Where(t => !t.IsCurrency && t.ActionToDo != TradeAction.None)
-                .Sum(t => Math.Abs((double)t.CurTotalCurrencyCostForSource));
-            if (!double.IsNaN(value) && !double.IsInfinity(value) && value > 0)
-                __state = (long)Math.Min(1000000000d, Math.Floor(value));
+            foreach (Tradeable tradeable in __instance.AllTradeables)
+            {
+                if (tradeable.IsCurrency || tradeable.ActionToDo == TradeAction.None) continue;
+                double value = Math.Abs((double)tradeable.CurTotalCurrencyCostForSource);
+                if (double.IsNaN(value) || double.IsInfinity(value) || value <= 0) continue;
+                if (!(tradeable is Tradeable_Pawn))
+                {
+                    __state.otherAmount += value;
+                    continue;
+                }
+                int count = tradeable.ActionToDo == TradeAction.PlayerSells
+                    ? tradeable.CountToTransferToDestination : tradeable.CountToTransferToSource;
+                IEnumerable<Thing> source = tradeable.ActionToDo == TradeAction.PlayerSells
+                    ? tradeable.thingsColony : tradeable.thingsTrader;
+                List<Pawn> pawns = source.Take(Math.Max(0, count)).OfType<Pawn>().ToList();
+                if (pawns.Count != count || count <= 0)
+                {
+                    // 人员清单异常时跳过这笔人员额，不能混入货物额绕过去重。
+                    continue;
+                }
+                double share = value / count;
+                foreach (Pawn pawn in pawns)
+                {
+                    if (MugirlIdentity.IsMugirlPawn(pawn))
+                        __state.personAmounts.Add(new CorporatePersonTradeAmount { pawn = pawn, amount = share });
+                    else __state.otherAmount += share;
+                }
+            }
         }
-        internal static void Postfix(bool __result, bool actuallyTraded, long __state)
+        internal static void Postfix(bool __result, bool actuallyTraded, CorporateTurnoverCapture __state)
         {
-            if (__result && actuallyTraded) CorporateNetwork.Current?.AddTradeTurnover(__state);
+            if (!__result || !actuallyTraded || __state == null) return;
+            CorporateNetwork network = CorporateNetwork.Current;
+            if (network == null) return;
+            network.AddTradeTurnover((long)Math.Min(1000000000d, Math.Floor(__state.otherAmount)));
+            foreach (CorporatePersonTradeAmount person in __state.personAmounts)
+                network.CreditPersonTurnover(person.pawn, (long)Math.Min(1000000000d, Math.Floor(person.amount)));
         }
     }
 }

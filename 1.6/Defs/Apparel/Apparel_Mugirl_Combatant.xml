@@ -4,6 +4,7 @@
     <!-- 雪牛娘战斗员防弹衣：Shell 层。 -->
     <ThingDef ParentName="Mugirl_ArmorBase">
         <defName>Mugirl_Combatant_BulletproofVest</defName>
+        <tradeTags><li>Mugirl_CombatApparelBuyOnly</li></tradeTags>
         <!-- 雪牛娘战斗员防弹衣 -->
         <label>Mugirl Combatant Bulletproof Vest</label>
         <!-- 雪牛娘战斗员专用的防弹护甲，提供优秀的利器防护。 -->
@@ -34,7 +35,6 @@
             <Insulation_Heat>5</Insulation_Heat>
             <EquipDelay>5</EquipDelay>
             <StuffEffectMultiplierArmor>1.0</StuffEffectMultiplierArmor>
-            <SellPriceFactor>0.2</SellPriceFactor>
         </statBases>
         <apparel>
             <layers>
@@ -62,6 +62,7 @@
     <!-- 雪牛娘战斗员服装：Middle 层。 -->
     <ThingDef ParentName="Mugirl_MiddleBase">
         <defName>Mugirl_Combatant_Clothes</defName>
+        <tradeTags><li>Mugirl_CombatApparelBuyOnly</li></tradeTags>
         <!-- 雪牛娘战斗员服装 -->
         <label>Mugirl Combatant Clothes</label>
         <!-- 雪牛娘战斗员的标准战斗服装，覆盖全身。 -->
@@ -91,7 +92,6 @@
             <Insulation_Cold>-5</Insulation_Cold>
             <Insulation_Heat>5</Insulation_Heat>
             <EquipDelay>5</EquipDelay>
-            <SellPriceFactor>0.2</SellPriceFactor>
             <DeteriorationRate>2.0</DeteriorationRate>
         </statBases>
         <apparel>
@@ -147,7 +147,6 @@
             <Insulation_Cold>-5</Insulation_Cold>
             <Insulation_Heat>5</Insulation_Heat>
             <EquipDelay>5</EquipDelay>
-            <SellPriceFactor>0.2</SellPriceFactor>
             <DeteriorationRate>2.0</DeteriorationRate>
         </statBases>
         <apparel>
@@ -170,6 +169,7 @@
     <!-- 雪牛娘战斗员内衣 -->
     <ThingDef ParentName="Mugirl_UnderwearBase">
         <defName>Mugirl_Combatant_Underwear</defName>
+        <tradeTags><li>Mugirl_CombatApparelBuyOnly</li></tradeTags>
         <!-- 雪牛娘战斗员内衣 -->
         <label>Mugirl Combatant Underwear</label>
         <!-- 雪牛娘战斗员的贴身穿着的防护内衣。 -->
@@ -195,7 +195,6 @@
             <Insulation_Cold>-5</Insulation_Cold>
             <Insulation_Heat>5</Insulation_Heat>
             <EquipDelay>5</EquipDelay>
-            <SellPriceFactor>0.2</SellPriceFactor>
             <DeteriorationRate>2.0</DeteriorationRate>
         </statBases>
         <apparel>
@@ -220,6 +219,7 @@
     <!-- 雪牛娘特制丝袜 - 自定义层 -->
     <ThingDef ParentName="Mugirl_Stocking">
         <defName>Mugirl_SpeciallyStockings</defName>
+        <tradeTags><li>Mugirl_CombatApparelBuyOnly</li></tradeTags>
         <!-- 雪牛娘特制丝袜 -->
         <label>Mugirl Special Stockings</label>
         <!-- 雪牛娘专用的特制丝袜，兼具防护与舒适。 -->
@@ -251,7 +251,6 @@
             <Insulation_Cold>-5</Insulation_Cold>
             <Insulation_Heat>5</Insulation_Heat>
             <EquipDelay>5</EquipDelay>
-            <SellPriceFactor>0.2</SellPriceFactor>
             <DeteriorationRate>2.0</DeteriorationRate>
         </statBases>
         <apparel>
@@ -282,6 +281,7 @@
     <!-- 雪牛娘全套军礼服：OnSkin 层。 -->
     <ThingDef ParentName="Mugirl_OnSkinBase">
         <defName>Mugirl_MilitaryDress</defName>
+        <tradeTags><li>Mugirl_CombatApparelBuyOnly</li></tradeTags>
         <!-- 雪牛娘全套军礼服 -->
         <label>Mugirl Full Military Dress Uniform</label>
         <!-- 装备设计局于5495年定型的全套雪牛娘制式军礼服，通体采用先进军用合成纤维面料加工而成，实现了经久耐用与体面修身的平衡，且因优越的防风保温性能广受称赞。该型军礼服覆盖全身，其附带的记忆面料能快速适应身体曲线，改善外观气质。在雪牛娘武装力量当中，该型军礼服正逐步取代老式条例，成为新时代正式场合的标准配置。 -->
@@ -312,7 +312,6 @@
             <Insulation_Cold>-5</Insulation_Cold>
             <Insulation_Heat>5</Insulation_Heat>
             <EquipDelay>5</EquipDelay>
-            <SellPriceFactor>0.2</SellPriceFactor>
             <DeteriorationRate>2.0</DeteriorationRate>
         </statBases>
         <apparel>
@@ -371,7 +370,6 @@
             <Insulation_Cold>-5</Insulation_Cold>
             <Insulation_Heat>5</Insulation_Heat>
             <EquipDelay>5</EquipDelay>
-            <SellPriceFactor>0.2</SellPriceFactor>
             <DeteriorationRate>2.0</DeteriorationRate>
         </statBases>
         <apparel>

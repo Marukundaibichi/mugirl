@@ -18,6 +18,13 @@ namespace Mugirl.Features.WeaponWheel
         private int nextMaintenanceTick = -1;
         private int mountStateCacheTick = int.MinValue;
         private bool mountStateCacheValue;
+        // 自装填状态每 tick 刷新一次，渲染节点每帧读取时命中同 tick 备忘；
+        // CompTick 未运行（未生成/暂停）时退回现算，行为与原来一致。
+        private int autoloadingCacheTick = int.MinValue;
+        private bool autoloadingCacheValue;
+        // 储备武器总质量只在 MarkBackWeaponsDirty 失效后重算，避免 GearMass 每次走完整 Stat 管线。
+        private bool reserveMassDirty = true;
+        private float reserveMassCache;
 
         private int activeSlotIndex;
         private bool normalizeAfterLoad;
@@ -125,6 +132,7 @@ namespace Mugirl.Features.WeaponWheel
                 TrackWeaponsRemovedFromReserve();
                 TrackExternalPrimaryIfNeeded();
             }
+            RefreshAutoloadingCache(currentTick);
             TickReserveVerbs();
             TickMountedState();
             TickWeaponOpenState();
@@ -143,6 +151,8 @@ namespace Mugirl.Features.WeaponWheel
             reserveVerbTickers.Clear();
             firstBackWeapon = null;
             secondBackWeapon = null;
+            autoloadingCacheTick = int.MinValue;
+            reserveMassDirty = true;
         }
 
         public ThingOwner GetDirectlyHeldThings()
@@ -202,6 +212,10 @@ namespace Mugirl.Features.WeaponWheel
         {
             get
             {
+                if (!reserveMassDirty)
+                {
+                    return reserveMassCache;
+                }
                 EnsureCollections();
                 float mass = 0f;
                 for (int i = 0; i < reserveWeapons.Count; i++)
@@ -209,6 +223,8 @@ namespace Mugirl.Features.WeaponWheel
                     ThingWithComps weapon = reserveWeapons[i];
                     mass += weapon.GetStatValue(StatDefOf.Mass, true, 1) * weapon.stackCount;
                 }
+                reserveMassDirty = false;
+                reserveMassCache = mass;
                 return mass;
             }
         }
@@ -277,6 +293,7 @@ namespace Mugirl.Features.WeaponWheel
             collectionsReady = true;
             reserveVerbTickersDirty = true;
             backWeaponCacheDirty = true;
+            reserveMassDirty = true;
         }
 
         private bool ShouldRunMaintenance(int currentTick)
@@ -380,8 +397,10 @@ namespace Mugirl.Features.WeaponWheel
             wasMountedDisabled = false;
             nextMaintenanceTick = -1;
             mountStateCacheTick = int.MinValue;
+            autoloadingCacheTick = int.MinValue;
             reserveVerbTickersDirty = true;
             backWeaponCacheDirty = true;
+            reserveMassDirty = true;
         }
 
         private void TickReserveVerbs()
@@ -434,6 +453,7 @@ namespace Mugirl.Features.WeaponWheel
         {
             backWeaponCacheDirty = true;
             reserveVerbTickersDirty = true;
+            reserveMassDirty = true;
             for (int i = backWeaponNodes.Count - 1; i >= 0; i--)
             {
                 PawnRenderNode_BackWeapon node = backWeaponNodes[i];

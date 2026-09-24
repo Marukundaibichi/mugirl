@@ -463,7 +463,7 @@ namespace Mugirl.Features.WeaponWheel
         internal ThingWithComps GetAutoloadingWeapon(int displayIndex)
         {
             EnsureCollections();
-            if (!HasAutoloadingSystem || displayIndex < 0 || displayIndex >= 4)
+            if (displayIndex < 0 || displayIndex >= 4 || !HasAutoloadingSystem)
             {
                 return null;
             }

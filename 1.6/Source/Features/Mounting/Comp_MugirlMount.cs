@@ -21,6 +21,9 @@ namespace Mugirl
         internal int turretCastStartTick = -1;
         internal LocalTargetInfo turretLastAttackedTarget = LocalTargetInfo.Invalid;
         internal int turretLastAttackTargetTick;
+        // 运行期 verb 缓存：以骑手当前主武器引用为键，武器或骑手变化时自动失效；不写入存档。
+        internal ThingWithComps cachedPrimaryWeapon;
+        internal Verb cachedPrimaryVerb;
 
         IThingHolder IThingHolder.ParentHolder => parent.MapHeld ?? parent.ParentHolder;
 

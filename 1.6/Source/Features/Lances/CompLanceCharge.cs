@@ -251,6 +251,11 @@ namespace Mugirl.Features.Lances
             if (wearer?.Spawned == true)
             {
                 GenDraw.DrawRadiusRing(wearer.Position, Props.maximumRange);
+                float minimumRange = targetingPointCharge ? Props.minimumPointRange : Props.minimumLineRange;
+                if (minimumRange > 0.1f && minimumRange < 90f)
+                {
+                    GenDraw.DrawRadiusRing(wearer.Position, minimumRange);
+                }
             }
             if (CanHitTarget(target))
             {

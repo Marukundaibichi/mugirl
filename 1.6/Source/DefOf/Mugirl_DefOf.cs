@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using Verse;
+using Verse.Sound;
 
 namespace Mugirl
 {
@@ -80,7 +81,6 @@ namespace Mugirl
         [MayRequire("Ludeon.RimWorld.Biotech")]
         public static HediffDef Mugirl_Charge;
 
-        #if MUGIRL_THROW_SYSTEM
         [MayRequire("Ludeon.RimWorld.Biotech")]
         public static AbilityDef Mugirl_Throw;
 
@@ -100,8 +100,15 @@ namespace Mugirl
         public static ThingDef Mugirl_DunkProp;
 
         [MayRequire("Ludeon.RimWorld.Biotech")]
+        public static ThingDef Mugirl_DunkHead;
+
+        [MayRequire("Ludeon.RimWorld.Biotech")]
         public static ThingDef Mugirl_DunkFlyer;
-        #endif
+
+        [MayRequire("Ludeon.RimWorld.Biotech")]
+        public static FleckDef Mugirl_DunkBloodSplash;
+
+        public static SoundDef Pawn_Melee_BigBash_HitPawn;
 
         public static FleckDef MugirlWashMentalEyes;
 

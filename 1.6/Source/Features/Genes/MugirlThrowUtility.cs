@@ -10,6 +10,7 @@ namespace Mugirl
     {
         private const float BuildingMassPerCell = 25f;
         private const float BuildingCostMassFactor = 0.5f;
+        private const float UnweightedBuildingMassPerHitPoint = 10f;
         private const float LandingSearchRadius = 12f;
 
         internal static float ThrowStrength(Pawn pawn)
@@ -30,11 +31,18 @@ namespace Mugirl
                 mass *= Mathf.Max(1, thing.stackCount);
             }
 
-            if (thing.def.category == ThingCategory.Building && !thing.def.statBases.StatListContains(StatDefOf.Mass))
+            if (thing is Mineable)
             {
+                // 山体始终有完整耐久度形成的重量下限；显式 Mass 较高时仍保留原值。
+                mass = Mathf.Max(mass, thing.MaxHitPoints * UnweightedBuildingMassPerHitPoint);
+            }
+            else if (thing.def.category == ThingCategory.Building && !thing.def.statBases.StatListContains(StatDefOf.Mass))
+            {
+                // 墙等无重量建筑也按完整耐久度赋予吨级重量；材料和占地仍是下限。
+                float durabilityMass = thing.MaxHitPoints * UnweightedBuildingMassPerHitPoint;
                 float footprintMass = thing.def.Size.x * thing.def.Size.z * BuildingMassPerCell;
                 float materialMass = Mathf.Max(thing.def.costStuffCount, 0) * BuildingCostMassFactor;
-                mass = Mathf.Max(mass, Mathf.Max(footprintMass, materialMass));
+                mass = Mathf.Max(mass, Mathf.Max(durabilityMass, Mathf.Max(footprintMass, materialMass)));
             }
 
             return mass;
@@ -90,6 +98,12 @@ namespace Mugirl
                 return false;
             }
 
+            if (category == ThingCategory.Building && IsConnectedBuilding(target))
+            {
+                reason = "Mugirl.Throw.ConnectedTarget".Translate(target.LabelCap).ToString();
+                return false;
+            }
+
             Thing_MugirlThrownObject existing = FindHeldController(caster);
             if (existing != null || FindDunkController(caster) != null)
             {
@@ -106,6 +120,49 @@ namespace Mugirl
             }
 
             return true;
+        }
+
+        private static bool IsConnectedBuilding(Thing target)
+        {
+            Map map = target.Map;
+            CellRect occupied = GenAdj.OccupiedRect(target);
+            foreach (IntVec3 cell in occupied.Cells)
+            {
+                if (HasOtherBuildingAt(target, cell, map))
+                {
+                    return true;
+                }
+            }
+
+            foreach (IntVec3 cell in occupied.AdjacentCellsCardinal)
+            {
+                if (HasOtherBuildingAt(target, cell, map))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool HasOtherBuildingAt(Thing target, IntVec3 cell, Map map)
+        {
+            if (!cell.InBounds(map))
+            {
+                return false;
+            }
+
+            List<Thing> neighbours = map.thingGrid.ThingsListAtFast(cell);
+            for (int i = 0; i < neighbours.Count; i++)
+            {
+                Thing other = neighbours[i];
+                if (other != target && other.Spawned && other.def.category == ThingCategory.Building)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         internal static Thing_MugirlThrownObject FindHeldController(Pawn pawn)
@@ -183,6 +240,26 @@ namespace Mugirl
 
             if (thing.def.category == ThingCategory.Building)
             {
+                // 蓝图判定可容许占格物；直接生成实体时会挪走或销毁它们。
+                foreach (IntVec3 occupiedCell in GenAdj.OccupiedRect(cell, rotation, thing.def.Size).Cells)
+                {
+                    if (!occupiedCell.InBounds(map))
+                    {
+                        return false;
+                    }
+
+                    List<Thing> occupants = map.thingGrid.ThingsListAtFast(occupiedCell);
+                    for (int i = 0; i < occupants.Count; i++)
+                    {
+                        Thing occupant = occupants[i];
+                        if (occupant is Pawn || occupant.def.category == ThingCategory.Item
+                            || occupant.def.category == ThingCategory.Building)
+                        {
+                            return false;
+                        }
+                    }
+                }
+
                 AcceptanceReport report = GenConstruct.CanPlaceBlueprintAt(
                     thing.def,
                     cell,
@@ -206,7 +283,15 @@ namespace Mugirl
             if (thing.def.category == ThingCategory.Item)
             {
                 Building edifice = cell.GetEdifice(map);
-                return edifice == null || edifice.def.surfaceType == SurfaceType.Item || edifice.def.surfaceType == SurfaceType.Eat || edifice is Building_Door;
+                return cell.GetItemCount(map) < cell.GetMaxItemsAllowedInCell(map)
+                    && (edifice == null || edifice.def.surfaceType == SurfaceType.Item
+                        || edifice.def.surfaceType == SurfaceType.Eat || edifice is Building_Door);
+            }
+
+            if (thing.def.category == ThingCategory.Plant)
+            {
+                return cell.Standable(map) && cell.GetEdifice(map) == null
+                    && cell.GetPlant(map) == null && thing.def.CanSpawnAt(cell, rotation, map);
             }
 
             return thing.def.CanSpawnAt(cell, rotation, map);

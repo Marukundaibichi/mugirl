@@ -25,6 +25,24 @@ namespace Mugirl
             return TryGetCurrentGameTick(out int tick) ? tick : fallback;
         }
 
+        internal static bool TryGetPresentationTickRate(out float tickRateMultiplier)
+        {
+            tickRateMultiplier = 0f;
+            if (Verse.Current.ProgramState != Verse.ProgramState.Playing)
+            {
+                return false;
+            }
+
+            Verse.TickManager manager = Verse.Find.TickManager;
+            if (manager == null || manager.Paused)
+            {
+                return false;
+            }
+
+            tickRateMultiplier = manager.TickRateMultiplier;
+            return tickRateMultiplier > 0f;
+        }
+
         internal static void Add(ref int counter, int delta)
         {
             counter += delta;

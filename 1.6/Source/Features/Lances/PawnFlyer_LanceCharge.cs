@@ -121,8 +121,10 @@ namespace Mugirl.Features.Lances
             {
                 // 旧存档没有破墙状态，从当前飞行位置继续；新冲锋从起点开始。
                 lastPassableCell = startVec.ToIntVec3();
-                foreach (IntVec3 priorCell in LanceChargeWallUtility.CrossedCells(startVec, from))
+                LanceChargeWallUtility.CrossedCellsNonAlloc(startVec, from, tmpCrossedCells);
+                for (int i = 0; i < tmpCrossedCells.Count; i++)
                 {
+                    IntVec3 priorCell = tmpCrossedCells[i];
                     if (priorCell.InBounds(map) && priorCell.Standable(map))
                     {
                         lastPassableCell = priorCell;
@@ -130,8 +132,10 @@ namespace Mugirl.Features.Lances
                 }
             }
 
-            foreach (IntVec3 cell in LanceChargeWallUtility.CrossedCells(from, to))
+            LanceChargeWallUtility.CrossedCellsNonAlloc(from, to, tmpCrossedCells);
+            for (int i = 0; i < tmpCrossedCells.Count; i++)
             {
+                IntVec3 cell = tmpCrossedCells[i];
                 if (!LanceChargeWallUtility.TryClearCell(cell, map, FlyingPawn, ref wallHitPointsRemaining))
                 {
                     return false;
@@ -144,6 +148,10 @@ namespace Mugirl.Features.Lances
             }
             return true;
         }
+
+        // StaticCacheLifecycle: 冲锋段走线复用缓冲；单线程 tick 内使用，
+        // 每次调用先清空，不跨方法持有内容。
+        private static readonly List<IntVec3> tmpCrossedCells = new List<IntVec3>();
 
         private void AttackPassingTargets(IntVec3 chargeCell, Map map)
         {
@@ -159,23 +167,37 @@ namespace Mugirl.Features.Lances
                 hitPawns = new List<Pawn>();
             }
 
-            foreach (Thing thing in GenRadial.RadialDistinctThingsAround(chargeCell, map, PassingAttackRadius, true))
+            // 冲锋期间每 tick 执行；按 RadialPattern 直接遍历格内实体，等价于
+            // RadialDistinctThingsAround(useCenter:true)——pawn 恒为单格，占格去重集合
+            // 对本分支无作用，hitPawns 已去重——且不再分配枚举器。
+            int cellCount = GenRadial.NumCellsInRadius(PassingAttackRadius);
+            for (int i = 0; i < cellCount; i++)
             {
-                Pawn target = thing as Pawn;
-                if (target == null || hitPawns.Contains(target)
-                    || !LanceChargeImpactUtility.CanHit(attacker, target, map))
+                IntVec3 cell = GenRadial.RadialPattern[i] + chargeCell;
+                if (!cell.InBounds(map))
                 {
                     continue;
                 }
 
-                // 邻近攻击半径不能越过尚未撞开的墙命中另一侧目标。
-                if (!GenSight.LineOfSight(chargeCell, target.Position, map))
+                List<Thing> thingList = cell.GetThingList(map);
+                for (int j = 0; j < thingList.Count; j++)
                 {
-                    continue;
-                }
+                    Pawn target = thingList[j] as Pawn;
+                    if (target == null || hitPawns.Contains(target)
+                        || !LanceChargeImpactUtility.CanHit(attacker, target, map))
+                    {
+                        continue;
+                    }
 
-                hitPawns.Add(target);
-                LanceChargeImpactUtility.ApplyLineImpact(attacker, target, lance, chargeCell, map);
+                    // 邻近攻击半径不能越过尚未撞开的墙命中另一侧目标。
+                    if (!GenSight.LineOfSight(chargeCell, target.Position, map))
+                    {
+                        continue;
+                    }
+
+                    hitPawns.Add(target);
+                    LanceChargeImpactUtility.ApplyLineImpact(attacker, target, lance, chargeCell, map);
+                }
             }
         }
 
@@ -315,11 +337,12 @@ namespace Mugirl.Features.Lances
                 && !(building is Building_Door door && !door.Open));
         }
 
-        internal static IEnumerable<IntVec3> CrossedCells(Vector3 from, Vector3 to)
+        internal static void CrossedCellsNonAlloc(Vector3 from, Vector3 to, List<IntVec3> outCells)
         {
+            outCells.Clear();
             IntVec3 cell = from.ToIntVec3();
             IntVec3 end = to.ToIntVec3();
-            yield return cell;
+            outCells.Add(cell);
             float dx = to.x - from.x;
             float dz = to.z - from.z;
             int stepX = System.Math.Sign(dx);
@@ -352,7 +375,7 @@ namespace Mugirl.Features.Lances
                     nextX += strideX;
                     nextZ += strideZ;
                 }
-                yield return cell;
+                outCells.Add(cell);
             }
         }
     }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <PawnKindDef ParentName="Mugirl_BaseKind">
+    <defName>Mugirl_CorporateShowcase</defName>
+    <label>corporate showcase Mugirl</label>
+    <!-- 展览人员沿用普通雪牛娘背景，不生成传统奴隶束具；衣装由巨企展览流程成套配置。 -->
+    <backstoryFilters>
+      <li><categories><li>Mugirl_Colony</li></categories></li>
+    </backstoryFilters>
+    <apparelMoney>0~0</apparelMoney>
+    <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+    <apparelTags />
+    <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
+    <itemQuality>Good</itemQuality>
+    <initialWillRange>2~40</initialWillRange>
+    <initialResistanceRange>2~40</initialResistanceRange>
+  </PawnKindDef>
+</Defs>

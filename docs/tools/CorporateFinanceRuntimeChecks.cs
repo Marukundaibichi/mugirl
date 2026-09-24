@@ -17,6 +17,15 @@ using Verse.AI.Group;
 
 public static class CorporateFinanceRuntimeChecks
 {
+    private static int savedCreditedPersonId;
+    private static int savedLegacyUnpaidOfferId;
+    private static int savedLegacyPaidOfferId;
+    private static int savedCompleteOutfitOfferId;
+    private static int savedLegacyPawnId;
+    private static int savedLegacyPaidAmount;
+    private static int[] savedPaidApparelIds;
+    private static int[] savedCompleteApparelIds;
+
     public static void Run(Map map, CorporateNetwork network, CorporateTradeContext context, Action<string, bool> check)
     {
         if (map == null || network == null || context == null || check == null) throw new ArgumentNullException();
@@ -252,26 +261,70 @@ public static class CorporateFinanceRuntimeChecks
             before.SequenceEqual(network.PeopleOffers));
         CorporatePersonOffer offer = before.FirstOrDefault(o => !o.delivered && !o.paid && o.pawn != null);
         CheckIdeologyGuard(network, context, offer, check);
+        check("The weekly roster contains real adult corporate showcase pawns in complete matching outfits",
+            before.Count == CorporatePeopleDefOf.Mugirl_CorporatePeople.weeklyCount
+            && before.All(o => o.pawn != null && o.pawn.DevelopmentalStage == DevelopmentalStage.Adult
+                && o.pawn.kindDef == MugirlContentDefOf.Mugirl_CorporateShowcase
+                && o.pawn.holdingOwner == network.Vault
+                && CorporateShowcaseApparel.IsCompleteOutfit(o.pawn)));
+        CheckShowcaseOutfits(network, check);
+        CheckPurchaseModeMenu(context, check);
+        check("Untraded showcase pawns use a stable corporate ideology even without Ideology DLC",
+            network.CorporateFaction.ideos?.AllIdeos != null
+            && before.All(o => o.pawn != null && o.pawn.Faction == network.CorporateFaction
+                && network.CorporateFaction.ideos.AllIdeos.Contains(o.pawn.Ideo)));
+        if (offer == null) throw new InvalidOperationException("No actual personnel offer was generated.");
+        CorporatePersonQuote slaveQuote = network.PeoplePurchaseQuote(offer, false);
+        CorporatePersonQuote colonistQuote = network.PeoplePurchaseQuote(offer, true);
+        CorporatePersonQuote saleQuote = network.PeopleSaleQuote(offer.pawn);
+        check("Purchase and sale share one base appraisal and explicitly apply both fees",
+            slaveQuote.basePrice == saleQuote.basePrice && slaveQuote.basePrice == offer.price
+            && slaveQuote.handlingFee == saleQuote.handlingFee && slaveQuote.shippingFee == saleQuote.shippingFee
+            && slaveQuote.total == slaveQuote.basePrice + slaveQuote.handlingFee + slaveQuote.shippingFee
+            && saleQuote.total == saleQuote.basePrice - saleQuote.handlingFee - saleQuote.shippingFee);
+        check("Colonist purchase charges a 50 percent premium over the shared base appraisal",
+            colonistQuote.basePrice == slaveQuote.basePrice
+            && colonistQuote.colonistPremium == Mathf.CeilToInt(slaveQuote.basePrice * 0.5f)
+            && colonistQuote.total == slaveQuote.total + colonistQuote.colonistPremium);
+        int purchaseSilver = context.SilverCount;
+        Pawn purchased = offer.pawn;
+        bool asColonist = !ModsConfig.IdeologyActive;
+        int purchaseCost = network.PeoplePurchasePrice(offer, asColonist);
+        long turnoverBeforePurchase = network.TradeTurnover;
+        bool bought = network.TryPurchasePerson(context, offer, asColonist, out string purchaseReason);
+        if (bought && purchaseCost > 0) savedCreditedPersonId = purchased.thingIDNumber;
+        check("Personnel purchase charges exactly the selected identity quote", bought && offer.paid
+            && offer.delivered && offer.paidAmount == purchaseCost && context.SilverCount == purchaseSilver - purchaseCost);
+        check("First paid transaction for a person credits actual turnover once",
+            network.TradeTurnover == turnoverBeforePurchase + purchaseCost);
+        if (bought && purchaseCost > 0)
+        {
+            var repeat = new CorporateTurnoverCapture();
+            repeat.personAmounts.Add(new CorporatePersonTradeAmount { pawn = purchased, amount = purchaseCost });
+            long beforeRepeat = network.TradeTurnover;
+            Harmony_CorporateTradeTurnover.Postfix(true, true, repeat);
+            check("Vanilla corporate trade route cannot credit the same person again",
+                network.TradeTurnover == beforeRepeat);
+        }
+        check("Purchased personnel join with the chosen player identity and retain a complete matching outfit",
+            purchased.Faction == Faction.OfPlayer && (asColonist ? purchased.IsColonist : purchased.IsSlaveOfColony)
+            && purchased.holdingOwner != network.Vault && (purchased.Spawned || purchased.holdingOwner != null)
+            && CorporateShowcaseApparel.IsCompleteOutfit(purchased));
+        purchaseSilver = context.SilverCount;
+        check("An already delivered personnel offer cannot be bought again", !network.TryPurchasePerson(context, offer, asColonist, out purchaseReason)
+            && context.SilverCount == purchaseSilver);
         if (ModsConfig.IdeologyActive)
         {
-            check("The weekly roster contains the configured number of real adult pawns",
-                before.Count == CorporatePeopleDefOf.Mugirl_CorporatePeople.weeklyCount
-                && before.All(o => o.pawn != null && o.pawn.DevelopmentalStage == DevelopmentalStage.Adult
-                    && o.pawn.holdingOwner == network.Vault));
-            if (offer == null) throw new InvalidOperationException("No actual personnel offer was generated.");
-            int silver = context.SilverCount;
-            Pawn purchased = offer.pawn;
-            bool bought = network.TryPurchasePerson(context, offer, out string reason);
-            check("A personnel purchase charges exactly the saved price", bought && offer.paid
-                && offer.delivered && context.SilverCount == silver - offer.price);
-            check("A purchased pawn joins as a player slave through the real guest tracker",
-                purchased.IsSlaveOfColony && purchased.Faction == Faction.OfPlayer
-                && purchased.holdingOwner != network.Vault && (purchased.Spawned || purchased.holdingOwner != null));
-            silver = context.SilverCount;
-            check("An already delivered personnel offer cannot be bought again", !network.TryPurchasePerson(context, offer, out reason)
-                && context.SilverCount == silver);
+            CorporatePersonOffer colonistOffer = before.First(o => o != offer);
+            int colonistCost = network.PeoplePurchasePrice(colonistOffer, true);
+            purchaseSilver = context.SilverCount;
+            turnoverBeforePurchase = network.TradeTurnover;
+            check("Colonist option makes a real paid colonist with the 50 percent premium",
+                network.TryPurchasePerson(context, colonistOffer, true, out purchaseReason)
+                && colonistOffer.pawn.IsColonist && !colonistOffer.pawn.IsSlaveOfColony
+                && colonistOffer.paidAmount == colonistCost && context.SilverCount == purchaseSilver - colonistCost
+                && network.TradeTurnover == turnoverBeforePurchase + colonistCost);
         }
-        else check("Without Ideology, the roster does not generate purchasable slaves", before.Count == 0);
 
         ThoughtDef memory = CorporatePeopleDefOf.Mugirl_CorporateSoldMugirl;
         negotiator.needs.mood.thoughts.memories.RemoveMemoriesOfDef(memory);
@@ -282,6 +335,20 @@ public static class CorporateFinanceRuntimeChecks
             check("Personnel fixture owns a separate legal ideology that permits slave trading",
                 negotiator.Ideo == testIdeo && testIdeo != colonyIdeo
                 && IdeoUtility.DoerWillingToDo(HistoryEventDefOf.SoldSlave, negotiator));
+        if (!asColonist && bought)
+        {
+            purchased.holdingOwner?.Remove(purchased);
+            if (!purchased.Spawned)
+                GenSpawn.Spawn(purchased, CellFinder.RandomClosewalkCellNear(map.Center, map, 8), map);
+            context.Invalidate();
+            check("Purchased slave is eligible for a later corporate sale", network.PeopleSaleCandidates(context).Contains(purchased));
+            int resalePrice = network.PeopleSalePrice(purchased);
+            long turnoverBeforeResale = network.TradeTurnover;
+            check("Selling the same purchased pawn pays silver but cannot repeat turnover",
+                network.TrySellPerson(context, purchased, resalePrice, out purchaseReason)
+                && network.TradeTurnover == turnoverBeforeResale);
+            negotiator.needs.mood.thoughts.memories.RemoveMemoriesOfDef(memory);
+        }
         int historyBefore = Find.HistoryEventsManager.GetRecentCountWithinTicks(HistoryEventDefOf.SoldSlave, int.MaxValue);
         for (int i = 0; i < 2; i++)
         {
@@ -355,12 +422,70 @@ public static class CorporateFinanceRuntimeChecks
             retired.All(p => !network.PeopleOffers.Any(o => o.pawn == p) && !network.Vault.Contains(p)));
     }
 
+    private static void CheckShowcaseOutfits(CorporateNetwork network, Action<string, bool> check)
+    {
+        Pawn pawn = PawnGenerator.GeneratePawn(new PawnGenerationRequest(MugirlContentDefOf.Mugirl_CorporateShowcase,
+            faction: network.CorporateFaction, forceGenerateNewPawn: true, allowDead: false, allowDowned: false,
+            canGeneratePawnRelations: false, allowPregnant: false, developmentalStages: DevelopmentalStage.Adult));
+        try
+        {
+            for (int i = 0; i < CorporateShowcaseApparel.OutfitCount; i++)
+            {
+                bool dressed = CorporateShowcaseApparel.TryDress(pawn, i);
+                check("Showcase outfit " + i + " can be worn in full without conflicting pieces", dressed);
+                if (!dressed) continue;
+                Apparel[] original = pawn.apparel.WornApparel.ToArray();
+                check("Showcase outfit " + i + " excludes combat apparel",
+                    original.All(a => a.def.tradeTags?.Contains("Mugirl_CombatApparelBuyOnly") != true));
+                check("Showcase outfit " + i + " preserves texture colors without a material tint",
+                    original.All(a => a.DrawColor == Color.white));
+                check("Showcase outfit " + i + " remains the same apparel on revalidation",
+                    CorporateShowcaseApparel.TryEnsureOutfit(pawn) && original.SequenceEqual(pawn.apparel.WornApparel));
+                Apparel missing = original[0];
+                pawn.apparel.Remove(missing);
+                check("Showcase outfit " + i + " rejects an incomplete set", !CorporateShowcaseApparel.IsCompleteOutfit(pawn));
+                pawn.apparel.Wear(missing, false);
+            }
+            // 用警察上衣替换毛衣：件数仍相同、引擎允许穿戴，但跨系列组合必须被拒绝。
+            CorporateShowcaseApparel.TryDress(pawn, 5);
+            pawn.apparel.WornApparel.First(a => a.def == MugirlContentDefOf.Mugirl_HighCutSweater).Destroy();
+            pawn.apparel.Wear((Apparel)CorporateNetwork.MakeProduct(MugirlContentDefOf.Mugirl_PoliceShirt, null, QualityCategory.Good), false);
+            check("Same-count cross-series outfit is rejected", pawn.apparel.WornApparel.Count == 4
+                && !CorporateShowcaseApparel.IsCompleteOutfit(pawn));
+            check("Legacy mixed apparel is replaced with a complete matching set", CorporateShowcaseApparel.TryEnsureOutfit(pawn)
+                && CorporateShowcaseApparel.IsCompleteOutfit(pawn));
+        }
+        finally { MugirlGeneratedPawnUtility.Discard(pawn); }
+    }
+
+    private static void CheckPurchaseModeMenu(CorporateTradeContext context, Action<string, bool> check)
+    {
+        var terminal = new Window_CorporateComms(context);
+        typeof(Window_CorporateComms).GetMethod("OpenPeoplePurchaseMenu", BindingFlags.Instance | BindingFlags.NonPublic)
+            .Invoke(terminal, null);
+        FloatMenu menu = Find.WindowStack.Windows.OfType<FloatMenu>().LastOrDefault();
+        if (menu == null) throw new InvalidOperationException("Personnel purchase mode did not open a FloatMenu.");
+        try
+        {
+            var options = (List<FloatMenuOption>)typeof(FloatMenu)
+                .GetField("options", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(menu);
+            string colonist = "Mugirl.CorporatePeople.BuyAsColonist".Translate();
+            string slave = "Mugirl.CorporatePeople.BuyAsSlave".Translate();
+            check("Personnel purchase dropdown offers only identities available with active DLC",
+                options != null && options.Count == (ModsConfig.IdeologyActive ? 2 : 1)
+                && options[options.Count - 1].Label == colonist
+                && (!ModsConfig.IdeologyActive || options[0].Label == slave));
+        }
+        finally { menu.Close(false); }
+    }
+
     private static Ideo MakePersonnelTestIdeo(Pawn negotiator)
     {
-        // Raider conflicts with Slavery_Abhorrent. Exclude it when generating this independent
-        // ideology so both tested slavery precepts remain legal, using native generation APIs.
+        // Raider 禁止反奴役戒律；Supremacist 与 Inhuman 又会强制保留支持奴役的戒律。
+        // 隔离夹具排除这三者，保证两种测试戒律都能通过原版合法性检查；Anomaly 可缺省。
         Ideo ideo = IdeoGenerator.GenerateIdeo(new IdeoGenerationParms(Faction.OfPlayer.def,
-            disallowedMemes: new List<MemeDef> { DefDatabase<MemeDef>.GetNamed("Raider") },
+            disallowedMemes: new[] { "Raider", "Supremacist", "Inhuman" }
+                .Select(name => DefDatabase<MemeDef>.GetNamedSilentFail(name)).Where(meme => meme != null).ToList(),
             name: "Corporate personnel validation"));
         SetTestSlaveryPrecept(ideo, "Slavery_Acceptable");
         Find.IdeoManager.Add(ideo);
@@ -422,4 +547,53 @@ public static class CorporateFinanceRuntimeChecks
     }
 
     private static bool Near(float actual, float expected) { return Math.Abs(actual - expected) < 0.001f; }
+
+    public static void PrepareOutfitReload(CorporateNetwork network, Action<string, bool> check)
+    {
+        CorporatePersonOffer[] offers = network.PeopleOffers.Where(o => !o.paid && !o.delivered).Take(3).ToArray();
+        if (offers.Length != 3) throw new InvalidOperationException("Outfit migration requires three unpurchased offers.");
+        // 隔离存档模拟曾经发布的单件制服和已签约旧衣装，经过真正的完整存读档。
+        foreach (CorporatePersonOffer offer in offers.Take(2))
+        {
+            offer.pawn.apparel.DestroyAll();
+            offer.pawn.apparel.Wear((Apparel)CorporateNetwork.MakeProduct(
+                DefDatabase<ThingDef>.GetNamed("Mugirl_Uniform"), null, QualityCategory.Good), false);
+            offer.price = network.PeopleBasePrice(offer.pawn);
+        }
+        savedLegacyUnpaidOfferId = offers[0].id;
+        savedLegacyPawnId = offers[0].pawn.thingIDNumber;
+        offers[1].paid = true;
+        offers[1].paidAmount = offers[1].price;
+        savedLegacyPaidOfferId = offers[1].id;
+        savedLegacyPaidAmount = offers[1].paidAmount;
+        savedPaidApparelIds = offers[1].pawn.apparel.WornApparel.Select(a => a.thingIDNumber).ToArray();
+        savedCompleteOutfitOfferId = offers[2].id;
+        savedCompleteApparelIds = offers[2].pawn.apparel.WornApparel.Select(a => a.thingIDNumber).ToArray();
+        check("Outfit save fixture distinguishes obsolete single uniform from matching set",
+            !CorporateShowcaseApparel.IsCompleteOutfit(offers[0].pawn)
+            && CorporateShowcaseApparel.IsCompleteOutfit(offers[2].pawn));
+    }
+
+    public static void VerifyReload(CorporateNetwork network, Action<string, bool> check)
+    {
+        if (savedLegacyUnpaidOfferId > 0)
+        {
+            CorporatePersonOffer unpaid = network.PeopleOffers.Single(o => o.id == savedLegacyUnpaidOfferId);
+            CorporatePersonOffer paid = network.PeopleOffers.Single(o => o.id == savedLegacyPaidOfferId);
+            CorporatePersonOffer complete = network.PeopleOffers.Single(o => o.id == savedCompleteOutfitOfferId);
+            check("Full save/load repairs unpaid single uniform without replacing the pawn and recalculates price",
+                unpaid.pawn.thingIDNumber == savedLegacyPawnId && !unpaid.paid
+                && CorporateShowcaseApparel.IsCompleteOutfit(unpaid.pawn) && unpaid.price == network.PeopleBasePrice(unpaid.pawn));
+            check("Full save/load preserves paid legacy clothing and contract amount",
+                paid.paid && !paid.delivered && paid.paidAmount == savedLegacyPaidAmount
+                && paid.pawn.apparel.WornApparel.Select(a => a.thingIDNumber).SequenceEqual(savedPaidApparelIds));
+            check("Full save/load preserves every apparel instance of an already complete outfit",
+                CorporateShowcaseApparel.IsCompleteOutfit(complete.pawn)
+                && complete.pawn.apparel.WornApparel.Select(a => a.thingIDNumber).SequenceEqual(savedCompleteApparelIds));
+        }
+        if (savedCreditedPersonId <= 0) return;
+        var ids = (List<int>)typeof(CorporateNetwork).GetField("creditedPersonIds",
+            BindingFlags.Instance | BindingFlags.NonPublic).GetValue(network);
+        check("First-traded personnel ID survives full save/load", ids != null && ids.Contains(savedCreditedPersonId));
+    }
 }

@@ -11,8 +11,19 @@ namespace Mugirl
     public sealed class CorporatePeopleConfigDef : Def
     {
         public int weeklyCount = 4;
-        public float purchaseMultiplier = 2f;
-        public float saleMultiplier = 1.5f;
+        public float basePriceMultiplier = 1.5f;
+        public float colonistPriceMultiplier = 1.5f;
+        public float handlingFeeFactor = 0.05f;
+        public float shippingFeeFactor = 0.05f;
+    }
+
+    public struct CorporatePersonQuote
+    {
+        public int basePrice;
+        public int colonistPremium;
+        public int handlingFee;
+        public int shippingFee;
+        public int total;
     }
 
     [DefOf]
@@ -32,6 +43,9 @@ namespace Mugirl
         public bool paid;
         public bool delivered;
         public int paidAmount = -1;
+        public bool buyAsColonist;
+        public bool transferApplied;
+        public int priceVersion = 1;
         public void ExposeData()
         {
             Scribe_Values.Look(ref id, "id", 0);
@@ -40,6 +54,9 @@ namespace Mugirl
             Scribe_Values.Look(ref paid, "paid", false);
             Scribe_Values.Look(ref delivered, "delivered", false);
             Scribe_Values.Look(ref paidAmount, "paidAmount", -1);
+            Scribe_Values.Look(ref buyAsColonist, "buyAsColonist", false);
+            Scribe_Values.Look(ref transferApplied, "transferApplied", false);
+            Scribe_Values.Look(ref priceVersion, "priceVersion", 0);
         }
     }
 
@@ -67,6 +84,19 @@ namespace Mugirl
                     {
                         if (offer.paid && !offer.delivered) peoplePendingSilver += offer.paidAmount < 0 ? offer.price : offer.paidAmount;
                         peopleOffers.Remove(offer);
+                        continue;
+                    }
+                    // 未付款的旧混搭可换成完整主题套装；已付款订单保留签约时的衣装。
+                    if (!offer.paid && offer.pawn.kindDef == MugirlContentDefOf.Mugirl_CorporateShowcase
+                        && !CorporateShowcaseApparel.IsCompleteOutfit(offer.pawn)
+                        && CorporateShowcaseApparel.TryEnsureOutfit(offer.pawn))
+                        offer.price = PeopleBasePrice(offer.pawn);
+                    // 旧订单把 ×2 买价存入 price；已付款额仍按旧收据保留。
+                    if (offer.priceVersion == 0)
+                    {
+                        if (offer.paid && offer.paidAmount < 0) offer.paidAmount = offer.price;
+                        offer.price = PeopleBasePrice(offer.pawn);
+                        offer.priceVersion = 1;
                     }
                 }
                 peopleAwaitingWorld.RemoveAll(p => p == null || p.Destroyed);
@@ -96,16 +126,14 @@ namespace Mugirl
                     peopleAwaitingWorld.Add(offer.pawn);
                 peopleOffers.Remove(offer);
             }
-            // A disabled DLC never silently changes purchases into free colonists.
-            if (!ModsConfig.IdeologyActive || CorporateFaction == null || CorporateFaction.defeated) return;
-            CorporatePeopleConfigDef config = CorporatePeopleDefOf.Mugirl_CorporatePeople;
-            for (int i = 0; i < config.weeklyCount; i++)
+            if (CorporateFaction == null || CorporateFaction.defeated) return;
+            for (int i = 0; i < CorporatePeopleDefOf.Mugirl_CorporatePeople.weeklyCount; i++)
             {
                 Pawn pawn = null;
                 try
                 {
-                    PawnGenerationRequest request = new PawnGenerationRequest(Mugirl_DefOf.Mugirl_Slave,
-                        faction: null, context: PawnGenerationContext.NonPlayer,
+                    PawnGenerationRequest request = new PawnGenerationRequest(MugirlContentDefOf.Mugirl_CorporateShowcase,
+                        faction: CorporateFaction, context: PawnGenerationContext.NonPlayer,
                         forceGenerateNewPawn: true, allowDead: false, allowDowned: false,
                         canGeneratePawnRelations: false, allowPregnant: false,
                         developmentalStages: DevelopmentalStage.Adult);
@@ -115,15 +143,18 @@ namespace Mugirl
                         MugirlGeneratedPawnUtility.Discard(pawn);
                         continue;
                     }
-                    MugirlApparelTagUtility.TryWearIdeoSuppressedKindApparel(pawn);
-                    pawn.guest.joinStatus = JoinStatus.JoinAsSlave;
+                    if (!CorporateShowcaseApparel.TryDress(pawn))
+                    {
+                        MugirlGeneratedPawnUtility.Discard(pawn);
+                        continue;
+                    }
+                    pawn.guest.joinStatus = ModsConfig.IdeologyActive ? JoinStatus.JoinAsSlave : JoinStatus.JoinAsColonist;
                     if (pawn.IsWorldPawn()) MugirlGameUtility.WorldPawns.RemovePawn(pawn);
                     if (!Vault.TryAdd(pawn, false)) { MugirlGeneratedPawnUtility.Discard(pawn); continue; }
                     peopleOffers.Add(new CorporatePersonOffer
                     {
                         id = NewId(), pawn = pawn,
-                        price = Mathf.Max(1, Mathf.CeilToInt(pawn.MarketValue *
-                            Mathf.Max(config.purchaseMultiplier, config.saleMultiplier + 0.1f)))
+                        price = PeopleBasePrice(pawn)
                     });
                 }
                 catch (Exception ex)
@@ -148,10 +179,45 @@ namespace Mugirl
                 && (pawn.IsSlaveOfColony || pawn.IsPrisonerOfColony);
         }
 
-        public int PeopleSalePrice(Pawn pawn)
+        public int PeopleBasePrice(Pawn pawn)
         {
-            return pawn == null ? 0 : Mathf.Max(1, Mathf.FloorToInt(pawn.MarketValue * CorporatePeopleDefOf.Mugirl_CorporatePeople.saleMultiplier));
+            return pawn == null ? 0 : Mathf.Max(1, Price(pawn.MarketValue *
+                Mathf.Max(0f, CorporatePeopleDefOf.Mugirl_CorporatePeople.basePriceMultiplier), 1));
         }
+
+        private static int PeopleFee(int basePrice, float factor)
+            => basePrice <= 0 ? 0 : Math.Max(0, Price(basePrice * Mathf.Max(0f, factor), 1));
+
+        public CorporatePersonQuote PeoplePurchaseQuote(CorporatePersonOffer offer, bool asColonist)
+        {
+            if (offer == null || offer.pawn == null) return default(CorporatePersonQuote);
+            CorporatePeopleConfigDef config = CorporatePeopleDefOf.Mugirl_CorporatePeople;
+            int basePrice = offer.price;
+            int premium = asColonist ? PeopleFee(basePrice, Mathf.Max(0f, config.colonistPriceMultiplier - 1f)) : 0;
+            int handling = PeopleFee(basePrice, config.handlingFeeFactor);
+            int shipping = PeopleFee(basePrice, config.shippingFeeFactor);
+            return new CorporatePersonQuote
+            {
+                basePrice = basePrice, colonistPremium = premium, handlingFee = handling, shippingFee = shipping,
+                total = (int)Math.Min(int.MaxValue, (long)basePrice + premium + handling + shipping)
+            };
+        }
+
+        public CorporatePersonQuote PeopleSaleQuote(Pawn pawn)
+        {
+            int basePrice = PeopleBasePrice(pawn);
+            if (basePrice <= 0) return default(CorporatePersonQuote);
+            CorporatePeopleConfigDef config = CorporatePeopleDefOf.Mugirl_CorporatePeople;
+            int handling = PeopleFee(basePrice, config.handlingFeeFactor);
+            int shipping = PeopleFee(basePrice, config.shippingFeeFactor);
+            return new CorporatePersonQuote
+            {
+                basePrice = basePrice, handlingFee = handling, shippingFee = shipping,
+                total = (int)Math.Max(1L, (long)basePrice - handling - shipping)
+            };
+        }
+
+        public int PeopleSalePrice(Pawn pawn) => PeopleSaleQuote(pawn).total;
 
         private Pawn PeopleNegotiator(CorporateTradeContext context)
         {
@@ -168,12 +234,17 @@ namespace Mugirl
         }
 
         public bool TryPurchasePerson(CorporateTradeContext context, CorporatePersonOffer offer, out string reason)
+            => TryPurchasePerson(context, offer, false, out reason);
+
+        public bool TryPurchasePerson(CorporateTradeContext context, CorporatePersonOffer offer, bool asColonist, out string reason)
         {
             EnsureWeeklyOffers();
-            if (!ModsConfig.IdeologyActive) return PeopleReject("Mugirl.CorporatePeople.RequiresIdeology", out reason);
             if (offer == null || !peopleOffers.Contains(offer) || offer.delivered || offer.pawn == null
                 || offer.pawn.Dead || offer.pawn.Destroyed)
                 return PeopleReject("Mugirl.CorporatePeople.OfferChanged", out reason);
+            if (offer.paid) asColonist = offer.buyAsColonist;
+            if (!asColonist && !ModsConfig.IdeologyActive)
+                return PeopleReject("Mugirl.CorporatePeople.RequiresIdeology", out reason);
             if (!Unlocked || context == null || !context.IsValid)
                 return PeopleReject("Mugirl.CorporatePeople.InvalidContext", out reason);
             Pawn negotiator = PeopleNegotiator(context);
@@ -181,22 +252,29 @@ namespace Mugirl
             if (!offer.paid)
             {
                 if (!CanTrade(context, out reason)) return false;
-                int cost = PeoplePurchasePrice(offer);
+                int cost = PeoplePurchasePrice(offer, asColonist);
                 if (!context.TrySpendSilver(cost)) return PeopleReject("Mugirl.CorporatePeople.NoSilver", out reason);
                 offer.paidAmount = cost;
+                offer.buyAsColonist = asColonist;
                 if (cost == 0) freePersonWeek = nextRefreshTick;
                 offer.paid = true;
                 Record("Mugirl.CorporatePeople.Purchased", offer.pawn.LabelShortCap, -cost);
             }
             Pawn pawn = offer.pawn;
-            if (!pawn.IsSlaveOfColony)
+            if (!offer.transferApplied)
             {
-                pawn.guest.joinStatus = JoinStatus.JoinAsSlave;
-                pawn.PreTraded(TradeAction.PlayerBuys, negotiator, new CorporatePersonnelTrader(this));
+                // 旧档可能在付款后已完成 PreTraded，却因空投失败待重新交付。
+                if (!MugirlWildSlaveUtility.IsPlayerFaction(pawn.Faction)
+                    || (asColonist ? !pawn.IsColonist : !pawn.IsSlaveOfColony))
+                {
+                    pawn.guest.joinStatus = asColonist ? JoinStatus.JoinAsColonist : JoinStatus.JoinAsSlave;
+                    pawn.PreTraded(TradeAction.PlayerBuys, negotiator, new CorporatePersonnelTrader(this));
+                }
+                offer.transferApplied = true;
             }
             if (!context.Deliver(pawn)) return PeopleReject("Mugirl.CorporatePeople.DeliveryPending", out reason);
             offer.delivered = true;
-            AddTradeTurnover(offer.paidAmount < 0 ? offer.price : offer.paidAmount);
+            CreditPersonTurnover(pawn, offer.paidAmount < 0 ? offer.price : offer.paidAmount);
             reason = null;
             return true;
         }
@@ -234,7 +312,7 @@ namespace Mugirl
                 member.needs.mood.thoughts.memories.TryGainMemory(memory);
             }
             peoplePendingSilver += acceptedPrice;
-            AddTradeTurnover(acceptedPrice);
+            CreditPersonTurnover(pawn, acceptedPrice);
             Record("Mugirl.CorporatePeople.Sold", pawn.LabelShortCap, acceptedPrice);
             TryClaimPeopleSilver(context, out reason);
             reason = null;

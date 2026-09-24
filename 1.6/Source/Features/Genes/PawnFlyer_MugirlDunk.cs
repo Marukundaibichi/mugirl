@@ -43,6 +43,15 @@ namespace Mugirl
         }
     }
 
+    public sealed class PawnFlyer_MugirlDunk : PawnFlyer
+    {
+        internal float AdjustedFlightProgress => ticksFlightTime > 0
+            ? def.pawnFlyer.Worker.AdjustedProgress(Mathf.Clamp01((float)ticksFlying / ticksFlightTime))
+            : 0f;
+
+        internal bool IsDescending => AdjustedFlightProgress >= 0.5f;
+    }
+
     public sealed class PawnFlyerWorker_MugirlDunk : PawnFlyerWorker
     {
         private const float WindupFraction = 0.36f;

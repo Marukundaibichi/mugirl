@@ -5,12 +5,10 @@
     <Mugirl_Charge.verbProperties.label>Charge!</Mugirl_Charge.verbProperties.label>
     <Mugirl_Shout.description>RUAAAAAAAAA! (an embarrassing cry)</Mugirl_Shout.description>
     <Mugirl_Shout.label>Mugirl Shout!</Mugirl_Shout.label>
-    <!-- TEMPORARILY DISABLED: unfinished Mugirl throw/dunk system.
-    <Mugirl_Throw.description>Pick up a nearby physical object, then hurl it with overwhelming force.</Mugirl_Throw.description>
+    <Mugirl_Throw.description>Lift a nearby object up to your carrying capacity, then hurl it as an improvised projectile. Connected walls and rock formations cannot be lifted, but isolated ones can.</Mugirl_Throw.description>
     <Mugirl_Throw.label>Mugirl Throw!</Mugirl_Throw.label>
     <Mugirl_Throw.verbProperties.label>Pick up!</Mugirl_Throw.verbProperties.label>
-    <Mugirl_Dunk.description>Dribble any liftable object into a spinning leap, then dunk it hard enough to erase its structural integrity.</Mugirl_Dunk.description>
-    <Mugirl_Dunk.label>Mugirl Meteor Dunk!</Mugirl_Dunk.label>
-    <Mugirl_Dunk.verbProperties.label>Choose the ball!</Mugirl_Dunk.verbProperties.label>
-    END TEMPORARILY DISABLED -->
+    <Mugirl_Dunk.description>Developer prank: pluck the head from a humanlike pawn, dribble it like a basketball, then slam dunk it. The body stays behind.</Mugirl_Dunk.description>
+    <Mugirl_Dunk.label>Mugirl Meteor Slam Dunk!</Mugirl_Dunk.label>
+    <Mugirl_Dunk.verbProperties.label>Choose a head!</Mugirl_Dunk.verbProperties.label>
 </LanguageData>

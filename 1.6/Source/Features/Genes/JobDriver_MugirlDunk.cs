@@ -39,14 +39,16 @@ namespace Mugirl
                 defaultCompleteMode = ToilCompleteMode.Instant,
                 initAction = () =>
                 {
-                    Thing target = PickupTarget;
+                    Pawn victim = PickupTarget as Pawn;
+                    BodyPartRecord head;
                     string reason;
-                    if (!MugirlThrowUtility.CanPickUp(pawn, target, out reason)
-                        || !Thing_MugirlDunkProp.TryCreate(pawn, target, job.ability, out prop))
+                    if (!MugirlDunkUtility.CanDunk(pawn, victim, out head, out reason)
+                        || !Thing_MugirlDunkProp.TryFindLandingCell(pawn, ImpactCell, out _)
+                        || !Thing_MugirlDunkProp.TryCreate(pawn, victim, job.ability, out prop))
                     {
                         if (!reason.NullOrEmpty())
                         {
-                            Messages.Message(reason, target ?? pawn, MessageTypeDefOf.RejectInput, historical: false);
+                            Messages.Message(reason, (Thing)victim ?? pawn, MessageTypeDefOf.RejectInput, historical: false);
                         }
                         EndJobWith(JobCondition.Incompletable);
                         return;
@@ -54,13 +56,13 @@ namespace Mugirl
 
                     job.ability?.StartCooldown(job.ability.def.cooldownTicksRange.RandomInRange);
                     IntVec3 approach = FindApproachCell(pawn, ImpactCell);
-                    job.SetTarget(TargetIndex.A, approach);
+                    job.SetTarget(TargetIndex.C, approach);
                     job.locomotionUrgency = LocomotionUrgency.Sprint;
                 }
             };
             yield return pickUp;
 
-            Toil runUp = Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.OnCell);
+            Toil runUp = Toils_Goto.GotoCell(TargetIndex.C, PathEndMode.OnCell);
             runUp.tickAction = () => prop?.NotifyRunning();
             runUp.AddFailCondition(() => prop == null || prop.Destroyed || !prop.HasPayload);
             yield return runUp;

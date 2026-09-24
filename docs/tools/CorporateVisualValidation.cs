@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Globalization;
 using System.Text;
 using System.Xml;
+using Mugirl.Features.WeaponWheel;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -40,7 +41,11 @@ namespace Mugirl
         private int selectionCalls;
         private CorporateStock expectedStock;
         private int expectedPerson;
+        private Pawn autoloadingPawn;
+        private Comp_WeaponWheel autoloadingWheel;
+        private int autoloadingFacingIndex;
         private bool awaitingReload;
+        private int showcaseOutfitIndex;
         private int roundtripMapId;
         private int roundtripNegotiatorId;
         private int roundtripOrderId;
@@ -339,7 +344,7 @@ namespace Mugirl
                     }
                     else
                     {
-                        phase = 50;
+                        phase = 60;
                         Wait(2f);
                     }
                     return;
@@ -362,6 +367,48 @@ namespace Mugirl
                     return;
                 case 31:
                     Capture(CapturePrefix + "people-health-apparel");
+                    phase = !compactPass ? 70 : 6;
+                    return;
+                case 70:
+                    CorporatePersonOffer outfitOffer = CorporateNetwork.Current.PeopleOffers.First(o => !o.paid && !o.delivered && o.pawn != null);
+                    if (!CorporateShowcaseApparel.TryDress(outfitOffer.pawn, showcaseOutfitIndex))
+                        throw new InvalidOperationException("Cannot wear showcase outfit " + showcaseOutfitIndex);
+                    outfitOffer.price = CorporateNetwork.Current.PeopleBasePrice(outfitOffer.pawn);
+                    Set(terminal, "peopleSelectedId", outfitOffer.pawn.thingIDNumber);
+                    Set(terminal, "peopleScroll", Vector2.zero);
+                    report.steps.Add("Showcase outfit " + showcaseOutfitIndex + ": "
+                        + string.Join(", ", outfitOffer.pawn.apparel.WornApparel.Select(a => a.def.defName)));
+                    SaveShowcasePortraits(outfitOffer.pawn);
+                    phase = 71;
+                    Wait(0.6f);
+                    return;
+                case 71:
+                    Capture("outfit-" + showcaseOutfitIndex + "-portrait");
+                    phase = 72;
+                    return;
+                case 72:
+                    Set(terminal, "peopleScroll", new Vector2(0f, 10000f));
+                    phase = 73;
+                    Wait(0.6f);
+                    return;
+                case 73:
+                    Capture("outfit-" + showcaseOutfitIndex + "-apparel");
+                    phase = ++showcaseOutfitIndex < CorporateShowcaseApparel.OutfitCount ? 70 : 35;
+                    return;
+                case 35:
+                    if (!ModsConfig.IdeologyActive)
+                        throw new InvalidOperationException("The full-DLC visual pass unexpectedly lacks Ideology.");
+                    typeof(Window_CorporateComms).GetMethod("OpenPeoplePurchaseMenu", Fields).Invoke(terminal, null);
+                    FloatMenu peoplePurchaseMenu = Find.WindowStack.Windows.OfType<FloatMenu>().LastOrDefault();
+                    if (peoplePurchaseMenu == null)
+                        throw new InvalidOperationException("Personnel purchase mode did not open a native FloatMenu.");
+                    var purchaseModes = (List<FloatMenuOption>)typeof(FloatMenu).GetField("options", Fields).GetValue(peoplePurchaseMenu);
+                    if (purchaseModes == null || purchaseModes.Count != 2
+                        || purchaseModes[0].Label != "Mugirl.CorporatePeople.BuyAsSlave".Translate().ToString()
+                        || purchaseModes[1].Label != "Mugirl.CorporatePeople.BuyAsColonist".Translate().ToString())
+                        throw new InvalidOperationException("Personnel purchase FloatMenu does not contain the slave and colonist choices.");
+                    peoplePurchaseMenu.Close(false);
+                    report.steps.Add("Opened the real personnel purchase FloatMenu with both Ideology choices.");
                     phase = 6;
                     return;
                 case 32:
@@ -451,7 +498,170 @@ namespace Mugirl
                     phase = 9;
                     Wait(1f);
                     return;
+                case 60:
+                    PrepareAutoloadingVisual();
+                    phase = 61;
+                    Wait(1f);
+                    return;
+                case 61:
+                    string facingName = new[] { "south", "east", "north", "west" }[autoloadingFacingIndex];
+                    Capture("autoloading-" + facingName);
+                    phase = 62;
+                    return;
+                case 62:
+                    if (++autoloadingFacingIndex < 4)
+                    {
+                        SetAutoloadingFacing();
+                        phase = 61;
+                        Wait(0.6f);
+                    }
+                    else
+                    {
+                        FillAutoloadingWheel();
+                        autoloadingFacingIndex = 0;
+                        SetAutoloadingFacing();
+                        phase = 63;
+                        Wait(0.6f);
+                    }
+                    return;
+                case 63:
+                    Capture("autoloading-south-full-wheel");
+                    phase = 64;
+                    return;
+                case 64:
+                    autoloadingPawn.Destroy(DestroyMode.Vanish);
+                    autoloadingPawn = null;
+                    autoloadingWheel = null;
+                    report.steps.Add("Captured four-groove diagnostic facings and a South close-up with all six wheel slots occupied.");
+                    phase = 50;
+                    Wait(0.5f);
+                    return;
             }
+        }
+
+        private void PrepareAutoloadingVisual()
+        {
+            Find.TickManager.CurTimeSpeed = TimeSpeed.Paused;
+            Prefs.UIScale = 1f;
+            Screen.SetResolution(1920, 1080, false);
+            IntVec3 cell = GenRadial.RadialCellsAround(map.Center, 20f, true)
+                .Where(c => c.InBounds(map) && c.Standable(map)
+                    && GenRadial.RadialCellsAround(c, 2f, true).All(near => near.InBounds(map) && near.GetPlant(map) == null))
+                .DefaultIfEmpty(IntVec3.Invalid).First();
+            if (!cell.IsValid)
+                cell = CellFinder.StandableCellNear(map.Center, map, 20);
+            autoloadingPawn = PawnGenerator.GeneratePawn(new PawnGenerationRequest(
+                DefDatabase<PawnKindDef>.GetNamed("Mugirl_Colony"), Faction.OfPlayer,
+                PawnGenerationContext.NonPlayer, map.Tile, forceGenerateNewPawn: true,
+                allowDead: false, allowDowned: false, canGeneratePawnRelations: false,
+                allowPregnant: false, forceNoIdeo: true, developmentalStages: DevelopmentalStage.Adult));
+            GenSpawn.Spawn(autoloadingPawn, cell, map);
+            autoloadingPawn.equipment.DestroyAllEquipment();
+            autoloadingPawn.apparel.DestroyAll();
+            ThingDef apparelDef = DefDatabase<ThingDef>.GetNamed("Mugirl_AutoloadingSystem");
+            Apparel apparel = (Apparel)ThingMaker.MakeThing(apparelDef, GenStuff.DefaultStuffFor(apparelDef));
+            autoloadingPawn.apparel.Wear(apparel, false);
+            if (!autoloadingPawn.apparel.WornApparel.Contains(apparel))
+                throw new InvalidOperationException("Autoloading system was not worn by the visual fixture pawn.");
+            Comp_WeaponWheel wheel = autoloadingPawn.TryGetComp<Comp_WeaponWheel>();
+            if (wheel == null)
+                throw new InvalidOperationException("Autoloading visual fixture pawn has no weapon wheel.");
+            autoloadingWheel = wheel;
+            bool previousDevMode = Prefs.DevMode;
+            try
+            {
+                Prefs.DevMode = true;
+                for (int slot = 3; slot <= 5; slot++)
+                    if (!wheel.IsSlotUnlocked(slot) && !wheel.UnlockSlotDeveloper(slot))
+                        throw new InvalidOperationException("Could not unlock autoloading groove slot " + (slot + 1) + ".");
+            }
+            finally
+            {
+                Prefs.DevMode = previousDevMode;
+            }
+            for (int slot = 0; slot < 6; slot++)
+            {
+                ThingWithComps oldWeapon = wheel.WeaponAt(slot);
+                if (oldWeapon == null) continue;
+                if (!wheel.TryDropSlot(slot, out string dropReason))
+                    throw new InvalidOperationException("Could not clear wheel slot " + (slot + 1) + ": " + dropReason);
+                oldWeapon.Destroy(DestroyMode.Vanish);
+            }
+            if (autoloadingPawn.equipment.Primary != null)
+                throw new InvalidOperationException("The autoloading visual fixture still has a held weapon.");
+            ThingDef rifleDef = DefDatabase<ThingDef>.GetNamed("Gun_AssaultRifle");
+            for (int displayIndex = 0; displayIndex < 4; displayIndex++)
+            {
+                int slot = displayIndex + 2;
+                ThingWithComps rifle = (ThingWithComps)ThingMaker.MakeThing(rifleDef);
+                GenSpawn.Spawn(rifle, cell, map);
+                if (!wheel.TryAttachGroundWeapon(rifle, slot, out string attachReason)
+                    || wheel.WeaponAt(slot) != rifle || wheel.GetAutoloadingWeapon(displayIndex) != rifle)
+                    throw new InvalidOperationException("Could not install " + rifleDef.defName + " in groove slot "
+                        + (slot + 1) + ": " + attachReason);
+                report.steps.Add("Autoloading visual fixture: wheel slot " + (slot + 1) + " contains "
+                    + rifleDef.defName + " and is visible in groove " + (displayIndex + 1) + ".");
+            }
+            autoloadingFacingIndex = 0;
+            SetAutoloadingFacing();
+        }
+
+        private void SetAutoloadingFacing()
+        {
+            autoloadingPawn.Rotation = new[] { Rot4.South, Rot4.East, Rot4.North, Rot4.West }[autoloadingFacingIndex];
+            autoloadingPawn.Drawer.renderer.SetAllGraphicsDirty();
+            Find.Selector.ClearSelection();
+            Find.CameraDriver.SetRootPosAndSize(autoloadingPawn.DrawPos, 0.55f);
+        }
+
+        private void FillAutoloadingWheel()
+        {
+            ThingDef rifleDef = DefDatabase<ThingDef>.GetNamed("Gun_AssaultRifle");
+            for (int slot = 0; slot < 2; slot++)
+            {
+                ThingWithComps rifle = (ThingWithComps)ThingMaker.MakeThing(rifleDef);
+                GenSpawn.Spawn(rifle, autoloadingPawn.Position, map);
+                if (!autoloadingWheel.TryAttachGroundWeapon(rifle, slot, out string attachReason)
+                    || autoloadingWheel.WeaponAt(slot) != rifle)
+                    throw new InvalidOperationException("Could not fill autoloading wheel slot "
+                        + (slot + 1) + ": " + attachReason);
+            }
+            if (autoloadingPawn.equipment.Primary != autoloadingWheel.WeaponAt(0)
+                || autoloadingWheel.GetBackWeapon(0) != autoloadingWheel.WeaponAt(1)
+                || Enumerable.Range(0, 6).Any(slot => autoloadingWheel.WeaponAt(slot) == null))
+                throw new InvalidOperationException("The six-slot autoloading wheel is not fully occupied.");
+            if (autoloadingPawn.drafter != null)
+                autoloadingPawn.drafter.Drafted = false;
+            AssertAutoloadingSouthLayers();
+            report.steps.Add("Filled all six weapon-wheel slots; primary remains equipped but the pawn is undrafted for the South close-up.");
+        }
+
+        private void AssertAutoloadingSouthLayers()
+        {
+            const float beltSouthLayer = -3f;
+            List<PawnRenderNode> nodes = autoloadingWheel.CompRenderNodes();
+            PawnDrawParms parms = new PawnDrawParms
+            {
+                pawn = autoloadingPawn,
+                facing = Rot4.South,
+                rotDrawMode = RotDrawMode.Fresh
+            };
+            PawnRenderNode_BackWeapon backNode = nodes.OfType<PawnRenderNode_BackWeapon>().First();
+            float backLayer = new PawnRenderNodeWorker_BackWeapon().LayerFor(backNode, parms);
+            if (backNode.Weapon != autoloadingWheel.WeaponAt(1) || backLayer >= beltSouthLayer)
+                throw new InvalidOperationException("South wheel slot 2 is not behind the Belt layer: " + backLayer + ".");
+            PawnRenderNode_AutoloadingWeapon[] grooveNodes = nodes.OfType<PawnRenderNode_AutoloadingWeapon>()
+                .OrderBy(node => node.DisplayIndex).ToArray();
+            if (grooveNodes.Length != 4)
+                throw new InvalidOperationException("Expected four autoloading groove render nodes.");
+            PawnRenderNodeWorker_AutoloadingWeapon worker = new PawnRenderNodeWorker_AutoloadingWeapon();
+            float[] grooveLayers = grooveNodes.Select(node => worker.LayerFor(node, parms)).ToArray();
+            if (grooveLayers.Any(layer => layer >= beltSouthLayer) || grooveLayers.Distinct().Count() != 4)
+                throw new InvalidOperationException("South groove weapons must be behind Belt and use distinct layers: "
+                    + string.Join(", ", grooveLayers.Select(layer => layer.ToString(CultureInfo.InvariantCulture))));
+            report.steps.Add("South render layers: slot 2=" + backLayer.ToString(CultureInfo.InvariantCulture)
+                + ", slots 3–6=" + string.Join(", ", grooveLayers.Select(layer => layer.ToString(CultureInfo.InvariantCulture)))
+                + ", Belt=" + beltSouthLayer.ToString(CultureInfo.InvariantCulture) + ".");
         }
 
         private void OpenTerminal()
@@ -667,6 +877,32 @@ namespace Mugirl
                     + "; active=" + GenHostility.IsActiveThreatToPlayer(pawn) + "; job=" + pawn.CurJobDef?.defName);
             File.AppendAllText(Path.Combine(outputRoot, "arrival-diagnostics.txt"), text.ToString() + Environment.NewLine);
             WriteProgress("waiting-for-representative");
+        }
+
+        // 直接保存游戏渲染的三向大图，便于检查小尺寸人员肖像看不清的衣摆与配饰。
+        private void SaveShowcasePortraits(Pawn pawn)
+        {
+            foreach (Rot4 facing in new[] { Rot4.South, Rot4.East, Rot4.North })
+            {
+                RenderTexture portrait = PortraitsCache.Get(pawn, new Vector2(512, 768), facing,
+                    cameraZoom: 0.72f, supersample: false, compensateForUIScale: false, renderHeadgear: true, renderClothes: true);
+                RenderTexture previous = RenderTexture.active;
+                Texture2D image = new Texture2D(portrait.width, portrait.height, TextureFormat.RGBA32, false);
+                try
+                {
+                    RenderTexture.active = portrait;
+                    image.ReadPixels(new Rect(0, 0, portrait.width, portrait.height), 0, 0);
+                    image.Apply();
+                    string path = Path.Combine(outputRoot, "outfit-" + showcaseOutfitIndex + "-detail-" + facing + ".png");
+                    File.WriteAllBytes(path, image.EncodeToPNG());
+                    report.screenshots.Add(path);
+                }
+                finally
+                {
+                    RenderTexture.active = previous;
+                    UnityEngine.Object.Destroy(image);
+                }
+            }
         }
 
         private void Capture(string name)

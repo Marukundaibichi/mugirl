@@ -24,6 +24,9 @@ namespace Mugirl
         private string feedback;
         private bool feedbackSuccess;
         private float feedbackAt = -100f;
+        // 窗口 forcePause 模态：派生数据只在玩家操作后变化。ShowFeedback 是全部
+        // 操作结果的统一出口，在其中递增版本号使各页的按版本缓存整体失效。
+        private int frameCacheVersion;
         private const float ContentOut = 0.12f;
         private const float ContentIn = 0.23f;
 
@@ -129,6 +132,7 @@ namespace Mugirl
             feedback = text ?? "Mugirl.Corporate.GoodsChanged".Translate().ToString();
             feedbackSuccess = success;
             feedbackAt = Time.realtimeSinceStartup;
+            frameCacheVersion++;
         }
 
         protected override void DrawContents(Rect inRect)
@@ -319,31 +323,61 @@ namespace Mugirl
             finally { CorporateUI.EndScrollView(); }
         }
 
+        // History 页布局缓存：记录本身不可变，标题串与测量高度按（版本, 宽度）缓存，
+        // 绘制循环再做视口裁剪，避免 200 条记录每 GUI 事件重复 Translate 与 CalcHeight。
+        private readonly List<string> historyTitles = new List<string>();
+        private readonly List<float> historyTitleHeights = new List<float>();
+        private readonly List<float> historyDetailHeights = new List<float>();
+        private int historyLayoutVersion = -1;
+        private float historyLayoutWidth = -1f;
+
         private void DrawHistory(Rect rect)
         {
             float y = 0f;
             CorporateUI.Heading(ref y, rect.width, "Mugirl.CorporateUI.Page.History".Translate(), "Mugirl.CorporateUI.HistoryHint".Translate());
             Rect viewport = new Rect(0f, y, rect.width, Mathf.Max(1f, rect.height - y));
             float width = rect.width - 18f;
+            if (historyLayoutVersion != frameCacheVersion || !Mathf.Approximately(historyLayoutWidth, width))
+            {
+                historyLayoutVersion = frameCacheVersion;
+                historyLayoutWidth = width;
+                historyTitles.Clear();
+                historyTitleHeights.Clear();
+                historyDetailHeights.Clear();
+                for (int i = 0; i < network.Records.Count; i++)
+                {
+                    CorporateRecord record = network.Records[i];
+                    string title = RecordTitle(record);
+                    historyTitles.Add(title);
+                    historyTitleHeights.Add(Mathf.Max(28f, Text.CalcHeight(title, width - 28f)));
+                    historyDetailHeights.Add(Mathf.Max(25f, Text.CalcHeight(record.detail ?? "", width - 28f)));
+                }
+            }
+
             float total = 0f;
-            foreach (CorporateRecord record in network.Records)
-                total += Mathf.Max(28f, Text.CalcHeight(RecordTitle(record), width - 28f)) + Mathf.Max(25f, Text.CalcHeight(record.detail ?? "", width - 28f)) + 34f;
+            for (int i = 0; i < historyTitleHeights.Count; i++)
+                total += historyTitleHeights[i] + historyDetailHeights[i] + 34f;
             Rect view = new Rect(0f, 0f, width, Mathf.Max(viewport.height, total));
             CorporateUI.BeginScrollView(viewport, ref historyScroll, view, "history");
             try
             {
                 if (network.Records.Count == 0) CorporateUI.Notice(new Rect(0f, 0f, view.width, 76f), "Mugirl.CorporateUI.NoHistory".Translate());
                 float top = 0f;
+                float viewBottom = historyScroll.y + viewport.height;
                 for (int i = network.Records.Count - 1; i >= 0; i--)
                 {
                     CorporateRecord record = network.Records[i];
-                    string title = RecordTitle(record);
-                    float titleHeight = Mathf.Max(28f, Text.CalcHeight(title, width - 28f));
-                    float detailHeight = Mathf.Max(25f, Text.CalcHeight(record.detail ?? "", width - 28f));
-                    CorporateUI.Panel(new Rect(0f, top, width, titleHeight + detailHeight + 24f));
-                    CorporateUI.Label(new Rect(14f, top + 9f, width - 28f, titleHeight), title);
-                    CorporateUI.Label(new Rect(14f, top + titleHeight + 14f, width - 28f, detailHeight), record.detail, color: CorporateUI.Muted);
-                    top += titleHeight + detailHeight + 34f;
+                    float titleHeight = historyTitleHeights[i];
+                    float detailHeight = historyDetailHeights[i];
+                    float cardHeight = titleHeight + detailHeight + 34f;
+                    if (top + cardHeight >= historyScroll.y && top <= viewBottom)
+                    {
+                        string title = historyTitles[i];
+                        CorporateUI.Panel(new Rect(0f, top, width, titleHeight + detailHeight + 24f));
+                        CorporateUI.Label(new Rect(14f, top + 9f, width - 28f, titleHeight), title);
+                        CorporateUI.Label(new Rect(14f, top + titleHeight + 14f, width - 28f, detailHeight), record.detail, color: CorporateUI.Muted);
+                    }
+                    top += cardHeight;
                 }
             }
             finally { CorporateUI.EndScrollView(); }

@@ -69,16 +69,17 @@ namespace Mugirl
                 && network.Orders.Count == orderCount + 2 && network.Orders.Skip(orderCount).All(o => o.paid == 0));
             check("Gift does not spend silver or add turnover", context.SilverCount == silver && network.TradeTurnover == before);
             check("Gift can only be claimed once per week", !network.TryClaimWeeklyGift(context, out _));
-            if (ModsConfig.IdeologyActive)
-            {
-                CorporatePersonOffer person = network.PeopleOffers.First(o => !o.paid);
-                check("First weekly personnel quote is free", network.PeoplePurchasePrice(person) == 0);
-                check("Free personnel purchase delivers without silver or turnover", network.TryPurchasePerson(context, person, out _)
-                    && person.delivered && person.paidAmount == 0 && context.SilverCount == silver && network.TradeTurnover == before);
-                check("Second personnel purchase retains its regular price", network.PeopleOffers.Where(o => !o.paid).All(o => network.PeoplePurchasePrice(o) == o.price));
-                check("Free recipient cannot be delivered twice", !network.TryPurchasePerson(context, person, out _));
-            }
-            else check("No-Ideology game never unlocks a free slave purchase", !network.WeeklyPersonAvailable && !network.PeopleOffers.Any());
+            CorporatePersonOffer person = network.PeopleOffers.First(o => !o.paid);
+            bool asColonist = !ModsConfig.IdeologyActive;
+            check("First weekly personnel quote is free in either purchase mode",
+                network.WeeklyPersonAvailable && network.PeoplePurchasePrice(person, asColonist) == 0);
+            check("Free personnel purchase delivers without silver or turnover",
+                network.TryPurchasePerson(context, person, asColonist, out _)
+                && person.delivered && person.paidAmount == 0 && context.SilverCount == silver && network.TradeTurnover == before
+                && (asColonist ? person.pawn.IsColonist : person.pawn.IsSlaveOfColony));
+            check("Second personnel purchase retains its regular quote", network.PeopleOffers.Where(o => !o.paid)
+                .All(o => network.PeoplePurchasePrice(o, asColonist) == network.PeoplePurchaseQuote(o, asColonist).total));
+            check("Free recipient cannot be delivered twice", !network.TryPurchasePerson(context, person, asColonist, out _));
 
             check("Invalid landing rejects call without consuming it", !network.TryCallSupport(context, map, IntVec3.Invalid, out _) && network.WeeklySupportAvailable);
             var denied = new CorporateTradeContext(map, () => false);
@@ -130,17 +131,19 @@ namespace Mugirl
                 var sell = new Tradeable(sold, null);
                 buy.ForceTo(3); sell.ForceTo(-2);
                 deal.AllTradeables.Add(buy); deal.AllTradeables.Add(sell);
-                Harmony_CorporateTradeTurnover.Prefix(deal, out long value);
+                Harmony_CorporateTradeTurnover.Prefix(deal, out CorporateTurnoverCapture capture);
+                long value = (long)Math.Floor(capture.otherAmount);
                 check("Vanilla trades sum purchases and sales rather than net balance", value > 0 && value == (long)Math.Floor(
-                    Math.Abs((double)buy.CurTotalCurrencyCostForSource) + Math.Abs((double)sell.CurTotalCurrencyCostForSource)));
+                    Math.Abs((double)buy.CurTotalCurrencyCostForSource) + Math.Abs((double)sell.CurTotalCurrencyCostForSource))
+                    && capture.personAmounts.Count == 0);
                 before = network.TradeTurnover;
-                Harmony_CorporateTradeTurnover.Postfix(false, false, value);
+                Harmony_CorporateTradeTurnover.Postfix(false, false, capture);
                 check("Rejected vanilla trade adds no turnover", network.TradeTurnover == before);
-                Harmony_CorporateTradeTurnover.Postfix(true, true, value);
+                Harmony_CorporateTradeTurnover.Postfix(true, true, capture);
                 check("Successful vanilla trade credits captured turnover", network.TradeTurnover == before + value);
                 TradeSession.giftMode = true;
-                Harmony_CorporateTradeTurnover.Prefix(deal, out value);
-                check("Vanilla gifts do not count as trade", value == 0);
+                Harmony_CorporateTradeTurnover.Prefix(deal, out capture);
+                check("Vanilla gifts do not count as trade", capture.otherAmount == 0 && capture.personAmounts.Count == 0);
                 bought.Destroy(); sold.Destroy();
             }
             finally { TradeSession.trader = trader; TradeSession.playerNegotiator = negotiator; TradeSession.giftMode = gift; }
@@ -175,7 +178,7 @@ namespace Mugirl
             Refresh(network);
             check("Next weekly refresh restores service allowances", network.WeeklyGiftAvailable && network.WeeklySupportAvailable
                 && network.WeeklySupportCallsRemaining == 2
-                && network.WeeklyPersonAvailable == ModsConfig.IdeologyActive);
+                && network.WeeklyPersonAvailable);
             if (lord != null)
             {
                 for (int tick = 0; tick < 500; tick++) Find.TickManager.DoSingleTick();

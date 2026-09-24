@@ -8,10 +8,6 @@
     <Mugirl_Shooting.label>Mugirl Bang-Bang-Bang!</Mugirl_Shooting.label>
     <Mugirl_Shout.description>Carriers of this gene have a unique roar. This strange cry provokes nearby enemies into attacking them, functioning as a taunt. (RUA~!)</Mugirl_Shout.description>
     <Mugirl_Shout.label>Mugirl Shout!</Mugirl_Shout.label>
-    <!-- TEMPORARILY DISABLED: unfinished Mugirl throw/dunk system.
-    <Mugirl_Throw.description>Carriers of this gene can lift nearby objects and hurl them as devastating improvised projectiles.</Mugirl_Throw.description>
+    <Mugirl_Throw.description>Carriers can lift and throw objects up to their carrying capacity. Connected walls and rock formations stay put; isolated ones can be thrown.</Mugirl_Throw.description>
     <Mugirl_Throw.label>Mugirl Throw!</Mugirl_Throw.label>
-    <Mugirl_Dunk.description>Carriers of this gene can briefly mistake any sufficiently light object for a basketball, with catastrophic results.</Mugirl_Dunk.description>
-    <Mugirl_Dunk.label>Mugirl Meteor Dunk!</Mugirl_Dunk.label>
-    END TEMPORARILY DISABLED -->
 </LanguageData>

@@ -31,7 +31,7 @@
 
 专项测试、配置模板、资源处理和日志记录模板统一见[验证手册](docs/validation-runbook.md)，不要另建工具入口页。
 
-**已知基线（2026-09-23）：** `Mugirl_Shapes.xml` 两处行尾空格已清理。静态检查主体通过，但资源检查仍因缺少 42 张 FA 烘焙脸红贴图失败；不能据历史“通过”记录认定当前资源无误，也不能为了消除失败擅自恢复用户删改的素材。下次修改 FA 时应核对现行方案和检查器要求。证据见[工作区整理记录](docs/records/workspace-cleanup-2026-09-21.md)及[0.6.6 版本记录](docs/records/release-0.6.6-2026-09-23.md)。
+**已知基线（2026-09-24）：** FA 脸红方案基线已按 Talos 参考包修正。当前 `1.6/FacialAnimation` 与 `TMP/FacialAnimation_0921_Talos修改版` 717 个文件逐字节一致（仅 `Mugirl_Shapes.xml` 3 行行尾空格差异），脸红走 `blush/lovinblush` 的 cover 叠层方案；资源检查契约已同步改为”28 张 cover 必须齐备、烘焙头图与旧 Emotions 脸红素材不得回流”，静态验证（含资源检查）整体通过。旧的”缺少 42 张烘焙脸红贴图”失败属检查器过时，已废弃。详见[FA 专题](docs/features/facial-animation-guide.md)与[性能优化实施](docs/records/performance-optimization-2026-09-24.md)。
 
 ## 按任务找代码和文档
 
@@ -120,6 +120,7 @@
 
 | 日期 | 记录 |
 | --- | --- |
+| 2026-09-24 | [0.6.7 版本记录](docs/records/release-0.6.7-2026-09-24.md)、[战斗服饰收购与售价调整](docs/records/combat-apparel-trade-2026-09-24.md)、[性能优化实施](docs/records/performance-optimization-2026-09-24.md) |
 | 2026-09-23 | [0.6.6 版本记录](docs/records/release-0.6.6-2026-09-23.md) |
 | 2026-09-21 | [研究树重做实施](docs/records/research-tree-2026-09-21.md)、[工作区与文档整理](docs/records/workspace-cleanup-2026-09-21.md)、[怀孕心情](docs/records/pregnancy-mood-2026-09-21.md)、[启动日志](docs/records/bootstrap-startup-2026-09-21.md) |
 | 2026-09-20 | [服装、头型发型、武器与神经战斗套装](docs/records/update-2026-09-20.md) |

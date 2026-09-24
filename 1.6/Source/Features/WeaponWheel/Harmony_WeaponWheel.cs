@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using HarmonyLib;
 using Mugirl.Features.Lances;
 using Mugirl.Features.WeaponWheel;
@@ -11,11 +12,33 @@ namespace Mugirl
 {
     internal static class WeaponWheelHarmonyUtility
     {
+        // StaticCacheLifecycle: Pawn→轮盘组件弱表；条目随 Pawn 被 GC 自动释放，
+        // 读取方校验 comp.parent 防止极端情况下读到失效组件。DrawPos getter 等
+        // 每帧补丁经此查表，替代 AllComps 线性扫描。
+        private static readonly ConditionalWeakTable<Pawn, Comp_WeaponWheel> compLookup =
+            new ConditionalWeakTable<Pawn, Comp_WeaponWheel>();
+
         internal static Comp_WeaponWheel CompFor(Pawn pawn)
         {
-            return MugirlIdentity.IsMugirlPawn(pawn)
-                ? pawn.TryGetComp<Comp_WeaponWheel>()
-                : null;
+            if (!MugirlIdentity.IsMugirlPawn(pawn))
+            {
+                return null;
+            }
+            if (compLookup.TryGetValue(pawn, out Comp_WeaponWheel cached) && cached.parent == pawn)
+            {
+                return cached;
+            }
+            Comp_WeaponWheel comp = pawn.TryGetComp<Comp_WeaponWheel>();
+            if (comp != null)
+            {
+                // 并行预绘制的 DrawPos 读取可能并发填充；写路径罕见，加锁避免重复 Add 抛异常。
+                lock (compLookup)
+                {
+                    compLookup.Remove(pawn);
+                    compLookup.Add(pawn, comp);
+                }
+            }
+            return comp;
         }
     }
 
@@ -247,9 +270,10 @@ namespace Mugirl
     {
         public static void Postfix(Pawn __instance, DrawPhase phase)
         {
-            if (MugirlIdentity.IsMugirlPawn(__instance))
+            Comp_WeaponWheel comp = WeaponWheelHarmonyUtility.CompFor(__instance);
+            if (comp != null)
             {
-                WeaponWheelAnimationRenderer.Draw(__instance, phase);
+                WeaponWheelAnimationRenderer.Draw(__instance, phase, comp);
             }
         }
     }

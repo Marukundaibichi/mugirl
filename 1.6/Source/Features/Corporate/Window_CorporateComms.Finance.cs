@@ -17,6 +17,10 @@ namespace Mugirl
         private string financeRepayBuffer = "500";
         private readonly Dictionary<Thing, int> financeSelection = new Dictionary<Thing, int>();
         private readonly Dictionary<Thing, string> financeQuantityBuffers = new Dictionary<Thing, string>();
+        // 抵押品候选按版本缓存（forcePause 下操作后才变化），Set 用于 O(1) 清理失效选择。
+        private readonly List<Thing> financeCandidatesView = new List<Thing>();
+        private readonly HashSet<Thing> financeCandidateSet = new HashSet<Thing>();
+        private int financeCandidatesVersion = -1;
 
         private void DrawFinance(Rect rect)
         {
@@ -122,9 +126,17 @@ namespace Mugirl
             if (!allowed) FinanceText(ref y, width, accessReason, true);
             FinanceText(ref y, width, "Mugirl.CorporateFinance.CollateralRules".Translate(
                 (CorporateNetwork.LoanCollateralRatio * 100f).ToString("0"), CorporateNetwork.LoanMinimum, CorporateNetwork.LoanMaximum));
-            List<Thing> candidates = context.AvailableThings.Where(CorporateNetwork.IsEligibleCollateral)
-                .OrderBy(t => t.LabelCap.ToString()).ToList();
-            foreach (Thing old in financeSelection.Keys.Where(t => !candidates.Contains(t)).ToList())
+            if (financeCandidatesVersion != frameCacheVersion)
+            {
+                financeCandidatesVersion = frameCacheVersion;
+                financeCandidatesView.Clear();
+                financeCandidatesView.AddRange(context.AvailableThings.Where(CorporateNetwork.IsEligibleCollateral)
+                    .OrderBy(t => t.LabelCap.ToString()));
+                financeCandidateSet.Clear();
+                for (int i = 0; i < financeCandidatesView.Count; i++) financeCandidateSet.Add(financeCandidatesView[i]);
+            }
+            List<Thing> candidates = financeCandidatesView;
+            foreach (Thing old in financeSelection.Keys.Where(t => !financeCandidateSet.Contains(t)).ToList())
             {
                 financeSelection.Remove(old);
                 financeQuantityBuffers.Remove(old);

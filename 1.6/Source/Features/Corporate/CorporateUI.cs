@@ -485,6 +485,13 @@ namespace Mugirl
             finally { GUI.matrix = matrix; }
         }
 
-        internal static string Money(float value) { return value.ToString("N0") + " " + "Mugirl.CorporateUI.Silver".Translate(); }
+        // StaticCacheLifecycle: 银币单位后缀翻译一次进程内复用；语言在运行期不会切换。
+        private static string silverSuffix;
+
+        internal static string Money(float value)
+        {
+            if (silverSuffix == null) silverSuffix = "Mugirl.CorporateUI.Silver".Translate().ToString();
+            return value.ToString("N0") + " " + silverSuffix;
+        }
     }
 }

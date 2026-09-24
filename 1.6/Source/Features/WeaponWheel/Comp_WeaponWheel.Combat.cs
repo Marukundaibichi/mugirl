@@ -103,7 +103,10 @@ namespace Mugirl.Features.WeaponWheel
 
             if (combatState == WeaponWheelCombatState.CycleCooldown && CurrentTick < cooldownUntilTick)
             {
-                WeaponWheelDevLog.CastDecision(this, verb, "TryStartCastOn: blocked, waiting for cycle cooldown until tick " + cooldownUntilTick);
+                if (WeaponWheelDevLog.Enabled)
+                {
+                    WeaponWheelDevLog.CastDecision(this, verb, "TryStartCastOn: blocked, waiting for cycle cooldown until tick " + cooldownUntilTick);
+                }
                 return true;
             }
             if (combatState == WeaponWheelCombatState.Switching
@@ -185,14 +188,20 @@ namespace Mugirl.Features.WeaponWheel
                 cycleTarget = target;
                 combatSourceJob = Pawn?.CurJob;
                 accumulatedCooldownTicks = 0;
-                WeaponWheelDevLog.CastDecision(this, verb, "BurstCompleted: cycle started, target=" + target);
+                if (WeaponWheelDevLog.Enabled)
+                {
+                    WeaponWheelDevLog.CastDecision(this, verb, "BurstCompleted: cycle started, target=" + target);
+                }
             }
 
             accumulatedCooldownTicks += Mathf.Max(0, verb.verbProps.AdjustedCooldownTicks(verb, Pawn));
             int nextSlot = FindNextFireableSlot(activeSlotIndex + 1, cycleTarget);
             if (nextSlot >= 0)
             {
-                WeaponWheelDevLog.CastDecision(this, verb, "BurstCompleted: switching to slot " + nextSlot);
+                if (WeaponWheelDevLog.Enabled)
+                {
+                    WeaponWheelDevLog.CastDecision(this, verb, "BurstCompleted: switching to slot " + nextSlot);
+                }
                 BeginSwitchTo(nextSlot, cycleTarget, verb);
                 return;
             }
@@ -277,21 +286,41 @@ namespace Mugirl.Features.WeaponWheel
         {
             get
             {
-                Pawn pawn = Pawn;
-                if (pawn?.apparel == null)
+                int currentTick = CurrentTick;
+                if (autoloadingCacheTick == currentTick)
                 {
-                    return false;
+                    return autoloadingCacheValue;
                 }
-                for (int i = 0; i < pawn.apparel.WornApparelCount; i++)
-                {
-                    CompAutoloadingSystem comp = pawn.apparel.WornApparel[i].TryGetComp<CompAutoloadingSystem>();
-                    if (comp?.SkipCycleReload == true)
-                    {
-                        return true;
-                    }
-                }
+                autoloadingCacheValue = ComputeHasAutoloadingSystem();
+                autoloadingCacheTick = currentTick;
+                return autoloadingCacheValue;
+            }
+        }
+
+        // CompTick 每 tick 调用一次：渲染节点在战斗与绘制路径每帧多次读取时命中同 tick 备忘，
+        // 未生成或暂停期间（CompTick 不跑）getter 自动退回现算，穿着变化最迟下一 tick 生效。
+        private void RefreshAutoloadingCache(int currentTick)
+        {
+            autoloadingCacheValue = ComputeHasAutoloadingSystem();
+            autoloadingCacheTick = currentTick;
+        }
+
+        private bool ComputeHasAutoloadingSystem()
+        {
+            Pawn pawn = Pawn;
+            if (pawn?.apparel == null)
+            {
                 return false;
             }
+            for (int i = 0; i < pawn.apparel.WornApparelCount; i++)
+            {
+                CompAutoloadingSystem comp = pawn.apparel.WornApparel[i].TryGetComp<CompAutoloadingSystem>();
+                if (comp?.SkipCycleReload == true)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private int CurrentTick => MugirlTickUtility.CurrentGameTickOrFallback(0);
@@ -461,8 +490,11 @@ namespace Mugirl.Features.WeaponWheel
             ThingWithComps incoming = WeaponAt(slotIndex);
             if (incoming == null || !MoveActiveWeaponTo(slotIndex))
             {
-                WeaponWheelDevLog.CastDecision(this, completedVerb, "BeginSwitchTo: weapon transfer to slot " + slotIndex
-                    + " FAILED (equipment tracker or container rejected the move), ending cycle");
+                if (WeaponWheelDevLog.Enabled)
+                {
+                    WeaponWheelDevLog.CastDecision(this, completedVerb, "BeginSwitchTo: weapon transfer to slot " + slotIndex
+                        + " FAILED (equipment tracker or container rejected the move), ending cycle");
+                }
                 FinishCycleWithCooldown(completedVerb, target);
                 return;
             }

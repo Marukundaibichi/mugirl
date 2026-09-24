@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <!-- PatchGovernance:
+    Targets: 原版地面和轨道作战补给商 TraderKindDef。
+    Scope: 只收购带 Mugirl_CombatApparelBuyOnly 标签的雪牛娘战斗服饰，不追加供货生成器。
+    Duplicate guard: 每个商人已有同标签 BuyTradeTag 时不重复追加。
+    Failure: 必需的原版商人或 stockGenerators 缺失时由 PatchOperationAdd 和 Phase 6 报告。
+    -->
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_CombatSupplier"]/stockGenerators/li[@Class="StockGenerator_BuyTradeTag"]/tag[text()="Mugirl_CombatApparelBuyOnly"]</xpath>
+        <nomatch Class="PatchOperationAdd">
+            <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_CombatSupplier"]/stockGenerators</xpath>
+            <value>
+                <li Class="StockGenerator_BuyTradeTag">
+                    <tag>Mugirl_CombatApparelBuyOnly</tag>
+                </li>
+            </value>
+        </nomatch>
+    </Operation>
+
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/TraderKindDef[defName="Orbital_CombatSupplier"]/stockGenerators/li[@Class="StockGenerator_BuyTradeTag"]/tag[text()="Mugirl_CombatApparelBuyOnly"]</xpath>
+        <nomatch Class="PatchOperationAdd">
+            <xpath>Defs/TraderKindDef[defName="Orbital_CombatSupplier"]/stockGenerators</xpath>
+            <value>
+                <li Class="StockGenerator_BuyTradeTag">
+                    <tag>Mugirl_CombatApparelBuyOnly</tag>
+                </li>
+            </value>
+        </nomatch>
+    </Operation>
+</Patch>

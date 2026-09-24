@@ -60,9 +60,9 @@
         </comps>
     </AbilityDef>
 
-    <!-- TEMPORARILY DISABLED: unfinished Mugirl throw/dunk system.
     <AbilityDef>
         <defName>Mugirl_Throw</defName>
+        <aiCanUse>false</aiCanUse>
         <label>Mugirl throw</label>
         <description>Pick up a nearby physical object, then hurl it with overwhelming force.</description>
         <iconPath>UI/Mugirl_Charge</iconPath>
@@ -96,11 +96,12 @@
 
     <AbilityDef>
         <defName>Mugirl_Dunk</defName>
+        <aiCanUse>false</aiCanUse>
         <label>Mugirl meteor dunk</label>
-        <description>Dribble any liftable object into a spinning leap, then dunk it hard enough to erase its structural integrity.</description>
+        <description>Developer prank: pop a humanlike target's head off, dribble it, then dunk it into the ground.</description>
         <iconPath>UI/Mugirl_Charge</iconPath>
         <cooldownTicksRange>1200</cooldownTicksRange>
-        <sendMessageOnCooldownComplete>true</sendMessageOnCooldownComplete>
+        <sendMessageOnCooldownComplete>false</sendMessageOnCooldownComplete>
         <hostile>true</hostile>
         <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
         <verbProperties>
@@ -112,13 +113,13 @@
             <targetParams>
                 <canTargetLocations>false</canTargetLocations>
                 <canTargetPawns>true</canTargetPawns>
-                <canTargetBuildings>true</canTargetBuildings>
-                <canTargetItems>true</canTargetItems>
-                <canTargetCorpses>true</canTargetCorpses>
-                <canTargetAnimals>true</canTargetAnimals>
+                <canTargetBuildings>false</canTargetBuildings>
+                <canTargetItems>false</canTargetItems>
+                <canTargetCorpses>false</canTargetCorpses>
+                <canTargetAnimals>false</canTargetAnimals>
                 <canTargetHumans>true</canTargetHumans>
-                <canTargetMechs>true</canTargetMechs>
-                <canTargetPlants>true</canTargetPlants>
+                <canTargetMechs>false</canTargetMechs>
+                <canTargetPlants>false</canTargetPlants>
                 <mapObjectTargetsMustBeAutoAttackable>false</mapObjectTargetsMustBeAutoAttackable>
             </targetParams>
         </verbProperties>
@@ -132,7 +133,5 @@
             </li>
         </comps>
     </AbilityDef>
-
-    END TEMPORARILY DISABLED -->
 
 </Defs>

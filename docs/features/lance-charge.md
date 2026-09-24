@@ -22,6 +22,11 @@
 
 源码：`1.6/Source/Features/Lances/PawnFlyer_LanceCharge.cs`、`LanceMotionBlur.cs`、`Harmony_LanceChargeRendering.cs`。着色器与构建入口：`docs/lance-motion-blur/MugirlLanceMotionBlur.shader`、`docs/tools/Build-LanceMotionBlurAssets.ps1`。
 
+## 冲锋按钮与瞄准范围
+
+- 沿途冲锋按钮使用贯穿多个目标的图案；定点冲锋按钮使用命中单个目标的图案。按钮和瞄准鼠标图标均从各武器 Def 的 `lineIconPath`、`pointIconPath` 读取。
+- 瞄准时仿照原版炮塔，同时绘制最大射程圈和当前冲锋模式的最小射程圈。内圈使用 `minimumLineRange` 或 `minimumPointRange`，与目标有效性判断一致；最小射程为 0 时不绘制无意义的内圈。此改动不调整射程数值或能否发动的规则。
+
 ## 构建与验证
 
 `Build-LanceMotionBlurAssets.ps1` 使用 Unity 2022.3.62f3，在 `TMP/LanceMotionBlurShaderBuild` 创建无联接的构建工程，输出 `1.6/Resources/LanceMotionBlur`；`-ValidateOnly` 使用合成透明贴图做离屏 GPU 绘制并输出 `blur-gpu-check.png`。本机可构建 Windows（D3D11 / OpenGLCore / Vulkan）和 macOS（Metal）；未安装 Linux Build Support，Linux 资源尚未生成，缺少对应资源时只省略视觉拖尾，冲锋玩法照常运行。
@@ -40,3 +45,9 @@
 - 完整静态脚本已执行正式 Release 构建；构建无警告或错误，脚本继续在上述两处原有行尾空格停止。独立纹理检查的 42 张贴图缺失保持不变，本次涉及文件的差异空白检查通过。
 - 正式 DLL SHA256：`0E72CC82306B0C3476091E74FDD243A63020D4F26A6731D68B22721D0DAF04A4`。原 DLL 备份为 `DevData/Backups/LanceWallCharge-20260921/MugirlRace-before.dll`，散列与修改前基线一致。
 - 最终 `directory-audit-final.json`：`affected_candidates=0`、`scan_errors=0`、`cycle_components=0`。
+
+## 2026-09-23 图标与范围复查
+
+- 诺曼骑枪、蒸汽骑枪各自互换了沿途与定点冲锋的 PNG 内容；重型骑枪原图正确，无需改动。三把骑枪现在均为沿途贯穿多个目标、定点命中单个目标。
+- Release DLL 构建成功，Phase 6 静态主体通过；最终资源检查仍因基线中已缺失的 42 张 FA 脸红贴图退出。`git diff --check` 通过。
+- 外部隔离 quicktest `0923-charge-icons-rings-01` 为 135 项通过、0 项失败；fresh `Player.log` 扫描无可疑行。截图确认按钮图案可区分，但该测试在退出瞄准后截图，尚未提供内外射程圈同屏的画面证据。测试目录的 RimSort 审计为 `affected_candidates=0`、`scan_errors=0`。证据位于 `%LOCALAPPDATA%\RimWorldModTests\Mugirl\LanceValidation-0923-charge-icons-rings-01-Game\Mods\Mugirl\TMP\LanceValidation-0923-charge-icons-rings-01`。

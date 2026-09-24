@@ -12,8 +12,6 @@
         <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
         <Deterministic>true</Deterministic>
-        <!-- Temporary feature gate: keep the unfinished throw/dunk system out of builds. -->
-        <EnableMugirlThrowSystem>false</EnableMugirlThrowSystem>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <DebugSymbols>true</DebugSymbols>
@@ -35,9 +33,6 @@
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
         <LangVersion>7.2</LangVersion>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(EnableMugirlThrowSystem)' == 'true' ">
-        <DefineConstants>$(DefineConstants);MUGIRL_THROW_SYSTEM</DefineConstants>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="0Harmony">
@@ -111,16 +106,17 @@
         <Compile Include="Features\AdvancedArmor\Harmony_AdvancedArmor.cs" />
         <Compile Include="Features\Apparel\MugirlApparelTagUtility.cs" />
         <Compile Include="Features\Genes\CompProperties_AbilityEffect_ForceJob.cs" />
-        <Compile Include="Features\Genes\CompAbilityEffect_PickupThrow.cs" Condition=" '$(EnableMugirlThrowSystem)' == 'true' " />
-        <Compile Include="Features\Genes\CompAbilityEffect_Dunk.cs" Condition=" '$(EnableMugirlThrowSystem)' == 'true' " />
+        <Compile Include="Features\Genes\CompAbilityEffect_PickupThrow.cs" />
+        <Compile Include="Features\Genes\CompAbilityEffect_Dunk.cs" />
         <Compile Include="Features\Genes\HediffCompProperties_CheckJobOrRemove.cs" />
         <Compile Include="Features\Genes\JobDriver_CastCharge.cs" />
-        <Compile Include="Features\Genes\JobDriver_MugirlDunk.cs" Condition=" '$(EnableMugirlThrowSystem)' == 'true' " />
-        <Compile Include="Features\Genes\MugirlThrowUtility.cs" Condition=" '$(EnableMugirlThrowSystem)' == 'true' " />
-        <Compile Include="Features\Genes\PawnFlyer_MugirlDunk.cs" Condition=" '$(EnableMugirlThrowSystem)' == 'true' " />
+        <Compile Include="Features\Genes\JobDriver_MugirlDunk.cs" />
+        <Compile Include="Features\Genes\MugirlThrowUtility.cs" />
+        <Compile Include="Features\Genes\PawnFlyer_MugirlDunk.cs" />
         <Compile Include="Features\Genes\Mugirl_XenotypeFix_GameComp.cs" />
-        <Compile Include="Features\Genes\Thing_MugirlThrownObject.cs" Condition=" '$(EnableMugirlThrowSystem)' == 'true' " />
-        <Compile Include="Features\Genes\Thing_MugirlDunkProp.cs" Condition=" '$(EnableMugirlThrowSystem)' == 'true' " />
+        <Compile Include="Features\Genes\Thing_MugirlThrownObject.cs" />
+        <Compile Include="Features\Genes\Thing_MugirlDunkHead.cs" />
+        <Compile Include="Features\Genes\Thing_MugirlDunkProp.cs" />
         <Compile Include="Features\Incidents\CompReadableBook.cs" />
         <Compile Include="Features\Incidents\Dialog_ReadBook.cs" />
         <Compile Include="Features\Incidents\Harmony_DesignatorTame.cs" />
@@ -314,6 +310,7 @@
         <Compile Include="Features\Corporate\CorporateNetwork.Quests.cs" />
         <Compile Include="Features\Corporate\CorporateNetwork.Trade.cs" />
         <Compile Include="Features\Corporate\CorporateNetwork.Services.cs" />
+        <Compile Include="Features\Corporate\CorporateShowcaseApparel.cs" />
         <Compile Include="Features\Corporate\CorporateUniforms.cs" />
         <Compile Include="Features\Corporate\Window_CorporateComms.Services.cs" />
         <Compile Include="Features\Corporate\CorporateQuestContract.cs" />
@@ -336,6 +333,10 @@
     </ItemGroup>
     <!-- Explicitly enabled only for disposable, command-line-gated runtime checks. -->
     <ItemGroup Condition=" '$(EnableCorporateValidation)' == 'true' ">
+        <Reference Include="UnityEngine.ImageConversionModule">
+            <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
         <Reference Include="UnityEngine.ScreenCaptureModule">
             <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ScreenCaptureModule.dll</HintPath>
             <Private>False</Private>
@@ -372,6 +373,9 @@
         </Reference>
         <Compile Include="..\..\docs\tools\LanceRuntimeValidation.cs" />
         <Compile Include="..\..\docs\tools\NeuralArmorRuntimeChecks.cs" />
+    </ItemGroup>
+    <ItemGroup Condition=" '$(EnableThrowValidation)' == 'true' ">
+        <Compile Include="..\..\docs\tools\ThrowRuntimeValidation.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

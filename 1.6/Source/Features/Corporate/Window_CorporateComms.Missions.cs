@@ -12,6 +12,23 @@ namespace Mugirl
         private int missionTab;
         private float missionHeight = 600f;
 
+        // 任务卡显示文本缓存：Title/Description/状态行都由任务字段派生（含多参数 Translate），
+        // forcePause 下静态，按（页签, 版本）重建，操作结果会递增版本号。
+        private sealed class MissionCard
+        {
+            internal CorporateMission mission;
+            internal string title;
+            internal string description;
+            internal string statusLine;
+            internal bool canLocate;
+            internal bool canTalk;
+            internal bool canAbandon;
+        }
+
+        private readonly List<MissionCard> missionCards = new List<MissionCard>();
+        private int missionCardsVersion = -1;
+        private int missionCardsTab = -1;
+
         private void DrawMissions(Rect rect)
         {
             GUI.BeginGroup(rect);
@@ -36,27 +53,54 @@ namespace Mugirl
             Rect view = new Rect(0, 0, width - 20, missionHeight);
             CorporateUI.BeginScrollView(outRect, ref missionScroll, view, "missions/page-scroll");
             float y = 0;
-            var items = network.Missions.Where(m => m.IsSide == (missionTab == 1))
-                .OrderBy(m => m.IsFinished ? 2 : m.state == CorporateMissionState.Available ? 1 : 0).ThenByDescending(m => m.id).ToList();
+            if (missionCardsVersion != frameCacheVersion || missionCardsTab != missionTab)
+            {
+                missionCardsVersion = frameCacheVersion;
+                missionCardsTab = missionTab;
+                missionCards.Clear();
+                foreach (CorporateMission mission in network.Missions.Where(m => m.IsSide == (missionTab == 1))
+                    .OrderBy(m => m.IsFinished ? 2 : m.state == CorporateMissionState.Available ? 1 : 0).ThenByDescending(m => m.id))
+                {
+                    string description = mission.Description;
+                    if (mission.kind != CorporateMissionKind.Native)
+                        description += "\n" + "Mugirl.CQ.Terms".Translate(mission.duration / 60000f, mission.goodwill).ToString();
+                    if (mission.kind == CorporateMissionKind.Fusion)
+                        description += "\n" + "Mugirl.CQ.FusionTerms".Translate(mission.reward, CorporateNetwork.MissionConfig.fusionRefusalGoodwill).ToString();
+                    if (mission.IsSide && mission.choice == CorporateResearchChoice.Undecided)
+                        description += "\n" + "Mugirl.CQ.ProtectionReward".Translate(CorporateNetwork.FusionProtectionRewardDescription).ToString();
+                    string progress = mission.kind == CorporateMissionKind.Processing || mission.kind == CorporateMissionKind.Distribution
+                        ? " · " + "Mugirl.CQ.Progress".Translate(mission.progress, mission.kind == CorporateMissionKind.Distribution ? mission.SalesTarget : mission.count).ToString() : "";
+                    string time = "";
+                    if (mission.state == CorporateMissionState.Available) time = "Mugirl.CQ.OfferTime".Translate(((mission.acceptByTick - CorporateNetwork.Now) / 60000f).ToString("0.0"));
+                    else if (mission.state == CorporateMissionState.Active && mission.kind != CorporateMissionKind.Native)
+                        time = "Mugirl.CQ.DueTime".Translate(Mathf.Max(0, (mission.deadline - CorporateNetwork.Now) / 60000f).ToString("0.0"));
+                    missionCards.Add(new MissionCard
+                    {
+                        mission = mission,
+                        title = mission.Title,
+                        description = description,
+                        statusLine = mission.Status + progress + " · " + time,
+                        canLocate = mission.site != null && mission.site.Spawned,
+                        canTalk = mission.IsSide && mission.state == CorporateMissionState.Active && mission.choice == CorporateResearchChoice.Undecided
+                            && mission.site?.HasMap == true && mission.site.Map.mapPawns.FreeColonistsSpawned.Any(),
+                        canAbandon = mission.state == CorporateMissionState.Active && mission.kind != CorporateMissionKind.Investment && mission.kind != CorporateMissionKind.Native
+                    });
+                }
+            }
+            List<MissionCard> items = missionCards;
             if (items.Count == 0)
             {
                 CorporateUI.Notice(new Rect(0, y, view.width, 100), (missionTab == 1 ? "Mugirl.CQ.NoSide" : "Mugirl.CQ.NoMissions").Translate());
                 y += 110;
             }
-            foreach (CorporateMission mission in items)
+            foreach (MissionCard card in items)
             {
-                string description = mission.Description;
-                if (mission.kind != CorporateMissionKind.Native)
-                    description += "\n" + "Mugirl.CQ.Terms".Translate(mission.duration / 60000f, mission.goodwill).ToString();
-                if (mission.kind == CorporateMissionKind.Fusion)
-                    description += "\n" + "Mugirl.CQ.FusionTerms".Translate(mission.reward, CorporateNetwork.MissionConfig.fusionRefusalGoodwill).ToString();
-                if (mission.IsSide && mission.choice == CorporateResearchChoice.Undecided)
-                    description += "\n" + "Mugirl.CQ.ProtectionReward".Translate(CorporateNetwork.FusionProtectionRewardDescription).ToString();
+                CorporateMission mission = card.mission;
+                string description = card.description;
                 float descHeight = Text.CalcHeight(description, view.width - 24);
-                bool canLocate = mission.site != null && mission.site.Spawned;
-                bool canTalk = mission.IsSide && mission.state == CorporateMissionState.Active && mission.choice == CorporateResearchChoice.Undecided
-                    && mission.site?.HasMap == true && mission.site.Map.mapPawns.FreeColonistsSpawned.Any();
-                bool canAbandon = mission.state == CorporateMissionState.Active && mission.kind != CorporateMissionKind.Investment && mission.kind != CorporateMissionKind.Native;
+                bool canLocate = card.canLocate;
+                bool canTalk = card.canTalk;
+                bool canAbandon = card.canAbandon;
                 List<float> actionWidths = new List<float>();
                 if (mission.state == CorporateMissionState.Available) actionWidths.Add(145f);
                 else
@@ -72,16 +116,10 @@ namespace Mugirl
                 float cardHeight = 120f + descHeight + actionHeight - 30f;
                 if (mission.pendingGoods.Count > 0) cardHeight += 36;
                 CorporateUI.Panel(new Rect(0, y, view.width, cardHeight));
-                CorporateUI.Label(new Rect(12, y + 8, view.width - 24, 28), mission.Title, color: CorporateUI.Accent);
+                CorporateUI.Label(new Rect(12, y + 8, view.width - 24, 28), card.title, color: CorporateUI.Accent);
                 CorporateUI.Label(new Rect(12, y + 37, view.width - 24, descHeight), description);
                 float row = y + 43 + descHeight;
-                string progress = mission.kind == CorporateMissionKind.Processing || mission.kind == CorporateMissionKind.Distribution
-                    ? " · " + "Mugirl.CQ.Progress".Translate(mission.progress, mission.kind == CorporateMissionKind.Distribution ? mission.SalesTarget : mission.count).ToString() : "";
-                string time = "";
-                if (mission.state == CorporateMissionState.Available) time = "Mugirl.CQ.OfferTime".Translate(((mission.acceptByTick - CorporateNetwork.Now) / 60000f).ToString("0.0"));
-                else if (mission.state == CorporateMissionState.Active && mission.kind != CorporateMissionKind.Native)
-                    time = "Mugirl.CQ.DueTime".Translate(Mathf.Max(0, (mission.deadline - CorporateNetwork.Now) / 60000f).ToString("0.0"));
-                CorporateUI.Label(new Rect(12, row, view.width - 24, 25), mission.Status + progress + " · " + time, color: CorporateUI.Muted);
+                CorporateUI.Label(new Rect(12, row, view.width - 24, 25), card.statusLine, color: CorporateUI.Muted);
                 row += 30;
                 float x = 12;
                 if (mission.state == CorporateMissionState.Available)

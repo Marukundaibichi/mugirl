@@ -16,10 +16,8 @@
     <Mugirl_Shout.description>这种基因的携带者拥有独特的吼声，这种奇怪的叫声会令周围的敌人忍不住殴打他，具有嘲讽能力。（RUA~！）</Mugirl_Shout.description>
     <!-- Mugirl Shout! -->
     <Mugirl_Shout.label>雪牛大叫！</Mugirl_Shout.label>
-    <!-- TEMPORARILY DISABLED: unfinished Mugirl throw/dunk system.
-    <Mugirl_Throw.description>这种基因的携带者能够抓起附近的实体，并将其化作破坏力惊人的临时炮弹。</Mugirl_Throw.description>
+    <!-- Carriers can lift and throw objects up to their carrying capacity. Connected walls and rock formations stay put; isolated ones can be thrown. -->
+    <Mugirl_Throw.description>这种基因的携带者能举起并投掷不超过自身搬运上限的物体。相连的墙体与山体举不起来，孤立的则可以。</Mugirl_Throw.description>
+    <!-- Mugirl Throw! -->
     <Mugirl_Throw.label>雪牛投掷！</Mugirl_Throw.label>
-    <Mugirl_Dunk.description>这种基因的携带者会暂时把任何举得动的东西认作篮球，通常会造成灾难性的后果。</Mugirl_Dunk.description>
-    <Mugirl_Dunk.label>雪牛流星灌篮！</Mugirl_Dunk.label>
-    END TEMPORARILY DISABLED -->
 </LanguageData>

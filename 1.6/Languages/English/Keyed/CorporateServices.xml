@@ -3,7 +3,7 @@
   <Mugirl.CorporateServices.Page>Client services</Mugirl.CorporateServices.Page>
   <Mugirl.CorporateServices.Summary>Build lifetime trade to unlock order discounts, broader stock, weekly gifts, free personnel and targeted combat support.</Mugirl.CorporateServices.Summary>
   <Mugirl.CorporateServices.Status>Client level {0} · Lifetime trade {1} silver</Mugirl.CorporateServices.Status>
-  <Mugirl.CorporateServices.Counting>Purchases and sales both count, including stock, orders, personnel and ordinary caravan/settlement deals. Orders count as goods are delivered. Refunds, gifts and financial transfers do not count. Existing saves start counting new trades after this update.</Mugirl.CorporateServices.Counting>
+  <Mugirl.CorporateServices.Counting>Purchases and sales count, including stock, orders and corporate caravan or settlement deals. Each Mugirl counts only on her first paid personnel trade, using the actual amount paid or received. Trading her again adds no turnover. Orders count on delivery; refunds, gifts and financial transfers do not. Existing saves start tracking new trades after this update.</Mugirl.CorporateServices.Counting>
   <Mugirl.CorporateServices.Current>Order discount {0}% · Next weekly stock {1} types · Refresh in {2} days</Mugirl.CorporateServices.Current>
   <Mugirl.CorporateServices.Tier>Level {0} / {1} silver traded / {2}</Mugirl.CorporateServices.Tier>
   <Mugirl.CorporateServices.Active>Unlocked</Mugirl.CorporateServices.Active>
@@ -11,13 +11,13 @@
   <Mugirl.CorporateServices.Tier1>Contract client: 5% off orders.</Mugirl.CorporateServices.Tier1>
   <Mugirl.CorporateServices.Tier2>Preferred client: 8% off orders and 8 additional weekly stock types.</Mugirl.CorporateServices.Tier2>
   <Mugirl.CorporateServices.Tier3>VIP client: 10% off orders, 12 additional stock types and a wider selection of spacer goods. Weekly gift: 10 industrial medicine and 20 packaged survival meals.</Mugirl.CorporateServices.Tier3>
-  <Mugirl.CorporateServices.Tier4>Strategic client: 12% off orders and 16 additional stock types. The first Mugirl purchased each week is free; choose anyone from the weekly roster. Requires Ideology.</Mugirl.CorporateServices.Tier4>
+  <Mugirl.CorporateServices.Tier4>Strategic client: 12% off orders and 16 additional stock types. Purchase one Mugirl from the weekly roster for free, as a slave or colonist. Slave purchases require Ideology.</Mugirl.CorporateServices.Tier4>
   <Mugirl.CorporateServices.Tier5>Premier client: 15% off orders and 24 additional stock types. Call four well-equipped Mugirl strike troopers once per week, free of charge, to an outdoor landing cell on a loaded map. All bear the corporate diehard trait: they never retreat, and friendly-fire goodwill losses are reduced by 95%. They withdraw after one day.</Mugirl.CorporateServices.Tier5>
   <Mugirl.CorporateServices.Tier6>Elite client: retain all premier benefits. Support increases to eight troopers per call and two free calls per week. Calls already used this week still count.</Mugirl.CorporateServices.Tier6>
   <Mugirl.CorporateServices.SupportAllowance>Squad size: {0} · Calls remaining this week: {1} / {2}</Mugirl.CorporateServices.SupportAllowance>
   <Mugirl.CorporateServices.ClaimGift>Claim weekly gift</Mugirl.CorporateServices.ClaimGift>
   <Mugirl.CorporateServices.GiftSuccess>Weekly gift dispatched. Undelivered parcels remain claimable on the orders page.</Mugirl.CorporateServices.GiftSuccess>
-  <Mugirl.CorporateServices.FreeAvailable>Weekly free Mugirl: available. Personnel prices already reflect the benefit.</Mugirl.CorporateServices.FreeAvailable>
+  <Mugirl.CorporateServices.FreeAvailable>Weekly free Mugirl: available. Either status is eligible, and the entire price is waived. Personnel prices reflect this benefit.</Mugirl.CorporateServices.FreeAvailable>
   <Mugirl.CorporateServices.FreeUnavailable>Weekly free Mugirl: locked or already used.</Mugirl.CorporateServices.FreeUnavailable>
   <Mugirl.CorporateServices.FreePerson>Use weekly free purchase</Mugirl.CorporateServices.FreePerson>
   <Mugirl.CorporateServices.OpenPeople>Open personnel trading</Mugirl.CorporateServices.OpenPeople>

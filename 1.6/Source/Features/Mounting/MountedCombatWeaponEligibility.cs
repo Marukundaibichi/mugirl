@@ -51,12 +51,40 @@ namespace Mugirl
 
         private static Verb GetPrimaryRangedVerb(Comp_MugirlMount comp)
         {
-            return GetPrimaryRangedVerb(comp?.MountedPawn);
+            if (comp == null)
+            {
+                return null;
+            }
+
+            Pawn rider = comp.MountedPawn;
+            if (rider == null)
+            {
+                comp.cachedPrimaryWeapon = null;
+                comp.cachedPrimaryVerb = null;
+                return null;
+            }
+
+            // 同一主武器引用的判定结果（远程/近战/仅手动等）全部由武器 Def 与 verb 派生，
+            // 可以按引用缓存；换武器、换骑手或卸下时 Primary 引用变化自动触发重算。
+            ThingWithComps primary = rider.equipment?.Primary;
+            if (primary == comp.cachedPrimaryWeapon)
+            {
+                return comp.cachedPrimaryVerb;
+            }
+
+            Verb verb = ResolvePrimaryRangedVerb(primary);
+            comp.cachedPrimaryWeapon = primary;
+            comp.cachedPrimaryVerb = verb;
+            return verb;
         }
 
         private static Verb GetPrimaryRangedVerb(Pawn rider)
         {
-            ThingWithComps weapon = rider?.equipment?.Primary;
+            return ResolvePrimaryRangedVerb(rider?.equipment?.Primary);
+        }
+
+        private static Verb ResolvePrimaryRangedVerb(ThingWithComps weapon)
+        {
             if (weapon == null || !weapon.def.IsRangedWeapon)
             {
                 return null;

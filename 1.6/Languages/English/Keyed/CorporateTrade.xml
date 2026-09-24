@@ -23,8 +23,8 @@ The goods will remain in storage until you provide a delivery destination. Your 
   <Mugirl.Corporate.Maximum>Max</Mugirl.Corporate.Maximum>
   <Mugirl.Corporate.Success>The corporation has confirmed the transaction.</Mugirl.Corporate.Success>
   <Mugirl.Corporate.WeeklyStock>Weekly supplies</Mugirl.Corporate.WeeklyStock>
-  <Mugirl.Corporate.ProductPurchase>Sell produce</Mugirl.Corporate.ProductPurchase>
-  <Mugirl.Corporate.ProductHint>Milk, wool and approved products. Procurement is always buying.</Mugirl.Corporate.ProductHint>
+  <Mugirl.Corporate.ProductPurchase>Sell Mugirl goods</Mugirl.Corporate.ProductPurchase>
+  <Mugirl.Corporate.ProductHint>Milk, wool, approved products, and uninstalled packed Mugirl wool furniture are always accepted. On maps, place goods in a powered trade beacon's range; caravans must carry them in inventory.</Mugirl.Corporate.ProductHint>
   <Mugirl.Corporate.StockHint>This week's stock. Payment received, shipment released.</Mugirl.Corporate.StockHint>
   <Mugirl.Corporate.SearchGoods>Search item names…</Mugirl.Corporate.SearchGoods>
   <Mugirl.Corporate.StockRow>Unit price {0}

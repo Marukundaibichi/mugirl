@@ -75,6 +75,9 @@
             <texPath>Things/Apparel/Mugirl_ReconArmor/Mugirl_ReconArmor</texPath>
         </graphicData>
         <techLevel>Industrial</techLevel>
+        <tradeTags>
+            <li>Mugirl_CombatApparelBuyOnly</li>
+        </tradeTags>
         <equippedStatOffsets>
             <MoveSpeed>0.25</MoveSpeed>
         </equippedStatOffsets>
@@ -392,6 +395,7 @@
 
     <ThingDef ParentName="ApparelMakeableBase">
         <defName>Mugirl_RA_Carrying_Equipment</defName>
+        <tradeability>Sellable</tradeability>
         <!-- 雪牛娘 特化携行具 -->
         <label>Mugirl Specialised Field Gear</label>
         <!-- 迈瑞克革命战争期间，雪牛娘革命者普遍装备的携行具。承重挎包战术挂件可以为穿戴者提供战术补给减少武器远程冷却时间 -->
@@ -401,6 +405,9 @@
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
         <techLevel>Industrial</techLevel>
+        <tradeTags>
+            <li>Mugirl_CombatApparelBuyOnly</li>
+        </tradeTags>
         <costStuffCount>25</costStuffCount>
         <stuffCategories>
             <li>Fabric</li>

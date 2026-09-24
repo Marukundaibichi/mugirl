@@ -65,17 +65,55 @@ namespace Mugirl
     {
         // StaticCacheLifecycle: immutable reflection metadata for the lifetime of the process; no game objects are retained.
         private static readonly FieldInfo DarknessOffsetField = AccessTools.Field(typeof(ShotReport), "offsetFromDarkness");
+        // 预编译的 struct 字段写入委托：直接 stfld 私有字段，避免每次射击装箱 __result 再反射写入。
+        private static readonly SetDarknessOffsetDelegate SetDarknessOffset = CreateDarknessOffsetSetter();
+        private delegate void SetDarknessOffsetDelegate(ref ShotReport report, float value);
+
+        private static SetDarknessOffsetDelegate CreateDarknessOffsetSetter()
+        {
+            try
+            {
+                if (DarknessOffsetField == null)
+                {
+                    return null;
+                }
+
+                System.Reflection.Emit.DynamicMethod method = new System.Reflection.Emit.DynamicMethod(
+                    "MugirlShotReportSetOffsetFromDarkness",
+                    typeof(void),
+                    new[] { typeof(ShotReport).MakeByRefType(), typeof(float) },
+                    typeof(Harmony_NeuralHelmetDarknessAccuracy),
+                    true);
+                System.Reflection.Emit.ILGenerator il = method.GetILGenerator();
+                il.Emit(System.Reflection.Emit.OpCodes.Ldarg_0);
+                il.Emit(System.Reflection.Emit.OpCodes.Ldarg_1);
+                il.Emit(System.Reflection.Emit.OpCodes.Stfld, DarknessOffsetField);
+                il.Emit(System.Reflection.Emit.OpCodes.Ret);
+                return (SetDarknessOffsetDelegate)method.CreateDelegate(typeof(SetDarknessOffsetDelegate));
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
         private static void Postfix(Thing caster, ref ShotReport __result)
         {
-            if (!(caster is Pawn pawn) || !AdvancedArmorUtility.WearsNeuralHelmet(pawn) || DarknessOffsetField == null)
+            if (!(caster is Pawn pawn) || !AdvancedArmorUtility.WearsNeuralHelmet(pawn))
             {
                 return;
             }
 
-            object boxed = __result;
-            DarknessOffsetField.SetValue(boxed, 0f);
-            __result = (ShotReport)boxed;
+            if (SetDarknessOffset != null)
+            {
+                SetDarknessOffset(ref __result, 0f);
+            }
+            else if (DarknessOffsetField != null)
+            {
+                object boxed = __result;
+                DarknessOffsetField.SetValue(boxed, 0f);
+                __result = (ShotReport)boxed;
+            }
         }
     }
 

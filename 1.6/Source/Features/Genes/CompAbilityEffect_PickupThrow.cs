@@ -13,6 +13,15 @@ namespace Mugirl
 
     public class CompAbilityEffect_PickupThrow : CompAbilityEffect
     {
+        // 瞄准悬停期间 GUI 每事件读取读数；Stat 管线按 30 tick 短缓存，
+        // 质量按悬停目标引用失效，换目标立即重算。
+        private const int ReadoutCacheTicks = 30;
+        private float cachedMass = -1f;
+        private Thing cachedMassThing;
+        private int cachedMassTick = int.MinValue;
+        private float cachedStrength = -1f;
+        private int cachedStrengthTick = int.MinValue;
+
         public override bool Valid(LocalTargetInfo target, bool throwMessages = false)
         {
             Pawn caster = parent?.pawn;
@@ -61,9 +70,36 @@ namespace Mugirl
                 return null;
             }
 
-            float mass = MugirlThrowUtility.EffectiveMass(thing);
-            float strength = MugirlThrowUtility.ThrowStrength(caster);
+            int tick = MugirlTickUtility.CurrentGameTickOrFallback(0);
+            float mass = GetCachedEffectiveMass(thing, tick);
+            float strength = GetCachedThrowStrength(caster, tick);
             return "Mugirl.Throw.PickupReadout".Translate(mass.ToString("0.#"), strength.ToString("0.#")).ToString();
+        }
+
+        private float GetCachedEffectiveMass(Thing thing, int tick)
+        {
+            if (thing == cachedMassThing
+                && cachedMassTick >= 0 && tick < cachedMassTick + ReadoutCacheTicks)
+            {
+                return cachedMass;
+            }
+
+            cachedMass = MugirlThrowUtility.EffectiveMass(thing);
+            cachedMassThing = thing;
+            cachedMassTick = tick;
+            return cachedMass;
+        }
+
+        private float GetCachedThrowStrength(Pawn caster, int tick)
+        {
+            if (cachedStrengthTick >= 0 && tick < cachedStrengthTick + ReadoutCacheTicks)
+            {
+                return cachedStrength;
+            }
+
+            cachedStrength = MugirlThrowUtility.ThrowStrength(caster);
+            cachedStrengthTick = tick;
+            return cachedStrength;
         }
     }
 }

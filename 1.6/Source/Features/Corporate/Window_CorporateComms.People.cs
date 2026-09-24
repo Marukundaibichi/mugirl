@@ -14,18 +14,63 @@ namespace Mugirl
         private Vector2 peopleHeaderScroll;
         private float peopleHeight = 900f;
         private bool peopleSelling;
+        private bool peopleBuyAsColonist;
         private int peopleSelectedId = -1;
         private bool peopleTipsEnabled;
 
+        // 页面级派生数据缓存：forcePause 模态下数据只在操作（frameCacheVersion 变化）
+        // 或买卖模式切换后重建，替代每 GUI 事件的全图枚举与多层 LINQ。
+        private readonly List<CorporatePersonOffer> peopleOffersView = new List<CorporatePersonOffer>();
+        private readonly List<Pawn> peopleView = new List<Pawn>();
+        private readonly Dictionary<Pawn, CorporatePersonOffer> peopleOfferByPawn = new Dictionary<Pawn, CorporatePersonOffer>();
+        private int peopleViewVersion = -1;
+        private bool peopleViewSelling;
+
+        // 选中档案卡的逐项缓存：数据在暂停期间静态，按（pawn, 版本）重建。
+        private readonly List<SkillRecord> peopleSkillsView = new List<SkillRecord>();
+        private Pawn peopleSkillsPawn;
+        private int peopleSkillsVersion = -1;
+        private readonly List<Hediff> peopleHealthVisible = new List<Hediff>();
+        private readonly List<PeopleHealthRow> peopleHealthRows = new List<PeopleHealthRow>();
+        private Pawn peopleHealthPawn;
+        private int peopleHealthVersion = -1;
+        private readonly List<DirectPawnRelation> peopleRelationsView = new List<DirectPawnRelation>();
+        private Pawn peopleRelationsPawn;
+        private int peopleRelationsVersion = -1;
+
+        private sealed class PeopleHealthRow
+        {
+            internal Hediff condition;
+            internal string label;
+            internal string part;
+            internal string value;
+        }
+
         private void DrawPeople(Rect rect)
         {
+            if (!ModsConfig.IdeologyActive) peopleBuyAsColonist = true;
             float width = rect.width;
             string accessReason;
             bool canTrade = network.CanTrade(context, out accessReason);
             float y = DrawPeopleHeader(rect, canTrade, accessReason);
 
-            List<CorporatePersonOffer> offers = network.PeopleOffers.Where(o => !o.delivered && o.pawn != null).ToList();
-            List<Pawn> people = peopleSelling ? network.PeopleSaleCandidates(context).ToList() : offers.Select(o => o.pawn).ToList();
+            if (peopleViewVersion != frameCacheVersion || peopleViewSelling != peopleSelling)
+            {
+                peopleViewVersion = frameCacheVersion;
+                peopleViewSelling = peopleSelling;
+                peopleOffersView.Clear();
+                peopleOffersView.AddRange(network.PeopleOffers.Where(o => !o.delivered && o.pawn != null));
+                peopleView.Clear();
+                if (peopleSelling) peopleView.AddRange(network.PeopleSaleCandidates(context));
+                else
+                {
+                    for (int i = 0; i < peopleOffersView.Count; i++) peopleView.Add(peopleOffersView[i].pawn);
+                }
+                peopleOfferByPawn.Clear();
+                for (int i = 0; i < peopleOffersView.Count; i++) peopleOfferByPawn[peopleOffersView[i].pawn] = peopleOffersView[i];
+            }
+            List<CorporatePersonOffer> offers = peopleOffersView;
+            List<Pawn> people = peopleView;
             if (people.Count == 0)
             {
                 CorporateUI.Notice(new Rect(0f, y, width, 80f),
@@ -57,10 +102,15 @@ namespace Mugirl
                 dossier = new Rect(body.x, roster.yMax + 12f, body.width, Mathf.Max(1f, body.height - rosterHeight - 12f));
             }
             if (compact) DrawPeopleSelector(roster, people, selected);
-            else DrawPeopleRoster(roster, people, offers);
+            else DrawPeopleRoster(roster, people);
 
-            CorporatePersonOffer offer = peopleSelling ? null : offers.FirstOrDefault(o => o.pawn == selected);
-            int price = peopleSelling ? network.PeopleSalePrice(selected) : network.PeoplePurchasePrice(offer);
+            CorporatePersonOffer offer = peopleSelling || !peopleOfferByPawn.TryGetValue(selected, out CorporatePersonOffer selectedOffer)
+                ? null
+                : selectedOffer;
+            bool asColonist = offer?.paid == true ? offer.buyAsColonist : peopleBuyAsColonist;
+            CorporatePersonQuote quote = peopleSelling ? network.PeopleSaleQuote(selected)
+                : network.PeoplePurchaseQuote(offer, asColonist);
+            int price = peopleSelling ? quote.total : network.PeoplePurchasePrice(offer, asColonist);
             bool needsSilver = offer != null && !offer.paid && context.SilverCount < price;
             float footerHeight = needsSilver ? 73f : 48f;
             Rect viewport = new Rect(dossier.x, dossier.y, dossier.width, Mathf.Max(1f, dossier.height - footerHeight));
@@ -69,11 +119,12 @@ namespace Mugirl
             CorporateUI.BeginScrollView(viewport, ref peopleScroll,
                 new Rect(0f, 0f, contentWidth, Mathf.Max(viewport.height, peopleHeight)), "people/dossier/" + selected.thingIDNumber);
             float bottom = 0f;
-            try { DrawCorporatePawnCard(ref bottom, contentWidth, selected, price); }
+            try { DrawCorporatePawnCard(ref bottom, contentWidth, selected, quote, price, offer != null && price == 0); }
             finally { CorporateUI.EndScrollView(); }
             if (Event.current.type == EventType.Layout) peopleHeight = bottom + 10f;
 
-            DrawPeopleAction(new Rect(dossier.x, dossier.yMax - footerHeight, dossier.width, footerHeight), selected, offer, price, canTrade, needsSilver);
+            DrawPeopleAction(new Rect(dossier.x, dossier.yMax - footerHeight, dossier.width, footerHeight),
+                selected, offer, quote, price, asColonist, canTrade, needsSilver);
         }
 
         private void SelectPeopleMode(bool selling)
@@ -83,14 +134,14 @@ namespace Mugirl
             peopleScroll = Vector2.zero;
             peopleRosterScroll = Vector2.zero;
             peopleHeaderScroll = Vector2.zero;
+            if (!selling && !ModsConfig.IdeologyActive) peopleBuyAsColonist = true;
         }
 
         private float DrawPeopleHeader(Rect rect, bool canTrade, string accessReason)
         {
             bool showIntro = rect.height >= 410f;
             float contentHeight = 80f + (showIntro ? 25f : 0f) + (!canTrade ? 28f : 0f)
-                + (network.PeoplePendingSilver > 0 ? 40f : 0f) + (!peopleSelling && !ModsConfig.IdeologyActive ? 28f : 0f)
-                + (peopleSelling ? 28f : 0f);
+                + (network.PeoplePendingSilver > 0 ? 40f : 0f) + (peopleSelling ? 28f : 0f);
             // Header notices may scroll, but never displace the selected person's action.
             float height = Mathf.Min(contentHeight, Mathf.Max(40f, rect.height - 160f));
             float width = rect.width - (contentHeight > height ? 18f : 0f);
@@ -124,8 +175,6 @@ namespace Mugirl
                     }
                     y += 40f;
                 }
-                if (!peopleSelling && !ModsConfig.IdeologyActive)
-                    PeopleHeaderNotice(ref y, width, "Mugirl.CorporatePeople.RequiresIdeology".Translate());
                 if (peopleSelling) PeopleHeaderNotice(ref y, width, "Mugirl.CorporatePeople.SaleWarning".Translate());
             }
             finally { CorporateUI.EndScrollView(); }
@@ -154,7 +203,7 @@ namespace Mugirl
             ShowMenu(options);
         }
 
-        private void DrawPeopleRoster(Rect rect, List<Pawn> people, List<CorporatePersonOffer> offers)
+        private void DrawPeopleRoster(Rect rect, List<Pawn> people)
         {
             float width = rect.width - 18f;
             const float rowHeight = 80f;
@@ -167,8 +216,10 @@ namespace Mugirl
                 for (int i = 0; i < people.Count; i++)
                 {
                     Pawn pawn = people[i];
-                    CorporatePersonOffer offer = peopleSelling ? null : offers.FirstOrDefault(o => o.pawn == pawn);
-                    int price = peopleSelling ? network.PeopleSalePrice(pawn) : network.PeoplePurchasePrice(offer);
+                    CorporatePersonOffer offer = peopleSelling ? null
+                        : peopleOfferByPawn.TryGetValue(pawn, out CorporatePersonOffer rowOffer) ? rowOffer : null;
+                    int price = peopleSelling ? network.PeopleSalePrice(pawn)
+                        : network.PeoplePurchasePrice(offer, offer?.paid == true ? offer.buyAsColonist : peopleBuyAsColonist);
                     Rect row = new Rect(0f, i * (rowHeight + 6f), width, rowHeight);
                     if (CorporateUI.Row(row, pawn.thingIDNumber == peopleSelectedId, "people/select/" + pawn.thingIDNumber) && peopleSelectedId != pawn.thingIDNumber)
                     {
@@ -187,7 +238,8 @@ namespace Mugirl
             finally { CorporateUI.EndScrollView(); }
         }
 
-        private void DrawPeopleAction(Rect rect, Pawn pawn, CorporatePersonOffer offer, int price, bool canTrade, bool needsSilver)
+        private void DrawPeopleAction(Rect rect, Pawn pawn, CorporatePersonOffer offer, CorporatePersonQuote quote,
+            int price, bool asColonist, bool canTrade, bool needsSilver)
         {
             CorporateUI.Rule(new Rect(rect.x, rect.y, rect.width, 1f));
             Rect button = new Rect(rect.x, rect.y + 9f, rect.width, 36f);
@@ -196,7 +248,9 @@ namespace Mugirl
                 if (CorporateUI.Button(button, "Mugirl.CorporatePeople.SellPrice".Translate(CorporateUI.Money(price)), canTrade, id: "people/sell/" + pawn.thingIDNumber))
                 {
                     string gear = (context.Map != null ? "Mugirl.CorporatePeople.MapGear" : "Mugirl.CorporatePeople.CaravanGear").Translate();
-                    Confirm("Mugirl.CorporatePeople.SellConfirm".Translate(pawn.LabelShortCap, CorporateUI.Money(price), gear), () =>
+                    Confirm("Mugirl.CorporatePeople.SellConfirmDetailed".Translate(pawn.LabelShortCap,
+                        CorporateUI.Money(quote.basePrice), CorporateUI.Money(quote.handlingFee),
+                        CorporateUI.Money(quote.shippingFee), CorporateUI.Money(price), gear), () =>
                     {
                         string reason;
                         PeopleResult(network.TrySellPerson(context, pawn, price, out reason), reason);
@@ -208,19 +262,61 @@ namespace Mugirl
             string label = offer.paid ? "Mugirl.CorporatePeople.ClaimPerson".Translate().ToString()
                 : price == 0 ? "Mugirl.CorporateServices.FreePerson".Translate().ToString()
                 : "Mugirl.CorporatePeople.BuyPrice".Translate(CorporateUI.Money(price)).ToString();
-            bool enabled = ModsConfig.IdeologyActive && (offer.paid || canTrade && !needsSilver);
-            if (CorporateUI.Button(button, label, enabled, true, "people/purchase/" + pawn.thingIDNumber))
+            bool enabled = (asColonist || ModsConfig.IdeologyActive) && (offer.paid || canTrade && !needsSilver);
+            const float actionGap = 8f;
+            string modeLabel = (asColonist ? "Mugirl.CorporatePeople.BuyAsColonist" : "Mugirl.CorporatePeople.BuyAsSlave").Translate();
+            float maxModeWidth = Mathf.Max(160f, Mathf.Min(280f, rect.width - 180f));
+            float modeWidth = Mathf.Clamp(PeopleTextSize(modeLabel + "  ▾").x + 20f, 160f, maxModeWidth);
+            button.width = rect.width - modeWidth - actionGap;
+            Rect modeButton = new Rect(button.xMax + actionGap, button.y, modeWidth, button.height);
+            if (CorporateUI.Button(modeButton, PeopleFittedText(modeLabel + "  ▾", modeButton.width - 12f, GameFont.Small),
+                !offer.paid, id: "people/purchase-mode/" + pawn.thingIDNumber))
+                OpenPeoplePurchaseMenu();
+            TooltipHandler.TipRegion(modeButton, modeLabel);
+            string fittedLabel = PeopleFittedText(label, button.width - 12f, GameFont.Small);
+            if (fittedLabel != label) TooltipHandler.TipRegion(button, label);
+            if (CorporateUI.Button(button, fittedLabel, enabled, true,
+                "people/purchase/" + pawn.thingIDNumber))
             {
-                if (offer.paid) PurchaseCorporatePerson(offer);
-                else Confirm("Mugirl.CorporatePeople.BuyConfirm".Translate(pawn.LabelShortCap, CorporateUI.Money(price), context.Label),
-                    () => PurchaseCorporatePerson(offer));
+                if (offer.paid) PurchaseCorporatePerson(offer, asColonist);
+                else
+                {
+                    string confirm = asColonist
+                        ? "Mugirl.CorporatePeople.BuyColonistConfirmDetailed".Translate(pawn.LabelShortCap,
+                            CorporateUI.Money(quote.basePrice), CorporateUI.Money(quote.colonistPremium),
+                            CorporateUI.Money(quote.handlingFee), CorporateUI.Money(quote.shippingFee),
+                            CorporateUI.Money(price), context.Label)
+                        : "Mugirl.CorporatePeople.BuySlaveConfirmDetailed".Translate(pawn.LabelShortCap,
+                            CorporateUI.Money(quote.basePrice), CorporateUI.Money(quote.handlingFee),
+                            CorporateUI.Money(quote.shippingFee), CorporateUI.Money(price), context.Label);
+                    if (price == 0) confirm += "\n\n" + "Mugirl.CorporatePeople.FreeApplied".Translate();
+                    Confirm(confirm, () => PurchaseCorporatePerson(offer, asColonist));
+                }
             }
             if (needsSilver)
                 CorporateUI.Label(new Rect(rect.x, button.yMax + 4f, rect.width, 22f),
                     "Mugirl.CorporatePeople.NoSilver".Translate(), GameFont.Tiny, CorporateUI.Muted);
         }
 
-        private void DrawCorporatePawnCard(ref float y, float width, Pawn pawn, int price)
+        private void OpenPeoplePurchaseMenu()
+        {
+            List<FloatMenuOption> modes = new List<FloatMenuOption>();
+            if (ModsConfig.IdeologyActive)
+                modes.Add(new FloatMenuOption("Mugirl.CorporatePeople.BuyAsSlave".Translate(), () => SelectPeoplePurchaseMode(false)));
+            modes.Add(new FloatMenuOption("Mugirl.CorporatePeople.BuyAsColonist".Translate(), () => SelectPeoplePurchaseMode(true)));
+            MugirlGameUtility.TryAddWindow(new FloatMenu(modes));
+        }
+
+        private void SelectPeoplePurchaseMode(bool asColonist)
+        {
+            if (!asColonist && !ModsConfig.IdeologyActive) return;
+            if (peopleBuyAsColonist == asColonist) return;
+            RequestContentTransition(() => { peopleBuyAsColonist = asColonist; peopleScroll = Vector2.zero; },
+                asColonist ? "people/mode/colonist" : "people/mode/slave");
+        }
+
+        private void DrawCorporatePawnCard(ref float y, float width, Pawn pawn,
+            CorporatePersonQuote quote, int price, bool freeApplied)
         {
             CorporateUI.Texture(new Rect(0f, y, 78f, 100f), PortraitsCache.Get(pawn, new Vector2(78f, 100f), Rot4.South));
             PeopleSingleLine(new Rect(90f, y, width - 132f, 34f), pawn.LabelShortCap, GameFont.Medium);
@@ -234,6 +330,35 @@ namespace Mugirl
             PeopleMetric(new Rect(90f + metricWidth * 2f, y + 40f, metricWidth, 55f), "Mugirl.CorporatePeopleCards.Quote".Translate(), price.ToString("N0"));
             y += 108f;
 
+            PeopleSection(ref y, width, "Mugirl.CorporatePeopleCards.Quote".Translate());
+            PeopleSingleLine(new Rect(0f, y, width, 24f),
+                "Mugirl.CorporatePeople.BasePrice".Translate(CorporateUI.Money(quote.basePrice)), GameFont.Tiny);
+            y += 25f;
+            if (quote.colonistPremium > 0)
+            {
+                PeopleSingleLine(new Rect(0f, y, width, 24f),
+                    "Mugirl.CorporatePeople.ColonistPremium".Translate(CorporateUI.Money(quote.colonistPremium)), GameFont.Tiny);
+                y += 25f;
+            }
+            PeopleSingleLine(new Rect(0f, y, width, 24f),
+                "Mugirl.CorporatePeople.HandlingFee".Translate(
+                    (peopleSelling ? "-" : string.Empty) + CorporateUI.Money(quote.handlingFee)), GameFont.Tiny);
+            y += 25f;
+            PeopleSingleLine(new Rect(0f, y, width, 24f),
+                "Mugirl.CorporatePeople.ShippingFee".Translate(
+                    (peopleSelling ? "-" : string.Empty) + CorporateUI.Money(quote.shippingFee)), GameFont.Tiny);
+            y += 25f;
+            PeopleSingleLine(new Rect(0f, y, width, 24f),
+                (peopleSelling ? "Mugirl.CorporatePeople.SaleNet" : "Mugirl.CorporatePeople.PurchaseTotal")
+                    .Translate(CorporateUI.Money(price)), GameFont.Tiny);
+            y += 25f;
+            if (freeApplied)
+            {
+                PeopleSingleLine(new Rect(0f, y, width, 24f), "Mugirl.CorporatePeople.FreeApplied".Translate(), GameFont.Tiny);
+                y += 25f;
+            }
+            y += 8f;
+
             DrawPeopleSkills(ref y, width, pawn);
             DrawPeopleTraits(ref y, width, pawn);
             DrawPeopleHealth(ref y, width, pawn);
@@ -245,9 +370,16 @@ namespace Mugirl
         {
             PeopleSection(ref y, width, "Mugirl.CorporatePeopleCards.Skills".Translate());
             if (pawn.skills == null) { PeopleEmpty(ref y, width); return; }
+            if (peopleSkillsPawn != pawn || peopleSkillsVersion != frameCacheVersion)
+            {
+                peopleSkillsPawn = pawn;
+                peopleSkillsVersion = frameCacheVersion;
+                peopleSkillsView.Clear();
+                peopleSkillsView.AddRange(pawn.skills.skills.OrderBy(s => s.TotallyDisabled).ThenByDescending(s => s.Level));
+            }
             int columns = width >= 430f ? 2 : 1;
             float columnWidth = (width - (columns - 1) * 20f) / columns;
-            List<SkillRecord> skills = pawn.skills.skills.OrderBy(s => s.TotallyDisabled).ThenByDescending(s => s.Level).ToList();
+            List<SkillRecord> skills = peopleSkillsView;
             for (int i = 0; i < skills.Count; i++)
             {
                 SkillRecord skill = skills[i];
@@ -304,8 +436,28 @@ namespace Mugirl
 
         private void DrawPeopleHealth(ref float y, float width, Pawn pawn)
         {
-            List<Hediff> conditions = pawn.health.hediffSet.hediffs.Where(h => h.Visible).ToList();
-            PeopleSection(ref y, width, "Mugirl.CorporatePeopleCards.HealthRecord".Translate(), conditions.Count.ToString());
+            if (peopleHealthPawn != pawn || peopleHealthVersion != frameCacheVersion)
+            {
+                peopleHealthPawn = pawn;
+                peopleHealthVersion = frameCacheVersion;
+                peopleHealthVisible.Clear();
+                peopleHealthVisible.AddRange(pawn.health.hediffSet.hediffs.Where(h => h.Visible));
+                peopleHealthRows.Clear();
+                foreach (var group in peopleHealthVisible.GroupBy(h => new { Label = h.LabelCap, Part = h.Part?.LabelCap, h.SeverityLabel }))
+                {
+                    Hediff condition = group.First();
+                    List<Hediff> groupList = group.ToList();
+                    peopleHealthRows.Add(new PeopleHealthRow
+                    {
+                        condition = condition,
+                        label = condition.LabelCap + (groupList.Count > 1 ? " x" + groupList.Count : string.Empty),
+                        part = condition.Part?.LabelCap ?? "Mugirl.CorporatePeopleCards.WholeBody".Translate().ToString(),
+                        value = condition.SeverityLabel ?? string.Empty
+                    });
+                }
+            }
+            int conditionsCount = peopleHealthRows.Count;
+            PeopleSection(ref y, width, "Mugirl.CorporatePeopleCards.HealthRecord".Translate(), conditionsCount.ToString());
             PawnCapacityDef[] capacities = { PawnCapacityDefOf.Consciousness, PawnCapacityDefOf.Moving,
                 PawnCapacityDefOf.Manipulation, PawnCapacityDefOf.Sight, PawnCapacityDefOf.Hearing };
             int columns = width >= 430f ? 3 : 2;
@@ -321,20 +473,19 @@ namespace Mugirl
             PeopleSingleLine(new Rect(pain.x, pain.y, pain.width, 19f), "Mugirl.CorporatePeopleCards.Pain".Translate(), GameFont.Tiny, CorporateUI.Muted);
             CorporateUI.Label(new Rect(pain.x, pain.y + 18f, pain.width, 23f), pawn.health.hediffSet.PainTotal.ToStringPercent());
             y += Mathf.Ceil((capacities.Length + 1) / (float)columns) * 47f + 5f;
-            if (conditions.Count == 0)
+            if (conditionsCount == 0)
             {
                 CorporateUI.Label(new Rect(0f, y, width, 26f), "Mugirl.CorporatePeopleCards.NoConditions".Translate(), color: CorporateUI.Muted);
                 y += 40f;
                 return;
             }
             float nameWidth = width * 0.49f, partWidth = width * 0.28f, valueWidth = width - nameWidth - partWidth - 16f;
-            foreach (var group in conditions.GroupBy(h => new { Label = h.LabelCap, Part = h.Part?.LabelCap, h.SeverityLabel }))
+            for (int i = 0; i < peopleHealthRows.Count; i++)
             {
-                Hediff condition = group.First();
-                int count = group.Count();
-                string label = condition.LabelCap + (count > 1 ? " x" + count : string.Empty);
-                string part = condition.Part?.LabelCap ?? "Mugirl.CorporatePeopleCards.WholeBody".Translate().ToString();
-                string value = condition.SeverityLabel ?? string.Empty;
+                PeopleHealthRow healthRow = peopleHealthRows[i];
+                string label = healthRow.label;
+                string part = healthRow.part;
+                string value = healthRow.value;
                 float height = Mathf.Max(27f, Mathf.Max(PeopleTextHeight(label, nameWidth - 8f),
                     Mathf.Max(PeopleTextHeight(part, partWidth - 8f), PeopleTextHeight(value, valueWidth))) + 7f);
                 Rect row = new Rect(0f, y, width, height);
@@ -342,7 +493,7 @@ namespace Mugirl
                 CorporateUI.Label(new Rect(nameWidth, y + 2f, partWidth - 8f, height - 4f), part, color: CorporateUI.Muted);
                 CorporateUI.Label(new Rect(nameWidth + partWidth, y + 2f, valueWidth, height - 4f), value, color: CorporateUI.Muted, anchor: TextAnchor.UpperRight);
                 CorporateUI.Rule(new Rect(0f, row.yMax - 1f, width, 1f));
-                if (peopleTipsEnabled && Mouse.IsOver(row)) TooltipHandler.TipRegion(row, condition.GetTooltip(pawn, false));
+                if (peopleTipsEnabled && Mouse.IsOver(row)) TooltipHandler.TipRegion(row, healthRow.condition.GetTooltip(pawn, false));
                 y += height;
             }
             y += 16f;
@@ -390,10 +541,17 @@ namespace Mugirl
 
         private void DrawPeopleRelations(ref float y, float width, Pawn pawn)
         {
-            var relations = pawn.relations.DirectRelations.Where(r => r.otherPawn != null && MugirlWildSlaveUtility.IsPlayerFaction(r.otherPawn.Faction)).ToList();
-            if (relations.Count == 0) return;
-            PeopleSection(ref y, width, "Mugirl.CorporatePeopleCards.Relations".Translate(), relations.Count.ToString());
-            foreach (var relation in relations)
+            if (peopleRelationsPawn != pawn || peopleRelationsVersion != frameCacheVersion)
+            {
+                peopleRelationsPawn = pawn;
+                peopleRelationsVersion = frameCacheVersion;
+                peopleRelationsView.Clear();
+                peopleRelationsView.AddRange(pawn.relations.DirectRelations
+                    .Where(r => r.otherPawn != null && MugirlWildSlaveUtility.IsPlayerFaction(r.otherPawn.Faction)));
+            }
+            if (peopleRelationsView.Count == 0) return;
+            PeopleSection(ref y, width, "Mugirl.CorporatePeopleCards.Relations".Translate(), peopleRelationsView.Count.ToString());
+            foreach (var relation in peopleRelationsView)
             {
                 float labelWidth = width * 0.36f;
                 string label = relation.def.LabelCap;
@@ -461,10 +619,10 @@ namespace Mugirl
             finally { Text.Font = previous; }
         }
 
-        private void PurchaseCorporatePerson(CorporatePersonOffer offer)
+        private void PurchaseCorporatePerson(CorporatePersonOffer offer, bool asColonist)
         {
             string reason;
-            PeopleResult(network.TryPurchasePerson(context, offer, out reason), reason);
+            PeopleResult(network.TryPurchasePerson(context, offer, asColonist, out reason), reason);
         }
 
         private void PeopleResult(bool success, string reason)

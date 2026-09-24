@@ -17,6 +17,35 @@ namespace Mugirl
         public static ThingDef Mugirl_Bikini;
         public static ThingDef Mugirl_Bikini_Stocking;
 
+        // 巨企展览雪牛娘的主题成套服装引用。
+        public static ThingDef Mugirl_NunDressClassic;
+        public static ThingDef Mugirl_NunDressSimple;
+        public static ThingDef Mugirl_NunVeil;
+        public static ThingDef Mugirl_NunBlindfold;
+        public static ThingDef Mugirl_PoliceShirt;
+        public static ThingDef Mugirl_PoliceShorts;
+        public static ThingDef Mugirl_PoliceThong;
+        public static ThingDef Mugirl_PoliceBra;
+        public static ThingDef Mugirl_PoliceZipperBra;
+        public static ThingDef Mugirl_PoliceBoots;
+        public static ThingDef Mugirl_PoliceCap;
+        public static ThingDef Mugirl_BunnyGirlTop;
+        public static ThingDef Mugirl_BunnyGirlStocking;
+        public static ThingDef Mugirl_BunnyGirlHeaddress;
+        public static ThingDef Mugirl_HighCutSweater;
+        public static ThingDef Mugirl_LeatherHeels;
+        public static ThingDef Mugirl_SisterMask;
+        public static ThingDef Mugirl_BrandBag;
+        public static ThingDef Mugirl_OL;
+        public static ThingDef Mugirl_WeddingDress;
+        public static ThingDef Mugirl_Cheongsam;
+        public static ThingDef Mugirl_ImmortalFairy;
+        public static ThingDef Mugirl_ImmortalFairyAzure;
+        public static ThingDef Mugirl_Sunglasses;
+        public static ThingDef Mugirl_Veil;
+        public static ThingDef Mugirl_Shirt;
+        public static ThingDef Mugirl_Jeans;
+
         // 高科技束具引用。
         public static ThingDef Mugirl_ShockCollar;
 
@@ -50,6 +79,7 @@ namespace Mugirl
         public static PawnKindDef AI_GC_MugirlRaider;
         public static PawnKindDef Mugirl_CorporateRepresentative;
         public static PawnKindDef Mugirl_CorporateSupport;
+        public static PawnKindDef Mugirl_CorporateShowcase;
 
         // 巨企支援小队死战条款特性引用。
         public static TraitDef Mugirl_CorporateDiehard;

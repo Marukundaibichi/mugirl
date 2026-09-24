@@ -30,6 +30,13 @@ namespace Mugirl
                 return;
             }
 
+            // DynamicDrawPhaseAt 对全地图每个 pawn 每帧调用；先用种族判断挡掉非雪牛娘，
+            // 再做 AllComps 线性扫描（Comp_MugirlMount 只存在于雪牛娘身上）。
+            if (!MugirlIdentity.IsMugirlPawn(pawn))
+            {
+                return;
+            }
+
             Comp_MugirlMount comp = pawn.TryGetComp<Comp_MugirlMount>();
             Pawn rider = comp?.MountedPawn;
             if (rider == null || rider.Destroyed || rider.Drawer?.renderer == null)

@@ -103,6 +103,9 @@ Mugirl 相关异常：无/有，摘要：
 - 束具穿戴、卸下、破解、Hediff 清理、Gizmo 点击。
 - 牵引、被牵引、牵到建筑、混合牵引普通 pawn。
 - 骑乘、下骑、骑乘近战、装备绘制。
+- 雪牛投掷（Biotech）：确认等于与超过 `CarryingCapacity` 的目标分别可举起与被拒绝；整堆物品按整堆重量判定。分别尝试孤立墙体/山体，以及占用格或四边邻格连接墙、家具、墙灯或地下电缆的 `Building` 目标；所有未显式定义 `Mass` 的 `Building` 至少按完整最大耐久度 × 10 计算，同时保留占地面积、建造材料造成的更高重量。`Mineable` 即使有较小的显式 `Mass`，也不能低于完整最大耐久度 × 10。原版墙体基础耐久 300 对应 3000 kg，具体材质按实际最大耐久计算；花岗岩山体 9000 kg。550 kg 搬运上限均应拒绝，提升到足够高后才允许举起；打残目标不能降低门槛。显式有 `Mass` 的花岗岩岩块 `ChunkGranite` 仍按原规则判定。确认举起、落点瞄准、命中、放下、中断及存读档后目标不丢失、不复制。
+- 投掷飞行视觉：在正常、快速和暂停状态观察位置与旋转是否连续，确认空中旋转保持每游戏 tick 42°，飞行途中能转多圈；尤其检查物体有多个渲染帧但无新游戏 tick 时仍平滑前进和旋转。镜头移到落点、施术者离开视野时飞物不应消失；读档后继续飞行不应跳到终点。显示补间不能提前穿透屋顶或触发命中，落地仍在预定游戏 tick 发生。
+- 雪牛流星大灌篮（Biotech）：普通模式不显示能力，也不能从残留命令触发；开发者模式下只接受仍有头的人形 `Pawn`。确认摘头后身体留在原处；对照目标摘头前的头部和头发，检查手中篮球的实际绘制尺寸一致，拍球、起跳、灌篮和落点效果正常。篮筐附近没有可跳落点时，应在选目标阶段拒绝，不能出现原地起落后头在远处爆裂。起跳和上升阶段检查头颅贴近施术者手部，与 `PawnFlyer` 同步移动，不应提前脱手或消失。在正常、快速和暂停状态观察空中头部的位置与旋转：空中旋转保持每游戏 tick 46°，飞行途中能转多圈，同一个游戏 tick 内的多个渲染帧应平滑补间；镜头移到头部、控制器离开视野时，头部仍应显示。施术者越过最高点开始下坠时，完整头颅应连续地从手边转为加速下扣，边界处不能先悬停或回跳；下扣明显快于雪牛娘，头的触地点应位于空中雪牛娘面朝方向的前方、画面下方，并在她落地前砸地。下扣期间没有提前爆血或碎头，触地时音效、血液与碎裂在同一瞬间出现，头应立刻消失，不弹跳。分别观察摘头瞬间、拍球触地和灌篮触地碎裂时的血液飞溅，`CanBleed` 为 false 的目标不应产生血液或血沫。对无头、非人形、目标死亡/离图及施术者中断分别检查拒绝提示和清理，保存读档后无残留控制器或异常。
 - 事件和任务：开局坠舱、逃奴加入、野人事件、快递事件。
 
 ## 专项验证
@@ -117,10 +120,11 @@ Mugirl 相关异常：无/有，摘要：
 | `Test-MeleeAnimationScope.ps1` | 近战动画兼容边界 |
 | `Start-CorporateValidation.ps1` | 巨企隔离游戏测试，参数见[巨企验证](features/giant-corporation-v1-validation.md) |
 | `Start-LanceRuntimeValidation.ps1` | 骑枪破墙、连续运动模糊及落地回收；自动构建外部隔离 DLL，见[骑枪专题](features/lance-charge.md) |
+| `Start-ThrowRuntimeValidation.ps1 -RunName <名称>` | 投掷重量/连接判定、墙体飞行落地与开发者灌篮；自动构建外部隔离 DLL，结果写入隔离测试目录的 `throw-checks.txt` 和 `throw-complete.txt` |
 | `Start-StylingStartupValidation.ps1` | 外观及造型台冷启动验证 |
 | `Start-PregnancyMoodValidation.ps1` | 怀孕心情隔离测试；`-WithoutBiotech` 检查无 Biotech 配置 |
 
-`docs/tools` 中的 `.cs` 文件是相应验证驱动或检查实现，包括 `Corporate*`、`LanceRuntimeValidation`、`StylingStartupValidation`、`FaceAccessoryRuntimeValidation`、`LongCascadeRuntimeValidation`、`NeuralArmorRuntimeChecks` 和 `PregnancyMoodProbe`。它们不是清理对象，也不能当作正式模组源码自动加入发布 DLL。
+`docs/tools` 中的 `.cs` 文件是相应验证驱动或检查实现，包括 `Corporate*`、`LanceRuntimeValidation`、`ThrowRuntimeValidation`、`StylingStartupValidation`、`FaceAccessoryRuntimeValidation`、`LongCascadeRuntimeValidation`、`NeuralArmorRuntimeChecks` 和 `PregnancyMoodProbe`。它们不是清理对象，也不能当作正式模组源码自动加入发布 DLL。
 
 启动真实游戏的测试会生成配置、日志或测试存档，部分脚本使用外部含联接测试游戏。运行前阅读脚本参数与相关功能文档；测试后检查 fresh log，涉及测试目录或脚本改动后运行目录环路审计。不要在模组内重建测试游戏联接。
 

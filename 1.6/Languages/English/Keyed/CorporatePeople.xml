@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <Mugirl.CorporatePeople.Title>Mugirl trading</Mugirl.CorporatePeople.Title>
-  <Mugirl.CorporatePeople.Intro>Human resources · Delivered as listed. Enrolled as slaves.</Mugirl.CorporatePeople.Intro>
+  <Mugirl.CorporatePeople.Intro>Human resources · Rostered Mugirls wear colorful matching outfits and can join as slaves or colonists.</Mugirl.CorporatePeople.Intro>
   <Mugirl.CorporatePeople.BuyTab>Weekly roster</Mugirl.CorporatePeople.BuyTab>
   <Mugirl.CorporatePeople.SellTab>Corporate procurement</Mugirl.CorporatePeople.SellTab>
   <Mugirl.CorporatePeople.ClaimSilver>Claim proceeds: {0}</Mugirl.CorporatePeople.ClaimSilver>
-  <Mugirl.CorporatePeople.RequiresIdeology>Slave purchases require the Ideology DLC.</Mugirl.CorporatePeople.RequiresIdeology>
+  <Mugirl.CorporatePeople.RequiresIdeology>Buying as a slave requires the Ideology DLC. Colonist purchases remain available.</Mugirl.CorporatePeople.RequiresIdeology>
   <Mugirl.CorporatePeople.NoOffers>This week's roster is sold out. New arrivals next week.</Mugirl.CorporatePeople.NoOffers>
   <Mugirl.CorporatePeople.ClaimPerson>Receive paid personnel</Mugirl.CorporatePeople.ClaimPerson>
-  <Mugirl.CorporatePeople.BuyPrice>Buy as slave · {0}</Mugirl.CorporatePeople.BuyPrice>
-  <Mugirl.CorporatePeople.BuyConfirm>Purchase: {0} (slave)\nPayment: {1}\nDelivery: {2}\n\nDelivered as listed. The buyer handles accommodation and suppression. Caravans assume the added person and equipment load.\n\nAuthorize payment?</Mugirl.CorporatePeople.BuyConfirm>
+  <Mugirl.CorporatePeople.BuyPrice>Purchase personnel · {0}</Mugirl.CorporatePeople.BuyPrice>
+  <Mugirl.CorporatePeople.BuyConfirm>Purchase: {0}\nFinal payment: {1}\nDelivery: {2}\n\nThe corporation dresses rostered Mugirls in colorful matching outfits. Caravans assume the added person and equipment load.\n\nAuthorize payment?</Mugirl.CorporatePeople.BuyConfirm>
+  <Mugirl.CorporatePeople.BuyAsSlave>Buy as slave</Mugirl.CorporatePeople.BuyAsSlave>
+  <Mugirl.CorporatePeople.BuyAsColonist>Buy as colonist (+50%)</Mugirl.CorporatePeople.BuyAsColonist>
+  <Mugirl.CorporatePeople.BasePrice>Base price: {0}</Mugirl.CorporatePeople.BasePrice>
+  <Mugirl.CorporatePeople.ColonistPremium>Colonist premium: {0}</Mugirl.CorporatePeople.ColonistPremium>
+  <Mugirl.CorporatePeople.HandlingFee>Handling fee: {0}</Mugirl.CorporatePeople.HandlingFee>
+  <Mugirl.CorporatePeople.ShippingFee>Shipping: {0}</Mugirl.CorporatePeople.ShippingFee>
+  <Mugirl.CorporatePeople.PurchaseTotal>Final payment: {0}</Mugirl.CorporatePeople.PurchaseTotal>
+  <Mugirl.CorporatePeople.SaleNet>Net proceeds: {0}</Mugirl.CorporatePeople.SaleNet>
+  <Mugirl.CorporatePeople.FreeApplied>This week's free purchase covers the entire price and all fees.</Mugirl.CorporatePeople.FreeApplied>
+  <Mugirl.CorporatePeople.BuySlaveConfirmDetailed>Purchase: {0} (slave)\nBase price: {1}\nHandling fee: {2}\nShipping: {3}\nFinal payment: {4}\nDelivery: {5}\n\nThe corporation dresses rostered Mugirls in colorful matching outfits. The buyer handles accommodation and suppression; caravans assume the added person and equipment load.\n\nConfirm purchase?</Mugirl.CorporatePeople.BuySlaveConfirmDetailed>
+  <Mugirl.CorporatePeople.BuyColonistConfirmDetailed>Purchase: {0} (colonist)\nBase price: {1}\nColonist premium: {2}\nHandling fee: {3}\nShipping: {4}\nFinal payment: {5}\nDelivery: {6}\n\nThe corporation dresses rostered Mugirls in colorful matching outfits. Caravans assume the added person and equipment load.\n\nConfirm purchase?</Mugirl.CorporatePeople.BuyColonistConfirmDetailed>
   <Mugirl.CorporatePeople.SaleWarning>Slave trade · Family and ideology consequences; colonists suffer -8 mood for 8 days.</Mugirl.CorporatePeople.SaleWarning>
   <Mugirl.CorporatePeople.NoCandidates>No eligible personnel. We purchase secured adult mugirl prisoners and slaves; free colonists, visitors and temporary quest members are excluded.</Mugirl.CorporatePeople.NoCandidates>
   <Mugirl.CorporatePeople.SellPrice>Sell to corporation · {0}</Mugirl.CorporatePeople.SellPrice>
   <Mugirl.CorporatePeople.MapGear>Apparel travels with the person. Weapons, inventory and weapon-wheel reserves are left on site.</Mugirl.CorporatePeople.MapGear>
   <Mugirl.CorporatePeople.CaravanGear>All carried items transfer with the person, including weapon-wheel reserves. Move anything you intend to keep first.</Mugirl.CorporatePeople.CaravanGear>
-  <Mugirl.CorporatePeople.SellConfirm>Transfer: {0}\nReceivable: {1}\n\nSlave trading triggers family and ideology consequences. Colonists receive “sent a mugirl to a ruthless corporation”: -8 mood for 8 days; another sale refreshes the duration.\n\n{2}\n\nTransfer is permanent. The person leaves your colony's ownership. Sign the agreement?</Mugirl.CorporatePeople.SellConfirm>
+  <Mugirl.CorporatePeople.SellConfirm>Transfer: {0}\nNet proceeds: {1}\n\nSlave trading triggers family and ideology consequences. Colonists receive “sent a mugirl to a ruthless corporation”: -8 mood for 8 days; another sale refreshes the duration.\n\n{2}\n\nTransfer is permanent. The person leaves your colony's ownership. Sign the agreement?</Mugirl.CorporatePeople.SellConfirm>
+  <Mugirl.CorporatePeople.SellConfirmDetailed>Transfer: {0}\nBase price: {1}\nHandling fee: -{2}\nShipping: -{3}\nNet proceeds: {4}\n\nSlave trading triggers family and ideology consequences. Colonists receive “sent a mugirl to a ruthless corporation”: -8 mood for 8 days; another sale refreshes the duration.\n\n{5}\n\nTransfer is permanent. The person leaves your colony's ownership. Sign the agreement?</Mugirl.CorporatePeople.SellConfirmDetailed>
   <Mugirl.CorporatePeople.AgeHealth>Age {0} · Overall health {1}</Mugirl.CorporatePeople.AgeHealth>
   <Mugirl.CorporatePeople.Skills>Main skills: {0} (* passion, ** burning passion)</Mugirl.CorporatePeople.Skills>
   <Mugirl.CorporatePeople.Traits>Traits: {0}</Mugirl.CorporatePeople.Traits>

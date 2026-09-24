@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <Mugirl.CorporatePeople.Title>雪牛娘交易</Mugirl.CorporatePeople.Title>
-  <Mugirl.CorporatePeople.Intro>人力资源部 · 按档交付，以奴隶身份入籍。</Mugirl.CorporatePeople.Intro>
+  <Mugirl.CorporatePeople.Intro>人力资源部 · 展销人员身着花花绿绿的成套雪牛娘服装，可作为奴隶或殖民者购入。</Mugirl.CorporatePeople.Intro>
   <Mugirl.CorporatePeople.BuyTab>本周展览</Mugirl.CorporatePeople.BuyTab>
   <Mugirl.CorporatePeople.SellTab>巨企收购</Mugirl.CorporatePeople.SellTab>
   <Mugirl.CorporatePeople.ClaimSilver>领取应收款 {0}</Mugirl.CorporatePeople.ClaimSilver>
-  <Mugirl.CorporatePeople.RequiresIdeology>奴隶购入业务需要 Ideology DLC。</Mugirl.CorporatePeople.RequiresIdeology>
+  <Mugirl.CorporatePeople.RequiresIdeology>购买为奴隶需要 Ideology DLC；仍可购买为殖民者。</Mugirl.CorporatePeople.RequiresIdeology>
   <Mugirl.CorporatePeople.NoOffers>本周名额已售罄，下周补充。</Mugirl.CorporatePeople.NoOffers>
   <Mugirl.CorporatePeople.ClaimPerson>领取已付款人员</Mugirl.CorporatePeople.ClaimPerson>
-  <Mugirl.CorporatePeople.BuyPrice>购买为奴隶 · {0}</Mugirl.CorporatePeople.BuyPrice>
-  <Mugirl.CorporatePeople.BuyConfirm>购入：{0}（奴隶）\n款项：{1}\n交付：{2}\n\n按档交付。接收方负责安置与抑制度管理。\n远行队需承担人员及随身装备负载。\n\n确认支付？</Mugirl.CorporatePeople.BuyConfirm>
+  <Mugirl.CorporatePeople.BuyPrice>购买人员 · {0}</Mugirl.CorporatePeople.BuyPrice>
+  <Mugirl.CorporatePeople.BuyConfirm>购入：{0}\n最终付款：{1}\n交付：{2}\n\n巨企将展销人员打扮成花花绿绿的成套雪牛娘服装。远行队需承担人员及随身装备负载。\n\n确认支付？</Mugirl.CorporatePeople.BuyConfirm>
+  <Mugirl.CorporatePeople.BuyAsSlave>购买为奴隶</Mugirl.CorporatePeople.BuyAsSlave>
+  <Mugirl.CorporatePeople.BuyAsColonist>购买为殖民者（加价 50%）</Mugirl.CorporatePeople.BuyAsColonist>
+  <Mugirl.CorporatePeople.BasePrice>基础价：{0}</Mugirl.CorporatePeople.BasePrice>
+  <Mugirl.CorporatePeople.ColonistPremium>殖民者加价：{0}</Mugirl.CorporatePeople.ColonistPremium>
+  <Mugirl.CorporatePeople.HandlingFee>手续费：{0}</Mugirl.CorporatePeople.HandlingFee>
+  <Mugirl.CorporatePeople.ShippingFee>运费：{0}</Mugirl.CorporatePeople.ShippingFee>
+  <Mugirl.CorporatePeople.PurchaseTotal>最终付款：{0}</Mugirl.CorporatePeople.PurchaseTotal>
+  <Mugirl.CorporatePeople.SaleNet>最终实收：{0}</Mugirl.CorporatePeople.SaleNet>
+  <Mugirl.CorporatePeople.FreeApplied>已使用本周免费名额，整笔款项和费用均已豁免。</Mugirl.CorporatePeople.FreeApplied>
+  <Mugirl.CorporatePeople.BuySlaveConfirmDetailed>购入：{0}（奴隶）\n基础价：{1}\n手续费：{2}\n运费：{3}\n最终付款：{4}\n交付：{5}\n\n巨企将其打扮成花花绿绿的成套雪牛娘服装。接收方负责安置与抑制度管理；远行队需承担人员及随身装备负载。\n\n确认购入？</Mugirl.CorporatePeople.BuySlaveConfirmDetailed>
+  <Mugirl.CorporatePeople.BuyColonistConfirmDetailed>购入：{0}（殖民者）\n基础价：{1}\n殖民者加价：{2}\n手续费：{3}\n运费：{4}\n最终付款：{5}\n交付：{6}\n\n巨企将其打扮成花花绿绿的成套雪牛娘服装。远行队需承担人员及随身装备负载。\n\n确认购入？</Mugirl.CorporatePeople.BuyColonistConfirmDetailed>
   <Mugirl.CorporatePeople.SaleWarning>奴隶贸易 · 触发亲友与意识形态后果；殖民者 -8 心情，8 日。</Mugirl.CorporatePeople.SaleWarning>
   <Mugirl.CorporatePeople.NoCandidates>暂无合格人员。仅收购成年、已安全关押的雪牛娘囚犯或奴隶；自由殖民者、访客和任务临时成员除外。</Mugirl.CorporatePeople.NoCandidates>
   <Mugirl.CorporatePeople.SellPrice>出售给巨企 · {0}</Mugirl.CorporatePeople.SellPrice>
   <Mugirl.CorporatePeople.MapGear>服装随人交付；武器、背包及武器轮盘储备卸在原地。</Mugirl.CorporatePeople.MapGear>
   <Mugirl.CorporatePeople.CaravanGear>全部随身物品随人交付，含武器轮盘储备。需保留的物品请先转移。</Mugirl.CorporatePeople.CaravanGear>
-  <Mugirl.CorporatePeople.SellConfirm>转让：{0}\n应收：{1}\n\n奴隶贸易将触发亲友与意识形态后果。殖民者获得“把雪牛娘送去了黑心企业”：-8 心情，8 日，再次出售刷新时限。\n\n{2}\n\n转让永久生效，人员不再属于殖民地。确认签约？</Mugirl.CorporatePeople.SellConfirm>
+  <Mugirl.CorporatePeople.SellConfirm>转让：{0}\n实收：{1}\n\n奴隶贸易将触发亲友与意识形态后果。殖民者获得“把雪牛娘送去了黑心企业”：-8 心情，8 日，再次出售刷新时限。\n\n{2}\n\n转让永久生效，人员不再属于殖民地。确认签约？</Mugirl.CorporatePeople.SellConfirm>
+  <Mugirl.CorporatePeople.SellConfirmDetailed>转让：{0}\n基础价：{1}\n手续费：-{2}\n运费：-{3}\n最终实收：{4}\n\n奴隶贸易将触发亲友与意识形态后果。殖民者获得“把雪牛娘送去了黑心企业”：-8 心情，8 日，再次出售刷新时限。\n\n{5}\n\n转让永久生效，人员不再属于殖民地。确认签约？</Mugirl.CorporatePeople.SellConfirmDetailed>
   <Mugirl.CorporatePeople.AgeHealth>{0} 岁 · 整体健康 {1}</Mugirl.CorporatePeople.AgeHealth>
   <Mugirl.CorporatePeople.Skills>主要技能：{0}（* 热情，** 强烈热情）</Mugirl.CorporatePeople.Skills>
   <Mugirl.CorporatePeople.Traits>特性：{0}</Mugirl.CorporatePeople.Traits>

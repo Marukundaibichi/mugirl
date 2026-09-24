@@ -12,6 +12,7 @@ namespace Mugirl.Features.WeaponWheel
 
         internal ThingWithComps Weapon => wheelComp?.GetBackWeapon(displayIndex);
         internal int DisplayIndex => displayIndex;
+        internal bool HasAutoloadingSystem => wheelComp?.HasAutoloadingSystem == true;
 
         public PawnRenderNode_BackWeapon(
             Pawn pawn,
@@ -62,12 +63,12 @@ namespace Mugirl.Features.WeaponWheel
     {
         public override bool CanDrawNow(PawnRenderNode node, PawnDrawParms parms)
         {
+            if (parms.flags.FlagSet(PawnRenderFlags.Portrait) || parms.pawn.Dead || parms.pawn.GetPosture().InBed())
+            {
+                return false;
+            }
             PawnRenderNode_BackWeapon backNode = node as PawnRenderNode_BackWeapon;
-            return backNode?.Weapon != null
-                && !parms.flags.FlagSet(PawnRenderFlags.Portrait)
-                && !parms.pawn.Dead
-                && !parms.pawn.GetPosture().InBed()
-                && base.CanDrawNow(node, parms);
+            return backNode?.Weapon != null && base.CanDrawNow(node, parms);
         }
 
         public override Vector3 OffsetFor(PawnRenderNode node, PawnDrawParms parms, out Vector3 pivot)
@@ -102,7 +103,8 @@ namespace Mugirl.Features.WeaponWheel
         {
             if (parms.facing == Rot4.South)
             {
-                return -2f;
+                // 穿戴装弹系统时，第 2 格普通背负枪也应位于南向腰带的 -3 层之后。
+                return ((PawnRenderNode_BackWeapon)node).HasAutoloadingSystem ? -8f : -2f;
             }
             if (parms.facing == Rot4.North)
             {
@@ -200,12 +202,12 @@ namespace Mugirl.Features.WeaponWheel
 
         public override bool CanDrawNow(PawnRenderNode node, PawnDrawParms parms)
         {
+            if (parms.flags.FlagSet(PawnRenderFlags.Portrait) || parms.pawn.Dead || parms.pawn.GetPosture().InBed())
+            {
+                return false;
+            }
             PawnRenderNode_AutoloadingWeapon grooveNode = node as PawnRenderNode_AutoloadingWeapon;
-            return grooveNode?.Weapon != null
-                && !parms.flags.FlagSet(PawnRenderFlags.Portrait)
-                && !parms.pawn.Dead
-                && !parms.pawn.GetPosture().InBed()
-                && base.CanDrawNow(node, parms);
+            return grooveNode?.Weapon != null && base.CanDrawNow(node, parms);
         }
 
         public override Vector3 OffsetFor(PawnRenderNode node, PawnDrawParms parms, out Vector3 pivot)
@@ -229,8 +231,9 @@ namespace Mugirl.Features.WeaponWheel
         {
             if (parms.facing == Rot4.South)
             {
-                // 南向时由装弹系统本体遮住四个凹槽武器，表现为枪械插在背架之后。
-                return -4f;
+                // 腰带本体南向为 -3；四把凹槽枪分别处于其后方的不同深度，
+                // 避免完整尺寸的枪械互相重叠时共面闪烁。
+                return -4f - ((PawnRenderNode_AutoloadingWeapon)node).DisplayIndex;
             }
             if (parms.facing == Rot4.North)
             {

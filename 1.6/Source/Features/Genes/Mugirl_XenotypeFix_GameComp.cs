@@ -149,6 +149,8 @@ namespace Mugirl
         public bool xenotypeFixed;
         public bool throwGeneFixed;
         public bool dunkGeneFixed;
+        // 旧标记可能在投掷尚未启用时已写入存档；新标记只迁移本轮正式授予的基因。
+        public bool throwSystemGeneFixed;
         public int checkTimer = 300;
 
         public Mugirl_XenotypeFix_GameComp() { }
@@ -157,7 +159,7 @@ namespace Mugirl
 
         public override void GameComponentTick()
         {
-            if (!ModsConfig.BiotechActive || (xenotypeFixed && throwGeneFixed && dunkGeneFixed))
+            if (!ModsConfig.BiotechActive || (xenotypeFixed && throwGeneFixed && dunkGeneFixed && throwSystemGeneFixed))
             {
                 return;
             }
@@ -172,6 +174,7 @@ namespace Mugirl
             xenotypeFixed = true;
             throwGeneFixed = true;
             dunkGeneFixed = true;
+            throwSystemGeneFixed = true;
         }
 
         private void TryFixMugirlXenotype()
@@ -194,6 +197,7 @@ namespace Mugirl
             Scribe_Values.Look(ref xenotypeFixed, "xenotypeFixed", false);
             Scribe_Values.Look(ref throwGeneFixed, "throwGeneFixed", false);
             Scribe_Values.Look(ref dunkGeneFixed, "dunkGeneFixed", false);
+            Scribe_Values.Look(ref throwSystemGeneFixed, "throwSystemGeneFixed", false);
             Scribe_Values.Look(ref checkTimer, "checkTimer", 300);
         }
     }

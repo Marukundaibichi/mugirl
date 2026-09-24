@@ -59,6 +59,7 @@ namespace Mugirl
 
     public partial class CorporateNetwork
     {
+        private const string CombatApparelBuyOnlyTag = "Mugirl_CombatApparelBuyOnly";
         private List<CorporateStock> stock = new List<CorporateStock>();
         private List<CorporateOrder> orders = new List<CorporateOrder>();
         // 每局组件内只缓存 Def 目录，不保存 UI 预览物品；新档/读档组件重新构造。
@@ -87,7 +88,8 @@ namespace Mugirl
         {
             if (def == null || def.category != ThingCategory.Item || def == ThingDefOf.Silver
                 || def.tradeability == Tradeability.None || def.BaseMarketValue <= 0f
-                || !def.destroyable || def.destroyOnDrop || def.isUnfinishedThing) return false;
+                || !def.destroyable || def.destroyOnDrop || def.isUnfinishedThing
+                || def.tradeTags?.Contains(CombatApparelBuyOnlyTag) == true) return false;
             Type type = def.thingClass;
             // 需要专用生成内容的对象不通过通用工厂制造空壳；常规物资/装备均可订购。
             return type == typeof(Thing) || type == typeof(ThingWithComps)
@@ -100,6 +102,13 @@ namespace Mugirl
                 || (thing is Apparel apparel && apparel.WornByCorpse) || CompBiocodable.IsBiocoded(thing)) return 0f;
             if (thing.def == Mugirl_DefOf.Mugirl_Milk || thing.def == CorporateTradeDefOf.Mugirl_Wool)
                 return TradeSettings.rawProductPriceFactor;
+            // 已卸载家具作为 MinifiedThing 交货；材料和建造分类都属于内部 Building。
+            if (thing is MinifiedThing mini && mini.InnerThing is Building furniture
+                && !furniture.Destroyed && furniture.def.category == ThingCategory.Building
+                && furniture.def.minifiedDef == mini.def
+                && furniture.def.designationCategory == CorporateTradeDefOf.Furniture
+                && furniture.Stuff == CorporateTradeDefOf.Mugirl_Wool)
+                return TradeSettings.productPriceFactor;
             if (thing.Stuff == CorporateTradeDefOf.Mugirl_Wool || TradeSettings.productDefs.Contains(thing.def))
                 return TradeSettings.productPriceFactor;
             CompIngredients ingredients = thing.TryGetComp<CompIngredients>();
