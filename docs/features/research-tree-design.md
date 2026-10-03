@@ -100,7 +100,7 @@ Firearm ─ Pneum ───── Auto ───┘
 | --- | --- | --- | --- | --- | --- | --- |
 | `Mugirl_DairyProcessing` | 雪牛娘乳品加工 | Industrial | 400 | 无 | 基础乳品 4 配方：布丁、奶酪、奶糖、奶油苹果 | (0.8, 0.9) |
 | `Mugirl_MilkPowerUtilization` | 乳能利用 | Industrial | 600 | 乳品加工 | 奶发电机（另需 `Electricity`） | (2.35, 0.55) |
-| `Mugirl_AdvancedDairy` | 精制乳品 | Industrial | 1000 | 乳品加工 | 精制乳品 5 配方（另需 `AirConditioning`；奶糖另需 `DrugProduction`） | (2.35, 1.25) |
+| `Mugirl_AdvancedDairy` | 精制乳品 | Industrial | 1000 | 乳品加工 | 精制乳品 5 配方（2026-09-26 取消 `AirConditioning` / `DrugProduction` 联动研究要求） | (2.35, 1.25) |
 | `Mugirl_RopeHandling` | 束具与拴系 | Industrial | 300 | 无 | 墙挂拴环（另需 `ComplexFurniture`）、中世纪/工业钥匙、基础束缚件（另需 `ComplexClothing`） | (0.8, 2.15) |
 | `Mugirl_RegulatedMilking` | 规范采乳 | Industrial | 700 | 束具与拴系 | 穿戴式/隐藏式采奶器（另需 `Machining`） | (2.35, 2.15) |
 | `Mugirl_BehavioralConditioning` | 高阶管制技术 | Industrial | 1200 | 规范采乳 | 电击项圈（另需 `Electricity`）、洗脑头盔（另需 `MicroelectronicsBasics`）、Spacer/进阶钥匙、磁力镣铐（另需 `Fabrication`） | (3.9, 2.15) |
@@ -125,7 +125,7 @@ Firearm ─ Pneum ───── Auto ───┘
 | --- | --- | --- | --- |
 | `Mugirl_DairyProcessing` | （新增） | 400 | 无；开局入口，对标原版早期工业项目 |
 | `Mugirl_MilkPowerUtilization` | （新增） | 600 | 物品层 `Electricity`（原设计为项目前置） |
-| `Mugirl_AdvancedDairy` | （新增） | 1000 | 物品层 `AirConditioning`、`DrugProduction` |
+| `Mugirl_AdvancedDairy` | （新增） | 1000 | 无（2026-09-26 取消物品层原版联动研究，保留种族乳品加工链） |
 | `Mugirl_RopeHandling` | （新增） | 300 | 物品层 `ComplexFurniture` |
 | `Mugirl_RegulatedMilking` | （新增） | 700 | 物品层 `Machining` |
 | `Mugirl_BehavioralConditioning` | （新增） | 1200 | 物品层 `Electricity`、`MicroelectronicsBasics`、`Fabrication` |
@@ -139,14 +139,14 @@ Firearm ─ Pneum ───── Auto ───┘
 
 ## 现有内容门控调整清单
 
-### 移入新项目（双门槛 = 雪牛娘项目 + 原版科技）
+### 移入新项目（多数内容采用雪牛娘项目 + 原版科技双门槛；乳品配方只挂种族项目）
 
 | Def | 位置 | 当前门槛 | 调整后 `researchPrerequisites` |
 | --- | --- | --- | --- |
 | `Mugirl_MilkPoweredGenerator` | `Building_MilkPower.xml` | `Electricity` | [`Mugirl_MilkPowerUtilization`, `Electricity`] |
 | `Mugirl_MakeMilkPudding` / `Mugirl_MakeCheese` / `Mugirl_MakeMilkCandy` / `Mugirl_MakeMilkCreamApple` | `Recipes_Mugirl_MilkFood.xml` | 无 | [`Mugirl_DairyProcessing`] |
-| `Mugirl_MakeAgedCheese` / `Mugirl_MakeCowCake` / `Mugirl_MakeMilkPowder` / `Mugirl_MakeMilkTablet` | 同上 | 无 | [`Mugirl_AdvancedDairy`, `AirConditioning`] |
-| `Mugirl_MakeBaotaSugar` | 同上 | 无 | [`Mugirl_AdvancedDairy`, `DrugProduction`]（制药台门槛显式化） |
+| `Mugirl_MakeAgedCheese` / `Mugirl_MakeCowCake` / `Mugirl_MakeMilkPowder` / `Mugirl_MakeMilkTablet` | 同上 | 无 | [`Mugirl_AdvancedDairy`] |
+| `Mugirl_MakeBaotaSugar` | 同上 | 无 | [`Mugirl_AdvancedDairy`]（制作仍使用制药台，不额外检查成瘾品制造研究） |
 | `WallRopeHitch` | `Building_Rope.xml` | `ComplexFurniture` | [`Mugirl_RopeHandling`, `ComplexFurniture`] |
 | `Mugirl_MakeKey_Medieval` / `Mugirl_MakeKey_Industrial` | `Recipes_Mugirl.xml` | 无 | [`Mugirl_RopeHandling`] |
 | `Mugirl_MakeKey_Spacer` / `Mugirl_MakeKey_Advance` | 同上 | 无 | [`Mugirl_BehavioralConditioning`] |
@@ -214,7 +214,7 @@ Firearm ─ Pneum ───── Auto ───┘
 
 ## 开放问题的决议（2026-09-21 评审；2026-09-22 增补第 5 条）
 
-1. **基础乳品是否保留零门槛** → 否。9 个乳品配方全部入树：基础 4 种挂 `Mugirl_DairyProcessing`（成本仅 400），精制 5 种挂 `Mugirl_AdvancedDairy` 并叠加原版双门槛。
+1. **基础乳品是否保留零门槛** → 否。9 个乳品配方全部入树：基础 4 种挂 `Mugirl_DairyProcessing`（成本仅 400），精制 5 种挂 `Mugirl_AdvancedDairy`；2026-09-26 按玩家要求移除精制配方的原版双门槛。
 2. **商人乳品库存** → 维持现状。该补丁向 18 类商人/商队（外侨商队、访客、海盗商、轨道商船、帝国、部落商队等）追加 `Mugirl_MilkFood` 交易标签库存，使 NPC 出售雪牛娘乳制品。原版 `StockGenerator` 没有"按研究进度开关库存"的机制，强行耦合需 C# 介入；购买只能获得成品，自给自足仍需研究，作为软绕过保留。评审确认：与原版行为一致（原版商人在玩家未研究 `BeerBrewing` 等科技时同样出售成品酒），可接受。
 3. **磁力镣铐制造配方** → 增加，见上节。
 4. **仪式性封顶项目** → 不加，避免无解锁物的空节点。

@@ -164,6 +164,9 @@ namespace Mugirl
             Invalidate();
             if (!IsValid || amount < 0) return false;
             if (amount == 0) return true;
+            // 先确定落点，失败时不生成无持有者的白银，也不确认本笔付款。
+            IntVec3 dropSpot = IntVec3.Invalid;
+            if (Map != null && !TryFindSilverDropSpot(out dropSpot)) return false;
             List<Thing> stacks = new List<Thing>();
             int left = amount;
             while (left > 0)
@@ -180,13 +183,53 @@ namespace Mugirl
             }
             if (Map != null)
             {
-                // 一组空投一次接管全部白银，避免分堆结算产生半笔支付。
-                DropPodUtility.DropThingsNear(DropCellFinder.TradeDropSpot(Map), Map, stacks, 110,
-                    canInstaDropDuringInit: false, leaveSlag: false, forbid: false);
+                // 单舱接管整笔白银并精确落在已验证的露天空地。原版 DropThingsNear
+                // 会分堆散落，并在无落点时退回 canRoofPunch=true，不能保证屋顶安全。
+                var info = new ActiveTransporterInfo { openDelay = 110, leaveSlag = false };
+                foreach (Thing stack in stacks) info.innerContainer.TryAdd(stack);
+                try { DropPodUtility.MakeDropPodAt(dropSpot, Map, info); }
+                catch (Exception ex)
+                {
+                    // 第三方回调可能在舱已生成后抛错；已交给地图的付款不能再重试。
+                    bool delivered = info.innerContainer.Any(t => t.MapHeld == Map);
+                    if (!delivered) info.innerContainer.ClearAndDestroyContents();
+                    MugirlLog.WarningOnce("Corporate.SilverDelivery." + ex.GetType().Name,
+                        "Mugirl.Corporate.DeliveryError".Translate(ex.Message));
+                    return delivered;
+                }
                 return true;
             }
             foreach (Thing stack in stacks) Deliver(stack);
             return true;
+        }
+
+        private bool TryFindSilverDropSpot(out IntVec3 result)
+        {
+            Map map = Map;
+            Area_Home home = map.areaManager.Home;
+            IntVec3 anchor = Negotiator != null && Negotiator.Spawned && Negotiator.Map == map
+                ? Negotiator.Position
+                : (map.listerBuildings.allBuildingsColonist.FirstOrDefault(b => b.def.IsCommsConsole)
+                    ?? map.listerBuildings.allBuildingsColonist.FirstOrDefault(b => b.def.IsOrbitalTradeBeacon))?.Position ?? map.Center;
+            // 以本次通讯附近的居住区为参照，兼顾偏离地图中心和多片居住区的基地。
+            if (home.TrueCount > 0)
+            {
+                IntVec3 origin = anchor;
+                anchor = home.ActiveCells.OrderBy(c => (c - origin).LengthHorizontalSquared).First();
+            }
+            // 仅在付款时扫描；先区外、再按距基地远近选点。全图被划为居住区或
+            // 区外全不可达时，退到最近的区内露天空地；绝不放宽屋顶/战争迷雾条件。
+            foreach (IntVec3 cell in map.AllCells
+                .Where(c => !c.Fogged(map) && !c.Roofed(map) && c.Standable(map))
+                .OrderBy(c => home[c] ? 1 : 0).ThenBy(c => (c - anchor).LengthHorizontalSquared))
+            {
+                if (!DropCellFinder.IsGoodDropSpot(cell, map, allowFogged: false, canRoofPunch: false, allowIndoors: false)
+                    || !map.reachability.CanReachColony(cell)) continue;
+                result = cell;
+                return true;
+            }
+            result = IntVec3.Invalid;
+            return false;
         }
 
         public float IncomingMass(Thing thing, int count) => thing == null ? 0f : thing.GetStatValue(StatDefOf.Mass) * count;

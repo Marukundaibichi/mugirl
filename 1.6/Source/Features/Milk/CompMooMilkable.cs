@@ -256,6 +256,14 @@ namespace Mugirl
             {
                 yield return new Command_Action
                 {
+                    defaultLabel = "Mugirl.Milk.FeedingDebug.Button".Translate(),
+                    defaultDesc = "Mugirl.Milk.FeedingDebug.ButtonDesc".Translate(),
+                    icon = TexCommand.DesirePower,
+                    action = () => Dialog_MilkFeedingLayoutDebug.Open(MooPawn)
+                };
+
+                yield return new Command_Action
+                {
                     defaultLabel = "Mugirl.Milk.DevFill.Label".Translate(),
                     defaultDesc = "Mugirl.Milk.DevFill.Desc".Translate(),
                     icon = TexCommand.DesirePower,

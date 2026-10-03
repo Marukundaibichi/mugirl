@@ -50,6 +50,7 @@
         </Reference>
         <Reference Include="System" />
         <Reference Include="System.Xml" />
+        <Reference Include="System.Xml.Linq" />
         <Reference Include="UnityEngine.CoreModule">
             <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
             <Private>False</Private>
@@ -82,6 +83,7 @@
         <Compile Include="Core\MugirlTickUtility.cs" />
         <Compile Include="Compatibility\MeleeAnimation\MeleeAnimationCompat.cs" />
         <Compile Include="Compatibility\OtherMods\ExternalBreastHediffDefs.cs" />
+        <Compile Include="Compatibility\OtherMods\CorporatePricingCompatibility.cs" />
         <Compile Include="Compatibility\OtherMods\LactationExpansionCompat.cs" />
         <Compile Include="Compatibility\OtherMods\Harmony_StylingStationRefresh.cs" />
         <Compile Include="Compatibility\Savegames\CorporateValidationSaveMigration.cs" />
@@ -109,6 +111,7 @@
         <Compile Include="Features\Genes\CompAbilityEffect_PickupThrow.cs" />
         <Compile Include="Features\Genes\CompAbilityEffect_Dunk.cs" />
         <Compile Include="Features\Genes\HediffCompProperties_CheckJobOrRemove.cs" />
+        <Compile Include="Features\Genes\Harmony_ThrowFiringLock.cs" />
         <Compile Include="Features\Genes\JobDriver_CastCharge.cs" />
         <Compile Include="Features\Genes\JobDriver_MugirlDunk.cs" />
         <Compile Include="Features\Genes\MugirlThrowUtility.cs" />
@@ -149,6 +152,8 @@
         <Compile Include="Features\Incidents\StockGenerator_Mugirl_Slaves.cs" />
         <Compile Include="Features\Milk\CompMooHasBodyResource.cs" />
         <Compile Include="Features\Milk\CompMooMilkable.cs" />
+        <Compile Include="Features\Milk\Dialog_MilkFeedingLayoutDebug.cs" />
+        <Compile Include="Features\Milk\MilkFeedingLayout.cs" />
         <Compile Include="Features\Milk\CompProperties_MilkingDevice.cs" />
         <Compile Include="Features\Milk\CompProperties_MilkingDeviceReleaseEffect.cs" />
         <Compile Include="Features\Milk\Comp_MilkingDevice.cs" />
@@ -191,11 +196,14 @@
         <Compile Include="Features\Mechanoids\PawnRenderNode_SegmentedMechTail.cs" />
         <Compile Include="Features\Mechanoids\Verb_MeleeAttack_SegmentedTailAssist.cs" />
         <Compile Include="Features\Misc\Harmony_Apparel_DrawColor.cs" />
+        <Compile Include="Features\Misc\Harmony_StylingStationFixedColor.cs" />
+        <Compile Include="Features\Misc\MugirlFixedColorUtility.cs" />
         <Compile Include="Features\Misc\Harmony_DrugAdministerDefs.cs" />
         <Compile Include="Features\Misc\Harmony_GhoulRenderingRefresh.cs" />
         <Compile Include="Features\Misc\Harmony_MugirlGrazeChain.cs" />
         <Compile Include="Features\Misc\Harmony_MugirlFoodPolicyGrass.cs" />
         <Compile Include="Features\Misc\Harmony_MugirlPregnancyMood.cs" />
+        <Compile Include="Features\Misc\Harmony_PregnantApparelSwap.cs" />
         <Compile Include="Features\Misc\InteractionWorker_Nuzzle.cs" />
         <Compile Include="Features\Misc\JobDriver_Nuzzle.cs" />
         <Compile Include="Features\Misc\JobGiver_Nuzzle.cs" />
@@ -229,10 +237,12 @@
         <Compile Include="Features\WeaponWheel\Comp_WeaponWheel.Rendering.cs" />
         <Compile Include="Features\WeaponWheel\Comp_WeaponWheel.SwordDance.cs" />
         <Compile Include="Features\WeaponWheel\Comp_WeaponWheel.Storage.cs" />
+        <Compile Include="Features\WeaponWheel\Dialog_WeaponWheelBackLayoutDebug.cs" />
         <Compile Include="Features\WeaponWheel\Harmony_WeaponWheel.cs" />
         <Compile Include="Features\WeaponWheel\ITab_Pawn_WeaponWheel.cs" />
         <Compile Include="Features\WeaponWheel\JobDriver_LoadWeaponWheel.cs" />
         <Compile Include="Features\WeaponWheel\PawnRenderNode_BackWeapon.cs" />
+        <Compile Include="Features\WeaponWheel\WeaponWheelBackLayout.cs" />
         <Compile Include="Features\WeaponWheel\WeaponWheelCombatState.cs" />
         <Compile Include="Features\WeaponWheel\WeaponWheelDevLog.cs" />
         <Compile Include="Features\WeaponWheel\WeaponWheelEnemyLoadoutGenerator.cs" />
@@ -309,6 +319,8 @@
         <Compile Include="Features\Corporate\CorporateNetwork.People.cs" />
         <Compile Include="Features\Corporate\CorporateNetwork.Quests.cs" />
         <Compile Include="Features\Corporate\CorporateNetwork.Trade.cs" />
+        <Compile Include="Features\Corporate\CorporateNetwork.Pricing.cs" />
+        <Compile Include="Features\Corporate\CorporateSupplyAnalysis.cs" />
         <Compile Include="Features\Corporate\CorporateNetwork.Services.cs" />
         <Compile Include="Features\Corporate\CorporateShowcaseApparel.cs" />
         <Compile Include="Features\Corporate\CorporateUniforms.cs" />
@@ -376,6 +388,9 @@
     </ItemGroup>
     <ItemGroup Condition=" '$(EnableThrowValidation)' == 'true' ">
         <Compile Include="..\..\docs\tools\ThrowRuntimeValidation.cs" />
+    </ItemGroup>
+    <ItemGroup Condition=" '$(EnableGrazeValidation)' == 'true' ">
+        <Compile Include="..\..\docs\tools\GrazeRuntimeValidation.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

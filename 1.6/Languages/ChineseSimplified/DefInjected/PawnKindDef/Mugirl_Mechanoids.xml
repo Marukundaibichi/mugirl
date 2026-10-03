@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-    <!-- Bulldog -->
+    <!-- 2026-09-26：雪牛娘机械体暂缓发布；Def 与配套翻译保留在注释中，恢复时须整组启用。 -->
+    <!--
+    --> <!-- Bulldog --> <!--
     <Mugirl_MechanoidBulldog.label>斗牛犬</Mugirl_MechanoidBulldog.label>
+-->
 </LanguageData>

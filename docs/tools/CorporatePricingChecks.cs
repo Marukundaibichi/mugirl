@@ -1,218 +1,145 @@
-// Isolated validation only. RunContract spends silver and cancels its own test order.
+// 仅供显式启用的隔离验证；合成 Def 不会写入正式游戏数据。
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Mugirl;
 using RimWorld;
-using UnityEngine;
 using Verse;
 
 public static class CorporatePricingChecks
 {
+    private static ThingDef cheap, boundary, expensive, payout, opaque, cycleA, cycleB;
+    public sealed class UnknownEffect : CompUseEffect { public override void DoEffect(Pawn usedBy) { } }
+
+    private static ThingDef Fixture(string name, float value)
+    {
+        var def = new ThingDef {
+            defName = "CorporatePricingProbe_" + name, label = name,
+            thingClass = typeof(ThingWithComps), category = ThingCategory.Item,
+            tradeability = Tradeability.Sellable, stackLimit = 75, destroyable = true, techLevel = TechLevel.Industrial,
+            statBases = new List<StatModifier> {
+                new StatModifier { stat = StatDefOf.MarketValue, value = value },
+                new StatModifier { stat = StatDefOf.MaxHitPoints, value = 100 }
+            }, comps = new List<CompProperties>()
+        };
+        DefDatabase<ThingDef>.Add(def);
+        return def;
+    }
+
+    private static void Fixtures(CorporateNetwork network)
+    {
+        if (cheap == null)
+        {
+            cheap = Fixture("Cheap", 0.5f);
+            boundary = Fixture("Boundary", 499f);
+            expensive = Fixture("Expensive", 500f);
+            payout = Fixture("DeclaredSilverOutput", 1f);
+            payout.butcherProducts = new List<ThingDefCountClass> { new ThingDefCountClass(ThingDefOf.Silver, 5000) };
+            opaque = Fixture("OpaqueEffect", 1f);
+            opaque.comps.Add(new CompProperties { compClass = typeof(UnknownEffect) });
+            cycleA = Fixture("CycleA", 1f);
+            cycleB = Fixture("CycleB", 1f);
+            cycleA.butcherProducts = new List<ThingDefCountClass> { new ThingDefCountClass(cycleB, 2) };
+            cycleB.butcherProducts = new List<ThingDefCountClass> { new ThingDefCountClass(cycleA, 2) };
+        }
+        typeof(CorporateNetwork).GetField("supplyAnalysis", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(network, null);
+    }
+
+    private static int Quote(CorporateNetwork network, ThingDef def, int count = 1, CorporateOrderSpeed speed = CorporateOrderSpeed.Standard)
+    {
+        Thing sample = CorporateNetwork.MakeOrderProduct(def, GenStuff.DefaultStuffFor(def), QualityCategory.Normal);
+        try { return network.OrderQuote(sample, count, speed); }
+        finally { sample.Destroy(); }
+    }
+
     public static void RunQuotes(CorporateNetwork network, Action<string, bool> check)
     {
-        CorporateTradeSettingsDef settings = network.TradeSettings;
-        check("Live pricing settings load the rare, archotech and special procurement tiers",
-            settings.rareOrderPriceFactor == 6f && settings.archotechOrderPriceFactor == 10f
-            && settings.specialOrderPriceFactor == 20f && settings.specialOrderMinimumUnitPrice == 20000);
-        CheckQuote(network, "Steel", 2.2f, 0, 3, 5, false, check);
-        CheckQuote(network, "ComponentSpacer", 6f, 0, 12, 20, false, check);
-        CheckQuote(network, "Hyperweave", 6f, 0, 12, 20, false, check);
-        CheckQuote(network, "MedicineUltratech", 6f, 0, 12, 20, false, check);
-        CheckQuote(network, "ArchotechArm", 10f, 0, 20, 35, false, check);
-        CheckQuote(network, "Neurotrainer_Crafting", 6f, 0, 12, 20, false, check);
-        foreach (string defName in new[] { "MechSerumHealer", "MechSerumResurrector", "TechprofSubpersonaCore", "AIPersonaCore" })
-            CheckQuote(network, defName, 20f, 20000, 30, 60, true, check);
-        if (ModsConfig.RoyaltyActive) CheckQuote(network, "PsychicAmplifier", 20f, 20000, 30, 60, true, check);
-        if (ModsConfig.AnomalyActive)
-            foreach (string defName in new[] { "Shard", "RevenantSpine", "Shell_Deadlife" })
-                CheckQuote(network, defName, 20f, 20000, 30, 60, true, check);
-        check("Weekly offers contain no special-procurement goods",
-            network.Stock.All(s => s.sample != null && !network.IsSpecialOrder(s.sample.def)));
-        check("New rare weekly stock retains the full procurement price floor",
-            network.Stock.Where(s => network.IsRareOrder(s.sample.def))
-                .All(s => s.unitPrice >= network.OrderQuote(s.sample, 1)));
-        check("Items forbidden from trade remain excluded from the order catalogue",
-            !network.OrderCatalog.Any(d => d.tradeability == Tradeability.None));
-        ThingDef mechlink = DefDatabase<ThingDef>.GetNamedSilentFail("Mechlink");
-        if (mechlink != null) check("Special-generation mechlinks remain excluded", !network.IsOrderable(mechlink));
-        CheckSpecialFloor(network, check);
-        CheckTierPrecedence(network, check);
-    }
-
-    private static void CheckSpecialFloor(CorporateNetwork network, Action<string, bool> check)
-    {
-        Thing preview = CorporateNetwork.MakeProduct(DefDatabase<ThingDef>.GetNamed("MechSerumHealer"), null, QualityCategory.Normal);
+        Fixtures(network);
+        check("Low-value Sellable batch remains 110", Quote(network, cheap, 100) == 110);
+        MethodInfo rawQuote = typeof(CorporateNetwork).GetMethod("OrderQuote", BindingFlags.Instance | BindingFlags.NonPublic,
+            null, new[] { typeof(ThingDef), typeof(float), typeof(int), typeof(CorporateOrderSpeed) }, null);
+        int below = (int)rawQuote.Invoke(network, new object[] { boundary, 499f, 1, CorporateOrderSpeed.Standard });
+        int above = (int)rawQuote.Invoke(network, new object[] { expensive, 500f, 1, CorporateOrderSpeed.Standard });
+        check("No market-value 500 tier cliff (" + below + "/" + above + ")", below == 1098 && above == 1100);
+        check("Opaque scripted effect forbids automatic duplication", !network.CanAutomaticallySupply(opaque));
+        check("Declared 5000-silver output costs at least 6000", Quote(network, payout) == 6000);
+        check("Amplifying conversion cycle is restricted", !network.CanAutomaticallySupply(cycleA) && !network.CanAutomaticallySupply(cycleB));
+        check("Fractional batch rounds once", CorporateNetwork.Price(1.1f, 100) == 110);
+        check("Express adds 50 percent with final rounding", CorporateNetwork.ExpeditedTotal(101, CorporateOrderSpeed.Express) == 152);
+        check("Priority doubles price", CorporateNetwork.ExpeditedTotal(101, CorporateOrderSpeed.Priority) == 202);
+        check("Three-day priority is eighteen hours", CorporateNetwork.PreparationTicks(3, CorporateOrderSpeed.Priority) == 45000);
+        check("Five-day express is sixty hours", CorporateNetwork.PreparationTicks(5, CorporateOrderSpeed.Express) == 150000);
+        check("Invalid speed and overflow are rejected", CorporateNetwork.ExpeditedTotal(100, (CorporateOrderSpeed)9) == 0
+            && CorporateNetwork.ExpeditedTotal(60000000, CorporateOrderSpeed.Priority) == 0);
+        ThingDef meat = DefDatabase<ThingDef>.GetNamedSilentFail("Meat_Twisted");
+        if (meat != null)
+        {
+            check("Actual twisted meat remains available", network.CanAutomaticallySupply(meat));
+            check("Actual 100 twisted meat costs 110", Quote(network, meat, 100) == 110);
+            check("Twisted meat has normal lead time", network.OrderLeadTime(meat).min == 3 && network.OrderLeadTime(meat).max == 5);
+            Thing sample = CorporateNetwork.MakeOrderProduct(meat, null, QualityCategory.Normal);
+            try
+            {
+                var stock = new CorporateStock { sample = sample, count = 100, unitPrice = 20000 };
+                check("Old inflated stock is repriced", network.StockUnitPrice(stock) < 500);
+                check("Stock batch rounds once to 83", network.StockQuote(stock, 100) == 83);
+                check("Batch affordability permits 100 units for 83 silver", network.AffordableStockQuantity(stock, 83) == 100);
+            }
+            finally { sample.Destroy(); }
+        }
+        ThingDef bow = DefDatabase<ThingDef>.GetNamedSilentFail("Bow_Great_Unique");
+        if (bow != null)
+        {
+            Thing a = CorporateNetwork.MakeOrderProduct(bow, null, QualityCategory.Normal);
+            Thing b = CorporateNetwork.MakeOrderProduct(bow, null, QualityCategory.Normal);
+            try
+            {
+                check("Unique greatbow has no 20000 floor", network.OrderQuote(a, 1) < 20000);
+                check("Unique greatbow preview matches delivery", a.MarketValue == b.MarketValue
+                    && a.TryGetComp<CompUniqueWeapon>().TraitsListForReading.SequenceEqual(b.TryGetComp<CompUniqueWeapon>().TraitsListForReading));
+            }
+            finally { a.Destroy(); b.Destroy(); }
+        }
+        FieldInfo turnover = typeof(CorporateNetwork).GetField("tradeTurnover", BindingFlags.Instance | BindingFlags.NonPublic);
+        long previous = (long)turnover.GetValue(network);
         try
         {
-            preview.HitPoints = 1;
-            float scaled = preview.MarketValue * 20f;
-            int expected = CorporateNetwork.Price(Math.Max(scaled, 20000f), 3);
-            check("Special minimum is charged per unit, including reduced-value goods",
-                expected >= 60000 && network.OrderQuote(preview, 3) == expected);
+            turnover.SetValue(network, 400000L);
+            check("Discount cannot undercut redemption floor", Quote(network, payout) == 6000);
+            check("Discount precedes express surcharge", Quote(network, cheap, 100, CorporateOrderSpeed.Express) == 141);
         }
-        finally { preview.Destroy(); }
-    }
-
-    private static void CheckQuote(CorporateNetwork network, string defName, float factor, int minimum,
-        int firstDay, int lastDay, bool special, Action<string, bool> check)
-    {
-        ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(defName);
-        check(defName + " exists in the real loaded order catalogue", def != null && network.IsOrderable(def));
-        if (def == null || !network.IsOrderable(def)) return;
-        Thing preview = CorporateNetwork.MakeProduct(def, null, QualityCategory.Normal);
-        try
-        {
-            int expected = CorporateNetwork.Price(Math.Max(preview.MarketValue * factor, minimum), 3);
-            IntRange days = network.OrderLeadTime(def);
-            check(defName + " charges its actual market value at the expected tier (three units: " + expected + ")",
-                network.OrderQuote(preview, 3) == expected && network.IsSpecialOrder(def) == special);
-            check(defName + " quotes " + firstDay + "-" + lastDay + " preparation days",
-                days.min == firstDay && days.max == lastDay);
-        }
-        finally { preview.Destroy(); }
-    }
-
-    private static void CheckTierPrecedence(CorporateNetwork network, Action<string, bool> check)
-    {
-        CorporateTradeSettingsDef settings = network.TradeSettings;
-        float originalFactor = settings.rareOrderPriceFactor;
-        IntRange originalDays = settings.rareOrderDays;
-        Thing preview = CorporateNetwork.MakeProduct(DefDatabase<ThingDef>.GetNamed("MechSerumHealer"), null, QualityCategory.Normal);
-        try
-        {
-            settings.rareOrderPriceFactor = 24f;
-            settings.rareOrderDays = new IntRange(70, 90);
-            IntRange days = network.OrderLeadTime(preview.def);
-            check("Overlapping tiers always retain the highest configured price and preparation range",
-                network.OrderQuote(preview, 1) == CorporateNetwork.Price(Math.Max(preview.MarketValue * 24f, 20000f), 1)
-                && days.min == 70 && days.max == 90);
-        }
-        finally
-        {
-            settings.rareOrderPriceFactor = originalFactor;
-            settings.rareOrderDays = originalDays;
-            preview.Destroy();
-        }
+        finally { turnover.SetValue(network, previous); }
     }
 
     public static void RunContract(CorporateNetwork network, CorporateTradeContext context, Action<string, bool> check)
     {
-        CheckLegacyRareOffer(network, context, check);
-        CheckLegacySpecialOffer(network, context, check);
-        ThingDef def = DefDatabase<ThingDef>.GetNamed("MechSerumHealer");
-        Thing preview = CorporateNetwork.MakeProduct(def, null, QualityCategory.Normal);
-        int quote;
-        try { quote = network.OrderQuote(preview, 1); }
-        finally { preview.Destroy(); }
-        if (context.SilverCount < quote) throw new InvalidOperationException("Pricing contract fixture requires " + quote + " silver.");
-        int oldSilver = context.SilverCount;
-        int signedTick = CorporateNetwork.Now;
-        bool accepted = network.PlaceOrder(context, def, null, QualityCategory.Normal, 1, out string reason);
-        check("Special order signs at the displayed quote: " + (reason ?? "ok"), accepted);
-        if (!accepted) throw new InvalidOperationException(reason);
-        CorporateOrder order = network.Orders.Last();
-        check("Special order debits and records exactly the displayed price",
-            order.paid == quote && oldSilver - context.SilverCount == quote);
-        check("Special order locks a real 30-60 day preparation period",
-            order.readyTick >= signedTick + 30 * CorporateNetwork.DayTicks
-            && order.readyTick <= signedTick + 60 * CorporateNetwork.DayTicks
-            && order.goods.Count == 1 && order.goods[0].holdingOwner == network.Vault);
-        int signedDue = order.readyTick;
-        CorporateTradeSettingsDef settings = network.TradeSettings;
-        float originalFactor = settings.specialOrderPriceFactor;
-        IntRange originalDays = settings.specialOrderDays;
-        try
+        foreach (CorporateOrderSpeed speed in Enum.GetValues(typeof(CorporateOrderSpeed)))
         {
-            settings.specialOrderPriceFactor = 40f;
-            settings.specialOrderDays = new IntRange(80, 100);
-            network.OrderQuote(order.goods[0], 1);
-            network.OrderLeadTime(def);
-            check("Subsequent price changes preserve the signed amount and arrival date",
-                order.paid == quote && order.readyTick == signedDue);
+            int standard = Quote(network, ThingDefOf.Steel, 10);
+            int expected = speed == CorporateOrderSpeed.Standard ? standard : speed == CorporateOrderSpeed.Express ? (int)Math.Ceiling(standard * 1.5m) : standard * 2;
+            int before = context.SilverCount, now = CorporateNetwork.Now;
+            bool ok = network.PlaceOrder(context, ThingDefOf.Steel, null, QualityCategory.Normal, 10, out string reason, speed);
+            check(speed + " real order accepted: " + reason, ok);
+            if (!ok) continue;
+            CorporateOrder order = network.Orders.Last();
+            check(speed + " debits displayed price and stores fee", before - context.SilverCount == expected
+                && order.paid == expected && order.expediteFee == expected - standard && order.speed == speed);
+            IntRange ticks = network.OrderLeadTicks(ThingDefOf.Steel, speed);
+            check(speed + " arrival fits scaled range", order.readyTick >= now + ticks.min && order.readyTick <= now + ticks.max);
+            long beforeRefund = CountSilverIncludingDelivery(context);
+            bool cancelled = network.CancelOrder(context, order, out reason);
+            check(speed + " refunds 80 percent including expedite fee", cancelled
+                && CountSilverIncludingDelivery(context) - beforeRefund == (int)Math.Floor(order.paid * 0.8f));
         }
-        finally
-        {
-            settings.specialOrderPriceFactor = originalFactor;
-            settings.specialOrderDays = originalDays;
-        }
-        // Map refunds are still inside incoming drop pods while the game is paused.
-        long beforeRefund = CountSilverIncludingDelivery(context);
-        bool cancelled = network.CancelOrder(context, order, out reason);
-        check("Special order cancellation refunds the original contract amount and clears its escrow",
-            cancelled && CountSilverIncludingDelivery(context) - beforeRefund == Mathf.FloorToInt(quote * settings.cancelRefundFactor)
-            && order.state == CorporateOrderState.Cancelled && order.goods.Count == 0);
-    }
-
-    private static void CheckLegacyRareOffer(CorporateNetwork network, CorporateTradeContext context, Action<string, bool> check)
-    {
-        network.EnsureWeeklyOffers();
-        CorporateStock offer = network.Stock.First();
-        Thing originalSample = offer.sample;
-        int originalPrice = offer.unitPrice;
-        int originalCount = offer.count;
-        Thing rare = CorporateNetwork.MakeProduct(ThingDefOf.ComponentSpacer, null, QualityCategory.Normal);
-        Thing ordinary = CorporateNetwork.MakeProduct(ThingDefOf.Steel, null, QualityCategory.Normal);
-        try
-        {
-            offer.sample = ordinary;
-            offer.unitPrice = 7;
-            check("Ordinary legacy stock retains its saved unit price", network.StockUnitPrice(offer) == 7);
-            offer.sample = rare;
-            offer.unitPrice = 1;
-            offer.count = 2;
-            int displayedPrice = network.StockUnitPrice(offer);
-            int procurementPrice = network.OrderQuote(rare, 1);
-            check("Rare legacy stock displays the current procurement price floor", displayedPrice == procurementPrice);
-            offer.unitPrice = procurementPrice + 100;
-            check("Higher saved rare stock prices are never reduced", network.StockUnitPrice(offer) == procurementPrice + 100);
-            offer.unitPrice = 1;
-            int silver = context.SilverCount;
-            int orderCount = network.Orders.Count;
-            bool bought = network.BuyStock(context, offer, 1, out string reason);
-            CorporateOrder receipt = network.Orders.LastOrDefault();
-            check("Rare legacy stock charges exactly its displayed price: " + (reason ?? "ok"),
-                bought && silver - context.SilverCount == displayedPrice && offer.count == 1
-                && network.Orders.Count == orderCount + 1 && receipt != null && receipt.paid == displayedPrice
-                && receipt.def == rare.def && receipt.quantity == 1);
-        }
-        finally
-        {
-            offer.sample = originalSample;
-            offer.unitPrice = originalPrice;
-            offer.count = originalCount;
-            rare.Destroy();
-            ordinary.Destroy();
-        }
-    }
-
-    private static void CheckLegacySpecialOffer(CorporateNetwork network, CorporateTradeContext context, Action<string, bool> check)
-    {
-        network.EnsureWeeklyOffers();
-        CorporateStock offer = network.Stock.First();
-        Thing originalSample = offer.sample;
-        int originalPrice = offer.unitPrice;
-        int originalCount = offer.count;
-        Thing special = CorporateNetwork.MakeProduct(DefDatabase<ThingDef>.GetNamed("MechSerumHealer"), null, QualityCategory.Normal);
-        try
-        {
-            // Represent a special item already serialized into a legacy cheap weekly offer.
-            offer.sample = special;
-            offer.unitPrice = 1;
-            offer.count = 1;
-            int silver = context.SilverCount;
-            int orderCount = network.Orders.Count;
-            bool bought = network.BuyStock(context, offer, 1, out _);
-            check("Legacy weekly offers cannot bypass special procurement prices or lead times",
-                !bought && context.SilverCount == silver && network.Orders.Count == orderCount && offer.count == 1);
-        }
-        finally
-        {
-            offer.sample = originalSample;
-            offer.unitPrice = originalPrice;
-            offer.count = originalCount;
-            special.Destroy();
-        }
+        int silver = context.SilverCount, count = network.Orders.Count;
+        check("Opaque order rejected before payment", !network.PlaceOrder(context, opaque, null, QualityCategory.Normal, 1, out _)
+            && context.SilverCount == silver && network.Orders.Count == count);
+        Thing sample = CorporateNetwork.MakeProduct(opaque, null, QualityCategory.Normal);
+        var offer = new CorporateStock { sample = sample, count = 5, unitPrice = 1 };
+        ((List<CorporateStock>)network.Stock).Add(offer);
+        try { check("Legacy stock cannot bypass restriction", !network.BuyStock(context, offer, 1, out _) && context.SilverCount == silver); }
+        finally { ((List<CorporateStock>)network.Stock).Remove(offer); sample.Destroy(); }
     }
 
     private static long CountSilverIncludingDelivery(CorporateTradeContext context)
@@ -227,14 +154,9 @@ public static class CorporatePricingChecks
             IThingHolder holder = holders.Dequeue();
             if (!visited.Add(holder)) continue;
             ThingOwner contents = holder.GetDirectlyHeldThings();
-            if (contents != null)
-                foreach (Thing thing in contents)
-                {
-                    things.Add(thing);
-                    if (thing is IThingHolder nested) holders.Enqueue(nested);
-                }
-            children.Clear();
-            holder.GetChildHolders(children);
+            if (contents != null) foreach (Thing thing in contents)
+            { things.Add(thing); if (thing is IThingHolder nested) holders.Enqueue(nested); }
+            children.Clear(); holder.GetChildHolders(children);
             foreach (IThingHolder child in children) if (child != null) holders.Enqueue(child);
         }
         return things.Where(t => !t.Destroyed && t.def == ThingDefOf.Silver).Sum(t => (long)t.stackCount);

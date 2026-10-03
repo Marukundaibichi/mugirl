@@ -60,6 +60,16 @@
             </disallowedThingDefs>
         </defaultIngredientFilter>
     </recipeMaker>
-</ThingDef>
+    </ThingDef>
+
+    <!-- 2026-09-29 无品质装备基类：用于自帶完整制造配方、刻意不带品质 Comp 的装备
+         （如自驱装弹系统）。只统一 Sellable + Mugirl_Apparel 交易属性，不继承缝纫配方，
+         避免父类 recipeMaker 与装备自有的制造台/研究发生 li 追加合并。 -->
+    <ThingDef Name="Mugirl_ApparelNoQualityBase" ParentName="ApparelNoQualityBase" Abstract="True">
+    <tradeability>Sellable</tradeability>
+    <tradeTags>
+        <li>Mugirl_Apparel</li>
+    </tradeTags>
+    </ThingDef>
 
 </Defs>

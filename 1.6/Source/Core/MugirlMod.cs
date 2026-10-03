@@ -51,6 +51,9 @@ namespace Mugirl
         // 开发者日志：输出雪牛娘武器轮盘射击诊断和 Harmony 补丁归属报告，用于排查 mod 冲突。
         public bool enableWeaponWheelDevLog = false;
 
+        // 隐藏武器轮盘普通背负武器（背上的两把）；自驱装弹系统凹槽武器不受影响。
+        public bool hideWeaponWheelBackWeapons = false;
+
         public override void ExposeData()
         {
             base.ExposeData();
@@ -67,6 +70,7 @@ namespace Mugirl
                 extraOutlineWidth = MugirlExtraOutline.DefaultWidth;
             extraOutlineWidth = Mathf.Clamp(extraOutlineWidth, MugirlExtraOutline.MinWidth, MugirlExtraOutline.MaxWidth);
             Scribe_Values.Look(ref enableWeaponWheelDevLog, "enableWeaponWheelDevLog", false);
+            Scribe_Values.Look(ref hideWeaponWheelBackWeapons, "hideWeaponWheelBackWeapons", false);
         }
     }
 }

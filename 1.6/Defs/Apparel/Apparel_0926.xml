@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <!-- 金色比基尼套装（9.26 贴图）：全部固色，护甲走材料系数。
+         比基尼带 MugirlPregnantSwap 标签，穿戴者怀孕期间由补丁改用 _Pregnant 变体贴图。 -->
+    <ThingDef ParentName="Mugirl_0920CasualBase">
+        <defName>Mugirl_GoldBikini</defName>
+        <thingCategories><li>Mugirl_Underwear</li></thingCategories>
+        <!-- 雪牛娘 金色比基尼 -->
+        <label>Mugirl gold bikini</label>
+        <!-- 采用乳胶制作的金色比基尼，耀眼的金色让雪牛娘看起来更加美味。怀孕后照常可穿，贴图会自动换成护腹的款式。 -->
+        <description>A gold bikini made of latex. Its dazzling shine makes its Mugirl wearer look all the more delicious.\nCan still be worn during pregnancy; the fit automatically switches to a belly-friendly cut.</description>
+        <graphicData><texPath>Things/Apparel/Mugirl_GoldBikini/Mugirl_GoldBikini</texPath></graphicData>
+        <costStuffCount>30</costStuffCount>
+        <statBases>
+            <MaxHitPoints>60</MaxHitPoints>
+            <WorkToMake>3000</WorkToMake>
+            <Mass>0.2</Mass>
+            <EquipDelay>0.8</EquipDelay>
+            <!-- 泳装布料极少，介于便服基线 0.12 与轻纱件 0.05 之间 -->
+            <StuffEffectMultiplierArmor>0.08</StuffEffectMultiplierArmor>
+        </statBases>
+        <apparel>
+            <developmentalStageFilter>Adult</developmentalStageFilter>
+            <bodyPartGroups><li>Torso</li><li>Legs</li></bodyPartGroups>
+            <layers><li>OnSkin</li></layers>
+            <wornGraphicPath>Things/Apparel/Mugirl_GoldBikini/Mugirl_GoldBikini</wornGraphicPath>
+            <tags>
+                <li>MugirlFixedColor</li>
+                <li>MugirlPregnantSwap</li>
+            </tags>
+        </apparel>
+    </ThingDef>
+
+    <ThingDef ParentName="Mugirl_0920CasualBase">
+        <defName>Mugirl_GoldLatexBoots</defName>
+        <thingCategories><li>Mugirl_Stocking</li></thingCategories>
+        <!-- 雪牛娘 金色乳胶皮靴 -->
+        <label>Mugirl gold latex boots</label>
+        <!-- 与比基尼配套的长筒靴，就如同丝袜一样，搭配使用效果更佳。 -->
+        <description>Thigh-high boots made to match the gold bikini. Much like fine stockings, they work best when worn together.</description>
+        <graphicData><texPath>Things/Apparel/Mugirl_GoldLatexBoots/Mugirl_GoldLatexBoots</texPath></graphicData>
+        <costStuffCount>45</costStuffCount>
+        <statBases>
+            <MaxHitPoints>110</MaxHitPoints>
+            <WorkToMake>4800</WorkToMake>
+            <Mass>0.8</Mass>
+            <EquipDelay>1.0</EquipDelay>
+            <!-- 时尚皮靴档位：介于警靴 0.25 与便服基线 0.12 之间 -->
+            <StuffEffectMultiplierArmor>0.18</StuffEffectMultiplierArmor>
+        </statBases>
+        <apparel>
+            <developmentalStageFilter>Adult</developmentalStageFilter>
+            <bodyPartGroups><li>Legs</li></bodyPartGroups>
+            <layers><li>Mugirl_Stocking</li></layers>
+            <wornGraphicPath>Things/Apparel/Mugirl_GoldLatexBoots/Mugirl_GoldLatexBoots</wornGraphicPath>
+            <tags><li>MugirlFixedColor</li></tags>
+        </apparel>
+    </ThingDef>
+
+    <!-- 白雪公主骑士套装（9.26 贴图）：童话板甲 + 王冠，全部固色。
+         护甲取仪式板甲档位：低于骑士坐骑白板甲（0.95/0.5/0.25），热防因布衬略高。 -->
+    <ThingDef ParentName="Mugirl_ArmorSmithableBase">
+        <defName>Mugirl_SnowPrincessArmor</defName>
+        <thingCategories><li>ApparelArmor</li></thingCategories>
+        <tradeTags><li>Mugirl_CombatApparelBuyOnly</li></tradeTags>
+        <!-- 雪牛娘 白雪公主骑士铠 -->
+        <label>Mugirl snow princess knight armor</label>
+        <!-- 于雪牛娘间相传的一则童话：一位仁慈善良的雪牛娘公主带领人们平复战乱成为贤王，最后因感染不治之症离开了自己的国家。
+令人怜悯而美丽的公主啊，还未成王，就如同白雪消融。 -->
+        <description>A fairy tale armor passed down among Mugirls: a kind princess in gleaming plate quelled the wars and became a wise queen, only to leave her kingdom with an incurable illness.\nPitiable, beautiful princess — melted away like snow before ever wearing the crown.</description>
+        <graphicData>
+            <texPath>Things/Apparel/Mugirl_SnowPrincessArmor/Mugirl_SnowPrincessArmor</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <ignoreThingDrawColor>true</ignoreThingDrawColor>
+        </graphicData>
+        <techLevel>Medieval</techLevel>
+        <costList><Steel>120</Steel><Gold>20</Gold></costList>
+        <statBases>
+            <WorkToMake>32000</WorkToMake>
+            <MaxHitPoints>280</MaxHitPoints>
+            <Mass>12</Mass>
+            <ArmorRating_Sharp>0.72</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.38</ArmorRating_Blunt>
+            <ArmorRating_Heat>0.28</ArmorRating_Heat>
+            <Insulation_Cold>18</Insulation_Cold>
+            <EquipDelay>12</EquipDelay>
+        </statBases>
+        <equippedStatOffsets><MoveSpeed>-0.25</MoveSpeed></equippedStatOffsets>
+        <apparel>
+            <developmentalStageFilter>Adult</developmentalStageFilter>
+            <bodyPartGroups><li>Torso</li><li>Neck</li><li>Shoulders</li><li>Arms</li><li>Legs</li></bodyPartGroups>
+            <layers><li>Shell</li></layers>
+            <wornGraphicPath>Things/Apparel/Mugirl_SnowPrincessArmor/Mugirl_SnowPrincessArmor</wornGraphicPath>
+            <useWornGraphicMask>false</useWornGraphicMask>
+            <tags><li>MugirlFixedColor</li><li>Mugirl_Armor</li></tags>
+        </apparel>
+        <recipeMaker>
+            <workAmount>32000</workAmount>
+            <researchPrerequisites Inherit="False"><li>Mugirl_CombatAttire</li><li>PlateArmor</li></researchPrerequisites>
+            <skillRequirements><Crafting>8</Crafting></skillRequirements>
+        </recipeMaker>
+    </ThingDef>
+
+    <ThingDef ParentName="Mugirl_HeadBase">
+        <defName>Mugirl_SnowPrincessCrown</defName>
+        <!-- 雪牛娘 白雪公主王冠 -->
+        <label>Mugirl snow princess crown</label>
+        <!-- 某位古老王者的王冠。她立誓守护即将毁灭的故乡，最终为了不将灾祸留在故乡，倒在了孤独的无人之地。
+她的故乡在历史中不见踪影，只有王冠上模糊的刻痕或许还能找到她曾经的名字。 -->
+        <description>The crown of an ancient sovereign of legend. She swore to guard her dying homeland, and fell in a lonely, distant place so its calamity would never return there.\nHer kingdom has vanished from history; only the worn engravings on this crown still remember her name.</description>
+        <graphicData><texPath>Things/Apparel/Mugirl_SnowPrincessCrown/Mugirl_SnowPrincessCrown</texPath><ignoreThingDrawColor>true</ignoreThingDrawColor></graphicData>
+        <costList><Gold>40</Gold></costList>
+        <statBases>
+            <MaxHitPoints>90</MaxHitPoints>
+            <WorkToMake>5600</WorkToMake>
+            <Mass>0.3</Mass>
+            <EquipDelay>1.2</EquipDelay>
+            <!-- 金属头饰小值固定护甲：介于墨镜 0.04 与警帽材料档 0.12 之间 -->
+            <ArmorRating_Sharp>0.08</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.04</ArmorRating_Blunt>
+            <ArmorRating_Heat>0.02</ArmorRating_Heat>
+        </statBases>
+        <equippedStatOffsets><SocialImpact>0.15</SocialImpact></equippedStatOffsets>
+        <apparel>
+            <developmentalStageFilter>Adult</developmentalStageFilter>
+            <bodyPartGroups><li>HeadAttackTool</li></bodyPartGroups>
+            <wornGraphicPath>Things/Apparel/Mugirl_SnowPrincessCrown/Mugirl_SnowPrincessCrown</wornGraphicPath>
+            <useWornGraphicMask>false</useWornGraphicMask>
+            <tags><li>MugirlFixedColor</li><li>Mugirl_HideHorns</li></tags>
+        </apparel>
+        <recipeMaker>
+            <workAmount>5600</workAmount>
+        </recipeMaker>
+    </ThingDef>
+
+</Defs>

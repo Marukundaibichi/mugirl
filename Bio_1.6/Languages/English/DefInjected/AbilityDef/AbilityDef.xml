@@ -5,10 +5,14 @@
     <Mugirl_Charge.verbProperties.label>Charge!</Mugirl_Charge.verbProperties.label>
     <Mugirl_Shout.description>RUAAAAAAAAA! (an embarrassing cry)</Mugirl_Shout.description>
     <Mugirl_Shout.label>Mugirl Shout!</Mugirl_Shout.label>
-    <Mugirl_Throw.description>Lift a nearby object up to your carrying capacity, then hurl it as an improvised projectile. Connected walls and rock formations cannot be lifted, but isolated ones can.</Mugirl_Throw.description>
+    <Mugirl_Throw.description>Grab whatever's at hand and hurl it at the enemy!
+
+This snow cow has strength to spare.</Mugirl_Throw.description>
     <Mugirl_Throw.label>Mugirl Throw!</Mugirl_Throw.label>
     <Mugirl_Throw.verbProperties.label>Pick up!</Mugirl_Throw.verbProperties.label>
-    <Mugirl_Dunk.description>Developer prank: pluck the head from a humanlike pawn, dribble it like a basketball, then slam dunk it. The body stays behind.</Mugirl_Dunk.description>
+    <Mugirl_Dunk.description>I'll twist your head off and kick it around like a ball!
+
+&lt;color=#ff0000&gt;You have seen what you should not have seen.&lt;/color&gt;</Mugirl_Dunk.description>
     <Mugirl_Dunk.label>Mugirl Meteor Slam Dunk!</Mugirl_Dunk.label>
     <Mugirl_Dunk.verbProperties.label>Choose a head!</Mugirl_Dunk.verbProperties.label>
 </LanguageData>

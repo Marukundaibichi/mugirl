@@ -14,6 +14,7 @@ namespace Mugirl
         private bool showExistingOrders;
         private string tradeSearch = "";
         private string orderSearch = "";
+        private readonly QuickSearchWidget orderSearchWidget = new QuickSearchWidget { maxSearchTextLength = int.MaxValue };
         private string tradeQuantityText = "1";
         private string orderQuantityText = "1";
         private int tradeQuantity = 1;
@@ -37,6 +38,7 @@ namespace Mugirl
         private ThingDef orderDef;
         private ThingDef orderStuff;
         private QualityCategory orderQuality = QualityCategory.Normal;
+        private CorporateOrderSpeed orderSpeed = CorporateOrderSpeed.Standard;
         private int tradeCategory;
         private int orderCategory;
         private int tradeSort;
@@ -419,7 +421,7 @@ namespace Mugirl
                 {
                     tradeOffersView.AddRange(SortCatalog(
                         network.Stock.Where(s => s.sample != null && !s.sample.Destroyed
-                            && network.IsOrderable(s.sample.def) && !network.IsSpecialOrder(s.sample.def)
+                            && network.CanAutomaticallySupply(s.sample.def)
                             && MatchesCatalog(s.sample.def, s.sample.Label, tradeSearch, tradeCategory)).ToList(),
                         s => s.sample.Label, s => network.StockUnitPrice(s), tradeSort));
                 }
@@ -474,7 +476,7 @@ namespace Mugirl
             float w = rect.width;
             int stocked = productSelling ? selectedThing.stackCount : selectedStock.count;
             int price = productSelling ? network.ProductQuote(selectedThing, 1) : network.StockUnitPrice(selectedStock);
-            int available = productSelling ? stocked : Math.Min(stocked, context.SilverCount / Math.Max(1, price));
+            int available = productSelling ? stocked : network.AffordableStockQuantity(selectedStock, context.SilverCount);
             tradeQuantity = Mathf.Clamp(tradeQuantity, 1, Math.Max(1, available));
             DrawProductHeading(rect, selectedThing, "trade/info");
             DrawCatalogMetric(new Rect(0f, 94f, w * 0.58f, 51f), BrowserText(productSelling ? "PurchasePrice" : "UnitPrice"), CorporateUI.Money(price));
@@ -482,7 +484,7 @@ namespace Mugirl
             float quantityY = rect.height - 161f;
             CorporateUI.Label(new Rect(0f, quantityY - 23f, w, 21f), BrowserText("Quantity"), GameFont.Tiny, CorporateUI.Muted);
             CorporateQuantity(new Rect(0f, quantityY, w, 32f), ref tradeQuantity, ref tradeQuantityText, available, "trade/quantity");
-            int total = productSelling ? network.ProductQuote(selectedThing, tradeQuantity) : CorporateNetwork.Price(price, tradeQuantity);
+            int total = productSelling ? network.ProductQuote(selectedThing, tradeQuantity) : network.StockQuote(selectedStock, tradeQuantity);
             CorporateUI.Label(new Rect(0f, quantityY + 39f, w * 0.25f, 28f), BrowserText("Total"), GameFont.Tiny, CorporateUI.Muted, TextAnchor.MiddleLeft);
             CorporateUI.Label(new Rect(w * 0.25f, quantityY + 39f, w * 0.75f, 28f), CorporateUI.Money(total), anchor: TextAnchor.MiddleRight);
             bool permitted = network.CanTrade(context, out string permissionReason);
@@ -504,28 +506,42 @@ namespace Mugirl
 
         private void DrawOrders(Rect rect)
         {
-            float minimumHeight = rect.width - 18f >= 720f ? 570f : 780f;
+            float minimumHeight = rect.width - 18f >= 720f ? 670f : 880f;
             if (showExistingOrders || rect.height >= minimumHeight) { DrawOrdersBody(rect); return; }
-            Rect view = new Rect(0f, 0f, rect.width - 18f, minimumHeight);
-            CorporateUI.BeginScrollView(rect, ref orderPageScroll, view, "orders/page-scroll");
-            try { DrawOrdersBody(view); }
+            // 搜索栏与页签固定在滚动容器外；滚动只移动目录和订单详情，
+            // 不让输入法组合串、候选位置和字段坐标随滚动裁剪变化。
+            DrawOrdersHeader(rect.width);
+            Rect body = new Rect(0f, 116f, rect.width, rect.height - 116f);
+            Rect view = new Rect(0f, 0f, rect.width - 18f, minimumHeight - 116f);
+            CorporateUI.BeginScrollView(body, ref orderPageScroll, view, "orders/page-scroll");
+            try { DrawOrderCatalog(view); }
             finally { CorporateUI.EndScrollView(); }
         }
 
         private void DrawOrdersBody(Rect rect)
         {
+            DrawOrdersHeader(rect.width);
+            if (showExistingOrders) DrawOrderReceipts(new Rect(0f, 43f, rect.width, rect.height - 43f));
+            else DrawOrderCatalog(new Rect(0f, 116f, rect.width, rect.height - 116f));
+        }
+
+        private void DrawOrdersHeader(float w)
+        {
             orderSelectionMotion.Advance();
-            float w = rect.width;
             if (CorporateUI.Button(new Rect(0f, 0f, w / 2f - 4f, 34f), "Mugirl.Corporate.OrderCatalog".Translate(), primary: !showExistingOrders, id: "orders/catalog") && showExistingOrders)
                 RequestContentTransition(() => { showExistingOrders = false; orderScroll = Vector2.zero; }, "orders/catalog");
             if (CorporateUI.Button(new Rect(w / 2f + 4f, 0f, w / 2f - 4f, 34f), "Mugirl.Corporate.MyOrders".Translate(), primary: showExistingOrders, id: "orders/receipts") && !showExistingOrders)
                 RequestContentTransition(() => { showExistingOrders = true; orderScroll = Vector2.zero; }, "orders/receipts");
-            if (showExistingOrders) { DrawOrderReceipts(new Rect(0f, 43f, w, rect.height - 43f)); return; }
+            if (showExistingOrders) return;
             DrawCatalogToolbar(new Rect(0f, 46f, w, 32f), true);
-            List<CatalogEntry> entries = orderView;
-            DrawCatalogSummary(new Rect(0f, 83f, w, 24f), entries.Count,
+            DrawCatalogSummary(new Rect(0f, 83f, w, 24f), orderView.Count,
                 BrowserText(OrderCatalogBusy ? "UpdatingCatalog" : "ProcurementDesk"));
-            CatalogLayout(new Rect(0f, 116f, w, rect.height - 116f), out Rect listing, out Rect detail, true);
+        }
+
+        private void DrawOrderCatalog(Rect rect)
+        {
+            List<CatalogEntry> entries = orderView;
+            CatalogLayout(rect, out Rect listing, out Rect detail, true);
             bool listMode = orderListView || listing.width < 360f;
             CatalogGrid(listing, entries.Count, listMode, out int columns, out float cardWidth, out float stride, out Rect view);
             using (CorporateUI.BeginFrame(motion, "orders/results", ResultOpacity(orderResultsStarted)))
@@ -546,7 +562,9 @@ namespace Mugirl
                         CatalogEntry entry = entries[i];
                         ThingDef def = entry.def;
                         IntRange lead = entry.lead;
-                        string leadLabel = BrowserText(entry.special ? "SpecialLead" : "Lead", lead.min, lead.max);
+                        string leadLabel = network.CanAutomaticallySupply(def)
+                            ? BrowserText(entry.special ? "SpecialLead" : "Lead", lead.min, lead.max)
+                            : "Mugirl.CorporatePricing.RestrictedShort".Translate().ToString();
                         bool quoteReady = catalogPrices.TryGetValue(def, out int quoted);
                         if (DrawCatalogItem(card, def, null, entry.label,
                             quoteReady ? quoted > 0 ? CorporateUI.Money(quoted) : BrowserText("Unavailable") : BrowserText("QuotePending"), leadLabel,
@@ -556,6 +574,7 @@ namespace Mugirl
                             {
                                 orderDef = def; orderStuff = GenStuff.DefaultStuffFor(orderDef);
                                 orderQuality = QualityCategory.Normal;
+                                orderSpeed = CorporateOrderSpeed.Standard;
                                 orderQuantity = 1; orderQuantityText = "1";
                                 RefreshOrderPreview();
                             });
@@ -576,6 +595,15 @@ namespace Mugirl
         private void DrawOrderDetails(Rect rect)
         {
             string search = (orderSearch ?? string.Empty).Trim();
+            if (orderDef != null && !network.CanAutomaticallySupply(orderDef)
+                && orderEntryByDef.TryGetValue(orderDef, out CatalogEntry restrictedEntry)
+                && MatchesOrderCatalog(restrictedEntry, search, orderCategory))
+            {
+                DrawCatalogIcon(new Rect(0f, 0f, 65f, 65f), orderDef);
+                CatalogText(new Rect(77f, 0f, rect.width - 77f, 68f), orderDef.LabelCap, GameFont.Small);
+                CorporateUI.Label(new Rect(0f, 90f, rect.width, 110f), "Mugirl.CorporatePricing.Restricted".Translate());
+                return;
+            }
             if (orderPreview == null || orderPreview.Destroyed
                 || !orderEntryByDef.TryGetValue(orderDef, out CatalogEntry selectedEntry)
                 || !MatchesOrderCatalog(selectedEntry, search, orderCategory))
@@ -583,8 +611,9 @@ namespace Mugirl
             float w = rect.width;
             DrawProductHeading(rect, orderPreview, "orders/info");
             IntRange days = network.OrderLeadTime(orderDef);
+            IntRange ticks = network.OrderLeadTicks(orderDef, orderSpeed);
             DrawCatalogMetric(new Rect(0f, 94f, w * 0.58f, 51f), BrowserText("UnitPrice"), CorporateUI.Money(network.OrderQuote(orderPreview, 1)));
-            DrawCatalogMetric(new Rect(w * 0.58f + 8f, 94f, w * 0.42f - 8f, 51f), BrowserText("Preparation"), BrowserText("Days", days.min, days.max));
+            DrawCatalogMetric(new Rect(w * 0.58f + 8f, 94f, w * 0.42f - 8f, 51f), BrowserText("Preparation"), BrowserText("Days", (ticks.min / 60000m).ToString("0.##"), (ticks.max / 60000m).ToString("0.##")));
             float y = 157f;
             float half = (w - 8f) / 2f;
             CorporateUI.Label(new Rect(0f, y, half, 20f), BrowserText("Material"), GameFont.Tiny, CorporateUI.Muted);
@@ -600,20 +629,29 @@ namespace Mugirl
                 ShowMenu(Enumerable.Range(0, (int)QualityCategory.Excellent + 1).Select(q =>
                     new FloatMenuOption(((QualityCategory)q).GetLabel(), () => orderSelectionMotion.Request(() => { orderQuality = (QualityCategory)q; RefreshOrderPreview(); }))).ToList());
             }
+            CorporateUI.Label(new Rect(0f, 224f, w, 20f), "Mugirl.CorporatePricing.SpeedLabel".Translate(), GameFont.Tiny, CorporateUI.Muted);
+            if (CorporateUI.Button(new Rect(0f, 247f, w, 30f), SpeedLabel(orderSpeed), id: "orders/speed"))
+                ShowMenu(Enum.GetValues(typeof(CorporateOrderSpeed)).Cast<CorporateOrderSpeed>().Select(speed =>
+                    new FloatMenuOption(SpeedLabel(speed), () => orderSpeed = speed)).ToList());
+            int standardCost = network.OrderQuote(orderPreview, orderQuantity);
+            int cost = network.OrderQuote(orderPreview, orderQuantity, orderSpeed);
+            CorporateUI.Label(new Rect(0f, 288f, w, 46f), "Mugirl.CorporatePricing.Breakdown".Translate(
+                CorporateUI.Money(standardCost), CorporateUI.Money(Math.Max(0, cost - standardCost))), GameFont.Tiny);
             y = rect.height - 169f;
             CorporateUI.Label(new Rect(0f, y - 23f, w, 20f), BrowserText("Quantity"), GameFont.Tiny, CorporateUI.Muted);
             CorporateQuantity(new Rect(0f, y, w, 32f), ref orderQuantity, ref orderQuantityText, CorporateNetwork.MaxOrderQuantity(orderDef), "orders/quantity");
-            int cost = network.OrderQuote(orderPreview, orderQuantity);
+            // 数量控件可能在本次事件里改变数量，提交前同步重算。
+            cost = network.OrderQuote(orderPreview, orderQuantity, orderSpeed);
             CorporateUI.Label(new Rect(0f, y + 39f, w * 0.25f, 28f), BrowserText("Total"), GameFont.Tiny, CorporateUI.Muted, TextAnchor.MiddleLeft);
             CorporateUI.Label(new Rect(w * 0.25f, y + 39f, w * 0.75f, 28f), CorporateUI.Money(cost), anchor: TextAnchor.MiddleRight);
             bool canTrade = network.CanTrade(context, out string reason);
             Rect submit = new Rect(0f, y + 74f, w, 36f);
-            TooltipHandler.TipRegion(submit, "Mugirl.Corporate.OrderTerms".Translate(days.min, days.max,
+            TooltipHandler.TipRegion(submit, "Mugirl.Corporate.OrderTerms".Translate((ticks.min / 60000m).ToString("0.##"), (ticks.max / 60000m).ToString("0.##"),
                 Mathf.RoundToInt(network.TradeSettings.cancelRefundFactor * 100f)));
             if (CorporateUI.Button(submit, "Mugirl.Corporate.PlaceOrder".Translate(),
                 canTrade && cost > 0 && context.SilverCount >= cost, true, "orders/place"))
             {
-                bool success = network.PlaceOrder(context, orderDef, orderStuff, orderQuality, orderQuantity, out reason);
+                bool success = network.PlaceOrder(context, orderDef, orderStuff, orderQuality, orderQuantity, out reason, orderSpeed);
                 CorporateFeedback(success, reason);
                 if (success) RequestContentTransition(() => { showExistingOrders = true; orderScroll = Vector2.zero; }, "orders/receipts");
             }
@@ -621,6 +659,8 @@ namespace Mugirl
                 : BrowserText("Cancellation", network.TradeSettings.cancelWindowDays.ToString("0.#"), Mathf.RoundToInt(network.TradeSettings.cancelRefundFactor * 100f)));
             CatalogCaption(new Rect(0f, y + 117f, w, 46f), terms);
         }
+
+        private static string SpeedLabel(CorporateOrderSpeed speed) => ("Mugirl.CorporatePricing.Speed." + speed).Translate();
 
         private static string BrowserText(string key, params object[] args)
         {
@@ -673,7 +713,9 @@ namespace Mugirl
             }
             Rect search = new Rect(rect.x, rect.y, searchWidth, rect.height);
             string oldSearch = ordering ? orderSearch : tradeSearch;
-            string newSearch = CorporateInput(search, oldSearch, scope + "/search", "Mugirl.Corporate.SearchGoods".Translate());
+            string newSearch = ordering
+                ? CorporateUI.Search(search, oldSearch, orderSearchWidget, "Mugirl.Corporate.SearchGoods".Translate())
+                : CorporateInput(search, oldSearch, scope + "/search", "Mugirl.Corporate.SearchGoods".Translate());
             if (newSearch != oldSearch)
             {
                 if (ordering) orderSearch = newSearch; else tradeSearch = newSearch;
@@ -765,6 +807,12 @@ namespace Mugirl
                 catalogPrices.Clear();
             }
             if (catalogPrices.TryGetValue(def, out int price)) return price;
+            if (!network.CanAutomaticallySupply(def))
+            {
+                price = network.OrderQuote(def, def.BaseMarketValue, 1);
+                catalogPrices[def] = price;
+                return price;
+            }
             if (catalogMarketValues.TryGetValue(def, out float marketValue))
                 price = network.OrderQuote(def, marketValue, 1);
             else
@@ -775,7 +823,7 @@ namespace Mugirl
                 {
                     try
                     {
-                        preview = CorporateNetwork.MakeProduct(def, GenStuff.DefaultStuffFor(def), QualityCategory.Normal);
+                        preview = CorporateNetwork.MakeOrderProduct(def, GenStuff.DefaultStuffFor(def), QualityCategory.Normal);
                         marketValue = preview.MarketValue;
                         catalogMarketValues[def] = marketValue;
                         price = network.OrderQuote(def, marketValue, 1);
@@ -798,7 +846,7 @@ namespace Mugirl
             }
             else
             {
-                float detailHeight = ordering ? 454f : 364f;
+                float detailHeight = ordering ? 554f : 364f;
                 listing = new Rect(rect.x, rect.y, rect.width, Mathf.Max(132f, rect.height - detailHeight - 14f));
                 detail = new Rect(rect.x, listing.yMax + 14f, rect.width, detailHeight);
             }
@@ -899,7 +947,8 @@ namespace Mugirl
             Rect info = new Rect(rect.width - 29f, 0f, 29f, 29f);
             if (CorporateUI.Button(info, "i", id: id)) MugirlGameUtility.Windows.Add(new Dialog_InfoCard(thing));
             TooltipHandler.TipRegion(info, BrowserText("ProductDetails"));
-            string classification = BrowserText(network.IsSpecialOrder(thing.def) ? "SpecialSourcing" : network.IsRareOrder(thing.def) ? "RareSourcing" : "StandardSourcing");
+            string classification = network.OrderPricingReason(thing.def);
+            TooltipHandler.TipRegion(new Rect(0f, 71f, rect.width, 20f), classification);
             CatalogCaption(new Rect(0f, 71f, rect.width, 20f), classification);
         }
 
@@ -938,10 +987,10 @@ namespace Mugirl
         {
             CorporateNetwork.DiscardUnspawnedProduct(orderPreview);
             orderPreview = null;
-            if (!network.IsOrderable(orderDef)) return;
+            if (!network.CanAutomaticallySupply(orderDef)) return;
             using (Rand.Block(Gen.HashCombineInt(orderDef.shortHash, (orderStuff?.shortHash ?? 0) * 7 + (int)orderQuality)))
             {
-                try { orderPreview = CorporateNetwork.MakeProduct(orderDef, orderStuff, orderQuality); }
+                try { orderPreview = CorporateNetwork.MakeOrderProduct(orderDef, orderStuff, orderQuality); }
                 catch (Exception ex) { CorporateFeedback(false, "Mugirl.Corporate.GenerationError".Translate(orderDef.LabelCap, ex.Message)); }
             }
         }
@@ -983,7 +1032,9 @@ namespace Mugirl
                     string timing = order.state == CorporateOrderState.Preparing
                         ? BrowserText("RemainingDays", Mathf.Max(0f, (order.readyTick - CorporateNetwork.Now) / 60000f).ToString("0.0")) : "";
                     CatalogCaption(new Rect(10f, y + 66f, view.width - 150f, 20f), state + (timing.Length > 0 ? " · " + timing : ""));
-                    CatalogCaption(new Rect(10f, y + 90f, view.width - 150f, 20f), BrowserText("Paid", CorporateUI.Money(order.paid)));
+                    CatalogCaption(new Rect(10f, y + 90f, view.width - 150f, 20f), BrowserText("Paid", CorporateUI.Money(order.paid)) + " · " + SpeedLabel(order.speed));
+                    TooltipHandler.TipRegion(new Rect(10f, y + 90f, view.width - 150f, 20f),
+                        "Mugirl.CorporatePricing.Breakdown".Translate(CorporateUI.Money(order.paid - order.expediteFee), CorporateUI.Money(order.expediteFee)));
                     if (order.state == CorporateOrderState.Preparing)
                     {
                         float progress = Mathf.Clamp01((CorporateNetwork.Now - order.createdTick) / (float)Math.Max(1, order.readyTick - order.createdTick));
@@ -994,7 +1045,7 @@ namespace Mugirl
                         order.state == CorporateOrderState.Ready || order.state == CorporateOrderState.RefundDue, true, "orders/claim/" + order.id))
                     { bool ok = network.ClaimOrder(context, order, out string why); CorporateFeedback(ok, why); }
                     if (order.state == CorporateOrderState.Preparing && CorporateUI.Button(new Rect(view.width - 122f, y + 68f, 112f, 32f),
-                        "Mugirl.Corporate.CancelOrder".Translate(), CorporateNetwork.Now - order.createdTick <= network.TradeSettings.cancelWindowDays * CorporateNetwork.DayTicks, id: "orders/cancel/" + order.id))
+                        "Mugirl.Corporate.CancelOrder".Translate(), CorporateNetwork.Now < order.readyTick && CorporateNetwork.Now - order.createdTick <= network.TradeSettings.cancelWindowDays * CorporateNetwork.DayTicks, id: "orders/cancel/" + order.id))
                     {
                         Confirm(BrowserText("ConfirmCancellation", order.id, Mathf.RoundToInt(network.TradeSettings.cancelRefundFactor * 100f)), () =>
                         { bool ok = network.CancelOrder(context, order, out string why); CorporateFeedback(ok, why); }, true);

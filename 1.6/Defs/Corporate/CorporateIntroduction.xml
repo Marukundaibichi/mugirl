@@ -22,6 +22,12 @@
       <ComponentIndustrial>10</ComponentIndustrial>
       <MedicineIndustrial>10</MedicineIndustrial>
     </gifts>
+    <!-- 见面礼随附科技：雪牛娘科技树入口列中低于 500 研究点的三个项目。 -->
+    <researchGifts>
+      <li>Mugirl_DairyProcessing</li>
+      <li>Mugirl_RopeHandling</li>
+      <li>Mugirl_DailyAttire</li>
+    </researchGifts>
   </Mugirl.CorporateIntroductionDef>
   <JobDef>
     <defName>Mugirl_CorporateUseComms</defName>

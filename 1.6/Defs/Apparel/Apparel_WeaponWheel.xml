@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-    <ThingDef ParentName="ApparelNoQualityBase">
+    <!-- 2026-09-29 改挂 Mugirl_ApparelNoQualityBase：统一 Sellable + Mugirl_Apparel。
+         该基类不含缝纫配方，自驱装弹系统的制造台/研究/未完成物定义保持独立，也不会继承品质 Comp。 -->
+    <ThingDef ParentName="Mugirl_ApparelNoQualityBase">
         <defName>Mugirl_AutoloadingSystem</defName>
         <!-- 自驱装弹系统 -->
         <label>self-propelled autoloading system</label>
@@ -38,6 +40,12 @@
             <layers>
                 <li>Belt</li>
             </layers>
+            <!-- 南向恢复 -3：装弹架位于身体后方、凹槽武器前方；
+                 北向保持原版 utility pack 的 93 层；东西向沿用默认层。 -->
+            <drawData>
+                <dataNorth><layer>93</layer></dataNorth>
+                <dataSouth><layer>-3</layer></dataSouth>
+            </drawData>
             <tags>
                 <li>MugirlAutoloadingSystem</li>
             </tags>

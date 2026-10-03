@@ -39,7 +39,7 @@ Available {1}</Mugirl.Corporate.StockRow>
   <Mugirl.Corporate.MyOrders>My orders</Mugirl.Corporate.MyOrders>
   <Mugirl.Corporate.OrderHint>Scarce goods. Dedicated procurement. Patience has a price.</Mugirl.Corporate.OrderHint>
   <Mugirl.Corporate.NoStuff>Fixed material</Mugirl.Corporate.NoStuff>
-  <Mugirl.Corporate.OrderTerms>Lead time {0}–{1} days · First-day cancellation returns {2}%</Mugirl.Corporate.OrderTerms>
+  <Mugirl.Corporate.OrderTerms>Preparation {0}–{1} days · Cancel on the first day before preparation finishes for a {2}% refund, including the expedite fee</Mugirl.Corporate.OrderTerms>
   <Mugirl.Corporate.PlaceOrder>Pay and order</Mugirl.Corporate.PlaceOrder>
   <Mugirl.Corporate.OrderReceipt>Paid {0} · Ready in {1} days</Mugirl.Corporate.OrderReceipt>
   <Mugirl.Corporate.Claim>Collect</Mugirl.Corporate.Claim>

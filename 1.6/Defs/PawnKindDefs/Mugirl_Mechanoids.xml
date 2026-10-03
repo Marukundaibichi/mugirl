@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
+    <!-- 2026-09-26：雪牛娘机械体暂缓发布；Def 与配套翻译保留在注释中，恢复时须整组启用。 -->
+    <!--
     <PawnKindDef Name="Mugirl_SnowBovineMechanoidKindBase" ParentName="BaseMechanoidKind" Abstract="True">
         <weaponMoney>0~0</weaponMoney>
         <defendPointRadius>0</defendPointRadius>
@@ -38,4 +40,5 @@
         <techHediffsChance>1</techHediffsChance>
         <techHediffsMoney>9999~9999</techHediffsMoney>
     </PawnKindDef>
+-->
 </Defs>

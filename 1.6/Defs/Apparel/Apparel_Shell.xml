@@ -287,7 +287,7 @@
         </colorGenerator>
     </ThingDef>
 
-    <ThingDef ParentName="ApparelMakeableBase">
+    <ThingDef ParentName="Mugirl_ApparelBase">
         <defName>Mugirl_Coat</defName>
         <!-- 雪牛娘 大衣 -->
         <label>Mugirl Coat</label>
@@ -342,7 +342,7 @@
         </apparel>
     </ThingDef>
 
-    <ThingDef ParentName="ApparelMakeableBase">
+    <ThingDef ParentName="Mugirl_ApparelBase">
         <defName>Mugirl_KnightlyOrnament</defName>
         <!-- 雪牛娘 骑士颈饰 -->
         <label>Mugirl Knightly Ornament</label>
@@ -393,7 +393,7 @@
         </apparel>
     </ThingDef>
 
-    <ThingDef ParentName="ApparelMakeableBase">
+    <ThingDef ParentName="Mugirl_ApparelBase">
         <defName>Mugirl_RA_Carrying_Equipment</defName>
         <tradeability>Sellable</tradeability>
         <!-- 雪牛娘 特化携行具 -->
@@ -437,7 +437,7 @@
         </equippedStatOffsets>
         <apparel>
             <developmentalStageFilter>Child, Adult</developmentalStageFilter>
-            <tags>
+            <tags><li>MugirlFixedColor</li>
                 <li>Mugirl_Shell</li>
             </tags>
             <bodyPartGroups>
@@ -452,8 +452,33 @@
         </apparel>
     </ThingDef>
 
-    <!-- 机械师背包保留可制作服装的配方默认值、染色与样式，只移除品质 Comp。 -->
-    <ThingDef Name="Mugirl_ApparelMakeableNoQualityBase" ParentName="ApparelMakeableBase" Abstract="True">
+    <!-- 机械师背包：无品质级（挂 Mugirl_ApparelNoQualityBase，链路不含品质 Comp）+ 自带缝纫配方副本；
+         2026-09-29 由原版 ApparelMakeableBase 改挂，交易属性统一 Sellable + Mugirl_Apparel，
+         配方与染色/样式行为不变。 -->
+    <ThingDef Name="Mugirl_ApparelMakeableNoQualityBase" ParentName="Mugirl_ApparelNoQualityBase" Abstract="True">
+        <recipeMaker>
+            <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+            <workSkill>Crafting</workSkill>
+            <effectWorking>Tailor</effectWorking>
+            <soundWorking>Recipe_Tailor</soundWorking>
+            <recipeUsers>
+                <li>ElectricTailoringBench</li>
+                <li>HandTailoringBench</li>
+            </recipeUsers>
+            <unfinishedThingDef>UnfinishedApparel</unfinishedThingDef>
+            <defaultIngredientFilter>
+                <categories>
+                    <li>Root</li>
+                </categories>
+                <disallowedThingDefs>
+                    <li>Gold</li>
+                    <li>Silver</li>
+                    <li>Plasteel</li>
+                    <li>Jade</li>
+                    <li>Uranium</li>
+                </disallowedThingDefs>
+            </defaultIngredientFilter>
+        </recipeMaker>
         <comps Inherit="False">
             <li Class="CompProperties_Forbiddable" />
             <li>
@@ -484,6 +509,7 @@
             <Mass>0.5</Mass>
         </statBases>
         <recipeMaker>
+            <workAmount>1000</workAmount>
             <researchPrerequisites Inherit="False"><li>Mugirl_AdvancedGear</li><li>BasicMechtech</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>3</Crafting>
@@ -535,6 +561,7 @@
             <Mass>0.5</Mass>
         </statBases>
         <recipeMaker>
+            <workAmount>1000</workAmount>
             <researchPrerequisites Inherit="False"><li>Mugirl_AdvancedGear</li><li>StandardMechtech</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>3</Crafting>
@@ -587,6 +614,7 @@
             <Mass>0.5</Mass>
         </statBases>
         <recipeMaker>
+            <workAmount>1000</workAmount>
             <researchPrerequisites Inherit="False"><li>Mugirl_AdvancedGear</li><li>HighMechtech</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>3</Crafting>
@@ -639,6 +667,7 @@
             <Mass>0.5</Mass>
         </statBases>
         <recipeMaker>
+            <workAmount>1000</workAmount>
             <researchPrerequisites Inherit="False"><li>Mugirl_AdvancedGear</li><li>UltraMechtech</li></researchPrerequisites>
             <skillRequirements>
                 <Crafting>3</Crafting>

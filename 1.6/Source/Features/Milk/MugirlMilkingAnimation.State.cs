@@ -211,12 +211,9 @@ namespace Mugirl
                 case MugirlMilkingVisualRole.Helper:
                     return Mugirl_DefOf.Mugirl_MilkingHelperAnimation;
                 case MugirlMilkingVisualRole.FeedingSource:
-                case MugirlMilkingVisualRole.DrinkingSource:
                     return Mugirl_DefOf.Mugirl_MilkInteractionSourceAnimation;
                 case MugirlMilkingVisualRole.FeedingRecipient:
                     return Mugirl_DefOf.Mugirl_MilkInteractionRecipientAnimation;
-                case MugirlMilkingVisualRole.Drinker:
-                    return Mugirl_DefOf.Mugirl_MilkInteractionDrinkerAnimation;
                 default:
                     return null;
             }
@@ -229,8 +226,7 @@ namespace Mugirl
                  animation == Mugirl_DefOf.Mugirl_MilkingTargetAnimation ||
                  animation == Mugirl_DefOf.Mugirl_MilkingHelperAnimation ||
                  animation == Mugirl_DefOf.Mugirl_MilkInteractionSourceAnimation ||
-                 animation == Mugirl_DefOf.Mugirl_MilkInteractionRecipientAnimation ||
-                 animation == Mugirl_DefOf.Mugirl_MilkInteractionDrinkerAnimation);
+                 animation == Mugirl_DefOf.Mugirl_MilkInteractionRecipientAnimation);
         }
 
         private static bool StateNeedsPartner(MilkingVisualState state)

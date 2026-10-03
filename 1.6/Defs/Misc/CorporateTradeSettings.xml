@@ -7,10 +7,10 @@
     <productPriceFactor>1.3</productPriceFactor>
     <stockPriceFactor>1.65</stockPriceFactor>
     <orderPriceFactor>2.2</orderPriceFactor>
-    <rareOrderPriceFactor>6</rareOrderPriceFactor>
-    <archotechOrderPriceFactor>10</archotechOrderPriceFactor>
-    <specialOrderPriceFactor>20</specialOrderPriceFactor>
-    <specialOrderMinimumUnitPrice>20000</specialOrderMinimumUnitPrice>
+    <rareOrderPriceFactor>3</rareOrderPriceFactor>
+    <archotechOrderPriceFactor>4.5</archotechOrderPriceFactor>
+    <unsourcedMinimumUnitPrice>500</unsourcedMinimumUnitPrice>
+    <redemptionPriceFactor>1.2</redemptionPriceFactor>
     <orderDays>3~5</orderDays>
     <rareOrderDays>12~20</rareOrderDays>
     <archotechOrderDays>20~35</archotechOrderDays>
@@ -18,16 +18,6 @@
     <maxActiveOrders>5</maxActiveOrders>
     <cancelWindowDays>1</cancelWindowDays>
     <cancelRefundFactor>0.8</cancelRefundFactor>
-    <rareOrderDefs>
-      <li>ComponentSpacer</li>
-      <li>Hyperweave</li>
-    </rareOrderDefs>
-    <specialOrderDefs>
-      <li MayRequire="Ludeon.RimWorld.Royalty">PsychicAmplifier</li>
-      <li MayRequire="Ludeon.RimWorld.Anomaly">Shard</li>
-      <li MayRequire="Ludeon.RimWorld.Anomaly">RevenantSpine</li>
-      <li MayRequire="Ludeon.RimWorld.Anomaly">Shell_Deadlife</li>
-    </specialOrderDefs>
     <productDefs>
       <li>Mugirl_MilkPudding</li><li>Mugirl_Cheese</li><li>Mugirl_AgedCheese</li>
       <li>Mugirl_BaotaSugar</li><li>Mugirl_MilkCandy</li><li>Mugirl_CowCake</li>

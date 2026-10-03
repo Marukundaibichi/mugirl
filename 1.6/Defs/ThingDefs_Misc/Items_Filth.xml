@@ -9,7 +9,7 @@
             <Cleanliness>-5</Cleanliness>
         </statBases>
         <graphicData>
-            <texPath>Things/Filth/Mugirl_PoolSoft</texPath>
+            <texPath>Things/Filth/Mugirl_MilkStain</texPath>
             <color>(1, 1, 1, 1)</color>
         </graphicData>
         <filth>
@@ -31,7 +31,7 @@
             <Cleanliness>-5</Cleanliness>
         </statBases>
         <graphicData>
-            <texPath>Things/Filth/Mugirl_PoolSoft</texPath>
+            <texPath>Things/Filth/Mugirl_MilkStain</texPath>
             <color>(1, 1, 1, 1)</color>
         </graphicData>
         <filth>

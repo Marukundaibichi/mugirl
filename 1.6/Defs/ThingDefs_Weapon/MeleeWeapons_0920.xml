@@ -49,6 +49,6 @@
     <tools Inherit="False"><li><label>point</label><capacities><li>Stab</li></capacities><power>40</power><armorPenetration>0.50</armorPenetration><cooldownTime>2.6</cooldownTime></li></tools>
     <comps><li Class="Mugirl.Features.Lances.CompProperties_LanceCharge"><minimumPointRange>0</minimumPointRange><minimumLineRange>4</minimumLineRange><maximumRange>19.9</maximumRange><pointCooldownTicks>1800</pointCooldownTicks><lineCooldownTicks>600</lineCooldownTicks><pointStunTicks>300</pointStunTicks><lineStunTicks>180</lineStunTicks><pointDurabilityCost>20</pointDurabilityCost><lineDurabilityCost>0</lineDurabilityCost><maximumPointDamage>220</maximumPointDamage><steamTrail>true</steamTrail><pointIconPath>UI/Commands/Lances/Mugirl_SteamLance_Point</pointIconPath><lineIconPath>UI/Commands/Lances/Mugirl_SteamLance_Line</lineIconPath></li></comps>
     <modExtensions><li Class="Mugirl.MugirlRaceRestrictedExtension"/></modExtensions>
-    <recipeMaker><researchPrerequisite>Mugirl_PneumaticWeapons</researchPrerequisite><recipeUsers Inherit="False"><li>TableMachining</li></recipeUsers><skillRequirements><Crafting>10</Crafting></skillRequirements><displayPriority>333</displayPriority></recipeMaker>
+    <recipeMaker><workAmount>120000</workAmount><researchPrerequisite>Mugirl_PneumaticWeapons</researchPrerequisite><recipeUsers Inherit="False"><li>TableMachining</li></recipeUsers><skillRequirements><Crafting>10</Crafting></skillRequirements><displayPriority>333</displayPriority></recipeMaker>
   </ThingDef>
 </Defs>

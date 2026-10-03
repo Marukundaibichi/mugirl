@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
+    <!-- 2026-09-26：雪牛娘机械体暂缓发布；Def 与配套翻译保留在注释中，恢复时须整组启用。 -->
+    <!--
     <ToolCapacityDef>
         <defName>Mugirl_BulldogTailAssistedCut</defName>
         <label>tail-assisted cut</label>
@@ -18,4 +20,5 @@
         <combatLogRulesDodge>Maneuver_Slash_MeleeDodge</combatLogRulesDodge>
         <logEntryDef>MeleeAttack</logEntryDef>
     </ManeuverDef>
+-->
 </Defs>

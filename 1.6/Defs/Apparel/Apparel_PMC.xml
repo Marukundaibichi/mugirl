@@ -2,7 +2,7 @@
 <Defs>
 
     <!-- PMC钢盔 -->
-    <ThingDef ParentName="ApparelMakeableBase">
+    <ThingDef ParentName="Mugirl_ApparelBase">
         <defName>PMC_Helmet</defName>
         <tradeability>Sellable</tradeability>
         <tradeTags><li>Mugirl_CombatApparelBuyOnly</li></tradeTags>
@@ -64,7 +64,7 @@
     </ThingDef>
 
     <!-- PMC队长头盔 -->
-    <ThingDef ParentName="ApparelMakeableBase">
+    <ThingDef ParentName="Mugirl_ApparelBase">
         <defName>PMC_CaptainHelmet</defName>
         <tradeability>Sellable</tradeability>
         <tradeTags><li>Mugirl_CombatApparelBuyOnly</li></tradeTags>
@@ -126,7 +126,7 @@
     </ThingDef>
 
     <!-- PMC作战服：Middle 与 Shell 双层，支持多体型。 -->
-    <ThingDef ParentName="ApparelMakeableBase">
+    <ThingDef ParentName="Mugirl_ApparelBase">
         <defName>PMC_CombatUniform</defName>
         <tradeability>Sellable</tradeability>
         <tradeTags><li>Mugirl_CombatApparelBuyOnly</li></tradeTags>

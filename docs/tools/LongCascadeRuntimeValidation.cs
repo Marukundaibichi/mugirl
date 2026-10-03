@@ -39,32 +39,54 @@ namespace Mugirl
                     ScreenCapture.CaptureScreenshot(Path.Combine(outputRoot, pendingShot));
                     pendingShot = null;
                 }
-                else if (phase < 32)
+                else if (phase < 64)
                 {
                     int frame = phase / 2;
+                    int fixture = frame % 16;
+                    bool isHairs10 = frame >= 16;
+                    pawn.story.hairDef = isHairs10 ? DefDatabase<HairDef>.GetNamed("Mugirl_Hairs10") : Mugirl_DefOf.Mugirl_LongCascade;
                     Rot4 facing = new[] { Rot4.South, Rot4.East, Rot4.North, Rot4.West }[frame % 4];
                     pawn.apparel.DestroyAll();
                     Wear("Mugirl_NunDressSimple");
                     if (frame % 8 >= 4) Wear("Mugirl_NunVeil");
-                    if (frame >= 8) Wear("Mugirl_NunBlindfold");
+                    if (fixture >= 8) Wear("Mugirl_NunBlindfold");
                     pawn.Rotation = facing;
                     pawn.Drawer.renderer.SetAllGraphicsDirty();
                     PawnRenderTree tree = pawn.Drawer.renderer.renderTree;
                     tree.EnsureInitialized(PawnRenderFlags.None);
                     List<PawnRenderNode> nodes = Descendants(tree.rootNode).ToList();
-                    PawnRenderNode_LongCascadeBackHair back = nodes.OfType<PawnRenderNode_LongCascadeBackHair>().Single();
+                    PawnRenderNode_LongCascadeBackHair back = nodes.OfType<PawnRenderNode_LongCascadeBackHair>()
+                        .Single(node => node.BackHairDef == pawn.story.hairDef);
                     PawnRenderNode_Hair front = nodes.OfType<PawnRenderNode_Hair>().Single();
                     PawnDrawParms parms = new PawnDrawParms { pawn = pawn, facing = facing, rotDrawMode = RotDrawMode.Fresh };
-                    string label = "frame=" + frame + "/" + facing;
+                    string label = pawn.story.hairDef.defName + "/frame=" + frame + "/" + facing;
                     Check(label + " rear follows Head behind the main hair", back.parent?.Props.tagDef == PawnRenderNodeTagDefOf.Head
                         && back.Props.baseLayer < front.Props.baseLayer);
                     Mesh backMesh = back.GetMesh(parms);
                     Mesh frontMesh = front.GetMesh(parms);
                     Check(label + " front/rear UV orientation matches", backMesh.uv.SequenceEqual(frontMesh.uv));
                     Check(label + " front/rear canvas sizes match", backMesh.bounds.size == frontMesh.bounds.size);
-                    Check(label + " rear visibility matches direction", back.Worker.CanDrawNow(back, parms) == (facing != Rot4.North));
-                    Check(label + " rear directional texture loads", back.GraphicForFacing(pawn, facing).MatAt(facing).mainTexture != BaseContent.BadTex);
-                    if (frame >= 8)
+                    bool visible = isHairs10 ? facing == Rot4.South : facing != Rot4.North;
+                    Check(label + " rear visibility matches direction", back.Worker.CanDrawNow(back, parms) == visible);
+                    Check(label + " other hairstyle rear remains hidden", nodes.OfType<PawnRenderNode_LongCascadeBackHair>()
+                        .Where(node => node != back).All(node => !node.Worker.CanDrawNow(node, parms)));
+                    if (visible)
+                        Check(label + " rear directional texture loads", back.GraphicForFacing(pawn, facing).MatAt(facing).mainTexture != BaseContent.BadTex);
+                    if (frame % 8 >= 4 && facing == Rot4.South)
+                    {
+                        PawnRenderNode veil = nodes.Single(node => node is PawnRenderNode_NunVeilBack);
+                        PawnRenderNode head = nodes.Single(node => node.Props.tagDef == PawnRenderNodeTagDefOf.Head);
+                        float headLayer = head.Worker.LayerFor(head, parms);
+                        float hairLayer = back.Worker.LayerFor(back, parms);
+                        float veilLayer = veil.Worker.LayerFor(veil, parms);
+                        Check(label + " rear is above nun veil drape and below face (hair=" + hairLayer
+                            + ", veil=" + veilLayer + ", head=" + headLayer + ")", hairLayer > veilLayer && hairLayer < headLayer);
+                        parms.matrix = Matrix4x4.identity;
+                        Check(label + " final mesh depth places rear above veil with margin", tree.TryGetMatrix(back, parms, out Matrix4x4 hairMatrix)
+                            && tree.TryGetMatrix(veil, parms, out Matrix4x4 veilMatrix)
+                            && hairMatrix.m13 - veilMatrix.m13 > 0.001f);
+                    }
+                    if (fixture >= 8)
                     {
                         PawnRenderNode_Apparel blindfold = nodes.OfType<PawnRenderNode_Apparel>()
                             .Single(node => node.apparel.def.defName == "Mugirl_NunBlindfold");
@@ -86,11 +108,12 @@ namespace Mugirl
                     Find.Selector.ClearSelection();
                     Find.CameraDriver.SetRootPosAndSize(pawn.DrawPos, 4f);
                     pendingShot = "hair-" + frame + "-" + facing + ".png";
+                    if (frame % 8 >= 4 && facing == Rot4.South) SaveBeforePortrait(frame, facing);
                     SavePortrait(frame, facing);
                 }
                 else { Finish(); return; }
                 phase++;
-                nextAt = Time.realtimeSinceStartup + 1.5f;
+                nextAt = Time.realtimeSinceStartup + 0.5f;
             }
             catch (Exception exception)
             {
@@ -101,6 +124,7 @@ namespace Mugirl
 
         private static void CreatePawn()
         {
+            Application.runInBackground = true;
             Map map = Find.CurrentMap;
             IntVec3 cell = CellFinder.StandableCellNear(map.Center, map, 20);
             foreach (IntVec3 nearby in GenRadial.RadialCellsAround(cell, 3f, true))
@@ -125,7 +149,28 @@ namespace Mugirl
             pawn.apparel.Wear((Apparel)ThingMaker.MakeThing(def, GenStuff.DefaultStuffFor(def)), false);
         }
 
-        private static void SavePortrait(int frame, Rot4 facing)
+        private static void SaveBeforePortrait(int frame, Rot4 facing)
+        {
+            // 同一 Pawn 对照旧层级，排除发色、头型和随机生成对视觉比较的影响。
+            PawnRenderNodeProperties props = pawn.apparel.WornApparel.Single(item => item.def.defName == "Mugirl_NunVeil")
+                .def.apparel.RenderNodeProperties.Single(entry => entry.nodeClass == typeof(PawnRenderNode_NunVeilBack));
+            float originalLayer = props.baseLayer;
+            try
+            {
+                props.baseLayer = -1f;
+                pawn.Drawer.renderer.renderTree.SetDirty();
+                PortraitsCache.SetDirty(pawn);
+                SavePortrait(frame, facing, "before-");
+            }
+            finally
+            {
+                props.baseLayer = originalLayer;
+                pawn.Drawer.renderer.renderTree.SetDirty();
+                PortraitsCache.SetDirty(pawn);
+            }
+        }
+
+        private static void SavePortrait(int frame, Rot4 facing, string prefix = "portrait-")
         {
             RenderTexture portrait = PortraitsCache.Get(pawn, new Vector2(512, 768), facing,
                 supersample: false, compensateForUIScale: false, renderHeadgear: true, renderClothes: true);
@@ -136,7 +181,7 @@ namespace Mugirl
                 RenderTexture.active = portrait;
                 image.ReadPixels(new Rect(0, 0, portrait.width, portrait.height), 0, 0);
                 image.Apply();
-                File.WriteAllBytes(Path.Combine(outputRoot, "portrait-" + frame + "-" + facing + ".png"), image.EncodeToPNG());
+                File.WriteAllBytes(Path.Combine(outputRoot, prefix + frame + "-" + facing + ".png"), image.EncodeToPNG());
             }
             finally
             {

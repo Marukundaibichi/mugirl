@@ -696,6 +696,11 @@
                     <li>Mugirl_KnightMountHelmet</li>
                     <li>Mugirl_NeuralCombatArmor</li>
                     <li>Mugirl_NeuralAmplifierHelmet</li>
+                    <!-- 9.26 新装须登记种族白名单，onlyUseRaceRestrictedApparel 才允许穿戴。 -->
+                    <li>Mugirl_GoldBikini</li>
+                    <li>Mugirl_GoldLatexBoots</li>
+                    <li>Mugirl_SnowPrincessArmor</li>
+                    <li>Mugirl_SnowPrincessCrown</li>
 
                     <li>Mugirl_Mask</li>
                     <li>Mugirl_Veil</li>
@@ -1016,6 +1021,12 @@
             <!-- <li Class="Mugirl.CompProperties_ShowRopedBy" /> -->
             <!-- XNN_Hairs8F：LongCascade 的南/东西向后发层，北向由主图完整绘制。 -->
             <li Class="Mugirl.Features.Appearance.CompProperties_LongCascadeBackHair" />
+            <!-- XNN_Hairs10F：Hairs10 的南向后发层；未提供东西向贴图，sidePath 留空仅绘制南向。 -->
+            <li Class="Mugirl.Features.Appearance.CompProperties_LongCascadeBackHair">
+                <hairDef>Mugirl_Hairs10</hairDef>
+                <southPath>Mugirl/Hair/Mugirl_Hairs10Back_south</southPath>
+                <sidePath />
+            </li>
             <li Class="Mugirl.Features.Appearance.CompProperties_MugirlBodyAccessory">
                 <!-- 每次 Lovin：牙印 25%、屁股掌印 25%、无印记 50%；持续 1–3 天。 -->
                 <lovinBiteChance>0.25</lovinBiteChance>

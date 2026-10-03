@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 using Verse.Sound;
 
 namespace Mugirl.Features.WeaponWheel
@@ -450,14 +451,33 @@ namespace Mugirl.Features.WeaponWheel
         internal ThingWithComps GetBackWeapon(int displayIndex)
         {
             EnsureCollections();
-            bool useAutoloadingLayout = HasAutoloadingSystem;
-            if (backWeaponCacheDirty || backWeaponCacheAutoloadingLayout != useAutoloadingLayout)
-            {
-                RebuildBackWeaponCache(useAutoloadingLayout);
-            }
-            return displayIndex == 0
-                ? firstBackWeapon
-                : displayIndex == 1 ? secondBackWeapon : null;
+            // 普通背负节点固定映射轮盘第 1、2 格；取贴图与是否显示分开，避免手持状态令节点丢失贴图。
+            return displayIndex >= 0 && displayIndex < 2 && displayIndex < slots.Count && unlockedSlots[displayIndex]
+                ? slots[displayIndex] : null;
+        }
+
+        internal bool IsBackWeaponVisible(int displayIndex)
+        {
+            ThingWithComps weapon = GetBackWeapon(displayIndex);
+            if (weapon == null || weapon == animationOutgoingWeapon || weapon == animationIncomingWeapon) return false;
+            Pawn pawn = Pawn;
+            if (weapon != pawn?.equipment?.Primary) return true;
+            if (TryGetAimHandoff(out ThingWithComps handoff, out _) && handoff == weapon) return false;
+            if (TryGetSwordDanceDashHeldWeapon(out ThingWithComps dash, out _) && dash == weapon) return false;
+            // 主武器平时在 equipment 中，但未亮出时同样属于背负；瞄准/征召/工作亮枪时隐藏。
+            if (pawn.CurJob?.def?.neverShowWeapon != false) return true;
+            Stance_Busy busy = pawn.stances?.curStance as Stance_Busy;
+            return !(busy != null && !busy.neverAimWeapon && busy.focusTarg.IsValid)
+                && !PawnRenderUtility.CarryWeaponOpenly(pawn);
+        }
+
+        private void RefreshBackWeaponVisibility()
+        {
+            // 只比较两个固定槽位；Job/瞄准变化不一定改变 PawnDrawParms，需显式刷新绘制请求。
+            int mask = (IsBackWeaponVisible(0) ? 1 : 0) | (IsBackWeaponVisible(1) ? 2 : 0);
+            if (mask == backWeaponVisibilityMask) return;
+            backWeaponVisibilityMask = mask;
+            for (int i = 0; i < backWeaponNodes.Count; i++) backWeaponNodes[i].requestRecache = true;
         }
 
         internal ThingWithComps GetAutoloadingWeapon(int displayIndex)
@@ -468,41 +488,6 @@ namespace Mugirl.Features.WeaponWheel
                 return null;
             }
             return WeaponVisibleInStorageSlot(displayIndex + 2);
-        }
-
-        private void RebuildBackWeaponCache(bool useAutoloadingLayout)
-        {
-            backWeaponCacheDirty = false;
-            backWeaponCacheAutoloadingLayout = useAutoloadingLayout;
-            firstBackWeapon = null;
-            secondBackWeapon = null;
-            if (useAutoloadingLayout)
-            {
-                // 装备自驱装弹系统时，第 2 格仍按普通背负武器显示；第 3–6 格固定进入四个凹槽。
-                // 固定槽位映射可避免轮射切枪时其余武器在凹槽之间跳位。
-                firstBackWeapon = WeaponVisibleInStorageSlot(1);
-                return;
-            }
-
-            ThingWithComps primary = Pawn?.equipment?.Primary;
-            for (int i = 0; i < slots.Count; i++)
-            {
-                ThingWithComps weapon = slots[i];
-                if (!unlockedSlots[i] || weapon == null || weapon == primary
-                    || weapon == animationOutgoingWeapon || weapon == animationIncomingWeapon)
-                {
-                    continue;
-                }
-                if (firstBackWeapon == null)
-                {
-                    firstBackWeapon = weapon;
-                }
-                else
-                {
-                    secondBackWeapon = weapon;
-                    break;
-                }
-            }
         }
 
         private ThingWithComps WeaponVisibleInStorageSlot(int slotIndex)

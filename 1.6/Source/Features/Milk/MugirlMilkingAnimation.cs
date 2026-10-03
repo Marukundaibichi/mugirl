@@ -10,9 +10,7 @@ namespace Mugirl
         AssistedTarget,
         Helper,
         FeedingSource,
-        FeedingRecipient,
-        DrinkingSource,
-        Drinker
+        FeedingRecipient
     }
 
     public static partial class MugirlMilkingAnimation
@@ -164,9 +162,7 @@ namespace Mugirl
                     return true;
 
                 case MugirlMilkingVisualRole.FeedingSource:
-                case MugirlMilkingVisualRole.DrinkingSource:
                 case MugirlMilkingVisualRole.FeedingRecipient:
-                case MugirlMilkingVisualRole.Drinker:
                     ApplyMilkInteractionBodyMotion(state, parms, age, ref offset, ref angle, ref scale);
                     return true;
             }
@@ -191,12 +187,10 @@ namespace Mugirl
             switch (state.role)
             {
                 case MugirlMilkingVisualRole.FeedingSource:
-                case MugirlMilkingVisualRole.DrinkingSource:
                     ApplyMilkSourceHeadMotion(state, ref offset, ref angle);
                     return true;
 
                 case MugirlMilkingVisualRole.FeedingRecipient:
-                case MugirlMilkingVisualRole.Drinker:
                     if (!state.hasExplicitHead)
                     {
                         return false;

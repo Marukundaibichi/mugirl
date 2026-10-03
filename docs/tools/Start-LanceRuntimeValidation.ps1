@@ -2,6 +2,10 @@ param(
     [Parameter(Mandatory)][ValidatePattern('^[A-Za-z0-9-]+$')][string]$RunName
 )
 
+# Retired 2026-09-29: user requested removal of cloned RimWorld test runtimes.
+throw 'RimWorld 游戏副本测试入口已停用（2026-09-29）。请使用正常构建、静态检查或已有 Steam 安装；不再创建独立游戏副本。'
+
+
 $ErrorActionPreference = 'Stop'
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))
 $temporaryRoot = Join-Path ([Environment]::GetFolderPath('LocalApplicationData')) 'RimWorldModTests\Mugirl'

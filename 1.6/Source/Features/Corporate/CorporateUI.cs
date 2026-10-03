@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -17,7 +18,9 @@ namespace Mugirl
         internal static readonly Color Border = Gray(0.220f);
         internal static readonly Color Danger = Gray(0.850f);
         private static FrameScope current;
-        private static GUIStyle inputStyle;
+        // 按字号缓存的输入框样式：从原版 Text 的对应字号样式克隆，仅清空背景以贴合窗口皮肤。
+        // StaticCacheLifecycle: 进程级缓存，只含 GUIStyle，无游戏状态。
+        private static readonly GUIStyle[] inputStyles = new GUIStyle[3];
 
         private sealed class ScrollFrame
         {
@@ -274,7 +277,6 @@ namespace Mugirl
 
         internal static string Input(Rect rect, string value, string placeholder = null, string id = null)
         {
-            EnsureInputStyle();
             string name = "corporate/input/" + ControlKey(rect, "input", id);
             bool focused = GUI.GetNameOfFocusedControl() == name;
             bool hovered = GUI.enabled && Interactive && InsideScrollClips() && Mouse.IsOver(rect);
@@ -288,14 +290,16 @@ namespace Mugirl
                 float width = rect.width * CorporateMotion.Ease(focus);
                 Fill(new Rect(rect.center.x - width * 0.5f, rect.yMax - 2f, width, 2f), Gray(0.96f, focus));
             }
-            Color saved = GUI.color, content = GUI.contentColor;
+            Color saved = GUI.color;
             bool enabled = GUI.enabled;
             try
             {
-                GUI.color = Tint(Color.white); GUI.contentColor = Color.white;
-                if (Event.current.type != EventType.Repaint) GUI.enabled = enabled && Interactive;
+                // 与原版 QuickSearchWidget 一致：字段绘制期间颜色纯白，不按事件类型切换
+                // GUI.enabled，也不传引擎级 maxLength——这些偏差会打断键盘与输入法组合输入。
+                GUI.color = Color.white;
+                if (!Interactive) GUI.enabled = false;
                 GUI.SetNextControlName(name);
-                string result = GUI.TextField(rect.ContractedBy(1f), value ?? string.Empty, 1000, inputStyle);
+                string result = GUI.TextField(rect.ContractedBy(1f), value ?? string.Empty, InputStyle());
                 if (string.IsNullOrEmpty(result) && !focused && !string.IsNullOrEmpty(placeholder))
                 {
                     GUI.color = saved;
@@ -303,7 +307,7 @@ namespace Mugirl
                 }
                 return result;
             }
-            finally { GUI.color = saved; GUI.contentColor = content; GUI.enabled = enabled; }
+            finally { GUI.color = saved; GUI.enabled = enabled; }
         }
 
         internal static bool InputFocused(Rect rect, string id)
@@ -311,16 +315,45 @@ namespace Mugirl
             return GUI.GetNameOfFocusedControl() == "corporate/input/" + ControlKey(rect, "input", id);
         }
 
-        private static void EnsureInputStyle()
+        internal static string Search(Rect rect, string value, QuickSearchWidget widget, string placeholder)
         {
-            if (inputStyle != null) return;
-            inputStyle = new GUIStyle(GUI.skin.textField);
-            inputStyle.normal.background = null; inputStyle.hover.background = null;
-            inputStyle.focused.background = null; inputStyle.active.background = null;
-            inputStyle.normal.textColor = Ink; inputStyle.hover.textColor = Ink;
-            inputStyle.focused.textColor = Ink; inputStyle.active.textColor = Ink;
-            inputStyle.padding = new RectOffset(9, 9, 4, 4);
-            inputStyle.alignment = TextAnchor.MiddleLeft;
+            Color color = GUI.color;
+            bool enabled = GUI.enabled;
+            try
+            {
+                // 组合输入、候选位置与焦点交由原版搜索控件处理，不使用自定义输入样式。
+                GUI.color = Color.white;
+                if (!Interactive) GUI.enabled = false;
+                widget.filter.Text = value ?? string.Empty;
+                widget.OnGUI(rect);
+                if (!widget.filter.Active && !widget.CurrentlyFocused())
+                    Label(new Rect(rect.x + 28f, rect.y, Mathf.Max(0f, rect.width - 28f), rect.height),
+                        placeholder, color: Muted, anchor: TextAnchor.MiddleLeft);
+                return widget.filter.Text;
+            }
+            finally { GUI.color = color; GUI.enabled = enabled; }
+        }
+
+        private static GUIStyle InputStyle()
+        {
+            int index = (int)Text.Font;
+            GUIStyle style = inputStyles[index];
+            if (style == null)
+            {
+                style = new GUIStyle(Text.textFieldStyles[index])
+                {
+                    normal = { textColor = Ink },
+                    hover = { textColor = Ink },
+                    focused = { textColor = Ink },
+                    active = { textColor = Ink },
+                    padding = new RectOffset(9, 9, 4, 4),
+                    alignment = TextAnchor.MiddleLeft
+                };
+                style.normal.background = null; style.hover.background = null;
+                style.focused.background = null; style.active.background = null;
+                inputStyles[index] = style;
+            }
+            return style;
         }
 
         internal static void BeginScrollView(Rect rect, ref Vector2 position, Rect view, string id = null)
@@ -438,14 +471,16 @@ namespace Mugirl
 
         internal static void DrawGeometry(Rect rect, float opacity, bool light = false)
         {
-            if (Event.current.type != EventType.Repaint || opacity <= 0f) return;
-            float time = Time.realtimeSinceStartup;
-            Color line = Gray(light ? 0f : 1f, opacity * 0.15f);
-            float step = Mathf.Max(36f, Mathf.Min(64f, rect.width / 12f));
-            float drift = time * 3f % step;
+            // BeginGroup 会分配 GUI control ID；所有事件都须经过同一分组，
+            // 否则后续 TextField 的输入与重绘 ID 错位，打断中文输入法组合输入。
             GUI.BeginGroup(rect);
             try
             {
+                if (Event.current.type != EventType.Repaint || opacity <= 0f) return;
+                float time = Time.realtimeSinceStartup;
+                Color line = Gray(light ? 0f : 1f, opacity * 0.15f);
+                float step = Mathf.Max(36f, Mathf.Min(64f, rect.width / 12f));
+                float drift = time * 3f % step;
                 for (float x = -step + drift; x < rect.width; x += step) Fill(new Rect(x, 0f, 1f, rect.height), line);
                 for (float y = -step + drift * 0.5f; y < rect.height; y += step) Fill(new Rect(0f, y, rect.width, 1f), line);
                 for (int i = 0; i < 5; i++)

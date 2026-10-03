@@ -59,6 +59,10 @@ namespace Mugirl
             }
 
             listingStandard.Gap(12f);
+            listingStandard.CheckboxLabeled("Mugirl.Settings.HideBackWeapons.Label".Translate(), ref settings.hideWeaponWheelBackWeapons,
+                "Mugirl.Settings.HideBackWeapons.Desc".Translate());
+
+            listingStandard.Gap(12f);
             listingStandard.CheckboxLabeled("Mugirl.Settings.WeaponWheelDevLog.Label".Translate(), ref settings.enableWeaponWheelDevLog,
                 "Mugirl.Settings.WeaponWheelDevLog.Desc".Translate());
             if (settings.enableWeaponWheelDevLog

@@ -189,6 +189,25 @@ try {
         Fail "ThingDef defName numeric suffix scan failed: $($thingDefNumericSuffixes.Count) invalid defName(s)"
     }
 
+    Write-Step "Deferred mechanoids and throw violence requirement"
+    $deferredMechFiles = @(
+        '1.6\Defs\Bodies\Mugirl_MechanoidBodies.xml',
+        '1.6\Defs\DamageDefs\Mugirl_MechanoidAttacks.xml',
+        '1.6\Defs\ThingDefs_Races\Mugirl_Mechanoids.xml',
+        '1.6\Defs\PawnKindDefs\Mugirl_Mechanoids.xml'
+    ) + @(Get-ChildItem -LiteralPath '1.6\Languages\ChineseSimplified\DefInjected' -Recurse -Filter 'Mugirl_Mechanoids.xml' | ForEach-Object FullName)
+    foreach ($path in $deferredMechFiles) {
+        $doc = Get-XmlDocument $path
+        if ($doc.DocumentElement.SelectNodes('*').Count -ne 0) {
+            Fail "$path :: deferred mechanoid definitions and translations must stay commented out"
+        }
+    }
+    $throwDoc = Get-XmlDocument 'Bio_1.6\Defs\AbilityDef.xml'
+    $throwViolenceNode = $throwDoc.SelectSingleNode('/Defs/AbilityDef[defName="Mugirl_Throw"]/casterMustBeCapableOfViolence')
+    if ($null -eq $throwViolenceNode -or $throwViolenceNode.InnerText -ne 'true') {
+        Fail 'Mugirl_Throw must require a caster capable of violence'
+    }
+
     Write-Step "Language duplicate keys"
     $languageTranslationNodes = 0
     $languageDuplicateKeys = @()
@@ -401,6 +420,7 @@ try {
         'docs\validation-runbook.md',
         'docs\release-checklist.md',
         'docs\features\outline-guide.md',
+        'docs\records\mech-throw-graze-2026-09-26.md',
         'docs\architecture\ADR-001-single-dll.md',
         'docs\architecture\ADR-002-harmony-registration.md',
         'docs\architecture\ADR-003-compatibility-scope.md',
@@ -2764,10 +2784,9 @@ try {
             -and $milkingAnimationText -match 'FallbackHeadRegionFraction\s*=\s*0\.3f' `
             -and $milkingAnimationText -match 'PawnRenderNodeTagDefOf\.Head' `
             -and $milkingAnimationText -match 'StartFeeding' `
-            -and $milkingAnimationText -match 'StartDrinking' `
+            -and $milkingAnimationText -notmatch 'StartDrinking|TickDrinking|Mugirl_MilkInteractionDrinkerAnimation' `
             -and $milkingAnimationText -match 'source\.Rotation\s*=\s*Rot4\.South' `
             -and $milkingAnimationText -match 'recipient\.Rotation\s*=\s*FeedingRecipientFacing' `
-            -and $milkingAnimationText -match 'source\.rotationTracker\?\.FaceTarget\(recipient\)' `
             -and $milkingAnimationText -match 'states\.Clear\(\)' `
             -and $milkingAnimationText -match 'tmpStateKeysToRemove' `
             -and $milkingAnimationText -match 'state\.pawn\s*!=\s*pawn\s*\|\|\s*state\.role\s*!=\s*role' `

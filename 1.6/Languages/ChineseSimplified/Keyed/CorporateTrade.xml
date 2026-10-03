@@ -39,7 +39,7 @@
   <Mugirl.Corporate.MyOrders>我的订单</Mugirl.Corporate.MyOrders>
   <Mugirl.Corporate.OrderHint>稀缺物资，专线调拨。价格包含等待的成本。</Mugirl.Corporate.OrderHint>
   <Mugirl.Corporate.NoStuff>固定材料</Mugirl.Corporate.NoStuff>
-  <Mugirl.Corporate.OrderTerms>交期 {0}–{1} 日 · 首日撤单返还 {2}%</Mugirl.Corporate.OrderTerms>
+  <Mugirl.Corporate.OrderTerms>备货 {0}–{1} 日 · 首日且未备货完成时撤单，返还含加急费的实付款的 {2}%</Mugirl.Corporate.OrderTerms>
   <Mugirl.Corporate.PlaceOrder>支付并订购</Mugirl.Corporate.PlaceOrder>
   <Mugirl.Corporate.OrderReceipt>已付 {0} · 备货剩余 {1} 日</Mugirl.Corporate.OrderReceipt>
   <Mugirl.Corporate.Claim>领取</Mugirl.Corporate.Claim>

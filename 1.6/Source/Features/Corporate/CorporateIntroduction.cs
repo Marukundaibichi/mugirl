@@ -19,6 +19,7 @@ namespace Mugirl
         public int contactDelayTicks = 120000;       // 运货员事件后约两天到访。
         public int contactDelayJitterTicks = 9000;   // ±3.6 小时随机浮动。
         public List<ThingDefCountClass> gifts = new List<ThingDefCountClass>();
+        public List<ResearchProjectDef> researchGifts = new List<ResearchProjectDef>();
     }
 
     [DefOf]
@@ -351,13 +352,31 @@ namespace Mugirl
             if (!independentAggression && corporation != null && corporation.PlayerGoodwill < 0)
                 corporation.TryAffectGoodwillWith(MugirlWildSlaveUtility.PlayerFaction, -corporation.PlayerGoodwill, false, false);
             TryDeliverGifts(preferredMap);
+            List<ResearchProjectDef> unlockedResearch = UnlockResearchGifts();
             introductionQuest?.End(QuestEndOutcome.Success, sendLetter: false, playSound: false);
             string text = "Mugirl.CorporateIntro.CompletedLetter".Translate();
+            if (unlockedResearch.Count > 0)
+                text += "\n\n" + "Mugirl.CorporateIntro.ResearchGiftLine".Translate(unlockedResearch.Select(p => (string)p.LabelCap).ToCommaList());
             if (corporation?.HostileTo(MugirlWildSlaveUtility.PlayerFaction) == true) text += "\n\n" + "Mugirl.CorporateIntro.HostilityRemains".Translate();
             MugirlGameUtility.Letters.ReceiveLetter("Mugirl.CorporateIntro.CompletedStatus".Translate(), text, LetterDefOf.PositiveEvent, negotiator);
             CorporateNetwork.Current?.Record("Mugirl.CorporateIntro.Title", "Mugirl.CorporateIntro.CompletedStatus".Translate());
             CorporateNetwork.Current?.EnsureWeeklyOffers();
             SendAway(target);
+        }
+
+        // 见面礼科技随开户一次性完成；已研究的项目跳过，避免重复触发解锁副作用。
+        private List<ResearchProjectDef> UnlockResearchGifts()
+        {
+            List<ResearchProjectDef> unlocked = new List<ResearchProjectDef>();
+            ResearchManager manager = MugirlGameUtility.ResearchManager;
+            if (manager == null) return unlocked;
+            foreach (ResearchProjectDef project in Config.researchGifts)
+            {
+                if (project == null || project.IsFinished) continue;
+                manager.FinishProject(project);
+                unlocked.Add(project);
+            }
+            return unlocked;
         }
 
         private bool PrepareGifts()

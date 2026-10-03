@@ -3,7 +3,10 @@
 
     <!-- ====================================== 头部装饰 =========================================== -->
 
-    <ThingDef Name="Mugirl_HeadBase" ParentName="HatMakeableBase" Abstract="True">
+    <!-- 2026-09-29 改挂 Mugirl_ApparelBase：头饰随全线服装统一 Sellable + Mugirl_Apparel 标签，
+         不再被原版服装商人生成出售，巨企报价与身体服装同规则。parentTagDef 与 Headgear
+         分类原由 HatMakeableBase 链提供，此处显式保留，渲染与物品树分组不变。 -->
+    <ThingDef Name="Mugirl_HeadBase" ParentName="Mugirl_ApparelBase" Abstract="True">
         <graphicData>
             <graphicClass>Graphic_Single</graphicClass>
             <shaderType>CutoutComplex</shaderType>
@@ -16,6 +19,7 @@
             <layers>
                 <li>Overhead</li>
             </layers>
+            <parentTagDef>ApparelHead</parentTagDef>
             <renderSkipFlags>
                 <li>None</li>
             </renderSkipFlags>
@@ -25,6 +29,7 @@
             <useWornGraphicMask>true</useWornGraphicMask>
         </apparel>
         <thingCategories>
+            <li>Headgear</li>
             <li>Mugirl_Head</li>
         </thingCategories>
         <recipeMaker>
@@ -63,7 +68,7 @@
                 <li>HeadAttackTool</li>
             </bodyPartGroups>
             <wornGraphicPath>Things/Apparel/Mugirl_BunnyGirlHeaddress/Mugirl_BunnyGirlHeaddress</wornGraphicPath>
-        </apparel>
+        <tags><li>MugirlFixedColor</li></tags></apparel>
     </ThingDef>
 
     <ThingDef ParentName="Mugirl_HeadBase">
@@ -86,6 +91,9 @@
             <WorkToMake>4000</WorkToMake>
             <Mass>0.1</Mass>
             <EquipDelay>0.5</EquipDelay>
+            <ArmorRating_Sharp>0.04</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.02</ArmorRating_Blunt>
+            <ArmorRating_Heat>0.02</ArmorRating_Heat>
         </statBases>
         <apparel>
             <bodyPartGroups>
@@ -93,6 +101,9 @@
             </bodyPartGroups>
             <wornGraphicPath>Things/Apparel/Mugirl_Sunglasses/Mugirl_Sunglasses</wornGraphicPath>
         </apparel>
+        <recipeMaker>
+            <workAmount>4000</workAmount>
+        </recipeMaker>
     </ThingDef>
 
     <ThingDef ParentName="Mugirl_HeadBase">
@@ -117,6 +128,7 @@
             <WorkToMake>2000</WorkToMake>
             <Mass>0.1</Mass>
             <EquipDelay>0.1</EquipDelay>
+            <StuffEffectMultiplierArmor>0.05</StuffEffectMultiplierArmor>
         </statBases>
         <apparel>
             <bodyPartGroups>
@@ -148,6 +160,7 @@
             <WorkToMake>2000</WorkToMake>
             <Mass>0.1</Mass>
             <EquipDelay>0.1</EquipDelay>
+            <StuffEffectMultiplierArmor>0.05</StuffEffectMultiplierArmor>
         </statBases>
         <apparel>
             <bodyPartGroups>

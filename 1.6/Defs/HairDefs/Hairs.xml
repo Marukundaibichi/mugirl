@@ -109,4 +109,15 @@
         <styleTags><li>Mugirl_Hair</li></styleTags>
     </HairDef>
 
+    <!-- XNN_Hairs10：主图为前发（北向含完整后发），南向后发层 Mugirl_Hairs10Back 由
+         Mugirl_Race 的 CompProperties_LongCascadeBackHair 条目在头后绘制。 -->
+    <HairDef>
+        <defName>Mugirl_Hairs10</defName>
+        <label>Mugirl bandana long hair</label>
+        <hairGender>Female</hairGender>
+        <category>Mugirl_Hair</category>
+        <texPath>Mugirl/Hair/Mugirl_Hairs10</texPath>
+        <styleTags><li>Mugirl_Hair</li></styleTags>
+    </HairDef>
+
 </Defs>

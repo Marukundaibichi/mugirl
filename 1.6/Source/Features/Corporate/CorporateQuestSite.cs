@@ -364,7 +364,7 @@ namespace Mugirl
             if (m.site == null || !m.site.Spawned) { FailMission(m); return; }
             if (!m.spawned) return;
             if (m.targets.Any(p => p == null)) { FailMission(m); return; }
-            foreach (Pawn pawn in m.targets.Where(p => p.Dead).ToList()) { m.targets.Remove(pawn); m.progress++; }
+            m.RecordDeadTargets();
             if (m.IsSide && m.choice == CorporateResearchChoice.Undecided)
             {
                 // 玩家主动攻击会在伤害前明确转入执行；其他原因致死只能中断现场。

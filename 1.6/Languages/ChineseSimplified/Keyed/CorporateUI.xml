@@ -59,7 +59,7 @@
   <Mugirl.CorporateIntro.Reaction.Unknown>“之前运输那边的记录不全，我也不拿着半张单子跟你们对账了。”他合上那一页。“我准备把旧案收掉。你们这里能做什么、缺什么，这些得当面聊，光坐在办公室里可看不出来。”</Mugirl.CorporateIntro.Reaction.Unknown>
   <Mugirl.CorporateIntro.KeepMugirl>“还有那两位雪牛娘，公司这边不追收了，你们安心留下。她们在这儿安顿好了，奶和毛都可以卖给我们。我来之前算过，比再派船接回去划算，也省得你们一见公司的人就关门。”</Mugirl.CorporateIntro.KeepMugirl>
   <Mugirl.CorporateIntro.NoReclaim>“原来那两位雪牛娘的去向，我也不查了，更不会拿着货单找你们要人。这趟运输的损失，我会一并结掉。你们以后有奶和毛要卖，记得找我们问个价就行。”</Mugirl.CorporateIntro.NoReclaim>
-  <Mugirl.CorporateIntro.Proposal>“我带了点补给，算见面礼。你们点头，我就给殖民地开个商业账户，往后买东西、卖货、接委托都方便。”他把资料递过来。“先看看，不用今天就下单。真做成了生意，公司有得赚，我也能交差。下回来，我就好申请路费了。”</Mugirl.CorporateIntro.Proposal>
+  <Mugirl.CorporateIntro.Proposal>“我带了点补给，算见面礼。另外还附了一套雪牛娘工艺的入门技术——乳品加工、束具拴系、服装裁制这三样，已经替你们录进研究库了。手艺上手了，奶和制品才好按我们的标准供货。”他把资料递过来。“你们点头，我就给殖民地开个商业账户，往后买东西、卖货、接委托都方便。先看看，不用今天就下单。真做成了生意，公司有得赚，我也能交差。下回来，我就好申请路费了。”</Mugirl.CorporateIntro.Proposal>
   <Mugirl.CorporateIntro.Question.Courier>关于那位运货员...</Mugirl.CorporateIntro.Question.Courier>
   <Mugirl.CorporateIntro.Question.Mugirl>关于那两位雪牛娘...</Mugirl.CorporateIntro.Question.Mugirl>
   <Mugirl.CorporateIntro.Question.Services>你们有哪些业务？</Mugirl.CorporateIntro.Question.Services>
@@ -71,6 +71,7 @@
   <Mugirl.CorporateIntro.Postpone>资料留下，我们再想想</Mugirl.CorporateIntro.Postpone>
   <Mugirl.CorporateIntro.CompletedStatus>商业联系已建立</Mugirl.CorporateIntro.CompletedStatus>
   <Mugirl.CorporateIntro.CompletedLetter>巨企客户关系部门已将您的殖民地登记为商业客户。见面礼已安排交付；若目前无可用交付地点，补给将保留至下一次有效交付。\n\n您可以让殖民者操作通讯台并选择“联系巨企商业网络”，或让远行队在巨企据点停留后打开“巨企商业终端”。双方将按合同开展后续业务。\n\n主线第一章已完成。后续：敬请期待。</Mugirl.CorporateIntro.CompletedLetter>
+  <Mugirl.CorporateIntro.ResearchGiftLine>见面礼附带的入门技术资料已录入研究数据库，以下雪牛娘工艺已直接完成研究：{0}。</Mugirl.CorporateIntro.ResearchGiftLine>
   <Mugirl.CorporateIntro.HostilityRemains>当前还存在独立的外交纠纷。本次开户不会取消攻击巨企等行为造成的敌对后果；修复关系前，新业务仍受限制。账户查看和偿债入口继续保留。</Mugirl.CorporateIntro.HostilityRemains>
   <Mugirl.CorporateIntro.ChapterCompleted>客户登记：已完成。\n运输部门旧案：已归档，不予追收。\n\n客户关系部期待与贵殖民地长期合作。</Mugirl.CorporateIntro.ChapterCompleted>
   <Mugirl.CorporateIntro.ComingSoon>后续主线：敬请期待。</Mugirl.CorporateIntro.ComingSoon>

@@ -133,7 +133,7 @@
 
     <!-- ====================================== 榨乳器 =========================================== -->
 
-    <ThingDef ParentName="ApparelMakeableBase">
+    <ThingDef ParentName="Mugirl_ApparelBase">
         <defName>Mugirl_MilkingDevice</defName>
         <!-- 雪牛娘 榨乳器 -->
         <label>Mugirl milking device</label>
@@ -170,6 +170,7 @@
             <SocialImpact>0.2</SocialImpact>
         </equippedStatOffsets>
         <recipeMaker>
+            <workAmount>4000</workAmount>
             <!-- 双门槛：规范采乳（种族）+ Machining（原版，精密器械） -->
             <researchPrerequisites>
                 <li>Mugirl_RegulatedMilking</li>
@@ -238,7 +239,7 @@
         </comps>
     </ThingDef>
 
-    <ThingDef ParentName="ApparelMakeableBase">
+    <ThingDef ParentName="Mugirl_ApparelBase">
         <defName>Mugirl_MilkingDeviceHidden</defName>
         <!-- 雪牛娘 隐藏式榨乳器 -->
         <label>Mugirl hidden milking device</label>
@@ -275,6 +276,7 @@
             <SocialImpact>0.2</SocialImpact>
         </equippedStatOffsets>
         <recipeMaker>
+            <workAmount>4000</workAmount>
             <!-- 双门槛：规范采乳（种族）+ Machining（原版，精密器械） -->
             <researchPrerequisites>
                 <li>Mugirl_RegulatedMilking</li>

@@ -128,7 +128,7 @@
                 <li>Legs</li>
             </bodyPartGroups>
             <wornGraphicPath>Things/Apparel/Mugirl_BunnyGirlTop/Mugirl_BunnyGirlTop</wornGraphicPath>
-        </apparel>
+        <tags><li>MugirlFixedColor</li></tags></apparel>
     </ThingDef>
 
     <ThingDef ParentName="Mugirl_OnSkinBase">
@@ -311,7 +311,7 @@
             </bodyPartGroups>
             <wornGraphicPath>Things/Apparel/Mugirl_OL/Mugirl_OL</wornGraphicPath>
             <useWornGraphicMask>false</useWornGraphicMask>
-        </apparel>
+        <tags><li>MugirlFixedColor</li></tags></apparel>
     </ThingDef>
 
     <ThingDef ParentName="Mugirl_OnSkinBase">
@@ -358,7 +358,7 @@
                 <li>Shoulders</li>
             </bodyPartGroups>
             <wornGraphicPath>Things/Apparel/Mugirl_ImmortalFairyAzure/Mugirl_ImmortalFairyAzure</wornGraphicPath>
-        </apparel>
+        <tags><li>MugirlFixedColor</li></tags></apparel>
     </ThingDef>
 
     <ThingDef ParentName="Mugirl_OnSkinBase">

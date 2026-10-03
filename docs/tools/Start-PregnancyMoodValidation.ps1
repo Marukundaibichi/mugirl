@@ -1,4 +1,8 @@
 param([switch]$WithoutBiotech)
+
+# Retired 2026-09-29: user requested removal of cloned RimWorld test runtimes.
+throw 'RimWorld 游戏副本测试入口已停用（2026-09-29）。请使用正常构建、静态检查或已有 Steam 安装；不再创建独立游戏副本。'
+
 $ErrorActionPreference = 'Stop'
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))
 $runName = (Get-Date -Format 'yyyyMMdd-HHmmss') + $(if ($WithoutBiotech) { '-NoBiotech' } else { '-Biotech' })

@@ -109,8 +109,19 @@ namespace Mugirl
             }
         }
 
+        internal void RecordDeadTargets()
+        {
+            // 击杀进度取代死亡 Pawn 的引用；空引用不能证明死亡，仍交给任务校验处理。
+            if ((kind != CorporateMissionKind.Purge && !IsSide) || !spawned
+                || (state != CorporateMissionState.Active && state != CorporateMissionState.Ready)) return;
+            progress += targets.RemoveAll(p => p != null && p.Dead);
+        }
+
         public void ExposeData()
         {
+            // 必须先于 progress 和 targets 写入。原版默认引用保存会把死亡 Pawn 写成 null；
+            // 保存前补齐低频检查的空窗，也不依赖尸体是否还存在。此处不结算或发送任务通知。
+            if (Scribe.mode == LoadSaveMode.Saving) RecordDeadTargets();
             Scribe_Values.Look(ref id, "id");
             Scribe_Values.Look(ref kind, "kind");
             Scribe_Values.Look(ref state, "state");

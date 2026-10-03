@@ -9,9 +9,11 @@
         <thingClass>Building</thingClass>
         <drawerType>MapMeshAndRealTime</drawerType>
         <graphicData>
-            <texPath>Things/Building/Power/ChemfuelPoweredGenerator</texPath>
+            <texPath>Things/Building/Mugirl_MilkPoweredGenerator/Mugirl_MilkPoweredGenerator</texPath>
             <graphicClass>Graphic_Single</graphicClass>
-            <drawSize>(2,2)</drawSize>
+            <!-- 保持原图比例放大，横向居中、底边贴齐 2×2 占地；上方约超出 0.31 格。 -->
+            <drawSize>(3,3)</drawSize>
+            <drawOffset>(0.03,0,-0.139)</drawOffset>
             <shadowData>
                 <volume>(1.93,1,1.69)</volume>
                 <offset>(-0.03,0,-0.1)</offset>

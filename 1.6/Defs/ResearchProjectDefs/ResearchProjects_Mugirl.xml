@@ -6,8 +6,8 @@
         <defName>Mugirl_DairyProcessing</defName>
         <!-- 雪牛娘乳品加工 -->
         <label>Mugirl dairy processing</label>
-        <!-- 将雪牛娘奶的日常加工标准化：在灶台上制作奶布丁、奶酪、大肥牛奶糖与奶霜苹果。更精制的乳品还需要更先进的保鲜与制药设施。 -->
-        <description>Standardize everyday processing of Mugirl milk: make milk pudding, cheese, plain milk candy and milk cream apples on the stove. Finer products still call for better preservation and pharmaceutical facilities.</description>
+        <!-- 将雪牛娘奶的日常加工标准化：在灶台上制作奶布丁、奶酪、大肥牛奶糖与奶霜苹果。进一步研究精制乳品，可解锁更多深加工配方。 -->
+        <description>Standardize everyday processing of Mugirl milk: make milk pudding, cheese, plain milk candy and milk cream apples on the stove. Further research into advanced dairy unlocks more refined recipes.</description>
         <baseCost>400</baseCost>
         <techLevel>Industrial</techLevel>
         <tab>Mugirl_ResearchTab</tab>
@@ -29,8 +29,8 @@
         <defName>Mugirl_AdvancedDairy</defName>
         <!-- 精制乳品 -->
         <label>Mugirl advanced dairy</label>
-        <!-- 精研雪牛娘奶的深加工：陈年奶酪、牛乳蛋糕、奶粉与奶片需要冷藏技术保鲜，奶宝塔糖则要在制药台上制作。 -->
-        <description>Master the deep processing of Mugirl milk: aged cheese, milk cake, milk powder and milk tablets need refrigerated storage, while baota dewormer candy is prepared at a drug lab.</description>
+        <!-- 精研雪牛娘奶的深加工，解锁陈年奶酪、牛乳蛋糕、奶粉、奶片与奶宝塔糖。奶宝塔糖在制药台上制作。 -->
+        <description>Master the deep processing of Mugirl milk to unlock aged cheese, milk cake, milk powder, milk tablets and baota dewormer candy. The candy is prepared at a drug lab.</description>
         <baseCost>1000</baseCost>
         <techLevel>Industrial</techLevel>
         <prerequisites><li>Mugirl_DairyProcessing</li></prerequisites>

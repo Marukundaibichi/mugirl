@@ -9,10 +9,23 @@ namespace Mugirl.Features.WeaponWheel
     {
         private readonly Comp_WeaponWheel wheelComp;
         private readonly int displayIndex;
+        private Rot4 lastMeshFacing = Rot4.Invalid;
+        private int lastMirrorFlags;
 
         internal ThingWithComps Weapon => wheelComp?.GetBackWeapon(displayIndex);
         internal int DisplayIndex => displayIndex;
         internal bool HasAutoloadingSystem => wheelComp?.HasAutoloadingSystem == true;
+        internal bool PreviewActive => wheelComp?.BackLayoutPreviewActive == true;
+        internal bool VisibleInStorage => wheelComp?.IsBackWeaponVisible(displayIndex) == true;
+        public override Graphic PrimaryGraphic => GraphicFor(wheelComp?.Pawn);
+        public override bool RecacheRequested => base.RecacheRequested
+            || (lastMeshFacing.IsValid && MirrorFlags(lastMeshFacing) != lastMirrorFlags);
+
+        private int MirrorFlags(Rot4 facing)
+        {
+            WeaponWheelBackLayoutEntry entry = WeaponWheelBackLayout.GetEntry(displayIndex, facing);
+            return (entry.FlipHorizontal ? 1 : 0) | (entry.FlipVertical ? 2 : 0);
+        }
 
         public PawnRenderNode_BackWeapon(
             Pawn pawn,
@@ -57,74 +70,117 @@ namespace Mugirl.Features.WeaponWheel
         {
             return MeshPool.GetMeshSetForSize(1f, 1f);
         }
+
+        public override Mesh GetMesh(PawnDrawParms parms)
+        {
+            // 人物网格的 backLift 相当于 5 层；枪械旋转后会穿过身体/装弹架。
+            // 南向收纳武器使用原版缓存的平面网格，保留尺寸、UV 和镜像规则。
+            Mesh mesh;
+            if (parms.facing == Rot4.South)
+            {
+                mesh = MeshPool.GridPlane(Vector2.one);
+                if (FlipGraphic(parms)) mesh = MeshPool.GridPlaneFlip(mesh);
+            }
+            else mesh = base.GetMesh(parms);
+            lastMeshFacing = parms.facing;
+            lastMirrorFlags = MirrorFlags(parms.facing);
+            return WeaponWheelBackMirrorMeshes.Get(mesh, lastMirrorFlags);
+        }
+    }
+
+    [StaticConstructorOnStartup]
+    internal static class WeaponWheelBackMirrorMeshes
+    {
+        // StaticCacheLifecycle: 进程级只读网格，启动主线程上预建；仅含单位网格的有限镜像组合，
+        // 不引用 Pawn，不修改 MeshPool 的共享顶点，游戏退出时由 Unity 回收。
+        private static readonly Dictionary<Mesh, Mesh[]> Variants = new Dictionary<Mesh, Mesh[]>();
+
+        static WeaponWheelBackMirrorMeshes()
+        {
+            GraphicMeshSet source = MeshPool.GetMeshSetForSize(1f, 1f);
+            for (int facing = 0; facing < 4; facing++)
+            {
+                Mesh mesh = source.MeshAt(new Rot4(facing));
+                Add(mesh);
+                Add(MeshPool.GridPlaneFlip(mesh));
+            }
+            Mesh flat = MeshPool.GridPlane(Vector2.one);
+            Add(flat);
+            Add(MeshPool.GridPlaneFlip(flat));
+        }
+
+        private static void Add(Mesh source)
+        {
+            if (Variants.ContainsKey(source)) return;
+            Mesh[] variants = new Mesh[4];
+            variants[0] = source;
+            for (int flags = 1; flags < 4; flags++)
+            {
+                Mesh mesh = UnityEngine.Object.Instantiate(source);
+                mesh.name = "Mugirl back weapon mirror " + flags;
+                Vector2[] uv = source.uv;
+                for (int i = 0; i < uv.Length; i++)
+                {
+                    if ((flags & 1) != 0) uv[i].x = 1f - uv[i].x;
+                    if ((flags & 2) != 0) uv[i].y = 1f - uv[i].y;
+                }
+                mesh.uv = uv;
+                variants[flags] = mesh;
+            }
+            Variants.Add(source, variants);
+        }
+
+        internal static Mesh Get(Mesh source, int flags)
+        {
+            return source != null && Variants.TryGetValue(source, out Mesh[] variants)
+                ? variants[flags & 3] : source;
+        }
     }
 
     public sealed class PawnRenderNodeWorker_BackWeapon : PawnRenderNodeWorker
     {
         public override bool CanDrawNow(PawnRenderNode node, PawnDrawParms parms)
         {
-            if (parms.flags.FlagSet(PawnRenderFlags.Portrait) || parms.pawn.Dead || parms.pawn.GetPosture().InBed())
+            PawnRenderNode_BackWeapon backNode = node as PawnRenderNode_BackWeapon;
+            if ((parms.Portrait && backNode?.PreviewActive != true) || parms.pawn.Dead || parms.pawn.GetPosture().InBed())
             {
                 return false;
             }
-            PawnRenderNode_BackWeapon backNode = node as PawnRenderNode_BackWeapon;
-            return backNode?.Weapon != null && base.CanDrawNow(node, parms);
+            // 设置项：隐藏普通背负武器（仅背上的两把；自驱装弹凹槽武器不受影响），调试窗口预览不受此开关影响。
+            if (MugirlMod.Settings?.hideWeaponWheelBackWeapons == true && backNode?.PreviewActive != true)
+            {
+                return false;
+            }
+            return backNode?.VisibleInStorage == true && base.CanDrawNow(node, parms);
         }
 
+        // 位置、角度与图层全部来自 WeaponWheelBackLayout（每帧读取），
+        // 开发者模式的布局调试窗口改动后立即生效，无需重建渲染树。
         public override Vector3 OffsetFor(PawnRenderNode node, PawnDrawParms parms, out Vector3 pivot)
         {
             Vector3 offset = base.OffsetFor(node, parms, out pivot);
-            PawnRenderNode_BackWeapon backNode = (PawnRenderNode_BackWeapon)node;
-            float side = backNode.DisplayIndex == 0 ? -0.11f : 0.11f;
-
-            if (parms.facing == Rot4.East)
-            {
-                offset.x += side * 0.55f;
-                offset.z += 0.03f;
-            }
-            else if (parms.facing == Rot4.West)
-            {
-                offset.x -= side * 0.55f;
-                offset.z += 0.03f;
-            }
-            else
-            {
-                if (parms.facing == Rot4.North)
-                {
-                    side = -side;
-                }
-                offset.x += side;
-                offset.z -= 0.04f;
-            }
+            WeaponWheelBackLayoutEntry entry = WeaponWheelBackLayout.GetEntry(
+                ((PawnRenderNode_BackWeapon)node).DisplayIndex, parms.facing);
+            offset.x += entry.OffsetX;
+            offset.z += entry.OffsetZ;
             return offset;
         }
 
         public override float LayerFor(PawnRenderNode node, PawnDrawParms parms)
         {
-            if (parms.facing == Rot4.South)
+            PawnRenderNode_BackWeapon backNode = (PawnRenderNode_BackWeapon)node;
+            if (parms.facing == Rot4.South && backNode.HasAutoloadingSystem)
             {
-                // 穿戴装弹系统时，第 2 格普通背负枪也应位于南向腰带的 -3 层之后。
-                return ((PawnRenderNode_BackWeapon)node).HasAutoloadingSystem ? -8f : -2f;
+                // 穿戴装弹系统时，普通背负枪位于南向装弹架（-3 层）后方。
+                return WeaponWheelBackLayout.SouthLayerWithAutoloading;
             }
-            if (parms.facing == Rot4.North)
-            {
-                return 22f;
-            }
-            return ((PawnRenderNode_BackWeapon)node).DisplayIndex == 0 ? 18f : -1f;
+            return WeaponWheelBackLayout.GetEntry(backNode.DisplayIndex, parms.facing).Layer;
         }
 
         public override Quaternion RotationFor(PawnRenderNode node, PawnDrawParms parms)
         {
-            PawnRenderNode_BackWeapon backNode = (PawnRenderNode_BackWeapon)node;
-            float angle = backNode.DisplayIndex == 0 ? 43f : -43f;
-            if (parms.facing == Rot4.East)
-            {
-                angle += 8f;
-            }
-            else if (parms.facing == Rot4.West)
-            {
-                angle -= 8f;
-            }
+            float angle = WeaponWheelBackLayout.GetEntry(
+                ((PawnRenderNode_BackWeapon)node).DisplayIndex, parms.facing).Angle;
             return Quaternion.AngleAxis(angle, Vector3.up);
         }
 
@@ -143,6 +199,8 @@ namespace Mugirl.Features.WeaponWheel
 
         internal ThingWithComps Weapon => wheelComp?.GetAutoloadingWeapon(displayIndex);
         internal int DisplayIndex => displayIndex;
+        internal bool PreviewActive => wheelComp?.BackLayoutPreviewActive == true;
+        public override Graphic PrimaryGraphic => GraphicFor(wheelComp?.Pawn);
 
         public PawnRenderNode_AutoloadingWeapon(
             Pawn pawn,
@@ -185,6 +243,16 @@ namespace Mugirl.Features.WeaponWheel
         {
             return MeshPool.GetMeshSetForSize(1f, 1f);
         }
+        public override Mesh GetMesh(PawnDrawParms parms)
+        {
+            // 南向槽枪旋转 90° 后也必须保持等高，不能使用人物网格的 backLift。
+            if (parms.facing == Rot4.South)
+            {
+                Mesh mesh = MeshPool.GridPlane(Vector2.one);
+                return FlipGraphic(parms) ? MeshPool.GridPlaneFlip(mesh) : mesh;
+            }
+            return base.GetMesh(parms);
+        }
     }
 
     public sealed class PawnRenderNodeWorker_AutoloadingWeapon : PawnRenderNodeWorker
@@ -202,11 +270,11 @@ namespace Mugirl.Features.WeaponWheel
 
         public override bool CanDrawNow(PawnRenderNode node, PawnDrawParms parms)
         {
-            if (parms.flags.FlagSet(PawnRenderFlags.Portrait) || parms.pawn.Dead || parms.pawn.GetPosture().InBed())
+            PawnRenderNode_AutoloadingWeapon grooveNode = node as PawnRenderNode_AutoloadingWeapon;
+            if ((parms.Portrait && grooveNode?.PreviewActive != true) || parms.pawn.Dead || parms.pawn.GetPosture().InBed())
             {
                 return false;
             }
-            PawnRenderNode_AutoloadingWeapon grooveNode = node as PawnRenderNode_AutoloadingWeapon;
             return grooveNode?.Weapon != null && base.CanDrawNow(node, parms);
         }
 
@@ -231,8 +299,8 @@ namespace Mugirl.Features.WeaponWheel
         {
             if (parms.facing == Rot4.South)
             {
-                // 腰带本体南向为 -3；四把凹槽枪分别处于其后方的不同深度，
-                // 避免完整尺寸的枪械互相重叠时共面闪烁。
+                // 身体前、装弹架（-3）中、凹槽枪（-4..-7）后。
+                // 南向使用无 backLift 的网格，顶点不会再越过架体平面；层值均在原版 -10..100 范围内。
                 return -4f - ((PawnRenderNode_AutoloadingWeapon)node).DisplayIndex;
             }
             if (parms.facing == Rot4.North)

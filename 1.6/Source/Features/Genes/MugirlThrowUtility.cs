@@ -62,7 +62,8 @@ namespace Mugirl
 
         internal static int ImpactDamage(float mass, float distance)
         {
-            return Mathf.RoundToInt(Mathf.Clamp(8f + Mathf.Sqrt(Mathf.Max(mass, 0.1f)) * 7f + distance * 1.5f, 12f, 220f));
+            // 2026-09-26 削减：各系数与上下限减半（原 8 + √质量×7 + 距离×1.5，范围 12..220）。
+            return Mathf.RoundToInt(Mathf.Clamp(4f + Mathf.Sqrt(Mathf.Max(mass, 0.1f)) * 3.5f + distance * 0.75f, 6f, 110f));
         }
 
         internal static float ExplosionRadius(int damage)
@@ -73,6 +74,13 @@ namespace Mugirl
         internal static bool CanPickUp(Pawn caster, Thing target, out string reason)
         {
             reason = null;
+            // Def 负责禁用按钮；这里兜底拒绝已排队或直接调用的举起请求。
+            if (caster != null && caster.WorkTagIsDisabled(WorkTags.Violent))
+            {
+                reason = "IsIncapableOfViolence".Translate(caster.LabelShort, caster).ToString();
+                return false;
+            }
+
             if (caster == null || target == null || target == caster || target.Destroyed || !target.Spawned || target.Map != caster.Map)
             {
                 reason = "Mugirl.Throw.InvalidTarget".Translate().ToString();
@@ -167,6 +175,17 @@ namespace Mugirl
 
         internal static Thing_MugirlThrownObject FindHeldController(Pawn pawn)
         {
+            return FindController(pawn, includeFlying: false);
+        }
+
+        // 投掷进行中（含物体飞行阶段）的控制器查询；投掷期间持物者禁止开枪。
+        internal static Thing_MugirlThrownObject FindThrowingController(Pawn pawn)
+        {
+            return FindController(pawn, includeFlying: true);
+        }
+
+        private static Thing_MugirlThrownObject FindController(Pawn pawn, bool includeFlying)
+        {
             Map map = pawn?.MapHeld;
             ThingDef controllerDef = Mugirl_DefOf.Mugirl_ThrowController;
             if (map == null || controllerDef == null)
@@ -178,7 +197,8 @@ namespace Mugirl
             for (int i = 0; i < controllers.Count; i++)
             {
                 Thing_MugirlThrownObject controller = controllers[i] as Thing_MugirlThrownObject;
-                if (controller != null && controller.Carrier == pawn && controller.IsHeld)
+                if (controller != null && controller.Carrier == pawn
+                    && (includeFlying ? controller.IsThrowInProgress : controller.IsHeld))
                 {
                     return controller;
                 }

@@ -58,10 +58,7 @@ namespace Mugirl.Features.WeaponWheel
         private readonly List<PawnRenderNode_AutoloadingWeapon> autoloadingWeaponNodes = new List<PawnRenderNode_AutoloadingWeapon>();
         private readonly List<CompEquippable> reserveVerbTickers = new List<CompEquippable>();
         private bool reserveVerbTickersDirty = true;
-        private bool backWeaponCacheDirty = true;
-        private bool backWeaponCacheAutoloadingLayout;
-        private ThingWithComps firstBackWeapon;
-        private ThingWithComps secondBackWeapon;
+        private int backWeaponVisibilityMask = -1;
 
         public CompProperties_WeaponWheel Props => (CompProperties_WeaponWheel)props;
         public Pawn Pawn => parent as Pawn;
@@ -139,6 +136,7 @@ namespace Mugirl.Features.WeaponWheel
             TickSwordDanceDashAnimation();
             TickPendingSwordDanceCompletion();
             TickCombatState();
+            RefreshBackWeaponVisibility();
         }
 
         public override void PostDestroy(DestroyMode mode, Map previousMap)
@@ -149,11 +147,13 @@ namespace Mugirl.Features.WeaponWheel
             backWeaponNodes.Clear();
             autoloadingWeaponNodes.Clear();
             reserveVerbTickers.Clear();
-            firstBackWeapon = null;
-            secondBackWeapon = null;
+            backWeaponVisibilityMask = -1;
             autoloadingCacheTick = int.MinValue;
             reserveMassDirty = true;
         }
+
+        // 只在调试窗口的同步离屏绘制期间启用，不保存、不影响普通肖像。
+        internal bool BackLayoutPreviewActive { get; set; }
 
         public ThingOwner GetDirectlyHeldThings()
         {
@@ -292,7 +292,7 @@ namespace Mugirl.Features.WeaponWheel
             }
             collectionsReady = true;
             reserveVerbTickersDirty = true;
-            backWeaponCacheDirty = true;
+            backWeaponVisibilityMask = -1;
             reserveMassDirty = true;
         }
 
@@ -399,7 +399,7 @@ namespace Mugirl.Features.WeaponWheel
             mountStateCacheTick = int.MinValue;
             autoloadingCacheTick = int.MinValue;
             reserveVerbTickersDirty = true;
-            backWeaponCacheDirty = true;
+            backWeaponVisibilityMask = -1;
             reserveMassDirty = true;
         }
 
@@ -451,7 +451,7 @@ namespace Mugirl.Features.WeaponWheel
 
         internal void MarkBackWeaponsDirty()
         {
-            backWeaponCacheDirty = true;
+            backWeaponVisibilityMask = -1;
             reserveVerbTickersDirty = true;
             reserveMassDirty = true;
             for (int i = backWeaponNodes.Count - 1; i >= 0; i--)

@@ -72,6 +72,8 @@
     <Mugirl.Settings.FusionInvestmentEvent.DevDeliver>Dev: deliver bovine fusion reward now</Mugirl.Settings.FusionInvestmentEvent.DevDeliver>
     <Mugirl.Settings.RunawayFarmQuest.Label>Enable runaway Mugirl ranch quest</Mugirl.Settings.RunawayFarmQuest.Label>
     <Mugirl.Settings.RunawayFarmQuest.Desc>Controls whether the runaway Mugirl ranch quest can appear.</Mugirl.Settings.RunawayFarmQuest.Desc>
+    <Mugirl.Settings.HideBackWeapons.Label>Hide weapon wheel back weapons</Mugirl.Settings.HideBackWeapons.Label>
+    <Mugirl.Settings.HideBackWeapons.Desc>When enabled, the two weapons carried on the back are no longer rendered. Weapons in the autoloading system grooves are not affected.</Mugirl.Settings.HideBackWeapons.Desc>
     <Mugirl.Settings.WeaponWheelDevLog.Label>Weapon wheel developer log</Mugirl.Settings.WeaponWheelDevLog.Label>
     <Mugirl.Settings.WeaponWheelDevLog.Desc>When enabled, every Mugirl shot and every weapon wheel combat decision prints diagnostics to the debug log (verb type and owning mod, burst completion checks, full firepower eligibility, per-slot fireability, cycle abort reasons), plus a Harmony patch ownership report for the vanilla methods the wheel relies on. Use only for troubleshooting full-firepower conflicts with other mods; produces a lot of log output.</Mugirl.Settings.WeaponWheelDevLog.Desc>
     <Mugirl.Settings.WeaponWheelDevLog.DumpPatches>Print Harmony patch report now</Mugirl.Settings.WeaponWheelDevLog.DumpPatches>
@@ -108,11 +110,36 @@
     <Mugirl.Milk.FullnessDisplay>Mugirl milk</Mugirl.Milk.FullnessDisplay>
     <Mugirl.Milk.FullnessInspect>{0}: {1}</Mugirl.Milk.FullnessInspect>
     <Mugirl.Milk.Gauge.Tooltip>{0}\n\nCurrent: {1}\nThreshold: {2}\nDrag the red line to adjust the automatic milking threshold\nEstimated milk per use: {3}\nLactation speed: {4}</Mugirl.Milk.Gauge.Tooltip>
+    <!-- Apply-all toggle on the merged milk gizmo's name bar. -->
+    <Mugirl.Milk.Gauge.ApplyAll.Label>Apply All</Mugirl.Milk.Gauge.ApplyAll.Label>
+    <!-- Hint for the apply-all toggle. -->
+    <Mugirl.Milk.Gauge.ApplyAll.Desc>When enabled, dragging the milk threshold applies to every selected Mugirl at once.</Mugirl.Milk.Gauge.ApplyAll.Desc>
+    <!-- Extra tooltip line when multiple Mugirls are selected. -->
+    <Mugirl.Milk.Gauge.MultiHint>Multi-selected: hover to switch the shown Mugirl on the name bar above; with "Apply All" on, the threshold applies to every selected Mugirl at once.</Mugirl.Milk.Gauge.MultiHint>
     <Mugirl.Milk.ProductionRate>{0}% / {1}s</Mugirl.Milk.ProductionRate>
     <Mugirl.Milk.DevFill.Label>Dev: fill milk</Mugirl.Milk.DevFill.Label>
     <Mugirl.Milk.DevFill.Desc>Dev mode: immediately fill the selected Mugirl's milk amount to maximum.</Mugirl.Milk.DevFill.Desc>
     <Mugirl.Milk.DevFill.Success>Filled {0}'s milk amount.</Mugirl.Milk.DevFill.Success>
     <Mugirl.Milk.DevFill.Failed>{0}'s milk amount cannot be filled right now.</Mugirl.Milk.DevFill.Failed>
+    <Mugirl.Milk.FeedingDebug.Button>Dev: feeding pose</Mugirl.Milk.FeedingDebug.Button>
+    <Mugirl.Milk.FeedingDebug.ButtonDesc>Preview feeding on the map and adjust both pawns' offsets and angles.</Mugirl.Milk.FeedingDebug.ButtonDesc>
+    <Mugirl.Milk.FeedingDebug.Title>Feeding pose layout</Mugirl.Milk.FeedingDebug.Title>
+    <Mugirl.Milk.FeedingDebug.Choose>Choose a nearby recipient</Mugirl.Milk.FeedingDebug.Choose>
+    <Mugirl.Milk.FeedingDebug.NoRecipient>Place another humanlike pawn next to this Mugirl first.</Mugirl.Milk.FeedingDebug.NoRecipient>
+    <Mugirl.Milk.FeedingDebug.Hint>The game is paused. Drag this window aside to inspect the live preview. X mirrors when the recipient changes sides; Z is screen vertical. Changes affect feeding immediately.</Mugirl.Milk.FeedingDebug.Hint>
+    <Mugirl.Milk.FeedingDebug.SourceX>Milk source X: {0}</Mugirl.Milk.FeedingDebug.SourceX>
+    <Mugirl.Milk.FeedingDebug.SourceZ>Milk source Z: {0}</Mugirl.Milk.FeedingDebug.SourceZ>
+    <Mugirl.Milk.FeedingDebug.RecipientX>Recipient X: {0}</Mugirl.Milk.FeedingDebug.RecipientX>
+    <Mugirl.Milk.FeedingDebug.RecipientZ>Recipient Z: {0}</Mugirl.Milk.FeedingDebug.RecipientZ>
+    <Mugirl.Milk.FeedingDebug.SourceAngle>Milk source angle: {0}°</Mugirl.Milk.FeedingDebug.SourceAngle>
+    <Mugirl.Milk.FeedingDebug.RecipientAngle>Recipient angle: {0}°</Mugirl.Milk.FeedingDebug.RecipientAngle>
+    <Mugirl.Milk.FeedingDebug.Reset>Reset defaults</Mugirl.Milk.FeedingDebug.Reset>
+    <Mugirl.Milk.FeedingDebug.Jump>Focus pawn</Mugirl.Milk.FeedingDebug.Jump>
+    <Mugirl.Milk.FeedingDebug.Copy>Copy XML</Mugirl.Milk.FeedingDebug.Copy>
+    <Mugirl.Milk.FeedingDebug.Save>Save config</Mugirl.Milk.FeedingDebug.Save>
+    <Mugirl.Milk.FeedingDebug.Copied>XML copied.</Mugirl.Milk.FeedingDebug.Copied>
+    <Mugirl.Milk.FeedingDebug.Saved>Saved to {0}</Mugirl.Milk.FeedingDebug.Saved>
+    <Mugirl.Milk.FeedingDebug.Failed>Layout action failed: {0}</Mugirl.Milk.FeedingDebug.Failed>
     <Mugirl.Milk.SprayText>Milk spray!</Mugirl.Milk.SprayText>
     <Mugirl.Milk.FloatMenu.Gather>Milk ({0})</Mugirl.Milk.FloatMenu.Gather>
     <Mugirl.Milk.FloatMenu.Drink>Drink milk ({0})</Mugirl.Milk.FloatMenu.Drink>
@@ -283,6 +310,24 @@
     <Mugirl.WeaponWheel.StatusFull>Weapon wheel: Full firepower enabled</Mugirl.WeaponWheel.StatusFull>
     <Mugirl.WeaponWheel.StatusSwordDance>Weapon wheel: Linked sword dance enabled</Mugirl.WeaponWheel.StatusSwordDance>
     <Mugirl.WeaponWheel.StatusSwordDanceDesc>Each melee attack has a 33% chance to dash behind the enemy, stunning them, dealing impact damage and melee attack damage, then switching to the next melee weapon and increasing melee attack speed by 200% for 5 seconds.</Mugirl.WeaponWheel.StatusSwordDanceDesc>
+    <!-- Dev-only gizmo: opens the back weapon layout tuning window. -->
+    <Mugirl.WeaponWheel.BackLayoutDebug.Title>Back weapon layout debug</Mugirl.WeaponWheel.BackLayoutDebug.Title>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Weapon0>Wheel slot 1</Mugirl.WeaponWheel.BackLayoutDebug.Weapon0>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Weapon1>Wheel slot 2</Mugirl.WeaponWheel.BackLayoutDebug.Weapon1>
+    <Mugirl.WeaponWheel.BackLayoutDebug.OffsetX>Offset X: {0}</Mugirl.WeaponWheel.BackLayoutDebug.OffsetX>
+    <Mugirl.WeaponWheel.BackLayoutDebug.OffsetZ>Offset Z: {0}</Mugirl.WeaponWheel.BackLayoutDebug.OffsetZ>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Angle>Rotation: {0}°</Mugirl.WeaponWheel.BackLayoutDebug.Angle>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Layer>Layer: {0}</Mugirl.WeaponWheel.BackLayoutDebug.Layer>
+    <Mugirl.WeaponWheel.BackLayoutDebug.SouthAutoloadingLayer>South / autoloading system layer: {0}</Mugirl.WeaponWheel.BackLayoutDebug.SouthAutoloadingLayer>
+    <Mugirl.WeaponWheel.BackLayoutDebug.CopyXml>Copy XML</Mugirl.WeaponWheel.BackLayoutDebug.CopyXml>
+    <Mugirl.WeaponWheel.BackLayoutDebug.CopyCSharp>Copy C# defaults</Mugirl.WeaponWheel.BackLayoutDebug.CopyCSharp>
+    <Mugirl.WeaponWheel.BackLayoutDebug.WriteFile>Write config file</Mugirl.WeaponWheel.BackLayoutDebug.WriteFile>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Reset>Reset</Mugirl.WeaponWheel.BackLayoutDebug.Reset>
+    <Mugirl.WeaponWheel.BackLayoutDebug.OpenFolder>Open config folder</Mugirl.WeaponWheel.BackLayoutDebug.OpenFolder>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Hint>Changes apply to all Mugirl immediately. +/- steps: offset 0.005, angle 1°, layer 0.5. South-facing back weapons use a separate layer with an autoloading system. Reset only changes memory; save to apply on the next launch. Path: {0}</Mugirl.WeaponWheel.BackLayoutDebug.Hint>
+    <Mugirl.WeaponWheel.BackLayoutDebug.StatusCopied>Copied to clipboard.</Mugirl.WeaponWheel.BackLayoutDebug.StatusCopied>
+    <Mugirl.WeaponWheel.BackLayoutDebug.StatusWritten>Written: {0}</Mugirl.WeaponWheel.BackLayoutDebug.StatusWritten>
+    <Mugirl.WeaponWheel.BackLayoutDebug.StatusReset>Built-in defaults restored (memory only; the config file was not deleted).</Mugirl.WeaponWheel.BackLayoutDebug.StatusReset>
     <Mugirl.Punisher.LetterLabel>Snow-bovine punisher</Mugirl.Punisher.LetterLabel>
     <Mugirl.Punisher.LetterText>You have cruelly slaughtered innocent Mugirls! The god of the snow-bovines will punish you!</Mugirl.Punisher.LetterText>
     <Mugirl.Punisher.Departed>The snow-bovine punisher has completed its punishment and departed.</Mugirl.Punisher.Departed>
@@ -300,10 +345,22 @@
     <Mugirl.Throw.OutOfRange>Out of throwing range (maximum {0} cells).</Mugirl.Throw.OutOfRange>
     <Mugirl.Throw.AimReadout>Damage {0} / blast radius {1} / max range {2}</Mugirl.Throw.AimReadout>
     <Mugirl.Throw.PlaceFailed>Could not safely place {0}: {1}</Mugirl.Throw.PlaceFailed>
+    <Mugirl.Throw.BusyHolding>{0} is holding an object to throw and cannot fire</Mugirl.Throw.BusyHolding>
     <Mugirl.Settings.ExtraOutline.Label>Enable extra outlines</Mugirl.Settings.ExtraOutline.Label>
     <Mugirl.Settings.ExtraOutline.Desc>Add one black outer silhouette around a Mugirl's body, hair and apparel. Weapons are not outlined. Disabled by default. Distant pawns retain the game's texture caching.</Mugirl.Settings.ExtraOutline.Desc>
     <Mugirl.Settings.ExtraOutline.Width>Outline thickness: {0}x</Mugirl.Settings.ExtraOutline.Width>
     <Mugirl.Outline.Unavailable>Could not load the extra-outline shader. Normal pawn rendering is preserved. Details: {0}</Mugirl.Outline.Unavailable>
     <!-- Grazing food policy preset label: wild vanilla plants only, excluding sown crops. -->
     <Mugirl.FoodPolicy.Grass.Label>Grass</Mugirl.FoodPolicy.Grass.Label>
+    <Mugirl.WeaponWheel.BackLayoutDebug.ChoosePawn>Choose preview pawn</Mugirl.WeaponWheel.BackLayoutDebug.ChoosePawn>
+    <Mugirl.WeaponWheel.BackLayoutDebug.NoPawn>No Mugirl available for preview. Prepare a standing Mugirl on a map first.</Mugirl.WeaponWheel.BackLayoutDebug.NoPawn>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Zoom>Preview zoom: {0}</Mugirl.WeaponWheel.BackLayoutDebug.Zoom>
+    <Mugirl.WeaponWheel.BackLayoutDebug.PreviewHint>Back weapons always use wheel slots 1 and 2. Held or switching weapons are hidden without filling from later slots. Autoloading groove weapons remain visible for comparison.</Mugirl.WeaponWheel.BackLayoutDebug.PreviewHint>
+    <Mugirl.WeaponWheel.BackLayoutDebug.NumericHint>Enter a number to apply immediately, from {0} to {1}. Use a dot for decimals. Invalid or out-of-range input is underlined in red and leaves the value unchanged.</Mugirl.WeaponWheel.BackLayoutDebug.NumericHint>
+    <Mugirl.WeaponWheel.BackLayoutDebug.EmptyWeapon>No normal back weapon in this position. Load a spare weapon into the weapon wheel first.</Mugirl.WeaponWheel.BackLayoutDebug.EmptyWeapon>
+    <Mugirl.WeaponWheel.BackLayoutDebug.ResetPose>Reset this direction</Mugirl.WeaponWheel.BackLayoutDebug.ResetPose>
+    <Mugirl.WeaponWheel.BackLayoutDebug.StatusFailed>Operation failed: {0}</Mugirl.WeaponWheel.BackLayoutDebug.StatusFailed>
+    <Mugirl.WeaponWheel.BackLayoutDebug.FlipHorizontal>Flip horizontally</Mugirl.WeaponWheel.BackLayoutDebug.FlipHorizontal>
+    <Mugirl.WeaponWheel.BackLayoutDebug.FlipVertical>Flip vertically</Mugirl.WeaponWheel.BackLayoutDebug.FlipVertical>
+    <Mugirl.WeaponWheel.BackLayoutDebug.MirrorHint>Flip the current weapon texture left/right or top/bottom before rotation. Both options can be combined without changing position, size or render layer.</Mugirl.WeaponWheel.BackLayoutDebug.MirrorHint>
 </LanguageData>

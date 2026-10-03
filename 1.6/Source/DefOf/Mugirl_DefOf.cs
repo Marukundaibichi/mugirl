@@ -33,7 +33,6 @@ namespace Mugirl
 
         public static AnimationDef Mugirl_MilkInteractionRecipientAnimation;
 
-        public static AnimationDef Mugirl_MilkInteractionDrinkerAnimation;
 
         public static PawnRenderNodeTagDef Root;
 

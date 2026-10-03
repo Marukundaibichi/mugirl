@@ -81,7 +81,7 @@
                 <li>Feet</li>
             </bodyPartGroups>
             <wornGraphicPath>Things/Apparel/Mugirl_BunnyGirlStocking/Mugirl_BunnyGirlStocking</wornGraphicPath>
-        </apparel>
+        <tags><li>MugirlFixedColor</li></tags></apparel>
     </ThingDef>
 
     <ThingDef ParentName="Mugirl_Stocking">

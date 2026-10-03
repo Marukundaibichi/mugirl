@@ -65,11 +65,12 @@
         <aiCanUse>false</aiCanUse>
         <label>Mugirl throw</label>
         <description>Pick up a nearby physical object, then hurl it with overwhelming force.</description>
-        <iconPath>UI/Mugirl_Charge</iconPath>
-        <cooldownTicksRange>600</cooldownTicksRange>
+        <iconPath>UI/Mugirl_Throw</iconPath>
+        <!-- 5000 tick = 2 游戏小时 -->
+        <cooldownTicksRange>5000</cooldownTicksRange>
         <sendMessageOnCooldownComplete>true</sendMessageOnCooldownComplete>
         <hostile>true</hostile>
-        <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+        <casterMustBeCapableOfViolence>true</casterMustBeCapableOfViolence>
         <verbProperties>
             <verbClass>Verb_CastAbility</verbClass>
             <label>Pick up</label>
@@ -98,8 +99,11 @@
         <defName>Mugirl_Dunk</defName>
         <aiCanUse>false</aiCanUse>
         <label>Mugirl meteor dunk</label>
-        <description>Developer prank: pop a humanlike target's head off, dribble it, then dunk it into the ground.</description>
-        <iconPath>UI/Mugirl_Charge</iconPath>
+        <!-- 末句红色；能力 Gizmo 提示框走 Unity 富文本渲染 -->
+        <description>I'll twist your head off and kick it around like a ball!
+
+&lt;color=#ff0000&gt;You have seen what you should not have seen.&lt;/color&gt;</description>
+        <iconPath>UI/Mugirl_Dunk</iconPath>
         <cooldownTicksRange>1200</cooldownTicksRange>
         <sendMessageOnCooldownComplete>false</sendMessageOnCooldownComplete>
         <hostile>true</hostile>

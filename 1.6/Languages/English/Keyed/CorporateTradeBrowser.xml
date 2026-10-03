@@ -34,7 +34,7 @@
   <Mugirl.CorporateTradeBrowser.Preparation>Preparation</Mugirl.CorporateTradeBrowser.Preparation>
   <Mugirl.CorporateTradeBrowser.Material>Material</Mugirl.CorporateTradeBrowser.Material>
   <Mugirl.CorporateTradeBrowser.Quality>Quality</Mugirl.CorporateTradeBrowser.Quality>
-  <Mugirl.CorporateTradeBrowser.Cancellation>Cancel within {0} days: {1}% refund</Mugirl.CorporateTradeBrowser.Cancellation>
+  <Mugirl.CorporateTradeBrowser.Cancellation>{1}% refund within {0} days, before preparation finishes</Mugirl.CorporateTradeBrowser.Cancellation>
   <Mugirl.CorporateTradeBrowser.NoResults>No matching supplies.</Mugirl.CorporateTradeBrowser.NoResults>
   <Mugirl.CorporateTradeBrowser.ResetFilters>All supplies</Mugirl.CorporateTradeBrowser.ResetFilters>
   <Mugirl.CorporateTradeBrowser.SelectProduct>Awaiting product selection</Mugirl.CorporateTradeBrowser.SelectProduct>
@@ -47,4 +47,15 @@
   <Mugirl.CorporateTradeBrowser.RemainingDays>{0} days remaining</Mugirl.CorporateTradeBrowser.RemainingDays>
   <Mugirl.CorporateTradeBrowser.Paid>Paid {0}</Mugirl.CorporateTradeBrowser.Paid>
   <Mugirl.CorporateTradeBrowser.ConfirmCancellation>Cancel order #{0}? The corporation will refund {1}% of the amount paid under the contract.</Mugirl.CorporateTradeBrowser.ConfirmCancellation>
+  <Mugirl.CorporatePricing.Restricted>The special effects or resource output of this item cannot be valued reliably. Automatic procurement is unavailable. Existing paid orders can still be collected under their original terms.</Mugirl.CorporatePricing.Restricted>
+  <Mugirl.CorporatePricing.RestrictedShort>Automatic procurement unavailable</Mugirl.CorporatePricing.RestrictedShort>
+  <Mugirl.CorporatePricing.Redemption>Market-value quote with a minimum price for redeemable outputs.</Mugirl.CorporatePricing.Redemption>
+  <Mugirl.CorporatePricing.Natural>Priced at the product's own market value, without charging the value of its animal, corpse or entire production chain.</Mugirl.CorporatePricing.Natural>
+  <Mugirl.CorporatePricing.Sourced>Priced at market value; limited regular sources require longer preparation.</Mugirl.CorporatePricing.Sourced>
+  <Mugirl.CorporatePricing.Market>Priced by actual market value, material, quality and technology.</Mugirl.CorporatePricing.Market>
+  <Mugirl.CorporatePricing.SpeedLabel>Preparation</Mugirl.CorporatePricing.SpeedLabel>
+  <Mugirl.CorporatePricing.Speed.Standard>Standard · Regular price/time</Mugirl.CorporatePricing.Speed.Standard>
+  <Mugirl.CorporatePricing.Speed.Express>Express · +50%, 1/2 time</Mugirl.CorporatePricing.Speed.Express>
+  <Mugirl.CorporatePricing.Speed.Priority>Priority · +100%, 1/4 time</Mugirl.CorporatePricing.Speed.Priority>
+  <Mugirl.CorporatePricing.Breakdown>Standard amount: {0}\nExpedite fee: {1}</Mugirl.CorporatePricing.Breakdown>
 </LanguageData>

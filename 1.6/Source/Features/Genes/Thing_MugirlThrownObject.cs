@@ -52,6 +52,8 @@ namespace Mugirl
 
         public Pawn Carrier => carrier;
         public bool IsHeld => state == ThrowState.Held;
+        // 投掷进行中：举起瞄准或物体仍在空中；此期间禁止持物者开枪。
+        public bool IsThrowInProgress => state == ThrowState.Held || state == ThrowState.Flying;
         public bool ShouldTickContents => state != ThrowState.Resolving;
         public ThingOwner SearchableContents => innerContainer;
 
@@ -253,7 +255,9 @@ namespace Mugirl
                 && carrier?.CurJob != null
                 && carrier.CurJob.playerForced
                 && carrier.CurJob.ability != sourceAbility;
-            if (carrier == null || !carrier.Spawned || carrier.Map != Map || carrier.Dead || heldTicks >= HoldTimeoutTicks || !targetingThis || otherPlayerOrder)
+            if (carrier == null || !carrier.Spawned || carrier.Map != Map || carrier.Dead
+                || carrier.WorkTagIsDisabled(WorkTags.Violent)
+                || heldTicks >= HoldTimeoutTicks || !targetingThis || otherPlayerOrder)
             {
                 SafeDrop(resetCooldown: true);
             }
@@ -555,6 +559,26 @@ namespace Mugirl
                 return;
             }
 
+            if (thing is Corpse corpse)
+            {
+                // 尸体 ThingDef 没有 graphicData，走 Graphic 分支会画成红叉（BadGraphic）；
+                // 持有态交给 Corpse 自身绘制（同 Building_GibbetCage），飞行态复用 Pawn 旋转渲染器。
+                if (corpse.InnerPawn == null)
+                {
+                    return;
+                }
+
+                if (state == ThrowState.Flying)
+                {
+                    MugirlPawnSpinRenderer.Draw(corpse.InnerPawn, phase, pos, spin);
+                }
+                else
+                {
+                    corpse.DynamicDrawPhaseAt(phase, pos, flip);
+                }
+                return;
+            }
+
             if (phase == DrawPhase.Draw)
             {
                 Graphic graphic = thing.Graphic?.GetShadowlessGraphic();
@@ -599,6 +623,7 @@ namespace Mugirl
                 && target.Cell.InBounds(Map)
                 && carrier != null
                 && carrier.Spawned
+                && !carrier.WorkTagIsDisabled(WorkTags.Violent)
                 && carrier.Position.DistanceTo(target.Cell) <= MaxThrowDistance;
         }
 

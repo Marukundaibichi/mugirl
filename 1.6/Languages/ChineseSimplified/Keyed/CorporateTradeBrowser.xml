@@ -34,7 +34,7 @@
   <Mugirl.CorporateTradeBrowser.Preparation>备货周期</Mugirl.CorporateTradeBrowser.Preparation>
   <Mugirl.CorporateTradeBrowser.Material>材料</Mugirl.CorporateTradeBrowser.Material>
   <Mugirl.CorporateTradeBrowser.Quality>品质</Mugirl.CorporateTradeBrowser.Quality>
-  <Mugirl.CorporateTradeBrowser.Cancellation>{0} 日内撤单返还 {1}%</Mugirl.CorporateTradeBrowser.Cancellation>
+  <Mugirl.CorporateTradeBrowser.Cancellation>{0} 日内且未备货完成，撤单返还 {1}%</Mugirl.CorporateTradeBrowser.Cancellation>
   <Mugirl.CorporateTradeBrowser.NoResults>暂无匹配物资。</Mugirl.CorporateTradeBrowser.NoResults>
   <Mugirl.CorporateTradeBrowser.ResetFilters>全部物资</Mugirl.CorporateTradeBrowser.ResetFilters>
   <Mugirl.CorporateTradeBrowser.SelectProduct>物资报价待选</Mugirl.CorporateTradeBrowser.SelectProduct>
@@ -47,4 +47,15 @@
   <Mugirl.CorporateTradeBrowser.RemainingDays>余 {0} 日</Mugirl.CorporateTradeBrowser.RemainingDays>
   <Mugirl.CorporateTradeBrowser.Paid>已支付 {0}</Mugirl.CorporateTradeBrowser.Paid>
   <Mugirl.CorporateTradeBrowser.ConfirmCancellation>撤销订单 #{0}？巨企将按合同退还已付款的 {1}%。</Mugirl.CorporateTradeBrowser.ConfirmCancellation>
+  <Mugirl.CorporatePricing.Restricted>该物品的特殊效果或资源产出无法可靠估价，暂不接受自动备货。已付款订单不受影响，仍可按合同领取。</Mugirl.CorporatePricing.Restricted>
+  <Mugirl.CorporatePricing.RestrictedShort>暂不接受自动备货</Mugirl.CorporatePricing.RestrictedShort>
+  <Mugirl.CorporatePricing.Redemption>按成品市值报价，包含可兑现产出的最低价保护。</Mugirl.CorporatePricing.Redemption>
+  <Mugirl.CorporatePricing.Natural>按产物自身市值报价，不转嫁动物、尸体或整条生产流程的价值。</Mugirl.CorporatePricing.Natural>
+  <Mugirl.CorporatePricing.Sourced>按成品市值报价；缺少常规来源，需要较长备货。</Mugirl.CorporatePricing.Sourced>
+  <Mugirl.CorporatePricing.Market>按成品市值、材料、品质与技术等级报价。</Mugirl.CorporatePricing.Market>
+  <Mugirl.CorporatePricing.SpeedLabel>备货方式</Mugirl.CorporatePricing.SpeedLabel>
+  <Mugirl.CorporatePricing.Speed.Standard>普通（原价、原备货时间）</Mugirl.CorporatePricing.Speed.Standard>
+  <Mugirl.CorporatePricing.Speed.Express>加急（+50%，一半时间）</Mugirl.CorporatePricing.Speed.Express>
+  <Mugirl.CorporatePricing.Speed.Priority>优先（+100%，1/4 时间）</Mugirl.CorporatePricing.Speed.Priority>
+  <Mugirl.CorporatePricing.Breakdown>普通金额：{0}\n加急费用：{1}</Mugirl.CorporatePricing.Breakdown>
 </LanguageData>

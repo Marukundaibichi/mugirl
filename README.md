@@ -112,7 +112,7 @@
 3. 发布展开副本只有在对应 ZIP 的数量、相对路径、大小、SHA256 一致后才删除，ZIP 继续保留。构建缓存和隔离 Unity `Library` 先保留独有文件再清理。
 4. 核对正式文件与游戏资源路径未变，更新文档中的证据位置。2026-09-21 搬移清单位于 `DevData/Evidence/MaintenanceCleanup-20260921/moves.json`，普通贴图合并清单为同目录 `texture-layout.json`。
 
-**带联接的测试游戏只能放在 `%LOCALAPPDATA%\RimWorldModTests\`，且该目录必须位于所有 RimSort 的 Mods、Workshop、Data 扫描范围之外。不得用联接挂回任何模组。** 修改测试目录、联接或验证脚本后运行环路审计，要求 `affected_candidates=0`、`scan_errors=0`。详见[RimSort 事故与复查命令](docs/rimsort-directory-cycles-2026-09-18.md)及[应急迁移清单](docs/rimsort-emergency-migration-2026-09-18.json)。
+**测试方式更新（2026-09-29）：** 旧的独立游戏副本已清理，RimSort 外置测试目录规避规则已撤销。默认使用构建、静态检查和现有 Steam 游戏安装；不再为每轮验证复制游戏启动程序、运行库或创建游戏资源目录联接。复制游戏的旧启动脚本已停用，具体状态见[验证手册](docs/validation-runbook.md)。历史事故与迁移清单仅用于追溯。
 
 ## 历史记录索引
 
@@ -120,7 +120,13 @@
 
 | 日期 | 记录 |
 | --- | --- |
-| 2026-09-24 | [0.6.7 版本记录](docs/records/release-0.6.7-2026-09-24.md)、[战斗服饰收购与售价调整](docs/records/combat-apparel-trade-2026-09-24.md)、[性能优化实施](docs/records/performance-optimization-2026-09-24.md) |
+| 2026-10-01 | [巨企价格算法、供货保护与加急备货](docs/records/corporate-pricing-2026-10-01.md)、[1001 发布包记录](docs/records/release-1001-2026-10-01.md) |
+| 2026-09-30 | [固定材料装备制作工作量修复](docs/records/equipment-work-amount-2026-09-30.md)、[0930 / 0930.1 发布包记录](docs/records/release-0930-2026-09-30.md)、[巨企订单中文输入续修与白银落点修正](docs/features/giant-corporation-v1-validation.md) |
+| 2026-09-29 | [巨企订单系统三项修复](docs/records/corporate-trade-fixes-2026-09-29.md)、[0929 发布包记录](docs/records/release-0929-2026-09-29.md) |
+| 2026-09-27 | [0927 发布包与服装储存分类修复](docs/records/release-0927-2026-09-27.md) |
+| 2026-09-26 | [机械体暂缓、投掷暴力限制与吃草调查](docs/records/mech-throw-graze-2026-09-26.md)、[投掷伤害削减与冷却调整](docs/records/throw-damage-cooldown-2026-09-26.md)、[灌篮文案与红色警示句](docs/records/dunk-description-red-line-2026-09-26.md)、[头饰护甲补齐](docs/records/headwear-armor-2026-09-26.md)、[固色服装名单扩展与隐藏背负武器设置](docs/records/fixed-color-apparel-2026-09-26.md)、[9.26 贴图实装：比基尼/公主套装与 Hairs10](docs/records/apparel-hairs-2026-09-26.md)、[装备平衡、穿戴与乳品发电机修正](docs/records/equipment-dairy-generator-fixes-2026-09-26.md) |
+| 2026-09-25 | [投掷期间禁火](docs/records/throw-firing-lock-2026-09-25.md) |
+| 2026-09-24 | [0.6.7 版本记录](docs/records/release-0.6.7-2026-09-24.md)、[战斗服饰收购与售价调整](docs/records/combat-apparel-trade-2026-09-24.md)、[性能优化实施](docs/records/performance-optimization-2026-09-24.md)、[巨企见面礼科技资料](docs/records/corporate-intro-tech-gift-2026-09-24.md)、[自驱装弹系统南向层级修复](docs/records/autoloading-south-layer-2026-09-24.md)、[背负武器布局数据化与调试窗口](docs/records/back-weapon-layout-debug-2026-09-24.md)、[多选挤奶Gizmo合并与名字条](docs/records/milk-gizmo-merge-2026-09-24.md) |
 | 2026-09-23 | [0.6.6 版本记录](docs/records/release-0.6.6-2026-09-23.md) |
 | 2026-09-21 | [研究树重做实施](docs/records/research-tree-2026-09-21.md)、[工作区与文档整理](docs/records/workspace-cleanup-2026-09-21.md)、[怀孕心情](docs/records/pregnancy-mood-2026-09-21.md)、[启动日志](docs/records/bootstrap-startup-2026-09-21.md) |
 | 2026-09-20 | [服装、头型发型、武器与神经战斗套装](docs/records/update-2026-09-20.md) |

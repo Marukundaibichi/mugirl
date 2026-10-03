@@ -26,6 +26,8 @@ namespace Mugirl
         private Dictionary<IntVec3, string> persistedFloors;
         private int persistedFloorMapId;
         private int persistedFloorMissionId;
+        private readonly List<int> purgeSaveIds = new List<int>();
+        private bool PurgeSaveOnly => GenCommandLine.CommandLineArgPassed("mugirlCorporatePurgeSaveChecks");
 
         public CorporateRuntimeValidation(Game game) { }
 
@@ -53,7 +55,12 @@ namespace Mugirl
             Find.TickManager.CurTimeSpeed = TimeSpeed.Paused;
             try
             {
-                if (FusionFloorsOnly)
+                if (PurgeSaveOnly)
+                {
+                    if (phase == 0) RunPurgeSaveChecks();
+                    else if (phase == 1) VerifyPurgeSaveChecks();
+                }
+                else if (FusionFloorsOnly)
                 {
                     if (phase == 0) RunFusionFloorChecks();
                     else if (phase == 1)
@@ -85,6 +92,102 @@ namespace Mugirl
             Directory.CreateDirectory(GenFilePaths.SaveDataFolderPath);
             File.AppendAllText(Path.Combine(GenFilePaths.SaveDataFolderPath, "corporate-checks.txt"), line + Environment.NewLine);
             MugirlLog.DiagnosticMessage("[CorporateValidation] " + line);
+        }
+
+        private void RunPurgeSaveChecks()
+        {
+            CorporateNetwork network = CorporateNetwork.Current;
+            Map home = Find.CurrentMap;
+            typeof(CorporateIntroduction).GetField("completed", BindingFlags.NonPublic | BindingFlags.Instance)
+                .SetValue(CorporateIntroduction.Current, true);
+            network.CorporateFaction.TryAffectGoodwillWith(Faction.OfPlayer, 100 - network.CorporateFaction.PlayerGoodwill, false, false);
+            CorporateMission purge = (CorporateMission)AccessTools.Method(typeof(CorporateNetwork), "BuildPurgeOffer").Invoke(network, new object[] { home });
+            if (purge == null) throw new InvalidOperationException("No purge offer in test world.");
+            ((List<CorporateMission>)network.Missions).Add(purge);
+            if (!network.AcceptMission(purge, new CorporateTradeContext(home), out string reason)) throw new InvalidOperationException(reason);
+            LongEventHandler.QueueLongEvent(() =>
+            {
+                try
+                {
+                    Map map = GetOrGenerateMapUtility.GetOrGenerateMap(purge.site.Tile, new IntVec3(125, 1, 125), purge.site.def);
+                    LongEventHandler.ExecuteWhenFinished(() =>
+                    {
+                        try
+                        {
+                            // 第一份合同走真实生成与结算；其余夹具共享实际站点，各自持有独立目标。
+                            purgeSaveIds.Add(purge.id);
+                            while (purge.targets.Count < 2) purge.targets.Add(NewPurgeSavePawn(map, purge.enemy));
+                            purge.count = purge.targets.Count;
+                            for (int i = 1; i < 7; i++)
+                            {
+                                CorporateMission fixture = new CorporateMission {
+                                    id = network.Missions.Max(m => m.id) + 1, site = purge.site,
+                                    kind = i == 2 || i == 3 ? CorporateMissionKind.Fusion : CorporateMissionKind.Purge,
+                                    choice = i == 2 ? CorporateResearchChoice.Execute : CorporateResearchChoice.Undecided,
+                                    state = CorporateMissionState.Active, spawned = true, count = 2,
+                                    deadline = CorporateNetwork.Now + 600000,
+                                    targets = new List<Pawn> { NewPurgeSavePawn(map, purge.enemy), NewPurgeSavePawn(map, purge.enemy) }
+                                };
+                                fixture.investor = fixture.targets[1];
+                                ((List<CorporateMission>)network.Missions).Add(fixture);
+                                purgeSaveIds.Add(fixture.id);
+                            }
+                            for (int i = 0; i < purgeSaveIds.Count; i++)
+                            {
+                                CorporateMission m = network.FindMission(purgeSaveIds[i]);
+                                if (i == 5) { m.targets[0].DeSpawn(); m.targets[0] = null; continue; }
+                                if (i == 6) { m.targets[0].DeSpawn(); Find.WorldPawns.PassToWorld(m.targets[0]); continue; }
+                                m.targets[0].Kill(null);
+                                if (i == 1) m.targets[0].Corpse?.Destroy();
+                                if (i == 4) m.targets[1].Kill(null);
+                            }
+                            Check("Save window contains uncounted real deaths", purge.progress == 0 && purge.targets[0].Dead);
+                            phase = 1;
+                            GameDataSaveLoader.SaveGame("CorporatePurgeSaveRoundtrip");
+                            Check("Saving records death without ending the real quest", purge.progress == 1
+                                && purge.targets.All(p => p != null && !p.Dead) && purge.state == CorporateMissionState.Active);
+                            GameDataSaveLoader.SaveGame("CorporatePurgeSaveRoundtrip");
+                            Check("Repeated save does not duplicate kill credit", purge.progress == 1);
+                            GameDataSaveLoader.LoadGame("CorporatePurgeSaveRoundtrip");
+                        }
+                        catch (Exception e) { Check("purge save exception: " + e, false); Finish(); }
+                    });
+                }
+                catch (Exception e) { Check("purge map exception: " + e, false); Finish(); }
+            }, "GeneratingMap", false, null);
+        }
+
+        private static Pawn NewPurgeSavePawn(Map map, Faction faction)
+        {
+            Pawn pawn = PawnGenerator.GeneratePawn(PawnKindDefOf.Villager, faction);
+            GenSpawn.Spawn(pawn, CellFinder.RandomClosewalkCellNear(map.Center, map, 12), map);
+            return pawn;
+        }
+
+        private void VerifyPurgeSaveChecks()
+        {
+            CorporateNetwork network = CorporateNetwork.Current;
+            MethodInfo tick = AccessTools.Method(typeof(CorporateNetwork), "TickMissionSite");
+            for (int i = 0; i < purgeSaveIds.Count; i++)
+            {
+                CorporateMission m = network.FindMission(purgeSaveIds[i]);
+                tick.Invoke(network, new object[] { m });
+                CorporateMissionState expected = i == 3 || i >= 5 ? CorporateMissionState.Failed
+                    : i == 4 ? CorporateMissionState.Ready : CorporateMissionState.Active;
+                Check("Full reload fixture " + i + " state=" + m.state + " expected=" + expected, m.state == expected);
+                Check("Full reload fixture " + i + " keeps exact death credit", m.progress == (i >= 5 ? 0 : i == 4 ? 2 : 1));
+                if (i < 3) Check("Full reload fixture " + i + " retains living targets", m.targets.Count == m.count - 1
+                    && m.targets.All(p => p != null && !p.Dead && p.Spawned));
+            }
+            CorporateMission purge = network.FindMission(purgeSaveIds[0]);
+            foreach (Pawn pawn in purge.targets.ToList()) pawn.Kill(null);
+            tick.Invoke(network, new object[] { purge });
+            tick.Invoke(network, new object[] { purge });
+            Check("Combat continues after reload and kills count once", purge.state == CorporateMissionState.Ready && purge.progress == purge.count);
+            CorporateTradeContext context = new CorporateTradeContext(Find.Maps.First(m => m.IsPlayerHome));
+            Check("Reloaded real quest rewards exactly once", network.ClaimMission(purge, context)
+                && !network.ClaimMission(purge, context) && purge.quest.State == QuestState.EndedSuccess);
+            Finish();
         }
 
         private void RunFusionFloorChecks()

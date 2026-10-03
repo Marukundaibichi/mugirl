@@ -1,8 +1,12 @@
 param(
-    [ValidateSet('Economy', 'Visual', 'WithoutIdeology', 'Support', 'Fusion', 'FusionFloors')][string]$Mode = 'Economy',
+    [ValidateSet('Economy', 'Visual', 'WithoutIdeology', 'Support', 'Fusion', 'FusionFloors', 'PurgeSave')][string]$Mode = 'Economy',
     [Parameter(Mandatory)][ValidatePattern('^[A-Za-z0-9-]+$')][string]$RunName,
     [switch]$SkipCompact
 )
+
+# Retired 2026-09-29: user requested removal of cloned RimWorld test runtimes.
+throw 'RimWorld 游戏副本测试入口已停用（2026-09-29）。请使用正常构建、静态检查或已有 Steam 安装；不再创建独立游戏副本。'
+
 
 $ErrorActionPreference = 'Stop'
 $repository = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))
@@ -65,6 +69,7 @@ if ($Mode -eq 'Visual' -and -not $SkipCompact) { $arguments += '-mugirlCorporate
 if ($Mode -eq 'WithoutIdeology') { $arguments += '-mugirlCorporateNoIdeology' }
 if ($Mode -eq 'Fusion') { $arguments += '-mugirlCorporateFusionChecks' }
 if ($Mode -eq 'FusionFloors') { $arguments += '-mugirlCorporateFusionFloorChecks' }
+if ($Mode -eq 'PurgeSave') { $arguments += '-mugirlCorporatePurgeSaveChecks' }
 # Each driver also checks its explicit flag and actual save path inside the game.
 $process = Start-Process -FilePath (Join-Path $stage 'RimWorldWin64.exe') -WorkingDirectory $stage -ArgumentList $arguments -WindowStyle Hidden -PassThru
 $process.Id | Set-Content -LiteralPath (Join-Path $saveRoot 'process-id.txt')

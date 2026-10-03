@@ -80,11 +80,14 @@ namespace Mugirl
                 "PoliceShirt", "PoliceShorts", "PoliceThong", "PoliceZipperBra", "PoliceBra", "PoliceCrossStickers",
                 "PoliceBoots", "PoliceCap", "NunDressClassic", "NunDressSimple", "NunVeil", "NunBlindfold",
                 "KnightMountPlateWhite", "KnightMountCoat", "KnightMountHelmet",
-                "NeuralCombatArmor", "NeuralAmplifierHelmet"
+                "NeuralCombatArmor", "NeuralAmplifierHelmet",
+                "GoldBikini", "GoldLatexBoots", "SnowPrincessArmor", "SnowPrincessCrown"
             };
             foreach (string name in names)
             {
                 ThingDef def = DefDatabase<ThingDef>.GetNamed("Mugirl_" + name);
+                Check(def.defName + " is wearable by Mugirls under HAR restrictions",
+                    RaceRestrictionSettings.CanWear(def, DefDatabase<ThingDef>.GetNamed("Mugirl")));
                 Check(def.defName + " is adult-only", def.apparel.developmentalStageFilter == DevelopmentalStage.Adult);
                 if (name == "SisterMask" || name == "NunBlindfold")
                 {
@@ -144,7 +147,8 @@ namespace Mugirl
             {
                 "Mugirl_Combatant_Helmet",
                 "Mugirl_KnightMountHelmet",
-                "Mugirl_PowerArmorHelmet"
+                "Mugirl_PowerArmorHelmet",
+                "Mugirl_SnowPrincessCrown"
             };
             foreach (string defName in expectedDefs)
             {
@@ -157,7 +161,7 @@ namespace Mugirl
                 .Select(def => def.defName)
                 .OrderBy(defName => defName)
                 .ToArray();
-            Check("only the three requested helmets hide Mugirl horns",
+            Check("only the requested helmets and snow princess crown hide Mugirl horns",
                 actualDefs.SequenceEqual(expectedDefs.OrderBy(defName => defName)));
         }
 
@@ -171,7 +175,10 @@ namespace Mugirl
             Check("Mugirl race installs the LongCascade rear-layer comp",
                 raceDef.comps?.Any(props => props is Features.Appearance.CompProperties_LongCascadeBackHair) == true);
 
-            PawnRenderNodeProperties nodeProps = Features.Appearance.Comp_LongCascadeBackHair.CreateNodeProperties();
+            Features.Appearance.CompProperties_LongCascadeBackHair compProps = raceDef.comps
+                .OfType<Features.Appearance.CompProperties_LongCascadeBackHair>()
+                .Single(props => props.hairDef == hairDef);
+            PawnRenderNodeProperties nodeProps = Features.Appearance.Comp_LongCascadeBackHair.CreateNodeProperties(compProps);
             Check("LongCascade rear layer follows Head and stays behind it",
                 nodeProps.parentTagDef == PawnRenderNodeTagDefOf.Head
                 && nodeProps.baseLayer < 0f

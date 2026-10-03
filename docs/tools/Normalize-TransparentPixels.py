@@ -5,6 +5,7 @@ alpha is zero. Those files are deliberately excluded from normalization.
 
 python docs/tools/Normalize-TransparentPixels.py          # Read-only scan
 python docs/tools/Normalize-TransparentPixels.py --apply  # Back up, fix, verify
+python docs/tools/Normalize-TransparentPixels.py --apply --only Textures  # Scope to a prefix
 
 Requires Pillow and numpy. Backups and reports are stored in DevData/Backups.
 """
@@ -94,14 +95,18 @@ def replace_pixels(original, pixels):
     return result
 
 
-def main(apply=False):
+def main(apply=False, only=None):
     work = ROOT / "DevData" / "Backups" / ("TransparentBlack-" + datetime.now().strftime("%Y%m%d-%H%M%S-%f"))
     if apply:
         work.mkdir(parents=True, exist_ok=False)
+    prefixes = tuple(prefix.replace("\\", "/").strip("/").lower()
+                     for prefix in (only or []))
     files = sorted(path for directory in DIRECTORIES
                    for path in (ROOT / directory).rglob("*")
                    if path.is_file() and path.suffix.lower() == ".png"
-                   and "备份" not in path.parts)
+                   and "备份" not in path.parts
+                   and (not prefixes
+                        or path.relative_to(ROOT).as_posix().lower().startswith(prefixes)))
     rows, groups = [], Counter()
     total_pixels, changed_files = 0, 0
     protected_files, protected_pixels = 0, 0
@@ -197,4 +202,7 @@ def main(apply=False):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--apply", action="store_true", help="Back up, modify, and verify textures")
-    main(parser.parse_args().apply)
+    parser.add_argument("--only", action="append", metavar="PREFIX",
+                        help="Restrict scan to paths under this mod-root prefix, e.g. --only Textures; repeatable")
+    args = parser.parse_args()
+    main(args.apply, args.only)

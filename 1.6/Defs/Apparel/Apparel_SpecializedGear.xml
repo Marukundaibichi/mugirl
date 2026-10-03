@@ -84,7 +84,7 @@
             </bodyPartGroups>
             <wornGraphicPath>Things/Apparel/Mugirl_Spacesuit/Mugirl_Spacesuit</wornGraphicPath>
             <useWornGraphicMask>false</useWornGraphicMask>
-        </apparel>
+        <tags><li>MugirlFixedColor</li></tags></apparel>
     </ThingDef>
 
     <!-- ========== 袜类 ========== -->
@@ -125,10 +125,10 @@
                 <li>Legs</li>
             </bodyPartGroups>
             <wornGraphicPath>Things/Apparel/Mugirl_ReverseBunnySuit/Mugirl_ReverseBunnySuit</wornGraphicPath>
-        </apparel>
+        <tags><li>MugirlFixedColor</li></tags></apparel>
     </ThingDef>
 
-    <ThingDef ParentName="ApparelMakeableBase">
+    <ThingDef ParentName="Mugirl_ApparelBase">
         <defName>Mugirl_ReverseBunnySticker</defName>
         <!-- 雪牛娘 逆兔女郎贴纸 -->
         <label>Mugirl Reverse Bunny Stickers</label>
@@ -173,7 +173,7 @@
             <countsAsClothingForNudity>false</countsAsClothingForNudity>
             <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
             <useWornGraphicMask>false</useWornGraphicMask>
-        </apparel>
+        <tags><li>MugirlFixedColor</li></tags></apparel>
         <recipeMaker>
             <researchPrerequisites Inherit="False"><li>Mugirl_DailyAttire</li><li>ComplexClothing</li></researchPrerequisites>
             <skillRequirements>
@@ -429,7 +429,7 @@
                 <li>3</li>
             </forceEyesVisibleForRotations>
             <useWornGraphicMask>false</useWornGraphicMask>
-        </apparel>
+        <tags><li>MugirlFixedColor</li></tags></apparel>
     </ThingDef>
 
     <!-- ========== 外壳层 ========== -->
@@ -456,21 +456,22 @@
         </costList>
         <statBases>
             <WorkToMake>60000</WorkToMake>
-            <MaxHitPoints>500</MaxHitPoints>
+            <!-- 9.26 小幅下调防护与动力增益，为神经接入战甲保留高阶提升空间。 -->
+            <MaxHitPoints>450</MaxHitPoints>
             <Mass>10</Mass>
             <Flammability>0.4</Flammability>
-            <StuffEffectMultiplierArmor>1.25</StuffEffectMultiplierArmor>
-            <ArmorRating_Sharp>0.5</ArmorRating_Sharp>
-            <ArmorRating_Blunt>0.3</ArmorRating_Blunt>
+            <StuffEffectMultiplierArmor>1.15</StuffEffectMultiplierArmor>
+            <ArmorRating_Sharp>0.45</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.27</ArmorRating_Blunt>
             <ArmorRating_Heat>0</ArmorRating_Heat>
             <StuffEffectMultiplierInsulation_Cold>1.0</StuffEffectMultiplierInsulation_Cold>
             <StuffEffectMultiplierInsulation_Heat>1.0</StuffEffectMultiplierInsulation_Heat>
             <EquipDelay>12</EquipDelay>
         </statBases>
         <equippedStatOffsets>
-            <CarryingCapacity>50</CarryingCapacity>
-            <MeleeCooldownFactor>-0.1</MeleeCooldownFactor>
-            <MoveSpeed>0.8</MoveSpeed>
+            <CarryingCapacity>40</CarryingCapacity>
+            <MeleeCooldownFactor>-0.08</MeleeCooldownFactor>
+            <MoveSpeed>0.6</MoveSpeed>
         </equippedStatOffsets>
         <recipeMaker>
             <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
@@ -538,20 +539,21 @@
         </costList>
         <statBases>
             <WorkToMake>54000</WorkToMake>
-            <MaxHitPoints>400</MaxHitPoints>
+            <!-- 9.26 防护约下调一成，仍保留持续远程作战定位。 -->
+            <MaxHitPoints>360</MaxHitPoints>
             <Mass>5</Mass>
             <Flammability>0.4</Flammability>
-            <StuffEffectMultiplierArmor>1.15</StuffEffectMultiplierArmor>
-            <ArmorRating_Sharp>0.2</ArmorRating_Sharp>
-            <ArmorRating_Blunt>0.3</ArmorRating_Blunt>
-            <ArmorRating_Heat>0.4</ArmorRating_Heat>
+            <StuffEffectMultiplierArmor>1.05</StuffEffectMultiplierArmor>
+            <ArmorRating_Sharp>0.18</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.27</ArmorRating_Blunt>
+            <ArmorRating_Heat>0.36</ArmorRating_Heat>
             <Insulation_Cold>24</Insulation_Cold>
             <Insulation_Heat>8</Insulation_Heat>
             <EquipDelay>9</EquipDelay>
         </statBases>
         <equippedStatOffsets>
-            <CarryingCapacity>50</CarryingCapacity>
-            <RangedCooldownFactor>-0.1</RangedCooldownFactor>
+            <CarryingCapacity>40</CarryingCapacity>
+            <RangedCooldownFactor>-0.08</RangedCooldownFactor>
         </equippedStatOffsets>
         <recipeMaker>
             <unfinishedThingDef>UnfinishedMetallicTechArmor</unfinishedThingDef>

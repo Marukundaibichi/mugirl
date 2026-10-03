@@ -144,6 +144,10 @@
     <Mugirl.Settings.RunawayFarmQuest.Label>启用失控雪牛娘牧场任务</Mugirl.Settings.RunawayFarmQuest.Label>
     <!-- Controls whether the runaway Mugirl ranch quest can appear. -->
     <Mugirl.Settings.RunawayFarmQuest.Desc>控制是否启用“疯牛满地跑，农民傻了”任务。取消勾选后，该任务不会出现。</Mugirl.Settings.RunawayFarmQuest.Desc>
+    <!-- Hide weapon wheel back weapons -->
+    <Mugirl.Settings.HideBackWeapons.Label>隐藏武器轮盘背负武器</Mugirl.Settings.HideBackWeapons.Label>
+    <!-- Only hides the two weapons carried on the back; autoloading groove weapons are unaffected. -->
+    <Mugirl.Settings.HideBackWeapons.Desc>开启后不再显示背上的两把武器轮盘普通背负武器；自驱装弹系统凹槽中的武器不受影响。</Mugirl.Settings.HideBackWeapons.Desc>
     <!-- Weapon wheel developer log -->
     <Mugirl.Settings.WeaponWheelDevLog.Label>武器轮盘开发者日志</Mugirl.Settings.WeaponWheelDevLog.Label>
     <!-- When enabled, prints shot-by-shot weapon wheel diagnostics and a Harmony patch ownership report. -->
@@ -216,6 +220,12 @@
     <Mugirl.Milk.FullnessInspect>{0}：{1}</Mugirl.Milk.FullnessInspect>
     <!-- {0}\n\nCurrent: {1}\nThreshold: {2}\nDrag the red line to adjust the automatic milking threshold\nEstimated milk per use: {3}\nLactation speed: {4} -->
     <Mugirl.Milk.Gauge.Tooltip>{0}\n\n当前: {1}\n阈值: {2}\n拖动红线调整自动挤奶阈值\n单次榨乳预估: {3}\n泌乳速度: {4}</Mugirl.Milk.Gauge.Tooltip>
+    <!-- Apply-all toggle on the merged milk gizmo's name bar. -->
+    <Mugirl.Milk.Gauge.ApplyAll.Label>全选</Mugirl.Milk.Gauge.ApplyAll.Label>
+    <!-- Hint for the apply-all toggle. -->
+    <Mugirl.Milk.Gauge.ApplyAll.Desc>开启后，拖动奶量阈值将统一应用到本次选中的所有雪牛娘。</Mugirl.Milk.Gauge.ApplyAll.Desc>
+    <!-- Extra tooltip line when multiple Mugirls are selected. -->
+    <Mugirl.Milk.Gauge.MultiHint>多选中：悬停后可点击上方名字条切换查看对象，“全选”开启时阈值对所有选中的雪牛娘统一生效。</Mugirl.Milk.Gauge.MultiHint>
     <!-- {0}% / {1}s -->
     <Mugirl.Milk.ProductionRate>{0}% / {1}秒</Mugirl.Milk.ProductionRate>
     <!-- Dev: fill milk -->
@@ -226,6 +236,25 @@
     <Mugirl.Milk.DevFill.Success>已将 {0} 的奶量加满。</Mugirl.Milk.DevFill.Success>
     <!-- {0}'s milk amount cannot be filled right now. -->
     <Mugirl.Milk.DevFill.Failed>{0} 当前无法加满奶量。</Mugirl.Milk.DevFill.Failed>
+    <Mugirl.Milk.FeedingDebug.Button>Dev: 喂奶姿态微调</Mugirl.Milk.FeedingDebug.Button>
+    <Mugirl.Milk.FeedingDebug.ButtonDesc>在地图中预览喂奶，调整双方偏移和角度。</Mugirl.Milk.FeedingDebug.ButtonDesc>
+    <Mugirl.Milk.FeedingDebug.Title>喂奶姿态布局</Mugirl.Milk.FeedingDebug.Title>
+    <Mugirl.Milk.FeedingDebug.Choose>选择附近的被喂者</Mugirl.Milk.FeedingDebug.Choose>
+    <Mugirl.Milk.FeedingDebug.NoRecipient>先把另一名人形小人放在雪牛娘旁边。</Mugirl.Milk.FeedingDebug.NoRecipient>
+    <Mugirl.Milk.FeedingDebug.Hint>游戏已暂停。把窗口拖到一旁可查看地图中的实时预览。X 会随被喂者左右位置镜像，Z 为屏幕上下方向；改动立即应用于喂奶。</Mugirl.Milk.FeedingDebug.Hint>
+    <Mugirl.Milk.FeedingDebug.SourceX>喂奶者 X：{0}</Mugirl.Milk.FeedingDebug.SourceX>
+    <Mugirl.Milk.FeedingDebug.SourceZ>喂奶者 Z：{0}</Mugirl.Milk.FeedingDebug.SourceZ>
+    <Mugirl.Milk.FeedingDebug.RecipientX>被喂者 X：{0}</Mugirl.Milk.FeedingDebug.RecipientX>
+    <Mugirl.Milk.FeedingDebug.RecipientZ>被喂者 Z：{0}</Mugirl.Milk.FeedingDebug.RecipientZ>
+    <Mugirl.Milk.FeedingDebug.SourceAngle>喂奶者角度：{0}°</Mugirl.Milk.FeedingDebug.SourceAngle>
+    <Mugirl.Milk.FeedingDebug.RecipientAngle>被喂者角度：{0}°</Mugirl.Milk.FeedingDebug.RecipientAngle>
+    <Mugirl.Milk.FeedingDebug.Reset>恢复默认</Mugirl.Milk.FeedingDebug.Reset>
+    <Mugirl.Milk.FeedingDebug.Jump>定位小人</Mugirl.Milk.FeedingDebug.Jump>
+    <Mugirl.Milk.FeedingDebug.Copy>复制 XML</Mugirl.Milk.FeedingDebug.Copy>
+    <Mugirl.Milk.FeedingDebug.Save>写入配置</Mugirl.Milk.FeedingDebug.Save>
+    <Mugirl.Milk.FeedingDebug.Copied>已复制 XML。</Mugirl.Milk.FeedingDebug.Copied>
+    <Mugirl.Milk.FeedingDebug.Saved>已写入 {0}</Mugirl.Milk.FeedingDebug.Saved>
+    <Mugirl.Milk.FeedingDebug.Failed>布局操作失败：{0}</Mugirl.Milk.FeedingDebug.Failed>
     <!-- Milk spray! -->
     <Mugirl.Milk.SprayText>喷乳！</Mugirl.Milk.SprayText>
     <!-- Milk ({0}) -->
@@ -566,6 +595,24 @@
     <Mugirl.WeaponWheel.StatusSwordDance>武器轮盘：连携剑舞已启用</Mugirl.WeaponWheel.StatusSwordDance>
     <!-- Each melee attack has a 33% chance to dash behind the enemy, stunning them, dealing impact damage and melee attack damage, then switching to the next melee weapon and increasing melee attack speed by 200% for 5 seconds. -->
     <Mugirl.WeaponWheel.StatusSwordDanceDesc>每次近战攻击有33%的概率冲刺到敌人身后，造成一次眩晕，一次冲撞伤害，一次近战攻击伤害，随后切换到下一把近战武器，并使近战攻击速度提高200%，持续5秒。</Mugirl.WeaponWheel.StatusSwordDanceDesc>
+    <!-- Dev-only gizmo: opens the back weapon layout tuning window. -->
+    <Mugirl.WeaponWheel.BackLayoutDebug.Title>背负武器布局调试</Mugirl.WeaponWheel.BackLayoutDebug.Title>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Weapon0>轮盘第 1 格</Mugirl.WeaponWheel.BackLayoutDebug.Weapon0>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Weapon1>轮盘第 2 格</Mugirl.WeaponWheel.BackLayoutDebug.Weapon1>
+    <Mugirl.WeaponWheel.BackLayoutDebug.OffsetX>横向偏移 X：{0}</Mugirl.WeaponWheel.BackLayoutDebug.OffsetX>
+    <Mugirl.WeaponWheel.BackLayoutDebug.OffsetZ>纵深偏移 Z：{0}</Mugirl.WeaponWheel.BackLayoutDebug.OffsetZ>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Angle>旋转角度：{0}°</Mugirl.WeaponWheel.BackLayoutDebug.Angle>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Layer>图层级：{0}</Mugirl.WeaponWheel.BackLayoutDebug.Layer>
+    <Mugirl.WeaponWheel.BackLayoutDebug.SouthAutoloadingLayer>南向·穿戴装弹系统时层级：{0}</Mugirl.WeaponWheel.BackLayoutDebug.SouthAutoloadingLayer>
+    <Mugirl.WeaponWheel.BackLayoutDebug.CopyXml>复制 XML</Mugirl.WeaponWheel.BackLayoutDebug.CopyXml>
+    <Mugirl.WeaponWheel.BackLayoutDebug.CopyCSharp>复制 C# 默认值</Mugirl.WeaponWheel.BackLayoutDebug.CopyCSharp>
+    <Mugirl.WeaponWheel.BackLayoutDebug.WriteFile>写入配置文件</Mugirl.WeaponWheel.BackLayoutDebug.WriteFile>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Reset>恢复默认</Mugirl.WeaponWheel.BackLayoutDebug.Reset>
+    <Mugirl.WeaponWheel.BackLayoutDebug.OpenFolder>打开配置文件夹</Mugirl.WeaponWheel.BackLayoutDebug.OpenFolder>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Hint>布局对所有雪牛娘立即生效。± 按钮精调偏移 0.005、角度 1°、图层 0.5。南向穿戴装弹系统时，普通背负枪使用专用层级。恢复默认只改内存；写入配置文件后下次启动自动应用。路径：{0}</Mugirl.WeaponWheel.BackLayoutDebug.Hint>
+    <Mugirl.WeaponWheel.BackLayoutDebug.StatusCopied>已复制到剪贴板。</Mugirl.WeaponWheel.BackLayoutDebug.StatusCopied>
+    <Mugirl.WeaponWheel.BackLayoutDebug.StatusWritten>已写入：{0}</Mugirl.WeaponWheel.BackLayoutDebug.StatusWritten>
+    <Mugirl.WeaponWheel.BackLayoutDebug.StatusReset>已恢复内置默认值（仅内存，配置文件未删除）。</Mugirl.WeaponWheel.BackLayoutDebug.StatusReset>
     <!-- Snow-bovine punisher -->
     <Mugirl.Punisher.LetterLabel>雪牛惩戒者</Mugirl.Punisher.LetterLabel>
     <!-- You have cruelly slaughtered innocent Mugirls! The god of the snow-bovines will punish you! -->
@@ -586,10 +633,22 @@
     <Mugirl.Throw.OutOfRange>超出投掷距离（最大 {0} 格）。</Mugirl.Throw.OutOfRange>
     <Mugirl.Throw.AimReadout>伤害 {0} / 爆炸半径 {1} / 最大距离 {2}</Mugirl.Throw.AimReadout>
     <Mugirl.Throw.PlaceFailed>无法安全放置 {0}：{1}</Mugirl.Throw.PlaceFailed>
+    <Mugirl.Throw.BusyHolding>{0}正举着待投掷的物体，无法开枪</Mugirl.Throw.BusyHolding>
     <Mugirl.Settings.ExtraOutline.Label>启用额外描边</Mugirl.Settings.ExtraOutline.Label>
     <Mugirl.Settings.ExtraOutline.Desc>为雪牛娘的身体、头发和衣服添加黑色整体外描边，不描绘武器。默认关闭；远处人物沿用游戏的贴图缓存。</Mugirl.Settings.ExtraOutline.Desc>
     <Mugirl.Settings.ExtraOutline.Width>描边粗细：{0} 倍</Mugirl.Settings.ExtraOutline.Width>
     <Mugirl.Outline.Unavailable>额外描边着色器加载失败，已保留正常人物绘制。详情：{0}</Mugirl.Outline.Unavailable>
     <!-- Grazing food policy preset label: wild vanilla plants only, excluding sown crops. -->
     <Mugirl.FoodPolicy.Grass.Label>草</Mugirl.FoodPolicy.Grass.Label>
+    <Mugirl.WeaponWheel.BackLayoutDebug.ChoosePawn>选择预览角色</Mugirl.WeaponWheel.BackLayoutDebug.ChoosePawn>
+    <Mugirl.WeaponWheel.BackLayoutDebug.NoPawn>没有可预览的雪牛娘。请先在地图上准备一名站立的雪牛娘。</Mugirl.WeaponWheel.BackLayoutDebug.NoPawn>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Zoom>预览缩放：{0}</Mugirl.WeaponWheel.BackLayoutDebug.Zoom>
+    <Mugirl.WeaponWheel.BackLayoutDebug.PreviewHint>背负固定对应轮盘第 1、2 格；手持或切枪中的武器暂时隐藏，其他格不补位。穿戴装弹系统时四把凹槽武器显示供遮挡对照。</Mugirl.WeaponWheel.BackLayoutDebug.PreviewHint>
+    <Mugirl.WeaponWheel.BackLayoutDebug.NumericHint>输入数字立即生效，范围 {0} 至 {1}。小数点使用“.”；无效或超范围输入标红并保留原值。</Mugirl.WeaponWheel.BackLayoutDebug.NumericHint>
+    <Mugirl.WeaponWheel.BackLayoutDebug.EmptyWeapon>当前没有这把普通背负武器。请先在武器轮盘中装入备用武器。</Mugirl.WeaponWheel.BackLayoutDebug.EmptyWeapon>
+    <Mugirl.WeaponWheel.BackLayoutDebug.ResetPose>重置当前朝向</Mugirl.WeaponWheel.BackLayoutDebug.ResetPose>
+    <Mugirl.WeaponWheel.BackLayoutDebug.StatusFailed>操作失败：{0}</Mugirl.WeaponWheel.BackLayoutDebug.StatusFailed>
+    <Mugirl.WeaponWheel.BackLayoutDebug.FlipHorizontal>水平镜像</Mugirl.WeaponWheel.BackLayoutDebug.FlipHorizontal>
+    <Mugirl.WeaponWheel.BackLayoutDebug.FlipVertical>垂直镜像</Mugirl.WeaponWheel.BackLayoutDebug.FlipVertical>
+    <Mugirl.WeaponWheel.BackLayoutDebug.MirrorHint>相对当前武器贴图，在旋转前左右/上下翻转；两个开关可叠加，不改变位置、尺寸或图层。</Mugirl.WeaponWheel.BackLayoutDebug.MirrorHint>
 </LanguageData>

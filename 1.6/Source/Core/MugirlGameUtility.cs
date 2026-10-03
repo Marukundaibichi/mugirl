@@ -19,9 +19,18 @@ namespace Mugirl
         internal static LetterStack Letters => Find.LetterStack;
         internal static QuestManager Quests => Find.QuestManager;
         internal static Storyteller Storyteller => Current.Game?.storyteller;
+        internal static ResearchManager ResearchManager => Current.Game?.researchManager;
         internal static HistoryEventsManager HistoryEvents => Find.HistoryEventsManager;
         internal static MainTabsRoot MainTabs => Find.MainTabsRoot;
         internal static T GameComponent<T>() where T : GameComponent => Current.Game?.GetComponent<T>();
+
+        internal static bool TryRenderPawnPreview(Pawn pawn, UnityEngine.RenderTexture texture, Rot4 facing, float zoom)
+        {
+            if (pawn?.Drawer?.renderer == null || texture == null || Find.PawnCacheRenderer == null) return false;
+            Find.PawnCacheRenderer.RenderPawn(pawn, texture, UnityEngine.Vector3.zero, zoom, 0f, facing,
+                renderHead: true, renderHeadgear: true, renderClothes: true, portrait: true);
+            return true;
+        }
 
         internal static bool TryShowMap(Map map)
         {
