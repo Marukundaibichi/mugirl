@@ -7,5 +7,6 @@ namespace Mugirl.SaveUpgrade;
 internal sealed class LegacyThinkJobReadSet
 {
     internal Dictionary<Job, XmlNode> Jobs { get; } = new(ReferenceEqualityComparer.Instance);
+    internal HashSet<Job> NativeLookups { get; } = new(ReferenceEqualityComparer.Instance);
     internal int? Profiles { get; set; }
 }

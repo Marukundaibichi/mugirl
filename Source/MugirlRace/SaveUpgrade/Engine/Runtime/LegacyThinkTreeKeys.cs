@@ -120,7 +120,8 @@ internal static class LegacyThinkTreeKeys
         exposingLegacyJob = null;
         exposingLegacyJobXml = null;
         exposingJob = null;
-        if (session is not { IsLegacyRun: true, Completed: false } || session.Report.Failed)
+        if (session is not { Completed: false, Document.HasMugirl: true } || session.Report.Failed
+            || session.SourceSchema > SaveSchema.Current)
         {
             return previous;
         }
@@ -133,7 +134,7 @@ internal static class LegacyThinkTreeKeys
             {
                 session.Report.Fail("Framework.ThinkTreeKeys", "A Job was read after the saved ThinkTree layout had already been selected.");
             }
-            else if (read.Jobs.TryGetValue(job, out XmlNode? existing) && !ReferenceEquals(existing, currentNode))
+            else if (session.IsLegacyRun && read.Jobs.TryGetValue(job, out XmlNode? existing) && !ReferenceEquals(existing, currentNode))
             {
                 session.Report.Fail("Framework.ThinkTreeKeys", "The same Job was read from different saved ThinkTree sources.");
             }
@@ -203,6 +204,10 @@ internal static class LegacyThinkTreeKeys
 
         int profiles = SelectProfiles(session);
         if (profiles == 0) { return false; }
+        if (ReadJobs.TryGetValue(session, out LegacyThinkJobReadSet? read) && read.NativeLookups.Contains(exposingJob!))
+        {
+            return true;
+        }
         ThinkNode? expected = null;
         for (int i = 0; i < 3; i++)
         {
@@ -258,7 +263,8 @@ internal static class LegacyThinkTreeKeys
     {
         // Job.ExposeData 每次保存都从实际 jobGiver.UniqueSaveKey 写出整数；同一存档的来源
         // 属于同一全局分配布局。FinalizeLoading 完成全部 LoadingVars/CrossRefs 后才开始
-        // PostLoadInit，故首次查询可以一次性求所有真实读入 (tree,key) 的布局交集。
+        // PostLoadInit，故首次查询可以一次性求已捕获键的布局交集。
+        // 外部树中任何布局都未捕获的外部 Job 来源无法证明本 Mod 的年代，交回原版查找并保留未解析的原键。
         // 不以 JobDef、游戏版本或缺失业务组件猜年代；也不扫描未被 Scribe 读取的 XML。
         read.Profiles = 0; // 冻结来源集合；异常或晚到的 LoadingVars 不能悄悄重新选择。
         int profiles = 7;
@@ -284,17 +290,26 @@ internal static class LegacyThinkTreeKeys
                 nodes = new HashSet<ThinkNode>(root.ThisAndChildrenRecursive, ReferenceEqualityComparer.Instance);
                 members.Add(tree, nodes);
             }
+            int available = 0;
+            bool captured = false;
             for (int i = 0; i < 3; i++)
             {
-                int bit = 1 << i;
-                if ((profiles & bit) != 0 && (!Layout(i).TryNode(key, out ThinkNode? candidate) || !nodes.Contains(candidate)))
+                if (Layout(i).TryNode(key, out ThinkNode? candidate))
                 {
-                    profiles &= ~bit;
+                    captured = true;
+                    if (nodes.Contains(candidate)) { available |= 1 << i; }
                 }
             }
+            if (!captured && !nodes.Any(node => node.UniqueSaveKey == key) && UnresolvedThinkTreeKeys.IsForeign(job, tree))
+            {
+                read.NativeLookups.Add(job);
+                continue;
+            }
+            profiles &= available;
             if (profiles == 0)
             {
-                session.Report.Fail("Framework.ThinkTreeKeys", "No single captured ThinkTree layout proves all saved Job keys.");
+                session.Report.Fail("Framework.ThinkTreeKeys", "No single captured ThinkTree layout proves all saved Job keys: tree "
+                    + tree.defName + ", key " + key.ToString(CultureInfo.InvariantCulture) + ", job " + job.def?.defName + ".");
                 return 0;
             }
         }
@@ -317,6 +332,20 @@ internal static class LegacyThinkTreeKeys
 
         lookup.Session.ReadTrace?.Scalar("ThinkKey", lookup.Source,
             lookup.Source.InnerText, lookup.CanonicalKey.ToString(CultureInfo.InvariantCulture));
+    }
+
+    internal static void RememberNativeFailure(ThinkTreeDef tree, int key, ThinkNode? node, bool found, LegacyThinkLookup? lookup)
+    {
+        if (lookup is not null || found || node is not null || key == -1 || !AlgorithmVerified
+            || exposingLegacyJob is not { Completed: false } session || session.Report.Failed
+            || exposingJob is not { } job || !ReferenceEquals(job.jobGiverThinkTree, tree)
+            || exposingLegacyJobXml?["lastJobGiverKey"] is not { } source
+            || !int.TryParse(source.InnerText, NumberStyles.Integer, CultureInfo.InvariantCulture, out int saved) || saved != key
+            || !UnresolvedThinkTreeKeys.IsForeign(job, tree))
+        {
+            return;
+        }
+        UnresolvedThinkTreeKeys.Remember(job, tree, key);
     }
 
     internal static void LookupFailed(LegacyThinkLookup? lookup, Exception? exception)

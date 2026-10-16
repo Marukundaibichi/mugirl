@@ -46,7 +46,10 @@ internal static class SaveUpgradeInstallation
         Require(AccessTools.Method(typeof(ThinkTreeDef), nameof(ThinkTreeDef.ResolveReferences)), PatchKind.Prefix, typeof(Harmony_ThinkTreeDef_ResolveReferences), missing);
         Require(AccessTools.Method(typeof(ThinkTreeDef), nameof(ThinkTreeDef.ResolveReferences)), PatchKind.Finalizer, typeof(Harmony_ThinkTreeDef_ResolveReferences), missing);
         Require(AccessTools.Method(typeof(Job), nameof(Job.ExposeData)), PatchKind.Prefix, typeof(Harmony_Job_ExposeData_ThinkTreeIdentity), missing);
+        Require(AccessTools.Method(typeof(Job), nameof(Job.ExposeData)), PatchKind.Postfix, typeof(Harmony_Job_ExposeData_ThinkTreeIdentity), missing);
         Require(AccessTools.Method(typeof(Job), nameof(Job.ExposeData)), PatchKind.Finalizer, typeof(Harmony_Job_ExposeData_ThinkTreeIdentity), missing);
+        Require(AccessTools.Method(typeof(Job), nameof(Job.Clear)), PatchKind.Postfix, typeof(Harmony_Job_Clear_ThinkTreeIdentity), missing);
+        Require(AccessTools.Method(typeof(Job), nameof(Job.Clone)), PatchKind.Postfix, typeof(Harmony_Job_Clone_ThinkTreeIdentity), missing);
         Require(AccessTools.Method(typeof(ThinkTreeDef), nameof(ThinkTreeDef.TryGetThinkNodeWithSaveKey)), PatchKind.Prefix, typeof(Harmony_ThinkTreeDef_TryGetThinkNodeWithSaveKey), missing);
         Require(AccessTools.Method(typeof(ThinkTreeDef), nameof(ThinkTreeDef.TryGetThinkNodeWithSaveKey)), PatchKind.Postfix, typeof(Harmony_ThinkTreeDef_TryGetThinkNodeWithSaveKey), missing);
         Require(AccessTools.Method(typeof(ThinkTreeDef), nameof(ThinkTreeDef.TryGetThinkNodeWithSaveKey)), PatchKind.Finalizer, typeof(Harmony_ThinkTreeDef_TryGetThinkNodeWithSaveKey), missing);

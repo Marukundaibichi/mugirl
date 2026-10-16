@@ -9,6 +9,9 @@ internal static class ReviewedSaveEngine
 
     internal static bool IsReviewed(Guid mvid) => mvid == Build4979 || mvid == Build4980;
 
+    /// <summary>Job 空来源的保存省略规则、Clone 与 Clear 已在 4980 核验；未核验版本仍严格拒绝未知键。</summary>
+    internal static bool CanPreserveUnresolvedThinkKeys(Guid mvid) => mvid == Build4980;
+
     /// <summary>把七个已核验的真实 Scribe 入口归到原契约编号；未知版本或入口返回 0。</summary>
     internal static int CanonicalReaderToken(Guid mvid, int token)
     {

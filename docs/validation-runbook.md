@@ -155,6 +155,7 @@ pwsh tools/Test-InGame.ps1 -Fixture all                      # 旧档夹具升�
 
 - 测试模组 `Source/Tests/MugirlRace.GameValidation` 在 `%TEMP%` 的源码副本中构建，再以带标记的临时模组 `Mods/__MugirlRace_GameValidation_<随机>` 加载。套件在 `Suites/` 下，例如 `startup`、`spawn`、`saveload`、`render`、`plumbing`、`fixture-gate`、`sweep`、`upgrade`；`-Suite default` 和 `all` 是预设组合。
 - `-Suite milk-migration -SuiteOption "milk-migration.source=<测试副本路径>"` 专门复验同一 Pawn 的两份旧奶量：只读迁移完整 XML，然后将这些值装入隔离测试 Pawn 的雪牛娘组件与原版 `CompMilkable`，实际保存并载入游戏，逐位比较两份 float。该套件不在 default/all 中，使用任何错误均失败的日志策略；它不等于玩家完整模组组合或第三方组件 DLL 的实机验证。也可由既有 `-TargetModDir` 加载带标记、独立 packageId 的候选测试模组，保持正式 DLL 不变。
+- `-Suite think-migration -SuiteOption "think-migration.source=<测试副本路径>"` 抽取存档中所有带 `lastJobGiverKey` 的 Job 来源与值字段，重放真实 Scribe 的 LoadingVars、CrossRefs、PostLoadInit、保存和当前 schema 再读。它先用实际树确认哪些键原版也找不到，只接受这些确切警告并核对数量；验证原编号唯一保留、计数与对象身份、再次保存稳定及输入哈希不变。`think-migration.expectFailure=true` 是旧构建负对照，必须复现 `Framework.ThinkTreeKeys` 失败。夹具不加载原世界或目标引用，不能冒充玩家完整模组环境验证；读取阶段按 `FinalizeLoading` 协议清空 XML 游标后再做引用解析。
 - `-Config` 可选 AllDlc、CoreOnly、NoRoyalty、NoIdeology、NoBiotech、NoAnomaly、NoOdyssey。无 DLC 组合通过临时 `ModsConfig.xml` 实现，因为 `-mod=` 总会启用全部 DLC。
 - 结果在 `TMP/InGameValidation/<时间戳>/`，包括 `summary.json`、报告、标准输出、截图和截图分析。退出码：0 通过；1 游戏运行了但有失败；2 构建或环境错误。
 - 基线：重构前的 DLL 在 Wave 0 为 65 ok / 1 failed / 14 skipped（`DevData/Evidence/Baseline-PreRefactor-20261015/ingame-default.txt`）。那次失败是测试本身的缺陷，A5 已修复；修复后的 default 运行为 78 ok / 0 failed / 14 skipped（A5 报告）。

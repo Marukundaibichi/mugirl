@@ -21,8 +21,11 @@ internal static class Harmony_ThinkTreeDef_TryGetThinkNodeWithSaveKey
     }
 
     [HarmonyPriority(Priority.Last)]
-    internal static void Postfix(ThinkTreeDef __instance, ref ThinkNode? outNode, ref bool __result, LegacyThinkLookup? __state)
-        => LegacyThinkTreeKeys.CompleteLookup(__instance, __state, ref outNode, ref __result);
+    internal static void Postfix(ThinkTreeDef __instance, int key, ref ThinkNode? outNode, ref bool __result, LegacyThinkLookup? __state)
+    {
+        LegacyThinkTreeKeys.CompleteLookup(__instance, __state, ref outNode, ref __result);
+        LegacyThinkTreeKeys.RememberNativeFailure(__instance, key, outNode, __result, __state);
+    }
 
     [HarmonyPriority(Priority.Last)]
     internal static Exception? Finalizer(Exception? __exception, LegacyThinkLookup? __state)
