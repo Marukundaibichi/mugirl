@@ -1,0 +1,15 @@
+# Extractor controls (tools/Validate.ps1 -SelfTest): the negative-control assembly is extracted as a legacy build together with
+# Controls/ModRoot (content) and Controls/Legacy/control-save.rws; each line: file<TAB>present|absent<TAB>line substring (\t = tab)<TAB>what it proves.
+legacy-types.tsv	present	Mugirl.Control.Structure.ControlStaticState\tclass\t-\t	a static class has no save root (B1)
+legacy-types.tsv	present	Mugirl.Control.Structure.ControlComponentStatic\tclass\tVerse.GameComponent\t	a GameComponent subclass is saved under GameComponent
+legacy-types.tsv	present	Mugirl.Control.Upgrade.LabelOwner\tclass\tVerse.IExposable\t	an IExposable implementation is saved under IExposable (object element types)
+legacy-types.tsv	present	Mugirl.Control.Legacy.ControlApparel\tclass\tVerse.Thing\t	a Thing subclass is saved under Thing
+legacy-types.tsv	absent	\tclass\tSystem.Object\t	no type is saved under System.Object (B1)
+legacy-observed.tsv	present	type\tMugirl.Control.Legacy.ControlApparel\t	a Class of the legacy build is observed
+legacy-observed.tsv	present	label\tcontrolCharge\tMugirl.Control.Legacy.ControlApparel\t	a label the legacy owner writes is observed
+legacy-observed.tsv	present	label?\tforeignModLabel\tMugirl.Control.Legacy.ControlApparel\t	a label of unknown origin is review-only (label?)
+legacy-observed.tsv	absent	label\tdef\t	vanilla Thing labels are not Mugirl labels (B2)
+legacy-observed.tsv	absent	label\tid\t	vanilla Thing labels are not Mugirl labels (B2)
+legacy-observed.tsv	absent	label\thealth\t	vanilla Thing labels are not Mugirl labels (B2)
+legacy-observed.tsv	absent	\tHumanlikeConstant\t	vanilla def names are not Mugirl defs (M1)
+legacy-observed.tsv	absent	\tApparel_Pants	vanilla thing ids are not Mugirl thing ids (M1)

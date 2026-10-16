@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <JobDef>
+        <defName>Mugirl_Rope</defName>
+        <driverClass>Mugirl.Features.Roping.JobDriver_RopeMugirl</driverClass>
+        <!-- 牵引 TargetA. -->
+        <reportString>Rope {TargetA}.</reportString>
+        <suspendable>false</suspendable>
+    </JobDef>
+
+    <JobDef>
+        <defName>Mugirl_Unrope</defName>
+        <driverClass>Mugirl.Features.Roping.JobDriver_UnropeMugirl</driverClass>
+        <!-- 解除 TargetA 牵引 -->
+        <reportString>Remove {TargetA}'s rope</reportString>
+        <suspendable>false</suspendable>
+    </JobDef>
+
+    <JobDef>
+        <defName>GiveSlaveApparelGear</defName>
+        <driverClass>Mugirl.Features.Restraints.JobDriver_UseItemOn</driverClass>
+        <!-- 穿上 -->
+        <reportString>Put on Restraints</reportString>
+    </JobDef>
+
+    <JobDef>
+        <defName>Mugirl_UnlockRestraint</defName>
+        <driverClass>Mugirl.Features.Restraints.JobDriver_UnlockRestraint</driverClass>
+        <!-- 解锁 -->
+        <reportString>Unlock Restraints</reportString>
+    </JobDef>
+
+    <JobDef>
+        <defName>Mugirl_ForceUnlockRestraint</defName>
+        <driverClass>Mugirl.Features.Restraints.JobDriver_ForceUnlockRestraint</driverClass>
+        <!-- 强行开锁 -->
+        <reportString>Force open restraints</reportString>
+    </JobDef>
+
+    <JobDef>
+        <defName>Mugirl_CrackRestraint</defName>
+        <driverClass>Mugirl.Features.Restraints.JobDriver_CrackRestraint</driverClass>
+        <!-- 解锁 -->
+        <reportString>Unlock Restraints</reportString>
+    </JobDef>
+
+    <JobDef>
+        <defName>Mugirl_RopeToHitch</defName>
+        <driverClass>Mugirl.Features.Roping.JobDriver_RopeToHitch</driverClass>
+        <!-- 解锁 -->
+        <reportString>Rope to Building</reportString>
+    </JobDef>
+
+    <JobDef>
+        <defName>Mugirl_Nuzzle</defName>
+        <driverClass>Mugirl.Features.Social.JobDriver_MugirlNuzzle</driverClass>
+        <!-- 蹭蹭 TargetA. -->
+        <reportString>Nuzzle {TargetA}.</reportString>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
+
+    <JobDef>
+        <defName>Mugirl_FollowRoper</defName>
+        <driverClass>Mugirl.Features.Roping.JobDriver_MugirlFollowRoper</driverClass>
+        <!-- 跟随 TargetA. -->
+        <reportString>Follow {TargetA}.</reportString>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
+
+
+    <JobDef>
+        <defName>Mugirl_ChildDrinkMilk</defName>
+        <driverClass>Mugirl.Features.Milk.JobDriver_ChildDrinkMilk</driverClass>
+        <!-- 给 TargetA 喂奶 -->
+        <reportString>Feed milk to {TargetA}.</reportString>
+    </JobDef>
+
+    <JobDef>
+        <defName>Mugirl_DrinkMilk</defName>
+        <driverClass>Mugirl.Features.Milk.JobDriver_DrinkMilk</driverClass>
+        <!-- 从 TargetA 喝奶 -->
+        <reportString>Drink milk from {TargetA}.</reportString>
+    </JobDef>
+
+    <JobDef>
+        <defName>Mugirl_FeedMilk</defName>
+        <driverClass>Mugirl.Features.Milk.JobDriver_FeedMilk</driverClass>
+        <!-- 给 TargetA 喂奶 -->
+        <reportString>Feed milk to {TargetA}.</reportString>
+    </JobDef>
+
+    <JobDef>
+        <defName>Mugirl_MilkInteractionWait</defName>
+        <driverClass>JobDriver_WaitMaintainPosture</driverClass>
+        <carryThingAfterJob>true</carryThingAfterJob>
+        <dropThingBeforeJob>false</dropThingBeforeJob>
+        <ifFlyingKeepFlying>true</ifFlyingKeepFlying>
+        <reportString>Participating in milk feeding.</reportString>
+    </JobDef>
+
+</Defs>

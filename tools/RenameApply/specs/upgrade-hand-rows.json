@@ -1,0 +1,386 @@
+{
+ "_doc": "Hand dispositions for the upgrader tables (K1 manifest) that the rename-applied logs cannot express. MooGirl-era rows are excluded (D3: MooGirl era not supported; see moogirl-era-markers.json). Transitional types: their Wave R target is temporary; the upgrade column of R/<module>.json#types[].transitional is authoritative for the legacy (old) name.",
+ "types": [
+  {
+   "old": "Mugirl.ChoiceLetter_MugirlFusionInvestment",
+   "disposition": "Map",
+   "target": "Verse.StandardLetter",
+   "source": "incidents.json notes[0], notes[10]",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Mugirl_XenotypeFix_GameComp",
+   "disposition": "Consumed",
+   "step": "Steps/Milk/XenotypeRepair (milk-plan S1-L12)",
+   "source": "milk.json types reason",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.BrainWashSlaveApparel",
+   "disposition": "Map",
+   "target": "Mugirl.Features.Restraints.AdvancedRestraintApparel",
+   "source": "restraints.json notes[0] (Wave S, plan S2.7 SHOULD)",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.JobDriver_UseItemOn",
+   "disposition": "Drop",
+   "policy": "end job (never issued)",
+   "source": "restraints.json notes[0]",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.MapRopingIndex",
+   "disposition": "Drop",
+   "policy": "remove map/components li",
+   "source": "restraints.json notes[0]",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.CorporateRuntimeValidation",
+   "disposition": "Drop",
+   "policy": "RemoveElement (game/components/li)",
+   "corpus": "legacy-extra.txt",
+   "source": "core-plan S1-L1, corporate-plan S4.6",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateVisualValidation",
+   "disposition": "Drop",
+   "policy": "RemoveElement (game/components/li)",
+   "corpus": "legacy-extra.txt",
+   "source": "core-plan S1-L1, corporate-plan S4.6",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.StockGenerator_Mugirl_Slaves",
+   "disposition": "XmlAlias",
+   "target": "Mugirl.Features.Trade.StockGenerator_MugirlSlaves",
+   "source": "design §2, incidents.json notes",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.CompProperties_MugirlMount",
+   "disposition": "XmlAlias",
+   "target": "Mugirl.Features.Mounting.CompProperties_Mount",
+   "source": "design §2, combat.json notes",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.CompProperties_MooMilkable",
+   "disposition": "XmlAlias",
+   "target": "Mugirl.Features.Milk.CompProperties_MilkProduction",
+   "source": "design §2, milk.json types reason",
+   "module": "milk"
+  }
+ ],
+ "defs": [
+  {
+   "defType": "IncidentDef",
+   "old": "Mugirl_CourierRaid",
+   "disposition": "Drop",
+   "policy": "RetiredIncident (Steps/Core/RemoveRetiredIncidentReferences)",
+   "source": "incidents.json notes, incidents-plan S4",
+   "module": "incidents"
+  },
+  {
+   "defType": "IncidentDef",
+   "old": "Mugirl_WildManWandersIn",
+   "disposition": "Drop",
+   "policy": "RetiredIncident",
+   "source": "core-plan S1-L3",
+   "module": "core"
+  },
+  {
+   "defType": "ThingDef",
+   "old": "Mugirl_NeuralCombatShoulders",
+   "disposition": "Drop",
+   "policy": "RemoveThingsAndReferences",
+   "source": "core-plan S1-L2, content-legacy-defs.json",
+   "module": "core"
+  },
+  {
+   "defType": "RecipeDef",
+   "old": "Make_Mugirl_NeuralCombatShoulders",
+   "disposition": "Drop",
+   "policy": "RemoveBillsAndReferences",
+   "source": "core-plan S1-L2",
+   "module": "core"
+  },
+  {
+   "defType": "PawnKindDef",
+   "old": "Mugirl_EscapeWildSlave",
+   "disposition": "Map",
+   "target": "Mugirl_WildMugirl",
+   "source": "incidents.json notes",
+   "module": "incidents"
+  },
+  {
+   "defType": "PawnKindDef",
+   "old": "Mugirl_PreEscapeWildSlave",
+   "disposition": "Map",
+   "target": "Mugirl_WildMugirl",
+   "source": "incidents.json notes",
+   "module": "incidents"
+  },
+  {
+   "defType": "JobDef",
+   "old": "GiveSlaveApperalGear",
+   "disposition": "Drop",
+   "policy": "end job",
+   "source": "restraints.json notes, content.md A.7",
+   "module": "restraints"
+  }
+ ],
+ "retiredDefs": [
+  {
+   "defType": "ThingDef",
+   "old": "Mugirl_MechanoidBulldog",
+   "new": null,
+   "evidence": "git c66cc36..131ee89; commented out in 50f7979 and the published build",
+   "saveVisible": true,
+   "policy": "drop: remove pawns/corpses (def and implied Corpse_Mugirl_MechanoidBulldog), their references, and ThingFilter entries",
+   "owner": "content",
+   "seenInRealSaves": [
+    "天穹现境.rws",
+    "雪牛娘测试.rws"
+   ],
+   "note": "real saves hold it only in allowedDefs (real-saves.md §5 'Retired names')",
+   "module": "content"
+  },
+  {
+   "defType": "PawnKindDef",
+   "old": "Mugirl_MechanoidBulldog",
+   "new": null,
+   "evidence": "git c66cc36..131ee89",
+   "saveVisible": true,
+   "policy": "drop: null kindDef references go with the dropped pawns; remove from any list",
+   "owner": "content",
+   "seenInRealSaves": [
+    "天穹现境.rws",
+    "雪牛娘测试.rws"
+   ],
+   "module": "content"
+  },
+  {
+   "defType": "BodyDef",
+   "old": "Mugirl_MechanoidBulldogBody",
+   "new": null,
+   "evidence": "git c66cc36..131ee89",
+   "saveVisible": true,
+   "policy": "drop: only on the dropped pawns' hediffs",
+   "owner": "content",
+   "module": "content"
+  },
+  {
+   "defType": "BodyPartDef",
+   "old": "Mugirl_MechanoidTailAssembly",
+   "new": null,
+   "evidence": "git c66cc36..131ee89",
+   "saveVisible": false,
+   "policy": "none (not saved by name)",
+   "owner": "content",
+   "module": "content"
+  },
+  {
+   "defType": "BodyPartDef",
+   "old": "Mugirl_MechanoidTailChainsaw",
+   "new": null,
+   "evidence": "git c66cc36..131ee89",
+   "saveVisible": false,
+   "policy": "none",
+   "owner": "content",
+   "module": "content"
+  },
+  {
+   "defType": "BodyPartGroupDef",
+   "old": "Mugirl_BulldogLeftForeclaw",
+   "new": null,
+   "evidence": "git c66cc36..131ee89",
+   "saveVisible": false,
+   "policy": "none",
+   "owner": "content",
+   "module": "content"
+  },
+  {
+   "defType": "BodyPartGroupDef",
+   "old": "Mugirl_BulldogRightForeclaw",
+   "new": null,
+   "evidence": "git c66cc36..131ee89",
+   "saveVisible": false,
+   "policy": "none",
+   "owner": "content",
+   "module": "content"
+  },
+  {
+   "defType": "BodyPartGroupDef",
+   "old": "Mugirl_MechanoidTail",
+   "new": null,
+   "evidence": "git c66cc36..131ee89",
+   "saveVisible": false,
+   "policy": "none",
+   "owner": "content",
+   "module": "content"
+  },
+  {
+   "defType": "ManeuverDef",
+   "old": "Mugirl_BulldogTailAssistedCutManeuver",
+   "new": null,
+   "evidence": "git c66cc36..131ee89",
+   "saveVisible": false,
+   "policy": "none",
+   "owner": "content",
+   "module": "content"
+  },
+  {
+   "defType": "ToolCapacityDef",
+   "old": "Mugirl_BulldogTailAssistedCut",
+   "new": null,
+   "evidence": "git c66cc36..131ee89",
+   "saveVisible": false,
+   "policy": "none (not saved by name)",
+   "owner": "content",
+   "module": "content"
+  },
+  {
+   "defType": "AnimationDef",
+   "old": "Mugirl_MilkInteractionDrinkerAnimation",
+   "new": null,
+   "evidence": "git c66cc36..131ee89",
+   "saveVisible": false,
+   "policy": "none (AnimationDef is not saved by name in 1.7)",
+   "owner": "content",
+   "module": "content"
+  },
+  {
+   "defType": "FacialAnimation.FaceAdjustmentDef",
+   "old": "DefaultFaceSizeAndPositionDef",
+   "new": "DefaultFaceSizeAndPositionDef",
+   "evidence": "git c66cc36..37545af",
+   "saveVisible": false,
+   "policy": "identity: it overrode Facial Animation's own def of that name; FA still defines it",
+   "owner": "content",
+   "module": "content"
+  },
+  {
+   "defType": "FacialAnimation.EmotionShapeDef",
+   "old": "lovinblush",
+   "new": null,
+   "evidence": "git ..de6753d",
+   "saveVisible": false,
+   "policy": "none (shared FA shape vocabulary)",
+   "owner": "content",
+   "module": "content"
+  },
+  {
+   "defType": "FacialAnimation.EyeballShapeDef",
+   "old": "Mugirl_heart",
+   "new": "heart",
+   "evidence": "git 324501c..de6753d",
+   "saveVisible": false,
+   "policy": "none needed at load; keeps third-party XML cross-refs resolving",
+   "owner": "content",
+   "module": "content"
+  },
+  {
+   "defType": "ThingDef",
+   "old": "Mugirl_NeuralCombatShoulders",
+   "new": null,
+   "evidence": "git a172c15 only (0.6.3 alpha)",
+   "saveVisible": true,
+   "policy": "drop item/bills (+Make_Mugirl_NeuralCombatShoulders) and references (today Compatibility/Savegames/NeuralShoulderSaveMigration.cs)",
+   "owner": "AdvancedArmor/core (reference only)",
+   "module": "core"
+  },
+  {
+   "defType": "ThingDef",
+   "old": "Bullet_Mugirl_AT23",
+   "new": "Bullet_Mugirl_AT23_Autocannon",
+   "evidence": "git a172c15 only",
+   "saveVisible": true,
+   "policy": "rename (in-flight projectiles); compose with the weapons module's bullet rename",
+   "owner": "Weapons (reference only)",
+   "module": "combat"
+  },
+  {
+   "defType": "JobDef",
+   "old": "GiveSlaveApparelGear",
+   "new": null,
+   "evidence": "1.7/Defs/JobDefs/JobDefs.xml:20-25; no code issues it (grep, and 1.6 source)",
+   "saveVisible": true,
+   "policy": "drop: end any job/queued job with this def (never observed)",
+   "owner": "content (file owner); C# types by Restraints",
+   "module": "restraints"
+  },
+  {
+   "defType": "MentalStateDef",
+   "old": "Mugirl_BrainWashing",
+   "new": null,
+   "evidence": "1.7/Defs/HediffDefs/Hediffs_AdvancedRestraints.xml:746-777; brainwash uses vanilla Berserk (:715-718)",
+   "saveVisible": true,
+   "policy": "drop: clear mental state (never observed)",
+   "owner": "Restraints (file owner)",
+   "module": "restraints"
+  },
+  {
+   "defType": "ThoughtDef",
+   "old": "Mugirl_BrainWashing_End",
+   "new": null,
+   "evidence": "1.7/Defs/ThoughtDefs/Thoughts_Traits.xml:70-83; only referenced by the dropped MentalStateDef",
+   "saveVisible": true,
+   "policy": "drop: remove memory (never observed)",
+   "owner": "Thoughts_Traits.xml owner",
+   "module": "restraints"
+  },
+  {
+   "defType": "HediffDef",
+   "old": "Mugirl_FullHeadCovering",
+   "new": null,
+   "evidence": "1.7/Defs/HediffDefs/Hediffs_Bondage.xml:258-284; no equipped_hediff points to it",
+   "saveVisible": true,
+   "policy": "drop: remove hediff (never observed)",
+   "owner": "Restraints (file owner)",
+   "module": "restraints"
+  },
+  {
+   "defType": "SoundDef",
+   "old": "Mugirl_EleShock_Sound",
+   "new": null,
+   "evidence": "1.7/Defs/SoundsDefs/Bondage_Sounds.xml:5-19; unreferenced",
+   "saveVisible": false,
+   "policy": "none",
+   "owner": "Restraints (file owner)",
+   "module": "restraints"
+  },
+  {
+   "defType": "ApparelLayerDef",
+   "old": "Mugirl_Waist_bondage",
+   "new": null,
+   "evidence": "1.7/Defs/Apparel/Apparel_Bondage/BondageApparel_Layer.xml; no apparel uses it",
+   "saveVisible": false,
+   "policy": "none",
+   "owner": "Restraints (file owner)",
+   "module": "restraints"
+  },
+  {
+   "defType": "ApparelLayerDef",
+   "old": "Mugirl_Underwear_bondage",
+   "new": null,
+   "evidence": "1.7/Defs/Apparel/Apparel_Bondage/BondageApparel_Layer.xml; no apparel uses it",
+   "saveVisible": false,
+   "policy": "none",
+   "owner": "Restraints (file owner)",
+   "module": "restraints"
+  }
+ ],
+ "settings": {
+  "fileClass": {
+   "old": "Mugirl.MugirlSettings",
+   "new": "Mugirl.Core.MugirlSettings"
+  },
+  "labels": [],
+  "module": "core",
+  "source": "R/core.json types (Mugirl.MugirlSettings -> Mugirl.Core.MugirlSettings); the Class attribute of every Config/Mod_<folder>_MugirlMod.xml names the old class",
+  "lands": "with Wave R (the settings upgrade must map the old Class value from the first build that has the renamed class)"
+ }
+}

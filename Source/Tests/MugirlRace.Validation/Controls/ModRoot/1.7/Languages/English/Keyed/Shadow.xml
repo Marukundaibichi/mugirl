@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- C.language-files：根目录的 Languages/English/Keyed/Shadow.xml 与这个文件相对路径相同，1.7 只读优先级高的这一份。 -->
+<LanguageData>
+  <Control_Shadow>Shadowing copy</Control_Shadow>
+</LanguageData>

@@ -1,0 +1,48 @@
+<savegame>
+  <meta>
+    <gameVersion>1.6.4871 rev591</gameVersion>
+    <modIds>
+      <li>ludeon.rimworld</li>
+      <li>har.mugirlrace</li>
+    </modIds>
+  </meta>
+  <game>
+    <maps>
+      <li>
+        <things>
+          <thing Class="Pawn">
+            <def>Mugirl</def>
+            <id>Mugirl1</id>
+            <mugirlMountRiders>
+              <maxStacks>1</maxStacks>
+              <removeContentsIfDestroyed>False</removeContentsIfDestroyed>
+              <innerList>
+                <li Class="Thing">
+                  <def>Silver</def>
+                  <id>Silver7</id>
+                  <stackCount>23</stackCount>
+                </li>
+              </innerList>
+            </mugirlMountRiders>
+            <mugirlMountFireAtWill>False</mugirlMountFireAtWill>
+            <mugirlMountSchedule>
+              <physiology>2147483640</physiology>
+              <safety>-7</safety>
+              <turret>59</turret>
+              <melee>999</melee>
+            </mugirlMountSchedule>
+            <mugirlMountTurret>
+              <burstCooldownTicksLeft>-3</burstCooldownTicksLeft>
+              <aimTarget>Thing_Silver7</aimTarget>
+              <aimTicksLeft>17</aimTicksLeft>
+              <aimTicksTotal>93</aimTicksTotal>
+              <castStartTick>4001</castStartTick>
+              <lastAttackedTarget>(13, 0, 14)</lastAttackedTarget>
+              <lastAttackTargetTick>3987</lastAttackTargetTick>
+            </mugirlMountTurret>
+          </thing>
+        </things>
+      </li>
+    </maps>
+  </game>
+</savegame>

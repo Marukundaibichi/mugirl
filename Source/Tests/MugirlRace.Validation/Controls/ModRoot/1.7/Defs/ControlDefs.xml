@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!--
+    C.xml-types：未知父 Def、不是 Thing 的 thingClass、拼错的字段、未知的 comp 类。C.textures：缺失的贴图。
+    C.def-references：不存在的研究项目；只随 Royalty 存在、又没有 MayRequire 的 ThingDef。C.content-contracts：label 与契约不符；
+    以 "CTRL/" 开头的值不在条件目录中。C.forbidden-patterns：description 中的旧笔误。
+  -->
+  <ThingDef ParentName="NoSuchParent_Control">
+    <defName>Mugirl_Control_Thing</defName>
+    <label>actual label</label>
+    <description>CTRL/NotInConditionalFolder Gloden</description>
+    <thingClass>Verse.ThingComp</thingClass>
+    <thingClas>Typo</thingClas>
+    <graphicData>
+      <texPath>Control/NoSuchTexture</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <comps>
+      <li Class="Mugirl.NoSuchCompProperties_Control" />
+    </comps>
+    <costList>
+      <Throne>1</Throne>
+    </costList>
+    <researchPrerequisites>
+      <li>NoSuchResearch_Control</li>
+    </researchPrerequisites>
+  </ThingDef>
+
+  <!-- C.content-contracts：ThingDef 名以数字结尾。 -->
+  <ThingDef>
+    <defName>Mugirl_Control_Thing2</defName>
+    <label>numbered</label>
+  </ThingDef>
+
+  <!-- C.def-conflicts：Mod 内重复定义。 -->
+  <ThingDef>
+    <defName>Mugirl_Control_Duplicate</defName>
+    <label>first</label>
+  </ThingDef>
+  <ThingDef>
+    <defName>Mugirl_Control_Duplicate</defName>
+    <label>second</label>
+  </ThingDef>
+
+  <!-- C.def-conflicts：重新定义 Core 的 Def。 -->
+  <ThingDef>
+    <defName>Steel</defName>
+    <label>control steel</label>
+  </ThingDef>
+
+  <!-- C.textures：只靠忽略大小写才能找到 Mod 贴图（Textures/Control/CaseTexture.png）。 -->
+  <ThingDef>
+    <defName>Mugirl_Control_CaseTexture</defName>
+    <label>case texture</label>
+    <graphicData>
+      <texPath>Control/casetexture</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+  </ThingDef>
+
+  <!-- C.sounds：缺失的音频。 -->
+  <SoundDef>
+    <defName>Mugirl_Control_Sound</defName>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>Control/NoSuchSound</clipPath>
+          </li>
+        </grains>
+      </li>
+    </subSounds>
+  </SoundDef>
+
+  <!-- C.job-reports：reportString 没有简体中文翻译。 -->
+  <JobDef>
+    <defName>Mugirl_Control_Job</defName>
+    <driverClass>JobDriver_Wait</driverClass>
+    <reportString>waiting for the control.</reportString>
+  </JobDef>
+
+  <!-- C.shaders：最后一段不是 ShaderDef 名。 -->
+  <ShaderTypeDef>
+    <defName>Mugirl_Control_ShaderType</defName>
+    <shaderPath>Control/NoSuchShaderDef</shaderPath>
+  </ShaderTypeDef>
+
+  <!-- C.shaders：没有 Mugirl_ 前缀，片段着色器源文件缺失。 -->
+  <ShaderDef>
+    <defName>ControlUnprefixedShader</defName>
+    <shaderProgram>
+      <fragmentShaderFileName>Control_Missing.frag.glsl</fragmentShaderFileName>
+    </shaderProgram>
+  </ShaderDef>
+</Defs>

@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    验证套件的负对照（tools/Validate.ps1 -SelfTest）：一个把每条规则各违反一次的小 "MugirlRace.dll"，自检据此证明每项检查都会触发。
+    从不发布，只构建到 %TEMP%；不在 MugirlRace.slnx 中。
+  -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <AssemblyName>MugirlRace</AssemblyName>
+    <RootNamespace>Mugirl</RootNamespace>
+    <IsPackable>false</IsPackable>
+    <DebugType>portable</DebugType>
+    <!-- 违规是故意的：分析器结果不能中断构建。 -->
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <AnalysisLevel>none</AnalysisLevel>
+    <EnforceCodeStyleInBuild>false</EnforceCodeStyleInBuild>
+    <Nullable>disable</Nullable>
+    <NoWarn>$(NoWarn);CS0618;CA2211;CS0649;CS0169;CS0414;CS1701;CS1702</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- 正式的补丁入口与日志入口，与 Mod 发布的完全相同。 -->
+    <Compile Include="..\..\..\..\MugirlRace\Core\Patching\HarmonyBootstrap.cs" Link="Core\HarmonyBootstrap.cs" />
+    <Compile Include="..\..\..\..\MugirlRace\Core\Patching\MugirlPatchAttribute.cs" Link="Core\MugirlPatchAttribute.cs" />
+    <Compile Include="..\..\..\..\MugirlRace\Core\Patching\PatchModule.cs" Link="Core\PatchModule.cs" />
+    <Compile Include="..\..\..\..\MugirlRace\Core\Patching\PatchRisk.cs" Link="Core\PatchRisk.cs" />
+    <Compile Include="..\..\..\..\MugirlRace\Core\MugirlLog.cs" Link="Core\MugirlLog.cs" />
+    <Compile Include="..\..\..\..\MugirlRace\Core\GameLifecycleHookAttribute.cs" Link="Core\GameLifecycleHookAttribute.cs" />
+    <Compile Include="..\..\..\..\MugirlRace\Core\GameLifecycleEvent.cs" Link="Core\GameLifecycleEvent.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FakeUnityCoreModule\FakeUnityCoreModule.csproj" Private="false" />
+    <Reference Include="Waylith.UnityCompat">
+      <HintPath>$(GameDir)Waylith.UnityCompat.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <!-- 正对照：当前 1.7 实际加载目录中的合法 HAR 编译引用（A.assembly-refs 不能报告它）。 -->
+    <Reference Include="AlienRace">
+      <HintPath>$(HarDir)AlienRace.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

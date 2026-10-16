@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- A massive corporate consortium controlling countless resources and armed forces, showing no mercy to anyone who obstructs its interests. -->
+    <Mugirl_GiantCorporation.description>一个庞大的企业联合体，控制着无数资源与武装力量，对任何妨碍其利益者毫不留情。</Mugirl_GiantCorporation.description>
+    <!-- Giant Corporation -->
+    <Mugirl_GiantCorporation.fixedName>巨型企业</Mugirl_GiantCorporation.fixedName>
+    <!-- Giant Corporation -->
+    <Mugirl_GiantCorporation.label>巨型企业</Mugirl_GiantCorporation.label>
+    <!-- leader -->
+    <Mugirl_GiantCorporation.leaderTitle>主管</Mugirl_GiantCorporation.leaderTitle>
+    <!-- {0} from {1} are attacking your {2}. -->
+    <Mugirl_GiantCorporation.messageDefendersAttacking>来自 {1} 的 {0} 正在攻击你的 {2}。</Mugirl_GiantCorporation.messageDefendersAttacking>
+    <!-- Corporate Mercenary -->
+    <Mugirl_GiantCorporation.pawnSingular>巨企佣兵</Mugirl_GiantCorporation.pawnSingular>
+    <!-- Corporate Mercenaries -->
+    <Mugirl_GiantCorporation.pawnsPlural>巨企佣兵</Mugirl_GiantCorporation.pawnsPlural>
+</LanguageData>

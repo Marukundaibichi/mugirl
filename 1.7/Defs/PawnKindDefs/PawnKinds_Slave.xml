@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <PawnKindDef Name="Mugirl_SlaveBase" ParentName="Mugirl_BaseKind" Abstract="True">
+        <combatPower>30</combatPower>
+        <race>Mugirl</race>
+        <itemQuality>Poor</itemQuality>
+        <chemicalAddictionChance>0.06</chemicalAddictionChance>
+        <backstoryCryptosleepCommonality>0</backstoryCryptosleepCommonality>
+        <backstoryFiltersOverride>
+            <li>
+                <categories>
+                    <li>Mugirl_Slave</li>
+                </categories>
+            </li>
+        </backstoryFiltersOverride>
+        <isFighter>true</isFighter> <!-- 是否具有战斗能力 -->
+        <chemicalAddictionChance>0.01</chemicalAddictionChance> <!-- 生成时有概率有化学成瘾 -->
+        <gearHealthRange>0.8~1</gearHealthRange> <!-- 装备耐久度 -->
+        <apparelMoney>0~1000000</apparelMoney>
+        <apparelAllowHeadgearChance>0.75</apparelAllowHeadgearChance> <!-- 不允许生成头部装备 -->
+        <apparelIgnoreSeasons>true</apparelIgnoreSeasons> <!-- 生成服装不受季节影响 -->
+        <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
+        <invNutrition>1</invNutrition> <!-- 初始携带食物总营养值 -->
+        <invFoodDef>Hay</invFoodDef> <!-- 初始携带的食物类型 干草 -->
+        <initialWillRange>0~1</initialWillRange> <!-- 奴隶意志值 -->
+        <initialResistanceRange>10~17</initialResistanceRange> <!-- 招募时的抗拒值范围 -->
+    </PawnKindDef>
+
+    <PawnKindDef ParentName="Mugirl_SlaveBase">
+        <defName>Mugirl_Beginning_Slave</defName>
+        <!-- 雪牛迫降奴隶 -->
+        <label>Crashlanded Mugirl Slave</label>
+        <apparelTags> <!-- 服装筛选标签，仅穿戴包含这些标签的装备 -->
+            <li>Mugirl_Slave_Underwear</li>
+            <li>Mugirl_Slave_Shell_Upper</li>
+            <li>Mugirl_Slave_Shell_Lower</li>
+            <li>Mugirl_Slave_Gags</li>
+            <li>Mugirl_Slave_Earplugs</li>
+            <li>Mugirl_Slave_Blinder</li>
+        </apparelTags>
+        <initialWillRange>0~1</initialWillRange>
+        <initialResistanceRange>10~17</initialResistanceRange>
+    </PawnKindDef>
+
+    <PawnKindDef ParentName="Mugirl_SlaveBase">
+        <defName>Mugirl_Slave</defName>
+        <!-- 雪牛奴隶 -->
+        <label>Slave</label>
+        <apparelTags> <!-- 服装筛选标签，仅穿戴包含这些标签的装备 -->
+            <li>Mugirl_Slave_Underwear</li>
+            <li>Mugirl_Slave_Shell_Upper</li>
+            <li>Mugirl_Slave_Shell_Lower</li>
+            <li>Mugirl_Slave_Gags</li>
+            <li>Mugirl_Slave_Earplugs</li>
+            <li>Mugirl_Slave_Blinder</li>
+            <li>Mugirl_Slave_Spacer</li>
+        </apparelTags>
+        <initialWillRange>0~1</initialWillRange>
+        <initialResistanceRange>10~17</initialResistanceRange>
+    </PawnKindDef>
+
+    <PawnKindDef ParentName="Mugirl_SlaveBase">
+        <defName>Mugirl_EscapeSpaceSlave</defName>
+        <!-- 雪牛太空奴隶 -->
+        <label>Escaped Mugirl Space Slave</label>
+        <apparelTags> <!-- 服装筛选标签，仅穿戴包含这些标签的装备 -->
+            <li>Mugirl_Slave_Underwear</li>
+            <li>Mugirl_Slave_Spacer</li>
+            <li>Mugirl_Slave_OnSkin_Upper</li>
+            <li>Mugirl_Slave_OnSkin_Lower</li>
+        </apparelTags>
+        <initialWillRange>2~40</initialWillRange>
+        <initialResistanceRange>2~40</initialResistanceRange>
+    </PawnKindDef>
+
+    <PawnKindDef ParentName="Mugirl_SlaveBase">
+        <defName>Mugirl_EscapeWanderSlave</defName>
+        <!-- 雪牛逃亡奴隶 -->
+        <label>Escaped Mugirl Slave</label>
+        <apparelTags> <!-- 服装筛选标签，仅穿戴包含这些标签的装备 -->
+            <li>Mugirl_Slave_Underwear</li>
+            <li>Mugirl_Slave_Gags</li>
+            <li>Mugirl_Slave_Earplugs</li>
+            <li>Mugirl_Slave_Blinder</li>
+            <li>Mugirl_Slave_Shell_Upper</li>
+            <li>Mugirl_Slave_Shell_Lower</li>
+        </apparelTags>
+        <gearHealthRange>0.6~0.8</gearHealthRange>
+        <initialWillRange>2~40</initialWillRange>
+        <initialResistanceRange>2~40</initialResistanceRange>
+    </PawnKindDef>
+
+    <PawnKindDef ParentName="Mugirl_SlaveBase">
+        <defName>Mugirl_EscapeWildSlave</defName>
+        <!-- 雪牛流浪野人 -->
+        <label>Escaped Wild Mugirl</label>
+        <acceptArrestChanceFactor>0.5</acceptArrestChanceFactor>
+        <apparelTags>
+            <li>Mugirl_Slave_Underwear</li>
+            <li>Mugirl_Slave_Shell_Upper</li>
+            <li>Mugirl_Slave_Shell_Lower</li>
+            <li>Mugirl_Slave_Blinder</li>
+        </apparelTags>
+        <gearHealthRange>0.3~0.6</gearHealthRange>
+        <initialWillRange>2~40</initialWillRange>
+        <initialResistanceRange>2~40</initialResistanceRange>
+    </PawnKindDef>
+
+    <PawnKindDef ParentName="Mugirl_SlaveBase">
+        <defName>Mugirl_PreEscapeWildSlave</defName>
+        <!-- 仅保留给旧存档中的历史角色解析；新代码不再转换到此 PawnKind。 -->
+        <!-- 雪牛流浪者 -->
+        <label>Mugirl Wanderer</label>
+        <acceptArrestChanceFactor>0.5</acceptArrestChanceFactor>
+        <apparelTags>
+            <li>Mugirl_Slave_Underwear</li>
+            <li>Mugirl_Slave_Shell_Upper</li>
+            <li>Mugirl_Slave_Shell_Lower</li>
+            <li>Mugirl_Slave_Blinder</li>
+        </apparelTags>
+        <gearHealthRange>0.3~0.6</gearHealthRange>
+        <initialWillRange>2~40</initialWillRange>
+        <initialResistanceRange>2~40</initialResistanceRange>
+    </PawnKindDef>
+
+    <PawnKindDef ParentName="Mugirl_SlaveBase">
+        <defName>Mugirl_WildMugirl</defName>
+        <!-- 野生雪牛娘：事件专用，只穿比基尼。 -->
+        <label>Wild Mugirl</label>
+        <acceptArrestChanceFactor>0.5</acceptArrestChanceFactor>
+        <apparelMoney>0~0</apparelMoney>
+        <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+        <apparelRequired>
+            <li>Mugirl_Bikini</li>
+        </apparelRequired>
+        <gearHealthRange>0.3~0.6</gearHealthRange>
+        <initialWillRange>2~40</initialWillRange>
+        <initialResistanceRange>2~40</initialResistanceRange>
+    </PawnKindDef>
+
+</Defs>

@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- Mugirl text formatting failed: {ERROR} -->
+    <Mugirl.Text.FormatFailedLog>Mugirl 文本格式化失败：{ERROR}</Mugirl.Text.FormatFailedLog>
+    <!-- Mugirl mod control -->
+    <Mugirl.Settings.Category>牛牛模组控制</Mugirl.Settings.Category>
+    <!-- Harmony patch skipped: {0}. {1} -->
+    <Mugirl.Bootstrap.HarmonyPatchFailed>Harmony 补丁已跳过：{0}。{1}</Mugirl.Bootstrap.HarmonyPatchFailed>
+    <!-- Manual patches skipped because the Harmony instance is missing. -->
+    <Mugirl.PatchRegistry.NullHarmony>手动补丁已跳过：缺少 Harmony 实例。</Mugirl.PatchRegistry.NullHarmony>
+    <!-- PawnGenerator.GeneratePawn slave apparel lock postfix -->
+    <Mugirl.PatchRegistry.PawnGeneratorGeneratePawn>PawnGenerator.GeneratePawn 奴隶束具锁定后置补丁</Mugirl.PatchRegistry.PawnGeneratorGeneratePawn>
+    <!-- Manual patch target missing: {0} -->
+    <Mugirl.PatchRegistry.MissingTarget>手动补丁目标缺失：{0}</Mugirl.PatchRegistry.MissingTarget>
+    <!-- Manual patch method missing: {0} -->
+    <Mugirl.PatchRegistry.MissingPatchMethod>手动补丁方法缺失：{0}</Mugirl.PatchRegistry.MissingPatchMethod>
+    <!-- Manual patch failed: {0}. {1} -->
+    <Mugirl.PatchRegistry.PatchFailed>手动补丁应用失败：{0}。{1}</Mugirl.PatchRegistry.PatchFailed>
+    <!-- Tried to open a Mugirl window while the window stack was unavailable. -->
+    <Mugirl.GameUtility.WindowStackUnavailable>尝试打开 Mugirl 窗口时窗口栈不可用。</Mugirl.GameUtility.WindowStackUnavailable>
+    <!-- Tried to send a Mugirl letter while the game letter stack was unavailable. -->
+    <Mugirl.GameUtility.LetterStackUnavailable>尝试发送 Mugirl 信件时游戏信件栈不可用。</Mugirl.GameUtility.LetterStackUnavailable>
+    <!-- Tried to move a generated Mugirl pawn through world storage while WorldPawns was unavailable. -->
+    <Mugirl.GameUtility.WorldPawnsUnavailable>尝试将生成的 Mugirl pawn 转入世界存储时 WorldPawns 不可用。</Mugirl.GameUtility.WorldPawnsUnavailable>
+    <!-- Gear drop tooltip patch was skipped because the expected vanilla IL pattern was not found. -->
+    <Mugirl.DropThingTooltip.TranspilerNotApplied>装备丢弃提示补丁已跳过：未找到预期的原版 IL 模式。</Mugirl.DropThingTooltip.TranspilerNotApplied>
+    <!-- Roping tick fallback used BreakAllRopes because the vanilla BreakRopeWithRoper method was not found. -->
+    <Mugirl.RopingTick.BreakRopeWithRoperMissing>牵引 tick 使用了 BreakAllRopes 兜底：未找到原版 BreakRopeWithRoper 方法。</Mugirl.RopingTick.BreakRopeWithRoperMissing>
+    <!-- Mounted rider {0} could not be dropped from {1}; the rider was passed to world storage as a fallback. -->
+    <Mugirl.Mount.DropAtFailed>骑手 {0} 无法从 {1} 掉落；已将骑手转入 world pawn 作为兜底。</Mugirl.Mount.DropAtFailed>
+    <!-- Activate shackles -->
+    <Mugirl.Restraints.MagneticShackles.ActivateLabel>激活镣铐</Mugirl.Restraints.MagneticShackles.ActivateLabel>
+    <!-- Activate the magnetic shackles, restraining the target. -->
+    <Mugirl.Restraints.MagneticShackles.ActivateDesc>启动磁力镣铐，束缚目标。</Mugirl.Restraints.MagneticShackles.ActivateDesc>
+    <!-- Release shackles -->
+    <Mugirl.Restraints.MagneticShackles.DeactivateLabel>解除镣铐</Mugirl.Restraints.MagneticShackles.DeactivateLabel>
+    <!-- Release the magnetic shackles. -->
+    <Mugirl.Restraints.MagneticShackles.DeactivateDesc>解除磁力镣铐。</Mugirl.Restraints.MagneticShackles.DeactivateDesc>
+    <!-- Magnetic shackles (active) -->
+    <Mugirl.Restraints.MagneticShackles.LabelActive>磁力镣铐（激活）</Mugirl.Restraints.MagneticShackles.LabelActive>
+    <!-- Magnetic shackles (inactive) -->
+    <Mugirl.Restraints.MagneticShackles.LabelInactive>磁力镣铐（未激活）</Mugirl.Restraints.MagneticShackles.LabelInactive>
+    <!-- Magnetic shackles activated! -->
+    <Mugirl.Restraints.MagneticShackles.MoteOn>磁力手铐启动!</Mugirl.Restraints.MagneticShackles.MoteOn>
+    <!-- Magnetic shackles released! -->
+    <Mugirl.Restraints.MagneticShackles.MoteOff>磁力手铐解除!</Mugirl.Restraints.MagneticShackles.MoteOff>
+    <!-- {0}'s magnetic shackles suddenly activated. -->
+    <Mugirl.Restraints.MagneticShackles.MessageOn>{0} 的磁力手铐突然启动了</Mugirl.Restraints.MagneticShackles.MessageOn>
+    <!-- {0}'s magnetic shackles were released. -->
+    <Mugirl.Restraints.MagneticShackles.MessageOff>{0} 的磁力手铐被解除</Mugirl.Restraints.MagneticShackles.MessageOff>
+    <!-- Cooling down: {0} -->
+    <Mugirl.Restraints.MagneticShackles.CooldownTicksLeft>冷却中：{0}</Mugirl.Restraints.MagneticShackles.CooldownTicksLeft>
+    <!-- Power shock -->
+    <Mugirl.Restraints.ShockCollar.PowerLabel>强力电击</Mugirl.Restraints.ShockCollar.PowerLabel>
+    <!-- Trigger one power shock. -->
+    <Mugirl.Restraints.ShockCollar.PowerDesc>激活一次强力电击，电死你！</Mugirl.Restraints.ShockCollar.PowerDesc>
+    <!-- Common shock -->
+    <Mugirl.Restraints.ShockCollar.CommonLabel>普通电击</Mugirl.Restraints.ShockCollar.CommonLabel>
+    <!-- Trigger one common shock. -->
+    <Mugirl.Restraints.ShockCollar.CommonDesc>激活一次普通电击</Mugirl.Restraints.ShockCollar.CommonDesc>
+    <!-- Cooling down: {0} -->
+    <Mugirl.Restraints.ShockCollar.PowerCooldownTicksLeft>冷却中：{0}</Mugirl.Restraints.ShockCollar.PowerCooldownTicksLeft>
+    <!-- Cooling down: {0} -->
+    <Mugirl.Restraints.ShockCollar.CommonCooldownTicksLeft>冷却中：{0}</Mugirl.Restraints.ShockCollar.CommonCooldownTicksLeft>
+    <!-- Dev: unlock {0} -->
+    <Mugirl.Restraints.DevUnlock.Label>Dev: 解锁 {0}</Mugirl.Restraints.DevUnlock.Label>
+    <!-- Dev mode: immediately remove the wear lock from {0} for debugging. -->
+    <Mugirl.Restraints.DevUnlock.Desc>开发者模式下立即解除 {0} 的穿戴锁定，便于调试。</Mugirl.Restraints.DevUnlock.Desc>
+    <!-- Dev-unlocked {0}'s {1}. -->
+    <Mugirl.Restraints.DevUnlock.Message>已开发者解锁：{0} 的 {1}</Mugirl.Restraints.DevUnlock.Message>
+    <!-- Activate brainwashing -->
+    <Mugirl.Restraints.BrainwashHelmet.ActivateLabel>激活洗脑</Mugirl.Restraints.BrainwashHelmet.ActivateLabel>
+    <!-- Activate the brainwashing helmet and brainwash the target. -->
+    <Mugirl.Restraints.BrainwashHelmet.ActivateDesc>激活洗脑头盔，洗脑目标。</Mugirl.Restraints.BrainwashHelmet.ActivateDesc>
+    <!-- {0} activated the brainwashing device. -->
+    <Mugirl.Restraints.BrainwashHelmet.ManualTriggerMessage>{0}激活了洗脑装置</Mugirl.Restraints.BrainwashHelmet.ManualTriggerMessage>
+    <!-- Ideology conversion -->
+    <Mugirl.Restraints.BrainwashHelmet.IdeoConvertLabel>文化转换</Mugirl.Restraints.BrainwashHelmet.IdeoConvertLabel>
+    <!-- Change the wearer's ideology to the colony's primary ideology. -->
+    <Mugirl.Restraints.BrainwashHelmet.IdeoConvertDesc>将穿戴者的文化改变为殖民地的主流文化。</Mugirl.Restraints.BrainwashHelmet.IdeoConvertDesc>
+    <!-- {0}'s ideology has been converted to the colony's primary ideology. -->
+    <Mugirl.Restraints.BrainwashHelmet.IdeoConvertMessage>已将{0}的文化转换为殖民地主流文化。</Mugirl.Restraints.BrainwashHelmet.IdeoConvertMessage>
+    <!-- This happened because of the brainwashing device. -->
+    <Mugirl.Restraints.TriggeredByHediff>这是因为洗脑装置。</Mugirl.Restraints.TriggeredByHediff>
+    <!-- {0}'s milking device stored one production charge ({1}/{2}). -->
+    <Mugirl.MilkingDevice.StoredMessage>{0} 的榨乳器储存了 1 次产奶（{1}/{2}）</Mugirl.MilkingDevice.StoredMessage>
+    <!-- {0} released the stored milk and produced {1} Mugirl milk. -->
+    <Mugirl.MilkingDevice.ReleaseMessage>{0} 释放了榨乳器中的储乳，生成了 {1} 份雪牛奶</Mugirl.MilkingDevice.ReleaseMessage>
+    <!-- Release stored milk -->
+    <Mugirl.MilkingDevice.ReleaseLabel>释放储乳</Mugirl.MilkingDevice.ReleaseLabel>
+    <!-- Release all Mugirl milk stored in this device onto the ground. -->
+    <Mugirl.MilkingDevice.ReleaseDesc>将设备中储存的雪牛奶一次性释放到地面。</Mugirl.MilkingDevice.ReleaseDesc>
+    <!-- Stored milk -->
+    <Mugirl.MilkingDevice.InspectLabel>储乳</Mugirl.MilkingDevice.InspectLabel>
+    <!-- Stored milk charges -->
+    <Mugirl.MilkingDevice.InspectLabelWithCharges>储乳层数</Mugirl.MilkingDevice.InspectLabelWithCharges>
+    <!-- {0}: {1}/{2} ({3}x {4}) -->
+    <Mugirl.MilkingDevice.Inspect>{0}: {1}/{2} ({3}x {4})</Mugirl.MilkingDevice.Inspect>
+    <!-- There is no stored milk to release. -->
+    <Mugirl.MilkingDevice.NoChargeText>当前没有可释放的储乳。</Mugirl.MilkingDevice.NoChargeText>
+    <!-- Stored milk +1 -->
+    <Mugirl.MilkingDevice.StoredMoteText>储乳 +1</Mugirl.MilkingDevice.StoredMoteText>
+    <!-- Auto milking: on -->
+    <Mugirl.MilkingDevice.AutoReleaseEnabled>自动榨乳: 开</Mugirl.MilkingDevice.AutoReleaseEnabled>
+    <!-- Auto milking: off -->
+    <Mugirl.MilkingDevice.AutoReleaseDisabled>自动榨乳: 关</Mugirl.MilkingDevice.AutoReleaseDisabled>
+    <!-- When enabled, the milking device immediately releases milk when its wearer reaches full milk. When disabled, it only releases overflow after storage is already full and another full-milk event is received. -->
+    <Mugirl.MilkingDevice.AutoReleaseDesc>开启后，妞妞产奶一满就会由榨乳器立刻自动释放。关闭后，只有在储乳已满且再次接收到满乳时，才会按溢出方式自动释放。</Mugirl.MilkingDevice.AutoReleaseDesc>
+    <!-- Power release: on -->
+    <Mugirl.MilkingDevice.PowerReleaseEnabled>强力释放: 开</Mugirl.MilkingDevice.PowerReleaseEnabled>
+    <!-- Power release: off -->
+    <Mugirl.MilkingDevice.PowerReleaseDisabled>强力释放: 关</Mugirl.MilkingDevice.PowerReleaseDisabled>
+    <!-- Dev: fill milking progress -->
+    <Mugirl.MilkingDevice.DevFill.Label>Dev: 挤奶进度攒满</Mugirl.MilkingDevice.DevFill.Label>
+    <!-- Dev mode: immediately fill the current wearer's milk progress and trigger milking-device logic. -->
+    <Mugirl.MilkingDevice.DevFill.Desc>开发者模式下立刻将当前穿戴者的产奶进度充满，并触发榨乳器逻辑。</Mugirl.MilkingDevice.DevFill.Desc>
+    <!-- Filled {0}'s milk progress in dev mode. -->
+    <Mugirl.MilkingDevice.DevFill.Success>已将 {0} 的产奶进度开发者充满。</Mugirl.MilkingDevice.DevFill.Success>
+    <!-- {0}'s milk progress cannot be filled in dev mode right now. -->
+    <Mugirl.MilkingDevice.DevFill.Failed>{0} 当前无法开发者充满产奶进度。</Mugirl.MilkingDevice.DevFill.Failed>
+    <!-- Milking device could not resolve the release product Def. -->
+    <Mugirl.MilkingDevice.ReleaseThingMissing>榨乳器无法解析释放产物 Def。</Mugirl.MilkingDevice.ReleaseThingMissing>
+    <!-- 开局坠机剧情开关 -->
+    <Mugirl.Settings.StructuralCrashEvent.Label>启用开局坠机剧情</Mugirl.Settings.StructuralCrashEvent.Label>
+    <!-- 此开关不控制民间随机救援和申请加入。 -->
+    <Mugirl.Settings.StructuralCrashEvent.Desc>控制开局的双人坠舱及后续运货员剧情。关闭后，巨企联络员会以拓展客户的身份独立来访。随机坠舱救援和流浪者申请加入不受此开关影响。</Mugirl.Settings.StructuralCrashEvent.Desc>
+    <!-- Fast milking -->
+    <Mugirl.Settings.FastMilking.Label>快速榨乳</Mugirl.Settings.FastMilking.Label>
+    <!-- When enabled, self-milking and assisted milking work time for Mugirls is shortened to 1 second. -->
+    <Mugirl.Settings.FastMilking.Desc>开启后，雪牛娘的自己榨乳和他人榨乳工作时间都会缩短为 1 秒。</Mugirl.Settings.FastMilking.Desc>
+    <!-- Use vanilla-style milk gauge -->
+    <Mugirl.Settings.VanillaMilkGauge.Label>启用原版风格的乳量槽</Mugirl.Settings.VanillaMilkGauge.Label>
+    <!-- When enabled, the selected Mugirl milk gauge uses a vanilla-style long rectangular bar instead of the custom texture gauge. -->
+    <Mugirl.Settings.VanillaMilkGauge.Desc>开启后，选中雪牛娘时的乳量槽会使用原版风格的长矩形状态条，而不是贴图乳量槽。</Mugirl.Settings.VanillaMilkGauge.Desc>
+    <!-- Enable Mugirl migration event -->
+    <Mugirl.Settings.MigrationEvent.Label>启用雪牛娘大迁徙</Mugirl.Settings.MigrationEvent.Label>
+    <!-- Controls whether the wild Mugirl migration event can trigger. -->
+    <Mugirl.Settings.MigrationEvent.Desc>控制是否启用雪牛娘大迁徙事件。取消勾选后，野生雪牛娘迁徙不会触发。</Mugirl.Settings.MigrationEvent.Desc>
+    <!-- Enable bovine fusion investment event -->
+    <Mugirl.Settings.FusionInvestmentEvent.Label>启用牛聚变投资</Mugirl.Settings.FusionInvestmentEvent.Label>
+    <!-- Controls whether the suspicious bovine fusion investor can visit. -->
+    <Mugirl.Settings.FusionInvestmentEvent.Desc>控制是否启用牛聚变投资事件。取消勾选后，可疑投资人不会来招商引资。</Mugirl.Settings.FusionInvestmentEvent.Desc>
+    <!-- Dev: deliver bovine fusion reward now -->
+    <Mugirl.Settings.FusionInvestmentEvent.DevDeliver>Dev: 立即结算牛聚变奖励</Mugirl.Settings.FusionInvestmentEvent.DevDeliver>
+    <!-- Enable runaway Mugirl ranch quest -->
+    <Mugirl.Settings.RunawayFarmQuest.Label>启用失控雪牛娘牧场任务</Mugirl.Settings.RunawayFarmQuest.Label>
+    <!-- Controls whether the runaway Mugirl ranch quest can appear. -->
+    <Mugirl.Settings.RunawayFarmQuest.Desc>控制是否启用“疯牛满地跑，农民傻了”任务。取消勾选后，该任务不会出现。</Mugirl.Settings.RunawayFarmQuest.Desc>
+    <!-- Hide weapon wheel back weapons -->
+    <Mugirl.Settings.HideBackWeapons.Label>隐藏武器轮盘背负武器</Mugirl.Settings.HideBackWeapons.Label>
+    <!-- Only hides the two weapons carried on the back; autoloading groove weapons are unaffected. -->
+    <Mugirl.Settings.HideBackWeapons.Desc>开启后不再显示背上的两把武器轮盘普通背负武器；自驱装弹系统凹槽中的武器不受影响。</Mugirl.Settings.HideBackWeapons.Desc>
+    <!-- Weapon wheel developer log -->
+    <Mugirl.Settings.WeaponWheelDevLog.Label>武器轮盘开发者日志</Mugirl.Settings.WeaponWheelDevLog.Label>
+    <!-- When enabled, prints shot-by-shot weapon wheel diagnostics and a Harmony patch ownership report. -->
+    <Mugirl.Settings.WeaponWheelDevLog.Desc>启用后，雪牛娘每次射击和武器轮盘的每次战斗决策都会输出诊断日志（Verb 类型与所属 mod、burst 完成判定、火力满载资格、逐槽位可开火检查、连锁中止原因），并附带一份轮盘关键原版方法的 Harmony 补丁归属报告，用于排查其他 mod 导致的火力满载轮射失效。仅供排查问题时开启，会产生大量日志。</Mugirl.Settings.WeaponWheelDevLog.Desc>
+    <!-- Print Harmony patch report now -->
+    <Mugirl.Settings.WeaponWheelDevLog.DumpPatches>立即输出 Harmony 补丁归属报告</Mugirl.Settings.WeaponWheelDevLog.DumpPatches>
+    <!-- Mugirl migration -->
+    <Mugirl.Migration.LetterLabel>雪牛娘大迁徙</Mugirl.Migration.LetterLabel>
+    <!-- A herd of wild Mugirls arrives from the map edge. -->
+    <Mugirl.Migration.LetterText>一小群只穿着比基尼的野生雪牛娘从地图边缘慢吞吞地走来。她们似乎被这里的草木吸引，会在附近停留一阵，不停地低头啃食，甚至可能啃树。她们性情温顺，你可以尝试驯服她们，也可以在她们有奶时手动榨乳。等吃饱之后，仍然野生的雪牛娘会自行离开。如果你不想让她们继续啃食植物，可以攻击任意一只来驱赶她们；只要挨打，整队都会立刻逃出地图。</Mugirl.Migration.LetterText>
+    <!-- Bovine fusion investment -->
+    <Mugirl.FusionInvestment.LetterLabel>牛聚变投资</Mugirl.FusionInvestment.LetterLabel>
+    <!-- Suspicious investor letter text. -->
+    <Mugirl.FusionInvestment.LetterText>一个形迹可疑的投资人从地图边缘走进了殖民地。他声称自己长期观察雪牛娘吃草时的惊人转化率，并由此发现了一条通往“牛聚变科技”的道路。现在，他希望你提供一笔启动资金。听上去很不靠谱，但他的眼神实在太认真了。派殖民者右键与他交谈即可决定是否投资。</Mugirl.FusionInvestment.LetterText>
+    <!-- Talk to investor -->
+    <Mugirl.FusionInvestment.TalkOption>与牛聚变投资人交谈</Mugirl.FusionInvestment.TalkOption>
+    <!-- cannot reach -->
+    <Mugirl.FusionInvestment.TalkCannotReach>无法到达</Mugirl.FusionInvestment.TalkCannotReach>
+    <!-- {0} ({1}) -->
+    <Mugirl.FusionInvestment.TalkOptionDisabled>{0}（{1}）</Mugirl.FusionInvestment.TalkOptionDisabled>
+    <!-- Bovine fusion investment -->
+    <Mugirl.FusionInvestment.DialogTitle>牛聚变投资</Mugirl.FusionInvestment.DialogTitle>
+    <!-- Investor dialog text. -->
+    <Mugirl.FusionInvestment.DialogText>这位可疑投资人压低声音，认真得像是在宣布宇宙真理。\n\n“我观察过了。雪牛娘把草转化成雪牛奶的效率完全不讲道理。只要给我一点启动资金，我就能把这套现象推进到牛聚变阶段。你现在投，等我成功，奶制品和实验安置名额都少不了你。”</Mugirl.FusionInvestment.DialogText>
+    <!-- Invest {0} silver -->
+    <Mugirl.FusionInvestment.OptionInvest>投资 {0} 白银</Mugirl.FusionInvestment.OptionInvest>
+    <!-- No valid map. -->
+    <Mugirl.FusionInvestment.OptionNoMap>无法确认投资地点</Mugirl.FusionInvestment.OptionNoMap>
+    <!-- Need {0} silver in valid storage. -->
+    <Mugirl.FusionInvestment.OptionNoSilver>需要地图库存中有 {0} 白银</Mugirl.FusionInvestment.OptionNoSilver>
+    <!-- Reject -->
+    <Mugirl.FusionInvestment.OptionReject>这听起来太离谱了</Mugirl.FusionInvestment.OptionReject>
+    <!-- Postpone -->
+    <Mugirl.FusionInvestment.OptionPostpone>之后再谈</Mugirl.FusionInvestment.OptionPostpone>
+    <!-- This investor can no longer negotiate. -->
+    <Mugirl.FusionInvestment.AlreadyResolved>这位投资人已经无法继续交涉。</Mugirl.FusionInvestment.AlreadyResolved>
+    <!-- Not enough silver. -->
+    <Mugirl.FusionInvestment.MessageNoSilver>可用白银不足，无法投资 {0}。</Mugirl.FusionInvestment.MessageNoSilver>
+    <!-- Investment accepted. -->
+    <Mugirl.FusionInvestment.MessageAccepted>你向牛聚变科技投资了 {0} 白银。</Mugirl.FusionInvestment.MessageAccepted>
+    <!-- Investment rejected. -->
+    <Mugirl.FusionInvestment.MessageRejected>你拒绝了牛聚变投资。那位投资人带着他的图表离开了。</Mugirl.FusionInvestment.MessageRejected>
+    <!-- Investment postponed. -->
+    <Mugirl.FusionInvestment.MessagePostponed>你暂时把牛聚变投资放到一边。那位投资人嘀咕着“窗口期很宝贵”，但仍在等你之后再谈。</Mugirl.FusionInvestment.MessagePostponed>
+    <!-- No pending investment. -->
+    <Mugirl.FusionInvestment.DevDeliver.NoPending>当前没有待结算的牛聚变投资。</Mugirl.FusionInvestment.DevDeliver.NoPending>
+    <!-- Bovine fusion succeeds -->
+    <Mugirl.FusionInvestment.ResultLetterLabel>牛聚变取得巨大成功</Mugirl.FusionInvestment.ResultLetterLabel>
+    <!-- Bovine fusion result letter text. -->
+    <Mugirl.FusionInvestment.ResultLetterText>那位可疑投资人寄来了热情洋溢的回信。他声称牛聚变实验已经取得巨大成功，虽然附件中的图表没人看得懂，但随信送来的雪牛奶制品和被安置过来的雪牛娘奴隶倒是货真价实。</Mugirl.FusionInvestment.ResultLetterText>
+    <!-- Runaway farm arrived -->
+    <Mugirl.RunawayFarm.ArrivedLetterLabel>失控的雪牛娘牧场</Mugirl.RunawayFarm.ArrivedLetterLabel>
+    <!-- Runaway farm map generated text. -->
+    <Mugirl.RunawayFarm.ArrivedLetterText>你抵达了那处乱成一团的雪牛娘牧场。失控的雪牛娘正在附近撒欢乱跑。把她们牵起来，并系到任意预置栓点上。</Mugirl.RunawayFarm.ArrivedLetterText>
+    <!-- Runaway farm success -->
+    <Mugirl.RunawayFarm.SuccessLetterLabel>牧场重新安静了</Mugirl.RunawayFarm.SuccessLetterLabel>
+    <!-- Runaway farm success text. -->
+    <Mugirl.RunawayFarm.SuccessLetterText>所有失控的雪牛娘都被重新系回了栓点。农场主擦着汗表示感谢。这时你发现 {PAWN_labelShort} 一直黏在你身边不肯走，农场主看了看她，又看了看你，表示可以让她当场加入你的队伍。</Mugirl.RunawayFarm.SuccessLetterText>
+    <!-- Runaway farm quest aborted: no valid map target. -->
+    <Mugirl.RunawayFarm.Log.NoMap>失控雪牛娘牧场任务中止：缺少有效地图目标。</Mugirl.RunawayFarm.Log.NoMap>
+    <!-- Runaway farm quest aborted: no valid site tile. -->
+    <Mugirl.RunawayFarm.Log.NoTile>失控雪牛娘牧场任务中止：找不到有效世界地点。</Mugirl.RunawayFarm.Log.NoTile>
+    <!-- Lactation -->
+    <Mugirl.Milk.Gauge.Label>泌乳量</Mugirl.Milk.Gauge.Label>
+    <!-- Current milk fullness for this Mugirl. The red line marks the automatic milking threshold; colonists will automatically milk when it is reached. -->
+    <Mugirl.Milk.Gauge.Desc>雪牛娘当前的乳汁饱满度。红线标记为自动挤奶阈值，到达后将由殖民者自动进行挤奶工作。</Mugirl.Milk.Gauge.Desc>
+    <!-- Mugirl milk -->
+    <Mugirl.Milk.FullnessDisplay>雪牛奶</Mugirl.Milk.FullnessDisplay>
+    <!-- {0}: {1} -->
+    <Mugirl.Milk.FullnessInspect>{0}：{1}</Mugirl.Milk.FullnessInspect>
+    <!-- {0}\n\nCurrent: {1}\nThreshold: {2}\nDrag the red line to adjust the automatic milking threshold\nEstimated milk per use: {3}\nLactation speed: {4} -->
+    <Mugirl.Milk.Gauge.Tooltip>{0}\n\n当前: {1}\n阈值: {2}\n拖动红线调整自动挤奶阈值\n单次榨乳预估: {3}\n泌乳速度: {4}</Mugirl.Milk.Gauge.Tooltip>
+    <!-- Apply-all toggle on the merged milk gizmo's name bar. -->
+    <Mugirl.Milk.Gauge.ApplyAll.Label>全选</Mugirl.Milk.Gauge.ApplyAll.Label>
+    <!-- Hint for the apply-all toggle. -->
+    <Mugirl.Milk.Gauge.ApplyAll.Desc>开启后，拖动奶量阈值将统一应用到本次选中的所有雪牛娘。</Mugirl.Milk.Gauge.ApplyAll.Desc>
+    <!-- Extra tooltip line when multiple Mugirls are selected. -->
+    <Mugirl.Milk.Gauge.MultiHint>多选中：悬停后可点击上方名字条切换查看对象，“全选”开启时阈值对所有选中的雪牛娘统一生效。</Mugirl.Milk.Gauge.MultiHint>
+    <!-- {0}% / {1}s -->
+    <Mugirl.Milk.ProductionRate>{0}% / {1}秒</Mugirl.Milk.ProductionRate>
+    <!-- Dev: fill milk -->
+    <Mugirl.Milk.DevFill.Label>Dev: 奶量加满</Mugirl.Milk.DevFill.Label>
+    <!-- Dev mode: immediately fill the selected Mugirl's milk amount to maximum. -->
+    <Mugirl.Milk.DevFill.Desc>开发者模式下立刻将当前雪牛娘的奶量增加到最大。</Mugirl.Milk.DevFill.Desc>
+    <!-- Filled {0}'s milk amount. -->
+    <Mugirl.Milk.DevFill.Success>已将 {0} 的奶量加满。</Mugirl.Milk.DevFill.Success>
+    <!-- {0}'s milk amount cannot be filled right now. -->
+    <Mugirl.Milk.DevFill.Failed>{0} 当前无法加满奶量。</Mugirl.Milk.DevFill.Failed>
+    <Mugirl.Milk.FeedingDebug.Button>Dev: 喂奶姿态微调</Mugirl.Milk.FeedingDebug.Button>
+    <Mugirl.Milk.FeedingDebug.ButtonDesc>在地图中预览喂奶，调整双方偏移和角度。</Mugirl.Milk.FeedingDebug.ButtonDesc>
+    <Mugirl.Milk.FeedingDebug.Title>喂奶姿态布局</Mugirl.Milk.FeedingDebug.Title>
+    <Mugirl.Milk.FeedingDebug.Choose>选择附近的被喂者</Mugirl.Milk.FeedingDebug.Choose>
+    <Mugirl.Milk.FeedingDebug.NoRecipient>先把另一名人形小人放在雪牛娘旁边。</Mugirl.Milk.FeedingDebug.NoRecipient>
+    <Mugirl.Milk.FeedingDebug.Hint>游戏已暂停。把窗口拖到一旁可查看地图中的实时预览。X 会随被喂者左右位置镜像，Z 为屏幕上下方向；改动立即应用于喂奶。</Mugirl.Milk.FeedingDebug.Hint>
+    <Mugirl.Milk.FeedingDebug.SourceX>喂奶者 X：{0}</Mugirl.Milk.FeedingDebug.SourceX>
+    <Mugirl.Milk.FeedingDebug.SourceZ>喂奶者 Z：{0}</Mugirl.Milk.FeedingDebug.SourceZ>
+    <Mugirl.Milk.FeedingDebug.RecipientX>被喂者 X：{0}</Mugirl.Milk.FeedingDebug.RecipientX>
+    <Mugirl.Milk.FeedingDebug.RecipientZ>被喂者 Z：{0}</Mugirl.Milk.FeedingDebug.RecipientZ>
+    <Mugirl.Milk.FeedingDebug.SourceAngle>喂奶者角度：{0}°</Mugirl.Milk.FeedingDebug.SourceAngle>
+    <Mugirl.Milk.FeedingDebug.RecipientAngle>被喂者角度：{0}°</Mugirl.Milk.FeedingDebug.RecipientAngle>
+    <Mugirl.Milk.FeedingDebug.Reset>恢复默认</Mugirl.Milk.FeedingDebug.Reset>
+    <Mugirl.Milk.FeedingDebug.Jump>定位小人</Mugirl.Milk.FeedingDebug.Jump>
+    <Mugirl.Milk.FeedingDebug.Copy>复制 XML</Mugirl.Milk.FeedingDebug.Copy>
+    <Mugirl.Milk.FeedingDebug.Save>写入配置</Mugirl.Milk.FeedingDebug.Save>
+    <Mugirl.Milk.FeedingDebug.Copied>已复制 XML。</Mugirl.Milk.FeedingDebug.Copied>
+    <Mugirl.Milk.FeedingDebug.Saved>已写入 {0}</Mugirl.Milk.FeedingDebug.Saved>
+    <Mugirl.Milk.FeedingDebug.Failed>布局操作失败：{0}</Mugirl.Milk.FeedingDebug.Failed>
+    <!-- Milk spray! -->
+    <Mugirl.Milk.SprayText>喷乳！</Mugirl.Milk.SprayText>
+    <!-- Milk ({0}) -->
+    <Mugirl.Milk.FloatMenu.Gather>榨乳 ({0})</Mugirl.Milk.FloatMenu.Gather>
+    <!-- Drink milk ({0}) -->
+    <Mugirl.Milk.FloatMenu.Drink>喝奶 ({0})</Mugirl.Milk.FloatMenu.Drink>
+    <!-- Seek milk ({0}) -->
+    <Mugirl.Milk.FloatMenu.ChildDrink>找奶喝 ({0})</Mugirl.Milk.FloatMenu.ChildDrink>
+    <!-- Feed milk ({0}) -->
+    <Mugirl.Milk.FloatMenu.Feed>喂奶 ({0})</Mugirl.Milk.FloatMenu.Feed>
+    <!-- {0}: {1} -->
+    <Mugirl.Milk.FloatMenu.Disabled>{0}: {1}</Mugirl.Milk.FloatMenu.Disabled>
+    <!-- Job_FeedMilkToDowned missing -->
+    <Mugirl.Milk.FloatMenu.FeedJobMissing>缺少 Job_FeedMilkToDowned</Mugirl.Milk.FloatMenu.FeedJobMissing>
+    <!-- Cannot produce milk -->
+    <Mugirl.Milk.FloatMenu.NotActive>无法产奶</Mugirl.Milk.FloatMenu.NotActive>
+    <!-- Not enough milk -->
+    <Mugirl.Milk.FloatMenu.NotEnoughMilk>奶量不足</Mugirl.Milk.FloatMenu.NotEnoughMilk>
+    <!-- Managed by milking device -->
+    <Mugirl.Milk.FloatMenu.ManagedByDevice>已由榨乳器管理</Mugirl.Milk.FloatMenu.ManagedByDevice>
+    <!-- Mugirl: {0} gathered body resources while inactive: {1} -->
+    <Mugirl.Milk.GatherInactiveLog>Mugirl：{0} 在未激活状态下收集身体资源：{1}</Mugirl.Milk.GatherInactiveLog>
+    <!-- {PAWN_labelShort} has received complete Mugirl nurture. -->
+    <Mugirl.Nurture.Completed>{PAWN_labelShort}得到了完整的雪牛娘哺育。</Mugirl.Nurture.Completed>
+    <!-- The target is not decryptable. Decryption is not possible. -->
+    <Mugirl.CrackBondageGear_TargetNotValid>目标不可破解，无法进行破解</Mugirl.CrackBondageGear_TargetNotValid>
+    <!-- Decrypting Advanced Restraint: {0}. -->
+    <Mugirl.CrackBondageGear_CrackAdvanced>破解高级束具：{0}</Mugirl.CrackBondageGear_CrackAdvanced>
+    <!-- Decrypting Brainwashing Restraint: {0}. -->
+    <Mugirl.CrackBondageGear_CrackBrainwash>破解洗脑束具：{0}</Mugirl.CrackBondageGear_CrackBrainwash>
+    <!-- Unknown type, cannot be decrypted. -->
+    <Mugirl.CrackBondageGear_NoCrackableType>未知类型，无法破解</Mugirl.CrackBondageGear_NoCrackableType>
+    <!-- Self -->
+    <Mugirl.SelfLabel>自己</Mugirl.SelfLabel>
+    <!-- Reserved -->
+    <Mugirl.Reserved>已被预订</Mugirl.Reserved>
+    <!-- Not wearing locked restraint. -->
+    <Mugirl.NotWearingLockedApparel>未穿着锁定束具</Mugirl.NotWearingLockedApparel>
+    <!-- This device has been decrypted. -->
+    <Mugirl.AlreadyCracked>该装备已破解</Mugirl.AlreadyCracked>
+    <!-- Invalid Target. -->
+    <Mugirl.InvalidTarget>选择的目标无效</Mugirl.InvalidTarget>
+    <!-- Mugirl Restraint cannot be removed. The restraint requires the corresponding key to unlock. -->
+    <Mugirl.SlaveApparelCannotBeRemoved>雪牛娘束具无法脱下，需使用对应钥匙解锁</Mugirl.SlaveApparelCannotBeRemoved>
+    <!-- The brainwashing device suddenly activated, {0} is being brainwashed. -->
+    <Mugirl.BrainwashStart>洗脑装置突然启动了，{0} 正在被洗脑</Mugirl.BrainwashStart>
+    <!-- {0}'s brainwashing has ended. -->
+    <Mugirl.BrainwashEnd>{0} 的洗脑结束了</Mugirl.BrainwashEnd>
+    <!-- Suppression +{0} -->
+    <Mugirl.SuppressionIncrease>压制度 +{0}</Mugirl.SuppressionIncrease>
+    <!-- {0}'s restraint has been completely unlocked. -->
+    <Mugirl.SlaveApparelFullyUnlocked>{0} 的束具被完全解锁了</Mugirl.SlaveApparelFullyUnlocked>
+    <!-- Unlocking failed: target pawn or target apparel is missing. -->
+    <Mugirl.Restraints.UnlockTargetMissingLog>解锁失败：目标 Pawn 或目标束具缺失。</Mugirl.Restraints.UnlockTargetMissingLog>
+    <!-- Force open restraint ({0}) -->
+    <Mugirl.Restraints.ForceUnlock.FloatMenu>强行打开束具（{0}）</Mugirl.Restraints.ForceUnlock.FloatMenu>
+    <!-- Strength too low: {0}/{1}. Required baseline: {2} -->
+    <Mugirl.Restraints.ForceUnlock.StrengthTooLow>力量不足：{0}/{1}。需求基准：{2}</Mugirl.Restraints.ForceUnlock.StrengthTooLow>
+    <!-- body size 1.0, manipulation 100%, melee 10 -->
+    <Mugirl.Restraints.ForceUnlock.RequirementRough>体型 1.0，操作 100%，格斗 10</Mugirl.Restraints.ForceUnlock.RequirementRough>
+    <!-- body size 1.0, manipulation 100%, melee 14 -->
+    <Mugirl.Restraints.ForceUnlock.RequirementFine>体型 1.0，操作 100%，格斗 14</Mugirl.Restraints.ForceUnlock.RequirementFine>
+    <!-- unsupported restraint type -->
+    <Mugirl.Restraints.ForceUnlock.RequirementUnsupported>不支持的束具类型</Mugirl.Restraints.ForceUnlock.RequirementUnsupported>
+    <!-- {0} forced open {1}'s {2}. -->
+    <Mugirl.Restraints.ForceUnlock.Success>{0} 强行打开了 {1} 的 {2}。</Mugirl.Restraints.ForceUnlock.Success>
+    <!-- Wounded! -->
+    <Mugirl.Restraints.ForceUnlock.WoundMote>受伤！</Mugirl.Restraints.ForceUnlock.WoundMote>
+    <!-- Unable to free this pawn's self: hands bound. -->
+    <Mugirl.HandsBlocked>无法解锁自己 双手被拘束</Mugirl.HandsBlocked>
+    <!-- {0} unlocks {1}'s restraint. {2} more key(s) are required to completely unlock. -->
+    <Mugirl.SlaveApparelUnlockPartial>{0} 解锁了 {1} 的束具，还需要{2}个钥匙来完全解锁</Mugirl.SlaveApparelUnlockPartial>
+    <!-- Unable to unlock: Key type does not match {0} -->
+    <Mugirl.WrongKeyType>无法解锁：钥匙类型不匹配 {0}</Mugirl.WrongKeyType>
+    <!-- No Path -->
+    <Mugirl.NoPath>无路径</Mugirl.NoPath>
+    <!-- Unable to work ({0} has been disabled) -->
+    <Mugirl.CannotPrioritizeWorkTypeDisabled>无法进行工作（{0} 已被禁用）</Mugirl.CannotPrioritizeWorkTypeDisabled>
+    <!-- {0}'s restraint has been decrypted. -->
+    <Mugirl.SlaveApparelCracked>{0} 的束具已被破解</Mugirl.SlaveApparelCracked>
+    <!-- {0} ({1}) -->
+    <Mugirl.SlaveApparel.StatusLabel>{0}（{1}）</Mugirl.SlaveApparel.StatusLabel>
+    <!-- Decryption Status -->
+    <Mugirl.CrackStatus>破解状态</Mugirl.CrackStatus>
+    <!-- Decrypted -->
+    <Mugirl.Cracked>已破解</Mugirl.Cracked>
+    <!-- Not Decrypted -->
+    <Mugirl.Uncracked>未破解</Mugirl.Uncracked>
+    <!-- Whether this restraint has been decrypted. -->
+    <Mugirl.CrackStatusDesc>这个束具是否被破解</Mugirl.CrackStatusDesc>
+    <!-- Rope to Hitch -->
+    <Mugirl.RopeToHitch>牵引到固定物上</Mugirl.RopeToHitch>
+    <!-- No valid object to be roped. -->
+    <Mugirl.NoValidToRope>没有可以牵引的对象</Mugirl.NoValidToRope>
+    <!-- Roped by other pawn -->
+    <Mugirl.RopedByPawn>被其他殖民者牵引</Mugirl.RopedByPawn>
+    <!-- Roped to Hitching Post. -->
+    <Mugirl.RopedToHitchingPost>被绑在马棚</Mugirl.RopedToHitchingPost>
+    <!-- Roped to A Certain Spot. -->
+    <Mugirl.RopedToSpot>被绑在某个地点</Mugirl.RopedToSpot>
+    <!-- Rope {0} -->
+    <Mugirl.Rope.Target>牵引 {0}</Mugirl.Rope.Target>
+    <!-- Success Rate -->
+    <Mugirl.Rope.SuccessChance>成功率</Mugirl.Rope.SuccessChance>
+    <!-- {0} ({1} {2}) -->
+    <Mugirl.Rope.TargetWithSuccessChance>{0}（{1} {2}）</Mugirl.Rope.TargetWithSuccessChance>
+    <!-- Unrope {0} -->
+    <Mugirl.Unrope.Target>解开牵引 {0}</Mugirl.Unrope.Target>
+    <!-- {0} ({1}) -->
+    <Mugirl.FloatMenu.OptionWithReason>{0}（{1}）</Mugirl.FloatMenu.OptionWithReason>
+    <!-- {0} on {1} -->
+    <Mugirl.FloatMenu.ActionOnTarget>{0} {1}</Mugirl.FloatMenu.ActionOnTarget>
+    <!-- {0} on ({1}) -->
+    <Mugirl.FloatMenu.ActionOnReserved>{0}（{1}）</Mugirl.FloatMenu.ActionOnReserved>
+    <!-- The Mugirl is currently being roped by others and cannot be drafted. -->
+    <Mugirl.DraftDisabledWhileRoped>雪牛娘正在被其他人牵引，无法征召</Mugirl.DraftDisabledWhileRoped>
+    <!-- Mount {0} -->
+    <Mugirl.Mount.Target>骑上 {0}</Mugirl.Mount.Target>
+    <!-- Dismount rider -->
+    <Mugirl.Mount.DismountRider>让骑乘者下来</Mugirl.Mount.DismountRider>
+    <!-- Drop the current rider from this Mugirl. -->
+    <Mugirl.Mount.DismountRiderDesc>让当前骑乘者从雪牛娘身上下来。</Mugirl.Mount.DismountRiderDesc>
+    <!-- Select rider -->
+    <Mugirl.Mount.SelectRider>选中骑乘者</Mugirl.Mount.SelectRider>
+    <!-- Select the pawn currently riding this Mugirl. -->
+    <Mugirl.Mount.SelectRiderDesc>选中当前由雪牛娘承载的骑乘者。</Mugirl.Mount.SelectRiderDesc>
+    <!-- Select Mugirl -->
+    <Mugirl.Mount.SelectCarrier>选中雪牛娘</Mugirl.Mount.SelectCarrier>
+    <!-- Select the Mugirl carrying this rider. -->
+    <Mugirl.Mount.SelectCarrierDesc>选中承载该骑乘者的雪牛娘。</Mugirl.Mount.SelectCarrierDesc>
+    <!-- Fire at will -->
+    <Mugirl.Mount.FireAtWill>允许射击</Mugirl.Mount.FireAtWill>
+    <!-- Allow the rider to act as an automatic ranged mount weapon. -->
+    <Mugirl.Mount.FireAtWillDesc>允许骑乘者作为自动远程炮位开火。</Mugirl.Mount.FireAtWillDesc>
+    <!-- Hold fire -->
+    <Mugirl.Mount.HoldFire>停火</Mugirl.Mount.HoldFire>
+    <!-- Prevent the rider from firing automatically. -->
+    <Mugirl.Mount.HoldFireDesc>禁止骑乘者自动开火。</Mugirl.Mount.HoldFireDesc>
+    <!-- Cannot mount -->
+    <Mugirl.Mount.CannotMount>无法骑乘</Mugirl.Mount.CannotMount>
+    <!-- {0}: {1} -->
+    <Mugirl.Mount.LabelWithReason>{0}：{1}</Mugirl.Mount.LabelWithReason>
+    <!-- {0} mounted {1}. -->
+    <Mugirl.Mount.MountedMessage>{0} 骑上了 {1}。</Mugirl.Mount.MountedMessage>
+    <!-- {0} dismounted from {1}. -->
+    <Mugirl.Mount.DismountedMessage>{0} 从 {1} 身上下来了。</Mugirl.Mount.DismountedMessage>
+    <!-- {0} dismounted automatically: {1}. -->
+    <Mugirl.Mount.AutoDismountMessage>{0} 因为{1}而自动下骑。</Mugirl.Mount.AutoDismountMessage>
+    <!-- No valid dismount cell near {0}. -->
+    <Mugirl.Mount.NoDismountCell>{0} 附近没有可用的下骑位置。</Mugirl.Mount.NoDismountCell>
+    <!-- Rider: {0} -->
+    <Mugirl.Mount.InspectRider>骑乘者：{0}</Mugirl.Mount.InspectRider>
+    <!-- Invalid target -->
+    <Mugirl.Mount.ReasonInvalid>目标无效</Mugirl.Mount.ReasonInvalid>
+    <!-- Already has a rider -->
+    <Mugirl.Mount.ReasonAlreadyHasRider>已经有骑乘者</Mugirl.Mount.ReasonAlreadyHasRider>
+    <!-- Target is not a Mugirl -->
+    <Mugirl.Mount.ReasonTargetNotMugirl>目标不是雪牛娘</Mugirl.Mount.ReasonTargetNotMugirl>
+    <!-- The Mugirl is in a bad state -->
+    <Mugirl.Mount.ReasonTargetBadState>雪牛娘状态不适合骑乘</Mugirl.Mount.ReasonTargetBadState>
+    <!-- The rider is in a bad state -->
+    <Mugirl.Mount.ReasonRiderBadState>骑乘者状态不适合骑乘</Mugirl.Mount.ReasonRiderBadState>
+    <!-- The rider must be a humanlike pawn -->
+    <Mugirl.Mount.ReasonRiderNotHumanlike>骑乘者必须是人类或类人 Pawn</Mugirl.Mount.ReasonRiderNotHumanlike>
+    <!-- Already mounted -->
+    <Mugirl.Mount.ReasonAlreadyMounted>已经处于骑乘状态</Mugirl.Mount.ReasonAlreadyMounted>
+    <!-- Roped pawns cannot mount -->
+    <Mugirl.Mount.ReasonRoped>牵引状态不能骑乘</Mugirl.Mount.ReasonRoped>
+    <!-- Reserved -->
+    <Mugirl.Mount.ReasonReserved>已被预订</Mugirl.Mount.ReasonReserved>
+    <!-- No path -->
+    <Mugirl.Mount.ReasonNoPath>无路径</Mugirl.Mount.ReasonNoPath>
+    <!-- hungry -->
+    <Mugirl.Mount.ReasonRiderHungry>饥饿</Mugirl.Mount.ReasonRiderHungry>
+    <!-- exhausted -->
+    <Mugirl.Mount.ReasonRiderTired>过度疲劳</Mugirl.Mount.ReasonRiderTired>
+    <!-- needs medical rest -->
+    <Mugirl.Mount.ReasonRiderMedical>需要医疗休息</Mugirl.Mount.ReasonRiderMedical>
+    <!-- Rider is holding fire -->
+    <Mugirl.Mount.ReasonTurretHoldFire>骑乘者已停火</Mugirl.Mount.ReasonTurretHoldFire>
+    <!-- Rider has no ranged weapon -->
+    <Mugirl.Mount.ReasonNoRangedWeapon>骑乘者没有远程武器</Mugirl.Mount.ReasonNoRangedWeapon>
+    <!-- Corporate Courier -->
+    <Mugirl.CourierContactLetterLabel>巨企运货员</Mugirl.CourierContactLetterLabel>
+    <!-- A corporate courier limps in from the edge of the map, uniform scuffed with dirt. He keeps one hand hovering beside his weapon but never draws it. He looks exhausted - and afraid. You can send a colonist to negotiate with him. -->
+    <Mugirl.CourierContactLetterText>一名巨企运货员一瘸一拐地走近殖民地，制服上全是灰，袖口还缝着工号。他停下来喘了好一会儿，才开口打听那两位雪牛娘的下落。你可以派一名殖民者与他交涉。</Mugirl.CourierContactLetterText>
+    <!-- Negotiate with the corporate courier -->
+    <Mugirl.CourierTalkOption>与巨企运货员交涉</Mugirl.CourierTalkOption>
+    <!-- cannot reach -->
+    <Mugirl.CourierTalkCannotReach>无法到达</Mugirl.CourierTalkCannotReach>
+    <!-- {0} ({1}) -->
+    <Mugirl.CourierTalkOptionDisabled>{0}（{1}）</Mugirl.CourierTalkOptionDisabled>
+    <!-- This courier can no longer negotiate. -->
+    <Mugirl.CourierAlreadyResolved>这个运货员已经无法交涉。</Mugirl.CourierAlreadyResolved>
+    <!-- Corporate Courier -->
+    <Mugirl.CourierDialogTitle>巨企运货员</Mugirl.CourierDialogTitle>
+    <!-- The corporate courier stops a few paces away, one hand half-raised, eyes darting between you and the way he came. He tries to hold a professional posture, but the fingers resting on his holster keep trembling.\n\n\"Easy... everyone stay easy. The name's {COURIER} - just a courier, the kind with an employee number stitched into his sleeve.\" He licks his cracked lips. \"The ship broke up in orbit. The cargo scattered across the crash site. I've been walking since the crash, trying to find it before the system logs me as a runner...\"\n\nHe lets out a small, bitter laugh. \"Listen to me, pouring it all out. Here's the deal - the diary and the restraint keys I'm carrying are yours. Write the cargo off as 'lost in transit.' Let me walk, and nobody reports this upstairs. What do you say, {NEGOTIATOR}? Better for both of us.\" -->
+    <Mugirl.CourierDialogText>“劳驾，打听一下。两位雪牛娘，你们见过吧？我是押这趟货的，叫{COURIER}。”\n\n他撑着膝盖喘了口气，见你没接话，又赶紧补了一句：“别紧张，我没说要带她们走。船都摔成那样了，我上哪儿再找一艘？公司倒好，先问货，再问钥匙，最后问我还能不能接着送。”\n\n他从兜里摸出一串束具钥匙，攥了攥，递到你面前。\n\n“都在这儿，一把不留。她们身上的束具，你们拿这个开。按规矩我得把钥匙交回去……算了，就当给你们添麻烦的赔礼。”\n\n他往前凑了凑，压低声音：“{NEGOTIATOR}，帮我个忙。回去我就报货没找着，公司要是问起来，你们也别提钥匙的事。真让我照价赔，我这辈子的工资都得搭进去。东西你们收好，让我走，行吗？”</Mugirl.CourierDialogText>
+    <!-- Accept the proposal -->
+    <Mugirl.CourierDialogLeaveItems>接受提案</Mugirl.CourierDialogLeaveItems>
+    <!-- Fight now -->
+    <Mugirl.CourierDialogFight>立即开战</Mugirl.CourierDialogFight>
+    <!-- The courier drops the diary and restraint keys and hurries toward the map edge without looking back. -->
+    <Mugirl.CourierItemsDroppedMessage>运货员放下整串束具钥匙，连声道谢，转身便往外赶。一本卷了角的日记从他兜里滑落，他也没察觉，只顾着一瘸一拐地走远。</Mugirl.CourierItemsDroppedMessage>
+    <!-- The negotiation breaks down. The courier mutters a curse and draws his weapon. This fight will not affect your formal standing with the corporation. -->
+    <Mugirl.CourierFightMessage>谈判破裂了。运货员低声骂了一句，拔出了武器。这次冲突不会影响你与巨企的正式关系。</Mugirl.CourierFightMessage>
+    <!-- Negotiations broke down. -->
+    <Mugirl.CourierFightReason>谈判破裂。</Mugirl.CourierFightReason>
+    <!-- CourierRaid quest aborted: no valid map target. -->
+    <Mugirl.CourierRaid.Log.NoMap>运货员袭击任务中止：缺少有效地图目标。</Mugirl.CourierRaid.Log.NoMap>
+    <!-- CourierRaid quest aborted: hostile giant corporation faction not found. -->
+    <Mugirl.CourierRaid.Log.NoFaction>运货员袭击任务中止：未找到敌对巨型企业派系。</Mugirl.CourierRaid.Log.NoFaction>
+    <!-- CourierRaid quest aborted: no valid spawn cell. -->
+    <Mugirl.CourierRaid.Log.NoSpawnCell>运货员袭击任务中止：缺少有效生成位置。</Mugirl.CourierRaid.Log.NoSpawnCell>
+    <!-- Courier could not find the opening crash pawns to count their restraint keys. -->
+    <Mugirl.CourierRaid.Log.MissingOpeningPawns>运货员无法找到开局坠落的两只雪牛娘，因此无法计算所需束具钥匙。</Mugirl.CourierRaid.Log.MissingOpeningPawns>
+    <!-- CourierRaid spawn aborted: map is null. -->
+    <Mugirl.CourierRaid.SpawnLog.NoMap>运货员生成中止：地图为空。</Mugirl.CourierRaid.SpawnLog.NoMap>
+    <!-- CourierRaid spawn aborted: faction is null. -->
+    <Mugirl.CourierRaid.SpawnLog.NoFaction>运货员生成中止：派系为空。</Mugirl.CourierRaid.SpawnLog.NoFaction>
+    <!-- CourierRaid spawn aborted: no valid spawn cell. -->
+    <Mugirl.CourierRaid.SpawnLog.NoSpawnCell>运货员生成中止：缺少有效生成位置。</Mugirl.CourierRaid.SpawnLog.NoSpawnCell>
+    <!-- Courier diary -->
+    <Mugirl.CourierDiary.Title>运货员日记本</Mugirl.CourierDiary.Title>
+    <!-- Read {0} -->
+    <Mugirl.CourierDiary.ReadOption>阅读{0}</Mugirl.CourierDiary.ReadOption>
+    <!-- {0} ({1}) -->
+    <Mugirl.CourierDiary.OptionDisabled>{0}（{1}）</Mugirl.CourierDiary.OptionDisabled>
+    <!-- cannot reach -->
+    <Mugirl.CourierDiary.CannotReach>无法到达</Mugirl.CourierDiary.CannotReach>
+    <!-- Page {0} / {1} -->
+    <Mugirl.CourierDiary.PageCounter>第{0}页 / 共{1}页</Mugirl.CourierDiary.PageCounter>
+    <!-- Previous -->
+    <Mugirl.CourierDiary.PreviousPage>上一页</Mugirl.CourierDiary.PreviousPage>
+    <!-- Next -->
+    <Mugirl.CourierDiary.NextPage>下一页</Mugirl.CourierDiary.NextPage>
+    <!-- Close -->
+    <Mugirl.CourierDiary.Close>关闭</Mugirl.CourierDiary.Close>
+    <!-- [Page One]\n\nWelcome to Courier Diary.\n\nThis diary records the experiences of a low-level courier during his time working for the mega corporation. It contains practical advice and survival lessons. -->
+    <Mugirl.CourierDiary.Page1>【第一页】\n\n欢迎阅读《运货员日记》！\n\n这本日记记录了一个底层运货员在巨型企业工作期间的种种经历，包含大量实用技巧和生存经验。</Mugirl.CourierDiary.Page1>
+    <!-- [Page Two]\n\nAbout the mega corporation:\n\nThe mega corporation is a vast corporate alliance with armed forces spread across many planets. They field distinctive OPIC and PMC weapon series.\n\nWhen facing a raid, pay attention to enemy equipment tiers. Enemies carrying PMC-prefix weapons are usually more dangerous. -->
+    <Mugirl.CourierDiary.Page2>【第二页】\n\n关于巨型企业：\n\n巨型企业是一个庞大的企业联合体，其武装力量遍布各个星球。他们拥有独特的OPIC和PMC系列的武器装备。\n\n遭遇袭击时请注意敌人的装备等级——携带PMC前缀武器的敌人往往更危险。</Mugirl.CourierDiary.Page2>
+    <!-- [Page Three]\n\nAbout Mugirls:\n\nMugirls are products of genetic engineering. Their milk has exceptional nutritional value, and Mugirl dairy products can provide additional benefits.\n\nMugirl milk pudding improves mood, cheese can detoxify, and aged cheese and milk tablets can strengthen immunity. -->
+    <Mugirl.CourierDiary.Page3>【第三页】\n\n关于雪牛娘：\n\n雪牛娘是基因工程的产物，她们分泌的乳汁具有非凡的营养价值。可以通过制作各种雪牛娘奶制品来获得额外加成。\n\n雪牛娘奶布丁能提升心情，奶酪可以解毒，陈年奶酪和奶片能增强免疫力。</Mugirl.CourierDiary.Page3>
+    <!-- [Page Four]\n\nAbout restraint keys:\n\nCrude restraint keys can be made at machining tables or smithies. Fine restraint keys require more advanced workstations.\n\nIf you find keys carried by a lucky courier, you can use them to unlock restraints on Mugirls. -->
+    <Mugirl.CourierDiary.Page4>【第四页】\n\n关于束具钥匙：\n\n粗糙束具钥匙可以在机械加工台或锻造台制作，精致束具钥匙需要更高级的工作台。\n\n如果你捡到了运气好的运货员携带的钥匙，可以用它们来解开雪牛娘身上的束具。</Mugirl.CourierDiary.Page4>
+    <!-- [Page Five]\n\nSurvival advice:\n\n1. Develop Mugirl husbandry for a stable milk supply\n2. Build enough defenses against mega corporation raids\n3. Produce dairy foods to strengthen colonists\n4. Restraint keys can help recruit enslaved Mugirls\n\nGood luck surviving this brutal world. -->
+    <Mugirl.CourierDiary.Page5>【第五页】\n\n生存建议：\n\n1. 发展雪牛娘养殖以获得稳定的奶源\n2. 积攒足够的防御力量应对巨型企业袭击\n3. 制作各种奶制品以增强殖民者的能力\n4. 束具钥匙可以用来招募雪牛娘奴隶\n\n祝你在这个残酷的世界中活下来！</Mugirl.CourierDiary.Page5>
+    <Mugirl.LetterLabelWandererJoins>雪牛娘申请加入：{PAWN_nameDef}</Mugirl.LetterLabelWandererJoins>
+    <Mugirl.LetterWandererJoins>一名叫作 {PAWN_nameDef} 的雪牛娘逃亡者来到殖民地附近，希望获得庇护。{PAWN_pronoun}从奴隶商队逃出，身上还留着破旧的束具。\n\n{PAWN_pronoun}愿意为殖民地出力。你可以接受{PAWN_objective}的加入请求，也可以拒绝；如果一天内没有答复，{PAWN_pronoun}会继续寻找落脚处。</Mugirl.LetterWandererJoins>
+    <Mugirl.LetterLabelOpeningPodCrash>开局雪牛娘坠舱</Mugirl.LetterLabelOpeningPodCrash>
+    <Mugirl.OpeningPodCrash_MultipleIntro>一个逃生舱在附近坠落，舱内挤着两名雪牛娘逃亡者。</Mugirl.OpeningPodCrash_MultipleIntro>
+    <Mugirl.OpeningPodCrash>她们刚从巨企的奴隶运输船上逃出，身上仍穿着束具。漫长的逃亡使她们精疲力尽，行动不能症又让她们无法自行离开。\n\n两人都已成年，如今无处可去。如果你将她们救到安全的床位，她们愿意加入殖民地，从这里开始新的生活。</Mugirl.OpeningPodCrash>
+    <Mugirl.OpeningPodCrash_Child>其中{PAWN_nameDef}是个{AGE}岁的孩子，她刚刚逃离了奴隶商队的控制，孤身无依。</Mugirl.OpeningPodCrash_Child>
+    <Mugirl.OpeningPodCrash_Factionless>其中{PAWN_pronoun}不属于任何派系。你可以选择救援{PAWN_objective}，希望{PAWN_pronoun}自由加入你的殖民地，也可以选择俘虏{PAWN_objective}以招募或奴役她。</Mugirl.OpeningPodCrash_Factionless>
+    <Mugirl.OpeningPodCrash_FactionlessMultiple>她俩都不属于任何派系。你可以选择救援她俩，希望她们自由加入你的殖民地，也可以选择俘虏她们以招募或奴役。</Mugirl.OpeningPodCrash_FactionlessMultiple>
+    <Mugirl.OpeningPodCrash_Hostile>其中{PAWN_nameDef}来自敌对派系{PAWN_factionName}，你可以俘虏{PAWN_objective}来招募或奴役。</Mugirl.OpeningPodCrash_Hostile>
+    <Mugirl.OpeningPodCrash_NonHostile>{PAWN_nameDef}来自{PAWN_factionName}。如果你救援{PAWN_objective}，{PAWN_pronoun}回到派系后会改善双方关系。\n你也可以俘虏{PAWN_objective}来招募或奴役，但这会激怒{PAWN_possessive}派系。</Mugirl.OpeningPodCrash_NonHostile>
+    <Mugirl.OpeningPodCrash.Log.FactionlessGenerationFailed>尝试 {0} 次后仍无法生成无派系开局逃生舱 Pawn。请检查 PawnKindDef 或其它 Pawn 生成补丁。</Mugirl.OpeningPodCrash.Log.FactionlessGenerationFailed>
+    <Mugirl.Newborn.Log.CorrectedBodyTypes>已修正幼年 Mugirl 体型：{0}。</Mugirl.Newborn.Log.CorrectedBodyTypes>
+    <Mugirl.FeralChild>野性儿童</Mugirl.FeralChild>
+    <Mugirl.Child>儿童</Mugirl.Child>
+    <Mugirl.Person>人</Mugirl.Person>
+    <Mugirl.LetterLabelRefugeePodCrash>雪牛娘坠舱救援</Mugirl.LetterLabelRefugeePodCrash>
+    <Mugirl.RefugeePodCrash>一个逃生舱坠落在附近，舱内是一名叫作 {PAWN_nameDef} 的雪牛娘逃亡者。\n\n{PAWN_pronoun}从奴隶运输船上逃出，漫长的逃亡让{PAWN_objective}精疲力尽，倒地无法行动，身上还留着束具。你可以派人前去救援。</Mugirl.RefugeePodCrash>
+    <Mugirl.RefugeePodCrash_Child>{PAWN_nameDef}是个{AGE}岁的孩子，同样孤身无依。</Mugirl.RefugeePodCrash_Child>
+    <Mugirl.RefugeePodCrash_Factionless>{PAWN_pronoun}不属于任何派系。营救后，{PAWN_pronoun}可能自愿加入殖民地；你也可以俘虏{PAWN_objective}，再尝试招募。</Mugirl.RefugeePodCrash_Factionless>
+    <Mugirl.RefugeePodCrash_Hostile>{PAWN_nameDef}来自敌对派系{PAWN_factionName}，你可以俘虏{PAWN_objective}来招募或奴役。</Mugirl.RefugeePodCrash_Hostile>
+    <Mugirl.RefugeePodCrash_NonHostile>{PAWN_nameDef}来自{PAWN_factionName}。如果你救援{PAWN_objective}，{PAWN_pronoun}回到派系后会改善双方关系。\n\n你也可以俘虏{PAWN_objective}来招募或奴役，但这会激怒{PAWN_possessive}派系。</Mugirl.RefugeePodCrash_NonHostile>
+    <Mugirl.RefugeePodCrash.Log.DownedGenerationFallback>尝试 {0} 次后仍无法生成倒地逃生舱 Pawn；将使用一个存活的备用 Pawn。</Mugirl.RefugeePodCrash.Log.DownedGenerationFallback>
+    <Mugirl.RefugeePodCrash.Log.GenerationFailed>尝试 {0} 次后逃生舱 Pawn 生成失败。请检查 PawnKindDef 或其它 Pawn 生成补丁。</Mugirl.RefugeePodCrash.Log.GenerationFailed>
+    <Mugirl.RefugeePodCrash.Log.MissingQuestContext>逃生舱坠毁任务根节点运行时缺少有效任务上下文。</Mugirl.RefugeePodCrash.Log.MissingQuestContext>
+    <Mugirl.RefugeePodCrash.Log.MissingMap>逃生舱坠毁任务无法解析可用目标地图。</Mugirl.RefugeePodCrash.Log.MissingMap>
+    <!-- Weapon wheel -->
+    <Mugirl.WeaponWheel.Tab>武器轮盘</Mugirl.WeaponWheel.Tab>
+    <!-- Weapons -->
+    <Mugirl.WeaponWheel.TabShort>武器轮盘</Mugirl.WeaponWheel.TabShort>
+    <!-- {0} / {1} -->
+    <Mugirl.WeaponWheel.HeaderSlots>{0} / {1}</Mugirl.WeaponWheel.HeaderSlots>
+    <!-- Locked -->
+    <Mugirl.WeaponWheel.Locked>未解锁</Mugirl.WeaponWheel.Locked>
+    <!-- Complete the self-propelled autoloading research to unlock this wheel slot. -->
+    <Mugirl.WeaponWheel.LockedDesc>完成“自驱装填”研究后解锁该轮盘格。</Mugirl.WeaponWheel.LockedDesc>
+    <!-- Unlock -->
+    <Mugirl.WeaponWheel.DevUnlock>解锁</Mugirl.WeaponWheel.DevUnlock>
+    <!-- Click, then select a weapon on the map to load it into this wheel slot. -->
+    <Mugirl.WeaponWheel.EmptySlotDesc>点击后选择地图上的一把武器，将其装入该轮盘格。</Mugirl.WeaponWheel.EmptySlotDesc>
+    <!-- Unequip {0} -->
+    <Mugirl.WeaponWheel.DropWeapon>卸下 {0}</Mugirl.WeaponWheel.DropWeapon>
+    <!-- The target is not an equippable primary weapon. -->
+    <Mugirl.WeaponWheel.InvalidWeapon>目标不是可装备的主武器。</Mugirl.WeaponWheel.InvalidWeapon>
+    <!-- This wheel slot is locked. -->
+    <Mugirl.WeaponWheel.SlotLocked>该轮盘格尚未解锁。</Mugirl.WeaponWheel.SlotLocked>
+    <!-- This wheel slot already contains a weapon. -->
+    <Mugirl.WeaponWheel.SlotOccupied>该轮盘格已有武器。</Mugirl.WeaponWheel.SlotOccupied>
+    <!-- The weapon wheel cannot be edited while firing, switching or reloading. -->
+    <Mugirl.WeaponWheel.Busy>武器轮盘正在战斗或装弹，暂时不能调整。</Mugirl.WeaponWheel.Busy>
+    <!-- This weapon is already in the wheel. -->
+    <Mugirl.WeaponWheel.AlreadyStored>这把武器已经在轮盘中。</Mugirl.WeaponWheel.AlreadyStored>
+    <!-- This weapon cannot be stored in the wheel. -->
+    <Mugirl.WeaponWheel.CannotStore>无法将这把武器存入轮盘。</Mugirl.WeaponWheel.CannotStore>
+    <!-- These wheel slots cannot be swapped. -->
+    <Mugirl.WeaponWheel.CannotSwap>无法交换这两个轮盘格。</Mugirl.WeaponWheel.CannotSwap>
+    <!-- This weapon cannot be unequipped right now. -->
+    <Mugirl.WeaponWheel.CannotDrop>目前无法卸下这把武器。</Mugirl.WeaponWheel.CannotDrop>
+    <!-- Weapon wheel: Full firepower enabled -->
+    <Mugirl.WeaponWheel.StatusFull>武器轮盘：火力满载已启用</Mugirl.WeaponWheel.StatusFull>
+    <!-- Weapon wheel: Linked sword dance enabled -->
+    <Mugirl.WeaponWheel.StatusSwordDance>武器轮盘：连携剑舞已启用</Mugirl.WeaponWheel.StatusSwordDance>
+    <!-- Each melee attack has a 33% chance to dash behind the enemy, stunning them, dealing impact damage and melee attack damage, then switching to the next melee weapon and increasing melee attack speed by 200% for 5 seconds. -->
+    <Mugirl.WeaponWheel.StatusSwordDanceDesc>每次近战攻击有33%的概率冲刺到敌人身后，造成一次眩晕，一次冲撞伤害，一次近战攻击伤害，随后切换到下一把近战武器，并使近战攻击速度提高200%，持续5秒。</Mugirl.WeaponWheel.StatusSwordDanceDesc>
+    <!-- Dev-only gizmo: opens the back weapon layout tuning window. -->
+    <Mugirl.WeaponWheel.BackLayoutDebug.Title>背负武器布局调试</Mugirl.WeaponWheel.BackLayoutDebug.Title>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Weapon0>轮盘第 1 格</Mugirl.WeaponWheel.BackLayoutDebug.Weapon0>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Weapon1>轮盘第 2 格</Mugirl.WeaponWheel.BackLayoutDebug.Weapon1>
+    <Mugirl.WeaponWheel.BackLayoutDebug.OffsetX>横向偏移 X：{0}</Mugirl.WeaponWheel.BackLayoutDebug.OffsetX>
+    <Mugirl.WeaponWheel.BackLayoutDebug.OffsetZ>纵深偏移 Z：{0}</Mugirl.WeaponWheel.BackLayoutDebug.OffsetZ>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Angle>旋转角度：{0}°</Mugirl.WeaponWheel.BackLayoutDebug.Angle>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Layer>图层级：{0}</Mugirl.WeaponWheel.BackLayoutDebug.Layer>
+    <Mugirl.WeaponWheel.BackLayoutDebug.SouthAutoloadingLayer>南向·穿戴装弹系统时层级：{0}</Mugirl.WeaponWheel.BackLayoutDebug.SouthAutoloadingLayer>
+    <Mugirl.WeaponWheel.BackLayoutDebug.CopyXml>复制 XML</Mugirl.WeaponWheel.BackLayoutDebug.CopyXml>
+    <Mugirl.WeaponWheel.BackLayoutDebug.CopyCSharp>复制 C# 默认值</Mugirl.WeaponWheel.BackLayoutDebug.CopyCSharp>
+    <Mugirl.WeaponWheel.BackLayoutDebug.WriteFile>写入配置文件</Mugirl.WeaponWheel.BackLayoutDebug.WriteFile>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Reset>恢复默认</Mugirl.WeaponWheel.BackLayoutDebug.Reset>
+    <Mugirl.WeaponWheel.BackLayoutDebug.OpenFolder>打开配置文件夹</Mugirl.WeaponWheel.BackLayoutDebug.OpenFolder>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Hint>布局对所有雪牛娘立即生效。± 按钮精调偏移 0.005、角度 1°、图层 0.5。南向穿戴装弹系统时，普通背负枪使用专用层级。恢复默认只改内存；写入配置文件后下次启动自动应用。路径：{0}</Mugirl.WeaponWheel.BackLayoutDebug.Hint>
+    <Mugirl.WeaponWheel.BackLayoutDebug.StatusCopied>已复制到剪贴板。</Mugirl.WeaponWheel.BackLayoutDebug.StatusCopied>
+    <Mugirl.WeaponWheel.BackLayoutDebug.StatusWritten>已写入：{0}</Mugirl.WeaponWheel.BackLayoutDebug.StatusWritten>
+    <Mugirl.WeaponWheel.BackLayoutDebug.StatusReset>已恢复内置默认值（仅内存，配置文件未删除）。</Mugirl.WeaponWheel.BackLayoutDebug.StatusReset>
+    <!-- Snow-bovine punisher -->
+    <Mugirl.Punisher.LetterLabel>雪牛惩戒者</Mugirl.Punisher.LetterLabel>
+    <!-- You have cruelly slaughtered innocent Mugirls! The god of the snow-bovines will punish you! -->
+    <Mugirl.Punisher.LetterText>你竟然残忍的杀害了无辜的雪牛娘！雪牛之神会惩罚你的！</Mugirl.Punisher.LetterText>
+    <!-- The snow-bovine punisher has completed its punishment and departed. -->
+    <Mugirl.Punisher.Departed>雪牛惩戒者已经结束惩戒，扬长而去。</Mugirl.Punisher.Departed>
+    <Mugirl.Throw.InvalidTarget>这个目标无法被抓起。</Mugirl.Throw.InvalidTarget>
+    <Mugirl.Dunk.InvalidDestination>灌篮落点必须位于目标 {0} 格以内。</Mugirl.Dunk.InvalidDestination>
+    <Mugirl.Dunk.PickupReadout>摘下{0}的头运球灌篮。</Mugirl.Dunk.PickupReadout>
+    <Mugirl.Dunk.InvalidTarget>整蛊对象必须是人形角色。</Mugirl.Dunk.InvalidTarget>
+    <Mugirl.Dunk.NoHead>{0}已经没脑袋了，拿什么当篮球？</Mugirl.Dunk.NoHead>
+    <Mugirl.Dunk.DevOnly>仅开发者模式可用。</Mugirl.Dunk.DevOnly>
+    <Mugirl.Throw.IndestructibleTarget>{0}无法被移动。</Mugirl.Throw.IndestructibleTarget>
+    <Mugirl.Throw.ConnectedTarget>{0}与其他结构相连，不能举起来。</Mugirl.Throw.ConnectedTarget>
+    <Mugirl.Throw.AlreadyHolding>已经抓着一个东西了。</Mugirl.Throw.AlreadyHolding>
+    <Mugirl.Throw.TooHeavy>太重了：重量 {0} kg，搬运上限 {1} kg。</Mugirl.Throw.TooHeavy>
+    <Mugirl.Throw.PickupReadout>重量 {0} kg / 搬运上限 {1} kg</Mugirl.Throw.PickupReadout>
+    <Mugirl.Throw.OutOfRange>超出投掷距离（最大 {0} 格）。</Mugirl.Throw.OutOfRange>
+    <Mugirl.Throw.AimReadout>伤害 {0} / 爆炸半径 {1} / 最大距离 {2}</Mugirl.Throw.AimReadout>
+    <Mugirl.Throw.PlaceFailed>无法安全放置 {0}：{1}</Mugirl.Throw.PlaceFailed>
+    <Mugirl.Throw.BusyHolding>{0}正举着待投掷的物体，无法开枪</Mugirl.Throw.BusyHolding>
+    <Mugirl.Settings.ExtraOutline.Label>启用额外描边</Mugirl.Settings.ExtraOutline.Label>
+    <Mugirl.Settings.ExtraOutline.Desc>为雪牛娘的身体、头发和衣服添加黑色整体外描边，不描绘武器。默认关闭；远处人物沿用游戏的贴图缓存。</Mugirl.Settings.ExtraOutline.Desc>
+    <Mugirl.Settings.ExtraOutline.Width>描边粗细：{0} 倍</Mugirl.Settings.ExtraOutline.Width>
+    <Mugirl.Outline.Unavailable>额外描边着色器加载失败，已保留正常人物绘制。详情：{0}</Mugirl.Outline.Unavailable>
+    <!-- Grazing food policy preset label: wild vanilla plants only, excluding sown crops. -->
+    <Mugirl.FoodPolicy.Grass.Label>草</Mugirl.FoodPolicy.Grass.Label>
+    <Mugirl.WeaponWheel.BackLayoutDebug.ChoosePawn>选择预览角色</Mugirl.WeaponWheel.BackLayoutDebug.ChoosePawn>
+    <Mugirl.WeaponWheel.BackLayoutDebug.NoPawn>没有可预览的雪牛娘。请先在地图上准备一名站立的雪牛娘。</Mugirl.WeaponWheel.BackLayoutDebug.NoPawn>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Zoom>预览缩放：{0}</Mugirl.WeaponWheel.BackLayoutDebug.Zoom>
+    <Mugirl.WeaponWheel.BackLayoutDebug.PreviewHint>背负固定对应轮盘第 1、2 格；手持或切枪中的武器暂时隐藏，其他格不补位。穿戴装弹系统时四把凹槽武器显示供遮挡对照。</Mugirl.WeaponWheel.BackLayoutDebug.PreviewHint>
+    <Mugirl.WeaponWheel.BackLayoutDebug.NumericHint>输入数字立即生效，范围 {0} 至 {1}。小数点使用“.”；无效或超范围输入标红并保留原值。</Mugirl.WeaponWheel.BackLayoutDebug.NumericHint>
+    <Mugirl.WeaponWheel.BackLayoutDebug.EmptyWeapon>当前没有这把普通背负武器。请先在武器轮盘中装入备用武器。</Mugirl.WeaponWheel.BackLayoutDebug.EmptyWeapon>
+    <Mugirl.WeaponWheel.BackLayoutDebug.ResetPose>重置当前朝向</Mugirl.WeaponWheel.BackLayoutDebug.ResetPose>
+    <Mugirl.WeaponWheel.BackLayoutDebug.StatusFailed>操作失败：{0}</Mugirl.WeaponWheel.BackLayoutDebug.StatusFailed>
+    <Mugirl.WeaponWheel.BackLayoutDebug.FlipHorizontal>水平镜像</Mugirl.WeaponWheel.BackLayoutDebug.FlipHorizontal>
+    <Mugirl.WeaponWheel.BackLayoutDebug.FlipVertical>垂直镜像</Mugirl.WeaponWheel.BackLayoutDebug.FlipVertical>
+    <Mugirl.WeaponWheel.BackLayoutDebug.MirrorHint>相对当前武器贴图，在旋转前左右/上下翻转；两个开关可叠加，不改变位置、尺寸或图层。</Mugirl.WeaponWheel.BackLayoutDebug.MirrorHint>
+</LanguageData>

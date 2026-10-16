@@ -84,4 +84,15 @@
   <Mugirl.CorporateUI.MetricContracts>进行中委托</Mugirl.CorporateUI.MetricContracts>
   <Mugirl.CorporateUI.MetricRecords>账户记录</Mugirl.CorporateUI.MetricRecords>
   <Mugirl.CorporateUI.OpenService>进入业务</Mugirl.CorporateUI.OpenService>
+  <Mugirl.CorporateIntro.Independent.QuestDescription>巨企客户关系部正在这一带寻找新的贸易伙伴，代表预计会在大约两天内亲自拜访殖民地，介绍商业网络并带来一份见面礼。\n\n代表抵达后，选择一名能够说话的殖民者，右键代表进行交谈。您不需要通讯台即可建立联系。接受商业联系后，通讯台与巨企据点的终端将一并开放。</Mugirl.CorporateIntro.Independent.QuestDescription>
+  <Mugirl.CorporateIntro.Independent.QuestProgressWait>客户关系部正在安排拜访行程。代表预计{0}后抵达。</Mugirl.CorporateIntro.Independent.QuestProgressWait>
+  <Mugirl.CorporateIntro.Independent.ArrivalText>{0} 带着文件夹来到殖民地，自称是巨企客户关系部的专员：“这一带的生意刚交给我管，过来认认门。你们平时缺什么？手里有货要卖，也可以跟我谈谈。”\n\n选择一名能够说话的殖民者，右键代表并选择“与巨企代表交谈”，了解贸易服务和见面礼。</Mugirl.CorporateIntro.Independent.ArrivalText>
+  <Mugirl.CorporateIntro.Independent.Opening>“你们好，我是巨企客户关系部的，最近负责这一带的新客户。”他拍了拍手里的文件夹。“地图上看见你们的聚落，就顺路来问问。你们要补物资、卖东西，总得有个能联系上的人。找个地方坐坐？我把价目和业务给你们介绍一下。”</Mugirl.CorporateIntro.Independent.Opening>
+  <Mugirl.CorporateIntro.Independent.MugirlsPresent>“你们这里有雪牛娘啊，那奶和毛应该都不缺销路。公司常年收这些，制成品也收。你们愿意供货，我们就按单子结账。照顾好人，货源稳当，生意才做得长。”</Mugirl.CorporateIntro.Independent.MugirlsPresent>
+  <Mugirl.CorporateIntro.Independent.NoMugirls>“现在手里没什么货也没关系。先认个门，以后缺补给，或者有奶、毛和制品想卖，都可以联系我们。账户开好了，临时用得上就不用四处打听。”</Mugirl.CorporateIntro.Independent.NoMugirls>
+  <Mugirl.CorporateIntro.Independent.Question.Visit>怎么想到来我们这里？</Mugirl.CorporateIntro.Independent.Question.Visit>
+  <Mugirl.CorporateIntro.Independent.Answer.Visit>“这片地方的聚落不少，过去公司只顾着几条大商路，漏了不少小生意。”他翻开地图。“我接手以后，就挨个来拜访。你们缺东西，我们能卖；你们有货，我们能收。先把联系方式留下，往后能做几笔就做几笔。”</Mugirl.CorporateIntro.Independent.Answer.Visit>
+  <Mugirl.CorporateIntro.Independent.Question.Mugirl>你们收购雪牛娘的产物？</Mugirl.CorporateIntro.Independent.Question.Mugirl>
+  <Mugirl.CorporateIntro.Independent.Answer.Mugirl>“奶、毛，还有加工好的制品，我们都有收购渠道。数量和价格按当时的订单走，交货前写清楚。”他指了指资料上的清单。“你们把人照顾好，供货稳当，我们也省得总去找新货源。要添设备、补原料，公司这边也能谈。”</Mugirl.CorporateIntro.Independent.Answer.Mugirl>
+  <Mugirl.CorporateIntro.Independent.ChapterCompleted>客户登记：已完成。\n合作方式：客户关系部主动拜访开户。\n\n客户关系部期待与贵殖民地长期合作。</Mugirl.CorporateIntro.Independent.ChapterCompleted>
 </LanguageData>

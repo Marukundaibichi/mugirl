@@ -1,4 +1,4 @@
-﻿using RimWorld;
+using RimWorld;
 using RimWorld.Planet;
 using RimWorld.QuestGen;
 using Verse;
@@ -11,33 +11,18 @@ namespace Mugirl
         private string signalAccept;
         private string signalReject;
 
+        // 1.6 的任务根调用这个入口；只覆写旧 GeneratePawn 会落回原版人类生成器。
+        public override Pawn GeneratePawn_NewTemp(Map map) => GeneratePawn();
+
         public override Pawn GeneratePawn()
         {
-            // 逃亡奴隶保持无派系；敌对巨企派系只用于袭击，避免流浪者加入事件附带敌对关系。
-            Faction faction = null;
-
-            // 生成请求固定为成年女性、可招募且不生成亲属关系，避免事件引入额外世界状态。
-            PawnGenerationRequest request = new PawnGenerationRequest(
-                Mugirl_DefOf.Mugirl_EscapeWanderSlave,
-                faction,
-                PawnGenerationContext.NonPlayer,
-                -1,
-                forceGenerateNewPawn: true,
-                allowDead: false,
-                allowDowned: true,
-                canGeneratePawnRelations: false,
-                mustBeCapableOfViolence: true,
-                forceAddFreeWarmLayerIfNeeded: false,
-                allowGay: true,
-                allowPregnant: false,
-                forceRecruitable: true,
-                fixedGender: Gender.Female,
-                developmentalStages: DevelopmentalStage.Adult
-            );
+            PawnGenerationRequest request = MugirlGeneratedPawnUtility.CreateFactionlessAdultRequest(
+                Mugirl_DefOf.Mugirl_EscapeWanderSlave);
 
             Pawn pawn = PawnGenerator.GeneratePawn(request);
 
             MugirlApparelTagUtility.TryWearIdeoSuppressedKindApparel(pawn);
+            MugirlGeneratedPawnUtility.TryPassToWorld(pawn, keepFactionless: true);
 
             return pawn;
         }
@@ -54,7 +39,7 @@ namespace Mugirl
             TaggedString taggedString = "Mugirl.LetterLabelWandererJoins".Translate(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN", true);
             TaggedString taggedString2 = "Mugirl.LetterWandererJoins".Translate(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN", true);
 
-            QuestNode_Root_WandererJoin_WalkIn.AppendCharityInfoToLetter("JoinerCharityInfo".Translate(pawn), ref taggedString);
+            QuestNode_Root_WandererJoin_WalkIn.AppendCharityInfoToLetter("JoinerCharityInfo".Translate(pawn), ref taggedString2);
 
             PawnRelationUtility.TryAppendRelationsWithColonistsInfo(ref taggedString2, ref taggedString, pawn);
 

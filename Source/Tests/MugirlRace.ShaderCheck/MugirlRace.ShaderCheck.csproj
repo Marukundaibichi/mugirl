@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    用游戏自己的 Waylith 管线离线检查本模组的原生着色器（1.7/Shaders、1.7/Defs/ShaderDefs、1.7/Defs/MaterialDefs）：
+    与游戏相同的 XML -> ShaderProgramDefinition -> Waylith.Rendering.Shader 注册（先注册原版），材质布局与顶点输入解析，
+    阶段接口校验，按游戏预热的全部变体用 Slang 编译到 SPIR-V 并读回 SPIR-V 接口，负对照（未定义标识符必须编译失败），
+    ShaderLab 原版渲染状态对照，MaterialDef、ShaderTypeDef、GLSL 文件命名，以及 C# 中引用的着色器名与属性名。
+    退出码：0 通过，1 有失败，2 用法或环境错误。移植自 Wolfein Black Science Expand 的 BlackScience.ShaderCheck。
+
+    运行：构建后执行 MugirlRace.ShaderCheck.exe [modDir] [gameDir]；省略时使用 Directory.Build.props 写入的 ModDir、GameDir。
+    游戏与引擎程序集只作编译期引用（Private=false），运行时从游戏目录加载。本工程属于 MugirlRace.slnx。
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>MugirlRace.ShaderCheck</AssemblyName>
+    <RootNamespace>Mugirl.ShaderCheck</RootNamespace>
+    <IsPackable>false</IsPackable>
+    <!-- Waylith 的原生着色器编译器（slang.dll）只有 x64 版本。 -->
+    <PlatformTarget>x64</PlatformTarget>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AssemblyMetadata Include="Mugirl.ModDir" Value="$(ModDir)" />
+    <AssemblyMetadata Include="Mugirl.GameDir" Value="$(GameDir)" />
+  </ItemGroup>
+
+  <ItemGroup Label="检查用到的引擎程序集（运行时从游戏目录加载）">
+    <Reference Include="Brutal.Core.Logging">
+      <HintPath>$(GameDir)Brutal.Core.Logging.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging">
+      <HintPath>$(GameDir)Microsoft.Extensions.Logging.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions">
+      <HintPath>$(GameDir)Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

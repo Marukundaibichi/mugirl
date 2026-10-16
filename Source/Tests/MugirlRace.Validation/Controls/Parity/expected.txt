@@ -1,0 +1,19 @@
+# --parity controls: every line must match at least one reported difference (category|subject substring|detail substring);
+# "absent:" lines must match none (positive controls).
+call-target|Mugirl.ParityControl.Rebind|System.Linq.Enumerable::MaxBy	GenCollection.MaxBy silently rebound to Enumerable.MaxBy
+constant|Mugirl.ParityControl.Numbers	changed constant
+scribe-label|Mugirl.ParityControl.SavedThing	Scribe label renamed through nameof (a save schema change even though the map explains the member rename)
+type|Mugirl.ParityControl.OldName|no counterpart in B	unmapped type rename
+attributes|Mugirl.ParityControl.Startup|StaticConstructorOnStartup	dropped [StaticConstructorOnStartup]
+order|StaticConstructorOnStartup	static-constructor order family changed
+harmony-order|Verse.Pawn::Kill	Harmony priority tie reordered by a rename
+string-literal|Mugirl.ParityControl.Keys|Mugirl.Control.KeyA	changed key literal
+order|FloatMenuOptionProvider	changed FloatMenu provider order
+field|OldDefOf::Retyped -> Mugirl.ParityControl.NewDefOf::Retyped|PawnKindDef	moved field whose type changed
+absent:type|OldDefOf	a dissolved type whose members all moved or were deleted is not a missing type (positive control)
+absent:type|NewDefOf	a type created only by member moves is not an addition (positive control)
+absent:type|NewUtility	a type created only by member moves is not an addition (positive control)
+absent:member-move	moved members exist in their target type (positive control)
+absent:call-target|MoveCaller	calls of moved members follow the map (positive control)
+absent:body|MoveCaller	reads of moved fields follow the map (positive control)
+absent:method|Helper	a moved method is neither missing in A nor added in B (positive control)

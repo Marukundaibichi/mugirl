@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+    <Mugirl_SlaveOpeningPodCrash.questNameRules.rulesStrings>
+        <li>questName-&gt;开局雪牛娘坠舱</li>
+    </Mugirl_SlaveOpeningPodCrash.questNameRules.rulesStrings>
+    <Mugirl_SlaveOpeningPodCrash.questDescriptionRules.rulesStrings>
+        <li>questDescription-&gt;两名雪牛娘逃亡者乘坐的逃生舱坠落在殖民地附近。她们精疲力尽，等待救援。这是开局剧情的起点。</li>
+    </Mugirl_SlaveOpeningPodCrash.questDescriptionRules.rulesStrings>
+    <Mugirl_SlaveRefugeePodCrash.questNameRules.rulesStrings>
+        <li>questName-&gt;雪牛娘坠舱救援</li>
+    </Mugirl_SlaveRefugeePodCrash.questNameRules.rulesStrings>
+    <Mugirl_SlaveRefugeePodCrash.questDescriptionRules.rulesStrings>
+        <li>questDescription-&gt;一名雪牛娘逃亡者乘坐逃生舱坠落在殖民地附近。她精疲力尽，倒地无法行动。你可以营救她；康复后，她可能自愿加入殖民地。</li>
+    </Mugirl_SlaveRefugeePodCrash.questDescriptionRules.rulesStrings>
+    <Mugirl_SlaveWandererJoins.questNameRules.rulesStrings>
+        <li>questName-&gt;流浪雪牛娘申请加入</li>
+    </Mugirl_SlaveWandererJoins.questNameRules.rulesStrings>
+    <Mugirl_SlaveWandererJoins.questDescriptionRules.rulesStrings>
+        <li>questDescription-&gt;一名从奴隶商队逃出的雪牛娘希望获得庇护。你可以在一天内接受或拒绝她的加入请求。</li>
+    </Mugirl_SlaveWandererJoins.questDescriptionRules.rulesStrings>
+</LanguageData>

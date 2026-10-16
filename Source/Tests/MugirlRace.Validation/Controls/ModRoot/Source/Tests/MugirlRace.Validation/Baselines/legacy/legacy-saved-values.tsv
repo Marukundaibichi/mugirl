@@ -1,0 +1,4 @@
+# legacy-saved-values.tsv: negative-control corpus for C.save-upgrade (each row exercises one rule; see Controls/expected-failures.txt).
+# columns: field	value	valueKind	tiers	eras	first	last
+Mugirl.Control.Upgrade.LabelOwner::key	"Mugirl.Control.Legacy.SavedKey"	keyed	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.LabelOwner::signal	"OldSignal"	literal	published	Mugirl	p.control	p.control

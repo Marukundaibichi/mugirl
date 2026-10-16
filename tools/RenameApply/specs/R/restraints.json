@@ -1,0 +1,1389 @@
+{
+ "module": "restraints",
+ "wave": "R",
+ "ownedSourceFolders": [
+  "Source/MugirlRace/Features/Restraints/**",
+  "Source/MugirlRace/Features/Roping/**",
+  "Source/MugirlRace/SaveUpgrade/Steps/Restraints/**",
+  "Source/MugirlRace/SaveUpgrade/PostLoad/Restraints/**",
+  "Source/Tests/MugirlRace.Tests/Restraints/**",
+  "Source/Tests/MugirlRace.Tests/Roping/**",
+  "Source/Tests/MugirlRace.Tests/SaveUpgrade/Restraints/**",
+  "Source/MugirlRace/PublicApi/SlaveApparelDef.cs"
+ ],
+ "ownedContentFiles": [
+  "1.7/Defs/Apparel/Apparel_Bondage/BondageApparel_Base.xml",
+  "1.7/Defs/Apparel/Apparel_Bondage/BondageApparel_Category.xml",
+  "1.7/Defs/Apparel/Apparel_Bondage/BondageApparel_Head.xml",
+  "1.7/Defs/Apparel/Apparel_Bondage/BondageApparel_Key.xml",
+  "1.7/Defs/Apparel/Apparel_Bondage/BondageApparel_Layer.xml",
+  "1.7/Defs/Apparel/Apparel_Bondage/BondageApparel_OnSkin.xml",
+  "1.7/Defs/Apparel/Apparel_Bondage/BondageApparel_Shell.xml",
+  "1.7/Defs/Apparel/Apparel_Bondage/BondageApparel_Spacer.xml",
+  "1.7/Defs/HediffDefs/Hediffs_AdvancedRestraints.xml",
+  "1.7/Defs/HediffDefs/Hediffs_Bondage.xml",
+  "1.7/Defs/SoundsDefs/Bondage_Sounds.xml",
+  "1.7/Defs/ThingDefs_Building/Building_Rope.xml",
+  "1.7/Defs/JobDefs/JobDefs_Restraints.xml",
+  "1.7/Defs/JobDefs/JobDefs_Roping.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Head.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Key.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_OnSkin.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Shell.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Spacer.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Building_Rope.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_Bondage.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/MentalStateDef/Hediffs_AdvancedRestraints.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingCategoryDef/BondageApparel_Category.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ApparelLayerDef/BondageApparel_Layer.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/JobDef/JobDefs_Restraints.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/JobDef/JobDefs_Roping.xml",
+  "1.7/Languages/English/Keyed/Restraints.xml",
+  "1.7/Languages/English/Keyed/Roping.xml",
+  "1.7/Languages/ChineseSimplified/Keyed/Restraints.xml",
+  "1.7/Languages/ChineseSimplified/Keyed/Roping.xml"
+ ],
+ "types": [
+  {
+   "old": "Mugirl.AdultContentExtension",
+   "new": "Mugirl.Features.Restraints.AdultContentExtension",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Apparel/AdultContentControl.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Apparel/AdultContentExtension.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "TEMPORARY Wave R name (root namespace forbidden); Wave S deletes the type (dead: no C# reader, report A6; XML BondageApparel_Base.xml:39, BondageApparel_Spacer.xml:149,255)",
+   "transitional": {
+    "waveS": "delete",
+    "upgrade": "none (not save-visible)"
+   },
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.AdvancedSlaveApparel",
+   "new": "Mugirl.Features.Restraints.AdvancedRestraintApparel",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Apparel/AdvancedSlaveApparel.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Apparel/AdvancedRestraintApparel.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "Restraint terminology; thingClass BondageApparel_Spacer.xml:6; one instance in real save S6 (real-saves.md section 2)",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.BrainWashSlaveApparel",
+   "new": "Mugirl.Features.Restraints.BrainwashHelmetApparel",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Apparel/BrainWashSlaveApparel.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Apparel/BrainwashHelmetApparel.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "Empty marker subclass, BrainWash casing fixed; thingClass BondageApparel_Spacer.xml:443. Wave S (plan S2.7) deletes it, identifies the helmet by CompBrainwashHelmet and overrides the generated LegacyTypes entry: Mugirl.BrainWashSlaveApparel -> Mugirl.Features.Restraints.AdvancedRestraintApparel",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.BrainwashPerformancePlayer",
+   "new": "Mugirl.Features.Restraints.BrainwashPerformancePlayer",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Performance/BrainwashPerformancePlayer.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Performance/BrainwashPerformancePlayer.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Namespace only. Saved via Scribe_Deep with declared type == runtime type, so no Class= is ever written",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.Building_Door_PawnCanOpen_Patch",
+   "new": "Mugirl.Features.Roping.Harmony_Building_Door_PawnCanOpen",
+   "oldFile": "Source/MugirlRace/Features/Roping/Patches/Building_Door_PawnCanOpen_Patch.cs",
+   "newFile": "Source/MugirlRace/Features/Roping/Patches/Harmony_Building_Door_PawnCanOpen.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.CompAdultContentControl",
+   "new": "Mugirl.Features.Restraints.CompAdultContentControl",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Apparel/AdultContentControl.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Apparel/CompAdultContentControl.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "TEMPORARY Wave R name (root namespace forbidden); Wave S deletes the type (empty ThingComp, never saved)",
+   "transitional": {
+    "waveS": "delete",
+    "upgrade": "none (not save-visible)"
+   },
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.CompGetSlaveApparelGear",
+   "new": "Mugirl.Features.Restraints.CompGetSlaveApparelGear",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Comps/CompGetSlaveApparelGear.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Comps/CompGetSlaveApparelGear.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "TEMPORARY Wave R name (root namespace forbidden); Wave S deletes the type together with its XML li (BondageApparel_Base.xml:31-33): its only trigger is JobDef GiveSlaveApparelGear, which no build ever issued (report A7)",
+   "transitional": {
+    "waveS": "delete",
+    "upgrade": "none (not save-visible)"
+   },
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.CompProperties_AddMentalState",
+   "new": "Mugirl.Features.Restraints.HediffCompProperties_AddMentalState",
+   "oldFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffCompProperties_AddMentalState.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffCompProperties_AddMentalState.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Vanilla role shape HediffCompProperties_X (design 3.2), one type per file; Class= Hediffs_AdvancedRestraints.xml:715",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.CompProperties_AddThought",
+   "new": "Mugirl.Features.Restraints.HediffCompProperties_AddThought",
+   "oldFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffCompProperties_AddThoughts.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffCompProperties_AddThought.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Vanilla role shape HediffCompProperties_X (design 3.2), one type per file; Class= Hediffs_AdvancedRestraints.xml:357,541; old file name was plural",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.CompProperties_AddTrait",
+   "new": "Mugirl.Features.Restraints.HediffCompProperties_AddTrait",
+   "oldFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffCompProperties_AddTrait.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffCompProperties_AddTrait.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Vanilla role shape HediffCompProperties_X (design 3.2), one type per file; Class= Hediffs_AdvancedRestraints.xml:719; nested PawnTypeTraitEntry follows",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.CompProperties_AdultContentControl",
+   "new": "Mugirl.Features.Restraints.CompProperties_AdultContentControl",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Apparel/AdultContentControl.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Apparel/CompProperties_AdultContentControl.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "TEMPORARY Wave R name (root namespace forbidden); Wave S deletes the type (dead comp; XML BondageApparel_Base.xml:30, BondageApparel_Spacer.xml:198)",
+   "transitional": {
+    "waveS": "delete",
+    "upgrade": "none (not save-visible)"
+   },
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.CompProperties_BrainwashHelmet",
+   "new": "Mugirl.Features.Restraints.CompProperties_BrainwashHelmet",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Comps/CompProperties_BrainwashHelmet.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Comps/CompProperties_BrainwashHelmet.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Namespace only (nested HediffConvertEntry follows); Class= BondageApparel_Spacer.xml:506",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.CompProperties_DevUnlockSlaveApparel",
+   "new": "Mugirl.Features.Restraints.CompProperties_DevUnlockRestraint",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Comps/CompProperties_DevUnlockSlaveApparel.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Comps/CompProperties_DevUnlockRestraint.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Restraint terminology; Class= BondageApparel_Base.xml:29",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.CompProperties_DisappearsAndAddHediffs",
+   "new": "Mugirl.Features.Restraints.HediffCompProperties_DisappearsAndAddHediff",
+   "oldFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffCompProperties_DisappearsAndAddHediffs.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffCompProperties_DisappearsAndAddHediff.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Vanilla role shape HediffCompProperties_X (design 3.2), one type per file; Class= Hediffs_AdvancedRestraints.xml:362,546,738; adds exactly one hediff (hediffToAddOnDisappear)",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.CompProperties_EleShock",
+   "new": "Mugirl.Features.Restraints.HediffCompProperties_ElectricShock",
+   "oldFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffCompProperties_EleShock.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffCompProperties_ElectricShock.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Vanilla role shape HediffCompProperties_X (design 3.2), one type per file; Class= Hediffs_AdvancedRestraints.xml:56,110,174; nested HediffWithParams/FilthEntry follow; no abbreviation in type names (hediff defNames Mugirl_*EleShock* stay)",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.CompProperties_MagneticShackles",
+   "new": "Mugirl.Features.Restraints.CompProperties_MagneticShackles",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Comps/CompProperties_MagneticShackles.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Comps/CompProperties_MagneticShackles.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Namespace only (nested BindHediffEntry follows); Class= BondageApparel_Spacer.xml:80",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.CompProperties_PerformanceEffect",
+   "new": "Mugirl.Features.Restraints.HediffCompProperties_BrainwashPerformance",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Performance/HediffCompProperties_PerformanceEffect.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Performance/HediffCompProperties_BrainwashPerformance.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "HediffCompProperties_X shape, name matches comp; Class= Hediffs_AdvancedRestraints.xml:209,396,580; nested SoundWithParams/FleckWithParams/TextWithParams follow (their FIELD names are DefInjected path segments and stay)",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.CompProperties_ReduceWillorEnslave",
+   "new": "Mugirl.Features.Restraints.HediffCompProperties_ReduceWillOrEnslave",
+   "oldFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffCompProperties_ReduceWillorEnslave.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffCompProperties_ReduceWillOrEnslave.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Vanilla role shape HediffCompProperties_X (design 3.2), one type per file; Class= Hediffs_AdvancedRestraints.xml:347,531,732; 'Willor' casing",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.CompProperties_ShockCollar",
+   "new": "Mugirl.Features.Restraints.CompProperties_ShockCollar",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Comps/CompProperties_ShockCollar.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Comps/CompProperties_ShockCollar.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Namespace only; Class= BondageApparel_Spacer.xml:413",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.CompProperties_SlaveApparelKey",
+   "new": "Mugirl.Features.Restraints.CompProperties_RestraintKey",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Comps/CompProperties_SlaveApparelKey.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Comps/CompProperties_RestraintKey.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Restraint terminology; Class= BondageApparel_Key.xml:26 (key defNames Mugirl_SlaveApparelKey_* stay: public API)",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.CompProperties_SuppressionEnhancer",
+   "new": "Mugirl.Features.Restraints.HediffCompProperties_SuppressionEnhancer",
+   "oldFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffCompProperties_SuppressionEnhancer.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffCompProperties_SuppressionEnhancer.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Vanilla role shape HediffCompProperties_X (design 3.2), one type per file; Class= Hediffs_AdvancedRestraints.xml:353,537",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.CompProperties_TargetEffectCrackBondageGear",
+   "new": "Mugirl.Features.Restraints.CompProperties_TargetEffectCrackRestraint",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Comps/CompProperties_TargetEffectCrackBondageGear.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Comps/CompProperties_TargetEffectCrackRestraint.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Terminology, props name matches comp; Class= BondageApparel_Key.xml:147",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.CompRopeToBuild",
+   "new": "Mugirl.Features.Roping.CompUsable_RopeToHitch",
+   "oldFile": "Source/MugirlRace/Features/Roping/Comps/CompRopeToBuild.cs",
+   "newFile": "Source/MugirlRace/Features/Roping/Comps/CompUsable_RopeToHitch.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "'Build' is misleading (targets wall hitch and CaravanPackingSpot); role shape CompUsable_X. compClass Building_Rope.xml:59 and Patches/MugirlPatch.xml:38 (inside the XPath predicate string) and :43; DefInjected handle comps.CompRopeToBuild.* -> comps.CompUsable_RopeToHitch.* (2 keys zh ThingDef/Building_Rope.xml)",
+   "module": "restraints",
+   "definjectedHandles": [
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Building_Rope.xml:4",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Building_Rope.xml:6"
+   ]
+  },
+  {
+   "old": "Mugirl.CompSlaveApparelKey",
+   "new": "Mugirl.Features.Restraints.CompRestraintKey",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Comps/CompProperties_SlaveApparelKey.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Comps/CompRestraintKey.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Restraint terminology; own file; also used by Incidents QuestPart_SpawnCourier.cs:208",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.CompStampedApparelKey",
+   "new": "Mugirl.Features.Restraints.CompUsable_RestraintKey",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Comps/CompStampedApparelKey.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Comps/CompUsable_RestraintKey.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "'Stamped' is meaningless; it is the key's CompUsable (role shape CompUsable_X). compClass BondageApparel_Key.xml:28; DefInjected handle comps.CompStampedApparelKey.* -> comps.CompUsable_RestraintKey.* (3 keys zh, ThingDef/BondageApparel_Key.xml)",
+   "module": "restraints",
+   "definjectedHandles": [
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Key.xml:10",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Key.xml:16",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Key.xml:22"
+   ]
+  },
+  {
+   "old": "Mugirl.CompTargetCrackBondageGear",
+   "new": "Mugirl.Features.Restraints.CompTargetEffect_CrackRestraint",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Comps/CompProperties_TargetEffectCrackBondageGear.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Comps/CompTargetEffect_CrackRestraint.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Role shape CompTargetEffect_X (vanilla CompTargetEffect_Resurrect); own file",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.CompTargetable_SlaveApparel",
+   "new": "Mugirl.Features.Restraints.CompTargetable_CrackableRestraint",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Comps/CompTargetable_SlaveApparel.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Comps/CompTargetable_CrackableRestraint.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Terminology, states what it targets; compClass BondageApparel_Key.xml:145",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.CompUnlockBondageGear",
+   "new": "Mugirl.Features.Restraints.CompUseEffect_UnlockRestraint",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Comps/CompUnlockBondageGear.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Comps/CompUseEffect_UnlockRestraint.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Role shape CompUseEffect_X + terminology; compClass BondageApparel_Key.xml:34",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.Comp_AdvancedSlaveApparel",
+   "new": "Mugirl.Features.Restraints.CompAdvancedRestraint",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Comps/Comp_AdvancedSlaveApparel.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Comps/CompAdvancedRestraint.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "CompX convention; abstract base of the three advanced-restraint comps (not referenced by XML)",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.Comp_BrainwashHelmet",
+   "new": "Mugirl.Features.Restraints.CompBrainwashHelmet",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Comps/CompProperties_BrainwashHelmet.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Comps/CompBrainwashHelmet.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "CompX convention, own file; DefInjected handle comps.Comp_BrainwashHelmet.* -> comps.CompBrainwashHelmet.* (zh ThingDef/BondageApparel_Spacer.xml, 2 keys)",
+   "module": "restraints",
+   "definjectedHandles": [
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Spacer.xml:10",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Spacer.xml:8"
+   ]
+  },
+  {
+   "old": "Mugirl.Comp_DevUnlockSlaveApparel",
+   "new": "Mugirl.Features.Restraints.CompDevUnlockRestraint",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Comps/CompProperties_DevUnlockSlaveApparel.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Comps/CompDevUnlockRestraint.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "CompX convention + terminology; own file",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.Comp_MagneticShackles",
+   "new": "Mugirl.Features.Restraints.CompMagneticShackles",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Comps/CompProperties_MagneticShackles.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Comps/CompMagneticShackles.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "CompX convention, own file (partial part moves via fileMoves); DefInjected handle comps.Comp_MagneticShackles.* -> comps.CompMagneticShackles.* (10 keys zh)",
+   "module": "restraints",
+   "definjectedHandles": [
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Spacer.xml:16",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Spacer.xml:18",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Spacer.xml:20",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Spacer.xml:22",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Spacer.xml:24",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Spacer.xml:26",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Spacer.xml:28",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Spacer.xml:30",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Spacer.xml:32",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Spacer.xml:34"
+   ]
+  },
+  {
+   "old": "Mugirl.Comp_ShockCollar",
+   "new": "Mugirl.Features.Restraints.CompShockCollar",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Comps/CompProperties_ShockCollar.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Comps/CompShockCollar.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "CompX convention, own file; DefInjected handle comps.Comp_ShockCollar.* -> comps.CompShockCollar.* (4 keys zh)",
+   "module": "restraints",
+   "definjectedHandles": [
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Spacer.xml:60",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Spacer.xml:62",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Spacer.xml:64",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Spacer.xml:66"
+   ]
+  },
+  {
+   "old": "Mugirl.Features.Restraints.RestraintPawnTypeParser",
+   "new": "Mugirl.Features.Restraints.RestraintPawnTypeParser",
+   "oldFile": "Source/MugirlRace/Features/Restraints/HediffComps/RestraintPawnType.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/HediffComps/RestraintPawnTypeParser.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "module": "restraints",
+   "reason": "One type per file (C27): identity extraction out of RestraintPawnType.cs."
+  },
+  {
+   "old": "Mugirl.FloatMenuOptionProvider_Wear_SlaveApparel_Patch",
+   "new": "Mugirl.Features.Restraints.Harmony_FloatMenuOptionProvider_Wear_GetSingleOptionFor",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Patches/WearFloatMenuPatch.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Patches/Harmony_FloatMenuOptionProvider_Wear_GetSingleOptionFor.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming; file name = type name",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.FloatMenuProvider_ForceUnlockSlaveApparel",
+   "new": "Mugirl.Features.Restraints.FloatMenuOptionProvider_ForceUnlockRestraint",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Interaction/FloatMenuProvider_ForceUnlockSlaveApparel.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Interaction/FloatMenuOptionProvider_ForceUnlockRestraint.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Role shape FloatMenuOptionProvider_X + terminology (vanilla discovers subclasses by reflection; name never persisted)",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.FloatMenuProvider_RopeMoo",
+   "new": "Mugirl.Features.Roping.FloatMenuOptionProvider_RopeMugirl",
+   "oldFile": "Source/MugirlRace/Features/Roping/UI/FloatMenuProvider_RopeMoo.cs",
+   "newFile": "Source/MugirlRace/Features/Roping/UI/FloatMenuOptionProvider_RopeMugirl.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Role shape FloatMenuOptionProvider_X, no 'Moo'",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.ForceUnlockRestraintTier",
+   "new": "Mugirl.Features.Restraints.ForceUnlockRestraintTier",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Interaction/ForceUnlockRestraintTier.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Interaction/ForceUnlockRestraintTier.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Namespace only (runtime-only enum, never saved)",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.ForceUnlockRestraintUtility",
+   "new": "Mugirl.Features.Restraints.ForceUnlockRestraintUtility",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Interaction/ForceUnlockRestraintUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Interaction/ForceUnlockRestraintUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Namespace only",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.GameComponent_BrainwashPerformance",
+   "new": "Mugirl.Features.Restraints.GameComponent_BrainwashPerformance",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Performance/GameComponent_BrainwashPerformance.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Performance/GameComponent_BrainwashPerformance.cs",
+   "saveVisible": true,
+   "xmlVisible": false,
+   "reason": "Namespace only (short name is already vanilla-shaped); game/components/li Class= in S5-S11 (real-saves.md section 2). Nested ActiveBrainwashPerformance follows and is never written with Class=",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.Harmony_Patch_RopingDraw",
+   "new": "Mugirl.Features.Roping.Harmony_Pawn_RopeTracker_RopingDraw",
+   "oldFile": "Source/MugirlRace/Features/Roping/Patches/Harmony_Patch_RopingDraw.cs",
+   "newFile": "Source/MugirlRace/Features/Roping/Patches/Harmony_Pawn_RopeTracker_RopingDraw.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.HediffComp_AddMentalState",
+   "new": "Mugirl.Features.Restraints.HediffComp_AddMentalState",
+   "oldFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffCompProperties_AddMentalState.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffComp_AddMentalState.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Leave root namespace, own file; reached from XML only through its props' compClass (no DefInjected handle in 1.7/Languages)",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.HediffComp_AddThought",
+   "new": "Mugirl.Features.Restraints.HediffComp_AddThought",
+   "oldFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffCompProperties_AddThoughts.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffComp_AddThought.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Leave root namespace, own file; reached from XML only through its props' compClass (no DefInjected handle in 1.7/Languages)",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.HediffComp_AddTrait",
+   "new": "Mugirl.Features.Restraints.HediffComp_AddTrait",
+   "oldFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffCompProperties_AddTrait.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffComp_AddTrait.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Leave root namespace, own file; reached from XML only through its props' compClass (no DefInjected handle in 1.7/Languages)",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.HediffComp_BrainWashingStar",
+   "new": "Mugirl.Features.Restraints.HediffComp_BrainwashPerformance",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Performance/HediffComp_BrainWashingStar.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Performance/HediffComp_BrainwashPerformance.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "'Star' is meaningless, BrainWash casing; matches its props. DefInjected handle comps.HediffComp_BrainWashingStar.* -> comps.HediffComp_BrainwashPerformance.* (39 keys zh, HediffDef/Hediffs_AdvancedRestraints.xml)",
+   "module": "restraints",
+   "definjectedHandles": [
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:10",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:100",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:12",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:14",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:16",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:18",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:20",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:22",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:24",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:26",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:28",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:30",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:32",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:42",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:44",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:46",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:48",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:50",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:52",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:54",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:56",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:58",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:60",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:62",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:64",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:66",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:76",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:78",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:8",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:80",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:82",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:84",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:86",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:88",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:90",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:92",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:94",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:96",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedRestraints.xml:98"
+   ]
+  },
+  {
+   "old": "Mugirl.HediffComp_DisappearsAndAddHediffs",
+   "new": "Mugirl.Features.Restraints.HediffComp_DisappearsAndAddHediff",
+   "oldFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffCompProperties_DisappearsAndAddHediffs.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffComp_DisappearsAndAddHediff.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Leave root namespace, own file; reached from XML only through its props' compClass (no DefInjected handle in 1.7/Languages)",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.HediffComp_EleShock",
+   "new": "Mugirl.Features.Restraints.HediffComp_ElectricShock",
+   "oldFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffCompProperties_EleShock.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffComp_ElectricShock.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Leave root namespace, own file; reached from XML only through its props' compClass (no DefInjected handle in 1.7/Languages)",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.HediffComp_ReduceWillorEnslave",
+   "new": "Mugirl.Features.Restraints.HediffComp_ReduceWillOrEnslave",
+   "oldFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffCompProperties_ReduceWillorEnslave.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffComp_ReduceWillOrEnslave.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Leave root namespace, own file; reached from XML only through its props' compClass (no DefInjected handle in 1.7/Languages)",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.HediffComp_SuppressionEnhancer",
+   "new": "Mugirl.Features.Restraints.HediffComp_SuppressionEnhancer",
+   "oldFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffCompProperties_SuppressionEnhancer.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/HediffComps/HediffComp_SuppressionEnhancer.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Leave root namespace, own file; reached from XML only through its props' compClass (no DefInjected handle in 1.7/Languages)",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.ITab_Pawn_Gear_DrawThingRow_Transpiler",
+   "new": "Mugirl.Features.Restraints.Harmony_ITab_Pawn_Gear_DrawThingRow",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Patches/GearTabDropTooltipPatch.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Patches/Harmony_ITab_Pawn_Gear_DrawThingRow.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming; transpiler-hooks.txt baseline key changes",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.JobDriver_CrackBondageGear",
+   "new": "Mugirl.Features.Restraints.JobDriver_CrackRestraint",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Jobs/JobDriver_CrackBondageGear.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Jobs/JobDriver_CrackRestraint.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "Terminology; driverClass JobDefs.xml:43; saved as curDriver Class (no real-save sample, real-saves.md section 2)",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.JobDriver_FollowRoper",
+   "new": "Mugirl.Features.Roping.JobDriver_MugirlFollowRoper",
+   "oldFile": "Source/MugirlRace/Features/Roping/Jobs/JobDriver_FollowRoper.cs",
+   "newFile": "Source/MugirlRace/Features/Roping/Jobs/JobDriver_MugirlFollowRoper.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "Same short name as its base Verse.AI.JobDriver_FollowRoper (design 3.2 rule b); driverClass JobDefs.xml:65; curDriver Class",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.JobDriver_ForceUnlockSlaveApparel",
+   "new": "Mugirl.Features.Restraints.JobDriver_ForceUnlockRestraint",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Jobs/JobDriver_ForceUnlockSlaveApparel.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Jobs/JobDriver_ForceUnlockRestraint.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "Terminology; driverClass JobDefs.xml:36",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.JobDriver_RemoveRopeMoo",
+   "new": "Mugirl.Features.Roping.JobDriver_UnropeMugirl",
+   "oldFile": "Source/MugirlRace/Features/Roping/Jobs/JobDriver_RemoveRopeMoo.cs",
+   "newFile": "Source/MugirlRace/Features/Roping/Jobs/JobDriver_UnropeMugirl.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "No 'Moo'; 'Mugirl' kept because vanilla has JobDriver_Unrope; driverClass JobDefs.xml:14",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.JobDriver_RopeMoo",
+   "new": "Mugirl.Features.Roping.JobDriver_RopeMugirl",
+   "oldFile": "Source/MugirlRace/Features/Roping/Jobs/JobDriver_RopeMoo.cs",
+   "newFile": "Source/MugirlRace/Features/Roping/Jobs/JobDriver_RopeMugirl.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "No 'Moo'; driverClass JobDefs.xml:6",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.JobDriver_RopeToWallRopeHitch",
+   "new": "Mugirl.Features.Roping.JobDriver_RopeToHitch",
+   "oldFile": "Source/MugirlRace/Features/Roping/Jobs/JobDriver_RopeToWallRopeHitch.cs",
+   "newFile": "Source/MugirlRace/Features/Roping/Jobs/JobDriver_RopeToHitch.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "Also used for CaravanPackingSpot (MugirlPatch.xml:37-50), old name too narrow; driverClass JobDefs.xml:50",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.JobDriver_UnlockSlaveApparelGear",
+   "new": "Mugirl.Features.Restraints.JobDriver_UnlockRestraint",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Jobs/JobDriver_UnlockSlaveApparelGear.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Jobs/JobDriver_UnlockRestraint.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "Terminology; driverClass JobDefs.xml:29",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.JobDriver_UseItemOn",
+   "new": "Mugirl.Features.Restraints.JobDriver_UseItemOn",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Jobs/JobDriver_UseItemOn.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Jobs/JobDriver_UseItemOn.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "TEMPORARY Wave R name (root namespace forbidden); Wave S deletes the type together with JobDef GiveSlaveApparelGear (never issued by any build, report A7); Wave S overrides the generated LegacyTypes entry with Drop(never issued)",
+   "transitional": {
+    "waveS": "delete",
+    "upgrade": "Drop (end job (never issued))"
+   },
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.JobDriver_Wear_TryMakePreToilReservations_SlaveApparel_Patch",
+   "new": "Mugirl.Features.Restraints.Harmony_JobDriver_Wear_TryMakePreToilReservations",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Patches/JobDriverWearPatches.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Patches/Harmony_JobDriver_Wear_TryMakePreToilReservations.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming; one type per file",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.JobDriver_Wear_TryUnequipSomething_SlaveApparel_Patch",
+   "new": "Mugirl.Features.Restraints.Harmony_JobDriver_Wear_TryUnequipSomething",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Patches/JobDriverWearPatches.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Patches/Harmony_JobDriver_Wear_TryUnequipSomething.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming; one type per file",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.JobGiver_FollowRoper",
+   "new": "Mugirl.Features.Roping.JobGiver_MugirlFollowRoper",
+   "oldFile": "Source/MugirlRace/Features/Roping/AI/JobGiver_FollowRoper.cs",
+   "newFile": "Source/MugirlRace/Features/Roping/AI/JobGiver_MugirlFollowRoper.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Short name equals vanilla RimWorld.JobGiver_FollowRoper (design 3.2 rule b); Class= Mugirl_ThinkTreeDefs.xml:12",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.JobGiver_PrisonerEscape_RopedBlock_Patch",
+   "new": "Mugirl.Features.Roping.Harmony_JobGiver_PrisonerEscape_TryGiveJob",
+   "oldFile": "Source/MugirlRace/Features/Roping/Patches/JobGiver_PrisonerEscape_RopedBlock_Patch.cs",
+   "newFile": "Source/MugirlRace/Features/Roping/Patches/Harmony_JobGiver_PrisonerEscape_TryGiveJob.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.JobGiver_WanderRoped",
+   "new": "Mugirl.Features.Roping.JobGiver_WanderRoped",
+   "oldFile": "Source/MugirlRace/Features/Roping/AI/JobGiver_WanderRoped.cs",
+   "newFile": "Source/MugirlRace/Features/Roping/AI/JobGiver_WanderRoped.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "TEMPORARY Wave R name (root namespace forbidden); Wave S deletes the type: logic identical to vanilla Verse.AI.JobGiver_WanderRoped (decompiled rw17) except ctor values; Wave S switches Mugirl_ThinkTreeDefs.xml:38 to the vanilla class with <wanderRadius>4</wanderRadius><ticksBetweenWandersRange>500~800</ticksBetweenWandersRange>",
+   "transitional": {
+    "waveS": "delete",
+    "upgrade": "none (not save-visible)"
+   },
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.MapRopingIndex",
+   "new": "Mugirl.Features.Roping.MapRopingIndex",
+   "oldFile": "Source/MugirlRace/Features/Roping/MapRopingIndex.cs",
+   "newFile": "Source/MugirlRace/Features/Roping/MapRopingIndex.cs",
+   "saveVisible": true,
+   "xmlVisible": false,
+   "reason": "TEMPORARY Wave R name (root namespace forbidden); Wave S deletes the type (plan S2.4): field-less MapComponent written as an empty <li Class=\"Mugirl.MapRopingIndex\" /> in every map of S5-S11 (real-saves.md sections 1-2); Wave S overrides the generated LegacyTypes entry with Drop(remove the component li)",
+   "transitional": {
+    "waveS": "delete",
+    "upgrade": "Drop (remove map/components li)"
+   },
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.Patch_FoodUtility_IsAcceptablePreyFor_Mugirl",
+   "new": "Mugirl.Features.Grazing.Harmony_FoodUtility_IsAcceptablePreyFor",
+   "oldFile": "Source/MugirlRace/Features/Roping/Patches/Patch_FoodUtility_IsAcceptablePreyFor_Mugirl.cs",
+   "newFile": "Source/MugirlRace/Features/Grazing/Harmony_FoodUtility_IsAcceptablePreyFor.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Race diet rule, not roping (its own comment says it only sits in Roping for historical reasons); moves to the Grazing feature (Mugirl food behaviour). The Grazing owner changes [MugirlPatch] module 'Roping' -> Grazing in Wave S",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.Patch_PawnDraftController_GetGizmos",
+   "new": "Mugirl.Features.Roping.Harmony_Pawn_DraftController_GetGizmos",
+   "oldFile": "Source/MugirlRace/Features/Roping/Patches/Patch_PawnDraftController_GetGizmos.cs",
+   "newFile": "Source/MugirlRace/Features/Roping/Patches/Harmony_Pawn_DraftController_GetGizmos.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.Patch_RestraintsUtility_InRestraints",
+   "new": "Mugirl.Features.Roping.Harmony_RestraintsUtility_InRestraints",
+   "oldFile": "Source/MugirlRace/Features/Roping/Patches/Patch_RestraintsUtility_InRestraints.cs",
+   "newFile": "Source/MugirlRace/Features/Roping/Patches/Harmony_RestraintsUtility_InRestraints.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.Patch_RopingTick",
+   "new": "Mugirl.Features.Roping.Harmony_Pawn_RopeTracker_RopingTick",
+   "oldFile": "Source/MugirlRace/Features/Roping/Patches/Patch_RopingTick.cs",
+   "newFile": "Source/MugirlRace/Features/Roping/Patches/Harmony_Pawn_RopeTracker_RopingTick.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.Patch_SlaveRebellionUtility_InitiateSlaveRebellionMtbDays",
+   "new": "Mugirl.Features.Restraints.Harmony_SlaveRebellionUtility_InitiateSlaveRebellionMtbDays",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Patches/Harmony_InitiateSlaveRebellionMtbDays.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Patches/Harmony_SlaveRebellionUtility_InitiateSlaveRebellionMtbDays.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming; file name = type name",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.PawnGenerator_GeneratePawn_Patch",
+   "new": "Mugirl.Features.Restraints.Harmony_PawnGenerator_GeneratePawn_LockRestraints",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Patches/Harmony_PawnGenerator_Patch.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Patches/Harmony_PawnGenerator_GeneratePawn_LockRestraints.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming with purpose (target shared with Harmony_CorporateUniforms, Harmony_PawnGenerator_NewbornVisuals, Harmony_WeaponWheel_EnemyLoadout per patch-targets.txt). Its run-last order relied on the FullName sort (file comment :5-6): needs explicit [HarmonyPriority(Priority.Last)] from Wave A4 before this rename",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.PawnSlaveStatusUtility",
+   "new": "Mugirl.Features.Restraints.PawnSlaveStatusUtility",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Interaction/PawnSlaveStatusUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Interaction/PawnSlaveStatusUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "TEMPORARY Wave R name (root namespace forbidden); Wave S deletes the type (plan S2.16: the single DisplayName helper with untranslated 'null'/'noname' literals merges into KeyUnlockFloatMenu)",
+   "transitional": {
+    "waveS": "merge",
+    "upgrade": "none (not save-visible)"
+   },
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.Pawn_ApparelTracker_ExposeData_SlaveApparel_Patch",
+   "new": "Mugirl.Features.Restraints.Harmony_Pawn_ApparelTracker_ExposeData",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Patches/ApparelTrackerPatches.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Patches/Harmony_Pawn_ApparelTracker_ExposeData.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "TEMPORARY Wave R name (root namespace forbidden); Wave S deletes the type (legacy lock-list repair, report A4; replaced by DOM step Restraints.WornLockList)",
+   "transitional": {
+    "waveS": "delete",
+    "upgrade": "none (not save-visible)"
+   },
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.Pawn_ApparelTracker_TryDropFull_SlaveApparel_Patch",
+   "new": "Mugirl.Features.Restraints.Harmony_Pawn_ApparelTracker_TryDrop",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Patches/ApparelTrackerPatches.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Patches/Harmony_Pawn_ApparelTracker_TryDrop.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming; one type per file",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.Pawn_ApparelTracker_Unlock_SlaveApparel_Patch",
+   "new": "Mugirl.Features.Restraints.Harmony_Pawn_ApparelTracker_Unlock",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Patches/ApparelTrackerPatches.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Patches/Harmony_Pawn_ApparelTracker_Unlock.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming Harmony_<Type>_<Member> (design 3.2); one type per file",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.Pawn_ApparelTracker_Wear_SlaveApparelAutoStage_Patch",
+   "new": "Mugirl.Features.Restraints.Harmony_Pawn_ApparelTracker_Wear",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Patches/ApparelTrackerPatches.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Patches/Harmony_Pawn_ApparelTracker_Wear.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming; one type per file",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.Pawn_ApparelTracker_WouldReplaceLockedApparel_SlaveApparel_Patch",
+   "new": "Mugirl.Features.Restraints.Harmony_Pawn_ApparelTracker_WouldReplaceLockedApparel",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Patches/ApparelTrackerPatches.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Patches/Harmony_Pawn_ApparelTracker_WouldReplaceLockedApparel.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming; one type per file",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.RestraintsUtility_ShouldShowRestraintsInfo_Patch",
+   "new": "Mugirl.Features.Roping.Harmony_RestraintsUtility_ShouldShowRestraintsInfo",
+   "oldFile": "Source/MugirlRace/Features/Roping/Patches/RestraintsUtility_ShouldShowRestraintsInfo_Patch.cs",
+   "newFile": "Source/MugirlRace/Features/Roping/Patches/Harmony_RestraintsUtility_ShouldShowRestraintsInfo.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.RopingService",
+   "new": "Mugirl.Features.Roping.RopingService",
+   "oldFile": "Source/MugirlRace/Features/Roping/RopingService.cs",
+   "newFile": "Source/MugirlRace/Features/Roping/RopingService.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Namespace only; cross-feature callers (Incidents, Mounting, Corporate) keep the same member names",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.SlaveApparel",
+   "new": "Mugirl.Features.Restraints.RestraintApparel",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Apparel/SlaveApparel.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Apparel/RestraintApparel.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "Restraint terminology (design 3.2); thingClass BondageApparel_Base.xml:5; saved as Class= on map things and wornApparel/inventory li (real-saves.md section 2: S5, S6, S10)",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.SlaveApparelAutoStageContext",
+   "new": "Mugirl.Features.Restraints.RestraintAutoStageContext",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Apparel/SlaveApparelAutoStageContext.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Apparel/RestraintAutoStageContext.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Restraint terminology, leave root namespace",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.SlaveApparelDropGuard",
+   "new": "Mugirl.Features.Restraints.RestraintDropGuard",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Apparel/SlaveApparelDropGuard.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Apparel/RestraintDropGuard.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Restraint terminology",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.SlaveApparelExtensions",
+   "new": "Mugirl.Features.Restraints.RestraintApparelUtility",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Apparel/SlaveApparelExtensions.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Apparel/RestraintApparelUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "XUtility convention for static helpers; avoids confusion with RestraintExtension (DefModExtension) and vanilla RimWorld.RestraintsUtility",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.SlaveApparelWearGuard",
+   "new": "Mugirl.Features.Restraints.RestraintWearGuard",
+   "oldFile": "Source/MugirlRace/Features/Restraints/Apparel/SlaveApparelWearGuard.cs",
+   "newFile": "Source/MugirlRace/Features/Restraints/Apparel/RestraintWearGuard.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Restraint terminology",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.TakeToPreferredBedJob_Patch",
+   "new": "Mugirl.Features.Roping.Harmony_WorkGiver_Warden_TakeToBed_TakeToPreferredBedJob",
+   "oldFile": "Source/MugirlRace/Features/Roping/Patches/TakeToPreferredBedJob_Patch.cs",
+   "newFile": "Source/MugirlRace/Features/Roping/Patches/Harmony_WorkGiver_Warden_TakeToBed_TakeToPreferredBedJob.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming (the target type was missing from the name)",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.ThinkNode_ConditionalRoped",
+   "new": "Mugirl.Features.Roping.ThinkNode_ConditionalRoped",
+   "oldFile": "Source/MugirlRace/Features/Roping/AI/ThinkNode_ConditionalRoped.cs",
+   "newFile": "Source/MugirlRace/Features/Roping/AI/ThinkNode_ConditionalRoped.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "TEMPORARY Wave R name (root namespace forbidden); Wave S deletes the type: duplicate of vanilla RimWorld.ThinkNode_ConditionalRoped (decompiled rw17; only adds pawn?. which a think node never needs); Wave S switches Mugirl_ThinkTreeDefs.xml:10 to the vanilla class",
+   "transitional": {
+    "waveS": "delete",
+    "upgrade": "none (not save-visible)"
+   },
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.ThoughtWorker_Roped",
+   "new": "Mugirl.Features.Roping.ThoughtWorker_Roped",
+   "oldFile": "Source/MugirlRace/Features/Roping/Thoughts/ThoughtWorker_Roped.cs",
+   "newFile": "Source/MugirlRace/Features/Roping/Thoughts/ThoughtWorker_Roped.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Namespace only; workerClass Thoughts_Traits.xml:139",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.ThoughtWorker_Roper",
+   "new": "Mugirl.Features.Roping.ThoughtWorker_Roper",
+   "oldFile": "Source/MugirlRace/Features/Roping/Thoughts/ThoughtWorker_Roper.cs",
+   "newFile": "Source/MugirlRace/Features/Roping/Thoughts/ThoughtWorker_Roper.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Namespace only; workerClass Thoughts_Traits.xml:118",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl.Toils_RopeMoo",
+   "new": "Mugirl.Features.Roping.RopingToils",
+   "oldFile": "Source/MugirlRace/Features/Roping/Jobs/Toils_RopeMoo.cs",
+   "newFile": "Source/MugirlRace/Features/Roping/Jobs/RopingToils.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "No 'Moo'; vanilla already has Toils_Rope",
+   "module": "restraints"
+  }
+ ],
+ "fileMoves": [
+  {
+   "old": "Source/MugirlRace/Features/Restraints/Apparel/SlaveApparelDef.cs",
+   "new": "Source/MugirlRace/PublicApi/SlaveApparelDef.cs",
+   "module": "restraints",
+   "reason": "D5/decisions section 5: Mugirl.SlaveApparelDef is public API (used by dependents); its name stays, the file moves to PublicApi/ (root namespace allowed only there)."
+  },
+  {
+   "old": "Source/MugirlRace/Features/Restraints/Comps/Comp_MagneticShackles.Gizmos.cs",
+   "new": "Source/MugirlRace/Features/Restraints/Comps/CompMagneticShackles.Gizmos.cs",
+   "module": "restraints"
+  }
+ ],
+ "defs": [
+  {
+   "defType": "FleckDef",
+   "old": "MugirlWashMentalEyes",
+   "new": "Mugirl_Fleck_BrainwashEyes",
+   "saveVisible": false,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/ThingDefs_Misc/Items_Filth.xml:87",
+    "1.7/Defs/HediffDefs/Hediffs_AdvancedRestraints.xml:220",
+    "1.7/Defs/HediffDefs/Hediffs_AdvancedRestraints.xml:406",
+    "1.7/Defs/HediffDefs/Hediffs_AdvancedRestraints.xml:590",
+    "Source/MugirlRace/DefOf/Mugirl_DefOf.cs:112"
+   ],
+   "module": "restraints",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "restraints: As above. Items_Filth.xml:87, Hediffs_AdvancedRestraints.xml:220,406,590; the Mugirl_DefOf.cs:112 field has no C# reader and is removed in Wave S | content: Missing underscore; misleading 'WashMental'. Fleck_ category segment, matching Mugirl_Mote_BrainwashEyes and the identical entry in the restraints spec. Never saved."
+  },
+  {
+   "defType": "HediffDef",
+   "old": "Mugirl_BrainWashing_Level1",
+   "new": "Mugirl_Brainwashing_Level1",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "BrainWash/Brainwash casing (content.md B.4/B.5; matches Mugirl_BrainwashHelmet/Mugirl_BrainwashHappy). Saved on pawns and as ActiveBrainwashPerformance.sourceHediffDef; no C# reference",
+   "module": "restraints"
+  },
+  {
+   "defType": "HediffDef",
+   "old": "Mugirl_BrainWashing_Level2",
+   "new": "Mugirl_Brainwashing_Level2",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "BrainWash/Brainwash casing (content.md B.4/B.5; matches Mugirl_BrainwashHelmet/Mugirl_BrainwashHappy). Saved on pawns and as ActiveBrainwashPerformance.sourceHediffDef; no C# reference",
+   "module": "restraints"
+  },
+  {
+   "defType": "HediffDef",
+   "old": "Mugirl_BrainWashing_Level3",
+   "new": "Mugirl_Brainwashing_Level3",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "BrainWash/Brainwash casing (content.md B.4/B.5; matches Mugirl_BrainwashHelmet/Mugirl_BrainwashHappy). Saved on pawns and as ActiveBrainwashPerformance.sourceHediffDef; no C# reference",
+   "module": "restraints"
+  },
+  {
+   "defType": "HediffDef",
+   "old": "Mugirl_BrainWashing_Level4",
+   "new": "Mugirl_Brainwashing_Level4",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "BrainWash/Brainwash casing (content.md B.4/B.5; matches Mugirl_BrainwashHelmet/Mugirl_BrainwashHappy). Saved on pawns and as ActiveBrainwashPerformance.sourceHediffDef; no C# reference",
+   "module": "restraints"
+  },
+  {
+   "defType": "HediffDef",
+   "old": "Mugirl_BrainWashing_Level5",
+   "new": "Mugirl_Brainwashing_Level5",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "BrainWash/Brainwash casing (content.md B.4/B.5; matches Mugirl_BrainwashHelmet/Mugirl_BrainwashHappy). Saved on pawns and as ActiveBrainwashPerformance.sourceHediffDef; no C# reference",
+   "module": "restraints"
+  },
+  {
+   "defType": "JobDef",
+   "old": "CrackBondageGear",
+   "new": "Mugirl_CrackRestraint",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "Unprefixed + terminology. Refs: JobDefs.xml:42, BondageApparel_Key.xml:137 (useJob)",
+   "module": "restraints"
+  },
+  {
+   "defType": "JobDef",
+   "old": "ForceUnlockSlaveApparel",
+   "new": "Mugirl_ForceUnlockRestraint",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "Unprefixed + terminology. Refs: JobDefs.xml:35, Mugirl_DefOf.cs:53, FloatMenuProvider_ForceUnlockSlaveApparel.cs:102",
+   "module": "restraints"
+  },
+  {
+   "defType": "JobDef",
+   "old": "JobDriver_RemoveRopeMoo",
+   "new": "Mugirl_Unrope",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "Same as above. Refs: JobDefs.xml:13, Mugirl_DefOf.cs:38, FloatMenuProvider_RopeMoo.cs:58",
+   "module": "restraints"
+  },
+  {
+   "defType": "JobDef",
+   "old": "JobDriver_RopeMoo",
+   "new": "Mugirl_Rope",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "defName was the driver class name and carries the MooGirl-era 'Moo'; parallel to Mugirl_Mount/Mugirl_Dismount. Refs: JobDefs.xml:5, Mugirl_DefOf.cs:36, FloatMenuProvider_RopeMoo.cs:45, zh DefInjected JobDef/JobDefs.xml",
+   "module": "restraints"
+  },
+  {
+   "defType": "JobDef",
+   "old": "Job_FollowRoper",
+   "new": "Mugirl_FollowRoper",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "Job_ prefix inconsistent. Refs: JobDefs.xml:64, Mugirl_DefOf.cs:44, JobGiver_FollowRoper.cs:37, RopingService.cs:59",
+   "module": "restraints"
+  },
+  {
+   "defType": "JobDef",
+   "old": "RopeToBuild",
+   "new": "Mugirl_RopeToHitch",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "Unprefixed and inaccurate. Refs: JobDefs.xml:49, Building_Rope.xml:60, Patches/MugirlPatch.xml:44, Mugirl_DefOf.cs:40, CompRopeToBuild.cs:52",
+   "module": "restraints"
+  },
+  {
+   "defType": "JobDef",
+   "old": "UnlockSlaveApparel",
+   "new": "Mugirl_UnlockRestraint",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "Unprefixed + Restraint terminology. Refs: JobDefs.xml:28, BondageApparel_Key.xml:29 (useJob)",
+   "module": "restraints"
+  },
+  {
+   "defType": "SoundDef",
+   "old": "Mugirl_BrainWashing_First",
+   "new": "Mugirl_Brainwashing_First",
+   "saveVisible": false,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "Casing; Bondage_Sounds.xml and the sounds lists in Hediffs_AdvancedRestraints.xml",
+   "module": "restraints"
+  },
+  {
+   "defType": "SoundDef",
+   "old": "Mugirl_BrainWashing_HeartBeat",
+   "new": "Mugirl_Brainwashing_HeartBeat",
+   "saveVisible": false,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "Casing; Bondage_Sounds.xml and the sounds lists in Hediffs_AdvancedRestraints.xml",
+   "module": "restraints"
+  },
+  {
+   "defType": "SoundDef",
+   "old": "Mugirl_BrainWashing_RingLong",
+   "new": "Mugirl_Brainwashing_RingLong",
+   "saveVisible": false,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "Casing; Bondage_Sounds.xml and the sounds lists in Hediffs_AdvancedRestraints.xml",
+   "module": "restraints"
+  },
+  {
+   "defType": "SoundDef",
+   "old": "Mugirl_BrainWashing_RingShort",
+   "new": "Mugirl_Brainwashing_RingShort",
+   "saveVisible": false,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "Casing; Bondage_Sounds.xml and the sounds lists in Hediffs_AdvancedRestraints.xml",
+   "module": "restraints"
+  },
+  {
+   "defType": "SoundDef",
+   "old": "Mugirl_BrainWashing_Second",
+   "new": "Mugirl_Brainwashing_Second",
+   "saveVisible": false,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "Casing; Bondage_Sounds.xml and the sounds lists in Hediffs_AdvancedRestraints.xml",
+   "module": "restraints"
+  },
+  {
+   "defType": "ThingCategoryDef",
+   "old": "Mugirl_Slave",
+   "new": "Mugirl_Restraints",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": true,
+   "explicitRefs": [
+    "1.7/Defs/Apparel/Apparel_Bondage/BondageApparel_Category.xml:4",
+    "1.7/Defs/Apparel/Apparel_Bondage/BondageApparel_Base.xml:44",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingCategoryDef/BondageApparel_Category.xml:4"
+   ],
+   "reason": "Different concepts share 'Mugirl_Slave' (PawnKindDef Mugirl_Slave, backstory category string Mugirl_Slave, this ThingCategoryDef). Only reachable from saves via ThingFilter.overrideRootDef (decompiled rw17 ThingFilter.ExposeData), so the map entry is defensive. Do NOT touch PawnKindDef Mugirl_Slave or the backstory category strings (BackstoryDef.xml:49,163, Factions_Player.xml:23, CorporateServices.xml:54, PawnKinds_GiantCorp.xml:329, PawnKinds_Slave.xml:12)",
+   "module": "restraints",
+   "notRefs": [
+    "Source/MugirlRace/Features/Incidents/Shared/MugirlGeneratedPawnUtility.cs:8"
+   ]
+  },
+  {
+   "defType": "ThingDef",
+   "old": "MugirlWashMentalEyesInHead",
+   "new": "Mugirl_Mote_BrainwashEyes",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/ThingDefs_Misc/Items_Filth.xml:70",
+    "1.7/Defs/HediffDefs/Hediffs_AdvancedRestraints.xml:214",
+    "1.7/Defs/HediffDefs/Hediffs_AdvancedRestraints.xml:401",
+    "1.7/Defs/HediffDefs/Hediffs_AdvancedRestraints.xml:585"
+   ],
+   "module": "restraints",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "restraints: No prefix separator, meaningless name (content.md B.5); mote (isSaveable false). Items_Filth.xml:70 (file shared with milk filth), Hediffs_AdvancedRestraints.xml:214,401,585 | content: Missing underscore; 'WashMental' is a literal translation of brainwash; it is the overhead mote of the brainwash hediffs. Mote_ category segment as in vanilla Mote_*. The mote itself is never saved (MoteBase isSaveable=false, Data/Core/Defs/Effects/Mote_Visual.xml:17), but ThingFilter allowedDefs lists hold every ThingDef (real saves S2: MooGirlWashMentalEyesInHead in allowedDefs, real-saves.md section 5).",
+   "mote": true
+  },
+  {
+   "defType": "ThingDef",
+   "old": "Mugirl_Slaveboots",
+   "new": "Mugirl_SlaveBoots",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "Casing error (content.md B.5). Thing IDs Mugirl_Slaveboots<n> exist in real saves S5/S10 (real-saves.json defnodes); implied Make_ recipe",
+   "module": "restraints"
+  },
+  {
+   "defType": "ThingDef",
+   "old": "Mugirl_Slavegauntlet",
+   "new": "Mugirl_SlaveGauntlet",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "Casing error; thing IDs in S6; also a NextSlaveApparelDefs li at BondageApparel_Shell.xml:73; implied Make_ recipe",
+   "module": "restraints"
+  },
+  {
+   "defType": "ThingDef",
+   "old": "Mugirl_Slaveshackles",
+   "new": "Mugirl_SlaveShackles",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "Casing error; thing IDs in S6/S10; implied Make_ recipe",
+   "module": "restraints"
+  },
+  {
+   "defType": "ThingDef",
+   "old": "Mugirl_Slavestockings",
+   "new": "Mugirl_SlaveStockings",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "Casing error; thing IDs in S6; also a NextSlaveApparelDefs li at BondageApparel_Shell.xml:226; implied Make_ recipe",
+   "module": "restraints"
+  },
+  {
+   "defType": "ThingDef",
+   "old": "WallRopeHitch",
+   "new": "Mugirl_WallRopeHitch",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/ThingDefs_Building/Building_Rope.xml:4",
+    "1.7/Defs/QuestScriptDefs/CorporateFusionResearchSite.xml:483",
+    "1.7/Defs/QuestScriptDefs/CorporateFusionResearchSite.xml:491",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Building_Rope.xml:6",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Building_Rope.xml:8",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Building_Rope.xml:10"
+   ],
+   "reason": "Unprefixed. Saved as things, thing IDs/Thing_ refs (design 5.4) and implied Blueprint_/Blueprint_Install_/Frame_ defs; 45 allowedDefs refs in 8 real saves (real-saves.json defs/WallRopeHitch). Texture path Things/Building/WallRopeHitch/WallRopeHitch is public API and stays. Unusual reference site: PrefabDef element NAME in CorporateFusionResearchSite.xml:483/491",
+   "module": "restraints"
+  },
+  {
+   "defType": "TraitDef",
+   "old": "Mugirl_BrainWashObey",
+   "new": "Mugirl_BrainwashObey",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/TraitDefs/TraitDefs.xml:50",
+    "1.7/Defs/HediffDefs/Hediffs_AdvancedRestraints.xml:728",
+    "Source/MugirlRace/DefOf/Mugirl_DefOf.cs:114",
+    "Source/MugirlRace/Features/Restraints/Patches/Harmony_InitiateSlaveRebellionMtbDays.cs:12"
+   ],
+   "module": "restraints",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "restraints: Casing. TraitDefs.xml:50, Hediffs_AdvancedRestraints.xml:728, Mugirl_DefOf.cs:114, Harmony_InitiateSlaveRebellionMtbDays.cs:12 | content: Casing inconsistency BrainWash vs Brainwash (see Mugirl_BrainwashPeace)."
+  },
+  {
+   "defType": "TraitDef",
+   "old": "Mugirl_BrainWashPeace",
+   "new": "Mugirl_BrainwashPeace",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/TraitDefs/TraitDefs.xml:34",
+    "1.7/Defs/HediffDefs/Hediffs_AdvancedRestraints.xml:724"
+   ],
+   "module": "restraints",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "restraints: Casing. TraitDefs.xml:34, Hediffs_AdvancedRestraints.xml:724 | content: Casing inconsistency BrainWash vs Brainwash (Mugirl_BrainwashHelmet, Mugirl_BrainwashHappy). TraitDefs.xml is a content file; the Restraints spec owns the Mugirl_BrainWashing_Level* hediffs. If that spec lists this TraitDef too, the entries are identical."
+  }
+ ],
+ "abstractNames": [
+  {
+   "old": "Make_MugirlKeys",
+   "new": "Mugirl_MakeKeyBase",
+   "reason": "No mod prefix, inconsistent with its Mugirl_MakeKey_* children (Recipes_Mugirl.xml:4,12,60,115,170; content.md B.5)",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl_Base_SlaveApparelKey",
+   "new": "Mugirl_SlaveApparelKeyBase",
+   "reason": "'Base_' infix -> <X>Base suffix (content.md B.3/B.5); key defNames Mugirl_SlaveApparelKey_* stay (public)",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl_BrainWashApparel",
+   "new": "Mugirl_SlaveApparel_Brainwash",
+   "reason": "Casing + joins the Mugirl_SlaveApparel_<Group> family whose root Mugirl_SlaveApparel_Base is public and frozen (BondageApparel_Spacer.xml:441,459)",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl_OnSkin_Lower_SlaveApparel",
+   "new": "Mugirl_SlaveApparel_OnSkin_Lower",
+   "reason": "Same family consistency (BondageApparel_OnSkin.xml:114,142)",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl_OnSkin_SlaveApparel",
+   "new": "Mugirl_SlaveApparel_OnSkin",
+   "reason": "Word order inconsistent with the Mugirl_SlaveApparel_<Group> family (BondageApparel_OnSkin.xml:4 and its ParentName refs); no external user",
+   "module": "restraints"
+  },
+  {
+   "old": "Mugirl_OnSkin_Upper_SlaveApparel",
+   "new": "Mugirl_SlaveApparel_OnSkin_Upper",
+   "reason": "Same family consistency (BondageApparel_OnSkin.xml:41,73)",
+   "module": "restraints"
+  }
+ ]
+}

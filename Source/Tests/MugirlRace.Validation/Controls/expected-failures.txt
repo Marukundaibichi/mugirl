@@ -1,0 +1,213 @@
+# 负对照（Controls/NegativeControl、Controls/ModRoot）必须触发的规则；任何一条在任一运行时上没有触发，tools/Validate.ps1 -SelfTest 就失败。
+# 每行一条：
+#   [warning: |absent: ]检查 | 结果主题的子串 [| 结果消息的子串]<TAB>违规证明了什么
+#   "warning: " 匹配警告而不是失败；"absent: " 要求没有任何失败或警告匹配（正对照）。
+A.dependencies | control.missing.dependency	a declared dependency that is not installed
+A.about | About.xml packageId | expected 'HAR.MugirlRace'	packageId differs from Baselines/about.json
+A.about | About.xml supportedVersions 1.6	supportedVersions must list 1.6 and 1.7
+A.about | About.xml modDependencies Control.Missing.Dependency | No steamWorkshopUrl	dependency without a download location
+A.about | About.xml loadAfter brrainz.harmony	missing loadAfter entry
+A.about | About.xml incompatibleWith Luca.MugirlFacialAnimation	missing incompatibleWith entry
+A.layout | /,1.7,Common	LoadFolders.xml differs from the golden layout
+A.layout | LoadFolders.xml v1.7 | Common	listed load folder that does not exist
+A.layout | 1.7/Assemblies/MugirlRace.deps.json	build host files in a loaded Assemblies folder
+A.assembly-refs | Waylith.UnityCompat	reference to the Unity compatibility runtime
+A.assembly-refs | UnityEngine.CoreModule	reference to a Unity module assembly
+absent: A.assembly-refs | AlienRace	the HAR 1.6 compile reference is legitimate (positive control)
+B.unity-boundary | UnityEngine.Mathf	Unity logic outside the boundary whitelist
+B.unity-boundary | stale: UnityEngine.Rect	whitelist entries that nothing uses
+B.unity-boundary | UnityEngine.GUI::get_color() @ Mugirl.UnityLayerViolations | outside Mugirl.Platform	whitelisted Unity service used outside Mugirl.Platform
+B.waylith-namespace | Mugirl.UnityLayerViolations	Waylith used outside Mugirl.Platform
+B.banned-symbols | T:UnityEngine.Mathf @ Mugirl.UnityLayerViolations::ClampWithMathf	banned symbol in the IL (analyzer bypassed)
+B.banned-symbols | Mugirl.UnityLayerViolations::ClampWithMathfListed | only in	exemption outside the namespaces that may suppress RS0030
+B.banned-symbols | M:UnityEngine.Mathf.NoSuchMethodControl	BannedSymbols.txt entry that resolves to nothing
+B.banned-symbols | banned-symbol-exemptions.txt | Stale	exemption that matches nothing
+B.architecture | verse-log: Verse.Log::Warning @ Mugirl.ArchitectureViolations::LogDirectly	direct Verse.Log call outside MugirlLog
+B.architecture | tick-manager: Verse.Find::get_TickManager @ Mugirl.ArchitectureViolations	Find.TickManager outside MugirlTickUtility
+B.architecture | current-game: Verse.Current::get_Game @ Mugirl.ArchitectureViolations	Current.Game outside the core helpers
+B.architecture | faction-ofplayer: RimWorld.Faction::get_OfPlayer	Faction.OfPlayer instead of OfPlayerSilentFail
+B.architecture | game-components: Verse.Game::components	runtime GameComponent list access
+B.architecture | harmony-patchall: HarmonyLib.Harmony::PatchAll	coarse PatchAll call
+B.architecture | defdatabase-getnamed: Verse.DefDatabase`1::GetNamed @ Mugirl.ControlLookups::MissingDef	bare DefDatabase.GetNamed lookup
+B.architecture | mugirl-identity: Mugirl.Core.MugirlDefOf::MugirlBody @ Mugirl.ControlLookups	Mugirl body identity outside MugirlIdentity
+B.architecture | mugirl-identity: "MugirlBody" @ Mugirl.ControlLookups	MugirlBody literal outside MugirlIdentity
+B.architecture | third-party-type-lookup: HarmonyLib.AccessTools::TypeByName @ Mugirl.ControlReflection	TypeByName outside the Compatibility layer
+B.architecture | external-breast-hediffs: "HugeBreasts" @ Mugirl.ControlLookups	external hediff defName outside its cache
+B.base-calls | Mugirl.Thought_ControlNoBase::ExposeData	override that skips base.ExposeData
+B.empty-types | Mugirl.EmptyControlType	type without members that is not a reviewed marker
+B.empty-types | empty-types.allow.txt | Stale	allow-list entry that matches nothing
+B.static-caches | Mugirl.ControlScribeHolder.UncommentedCache	static cache without a StaticCacheLifecycle comment
+B.scribe-defaults | Mugirl.ControlScribeHolder::lockCount (lockCount) | differs from the field initializer	Scribe default (omitted: 0) differs from the initializer 3
+B.scribe-defaults | Mugirl.ControlScribeDefaults::countdown (countdown) | differs from the field initializer	explicit Scribe default 30 with initializer 60
+B.scribe-defaults | Mugirl.ControlScribeDefaults::computed (computed) | forceSave	field set from a constructor parameter, saved without forceSave
+B.scribe-defaults | scribe-defaults.allow.txt | Stale	debt entry that matches nothing
+B.namespaces | segment: Mugirl.Control.UI (UI) | shadows	namespace segment that shadows Verse.UI
+B.namespaces | segment: Mugirl.Control.Apparel (Apparel) | equals the game type	namespace segment equal to a game type the mod uses
+B.namespaces | root: Mugirl.EmptyControlType	type in the root namespace outside PublicApi/
+absent: B.namespaces | root: Mugirl.ControlPublicAlias	listed public alias under PublicApi/ may live in the root namespace (positive control)
+B.namespaces | structure-debt.allow.txt | Stale	debt entry that matches nothing
+B.component-ctors | ctor: Mugirl.ControlComponentWithoutCtor | without a public	GameComponent without the (Game) constructor
+B.component-ctors | ctor: Mugirl.ControlComponentWithSideEffects: uses Verse.Find	component constructor that reaches Find (through a mod method)
+B.component-ctors | ctor: Mugirl.ControlComponentWithSideEffects: writes static	component constructor that writes a static field
+B.component-ctors | ctor: Mugirl.Control.Structure.ControlComponentNewobj: uses Verse.Current::get_Game (via new ControlCtorHelper)	component constructor that reaches Current through newobj of a mod type
+B.component-ctors | ctor: Mugirl.Control.Structure.ControlComponentStatic: uses Verse.Find::get_TickManager (via static constructor of ControlStaticState)	component constructor that triggers a static constructor with side effects
+B.save-confinement | patch: Mugirl.ControlConfinedPatch -> Verse.BackCompatibility	patch of save-loading internals outside SaveUpgrade/
+B.save-confinement | patch: Mugirl.Control.Structure.ControlManualPatcher -> Verse.ScribeLoader::FinalizeLoading	manual Harmony.Patch of save-loading internals outside SaveUpgrade/
+absent: B.save-confinement | Mugirl.SaveUpgrade.ControlUpgradeHook	the upgrade layer may patch save-loading internals (positive control)
+B.architecture | save-internals: Verse.ScribeLoader::curXmlParent @ Mugirl.ControlConfinedPatch	raw save XML read outside SaveUpgrade/
+absent: B.architecture | save-internals: Verse.ScribeLoader::curXmlParent @ Mugirl.SaveUpgrade.ControlUpgradeHook	the upgrade layer may read the raw save XML (positive control)
+B.patch-order | Verse.Pawn::Kill( | share priority	two same-kind Mugirl patches on one target without distinct priorities
+B.patch-order | - Verse.Pawn::NoSuchTarget()	golden patch order that no longer matches
+C.content-shadowing | Defs/ControlShadow.xml | Shadowed by 1.7/Defs/ControlShadow.xml	Defs file hidden by a same-named file of a higher-priority load folder
+C.definjected-paths | Mugirl_Control_Thing.notAField | has no field	DefInjected path to a field that does not exist
+C.definjected-paths | Mugirl_Control_Thing.comps.NoSuchHandle.label | has the handle	DefInjected list handle that names no item
+C.definjected-paths | Mugirl_Control_Thing.comps.5.label | out of range	DefInjected list index out of range
+C.public-api | type Mugirl.NoSuchPublicType | does not exist	frozen public type missing
+C.public-api | method Mugirl.ControlPublicAlias::Patchable() | NoInlining	patchable extension point without NoInlining
+C.public-api | def Mugirl_Control_Missing | no def	frozen defName missing
+C.public-api | xmlField Mugirl.ControlPublicAlias.missingField | has no field	frozen XML field missing
+absent: C.public-api | type Mugirl.ControlPublicAlias	existing public type (positive control)
+C.public-api | method Mugirl.ControlPublicAlias::PatchableUncalled() | no Mugirl code	patchable extension point that nothing calls any more
+absent: C.public-api | method Mugirl.ControlPublicAlias::PatchableCalled()	NoInlining extension point that mod code calls (positive control)
+C.public-api | harmonyId Control.NoSuchHarmonyId | no new Harmony	Harmony id that no new Harmony(id) uses
+C.save-upgrade | Mugirl.Control.Upgrade.Vanished | Undisposed legacy name	legacy save type neither present, mapped, consumed nor dropped
+absent: C.save-upgrade | Mugirl.Control.Upgrade.Accepted	undisposed line accepted by the ratchet file (positive control)
+warning: C.save-upgrade | save-upgrade-ratchet.control.txt | Disposed now	ratchet entry that is disposed now
+C.save-upgrade | OldComponent -> | is saved under	map target with the wrong save root
+C.save-upgrade | OldNoCtor -> | lacks the public	GameComponent target without the (Game) constructor
+C.save-upgrade | ChainA -> | Uncomposed chain	map chain A->B->C
+C.save-upgrade | Reuser -> | Name reuse	new name equal to another legacy type name
+C.save-upgrade | NeverExisted -> | Stale entry	map key that no legacy build contains
+C.save-upgrade | Mugirl_Control_OldThing -> | does not exist in DefDatabase	def renamed to a missing def
+C.save-upgrade | oldName -> | never reads or writes	label renamed to a label the owner never reads
+C.save-upgrade | LabelOwner/stillRead | Legacy label still read	renamed legacy label still read by domain code
+C.save-upgrade | Mugirl.Control.Upgrade.LabelOwner | default drift	default changed without a materialisation entry
+C.save-upgrade | Mugirl.Control.Upgrade.LabelOwner | Scribe kind changed	Deep label now saved as a reference
+C.save-upgrade | Paused -> | is not a member	enum member mapped to a non-member
+C.save-upgrade | step ControlStepLacking | does not contain the consumed name	step claims a name its golden before.xml lacks
+C.save-upgrade | step ControlStepWrongOwner | does not contain the consumed name	a same-named label under another owner cannot prove consumption
+C.save-upgrade | step ControlStepNoGolden | no golden fixture	consumption without golden fixtures
+C.save-upgrade | Mugirl.Control.Upgrade.LegacyDriver | no jobPolicies entry	legacy JobDriver without an in-flight policy
+C.save-upgrade | Mugirl.Control.Upgrade.OldSettings | settings.fileClass	settings class moved without a settings.fileClass entry
+C.save-upgrade | frozen: schema stamp	schema stamp type or label not the frozen one
+C.save-upgrade | frozen: Mod class	Mod class short name (settings file name) not MugirlMod
+C.save-upgrade | Mugirl.Control.Upgrade.OldComponent | Legacy type name used as a string	renamed legacy type name still used outside the upgrade layer
+C.save-upgrade | Mugirl_Control_OldGun -> | ends in a digit	ThingDef rename target ending in a digit (thing load IDs)
+C.save-upgrade | Mugirl_Control_OldManeuver -> | names are frozen	ManeuverDef renamed without a verb-ID step
+C.save-upgrade | OldScenPart -> | GetBackCompatibleType	side-document type renamed without the GetBackCompatibleType postfix (decisions D4)
+C.save-upgrade | step ControlStepStale consumes | Stale consumption	label consumption that names no legacy label of the selected owner
+C.save-upgrade | step ControlPostLoadUntested | no test	post-load step without a test
+C.save-upgrade | oldTool | has no tool	legacy tool id gone (verb load IDs)
+absent: C.save-upgrade | legacyCount	label of a renamed owner selected by the new class name (positive control)
+absent: C.save-upgrade | legacyFlag	label consumed with an upgrader-format label token (positive control)
+absent: C.save-upgrade | oldSlotLabel	Path selector resolved through the schema graph (positive control)
+absent: C.save-upgrade | OldMode	enum row written with the new enum name (positive control)
+absent: C.save-upgrade | OldSignal	value row matched by value with a declared context name (positive control)
+absent: C.save-upgrade | drift2	default drift with a materialisation entry (positive control)
+absent: C.save-upgrade | forced	default change of a forceSave label is no drift (positive control)
+absent: C.save-upgrade | HumanlikeConstant	vanilla def overridden by legacy content stays unchanged (positive control)
+absent: C.save-upgrade | StaticHelper	static class has no save root (positive control)
+absent: C.save-upgrade | customizationData	observed label of unknown origin is review-only (positive control)
+absent: C.save-upgrade | ControlPostLoadTested	post-load step mentioned by a test (positive control)
+absent: C.save-upgrade | step ControlStepGood	verified label consumption in the upgrader format (positive control)
+absent: C.translation-keys | key literal Mugirl.Control.Upgrade.Vanished	legacy type names in the upgrade layer are not translation keys (positive control)
+absent: C.translation-keys | key literal Mugirl.Control.Legacy.SavedKey	legacy saved Keyed value in the upgrade layer is not a translation key (positive control)
+absent: C.forbidden-patterns | SaveUpgrade/	legacy names inside the upgrade layer are allowed (positive control)
+C.xml-types | ThingDef[Mugirl_Control_Thing]/thingClass | not a Verse.Thing	Type value not assignable to the field's base
+C.xml-types | ThingDef[Mugirl_Control_Thing]/thingClas | doesn't correspond	element that matches no field
+C.xml-types | ThingDef[Mugirl_Control_Thing]/comps/li[1] | does not resolve	Class that resolves to nothing
+C.xml-types | ThingDef[Mugirl_Control_Thing] | ParentName	unknown parent
+C.patches | NoSuchDef_Control	patch operation that applies nowhere
+C.patches | Class=Mugirl.NoSuchComp_ControlPatch	unresolvable Class in a patch value
+C.patch-governance | 1.7/Patches/ControlPatches.xml	patch file without a PatchGovernance header
+C.def-references | researchPrerequisites | NoSuchResearch_Control	cross-reference to a def that does not exist
+C.def-references | costList | optional content	DLC-only def referenced without MayRequire
+C.def-conflicts | ThingDef/Mugirl_Control_Duplicate | Defined twice	def defined twice by the mod
+C.def-conflicts | ThingDef/Steel | Also defined by ludeon.rimworld	mod def that replaces a Core def
+C.defof | Mugirl.ControlDefOf.NoSuchThing_Control	DefOf field without a Def
+C.defof | Mugirl.ControlDefOf.Throne | optional content	optional-DLC def without [MayRequire]
+C.defof | Mugirl.ControlDefOf | EnsureInitializedInCtor	DefOf class without the initialization check
+C.def-lookups | ThingDef 'NoSuchThingDef_Control'	GetNamed of a def that does not exist
+C.def-lookups | HediffDef 'HugeBreasts' | always returns null	silent lookup outside the Compatibility layer of a def that exists nowhere
+C.translation-keys | Mugirl.Control.NoSuchKey (English)	missing English key
+C.translation-keys | Mugirl.Control.NoSuchKey (ChineseSimplified)	missing Chinese key
+C.translation-keys | dynamic translation in Mugirl.ControlLookups::DynamicKey	computed key without an allow-list entry
+C.translation-keys | key literal Mugirl.Control.LiteralOnlyKey (English)	key that reaches Translate only through a literal array
+absent: C.translation-keys | key literal Mugirl.Control.KeyLiteralControls	a type name of the mod is not a translation key (positive control)
+absent: C.translation-keys | key literal Mugirl.Control.Prefix.	a key prefix ending in a dot is not a translation key (positive control)
+C.keyed | Control_OnlyEnglish	English key without a Chinese translation
+C.keyed | Control_A (English) | more than once	duplicate Keyed key
+C.keyed | Control_Numbered | Numbered placeholders must match	numbered placeholders that differ between English and Chinese
+warning: C.keyed | Control_Placeholder | Placeholders differ	named placeholders that differ (a warning)
+C.language-files | Languages/English/Keyed/Shadow.xml | Present in several load folders	language file shadowed by a higher-priority load folder
+C.language-files | ControlInjected.xml: Mugirl_Control_Thing.label | 2 times	duplicate key in one language file
+C.language-files | ThingDef/NoSuchDef_Control | does not exist	orphan DefInjected translation
+C.language-files | ThingDef/Throne | always-loaded folder	translation of optional content in an always-loaded folder
+C.job-reports | Mugirl_Control_Job.reportString	JobDef reportString without a Chinese translation
+C.textures | texture 'Control/NoSuchTexture'	missing texture (code literal)
+C.textures | ThingDef[Mugirl_Control_Thing]: texture 'Control/NoSuchTexture'	missing texture (graphicData)
+C.textures | ThingDef[Mugirl_Control_CaseTexture]: texture 'Control/casetexture' | ignoring case	mod texture that matches only case-insensitively
+C.sounds | SoundDef[Mugirl_Control_Sound]: clipPath 'Control/NoSuchSound'	missing sound clip
+C.shaders | ShaderTypeDef[Mugirl_Control_ShaderType]	shaderPath whose last segment names no ShaderDef
+C.shaders | ShaderDef[ControlUnprefixedShader] | prefix	ShaderDef without the mod prefix
+C.shaders | Control_Missing.frag.glsl	missing GLSL source
+C.shaders | Transparent.frag.glsl | Same file name	GLSL file that shadows a game shader
+C.shaders | #include	unresolved GLSL include
+C.shaders | Transparent.frag.glsl | Not used by any ShaderDef	GLSL file no ShaderDef of the mod reaches
+C.shaders | Map/NoSuchShaderControl	ShaderDatabase.LoadShader literal without a ShaderDef
+C.content-contracts | ThingDef/Mugirl_Control_Thing2 | ends in a digit	ThingDef defName with a trailing digit
+C.content-contracts | 1.7/Defs/ControlMustBeEmpty.xml | Must stay empty	dormant-feature file that gained defs
+C.content-contracts | ThingDef/Mugirl_Control_Thing label | expected 'expected label'	def value that breaks a contract
+C.content-contracts | CTRL/NotInConditionalFolder | outside 1.7/Mods/Optional	conditional-only content referenced from an always-loaded folder
+C.content-contracts | 1.7/Textures/Control/Required_a.png | Required file missing	required asset missing
+C.content-contracts | Textures/Control/CaseTexture.png | Must not exist	forbidden legacy asset present
+C.content-contracts | 1.7/Textures/Control/Size555.png | 555x555	texture with a forbidden size
+C.content-contracts | Mugirl_Control_Worn | developmentalStageFilter	9.20 apparel contract: adult-only
+C.content-contracts | Mugirl_Control_Worn: Control/NoWorn_Female_north | Worn apparel texture missing	9.20 apparel contract: worn textures per direction
+C.forbidden-patterns | Gloden	legacy typo in the content
+B.static-assets | Mugirl.UnmarkedTextureHolder	static texture without [StaticConstructorOnStartup]
+B.patch-targets | Mugirl.Pawn_NoSuchMethod_Patch | Undefined target	attribute target that does not exist
+B.patch-targets | Mugirl.Pawn_ExposeData_MisnamedHelperPatch | wrong return type	helper named like a Harmony hook
+B.patch-targets | + Mugirl.Pawn_SpawnSetup_ControlPatch	resolved target missing from the golden list
+B.patch-metadata | Mugirl.Pawn_NoSuchMethod_Patch | without [MugirlPatch	patch class without audit metadata
+B.patch-metadata | Mugirl.Pawn_SpawnSetup_ControlPatch | failureBehavior is empty	metadata without a failure behaviour
+B.patch-metadata | Mugirl.NotAPatchClass | stale metadata	metadata on a class that patches nothing
+B.transpilers | Mugirl.Pawn_IsColonist_NoOpTranspilerPatch | changed nothing	transpiler whose anchor no longer matches
+B.transpilers | Mugirl.Pawn_IsColonist_NoOpTranspilerPatch | Logged a warning	transpiler that logs while transpiling
+B.jit | UnityLayerViolations::CallRemovedLegacyApi	member reference that does not bind on 1.7
+B.harmony-apply | Mugirl.Pawn_NoSuchMethod_Patch	HarmonyBootstrap.Apply reports a failed patch class
+B.log | control transpiler	Verse.Log warning while mod code ran
+B.reflection-names | noSuchField_Control	by-name reflection of a member that does not exist
+B.reflection-names | noSuchHelperField_Control	member name forwarded through a helper parameter
+B.reflection-names | FieldRefAccess(Verse.Pawn, "story") | does not match the field type	FieldRefAccess with the wrong field type
+B.reflection-names | Type.GetField(Verse.Pawn_HealthTracker, "pawn") | public members only	public-only lookup of a private field
+B.reflection-names | dynamic reflection in Mugirl.ControlReflection::ComputedType | type is computed	lookup whose type is computed at run time
+absent: C.public-api | xmlClass Mugirl.ControlEmptyAlias	empty XML alias type recognized
+absent: B.namespaces | root: Mugirl.ControlEmptyAlias	PDB type document resolves empty alias source
+C.public-api | packageId Control.WrongPackage | packageId changed	frozen package id
+C.public-api | typeShortName NoSuchMod | no Mod subclass	frozen Mod short name
+C.public-api | member Mugirl.ControlPublicAlias.PatchableCalled | Harmony-bound parameter	frozen member parameter
+C.public-api | harmonyParameter Mugirl.ControlPublicAlias.PatchableCalled(missing) | Harmony-bound	frozen Harmony parameter
+C.public-api | defName Mugirl_Control_Missing | no def	final API defName schema
+C.public-api | defNamePattern Control_* | no def	pattern membership frozen
+C.public-api | xpathStructure Mugirl_Control_Thing2/noSuchPath | XPath	frozen XPath structure
+C.public-api | texturePath Control/Absent | texture path	frozen texture path
+C.public-api | tag Control_Absent | tag	frozen tag
+C.public-api | scribeLabel controlAbsentStamp | schema hub	frozen stamp
+C.public-api | structure unknown contract | unknown structure	unknown structures fail closed
+B.patch-metadata | Mugirl.Pawn_SpawnSetup_ControlPatch | defined risk enum	invalid enum value
+C.public-api | structure Mugirl race bodyAddons order | bodyAddons order changed	bodyAddon index changes fail
+C.public-api | structure texture paths under Textures/ | frozen texture paths missing	frozen resource set checked
+C.public-api | xmlField absentOwnedField | has no field	owner/name field schema checked
+C.save-upgrade | ControlOldRootDef | Target def	legacyRoot never used as new database root
+absent: C.save-upgrade | ControlGoodOldRootDef	legacyRoot maps old corpus correctly
+absent: C.save-upgrade | MooGirlLegacyFixture	glob matches full legacy name
+C.save-upgrade | NotMooGirlVictim	glob cannot match middle of unrelated name
+absent: C.save-upgrade | JobDriver/Mugirl.Control.Upgrade.PreservedDriver	existing driver preserve policy
+C.save-upgrade | MissingPreservedDriver | no concrete	preserve requires concrete target
+absent: C.save-upgrade | Mugirl.Control.Upgrade.MergedBase | mergedProgress	removed abstract declaration preserved by every concrete descendant
+C.save-upgrade | Mugirl.Control.Upgrade.PartlyLostBase | mergedProgress	one surviving descendant cannot hide another descendant losing the field
+C.save-upgrade | Mugirl.Control.Upgrade.DriftBase | default drift	inherited field default drift remains a failure
+absent: C.save-upgrade | ControlPrehistoricAction	unsupported-only unbranded Def remains vanilla missing-Def handling
+C.save-upgrade | ControlMixedEraAction	supported-era evidence forbids the unsupported-only exception
+B.patch-targets | Mugirl.Control.SelfPatchControl | Own-assembly Harmony target	compatibility self-patches must use explicit extension points

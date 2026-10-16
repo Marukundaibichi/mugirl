@@ -24,4 +24,5 @@
     <RopeToBuild.reportString>解锁到建筑</RopeToBuild.reportString>
     <!-- Unlock Restraints -->
     <UnlockSlaveApparel.reportString>解锁束具</UnlockSlaveApparel.reportString>
+    <Job_MugirlMilkInteractionWait.reportString>正在配合喂奶。</Job_MugirlMilkInteractionWait.reportString>
 </LanguageData>

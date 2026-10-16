@@ -238,6 +238,7 @@ namespace Mugirl.Features.WeaponWheel
             slots[slotIndex] = null;
             activeSlotIndex = 0;
             NormalizeToPrimarySlot();
+            SynchronizeHuntingVerb(weapon);
             MarkBackWeaponsDirty();
             return true;
         }
@@ -277,6 +278,7 @@ namespace Mugirl.Features.WeaponWheel
             if (current == desired)
             {
                 activeSlotIndex = slotIndex;
+                SynchronizeHuntingVerb();
                 return true;
             }
             if (!reserveWeapons.Contains(desired))
@@ -303,6 +305,7 @@ namespace Mugirl.Features.WeaponWheel
             }
 
             activeSlotIndex = slotIndex;
+            SynchronizeHuntingVerb(current);
             MarkBackWeaponsDirty();
             return true;
         }
@@ -321,6 +324,7 @@ namespace Mugirl.Features.WeaponWheel
             if (current == desired)
             {
                 activeSlotIndex = 0;
+                SynchronizeHuntingVerb();
                 return true;
             }
             if (current != null && !ContainsWeapon(current))
@@ -349,8 +353,40 @@ namespace Mugirl.Features.WeaponWheel
             }
 
             activeSlotIndex = 0;
+            SynchronizeHuntingVerb(current);
             MarkBackWeaponsDirty();
             return true;
+        }
+
+        private void SynchronizeHuntingVerb(ThingWithComps previousWeapon = null)
+        {
+            Pawn pawn = Pawn;
+            Job job = pawn?.CurJob;
+            if (job?.def != JobDefOf.Hunt || !(job.targetA.Thing is Pawn target) || target.Dead)
+            {
+                return;
+            }
+
+            ThingWithComps cachedWeapon = job.verbToUse?.EquipmentSource;
+            ThingWithComps primary = pawn.equipment?.Primary;
+            if (cachedWeapon == null || cachedWeapon == primary
+                || (cachedWeapon != previousWeapon && !ContainsWeapon(cachedWeapon)))
+            {
+                return;
+            }
+
+            // Hunt 只在开始时缓存 Verb。旧枪进入储备后不再满足 IsStillUsableBy，
+            // 原版会在命中检查与已到达的射击位置之间同步递归。所有权转移结束后再同步。
+            Verb primaryVerb = PrimaryVerbFor(primary);
+            if (primaryVerb != null && WorkGiver_HunterHunt.HasHuntingWeapon(pawn)
+                && !primaryVerb.verbProps.onlyManualCast && primaryVerb.IsStillUsableBy(pawn))
+            {
+                job.verbToUse = primaryVerb;
+                return;
+            }
+
+            // 空槽、近战或不可用武器不能继续当前 Hunt；下一 tick 再由原版安排工作，避免同步重入。
+            pawn.jobs.EndCurrentJob(JobCondition.Incompletable, startNewJob: false);
         }
 
         internal void NotifyExternalEquipmentAdded(ThingWithComps equipment)

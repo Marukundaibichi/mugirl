@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- Unlock Restraints -->
+    <Mugirl_CrackRestraint.reportString>解锁束具</Mugirl_CrackRestraint.reportString>
+    <!-- Put on Restraints -->
+    <GiveSlaveApparelGear.reportString>穿上束具</GiveSlaveApparelGear.reportString>
+    <!-- Force open restraints -->
+    <Mugirl_ForceUnlockRestraint.reportString>强行打开束具</Mugirl_ForceUnlockRestraint.reportString>
+    <!-- Follow {TargetA}. -->
+    <Mugirl_FollowRoper.reportString>跟随 {TargetA}</Mugirl_FollowRoper.reportString>
+    <!-- Feed milk to {TargetA}. -->
+    <Mugirl_ChildDrinkMilk.reportString>给 {TargetA} 喂奶</Mugirl_ChildDrinkMilk.reportString>
+    <!-- Drink milk from {TargetA}. -->
+    <Mugirl_DrinkMilk.reportString>从 {TargetA} 喝奶</Mugirl_DrinkMilk.reportString>
+    <!-- Feed milk to {TargetA}. -->
+    <Mugirl_FeedMilk.reportString>给 {TargetA} 喂奶</Mugirl_FeedMilk.reportString>
+    <!-- Nuzzle {TargetA}. -->
+    <Mugirl_Nuzzle.reportString>蹭蹭 {TargetA}</Mugirl_Nuzzle.reportString>
+    <!-- Remove {TargetA}'s rope -->
+    <Mugirl_Unrope.reportString>解除 {TargetA} 的牵引</Mugirl_Unrope.reportString>
+    <!-- Rope {TargetA}. -->
+    <Mugirl_Rope.reportString>牵引 {TargetA}</Mugirl_Rope.reportString>
+    <!-- Rope to Building -->
+    <Mugirl_RopeToHitch.reportString>解锁到建筑</Mugirl_RopeToHitch.reportString>
+    <!-- Unlock Restraints -->
+    <Mugirl_UnlockRestraint.reportString>解锁束具</Mugirl_UnlockRestraint.reportString>
+    <Mugirl_MilkInteractionWait.reportString>正在配合喂奶。</Mugirl_MilkInteractionWait.reportString>
+</LanguageData>

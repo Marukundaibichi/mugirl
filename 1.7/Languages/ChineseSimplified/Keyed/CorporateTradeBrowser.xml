@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Mugirl.CorporateTradeBrowser.All>全部物资</Mugirl.CorporateTradeBrowser.All>
+  <Mugirl.CorporateTradeBrowser.Materials>原料</Mugirl.CorporateTradeBrowser.Materials>
+  <Mugirl.CorporateTradeBrowser.Food>食品</Mugirl.CorporateTradeBrowser.Food>
+  <Mugirl.CorporateTradeBrowser.Medicine>药品</Mugirl.CorporateTradeBrowser.Medicine>
+  <Mugirl.CorporateTradeBrowser.Weapons>武器</Mugirl.CorporateTradeBrowser.Weapons>
+  <Mugirl.CorporateTradeBrowser.Apparel>服装</Mugirl.CorporateTradeBrowser.Apparel>
+  <Mugirl.CorporateTradeBrowser.Rare>稀有物资</Mugirl.CorporateTradeBrowser.Rare>
+  <Mugirl.CorporateTradeBrowser.Other>其他物资</Mugirl.CorporateTradeBrowser.Other>
+  <Mugirl.CorporateTradeBrowser.SortName>按名称</Mugirl.CorporateTradeBrowser.SortName>
+  <Mugirl.CorporateTradeBrowser.SortPriceLow>价格升序</Mugirl.CorporateTradeBrowser.SortPriceLow>
+  <Mugirl.CorporateTradeBrowser.SortPriceHigh>价格降序</Mugirl.CorporateTradeBrowser.SortPriceHigh>
+  <Mugirl.CorporateTradeBrowser.GridView>商品展柜</Mugirl.CorporateTradeBrowser.GridView>
+  <Mugirl.CorporateTradeBrowser.ListView>报价清单</Mugirl.CorporateTradeBrowser.ListView>
+  <Mugirl.CorporateTradeBrowser.Results>{0} 项物资</Mugirl.CorporateTradeBrowser.Results>
+  <Mugirl.CorporateTradeBrowser.PurchaseDesk>雪牛娘产品及打包毛料家具收购</Mugirl.CorporateTradeBrowser.PurchaseDesk>
+  <Mugirl.CorporateTradeBrowser.ProcurementDesk>巨企供应链 · 按单备货</Mugirl.CorporateTradeBrowser.ProcurementDesk>
+  <Mugirl.CorporateTradeBrowser.UpdatingCatalog>正在整理供应目录…</Mugirl.CorporateTradeBrowser.UpdatingCatalog>
+  <Mugirl.CorporateTradeBrowser.RefreshIn>距下期补给 {0} 日</Mugirl.CorporateTradeBrowser.RefreshIn>
+  <Mugirl.CorporateTradeBrowser.Available>库存 {0}</Mugirl.CorporateTradeBrowser.Available>
+  <Mugirl.CorporateTradeBrowser.SoldOut>本期售罄</Mugirl.CorporateTradeBrowser.SoldOut>
+  <Mugirl.CorporateTradeBrowser.UnitPrice>单价</Mugirl.CorporateTradeBrowser.UnitPrice>
+  <Mugirl.CorporateTradeBrowser.PurchasePrice>收购单价</Mugirl.CorporateTradeBrowser.PurchasePrice>
+  <Mugirl.CorporateTradeBrowser.Stock>可交易数量</Mugirl.CorporateTradeBrowser.Stock>
+  <Mugirl.CorporateTradeBrowser.Quantity>数量</Mugirl.CorporateTradeBrowser.Quantity>
+  <Mugirl.CorporateTradeBrowser.Total>合计</Mugirl.CorporateTradeBrowser.Total>
+  <Mugirl.CorporateTradeBrowser.InsufficientFunds>账户可用白银不足。</Mugirl.CorporateTradeBrowser.InsufficientFunds>
+  <Mugirl.CorporateTradeBrowser.Mass>本批货物 {0} kg</Mugirl.CorporateTradeBrowser.Mass>
+  <Mugirl.CorporateTradeBrowser.DeliveryTo>交付地点：{0}</Mugirl.CorporateTradeBrowser.DeliveryTo>
+  <Mugirl.CorporateTradeBrowser.Lead>备货 {0}–{1} 日</Mugirl.CorporateTradeBrowser.Lead>
+  <Mugirl.CorporateTradeBrowser.SpecialLead>专案调拨 · {0}–{1} 日</Mugirl.CorporateTradeBrowser.SpecialLead>
+  <Mugirl.CorporateTradeBrowser.Days>{0}–{1} 日</Mugirl.CorporateTradeBrowser.Days>
+  <Mugirl.CorporateTradeBrowser.Preparation>备货周期</Mugirl.CorporateTradeBrowser.Preparation>
+  <Mugirl.CorporateTradeBrowser.Material>材料</Mugirl.CorporateTradeBrowser.Material>
+  <Mugirl.CorporateTradeBrowser.Quality>品质</Mugirl.CorporateTradeBrowser.Quality>
+  <Mugirl.CorporateTradeBrowser.Cancellation>{0} 日内且未备货完成，撤单返还 {1}%</Mugirl.CorporateTradeBrowser.Cancellation>
+  <Mugirl.CorporateTradeBrowser.NoResults>暂无匹配物资。</Mugirl.CorporateTradeBrowser.NoResults>
+  <Mugirl.CorporateTradeBrowser.ResetFilters>全部物资</Mugirl.CorporateTradeBrowser.ResetFilters>
+  <Mugirl.CorporateTradeBrowser.SelectProduct>物资报价待选</Mugirl.CorporateTradeBrowser.SelectProduct>
+  <Mugirl.CorporateTradeBrowser.ProductDetails>物资档案</Mugirl.CorporateTradeBrowser.ProductDetails>
+  <Mugirl.CorporateTradeBrowser.StandardSourcing>常规供应</Mugirl.CorporateTradeBrowser.StandardSourcing>
+  <Mugirl.CorporateTradeBrowser.RareSourcing>稀有物资 · 优先采购渠道</Mugirl.CorporateTradeBrowser.RareSourcing>
+  <Mugirl.CorporateTradeBrowser.SpecialSourcing>专案调拨 · 非公开市场货源</Mugirl.CorporateTradeBrowser.SpecialSourcing>
+  <Mugirl.CorporateTradeBrowser.Unavailable>暂停报价</Mugirl.CorporateTradeBrowser.Unavailable>
+  <Mugirl.CorporateTradeBrowser.QuotePending>正在准备报价…</Mugirl.CorporateTradeBrowser.QuotePending>
+  <Mugirl.CorporateTradeBrowser.RemainingDays>余 {0} 日</Mugirl.CorporateTradeBrowser.RemainingDays>
+  <Mugirl.CorporateTradeBrowser.Paid>已支付 {0}</Mugirl.CorporateTradeBrowser.Paid>
+  <Mugirl.CorporateTradeBrowser.ConfirmCancellation>撤销订单 #{0}？巨企将按合同退还已付款的 {1}%。</Mugirl.CorporateTradeBrowser.ConfirmCancellation>
+  <Mugirl.CorporatePricing.Restricted>该物品的特殊效果或资源产出无法可靠估价，暂不接受自动备货。已付款订单不受影响，仍可按合同领取。</Mugirl.CorporatePricing.Restricted>
+  <Mugirl.CorporatePricing.RestrictedShort>暂不接受自动备货</Mugirl.CorporatePricing.RestrictedShort>
+  <Mugirl.CorporatePricing.RestrictionDiagnostic>物品 {0} 暂停自动供货，未识别的组件行为：{1}</Mugirl.CorporatePricing.RestrictionDiagnostic>
+  <Mugirl.CorporatePricing.QuantityLimitSingle>单件货物：每单最多 {0} 件。</Mugirl.CorporatePricing.QuantityLimitSingle>
+  <Mugirl.CorporatePricing.QuantityLimitHighValue>标准单价≥{0} 白银：每单最多 {1} 件。</Mugirl.CorporatePricing.QuantityLimitHighValue>
+  <Mugirl.CorporatePricing.QuantityLimitBulk>可堆叠物资：每单最多 {0} 份。</Mugirl.CorporatePricing.QuantityLimitBulk>
+  <Mugirl.CorporatePricing.QuantityLimitTerms>标准单价按当前材料与品质、折扣前且未加急的普通报价计算。会员折扣与加急不会改变限购档位。已付款订单保留原数量。</Mugirl.CorporatePricing.QuantityLimitTerms>
+  <Mugirl.CorporatePricing.QuantityLimitExceeded>该规格每单最多订购 {0} 份，未扣款。</Mugirl.CorporatePricing.QuantityLimitExceeded>
+  <Mugirl.CorporatePricing.Redemption>按成品市值报价，包含可兑现产出的最低价保护。</Mugirl.CorporatePricing.Redemption>
+  <Mugirl.CorporatePricing.Natural>按产物自身市值报价，不转嫁动物、尸体或整条生产流程的价值。</Mugirl.CorporatePricing.Natural>
+  <Mugirl.CorporatePricing.Sourced>按成品市值报价；缺少常规来源，需要较长备货。</Mugirl.CorporatePricing.Sourced>
+  <Mugirl.CorporatePricing.Market>按成品市值、材料、品质与技术等级报价。</Mugirl.CorporatePricing.Market>
+  <Mugirl.CorporatePricing.SpeedLabel>备货方式</Mugirl.CorporatePricing.SpeedLabel>
+  <Mugirl.CorporatePricing.Speed.Standard>普通（原价、原备货时间）</Mugirl.CorporatePricing.Speed.Standard>
+  <Mugirl.CorporatePricing.Speed.Express>加急（+50%，一半时间）</Mugirl.CorporatePricing.Speed.Express>
+  <Mugirl.CorporatePricing.Speed.Priority>优先（+100%，1/4 时间）</Mugirl.CorporatePricing.Speed.Priority>
+  <Mugirl.CorporatePricing.Breakdown>普通金额：{0}\n加急费用：{1}</Mugirl.CorporatePricing.Breakdown>
+</LanguageData>

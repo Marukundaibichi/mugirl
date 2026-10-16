@@ -1,0 +1,60 @@
+{
+ "module": "content",
+ "wave": "R",
+ "ownedContentFiles": [
+  "1.7/Defs/FactionDefs/Factions_Player.xml",
+  "1.7/Defs/ResearchProjectDefs/ResearchProjects_Mugirl.xml",
+  "1.7/Defs/ResearchProjectDefs/ResearchProjects_AdvancedEquipment.xml",
+  "1.7/Defs/ResearchProjectDefs/ResearchTabDef_Mugirl.xml",
+  "1.7/Defs/Scenarios/Scenarios.xml",
+  "1.7/Defs/LifeStageDefs/LifeStages.xml",
+  "1.7/Defs/BackStoryDefs/BackstoryDef.xml",
+  "1.7/Defs/Bodies/BodyDef.xml",
+  "1.7/Defs/NameGen/RulePacksDefs.xml",
+  "1.7/Defs/PawnKindDefs/PawnKinds_Base.xml",
+  "1.7/Defs/PawnKindDefs/PawnKinds_Player.xml",
+  "1.7/Defs/ThingDefs_Misc/Items_Filth.xml",
+  "1.7/Defs/TraitDefs/TraitDefs.xml",
+  "1.7/Defs/ThingDefs_Races/Mugirl_Race.xml",
+  "1.7/Defs/JobDefs/JobDefs.xml",
+  "1.7/Patches/MugirlPatch.xml",
+  "1.7/Mods/SearchAndDestroy/Patches/SearchAndDestroy_Patch.xml",
+  "1.7/Languages/English/Strings/Names/Mugirl_First_Female.txt",
+  "1.7/Languages/English/Strings/Names/Mugirl_Last.txt",
+  "1.7/Languages/ChineseSimplified/Strings/Names/Mugirl_First_Female.txt",
+  "1.7/Languages/ChineseSimplified/Strings/Names/Mugirl_Last.txt",
+  "1.7/Languages/ChineseSimplified/DefInjected/FactionDef/Factions_Player.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ResearchProjectDef/ResearchProjects_Mugirl.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ResearchProjectDef/ResearchProjects_AdvancedEquipment.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ResearchTabDef/ResearchTabDef_Mugirl.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ScenarioDef/Scenarios.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/LifeStageDef/LifeStages.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/BackstoryDef/BackstoryDef.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/BodyDef/BodyDef.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/BodyPartDef/BodyDef.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/BodyPartGroupDef/BodyDef.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/RulePackDef/RulePacksDefs.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/PawnKindDef/PawnKinds_Player.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Items_Filth.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/TraitDef/TraitDefs.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Mugirl_Race.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/JobDef/JobDefs.xml"
+ ],
+ "types": [],
+ "defs": [
+  {
+   "defType": "ThingDef",
+   "old": "MugirlWaterFilth",
+   "new": "Mugirl_Filth_ShockFluid",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/ThingDefs_Misc/Items_Filth.xml:48",
+    "1.7/Defs/HediffDefs/Hediffs_AdvancedRestraints.xml:135",
+    "Source/MugirlRace/Features/Milk/Device/CompProperties_MilkingDevice.cs:48"
+   ],
+   "reason": "Missing underscore; 'Water' is wrong (label: the liquid flowing down from electrocution). CompProperties_MilkingDevice.cs:48 is a C# string literal default (rewrite the literal).",
+   "module": "content"
+  }
+ ]
+}

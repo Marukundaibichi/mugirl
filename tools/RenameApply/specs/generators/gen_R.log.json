@@ -1,0 +1,8 @@
+[
+ "removed type rename Mugirl.SlaveApparelDef -> Mugirl.Features.Restraints.RestraintApparelDef (frozen public API); file moves to Source/MugirlRace/PublicApi/SlaveApparelDef.cs",
+ "removed type rename Mugirl.MountedPawnUtility -> Mugirl.Features.Mounting.MountUtility (frozen public API); file moves to Source/MugirlRace/PublicApi/MountedPawnUtility.cs",
+ "one-type-per-file: 19 extraction/newFile adjustments",
+ "removed def rename JobDef Job_MugirlMilkingTargetWait -> Mugirl_MilkingTargetWait (frozen public API, D5)",
+ "removed def rename ThingDef MugirlMilkFilth -> Mugirl_Filth_ShockMilk (frozen public API, D5)",
+ "structure-debt root lines removed by R: 391"
+]

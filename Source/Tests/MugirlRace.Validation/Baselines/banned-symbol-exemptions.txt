@@ -1,0 +1,23 @@
+# B.banned-symbols：BannedSymbols.txt 所禁符号的已审阅使用点，即 "#pragma warning disable RS0030" 所在的方法。ADR-006 只允许
+# Mugirl.Platform、Mugirl.Mathematics 与唯一的日志入口 Mugirl.Core.MugirlLog 带理由抑制；其他位置即使列在这里也判失败。
+# 格式：<BannedSymbols 条目><TAB><类型::方法><TAB>理由（与 #pragma 处的注释一致）。--update-baselines 只为上述命名空间中的新位置
+# 追加 "REVIEW:" 条目。
+M:System.Numerics.Vector3.Normalize(System.Numerics.Vector3)	Mugirl.Mathematics.UnityQuaternion::LookRotation	UnityStubs' LookRotation runs exactly this; the input is checked longer than Unity's 1e-5 threshold first, so Normalize never yields NaN
+M:System.Numerics.Vector3.Transform(System.Numerics.Vector3,System.Numerics.Quaternion)	Mugirl.Mathematics.UnityVector::HorizontalVectorFromAngle	Bit-identical to Verse.Vector3Utility.HorizontalVectorFromAngle in 1.7, which UnityStubs evaluates as the System.Numerics sandwich product
+M:System.Numerics.Vector3.Transform(System.Numerics.Vector3,System.Numerics.Quaternion)	Mugirl.Mathematics.UnityVector::RotatedBy	Bit-identical to Verse.Vector3Utility.RotatedBy in 1.7, which UnityStubs evaluates as the System.Numerics sandwich product
+M:Verse.Log.Error(System.String)	Mugirl.Core.MugirlLog::WriteError	MugirlLog is the only place allowed to call Verse.Log (README: logging goes through MugirlLog)
+M:Verse.Log.Message(System.String)	Mugirl.Core.MugirlLog::WriteMessage	MugirlLog is the only place allowed to call Verse.Log (README: logging goes through MugirlLog)
+M:Verse.Log.Warning(System.String)	Mugirl.Core.MugirlLog::WriteWarning	MugirlLog is the only place allowed to call Verse.Log (README: logging goes through MugirlLog)
+P:UnityEngine.Event.current	Mugirl.Platform.Ui.GuiPhase::get_Current	null check only: OriginalEventUtility.EventType throws outside a GUI callback and Verse has no "inside a GUI callback" query
+P:UnityEngine.Event.current	Mugirl.Platform.Ui.UiEvent::get_Current	custom controls need per-event mouse and key data that Verse does not wrap; Event.current is read only here
+T:UnityEngine.GUI	Mugirl.Platform.Ui.UiColor::get_Current	Verse has no getter for the current GUI color (TextBlock keeps it internally); read only
+T:UnityEngine.GUI	Mugirl.Platform.Ui.UiFocus::SetNextControlName	no Verse wrapper; Verse's own text fields (DelayedTextField) call the same GUI members
+T:UnityEngine.GUI	Mugirl.Platform.Ui.UiFocus::get_FocusedControlName	no Verse wrapper; Verse's own text fields (DelayedTextField) call the same GUI members
+T:UnityEngine.GUI	Mugirl.Platform.Ui.UiTextInput::Chromeless	Verse has no text field that takes a custom GUIStyle; same UnityStubs entry as Widgets.TextField with another style
+T:UnityEngine.GUI	Mugirl.Platform.Ui.UiTransform::get_CurrentMatrix	Verse saves and restores GUI.matrix only inside Widgets.DrawTextureRotated; no rotation scope for arbitrary drawing
+T:UnityEngine.GUI	Mugirl.Platform.Ui.UiTransform::set_CurrentMatrix	Verse saves and restores GUI.matrix only inside Widgets.DrawTextureRotated; no rotation scope for arbitrary drawing
+T:UnityEngine.GUIUtility	Mugirl.Platform.Ui.UiHotControl::Capture	control ids and capture state have no Verse wrapper; hand-written drag controls must read and write them
+T:UnityEngine.GUIUtility	Mugirl.Platform.Ui.UiHotControl::IsCaptured	control ids and capture state have no Verse wrapper; hand-written drag controls must read and write them
+T:UnityEngine.GUIUtility	Mugirl.Platform.Ui.UiHotControl::NewControlId	control ids and capture state have no Verse wrapper; hand-written drag controls must read and write them
+T:UnityEngine.GUIUtility	Mugirl.Platform.Ui.UiHotControl::Release	control ids and capture state have no Verse wrapper; hand-written drag controls must read and write them
+T:UnityEngine.GUIUtility	Mugirl.Platform.Ui.UiHotControl::get_AnyCaptured	control ids and capture state have no Verse wrapper; hand-written drag controls must read and write them

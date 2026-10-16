@@ -1,0 +1,2 @@
+# 负对照：控制 Def 的 description 含有这个笔误。
+Gloden	control: typo of Golden

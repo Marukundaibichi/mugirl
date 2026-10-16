@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <!-- PatchGovernance:
+    Targets: VCookE 启用时的奶酪压制机 PipeSystem 工序列表。
+    Scope: 可选 VCookE 集成；追加雪牛奶转奶酪工序，不改动其他工序。
+    Duplicate guard: 外层条件在工序已存在时跳过；内层条件要求目标 PipeSystem 工序列表存在。
+    Failure: 目标缺失或上游 VCookE/PipeSystem 结构变化时允许无操作，保留 VCookE 原状。
+    -->
+    <!-- VCookE 和 PipeSystem 的目标路径可能随版本变化；目标缺失或已添加时静默跳过。 -->
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="VCE_CheesePress"]/comps/li[@Class="PipeSystem.CompProperties_AdvancedResourceProcessor"]/processes/li[text()="Mugirl_MilkIntoCheese"]</xpath>
+        <nomatch Class="PatchOperationConditional">
+            <xpath>Defs/ThingDef[defName="VCE_CheesePress"]/comps/li[@Class="PipeSystem.CompProperties_AdvancedResourceProcessor"]/processes</xpath>
+            <match Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="VCE_CheesePress"]/comps/li[@Class="PipeSystem.CompProperties_AdvancedResourceProcessor"]/processes</xpath>
+                <value>
+                    <li>Mugirl_MilkIntoCheese</li>
+                </value>
+            </match>
+        </nomatch>
+    </Operation>
+</Patch>

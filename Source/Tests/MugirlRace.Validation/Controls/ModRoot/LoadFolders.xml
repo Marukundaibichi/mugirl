@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A.layout：v1.7 与黄金清单不同，并列出一个不存在的目录 Common。 -->
+<loadFolders>
+  <v1.6>
+    <li>/</li>
+    <li>1.6</li>
+  </v1.6>
+  <v1.7>
+    <li>/</li>
+    <li>1.7</li>
+    <li>Common</li>
+  </v1.7>
+</loadFolders>

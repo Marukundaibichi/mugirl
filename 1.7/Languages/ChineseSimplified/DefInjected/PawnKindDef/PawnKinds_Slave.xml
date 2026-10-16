@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- Crashlanded Mugirl Slave -->
+    <Mugirl_Beginning_Slave.label>雪牛迫降奴隶</Mugirl_Beginning_Slave.label>
+    <!-- Escaped Mugirl Space Slave -->
+    <Mugirl_EscapeSpaceSlave.label>逃脱太空奴隶</Mugirl_EscapeSpaceSlave.label>
+    <!-- Escaped Mugirl Slave -->
+    <Mugirl_EscapeWanderSlave.label>逃亡奴隶</Mugirl_EscapeWanderSlave.label>
+    <!-- Escaped Wild Mugirl -->
+    <Mugirl_EscapeWildSlave.label>逃脱流浪野人</Mugirl_EscapeWildSlave.label>
+    <!-- Mugirl Wanderer -->
+    <Mugirl_PreEscapeWildSlave.label>雪牛流浪者</Mugirl_PreEscapeWildSlave.label>
+    <!-- Wild Mugirl -->
+    <Mugirl_WildMugirl.label>野生雪牛娘</Mugirl_WildMugirl.label>
+    <!-- Slave -->
+    <Mugirl_Slave.label>奴隶</Mugirl_Slave.label>
+</LanguageData>

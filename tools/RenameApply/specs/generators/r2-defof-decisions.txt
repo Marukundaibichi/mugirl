@@ -1,0 +1,199 @@
+delete Mugirl.MugirlContentDefOf.Mugirl_Combatant_BulletproofVest               -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_Combatant_Clothes                       -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_Combatant_Helmet                        -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_Combatant_Underwear                     -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_SpecialStockings                        -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_MilitaryDress                           -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_MilitaryUniform                         -> -                                                        no C# reader
+move   Mugirl.MugirlContentDefOf.Mugirl_Bikini                                  -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_Underwear.xml); core-member-moves had Mugirl.Features.Incidents.IncidentsDefOf
+delete Mugirl.MugirlContentDefOf.Mugirl_Bikini_Stocking                         -> -                                                        no C# reader
+move   Mugirl.MugirlContentDefOf.Mugirl_NunDressClassic                         -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_0920.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_NunDressSimple                          -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_0920.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_NunVeil                                 -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_0920.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_NunBlindfold                            -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_0920.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_PoliceShirt                             -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_0920.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_PoliceShorts                            -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_0920.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_PoliceThong                             -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_0920.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_PoliceBra                               -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_0920.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_PoliceZipperBra                         -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_0920.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_PoliceBoots                             -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_0920.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_PoliceCap                               -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_0920.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_BunnyGirlTop                            -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_OnSkin.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_BunnyGirlStocking                       -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_Stockings.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_BunnyGirlHeaddress                      -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_Head.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_HighCutSweater                          -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_0920.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_LeatherHeels                            -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_0920.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_SisterMask                              -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_0920.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_BrandBag                                -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_0920.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_OL                                      -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_OnSkin.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_WeddingDress                            -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_OnSkin.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_Cheongsam                               -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_OnSkin.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_ImmortalFairy                           -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_OnSkin.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_ImmortalFairyAzure                      -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_OnSkin.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_Sunglasses                              -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_Head.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_Veil                                    -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_Head.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_Shirt                                   -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_Middle.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_Jeans                                   -> Mugirl.Features.Appearance.AppearanceDefOf               owner rule: defined by milk (Apparel_OnSkin.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_ShockCollar                             -> Mugirl.Features.Restraints.RestraintsDefOf               defined by restraints (BondageApparel_Spacer.xml)
+delete Mugirl.MugirlContentDefOf.Mugirl_PMC_Helmet                              -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_PMC_CaptainHelmet                       -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_PMC_CombatUniform                       -> -                                                        no C# reader
+move   Mugirl.MugirlContentDefOf.Mugirl_MilkPudding                             -> Mugirl.Features.Milk.MilkDefOf                           owner rule: defined by milk (Mugirl_MilkFood.xml); core-member-moves had Mugirl.Features.Incidents.IncidentsDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_Cheese                                  -> Mugirl.Features.Milk.MilkDefOf                           owner rule: defined by milk (Mugirl_MilkFood.xml); core-member-moves had Mugirl.Features.Incidents.IncidentsDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_AgedCheese                              -> Mugirl.Features.Milk.MilkDefOf                           owner rule: defined by milk (Mugirl_MilkFood.xml); core-member-moves had Mugirl.Features.Incidents.IncidentsDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_BaotaSugar                              -> Mugirl.Features.Milk.MilkDefOf                           owner rule: defined by milk (Mugirl_MilkFood.xml); core-member-moves had Mugirl.Features.Incidents.IncidentsDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_MilkCandy                               -> Mugirl.Features.Milk.MilkDefOf                           owner rule: defined by milk (Mugirl_MilkFood.xml); core-member-moves had Mugirl.Features.Incidents.IncidentsDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_CowCake                                 -> Mugirl.Features.Milk.MilkDefOf                           owner rule: defined by milk (Mugirl_MilkFood.xml); core-member-moves had Mugirl.Features.Incidents.IncidentsDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_MilkPowder                              -> Mugirl.Features.Milk.MilkDefOf                           owner rule: defined by milk (Mugirl_MilkFood.xml); core-member-moves had Mugirl.Features.Incidents.IncidentsDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_MilkTablet                              -> Mugirl.Features.Milk.MilkDefOf                           owner rule: defined by milk (Mugirl_MilkFood.xml); core-member-moves had Mugirl.Features.Incidents.IncidentsDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_MilkCreamApple                          -> Mugirl.Features.Milk.MilkDefOf                           owner rule: defined by milk (Mugirl_MilkFood.xml); core-member-moves had Mugirl.Features.Incidents.IncidentsDefOf
+move   Mugirl.MugirlContentDefOf.Mugirl_CourierDiary                            -> Mugirl.Features.Incidents.IncidentsDefOf                 defined by incidents (Mugirl_Diary.xml)
+move   Mugirl.MugirlContentDefOf.Mugirl_GiantCorporation                        -> Mugirl.Features.Corporate.CorporateDefOf                 defined by corporate (Factions_Enemy.xml)
+delete Mugirl.MugirlContentDefOf.Mugirl_GiantCorp_Grunt                         -> -                                                        no C# reader
+move   Mugirl.MugirlContentDefOf.Mugirl_GiantCorp_Courier                       -> Mugirl.Features.Corporate.CorporateDefOf                 defined by corporate (PawnKinds_GiantCorp.xml)
+delete Mugirl.MugirlContentDefOf.Mugirl_GiantCorp_Soldier                       -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_GiantCorp_Elite                         -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_GiantCorp_MugirlRaider                  -> -                                                        no C# reader
+move   Mugirl.MugirlContentDefOf.Mugirl_CorporateRepresentative                 -> Mugirl.Features.Corporate.CorporateDefOf                 defined by corporate (CorporateServices.xml)
+move   Mugirl.MugirlContentDefOf.Mugirl_CorporateSupport                        -> Mugirl.Features.Corporate.CorporateDefOf                 defined by corporate (CorporateServices.xml)
+move   Mugirl.MugirlContentDefOf.Mugirl_CorporateShowcase                       -> Mugirl.Features.Corporate.CorporateDefOf                 defined by corporate (CorporateShowcase.xml)
+move   Mugirl.MugirlContentDefOf.Mugirl_CorporateDiehard                        -> Mugirl.Features.Corporate.CorporateDefOf                 defined by corporate after the R2 split (Features/Corporate)
+move   Mugirl.MugirlContentDefOf.Mugirl_CorporateSupportHunt                    -> Mugirl.Features.Corporate.CorporateDefOf                 defined by corporate (CorporateSupportDuty.xml)
+move   Mugirl.MugirlContentDefOf.Mugirl_CorporateSupportTend                    -> Mugirl.Features.Corporate.CorporateDefOf                 defined by corporate (CorporateSupportDuty.xml)
+move   Mugirl.MugirlContentDefOf.Mugirl_CourierContact                          -> Mugirl.Features.Incidents.IncidentsDefOf                 defined by incidents (Script_CourierRaid.xml)
+delete Mugirl.MugirlContentDefOf.Mugirl_MigrationIncident                       -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_FusionInvestmentIncident                -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_RunawayFarmQuestIncident                -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_RunawayFarmQuest                        -> -                                                        no C# reader
+move   Mugirl.MugirlContentDefOf.Mugirl_RunawayFarm                             -> Mugirl.Features.Incidents.IncidentsDefOf                 defined by incidents (Mugirl_RunawayFarm.xml)
+move   Mugirl.MugirlContentDefOf.Mugirl_RunawayPanic                            -> Mugirl.Features.Incidents.IncidentsDefOf                 defined by incidents (Hediffs_Mugirl_Events.xml)
+move   Mugirl.MugirlContentDefOf.Mugirl_PunisherRace                            -> Mugirl.Features.Incidents.IncidentsDefOf                 defined by incidents (Mugirl_Punisher.xml)
+move   Mugirl.MugirlContentDefOf.Mugirl_Punisher                                -> Mugirl.Features.Incidents.IncidentsDefOf                 defined by incidents (Mugirl_Punisher.xml)
+move   Mugirl.MugirlContentDefOf.Mugirl_PunisherKnockout                        -> Mugirl.Features.Incidents.IncidentsDefOf                 defined by incidents (Hediffs_Mugirl_Punisher.xml)
+copy   Mugirl.MugirlContentDefOf.ShockwaveFast                                  -> Mugirl.Features.Incidents.IncidentsDefOf, Mugirl.Features.Lances.LancesDefOf not a Mugirl def: declared by each reading feature (Features/Incidents, Features/Lances)
+move   Mugirl.MugirlContentDefOf.Mugirl_ReadCourierDiary                        -> Mugirl.Features.Incidents.IncidentsDefOf                 defined by incidents (Jobs_CourierDiary.xml)
+move   Mugirl.MugirlContentDefOf.Mugirl_TalkCourier                             -> Mugirl.Features.Incidents.IncidentsDefOf                 defined by incidents (Jobs_CourierDiary.xml)
+move   Mugirl.MugirlContentDefOf.Mugirl_TalkFusionInvestor                      -> Mugirl.Features.Incidents.IncidentsDefOf                 defined by incidents (Jobs_CourierDiary.xml)
+delete Mugirl.MugirlContentDefOf.Mugirl_AgedCheeseEffect                        -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_CowCakeEffect                           -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_MilkPowderEffect                        -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_MilkTabletEffect                        -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_ConsumedPudding                         -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_ConsumedCheese                          -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_ConsumedAgedCheese                      -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_ConsumedRichMilkFlavor                  -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_ConsumedMilkCandy                       -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_MakeMilkPudding                         -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_MakeCheese                              -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_MakeAgedCheese                          -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_MakeBaotaSugar                          -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_MakeMilkCandy                           -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_MakeCowCake                             -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_MakeMilkPowder                          -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_MakeMilkTablet                          -> -                                                        no C# reader
+delete Mugirl.MugirlContentDefOf.Mugirl_MakeMilkCreamApple                      -> -                                                        no C# reader
+move   Mugirl.MugirlContentDefOf.Mugirl_SlaveApparelKey_Medieval                -> Mugirl.Features.Restraints.RestraintsDefOf               defined by restraints (BondageApparel_Key.xml)
+move   Mugirl.MugirlContentDefOf.Mugirl_SlaveApparelKey_Industrial              -> Mugirl.Features.Restraints.RestraintsDefOf               defined by restraints (BondageApparel_Key.xml)
+move   Mugirl.MugirlMilkDefOf.Mugirl_Lactation                                  -> Mugirl.Features.Milk.MilkDefOf                           defined by milk (Hediffs_Lactation.xml)
+move   Mugirl.MugirlMilkDefOf.Mugirl_MilkHealing                                -> Mugirl.Features.Milk.MilkDefOf                           defined by milk (Hediffs_MilkHealing.xml)
+move   Mugirl.MugirlMilkDefOf.Mugirl_ConsumedMilk                               -> Mugirl.Features.Milk.MilkDefOf                           defined by milk (Items_Resource.xml)
+move   Mugirl.MugirlMilkDefOf.Mugirl_DrankMilk                                  -> Mugirl.Features.Milk.MilkDefOf                           defined by milk (Thoughts_DrinkMilk.xml)
+move   Mugirl.MugirlMilkDefOf.Mugirl_FedMilk                                    -> Mugirl.Features.Milk.MilkDefOf                           defined by milk (Thoughts_DrinkMilk.xml)
+move   Mugirl.MugirlMilkDefOf.Mugirl_Filth_MilkStain                            -> Mugirl.Features.Milk.MilkDefOf                           defined by milk after the R2 split (Features/Milk)
+move   Mugirl.MugirlMilkDefOf.Mugirl_Milking_Sound                              -> Mugirl.Features.Milk.MilkDefOf                           defined by milk after the R2 split (Features/Milk)
+move   Mugirl.MugirlMilkDefOf.Mugirl_DrinkMilk                                  -> Mugirl.Features.Milk.MilkDefOf                           defined by milk after the R2 split (Features/Milk)
+move   Mugirl.MugirlMilkDefOf.Mugirl_ChildDrinkMilk                             -> Mugirl.Features.Milk.MilkDefOf                           defined by milk after the R2 split (Features/Milk)
+move   Mugirl.MugirlMilkDefOf.Mugirl_FeedMilk                                   -> Mugirl.Features.Milk.MilkDefOf                           defined by milk after the R2 split (Features/Milk)
+move   Mugirl.MugirlMilkDefOf.FoamSpray                                         -> Mugirl.Features.Milk.MilkDefOf                           not a Mugirl def: declared by each reading feature (Features/Milk)
+delete Mugirl.MugirlMilkDefOf.Mugirl_MilkSpray                                  -> -                                                        no C# reader
+delete Mugirl.MugirlMilkDefOf.GroundWaterSplash                                 -> -                                                        no C# reader
+move   Mugirl.Mugirl_DefOf.Mugirl_WallRopeHitch                                 -> Mugirl.Features.Roping.RopingDefOf                       defined by restraints (Building_Rope.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl                                               -> Mugirl.Core.MugirlDefOf                                  defined by content (Mugirl_Race.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_Milk                                          -> Mugirl.Features.Milk.MilkDefOf                           owner rule: defined by milk (Items_Resource.xml); core-member-moves had Mugirl.Core.MugirlDefOf
+move   Mugirl.Mugirl_DefOf.Mugirl_LongCascade                                   -> Mugirl.Features.Appearance.AppearanceDefOf               defined by milk (Hairs.xml)
+move   Mugirl.Mugirl_DefOf.MugirlBody                                           -> Mugirl.Core.MugirlDefOf                                  defined by content (BodyDef.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_GatherMilk                                    -> Mugirl.Features.Milk.MilkDefOf                           defined by milk (WorkGivers.xml)
+move   Mugirl.Mugirl_DefOf.Job_MugirlMilkingTargetWait                          -> Mugirl.Features.Milk.MilkDefOf                           defined by milk (WorkGivers.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_MilkInteractionWait                           -> Mugirl.Features.Milk.MilkDefOf                           defined by milk after the R2 split (Features/Milk)
+move   Mugirl.Mugirl_DefOf.Mugirl_MilkingSelfAnimation                          -> Mugirl.Features.Milk.MilkDefOf                           defined by milk (Mugirl_Milking.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_MilkingTargetAnimation                        -> Mugirl.Features.Milk.MilkDefOf                           defined by milk (Mugirl_Milking.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_MilkingHelperAnimation                        -> Mugirl.Features.Milk.MilkDefOf                           defined by milk (Mugirl_Milking.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_MilkInteractionSourceAnimation                -> Mugirl.Features.Milk.MilkDefOf                           defined by milk (Mugirl_Milking.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_MilkInteractionRecipientAnimation             -> Mugirl.Features.Milk.MilkDefOf                           defined by milk (Mugirl_Milking.xml)
+move   Mugirl.Mugirl_DefOf.Root                                                 -> Mugirl.Features.Milk.MilkDefOf                           not a Mugirl def: declared by each reading feature (Features/Milk)
+move   Mugirl.Mugirl_DefOf.Mugirl_Rope                                          -> Mugirl.Features.Roping.RopingDefOf                       defined by restraints after the R2 split (Features/Roping)
+move   Mugirl.Mugirl_DefOf.Mugirl_Unrope                                        -> Mugirl.Features.Roping.RopingDefOf                       defined by restraints after the R2 split (Features/Roping)
+move   Mugirl.Mugirl_DefOf.Mugirl_RopeToHitch                                   -> Mugirl.Features.Roping.RopingDefOf                       defined by restraints after the R2 split (Features/Roping)
+move   Mugirl.Mugirl_DefOf.Mugirl_Nuzzle                                        -> Mugirl.Features.Social.SocialDefOf                       defined by incidents after the R2 split (Features/Social)
+move   Mugirl.Mugirl_DefOf.Mugirl_FollowRoper                                   -> Mugirl.Features.Roping.RopingDefOf                       defined by restraints after the R2 split (Features/Roping)
+move   Mugirl.Mugirl_DefOf.Mugirl_Mount                                         -> Mugirl.Features.Mounting.MountingDefOf                   defined by combat (JobDefs_Mounting.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_Dismount                                      -> Mugirl.Features.Mounting.MountingDefOf                   defined by combat (JobDefs_Mounting.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_LoadWeaponWheel                               -> Mugirl.Features.WeaponWheel.WeaponWheelDefOf             defined by combat (JobDefs_WeaponWheel.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_ForceUnlockRestraint                          -> Mugirl.Features.Restraints.RestraintsDefOf               defined by restraints after the R2 split (Features/Restraints)
+delete Mugirl.Mugirl_DefOf.Mugirl_AutoloadingSystem                             -> -                                                        no C# reader
+move   Mugirl.Mugirl_DefOf.Mugirl_Autoloading                                   -> Mugirl.Features.WeaponWheel.WeaponWheelDefOf             defined by combat (ResearchProjects_WeaponWheel.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_NeuralCombatArmor                             -> Mugirl.Features.AdvancedArmor.AdvancedArmorDefOf         defined by milk (Apparel_0920.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_NeuralAmplifierHelmet                         -> Mugirl.Features.AdvancedArmor.AdvancedArmorDefOf         defined by milk (Apparel_0920.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_LancePointCharge                              -> Mugirl.Features.Lances.LancesDefOf                       defined by combat (JobDefs_Lances.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_LanceLineCharge                               -> Mugirl.Features.Lances.LancesDefOf                       defined by combat (JobDefs_Lances.xml)
+delete Mugirl.Mugirl_DefOf.Mugirl_LanceChargeSpeed                              -> -                                                        no C# reader
+move   Mugirl.Mugirl_DefOf.Mugirl_LanceChargeFlyer                              -> Mugirl.Features.Lances.LancesDefOf                       defined by combat (LanceCharge.xml)
+delete Mugirl.Mugirl_DefOf.Mugirl_Armbinder                                     -> -                                                        no C# reader
+move   Mugirl.Mugirl_DefOf.Mugirl_Abasia                                        -> Mugirl.Features.Incidents.IncidentsDefOf                 defined by incidents (Hediffs_Normal.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_LinkedSwordDance                              -> Mugirl.Features.WeaponWheel.WeaponWheelDefOf             defined by combat (Hediffs_WeaponWheel.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_Stun                                          -> Mugirl.Features.Abilities.AbilitiesDefOf                 defined by milk (Hediffs_Gene.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_Charge                                        -> Mugirl.Features.Abilities.AbilitiesDefOf                 defined by milk (Hediffs_Gene.xml)
+delete Mugirl.Mugirl_DefOf.Mugirl_Throw                                         -> -                                                        no C# reader
+move   Mugirl.Mugirl_DefOf.Mugirl_ThrowController                               -> Mugirl.Features.Abilities.AbilitiesDefOf                 defined by milk (Throwing.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_ThrownImpact                                  -> Mugirl.Features.Abilities.AbilitiesDefOf                 defined by milk (Throwing.xml)
+delete Mugirl.Mugirl_DefOf.Mugirl_DunkAbility                                   -> -                                                        no C# reader
+delete Mugirl.Mugirl_DefOf.Mugirl_Dunk                                          -> -                                                        no C# reader
+move   Mugirl.Mugirl_DefOf.Mugirl_DunkProp                                      -> Mugirl.Features.Abilities.AbilitiesDefOf                 defined by milk (Throwing.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_DunkHead                                      -> Mugirl.Features.Abilities.AbilitiesDefOf                 defined by milk (Throwing.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_DunkFlyer                                     -> Mugirl.Features.Abilities.AbilitiesDefOf                 defined by milk (Throwing.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_DunkBloodSplash                               -> Mugirl.Features.Abilities.AbilitiesDefOf                 defined by milk (Throwing.xml)
+move   Mugirl.Mugirl_DefOf.Pawn_Melee_BigBash_HitPawn                           -> Mugirl.Features.Abilities.AbilitiesDefOf                 not a Mugirl def: declared by each reading feature (Features/Abilities)
+delete Mugirl.Mugirl_DefOf.Mugirl_Fleck_BrainwashEyes                           -> -                                                        no C# reader
+move   Mugirl.Mugirl_DefOf.Mugirl_BrainwashObey                                 -> Mugirl.Features.Restraints.RestraintsDefOf               defined by restraints after the R2 split (Features/Restraints)
+move   Mugirl.Mugirl_DefOf.Mugirl_Slave                                         -> Mugirl.Features.Trade.TradeDefOf                         defined by incidents (PawnKinds_Slave.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_Beginning_Slave                               -> Mugirl.Features.Incidents.IncidentsDefOf                 defined by incidents (PawnKinds_Slave.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_EscapeSpaceSlave                              -> Mugirl.Features.Incidents.IncidentsDefOf                 defined by incidents (PawnKinds_Slave.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_EscapeWanderSlave                             -> Mugirl.Features.Incidents.IncidentsDefOf                 defined by incidents (PawnKinds_Slave.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_EscapeWildSlave                               -> Mugirl.Features.Incidents.IncidentsDefOf                 defined by incidents (PawnKinds_Slave.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_PreEscapeWildSlave                            -> Mugirl.Features.Incidents.IncidentsDefOf                 defined by incidents (PawnKinds_Slave.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_WildMugirl                                    -> Mugirl.Features.Incidents.IncidentsDefOf                 defined by incidents (PawnKinds_Slave.xml)
+move   Mugirl.Mugirl_DefOf.Mugirl_NuzzleInteraction                             -> Mugirl.Features.Social.SocialDefOf                       defined by incidents after the R2 split (Features/Social)
+move   Mugirl.Mugirl_DefOf.Mugirl_Nuzzled                                       -> Mugirl.Features.Social.SocialDefOf                       defined by incidents after the R2 split (Features/Social)
+move   Mugirl.Mugirl_DefOf.Mugirl_SlaveOpeningPodCrash                          -> Mugirl.Features.Incidents.IncidentsDefOf                 defined by incidents (Script_Mugirl.xml)
+delete Mugirl.Mugirl_DefOf.Mugirl_Newborn                                       -> -                                                        no C# reader
+delete Mugirl.Mugirl_DefOf.Mugirl_Colonist                                      -> -                                                        no C# reader
+move   Mugirl.Mugirl_DefOf.Mugirl_ExperimentalChild                             -> Mugirl.Core.MugirlDefOf                                  owner rule: defined by content; core-member-moves had Mugirl.Features.Appearance.AppearanceDefOf
+move   Mugirl.Mugirl_DefOf.Mugirl_Xenotype                                      -> Mugirl.Features.Xenotype.MugirlXenotypeDefOf             defined by milk (GoldenRaceBioTitle.xml)
+move   Mugirl.Features.Appearance.MugirlAppearanceDefOf.CutoutSkinOverlay       -> Mugirl.Features.Appearance.AppearanceDefOf               not a Mugirl def: declared by each reading feature (Features/Appearance)
+move   Mugirl.CorporateFinanceDefOf.Mugirl_CorporateFinanceConfig               -> Mugirl.Features.Corporate.CorporateDefOf                 defined by corporate (CorporateFinance.xml)
+move   Mugirl.CorporateIntroductionDefOf.Mugirl_CorporateIntroductionConfig     -> Mugirl.Features.Corporate.CorporateDefOf                 defined by corporate (CorporateIntroduction.xml)
+move   Mugirl.CorporateIntroductionDefOf.Mugirl_CorporateIntroductionQuest      -> Mugirl.Features.Corporate.CorporateDefOf                 defined by corporate (CorporateIntroduction.xml)
+move   Mugirl.CorporateIntroductionDefOf.Mugirl_CorporateUseComms               -> Mugirl.Features.Corporate.CorporateDefOf                 defined by corporate (CorporateIntroduction.xml)
+move   Mugirl.CorporateIntroductionDefOf.Mugirl_CorporateTalkRepresentative     -> Mugirl.Features.Corporate.CorporateDefOf                 defined by corporate (CorporateIntroduction.xml)
+move   Mugirl.CorporateQuestDefOf.Mugirl_CorporateMissionConfig                 -> Mugirl.Features.Corporate.CorporateDefOf                 defined by corporate (CorporateQuests.xml)
+move   Mugirl.CorporateQuestDefOf.Mugirl_CorporatePurgeSite                     -> Mugirl.Features.Corporate.CorporateDefOf                 defined by corporate (CorporateQuests.xml)
+move   Mugirl.CorporateQuestDefOf.Mugirl_CorporateResearchSite                  -> Mugirl.Features.Corporate.CorporateDefOf                 defined by corporate (CorporateQuests.xml)
+move   Mugirl.CorporateQuestDefOf.Mugirl_CorporateFusionResearchSite            -> Mugirl.Features.Corporate.CorporateDefOf                 defined by corporate (CorporateFusionResearchSite.xml)
+move   Mugirl.CorporateQuestDefOf.Mugirl_CorporateMission                       -> Mugirl.Features.Corporate.CorporateDefOf                 defined by corporate (CorporateQuests.xml)
+move   Mugirl.CorporateQuestDefOf.TradeRequest                                  -> Mugirl.Features.Corporate.CorporateDefOf                 not a Mugirl def: declared by each reading feature (Features/Corporate)
+move   Mugirl.CorporateQuestDefOf.Mercenary_Gunner                              -> Mugirl.Features.Corporate.CorporateDefOf                 not a Mugirl def: declared by each reading feature (Features/Corporate)
+move   Mugirl.CorporatePeopleDefOf.Mugirl_CorporatePeopleConfig                 -> Mugirl.Features.Corporate.CorporateDefOf                 defined by corporate (CorporatePeople.xml)
+move   Mugirl.CorporatePeopleDefOf.Mugirl_CorporateSoldMugirl                   -> Mugirl.Features.Corporate.CorporateDefOf                 defined by corporate (CorporatePeople.xml)
+move   Mugirl.CorporatePeopleDefOf.Mugirl_CorporatePersonnelTrader              -> Mugirl.Features.Corporate.CorporateDefOf                 defined by corporate (CorporatePeople.xml)
+move   Mugirl.CorporateTradeDefOf.Mugirl_Wool                                   -> Mugirl.Features.Milk.MilkDefOf                           owner rule: defined by milk (Items_Resource.xml); core-member-moves had Mugirl.Features.Corporate.CorporateDefOf
+move   Mugirl.CorporateTradeDefOf.Furniture                                     -> Mugirl.Features.Corporate.CorporateDefOf                 not a Mugirl def: declared by each reading feature (Features/Corporate)
+move   Mugirl.CorporateTradeDefOf.Mugirl_CorporateTradeConfig                   -> Mugirl.Features.Corporate.CorporateDefOf                 defined by corporate (CorporateTradeSettings.xml)
+move   Mugirl.Features.Genes.MugirlGenesDefOf.Longjump_Jump                     -> Mugirl.Features.Abilities.AbilitiesDefOf                 not a Mugirl def: declared by each reading feature (Features/Abilities)
+move   Mugirl.Features.Genes.MugirlGenesDefOf.Longjump_Land                     -> Mugirl.Features.Abilities.AbilitiesDefOf                 not a Mugirl def: declared by each reading feature (Features/Abilities)
+move   Mugirl.Features.Milk.MilkNurtureDefOf.Mugirl_MotherlyNurture             -> Mugirl.Features.Milk.MilkDefOf                           defined by milk (Hediffs_Lactation.xml)
+move   Mugirl.Features.Milk.MilkNurtureDefOf.Mugirl_NurtureAfterglow            -> Mugirl.Features.Milk.MilkDefOf                           defined by milk (Hediffs_Lactation.xml)
+move   Mugirl.Features.Milk.MilkNurtureDefOf.Mugirl_NurturedByMugirl            -> Mugirl.Features.Milk.MilkDefOf                           defined by milk after the R2 split (Features/Milk)
+move   Mugirl.Features.Misc.MugirlMiscDefOf.Ghoul                               -> Mugirl.Rendering.RenderingDefOf                          not a Mugirl def: declared by each reading feature (Rendering)
+move   Mugirl.Features.Newborn.MugirlNewbornDefOf.Mugirl_Teenager               -> Mugirl.Core.MugirlDefOf                                  owner rule: defined by content; core-member-moves had Mugirl.Features.LifeStages.LifeStagesDefOf
+move   Mugirl.Rendering.MugirlRenderDefOf.Mugirl_ExtraOutline                   -> Mugirl.Rendering.RenderingDefOf                          defined by core (Mugirl_Materials.xml)
+move   Mugirl.Rendering.MugirlRenderDefOf.Mugirl_LanceMotionBlur                -> Mugirl.Rendering.RenderingDefOf                          defined by core (Mugirl_Materials.xml)

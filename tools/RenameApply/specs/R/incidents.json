@@ -1,0 +1,988 @@
+{
+ "module": "incidents",
+ "wave": "R",
+ "ownedSourceFolders": [
+  "Source/MugirlRace/Features/Incidents/**",
+  "Source/MugirlRace/Features/Grazing/**",
+  "Source/MugirlRace/Features/Social/**",
+  "Source/MugirlRace/Features/LifeStages/**",
+  "Source/MugirlRace/Features/Trade/**",
+  "Source/MugirlRace/SaveUpgrade/Steps/Incidents/**",
+  "Source/MugirlRace/SaveUpgrade/PostLoad/Incidents/**",
+  "Source/Tests/MugirlRace.Tests/Incidents/**",
+  "Source/Tests/MugirlRace.Tests/SaveUpgrade/Incidents/**"
+ ],
+ "ownedContentFiles": [
+  "1.7/Defs/Storyteller/Incidents_Mugirl.xml",
+  "1.7/Defs/Storyteller/Incidents_CourierRaid.xml",
+  "1.7/Defs/QuestScriptDefs/Script_CourierContact.xml",
+  "1.7/Defs/QuestScriptDefs/Script_Mugirl.xml",
+  "1.7/Defs/QuestScriptDefs/Script_RunawayFarm.xml",
+  "1.7/Defs/SitePartDefs/Mugirl_RunawayFarm.xml",
+  "1.7/Defs/ThinkTreeDefs/Mugirl_Punisher.xml",
+  "1.7/Defs/PawnKindDefs/PawnKinds_Slave.xml",
+  "1.7/Defs/ThingDefs_Races/Mugirl_Punisher.xml",
+  "1.7/Defs/DamageDefs/Mugirl_Punisher.xml",
+  "1.7/Defs/HediffDefs/Hediffs_Mugirl_Punisher.xml",
+  "1.7/Defs/HediffDefs/Hediffs_Mugirl_Events.xml",
+  "1.7/Defs/HediffDefs/Hediffs_Normal.xml",
+  "1.7/Defs/ThingDefs_Misc/Mugirl_Diary.xml",
+  "1.7/Defs/JobDefs/JobDefs_Incidents.xml",
+  "1.7/Defs/InteractionDefs/Interactions_Mugirl.xml",
+  "1.7/Defs/ThoughtDefs/Thoughts_Traits.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/IncidentDef/Incidents_Mugirl.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/IncidentDef/Incidents_CourierRaid.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/QuestScriptDef/Script_CourierContact.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/QuestScriptDef/Script_Mugirl.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/QuestScriptDef/Script_RunawayFarm.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/SitePartDef/Mugirl_RunawayFarm.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/PawnKindDef/PawnKinds_Slave.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/PawnKindDef/Mugirl_Punisher.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Mugirl_Punisher.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/DamageDef/Mugirl_Punisher.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ToolCapacityDef/Mugirl_Punisher.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_Mugirl_Punisher.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_Mugirl_Events.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_Normal.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Mugirl_Diary.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/JobDef/JobDefs_Incidents.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/InteractionDef/Interactions_Mugirl.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThoughtDef/Thoughts_Traits.xml",
+  "1.7/Languages/English/Keyed/Incidents.xml",
+  "1.7/Languages/ChineseSimplified/Keyed/Incidents.xml",
+  "1.7/Defs/JobDefs/JobDefs_Social.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/JobDef/JobDefs_Social.xml",
+  "1.7/Patches/FoodThoughts_PreceptAndHay_Patch.xml",
+  "1.7/Patches/Slaves_TraderStock_Patch.xml",
+  "1.7/Languages/English/Keyed/StoryDebug.xml",
+  "1.7/Languages/ChineseSimplified/Keyed/StoryDebug.xml",
+  "1.7/Languages/English/Keyed/Grazing.xml",
+  "1.7/Languages/ChineseSimplified/Keyed/Grazing.xml"
+ ],
+ "types": [
+  {
+   "old": "Mugirl.ChoiceLetter_MugirlFusionInvestment",
+   "new": "Mugirl.Features.Incidents.ChoiceLetter_FusionInvestment",
+   "oldFile": "Source/MugirlRace/Features/Incidents/FusionInvestment/ChoiceLetter_MugirlFusionInvestment.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/FusionInvestment/ChoiceLetter_FusionInvestment.cs",
+   "saveVisible": true,
+   "xmlVisible": false,
+   "reason": "TRANSITIONAL (deleted in Wave S) (inventory A11: no code in git history ever created it). Upgrader hand entry maps the OLD name to Verse.StandardLetter, never to this transient name; the generator must not emit old->new for this row.",
+   "transitional": {
+    "waveS": "delete",
+    "upgrade": "Map:Verse.StandardLetter"
+   },
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.CompProperties_ReadableBook",
+   "new": "Mugirl.Features.Incidents.CompProperties_CourierDiary",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Courier/CompReadableBook.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Courier/CompProperties_CourierDiary.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Misleading generic name: the comp only serves the courier diary (5 fixed pages, Dialog_ReadBook). File split (one top-level type per file). XML: 1.7/Defs/ThingDefs_Misc/Mugirl_Diary.xml:33.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.CompReadableBook",
+   "new": "Mugirl.Features.Incidents.CompCourierDiary",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Courier/CompReadableBook.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Courier/CompCourierDiary.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Same as props; vanilla CompX shape. compClass short name is a DefInjected handle: rewrite key at 1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Mugirl_Diary.xml:8 (see notes). No PostExposeData.",
+   "module": "incidents",
+   "definjectedHandles": [
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Mugirl_Diary.xml:8"
+   ]
+  },
+  {
+   "old": "Mugirl.CourierConversationUtility",
+   "new": "Mugirl.Features.Incidents.CourierConversationUtility",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Courier/CourierConversationUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Courier/CourierConversationUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Namespace only.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.DamageWorker_MugirlPunisherBlow",
+   "new": "Mugirl.Features.Incidents.DamageWorker_PunisherBlow",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Punisher/DamageWorker_MugirlPunisherBlow.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Punisher/DamageWorker_PunisherBlow.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Namespace; Mugirl redundant. XML: 1.7/Defs/DamageDefs/Mugirl_Punisher.xml:27.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.DeathActionWorker_MugirlPunisher",
+   "new": "Mugirl.Features.Incidents.DeathActionWorker_Punisher",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Punisher/DeathActionWorker_MugirlPunisher.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Punisher/DeathActionWorker_Punisher.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Namespace; Mugirl redundant. XML: 1.7/Defs/ThingDefs_Races/Mugirl_Punisher.xml:44.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Dialog_ReadBook",
+   "new": "Mugirl.Features.Incidents.Dialog_CourierDiary",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Courier/Dialog_ReadBook.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Courier/Dialog_CourierDiary.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Same as comp: it renders the courier diary pages only.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Features.Incidents.FloatMenuProvider_MugirlTalkToPawn",
+   "new": "Mugirl.Core.FloatMenuOptionProvider_TalkToEventPawn",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Shared/FloatMenuProvider_MugirlTalkToPawn.cs",
+   "newFile": "Source/MugirlRace/Core/Interaction/FloatMenuOptionProvider_TalkToEventPawn.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Vanilla role prefix; no Mugirl; says what targets it serves (event pawns: courier, investor). C18: shared talk-to-pawn bases live in Mugirl.Core (Core/Interaction); corporate derives from them.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Features.Incidents.JobDriver_MugirlTalkToPawn",
+   "new": "Mugirl.Core.JobDriver_TalkToEventPawn",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Shared/JobDriver_MugirlTalkToPawn.cs",
+   "newFile": "Source/MugirlRace/Core/Interaction/JobDriver_TalkToEventPawn.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Abstract base (never written as Class); no Mugirl prefix. C18: shared talk-to-pawn bases live in Mugirl.Core (Core/Interaction).",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Features.Incidents.MugirlEventFlags",
+   "new": "Mugirl.Features.Incidents.EventPawnFlags",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Shared/MugirlEventMarkers.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Shared/EventPawnFlags.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "In-memory [Flags] enum (never saved); own file; part of the merged event-pawn tag utility. Test MugirlEventMarkersTests follows the symbol.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Features.Incidents.MugirlJoinerLetterUtility",
+   "new": "Mugirl.Features.Incidents.JoinerLetterUtility",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Shared/MugirlJoinerLetterUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Shared/JoinerLetterUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "No Mugirl prefix.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Features.Incidents.MugirlLordUtility",
+   "new": "Mugirl.Features.Incidents.EventLordUtility",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Shared/MugirlLordUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Shared/EventLordUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "No Mugirl prefix; plain 'LordUtility' would collide with Verse.AI.Group.LordUtility (verified rw17).",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Features.Incidents.MugirlQuestLauncher",
+   "new": "Mugirl.Features.Incidents.QuestLauncher",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Shared/MugirlQuestLauncher.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Shared/QuestLauncher.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "No Mugirl prefix (no vanilla collision).",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Features.Incidents.MugirlStorySchedule",
+   "new": "Mugirl.Features.Incidents.StorylineSchedule",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Story/MugirlStorySchedule.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Storyline/StorylineSchedule.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "No Mugirl prefix; aligned with storyline naming. Unit test MugirlStoryScheduleTests follows the symbol.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.FloatMenuProvider_TalkCourier",
+   "new": "Mugirl.Features.Incidents.FloatMenuOptionProvider_TalkToCourier",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Courier/FloatMenuProvider_TalkCourier.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Courier/FloatMenuOptionProvider_TalkToCourier.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Vanilla role prefix is FloatMenuOptionProvider_ (RimWorld.FloatMenuOptionProvider_Ingest); verb aligned with base TalkToEventPawn. Instantiated by reflection, not saved.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.FloatMenuProvider_TalkFusionInvestor",
+   "new": "Mugirl.Features.Incidents.FloatMenuOptionProvider_TalkToFusionInvestor",
+   "oldFile": "Source/MugirlRace/Features/Incidents/FusionInvestment/FloatMenuProvider_TalkFusionInvestor.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/FusionInvestment/FloatMenuOptionProvider_TalkToFusionInvestor.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Vanilla role prefix; verb aligned with base.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Harmony_Apparel_DrawColor",
+   "new": "Mugirl.Features.Appearance.Harmony_Apparel_DrawColor_FixedColor",
+   "oldFile": "Source/MugirlRace/Features/Misc/FixedColorApparel/Harmony_Apparel_DrawColor.cs",
+   "newFile": "Source/MugirlRace/Features/Appearance/Apparel/Harmony_Apparel_DrawColor_FixedColor.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "DEVIATION from design 3.1 'Features/Apparel': namespace Mugirl.Features.Apparel would shadow RimWorld.Apparel for every file in Mugirl.Features.* (C# namespace-member lookup precedes global usings; CS0118). Placed in the existing Appearance/Apparel subfolder (namespace Mugirl.Features.Appearance, owner milk-genes-appearance). Purpose suffix added.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Harmony_MugirlFoodPolicyGrass_ExistingSave",
+   "new": "Mugirl.Features.Grazing.Harmony_FoodRestrictionDatabase_ExposeData_GrassPolicy",
+   "oldFile": "Source/MugirlRace/Features/Misc/Grazing/Harmony_MugirlFoodPolicyGrass.cs",
+   "newFile": "Source/MugirlRace/Features/Grazing/Harmony_FoodRestrictionDatabase_ExposeData_GrassPolicy.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "TRANSITIONAL (deleted in Wave S) (inventory A14: per-load legacy repair; replaced by a one-time PostLoad step + 'Mugirl added to existing game' lifecycle hook, plan S1/S2-10).",
+   "transitional": {
+    "waveS": "delete",
+    "upgrade": "none (not save-visible)"
+   },
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Harmony_MugirlFoodPolicyGrass_NewGame",
+   "new": "Mugirl.Features.Grazing.Harmony_FoodRestrictionDatabase_GenerateStartingFoodRestrictions_GrassPolicy",
+   "oldFile": "Source/MugirlRace/Features/Misc/Grazing/Harmony_MugirlFoodPolicyGrass.cs",
+   "newFile": "Source/MugirlRace/Features/Grazing/Harmony_FoodRestrictionDatabase_GenerateStartingFoodRestrictions_GrassPolicy.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Grazing becomes its own feature (design 3.1); patch naming; file split.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Harmony_MugirlGrazeChain",
+   "new": "Mugirl.Features.Grazing.Harmony_JobDriver_Cleanup_GrazeChain",
+   "oldFile": "Source/MugirlRace/Features/Misc/Grazing/Harmony_MugirlGrazeChain.cs",
+   "newFile": "Source/MugirlRace/Features/Grazing/Harmony_JobDriver_Cleanup_GrazeChain.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming. Note: MRK.WhiteFluff (1.6, local) names Harmony_MugirlGrazeIngest in its own checks; not public API (design 2).",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Harmony_MugirlGrazeFloatMenu",
+   "new": "Mugirl.Features.Grazing.Harmony_FloatMenuOptionProvider_Ingest_GetSingleOptionFor_Graze",
+   "oldFile": "Source/MugirlRace/Features/Misc/Grazing/Harmony_MugirlGrazeFloatMenu.cs",
+   "newFile": "Source/MugirlRace/Features/Grazing/Harmony_FloatMenuOptionProvider_Ingest_GetSingleOptionFor_Graze.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Harmony_MugirlGrazeIngest",
+   "new": "Mugirl.Features.Grazing.Harmony_JobDriver_Ingest_PrepareToIngestToils_Graze",
+   "oldFile": "Source/MugirlRace/Features/Misc/Grazing/Harmony_MugirlGrazeIngest.cs",
+   "newFile": "Source/MugirlRace/Features/Grazing/Harmony_JobDriver_Ingest_PrepareToIngestToils_Graze.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming. Replaces vanilla prepare toils only for Mugirl map-plant ingest (existing behaviour, unchanged).",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Harmony_MugirlPregnancyMood_Load",
+   "new": "Mugirl.Features.Social.Harmony_HediffComp_GiveRandomSituationalThought_CompExposeData_PregnancyMood",
+   "oldFile": "Source/MugirlRace/Features/Misc/Pregnancy/Harmony_MugirlPregnancyMood.cs",
+   "newFile": "Source/MugirlRace/Features/Social/Pregnancy/Harmony_HediffComp_GiveRandomSituationalThought_CompExposeData_PregnancyMood.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "TRANSITIONAL (deleted in Wave S) (inventory A15: per-load conversion of pre-0.6.6 state; replaced by a one-time PostLoad step).",
+   "transitional": {
+    "waveS": "delete",
+    "upgrade": "none (not save-visible)"
+   },
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Harmony_MugirlPregnancyMood_New",
+   "new": "Mugirl.Features.Social.Harmony_HediffComp_GiveRandomSituationalThought_CompPostMake_PregnancyMood",
+   "oldFile": "Source/MugirlRace/Features/Misc/Pregnancy/Harmony_MugirlPregnancyMood.cs",
+   "newFile": "Source/MugirlRace/Features/Social/Pregnancy/Harmony_HediffComp_GiveRandomSituationalThought_CompPostMake_PregnancyMood.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Mood/thought behaviour -> Social; patch naming; file split.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Harmony_MugirlPregnantApparel_RemoveHediff",
+   "new": "Mugirl.Features.Appearance.Harmony_Pawn_HealthTracker_RemoveHediff_PregnantVariant",
+   "oldFile": "Source/MugirlRace/Features/Misc/Pregnancy/Harmony_MugirlPregnantApparel.cs",
+   "newFile": "Source/MugirlRace/Features/Appearance/Apparel/Harmony_Pawn_HealthTracker_RemoveHediff_PregnantVariant.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming; file split; Appearance.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Harmony_MugirlPregnantApparel_WornGraphicPath",
+   "new": "Mugirl.Features.Appearance.Harmony_Apparel_WornGraphicPath_PregnantVariant",
+   "oldFile": "Source/MugirlRace/Features/Misc/Pregnancy/Harmony_MugirlPregnantApparel.cs",
+   "newFile": "Source/MugirlRace/Features/Appearance/Apparel/Harmony_Apparel_WornGraphicPath_PregnantVariant.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Pregnant apparel variants are apparel appearance (design 'Apparel incl. pregnant variants', placed in Appearance for the namespace reason); patch naming; file split.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Harmony_PawnAgeTracker_RecalculateLifeStageIndex_MugirlBodyType",
+   "new": "Mugirl.Features.LifeStages.Harmony_Pawn_AgeTracker_RecalculateLifeStageIndex_BodyType",
+   "oldFile": "Source/MugirlRace/Features/Newborn/Harmony_PawnAgeTracker_RecalculateLifeStageIndex_MugirlBodyType.cs",
+   "newFile": "Source/MugirlRace/Features/LifeStages/Harmony_Pawn_AgeTracker_RecalculateLifeStageIndex_BodyType.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Newborn -> LifeStages (design 3.1: it handles every life stage); exact target type name Pawn_AgeTracker.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Harmony_PawnGenerator_NewbornVisuals",
+   "new": "Mugirl.Features.LifeStages.Harmony_PawnGenerator_GeneratePawn_BodyType",
+   "oldFile": "Source/MugirlRace/Features/Newborn/Harmony_PawnGenerator_NewbornVisuals.cs",
+   "newFile": "Source/MugirlRace/Features/LifeStages/Harmony_PawnGenerator_GeneratePawn_BodyType.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming; it normalizes body type for all generated Mugirls, not only newborns.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Harmony_PawnRenderNode_Hair_MugirlBaby",
+   "new": "Mugirl.Features.LifeStages.Harmony_PawnRenderNode_Hair_GraphicFor_BabyHair",
+   "oldFile": "Source/MugirlRace/Features/Newborn/Harmony_PawnRenderNode_Hair_MugirlBaby.cs",
+   "newFile": "Source/MugirlRace/Features/LifeStages/Harmony_PawnRenderNode_Hair_GraphicFor_BabyHair.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Harmony_StylingStationFixedColor_Ctor",
+   "new": "Mugirl.Features.Appearance.Harmony_Dialog_StylingStation_Ctor_FixedColor",
+   "oldFile": "Source/MugirlRace/Features/Misc/FixedColorApparel/Harmony_StylingStationFixedColor.cs",
+   "newFile": "Source/MugirlRace/Features/Appearance/Apparel/Harmony_Dialog_StylingStation_Ctor_FixedColor.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming; file split; Appearance (see Harmony_Apparel_DrawColor row).",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Harmony_StylingStationFixedColor_Reset",
+   "new": "Mugirl.Features.Appearance.Harmony_Dialog_StylingStation_Reset_FixedColor",
+   "oldFile": "Source/MugirlRace/Features/Misc/FixedColorApparel/Harmony_StylingStationFixedColor.cs",
+   "newFile": "Source/MugirlRace/Features/Appearance/Apparel/Harmony_Dialog_StylingStation_Reset_FixedColor.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming; file split; Appearance.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.IncidentWorker_Mugirl_CourierRaid",
+   "new": "Mugirl.Features.Incidents.IncidentWorker_CourierContact",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Courier/IncidentWorker_Mugirl_CourierRaid.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Courier/IncidentWorker_CourierContact.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "TRANSITIONAL (deleted in Wave S) (plan S2-6: dev-only IncidentDef baseChance 0 duplicated by StorylineDebugActions.TriggerCourier). Moved only so Wave R compiles without root-namespace types. XML: 1.7/Defs/Storyteller/Incidents_CourierRaid.xml:11. Not save-visible -> no type-map entry.",
+   "transitional": {
+    "waveS": "delete",
+    "upgrade": "none (not save-visible)"
+   },
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.IncidentWorker_Mugirl_FusionInvestment",
+   "new": "Mugirl.Features.Incidents.IncidentWorker_FusionInvestment",
+   "oldFile": "Source/MugirlRace/Features/Incidents/FusionInvestment/IncidentWorker_Mugirl_FusionInvestment.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/FusionInvestment/IncidentWorker_FusionInvestment.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Namespace; redundant Mugirl_. XML: 1.7/Defs/Storyteller/Incidents_Mugirl.xml:48.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.IncidentWorker_Mugirl_Migration",
+   "new": "Mugirl.Features.Incidents.IncidentWorker_Migration",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Migration/IncidentWorker_Mugirl_Migration.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Migration/IncidentWorker_Migration.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Namespace; redundant Mugirl_ (no vanilla IncidentWorker_Migration). XML: Incidents_Mugirl.xml:36.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.IncidentWorker_Mugirl_RunawayFarmQuest",
+   "new": "Mugirl.Features.Incidents.IncidentWorker_RunawayFarmQuest",
+   "oldFile": "Source/MugirlRace/Features/Incidents/RunawayFarm/IncidentWorker_Mugirl_RunawayFarmQuest.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/RunawayFarm/IncidentWorker_RunawayFarmQuest.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Namespace; redundant Mugirl_ (name kept parallel to IncidentDef Mugirl_RunawayFarmQuest). XML: Incidents_Mugirl.xml:59.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.InteractionWorker_Nuzzle",
+   "new": "Mugirl.Features.Social.InteractionWorker_MugirlNuzzle",
+   "oldFile": "Source/MugirlRace/Features/Misc/Nuzzle/InteractionWorker_Nuzzle.cs",
+   "newFile": "Source/MugirlRace/Features/Social/Nuzzle/InteractionWorker_MugirlNuzzle.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Social feature (design 3.1). Keeps 'Mugirl': RimWorld.InteractionWorker_Nuzzle exists (verified rw17). XML: 1.7/Defs/InteractionDefs/Interactions_Mugirl.xml:9.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.IsWildMan_WildManUtility_Patch",
+   "new": "Mugirl.Features.Incidents.Harmony_WildManUtility_IsWildMan_WildMugirl",
+   "oldFile": "Source/MugirlRace/Features/Incidents/WildSlaves/Harmony_WildSlavePatches.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/WildMugirls/Harmony_WildManUtility_IsWildMan_WildMugirl.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming; file split.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.JobDriver_Nuzzle",
+   "new": "Mugirl.Features.Social.JobDriver_MugirlNuzzle",
+   "oldFile": "Source/MugirlRace/Features/Misc/Nuzzle/JobDriver_Nuzzle.cs",
+   "newFile": "Source/MugirlRace/Features/Social/Nuzzle/JobDriver_MugirlNuzzle.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "Social; keeps 'Mugirl': RimWorld.JobDriver_Nuzzle exists. curDriver Class -> generated type map (MooGirl.JobDriver_Nuzzle by hand). XML: 1.7/Defs/JobDefs/JobDefs.xml:57. Toil list unchanged.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.JobDriver_ReadCourierDiary",
+   "new": "Mugirl.Features.Incidents.JobDriver_ReadCourierDiary",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Courier/JobDriver_ReadCourierDiary.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Courier/JobDriver_ReadCourierDiary.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "Namespace only. curDriver Class -> generated type map (MooGirl.JobDriver_ReadCourierDiary maps here by hand). XML driverClass: 1.7/Defs/JobDefs/Jobs_CourierDiary.xml:6.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.JobDriver_TalkCourier",
+   "new": "Mugirl.Features.Incidents.JobDriver_TalkToCourier",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Courier/JobDriver_TalkCourier.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Courier/JobDriver_TalkToCourier.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "Namespace; verb aligned with base JobDriver_TalkToEventPawn. curDriver Class -> generated type map (MooGirl.JobDriver_TalkCourier by hand). XML: Jobs_CourierDiary.xml:13. Toil list unchanged (base class).",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.JobDriver_TalkFusionInvestor",
+   "new": "Mugirl.Features.Incidents.JobDriver_TalkToFusionInvestor",
+   "oldFile": "Source/MugirlRace/Features/Incidents/FusionInvestment/JobDriver_TalkFusionInvestor.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/FusionInvestment/JobDriver_TalkToFusionInvestor.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "Namespace; verb aligned with base. curDriver Class -> generated type map. XML: Jobs_CourierDiary.xml:20.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.JobGiver_DropRandomGearOrApparel_MugirlMigration_Patch",
+   "new": "Mugirl.Features.Incidents.Harmony_JobGiver_DropRandomGearOrApparel_TryGiveJob_Migration",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Migration/Harmony_MugirlMigrationPatches.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Migration/Harmony_JobGiver_DropRandomGearOrApparel_TryGiveJob_Migration.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming convention; file split (two top-level types).",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.JobGiver_MugirlPunisher",
+   "new": "Mugirl.Features.Incidents.JobGiver_RegisterPunisher",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Punisher/JobGiver_MugirlPunisher.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Punisher/JobGiver_RegisterPunisher.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Never issues a job; its only effect is registering the punisher with the map component (JobGiver_MugirlPunisher.cs:8-12). XML: 1.7/Defs/ThinkTreeDefs/Mugirl_Punisher.xml:7. Not a ThinkTree structure change (node order unchanged).",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.JobGiver_Nuzzle",
+   "new": "Mugirl.Features.Social.JobGiver_MugirlNuzzle",
+   "oldFile": "Source/MugirlRace/Features/Misc/Nuzzle/JobGiver_Nuzzle.cs",
+   "newFile": "Source/MugirlRace/Features/Social/Nuzzle/JobGiver_MugirlNuzzle.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Social; keeps 'Mugirl': RimWorld.JobGiver_Nuzzle exists. XML: Mugirl_ThinkTreeDefs.xml:436.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.LifeStageVisualService",
+   "new": "Mugirl.Features.LifeStages.LifeStageBodyTypeUtility",
+   "oldFile": "Source/MugirlRace/Features/Newborn/LifeStageVisualService.cs",
+   "newFile": "Source/MugirlRace/Features/LifeStages/LifeStageBodyTypeUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Static helper -> XUtility convention; name states the invariant it maintains.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.MapComponent_MugirlMigration",
+   "new": "Mugirl.Features.Incidents.MapComponent_Migration",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Migration/MapComponent_MugirlMigration.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Migration/MapComponent_Migration.cs",
+   "saveVisible": true,
+   "xmlVisible": false,
+   "reason": "Namespace; Mugirl redundant. Class written for every map (real saves S5-S11) -> generated type map; Wave S replaces parallel lists with a record list (plan S2-2).",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.MapComponent_MugirlPunisher",
+   "new": "Mugirl.Features.Incidents.MapComponent_Punisher",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Punisher/MapComponent_MugirlPunisher.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Punisher/MapComponent_Punisher.cs",
+   "saveVisible": true,
+   "xmlVisible": false,
+   "reason": "Namespace; Mugirl redundant. Class written for every map (real saves S7-S11) -> generated type map; Wave S record list (plan S2-3).",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.MugirlEventUtility",
+   "new": "Mugirl.Features.Incidents.EventPawnTags",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Shared/MugirlEventUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Shared/EventPawnTags.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Merged event-pawn tag utility (decided): MugirlEventUtility and MugirlEventMarkers managed one concern in two classes/namespaces. Wave S folds Mugirl.Features.Incidents.MugirlEventMarkers into this type and deletes it (see notes).",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.MugirlFixedColorUtility",
+   "new": "Mugirl.Features.Appearance.FixedColorApparelUtility",
+   "oldFile": "Source/MugirlRace/Features/Misc/FixedColorApparel/MugirlFixedColorUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Appearance/Apparel/FixedColorApparelUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "No Mugirl prefix; Appearance. Apparel tag string 'MugirlFixedColor' is Def data, unchanged.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.MugirlFoodPolicyUtility",
+   "new": "Mugirl.Features.Grazing.GrassFoodPolicyUtility",
+   "oldFile": "Source/MugirlRace/Features/Misc/Grazing/MugirlFoodPolicyUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Grazing/GrassFoodPolicyUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "No Mugirl prefix; names the one policy it manages.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.MugirlFusionInvestmentUtility",
+   "new": "Mugirl.Features.Incidents.FusionInvestmentUtility",
+   "oldFile": "Source/MugirlRace/Features/Incidents/FusionInvestment/MugirlFusionInvestmentUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/FusionInvestment/FusionInvestmentUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Namespace; no Mugirl prefix. Wave S may split it (plan S2-8).",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.MugirlGrazeUtility",
+   "new": "Mugirl.Features.Grazing.GrazeUtility",
+   "oldFile": "Source/MugirlRace/Features/Misc/Grazing/MugirlGrazeUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Grazing/GrazeUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "No Mugirl prefix.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.MugirlPawnDowningUtility",
+   "new": "Mugirl.Features.Incidents.PawnDowningUtility",
+   "oldFile": "Source/MugirlRace/Features/Incidents/OpeningCrash/MugirlPawnDowningUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/OpeningCrash/PawnDowningUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Namespace; no Mugirl prefix (no vanilla collision).",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.MugirlPregnancyMoodUtility",
+   "new": "Mugirl.Features.Social.PregnancyMoodUtility",
+   "oldFile": "Source/MugirlRace/Features/Misc/Pregnancy/MugirlPregnancyMoodUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Social/Pregnancy/PregnancyMoodUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "No Mugirl prefix; Social.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.MugirlPregnantApparelUtility",
+   "new": "Mugirl.Features.Appearance.PregnantApparelUtility",
+   "oldFile": "Source/MugirlRace/Features/Misc/Pregnancy/MugirlPregnantApparelUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Appearance/Apparel/PregnantApparelUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "No Mugirl prefix; Appearance. Tag 'MugirlPregnantSwap' is Def data, unchanged. Caller Misc/RenderRefresh/Harmony_Hediff_PostAdd_RenderRefresh.cs:31 follows the symbol.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.MugirlPunisherDeathEffectUtility",
+   "new": "Mugirl.Features.Incidents.PunisherDeathEffectUtility",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Punisher/MugirlPunisherDeathEffectUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Punisher/PunisherDeathEffectUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "No Mugirl prefix. Stays in Incidents for Wave R because spec/core-member-moves.json binds its ShockwaveFast reference to IncidentsDefOf by folder; the Dunk ability (Genes/Dunk/Thing_MugirlDunkProp.Impact.cs:68) keeps calling it. Moving it to Mugirl.Rendering is a Wave S option coordinated with core (plan S2-3b).",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.MugirlPunisherLootBurst",
+   "new": "Mugirl.Features.Incidents.PunisherLootBurst",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Punisher/MugirlPunisherLootBurst.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Punisher/PunisherLootBurst.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "No Mugirl prefix. Deep-saved without Class (declared type == runtime type), so the name is not in saves; its labels are (plan S3). Private nested DebrisArc unchanged.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.MugirlRescueJoinUtility",
+   "new": "Mugirl.Features.Incidents.RescueJoinUtility",
+   "oldFile": "Source/MugirlRace/Features/Incidents/OpeningCrash/MugirlRescueJoinUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/OpeningCrash/RescueJoinUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Namespace; no Mugirl prefix.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.MugirlStoryDebugActions",
+   "new": "Mugirl.Features.Incidents.StorylineDebugActions",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Story/MugirlStoryDebugActions.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Storyline/StorylineDebugActions.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Namespace; no Mugirl prefix. Private nested enum DebugOutcome follows unchanged.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.MugirlStoryService",
+   "new": "Mugirl.Features.Incidents.StorylineService",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Story/MugirlStoryService.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Storyline/StorylineService.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Namespace; no Mugirl prefix inside Mugirl.*; aligned with GameComponent_Storyline.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.MugirlStoryState",
+   "new": "Mugirl.Features.Incidents.GameComponent_Storyline",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Story/MugirlStoryState.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Storyline/GameComponent_Storyline.cs",
+   "saveVisible": true,
+   "xmlVisible": false,
+   "reason": "Root namespace forbidden; vanilla GameComponent_X role shape; 'Storyline' says what it holds (opening crash -> courier contact, fusion investment). Wave S nests the 13 flat fields into sub-states (plan S2-1). Class written in every save -> generated type map; MooGirl.MooGirlStoryState and MooGirl.MooGirl_GameComp map here by hand (plan S1).",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.MugirlWildSlaveUtility",
+   "new": "Mugirl.Features.Incidents.WildMugirlUtility",
+   "oldFile": "Source/MugirlRace/Features/Incidents/WildSlaves/MugirlWildSlaveUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/WildMugirls/WildMugirlUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Successor of the wild-Mugirl part (IsEscapeWildSlave/IsWildMugirl/IsNonPlayerWildMugirl/IsMugirlPawn/CleanupAfterJoiningPlayer/NormalizeLoadedPlayerPawnKinds/RefreshPawn). The player-faction helpers (PlayerFaction, IsPlayerFaction, IsHostileToPlayer x2, TrySetPlayerFaction) are first moved to Mugirl.Core.PlayerFactionUtility by spec/core-member-moves.json (resolved against the original compilation), so all external callers (Corporate, Restraints, Genes) end up on Core. 'Slave' no longer describes the content after Wave S deletes the escaped-slave kinds (plan S2-5).",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Patch_DrugAdministerDefs",
+   "new": "Mugirl.Features.Milk.Harmony_RecipeDefGenerator_DrugAdministerDefs_AdministerMilk",
+   "oldFile": "Source/MugirlRace/Features/Misc/MilkRecipe/Patch_DrugAdministerDefs.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Recipes/Harmony_RecipeDefGenerator_DrugAdministerDefs_AdministerMilk.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "module": "incidents",
+   "alsoListedBy": [
+    "milk"
+   ]
+  },
+  {
+   "old": "Mugirl.PawnMindState_CheckStartMentalStateBecauseRecruitAttempted_MugirlEvents_Patch",
+   "new": "Mugirl.Features.Incidents.Harmony_Pawn_MindState_CheckStartMentalStateBecauseRecruitAttempted_PassiveEventPawn",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Shared/Harmony_PassiveEventPawns.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Shared/Harmony_Pawn_MindState_CheckStartMentalStateBecauseRecruitAttempted_PassiveEventPawn.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming convention (target type Pawn_MindState); file split.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.PawnMindState_NotifyDamageTaken_MugirlEvents_Patch",
+   "new": "Mugirl.Features.Incidents.Harmony_Pawn_MindState_Notify_DamageTaken_EventPawn",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Shared/Harmony_PassiveEventPawns.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Shared/Harmony_Pawn_MindState_Notify_DamageTaken_EventPawn.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming convention; file split.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Pawn_Kill_MugirlMigrationOutcome_Patch",
+   "new": "Mugirl.Features.Incidents.Harmony_Pawn_Kill_MigrationOutcome",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Migration/Harmony_MugirlMigrationPatches.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Migration/Harmony_Pawn_Kill_MigrationOutcome.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming convention; file split.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Pawn_SetFaction_MugirlWildSlaveCleanup_Patch",
+   "new": "Mugirl.Features.Incidents.Harmony_Pawn_SetFaction_WildMugirl",
+   "oldFile": "Source/MugirlRace/Features/Incidents/WildSlaves/Harmony_WildSlavePatches.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/WildMugirls/Harmony_Pawn_SetFaction_WildMugirl.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming; file split.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Pawn_ShouldShowQuestionMark_MugirlFusionInvestor_Patch",
+   "new": "Mugirl.Features.Incidents.Harmony_Pawn_ShouldShowQuestionMark_FusionInvestor",
+   "oldFile": "Source/MugirlRace/Features/Incidents/FusionInvestment/Harmony_FusionInvestorQuestionMark.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/FusionInvestment/Harmony_Pawn_ShouldShowQuestionMark_FusionInvestor.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Harmony_<TargetType>_<TargetMember>_<Purpose> convention.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.QuestNode_Root_Mugirl_CourierRaid",
+   "new": "Mugirl.Features.Incidents.QuestNode_Root_CourierContact",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Courier/QuestNode_Root_Mugirl_CourierRaid.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Courier/QuestNode_Root_CourierContact.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "'Raid' is misleading (peaceful contact; label 'courier contact'); redundant Mugirl_. Follows QuestScriptDef rename to Mugirl_CourierContact. XML: 1.7/Defs/QuestScriptDefs/Script_CourierRaid.xml:19.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.QuestNode_Root_Mugirl_OpeningPodCrash",
+   "new": "Mugirl.Features.Incidents.QuestNode_Root_OpeningPodCrash",
+   "oldFile": "Source/MugirlRace/Features/Incidents/OpeningCrash/QuestNode_Root_Mugirl_OpeningPodCrash.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/OpeningCrash/QuestNode_Root_OpeningPodCrash.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Namespace; redundant Mugirl_ (no vanilla type of that name). XML: 1.7/Defs/QuestScriptDefs/Script_Mugirl.xml:22.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.QuestNode_Root_Mugirl_RefugeePodCrash",
+   "new": "Mugirl.Features.Incidents.QuestNode_Root_MugirlRefugeePodCrash",
+   "oldFile": "Source/MugirlRace/Features/Incidents/RefugeePod/QuestNode_Root_Mugirl_RefugeePodCrash.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/RefugeePod/QuestNode_Root_MugirlRefugeePodCrash.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Keeps 'Mugirl' (design 3.2 b): base type RimWorld.QuestGen.QuestNode_Root_RefugeePodCrash has the same short name/role (verified rw17). XML: Script_Mugirl.xml:43.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.QuestNode_Root_Mugirl_RunawayFarmQuest",
+   "new": "Mugirl.Features.Incidents.QuestNode_Root_RunawayFarm",
+   "oldFile": "Source/MugirlRace/Features/Incidents/RunawayFarm/QuestNode_Root_Mugirl_RunawayFarmQuest.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/RunawayFarm/QuestNode_Root_RunawayFarm.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Namespace; redundant Mugirl_ and 'Quest' (role prefix already says it). XML: 1.7/Defs/QuestScriptDefs/Script_RunawayFarm.xml:23. Part insertion order is schema (spawnPart reference is index-based) and must not change.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.QuestNode_Root_Mugirl_WandererJoin_WalkIn",
+   "new": "Mugirl.Features.Incidents.QuestNode_Root_MugirlWandererJoin",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Wanderer/QuestNode_Root_Mugirl_WandererJoin_WalkIn.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Wanderer/QuestNode_Root_MugirlWandererJoin.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Keeps 'Mugirl' (vanilla QuestNode_Root_WandererJoin and _WalkIn exist, verified rw17). XML: Script_Mugirl.xml:62.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.QuestPart_MugirlRescueJoin",
+   "new": "Mugirl.Features.Incidents.QuestPart_JoinOnRescue",
+   "oldFile": "Source/MugirlRace/Features/Incidents/OpeningCrash/QuestPart_MugirlRescueJoin.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/OpeningCrash/QuestPart_JoinOnRescue.cs",
+   "saveVisible": true,
+   "xmlVisible": false,
+   "reason": "Logic is not Mugirl-specific; name states the behaviour. QuestPart Class -> generated type map (index safety); MooGirl.QuestPart_MooGirlRescueJoin by hand. Real saves S5,S7,S10.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.QuestPart_RunawayFarmCompletion",
+   "new": "Mugirl.Features.Incidents.QuestPart_RunawayFarmCompletion",
+   "oldFile": "Source/MugirlRace/Features/Incidents/RunawayFarm/QuestPart_RunawayFarmCompletion.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/RunawayFarm/QuestPart_RunawayFarmCompletion.cs",
+   "saveVisible": true,
+   "xmlVisible": false,
+   "reason": "Namespace only. QuestPart Class -> generated type map.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.QuestPart_SpawnCourier",
+   "new": "Mugirl.Features.Incidents.QuestPart_SpawnCourier",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Courier/QuestPart_SpawnCourier.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Courier/QuestPart_SpawnCourier.cs",
+   "saveVisible": true,
+   "xmlVisible": false,
+   "reason": "Namespace only. QuestPart Class must resolve or later part indices shift (Quest.ExposeData RemoveAll(null)) -> generated type map; MooGirl.QuestPart_SpawnCourier by hand. Real saves S7,S10.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.QuestPart_SpawnRunawayFarm",
+   "new": "Mugirl.Features.Incidents.QuestPart_SpawnRunawayFarm",
+   "oldFile": "Source/MugirlRace/Features/Incidents/RunawayFarm/QuestPart_SpawnRunawayFarm.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/RunawayFarm/QuestPart_SpawnRunawayFarm.cs",
+   "saveVisible": true,
+   "xmlVisible": false,
+   "reason": "Namespace only (partial type: QuestPart_SpawnRunawayFarm.Layout.cs is the second declaration and changes namespace too, path unchanged). QuestPart Class -> generated type map.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.RecruitUtility_Recruit_Patch",
+   "new": "Mugirl.Features.Incidents.Harmony_RecruitUtility_Recruit_WildMugirl",
+   "oldFile": "Source/MugirlRace/Features/Incidents/WildSlaves/Harmony_WildSlavePatches.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/WildMugirls/Harmony_RecruitUtility_Recruit_WildMugirl.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming; file split.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.StockGenerator_Mugirl_Slaves",
+   "new": "Mugirl.Features.Trade.StockGenerator_MugirlSlaves",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Trade/StockGenerator_Mugirl_Slaves.cs",
+   "newFile": "Source/MugirlRace/Features/Trade/StockGenerator_MugirlSlaves.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Trader stock, not an incident -> Features/Trade (design 3.1). Keeps 'Mugirl' (vanilla RimWorld.StockGenerator_Slaves), drops the extra underscore. PUBLIC ALIAS NEEDED: KindSeal.LOL uses Class=\"Mugirl.StockGenerator_Mugirl_Slaves\" (3555662938/1.7/Defs/Trader/KT_Trader.xml:480); field names slaveCountRange/slaveKindDef stay. XML incl. xpath predicates: 1.7/Patches/MugirlPatch.xml:54,58,68,72,82,86.",
+   "module": "incidents",
+   "publicAlias": {
+    "file": "Source/MugirlRace/PublicApi/XmlAliases.cs",
+    "name": "Mugirl.StockGenerator_Mugirl_Slaves",
+    "frozenXmlFields": [
+     "slaveCountRange"
+    ]
+   }
+  },
+  {
+   "old": "Mugirl.TameUtility_CanTame_Patch",
+   "new": "Mugirl.Features.Incidents.Harmony_TameUtility_CanTame_WildMugirl",
+   "oldFile": "Source/MugirlRace/Features/Incidents/WildSlaves/Harmony_WildSlavePatches.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/WildMugirls/Harmony_TameUtility_CanTame_WildMugirl.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Patch naming; file split; folder renamed WildSlaves->WildMugirls (only the wild-Mugirl kind remains after Wave S).",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.ThinkNode_ConditionalNonPlayerWildMugirl",
+   "new": "Mugirl.Features.Incidents.ThinkNode_ConditionalNonPlayerWildMugirl",
+   "oldFile": "Source/MugirlRace/Features/Incidents/WildSlaves/ThinkNode_ConditionalNonPlayerWildMugirl.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/WildMugirls/ThinkNode_ConditionalNonPlayerWildMugirl.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Namespace only ('Mugirl' is meaning). XML: 1.7/Defs/ThinkTreeDefs/Mugirl_ThinkTreeDefs.xml:400,452 (Class change does not alter ThinkTree keys: keys hash the ThinkTreeDef defName + node order).",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.ThoughtWorker_SingleshotWeaponAversion",
+   "new": "Mugirl.Features.Social.ThoughtWorker_SingleshotWeaponAversion",
+   "oldFile": "Source/MugirlRace/Features/Misc/Thoughts/ThoughtWorker_SingleshotWeaponAversion.cs",
+   "newFile": "Source/MugirlRace/Features/Social/Thoughts/ThoughtWorker_SingleshotWeaponAversion.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "Namespace only. XML: Thoughts_Traits.xml:5.",
+   "module": "incidents"
+  },
+  {
+   "old": "Mugirl.Thought_MugirlOnly",
+   "new": "Mugirl.Features.Social.Thought_MugirlOnly",
+   "oldFile": "Source/MugirlRace/Features/Misc/Thoughts/Thought_MugirlOnly.cs",
+   "newFile": "Source/MugirlRace/Features/Social/Thoughts/Thought_MugirlOnly.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "Namespace only ('Mugirl' is meaning: discarded when the body is not a Mugirl). Memory li Class -> generated type map (MooGirl.Thought_MooGirlOnly by hand). XML thoughtClass: Thoughts_Traits.xml:23,40.",
+   "module": "incidents"
+  }
+ ],
+ "fileMoves": [
+  {
+   "old": "Source/MugirlRace/Features/Incidents/Shared/RunawayWanderUtility.cs",
+   "new": "Source/MugirlRace/Features/Incidents/RunawayFarm/RunawayWanderUtility.cs",
+   "module": "incidents"
+  }
+ ],
+ "defs": [
+  {
+   "defType": "JobDef",
+   "old": "Job_Nuzzle",
+   "new": "Mugirl_Nuzzle",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/JobDefs/JobDefs.xml:56",
+    "1.7/Languages/ChineseSimplified/DefInjected/JobDef/JobDefs.xml:18",
+    "Source/MugirlRace/DefOf/Mugirl_DefOf.cs:42"
+   ],
+   "reason": "Missing mod prefix (design 3.3 'Job_*'); saved in curJob/def and jobQueue. New name intentionally equals InteractionDef Mugirl_Nuzzle (same concept, vanilla precedent JobDef+InteractionDef 'Nuzzle'); DefOf field renamed with it (user: Features/Misc/Nuzzle/JobGiver_Nuzzle.cs:24). MooGirl-era map must also target Mugirl_Nuzzle (no chains). DefOf: spec/core-member-moves.json moves both Mugirl_DefOf.Job_Nuzzle and Mugirl_DefOf.Mugirl_Nuzzle (InteractionDef) into Mugirl.Features.Social.SocialDefOf; after this rename the JobDef field must NOT become 'Mugirl_Nuzzle' (duplicate field): rename it to Mugirl_NuzzleJob with [DefAlias(\"Mugirl_Nuzzle\")] (RimWorld.DefAliasAttribute, verified rw17), an explicit exception to the field=defName coupling.",
+   "module": "incidents",
+   "newNameSharedWithOtherDefTypes": true
+  },
+  {
+   "defType": "QuestScriptDef",
+   "old": "Mugirl_CourierRaid",
+   "new": "Mugirl_CourierContact",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": true,
+   "explicitRefs": [
+    "1.7/Defs/QuestScriptDefs/Script_CourierRaid.xml:5",
+    "1.7/Languages/ChineseSimplified/DefInjected/QuestScriptDef/Script_CourierRaid.xml:4",
+    "1.7/Languages/ChineseSimplified/DefInjected/QuestScriptDef/Script_CourierRaid.xml:6",
+    "1.7/Languages/ChineseSimplified/DefInjected/QuestScriptDef/Script_CourierRaid.xml:8",
+    "1.7/Languages/ChineseSimplified/DefInjected/QuestScriptDef/Script_CourierRaid.xml:10",
+    "Source/MugirlRace/DefOf/MugirlContentDefOf.cs:90"
+   ],
+   "reason": "Misleading meaning (design 3.3): a peaceful courier contact, label 'courier contact'. Saved as Quest.root (real saves S6,S7,S10: root<li x3). The same old name is ALSO an IncidentDef (1.7/Defs/Storyteller/Incidents_CourierRaid.xml:5 + DefInjected IncidentDef/Incidents_CourierRaid.xml:4) which is NOT renamed here: it is deleted in Wave S (plan S2-6, hand Drop entry). C# users follow the DefOf field: CorporateIntroduction.cs:371, CourierConversationUtility.cs:128, IncidentWorker_Mugirl_CourierRaid.cs:39, MugirlStoryDebugActions.cs:46,52, MugirlStoryService.cs:146. MooGirl-era QuestScriptDef MooGirl_CourierRaid must target Mugirl_CourierContact.",
+   "module": "incidents"
+  },
+  {
+   "defType": "ThinkTreeDef",
+   "old": "MugirlPunisher",
+   "new": "Mugirl_Punisher",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/ThinkTreeDefs/Mugirl_Punisher.xml:4",
+    "1.7/Defs/ThingDefs_Races/Mugirl_Punisher.xml:36"
+   ],
+   "reason": "Prefix inconsistent (design 3.3). Saved in Job.jobGiverThinkTree; ThinkTree node keys hash the defName (ThinkTreeDef.ResolveReferences -> AssignKeys(StableStringHash(defName)), rw17), so a DOM step drops lastJobGiverKey of affected jobs (plan S1 X3). New name is shared with PawnKindDef Mugirl_Punisher (same concept). Do NOT touch the texPath Things/Pawn/MugirlPunisher/MugirlPunisher (Mugirl_Punisher.xml:82): whole-text-node matches only.",
+   "module": "incidents",
+   "newNameSharedWithOtherDefTypes": true
+  }
+ ],
+ "memberRenames": [
+  {
+   "member": "Mugirl.Mugirl_DefOf.Mugirl_Nuzzle",
+   "new": "Mugirl_NuzzleInteraction",
+   "module": "incidents",
+   "addAttributes": [
+    "DefAlias(\"Mugirl_Nuzzle\")"
+   ],
+   "reason": "C05: JobDef Job_Nuzzle is renamed to Mugirl_Nuzzle; the InteractionDef field of the same defName keeps binding through [DefAlias]."
+  }
+ ]
+}

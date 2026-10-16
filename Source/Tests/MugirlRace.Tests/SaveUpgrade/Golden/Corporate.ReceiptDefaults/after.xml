@@ -1,0 +1,69 @@
+<savegame>
+  <meta>
+    <gameVersion>1.6.4871 rev591</gameVersion>
+    <modIds>
+      <li>ludeon.rimworld</li>
+      <li>har.mugirlrace</li>
+    </modIds>
+  </meta>
+  <game>
+    <components>
+      <li Class="Mugirl.Features.Corporate.CorporateNetwork">
+        <history />
+        <loan />
+        <trade>
+          <orders>
+            <li>
+              <quantity>3</quantity>
+              <deliveredQuantity>2</deliveredQuantity>
+              <paid>10</paid>
+              <savedLabel>旧标签</savedLabel>
+              <creditedTurnover>6</creditedTurnover>
+            </li>
+            <li>
+              <quantity>0</quantity>
+              <paid>100</paid>
+              <creditedTurnover>0</creditedTurnover>
+            </li>
+          </orders>
+        </trade>
+        <people>
+          <offers>
+            <li>
+              <id>4</id>
+              <price>4710</price>
+              <paid>True</paid>
+              <paidAmount>4710</paidAmount>
+              <pawn>Thing_Human45</pawn>
+              <continuation Class="Mugirl.SaveUpgrade.CorporateOfferPriceCompletion" />
+            </li>
+            <li>
+              <id>5</id>
+              <price>3</price>
+            <continuation IsNull="True" />
+            </li>
+          </offers>
+        </people>
+        <missionBoard>
+          <missions>
+            <li>
+              <kind>Distribution</kind>
+              <count>53</count>
+              <salesGoal>43</salesGoal>
+            </li>
+            <li>
+              <kind>CustomKind</kind>
+              <count>23</count>
+              <salesGoal>-7</salesGoal>
+            </li>
+          </missions>
+        </missionBoard>
+        <services>
+          <supportWeek>420000</supportWeek>
+          <supportCallsUsed>1</supportCallsUsed>
+        </services>
+      </li>
+    </components>
+    <offer Class="Mugirl.Features.Corporate.CorporatePersonOffer"><price>327</price><paidAmount>-1</paidAmount><continuation IsNull="True" /></offer>
+  </game>
+</savegame>

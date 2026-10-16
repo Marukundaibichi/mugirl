@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <!-- 奶制食物不继承 MealBase 的食物中毒组件。 -->
+    <ThingDef Name="Mugirl_MilkFoodBase" ParentName="MealBase" Abstract="True">
+        <tradeability>Sellable</tradeability>
+        <statBases>
+            <FoodPoisonChanceFixedHuman>0</FoodPoisonChanceFixedHuman>
+        </statBases>
+        <comps Inherit="False">
+            <li Class="CompProperties_Forbiddable" />
+            <li Class="CompProperties_Ingredients">
+                <splitTransferableFoodKind>true</splitTransferableFoodKind>
+            </li>
+            <li MayRequire="Ludeon.RimWorld.Anomaly" Class="CompProperties_MetalhorrorInfectible" />
+        </comps>
+    </ThingDef>
+
+    <!-- ============== 雪牛娘奶布丁 ============== -->
+    <ThingDef ParentName="Mugirl_MilkFoodBase">
+        <defName>Mugirl_MilkPudding</defName>
+        <!-- 雪牛娘奶布丁 -->
+        <label>Mugirl milk pudding</label>
+        <!-- 只取情绪监测达标时所泌乳脂，凝作一口柔滑。精准维稳的激素方案，调出丝绸般顺从质地。入口即化，顺从中来。 -->
+        <description>Made from milk fat collected only when monitored quality targets are met. Careful temperature and hormone control produces a silky pudding that melts on the tongue.</description>
+        <graphicData>
+            <texPath>Things/milkfood/milkfood_pudding</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <statBases>
+            <MaxHitPoints>50</MaxHitPoints>
+            <MarketValue>34</MarketValue>
+            <Nutrition>1.4</Nutrition>
+            <Flammability>1.0</Flammability>
+            <Mass>0.3</Mass>
+            <DeteriorationRate>1.0</DeteriorationRate>
+        </statBases>
+        <ingestible>
+            <preferability>MealFine</preferability>
+            <maxNumToIngestAtOnce>3</maxNumToIngestAtOnce>
+            <tasteThought>Mugirl_ConsumedPudding</tasteThought>
+            <specialThoughtAsIngredient>Mugirl_ConsumedPudding</specialThoughtAsIngredient>
+        </ingestible>
+        <tradeTags>
+            <li>Mugirl_MilkFood</li>
+        </tradeTags>
+    </ThingDef>
+
+    <!-- ============== 雪牛娘奶酪 ============== -->
+    <ThingDef ParentName="Mugirl_MilkFoodBase">
+        <defName>Mugirl_Cheese</defName>
+        <!-- 雪牛娘奶酪 -->
+        <label>Mugirl cheese</label>
+        <!-- 精选高蛋白牛乳，反复拉伸锤炼出绵密拉丝。在日复一日的规训中，蛋白质链被驯化成完美柔韧。拉得出丝，扯不断训。 -->
+        <description>High-protein Mugirl milk is repeatedly stretched and worked into dense, elastic strands. Regular production cycles give it a rich flavor and remarkable chew.</description>
+        <graphicData>
+            <texPath>Things/milkfood/milkfood_cheese</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <statBases>
+            <MaxHitPoints>50</MaxHitPoints>
+            <MarketValue>50</MarketValue>
+            <Nutrition>2</Nutrition>
+            <Flammability>1.0</Flammability>
+            <Mass>0.5</Mass>
+            <DeteriorationRate>1.0</DeteriorationRate>
+        </statBases>
+        <comps>
+            <li Class="CompProperties_Rottable">
+                <daysToRotStart>10000</daysToRotStart>
+                <rotDestroys>false</rotDestroys>
+            </li>
+        </comps>
+        <ingestible>
+            <preferability>MealFine</preferability>
+            <maxNumToIngestAtOnce>3</maxNumToIngestAtOnce>
+            <tasteThought>Mugirl_ConsumedCheese</tasteThought>
+            <specialThoughtAsIngredient>Mugirl_ConsumedCheese</specialThoughtAsIngredient>
+            <outcomeDoers>
+                <li Class="Mugirl.Features.Milk.IngestionOutcomeDoer_RemoveHediffs">
+                    <removeHediffs>
+                        <li>FoodPoisoning</li>
+                        <li>ToxicBuildup</li>
+                    </removeHediffs>
+                </li>
+            </outcomeDoers>
+        </ingestible>
+        <tradeTags>
+            <li>Mugirl_MilkFood</li>
+        </tradeTags>
+    </ThingDef>
+
+    <!-- ============== 雪牛娘陈年奶酪 ============== -->
+    <ThingDef ParentName="Mugirl_MilkFoodBase">
+        <defName>Mugirl_AgedCheese</defName>
+        <!-- 雪牛娘陈年奶酪 -->
+        <label>Aged Mugirl cheese</label>
+        <!-- 单一牧场奶源，经年窖藏，风味深邃。日复一日不变的供乳节律，才让时间酝酿出这般稠密。岁月添香，奉献如常。 -->
+        <description>Single-farm Mugirl milk and hops are matured for years into a dense, deeply flavored cheese. Its steady aging rewards patience with a rich aroma and lingering finish.</description>
+        <graphicData>
+            <texPath>Things/milkfood/milkfood_Agedcheese</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <statBases>
+            <MaxHitPoints>50</MaxHitPoints>
+            <MarketValue>54</MarketValue>
+            <Nutrition>2.1</Nutrition>
+            <Flammability>1.0</Flammability>
+            <Mass>0.5</Mass>
+            <DeteriorationRate>1.0</DeteriorationRate>
+        </statBases>
+        <ingestible>
+            <preferability>MealFine</preferability>
+            <maxNumToIngestAtOnce>3</maxNumToIngestAtOnce>
+            <tasteThought>Mugirl_ConsumedAgedCheese</tasteThought>
+            <specialThoughtAsIngredient>Mugirl_ConsumedAgedCheese</specialThoughtAsIngredient>
+            <outcomeDoers>
+                <li Class="Mugirl.Features.Milk.IngestionOutcomeDoer_AddOrRefreshHediff">
+                    <hediffDef>Mugirl_AgedCheeseEffect</hediffDef>
+                    <severity>1.0</severity>
+                </li>
+            </outcomeDoers>
+        </ingestible>
+        <tradeTags>
+            <li>Mugirl_MilkFood</li>
+        </tradeTags>
+    </ThingDef>
+
+    <!-- ============== 雪牛娘奶宝塔糖 ============== -->
+    <ThingDef ParentName="Mugirl_MilkFoodBase">
+        <defName>Mugirl_BaotaSugar</defName>
+        <!-- 雪牛娘奶宝塔糖 -->
+        <label>Mugirl milk baota candy</label>
+        <!-- 萃取雪牛娘乳清蛋白，垒成玲珑宝塔。科学调校的饲喂与作息，将免疫因子压进每一层。层层守护，塔底是它。 -->
+        <description>Mugirl whey protein and herbal medicine are pressed into a small tower-shaped deworming candy. Each layer carries a carefully measured dose behind a sweet milk flavor.</description>
+        <graphicData>
+            <texPath>Things/milkfood/milkfood_BaotaSugar</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <statBases>
+            <MaxHitPoints>50</MaxHitPoints>
+            <MarketValue>18</MarketValue>
+            <Nutrition>0.2</Nutrition>
+            <Flammability>1.0</Flammability>
+            <Mass>0.1</Mass>
+            <DeteriorationRate>1.0</DeteriorationRate>
+        </statBases>
+        <ingestible>
+            <preferability>MealFine</preferability>
+            <maxNumToIngestAtOnce>3</maxNumToIngestAtOnce>
+            <tasteThought>Mugirl_ConsumedRichMilkFlavor</tasteThought>
+            <specialThoughtAsIngredient>Mugirl_ConsumedRichMilkFlavor</specialThoughtAsIngredient>
+            <outcomeDoers>
+                <li Class="Mugirl.Features.Milk.IngestionOutcomeDoer_RemoveHediffs">
+                    <removeHediffs>
+                        <li>GutWorms</li>
+                        <li>MuscleParasites</li>
+                    </removeHediffs>
+                </li>
+            </outcomeDoers>
+        </ingestible>
+        <tradeTags>
+            <li>Mugirl_MilkFood</li>
+        </tradeTags>
+    </ThingDef>
+
+    <!-- ============== 大肥牛奶糖 ============== -->
+    <ThingDef ParentName="Mugirl_MilkFoodBase">
+        <defName>Mugirl_MilkCandy</defName>
+        <!-- 大肥牛奶糖 -->
+        <label>Big cow milk candy</label>
+        <!-- 以认证雪牛娘种源牛乳慢熬，颗颗浓醇弹牙。在精细规划的挤奶轮次中，乳汁被悉数收走，化作绵密嚼劲。嚼得出醇厚，嚼不尽它的沉默。 -->
+        <description>Certified Mugirl milk is simmered slowly into rich, springy candies. The concentrated milk gives every piece a dense chew and a deep creamy flavor.</description>
+        <graphicData>
+            <texPath>Things/milkfood/milkfood_milkcandy</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <statBases>
+            <MaxHitPoints>50</MaxHitPoints>
+            <MarketValue>16</MarketValue>
+            <Nutrition>0.4</Nutrition>
+            <Flammability>1.0</Flammability>
+            <Mass>0.1</Mass>
+            <DeteriorationRate>1.0</DeteriorationRate>
+        </statBases>
+        <ingestible>
+            <preferability>MealFine</preferability>
+            <maxNumToIngestAtOnce>3</maxNumToIngestAtOnce>
+            <tasteThought>Mugirl_ConsumedMilkCandy</tasteThought>
+            <specialThoughtAsIngredient>Mugirl_ConsumedMilkCandy</specialThoughtAsIngredient>
+        </ingestible>
+        <tradeTags>
+            <li>Mugirl_MilkFood</li>
+        </tradeTags>
+    </ThingDef>
+
+    <!-- ============== 雪牛娘牛乳蛋糕 ============== -->
+    <ThingDef ParentName="Mugirl_MilkFoodBase">
+        <defName>Mugirl_CowCake</defName>
+        <!-- 雪牛娘牛乳蛋糕 -->
+        <label>Mugirl milk cake</label>
+        <!-- 以鲜乳代替水和面，烘焙出云朵蓬松。它们的“幸福指数”被严格控在起酥曲线内，才发得出这般均匀。绵软入心，管控入微。 -->
+        <description>Fresh Mugirl milk replaces water in the batter, producing a cake as soft and airy as a cloud. Strictly controlled mixing and baking keep every slice evenly risen.</description>
+        <graphicData>
+            <texPath>Things/milkfood/milkfood_CowCake</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <statBases>
+            <MaxHitPoints>50</MaxHitPoints>
+            <MarketValue>60</MarketValue>
+            <Nutrition>2.2</Nutrition>
+            <Flammability>1.0</Flammability>
+            <Mass>0.8</Mass>
+            <DeteriorationRate>1.0</DeteriorationRate>
+        </statBases>
+        <ingestible>
+            <preferability>MealFine</preferability>
+            <maxNumToIngestAtOnce>3</maxNumToIngestAtOnce>
+            <tasteThought>Mugirl_ConsumedRichMilkFlavor</tasteThought>
+            <specialThoughtAsIngredient>Mugirl_ConsumedRichMilkFlavor</specialThoughtAsIngredient>
+            <outcomeDoers>
+                <li Class="Mugirl.Features.Milk.IngestionOutcomeDoer_AddOrRefreshHediff">
+                    <hediffDef>Mugirl_CowCakeEffect</hediffDef>
+                    <severity>1.0</severity>
+                </li>
+            </outcomeDoers>
+        </ingestible>
+        <tradeTags>
+            <li>Mugirl_MilkFood</li>
+        </tradeTags>
+    </ThingDef>
+
+    <!-- ============== 雪牛娘奶粉 ============== -->
+    <ThingDef ParentName="Mugirl_MilkFoodBase">
+        <defName>Mugirl_MilkPowder</defName>
+        <!-- 雪牛娘奶粉 -->
+        <label>Mugirl milk powder</label>
+        <!-- 低温喷雾锁住原乳营养，一冲即溶。每罐填装的，都是它被精准设定、无法拒绝的哺乳本能。一勺复原，满杯辛劳。 -->
+        <description>Low-temperature spray drying preserves the nutrition of raw Mugirl milk. A single spoonful dissolves quickly into a full cup of creamy milk.</description>
+        <graphicData>
+            <texPath>Things/milkfood/milkfood_milkpowder</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <statBases>
+            <MaxHitPoints>50</MaxHitPoints>
+            <MarketValue>16</MarketValue>
+            <Nutrition>0.4</Nutrition>
+            <Flammability>1.0</Flammability>
+            <Mass>0.1</Mass>
+            <DeteriorationRate>1.0</DeteriorationRate>
+        </statBases>
+        <ingestible>
+            <preferability>MealFine</preferability>
+            <maxNumToIngestAtOnce>3</maxNumToIngestAtOnce>
+            <tasteThought>Mugirl_ConsumedRichMilkFlavor</tasteThought>
+            <specialThoughtAsIngredient>Mugirl_ConsumedRichMilkFlavor</specialThoughtAsIngredient>
+            <outcomeDoers>
+                <li Class="Mugirl.Features.Milk.IngestionOutcomeDoer_AddOrRefreshHediff">
+                    <hediffDef>Mugirl_MilkPowderEffect</hediffDef>
+                    <severity>1.0</severity>
+                </li>
+            </outcomeDoers>
+        </ingestible>
+        <tradeTags>
+            <li>Mugirl_MilkFood</li>
+        </tradeTags>
+    </ThingDef>
+
+    <!-- ============== 雪牛娘奶片 ============== -->
+    <ThingDef ParentName="Mugirl_MilkFoodBase">
+        <defName>Mugirl_MilkTablet</defName>
+        <!-- 雪牛娘奶片 -->
+        <label>Mugirl milk tablet</label>
+        <!-- 整日泌乳浓缩，压成薄片。每寸精华都挤出贴合包装的密度，正如它所适应的空间。一片轻薄，满口压榨。 -->
+        <description>Concentrated Mugirl milk is compressed into thin, portable tablets. Each light piece carries a surprisingly full milk flavor.</description>
+        <graphicData>
+            <texPath>Things/milkfood/milkfood_milktablet</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <statBases>
+            <MaxHitPoints>50</MaxHitPoints>
+            <MarketValue>18</MarketValue>
+            <Nutrition>0.2</Nutrition>
+            <Flammability>1.0</Flammability>
+            <Mass>0.1</Mass>
+            <DeteriorationRate>1.0</DeteriorationRate>
+        </statBases>
+        <ingestible>
+            <preferability>MealFine</preferability>
+            <maxNumToIngestAtOnce>3</maxNumToIngestAtOnce>
+            <tasteThought>Mugirl_ConsumedRichMilkFlavor</tasteThought>
+            <specialThoughtAsIngredient>Mugirl_ConsumedRichMilkFlavor</specialThoughtAsIngredient>
+            <outcomeDoers>
+                <li Class="Mugirl.Features.Milk.IngestionOutcomeDoer_AddOrRefreshHediff">
+                    <hediffDef>Mugirl_MilkTabletEffect</hediffDef>
+                    <severity>1.0</severity>
+                </li>
+            </outcomeDoers>
+        </ingestible>
+        <tradeTags>
+            <li>Mugirl_MilkFood</li>
+        </tradeTags>
+    </ThingDef>
+
+    <!-- ============== 奶霜苹果 ============== -->
+    <ThingDef ParentName="Mugirl_MilkFoodBase">
+        <defName>Mugirl_MilkCreamApple</defName>
+        <!-- 奶霜苹果 -->
+        <label>Milk cream apple</label>
+        <!-- 新鲜苹果裹满雪牛娘头道乳霜，清甜与浓滑层叠。取乳时段恰好踩在它泌乳反射的峰值，温顺换来稳定。清脆一口，温顺一生。 -->
+        <description>A fresh apple coated in first-draw Mugirl cream, layering crisp sweetness with a rich, smooth finish.</description>
+        <graphicData>
+            <texPath>Things/milkfood/milkfood_Milkcreamapple</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <statBases>
+            <MaxHitPoints>50</MaxHitPoints>
+            <MarketValue>30</MarketValue>
+            <Nutrition>1.2</Nutrition>
+            <Flammability>1.0</Flammability>
+            <Mass>0.3</Mass>
+            <DeteriorationRate>1.0</DeteriorationRate>
+        </statBases>
+        <ingestible>
+            <preferability>MealFine</preferability>
+            <maxNumToIngestAtOnce>3</maxNumToIngestAtOnce>
+            <tasteThought>Mugirl_ConsumedRichMilkFlavor</tasteThought>
+            <specialThoughtAsIngredient>Mugirl_ConsumedRichMilkFlavor</specialThoughtAsIngredient>
+        </ingestible>
+        <tradeTags>
+            <li>Mugirl_MilkFood</li>
+        </tradeTags>
+    </ThingDef>
+
+</Defs>

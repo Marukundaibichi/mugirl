@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- This weapon currently reuses the base game mini flamethrower code and will be revised later. -->
+    <Mugirl_Gun_Flame_Thrower.description>这个武器先复用原版迷你火焰冲击枪的代码，后续修改。</Mugirl_Gun_Flame_Thrower.description>
+    <!-- Mugirl Flame Thrower -->
+    <Mugirl_Gun_Flame_Thrower.label>雪牛娘火焰喷射器</Mugirl_Gun_Flame_Thrower.label>
+    <!-- barrel -->
+    <Mugirl_Gun_Flame_Thrower.tools.barrel.label>枪管</Mugirl_Gun_Flame_Thrower.tools.barrel.label>
+    <!-- Mugirl Flame Thrower -->
+    <Mugirl_Gun_Flame_Thrower.verbs.Verb_SpewFire.label>雪牛娘火焰喷射器</Mugirl_Gun_Flame_Thrower.verbs.Verb_SpewFire.label>
+</LanguageData>

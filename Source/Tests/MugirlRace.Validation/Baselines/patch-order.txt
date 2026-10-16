@@ -1,0 +1,17 @@
+# Effective order of same-kind Mugirl patches on one target (Harmony: priority, then registration index), from Harmony.GetPatchInfo after Apply.
+# Target<TAB>Kind<TAB>Position<TAB>PatchClass::Method. A rename must not change it; regenerate with --update-baselines only for a deliberate change.
+RimWorld.ChildcareUtility::SuckleFromLactatingPawn(Verse.Pawn, Verse.Pawn, System.Int32)	Prefix	01	Mugirl.Compatibility.LactationExpansion.Harmony_ChildcareUtility_SuckleFromLactatingPawn::Prefix
+RimWorld.ChildcareUtility::SuckleFromLactatingPawn(Verse.Pawn, Verse.Pawn, System.Int32)	Prefix	02	Mugirl.Features.Milk.Harmony_ChildcareUtility_SuckleFromLactatingPawn_MilkSource::Prefix
+Verse.Pawn::DynamicDrawPhaseAt(Verse.DrawPhase, UnityEngine.Vector3, System.Boolean)	Postfix	01	Mugirl.Features.Lances.Harmony_Pawn_DynamicDrawPhaseAt_LanceBlurRecovery::Postfix
+Verse.Pawn::DynamicDrawPhaseAt(Verse.DrawPhase, UnityEngine.Vector3, System.Boolean)	Postfix	02	Mugirl.Features.Mounting.Harmony_Pawn_DynamicDrawPhaseAt_Rider::Postfix
+Verse.Pawn::DynamicDrawPhaseAt(Verse.DrawPhase, UnityEngine.Vector3, System.Boolean)	Postfix	03	Mugirl.Features.WeaponWheel.Harmony_Pawn_DynamicDrawPhaseAt_WeaponWheelAnimation::Postfix
+Verse.PawnGenerator::GeneratePawn(Verse.PawnGenerationRequest)	Postfix	01	Mugirl.Features.Corporate.Harmony_PawnGenerator_GeneratePawn_CorporateUniforms::Postfix
+Verse.PawnGenerator::GeneratePawn(Verse.PawnGenerationRequest)	Postfix	02	Mugirl.Features.LifeStages.Harmony_PawnGenerator_GeneratePawn_BodyType::Postfix
+Verse.PawnGenerator::GeneratePawn(Verse.PawnGenerationRequest)	Postfix	03	Mugirl.Features.WeaponWheel.Harmony_PawnGenerator_GeneratePawn_WeaponWheelLoadout::Postfix
+Verse.PawnGenerator::GeneratePawn(Verse.PawnGenerationRequest)	Postfix	04	Mugirl.Features.Restraints.Harmony_PawnGenerator_GeneratePawn_LockRestraints::Postfix
+Verse.Pawn_EquipmentTracker::Notify_EquipmentRemoved(Verse.ThingWithComps)	Prefix	01	Mugirl.Features.Mounting.Harmony_Pawn_EquipmentTracker_Notify_EquipmentRemoved_MountedVerbs::Prefix
+Verse.Pawn_EquipmentTracker::Notify_EquipmentRemoved(Verse.ThingWithComps)	Prefix	02	Mugirl.Features.WeaponWheel.Harmony_Pawn_EquipmentTracker_Notify_EquipmentRemoved_WeaponWheel::Prefix
+Verse.Verb::TryStartCastOn(Verse.LocalTargetInfo, Verse.LocalTargetInfo, System.Boolean, System.Boolean, System.Boolean, System.Boolean)	Prefix	01	Mugirl.Features.Abilities.Harmony_Verb_TryStartCastOn_ThrowLock::Prefix
+Verse.Verb::TryStartCastOn(Verse.LocalTargetInfo, Verse.LocalTargetInfo, System.Boolean, System.Boolean, System.Boolean, System.Boolean)	Prefix	02	Mugirl.Features.WeaponWheel.Harmony_Verb_TryStartCastOn_WeaponWheel::Prefix
+Verse.Verb::get_WarmupTime()	Postfix	01	Mugirl.Features.Mounting.Harmony_Verb_WarmupTime_MountedCast::Postfix
+Verse.Verb::get_WarmupTime()	Postfix	02	Mugirl.Features.WeaponWheel.Harmony_Verb_WarmupTime_WheelChain::Postfix

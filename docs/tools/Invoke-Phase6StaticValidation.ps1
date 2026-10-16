@@ -421,6 +421,8 @@ try {
         'docs\release-checklist.md',
         'docs\features\outline-guide.md',
         'docs\records\mech-throw-graze-2026-09-26.md',
+        'docs\records\event-normalization-2026-10-04.md',
+        'docs\records\bug-report-fixes-2026-10-11.md',
         'docs\architecture\ADR-001-single-dll.md',
         'docs\architecture\ADR-002-harmony-registration.md',
         'docs\architecture\ADR-003-compatibility-scope.md',
@@ -2491,19 +2493,27 @@ try {
     }
 
     $incidentInteractionSafetyChecks++
-    $wildManIncidentPath = '1.6\Source\Features\Incidents\IncidentWorker_Mugirl_WildManWandersIn.cs'
-    if (Test-Path -LiteralPath $wildManIncidentPath) {
-        $wildManIncidentText = Get-Content -LiteralPath $wildManIncidentPath -Encoding utf8 -Raw
-        $wildManIncidentSafe = $wildManIncidentText -match 'parms\.target\s+is\s+Map\s+map' `
-            -and $wildManIncidentText -match 'map\?\.reachability\s*==\s*null' `
-            -and $wildManIncidentText -match 'pawn\s*==\s*null' `
-            -and $wildManIncidentText -notmatch 'Map\s+map\s*=\s*\(Map\)parms\.target'
-        if (-not $wildManIncidentSafe) {
-            $incidentInteractionSafetyIssues += "$wildManIncidentPath :: wild slave incident must not directly cast incident target and must guard map reachability/pawn generation"
+    $retiredIncidentPath = '1.6\Defs\Compatibility\RetiredEvents.xml'
+    $retiredIncident = (Get-XmlDocument $retiredIncidentPath).SelectSingleNode('/Defs/IncidentDef[defName="Mugirl_WildManWandersIn"]')
+    $retiredWorker = Get-Content '1.6\Source\Compatibility\Savegames\IncidentWorker_RetiredMugirlEvent.cs' -Encoding utf8 -Raw
+    if ($null -eq $retiredIncident -or $retiredIncident.hidden -ne 'true' -or $retiredIncident.baseChance -ne '0' `
+        -or $retiredWorker -notmatch 'CanFireNowSub\(IncidentParms parms\)\s*=>\s*false' `
+        -or $retiredWorker -notmatch 'TryExecuteWorker\(IncidentParms parms\)\s*=>\s*false' `
+        -or (Test-Path '1.6\Source\Features\Incidents\IncidentWorker_Mugirl_WildManWandersIn.cs')) {
+        $incidentInteractionSafetyIssues += "$retiredIncidentPath :: retired event must resolve old references without ever generating new pawns"
+    }
+
+    $incidentInteractionSafetyChecks++
+    $civilianIncidents = Get-XmlDocument '1.6\Defs\Storyteller\Incidents_Mugirl.xml'
+    foreach ($questName in @('Mugirl_SlaveRefugeePodCrash', 'Mugirl_SlaveWandererJoins')) {
+        $entry = $civilianIncidents.SelectSingleNode('/Defs/IncidentDef[defName="' + $questName + '"]')
+        if ($null -eq $entry -or $entry.questScriptDef -ne $questName -or [double]$entry.baseChance -le 0 `
+            -or $entry.workerClass -ne 'RimWorld.IncidentWorker_GiveQuest' -or $entry.pointsScaleable -ne 'false') {
+            $incidentInteractionSafetyIssues += "$questName :: civilian quest must have a natural incident entrance"
         }
     }
-    else {
-        $incidentInteractionSafetyIssues += "$wildManIncidentPath :: missing file for wild slave incident safety"
+    if ($wandererJoinText -notmatch 'override\s+Pawn\s+GeneratePawn_NewTemp\(Map map\)') {
+        $incidentInteractionSafetyIssues += "$wandererJoinPath :: RimWorld 1.6 must call the Mugirl generator, not the inherited human generator"
     }
 
     $incidentInteractionSafetyChecks++
@@ -4402,6 +4412,39 @@ try {
         Fail "DefInjected translation scan failed: $($defInjectedIssues.Count) issue(s)"
     }
 
+    Write-Step "Chinese job report coverage"
+    $jobReportIssues = @()
+    $jobReportCount = 0
+    foreach ($defRoot in Get-ModDefRoots) {
+        # 从任务定义反查中文，避免中英文翻译同时缺键时被语言对齐检查漏过。
+        $jobLanguagePath = Join-Path (Split-Path $defRoot -Parent) 'Languages\ChineseSimplified\DefInjected\JobDef'
+        $jobTranslations = @{}
+        if (Test-Path -LiteralPath $jobLanguagePath) {
+            foreach ($file in Get-ChildItem -LiteralPath $jobLanguagePath -Recurse -Filter '*.xml') {
+                $doc = Get-XmlDocument $file.FullName
+                foreach ($node in $doc.DocumentElement.ChildNodes) {
+                    if ($node.NodeType -eq [System.Xml.XmlNodeType]::Element) {
+                        $jobTranslations[$node.LocalName] = $node.InnerText.Trim()
+                    }
+                }
+            }
+        }
+        foreach ($file in Get-ChildItem -LiteralPath $defRoot -Recurse -Filter '*.xml') {
+            $doc = Get-XmlDocument $file.FullName
+            foreach ($job in $doc.SelectNodes('/Defs/JobDef[defName and reportString]')) {
+                $jobReportCount++
+                $key = $job.defName + '.reportString'
+                if (-not $jobTranslations.ContainsKey($key) -or [string]::IsNullOrWhiteSpace($jobTranslations[$key])) {
+                    $jobReportIssues += "$(Get-RelativePath $file.FullName) :: missing Chinese $key"
+                }
+            }
+        }
+    }
+    if ($jobReportIssues.Count) {
+        $jobReportIssues | Sort-Object
+        Fail "Chinese job report coverage failed: $($jobReportIssues.Count) issue(s)"
+    }
+
     Write-Step "Sound clip paths"
     $missingClips = @()
     $clipPathCount = 0
@@ -4559,6 +4602,7 @@ try {
     Write-Host "  Broad keyed keys: $($broadKeys.Count)"
     Write-Host "  Language translation nodes: $languageTranslationNodes"
     Write-Host "  English to Chinese parity keys: $languageParityKeys"
+    Write-Host "  Chinese job report coverage: $jobReportCount"
     Write-Host "  Maintenance documentation rules: $architectureDocumentationChecks"
     Write-Host "  Text formatting safety rules: $textFormattingSafetyChecks"
     Write-Host "  Tick manager access safety rules: $tickManagerAccessSafetyChecks"

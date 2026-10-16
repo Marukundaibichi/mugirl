@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Mugirl.StoryDebug.AlreadyTriggered>This event has already started or finished</Mugirl.StoryDebug.AlreadyTriggered>
+  <Mugirl.StoryDebug.Triggered>Event triggered early; unpause the game to advance the quest</Mugirl.StoryDebug.Triggered>
+  <Mugirl.StoryDebug.RequiresHomeMap>Open a player home map in development mode</Mugirl.StoryDebug.RequiresHomeMap>
+  <Mugirl.StoryDebug.NoFaction>The corporate faction is unavailable or defeated</Mugirl.StoryDebug.NoFaction>
+  <Mugirl.StoryDebug.Failed>Event could not spawn; check the entry cells and game log</Mugirl.StoryDebug.Failed>
+</LanguageData>

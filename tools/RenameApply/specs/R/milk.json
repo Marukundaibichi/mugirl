@@ -1,0 +1,1645 @@
+{
+ "module": "milk",
+ "wave": "R",
+ "ownedSourceFolders": [
+  "Source/MugirlRace/Features/Milk/**",
+  "Source/MugirlRace/Features/Abilities/**",
+  "Source/MugirlRace/Features/Xenotype/**",
+  "Source/MugirlRace/Features/Appearance/**",
+  "Source/MugirlRace/Features/AdvancedArmor/**",
+  "Source/MugirlRace/SaveUpgrade/Steps/Milk/**",
+  "Source/MugirlRace/SaveUpgrade/PostLoad/Milk/**",
+  "Source/Tests/MugirlRace.Tests/Milk/**",
+  "Source/Tests/MugirlRace.Tests/Abilities/**",
+  "Source/Tests/MugirlRace.Tests/Appearance/**",
+  "Source/Tests/MugirlRace.Tests/SaveUpgrade/Milk/**"
+ ],
+ "ownedContentFiles": [
+  "1.7/Defs/AnimationDefs/Mugirl_Milking.xml",
+  "1.7/Defs/Apparel/Apparel_ThemedOutfits.xml",
+  "1.7/Defs/Apparel/Apparel_PremiumOutfits.xml",
+  "1.7/Defs/Apparel/Apparel_Base.xml",
+  "1.7/Defs/Apparel/Apparel_Category.xml",
+  "1.7/Defs/Apparel/Apparel_Child.xml",
+  "1.7/Defs/Apparel/Apparel_Head.xml",
+  "1.7/Defs/Apparel/Apparel_Layer.xml",
+  "1.7/Defs/Apparel/Apparel_Layer_Stockings.xml",
+  "1.7/Defs/Apparel/Apparel_Middle.xml",
+  "1.7/Defs/Apparel/Apparel_Mugirl_Combatant.xml",
+  "1.7/Defs/Apparel/Apparel_OnSkin.xml",
+  "1.7/Defs/Apparel/Apparel_PMC.xml",
+  "1.7/Defs/Apparel/Apparel_Shell.xml",
+  "1.7/Defs/Apparel/Apparel_SpecializedGear.xml",
+  "1.7/Defs/Apparel/Apparel_Stockings.xml",
+  "1.7/Defs/Apparel/Apparel_Underwear.xml",
+  "1.7/Defs/Apparel/Apparel_MilkingDevice.xml",
+  "1.7/Defs/Apparel/Apparel_AdvancedArmor.xml",
+  "1.7/Defs/SoundsDefs/Milk_Sounds.xml",
+  "1.7/Defs/HairDefs/Hairs.xml",
+  "1.7/Defs/HeadTypeDefs/HeadTypeDefs.xml",
+  "1.7/Defs/HediffDefs/Hediffs_AdvancedArmor.xml",
+  "1.7/Defs/HediffDefs/Hediffs_Lactation.xml",
+  "1.7/Defs/HediffDefs/Hediffs_MilkHealing.xml",
+  "1.7/Defs/HediffDefs/Hediffs_Mugirl_MilkFood.xml",
+  "1.7/Defs/HediffDefs/Hediffs_MilkVigor.xml",
+  "1.7/Defs/JobDefs/JobDefs_Milk.xml",
+  "1.7/Defs/RecipeDefs/Recipes_Mugirl_MilkFood.xml",
+  "1.7/Defs/ThingDefs_Building/Building_MilkPower.xml",
+  "1.7/Defs/ThingDefs_Misc/Items_Resource.xml",
+  "1.7/Defs/ThingDefs_Misc/Mugirl_MilkFood.xml",
+  "1.7/Defs/ThoughtDefs/Thoughts_DrinkMilk.xml",
+  "1.7/Defs/ThoughtDefs/Thoughts_Mugirl_MilkFood.xml",
+  "1.7/Defs/WorkGiverDefs/WorkGivers.xml",
+  "1.7/Patches/MilkFood_TraderStock_Patch.xml",
+  "1.7/Patches/CombatApparel_TraderBuy_Patch.xml",
+  "1.7/Mods/Biotech/Defs/AbilityDef.xml",
+  "1.7/Mods/Biotech/Defs/DamageDefs/Throwing.xml",
+  "1.7/Mods/Biotech/Defs/GeneDefs.xml",
+  "1.7/Mods/Biotech/Defs/Xenotypes.xml",
+  "1.7/Mods/Biotech/Defs/HediffDefs/Hediffs_Gene.xml",
+  "1.7/Mods/Biotech/Defs/JobDefs.xml",
+  "1.7/Mods/Biotech/Defs/ThingDefs_Misc/Throwing.xml",
+  "1.7/Mods/Biotech/Languages/ChineseSimplified/DefInjected/AbilityDef/AbilityDef.xml",
+  "1.7/Mods/Biotech/Languages/ChineseSimplified/DefInjected/DamageDef/Throwing.xml",
+  "1.7/Mods/Biotech/Languages/ChineseSimplified/DefInjected/GeneDef/GeneDefs.xml",
+  "1.7/Mods/Biotech/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_Gene.xml",
+  "1.7/Mods/Biotech/Languages/ChineseSimplified/DefInjected/JobDef/JobDefs.xml",
+  "1.7/Mods/Biotech/Languages/ChineseSimplified/DefInjected/XenotypeDef/Xenotypes.xml",
+  "1.7/Mods/Biotech/Languages/ChineseSimplified/DefInjected/ThingDef/Throwing.xml",
+  "1.7/Mods/Biotech/Languages/ChineseSimplified/DefInjected/ThingDef/Apparel_Shell_Biotech.xml",
+  "1.7/Mods/Odyssey/Languages/ChineseSimplified/DefInjected/ThingDef/Apparel_SpecializedGear_Odyssey.xml",
+  "1.7/Mods/FacialAnimation/**",
+  "1.7/Mods/VCookE/**",
+  "1.7/Languages/English/Keyed/AppearanceBodyAccessory.xml",
+  "1.7/Languages/ChineseSimplified/Keyed/AppearanceBodyAccessory.xml",
+  "1.7/Languages/English/Keyed/Milk.xml",
+  "1.7/Languages/ChineseSimplified/Keyed/Milk.xml",
+  "1.7/Languages/English/Keyed/Abilities.xml",
+  "1.7/Languages/ChineseSimplified/Keyed/Abilities.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ApparelLayerDef/Apparel_Layer.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ApparelLayerDef/Apparel_Layer_Stockings.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/HairDef/Hairs.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/HairDef/Hairs_0920.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/StyleItemCategoryDef/Hairs.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_AdvancedArmor.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_Lactation.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_MilkHealing.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_Mugirl_MilkFood.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_MilkVigor.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/JobDef/WorkGivers.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/JobDef/JobDefs_Milk.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/WorkGiverDef/WorkGivers.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/RecipeDef/Recipes_Mugirl_MilkFood.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingCategoryDef/Apparel_Category.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Apparel_ThemedOutfits.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Apparel_PremiumOutfits.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Apparel_Child.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Apparel_Head.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Apparel_Middle.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Apparel_Mugirl_Combatant.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Apparel_OnSkin.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Apparel_PMC.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Apparel_Shell.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Apparel_SpecializedGear.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Apparel_Stockings.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Apparel_Underwear.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Apparel_MilkingDevice.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Apparel_AdvancedArmor.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Building_MilkPower.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Items_Resource.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Mugirl_MilkFood.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThoughtDef/Items_Resource.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThoughtDef/Thoughts_DrinkMilk.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThoughtDef/Thoughts_Mugirl_MilkFood.xml"
+ ],
+ "types": [
+  {
+   "old": "Mugirl.AdvancedArmorUtility",
+   "new": "Mugirl.Features.AdvancedArmor.AdvancedArmorUtility",
+   "oldFile": "Source/MugirlRace/Features/AdvancedArmor/AdvancedArmorUtility.cs",
+   "newFile": "Source/MugirlRace/Features/AdvancedArmor/AdvancedArmorUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace move out of root Mugirl (design 3.1); short name unchanged (the comps already live in Mugirl.Features.AdvancedArmor)",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.CompAbilityEffect_Dunk",
+   "new": "Mugirl.Features.Abilities.CompAbilityEffect_Dunk",
+   "oldFile": "Source/MugirlRace/Features/Genes/Dunk/CompAbilityEffect_Dunk.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Dunk/CompAbilityEffect_Dunk.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace move out of root Mugirl (design 3.1); short name unchanged",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.CompAbilityEffect_ForceJob",
+   "new": "Mugirl.Features.Abilities.CompAbilityEffect_ForceJobInRadius",
+   "oldFile": "Source/MugirlRace/Features/Genes/Shout/CompAbilityEffect_ForceJob.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Shout/CompAbilityEffect_ForceJobInRadius.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "short name shadows vanilla RimWorld.CompAbilityEffect_ForceJob (verified) with different semantics (ours forces a job on every hostile pawn in a radius around the caster)",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.CompAbilityEffect_PickupThrow",
+   "new": "Mugirl.Features.Abilities.CompAbilityEffect_PickupThrow",
+   "oldFile": "Source/MugirlRace/Features/Genes/Throw/CompAbilityEffect_PickupThrow.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Throw/CompAbilityEffect_PickupThrow.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace move out of root Mugirl (design 3.1); short name unchanged",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.CompMilkingDeviceReleaseEffect",
+   "new": "Mugirl.Features.Milk.CompMilkingDeviceReleaseEffect",
+   "oldFile": "Source/MugirlRace/Features/Milk/Device/CompMilkingDeviceReleaseEffect.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Device/CompMilkingDeviceReleaseEffect.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace move out of root Mugirl (design 3.1); short name unchanged; comp labels are inline (comps are never type-named in saves)",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.CompMooHasBodyResource",
+   "new": "Mugirl.Features.Milk.CompMilkProductionBase",
+   "oldFile": "Source/MugirlRace/Features/Milk/Production/CompMooHasBodyResource.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Production/CompMilkProductionBase.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "TRANSITIONAL: 'Moo' is forbidden (design 3.2); abstract single-subclass base merged into CompMilkProduction in Wave S (plan S2-1); comps are never type-named in saves and compClass is set by the props ctor -> no map entry",
+   "transitional": {
+    "waveS": "merge",
+    "upgrade": "none (not save-visible)"
+   },
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.CompMooMilkable",
+   "new": "Mugirl.Features.Milk.CompMilkProduction",
+   "oldFile": "Source/MugirlRace/Features/Milk/Production/CompMooMilkable.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Production/CompMilkProduction.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "no 'Moo' (design 3.2); avoids vanilla RimWorld.CompMilkable; comp labels are inline (milkFullness*); short name is a DefInjected handle -> rewrite Mugirl.comps.CompMooMilkable.displayString (see notes)",
+   "module": "milk",
+   "definjectedHandles": [
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Mugirl_Race.xml:8"
+   ]
+  },
+  {
+   "old": "Mugirl.CompProperties_AbilityEffect_Dunk",
+   "new": "Mugirl.Features.Abilities.CompProperties_AbilityEffect_Dunk",
+   "oldFile": "Source/MugirlRace/Features/Genes/Dunk/CompProperties_AbilityEffect_Dunk.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Dunk/CompProperties_AbilityEffect_Dunk.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "namespace move out of root Mugirl (design 3.1); short name unchanged",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.CompProperties_AbilityEffect_ForceJob",
+   "new": "Mugirl.Features.Abilities.CompProperties_AbilityEffect_ForceJobInRadius",
+   "oldFile": "Source/MugirlRace/Features/Genes/Shout/CompProperties_AbilityEffect_ForceJob.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Shout/CompProperties_AbilityEffect_ForceJobInRadius.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "pairs with CompAbilityEffect_ForceJobInRadius; XML Class Mods/Biotech/Defs/AbilityDef.xml:55",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.CompProperties_AbilityEffect_PickupThrow",
+   "new": "Mugirl.Features.Abilities.CompProperties_AbilityEffect_PickupThrow",
+   "oldFile": "Source/MugirlRace/Features/Genes/Throw/CompProperties_AbilityEffect_PickupThrow.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Throw/CompProperties_AbilityEffect_PickupThrow.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "namespace move out of root Mugirl (design 3.1); short name unchanged",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.CompProperties_Lactation",
+   "new": "Mugirl.Features.Milk.HediffCompProperties_Lactation",
+   "oldFile": "Source/MugirlRace/Features/Milk/Production/CompProperties_Lactation.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Production/HediffCompProperties_Lactation.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "it is a HediffCompProperties -> vanilla shape HediffCompProperties_X (design 3.2); XML Class Hediffs_Lactation.xml:14",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.CompProperties_MilkingDevice",
+   "new": "Mugirl.Features.Milk.CompProperties_MilkingDevice",
+   "oldFile": "Source/MugirlRace/Features/Milk/Device/CompProperties_MilkingDevice.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Device/CompProperties_MilkingDevice.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "namespace move out of root Mugirl (design 3.1); short name unchanged; XML Class in the two milking-device ThingDefs",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.CompProperties_MilkingDeviceReleaseEffect",
+   "new": "Mugirl.Features.Milk.CompProperties_MilkingDeviceReleaseEffect",
+   "oldFile": "Source/MugirlRace/Features/Milk/Device/CompProperties_MilkingDeviceReleaseEffect.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Device/CompProperties_MilkingDeviceReleaseEffect.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "namespace move out of root Mugirl (design 3.1); short name unchanged; nested SoundWithParams/FleckWithParams/TextWithParams keep their names (XML uses plain <li>; only field names are XML-visible)",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.CompProperties_MooMilkable",
+   "new": "Mugirl.Features.Milk.CompProperties_MilkProduction",
+   "oldFile": "Source/MugirlRace/Features/Milk/Production/CompProperties_MooMilkable.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Production/CompProperties_MilkProduction.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "PUBLIC API CLASS (design 2) - public alias needed: Mods/MooGirl_Subspecies/1.6/Defs/AlienRaceDefs/Races.xml:322,486,739 use Class=\"Mugirl.CompProperties_MooMilkable\" with fields displayString/milkDef/milkIntervalDays/milkAmount (those field names must stay); no 'Moo'",
+   "module": "milk",
+   "publicAlias": {
+    "file": "Source/MugirlRace/PublicApi/XmlAliases.cs",
+    "name": "Mugirl.CompProperties_MooMilkable",
+    "frozenXmlFields": [
+     "displayString",
+     "milkAmount",
+     "milkDef",
+     "milkIntervalDays"
+    ]
+   }
+  },
+  {
+   "old": "Mugirl.Comp_MilkingDevice",
+   "new": "Mugirl.Features.Milk.CompMilkingDevice",
+   "oldFile": "Source/MugirlRace/Features/Milk/Device/Comp_MilkingDevice.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Device/CompMilkingDevice.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "vanilla ThingComp shape CompX (design 3.2), matches sibling CompMilkingDeviceReleaseEffect; the short name is a DefInjected handle -> rewrite *.comps.Comp_MilkingDevice.* keys (see notes)",
+   "module": "milk",
+   "definjectedHandles": [
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Spacer.xml:40",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Spacer.xml:42",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Spacer.xml:44",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Spacer.xml:50",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Spacer.xml:52",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/BondageApparel_Spacer.xml:54"
+   ]
+  },
+  {
+   "old": "Mugirl.Dialog_MilkFeedingLayoutDebug",
+   "new": "Mugirl.Features.Milk.Dialog_MilkFeedingLayoutDebug",
+   "oldFile": "Source/MugirlRace/Features/Milk/Dev/Dialog_MilkFeedingLayoutDebug.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Dev/Dialog_MilkFeedingLayoutDebug.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace move out of root Mugirl (design 3.1); short name unchanged",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Features.Appearance.CompMugirlBodyAccessory",
+   "new": "Mugirl.Features.Appearance.CompBodyAccessory",
+   "oldFile": "Source/MugirlRace/Features/Appearance/BodyAccessory/CompMugirlBodyAccessory.cs",
+   "newFile": "Source/MugirlRace/Features/Appearance/BodyAccessory/CompBodyAccessory.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "redundant Mugirl infix (design 3.2); labels inline on the pawn element",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Features.Appearance.CompProperties_LongCascadeBackHair",
+   "new": "Mugirl.Features.Appearance.CompProperties_BackHair",
+   "oldFile": "Source/MugirlRace/Features/Appearance/Hair/CompProperties_LongCascadeBackHair.cs",
+   "newFile": "Source/MugirlRace/Features/Appearance/Hair/CompProperties_BackHair.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "generic back hair; XML Class Mugirl_Race.xml:1024,1026 (the Wave S redesign S2-6 reduces this to one entry without fields)",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Features.Appearance.CompProperties_MugirlBodyAccessory",
+   "new": "Mugirl.Features.Appearance.CompProperties_BodyAccessory",
+   "oldFile": "Source/MugirlRace/Features/Appearance/BodyAccessory/CompProperties_MugirlBodyAccessory.cs",
+   "newFile": "Source/MugirlRace/Features/Appearance/BodyAccessory/CompProperties_BodyAccessory.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "redundant Mugirl infix (design 3.2); XML Class Mugirl_Race.xml:1031",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Features.Appearance.Comp_LongCascadeBackHair",
+   "new": "Mugirl.Features.Appearance.CompBackHair",
+   "oldFile": "Source/MugirlRace/Features/Appearance/Hair/Comp_LongCascadeBackHair.cs",
+   "newFile": "Source/MugirlRace/Features/Appearance/Hair/CompBackHair.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "vanilla shape CompX; serves every back-hair style (also Mugirl_Hairs10), not only LongCascade; stateless",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Features.Appearance.MugirlBodyAccessoryAddon",
+   "new": "Mugirl.Features.Appearance.BodyAccessoryAddon",
+   "oldFile": "Source/MugirlRace/Features/Appearance/BodyAccessory/MugirlBodyAccessoryAddon.cs",
+   "newFile": "Source/MugirlRace/Features/Appearance/BodyAccessory/BodyAccessoryAddon.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "redundant Mugirl infix; XML Class in the race bodyAddons (Mugirl_Race.xml:468); HAR saves only addonVariants indices, never the class; bodyAddons order (public API) unchanged",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Features.Appearance.MugirlBodyAccessoryVariants",
+   "new": "Mugirl.Features.Appearance.BodyAccessoryVariants",
+   "oldFile": "Source/MugirlRace/Features/Appearance/BodyAccessory/MugirlBodyAccessoryVariants.cs",
+   "newFile": "Source/MugirlRace/Features/Appearance/BodyAccessory/BodyAccessoryVariants.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "redundant Mugirl infix",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Features.Appearance.PawnRenderNodeProperties_LongCascadeBackHair",
+   "new": "Mugirl.Features.Appearance.PawnRenderNodeProperties_BackHair",
+   "oldFile": "Source/MugirlRace/Features/Appearance/Hair/PawnRenderNodeProperties_LongCascadeBackHair.cs",
+   "newFile": "Source/MugirlRace/Features/Appearance/Hair/PawnRenderNodeProperties_BackHair.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "generic back-hair node properties (built in code, not XML); deleted by the redesign S2-6 if approved",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Features.Appearance.PawnRenderNodeWorker_LongCascadeBackHair",
+   "new": "Mugirl.Features.Appearance.PawnRenderNodeWorker_BackHair",
+   "oldFile": "Source/MugirlRace/Features/Appearance/Hair/PawnRenderNodeWorker_LongCascadeBackHair.cs",
+   "newFile": "Source/MugirlRace/Features/Appearance/Hair/PawnRenderNodeWorker_BackHair.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "generic back-hair worker",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Features.Appearance.PawnRenderNode_LongCascadeBackHair",
+   "new": "Mugirl.Features.Appearance.PawnRenderNode_BackHair",
+   "oldFile": "Source/MugirlRace/Features/Appearance/Hair/PawnRenderNode_LongCascadeBackHair.cs",
+   "newFile": "Source/MugirlRace/Features/Appearance/Hair/PawnRenderNode_BackHair.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "generic back-hair node",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Features.Genes.ChargeKnockbackUtility",
+   "new": "Mugirl.Features.Abilities.ChargeKnockbackUtility",
+   "oldFile": "Source/MugirlRace/Features/Genes/Charge/ChargeKnockbackUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Charge/ChargeKnockbackUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Features/Genes holds gene-granted abilities -> Features/Abilities (design 3.1)",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Features.Genes.DropRetryBackoff",
+   "new": "Mugirl.Features.Abilities.DropRetryBackoff",
+   "oldFile": "Source/MugirlRace/Features/Genes/Shared/DropRetryBackoff.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Shared/DropRetryBackoff.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Features/Genes holds gene-granted abilities -> Features/Abilities (design 3.1)",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Features.Genes.DunkPresentationMath",
+   "new": "Mugirl.Features.Abilities.DunkPresentationMath",
+   "oldFile": "Source/MugirlRace/Features/Genes/Dunk/DunkPresentationMath.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Dunk/DunkPresentationMath.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Features/Genes holds gene-granted abilities -> Features/Abilities (design 3.1)",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Features.Genes.GridLineUtility",
+   "new": "Mugirl.Features.Abilities.GridLineUtility",
+   "oldFile": "Source/MugirlRace/Features/Genes/Shared/GridLineUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Shared/GridLineUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Features/Genes holds gene-granted abilities -> Features/Abilities (design 3.1)",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Features.Genes.MugirlJumpUtility",
+   "new": "Mugirl.Features.Abilities.MugirlJumpUtility",
+   "oldFile": "Source/MugirlRace/Features/Genes/Shared/MugirlJumpUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Shared/MugirlJumpUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Features/Genes holds gene-granted abilities -> Features/Abilities (design 3.1); keeps the Mugirl prefix by design 3.2(b): vanilla RimWorld.JumpUtility exists with the same role (verified) and DunkController already calls it",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Features.Genes.PayloadPlacement",
+   "new": "Mugirl.Features.Abilities.PayloadPlacement",
+   "oldFile": "Source/MugirlRace/Features/Genes/Shared/PayloadPlacement.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Shared/PayloadPlacement.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Features/Genes holds gene-granted abilities -> Features/Abilities (design 3.1)",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Features.Genes.RenderTickInterpolator",
+   "new": "Mugirl.Features.Abilities.RenderTickInterpolator",
+   "oldFile": "Source/MugirlRace/Features/Genes/Shared/RenderTickInterpolator.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Shared/RenderTickInterpolator.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Features/Genes holds gene-granted abilities -> Features/Abilities (design 3.1)",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Features.Genes.ThrowBalance",
+   "new": "Mugirl.Features.Abilities.ThrowBalance",
+   "oldFile": "Source/MugirlRace/Features/Genes/Throw/ThrowBalance.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Throw/ThrowBalance.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Features/Genes holds gene-granted abilities -> Features/Abilities (design 3.1)",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Features.Genes.ThrowControllerRegistry",
+   "new": "Mugirl.Features.Abilities.ThrowControllerRegistry",
+   "oldFile": "Source/MugirlRace/Features/Genes/Throw/ThrowControllerRegistry.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Throw/ThrowControllerRegistry.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Features/Genes holds gene-granted abilities -> Features/Abilities (design 3.1)",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Features.Genes.ThrowFlightMath",
+   "new": "Mugirl.Features.Abilities.ThrowFlightMath",
+   "oldFile": "Source/MugirlRace/Features/Genes/Throw/ThrowFlightMath.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Throw/ThrowFlightMath.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Features/Genes holds gene-granted abilities -> Features/Abilities (design 3.1)",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Features.Genes.TickAnimation",
+   "new": "Mugirl.Features.Abilities.TickAnimation",
+   "oldFile": "Source/MugirlRace/Features/Genes/Shared/TickAnimation.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Shared/TickAnimation.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Features/Genes holds gene-granted abilities -> Features/Abilities (design 3.1)",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Features.Milk.BreastProfile",
+   "new": "Mugirl.Features.Milk.BreastProfile",
+   "oldFile": "Source/MugirlRace/Features/Milk/Production/MilkProductionMath.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Production/BreastProfile.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "module": "milk",
+   "reason": "One type per file (C27): identity extraction out of MilkProductionMath.cs."
+  },
+  {
+   "old": "Mugirl.Features.Milk.InteractionPairPose",
+   "new": "Mugirl.Features.Milk.InteractionPairPose",
+   "oldFile": "Source/MugirlRace/Features/Milk/Animation/MilkingPoseMath.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Animation/InteractionPairPose.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "module": "milk",
+   "reason": "One type per file (C27): identity extraction out of MilkingPoseMath.cs."
+  },
+  {
+   "old": "Mugirl.Features.Milk.InteractionPose",
+   "new": "Mugirl.Features.Milk.InteractionPose",
+   "oldFile": "Source/MugirlRace/Features/Milk/Animation/MilkingPoseMath.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Animation/InteractionPose.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "module": "milk",
+   "reason": "One type per file (C27): identity extraction out of MilkingPoseMath.cs."
+  },
+  {
+   "old": "Mugirl.Features.Milk.PawnVisualMetrics",
+   "new": "Mugirl.Features.Milk.PawnVisualMetrics",
+   "oldFile": "Source/MugirlRace/Features/Milk/Animation/MilkingPoseMath.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Animation/PawnVisualMetrics.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "module": "milk",
+   "reason": "One type per file (C27): identity extraction out of MilkingPoseMath.cs."
+  },
+  {
+   "old": "Mugirl.FloatMenuProvider_MilkMugirl",
+   "new": "Mugirl.Features.Milk.FloatMenuOptionProvider_MilkInteraction",
+   "oldFile": "Source/MugirlRace/Features/Milk/Interaction/FloatMenuProvider_MilkMugirl.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Interaction/FloatMenuOptionProvider_MilkInteraction.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "vanilla role shape FloatMenuOptionProvider_X (design 3.2); provides gather/drink/child-drink/feed options",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Gizmo_MilkGauge",
+   "new": "Mugirl.Features.Milk.Gizmo_MilkGauge",
+   "oldFile": "Source/MugirlRace/Features/Milk/Gauge/Gizmo_MilkGauge.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Gauge/Gizmo_MilkGauge.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace move out of root Mugirl (design 3.1); short name unchanged; partial part Gizmo_MilkGauge.Popup.cs keeps its path",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Harmony_ChildcareUtility_CanBreastfeedNow_Mugirl",
+   "new": "Mugirl.Features.Milk.Harmony_ChildcareUtility_CanBreastfeedNow_MilkSource",
+   "oldFile": "Source/MugirlRace/Features/Milk/BabyFeeding/Harmony_ChildcareUtility_CanBreastfeedNow_Mugirl.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/BabyFeeding/Harmony_ChildcareUtility_CanBreastfeedNow_MilkSource.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Harmony patch naming Harmony_<TargetType>_<TargetMember>_<Purpose> (design 3.2) + namespace move; shares the target with the Compatibility LactationExpansion prefix (different patch kind)",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Harmony_ChildcareUtility_CanBreastfeed_Mugirl",
+   "new": "Mugirl.Features.Milk.Harmony_ChildcareUtility_CanBreastfeed_MilkSource",
+   "oldFile": "Source/MugirlRace/Features/Milk/BabyFeeding/Harmony_ChildcareUtility_CanBreastfeed_Mugirl.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/BabyFeeding/Harmony_ChildcareUtility_CanBreastfeed_MilkSource.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Harmony patch naming Harmony_<TargetType>_<TargetMember>_<Purpose> (design 3.2) + namespace move",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Harmony_ChildcareUtility_SuckleFromLactatingPawn_Mugirl",
+   "new": "Mugirl.Features.Milk.Harmony_ChildcareUtility_SuckleFromLactatingPawn_MilkSource",
+   "oldFile": "Source/MugirlRace/Features/Milk/BabyFeeding/Harmony_ChildcareUtility_SuckleFromLactatingPawn_Mugirl.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/BabyFeeding/Harmony_ChildcareUtility_SuckleFromLactatingPawn_MilkSource.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Harmony patch naming Harmony_<TargetType>_<TargetMember>_<Purpose> (design 3.2) + namespace move; WARNING two prefixes on this target (patch-targets.txt:14,37): FullName order vs Mugirl.Compatibility.LactationExpansion flips after the move -> explicit [HarmonyBefore/After] needed (A4)",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Harmony_ExtraOutline_Body",
+   "new": "Mugirl.Features.Appearance.Harmony_PawnRenderTree_Draw_ExtraOutline",
+   "oldFile": "Source/MugirlRace/Features/Appearance/Harmony_ExtraOutline.cs",
+   "newFile": "Source/MugirlRace/Features/Appearance/Outline/Harmony_PawnRenderTree_Draw_ExtraOutline.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Harmony patch naming Harmony_<TargetType>_<TargetMember>_<Purpose> (design 3.2) + namespace move; file name = type name",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Harmony_LovinBodyAccessory",
+   "new": "Mugirl.Features.Appearance.Harmony_JobDriver_Lovin_GenerateRandomMinTicksToNextLovin_BodyAccessory",
+   "oldFile": "Source/MugirlRace/Features/Appearance/BodyAccessory/Harmony_LovinBodyAccessory.cs",
+   "newFile": "Source/MugirlRace/Features/Appearance/BodyAccessory/Harmony_JobDriver_Lovin_GenerateRandomMinTicksToNextLovin_BodyAccessory.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Harmony patch naming Harmony_<TargetType>_<TargetMember>_<Purpose> (design 3.2) + namespace move",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Harmony_MugirlMilkingAnimation_DrawFacing",
+   "new": "Mugirl.Features.Milk.Harmony_PawnRenderer_GetDrawParms_MilkingFacing",
+   "oldFile": "Source/MugirlRace/Features/Milk/Animation/Harmony_MugirlMilkingAnimation_DrawFacing.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Animation/Harmony_PawnRenderer_GetDrawParms_MilkingFacing.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Harmony patch naming Harmony_<TargetType>_<TargetMember>_<Purpose> (design 3.2) + namespace move; target PawnRenderer.GetDrawParms",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Harmony_MugirlMilkingAnimation_PawnDeSpawn",
+   "new": "Mugirl.Features.Milk.Harmony_Pawn_DeSpawn_MilkingAnimation",
+   "oldFile": "Source/MugirlRace/Features/Milk/Animation/Harmony_MugirlMilkingAnimation_PawnDeSpawn.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Animation/Harmony_Pawn_DeSpawn_MilkingAnimation.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Harmony patch naming Harmony_<TargetType>_<TargetMember>_<Purpose> (design 3.2) + namespace move; target Pawn.DeSpawn",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Harmony_MugirlMilkingAnimation_PawnDestroy",
+   "new": "Mugirl.Features.Milk.Harmony_Pawn_Destroy_MilkingAnimation",
+   "oldFile": "Source/MugirlRace/Features/Milk/Animation/Harmony_MugirlMilkingAnimation_PawnDestroy.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Animation/Harmony_Pawn_Destroy_MilkingAnimation.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Harmony patch naming Harmony_<TargetType>_<TargetMember>_<Purpose> (design 3.2) + namespace move; target Pawn.Destroy",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Harmony_MugirlNurtureGrowthPoints",
+   "new": "Mugirl.Features.Milk.Harmony_Pawn_AgeTracker_GrowthPointsPerDay_Nurture",
+   "oldFile": "Source/MugirlRace/Features/Milk/Nurture/Harmony_MugirlNurtureGrowthPoints.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Nurture/Harmony_Pawn_AgeTracker_GrowthPointsPerDay_Nurture.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Harmony patch naming Harmony_<TargetType>_<TargetMember>_<Purpose> (design 3.2) + namespace move; target Pawn_AgeTracker.get_GrowthPointsPerDay",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Harmony_MugirlNurturedSkillLearnCap",
+   "new": "Mugirl.Features.Milk.Harmony_SkillRecord_Learn_NurturedXpCap",
+   "oldFile": "Source/MugirlRace/Features/Milk/Nurture/Harmony_MugirlNurturedSkillLearnCap.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Nurture/Harmony_SkillRecord_Learn_NurturedXpCap.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Harmony patch naming Harmony_<TargetType>_<TargetMember>_<Purpose> (design 3.2) + namespace move; target SkillRecord.Learn",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Harmony_NeuralArmorBulletStagger",
+   "new": "Mugirl.Features.AdvancedArmor.Harmony_StaggerHandler_Notify_BulletImpact_NeuralArmor",
+   "oldFile": "Source/MugirlRace/Features/AdvancedArmor/Harmony_NeuralArmorBulletStagger.cs",
+   "newFile": "Source/MugirlRace/Features/AdvancedArmor/Harmony_StaggerHandler_Notify_BulletImpact_NeuralArmor.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Harmony patch naming Harmony_<TargetType>_<TargetMember>_<Purpose> (design 3.2) + namespace move",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Harmony_NeuralHelmetDarknessAccuracy",
+   "new": "Mugirl.Features.AdvancedArmor.Harmony_ShotReport_HitReportFor_NeuralHelmet",
+   "oldFile": "Source/MugirlRace/Features/AdvancedArmor/Harmony_NeuralHelmetDarknessAccuracy.cs",
+   "newFile": "Source/MugirlRace/Features/AdvancedArmor/Harmony_ShotReport_HitReportFor_NeuralHelmet.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Harmony patch naming Harmony_<TargetType>_<TargetMember>_<Purpose> (design 3.2) + namespace move",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Harmony_NeuralHelmetPsychicDrone",
+   "new": "Mugirl.Features.AdvancedArmor.Harmony_ThoughtWorker_PsychicDrone_CurrentStateInternal_NeuralHelmet",
+   "oldFile": "Source/MugirlRace/Features/AdvancedArmor/Harmony_NeuralHelmetPsychicDrone.cs",
+   "newFile": "Source/MugirlRace/Features/AdvancedArmor/Harmony_ThoughtWorker_PsychicDrone_CurrentStateInternal_NeuralHelmet.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Harmony patch naming Harmony_<TargetType>_<TargetMember>_<Purpose> (design 3.2) + namespace move",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Harmony_NeuralHelmetUnnaturalDarkness",
+   "new": "Mugirl.Features.AdvancedArmor.Harmony_GameCondition_UnnaturalDarkness_AffectedByDarkness_NeuralHelmet",
+   "oldFile": "Source/MugirlRace/Features/AdvancedArmor/Harmony_NeuralHelmetUnnaturalDarkness.cs",
+   "newFile": "Source/MugirlRace/Features/AdvancedArmor/Harmony_GameCondition_UnnaturalDarkness_AffectedByDarkness_NeuralHelmet.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Harmony patch naming Harmony_<TargetType>_<TargetMember>_<Purpose> (design 3.2) + namespace move",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Harmony_PawnHairColors_HasGreyHair_Mugirl",
+   "new": "Mugirl.Features.Appearance.Harmony_PawnHairColors_HasGreyHair_KeepHairColor",
+   "oldFile": "Source/MugirlRace/Features/Appearance/Hair/Harmony_MugirlHairColor.cs",
+   "newFile": "Source/MugirlRace/Features/Appearance/Hair/Harmony_PawnHairColors_HasGreyHair_KeepHairColor.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Harmony patch naming Harmony_<TargetType>_<TargetMember>_<Purpose> (design 3.2) + namespace move; file name = type name",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Harmony_PawnUtility_TrySpawnHatchedOrBornPawn_MugirlXenotype",
+   "new": "Mugirl.Features.Xenotype.Harmony_PawnUtility_TrySpawnHatchedOrBornPawn_Xenotype",
+   "oldFile": "Source/MugirlRace/Features/Genes/Xenotype/Harmony_PawnUtility_TrySpawnHatchedOrBornPawn_MugirlXenotype.cs",
+   "newFile": "Source/MugirlRace/Features/Xenotype/Harmony_PawnUtility_TrySpawnHatchedOrBornPawn_Xenotype.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Harmony patch naming Harmony_<TargetType>_<TargetMember>_<Purpose> (design 3.2) + namespace move; Genes/Xenotype -> Features/Xenotype (design 3.1); Wave S moves the lactation notification into a Milk-owned birth patch",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Harmony_ThrowFiringLock_RangedAttackMenu",
+   "new": "Mugirl.Features.Abilities.Harmony_FloatMenuUtility_GetRangedAttackAction_ThrowLock",
+   "oldFile": "Source/MugirlRace/Features/Genes/Throw/Harmony_ThrowFiringLock_RangedAttackMenu.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Throw/Harmony_FloatMenuUtility_GetRangedAttackAction_ThrowLock.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Harmony patch naming Harmony_<TargetType>_<TargetMember>_<Purpose> (design 3.2) + namespace move",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Harmony_ThrowFiringLock_TryStartCastOn",
+   "new": "Mugirl.Features.Abilities.Harmony_Verb_TryStartCastOn_ThrowLock",
+   "oldFile": "Source/MugirlRace/Features/Genes/Throw/Harmony_ThrowFiringLock_TryStartCastOn.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Throw/Harmony_Verb_TryStartCastOn_ThrowLock.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Harmony patch naming Harmony_<TargetType>_<TargetMember>_<Purpose> (design 3.2) + namespace move; shares Verb.TryStartCastOn with WeaponWheel patches; already ordered by explicit [HarmonyPriority(Priority.High)]",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.HediffCompProperties_CheckJobOrRemove",
+   "new": "Mugirl.Features.Abilities.HediffCompProperties_CheckJobOrRemove",
+   "oldFile": "Source/MugirlRace/Features/Genes/Charge/HediffCompProperties_CheckJobOrRemove.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Charge/HediffCompProperties_CheckJobOrRemove.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "namespace move out of root Mugirl (design 3.1); short name unchanged; XML Class Mods/Biotech/Defs/HediffDefs/Hediffs_Gene.xml",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.HediffCompProperties_CureFoodEffects",
+   "new": "Mugirl.Features.Milk.HediffCompProperties_CureFoodEffects",
+   "oldFile": "Source/MugirlRace/Features/Milk/FoodEffects/HediffCompProperties_CureFoodEffects.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/FoodEffects/HediffCompProperties_CureFoodEffects.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "namespace move out of root Mugirl (design 3.1); short name unchanged; XML Class in milk food / milk vigor HediffDefs and ThingDefs",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.HediffCompProperties_MugirlNurtureProgress",
+   "new": "Mugirl.Features.Milk.HediffCompProperties_NurtureProgress",
+   "oldFile": "Source/MugirlRace/Features/Milk/Nurture/HediffCompProperties_MugirlNurtureProgress.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Nurture/HediffCompProperties_NurtureProgress.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "drop redundant Mugirl prefix inside Mugirl.Features.* (design 3.2) + namespace move; XML Class Hediffs_Lactation.xml:63",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.HediffCompProperties_WhileHavingThoughts",
+   "new": "Mugirl.Features.Milk.HediffCompProperties_WhileHavingThoughts",
+   "oldFile": "Source/MugirlRace/Features/Milk/FoodEffects/HediffCompProperties_WhileHavingThoughts.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/FoodEffects/HediffCompProperties_WhileHavingThoughts.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "namespace move out of root Mugirl (design 3.1); short name unchanged; XML Class in milk food / milk vigor HediffDefs and ThingDefs",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.HediffComp_CheckJobOrRemove",
+   "new": "Mugirl.Features.Abilities.HediffComp_CheckJobOrRemove",
+   "oldFile": "Source/MugirlRace/Features/Genes/Charge/HediffComp_CheckJobOrRemove.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Charge/HediffComp_CheckJobOrRemove.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace move out of root Mugirl (design 3.1); short name unchanged; labels are the inherited vanilla HediffComp_Disappears ones",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.HediffComp_CureFoodEffects",
+   "new": "Mugirl.Features.Milk.HediffComp_CureFoodEffects",
+   "oldFile": "Source/MugirlRace/Features/Milk/FoodEffects/HediffComp_CureFoodEffects.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/FoodEffects/HediffComp_CureFoodEffects.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace move out of root Mugirl (design 3.1); short name unchanged; HediffComp labels are inline",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.HediffComp_Lactation",
+   "new": "Mugirl.Features.Milk.HediffComp_Lactation",
+   "oldFile": "Source/MugirlRace/Features/Milk/Production/HediffComp_Lactation.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Production/HediffComp_Lactation.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace move out of root Mugirl (design 3.1); short name unchanged",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.HediffComp_MugirlNurtureProgress",
+   "new": "Mugirl.Features.Milk.HediffComp_NurtureProgress",
+   "oldFile": "Source/MugirlRace/Features/Milk/Nurture/HediffComp_MugirlNurtureProgress.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Nurture/HediffComp_NurtureProgress.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "drop redundant Mugirl prefix inside Mugirl.Features.* (design 3.2) + namespace move",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.HediffComp_WhileHavingThoughts",
+   "new": "Mugirl.Features.Milk.HediffComp_WhileHavingThoughts",
+   "oldFile": "Source/MugirlRace/Features/Milk/FoodEffects/HediffComp_WhileHavingThoughts.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/FoodEffects/HediffComp_WhileHavingThoughts.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace move out of root Mugirl (design 3.1); short name unchanged; HediffComp labels are inline",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.IngestionOutcomeDoer_AddOrRefreshHediff",
+   "new": "Mugirl.Features.Milk.IngestionOutcomeDoer_AddOrRefreshHediff",
+   "oldFile": "Source/MugirlRace/Features/Milk/FoodEffects/IngestionOutcomeDoer_AddOrRefreshHediff.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/FoodEffects/IngestionOutcomeDoer_AddOrRefreshHediff.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "namespace move out of root Mugirl (design 3.1); short name unchanged; XML Class in milk food / milk vigor HediffDefs and ThingDefs",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.IngestionOutcomeDoer_RemoveHediffs",
+   "new": "Mugirl.Features.Milk.IngestionOutcomeDoer_RemoveHediffs",
+   "oldFile": "Source/MugirlRace/Features/Milk/FoodEffects/IngestionOutcomeDoer_RemoveHediffs.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/FoodEffects/IngestionOutcomeDoer_RemoveHediffs.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "namespace move out of root Mugirl (design 3.1); short name unchanged; XML Class in milk food / milk vigor HediffDefs and ThingDefs",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.JobDriver_Breastfeed",
+   "new": "Mugirl.Features.Milk.JobDriver_ChildDrinkMilk",
+   "oldFile": "Source/MugirlRace/Features/Milk/Interaction/JobDriver_Breastfeed.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Interaction/JobDriver_ChildDrinkMilk.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "short name shadows vanilla RimWorld.JobDriver_Breastfeed (verified in rw17 Assembly-CSharp) whose semantics are inverted (vanilla actor = mother; here the actor is the child drinking from a Mugirl)",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.JobDriver_CastCharge",
+   "new": "Mugirl.Features.Abilities.JobDriver_CastCharge",
+   "oldFile": "Source/MugirlRace/Features/Genes/Charge/JobDriver_CastCharge.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Charge/JobDriver_CastCharge.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "namespace move out of root Mugirl (design 3.1); short name unchanged; driverClass of the public JobDef Job_Charge (UFPC 1.7 depends on the JobDef, not on this class)",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.JobDriver_DrinkMilkFromMugirl",
+   "new": "Mugirl.Features.Milk.JobDriver_DrinkMilk",
+   "oldFile": "Source/MugirlRace/Features/Milk/Interaction/JobDriver_DrinkMilkFromMugirl.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Interaction/JobDriver_DrinkMilk.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "consistent milk driver set (GatherMilk/DrinkMilk/ChildDrinkMilk/FeedMilk) matching the new JobDef names; was MooGirl.JobDriver_DrinkMilkFromMooGirl before 0.4.7",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.JobDriver_FeedMilkToDowned",
+   "new": "Mugirl.Features.Milk.JobDriver_FeedMilk",
+   "oldFile": "Source/MugirlRace/Features/Milk/Interaction/JobDriver_FeedMilkToDowned.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Interaction/JobDriver_FeedMilk.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "misleading name: the driver also feeds standing colonists (JobDriver_FeedMilkToDowned.cs:6, MugirlMilkInteractionUtility.IsDirectFeedTarget:85-91)",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.JobDriver_GatherBodyResources",
+   "new": "Mugirl.Features.Milk.JobDriver_GatherBodyResources",
+   "oldFile": "Source/MugirlRace/Features/Milk/Gathering/JobDriver_GatherBodyResources.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Gathering/JobDriver_GatherBodyResources.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "TRANSITIONAL: abstract single-subclass base, merged into JobDriver_GatherMilk in Wave S (plan S2-3); abstract types are never written to saves and it is not XML-visible -> no map entry",
+   "transitional": {
+    "waveS": "merge",
+    "upgrade": "none (not save-visible)"
+   },
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.JobDriver_GatherMilk",
+   "new": "Mugirl.Features.Milk.JobDriver_GatherMilk",
+   "oldFile": "Source/MugirlRace/Features/Milk/Gathering/JobDriver_GatherMilk.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Gathering/JobDriver_GatherMilk.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "namespace move out of root Mugirl (design 3.1); short name unchanged; curDriver Class; JobDef driverClass",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.JobDriver_MugirlDunk",
+   "new": "Mugirl.Features.Abilities.JobDriver_Dunk",
+   "oldFile": "Source/MugirlRace/Features/Genes/Dunk/JobDriver_MugirlDunk.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Dunk/JobDriver_Dunk.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "drop redundant Mugirl prefix inside Mugirl.Features.* (design 3.2) + namespace move; no vanilla JobDriver_Dunk",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.MilkFeedingLayout",
+   "new": "Mugirl.Features.Milk.MilkFeedingLayout",
+   "oldFile": "Source/MugirlRace/Features/Milk/Dev/MilkFeedingLayout.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Dev/MilkFeedingLayout.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace move out of root Mugirl (design 3.1); short name unchanged",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.MilkFeedingLayoutEntry",
+   "new": "Mugirl.Features.Milk.MilkFeedingLayoutEntry",
+   "oldFile": "Source/MugirlRace/Features/Milk/Dev/MilkFeedingLayoutEntry.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Dev/MilkFeedingLayoutEntry.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace move out of root Mugirl (design 3.1); short name unchanged",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.MugirlApparelTagUtility",
+   "new": "Mugirl.Features.Incidents.KindApparelUtility",
+   "oldFile": "Source/MugirlRace/Features/Apparel/MugirlApparelTagUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Incidents/Shared/KindApparelUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "DEVIATION from design 3.1 'Apparel' feature: a namespace Mugirl.Features.Apparel would shadow RimWorld.Apparel (verified type in rw17) in every Mugirl.Features.* file (C# binds the namespace member of Mugirl.Features before global usings -> CS0118), so no Mugirl.Features.Apparel namespace is created (same decision as the incidents spec, which moves FixedColor/pregnant-apparel types to Features/Appearance/Apparel). This helper dresses event-generated pawns by PawnKind apparelTags when the ideo suppresses apparel requirements; all 4 callers are Incidents generators -> Incidents/Shared; Wave S owner: incidents",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.MugirlBabyFeedingUtility",
+   "new": "Mugirl.Features.Milk.BabyFeedingUtility",
+   "oldFile": "Source/MugirlRace/Features/Milk/BabyFeeding/MugirlBabyFeedingUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/BabyFeeding/BabyFeedingUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "drop redundant Mugirl prefix inside Mugirl.Features.* (design 3.2) + namespace move; also used by Compatibility/LactationExpansion",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.MugirlBreastProfileUtility",
+   "new": "Mugirl.Features.Milk.BreastProfileUtility",
+   "oldFile": "Source/MugirlRace/Features/Milk/Production/MugirlBreastProfileUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Production/BreastProfileUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "drop redundant Mugirl prefix inside Mugirl.Features.* (design 3.2) + namespace move",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.MugirlDunkUtility",
+   "new": "Mugirl.Features.Abilities.DunkUtility",
+   "oldFile": "Source/MugirlRace/Features/Genes/Dunk/MugirlDunkUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Dunk/DunkUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "drop redundant Mugirl prefix inside Mugirl.Features.* (design 3.2) + namespace move",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.MugirlExtraOutline",
+   "new": "Mugirl.Features.Appearance.ExtraOutlineRenderer",
+   "oldFile": "Source/MugirlRace/Features/Appearance/MugirlExtraOutline.cs",
+   "newFile": "Source/MugirlRace/Features/Appearance/Outline/ExtraOutlineRenderer.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "design 3.1 lists the outline under Appearance; redundant prefix; static renderer of the extra-outline pass",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.MugirlFoodEffectUtility",
+   "new": "Mugirl.Features.Milk.FoodEffectUtility",
+   "oldFile": "Source/MugirlRace/Features/Milk/FoodEffects/MugirlFoodEffectUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/FoodEffects/FoodEffectUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "drop redundant Mugirl prefix inside Mugirl.Features.* (design 3.2) + namespace move",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.MugirlLactationUtility",
+   "new": "Mugirl.Features.Milk.LactationUtility",
+   "oldFile": "Source/MugirlRace/Features/Milk/Production/MugirlLactationUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Production/LactationUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "drop redundant Mugirl prefix inside Mugirl.Features.* (design 3.2) + namespace move",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.MugirlMilkEffectUtility",
+   "new": "Mugirl.Features.Milk.MilkEffectUtility",
+   "oldFile": "Source/MugirlRace/Features/Milk/Gathering/MugirlMilkEffectUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Gathering/MilkEffectUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "drop redundant Mugirl prefix inside Mugirl.Features.* (design 3.2) + namespace move",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.MugirlMilkInteractionUtility",
+   "new": "Mugirl.Features.Milk.MilkInteractionUtility",
+   "oldFile": "Source/MugirlRace/Features/Milk/Interaction/MugirlMilkInteractionUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Interaction/MilkInteractionUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "drop redundant Mugirl prefix inside Mugirl.Features.* (design 3.2) + namespace move",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.MugirlMilkOutputUtility",
+   "new": "Mugirl.Features.Milk.MilkOutputUtility",
+   "oldFile": "Source/MugirlRace/Features/Milk/Gathering/MugirlMilkOutputUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Gathering/MilkOutputUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "drop redundant Mugirl prefix inside Mugirl.Features.* (design 3.2) + namespace move",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.MugirlMilkingAnimation",
+   "new": "Mugirl.Features.Milk.MilkingAnimation",
+   "oldFile": "Source/MugirlRace/Features/Milk/Animation/MugirlMilkingAnimation.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Animation/MilkingAnimation.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "drop redundant Mugirl prefix inside Mugirl.Features.* (design 3.2) + namespace move; partial parts in fileMoves",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.MugirlMilkingAnimationWorker",
+   "new": "Mugirl.Features.Milk.AnimationWorker_Milking",
+   "oldFile": "Source/MugirlRace/Features/Milk/Animation/MugirlMilkingAnimationWorker.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Animation/AnimationWorker_Milking.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "vanilla worker shape AnimationWorker_X (Verse.AnimationWorker_Keyframes etc.); XML-visible as AnimationDef workerType (1.7/Defs/AnimationDefs/Mugirl_Milking.xml, 10 refs); not save-visible (the animation slot is not saved)",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.MugirlMilkingVisualRole",
+   "new": "Mugirl.Features.Milk.MilkingVisualRole",
+   "oldFile": "Source/MugirlRace/Features/Milk/Animation/MugirlMilkingVisualRole.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Animation/MilkingVisualRole.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "drop redundant Mugirl prefix inside Mugirl.Features.* (design 3.2) + namespace move; enum is not saved",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.MugirlNurtureUtility",
+   "new": "Mugirl.Features.Milk.NurtureUtility",
+   "oldFile": "Source/MugirlRace/Features/Milk/Nurture/MugirlNurtureUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Nurture/NurtureUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "drop redundant Mugirl prefix inside Mugirl.Features.* (design 3.2) + namespace move",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.MugirlPawnSpinRenderer",
+   "new": "Mugirl.Features.Abilities.PawnSpinRenderer",
+   "oldFile": "Source/MugirlRace/Features/Genes/Shared/MugirlPawnSpinRenderer.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Shared/PawnSpinRenderer.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "drop redundant Mugirl prefix inside Mugirl.Features.* (design 3.2) + namespace move; used by ThrowController for pawn/corpse payloads",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.MugirlThrowUtility",
+   "new": "Mugirl.Features.Abilities.ThrowUtility",
+   "oldFile": "Source/MugirlRace/Features/Genes/Throw/MugirlThrowUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Throw/ThrowUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "drop redundant Mugirl prefix inside Mugirl.Features.* (design 3.2) + namespace move",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.MugirlXenotypeService",
+   "new": "Mugirl.Features.Xenotype.XenotypeUtility",
+   "oldFile": "Source/MugirlRace/Features/Genes/Xenotype/MugirlXenotypeService.cs",
+   "newFile": "Source/MugirlRace/Features/Xenotype/XenotypeUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "static helper -> XUtility (design 3.2); no vanilla XenotypeUtility (verified)",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Mugirl_XenotypeFix_GameComp",
+   "new": "Mugirl.Features.Xenotype.GameComponent_XenotypeRepair",
+   "oldFile": "Source/MugirlRace/Features/Genes/Xenotype/Mugirl_XenotypeFix_GameComp.cs",
+   "newFile": "Source/MugirlRace/Features/Xenotype/GameComponent_XenotypeRepair.cs",
+   "saveVisible": true,
+   "xmlVisible": false,
+   "reason": "TRANSITIONAL: Wave S deletes this GameComponent (legacy-only one-shot repair, plan S1-L12). Its LegacyTypes disposition must be Consumed(Steps/Milk/XenotypeRepairComponentStep), NOT the generated rename; same for MooGirl.MooGirl_XenotypeFix_GameComp. Present in every Mugirl-era real save (S5-S11) and in MooGirl-era S2-S4",
+   "transitional": {
+    "waveS": "delete",
+    "upgrade": "Consumed step=Steps/Milk/XenotypeRepair (milk-plan S1-L12)"
+   },
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.PawnFlyerWorker_MugirlDunk",
+   "new": "Mugirl.Features.Abilities.PawnFlyerWorker_Dunk",
+   "oldFile": "Source/MugirlRace/Features/Genes/Dunk/PawnFlyerWorker_MugirlDunk.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Dunk/PawnFlyerWorker_Dunk.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "drop redundant Mugirl prefix inside Mugirl.Features.* (design 3.2) + namespace move",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.PawnFlyer_MugirlDunk",
+   "new": "Mugirl.Features.Abilities.PawnFlyer_Dunk",
+   "oldFile": "Source/MugirlRace/Features/Genes/Dunk/PawnFlyer_MugirlDunk.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Dunk/PawnFlyer_Dunk.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "drop redundant Mugirl prefix inside Mugirl.Features.* (design 3.2) + namespace move; map thing while the carrier is airborne",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Tests.Appearance.MugirlBodyAccessoryVariantsTests",
+   "new": "Mugirl.Tests.Appearance.BodyAccessoryVariantsTests",
+   "oldFile": "Source/Tests/MugirlRace.Tests/Appearance/MugirlBodyAccessoryVariantsTests.cs",
+   "newFile": "Source/Tests/MugirlRace.Tests/Appearance/BodyAccessoryVariantsTests.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "follows BodyAccessoryVariants",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Tests.Genes.GenesCombatMathTests",
+   "new": "Mugirl.Tests.Abilities.AbilitiesCombatMathTests",
+   "oldFile": "Source/Tests/MugirlRace.Tests/Genes/GenesCombatMathTests.cs",
+   "newFile": "Source/Tests/MugirlRace.Tests/Abilities/AbilitiesCombatMathTests.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "test folder/namespace follows Features/Abilities",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Tests.Genes.GenesMotionMathTests",
+   "new": "Mugirl.Tests.Abilities.AbilitiesMotionMathTests",
+   "oldFile": "Source/Tests/MugirlRace.Tests/Genes/GenesMotionMathTests.cs",
+   "newFile": "Source/Tests/MugirlRace.Tests/Abilities/AbilitiesMotionMathTests.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "test folder/namespace follows Features/Abilities",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Tests.Genes.GenesPresentationTests",
+   "new": "Mugirl.Tests.Abilities.AbilitiesPresentationTests",
+   "oldFile": "Source/Tests/MugirlRace.Tests/Genes/GenesPresentationTests.cs",
+   "newFile": "Source/Tests/MugirlRace.Tests/Abilities/AbilitiesPresentationTests.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "test folder/namespace follows Features/Abilities",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Thing_MugirlDunkHead",
+   "new": "Mugirl.Features.Abilities.DunkHead",
+   "oldFile": "Source/MugirlRace/Features/Genes/Dunk/Thing_MugirlDunkHead.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Dunk/DunkHead.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "drop redundant Mugirl prefix inside Mugirl.Features.* (design 3.2) + namespace move; Thing_ is not a vanilla role prefix; parallel to DunkController; saved inside the controller's innerContainer or on the map",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Thing_MugirlDunkProp",
+   "new": "Mugirl.Features.Abilities.DunkController",
+   "oldFile": "Source/MugirlRace/Features/Genes/Dunk/Thing_MugirlDunkProp.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Dunk/DunkController.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "'Prop' is a dev term; it controls the dunk sequence (parallel to ThrowController); partial parts in fileMoves; private enum DunkState keeps its name (only member names are saved)",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Thing_MugirlThrownObject",
+   "new": "Mugirl.Features.Abilities.ThrowController",
+   "oldFile": "Source/MugirlRace/Features/Genes/Throw/Thing_MugirlThrownObject.cs",
+   "newFile": "Source/MugirlRace/Features/Abilities/Throw/ThrowController.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "matches its ThingDef Mugirl_ThrowController and its role (controller holding the payload); partial parts in fileMoves; private enum ThrowState keeps its name",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.Thought_Hediff",
+   "new": "Mugirl.Features.Milk.Thought_MemoryWithHediff",
+   "oldFile": "Source/MugirlRace/Features/Milk/FoodEffects/Thought_Hediff.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/FoodEffects/Thought_MemoryWithHediff.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "name copied from VEF (VEF.Cooking.Thought_Hediff) reads as 'thought caused by a hediff'; it is a Thought_Memory that applies ThoughtDef.hediff. Save-visible: memories <li Class=...> (real saves S6 x8, S7 x11 in the def-less 1.6 shape); XML thoughtClass of ThoughtDef Consumed_MugirlMilk",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.WorkGiver_GatherBodyResources",
+   "new": "Mugirl.Features.Milk.WorkGiver_GatherBodyResources",
+   "oldFile": "Source/MugirlRace/Features/Milk/Gathering/WorkGiver_GatherBodyResources.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Gathering/WorkGiver_GatherBodyResources.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "TRANSITIONAL: abstract single-subclass base, merged into WorkGiver_GatherMilk in Wave S (plan S2-3); not XML/save-visible",
+   "transitional": {
+    "waveS": "merge",
+    "upgrade": "none (not save-visible)"
+   },
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl.WorkGiver_GatherMilk",
+   "new": "Mugirl.Features.Milk.WorkGiver_GatherMilk",
+   "oldFile": "Source/MugirlRace/Features/Milk/Gathering/WorkGiver_GatherMilk.cs",
+   "newFile": "Source/MugirlRace/Features/Milk/Gathering/WorkGiver_GatherMilk.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "namespace move out of root Mugirl (design 3.1); short name unchanged; WorkGiverDef giverClass",
+   "module": "milk"
+  }
+ ],
+ "fileMoves": [
+  {
+   "old": "Source/MugirlRace/Features/Genes/Dunk/Thing_MugirlDunkProp.Impact.cs",
+   "new": "Source/MugirlRace/Features/Abilities/Dunk/DunkController.Impact.cs",
+   "module": "milk"
+  },
+  {
+   "old": "Source/MugirlRace/Features/Genes/Dunk/Thing_MugirlDunkProp.Presentation.cs",
+   "new": "Source/MugirlRace/Features/Abilities/Dunk/DunkController.Presentation.cs",
+   "module": "milk"
+  },
+  {
+   "old": "Source/MugirlRace/Features/Genes/Throw/Thing_MugirlThrownObject.Presentation.cs",
+   "new": "Source/MugirlRace/Features/Abilities/Throw/ThrowController.Presentation.cs",
+   "module": "milk"
+  },
+  {
+   "old": "Source/MugirlRace/Features/Genes/Throw/Thing_MugirlThrownObject.Targeting.cs",
+   "new": "Source/MugirlRace/Features/Abilities/Throw/ThrowController.Targeting.cs",
+   "module": "milk"
+  },
+  {
+   "old": "Source/MugirlRace/Features/Milk/Animation/MugirlMilkingAnimation.Interaction.cs",
+   "new": "Source/MugirlRace/Features/Milk/Animation/MilkingAnimation.Interaction.cs",
+   "module": "milk"
+  },
+  {
+   "old": "Source/MugirlRace/Features/Milk/Animation/MugirlMilkingAnimation.Render.cs",
+   "new": "Source/MugirlRace/Features/Milk/Animation/MilkingAnimation.Render.cs",
+   "module": "milk"
+  },
+  {
+   "old": "Source/MugirlRace/Features/Milk/Animation/MugirlMilkingAnimation.State.cs",
+   "new": "Source/MugirlRace/Features/Milk/Animation/MilkingAnimation.State.cs",
+   "module": "milk"
+  }
+ ],
+ "defs": [
+  {
+   "defType": "ApparelLayerDef",
+   "old": "Mugirl_SpeciallyStocking",
+   "new": "Mugirl_SpecialStocking",
+   "saveVisible": false,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "grammar typo; ApparelLayerDef is not saved",
+   "module": "milk"
+  },
+  {
+   "defType": "HediffDef",
+   "old": "Consumed_MugirlMilk",
+   "new": "Mugirl_MilkVigor",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": true,
+   "explicitRefs": [
+    "1.7/Defs/HediffDefs/Items_Resource.xml:4",
+    "1.7/Defs/ThingDefs_Misc/Items_Resource.xml:51",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Items_Resource.xml:4",
+    "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Items_Resource.xml:6"
+   ],
+   "reason": "type-like prefix Consumed_ (design 3.3); a different concept from the ThoughtDef with the same old name (this is the healing/immunity buff 'Fitter and Stronger!'), so it gets its own name. Seen in real saves S6/S7",
+   "module": "milk"
+  },
+  {
+   "defType": "HediffDef",
+   "old": "Hediff_MugirlAgedCheese",
+   "new": "Mugirl_AgedCheeseEffect",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "type prefix Hediff_ (design 3.3); label 'aged cheese effect'",
+   "module": "milk"
+  },
+  {
+   "defType": "HediffDef",
+   "old": "Hediff_MugirlCowCake",
+   "new": "Mugirl_CowCakeEffect",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "type prefix Hediff_ (design 3.3); food effect of ThingDef Mugirl_CowCake",
+   "module": "milk"
+  },
+  {
+   "defType": "HediffDef",
+   "old": "Hediff_MugirlMilkPowder",
+   "new": "Mugirl_MilkPowderEffect",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "type prefix Hediff_ (design 3.3); seen in real saves (real-saves.md 5)",
+   "module": "milk"
+  },
+  {
+   "defType": "HediffDef",
+   "old": "Hediff_MugirlMilkTablet",
+   "new": "Mugirl_MilkTabletEffect",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "type prefix Hediff_ (design 3.3)",
+   "module": "milk"
+  },
+  {
+   "defType": "JobDef",
+   "old": "Job_Breastfeed",
+   "new": "Mugirl_ChildDrinkMilk",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "Job_ is a type prefix, not the mod prefix (design 3.3); save-visible as curJob/jobQueue def; generic name risks collisions and is misleading (the actor is the child drinking from a Mugirl, the inverse of vanilla Breastfeed); matches JobDriver_ChildDrinkMilk",
+   "module": "milk"
+  },
+  {
+   "defType": "JobDef",
+   "old": "Job_DrinkMilkFromMugirl",
+   "new": "Mugirl_DrinkMilk",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "Job_ is a type prefix, not the mod prefix (design 3.3); save-visible as curJob/jobQueue def; matches JobDriver_DrinkMilk",
+   "module": "milk"
+  },
+  {
+   "defType": "JobDef",
+   "old": "Job_FeedMilkToDowned",
+   "new": "Mugirl_FeedMilk",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "Job_ is a type prefix, not the mod prefix (design 3.3); save-visible as curJob/jobQueue def; misleading: also feeds standing colonists; matches JobDriver_FeedMilk",
+   "module": "milk"
+  },
+  {
+   "defType": "JobDef",
+   "old": "Job_GatherMilk",
+   "new": "Mugirl_GatherMilk",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "Job_ is a type prefix, not the mod prefix (design 3.3); save-visible as curJob/jobQueue def",
+   "module": "milk",
+   "newNameSharedWithOtherDefTypes": true
+  },
+  {
+   "defType": "JobDef",
+   "old": "Job_MugirlDunk",
+   "new": "Mugirl_Dunk",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "Job_ is a type prefix, not the mod prefix (design 3.3); save-visible as curJob/jobQueue def; same concept as AbilityDef Mugirl_Dunk (cross-type sharing of one concept is allowed). Job_Charge is public API (design 2) and is NOT renamed",
+   "module": "milk",
+   "newNameSharedWithOtherDefTypes": true
+  },
+  {
+   "defType": "JobDef",
+   "old": "Job_MugirlMilkInteractionWait",
+   "new": "Mugirl_MilkInteractionWait",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "Job_ is a type prefix, not the mod prefix (design 3.3); save-visible as curJob/jobQueue def",
+   "module": "milk"
+  },
+  {
+   "defType": "PipeSystem.ProcessDef",
+   "old": "Mugirl_MugirlMilkIntoCheese",
+   "new": "Mugirl_MilkIntoCheese",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Mods/VCookE/Defs/ThingDefs_Misc/ProcessDef.xml:4",
+    "1.7/Mods/VCookE/Patches/VCookE_Patch.xml:11",
+    "1.7/Mods/VCookE/Patches/VCookE_Patch.xml:17"
+   ],
+   "module": "milk",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "milk: doubled prefix left by the mechanical MooGirl->Mugirl rename (design 3.3); saved by VEF PipeSystem processors; refs Mods/VCookE/Patches/VCookE_Patch.xml:11,17 | content: Doubled prefix left by the MooGirl->Mugirl text replacement (MooGirl_MooGirlMilkIntoCheese). Saved by VEF PipeSystem.Process.ExposeData as <process> (Scribe_Defs; decompiled PipeSystem.dll 1.7) and resolved through the type-aware BackCompatibleDefName postfix. VCookE_Patch.xml:11 is an xpath predicate li[text()=...]. Process.id strings 'Process_<map>_<defName>_<n>' keep the old segment: opaque and internally consistent, no rewrite needed."
+  },
+  {
+   "defType": "ThingDef",
+   "old": "MugirlMilkStain",
+   "new": "Mugirl_Filth_MilkStain",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/ThingDefs_Misc/Items_Filth.xml:26",
+    "1.7/Defs/Apparel/Apparel_Bondage/BondageApparel_Spacer.xml:225",
+    "1.7/Defs/Apparel/Apparel_Bondage/BondageApparel_Spacer.xml:336",
+    "Source/MugirlRace/DefOf/MugirlMilkDefOf.cs:19",
+    "Source/MugirlRace/Features/Milk/Device/CompProperties_MilkingDevice.cs:40",
+    "Source/MugirlRace/Features/Milk/Gathering/MugirlMilkEffectUtility.cs:29",
+    "Source/Tests/MugirlRace.Validation/Baselines/dynamic-lookups.allow.txt:5"
+   ],
+   "module": "milk",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "milk: missing underscore after the mod prefix (design 3.3); category segment Filth_ aligned with the content spec, owner of Items_Filth.xml (MugirlMilkFilth->Mugirl_Filth_ShockMilk, MugirlWaterFilth->Mugirl_Filth_ShockFluid); filth things on maps -> thing-ID rewrite (design 5.4); also a C# string default (CompProperties_MilkingDevice.cs:40) and <filthDefName> in the two milking devices | content: Missing underscore after the mod prefix (design 3.3). CompProperties_MilkingDevice.cs:40 holds it as a C# string literal default (rewrite the literal)."
+  },
+  {
+   "defType": "ThingDef",
+   "old": "Mugirl_Bar",
+   "new": "Mugirl_Bra",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "typo (design 3.3 example); label 'Mugirl Bra'; + Make_Mugirl_Bar; texture path Things/Apparel/Mugirl_Bar/... is public and NOT renamed",
+   "module": "milk"
+  },
+  {
+   "defType": "ThingDef",
+   "old": "Mugirl_Eroticpanties",
+   "new": "Mugirl_EroticPanties",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "casing inconsistency (all other apparel defNames are PascalCase); + Make_ recipe; texture path unchanged",
+   "module": "milk"
+  },
+  {
+   "defType": "ThingDef",
+   "old": "Mugirl_Hipwrappingskirt",
+   "new": "Mugirl_PencilSkirt",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "casing error in a literal translation; the label is 'Mugirl Pencil Skirt'; + Make_ recipe; texture path unchanged",
+   "module": "milk"
+  },
+  {
+   "defType": "ThingDef",
+   "old": "Mugirl_SpeciallyStockings",
+   "new": "Mugirl_SpecialStockings",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "grammar typo (label 'Mugirl Special Stockings'); + Make_ recipe; MugirlContentDefOf field; texture path unchanged",
+   "module": "milk"
+  },
+  {
+   "defType": "ThingDef",
+   "old": "PMC_CaptainHelmet",
+   "new": "Mugirl_PMC_CaptainHelmet",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/Apparel/Apparel_PMC.xml:68",
+    "1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:270",
+    "Source/MugirlRace/DefOf/MugirlContentDefOf.cs:52"
+   ],
+   "module": "milk",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "milk: missing mod prefix (design 3.3) | content: PMC_/OPC_ prefix without the mod prefix (design 3.3); not public API (no dependent mod references it: understand/content.md C and a local+workshop scan). Series segment kept, words PascalCase. Implied Make_ recipe and ThingIDs follow (design 5.4)."
+  },
+  {
+   "defType": "ThingDef",
+   "old": "PMC_CombatUniform",
+   "new": "Mugirl_PMC_CombatUniform",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/Apparel/Apparel_PMC.xml:130",
+    "1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:201",
+    "1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:233",
+    "1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:269",
+    "Source/MugirlRace/DefOf/MugirlContentDefOf.cs:53"
+   ],
+   "module": "milk",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "milk: missing mod prefix (design 3.3) | content: PMC_/OPC_ prefix without the mod prefix (design 3.3); not public API (no dependent mod references it: understand/content.md C and a local+workshop scan). Series segment kept, words PascalCase. Implied Make_ recipe and ThingIDs follow (design 5.4)."
+  },
+  {
+   "defType": "ThingDef",
+   "old": "PMC_Helmet",
+   "new": "Mugirl_PMC_Helmet",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/Apparel/Apparel_PMC.xml:6",
+    "1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:172",
+    "1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:202",
+    "1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:234",
+    "Source/MugirlRace/DefOf/MugirlContentDefOf.cs:51"
+   ],
+   "module": "milk",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "milk: missing mod prefix (design 3.3: PMC_* when not public); series kept as second segment - align with the weapons spec's PMC_/OPC_ weapon renames | content: PMC_/OPC_ prefix without the mod prefix (design 3.3); not public API (no dependent mod references it: understand/content.md C and a local+workshop scan). Series segment kept, words PascalCase. Implied Make_ recipe and ThingIDs follow (design 5.4)."
+  },
+  {
+   "defType": "ThoughtDef",
+   "old": "Consumed_MugirlAgedCheese",
+   "new": "Mugirl_ConsumedAgedCheese",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "type-like prefix Consumed_ (design 3.3)",
+   "module": "milk"
+  },
+  {
+   "defType": "ThoughtDef",
+   "old": "Consumed_MugirlCheese",
+   "new": "Mugirl_ConsumedCheese",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "type-like prefix Consumed_ (design 3.3)",
+   "module": "milk"
+  },
+  {
+   "defType": "ThoughtDef",
+   "old": "Consumed_MugirlMilk",
+   "new": "Mugirl_ConsumedMilk",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": true,
+   "explicitRefs": [
+    "1.7/Defs/ThingDefs_Misc/Items_Resource.xml:38",
+    "1.7/Defs/ThingDefs_Misc/Items_Resource.xml:40",
+    "1.7/Defs/ThingDefs_Misc/Items_Resource.xml:50",
+    "1.7/Defs/HediffDefs/Items_Resource.xml:19",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThoughtDef/Items_Resource.xml:4",
+    "1.7/Languages/ChineseSimplified/DefInjected/ThoughtDef/Items_Resource.xml:6",
+    "Source/MugirlRace/DefOf/MugirlMilkDefOf.cs:13",
+    "Source/MugirlRace/Features/Milk/Interaction/MugirlMilkInteractionUtility.cs:110",
+    "Source/MugirlRace/Features/Milk/Interaction/MugirlMilkInteractionUtility.cs:128",
+    "Source/MugirlRace/Features/Milk/Interaction/MugirlMilkInteractionUtility.cs:143"
+   ],
+   "reason": "type-like prefix Consumed_ (design 3.3); memory, seen in real saves",
+   "module": "milk"
+  },
+  {
+   "defType": "ThoughtDef",
+   "old": "Consumed_MugirlMilkCandy",
+   "new": "Mugirl_ConsumedMilkCandy",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "type-like prefix Consumed_ (design 3.3)",
+   "module": "milk"
+  },
+  {
+   "defType": "ThoughtDef",
+   "old": "Consumed_MugirlPudding",
+   "new": "Mugirl_ConsumedPudding",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "type-like prefix Consumed_ (design 3.3)",
+   "module": "milk"
+  },
+  {
+   "defType": "ThoughtDef",
+   "old": "Consumed_MugirlRichMilkFlavor",
+   "new": "Mugirl_ConsumedRichMilkFlavor",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "type-like prefix Consumed_ (design 3.3); seen in real saves",
+   "module": "milk"
+  },
+  {
+   "defType": "WorkGiverDef",
+   "old": "Work_GatherMilk",
+   "new": "Mugirl_GatherMilk",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "type prefix Work_ (design 3.3); saved in Job.workGiverDef and by WorkTab (real saves: Workgiver<li contexts, real-saves.md 5); same concept as JobDef Mugirl_GatherMilk",
+   "module": "milk",
+   "newNameSharedWithOtherDefTypes": true
+  }
+ ],
+ "abstractNames": [
+  {
+   "old": "Mugirl_0920CasualBase",
+   "new": "Mugirl_CasualApparelBase",
+   "module": "milk",
+   "reason": "milk: date in Name (design 3.3); 14 children in Apparel_0920.xml, 2 in Apparel_0926.xml; no external user (content.md B.5) | content: Date in an abstract Name (design 3.3 example). ParentName of 14 defs in Apparel_0920.xml and 2 in Apparel_0926.xml; no dependent mod uses it (understand/content.md B.5)."
+  },
+  {
+   "old": "Mugirl_Stocking",
+   "new": "Mugirl_StockingBase",
+   "reason": "abstract ThingDef Name that shares its string with ApparelLayerDef/ThingCategoryDef Mugirl_Stocking and the apparel tag Mugirl_Stocking; all other abstract apparel Names end in Base. Rewrite ONLY Name=/ParentName= attributes (Apparel_Stockings.xml:4,35,61,87; Apparel_Mugirl_Combatant.xml:220): layer/category/tag strings stay (the Subspecies mod uses the tag)",
+   "module": "milk"
+  },
+  {
+   "old": "Mugirl_TacticalGoggles",
+   "new": "Mugirl_TacticalGogglesBase",
+   "reason": "abstract Name that reads like a defName; consistency with *Base; only Name=/ParentName= (Apparel_Head.xml:291 and its child); no external user",
+   "module": "milk"
+  }
+ ],
+ "memberRenames": [
+  {
+   "member": "Mugirl.Mugirl_DefOf.Mugirl_Dunk",
+   "new": "Mugirl_DunkAbility",
+   "module": "milk",
+   "addAttributes": [
+    "DefAlias(\"Mugirl_Dunk\")"
+   ],
+   "reason": "Same pattern as C05: JobDef Job_MugirlDunk is renamed to Mugirl_Dunk; the AbilityDef field of that defName keeps binding through [DefAlias] (both fields have no C# reader and are deleted by the R2 DefOf split)."
+  }
+ ]
+}

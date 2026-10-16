@@ -1,0 +1,71 @@
+# Code style for the RimWorld 1.7 build (Source/). The frozen 1.6 sources in 1.6/Source are not covered.
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{csproj,props,targets,slnx,xml,json}]
+indent_size = 2
+
+[*.cs]
+indent_size = 4
+file_header_template = unset
+
+# Usings and namespaces
+csharp_using_directive_placement = outside_namespace:warning
+csharp_style_namespace_declarations = file_scoped:warning
+dotnet_sort_system_directives_first = true
+# Most gameplay types live in the root namespace "Mugirl" on purpose: XML Defs and save files reference them by full
+# name, so the namespace is part of the persisted contract and does not follow the folder layout (ADR-004).
+dotnet_diagnostic.IDE0130.severity = none
+
+# Language
+csharp_style_var_for_built_in_types = false:suggestion
+csharp_style_var_when_type_is_apparent = true:suggestion
+csharp_style_var_elsewhere = false:suggestion
+csharp_prefer_braces = true:warning
+csharp_style_expression_bodied_methods = when_on_single_line:suggestion
+csharp_style_prefer_pattern_matching = true:suggestion
+dotnet_style_readonly_field = true:warning
+dotnet_style_qualification_for_field = false:suggestion
+dotnet_style_predefined_type_for_locals_parameters_members = true:warning
+
+# Naming
+dotnet_naming_rule.types_pascal.symbols = types
+dotnet_naming_rule.types_pascal.style = pascal
+dotnet_naming_rule.types_pascal.severity = suggestion
+dotnet_naming_symbols.types.applicable_kinds = class, struct, interface, enum, delegate
+dotnet_naming_style.pascal.capitalization = pascal_case
+
+dotnet_naming_rule.private_fields_camel.symbols = private_fields
+dotnet_naming_rule.private_fields_camel.style = camel
+dotnet_naming_rule.private_fields_camel.severity = suggestion
+dotnet_naming_symbols.private_fields.applicable_kinds = field
+dotnet_naming_symbols.private_fields.applicable_accessibilities = private
+dotnet_naming_style.camel.capitalization = camel_case
+
+# RimWorld conventions the analyzers would otherwise flag
+# CA1707: underscores are part of RimWorld's own naming scheme (CompProperties_X, JobDriver_X, DefOf fields = defNames).
+dotnet_diagnostic.CA1707.severity = none
+# CA1051/CA2211: Defs, CompProperties and DefOf classes expose public fields by design (XML loading, DefOf binding).
+dotnet_diagnostic.CA1051.severity = none
+dotnet_diagnostic.CA2211.severity = none
+# CA1716/CA1720/CA1711: names mirror RimWorld's API (Verb, Def, ...).
+dotnet_diagnostic.CA1716.severity = none
+dotnet_diagnostic.CA1720.severity = none
+dotnet_diagnostic.CA1711.severity = none
+# CA1062: RimWorld calls overrides with non-null arguments; validating every one adds noise without value.
+dotnet_diagnostic.CA1062.severity = none
+# CA1305/CA1307/CA1309/CA1310: string comparisons must be explicit; formatting of player-facing text goes through Translate().
+dotnet_diagnostic.CA1305.severity = none
+dotnet_diagnostic.CA1307.severity = warning
+dotnet_diagnostic.CA1309.severity = warning
+dotnet_diagnostic.CA1310.severity = warning
+# CA1812: classes created by RimWorld through reflection (comps, workers, jobs) look unused to the analyzer.
+dotnet_diagnostic.CA1812.severity = none
+# CA1002/CA2227: RimWorld APIs use List<T> fields and settable collections throughout.
+dotnet_diagnostic.CA1002.severity = none
+dotnet_diagnostic.CA2227.severity = none

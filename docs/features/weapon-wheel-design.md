@@ -2,12 +2,12 @@
 
 ## 文档状态
 
-- 状态：首轮实装完成，等待游戏内验收与数值调试。
-- 适用版本：RimWorld 1.6。
+- 状态：玩法设计保留；1.7 的 R/R2/S 结构实现已落地，完整 V 与发布验收尚未完成。当前重构不调整数值或玩家文案。
+- 当前维护版本：RimWorld 1.7；文末注明日期的 1.6 验证记录只作历史证据。
 - 适用对象：雪牛娘 Pawn。
 - 实装基准：本文记录的规则及首轮数值。
 
-本文档记录武器轮盘、火力满载、换枪动画、自驱装弹系统和骑乘降级规则。首轮数值已经进入实现，后续调整仍应先更新本文档。
+本文档记录武器轮盘、火力满载、换枪动画、自驱装弹系统和骑乘降级规则。2026-10-16 同步现行源码与保存结构；重构行为约束见[决策 §7](../refactor-1.7/decisions.md#7-owner-补充约束2026-10-15恢复重构后优先于所有既有计划)，实现及验证边界见[战斗记录](../records/refactor-1.7-combat-2026-10-15.md)。
 
 ## 设计目标
 
@@ -26,11 +26,11 @@
 - ITab 始终绘制 6 个槽位。
 - 第 1–3 格默认解锁。
 - 第 1 格为逻辑主武器槽，也是非轮盘战斗状态下使用的武器。
-- 第 4–6 格默认锁定；完成“自驱装填”（`Mugirl_Autoloading`）研究后三格整体解锁，`Comp_WeaponWheel` 在维护循环中检测研究完成并回溯应用，已存在的 Pawn 无需重登。
+- 第 4–6 格默认锁定；完成“自驱装填”（`Mugirl_Autoloading`）研究后三格整体解锁，`CompWeaponWheel` 通过 `WeaponWheelStorage` 在原维护循环中检测并回溯应用，已存在的 Pawn 无需重登。
 
 ### 研究解锁（2026-09-21 现状）
 
-- 完成自驱装填研究时，第 4–6 格一次性全部解锁（见 `Comp_WeaponWheel.cs` 的 `researchUnlockApplied` 检查）。
+- 完成自驱装填研究时，第 4–6 格一次性全部解锁（现行 `WeaponWheelStorage` 的 `researchUnlockApplied` 检查，维护时点仍由组件的 `nextMaintenanceTick` 决定）。
 - 解锁对殖民地内全部雪牛娘生效；研究状态存于 ResearchManager，不按 Pawn 单独保存。
 
 ### 开发者模式解锁
@@ -85,11 +85,15 @@
 
 - 第 1 格在静止状态下对应原版 `Pawn_EquipmentTracker.Primary`，保证原版 AI、狩猎、强制攻击和装备 Gizmo 正常工作。
 - 其他武器存放于武器轮盘 Comp 自己的 `ThingOwner<ThingWithComps>`。
-- 轮盘保存六格逻辑顺序、逐格解锁状态、当前临时活动槽和战斗状态。
+- 轮盘持久保存储备武器、六格顺序/解锁状态及剑舞失败数。当前临时活动槽和战斗状态仍按原 PostLoadInit 行为重建，不把原设计描述误当成已保存字段。
 - 战斗换枪时只转移武器所有权，不把它视为真正卸装再装备；需要抑制原版装备通知，避免人格武器、独特武器和武器 Comp 被反复重置。
 - 备用武器必须计入 Pawn 负重、商队重量和相关 UI 统计。
 - Pawn 倒地、死亡、被销毁或执行原版“丢弃全部装备”流程时，轮盘武器遵循相同的掉落或销毁规则。
 - 存档可以发生在待机、架枪、连射、换枪或整轮装弹阶段；读档后必须恢复或安全回退到第 1 格。
+- 狩猎期间更换真实主武器时，必须在所有权转移完成后同步当前 `Hunt` 的 `verbToUse`，保留原任务和猎物；原版随后根据新武器射程调整站位。自动轮射、归位及读档归位同样遵守此规则。
+- 换为空槽、近战或不符合原版狩猎要求的武器时，安全结束当前追猎，交由下一 tick 的正常工作调度处理。只同步轮盘所属或本次移除的武器引用，不干预其他 Job 或狩猎后的尸体搬运。
+
+当前标签为 `mugirlWheelReserveWeapons`、`mugirlWheelSlotRecords`、`mugirlWheelSwordDanceFailureStreak`；每个槽记录保存 `weapon` 引用和 `unlocked` 值。旧两列表在 `SaveUpgrade/Modules/Combat` 逐索引迁移。储备容器 owner 仍是 Comp，不能改成内部协作者；真实 Scribe 往返验证槽引用仍指向同一武器。新共享标签必须带 mugirl 前缀。
 
 ## 火力满载
 
@@ -242,24 +246,23 @@
 
 ## 技术方案
 
-### 建议模块结构
+### 当前模块结构
 
-建议在 `1.6/Source/Features/WeaponWheel/` 下建立独立功能模块：
+代码位于 `Source/MugirlRace/Features/WeaponWheel/`，命名空间为 `Mugirl.Features.WeaponWheel`：
 
 - `CompProperties_WeaponWheel.cs`
-- `Comp_WeaponWheel.cs`
-- `Comp_WeaponWheel.Storage.cs`
-- `Comp_WeaponWheel.Combat.cs`
-- `Comp_WeaponWheel.Rendering.cs`
-- `WeaponWheelUtility.cs`
-- `WeaponWheelTransferScope.cs`
+- `CompWeaponWheel` 的各 partial：生命周期、调度及调用门面；
+- `WeaponWheelStorage`、`WeaponWheelCombat`、`WeaponWheelSwordDance`、`WeaponWheelRenderCache`：各自的状态与职责；
+- `WeaponWheelSlot`：逐槽保存记录；
+- `WeaponWheelLookup`：只读组件查询；共享转移作用域为 Core 的 `EquipmentTransferScope`；
 - `ITab_Pawn_WeaponWheel.cs`
 - `JobDriver_LoadWeaponWheel.cs`
 - `PawnRenderNode_BackWeapon.cs`
 - `PawnRenderNodeWorker_BackWeapon.cs`
 - `WeaponWheelBackLayout.cs`
 - `Dialog_WeaponWheelBackLayoutDebug.cs`
-- `Harmony_WeaponWheel.cs`
+- `Patches/Harmony_<目标>_<成员>_<用途>.cs`：原版目标补丁；
+- `WeaponWheelHooks` / `WeaponWheelHookSet`：兼容层扩展边界；
 - `CompProperties_AutoloadingSystem.cs`
 - `CompAutoloadingSystem.cs`
 
@@ -274,11 +277,11 @@ XML 内容包括武器轮盘 JobDef、自驱装弹系统 ThingDef、研究、声
 - Pawn Render Tree：通过 Comp 动态 Render Node 绘制两把背负武器。
 - `Pawn.DropAndForbidEverything`、负重统计和 `Pawn.GetChildHolders`：补齐备用容器的生命周期与重量处理。
 
-所有 Harmony patch 都应加入现有 Patch 元数据目录，并标注失败行为和兼容风险。战斗切换和绘制 patch 属于高风险或关键风险。
+所有 Harmony patch 都用 `[MugirlPatch(PatchModule.WeaponWheel, risk, failureBehavior)]` 标注；同一目标的内部补丁保留显式优先级。Compatibility 不补丁这些领域方法，而由构造期 bootstrap 登记 Hook；原 Prefix/Postfix 的短路、异常恢复和执行顺序必须保持。
 
 ### 状态机
 
-建议显式保存并驱动以下状态：
+运行期状态机驱动以下状态；它们不新增为持久存档字段，读档按前述原行为重建：
 
 - `Holstered`：武器未公开持有。
 - `EquippingPrimary`：第一格首次架枪。
@@ -292,7 +295,7 @@ XML 内容包括武器轮盘 JobDef、自驱装弹系统 ThingDef、研究、声
 
 ## 兼容边界
 
-- 第一阶段保证 RimWorld 1.6 原版、当前 HAR 种族和模组已有骑乘系统兼容。
+- 当前维护 RimWorld 1.7 与 HAR；可选 DualWield、RunAndGun、MeleeAnimation、YayoCombat、YayoAnimation、TrainingFacility 通过兼容层接线。完整可选组合的实机覆盖以验证记录为准，不能由源码接线直接推断通过。
 - 使用原版 `EquipmentUtility.CanEquip` 处理人格、生物编码和角色限制。
 - 支持具有标准主射击 Verb 的普通远程武器。
 - 带特殊手动 Verb、充能、弹药或自定义后摇系统的第三方武器允许储存，但在确认可安全自动施放前可标记为不兼容火力满载。
@@ -330,6 +333,8 @@ XML 内容包括武器轮盘 JobDef、自驱装弹系统 ThingDef、研究、声
 - 混入近战或不兼容武器后整套连射关闭。
 - 射程不足的武器被跳过，目标死亡后连锁安全停止。
 - 中途征召切换、关闭自由开火、倒地和 Job 中断不会遗留错误 Primary、Verb 或 Stance。
+- 同一猎物追猎期间，互换相同远程武器、长短射程武器不会卡死；只调整备用槽时不改当前狩猎 Verb。换空槽、换近战或丢弃主武器安全结束追猎。
+- 换枪后保存再读取可继续狩猎；旧版保存的轮盘储备武器引用在读档归位时同步到当前主武器。
 
 ### 动画与渲染
 
@@ -354,3 +359,30 @@ XML 内容包括武器轮盘 JobDef、自驱装弹系统 ThingDef、研究、声
 - 架枪动画总时长以约 42 tick 为首轮调试基准。
 - 骑乘时继续显示背后的两把储备武器。
 - “自驱装填”研究量为 2500；腰带使用专用四方向贴图，并显示第 3–6 格的四把凹槽武器。
+
+## 2026-10-04 狩猎换枪修复
+
+RimWorld 1.6.4871 的 `Hunt` 只在开始时缓存一次 `job.verbToUse`。轮盘更换主武器后，旧枪仍在储备容器中，却已不属于原版装备列表，`IsStillUsableBy` 返回 false。狩猎的命中检查返回寻找射击位置，而旧 Verb 又把当前位置视为有效射击位置，导致 `JumpToToil → GotoCastPosition → PatherArrived → ReadyForNextToil` 在同一 tick 内递归。
+
+修复前的隔离测试中，不换枪正常进入瞄准；互换两把相同栓动步枪、栓动步枪换自动手枪均触发 80 层递归保护。这证明问题不依赖射程差异。原始记录归档于 `DevData/Evidence/HuntWheelFix-20261004/BeforeFix`；保护仅防止调查进程真正栈溢出，不代表原版存在截断机制。
+
+修复集中在 `Comp_WeaponWheel.Storage.cs`：完成内部转移、归位或丢弃后，给当前追猎同步真实主武器的主 Verb；有效武器继续原任务与原猎物，无效武器安全结束追猎，不在转移调用栈中重新安排工作。归位即使没有再次移动武器，也检查旧版存档的遗留引用。没有新增 Harmony patch、存档字段或调整轮射数值。
+
+回归探针为 `docs/tools/WeaponWheelHuntRuntimeProbe.cs`，必须单独编译并在隔离配置下执行，不能加入正式工程。探针仅在显式传入 `-mugirlHuntRegression` 且存档目录位于本模组 `TMP` 内时启用；递归达到 80 层即判失败并截断，不能把保护触发视为修复通过。
+
+本次使用现有 Steam 安装的 RimWorld 1.6.4871 rev591，以 Harmony、Core、HAR、Mugirl 最小配置执行后台游戏验证，不启用 DLC。正式 DLL 完整构建与静态检查通过，最终运行 `CoreOnly-Verified3` 的 12 项断言全部通过：
+
+| 验证范围 | 实际结果 |
+| --- | --- |
+| 不换枪对照、同型号枪互换、步枪换手枪、手枪换步枪 | 保持原狩猎任务与猎物，使用当前主武器进入瞄准；短射程武器在 23 格内开火准备 |
+| 只调整储备槽位 | 保持当前主武器和缓存 Verb |
+| 主槽换空、主槽换近战、丢弃主武器 | 安全结束当前狩猎 |
+| 自动轮射 | 两把自动手枪实际开火，回到第一格，缓存与主武器一致 |
+| 非狩猎任务换枪 | 保留原任务及其 Verb |
+| 换枪后真实存读档、构造旧版遗留引用后真实存读档 | 两项均恢复当前主武器的 Verb 并继续追猎 |
+
+最终运行的最大同步递归深度为 6，未触发保护。fresh `Player.log` 未出现异常或武器 Verb 的深存储/失效引用错误；通用日志扫描仍返回 1，命中现有模组目录的 4 条 About 元数据警告，以及未启用 Biotech 时 HAR 的 4 条 Baby/Child Def 引用信息，不能记为全日志零告警。第三方战斗模组及全 DLC 组合不在本次验证范围内。
+
+前几轮测试暴露了测试夹具自身的问题：随机出生角色可能无法暴力，随机地图的障碍、迷雾和温度会影响狩猎站位，已销毁测试角色的冷却姿态还可能保留旧武器引用。探针已固定相关前置条件，并在清理角色时先结束工作与冷却；失败运行保留在 `Attempts`，不计入最终通过结果。
+
+最终日志、配置、两份真实测试存档、探针源码及运行脚本归档于 `DevData/Evidence/HuntWheelFix-20261004`，逐文件 SHA256 清单位于其中的 `archive-manifest.json`。原 DLL 备份为 `DevData/Backups/HuntWheelFix-20261004/MugirlRace.before.dll`。测试 DLL 已从正式程序集目录移除，用户正常 `ModsConfig.xml` 与 `Prefs.xml` 的 SHA256 与测试前一致；源码修复已构建到正式 `1.6/Assemblies/MugirlRace.dll`。

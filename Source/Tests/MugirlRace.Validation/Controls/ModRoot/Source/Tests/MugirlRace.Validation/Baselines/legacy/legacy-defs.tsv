@@ -1,0 +1,13 @@
+# legacy-defs.tsv: negative-control corpus for C.save-upgrade (each row exercises one rule; see Controls/expected-failures.txt).
+# columns: root	defName	defClass	tiers	eras	first	last
+ManeuverDef	Mugirl_Control_OldManeuver	-	published	Mugirl	p.control	p.control
+ThingDef	Mugirl_Control_OldGun	-	published	Mugirl	p.control	p.control
+ThingDef	Mugirl_Control_OldThing	-	published	Mugirl	p.control	p.control
+ThingDef	Mugirl_Control_Thing2	-	published	Mugirl	p.control	p.control
+ThinkTreeDef	HumanlikeConstant	-	published	Mugirl	p.control	p.control
+ControlOldRoot	ControlOldRootDef	-	published	Mugirl	p.control	p.control
+ControlGoodOldRoot	ControlGoodOldRootDef	-	published	Mugirl	p.control	p.control
+ThingDef	MooGirlLegacyFixture	-	published	Mugirl	p.control	p.control
+ThingDef	NotMooGirlVictim	-	published	Mugirl	p.control	p.control
+JobDef	ControlPrehistoricAction	-	published	MooGirl	p.control	p.control
+JobDef	ControlMixedEraAction	-	published	MooGirl,Mugirl	p.control	p.control

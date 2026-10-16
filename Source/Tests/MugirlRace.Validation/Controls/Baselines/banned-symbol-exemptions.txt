@@ -1,0 +1,3 @@
+# 负对照：一条不再匹配任何对象的例外（必须报为过期），一条不在允许抑制的命名空间中的调用点（必须报为不允许）。
+M:System.Math.Clamp(System.Single,System.Single,System.Single)	Mugirl.Nowhere::Method	stale on purpose
+M:UnityEngine.Mathf.Clamp01(System.Single)	Mugirl.UnityLayerViolations::ClampWithMathfListed	listed outside Mugirl.Platform on purpose

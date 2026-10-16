@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Mugirl.SaveUpgrade.CompletedTitle>Mugirl save upgraded</Mugirl.SaveUpgrade.CompletedTitle>
+  <Mugirl.SaveUpgrade.CompletedBody>Your save has been automatically upgraded for the current version of Mugirl. The original save has been backed up.\n\nBackup file: {0}\n\nThe upgrade marker will be saved with your game. Loading that updated save will not send this notice again.</Mugirl.SaveUpgrade.CompletedBody>
+  <Mugirl.SaveUpgrade.Failed>The Mugirl save upgrade failed at step {0}. Do not overwrite this save: keep playing only after reporting the problem, and send the log together with the .bak backup next to the save file.</Mugirl.SaveUpgrade.Failed>
+  <Mugirl.SaveUpgrade.NewerSave>This save was written by a newer version of Mugirl (save schema {0}). Saving it with this version loses the newer data; update the mod before saving.</Mugirl.SaveUpgrade.NewerSave>
+  <Mugirl.SaveUpgrade.MooGirlEra>This save contains content from the MooGirl era of the mod (0.4.4 and earlier), which is no longer supported. That content was discarded while loading; everything else was kept.</Mugirl.SaveUpgrade.MooGirlEra>
+  <Mugirl.SaveUpgrade.NotInstalled>Mugirl could not install its save upgrade hooks ({0}). Loading saves from older Mugirl versions is unsafe in this session; check the log for Harmony conflicts.</Mugirl.SaveUpgrade.NotInstalled>
+</LanguageData>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <JobDef>
+        <defName>Mugirl_Mount</defName>
+        <driverClass>Mugirl.Features.Mounting.JobDriver_MountMugirl</driverClass>
+        <reportString>mounting TargetA.</reportString> <!-- 骑上 TargetA。 -->
+        <suspendable>false</suspendable>
+    </JobDef>
+
+    <JobDef>
+        <defName>Mugirl_Dismount</defName>
+        <driverClass>Mugirl.Features.Mounting.JobDriver_DismountMugirl</driverClass>
+        <reportString>dismounting the rider from TargetA.</reportString> <!-- 让 TargetA 上的骑乘者下来。 -->
+        <suspendable>false</suspendable>
+    </JobDef>
+
+</Defs>

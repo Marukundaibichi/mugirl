@@ -174,7 +174,6 @@ namespace Mugirl
             return MoneyTotal((decimal)unitValue * quantity, roundUp);
         }
 
-        public static int MaxOrderQuantity(ThingDef def) => def != null && def.stackLimit > 1 ? 2500 : 10;
         public static Thing MakeProduct(ThingDef def, ThingDef stuff, QualityCategory quality)
         {
             Thing thing = ThingMaker.MakeThing(def, def.MadeFromStuff ? stuff ?? GenStuff.DefaultStuffFor(def) : null);
@@ -256,13 +255,27 @@ namespace Mugirl
             { reason = "Mugirl.Corporate.InvalidOrder".Translate(); return false; }
             if (IsOrderable(def) && !CanAutomaticallySupply(def))
             { reason = "Mugirl.CorporatePricing.Restricted".Translate(); return false; }
-            if (!IsOrderable(def) || quantity <= 0 || quantity > MaxOrderQuantity(def) || quality > QualityCategory.Excellent
+            if (!IsOrderable(def) || quantity <= 0 || quantity > 2500 || quality > QualityCategory.Excellent
                 || (def.MadeFromStuff && (stuff == null || !GenStuff.AllowedStuffsFor(def).Contains(stuff))))
             { reason = "Mugirl.Corporate.InvalidOrder".Translate(); return false; }
             if (orders.Count(o => o.state == CorporateOrderState.Preparing || o.state == CorporateOrderState.Ready) >= TradeSettings.maxActiveOrders)
             { reason = "Mugirl.Corporate.OrderLimit".Translate(TradeSettings.maxActiveOrders); return false; }
-            if (!TryMakeGoods(def, stuff, quality, quantity, out List<Thing> goods))
+            // 先用同规格样品检查上限，超额订单不生成整批货物，也不扣款。
+            if (!TryMakeGoods(def, stuff, quality, 1, out List<Thing> goods))
             { reason = "Mugirl.Corporate.CannotMake".Translate(); return false; }
+            int maximum = MaxOrderQuantity(goods[0]);
+            if (quantity > maximum)
+            {
+                foreach (Thing thing in goods) DiscardUnspawnedProduct(thing);
+                reason = "Mugirl.CorporatePricing.QuantityLimitExceeded".Translate(maximum);
+                return false;
+            }
+            if (quantity > 1)
+            {
+                foreach (Thing thing in goods) DiscardUnspawnedProduct(thing);
+                if (!TryMakeGoods(def, stuff, quality, quantity, out goods))
+                { reason = "Mugirl.Corporate.CannotMake".Translate(); return false; }
+            }
             int standardCost = OrderQuote(goods[0], quantity);
             int cost = ExpeditedTotal(standardCost, speed);
             if (cost <= 0 || !context.TrySpendSilver(cost))

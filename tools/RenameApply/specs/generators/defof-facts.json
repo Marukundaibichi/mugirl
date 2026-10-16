@@ -1,0 +1,4184 @@
+[
+ {
+  "class": "Mugirl.Compatibility.TrainingFacility.TrainingFacilityDefOf",
+  "file": "Source/MugirlRace/Compatibility/TrainingFacility/TrainingFacilityDefOf.cs",
+  "field": "UseShootingRange",
+  "type": "JobDef",
+  "defName": "UseShootingRange",
+  "alias": false,
+  "mayRequire": [
+   "MayRequire(ModCompat.TrainingFacilityPackageId)"
+  ],
+  "line": 11,
+  "definedIn": [],
+  "owner": [],
+  "readers": {
+   "Compatibility/TrainingFacility": [
+    "Source/MugirlRace/Compatibility/TrainingFacility/TrainingFacilityCompatibility.cs:18"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Compatibility.TrainingFacility.TrainingFacilityDefOf",
+  "file": "Source/MugirlRace/Compatibility/TrainingFacility/TrainingFacilityDefOf.cs",
+  "field": "UseShootingRange_NonJoy",
+  "type": "JobDef",
+  "defName": "UseShootingRange_NonJoy",
+  "alias": false,
+  "mayRequire": [
+   "MayRequire(ModCompat.TrainingFacilityPackageId)"
+  ],
+  "line": 14,
+  "definedIn": [],
+  "owner": [],
+  "readers": {
+   "Compatibility/TrainingFacility": [
+    "Source/MugirlRace/Compatibility/TrainingFacility/TrainingFacilityCompatibility.cs:19"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Compatibility.TrainingFacility.TrainingFacilityDefOf",
+  "file": "Source/MugirlRace/Compatibility/TrainingFacility/TrainingFacilityDefOf.cs",
+  "field": "UseShootingRange_NonJoy_Work",
+  "type": "JobDef",
+  "defName": "UseShootingRange_NonJoy_Work",
+  "alias": false,
+  "mayRequire": [
+   "MayRequire(ModCompat.TrainingFacilityPackageId)"
+  ],
+  "line": 17,
+  "definedIn": [],
+  "owner": [],
+  "readers": {
+   "Compatibility/TrainingFacility": [
+    "Source/MugirlRace/Compatibility/TrainingFacility/TrainingFacilityCompatibility.cs:20"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_Combatant_BulletproofVest",
+  "type": "ThingDef",
+  "defName": "Mugirl_Combatant_BulletproofVest",
+  "alias": false,
+  "mayRequire": [],
+  "line": 8,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_Mugirl_Combatant.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_Combatant_Clothes",
+  "type": "ThingDef",
+  "defName": "Mugirl_Combatant_Clothes",
+  "alias": false,
+  "mayRequire": [],
+  "line": 9,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_Mugirl_Combatant.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_Combatant_Helmet",
+  "type": "ThingDef",
+  "defName": "Mugirl_Combatant_Helmet",
+  "alias": false,
+  "mayRequire": [],
+  "line": 10,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_Mugirl_Combatant.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_Combatant_Underwear",
+  "type": "ThingDef",
+  "defName": "Mugirl_Combatant_Underwear",
+  "alias": false,
+  "mayRequire": [],
+  "line": 11,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_Mugirl_Combatant.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_SpecialStockings",
+  "type": "ThingDef",
+  "defName": "Mugirl_SpecialStockings",
+  "alias": false,
+  "mayRequire": [],
+  "line": 12,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_Mugirl_Combatant.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_MilitaryDress",
+  "type": "ThingDef",
+  "defName": "Mugirl_MilitaryDress",
+  "alias": false,
+  "mayRequire": [],
+  "line": 13,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_Mugirl_Combatant.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_MilitaryUniform",
+  "type": "ThingDef",
+  "defName": "Mugirl_MilitaryUniform",
+  "alias": false,
+  "mayRequire": [],
+  "line": 14,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_Mugirl_Combatant.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_Bikini",
+  "type": "ThingDef",
+  "defName": "Mugirl_Bikini",
+  "alias": false,
+  "mayRequire": [],
+  "line": 15,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_Underwear.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/Migration/MapComponent_Migration.cs:360"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_Bikini_Stocking",
+  "type": "ThingDef",
+  "defName": "Mugirl_Bikini_Stocking",
+  "alias": false,
+  "mayRequire": [],
+  "line": 16,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_Underwear.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_NunDressClassic",
+  "type": "ThingDef",
+  "defName": "Mugirl_NunDressClassic",
+  "alias": false,
+  "mayRequire": [],
+  "line": 19,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_0920.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:156"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_NunDressSimple",
+  "type": "ThingDef",
+  "defName": "Mugirl_NunDressSimple",
+  "alias": false,
+  "mayRequire": [],
+  "line": 20,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_0920.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:156"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_NunVeil",
+  "type": "ThingDef",
+  "defName": "Mugirl_NunVeil",
+  "alias": false,
+  "mayRequire": [],
+  "line": 21,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_0920.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:157"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_NunBlindfold",
+  "type": "ThingDef",
+  "defName": "Mugirl_NunBlindfold",
+  "alias": false,
+  "mayRequire": [],
+  "line": 22,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_0920.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:157"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_PoliceShirt",
+  "type": "ThingDef",
+  "defName": "Mugirl_PoliceShirt",
+  "alias": false,
+  "mayRequire": [],
+  "line": 23,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_0920.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:164"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_PoliceShorts",
+  "type": "ThingDef",
+  "defName": "Mugirl_PoliceShorts",
+  "alias": false,
+  "mayRequire": [],
+  "line": 24,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_0920.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:165"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_PoliceThong",
+  "type": "ThingDef",
+  "defName": "Mugirl_PoliceThong",
+  "alias": false,
+  "mayRequire": [],
+  "line": 25,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_0920.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:164"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_PoliceBra",
+  "type": "ThingDef",
+  "defName": "Mugirl_PoliceBra",
+  "alias": false,
+  "mayRequire": [],
+  "line": 26,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_0920.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:163"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_PoliceZipperBra",
+  "type": "ThingDef",
+  "defName": "Mugirl_PoliceZipperBra",
+  "alias": false,
+  "mayRequire": [],
+  "line": 27,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_0920.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:163"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_PoliceBoots",
+  "type": "ThingDef",
+  "defName": "Mugirl_PoliceBoots",
+  "alias": false,
+  "mayRequire": [],
+  "line": 28,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_0920.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:165"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_PoliceCap",
+  "type": "ThingDef",
+  "defName": "Mugirl_PoliceCap",
+  "alias": false,
+  "mayRequire": [],
+  "line": 29,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_0920.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:166"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_BunnyGirlTop",
+  "type": "ThingDef",
+  "defName": "Mugirl_BunnyGirlTop",
+  "alias": false,
+  "mayRequire": [],
+  "line": 30,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_OnSkin.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:171"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_BunnyGirlStocking",
+  "type": "ThingDef",
+  "defName": "Mugirl_BunnyGirlStocking",
+  "alias": false,
+  "mayRequire": [],
+  "line": 31,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_Stockings.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:171"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_BunnyGirlHeaddress",
+  "type": "ThingDef",
+  "defName": "Mugirl_BunnyGirlHeaddress",
+  "alias": false,
+  "mayRequire": [],
+  "line": 32,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_Head.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:172"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_HighCutSweater",
+  "type": "ThingDef",
+  "defName": "Mugirl_HighCutSweater",
+  "alias": false,
+  "mayRequire": [],
+  "line": 33,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_0920.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:177"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_LeatherHeels",
+  "type": "ThingDef",
+  "defName": "Mugirl_LeatherHeels",
+  "alias": false,
+  "mayRequire": [],
+  "line": 34,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_0920.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:177"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_SisterMask",
+  "type": "ThingDef",
+  "defName": "Mugirl_SisterMask",
+  "alias": false,
+  "mayRequire": [],
+  "line": 35,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_0920.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:178"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_BrandBag",
+  "type": "ThingDef",
+  "defName": "Mugirl_BrandBag",
+  "alias": false,
+  "mayRequire": [],
+  "line": 36,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_0920.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:178",
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:182",
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:187"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_OL",
+  "type": "ThingDef",
+  "defName": "Mugirl_OL",
+  "alias": false,
+  "mayRequire": [],
+  "line": 37,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_OnSkin.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:182"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_WeddingDress",
+  "type": "ThingDef",
+  "defName": "Mugirl_WeddingDress",
+  "alias": false,
+  "mayRequire": [],
+  "line": 38,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_OnSkin.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:185"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_Cheongsam",
+  "type": "ThingDef",
+  "defName": "Mugirl_Cheongsam",
+  "alias": false,
+  "mayRequire": [],
+  "line": 39,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_OnSkin.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:187"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_ImmortalFairy",
+  "type": "ThingDef",
+  "defName": "Mugirl_ImmortalFairy",
+  "alias": false,
+  "mayRequire": [],
+  "line": 40,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_OnSkin.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:189"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_ImmortalFairyAzure",
+  "type": "ThingDef",
+  "defName": "Mugirl_ImmortalFairyAzure",
+  "alias": false,
+  "mayRequire": [],
+  "line": 41,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_OnSkin.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:192"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_Sunglasses",
+  "type": "ThingDef",
+  "defName": "Mugirl_Sunglasses",
+  "alias": false,
+  "mayRequire": [],
+  "line": 42,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_Head.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:182"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_Veil",
+  "type": "ThingDef",
+  "defName": "Mugirl_Veil",
+  "alias": false,
+  "mayRequire": [],
+  "line": 43,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_Head.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:185",
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:189",
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:192"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_Shirt",
+  "type": "ThingDef",
+  "defName": "Mugirl_Shirt",
+  "alias": false,
+  "mayRequire": [],
+  "line": 44,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_Middle.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:195"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_Jeans",
+  "type": "ThingDef",
+  "defName": "Mugirl_Jeans",
+  "alias": false,
+  "mayRequire": [],
+  "line": 45,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_OnSkin.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:195"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_ShockCollar",
+  "type": "ThingDef",
+  "defName": "Mugirl_ShockCollar",
+  "alias": false,
+  "mayRequire": [],
+  "line": 48,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_Bondage/BondageApparel_Spacer.xml"
+  ],
+  "owner": [
+   "restraints"
+  ],
+  "readers": {
+   "Features/Restraints": [
+    "Source/MugirlRace/Features/Restraints/Apparel/AdvancedRestraintApparel.cs:35"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_PMC_Helmet",
+  "type": "ThingDef",
+  "defName": "Mugirl_PMC_Helmet",
+  "alias": false,
+  "mayRequire": [],
+  "line": 51,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_PMC.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_PMC_CaptainHelmet",
+  "type": "ThingDef",
+  "defName": "Mugirl_PMC_CaptainHelmet",
+  "alias": false,
+  "mayRequire": [],
+  "line": 52,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_PMC.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_PMC_CombatUniform",
+  "type": "ThingDef",
+  "defName": "Mugirl_PMC_CombatUniform",
+  "alias": false,
+  "mayRequire": [],
+  "line": 53,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_PMC.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_MilkPudding",
+  "type": "ThingDef",
+  "defName": "Mugirl_MilkPudding",
+  "alias": false,
+  "mayRequire": [],
+  "line": 56,
+  "definedIn": [
+   "1.7/Defs/ThingDefs_Misc/Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/FusionInvestment/FusionInvestmentUtility.cs:357"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_Cheese",
+  "type": "ThingDef",
+  "defName": "Mugirl_Cheese",
+  "alias": false,
+  "mayRequire": [],
+  "line": 57,
+  "definedIn": [
+   "1.7/Defs/ThingDefs_Misc/Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/FusionInvestment/FusionInvestmentUtility.cs:358"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_AgedCheese",
+  "type": "ThingDef",
+  "defName": "Mugirl_AgedCheese",
+  "alias": false,
+  "mayRequire": [],
+  "line": 58,
+  "definedIn": [
+   "1.7/Defs/ThingDefs_Misc/Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/FusionInvestment/FusionInvestmentUtility.cs:359"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_BaotaSugar",
+  "type": "ThingDef",
+  "defName": "Mugirl_BaotaSugar",
+  "alias": false,
+  "mayRequire": [],
+  "line": 59,
+  "definedIn": [
+   "1.7/Defs/ThingDefs_Misc/Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/FusionInvestment/FusionInvestmentUtility.cs:360"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_MilkCandy",
+  "type": "ThingDef",
+  "defName": "Mugirl_MilkCandy",
+  "alias": false,
+  "mayRequire": [],
+  "line": 60,
+  "definedIn": [
+   "1.7/Defs/ThingDefs_Misc/Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/FusionInvestment/FusionInvestmentUtility.cs:361"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_CowCake",
+  "type": "ThingDef",
+  "defName": "Mugirl_CowCake",
+  "alias": false,
+  "mayRequire": [],
+  "line": 61,
+  "definedIn": [
+   "1.7/Defs/ThingDefs_Misc/Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/FusionInvestment/FusionInvestmentUtility.cs:362"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_MilkPowder",
+  "type": "ThingDef",
+  "defName": "Mugirl_MilkPowder",
+  "alias": false,
+  "mayRequire": [],
+  "line": 62,
+  "definedIn": [
+   "1.7/Defs/ThingDefs_Misc/Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/FusionInvestment/FusionInvestmentUtility.cs:363"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_MilkTablet",
+  "type": "ThingDef",
+  "defName": "Mugirl_MilkTablet",
+  "alias": false,
+  "mayRequire": [],
+  "line": 63,
+  "definedIn": [
+   "1.7/Defs/ThingDefs_Misc/Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/FusionInvestment/FusionInvestmentUtility.cs:364"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_MilkCreamApple",
+  "type": "ThingDef",
+  "defName": "Mugirl_MilkCreamApple",
+  "alias": false,
+  "mayRequire": [],
+  "line": 64,
+  "definedIn": [
+   "1.7/Defs/ThingDefs_Misc/Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/FusionInvestment/FusionInvestmentUtility.cs:365"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_CourierDiary",
+  "type": "ThingDef",
+  "defName": "Mugirl_CourierDiary",
+  "alias": false,
+  "mayRequire": [],
+  "line": 67,
+  "definedIn": [
+   "1.7/Defs/ThingDefs_Misc/Mugirl_Diary.xml"
+  ],
+  "owner": [
+   "incidents"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/Courier/CourierConversationUtility.cs:65",
+    "Source/MugirlRace/Features/Incidents/Courier/QuestPart_SpawnCourier.cs:75"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_GiantCorporation",
+  "type": "FactionDef",
+  "defName": "Mugirl_GiantCorporation",
+  "alias": false,
+  "mayRequire": [],
+  "line": 70,
+  "definedIn": [
+   "1.7/Defs/FactionDefs/Factions_Enemy.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/Introduction/CorporateIntroduction.cs:112",
+    "Source/MugirlRace/Features/Corporate/Network/CorporateNetwork.cs:32",
+    "Source/MugirlRace/Features/Corporate/Raids/Harmony_PawnGroupMaker_CanGenerateFrom_CorporateRaidTiers.cs:12",
+    "Source/MugirlRace/Features/Corporate/Services/Harmony_TradeDeal_TryExecute_CorporateTurnover.cs:16",
+    "Source/MugirlRace/Features/Corporate/UI/Entry/CorporateCommsAccess.cs:76"
+   ],
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/Courier/IncidentWorker_CourierContact.cs:20",
+    "Source/MugirlRace/Features/Incidents/Courier/IncidentWorker_CourierContact.cs:30",
+    "Source/MugirlRace/Features/Incidents/Courier/QuestNode_Root_CourierContact.cs:22",
+    "Source/MugirlRace/Features/Incidents/Courier/QuestNode_Root_CourierContact.cs:57",
+    "Source/MugirlRace/Features/Incidents/Storyline/StorylineService.cs:96",
+    "Source/MugirlRace/Features/Incidents/Storyline/StorylineService.cs:136"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_GiantCorp_Grunt",
+  "type": "PawnKindDef",
+  "defName": "Mugirl_GiantCorp_Grunt",
+  "alias": false,
+  "mayRequire": [],
+  "line": 73,
+  "definedIn": [
+   "1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml"
+  ],
+  "owner": [
+   "corporate"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_GiantCorp_Courier",
+  "type": "PawnKindDef",
+  "defName": "Mugirl_GiantCorp_Courier",
+  "alias": false,
+  "mayRequire": [],
+  "line": 74,
+  "definedIn": [
+   "1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml"
+  ],
+  "owner": [
+   "corporate"
+  ],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/Introduction/CorporateIntroduction.cs:292",
+    "Source/MugirlRace/Features/Corporate/Introduction/CorporateIntroduction.cs:306",
+    "Source/MugirlRace/Features/Corporate/Services/CorporateUniforms.cs:37"
+   ],
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/Courier/CourierConversationUtility.cs:17",
+    "Source/MugirlRace/Features/Incidents/Courier/QuestPart_SpawnCourier.cs:55"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_GiantCorp_Soldier",
+  "type": "PawnKindDef",
+  "defName": "Mugirl_GiantCorp_Soldier",
+  "alias": false,
+  "mayRequire": [],
+  "line": 75,
+  "definedIn": [
+   "1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml"
+  ],
+  "owner": [
+   "corporate"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_GiantCorp_Elite",
+  "type": "PawnKindDef",
+  "defName": "Mugirl_GiantCorp_Elite",
+  "alias": false,
+  "mayRequire": [],
+  "line": 76,
+  "definedIn": [
+   "1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml"
+  ],
+  "owner": [
+   "corporate"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_GiantCorp_MugirlRaider",
+  "type": "PawnKindDef",
+  "defName": "Mugirl_GiantCorp_MugirlRaider",
+  "alias": false,
+  "mayRequire": [],
+  "line": 77,
+  "definedIn": [
+   "1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml"
+  ],
+  "owner": [
+   "corporate"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_CorporateRepresentative",
+  "type": "PawnKindDef",
+  "defName": "Mugirl_CorporateRepresentative",
+  "alias": false,
+  "mayRequire": [],
+  "line": 78,
+  "definedIn": [
+   "1.7/Defs/PawnKindDefs/CorporateServices.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/Introduction/CorporateIntroduction.cs:478",
+    "Source/MugirlRace/Features/Corporate/Services/CorporateUniforms.cs:38"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_CorporateSupport",
+  "type": "PawnKindDef",
+  "defName": "Mugirl_CorporateSupport",
+  "alias": false,
+  "mayRequire": [],
+  "line": 79,
+  "definedIn": [
+   "1.7/Defs/PawnKindDefs/CorporateServices.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/Services/CorporateNetwork.Services.cs:190",
+    "Source/MugirlRace/Features/Corporate/Services/CorporateUniforms.cs:39"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_CorporateShowcase",
+  "type": "PawnKindDef",
+  "defName": "Mugirl_CorporateShowcase",
+  "alias": false,
+  "mayRequire": [],
+  "line": 80,
+  "definedIn": [
+   "1.7/Defs/PawnKindDefs/CorporateShowcase.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateNetwork.People.cs:63",
+    "Source/MugirlRace/Features/Corporate/People/CorporateNetwork.People.cs:136",
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:33",
+    "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs:45"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_CorporateDiehard",
+  "type": "TraitDef",
+  "defName": "Mugirl_CorporateDiehard",
+  "alias": false,
+  "mayRequire": [],
+  "line": 83,
+  "definedIn": [
+   "1.7/Defs/TraitDefs/TraitDefs.xml"
+  ],
+  "owner": [
+   "content"
+  ],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/Services/CorporateDiehardUtility.cs:16",
+    "Source/MugirlRace/Features/Corporate/Services/CorporateDiehardUtility.cs:28"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_CorporateSupportHunt",
+  "type": "DutyDef",
+  "defName": "Mugirl_CorporateSupportHunt",
+  "alias": false,
+  "mayRequire": [],
+  "line": 86,
+  "definedIn": [
+   "1.7/Defs/Corporate/CorporateSupportDuty.xml"
+  ],
+  "owner": [
+   "corporate"
+  ],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/Services/LordToil_CorporateSupportHunt.cs:34"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_CorporateSupportTend",
+  "type": "JobDef",
+  "defName": "Mugirl_CorporateSupportTend",
+  "alias": false,
+  "mayRequire": [],
+  "line": 87,
+  "definedIn": [
+   "1.7/Defs/Corporate/CorporateSupportDuty.xml"
+  ],
+  "owner": [
+   "corporate"
+  ],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/Services/CorporateSupportUtility.cs:31",
+    "Source/MugirlRace/Features/Corporate/Services/JobGiver_CorporateSupportTend.cs:38",
+    "Source/MugirlRace/Features/Corporate/Services/JobGiver_CorporateSupportTend.cs:39"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_CourierContact",
+  "type": "QuestScriptDef",
+  "defName": "Mugirl_CourierContact",
+  "alias": false,
+  "mayRequire": [],
+  "line": 90,
+  "definedIn": [
+   "1.7/Defs/QuestScriptDefs/Script_CourierRaid.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/Introduction/CorporateIntroduction.cs:372"
+   ],
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/Courier/CourierConversationUtility.cs:128",
+    "Source/MugirlRace/Features/Incidents/Courier/IncidentWorker_CourierContact.cs:37",
+    "Source/MugirlRace/Features/Incidents/Storyline/StorylineDebugActions.cs:46",
+    "Source/MugirlRace/Features/Incidents/Storyline/StorylineDebugActions.cs:52",
+    "Source/MugirlRace/Features/Incidents/Storyline/StorylineService.cs:144"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_MigrationIncident",
+  "type": "IncidentDef",
+  "defName": "Mugirl_Migration",
+  "alias": true,
+  "mayRequire": [],
+  "line": 94,
+  "definedIn": [
+   "1.7/Defs/Storyteller/Incidents_Mugirl.xml"
+  ],
+  "owner": [
+   "incidents"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_FusionInvestmentIncident",
+  "type": "IncidentDef",
+  "defName": "Mugirl_FusionInvestment",
+  "alias": true,
+  "mayRequire": [],
+  "line": 96,
+  "definedIn": [
+   "1.7/Defs/Storyteller/Incidents_Mugirl.xml"
+  ],
+  "owner": [
+   "incidents"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_RunawayFarmQuestIncident",
+  "type": "IncidentDef",
+  "defName": "Mugirl_RunawayFarmQuest",
+  "alias": true,
+  "mayRequire": [],
+  "line": 98,
+  "definedIn": [
+   "1.7/Defs/Storyteller/Incidents_Mugirl.xml"
+  ],
+  "owner": [
+   "incidents"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_RunawayFarmQuest",
+  "type": "QuestScriptDef",
+  "defName": "Mugirl_RunawayFarmQuest",
+  "alias": false,
+  "mayRequire": [],
+  "line": 99,
+  "definedIn": [
+   "1.7/Defs/QuestScriptDefs/Script_RunawayFarm.xml"
+  ],
+  "owner": [
+   "incidents"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_RunawayFarm",
+  "type": "SitePartDef",
+  "defName": "Mugirl_RunawayFarm",
+  "alias": false,
+  "mayRequire": [],
+  "line": 100,
+  "definedIn": [
+   "1.7/Defs/SitePartDefs/Mugirl_RunawayFarm.xml"
+  ],
+  "owner": [
+   "incidents"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/RunawayFarm/QuestNode_Root_RunawayFarm.cs:32"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_RunawayPanic",
+  "type": "HediffDef",
+  "defName": "Mugirl_RunawayPanic",
+  "alias": false,
+  "mayRequire": [],
+  "line": 101,
+  "definedIn": [
+   "1.7/Defs/HediffDefs/Hediffs_Mugirl_Events.xml"
+  ],
+  "owner": [
+   "incidents"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/RunawayFarm/QuestPart_SpawnRunawayFarm.cs:166",
+    "Source/MugirlRace/Features/Incidents/Shared/EventPawnTags.cs:88"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_PunisherRace",
+  "type": "ThingDef",
+  "defName": "Mugirl_PunisherRace",
+  "alias": false,
+  "mayRequire": [],
+  "line": 102,
+  "definedIn": [
+   "1.7/Defs/ThingDefs_Races/Mugirl_Punisher.xml"
+  ],
+  "owner": [
+   "incidents"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/Punisher/DamageWorker_PunisherBlow.cs:11",
+    "Source/MugirlRace/Features/Incidents/Punisher/MapComponent_Punisher.cs:87"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_Punisher",
+  "type": "PawnKindDef",
+  "defName": "Mugirl_Punisher",
+  "alias": false,
+  "mayRequire": [],
+  "line": 103,
+  "definedIn": [
+   "1.7/Defs/ThingDefs_Races/Mugirl_Punisher.xml"
+  ],
+  "owner": [
+   "incidents"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/Punisher/MapComponent_Punisher.cs:67"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_PunisherKnockout",
+  "type": "HediffDef",
+  "defName": "Mugirl_PunisherKnockout",
+  "alias": false,
+  "mayRequire": [],
+  "line": 104,
+  "definedIn": [
+   "1.7/Defs/HediffDefs/Hediffs_Mugirl_Punisher.xml"
+  ],
+  "owner": [
+   "incidents"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/Punisher/DamageWorker_PunisherBlow.cs:26"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "ShockwaveFast",
+  "type": "FleckDef",
+  "defName": "ShockwaveFast",
+  "alias": false,
+  "mayRequire": [],
+  "line": 105,
+  "definedIn": [],
+  "owner": [],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/Punisher/PunisherDeathEffectUtility.cs:17"
+   ],
+   "Features/Lances": [
+    "Source/MugirlRace/Features/Lances/Flight/LanceChargeEffects.cs:8",
+    "Source/MugirlRace/Features/Lances/Flight/LanceChargeEffects.cs:10"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_ReadCourierDiary",
+  "type": "JobDef",
+  "defName": "Mugirl_ReadCourierDiary",
+  "alias": false,
+  "mayRequire": [],
+  "line": 108,
+  "definedIn": [
+   "1.7/Defs/JobDefs/Jobs_CourierDiary.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/Courier/CompCourierDiary.cs:52"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_TalkCourier",
+  "type": "JobDef",
+  "defName": "Mugirl_TalkCourier",
+  "alias": false,
+  "mayRequire": [],
+  "line": 109,
+  "definedIn": [
+   "1.7/Defs/JobDefs/Jobs_CourierDiary.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/Courier/FloatMenuOptionProvider_TalkToCourier.cs:5"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_TalkFusionInvestor",
+  "type": "JobDef",
+  "defName": "Mugirl_TalkFusionInvestor",
+  "alias": false,
+  "mayRequire": [],
+  "line": 110,
+  "definedIn": [
+   "1.7/Defs/JobDefs/Jobs_CourierDiary.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/FusionInvestment/FloatMenuOptionProvider_TalkToFusionInvestor.cs:5"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_AgedCheeseEffect",
+  "type": "HediffDef",
+  "defName": "Mugirl_AgedCheeseEffect",
+  "alias": false,
+  "mayRequire": [],
+  "line": 113,
+  "definedIn": [
+   "1.7/Defs/HediffDefs/Hediffs_Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_CowCakeEffect",
+  "type": "HediffDef",
+  "defName": "Mugirl_CowCakeEffect",
+  "alias": false,
+  "mayRequire": [],
+  "line": 114,
+  "definedIn": [
+   "1.7/Defs/HediffDefs/Hediffs_Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_MilkPowderEffect",
+  "type": "HediffDef",
+  "defName": "Mugirl_MilkPowderEffect",
+  "alias": false,
+  "mayRequire": [],
+  "line": 115,
+  "definedIn": [
+   "1.7/Defs/HediffDefs/Hediffs_Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_MilkTabletEffect",
+  "type": "HediffDef",
+  "defName": "Mugirl_MilkTabletEffect",
+  "alias": false,
+  "mayRequire": [],
+  "line": 116,
+  "definedIn": [
+   "1.7/Defs/HediffDefs/Hediffs_Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_ConsumedPudding",
+  "type": "ThoughtDef",
+  "defName": "Mugirl_ConsumedPudding",
+  "alias": false,
+  "mayRequire": [],
+  "line": 119,
+  "definedIn": [
+   "1.7/Defs/ThoughtDefs/Thoughts_Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_ConsumedCheese",
+  "type": "ThoughtDef",
+  "defName": "Mugirl_ConsumedCheese",
+  "alias": false,
+  "mayRequire": [],
+  "line": 120,
+  "definedIn": [
+   "1.7/Defs/ThoughtDefs/Thoughts_Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_ConsumedAgedCheese",
+  "type": "ThoughtDef",
+  "defName": "Mugirl_ConsumedAgedCheese",
+  "alias": false,
+  "mayRequire": [],
+  "line": 121,
+  "definedIn": [
+   "1.7/Defs/ThoughtDefs/Thoughts_Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_ConsumedRichMilkFlavor",
+  "type": "ThoughtDef",
+  "defName": "Mugirl_ConsumedRichMilkFlavor",
+  "alias": false,
+  "mayRequire": [],
+  "line": 122,
+  "definedIn": [
+   "1.7/Defs/ThoughtDefs/Thoughts_Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_ConsumedMilkCandy",
+  "type": "ThoughtDef",
+  "defName": "Mugirl_ConsumedMilkCandy",
+  "alias": false,
+  "mayRequire": [],
+  "line": 123,
+  "definedIn": [
+   "1.7/Defs/ThoughtDefs/Thoughts_Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_MakeMilkPudding",
+  "type": "RecipeDef",
+  "defName": "Mugirl_MakeMilkPudding",
+  "alias": false,
+  "mayRequire": [],
+  "line": 126,
+  "definedIn": [
+   "1.7/Defs/RecipeDefs/Recipes_Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_MakeCheese",
+  "type": "RecipeDef",
+  "defName": "Mugirl_MakeCheese",
+  "alias": false,
+  "mayRequire": [],
+  "line": 127,
+  "definedIn": [
+   "1.7/Defs/RecipeDefs/Recipes_Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_MakeAgedCheese",
+  "type": "RecipeDef",
+  "defName": "Mugirl_MakeAgedCheese",
+  "alias": false,
+  "mayRequire": [],
+  "line": 128,
+  "definedIn": [
+   "1.7/Defs/RecipeDefs/Recipes_Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_MakeBaotaSugar",
+  "type": "RecipeDef",
+  "defName": "Mugirl_MakeBaotaSugar",
+  "alias": false,
+  "mayRequire": [],
+  "line": 129,
+  "definedIn": [
+   "1.7/Defs/RecipeDefs/Recipes_Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_MakeMilkCandy",
+  "type": "RecipeDef",
+  "defName": "Mugirl_MakeMilkCandy",
+  "alias": false,
+  "mayRequire": [],
+  "line": 130,
+  "definedIn": [
+   "1.7/Defs/RecipeDefs/Recipes_Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_MakeCowCake",
+  "type": "RecipeDef",
+  "defName": "Mugirl_MakeCowCake",
+  "alias": false,
+  "mayRequire": [],
+  "line": 131,
+  "definedIn": [
+   "1.7/Defs/RecipeDefs/Recipes_Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_MakeMilkPowder",
+  "type": "RecipeDef",
+  "defName": "Mugirl_MakeMilkPowder",
+  "alias": false,
+  "mayRequire": [],
+  "line": 132,
+  "definedIn": [
+   "1.7/Defs/RecipeDefs/Recipes_Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_MakeMilkTablet",
+  "type": "RecipeDef",
+  "defName": "Mugirl_MakeMilkTablet",
+  "alias": false,
+  "mayRequire": [],
+  "line": 133,
+  "definedIn": [
+   "1.7/Defs/RecipeDefs/Recipes_Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_MakeMilkCreamApple",
+  "type": "RecipeDef",
+  "defName": "Mugirl_MakeMilkCreamApple",
+  "alias": false,
+  "mayRequire": [],
+  "line": 134,
+  "definedIn": [
+   "1.7/Defs/RecipeDefs/Recipes_Mugirl_MilkFood.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_SlaveApparelKey_Medieval",
+  "type": "ThingDef",
+  "defName": "Mugirl_SlaveApparelKey_Medieval",
+  "alias": false,
+  "mayRequire": [],
+  "line": 137,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_Bondage/BondageApparel_Key.xml"
+  ],
+  "owner": [
+   "restraints"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/Courier/CourierConversationUtility.cs:66",
+    "Source/MugirlRace/Features/Incidents/Courier/QuestPart_SpawnCourier.cs:185"
+   ],
+   "Features/Restraints": [
+    "Source/MugirlRace/Features/Restraints/Interaction/ForceUnlockRestraintUtility.cs:22"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlContentDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlContentDefOf.cs",
+  "field": "Mugirl_SlaveApparelKey_Industrial",
+  "type": "ThingDef",
+  "defName": "Mugirl_SlaveApparelKey_Industrial",
+  "alias": false,
+  "mayRequire": [],
+  "line": 138,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_Bondage/BondageApparel_Key.xml"
+  ],
+  "owner": [
+   "restraints"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/Courier/CourierConversationUtility.cs:67"
+   ],
+   "Features/Restraints": [
+    "Source/MugirlRace/Features/Restraints/Interaction/ForceUnlockRestraintUtility.cs:27"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlMilkDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlMilkDefOf.cs",
+  "field": "Mugirl_Lactation",
+  "type": "HediffDef",
+  "defName": "Mugirl_Lactation",
+  "alias": false,
+  "mayRequire": [],
+  "line": 9,
+  "definedIn": [
+   "1.7/Defs/HediffDefs/Hediffs_Lactation.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Milk": [
+    "Source/MugirlRace/Features/Milk/Production/CompMilkProduction.cs:85",
+    "Source/MugirlRace/Features/Milk/Production/CompMilkProduction.cs:188",
+    "Source/MugirlRace/Features/Milk/Production/LactationUtility.cs:13"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlMilkDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlMilkDefOf.cs",
+  "field": "Mugirl_MilkHealing",
+  "type": "HediffDef",
+  "defName": "Mugirl_MilkHealing",
+  "alias": false,
+  "mayRequire": [],
+  "line": 11,
+  "definedIn": [
+   "1.7/Defs/HediffDefs/Hediffs_MilkHealing.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Milk": [
+    "Source/MugirlRace/Features/Milk/Interaction/MilkInteractionUtility.cs:113",
+    "Source/MugirlRace/Features/Milk/Interaction/MilkInteractionUtility.cs:126"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlMilkDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlMilkDefOf.cs",
+  "field": "Mugirl_ConsumedMilk",
+  "type": "ThoughtDef",
+  "defName": "Mugirl_ConsumedMilk",
+  "alias": false,
+  "mayRequire": [],
+  "line": 13,
+  "definedIn": [
+   "1.7/Defs/ThingDefs_Misc/Items_Resource.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Milk": [
+    "Source/MugirlRace/Features/Milk/Interaction/MilkInteractionUtility.cs:109",
+    "Source/MugirlRace/Features/Milk/Interaction/MilkInteractionUtility.cs:127",
+    "Source/MugirlRace/Features/Milk/Interaction/MilkInteractionUtility.cs:142"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlMilkDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlMilkDefOf.cs",
+  "field": "Mugirl_DrankMilk",
+  "type": "ThoughtDef",
+  "defName": "Mugirl_DrankMilk",
+  "alias": false,
+  "mayRequire": [],
+  "line": 15,
+  "definedIn": [
+   "1.7/Defs/ThoughtDefs/Thoughts_DrinkMilk.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Milk": [
+    "Source/MugirlRace/Features/Milk/Interaction/MilkInteractionUtility.cs:108",
+    "Source/MugirlRace/Features/Milk/Interaction/MilkInteractionUtility.cs:141"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlMilkDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlMilkDefOf.cs",
+  "field": "Mugirl_FedMilk",
+  "type": "ThoughtDef",
+  "defName": "Mugirl_FedMilk",
+  "alias": false,
+  "mayRequire": [],
+  "line": 17,
+  "definedIn": [
+   "1.7/Defs/ThoughtDefs/Thoughts_DrinkMilk.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Milk": [
+    "Source/MugirlRace/Features/Milk/Interaction/MilkInteractionUtility.cs:128"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlMilkDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlMilkDefOf.cs",
+  "field": "Mugirl_Filth_MilkStain",
+  "type": "ThingDef",
+  "defName": "Mugirl_Filth_MilkStain",
+  "alias": false,
+  "mayRequire": [],
+  "line": 19,
+  "definedIn": [
+   "1.7/Defs/ThingDefs_Misc/Items_Filth.xml"
+  ],
+  "owner": [
+   "content"
+  ],
+  "readers": {
+   "Features/Milk": [
+    "Source/MugirlRace/Features/Milk/Gathering/MilkEffectUtility.cs:29"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlMilkDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlMilkDefOf.cs",
+  "field": "Mugirl_Milking_Sound",
+  "type": "SoundDef",
+  "defName": "Mugirl_Milking_Sound",
+  "alias": false,
+  "mayRequire": [],
+  "line": 21,
+  "definedIn": [
+   "1.7/Defs/SoundsDefs/Bondage_Sounds.xml"
+  ],
+  "owner": [
+   "restraints"
+  ],
+  "readers": {
+   "Features/Milk": [
+    "Source/MugirlRace/Features/Milk/Gathering/MilkEffectUtility.cs:24"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlMilkDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlMilkDefOf.cs",
+  "field": "Mugirl_DrinkMilk",
+  "type": "JobDef",
+  "defName": "Mugirl_DrinkMilk",
+  "alias": false,
+  "mayRequire": [],
+  "line": 23,
+  "definedIn": [
+   "1.7/Defs/JobDefs/JobDefs.xml"
+  ],
+  "owner": [
+   "content"
+  ],
+  "readers": {
+   "Features/Milk": [
+    "Source/MugirlRace/Features/Milk/Interaction/FloatMenuOptionProvider_MilkInteraction.cs:96"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlMilkDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlMilkDefOf.cs",
+  "field": "Mugirl_ChildDrinkMilk",
+  "type": "JobDef",
+  "defName": "Mugirl_ChildDrinkMilk",
+  "alias": false,
+  "mayRequire": [],
+  "line": 25,
+  "definedIn": [
+   "1.7/Defs/JobDefs/JobDefs.xml"
+  ],
+  "owner": [
+   "content"
+  ],
+  "readers": {
+   "Features/Milk": [
+    "Source/MugirlRace/Features/Milk/Interaction/FloatMenuOptionProvider_MilkInteraction.cs:86",
+    "Source/MugirlRace/Features/Milk/Interaction/FloatMenuOptionProvider_MilkInteraction.cs:162"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlMilkDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlMilkDefOf.cs",
+  "field": "Mugirl_FeedMilk",
+  "type": "JobDef",
+  "defName": "Mugirl_FeedMilk",
+  "alias": false,
+  "mayRequire": [],
+  "line": 27,
+  "definedIn": [
+   "1.7/Defs/JobDefs/JobDefs.xml"
+  ],
+  "owner": [
+   "content"
+  ],
+  "readers": {
+   "Features/Milk": [
+    "Source/MugirlRace/Features/Milk/Interaction/FloatMenuOptionProvider_MilkInteraction.cs:181"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlMilkDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlMilkDefOf.cs",
+  "field": "FoamSpray",
+  "type": "FleckDef",
+  "defName": "FoamSpray",
+  "alias": false,
+  "mayRequire": [],
+  "line": 29,
+  "definedIn": [],
+  "owner": [],
+  "readers": {
+   "Features/Milk": [
+    "Source/MugirlRace/Features/Milk/Animation/MilkingAnimation.cs:110"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.MugirlMilkDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlMilkDefOf.cs",
+  "field": "Mugirl_MilkSpray",
+  "type": "FleckDef",
+  "defName": "Mugirl_MilkSpray",
+  "alias": false,
+  "mayRequire": [],
+  "line": 31,
+  "definedIn": [
+   "1.7/Defs/ThingDefs_Misc/Items_Filth.xml"
+  ],
+  "owner": [
+   "content"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.MugirlMilkDefOf",
+  "file": "Source/MugirlRace/DefOf/MugirlMilkDefOf.cs",
+  "field": "GroundWaterSplash",
+  "type": "FleckDef",
+  "defName": "GroundWaterSplash",
+  "alias": false,
+  "mayRequire": [],
+  "line": 33,
+  "definedIn": [],
+  "owner": [],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_WallRopeHitch",
+  "type": "ThingDef",
+  "defName": "Mugirl_WallRopeHitch",
+  "alias": false,
+  "mayRequire": [],
+  "line": 8,
+  "definedIn": [
+   "1.7/Defs/ThingDefs_Building/Building_Rope.xml"
+  ],
+  "owner": [
+   "restraints"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/RunawayFarm/QuestPart_SpawnRunawayFarm.Layout.cs:180"
+   ],
+   "Features/Roping": [
+    "Source/MugirlRace/Features/Roping/Patches/Harmony_Pawn_RopeTracker_RopingDraw.cs:19"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl",
+  "type": "ThingDef",
+  "defName": "Mugirl",
+  "alias": false,
+  "mayRequire": [],
+  "line": 10,
+  "definedIn": [
+   "1.7/Defs/ThingDefs_Races/Mugirl_Race.xml"
+  ],
+  "owner": [
+   "content"
+  ],
+  "readers": {
+   "Core": [
+    "Source/MugirlRace/Core/MugirlIdentity.cs:10",
+    "Source/MugirlRace/Core/MugirlIdentity.cs:15"
+   ],
+   "Features/Xenotype": [
+    "Source/MugirlRace/Features/Xenotype/XenotypeUtility.cs:24"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_Milk",
+  "type": "ThingDef",
+  "defName": "Mugirl_Milk",
+  "alias": false,
+  "mayRequire": [],
+  "line": 12,
+  "definedIn": [
+   "1.7/Defs/ThingDefs_Misc/Items_Resource.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/Trade/CorporateNetwork.Trade.cs:95",
+    "Source/MugirlRace/Features/Corporate/Trade/CorporateNetwork.Trade.cs:116"
+   ],
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/RunawayFarm/QuestPart_SpawnRunawayFarm.Layout.cs:156"
+   ],
+   "Features/Milk": [
+    "Source/MugirlRace/Features/Milk/Device/CompMilkingDevice.cs:82",
+    "Source/MugirlRace/Features/Milk/Gathering/JobDriver_GatherMilk.cs:57",
+    "Source/MugirlRace/Features/Milk/Recipes/Harmony_RecipeDefGenerator_DrugAdministerDefs_AdministerMilk.cs:14"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_LongCascade",
+  "type": "HairDef",
+  "defName": "Mugirl_LongCascade",
+  "alias": false,
+  "mayRequire": [],
+  "line": 14,
+  "definedIn": [
+   "1.7/Defs/HairDefs/Hairs.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Appearance": [
+    "Source/MugirlRace/Features/Appearance/Hair/CompProperties_BackHair.cs:49"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "MugirlBody",
+  "type": "BodyDef",
+  "defName": "MugirlBody",
+  "alias": false,
+  "mayRequire": [],
+  "line": 16,
+  "definedIn": [
+   "1.7/Defs/Bodies/BodyDef.xml"
+  ],
+  "owner": [
+   "content"
+  ],
+  "readers": {
+   "Core": [
+    "Source/MugirlRace/Core/MugirlIdentity.cs:20",
+    "Source/MugirlRace/Core/MugirlIdentity.cs:25"
+   ],
+   "Tests": [
+    "Source/Tests/MugirlRace.Validation/Controls/NegativeControl/DataViolations.cs:38"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_GatherMilk",
+  "type": "JobDef",
+  "defName": "Mugirl_GatherMilk",
+  "alias": false,
+  "mayRequire": [],
+  "line": 18,
+  "definedIn": [
+   "1.7/Defs/WorkGiverDefs/WorkGivers.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Milk": [
+    "Source/MugirlRace/Features/Milk/Gathering/WorkGiver_GatherMilk.cs:6",
+    "Source/MugirlRace/Features/Milk/Interaction/FloatMenuOptionProvider_MilkInteraction.cs:154"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Job_MugirlMilkingTargetWait",
+  "type": "JobDef",
+  "defName": "Job_MugirlMilkingTargetWait",
+  "alias": false,
+  "mayRequire": [],
+  "line": 20,
+  "definedIn": [
+   "1.7/Defs/WorkGiverDefs/WorkGivers.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Milk": [
+    "Source/MugirlRace/Features/Milk/Gathering/JobDriver_GatherBodyResources.cs:109",
+    "Source/MugirlRace/Features/Milk/Gathering/JobDriver_GatherBodyResources.cs:165"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_MilkInteractionWait",
+  "type": "JobDef",
+  "defName": "Mugirl_MilkInteractionWait",
+  "alias": false,
+  "mayRequire": [],
+  "line": 22,
+  "definedIn": [
+   "1.7/Defs/JobDefs/JobDefs.xml"
+  ],
+  "owner": [
+   "content"
+  ],
+  "readers": {
+   "Features/Milk": [
+    "Source/MugirlRace/Features/Milk/Interaction/MilkInteractionUtility.cs:47",
+    "Source/MugirlRace/Features/Milk/Interaction/MilkInteractionUtility.cs:55"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_MilkingSelfAnimation",
+  "type": "AnimationDef",
+  "defName": "Mugirl_MilkingSelfAnimation",
+  "alias": false,
+  "mayRequire": [],
+  "line": 24,
+  "definedIn": [
+   "1.7/Defs/AnimationDefs/Mugirl_Milking.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Milk": [
+    "Source/MugirlRace/Features/Milk/Animation/MilkingAnimation.State.cs:189",
+    "Source/MugirlRace/Features/Milk/Animation/MilkingAnimation.State.cs:196"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_MilkingTargetAnimation",
+  "type": "AnimationDef",
+  "defName": "Mugirl_MilkingTargetAnimation",
+  "alias": false,
+  "mayRequire": [],
+  "line": 26,
+  "definedIn": [
+   "1.7/Defs/AnimationDefs/Mugirl_Milking.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Milk": [
+    "Source/MugirlRace/Features/Milk/Animation/MilkingAnimation.State.cs:185",
+    "Source/MugirlRace/Features/Milk/Animation/MilkingAnimation.State.cs:197"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_MilkingHelperAnimation",
+  "type": "AnimationDef",
+  "defName": "Mugirl_MilkingHelperAnimation",
+  "alias": false,
+  "mayRequire": [],
+  "line": 28,
+  "definedIn": [
+   "1.7/Defs/AnimationDefs/Mugirl_Milking.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Milk": [
+    "Source/MugirlRace/Features/Milk/Animation/MilkingAnimation.State.cs:186",
+    "Source/MugirlRace/Features/Milk/Animation/MilkingAnimation.State.cs:198"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_MilkInteractionSourceAnimation",
+  "type": "AnimationDef",
+  "defName": "Mugirl_MilkInteractionSourceAnimation",
+  "alias": false,
+  "mayRequire": [],
+  "line": 30,
+  "definedIn": [
+   "1.7/Defs/AnimationDefs/Mugirl_Milking.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Milk": [
+    "Source/MugirlRace/Features/Milk/Animation/MilkingAnimation.State.cs:187",
+    "Source/MugirlRace/Features/Milk/Animation/MilkingAnimation.State.cs:199"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_MilkInteractionRecipientAnimation",
+  "type": "AnimationDef",
+  "defName": "Mugirl_MilkInteractionRecipientAnimation",
+  "alias": false,
+  "mayRequire": [],
+  "line": 32,
+  "definedIn": [
+   "1.7/Defs/AnimationDefs/Mugirl_Milking.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Milk": [
+    "Source/MugirlRace/Features/Milk/Animation/MilkingAnimation.State.cs:188",
+    "Source/MugirlRace/Features/Milk/Animation/MilkingAnimation.State.cs:200"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Root",
+  "type": "PawnRenderNodeTagDef",
+  "defName": "Root",
+  "alias": false,
+  "mayRequire": [],
+  "line": 34,
+  "definedIn": [],
+  "owner": [],
+  "readers": {
+   "Features/Milk": [
+    "Source/MugirlRace/Features/Milk/Animation/MilkingAnimation.Render.cs:30"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_Rope",
+  "type": "JobDef",
+  "defName": "Mugirl_Rope",
+  "alias": false,
+  "mayRequire": [],
+  "line": 36,
+  "definedIn": [
+   "1.7/Defs/JobDefs/JobDefs.xml"
+  ],
+  "owner": [
+   "content"
+  ],
+  "readers": {
+   "Features/Roping": [
+    "Source/MugirlRace/Features/Roping/UI/FloatMenuOptionProvider_RopeMugirl.cs:45"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_Unrope",
+  "type": "JobDef",
+  "defName": "Mugirl_Unrope",
+  "alias": false,
+  "mayRequire": [],
+  "line": 38,
+  "definedIn": [
+   "1.7/Defs/JobDefs/JobDefs.xml"
+  ],
+  "owner": [
+   "content"
+  ],
+  "readers": {
+   "Features/Roping": [
+    "Source/MugirlRace/Features/Roping/UI/FloatMenuOptionProvider_RopeMugirl.cs:58"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_RopeToHitch",
+  "type": "JobDef",
+  "defName": "Mugirl_RopeToHitch",
+  "alias": false,
+  "mayRequire": [],
+  "line": 40,
+  "definedIn": [
+   "1.7/Defs/JobDefs/JobDefs.xml"
+  ],
+  "owner": [
+   "content"
+  ],
+  "readers": {
+   "Features/Roping": [
+    "Source/MugirlRace/Features/Roping/Comps/CompUsable_RopeToHitch.cs:52"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_Nuzzle",
+  "type": "JobDef",
+  "defName": "Mugirl_Nuzzle",
+  "alias": false,
+  "mayRequire": [],
+  "line": 42,
+  "definedIn": [
+   "1.7/Defs/JobDefs/JobDefs.xml"
+  ],
+  "owner": [
+   "content"
+  ],
+  "readers": {
+   "Features/Social": [
+    "Source/MugirlRace/Features/Social/Nuzzle/JobGiver_MugirlNuzzle.cs:24"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_FollowRoper",
+  "type": "JobDef",
+  "defName": "Mugirl_FollowRoper",
+  "alias": false,
+  "mayRequire": [],
+  "line": 44,
+  "definedIn": [
+   "1.7/Defs/JobDefs/JobDefs.xml"
+  ],
+  "owner": [
+   "content"
+  ],
+  "readers": {
+   "Features/Roping": [
+    "Source/MugirlRace/Features/Roping/RopingService.cs:59",
+    "Source/MugirlRace/Features/Roping/AI/JobGiver_MugirlFollowRoper.cs:37"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_Mount",
+  "type": "JobDef",
+  "defName": "Mugirl_Mount",
+  "alias": false,
+  "mayRequire": [],
+  "line": 46,
+  "definedIn": [
+   "1.7/Defs/JobDefs/JobDefs_Mounting.xml"
+  ],
+  "owner": [
+   "combat"
+  ],
+  "readers": {
+   "Features/Mounting": [
+    "Source/MugirlRace/Features/Mounting/UI/FloatMenuOptionProvider_MountMugirl.cs:121"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_Dismount",
+  "type": "JobDef",
+  "defName": "Mugirl_Dismount",
+  "alias": false,
+  "mayRequire": [],
+  "line": 48,
+  "definedIn": [
+   "1.7/Defs/JobDefs/JobDefs_Mounting.xml"
+  ],
+  "owner": [
+   "combat"
+  ],
+  "readers": {
+   "Features/Mounting": [
+    "Source/MugirlRace/Features/Mounting/UI/FloatMenuOptionProvider_MountMugirl.cs:107"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_LoadWeaponWheel",
+  "type": "JobDef",
+  "defName": "Mugirl_LoadWeaponWheel",
+  "alias": false,
+  "mayRequire": [],
+  "line": 50,
+  "definedIn": [
+   "1.7/Defs/JobDefs/JobDefs_WeaponWheel.xml"
+  ],
+  "owner": [
+   "combat"
+  ],
+  "readers": {
+   "Features/WeaponWheel": [
+    "Source/MugirlRace/Features/WeaponWheel/AI/WeaponWheelJobs.cs:11"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_ForceUnlockRestraint",
+  "type": "JobDef",
+  "defName": "Mugirl_ForceUnlockRestraint",
+  "alias": false,
+  "mayRequire": [],
+  "line": 53,
+  "definedIn": [
+   "1.7/Defs/JobDefs/JobDefs.xml"
+  ],
+  "owner": [
+   "content"
+  ],
+  "readers": {
+   "Features/Restraints": [
+    "Source/MugirlRace/Features/Restraints/Interaction/FloatMenuOptionProvider_ForceUnlockRestraint.cs:102"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_AutoloadingSystem",
+  "type": "ThingDef",
+  "defName": "Mugirl_AutoloadingSystem",
+  "alias": false,
+  "mayRequire": [],
+  "line": 55,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_WeaponWheel.xml"
+  ],
+  "owner": [
+   "combat"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_Autoloading",
+  "type": "ResearchProjectDef",
+  "defName": "Mugirl_Autoloading",
+  "alias": false,
+  "mayRequire": [],
+  "line": 57,
+  "definedIn": [
+   "1.7/Defs/ResearchProjectDefs/ResearchProjects_WeaponWheel.xml"
+  ],
+  "owner": [
+   "combat"
+  ],
+  "readers": {
+   "Features/WeaponWheel": [
+    "Source/MugirlRace/Features/WeaponWheel/Core/CompWeaponWheel.cs:246",
+    "Source/MugirlRace/Features/WeaponWheel/Core/CompWeaponWheel.cs:286"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_NeuralCombatArmor",
+  "type": "ThingDef",
+  "defName": "Mugirl_NeuralCombatArmor",
+  "alias": false,
+  "mayRequire": [],
+  "line": 59,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_0920.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/AdvancedArmor": [
+    "Source/MugirlRace/Features/AdvancedArmor/AdvancedArmorUtility.cs:27"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_NeuralAmplifierHelmet",
+  "type": "ThingDef",
+  "defName": "Mugirl_NeuralAmplifierHelmet",
+  "alias": false,
+  "mayRequire": [],
+  "line": 61,
+  "definedIn": [
+   "1.7/Defs/Apparel/Apparel_0920.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/AdvancedArmor": [
+    "Source/MugirlRace/Features/AdvancedArmor/AdvancedArmorUtility.cs:32"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_LancePointCharge",
+  "type": "JobDef",
+  "defName": "Mugirl_LancePointCharge",
+  "alias": false,
+  "mayRequire": [],
+  "line": 63,
+  "definedIn": [
+   "1.7/Defs/JobDefs/JobDefs_Lances.xml"
+  ],
+  "owner": [
+   "combat"
+  ],
+  "readers": {
+   "Features/Lances": [
+    "Source/MugirlRace/Features/Lances/Charge/CompLanceCharge.cs:101",
+    "Source/MugirlRace/Features/Lances/Charge/JobDriver_LanceCharge.cs:13"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_LanceLineCharge",
+  "type": "JobDef",
+  "defName": "Mugirl_LanceLineCharge",
+  "alias": false,
+  "mayRequire": [],
+  "line": 65,
+  "definedIn": [
+   "1.7/Defs/JobDefs/JobDefs_Lances.xml"
+  ],
+  "owner": [
+   "combat"
+  ],
+  "readers": {
+   "Features/Lances": [
+    "Source/MugirlRace/Features/Lances/Charge/CompLanceCharge.cs:101"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_LanceChargeSpeed",
+  "type": "HediffDef",
+  "defName": "Mugirl_LanceChargeSpeed",
+  "alias": false,
+  "mayRequire": [],
+  "line": 67,
+  "definedIn": [
+   "1.7/Defs/HediffDefs/Hediffs_Lances.xml"
+  ],
+  "owner": [
+   "combat"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_LanceChargeFlyer",
+  "type": "ThingDef",
+  "defName": "Mugirl_LanceChargeFlyer",
+  "alias": false,
+  "mayRequire": [],
+  "line": 69,
+  "definedIn": [
+   "1.7/Defs/ThingDefs_Misc/LanceCharge.xml"
+  ],
+  "owner": [
+   "combat"
+  ],
+  "readers": {
+   "Features/Lances": [
+    "Source/MugirlRace/Features/Lances/Charge/JobDriver_LanceCharge.cs:62"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_Armbinder",
+  "type": "HediffDef",
+  "defName": "Mugirl_Armbinder",
+  "alias": false,
+  "mayRequire": [],
+  "line": 71,
+  "definedIn": [
+   "1.7/Defs/HediffDefs/Hediffs_Bondage.xml"
+  ],
+  "owner": [
+   "restraints"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_Abasia",
+  "type": "HediffDef",
+  "defName": "Mugirl_Abasia",
+  "alias": false,
+  "mayRequire": [],
+  "line": 73,
+  "definedIn": [
+   "1.7/Defs/HediffDefs/Hediffs_Normal.xml"
+  ],
+  "owner": [
+   "incidents"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/OpeningCrash/QuestNode_Root_OpeningPodCrash.cs:38",
+    "Source/MugirlRace/Features/Incidents/RefugeePod/QuestNode_Root_MugirlRefugeePodCrash.cs:55"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_LinkedSwordDance",
+  "type": "HediffDef",
+  "defName": "Mugirl_LinkedSwordDance",
+  "alias": false,
+  "mayRequire": [],
+  "line": 75,
+  "definedIn": [
+   "1.7/Defs/HediffDefs/Hediffs_WeaponWheel.xml"
+  ],
+  "owner": [
+   "combat"
+  ],
+  "readers": {
+   "Features/WeaponWheel": [
+    "Source/MugirlRace/Features/WeaponWheel/SwordDance/CompWeaponWheel.SwordDance.cs:470"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_Stun",
+  "type": "HediffDef",
+  "defName": "Mugirl_Stun",
+  "alias": false,
+  "mayRequire": [
+   "MayRequire(\"Ludeon.RimWorld.Biotech\")"
+  ],
+  "line": 78,
+  "definedIn": [
+   "1.7/Mods/Biotech/Defs/HediffDefs/Hediffs_Gene.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Abilities": [
+    "Source/MugirlRace/Features/Abilities/Charge/JobDriver_CastCharge.cs:145"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_Charge",
+  "type": "HediffDef",
+  "defName": "Mugirl_Charge",
+  "alias": false,
+  "mayRequire": [
+   "MayRequire(\"Ludeon.RimWorld.Biotech\")"
+  ],
+  "line": 81,
+  "definedIn": [
+   "1.7/Mods/Biotech/Defs/HediffDefs/Hediffs_Gene.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Abilities": [
+    "Source/MugirlRace/Features/Abilities/Charge/JobDriver_CastCharge.cs:167",
+    "Source/MugirlRace/Features/Abilities/Charge/JobDriver_CastCharge.cs:181"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_Throw",
+  "type": "AbilityDef",
+  "defName": "Mugirl_Throw",
+  "alias": false,
+  "mayRequire": [
+   "MayRequire(\"Ludeon.RimWorld.Biotech\")"
+  ],
+  "line": 84,
+  "definedIn": [
+   "1.7/Mods/Biotech/Defs/AbilityDef.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_ThrowController",
+  "type": "ThingDef",
+  "defName": "Mugirl_ThrowController",
+  "alias": false,
+  "mayRequire": [
+   "MayRequire(\"Ludeon.RimWorld.Biotech\")"
+  ],
+  "line": 87,
+  "definedIn": [
+   "1.7/Mods/Biotech/Defs/ThingDefs_Misc/Throwing.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Abilities": [
+    "Source/MugirlRace/Features/Abilities/Throw/ThrowController.cs:59",
+    "Source/MugirlRace/Features/Abilities/Throw/ThrowUtility.cs:166"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_ThrownImpact",
+  "type": "DamageDef",
+  "defName": "Mugirl_ThrownImpact",
+  "alias": false,
+  "mayRequire": [
+   "MayRequire(\"Ludeon.RimWorld.Biotech\")"
+  ],
+  "line": 90,
+  "definedIn": [
+   "1.7/Mods/Biotech/Defs/DamageDefs/Throwing.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Abilities": [
+    "Source/MugirlRace/Features/Abilities/Dunk/DunkController.Impact.cs:87",
+    "Source/MugirlRace/Features/Abilities/Throw/ThrowController.cs:248"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_DunkAbility",
+  "type": "AbilityDef",
+  "defName": "Mugirl_Dunk",
+  "alias": true,
+  "mayRequire": [
+   "MayRequire(\"Ludeon.RimWorld.Biotech\")"
+  ],
+  "line": 94,
+  "definedIn": [
+   "1.7/Mods/Biotech/Defs/AbilityDef.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_Dunk",
+  "type": "JobDef",
+  "defName": "Mugirl_Dunk",
+  "alias": false,
+  "mayRequire": [
+   "MayRequire(\"Ludeon.RimWorld.Biotech\")"
+  ],
+  "line": 97,
+  "definedIn": [
+   "1.7/Mods/Biotech/Defs/JobDefs.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_DunkProp",
+  "type": "ThingDef",
+  "defName": "Mugirl_DunkProp",
+  "alias": false,
+  "mayRequire": [
+   "MayRequire(\"Ludeon.RimWorld.Biotech\")"
+  ],
+  "line": 100,
+  "definedIn": [
+   "1.7/Mods/Biotech/Defs/ThingDefs_Misc/Throwing.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Abilities": [
+    "Source/MugirlRace/Features/Abilities/Dunk/DunkController.cs:70",
+    "Source/MugirlRace/Features/Abilities/Throw/ThrowUtility.cs:188"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_DunkHead",
+  "type": "ThingDef",
+  "defName": "Mugirl_DunkHead",
+  "alias": false,
+  "mayRequire": [
+   "MayRequire(\"Ludeon.RimWorld.Biotech\")"
+  ],
+  "line": 103,
+  "definedIn": [
+   "1.7/Mods/Biotech/Defs/ThingDefs_Misc/Throwing.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Abilities": [
+    "Source/MugirlRace/Features/Abilities/Dunk/DunkController.cs:70"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_DunkFlyer",
+  "type": "ThingDef",
+  "defName": "Mugirl_DunkFlyer",
+  "alias": false,
+  "mayRequire": [
+   "MayRequire(\"Ludeon.RimWorld.Biotech\")"
+  ],
+  "line": 106,
+  "definedIn": [
+   "1.7/Mods/Biotech/Defs/ThingDefs_Misc/Throwing.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Abilities": [
+    "Source/MugirlRace/Features/Abilities/Dunk/DunkController.cs:160"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_DunkBloodSplash",
+  "type": "FleckDef",
+  "defName": "Mugirl_DunkBloodSplash",
+  "alias": false,
+  "mayRequire": [
+   "MayRequire(\"Ludeon.RimWorld.Biotech\")"
+  ],
+  "line": 109,
+  "definedIn": [
+   "1.7/Mods/Biotech/Defs/ThingDefs_Misc/Throwing.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Abilities": [
+    "Source/MugirlRace/Features/Abilities/Dunk/DunkController.Impact.cs:120"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Pawn_Melee_BigBash_HitPawn",
+  "type": "SoundDef",
+  "defName": "Pawn_Melee_BigBash_HitPawn",
+  "alias": false,
+  "mayRequire": [],
+  "line": 111,
+  "definedIn": [],
+  "owner": [],
+  "readers": {
+   "Features/Abilities": [
+    "Source/MugirlRace/Features/Abilities/Dunk/DunkController.cs:311"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_Fleck_BrainwashEyes",
+  "type": "FleckDef",
+  "defName": "Mugirl_Fleck_BrainwashEyes",
+  "alias": false,
+  "mayRequire": [],
+  "line": 113,
+  "definedIn": [
+   "1.7/Defs/ThingDefs_Misc/Items_Filth.xml"
+  ],
+  "owner": [
+   "content"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_BrainwashObey",
+  "type": "TraitDef",
+  "defName": "Mugirl_BrainwashObey",
+  "alias": false,
+  "mayRequire": [],
+  "line": 115,
+  "definedIn": [
+   "1.7/Defs/TraitDefs/TraitDefs.xml"
+  ],
+  "owner": [
+   "content"
+  ],
+  "readers": {
+   "Features/Restraints": [
+    "Source/MugirlRace/Features/Restraints/Patches/Harmony_SlaveRebellionUtility_InitiateSlaveRebellionMtbDays.cs:12"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_Slave",
+  "type": "PawnKindDef",
+  "defName": "Mugirl_Slave",
+  "alias": false,
+  "mayRequire": [],
+  "line": 117,
+  "definedIn": [
+   "1.7/Defs/PawnKindDefs/PawnKinds_Slave.xml"
+  ],
+  "owner": [
+   "incidents"
+  ],
+  "readers": {
+   "Features/Trade": [
+    "Source/MugirlRace/Features/Trade/StockGenerator_MugirlSlaves.cs:39"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_Beginning_Slave",
+  "type": "PawnKindDef",
+  "defName": "Mugirl_Beginning_Slave",
+  "alias": false,
+  "mayRequire": [],
+  "line": 119,
+  "definedIn": [
+   "1.7/Defs/PawnKindDefs/PawnKinds_Slave.xml"
+  ],
+  "owner": [
+   "incidents"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/OpeningCrash/QuestNode_Root_OpeningPodCrash.cs:20",
+    "Source/MugirlRace/Features/Incidents/OpeningCrash/QuestNode_Root_OpeningPodCrash.cs:48"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_EscapeSpaceSlave",
+  "type": "PawnKindDef",
+  "defName": "Mugirl_EscapeSpaceSlave",
+  "alias": false,
+  "mayRequire": [],
+  "line": 121,
+  "definedIn": [
+   "1.7/Defs/PawnKindDefs/PawnKinds_Slave.xml"
+  ],
+  "owner": [
+   "incidents"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/RefugeePod/QuestNode_Root_MugirlRefugeePodCrash.cs:17",
+    "Source/MugirlRace/Features/Incidents/RefugeePod/QuestNode_Root_MugirlRefugeePodCrash.cs:84"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_EscapeWanderSlave",
+  "type": "PawnKindDef",
+  "defName": "Mugirl_EscapeWanderSlave",
+  "alias": false,
+  "mayRequire": [],
+  "line": 123,
+  "definedIn": [
+   "1.7/Defs/PawnKindDefs/PawnKinds_Slave.xml"
+  ],
+  "owner": [
+   "incidents"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/Wanderer/QuestNode_Root_MugirlWandererJoin.cs:20"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_EscapeWildSlave",
+  "type": "PawnKindDef",
+  "defName": "Mugirl_EscapeWildSlave",
+  "alias": false,
+  "mayRequire": [],
+  "line": 125,
+  "definedIn": [
+   "1.7/Defs/PawnKindDefs/PawnKinds_Slave.xml"
+  ],
+  "owner": [
+   "incidents"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/WildMugirls/WildMugirlUtility.cs:13",
+    "Source/MugirlRace/Features/Incidents/WildMugirls/WildMugirlUtility.cs:24",
+    "Source/MugirlRace/Features/Incidents/WildMugirls/WildMugirlUtility.cs:43"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_PreEscapeWildSlave",
+  "type": "PawnKindDef",
+  "defName": "Mugirl_PreEscapeWildSlave",
+  "alias": false,
+  "mayRequire": [],
+  "line": 127,
+  "definedIn": [
+   "1.7/Defs/PawnKindDefs/PawnKinds_Slave.xml"
+  ],
+  "owner": [
+   "incidents"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/WildMugirls/WildMugirlUtility.cs:26",
+    "Source/MugirlRace/Features/Incidents/WildMugirls/WildMugirlUtility.cs:45"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_WildMugirl",
+  "type": "PawnKindDef",
+  "defName": "Mugirl_WildMugirl",
+  "alias": false,
+  "mayRequire": [],
+  "line": 129,
+  "definedIn": [
+   "1.7/Defs/PawnKindDefs/PawnKinds_Slave.xml"
+  ],
+  "owner": [
+   "incidents"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/FusionInvestment/FusionInvestmentUtility.cs:391",
+    "Source/MugirlRace/Features/Incidents/Migration/IncidentWorker_Migration.cs:85",
+    "Source/MugirlRace/Features/Incidents/RunawayFarm/QuestPart_SpawnRunawayFarm.cs:155",
+    "Source/MugirlRace/Features/Incidents/WildMugirls/WildMugirlUtility.cs:18",
+    "Source/MugirlRace/Features/Incidents/WildMugirls/WildMugirlUtility.cs:25",
+    "Source/MugirlRace/Features/Incidents/WildMugirls/WildMugirlUtility.cs:44"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_NuzzleInteraction",
+  "type": "InteractionDef",
+  "defName": "Mugirl_Nuzzle",
+  "alias": true,
+  "mayRequire": [],
+  "line": 132,
+  "definedIn": [
+   "1.7/Defs/InteractionDefs/Interactions_Mugirl.xml"
+  ],
+  "owner": [
+   "incidents"
+  ],
+  "readers": {
+   "Features/Social": [
+    "Source/MugirlRace/Features/Social/Nuzzle/JobDriver_MugirlNuzzle.cs:31"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_Nuzzled",
+  "type": "ThoughtDef",
+  "defName": "Mugirl_Nuzzled",
+  "alias": false,
+  "mayRequire": [],
+  "line": 134,
+  "definedIn": [
+   "1.7/Defs/ThoughtDefs/Thoughts_Traits.xml"
+  ],
+  "owner": [
+   "incidents"
+  ],
+  "readers": {
+   "Features/Social": [
+    "Source/MugirlRace/Features/Social/Nuzzle/InteractionWorker_MugirlNuzzle.cs:24"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_SlaveOpeningPodCrash",
+  "type": "QuestScriptDef",
+  "defName": "Mugirl_SlaveOpeningPodCrash",
+  "alias": false,
+  "mayRequire": [],
+  "line": 136,
+  "definedIn": [
+   "1.7/Defs/QuestScriptDefs/Script_Mugirl.xml"
+  ],
+  "owner": [
+   "incidents"
+  ],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/Courier/QuestPart_SpawnCourier.cs:148",
+    "Source/MugirlRace/Features/Incidents/Storyline/StorylineDebugActions.cs:20",
+    "Source/MugirlRace/Features/Incidents/Storyline/StorylineDebugActions.cs:27",
+    "Source/MugirlRace/Features/Incidents/Storyline/StorylineService.cs:103"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_Newborn",
+  "type": "BackstoryDef",
+  "defName": "Mugirl_Newborn",
+  "alias": false,
+  "mayRequire": [],
+  "line": 138,
+  "definedIn": [
+   "1.7/Defs/BackStoryDefs/BackstoryDef.xml"
+  ],
+  "owner": [
+   "content"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_Colonist",
+  "type": "BackstoryDef",
+  "defName": "Mugirl_Colonist",
+  "alias": false,
+  "mayRequire": [],
+  "line": 140,
+  "definedIn": [
+   "1.7/Defs/BackStoryDefs/BackstoryDef.xml"
+  ],
+  "owner": [
+   "content"
+  ],
+  "readers": {}
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_ExperimentalChild",
+  "type": "BackstoryDef",
+  "defName": "Mugirl_ExperimentalChild",
+  "alias": false,
+  "mayRequire": [],
+  "line": 142,
+  "definedIn": [
+   "1.7/Defs/BackStoryDefs/BackstoryDef.xml"
+  ],
+  "owner": [
+   "content"
+  ],
+  "readers": {
+   "Features/Appearance": [
+    "Source/MugirlRace/Features/Appearance/BodyAccessory/BodyAccessoryAddon.cs:77"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Mugirl_DefOf",
+  "file": "Source/MugirlRace/DefOf/Mugirl_DefOf.cs",
+  "field": "Mugirl_Xenotype",
+  "type": "XenotypeDef",
+  "defName": "Mugirl_Xenotype",
+  "alias": false,
+  "mayRequire": [
+   "MayRequire(\"Ludeon.RimWorld.Biotech\")"
+  ],
+  "line": 145,
+  "definedIn": [
+   "1.7/Mods/Biotech/Defs/GoldenRaceBioTitle.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Xenotype": [
+    "Source/MugirlRace/Features/Xenotype/GameComponent_XenotypeRepair.cs:48",
+    "Source/MugirlRace/Features/Xenotype/XenotypeUtility.cs:13"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Features.Appearance.MugirlAppearanceDefOf",
+  "file": "Source/MugirlRace/Features/Appearance/MugirlAppearanceDefOf.cs",
+  "field": "CutoutSkinOverlay",
+  "type": "ShaderTypeDef",
+  "defName": "CutoutSkinOverlay",
+  "alias": false,
+  "mayRequire": [],
+  "line": 7,
+  "definedIn": [],
+  "owner": [],
+  "readers": {
+   "Features/Appearance": [
+    "Source/MugirlRace/Features/Appearance/BodyAccessory/BodyAccessoryAddon.cs:62"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.CorporateFinanceDefOf",
+  "file": "Source/MugirlRace/Features/Corporate/Finance/CorporateFinanceDefOf.cs",
+  "field": "Mugirl_CorporateFinanceConfig",
+  "type": "CorporateFinanceConfigDef",
+  "defName": "Mugirl_CorporateFinanceConfig",
+  "alias": false,
+  "mayRequire": [],
+  "line": 8,
+  "definedIn": [
+   "1.7/Defs/Misc/CorporateFinance.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/Finance/CorporateNetwork.Finance.cs:10",
+    "Source/MugirlRace/Features/Corporate/Finance/CorporateNetwork.Finance.cs:11",
+    "Source/MugirlRace/Features/Corporate/Finance/CorporateNetwork.Finance.cs:12",
+    "Source/MugirlRace/Features/Corporate/Finance/CorporateNetwork.Finance.cs:13",
+    "Source/MugirlRace/Features/Corporate/Finance/CorporateNetwork.Finance.cs:14",
+    "Source/MugirlRace/Features/Corporate/Finance/CorporateNetwork.Finance.cs:15",
+    "Source/MugirlRace/Features/Corporate/Finance/CorporateNetwork.Finance.cs:163",
+    "Source/MugirlRace/Features/Corporate/Finance/CorporateNetwork.Finance.cs:274",
+    "Source/MugirlRace/Features/Corporate/Finance/CorporateNetwork.Finance.cs:447"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.CorporateIntroductionDefOf",
+  "file": "Source/MugirlRace/Features/Corporate/Introduction/CorporateIntroductionDefOf.cs",
+  "field": "Mugirl_CorporateIntroductionConfig",
+  "type": "CorporateIntroductionConfigDef",
+  "defName": "Mugirl_CorporateIntroductionConfig",
+  "alias": false,
+  "mayRequire": [],
+  "line": 8,
+  "definedIn": [
+   "1.7/Defs/Corporate/CorporateIntroduction.xml"
+  ],
+  "owner": [
+   "corporate"
+  ],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/Introduction/CorporateIntroduction.cs:49"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.CorporateIntroductionDefOf",
+  "file": "Source/MugirlRace/Features/Corporate/Introduction/CorporateIntroductionDefOf.cs",
+  "field": "Mugirl_CorporateIntroductionQuest",
+  "type": "QuestScriptDef",
+  "defName": "Mugirl_CorporateIntroductionQuest",
+  "alias": false,
+  "mayRequire": [],
+  "line": 9,
+  "definedIn": [
+   "1.7/Defs/Corporate/CorporateIntroduction.xml"
+  ],
+  "owner": [
+   "corporate"
+  ],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/Introduction/CorporateIntroduction.cs:421",
+    "Source/MugirlRace/Features/Corporate/Introduction/CorporateIntroduction.cs:453"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.CorporateIntroductionDefOf",
+  "file": "Source/MugirlRace/Features/Corporate/Introduction/CorporateIntroductionDefOf.cs",
+  "field": "Mugirl_CorporateUseComms",
+  "type": "JobDef",
+  "defName": "Mugirl_CorporateUseComms",
+  "alias": false,
+  "mayRequire": [],
+  "line": 10,
+  "definedIn": [
+   "1.7/Defs/Corporate/CorporateIntroduction.xml"
+  ],
+  "owner": [
+   "corporate"
+  ],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/UI/Entry/Harmony_Building_CommsConsole_GetFloatMenuOptions_CorporateTerminal.cs:43"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.CorporateIntroductionDefOf",
+  "file": "Source/MugirlRace/Features/Corporate/Introduction/CorporateIntroductionDefOf.cs",
+  "field": "Mugirl_CorporateTalkRepresentative",
+  "type": "JobDef",
+  "defName": "Mugirl_CorporateTalkRepresentative",
+  "alias": false,
+  "mayRequire": [],
+  "line": 11,
+  "definedIn": [
+   "1.7/Defs/Corporate/CorporateIntroduction.xml"
+  ],
+  "owner": [
+   "corporate"
+  ],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/UI/Entry/FloatMenuOptionProvider_CorporateRepresentative.cs:33"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.CorporateQuestDefOf",
+  "file": "Source/MugirlRace/Features/Corporate/Missions/CorporateQuestDefOf.cs",
+  "field": "Mugirl_CorporateMissionConfig",
+  "type": "CorporateMissionConfigDef",
+  "defName": "Mugirl_CorporateMissionConfig",
+  "alias": false,
+  "mayRequire": [],
+  "line": 8,
+  "definedIn": [
+   "1.7/Defs/QuestScriptDefs/CorporateQuests.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/Missions/CorporateNetwork.Missions.cs:25"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.CorporateQuestDefOf",
+  "file": "Source/MugirlRace/Features/Corporate/Missions/CorporateQuestDefOf.cs",
+  "field": "Mugirl_CorporatePurgeSite",
+  "type": "SitePartDef",
+  "defName": "Mugirl_CorporatePurgeSite",
+  "alias": false,
+  "mayRequire": [],
+  "line": 9,
+  "definedIn": [
+   "1.7/Defs/QuestScriptDefs/CorporateQuests.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/Missions/CorporateNetwork.Missions.cs:583"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.CorporateQuestDefOf",
+  "file": "Source/MugirlRace/Features/Corporate/Missions/CorporateQuestDefOf.cs",
+  "field": "Mugirl_CorporateResearchSite",
+  "type": "SitePartDef",
+  "defName": "Mugirl_CorporateResearchSite",
+  "alias": false,
+  "mayRequire": [],
+  "line": 10,
+  "definedIn": [
+   "1.7/Defs/QuestScriptDefs/CorporateQuests.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/Missions/CorporateNetwork.Missions.cs:583"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.CorporateQuestDefOf",
+  "file": "Source/MugirlRace/Features/Corporate/Missions/CorporateQuestDefOf.cs",
+  "field": "Mugirl_CorporateFusionResearchSite",
+  "type": "PrefabDef",
+  "defName": "Mugirl_CorporateFusionResearchSite",
+  "alias": false,
+  "mayRequire": [],
+  "line": 11,
+  "definedIn": [
+   "1.7/Defs/QuestScriptDefs/CorporateFusionResearchSite.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/Missions/CorporateFusionSiteBuilder.cs:21"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.CorporateQuestDefOf",
+  "file": "Source/MugirlRace/Features/Corporate/Missions/CorporateQuestDefOf.cs",
+  "field": "Mugirl_CorporateMission",
+  "type": "QuestScriptDef",
+  "defName": "Mugirl_CorporateMission",
+  "alias": false,
+  "mayRequire": [],
+  "line": 12,
+  "definedIn": [
+   "1.7/Defs/QuestScriptDefs/CorporateQuests.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/Missions/CorporateNetwork.Missions.cs:510",
+    "Source/MugirlRace/Features/Corporate/Missions/CorporateNetwork.Missions.cs:846"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.CorporateQuestDefOf",
+  "file": "Source/MugirlRace/Features/Corporate/Missions/CorporateQuestDefOf.cs",
+  "field": "TradeRequest",
+  "type": "QuestScriptDef",
+  "defName": "TradeRequest",
+  "alias": false,
+  "mayRequire": [],
+  "line": 14,
+  "definedIn": [],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/Missions/CorporateMissionContent.cs:11"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.CorporateQuestDefOf",
+  "file": "Source/MugirlRace/Features/Corporate/Missions/CorporateQuestDefOf.cs",
+  "field": "Mercenary_Gunner",
+  "type": "PawnKindDef",
+  "defName": "Mercenary_Gunner",
+  "alias": false,
+  "mayRequire": [],
+  "line": 15,
+  "definedIn": [],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/Missions/CorporateMissionContent.cs:14"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.CorporatePeopleDefOf",
+  "file": "Source/MugirlRace/Features/Corporate/People/CorporatePeopleDefOf.cs",
+  "field": "Mugirl_CorporatePeopleConfig",
+  "type": "CorporatePeopleConfigDef",
+  "defName": "Mugirl_CorporatePeopleConfig",
+  "alias": false,
+  "mayRequire": [],
+  "line": 8,
+  "definedIn": [
+   "1.7/Defs/Misc/CorporatePeople.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateNetwork.People.cs:131",
+    "Source/MugirlRace/Features/Corporate/People/CorporateNetwork.People.cs:209",
+    "Source/MugirlRace/Features/Corporate/People/CorporateNetwork.People.cs:222",
+    "Source/MugirlRace/Features/Corporate/People/CorporateNetwork.People.cs:245"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.CorporatePeopleDefOf",
+  "file": "Source/MugirlRace/Features/Corporate/People/CorporatePeopleDefOf.cs",
+  "field": "Mugirl_CorporateSoldMugirl",
+  "type": "ThoughtDef",
+  "defName": "Mugirl_CorporateSoldMugirl",
+  "alias": false,
+  "mayRequire": [],
+  "line": 9,
+  "definedIn": [
+   "1.7/Defs/Misc/CorporatePeople.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporateNetwork.People.cs:403"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.CorporatePeopleDefOf",
+  "file": "Source/MugirlRace/Features/Corporate/People/CorporatePeopleDefOf.cs",
+  "field": "Mugirl_CorporatePersonnelTrader",
+  "type": "TraderKindDef",
+  "defName": "Mugirl_CorporatePersonnelTrader",
+  "alias": false,
+  "mayRequire": [],
+  "line": 10,
+  "definedIn": [
+   "1.7/Defs/Misc/CorporatePeople.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/People/CorporatePersonnelTrader.cs:8"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.CorporateTradeDefOf",
+  "file": "Source/MugirlRace/Features/Corporate/Trade/CorporateTradeDefOf.cs",
+  "field": "Mugirl_Wool",
+  "type": "ThingDef",
+  "defName": "Mugirl_Wool",
+  "alias": false,
+  "mayRequire": [],
+  "line": 8,
+  "definedIn": [
+   "1.7/Defs/ThingDefs_Misc/Items_Resource.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/Trade/CorporateNetwork.Trade.cs:95",
+    "Source/MugirlRace/Features/Corporate/Trade/CorporateNetwork.Trade.cs:105",
+    "Source/MugirlRace/Features/Corporate/Trade/CorporateNetwork.Trade.cs:110"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.CorporateTradeDefOf",
+  "file": "Source/MugirlRace/Features/Corporate/Trade/CorporateTradeDefOf.cs",
+  "field": "Furniture",
+  "type": "DesignationCategoryDef",
+  "defName": "Furniture",
+  "alias": false,
+  "mayRequire": [],
+  "line": 9,
+  "definedIn": [],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/Trade/CorporateNetwork.Trade.cs:104"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.CorporateTradeDefOf",
+  "file": "Source/MugirlRace/Features/Corporate/Trade/CorporateTradeDefOf.cs",
+  "field": "Mugirl_CorporateTradeConfig",
+  "type": "CorporateTradeConfigDef",
+  "defName": "Mugirl_CorporateTradeConfig",
+  "alias": false,
+  "mayRequire": [],
+  "line": 10,
+  "definedIn": [
+   "1.7/Defs/Misc/CorporateTradeSettings.xml"
+  ],
+  "owner": [],
+  "readers": {
+   "Features/Corporate": [
+    "Source/MugirlRace/Features/Corporate/Pricing/CorporateSupplyAnalysis.cs:25",
+    "Source/MugirlRace/Features/Corporate/Trade/CorporateNetwork.Trade.cs:19"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Features.Genes.MugirlGenesDefOf",
+  "file": "Source/MugirlRace/Features/Genes/Shared/MugirlGenesDefOf.cs",
+  "field": "Longjump_Jump",
+  "type": "SoundDef",
+  "defName": "Longjump_Jump",
+  "alias": false,
+  "mayRequire": [],
+  "line": 9,
+  "definedIn": [],
+  "owner": [],
+  "readers": {
+   "Features/Abilities": [
+    "Source/MugirlRace/Features/Abilities/Dunk/DunkController.cs:155",
+    "Source/MugirlRace/Features/Abilities/Throw/ThrowController.cs:232"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Features.Genes.MugirlGenesDefOf",
+  "file": "Source/MugirlRace/Features/Genes/Shared/MugirlGenesDefOf.cs",
+  "field": "Longjump_Land",
+  "type": "SoundDef",
+  "defName": "Longjump_Land",
+  "alias": false,
+  "mayRequire": [],
+  "line": 11,
+  "definedIn": [],
+  "owner": [],
+  "readers": {
+   "Features/Abilities": [
+    "Source/MugirlRace/Features/Abilities/Dunk/DunkController.cs:158"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Features.Incidents.IncidentsDefOf",
+  "file": "Source/MugirlRace/Features/Incidents/Shared/IncidentsDefOf.cs",
+  "field": "Fence",
+  "type": "ThingDef",
+  "defName": "Fence",
+  "alias": false,
+  "mayRequire": [],
+  "line": 8,
+  "definedIn": [],
+  "owner": [],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/RunawayFarm/QuestPart_SpawnRunawayFarm.Layout.cs:69"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Features.Incidents.IncidentsDefOf",
+  "file": "Source/MugirlRace/Features/Incidents/Shared/IncidentsDefOf.cs",
+  "field": "FenceGate",
+  "type": "ThingDef",
+  "defName": "FenceGate",
+  "alias": false,
+  "mayRequire": [],
+  "line": 9,
+  "definedIn": [],
+  "owner": [],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/RunawayFarm/QuestPart_SpawnRunawayFarm.Layout.cs:69"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Features.Incidents.IncidentsDefOf",
+  "file": "Source/MugirlRace/Features/Incidents/Shared/IncidentsDefOf.cs",
+  "field": "Plant_Haygrass",
+  "type": "ThingDef",
+  "defName": "Plant_Haygrass",
+  "alias": false,
+  "mayRequire": [],
+  "line": 10,
+  "definedIn": [],
+  "owner": [],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/RunawayFarm/QuestPart_SpawnRunawayFarm.Layout.cs:74"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Features.Incidents.IncidentsDefOf",
+  "file": "Source/MugirlRace/Features/Incidents/Shared/IncidentsDefOf.cs",
+  "field": "Scratch",
+  "type": "HediffDef",
+  "defName": "Scratch",
+  "alias": false,
+  "mayRequire": [],
+  "line": 13,
+  "definedIn": [],
+  "owner": [],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/OpeningCrash/PawnDowningUtility.cs:54"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Features.Incidents.IncidentsDefOf",
+  "file": "Source/MugirlRace/Features/Incidents/Shared/IncidentsDefOf.cs",
+  "field": "Bruise",
+  "type": "HediffDef",
+  "defName": "Bruise",
+  "alias": false,
+  "mayRequire": [],
+  "line": 14,
+  "definedIn": [],
+  "owner": [],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/OpeningCrash/PawnDowningUtility.cs:54"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Features.Incidents.IncidentsDefOf",
+  "file": "Source/MugirlRace/Features/Incidents/Shared/IncidentsDefOf.cs",
+  "field": "Crack",
+  "type": "HediffDef",
+  "defName": "Crack",
+  "alias": false,
+  "mayRequire": [],
+  "line": 15,
+  "definedIn": [],
+  "owner": [],
+  "readers": {
+   "Features/Incidents": [
+    "Source/MugirlRace/Features/Incidents/OpeningCrash/PawnDowningUtility.cs:54",
+    "Source/MugirlRace/Features/Incidents/OpeningCrash/PawnDowningUtility.cs:67"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Features.Milk.MilkNurtureDefOf",
+  "file": "Source/MugirlRace/Features/Milk/Nurture/MilkNurtureDefOf.cs",
+  "field": "Mugirl_MotherlyNurture",
+  "type": "HediffDef",
+  "defName": "Mugirl_MotherlyNurture",
+  "alias": false,
+  "mayRequire": [],
+  "line": 8,
+  "definedIn": [
+   "1.7/Defs/HediffDefs/Hediffs_Lactation.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Milk": [
+    "Source/MugirlRace/Features/Milk/Nurture/Harmony_Pawn_AgeTracker_GrowthPointsPerDay_Nurture.cs:29",
+    "Source/MugirlRace/Features/Milk/Nurture/NurtureUtility.cs:41"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Features.Milk.MilkNurtureDefOf",
+  "file": "Source/MugirlRace/Features/Milk/Nurture/MilkNurtureDefOf.cs",
+  "field": "Mugirl_NurtureAfterglow",
+  "type": "HediffDef",
+  "defName": "Mugirl_NurtureAfterglow",
+  "alias": false,
+  "mayRequire": [],
+  "line": 10,
+  "definedIn": [
+   "1.7/Defs/HediffDefs/Hediffs_Lactation.xml"
+  ],
+  "owner": [
+   "milk"
+  ],
+  "readers": {
+   "Features/Milk": [
+    "Source/MugirlRace/Features/Milk/Nurture/Harmony_Pawn_AgeTracker_GrowthPointsPerDay_Nurture.cs:23",
+    "Source/MugirlRace/Features/Milk/Nurture/NurtureUtility.cs:20",
+    "Source/MugirlRace/Features/Milk/Nurture/NurtureUtility.cs:61"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Features.Milk.MilkNurtureDefOf",
+  "file": "Source/MugirlRace/Features/Milk/Nurture/MilkNurtureDefOf.cs",
+  "field": "Mugirl_NurturedByMugirl",
+  "type": "TraitDef",
+  "defName": "Mugirl_NurturedByMugirl",
+  "alias": false,
+  "mayRequire": [],
+  "line": 12,
+  "definedIn": [
+   "1.7/Defs/TraitDefs/TraitDefs.xml"
+  ],
+  "owner": [
+   "content"
+  ],
+  "readers": {
+   "Features/Milk": [
+    "Source/MugirlRace/Features/Milk/Nurture/Harmony_SkillRecord_Learn_NurturedXpCap.cs:24",
+    "Source/MugirlRace/Features/Milk/Nurture/NurtureUtility.cs:72"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Features.Misc.MugirlMiscDefOf",
+  "file": "Source/MugirlRace/Features/Misc/RenderRefresh/MugirlMiscDefOf.cs",
+  "field": "Ghoul",
+  "type": "HediffDef",
+  "defName": "Ghoul",
+  "alias": false,
+  "mayRequire": [
+   "MayRequireAnomaly"
+  ],
+  "line": 8,
+  "definedIn": [],
+  "owner": [],
+  "readers": {
+   "Rendering": [
+    "Source/MugirlRace/Rendering/RenderRefresh/Harmony_Hediff_PostAdd_RenderRefresh.cs:21"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Features.Newborn.MugirlNewbornDefOf",
+  "file": "Source/MugirlRace/Features/Newborn/MugirlNewbornDefOf.cs",
+  "field": "Mugirl_Teenager",
+  "type": "LifeStageDef",
+  "defName": "Mugirl_Teenager",
+  "alias": false,
+  "mayRequire": [],
+  "line": 8,
+  "definedIn": [
+   "1.7/Defs/LifeStageDefs/LifeStages.xml"
+  ],
+  "owner": [
+   "content"
+  ],
+  "readers": {
+   "Features/LifeStages": [
+    "Source/MugirlRace/Features/LifeStages/LifeStageBodyTypeUtility.cs:70"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Rendering.MugirlRenderDefOf",
+  "file": "Source/MugirlRace/Rendering/MugirlRenderDefOf.cs",
+  "field": "Mugirl_ExtraOutline",
+  "type": "MaterialDef",
+  "defName": "Mugirl_ExtraOutline",
+  "alias": false,
+  "mayRequire": [],
+  "line": 11,
+  "definedIn": [
+   "1.7/Defs/MaterialDefs/Mugirl_Materials.xml"
+  ],
+  "owner": [
+   "core"
+  ],
+  "readers": {
+   "Rendering": [
+    "Source/MugirlRace/Rendering/PawnEffects/ExtraOutlinePass.cs:80"
+   ]
+  }
+ },
+ {
+  "class": "Mugirl.Rendering.MugirlRenderDefOf",
+  "file": "Source/MugirlRace/Rendering/MugirlRenderDefOf.cs",
+  "field": "Mugirl_LanceMotionBlur",
+  "type": "MaterialDef",
+  "defName": "Mugirl_LanceMotionBlur",
+  "alias": false,
+  "mayRequire": [],
+  "line": 12,
+  "definedIn": [
+   "1.7/Defs/MaterialDefs/Mugirl_Materials.xml"
+  ],
+  "owner": [
+   "core"
+  ],
+  "readers": {
+   "Rendering": [
+    "Source/MugirlRace/Rendering/PawnEffects/LanceMotionBlurPass.cs:96"
+   ]
+  }
+ }
+]

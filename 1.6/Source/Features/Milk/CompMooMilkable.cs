@@ -124,18 +124,8 @@ namespace Mugirl
             return milkingDevice != null && milkingDevice.TryAcceptFullMilk(this);
         }
 
-        public override bool Active
-        {
-            get
-            {
-                if (!base.Active && !MugirlEventUtility.CanUseTemporaryMilk(MooPawn))
-                {
-                    return false;
-                }
-
-                return CanProduceMilk(MooPawn);
-            }
-        }
+        // 产奶是身体能力，不依赖阵营；坠舱、迁徙及旧档野人加入玩家前同样可以互动。
+        public override bool Active => CanProduceMilk(MooPawn);
 
         public override string CompInspectStringExtra()
         {

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- 英文文本以 Def XML 为准；仅此文件保留：目标节点是 ThinkNode_Subtree 在运行期复制的原版 Downed 子树，无法写入本 mod 的 Def XML。 -->
+    <MugirlLike.thinkRoot.subNodes.3.subNodes.0.subNodes.0.subNodes.0.subNodes.0.crawlingReportStringOverride>Crawl to safe place.</MugirlLike.thinkRoot.subNodes.3.subNodes.0.subNodes.0.subNodes.0.subNodes.0.crawlingReportStringOverride>
+    <MugirlLike.thinkRoot.subNodes.3.subNodes.0.subNodes.0.subNodes.0.subNodes.1.subNodes.0.crawlingReportStringOverride>Crawl to bed.</MugirlLike.thinkRoot.subNodes.3.subNodes.0.subNodes.0.subNodes.0.subNodes.1.subNodes.0.crawlingReportStringOverride>
+</LanguageData>

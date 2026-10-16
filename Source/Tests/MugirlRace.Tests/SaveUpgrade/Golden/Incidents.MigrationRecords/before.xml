@@ -1,0 +1,39 @@
+<savegame>
+  <meta>
+    <gameVersion>1.6.4871 rev591</gameVersion>
+    <modIds>
+      <li>ludeon.rimworld</li>
+      <li>har.mugirlrace</li>
+    </modIds>
+  </meta>
+  <game>
+    <maps>
+      <li>
+        <components>
+          <li Class="Mugirl.MapComponent_MugirlMigration">
+            <migrationPawns>
+              <li>null</li>
+              <li>Thing_Mugirl1</li>
+              <li>Thing_Mugirl2</li>
+            </migrationPawns>
+            <nextGrazeTicks>
+              <li>345</li>
+            </nextGrazeTicks>
+            <playerKilledMigrationPawnIds>
+              <li>2</li>
+              <li>99</li>
+            </playerKilledMigrationPawnIds>
+            <exitCell>(3, 0, 9)</exitCell>
+            <ticksUntilDeparture>299640</ticksUntilDeparture>
+            <killWindowTicksRemaining>72</killWindowTicksRemaining>
+            <originalMigrationCount>3</originalMigrationCount>
+            <killedMigrationPawns>1</killedMigrationPawns>
+            <migrationOutcomeFailed>False</migrationOutcomeFailed>
+            <departureStarted>True</departureStarted>
+            <dataVersion>1</dataVersion>
+          </li>
+        </components>
+      </li>
+    </maps>
+  </game>
+</savegame>

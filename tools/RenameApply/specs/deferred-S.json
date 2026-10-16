@@ -1,0 +1,1428 @@
+{
+ "_doc": "Items of the module specs that Wave R/R2 deliberately do NOT apply (F section 2.1, F16, F8, decisions section 3). Each Wave S owner applies its rows; keyed renames need a saved-value map entry when the key is stored as data (A.6.3) and a release-notes line.",
+ "keyedRenames": [
+  {
+   "module": "core",
+   "old": "Mugirl.Settings.StructuralCrashEvent.Label",
+   "new": "Mugirl.Settings.OpeningStoryline.Label"
+  },
+  {
+   "module": "core",
+   "old": "Mugirl.Settings.StructuralCrashEvent.Desc",
+   "new": "Mugirl.Settings.OpeningStoryline.Desc"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.DebugMapSpawned",
+   "new": "Mugirl.CorporateMissions.DebugMapSpawned"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.DebugMapUnavailable",
+   "new": "Mugirl.CorporateMissions.DebugMapUnavailable"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.DebugMapFailed",
+   "new": "Mugirl.CorporateMissions.DebugMapFailed"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.Kind.Processing",
+   "new": "Mugirl.CorporateMissions.Kind.Processing"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.Kind.Purge",
+   "new": "Mugirl.CorporateMissions.Kind.Purge"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.Kind.Investment",
+   "new": "Mugirl.CorporateMissions.Kind.Investment"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.Kind.Distribution",
+   "new": "Mugirl.CorporateMissions.Kind.Distribution"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.Kind.Native",
+   "new": "Mugirl.CorporateMissions.Kind.Referral"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.Kind.Fusion",
+   "new": "Mugirl.CorporateMissions.Kind.Fusion"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.State.Available",
+   "new": "Mugirl.CorporateMissions.State.Available"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.State.Active",
+   "new": "Mugirl.CorporateMissions.State.Active"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.State.Ready",
+   "new": "Mugirl.CorporateMissions.State.Ready"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.State.Completed",
+   "new": "Mugirl.CorporateMissions.State.Completed"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.State.Failed",
+   "new": "Mugirl.CorporateMissions.State.Failed"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.State.Expired",
+   "new": "Mugirl.CorporateMissions.State.Expired"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.State.Abandoned",
+   "new": "Mugirl.CorporateMissions.State.Abandoned"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.HighRisk",
+   "new": "Mugirl.CorporateMissions.HighRisk"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.AnyMaterial",
+   "new": "Mugirl.CorporateMissions.AnyMaterial"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.ProcessingDesc",
+   "new": "Mugirl.CorporateMissions.ProcessingDesc"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.HighQualityConfirm",
+   "new": "Mugirl.CorporateMissions.HighQualityConfirm"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.PurgeDesc",
+   "new": "Mugirl.CorporateMissions.PurgeDesc"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.InvestmentDesc",
+   "new": "Mugirl.CorporateMissions.InvestmentDesc"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.InvestmentHighDesc",
+   "new": "Mugirl.CorporateMissions.InvestmentHighDesc"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.DistributionDesc",
+   "new": "Mugirl.CorporateMissions.DistributionDesc"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.NativeDesc",
+   "new": "Mugirl.CorporateMissions.ReferralDesc"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.FusionDesc",
+   "new": "Mugirl.CorporateMissions.FusionDesc"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.OfferGone",
+   "new": "Mugirl.CorporateMissions.OfferGone"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.Limit",
+   "new": "Mugirl.CorporateMissions.Limit"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.NeedSilver",
+   "new": "Mugirl.CorporateMissions.NeedSilver"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.NoWorkshop",
+   "new": "Mugirl.CorporateMissions.NoWorkshop"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.NoMap",
+   "new": "Mugirl.CorporateMissions.NoMap"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.GenerationFailed",
+   "new": "Mugirl.CorporateMissions.GenerationFailed"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.NoSite",
+   "new": "Mugirl.CorporateMissions.NoSite"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.ReadyLetter",
+   "new": "Mugirl.CorporateMissions.ReadyLetter"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.ReadyText",
+   "new": "Mugirl.CorporateMissions.ReadyText"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.FailedLetter",
+   "new": "Mugirl.CorporateMissions.FailedLetter"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.FailedText",
+   "new": "Mugirl.CorporateMissions.FailedText"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.FusionInvitation",
+   "new": "Mugirl.CorporateMissions.FusionInvitation"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.ResearchOriginal",
+   "new": "Mugirl.CorporateMissions.ResearchOriginal"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.ResearchRepresentative",
+   "new": "Mugirl.CorporateMissions.ResearchRepresentative"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.OriginalTeam",
+   "new": "Mugirl.CorporateMissions.OriginalTeam"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.ResearchDialogue",
+   "new": "Mugirl.CorporateMissions.ResearchDialogue"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.ResearchMore",
+   "new": "Mugirl.CorporateMissions.ResearchMore"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.Back",
+   "new": "Mugirl.CorporateMissions.Back"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.AskResearch",
+   "new": "Mugirl.CorporateMissions.AskResearch"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.Execute",
+   "new": "Mugirl.CorporateMissions.Execute"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.ExecuteConfirm",
+   "new": "Mugirl.CorporateMissions.ExecuteConfirm"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.Protect",
+   "new": "Mugirl.CorporateMissions.Protect"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.ProtectConfirm",
+   "new": "Mugirl.CorporateMissions.ProtectConfirm"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.Later",
+   "new": "Mugirl.CorporateMissions.Later"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.ResearchTitle",
+   "new": "Mugirl.CorporateMissions.ResearchTitle"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.ReopenDialogue",
+   "new": "Mugirl.CorporateMissions.ReopenDialogue"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.CombatLetter",
+   "new": "Mugirl.CorporateMissions.CombatLetter"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.CombatText",
+   "new": "Mugirl.CorporateMissions.CombatText"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.ThanksTitle",
+   "new": "Mugirl.CorporateMissions.ThanksTitle"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.ThanksText",
+   "new": "Mugirl.CorporateMissions.ThanksText"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.ProtectionReward",
+   "new": "Mugirl.CorporateMissions.ProtectionReward"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.ThanksPreparationFailed",
+   "new": "Mugirl.CorporateMissions.ThanksPreparationFailed"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.ThanksRevokedTitle",
+   "new": "Mugirl.CorporateMissions.ThanksRevokedTitle"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.ThanksRevokedText",
+   "new": "Mugirl.CorporateMissions.ThanksRevokedText"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.Daily",
+   "new": "Mugirl.CorporateMissions.Daily"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.Side",
+   "new": "Mugirl.CorporateMissions.Side"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.Main",
+   "new": "Mugirl.CorporateMissions.Main"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.BoardHelp",
+   "new": "Mugirl.CorporateMissions.BoardHelp"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.NoSide",
+   "new": "Mugirl.CorporateMissions.NoSide"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.NoMissions",
+   "new": "Mugirl.CorporateMissions.NoMissions"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.Progress",
+   "new": "Mugirl.CorporateMissions.Progress"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.OfferTime",
+   "new": "Mugirl.CorporateMissions.OfferTime"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.DueTime",
+   "new": "Mugirl.CorporateMissions.DueTime"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.Accept",
+   "new": "Mugirl.CorporateMissions.Accept"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.SignConfirm",
+   "new": "Mugirl.CorporateMissions.SignConfirm"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.Submit",
+   "new": "Mugirl.CorporateMissions.Submit"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.NoProducts",
+   "new": "Mugirl.CorporateMissions.NoProducts"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.Claim",
+   "new": "Mugirl.CorporateMissions.Claim"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.DeliveryFailed",
+   "new": "Mugirl.CorporateMissions.DeliveryFailed"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.Locate",
+   "new": "Mugirl.CorporateMissions.Locate"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.Talk",
+   "new": "Mugirl.CorporateMissions.Talk"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.QuestLog",
+   "new": "Mugirl.CorporateMissions.QuestLog"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.Abandon",
+   "new": "Mugirl.CorporateMissions.Abandon"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.AbandonConfirm",
+   "new": "Mugirl.CorporateMissions.AbandonConfirm"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.ReceiveGoods",
+   "new": "Mugirl.CorporateMissions.ReceiveGoods"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.AcceptedRecord",
+   "new": "Mugirl.CorporateMissions.AcceptedRecord"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.ClaimedRecord",
+   "new": "Mugirl.CorporateMissions.ClaimedRecord"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.FailedRecord",
+   "new": "Mugirl.CorporateMissions.FailedRecord"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.ProtectedRecord",
+   "new": "Mugirl.CorporateMissions.ProtectedRecord"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.Terms",
+   "new": "Mugirl.CorporateMissions.Terms"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CQ.FusionTerms",
+   "new": "Mugirl.CorporateMissions.FusionTerms"
+  },
+  {
+   "module": "corporate",
+   "old": "Mugirl.CorporateServices.Page",
+   "new": "Mugirl.CorporateUI.Page.Services"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.CourierContactLetterLabel",
+   "new": "Mugirl.Courier.ArrivalLetterLabel"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.CourierContactLetterText",
+   "new": "Mugirl.Courier.ArrivalLetterText"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.CourierTalkOption",
+   "new": "Mugirl.Courier.TalkOption"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.CourierTalkCannotReach",
+   "new": "Mugirl.Courier.TalkCannotReach"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.CourierTalkOptionDisabled",
+   "new": "Mugirl.Courier.TalkOptionDisabled"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.CourierAlreadyResolved",
+   "new": "Mugirl.Courier.AlreadyResolved"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.CourierDialogTitle",
+   "new": "Mugirl.Courier.DialogTitle"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.CourierDialogText",
+   "new": "Mugirl.Courier.DialogText"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.CourierDialogLeaveItems",
+   "new": "Mugirl.Courier.OptionLeaveItems"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.CourierDialogFight",
+   "new": "Mugirl.Courier.OptionFight"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.CourierItemsDroppedMessage",
+   "new": "Mugirl.Courier.MessageItemsDropped"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.CourierFightMessage",
+   "new": "Mugirl.Courier.MessageFight"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.CourierFightReason",
+   "new": "Mugirl.Courier.FightReason"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.CourierRaid.Log.NoMap",
+   "new": "Mugirl.Courier.Log.NoMap"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.CourierRaid.Log.NoFaction",
+   "new": "Mugirl.Courier.Log.NoFaction"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.CourierRaid.Log.NoSpawnCell",
+   "new": "Mugirl.Courier.Log.NoSpawnCell"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.CourierRaid.Log.MissingOpeningPawns",
+   "new": "Mugirl.Courier.Log.MissingOpeningPawns"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.CourierRaid.SpawnLog.NoMap",
+   "new": "Mugirl.Courier.SpawnLog.NoMap"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.CourierRaid.SpawnLog.NoFaction",
+   "new": "Mugirl.Courier.SpawnLog.NoFaction"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.CourierRaid.SpawnLog.NoSpawnCell",
+   "new": "Mugirl.Courier.SpawnLog.NoSpawnCell"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.LetterLabelWandererJoins",
+   "new": "Mugirl.WandererJoin.LetterLabel"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.LetterWandererJoins",
+   "new": "Mugirl.WandererJoin.LetterText"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.LetterLabelOpeningPodCrash",
+   "new": "Mugirl.OpeningPodCrash.LetterLabel"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.OpeningPodCrash",
+   "new": "Mugirl.OpeningPodCrash.LetterText"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.OpeningPodCrash_MultipleIntro",
+   "new": "Mugirl.OpeningPodCrash.MultipleIntro"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.OpeningPodCrash_Child",
+   "new": "Mugirl.OpeningPodCrash.Child"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.OpeningPodCrash_Factionless",
+   "new": "Mugirl.OpeningPodCrash.Factionless"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.OpeningPodCrash_FactionlessMultiple",
+   "new": "Mugirl.OpeningPodCrash.FactionlessMultiple"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.OpeningPodCrash_Hostile",
+   "new": "Mugirl.OpeningPodCrash.Hostile"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.OpeningPodCrash_NonHostile",
+   "new": "Mugirl.OpeningPodCrash.NonHostile"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.LetterLabelRefugeePodCrash",
+   "new": "Mugirl.RefugeePodCrash.LetterLabel"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.RefugeePodCrash",
+   "new": "Mugirl.RefugeePodCrash.LetterText"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.RefugeePodCrash_Child",
+   "new": "Mugirl.Joiner.Child"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.RefugeePodCrash_Factionless",
+   "new": "Mugirl.RefugeePodCrash.Factionless"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.RefugeePodCrash_Hostile",
+   "new": "Mugirl.RefugeePodCrash.Hostile"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.RefugeePodCrash_NonHostile",
+   "new": "Mugirl.RefugeePodCrash.NonHostile"
+  },
+  {
+   "module": "incidents",
+   "old": "Mugirl.Newborn.Log.CorrectedBodyTypes",
+   "new": "Mugirl.LifeStages.Log.CorrectedBodyTypes"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.AlreadyCracked",
+   "new": "Mugirl.Restraints.AlreadyCracked"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.BrainwashStart",
+   "new": "Mugirl.Restraints.BrainwashStart"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.BrainwashEnd",
+   "new": "Mugirl.Restraints.BrainwashEnd"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.CrackBondageGear_CrackAdvanced",
+   "new": "Mugirl.Restraints.Crack.Advanced"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.CrackBondageGear_CrackBrainwash",
+   "new": "Mugirl.Restraints.Crack.Brainwash"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.CrackBondageGear_TargetNotValid",
+   "new": "Mugirl.Restraints.Crack.InvalidTarget"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.Cracked",
+   "new": "Mugirl.Restraints.Cracked"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.Uncracked",
+   "new": "Mugirl.Restraints.Uncracked"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.CrackStatus",
+   "new": "Mugirl.Restraints.CrackStatus"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.CrackStatusDesc",
+   "new": "Mugirl.Restraints.CrackStatusDesc"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.DropThingTooltip.TranspilerNotApplied",
+   "new": "Mugirl.Restraints.DropTooltipPatchSkipped"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.HandsBlocked",
+   "new": "Mugirl.Restraints.HandsBlocked"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.NotWearingLockedApparel",
+   "new": "Mugirl.Restraints.NotWearingLocked"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.SlaveApparel.StatusLabel",
+   "new": "Mugirl.Restraints.StatusLabel"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.SlaveApparelCannotBeRemoved",
+   "new": "Mugirl.Restraints.CannotBeRemoved"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.SlaveApparelCracked",
+   "new": "Mugirl.Restraints.CrackedMessage"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.SlaveApparelFullyUnlocked",
+   "new": "Mugirl.Restraints.FullyUnlocked"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.SlaveApparelUnlockPartial",
+   "new": "Mugirl.Restraints.PartiallyUnlocked"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.SuppressionIncrease",
+   "new": "Mugirl.Restraints.SuppressionIncrease"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.WrongKeyType",
+   "new": "Mugirl.Restraints.WrongKeyType"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.DraftDisabledWhileRoped",
+   "new": "Mugirl.Roping.DraftDisabled"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.NoValidToRope",
+   "new": "Mugirl.Roping.NoFollowerToHitch"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.Rope.Target",
+   "new": "Mugirl.Roping.RopeTarget"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.Rope.SuccessChance",
+   "new": "Mugirl.Roping.SuccessChance"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.Rope.TargetWithSuccessChance",
+   "new": "Mugirl.Roping.RopeTargetWithChance"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.RopeToHitch",
+   "new": "Mugirl.Roping.RopeToHitch"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.RopingTick.BreakRopeWithRoperMissing",
+   "new": "Mugirl.Roping.BreakRopeWithRoperMissing"
+  },
+  {
+   "module": "restraints",
+   "old": "Mugirl.Unrope.Target",
+   "new": "Mugirl.Roping.UnropeTarget"
+  }
+ ],
+ "keyedDeletes": [
+  {
+   "key": "Mugirl.PatchRegistry.NullHarmony",
+   "file": "Misc_Gameplay.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.PatchRegistry.PawnGeneratorGeneratePawn",
+   "file": "Misc_Gameplay.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.PatchRegistry.MissingTarget",
+   "file": "Misc_Gameplay.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.PatchRegistry.MissingPatchMethod",
+   "file": "Misc_Gameplay.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.PatchRegistry.PatchFailed",
+   "file": "Misc_Gameplay.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.MilkingDevice.InspectLabelWithCharges",
+   "file": "Misc_Gameplay.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.Settings.FusionInvestmentEvent.DevDeliver",
+   "file": "Misc_Gameplay.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.FusionInvestment.MessagePostponed",
+   "file": "Misc_Gameplay.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.Milk.FloatMenu.FeedJobMissing",
+   "file": "Misc_Gameplay.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.Milk.GatherInactiveLog",
+   "file": "Misc_Gameplay.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.CrackBondageGear_NoCrackableType",
+   "file": "Misc_Gameplay.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.RopedByPawn",
+   "file": "Misc_Gameplay.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.RopedToHitchingPost",
+   "file": "Misc_Gameplay.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.RopedToSpot",
+   "file": "Misc_Gameplay.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.FloatMenu.ActionOnReserved",
+   "file": "Misc_Gameplay.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.FeralChild",
+   "file": "Misc_Gameplay.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.Child",
+   "file": "Misc_Gameplay.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.Person",
+   "file": "Misc_Gameplay.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.Punisher.Departed",
+   "file": "Misc_Gameplay.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.Corporate.BeaconHint",
+   "file": "CorporateTrade.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.Corporate.CaravanWeight",
+   "file": "CorporateTrade.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.Corporate.EmptyGoods",
+   "file": "CorporateTrade.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.Corporate.OrderHint",
+   "file": "CorporateTrade.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.Corporate.OrderReceipt",
+   "file": "CorporateTrade.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.Corporate.SelectGoods",
+   "file": "CorporateTrade.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.Corporate.StockHint",
+   "file": "CorporateTrade.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.Corporate.StockRow",
+   "file": "CorporateTrade.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.CorporatePeople.AgeHealth",
+   "file": "CorporatePeople.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.CorporatePeople.Apparel",
+   "file": "CorporatePeople.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.CorporatePeople.BuyConfirm",
+   "file": "CorporatePeople.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.CorporatePeople.Health",
+   "file": "CorporatePeople.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.CorporatePeople.Relations",
+   "file": "CorporatePeople.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.CorporatePeople.SellConfirm",
+   "file": "CorporatePeople.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.CorporatePeople.Skills",
+   "file": "CorporatePeople.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.CorporatePeople.Traits",
+   "file": "CorporatePeople.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.CorporateTradeBrowser.RareSourcing",
+   "file": "CorporateTradeBrowser.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.CorporateTradeBrowser.SpecialSourcing",
+   "file": "CorporateTradeBrowser.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  },
+  {
+   "key": "Mugirl.CorporateTradeBrowser.StandardSourcing",
+   "file": "CorporateTradeBrowser.xml",
+   "note": "no usage site (content-keyed-split.json); Misc_Gameplay keys were moved by R2 to the file of their prefix"
+  }
+ ],
+ "contentFileRenames": [
+  {
+   "module": "corporate",
+   "old": "1.7/Defs/Misc/CorporateFinance.xml",
+   "new": "1.7/Defs/Corporate/CorporateFinance.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "corporate",
+   "old": "1.7/Defs/Misc/CorporatePeople.xml",
+   "new": "1.7/Defs/Corporate/CorporatePeople.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "corporate",
+   "old": "1.7/Defs/Misc/CorporateTradeSettings.xml",
+   "new": "1.7/Defs/Corporate/CorporateTrade.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "corporate",
+   "old": "1.7/Defs/QuestScriptDefs/CorporateQuests.xml",
+   "new": "1.7/Defs/Corporate/CorporateMissions.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "corporate",
+   "old": "1.7/Defs/QuestScriptDefs/CorporateFusionResearchSite.xml",
+   "new": "1.7/Defs/Corporate/CorporateFusionResearchSite.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "corporate",
+   "old": "1.7/Defs/PawnKindDefs/CorporateServices.xml",
+   "new": "1.7/Defs/PawnKindDefs/PawnKinds_CorporateStaff.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "corporate",
+   "old": "1.7/Defs/PawnKindDefs/CorporateShowcase.xml",
+   "new": "1.7/Defs/PawnKindDefs/PawnKinds_CorporateShowcase.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "corporate",
+   "old": "1.7/Defs/FactionDefs/Factions_Enemy.xml",
+   "new": "1.7/Defs/FactionDefs/Factions_GiantCorporation.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "corporate",
+   "old": "1.7/Languages/English/Keyed/CorporateQuests.xml",
+   "new": "1.7/Languages/English/Keyed/CorporateMissions.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "corporate",
+   "old": "1.7/Languages/ChineseSimplified/Keyed/CorporateQuests.xml",
+   "new": "1.7/Languages/ChineseSimplified/Keyed/CorporateMissions.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "corporate",
+   "old": "1.7/Languages/ChineseSimplified/DefInjected/QuestScriptDef/CorporateQuests.xml",
+   "new": "1.7/Languages/ChineseSimplified/DefInjected/QuestScriptDef/CorporateMissions.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "corporate",
+   "old": "1.7/Languages/ChineseSimplified/DefInjected/SitePartDef/CorporateQuests.xml",
+   "new": "1.7/Languages/ChineseSimplified/DefInjected/SitePartDef/CorporateMissions.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "corporate",
+   "old": "1.7/Languages/ChineseSimplified/DefInjected/PawnKindDef/CorporateServices.xml",
+   "new": "1.7/Languages/ChineseSimplified/DefInjected/PawnKindDef/PawnKinds_CorporateStaff.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "corporate",
+   "old": "1.7/Languages/ChineseSimplified/DefInjected/FactionDef/Factions_Enemy.xml",
+   "new": "1.7/Languages/ChineseSimplified/DefInjected/FactionDef/Factions_GiantCorporation.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "incidents",
+   "old": "1.7/Defs/QuestScriptDefs/Script_CourierRaid.xml",
+   "new": "1.7/Defs/QuestScriptDefs/Script_CourierContact.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "incidents",
+   "old": "1.7/Languages/ChineseSimplified/DefInjected/QuestScriptDef/Script_CourierRaid.xml",
+   "new": "1.7/Languages/ChineseSimplified/DefInjected/QuestScriptDef/Script_CourierContact.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "incidents",
+   "old": "1.7/Defs/JobDefs/Jobs_CourierDiary.xml",
+   "new": "1.7/Defs/JobDefs/JobDefs_Incidents.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "incidents",
+   "old": "1.7/Languages/ChineseSimplified/DefInjected/JobDef/Jobs_CourierDiary.xml",
+   "new": "1.7/Languages/ChineseSimplified/DefInjected/JobDef/JobDefs_Incidents.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "incidents",
+   "old": "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Mugirl_Punisher.xml",
+   "new": "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_Mugirl_Punisher.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "milk",
+   "old": "1.7/Defs/HediffDefs/Items_Resource.xml",
+   "new": "1.7/Defs/HediffDefs/Hediffs_MilkVigor.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "milk",
+   "old": "1.7/Mods/Biotech/Defs/GoldenRaceBioTitle.xml",
+   "new": "1.7/Mods/Biotech/Defs/Xenotypes.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "milk",
+   "old": "1.7/Mods/Biotech/Languages/ChineseSimplified/DefInjected/JobDef/JobDefs_Biotech.xml",
+   "new": "1.7/Mods/Biotech/Languages/ChineseSimplified/DefInjected/JobDef/JobDefs.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "milk",
+   "old": "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Items_Resource.xml",
+   "new": "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_MilkVigor.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "milk",
+   "old": "1.7/Mods/Biotech/Languages/ChineseSimplified/DefInjected/XenotypeDef/GoldenRaceBioTitle.xml",
+   "new": "1.7/Mods/Biotech/Languages/ChineseSimplified/DefInjected/XenotypeDef/Xenotypes.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "combat",
+   "old": "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml",
+   "new": "1.7/Defs/ThingDefs_Weapon/RangedWeapons_GiantCorp.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  },
+  {
+   "module": "combat",
+   "old": "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/RangedWeaponsEnemy.xml",
+   "new": "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/RangedWeapons_GiantCorp.xml",
+   "note": "XML file rename that is not date-named (F8: per module in Wave S; check load order and C.content-shadowing)"
+  }
+ ],
+ "transitionalTypes": [
+  {
+   "module": "core",
+   "type": "Mugirl.Compatibility.DualWield.Harmony_DualWield_WeaponWheelCastDisplay",
+   "legacyName": "Mugirl.Harmony_DualWield_WeaponWheelCastDisplay",
+   "waveS": "delete",
+   "upgrade": "none (not save-visible)",
+   "reason": "TRANSITIONAL; deleted in Wave S (self-patch). One type per file (C27): split out of DualWieldPatches.cs."
+  },
+  {
+   "module": "core",
+   "type": "Mugirl.Compatibility.DualWield.Harmony_DualWield_WeaponWheelEquipmentNotifications",
+   "legacyName": "Mugirl.Harmony_DualWield_WeaponWheelEquipmentNotifications",
+   "waveS": "delete",
+   "upgrade": "none (not save-visible)",
+   "reason": "TRANSITIONAL; deleted in Wave S (self-patch). One type per file (C27): split out of DualWieldPatches.cs."
+  },
+  {
+   "module": "core",
+   "type": "Mugirl.Compatibility.DualWield.Harmony_DualWield_WeaponWheelFullFirepower",
+   "legacyName": "Mugirl.Harmony_DualWield_WeaponWheelFullFirepower",
+   "waveS": "delete",
+   "upgrade": "none (not save-visible)",
+   "reason": "TRANSITIONAL namespace move; patches Mugirl's own Comp_WeaponWheel -> replaced by WeaponWheelHooks registration and deleted in Wave S (design §3.5, core-plan S2-3). File not split because the whole file is deleted. One type per file (C27): split out of DualWieldPatches.cs."
+  },
+  {
+   "module": "core",
+   "type": "Mugirl.Compatibility.DualWield.Harmony_DualWield_WeaponWheelPrimarySwap",
+   "legacyName": "Mugirl.Harmony_DualWield_WeaponWheelPrimarySwap",
+   "waveS": "delete",
+   "upgrade": "none (not save-visible)",
+   "reason": "TRANSITIONAL; deleted in Wave S (self-patch). One type per file (C27): split out of DualWieldPatches.cs."
+  },
+  {
+   "module": "core",
+   "type": "Mugirl.Compatibility.MeleeAnimation.Harmony_MeleeAnimation_MountedWeaponDraw",
+   "legacyName": "Mugirl.Harmony_MeleeAnimation_MountedWeaponDraw",
+   "waveS": "delete",
+   "upgrade": "none (not save-visible)",
+   "reason": "TRANSITIONAL; self-patch on MountedPawnMeleeSupport.DrawWeapon, replaced by MountingHooks and deleted in Wave S. One type per file (C27): split out of MeleeAnimationPatches.cs."
+  },
+  {
+   "module": "core",
+   "type": "Mugirl.Compatibility.MeleeAnimation.Harmony_MeleeAnimation_WeaponWheelPrimaryChanged",
+   "legacyName": "Mugirl.Harmony_MeleeAnimation_WeaponWheelPrimaryChanged",
+   "waveS": "delete",
+   "upgrade": "none (not save-visible)",
+   "reason": "TRANSITIONAL; self-patch on Comp_WeaponWheel, deleted in Wave S (S2-3). One type per file (C27): split out of MeleeAnimationPatches.cs."
+  },
+  {
+   "module": "core",
+   "type": "Mugirl.Compatibility.RunAndGun.Harmony_RunAndGun_WeaponWheelFullFirepower",
+   "legacyName": "Mugirl.Harmony_RunAndGun_WeaponWheelFullFirepower",
+   "waveS": "delete",
+   "upgrade": "none (not save-visible)",
+   "reason": "TRANSITIONAL; self-patch, deleted in Wave S."
+  },
+  {
+   "module": "core",
+   "type": "Mugirl.Compatibility.Savegames.CorporateValidationSaveMigration",
+   "legacyName": "Mugirl.CorporateValidationSaveMigration",
+   "waveS": "delete",
+   "upgrade": "none (not save-visible)",
+   "reason": "TRANSITIONAL namespace move only; replaced by a LegacyTypes Drop entry and deleted in Wave S (core-plan S1-L1)."
+  },
+  {
+   "module": "core",
+   "type": "Mugirl.Compatibility.Savegames.IncidentWorker_RetiredMugirlEvent",
+   "legacyName": "Mugirl.IncidentWorker_RetiredMugirlEvent",
+   "waveS": "delete",
+   "upgrade": "none (not save-visible)",
+   "reason": "TRANSITIONAL; referenced only by our own 1.7/Defs/Compatibility/RetiredEvents.xml:9 (tool rewrites the workerClass). IncidentWorkers are never saved; no dependent uses it -> no public alias, no LegacyTypes entry. Deleted with RetiredEvents.xml in Wave S (S1-L3)."
+  },
+  {
+   "module": "core",
+   "type": "Mugirl.Compatibility.Savegames.NeuralShoulderSaveMigration",
+   "legacyName": "Mugirl.NeuralShoulderSaveMigration",
+   "waveS": "delete",
+   "upgrade": "none (not save-visible)",
+   "reason": "TRANSITIONAL; replaced by LegacyDefs Drop entries and deleted in Wave S (S1-L2)."
+  },
+  {
+   "module": "core",
+   "type": "Mugirl.Compatibility.YayoAnimation.Harmony_YayoAnimation_WeaponWheelDrawPosition",
+   "legacyName": "Mugirl.Harmony_YayoAnimation_WeaponWheelDrawPosition",
+   "waveS": "delete",
+   "upgrade": "none (not save-visible)",
+   "reason": "TRANSITIONAL; Transpiler on Mugirl's WeaponWheelAnimationRenderer.Draw, replaced by WeaponWheelHooks draw-position provider and deleted in Wave S."
+  },
+  {
+   "module": "core",
+   "type": "Mugirl.Compatibility.YayoCombat.Harmony_YayoCombat_GeneratedWeaponAmmo",
+   "legacyName": "Mugirl.Harmony_YayoCombat_GeneratedWeaponAmmo",
+   "waveS": "delete",
+   "upgrade": "none (not save-visible)",
+   "reason": "TRANSITIONAL; self-patch on Comp_WeaponWheel.TryAddGeneratedReserveWeapon, deleted in Wave S. One type per file (C27): split out of YayoCombatPatches.cs."
+  },
+  {
+   "module": "core",
+   "type": "Mugirl.Compatibility.YayoCombat.Harmony_YayoCombat_WeaponWheelTick",
+   "legacyName": "Mugirl.Harmony_YayoCombat_WeaponWheelTick",
+   "waveS": "delete",
+   "upgrade": "none (not save-visible)",
+   "reason": "TRANSITIONAL; self-patch on Comp_WeaponWheel.CompTick, deleted in Wave S. One type per file (C27): split out of YayoCombatPatches.cs."
+  },
+  {
+   "module": "core",
+   "type": "Mugirl.Rendering.GhoulRenderingRefreshUtility",
+   "legacyName": "Mugirl.GhoulRenderingRefreshUtility",
+   "waveS": "delete",
+   "upgrade": "none (not save-visible)",
+   "reason": "TRANSITIONAL namespace move only (no root-namespace types after Wave R). Deleted in Wave S (core-plan S2-7): ClearPendingRefreshes is a no-op because the component is recreated with every Game; its only caller MugirlStoryState.cs:79 is removed by incidents (S4)."
+  },
+  {
+   "module": "corporate",
+   "type": "Mugirl.CorporateFinanceDefOf",
+   "legacyName": "Mugirl.CorporateFinanceDefOf",
+   "waveS": "n/a (dissolved in R2)",
+   "upgrade": "none (not save-visible)",
+   "reason": "One type per file (C27): identity extraction out of CorporateFinanceConfigDef.cs. DefOf class: keeps its name until the R2 DefOf split dissolves it."
+  },
+  {
+   "module": "corporate",
+   "type": "Mugirl.CorporateIntroductionDefOf",
+   "legacyName": "Mugirl.CorporateIntroductionDefOf",
+   "waveS": "n/a (dissolved in R2)",
+   "upgrade": "none (not save-visible)",
+   "reason": "One type per file (C27): identity extraction out of CorporateIntroductionDef.cs. DefOf class: keeps its name until the R2 DefOf split dissolves it."
+  },
+  {
+   "module": "corporate",
+   "type": "Mugirl.CorporatePeopleDefOf",
+   "legacyName": "Mugirl.CorporatePeopleDefOf",
+   "waveS": "n/a (dissolved in R2)",
+   "upgrade": "none (not save-visible)",
+   "reason": "One type per file (C27): identity extraction out of CorporatePeopleConfigDef.cs. DefOf class: keeps its name until the R2 DefOf split dissolves it."
+  },
+  {
+   "module": "corporate",
+   "type": "Mugirl.CorporateQuestDefOf",
+   "legacyName": "Mugirl.CorporateQuestDefOf",
+   "waveS": "n/a (dissolved in R2)",
+   "upgrade": "none (not save-visible)",
+   "reason": "One type per file (C27): identity extraction out of CorporateQuestConfigDef.cs. DefOf class: keeps its name until the R2 DefOf split dissolves it."
+  },
+  {
+   "module": "corporate",
+   "type": "Mugirl.CorporateTradeDefOf",
+   "legacyName": "Mugirl.CorporateTradeDefOf",
+   "waveS": "n/a (dissolved in R2)",
+   "upgrade": "none (not save-visible)",
+   "reason": "One type per file (C27): identity extraction out of CorporateTradeSettings.cs. DefOf class: keeps its name until the R2 DefOf split dissolves it."
+  },
+  {
+   "module": "incidents",
+   "type": "Mugirl.Features.Grazing.Harmony_FoodRestrictionDatabase_ExposeData_GrassPolicy",
+   "legacyName": "Mugirl.Harmony_MugirlFoodPolicyGrass_ExistingSave",
+   "waveS": "delete",
+   "upgrade": "none (not save-visible)",
+   "reason": "TRANSITIONAL (deleted in Wave S) (inventory A14: per-load legacy repair; replaced by a one-time PostLoad step + 'Mugirl added to existing game' lifecycle hook, plan S1/S2-10)."
+  },
+  {
+   "module": "incidents",
+   "type": "Mugirl.Features.Incidents.ChoiceLetter_FusionInvestment",
+   "legacyName": "Mugirl.ChoiceLetter_MugirlFusionInvestment",
+   "waveS": "delete",
+   "upgrade": "Map:Verse.StandardLetter",
+   "reason": "TRANSITIONAL (deleted in Wave S) (inventory A11: no code in git history ever created it). Upgrader hand entry maps the OLD name to Verse.StandardLetter, never to this transient name; the generator must not emit old->new for this row."
+  },
+  {
+   "module": "incidents",
+   "type": "Mugirl.Features.Incidents.IncidentWorker_CourierContact",
+   "legacyName": "Mugirl.IncidentWorker_Mugirl_CourierRaid",
+   "waveS": "delete",
+   "upgrade": "none (not save-visible)",
+   "reason": "TRANSITIONAL (deleted in Wave S) (plan S2-6: dev-only IncidentDef baseChance 0 duplicated by StorylineDebugActions.TriggerCourier). Moved only so Wave R compiles without root-namespace types. XML: 1.7/Defs/Storyteller/Incidents_CourierRaid.xml:11. Not save-visible -> no type-map entry."
+  },
+  {
+   "module": "incidents",
+   "type": "Mugirl.Features.Social.Harmony_HediffComp_GiveRandomSituationalThought_CompExposeData_PregnancyMood",
+   "legacyName": "Mugirl.Harmony_MugirlPregnancyMood_Load",
+   "waveS": "delete",
+   "upgrade": "none (not save-visible)",
+   "reason": "TRANSITIONAL (deleted in Wave S) (inventory A15: per-load conversion of pre-0.6.6 state; replaced by a one-time PostLoad step)."
+  },
+  {
+   "module": "milk",
+   "type": "Mugirl.Features.Milk.CompMilkProductionBase",
+   "legacyName": "Mugirl.CompMooHasBodyResource",
+   "waveS": "merge",
+   "upgrade": "none (not save-visible)",
+   "reason": "TRANSITIONAL: 'Moo' is forbidden (design 3.2); abstract single-subclass base merged into CompMilkProduction in Wave S (plan S2-1); comps are never type-named in saves and compClass is set by the props ctor -> no map entry"
+  },
+  {
+   "module": "milk",
+   "type": "Mugirl.Features.Milk.JobDriver_GatherBodyResources",
+   "legacyName": "Mugirl.JobDriver_GatherBodyResources",
+   "waveS": "merge",
+   "upgrade": "none (not save-visible)",
+   "reason": "TRANSITIONAL: abstract single-subclass base, merged into JobDriver_GatherMilk in Wave S (plan S2-3); abstract types are never written to saves and it is not XML-visible -> no map entry"
+  },
+  {
+   "module": "milk",
+   "type": "Mugirl.Features.Milk.WorkGiver_GatherBodyResources",
+   "legacyName": "Mugirl.WorkGiver_GatherBodyResources",
+   "waveS": "merge",
+   "upgrade": "none (not save-visible)",
+   "reason": "TRANSITIONAL: abstract single-subclass base, merged into WorkGiver_GatherMilk in Wave S (plan S2-3); not XML/save-visible"
+  },
+  {
+   "module": "milk",
+   "type": "Mugirl.Features.Xenotype.GameComponent_XenotypeRepair",
+   "legacyName": "Mugirl.Mugirl_XenotypeFix_GameComp",
+   "waveS": "delete",
+   "upgrade": "Consumed step=Steps/Milk/XenotypeRepair (milk-plan S1-L12)",
+   "reason": "TRANSITIONAL: Wave S deletes this GameComponent (legacy-only one-shot repair, plan S1-L12). Its LegacyTypes disposition must be Consumed(Steps/Milk/XenotypeRepairComponentStep), NOT the generated rename; same for MooGirl.MooGirl_XenotypeFix_GameComp. Present in every Mugirl-era real save (S5-S11) and in MooGirl-era S2-S4"
+  },
+  {
+   "module": "restraints",
+   "type": "Mugirl.Features.Restraints.AdultContentExtension",
+   "legacyName": "Mugirl.AdultContentExtension",
+   "waveS": "delete",
+   "upgrade": "none (not save-visible)",
+   "reason": "TEMPORARY Wave R name (root namespace forbidden); Wave S deletes the type (dead: no C# reader, report A6; XML BondageApparel_Base.xml:39, BondageApparel_Spacer.xml:149,255)"
+  },
+  {
+   "module": "restraints",
+   "type": "Mugirl.Features.Restraints.CompAdultContentControl",
+   "legacyName": "Mugirl.CompAdultContentControl",
+   "waveS": "delete",
+   "upgrade": "none (not save-visible)",
+   "reason": "TEMPORARY Wave R name (root namespace forbidden); Wave S deletes the type (empty ThingComp, never saved)"
+  },
+  {
+   "module": "restraints",
+   "type": "Mugirl.Features.Restraints.CompGetSlaveApparelGear",
+   "legacyName": "Mugirl.CompGetSlaveApparelGear",
+   "waveS": "delete",
+   "upgrade": "none (not save-visible)",
+   "reason": "TEMPORARY Wave R name (root namespace forbidden); Wave S deletes the type together with its XML li (BondageApparel_Base.xml:31-33): its only trigger is JobDef GiveSlaveApparelGear, which no build ever issued (report A7)"
+  },
+  {
+   "module": "restraints",
+   "type": "Mugirl.Features.Restraints.CompProperties_AdultContentControl",
+   "legacyName": "Mugirl.CompProperties_AdultContentControl",
+   "waveS": "delete",
+   "upgrade": "none (not save-visible)",
+   "reason": "TEMPORARY Wave R name (root namespace forbidden); Wave S deletes the type (dead comp; XML BondageApparel_Base.xml:30, BondageApparel_Spacer.xml:198)"
+  },
+  {
+   "module": "restraints",
+   "type": "Mugirl.Features.Restraints.Harmony_Pawn_ApparelTracker_ExposeData",
+   "legacyName": "Mugirl.Pawn_ApparelTracker_ExposeData_SlaveApparel_Patch",
+   "waveS": "delete",
+   "upgrade": "none (not save-visible)",
+   "reason": "TEMPORARY Wave R name (root namespace forbidden); Wave S deletes the type (legacy lock-list repair, report A4; replaced by DOM step Restraints.WornLockList)"
+  },
+  {
+   "module": "restraints",
+   "type": "Mugirl.Features.Restraints.JobDriver_UseItemOn",
+   "legacyName": "Mugirl.JobDriver_UseItemOn",
+   "waveS": "delete",
+   "upgrade": "Drop (end job (never issued))",
+   "reason": "TEMPORARY Wave R name (root namespace forbidden); Wave S deletes the type together with JobDef GiveSlaveApparelGear (never issued by any build, report A7); Wave S overrides the generated LegacyTypes entry with Drop(never issued)"
+  },
+  {
+   "module": "restraints",
+   "type": "Mugirl.Features.Restraints.PawnSlaveStatusUtility",
+   "legacyName": "Mugirl.PawnSlaveStatusUtility",
+   "waveS": "merge",
+   "upgrade": "none (not save-visible)",
+   "reason": "TEMPORARY Wave R name (root namespace forbidden); Wave S deletes the type (plan S2.16: the single DisplayName helper with untranslated 'null'/'noname' literals merges into KeyUnlockFloatMenu)"
+  },
+  {
+   "module": "restraints",
+   "type": "Mugirl.Features.Roping.JobGiver_WanderRoped",
+   "legacyName": "Mugirl.JobGiver_WanderRoped",
+   "waveS": "delete",
+   "upgrade": "none (not save-visible)",
+   "reason": "TEMPORARY Wave R name (root namespace forbidden); Wave S deletes the type: logic identical to vanilla Verse.AI.JobGiver_WanderRoped (decompiled rw17) except ctor values; Wave S switches Mugirl_ThinkTreeDefs.xml:38 to the vanilla class with <wanderRadius>4</wanderRadius><ticksBetweenWandersRange>500~800</ticksBetweenWandersRange>"
+  },
+  {
+   "module": "restraints",
+   "type": "Mugirl.Features.Roping.MapRopingIndex",
+   "legacyName": "Mugirl.MapRopingIndex",
+   "waveS": "delete",
+   "upgrade": "Drop (remove map/components li)",
+   "reason": "TEMPORARY Wave R name (root namespace forbidden); Wave S deletes the type (plan S2.4): field-less MapComponent written as an empty <li Class=\"Mugirl.MapRopingIndex\" /> in every map of S5-S11 (real-saves.md sections 1-2); Wave S overrides the generated LegacyTypes entry with Drop(remove the component li)"
+  },
+  {
+   "module": "restraints",
+   "type": "Mugirl.Features.Roping.ThinkNode_ConditionalRoped",
+   "legacyName": "Mugirl.ThinkNode_ConditionalRoped",
+   "waveS": "delete",
+   "upgrade": "none (not save-visible)",
+   "reason": "TEMPORARY Wave R name (root namespace forbidden); Wave S deletes the type: duplicate of vanilla RimWorld.ThinkNode_ConditionalRoped (decompiled rw17; only adds pawn?. which a think node never needs); Wave S switches Mugirl_ThinkTreeDefs.xml:10 to the vanilla class"
+  }
+ ]
+}

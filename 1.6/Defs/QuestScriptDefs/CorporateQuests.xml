@@ -7,6 +7,7 @@
     <processingDays>7</processingDays><batchMin>5</batchMin><batchMax>20</batchMax>
     <processingFeeMin>0.25</processingFeeMin><processingFeeMax>0.4</processingFeeMax>
     <processingMinimumFee>150</processingMinimumFee><processingMaxDeposit>20000</processingMaxDeposit>
+    <processingFeePerWorkHour>20</processingFeePerWorkHour>
     <processingFailureGoodwill>-5</processingFailureGoodwill>
     <purgeDays>10</purgeDays><purgeMinReward>1000</purgeMinReward><purgeMaxReward>5000</purgeMaxReward><purgeGoodwill>5</purgeGoodwill>
     <distributionDays>10</distributionDays><wholesaleFactor>0.45</wholesaleFactor><salesTarget>0.8</salesTarget><distributionGoodwill>3</distributionGoodwill>

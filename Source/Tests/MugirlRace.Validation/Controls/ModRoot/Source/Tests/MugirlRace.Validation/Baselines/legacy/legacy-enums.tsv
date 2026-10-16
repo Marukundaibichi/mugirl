@@ -1,0 +1,5 @@
+# legacy-enums.tsv: negative-control corpus for C.save-upgrade (each row exercises one rule; see Controls/expected-failures.txt).
+# columns: enum	member	value	tiers	eras	first	last
+Mugirl.Control.Upgrade.ControlState	Idle	0	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.ControlState	Paused	2	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.OldMode	Legacy	0	published	Mugirl	p.control	p.control

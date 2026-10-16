@@ -1,0 +1,35 @@
+<savegame>
+  <meta>
+    <gameVersion>1.6.4871 rev591</gameVersion>
+    <modIds>
+      <li>ludeon.rimworld</li>
+      <li>har.mugirlrace</li>
+    </modIds>
+  </meta>
+  <game>
+    <components>
+      <li Class="Mugirl.CorporateIntroduction">
+        <corporateIntroductionInitialized>True</corporateIntroductionInitialized>
+        <migrated>True</migrated>
+        <pending>True</pending>
+        <completed>True</completed>
+        <independentContact>False</independentContact>
+        <giftsPrepared>True</giftsPrepared>
+        <independentAggression>True</independentAggression>
+        <courierKilledByPlayer>False</courierKilledByPlayer>
+        <courierDied>True</courierDied>
+        <courierChoice>17</courierChoice>
+        <contactTick>913</contactTick>
+        <nextServiceTick>30001</nextServiceTick>
+        <courier>Thing_Human45</courier>
+        <representative>Thing_Human46</representative>
+        <preferredMap>Map_0</preferredMap>
+        <introductionQuest>Quest_7</introductionQuest>
+        <representativeArrivalTick>200000</representativeArrivalTick>
+        <gifts>
+          <innerList />
+        </gifts>
+      </li>
+    </components>
+  </game>
+</savegame>

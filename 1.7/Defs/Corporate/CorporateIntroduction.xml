@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <QuestScriptDef>
+    <defName>Mugirl_CorporateIntroductionQuest</defName>
+    <rootSelectionWeight>0</rootSelectionWeight>
+    <autoAccept>true</autoAccept>
+    <questNameRules><rulesStrings><li>questName->Establishing corporate contact</li></rulesStrings></questNameRules>
+    <questDescriptionRules><rulesStrings><li>questDescription->About two days after the courier incident, a corporate representative arrives to introduce the company's commercial network. Meet the representative to complete the introduction and unlock the corporate terminal.</li></rulesStrings></questDescriptionRules>
+    <root Class="Mugirl.Features.Corporate.QuestNode_Root_CorporateIntroduction"/>
+  </QuestScriptDef>
+  <Mugirl.Features.Corporate.CorporateIntroductionConfigDef>
+    <defName>Mugirl_CorporateIntroductionConfig</defName>
+    <longAbsenceTicks>900000</longAbsenceTicks>
+    <retryTicks>2500</retryTicks>
+    <representativeStayTicks>240000</representativeStayTicks>
+    <attackRetryTicks>120000</attackRetryTicks>
+    <contactDelayTicks>120000</contactDelayTicks>
+    <contactDelayJitterTicks>9000</contactDelayJitterTicks>
+    <gifts>
+      <Silver>500</Silver>
+      <Steel>100</Steel>
+      <ComponentIndustrial>10</ComponentIndustrial>
+      <MedicineIndustrial>10</MedicineIndustrial>
+    </gifts>
+    <!-- 见面礼随附科技：雪牛娘科技树入口列中低于 500 研究点的三个项目。 -->
+    <researchGifts>
+      <li>Mugirl_DairyProcessing</li>
+      <li>Mugirl_RopeHandling</li>
+      <li>Mugirl_DailyAttire</li>
+    </researchGifts>
+  </Mugirl.Features.Corporate.CorporateIntroductionConfigDef>
+  <JobDef>
+    <defName>Mugirl_CorporateUseComms</defName>
+    <driverClass>Mugirl.Features.Corporate.JobDriver_CorporateUseComms</driverClass>
+    <reportString>contacting the corporate network.</reportString>
+  </JobDef>
+  <JobDef>
+    <defName>Mugirl_CorporateTalkRepresentative</defName>
+    <driverClass>Mugirl.Features.Corporate.JobDriver_CorporateTalkRepresentative</driverClass>
+    <reportString>talking to the corporate representative.</reportString>
+  </JobDef>
+</Defs>

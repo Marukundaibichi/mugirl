@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <PawnKindDef>
+        <defName>Mugirl_GiantCorp_Grunt</defName>
+        <!-- 巨企佣兵 -->
+        <label>Giant Corp Mercenary</label>
+        <race>Human</race>
+        <defaultFactionDef>Mugirl_GiantCorporation</defaultFactionDef>
+        <combatPower>60</combatPower>
+        <isFighter>true</isFighter>
+        <maxGenerationAge>65</maxGenerationAge>
+        <minGenerationAge>20</minGenerationAge>
+        <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+        <apparelColor>(0.5,0.5,0.5)</apparelColor>
+        <forceNormalGearQuality>true</forceNormalGearQuality>
+        <initialResistanceRange>6~10</initialResistanceRange>
+        <initialWillRange>0~1</initialWillRange>
+        <apparelMoney>300~1700</apparelMoney>
+        <weaponMoney>180~520</weaponMoney>
+        <apparelTags>
+            <li>IndustrialBasic</li>
+            <li>IndustrialAdvanced</li>
+            <li>IndustrialMilitaryBasic</li>
+            <li>IndustrialMilitaryAdvanced</li>
+        </apparelTags>
+        <apparelDisallowTags>
+            <li>PMC</li>
+            <li>SpacerMilitary</li>
+            <li>Royal</li>
+        </apparelDisallowTags>
+        <weaponTags>
+            <li>Gun</li>
+            <li>SimpleGun</li>
+            <li>GC_Weapon_Tier1</li>
+            <li>OPC</li>
+        </weaponTags>
+    </PawnKindDef>
+
+    <PawnKindDef>
+        <defName>Mugirl_GiantCorp_OPCEnforcer</defName>
+        <!-- 巨企安保员 -->
+        <label>Giant Corp Security Officer</label>
+        <race>Human</race>
+        <defaultFactionDef>Mugirl_GiantCorporation</defaultFactionDef>
+        <combatPower>105</combatPower>
+        <isFighter>true</isFighter>
+        <maxGenerationAge>60</maxGenerationAge>
+        <minGenerationAge>20</minGenerationAge>
+        <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+        <apparelColor>(0.5,0.5,0.5)</apparelColor>
+        <forceNormalGearQuality>true</forceNormalGearQuality>
+        <initialResistanceRange>8~14</initialResistanceRange>
+        <initialWillRange>1~2</initialWillRange>
+        <apparelMoney>900~2200</apparelMoney>
+        <weaponMoney>420~950</weaponMoney>
+        <apparelTags>
+            <li>IndustrialAdvanced</li>
+            <li>IndustrialMilitaryBasic</li>
+            <li>IndustrialMilitaryAdvanced</li>
+        </apparelTags>
+        <apparelDisallowTags>
+            <li>PMC</li>
+            <li>SpacerMilitary</li>
+            <li>Royal</li>
+        </apparelDisallowTags>
+        <weaponTags>
+            <li>Gun</li>
+            <li>IndustrialGunAdvanced</li>
+            <li>GC_Weapon_Tier1</li>
+            <li>OPC</li>
+        </weaponTags>
+    </PawnKindDef>
+
+    <PawnKindDef>
+        <defName>Mugirl_GiantCorp_OPCSapper</defName>
+        <!-- 巨企OPC爆破员 -->
+        <label>Giant Corp OPC Sapper</label>
+        <race>Human</race>
+        <defaultFactionDef>Mugirl_GiantCorporation</defaultFactionDef>
+        <combatPower>140</combatPower>
+        <isFighter>true</isFighter>
+        <canBeSapper>true</canBeSapper>
+        <isGoodBreacher>true</isGoodBreacher>
+        <maxGenerationAge>60</maxGenerationAge>
+        <minGenerationAge>20</minGenerationAge>
+        <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+        <apparelColor>(0.5,0.5,0.5)</apparelColor>
+        <forceNormalGearQuality>true</forceNormalGearQuality>
+        <initialResistanceRange>8~14</initialResistanceRange>
+        <initialWillRange>1~2</initialWillRange>
+        <apparelMoney>900~2200</apparelMoney>
+        <weaponMoney>500~500</weaponMoney>
+        <apparelTags>
+            <li>IndustrialAdvanced</li>
+            <li>IndustrialMilitaryBasic</li>
+            <li>IndustrialMilitaryAdvanced</li>
+        </apparelTags>
+        <apparelDisallowTags>
+            <li>PMC</li>
+            <li>SpacerMilitary</li>
+            <li>Royal</li>
+        </apparelDisallowTags>
+        <weaponTags>
+            <li>GrenadeDestructive</li>
+        </weaponTags>
+        <skills>
+            <li>
+                <skill>Mining</skill>
+                <range>5~10</range>
+            </li>
+        </skills>
+    </PawnKindDef>
+
+    <PawnKindDef>
+        <defName>Mugirl_GiantCorp_Courier</defName>
+        <!-- 巨企运货员 -->
+        <label>Giant Corp Courier</label>
+        <race>Human</race>
+        <defaultFactionDef>Mugirl_GiantCorporation</defaultFactionDef>
+        <combatPower>80</combatPower>
+        <isFighter>true</isFighter>
+        <maxGenerationAge>60</maxGenerationAge>
+        <minGenerationAge>20</minGenerationAge>
+        <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+        <apparelColor>(0.24,0.34,0.46)</apparelColor>
+        <forceNormalGearQuality>true</forceNormalGearQuality>
+        <initialResistanceRange>6~10</initialResistanceRange>
+        <initialWillRange>0~1</initialWillRange>
+        <apparelMoney>0~0</apparelMoney>
+        <weaponMoney>1200~1800</weaponMoney>
+        <apparelTags />
+        <apparelRequired>
+            <li>Apparel_CollarShirt</li>
+            <li>Apparel_Pants</li>
+            <li>Apparel_FlakVest</li>
+            <li>Apparel_Jacket</li>
+            <li>Apparel_Tuque</li>
+        </apparelRequired>
+        <weaponTags>
+            <li>GC_Weapon_Tier2</li>
+            <li>PMC</li>
+        </weaponTags>
+    </PawnKindDef>
+
+    <PawnKindDef>
+        <defName>Mugirl_GiantCorp_PMCRecruit</defName>
+        <!-- 巨企PMC新兵 -->
+        <label>Giant Corp PMC Recruit</label>
+        <race>Human</race>
+        <defaultFactionDef>Mugirl_GiantCorporation</defaultFactionDef>
+        <combatPower>500</combatPower>
+        <isFighter>true</isFighter>
+        <maxGenerationAge>55</maxGenerationAge>
+        <minGenerationAge>22</minGenerationAge>
+        <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+        <apparelColor>(0.5,0.5,0.5)</apparelColor>
+        <forceNormalGearQuality>true</forceNormalGearQuality>
+        <initialResistanceRange>10~16</initialResistanceRange>
+        <initialWillRange>1~3</initialWillRange>
+        <apparelMoney>1400~3200</apparelMoney>
+        <weaponMoney>900~1600</weaponMoney>
+        <apparelTags>
+            <li>IndustrialMilitaryAdvanced</li>
+        </apparelTags>
+        <apparelDisallowTags>
+            <li>PMC</li>
+            <li>SpacerMilitary</li>
+            <li>Royal</li>
+        </apparelDisallowTags>
+        <apparelRequired>
+            <li>Mugirl_PMC_Helmet</li>
+        </apparelRequired>
+        <weaponTags>
+            <li>GC_Weapon_Tier2</li>
+            <li>PMC</li>
+        </weaponTags>
+    </PawnKindDef>
+
+    <PawnKindDef>
+        <defName>Mugirl_GiantCorp_Soldier</defName>
+        <!-- 巨企PMC士兵 -->
+        <label>Giant Corp PMC Soldier</label>
+        <race>Human</race>
+        <defaultFactionDef>Mugirl_GiantCorporation</defaultFactionDef>
+        <combatPower>800</combatPower>
+        <isFighter>true</isFighter>
+        <maxGenerationAge>55</maxGenerationAge>
+        <minGenerationAge>22</minGenerationAge>
+        <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+        <apparelColor>(0.5,0.5,0.5)</apparelColor>
+        <forceNormalGearQuality>true</forceNormalGearQuality>
+        <initialResistanceRange>10~16</initialResistanceRange>
+        <initialWillRange>1~3</initialWillRange>
+        <apparelMoney>0~0</apparelMoney>
+        <weaponMoney>1200~1800</weaponMoney>
+        <apparelTags>
+            <li>PMC</li>
+        </apparelTags>
+        <apparelRequired>
+            <li>Mugirl_PMC_CombatUniform</li>
+            <li>Mugirl_PMC_Helmet</li>
+        </apparelRequired>
+        <weaponTags>
+            <li>GC_Weapon_Tier2</li>
+            <li>PMC</li>
+        </weaponTags>
+    </PawnKindDef>
+
+    <PawnKindDef>
+        <defName>Mugirl_GiantCorp_Sapper</defName>
+        <!-- 巨企爆破员 -->
+        <label>Giant Corp Sapper</label>
+        <race>Human</race>
+        <defaultFactionDef>Mugirl_GiantCorporation</defaultFactionDef>
+        <combatPower>800</combatPower>
+        <isFighter>true</isFighter>
+        <canBeSapper>true</canBeSapper>
+        <isGoodBreacher>true</isGoodBreacher>
+        <maxGenerationAge>55</maxGenerationAge>
+        <minGenerationAge>22</minGenerationAge>
+        <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+        <apparelColor>(0.5,0.5,0.5)</apparelColor>
+        <forceNormalGearQuality>true</forceNormalGearQuality>
+        <initialResistanceRange>10~16</initialResistanceRange>
+        <initialWillRange>1~3</initialWillRange>
+        <apparelMoney>0~0</apparelMoney>
+        <weaponMoney>500~500</weaponMoney>
+        <apparelTags>
+            <li>PMC</li>
+        </apparelTags>
+        <apparelRequired>
+            <li>Mugirl_PMC_CombatUniform</li>
+            <li>Mugirl_PMC_Helmet</li>
+        </apparelRequired>
+        <weaponTags>
+            <li>GrenadeDestructive</li>
+        </weaponTags>
+        <skills>
+            <li>
+                <skill>Mining</skill>
+                <range>6~12</range>
+            </li>
+        </skills>
+    </PawnKindDef>
+
+    <PawnKindDef>
+        <defName>Mugirl_GiantCorp_Elite</defName>
+        <!-- 巨企精英 -->
+        <label>Giant Corp Elite</label>
+        <race>Human</race>
+        <defaultFactionDef>Mugirl_GiantCorporation</defaultFactionDef>
+        <factionLeader>true</factionLeader>
+        <combatPower>1200</combatPower>
+        <isFighter>true</isFighter>
+        <maxGenerationAge>50</maxGenerationAge>
+        <minGenerationAge>25</minGenerationAge>
+        <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+        <apparelColor>(0.5,0.5,0.5)</apparelColor>
+        <forceNormalGearQuality>true</forceNormalGearQuality>
+        <initialResistanceRange>15~24</initialResistanceRange>
+        <initialWillRange>2~4</initialWillRange>
+        <apparelMoney>0~0</apparelMoney>
+        <weaponMoney>2200~3600</weaponMoney>
+        <apparelTags>
+            <li>PMC</li>
+        </apparelTags>
+        <apparelRequired>
+            <li>Mugirl_PMC_CombatUniform</li>
+            <li>Mugirl_PMC_CaptainHelmet</li>
+        </apparelRequired>
+        <weaponTags>
+            <li>GC_Weapon_Tier3</li>
+            <li>PMC</li>
+        </weaponTags>
+    </PawnKindDef>
+
+    <PawnKindDef>
+        <defName>Mugirl_GiantCorp_MugirlRaider</defName>
+        <!-- 雪牛娘战斗员 -->
+        <label>Mugirl Combatant</label>
+        <race>Mugirl</race>
+        <defaultFactionDef>Mugirl_GiantCorporation</defaultFactionDef>
+        <combatPower>1600</combatPower>
+        <isFighter>true</isFighter>
+        <maxPerGroup>1</maxPerGroup>
+        <maxGenerationAge>40</maxGenerationAge>
+        <minGenerationAge>18</minGenerationAge>
+        <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+        <apparelColor>(0.5,0.5,0.5)</apparelColor>
+        <forceNormalGearQuality>true</forceNormalGearQuality>
+        <initialResistanceRange>17~27</initialResistanceRange>
+        <initialWillRange>3~5</initialWillRange>
+        <apparelMoney>0~0</apparelMoney>
+        <weaponMoney>700~1400</weaponMoney>
+        <apparelRequired>
+            <li>Mugirl_Combatant_Clothes</li>
+            <li>Mugirl_Combatant_Helmet</li>
+            <li>Mugirl_Combatant_Underwear</li>
+        </apparelRequired>
+        <specificApparelRequirements>
+            <li>
+                <bodyPartGroup>Torso</bodyPartGroup>
+                <apparelLayer>Shell</apparelLayer>
+                <alternateTagChoices>
+                    <li>
+                        <tag>Mugirl_Combatant_OptionalVest</tag>
+                        <chance>0.35</chance>
+                    </li>
+                </alternateTagChoices>
+            </li>
+            <li>
+                <bodyPartGroup>Legs</bodyPartGroup>
+                <alternateTagChoices>
+                    <li>
+                        <tag>Mugirl_Combatant_Legwear</tag>
+                        <chance>0.25</chance>
+                    </li>
+                </alternateTagChoices>
+            </li>
+        </specificApparelRequirements>
+        <weaponTags>
+            <li>GC_Weapon_Mugirl</li>
+            <li>PMC</li>
+        </weaponTags>
+        <backstoryFilters>
+            <li>
+                <categories>
+                    <li>Mugirl_Slave</li>
+                </categories>
+            </li>
+        </backstoryFilters>
+        <xenotypeSet>
+            <xenotypeChances>
+                <Mugirl_Xenotype MayRequire="Ludeon.RimWorld.Biotech">1</Mugirl_Xenotype>
+            </xenotypeChances>
+        </xenotypeSet>
+        <useFactionXenotypes>false</useFactionXenotypes>
+    </PawnKindDef>
+
+</Defs>

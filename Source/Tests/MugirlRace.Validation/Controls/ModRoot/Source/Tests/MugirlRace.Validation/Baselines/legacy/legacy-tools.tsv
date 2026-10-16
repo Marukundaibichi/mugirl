@@ -1,0 +1,3 @@
+# legacy-tools.tsv: negative-control corpus for C.save-upgrade (each row exercises one rule; see Controls/expected-failures.txt).
+# columns: thingDef	toolId	tiers	eras	first	last
+Mugirl_Control_Thing	oldTool	published	Mugirl	p.control	p.control

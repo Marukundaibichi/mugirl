@@ -1,0 +1,167 @@
+{
+ "module": "core",
+ "wave": "R2",
+ "createTypes": [
+  {
+   "fullName": "Mugirl.Core.PatchModule",
+   "file": "Source/MugirlRace/Core/Patching/PatchModule.cs",
+   "kind": "enum",
+   "accessibility": "public",
+   "header": "Harmony 补丁所属模块的封闭集合：Core、原版修复、渲染、存档升级，以及 Features/ 与 Compatibility/ 下的文件夹名。\n新增功能或兼容文件夹时在这里加成员。",
+   "members": [
+    "Core",
+    "VanillaFixes",
+    "Rendering",
+    "SaveUpgrade",
+    "Abilities",
+    "AdvancedArmor",
+    "Appearance",
+    "Corporate",
+    "Grazing",
+    "Incidents",
+    "Lances",
+    "LifeStages",
+    "Milk",
+    "Mounting",
+    "Restraints",
+    "Roping",
+    "Social",
+    "WeaponWheel",
+    "Weapons",
+    "Xenotype",
+    "DualWield",
+    "HumanoidAlienRaces",
+    "LactationExpansion",
+    "MeleeAnimation",
+    "RunAndGun",
+    "YayoAnimation",
+    "YayoCombat"
+   ],
+   "module": "core",
+   "linkWith": [
+    "Source/MugirlRace/Core/Patching/MugirlPatchAttribute.cs"
+   ]
+  }
+ ],
+ "attributeArgumentRewrites": [
+  {
+   "attribute": "Mugirl.Core.MugirlPatchAttribute",
+   "argument": 0,
+   "valueFormat": "PatchModule.{0}",
+   "rules": [
+    {
+     "pathPrefix": "Source/MugirlRace/Core/VanillaFixes/",
+     "value": "VanillaFixes"
+    },
+    {
+     "pathPrefix": "Source/MugirlRace/Core/",
+     "value": "Core"
+    },
+    {
+     "pathPrefix": "Source/MugirlRace/Rendering/",
+     "value": "Rendering"
+    },
+    {
+     "pathPrefix": "Source/MugirlRace/SaveUpgrade/",
+     "value": "SaveUpgrade"
+    },
+    {
+     "pathPrefix": "Source/MugirlRace/Compatibility/Savegames/",
+     "value": "SaveUpgrade"
+    },
+    {
+     "pathPrefix": "Source/MugirlRace/Compatibility/",
+     "value": "{folder}"
+    },
+    {
+     "pathPrefix": "Source/MugirlRace/Features/",
+     "value": "{folder}"
+    },
+    {
+     "pathPrefix": "Source/MugirlRace/PublicApi/",
+     "value": "Core"
+    },
+    {
+     "pathPrefix": "Source/Tests/",
+     "value": "Core"
+    }
+   ],
+   "requireNamespace": "Mugirl.Core",
+   "reason": "Design 3.2: the module of [MugirlPatch] is a member of a closed set, derived from the class's folder."
+  }
+ ],
+ "textEdits": [
+  {
+   "file": "Source/MugirlRace/Core/Patching/MugirlPatchAttribute.cs",
+   "old": "(string module, PatchRisk risk, string failureBehavior)",
+   "new": "(PatchModule module, PatchRisk risk, string failureBehavior)",
+   "reason": "PatchModule enum replaces the free string."
+  },
+  {
+   "file": "Source/MugirlRace/Core/Patching/MugirlPatchAttribute.cs",
+   "old": "public string Module { get; } = module;",
+   "new": "public PatchModule Module { get; } = module;",
+   "reason": "PatchModule enum replaces the free string."
+  },
+  {
+   "file": "Source/MugirlRace/Core/Patching/MugirlPatchAttribute.cs",
+   "old": "<param name=\"module\">功能模块名，例如 <c>Milk</c>、<c>WeaponWheel</c>、<c>YayoCombatCompat</c>。</param>",
+   "new": "<param name=\"module\">补丁所属模块（<see cref=\"PatchModule\"/>，与补丁类所在的功能或兼容文件夹一致）。</param>",
+   "reason": "PatchModule enum replaces the free string."
+  },
+  {
+   "file": "Source/Tests/MugirlRace.ShaderCheck/CheckPaths.cs",
+   "old": "\"MugirlRenderDefOf.cs\"",
+   "new": "\"RenderingDefOf.cs\"",
+   "reason": "R2 DefOf split: Rendering/RenderingDefOf.cs."
+  },
+  {
+   "file": "Source/Tests/MugirlRace.ShaderCheck/CSharpReferenceChecks.cs",
+   "old": "<c>Mugirl.Rendering.MugirlRenderDefOf</c>",
+   "new": "<c>Mugirl.Rendering.RenderingDefOf</c>",
+   "reason": "R2 DefOf split."
+  },
+  {
+   "file": "Source/Tests/MugirlRace.ShaderCheck/CSharpReferenceChecks.cs",
+   "old": "{file}: MugirlRenderDefOf.{name}",
+   "new": "{file}: RenderingDefOf.{name}",
+   "reason": "R2 DefOf split."
+  },
+  {
+   "file": "Source/Tests/MugirlRace.ShaderCheck/CSharpReferenceChecks.cs",
+   "old": "$\"MugirlRenderDefOf: {fields}",
+   "new": "$\"RenderingDefOf: {fields}",
+   "reason": "R2 DefOf split."
+  },
+  {
+   "file": "Source/MugirlRace/Features/Incidents/Shared/IncidentsDefOf.cs",
+   "old": "// 本模块用到、但原版 DefOf 没有收录的 Core Def；全部来自原版 Core，无条件绑定。",
+   "new": "// 事件功能（快递、逃跑牧场、惩戒者等）定义的 Def，以及本模块用到、原版 DefOf 没有收录的原版 Core Def。",
+   "reason": "R2 moves make the old comment false (members/defs moved in or out)."
+  },
+  {
+   "file": "Source/MugirlRace/PublicApi/MountedPawnUtility.cs",
+   "old": "// 骑乘关系查询与骑手状态判断。其他模块（企业、基因、长枪、武器轮盘等）通过这里查询骑乘状态；\n// tick、下骑落点、Gizmo、绘制偏移已分别移到 RiderTickDriver、DismountCellFinder、MountedRiderGizmos、MountDrawOffsets。\n",
+   "new": "// 公共 API：其他 Mod（如白绒物语）用 Harmony 补丁 IsMugirl 扩展雪牛娘身份判断；类名、方法名与参数名 pawn 都不能改。\n",
+   "reason": "R2 moves make the old comment false (members/defs moved in or out)."
+  },
+  {
+   "file": "Source/MugirlRace/PublicApi/MountedPawnUtility.cs",
+   "old": "using Verse.AI;\n",
+   "new": "",
+   "reason": "R2 moves make the old comment false (members/defs moved in or out)."
+  },
+  {
+   "file": "1.7/Defs/MaterialDefs/Mugirl_Materials.xml",
+   "old": "Mugirl.Rendering.MugirlRenderDefOf",
+   "new": "Mugirl.Rendering.RenderingDefOf",
+   "reason": "R2 DefOf split (XML comment)."
+  },
+  {
+   "file": "1.7/Defs/ShaderDefs/Mugirl_Shaders.xml",
+   "old": "Mugirl.Rendering.MugirlRenderDefOf",
+   "new": "Mugirl.Rendering.RenderingDefOf",
+   "reason": "R2 DefOf split (XML comment)."
+  }
+ ]
+}

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <!-- PatchGovernance:
+    Targets: Facial Animation 启用时的雪牛娘 AlienRace ThingDef comps。
+    Scope: 可选 FacialAnimation 加载目录；只向雪牛娘种族 Def 追加 FacialAnimation comp 类。
+    Duplicate guard: 每个 comp 追加前检查对应 compClass；comps 列表仅在缺失时创建。
+    Failure: 部分加载时缺少雪牛娘种族目标可以接受，并且不执行补丁动作。
+    -->
+    <!-- Facial Animation 目录只在该 mod 启用时加载；这里仍以雪牛娘种族 Def 存在作为补丁门槛。 -->
+    <Operation Class="PatchOperationConditional">
+        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mugirl"]</xpath>
+        <match Class="PatchOperationSequence">
+            <operations>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mugirl"]/comps</xpath>
+                    <nomatch Class="PatchOperationAdd">
+                        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mugirl"]</xpath>
+                        <value>
+                            <comps/>
+                        </value>
+                    </nomatch>
+                </li>
+
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mugirl"]/comps/li/compClass[text()="FacialAnimation.DrawFaceGraphicsComp"]</xpath>
+                    <nomatch Class="PatchOperationAdd">
+                        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mugirl"]/comps</xpath>
+                        <value>
+                            <li><compClass>FacialAnimation.DrawFaceGraphicsComp</compClass></li>
+                        </value>
+                    </nomatch>
+                </li>
+
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mugirl"]/comps/li/compClass[text()="FacialAnimation.HeadControllerComp"]</xpath>
+                    <nomatch Class="PatchOperationAdd">
+                        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mugirl"]/comps</xpath>
+                        <value>
+                            <li><compClass>FacialAnimation.HeadControllerComp</compClass></li>
+                        </value>
+                    </nomatch>
+                </li>
+
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mugirl"]/comps/li/compClass[text()="FacialAnimation.EyeballControllerComp"]</xpath>
+                    <nomatch Class="PatchOperationAdd">
+                        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mugirl"]/comps</xpath>
+                        <value>
+                            <li><compClass>FacialAnimation.EyeballControllerComp</compClass></li>
+                        </value>
+                    </nomatch>
+                </li>
+
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mugirl"]/comps/li/compClass[text()="FacialAnimation.LidControllerComp"]</xpath>
+                    <nomatch Class="PatchOperationAdd">
+                        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mugirl"]/comps</xpath>
+                        <value>
+                            <li><compClass>FacialAnimation.LidControllerComp</compClass></li>
+                        </value>
+                    </nomatch>
+                </li>
+
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mugirl"]/comps/li/compClass[text()="FacialAnimation.BrowControllerComp"]</xpath>
+                    <nomatch Class="PatchOperationAdd">
+                        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mugirl"]/comps</xpath>
+                        <value>
+                            <li><compClass>FacialAnimation.BrowControllerComp</compClass></li>
+                        </value>
+                    </nomatch>
+                </li>
+
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mugirl"]/comps/li/compClass[text()="FacialAnimation.MouthControllerComp"]</xpath>
+                    <nomatch Class="PatchOperationAdd">
+                        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mugirl"]/comps</xpath>
+                        <value>
+                            <li><compClass>FacialAnimation.MouthControllerComp</compClass></li>
+                        </value>
+                    </nomatch>
+                </li>
+
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mugirl"]/comps/li/compClass[text()="FacialAnimation.LidOptionControllerComp"]</xpath>
+                    <nomatch Class="PatchOperationAdd">
+                        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mugirl"]/comps</xpath>
+                        <value>
+                            <li><compClass>FacialAnimation.LidOptionControllerComp</compClass></li>
+                        </value>
+                    </nomatch>
+                </li>
+
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mugirl"]/comps/li/compClass[text()="FacialAnimation.EmotionControllerComp"]</xpath>
+                    <nomatch Class="PatchOperationAdd">
+                        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mugirl"]/comps</xpath>
+                        <value>
+                            <li><compClass>FacialAnimation.EmotionControllerComp</compClass></li>
+                        </value>
+                    </nomatch>
+                </li>
+
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mugirl"]/comps/li/compClass[text()="FacialAnimation.FacialAnimationControllerComp"]</xpath>
+                    <nomatch Class="PatchOperationAdd">
+                        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mugirl"]/comps</xpath>
+                        <value>
+                            <li><compClass>FacialAnimation.FacialAnimationControllerComp</compClass></li>
+                        </value>
+                    </nomatch>
+                </li>
+            </operations>
+        </match>
+    </Operation>
+</Patch>

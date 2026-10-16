@@ -1,0 +1,3 @@
+# B.namespaces, B.component-ctors and B.save-confinement: violations that exist before the refactor (Wave A, 2026-10-15).
+# key<TAB>reason. Only removals: a line whose violation is fixed is reported as stale and must be deleted; never add lines.
+ctor: Mugirl.Features.Corporate.CorporateNetwork: writes static Mugirl.Features.Corporate.CorporateNetwork::defaultedLoanFaction (via ResetDebtOverlay)	Owner behavior freeze (decisions section 7): preserve the original constructor-time debt-overlay reset; BeforeLoad/BeforeNewGame run at different points relative to Game construction, so moving this reset without equivalence proof would change observable state. See refactor-1.7-corporate-2026-10-15.md.

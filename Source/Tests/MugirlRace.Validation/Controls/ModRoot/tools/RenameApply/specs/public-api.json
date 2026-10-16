@@ -1,0 +1,155 @@
+{
+  "formatVersion": 1,
+  "entries": [
+    {
+      "kind": "type",
+      "name": "Mugirl.ControlPublicAlias",
+      "usedBy": [
+        "control: positive (exists, public, in PublicApi/)"
+      ]
+    },
+    {
+      "kind": "type",
+      "name": "Mugirl.NoSuchPublicType",
+      "usedBy": [
+        "control: missing type"
+      ]
+    },
+    {
+      "kind": "method",
+      "name": "Mugirl.ControlPublicAlias::Patchable()",
+      "noInlining": true,
+      "usedBy": [
+        "control: patchable extension point without NoInlining"
+      ]
+    },
+    {
+      "kind": "def",
+      "name": "Mugirl_Control_Missing",
+      "defRoot": "ThingDef",
+      "usedBy": [
+        "control: missing def"
+      ]
+    },
+    {
+      "kind": "def",
+      "name": "Mugirl_Control_Thing2",
+      "defRoot": "ThingDef",
+      "usedBy": [
+        "control: positive"
+      ]
+    },
+    {
+      "kind": "xmlField",
+      "name": "Mugirl.ControlPublicAlias.missingField",
+      "usedBy": [
+        "control: missing XML field"
+      ]
+    },
+    {
+      "kind": "method",
+      "name": "Mugirl.ControlPublicAlias::PatchableUncalled()",
+      "noInlining": true,
+      "usedBy": [
+        "control: patchable extension point that no Mugirl code calls"
+      ]
+    },
+    {
+      "kind": "method",
+      "name": "Mugirl.ControlPublicAlias::PatchableCalled()",
+      "noInlining": true,
+      "usedBy": [
+        "control: positive (NoInlining, called)"
+      ]
+    },
+    {
+      "kind": "harmonyId",
+      "name": "Control.NoSuchHarmonyId",
+      "usedBy": [
+        "control: id never passed to new Harmony"
+      ]
+    },
+    {
+      "kind": "xmlClass",
+      "name": "Mugirl.ControlEmptyAlias",
+      "frozenBy": "validator negative control"
+    },
+    {
+      "kind": "packageId",
+      "name": "Control.WrongPackage",
+      "frozenBy": "validator negative control"
+    },
+    {
+      "kind": "typeShortName",
+      "name": "NoSuchMod",
+      "frozenBy": "validator negative control"
+    },
+    {
+      "kind": "member",
+      "name": "Mugirl.ControlPublicAlias.PatchableCalled",
+      "frozenBy": "validator negative control",
+      "harmonyBoundParameters": [
+        "missing"
+      ]
+    },
+    {
+      "kind": "harmonyParameter",
+      "name": "Mugirl.ControlPublicAlias.PatchableCalled(missing)",
+      "frozenBy": "validator negative control",
+      "owner": "Mugirl.ControlPublicAlias.PatchableCalled"
+    },
+    {
+      "kind": "defName",
+      "name": "Mugirl_Control_Missing",
+      "frozenBy": "validator negative control",
+      "defRoot": "ThingDef"
+    },
+    {
+      "kind": "defNamePattern",
+      "name": "Control_*",
+      "frozenBy": "validator negative control"
+    },
+    {
+      "kind": "xpathStructure",
+      "name": "Mugirl_Control_Thing2/noSuchPath",
+      "frozenBy": "validator negative control",
+      "defRoot": "ThingDef"
+    },
+    {
+      "kind": "texturePath",
+      "name": "Control/Absent",
+      "frozenBy": "validator negative control"
+    },
+    {
+      "kind": "tag",
+      "name": "Control_Absent",
+      "frozenBy": "validator negative control"
+    },
+    {
+      "kind": "scribeLabel",
+      "name": "controlAbsentStamp",
+      "frozenBy": "validator negative control"
+    },
+    {
+      "kind": "structure",
+      "name": "unknown contract",
+      "frozenBy": "validator negative control"
+    },
+    {
+      "kind": "structure",
+      "name": "Mugirl race bodyAddons order (HAR addonVariants are saved by index; grow only at the end)",
+      "frozenBy": "control: absent race/order"
+    },
+    {
+      "kind": "structure",
+      "name": "texture paths under Textures/ (dependents reference Mugirl textures by path)",
+      "frozenBy": "control: missing texture"
+    },
+    {
+      "kind": "xmlField",
+      "owner": "Mugirl.ControlEmptyAlias",
+      "name": "absentOwnedField",
+      "frozenBy": "control: owner/name schema"
+    }
+  ]
+}

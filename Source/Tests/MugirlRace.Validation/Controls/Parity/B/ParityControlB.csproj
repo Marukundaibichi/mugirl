@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- 一致性比较负对照的“改名后”构建（见 ../A/ParityControlA.csproj）。 -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <AssemblyName>ParityControl</AssemblyName>
+    <RootNamespace>Mugirl.ParityControl</RootNamespace>
+    <IsPackable>false</IsPackable>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <AnalysisLevel>none</AnalysisLevel>
+    <EnforceCodeStyleInBuild>false</EnforceCodeStyleInBuild>
+    <Nullable>disable</Nullable>
+    <NoWarn>$(NoWarn);CS0169;CS0414;CS0649</NoWarn>
+  </PropertyGroup>
+</Project>

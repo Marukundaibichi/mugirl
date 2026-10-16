@@ -1,0 +1,7 @@
+# B.empty-types：允许没有任何成员的类型（XML 标记类型）。格式：完整类型名<TAB>理由。
+Mugirl.Features.Restraints.BrainwashHelmetApparel	thingClass marker in 1.7 Defs (brainwash slave apparel); behaviour lives in SlaveApparel and its comps, the class name is saved with the thing.
+Mugirl.Features.Restraints.CompAdultContentControl	compClass marker that XML adult-content toggles look up by type; it carries no state.
+Mugirl.CompProperties_MooMilkable	public XML alias (decisions D4/D5): other mods name this class in their Defs; behaviour and XML fields live in Mugirl.Features.Milk.CompProperties_MilkProduction.
+Mugirl.CompProperties_MugirlMount	public XML alias (decisions D4/D5): other mods name this class in their Defs; behaviour and XML fields live in Mugirl.Features.Mounting.CompProperties_Mount.
+Mugirl.StockGenerator_Mugirl_Slaves	public XML alias (decisions D4/D5): other mods name this class in their Defs; behaviour and XML fields live in Mugirl.Features.Trade.StockGenerator_MugirlSlaves.
+Mugirl.Features.WeaponWheel.ICustomEquippedWeaponDrawOwner	Capability marker on the existing lance flyer: its holder draws the equipped weapon, so the wheel skips duplicate drawing at the same prefix boundary; no state or callback is required and the implementer set is tested.

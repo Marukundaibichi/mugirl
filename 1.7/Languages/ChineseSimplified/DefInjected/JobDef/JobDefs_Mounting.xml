@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- mounting TargetA. -->
+    <Mugirl_Mount.reportString>骑上 TargetA。</Mugirl_Mount.reportString>
+    <!-- dismounting the rider from TargetA. -->
+    <Mugirl_Dismount.reportString>让 TargetA 上的骑乘者下来。</Mugirl_Dismount.reportString>
+</LanguageData>

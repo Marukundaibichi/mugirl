@@ -1,6 +1,8 @@
 1.6/Source/bin/
 1.6/Source/obj/
 1.6/Assemblies/*.pdb
+# Frozen local diagnostic probe; retained on disk, never shipped or versioned.
+1.6/Assemblies/NewbornBackstoryProbe.dll
 TMP/
 DevData/
 **/__pycache__/
@@ -10,3 +12,17 @@ DevData/
 *.user
 *.suo
 *.zstd
+
+# 1.7 build tree (Source/): intermediate output and test results
+Source/**/bin/
+Source/**/obj/
+Source/**/TestResults/
+tools/**/bin/
+tools/**/obj/
+tools/**/TestResults/
+.vs/
+
+# RimWorld 1.7 runtime artefacts: per-load-folder baked asset packs and shader caches
+Assets.zip
+Assets.zip.*
+*.spv-cache

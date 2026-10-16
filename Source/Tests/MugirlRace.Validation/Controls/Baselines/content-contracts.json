@@ -1,0 +1,26 @@
+{
+  // 负对照：每条契约都被控制 Mod 违反一次。
+  "thingDefNameNoTrailingDigit": "control: no trailing digit",
+  "emptyFiles": { "1.7/Defs/ControlMustBeEmpty.xml": "control: must stay empty" },
+  "defValues": [
+    { "def": "ThingDef/Mugirl_Control_Thing", "path": "label", "equals": "expected label", "reason": "control: label contract" }
+  ],
+  "conditionalTextures": [
+    { "prefix": "CTRL/", "folder": "1.7/Mods/Optional", "reason": "control: CTRL content only in its conditional folder" }
+  ],
+  "requiredFiles": { "1.7/Textures/Control/Required_{a,b}.png": "control: required overlays" },
+  "forbiddenFiles": { "Textures/Control/Case*.png": "control: forbidden legacy file" },
+  "forbiddenPngSizes": [
+    { "width": 555, "height": 555, "roots": ["Textures", "1.7"], "except": [], "reason": "control: unoptimized size" }
+  ],
+  "wornApparel": [
+    {
+      "file": "1.7/Defs/ControlApparel.xml",
+      "developmentalStageFilter": "Adult",
+      "bodySuffix": "_Female",
+      "headParents": [],
+      "headLayers": [],
+      "directions": ["north", "east", "south"]
+    }
+  ]
+}

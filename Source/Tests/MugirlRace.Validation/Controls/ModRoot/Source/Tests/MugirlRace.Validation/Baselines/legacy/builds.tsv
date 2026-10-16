@@ -1,0 +1,4 @@
+# builds.tsv: the single synthetic legacy build of the negative control.
+# extractor version: 2
+# columns: id	tier	kind	source	sha256	gitBlob	assemblyName	era	packageId	firstSeen	lastSeen	contentRef
+p.control	published	dll+content	control	-	-	MugirlRace	Mugirl	HAR.MugirlRace	2026-01-01T00:00:00Z	2026-01-01T00:00:00Z	-

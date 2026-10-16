@@ -1,6 +1,12 @@
 # 骑枪冲锋：破墙与运动模糊
 
-适用 RimWorld 1.6；2026-09-21 按玩家要求增加破墙，并将分离的人形残影改为连续、不规则尾缘、落地回收的运动模糊。此前骑枪按钮、定点伤害、骑乘跟随等历史见 [9.20 更新记录](../records/update-2026-09-20.md)。
+## 当前 1.7 维护入口（2026-10-16）
+
+现行源码在 `Source/MugirlRace/Features/Lances/{Charge,Flight,Rendering,Patches}`，包括 `CompLanceCharge`、`JobDriver_LanceCharge`、`PawnFlyer_LanceCharge`、`LanceMotionBlur`。渲染资源是 `1.7/Shaders/Mugirl/Mugirl_LanceMotionBlur.*.glsl`，不再构建 Unity AssetBundle。构建使用 Source/global.json 固定的 .NET 10 SDK，隔离验证入口为 `tools/Validate.ps1`、ShaderCheck 和隐藏静音的 `tools/Test-InGame.ps1`，见[验证手册](../validation-runbook.md)。
+
+本次重构保持破墙预算、烟雾/镜头计数、RNG、伤害及绘制时点。`lastPassableCell` 仍在原飞行检查点按地图事实恢复，不提前近似为出生格。两个武器冷却标签改为 mugirl 前缀，由升级层保留绝对截止 tick。旧两段步行冲锋使用等布局续接驱动，不重置当前 Toil；未开始且无法区分旧步行/新起飞的状态明确失败保原档。详见[战斗实施记录](../records/refactor-1.7-combat-2026-10-15.md)。完整 V 与发布验收尚未完成。
+
+以下为 RimWorld 1.6 的 2026-09-21 实施与验证历史，保留当时的路径、构建工具和证据，不作为当前 1.7 操作指令。此前骑枪按钮、定点伤害、骑乘跟随等历史见 [9.20 更新记录](../records/update-2026-09-20.md)。
 
 ## 破墙规则
 
@@ -27,7 +33,7 @@
 - 沿途冲锋按钮使用贯穿多个目标的图案；定点冲锋按钮使用命中单个目标的图案。按钮和瞄准鼠标图标均从各武器 Def 的 `lineIconPath`、`pointIconPath` 读取。
 - 瞄准时仿照原版炮塔，同时绘制最大射程圈和当前冲锋模式的最小射程圈。内圈使用 `minimumLineRange` 或 `minimumPointRange`，与目标有效性判断一致；最小射程为 0 时不绘制无意义的内圈。此改动不调整射程数值或能否发动的规则。
 
-## 构建与验证
+## 1.6 构建与验证（历史）
 
 `Build-LanceMotionBlurAssets.ps1` 使用 Unity 2022.3.62f3，在 `TMP/LanceMotionBlurShaderBuild` 创建无联接的构建工程，输出 `1.6/Resources/LanceMotionBlur`；`-ValidateOnly` 使用合成透明贴图做离屏 GPU 绘制并输出 `blur-gpu-check.png`。本机可构建 Windows（D3D11 / OpenGLCore / Vulkan）和 macOS（Metal）；未安装 Linux Build Support，Linux 资源尚未生成，缺少对应资源时只省略视觉拖尾，冲锋玩法照常运行。
 

@@ -1,0 +1,520 @@
+{
+ "module": "core",
+ "wave": "R2",
+ "createTypes": [
+  {
+   "fullName": "Mugirl.Core.MugirlDefOf",
+   "file": "Source/MugirlRace/Core/MugirlDefOf.cs",
+   "kind": "defOf",
+   "accessibility": "internal",
+   "header": "种族本体与内容共享目录（特性、生长阶段、污物等）中的雪牛娘 Def。",
+   "module": "core"
+  },
+  {
+   "fullName": "Mugirl.Features.Abilities.AbilitiesDefOf",
+   "file": "Source/MugirlRace/Features/Abilities/AbilitiesDefOf.cs",
+   "kind": "defOf",
+   "accessibility": "internal",
+   "header": "冲撞、投掷、扣篮等能力的 Def。",
+   "module": "milk"
+  },
+  {
+   "fullName": "Mugirl.Features.AdvancedArmor.AdvancedArmorDefOf",
+   "file": "Source/MugirlRace/Features/AdvancedArmor/AdvancedArmorDefOf.cs",
+   "kind": "defOf",
+   "accessibility": "internal",
+   "header": "神经战斗护甲功能的 Def。",
+   "module": "milk"
+  },
+  {
+   "fullName": "Mugirl.Features.Appearance.AppearanceDefOf",
+   "file": "Source/MugirlRace/Features/Appearance/AppearanceDefOf.cs",
+   "kind": "defOf",
+   "accessibility": "internal",
+   "header": "外观（发型、服装、皮肤覆盖层）功能的 Def。",
+   "module": "milk"
+  },
+  {
+   "fullName": "Mugirl.Features.Corporate.CorporateDefOf",
+   "file": "Source/MugirlRace/Features/Corporate/CorporateDefOf.cs",
+   "kind": "defOf",
+   "accessibility": "internal",
+   "header": "巨企功能的 Def。",
+   "module": "corporate"
+  },
+  {
+   "fullName": "Mugirl.Features.Lances.LancesDefOf",
+   "file": "Source/MugirlRace/Features/Lances/LancesDefOf.cs",
+   "kind": "defOf",
+   "accessibility": "internal",
+   "header": "骑枪冲锋功能的 Def。",
+   "module": "combat"
+  },
+  {
+   "fullName": "Mugirl.Features.Milk.MilkDefOf",
+   "file": "Source/MugirlRace/Features/Milk/MilkDefOf.cs",
+   "kind": "defOf",
+   "accessibility": "internal",
+   "header": "产奶、喂奶与奶制品功能的 Def。",
+   "module": "milk"
+  },
+  {
+   "fullName": "Mugirl.Features.Mounting.MountingDefOf",
+   "file": "Source/MugirlRace/Features/Mounting/MountingDefOf.cs",
+   "kind": "defOf",
+   "accessibility": "internal",
+   "header": "骑乘功能的 Def。",
+   "module": "combat"
+  },
+  {
+   "fullName": "Mugirl.Features.Restraints.RestraintsDefOf",
+   "file": "Source/MugirlRace/Features/Restraints/RestraintsDefOf.cs",
+   "kind": "defOf",
+   "accessibility": "internal",
+   "header": "束具功能的 Def。",
+   "module": "restraints"
+  },
+  {
+   "fullName": "Mugirl.Features.Roping.RopingDefOf",
+   "file": "Source/MugirlRace/Features/Roping/RopingDefOf.cs",
+   "kind": "defOf",
+   "accessibility": "internal",
+   "header": "牵绳功能的 Def。",
+   "module": "restraints"
+  },
+  {
+   "fullName": "Mugirl.Features.Social.SocialDefOf",
+   "file": "Source/MugirlRace/Features/Social/SocialDefOf.cs",
+   "kind": "defOf",
+   "accessibility": "internal",
+   "header": "社交（蹭蹭、进食心情）功能的 Def。",
+   "module": "incidents"
+  },
+  {
+   "fullName": "Mugirl.Features.Trade.TradeDefOf",
+   "file": "Source/MugirlRace/Features/Trade/TradeDefOf.cs",
+   "kind": "defOf",
+   "accessibility": "internal",
+   "header": "奴隶交易的 Def。",
+   "module": "incidents"
+  },
+  {
+   "fullName": "Mugirl.Features.WeaponWheel.WeaponWheelDefOf",
+   "file": "Source/MugirlRace/Features/WeaponWheel/WeaponWheelDefOf.cs",
+   "kind": "defOf",
+   "accessibility": "internal",
+   "header": "武器轮盘功能的 Def。",
+   "module": "combat"
+  },
+  {
+   "fullName": "Mugirl.Features.Xenotype.MugirlXenotypeDefOf",
+   "file": "Source/MugirlRace/Features/Xenotype/MugirlXenotypeDefOf.cs",
+   "kind": "defOf",
+   "accessibility": "internal",
+   "header": "异种功能的 Def（类名带 Mugirl：RimWorld.XenotypeDefOf 已存在）。",
+   "module": "milk"
+  },
+  {
+   "fullName": "Mugirl.Rendering.RenderingDefOf",
+   "file": "Source/MugirlRace/Rendering/RenderingDefOf.cs",
+   "kind": "defOf",
+   "accessibility": "internal",
+   "header": "渲染层使用的 Def：原生着色器材质与需要补刷图形的 DLC Hediff。",
+   "module": "core"
+  }
+ ],
+ "memberMoves": [
+  {
+   "to": "Mugirl.Core.MugirlDefOf",
+   "members": [
+    "Mugirl.Features.Newborn.MugirlNewbornDefOf.Mugirl_Teenager",
+    "Mugirl.Mugirl_DefOf.Mugirl",
+    "Mugirl.Mugirl_DefOf.MugirlBody",
+    "Mugirl.Mugirl_DefOf.Mugirl_ExperimentalChild"
+   ],
+   "reason": "C04 owner-of-the-Def rule: the DefOf of the feature that defines the def; consumers reference it."
+  },
+  {
+   "to": "Mugirl.Features.Abilities.AbilitiesDefOf",
+   "members": [
+    "Mugirl.Features.Genes.MugirlGenesDefOf.Longjump_Jump",
+    "Mugirl.Features.Genes.MugirlGenesDefOf.Longjump_Land",
+    "Mugirl.Mugirl_DefOf.Mugirl_Charge",
+    "Mugirl.Mugirl_DefOf.Mugirl_DunkBloodSplash",
+    "Mugirl.Mugirl_DefOf.Mugirl_DunkFlyer",
+    "Mugirl.Mugirl_DefOf.Mugirl_DunkHead",
+    "Mugirl.Mugirl_DefOf.Mugirl_DunkProp",
+    "Mugirl.Mugirl_DefOf.Mugirl_Stun",
+    "Mugirl.Mugirl_DefOf.Mugirl_ThrowController",
+    "Mugirl.Mugirl_DefOf.Mugirl_ThrownImpact",
+    "Mugirl.Mugirl_DefOf.Pawn_Melee_BigBash_HitPawn"
+   ],
+   "reason": "C04 owner-of-the-Def rule: the DefOf of the feature that defines the def; consumers reference it."
+  },
+  {
+   "to": "Mugirl.Features.AdvancedArmor.AdvancedArmorDefOf",
+   "members": [
+    "Mugirl.Mugirl_DefOf.Mugirl_NeuralAmplifierHelmet",
+    "Mugirl.Mugirl_DefOf.Mugirl_NeuralCombatArmor"
+   ],
+   "reason": "C04 owner-of-the-Def rule: the DefOf of the feature that defines the def; consumers reference it."
+  },
+  {
+   "to": "Mugirl.Features.Appearance.AppearanceDefOf",
+   "members": [
+    "Mugirl.Features.Appearance.MugirlAppearanceDefOf.CutoutSkinOverlay",
+    "Mugirl.MugirlContentDefOf.Mugirl_Bikini",
+    "Mugirl.MugirlContentDefOf.Mugirl_BrandBag",
+    "Mugirl.MugirlContentDefOf.Mugirl_BunnyGirlHeaddress",
+    "Mugirl.MugirlContentDefOf.Mugirl_BunnyGirlStocking",
+    "Mugirl.MugirlContentDefOf.Mugirl_BunnyGirlTop",
+    "Mugirl.MugirlContentDefOf.Mugirl_Cheongsam",
+    "Mugirl.MugirlContentDefOf.Mugirl_HighCutSweater",
+    "Mugirl.MugirlContentDefOf.Mugirl_ImmortalFairy",
+    "Mugirl.MugirlContentDefOf.Mugirl_ImmortalFairyAzure",
+    "Mugirl.MugirlContentDefOf.Mugirl_Jeans",
+    "Mugirl.MugirlContentDefOf.Mugirl_LeatherHeels",
+    "Mugirl.MugirlContentDefOf.Mugirl_NunBlindfold",
+    "Mugirl.MugirlContentDefOf.Mugirl_NunDressClassic",
+    "Mugirl.MugirlContentDefOf.Mugirl_NunDressSimple",
+    "Mugirl.MugirlContentDefOf.Mugirl_NunVeil",
+    "Mugirl.MugirlContentDefOf.Mugirl_OL",
+    "Mugirl.MugirlContentDefOf.Mugirl_PoliceBoots",
+    "Mugirl.MugirlContentDefOf.Mugirl_PoliceBra",
+    "Mugirl.MugirlContentDefOf.Mugirl_PoliceCap",
+    "Mugirl.MugirlContentDefOf.Mugirl_PoliceShirt",
+    "Mugirl.MugirlContentDefOf.Mugirl_PoliceShorts",
+    "Mugirl.MugirlContentDefOf.Mugirl_PoliceThong",
+    "Mugirl.MugirlContentDefOf.Mugirl_PoliceZipperBra",
+    "Mugirl.MugirlContentDefOf.Mugirl_Shirt",
+    "Mugirl.MugirlContentDefOf.Mugirl_SisterMask",
+    "Mugirl.MugirlContentDefOf.Mugirl_Sunglasses",
+    "Mugirl.MugirlContentDefOf.Mugirl_Veil",
+    "Mugirl.MugirlContentDefOf.Mugirl_WeddingDress",
+    "Mugirl.Mugirl_DefOf.Mugirl_LongCascade"
+   ],
+   "reason": "C04 owner-of-the-Def rule: the DefOf of the feature that defines the def; consumers reference it."
+  },
+  {
+   "to": "Mugirl.Features.Corporate.CorporateDefOf",
+   "members": [
+    "Mugirl.CorporateFinanceDefOf.Mugirl_CorporateFinanceConfig",
+    "Mugirl.CorporateIntroductionDefOf.Mugirl_CorporateIntroductionConfig",
+    "Mugirl.CorporateIntroductionDefOf.Mugirl_CorporateIntroductionQuest",
+    "Mugirl.CorporateIntroductionDefOf.Mugirl_CorporateTalkRepresentative",
+    "Mugirl.CorporateIntroductionDefOf.Mugirl_CorporateUseComms",
+    "Mugirl.CorporatePeopleDefOf.Mugirl_CorporatePeopleConfig",
+    "Mugirl.CorporatePeopleDefOf.Mugirl_CorporatePersonnelTrader",
+    "Mugirl.CorporatePeopleDefOf.Mugirl_CorporateSoldMugirl",
+    "Mugirl.CorporateQuestDefOf.Mercenary_Gunner",
+    "Mugirl.CorporateQuestDefOf.Mugirl_CorporateFusionResearchSite",
+    "Mugirl.CorporateQuestDefOf.Mugirl_CorporateMission",
+    "Mugirl.CorporateQuestDefOf.Mugirl_CorporateMissionConfig",
+    "Mugirl.CorporateQuestDefOf.Mugirl_CorporatePurgeSite",
+    "Mugirl.CorporateQuestDefOf.Mugirl_CorporateResearchSite",
+    "Mugirl.CorporateQuestDefOf.TradeRequest",
+    "Mugirl.CorporateTradeDefOf.Furniture",
+    "Mugirl.CorporateTradeDefOf.Mugirl_CorporateTradeConfig",
+    "Mugirl.MugirlContentDefOf.Mugirl_CorporateDiehard",
+    "Mugirl.MugirlContentDefOf.Mugirl_CorporateRepresentative",
+    "Mugirl.MugirlContentDefOf.Mugirl_CorporateShowcase",
+    "Mugirl.MugirlContentDefOf.Mugirl_CorporateSupport",
+    "Mugirl.MugirlContentDefOf.Mugirl_CorporateSupportHunt",
+    "Mugirl.MugirlContentDefOf.Mugirl_CorporateSupportTend",
+    "Mugirl.MugirlContentDefOf.Mugirl_GiantCorp_Courier",
+    "Mugirl.MugirlContentDefOf.Mugirl_GiantCorporation"
+   ],
+   "reason": "C04 owner-of-the-Def rule: the DefOf of the feature that defines the def; consumers reference it."
+  },
+  {
+   "to": "Mugirl.Features.Incidents.IncidentsDefOf",
+   "members": [
+    "Mugirl.MugirlContentDefOf.Mugirl_CourierContact",
+    "Mugirl.MugirlContentDefOf.Mugirl_CourierDiary",
+    "Mugirl.MugirlContentDefOf.Mugirl_Punisher",
+    "Mugirl.MugirlContentDefOf.Mugirl_PunisherKnockout",
+    "Mugirl.MugirlContentDefOf.Mugirl_PunisherRace",
+    "Mugirl.MugirlContentDefOf.Mugirl_ReadCourierDiary",
+    "Mugirl.MugirlContentDefOf.Mugirl_RunawayFarm",
+    "Mugirl.MugirlContentDefOf.Mugirl_RunawayPanic",
+    "Mugirl.MugirlContentDefOf.Mugirl_TalkCourier",
+    "Mugirl.MugirlContentDefOf.Mugirl_TalkFusionInvestor",
+    "Mugirl.Mugirl_DefOf.Mugirl_Abasia",
+    "Mugirl.Mugirl_DefOf.Mugirl_Beginning_Slave",
+    "Mugirl.Mugirl_DefOf.Mugirl_EscapeSpaceSlave",
+    "Mugirl.Mugirl_DefOf.Mugirl_EscapeWanderSlave",
+    "Mugirl.Mugirl_DefOf.Mugirl_EscapeWildSlave",
+    "Mugirl.Mugirl_DefOf.Mugirl_PreEscapeWildSlave",
+    "Mugirl.Mugirl_DefOf.Mugirl_SlaveOpeningPodCrash",
+    "Mugirl.Mugirl_DefOf.Mugirl_WildMugirl"
+   ],
+   "reason": "C04 owner-of-the-Def rule: the DefOf of the feature that defines the def; consumers reference it."
+  },
+  {
+   "to": "Mugirl.Features.Lances.LancesDefOf",
+   "members": [
+    "Mugirl.Mugirl_DefOf.Mugirl_LanceChargeFlyer",
+    "Mugirl.Mugirl_DefOf.Mugirl_LanceLineCharge",
+    "Mugirl.Mugirl_DefOf.Mugirl_LancePointCharge"
+   ],
+   "reason": "C04 owner-of-the-Def rule: the DefOf of the feature that defines the def; consumers reference it."
+  },
+  {
+   "to": "Mugirl.Features.Milk.MilkDefOf",
+   "members": [
+    "Mugirl.CorporateTradeDefOf.Mugirl_Wool",
+    "Mugirl.Features.Milk.MilkNurtureDefOf.Mugirl_MotherlyNurture",
+    "Mugirl.Features.Milk.MilkNurtureDefOf.Mugirl_NurtureAfterglow",
+    "Mugirl.Features.Milk.MilkNurtureDefOf.Mugirl_NurturedByMugirl",
+    "Mugirl.MugirlContentDefOf.Mugirl_AgedCheese",
+    "Mugirl.MugirlContentDefOf.Mugirl_BaotaSugar",
+    "Mugirl.MugirlContentDefOf.Mugirl_Cheese",
+    "Mugirl.MugirlContentDefOf.Mugirl_CowCake",
+    "Mugirl.MugirlContentDefOf.Mugirl_MilkCandy",
+    "Mugirl.MugirlContentDefOf.Mugirl_MilkCreamApple",
+    "Mugirl.MugirlContentDefOf.Mugirl_MilkPowder",
+    "Mugirl.MugirlContentDefOf.Mugirl_MilkPudding",
+    "Mugirl.MugirlContentDefOf.Mugirl_MilkTablet",
+    "Mugirl.MugirlMilkDefOf.FoamSpray",
+    "Mugirl.MugirlMilkDefOf.Mugirl_ChildDrinkMilk",
+    "Mugirl.MugirlMilkDefOf.Mugirl_ConsumedMilk",
+    "Mugirl.MugirlMilkDefOf.Mugirl_DrankMilk",
+    "Mugirl.MugirlMilkDefOf.Mugirl_DrinkMilk",
+    "Mugirl.MugirlMilkDefOf.Mugirl_FedMilk",
+    "Mugirl.MugirlMilkDefOf.Mugirl_FeedMilk",
+    "Mugirl.MugirlMilkDefOf.Mugirl_Filth_MilkStain",
+    "Mugirl.MugirlMilkDefOf.Mugirl_Lactation",
+    "Mugirl.MugirlMilkDefOf.Mugirl_MilkHealing",
+    "Mugirl.MugirlMilkDefOf.Mugirl_Milking_Sound",
+    "Mugirl.Mugirl_DefOf.Job_MugirlMilkingTargetWait",
+    "Mugirl.Mugirl_DefOf.Mugirl_GatherMilk",
+    "Mugirl.Mugirl_DefOf.Mugirl_Milk",
+    "Mugirl.Mugirl_DefOf.Mugirl_MilkInteractionRecipientAnimation",
+    "Mugirl.Mugirl_DefOf.Mugirl_MilkInteractionSourceAnimation",
+    "Mugirl.Mugirl_DefOf.Mugirl_MilkInteractionWait",
+    "Mugirl.Mugirl_DefOf.Mugirl_MilkingHelperAnimation",
+    "Mugirl.Mugirl_DefOf.Mugirl_MilkingSelfAnimation",
+    "Mugirl.Mugirl_DefOf.Mugirl_MilkingTargetAnimation",
+    "Mugirl.Mugirl_DefOf.Root"
+   ],
+   "reason": "C04 owner-of-the-Def rule: the DefOf of the feature that defines the def; consumers reference it."
+  },
+  {
+   "to": "Mugirl.Features.Mounting.MountingDefOf",
+   "members": [
+    "Mugirl.Mugirl_DefOf.Mugirl_Dismount",
+    "Mugirl.Mugirl_DefOf.Mugirl_Mount"
+   ],
+   "reason": "C04 owner-of-the-Def rule: the DefOf of the feature that defines the def; consumers reference it."
+  },
+  {
+   "to": "Mugirl.Features.Restraints.RestraintsDefOf",
+   "members": [
+    "Mugirl.MugirlContentDefOf.Mugirl_ShockCollar",
+    "Mugirl.MugirlContentDefOf.Mugirl_SlaveApparelKey_Industrial",
+    "Mugirl.MugirlContentDefOf.Mugirl_SlaveApparelKey_Medieval",
+    "Mugirl.Mugirl_DefOf.Mugirl_BrainwashObey",
+    "Mugirl.Mugirl_DefOf.Mugirl_ForceUnlockRestraint"
+   ],
+   "reason": "C04 owner-of-the-Def rule: the DefOf of the feature that defines the def; consumers reference it."
+  },
+  {
+   "to": "Mugirl.Features.Roping.RopingDefOf",
+   "members": [
+    "Mugirl.Mugirl_DefOf.Mugirl_FollowRoper",
+    "Mugirl.Mugirl_DefOf.Mugirl_Rope",
+    "Mugirl.Mugirl_DefOf.Mugirl_RopeToHitch",
+    "Mugirl.Mugirl_DefOf.Mugirl_Unrope",
+    "Mugirl.Mugirl_DefOf.Mugirl_WallRopeHitch"
+   ],
+   "reason": "C04 owner-of-the-Def rule: the DefOf of the feature that defines the def; consumers reference it."
+  },
+  {
+   "to": "Mugirl.Features.Social.SocialDefOf",
+   "members": [
+    "Mugirl.Mugirl_DefOf.Mugirl_Nuzzle",
+    "Mugirl.Mugirl_DefOf.Mugirl_NuzzleInteraction",
+    "Mugirl.Mugirl_DefOf.Mugirl_Nuzzled"
+   ],
+   "reason": "C04 owner-of-the-Def rule: the DefOf of the feature that defines the def; consumers reference it."
+  },
+  {
+   "to": "Mugirl.Features.Trade.TradeDefOf",
+   "members": [
+    "Mugirl.Mugirl_DefOf.Mugirl_Slave"
+   ],
+   "reason": "C04 owner-of-the-Def rule: the DefOf of the feature that defines the def; consumers reference it."
+  },
+  {
+   "to": "Mugirl.Features.WeaponWheel.WeaponWheelDefOf",
+   "members": [
+    "Mugirl.Mugirl_DefOf.Mugirl_Autoloading",
+    "Mugirl.Mugirl_DefOf.Mugirl_LinkedSwordDance",
+    "Mugirl.Mugirl_DefOf.Mugirl_LoadWeaponWheel"
+   ],
+   "reason": "C04 owner-of-the-Def rule: the DefOf of the feature that defines the def; consumers reference it."
+  },
+  {
+   "to": "Mugirl.Features.Xenotype.MugirlXenotypeDefOf",
+   "members": [
+    "Mugirl.Mugirl_DefOf.Mugirl_Xenotype"
+   ],
+   "reason": "C04 owner-of-the-Def rule: the DefOf of the feature that defines the def; consumers reference it."
+  },
+  {
+   "to": "Mugirl.Rendering.RenderingDefOf",
+   "members": [
+    "Mugirl.Features.Misc.MugirlMiscDefOf.Ghoul",
+    "Mugirl.Rendering.MugirlRenderDefOf.Mugirl_ExtraOutline",
+    "Mugirl.Rendering.MugirlRenderDefOf.Mugirl_LanceMotionBlur"
+   ],
+   "reason": "C04 owner-of-the-Def rule: the DefOf of the feature that defines the def; consumers reference it."
+  },
+  {
+   "to": "Mugirl.Features.Incidents.IncidentsDefOf",
+   "members": [
+    "Mugirl.MugirlContentDefOf.ShockwaveFast"
+   ],
+   "referenceRules": [
+    {
+     "pathPrefix": "Source/MugirlRace/Features/Incidents/",
+     "to": "Mugirl.Features.Incidents.IncidentsDefOf"
+    },
+    {
+     "pathPrefix": "Source/MugirlRace/Features/Lances/",
+     "to": "Mugirl.Features.Lances.LancesDefOf"
+    }
+   ],
+   "reason": "C04 memberCopies rule: a vanilla/DLC def is declared by each feature that reads it."
+  }
+ ],
+ "memberDeletes": [
+  {
+   "members": [
+    "Mugirl.MugirlContentDefOf.Mugirl_AgedCheeseEffect",
+    "Mugirl.MugirlContentDefOf.Mugirl_Bikini_Stocking",
+    "Mugirl.MugirlContentDefOf.Mugirl_Combatant_BulletproofVest",
+    "Mugirl.MugirlContentDefOf.Mugirl_Combatant_Clothes",
+    "Mugirl.MugirlContentDefOf.Mugirl_Combatant_Helmet",
+    "Mugirl.MugirlContentDefOf.Mugirl_Combatant_Underwear",
+    "Mugirl.MugirlContentDefOf.Mugirl_ConsumedAgedCheese",
+    "Mugirl.MugirlContentDefOf.Mugirl_ConsumedCheese",
+    "Mugirl.MugirlContentDefOf.Mugirl_ConsumedMilkCandy",
+    "Mugirl.MugirlContentDefOf.Mugirl_ConsumedPudding",
+    "Mugirl.MugirlContentDefOf.Mugirl_ConsumedRichMilkFlavor",
+    "Mugirl.MugirlContentDefOf.Mugirl_CowCakeEffect",
+    "Mugirl.MugirlContentDefOf.Mugirl_FusionInvestmentIncident",
+    "Mugirl.MugirlContentDefOf.Mugirl_GiantCorp_Elite",
+    "Mugirl.MugirlContentDefOf.Mugirl_GiantCorp_Grunt",
+    "Mugirl.MugirlContentDefOf.Mugirl_GiantCorp_MugirlRaider",
+    "Mugirl.MugirlContentDefOf.Mugirl_GiantCorp_Soldier",
+    "Mugirl.MugirlContentDefOf.Mugirl_MakeAgedCheese",
+    "Mugirl.MugirlContentDefOf.Mugirl_MakeBaotaSugar",
+    "Mugirl.MugirlContentDefOf.Mugirl_MakeCheese",
+    "Mugirl.MugirlContentDefOf.Mugirl_MakeCowCake",
+    "Mugirl.MugirlContentDefOf.Mugirl_MakeMilkCandy",
+    "Mugirl.MugirlContentDefOf.Mugirl_MakeMilkCreamApple",
+    "Mugirl.MugirlContentDefOf.Mugirl_MakeMilkPowder",
+    "Mugirl.MugirlContentDefOf.Mugirl_MakeMilkPudding",
+    "Mugirl.MugirlContentDefOf.Mugirl_MakeMilkTablet",
+    "Mugirl.MugirlContentDefOf.Mugirl_MigrationIncident",
+    "Mugirl.MugirlContentDefOf.Mugirl_MilitaryDress",
+    "Mugirl.MugirlContentDefOf.Mugirl_MilitaryUniform",
+    "Mugirl.MugirlContentDefOf.Mugirl_MilkPowderEffect",
+    "Mugirl.MugirlContentDefOf.Mugirl_MilkTabletEffect",
+    "Mugirl.MugirlContentDefOf.Mugirl_PMC_CaptainHelmet",
+    "Mugirl.MugirlContentDefOf.Mugirl_PMC_CombatUniform",
+    "Mugirl.MugirlContentDefOf.Mugirl_PMC_Helmet",
+    "Mugirl.MugirlContentDefOf.Mugirl_RunawayFarmQuest",
+    "Mugirl.MugirlContentDefOf.Mugirl_RunawayFarmQuestIncident",
+    "Mugirl.MugirlContentDefOf.Mugirl_SpecialStockings",
+    "Mugirl.MugirlMilkDefOf.GroundWaterSplash",
+    "Mugirl.MugirlMilkDefOf.Mugirl_MilkSpray",
+    "Mugirl.Mugirl_DefOf.Mugirl_Armbinder",
+    "Mugirl.Mugirl_DefOf.Mugirl_AutoloadingSystem",
+    "Mugirl.Mugirl_DefOf.Mugirl_Colonist",
+    "Mugirl.Mugirl_DefOf.Mugirl_Dunk",
+    "Mugirl.Mugirl_DefOf.Mugirl_DunkAbility",
+    "Mugirl.Mugirl_DefOf.Mugirl_Fleck_BrainwashEyes",
+    "Mugirl.Mugirl_DefOf.Mugirl_LanceChargeSpeed",
+    "Mugirl.Mugirl_DefOf.Mugirl_Newborn",
+    "Mugirl.Mugirl_DefOf.Mugirl_Throw"
+   ],
+   "reason": "DefOf fields without a C# reader (design 3.1: no unused DefOf fields; existence checks belong to the validator's content contracts)."
+  }
+ ],
+ "dissolveTypes": [
+  {
+   "type": "Mugirl.CorporateFinanceDefOf",
+   "reason": "R2 DefOf dissolution (C02/C03): every field moved to its feature DefOf or deleted."
+  },
+  {
+   "type": "Mugirl.CorporateIntroductionDefOf",
+   "reason": "R2 DefOf dissolution (C02/C03): every field moved to its feature DefOf or deleted."
+  },
+  {
+   "type": "Mugirl.CorporatePeopleDefOf",
+   "reason": "R2 DefOf dissolution (C02/C03): every field moved to its feature DefOf or deleted."
+  },
+  {
+   "type": "Mugirl.CorporateQuestDefOf",
+   "reason": "R2 DefOf dissolution (C02/C03): every field moved to its feature DefOf or deleted."
+  },
+  {
+   "type": "Mugirl.CorporateTradeDefOf",
+   "reason": "R2 DefOf dissolution (C02/C03): every field moved to its feature DefOf or deleted."
+  },
+  {
+   "type": "Mugirl.Features.Appearance.MugirlAppearanceDefOf",
+   "reason": "R2 DefOf dissolution (C02/C03): every field moved to its feature DefOf or deleted."
+  },
+  {
+   "type": "Mugirl.Features.Genes.MugirlGenesDefOf",
+   "reason": "R2 DefOf dissolution (C02/C03): every field moved to its feature DefOf or deleted."
+  },
+  {
+   "type": "Mugirl.Features.Milk.MilkNurtureDefOf",
+   "reason": "R2 DefOf dissolution (C02/C03): every field moved to its feature DefOf or deleted."
+  },
+  {
+   "type": "Mugirl.Features.Misc.MugirlMiscDefOf",
+   "reason": "R2 DefOf dissolution (C02/C03): every field moved to its feature DefOf or deleted."
+  },
+  {
+   "type": "Mugirl.Features.Newborn.MugirlNewbornDefOf",
+   "reason": "R2 DefOf dissolution (C02/C03): every field moved to its feature DefOf or deleted."
+  },
+  {
+   "type": "Mugirl.MugirlContentDefOf",
+   "reason": "R2 DefOf dissolution (C02/C03): every field moved to its feature DefOf or deleted."
+  },
+  {
+   "type": "Mugirl.MugirlMilkDefOf",
+   "reason": "R2 DefOf dissolution (C02/C03): every field moved to its feature DefOf or deleted."
+  },
+  {
+   "type": "Mugirl.Mugirl_DefOf",
+   "reason": "R2 DefOf dissolution (C02/C03): every field moved to its feature DefOf or deleted."
+  },
+  {
+   "type": "Mugirl.Rendering.MugirlRenderDefOf",
+   "reason": "R2 DefOf dissolution (C02/C03): every field moved to its feature DefOf or deleted."
+  }
+ ],
+ "baselineRemovals": [
+  {
+   "file": "Source/Tests/MugirlRace.Validation/Baselines/structure-debt.allow.txt",
+   "keys": [
+    "root: Mugirl.CorporateFinanceDefOf",
+    "root: Mugirl.CorporateIntroductionDefOf",
+    "root: Mugirl.CorporatePeopleDefOf",
+    "root: Mugirl.CorporateQuestDefOf",
+    "root: Mugirl.CorporateTradeDefOf",
+    "root: Mugirl.MugirlContentDefOf",
+    "root: Mugirl.MugirlMilkDefOf",
+    "root: Mugirl.Mugirl_DefOf"
+   ],
+   "reason": "B.namespaces debt paid by the R2 DefOf dissolution."
+  }
+ ]
+}

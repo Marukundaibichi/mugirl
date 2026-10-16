@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <ThingDef ParentName="BaseFilth">
+        <defName>MugirlMilkFilth</defName>
+        <!-- 电击产生的喷乳 -->
+        <label>Electrocution Milk Spray</label>
+        <statBases>
+            <Beauty>-10</Beauty>
+            <Cleanliness>-5</Cleanliness>
+        </statBases>
+        <graphicData>
+            <texPath>Things/Filth/Mugirl_MilkStain</texPath>
+            <color>(1, 1, 1, 1)</color>
+        </graphicData>
+        <filth>
+            <ignoreFilthMultiplierStat>true</ignoreFilthMultiplierStat>
+            <disappearsInDays>35~40</disappearsInDays>
+            <rainWashes>true</rainWashes>
+            <cleaningWorkToReduceThickness>50</cleaningWorkToReduceThickness>
+            <canFilthAttach>true</canFilthAttach>
+            <cleaningSound>Interact_CleanFilth_Fluid</cleaningSound>
+        </filth>
+    </ThingDef>
+
+    <ThingDef ParentName="BaseFilth">
+        <defName>Mugirl_Filth_MilkStain</defName>
+        <!-- 普通挤奶产生的奶渍；旧 MugirlMilkFilth 保留给电击路径与旧存档。 -->
+        <label>Mugirl milk stain</label>
+        <statBases>
+            <Beauty>-10</Beauty>
+            <Cleanliness>-5</Cleanliness>
+        </statBases>
+        <graphicData>
+            <texPath>Things/Filth/Mugirl_MilkStain</texPath>
+            <color>(1, 1, 1, 1)</color>
+        </graphicData>
+        <filth>
+            <ignoreFilthMultiplierStat>true</ignoreFilthMultiplierStat>
+            <disappearsInDays>35~40</disappearsInDays>
+            <rainWashes>true</rainWashes>
+            <cleaningWorkToReduceThickness>50</cleaningWorkToReduceThickness>
+            <canFilthAttach>true</canFilthAttach>
+            <cleaningSound>Interact_CleanFilth_Fluid</cleaningSound>
+        </filth>
+    </ThingDef>
+
+    <ThingDef ParentName="BaseFilth">
+        <defName>Mugirl_Filth_ShockFluid</defName>
+        <!-- 电击流下的液体 -->
+        <label>The liquid flowing down from electrocution.</label>
+        <statBases>
+            <Beauty>-30</Beauty>
+            <Cleanliness>-5</Cleanliness>
+        </statBases>
+        <graphicData>
+            <texPath>Things/Filth/Mugirl_PoolSoft</texPath>
+            <color>(200, 200, 140, 50)</color>
+        </graphicData>
+        <filth>
+            <ignoreFilthMultiplierStat>true</ignoreFilthMultiplierStat>
+            <disappearsInDays>35~40</disappearsInDays>
+            <rainWashes>true</rainWashes>
+            <cleaningWorkToReduceThickness>70</cleaningWorkToReduceThickness>
+            <canFilthAttach>true</canFilthAttach>
+            <cleaningSound>Interact_CleanFilth_Fluid</cleaningSound>
+        </filth>
+    </ThingDef>
+
+    <ThingDef ParentName="MoteBase">
+        <defName>Mugirl_Mote_BrainwashEyes</defName>
+        <!-- 雪牛娘因强力电击而忍不住喷奶的效果 -->
+        <label>The effect of Mugirl involuntarily spraying milk due to a powerful electric shock.</label>
+        <thingClass>MoteDualAttached</thingClass>
+        <altitudeLayer>MetaOverlays</altitudeLayer>
+        <graphicData>
+            <texPath>Things/Mote/Mugirl_EyeInHead</texPath>
+            <drawSize>1.2</drawSize>
+            <color>(239, 70, 274, 100)</color>
+        </graphicData>
+        <mote>
+            <solidTime>9999</solidTime>
+            <needsMaintenance>true</needsMaintenance>
+        </mote>
+    </ThingDef>
+
+    <FleckDef ParentName="FleckBase_Thrown">
+        <defName>Mugirl_Fleck_BrainwashEyes</defName>
+        <graphicData>
+            <texPath>Things/Mote/Mugirl_MentalEyes</texPath>
+            <renderInstanced>true</renderInstanced>
+            <drawSize>1.5</drawSize>
+            <color>(239, 70, 274, 100)</color>
+        </graphicData>
+        <altitudeLayer>MetaOverlays</altitudeLayer>
+        <fadeInTime>0.08</fadeInTime>
+        <solidTime>1.4</solidTime>
+        <fadeOutTime>1.5</fadeOutTime>
+        <growthRate>0.20</growthRate>
+    </FleckDef>
+
+    <FleckDef ParentName="FleckBase_Thrown">
+        <defName>Mugirl_MilkSpray</defName>
+        <graphicData>
+            <graphicClass>Graphic_Fleck</graphicClass>
+            <shaderType>Mote</shaderType>
+            <texPath>Things/Filth/Mugirl_PoolSoft/Mugirl_PoolSoftA</texPath>
+            <drawSize>1.6</drawSize>
+            <color>(1, 1, 1, 0.95)</color>
+        </graphicData>
+        <altitudeLayer>MoteOverhead</altitudeLayer>
+        <fadeInTime>0</fadeInTime>
+        <solidTime>0.08</solidTime>
+        <fadeOutTime>0.55</fadeOutTime>
+        <growthRate>0.35</growthRate>
+    </FleckDef>
+
+</Defs>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <JobDef>
+        <defName>Mugirl_LoadWeaponWheel</defName>
+        <driverClass>Mugirl.Features.WeaponWheel.JobDriver_LoadWeaponWheel</driverClass>
+        <!-- 正在将 TargetA 装入武器轮盘。 -->
+        <reportString>loading TargetA into the weapon wheel.</reportString>
+        <suspendable>false</suspendable>
+    </JobDef>
+</Defs>

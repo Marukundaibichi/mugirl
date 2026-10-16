@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- Courier contact -->
+    <Mugirl_CourierContact.questNameRules.rulesStrings>
+        <li>questName->运货员接触</li>
+    </Mugirl_CourierContact.questNameRules.rulesStrings>
+    <!-- A corporate courier carrying important items has arrived near your colony. He looks exhausted and afraid. You can send a colonist to negotiate with him. -->
+    <Mugirl_CourierContact.questDescriptionRules.rulesStrings>
+        <li>questDescription->一名巨企运货员携带重要物品来到你的殖民地附近。他看起来又累又怕。你可以派殖民者与他交涉。</li>
+    </Mugirl_CourierContact.questDescriptionRules.rulesStrings>
+</LanguageData>

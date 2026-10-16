@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- Charging TargetA. -->
+    <Job_Charge.reportString>冲锋 TargetA.</Job_Charge.reportString>
+    <!-- Dribbling TargetA's head toward TargetB. -->
+    <Mugirl_Dunk.reportString>正拍着 TargetA 的脑袋冲向 TargetB。</Mugirl_Dunk.reportString>
+</LanguageData>

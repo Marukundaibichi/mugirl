@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- C.language-files：被 1.7/Languages/English/Keyed/Shadow.xml 遮蔽，游戏不会读取。 -->
+<LanguageData>
+  <Control_Shadow>Shadowed copy</Control_Shadow>
+</LanguageData>

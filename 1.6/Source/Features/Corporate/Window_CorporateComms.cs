@@ -311,7 +311,9 @@ namespace Mugirl
 
         private void DrawIntroduction(Rect rect)
         {
-            string body = "Mugirl.CorporateIntro.ChapterCompleted".Translate() + "\n\n" + "Mugirl.CorporateIntro.ComingSoon".Translate();
+            string body = (CorporateIntroduction.Current?.IndependentContact == true
+                ? "Mugirl.CorporateIntro.Independent.ChapterCompleted"
+                : "Mugirl.CorporateIntro.ChapterCompleted").Translate() + "\n\n" + "Mugirl.CorporateIntro.ComingSoon".Translate();
             Rect view = new Rect(0f, 0f, rect.width - 18f, Mathf.Max(rect.height, Text.CalcHeight(body, rect.width - 18f) + 140f));
             CorporateUI.BeginScrollView(rect, ref introductionScroll, view, "introduction");
             try

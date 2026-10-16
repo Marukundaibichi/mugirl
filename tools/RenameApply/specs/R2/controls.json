@@ -1,0 +1,31 @@
+{
+ "module": "validator",
+ "wave": "R2",
+ "createFiles": [
+  {
+   "path": "Source/Tests/MugirlRace.Validation/Controls/NegativeControl/MugirlDefOf.cs",
+   "content": "namespace Mugirl.Core;\n\n/// <summary>B.architecture mugirl-identity：与正式 Mod 同名的 DefOf 字段在 MugirlIdentity 之外被读取。</summary>\n[DefOf]\npublic static class MugirlDefOf\n{\n    public static BodyDef MugirlBody;\n\n    static MugirlDefOf() => DefOfHelper.EnsureInitializedInCtor(typeof(MugirlDefOf));\n}\n",
+   "reason": "The negative control mimics the DefOf that owns MugirlBody after the R2 split."
+  }
+ ],
+ "textEdits": [
+  {
+   "file": "Source/Tests/MugirlRace.Validation/Controls/NegativeControl/DataViolations.cs",
+   "old": "/// <summary>B.architecture mugirl-identity：与正式 Mod 同名的 DefOf 字段在 MugirlIdentity 之外被读取。</summary>\n[DefOf]\npublic static class Mugirl_DefOf\n{\n    public static BodyDef MugirlBody;\n\n    static Mugirl_DefOf() => DefOfHelper.EnsureInitializedInCtor(typeof(Mugirl_DefOf));\n}\n\n",
+   "new": "",
+   "reason": "moved to Controls/NegativeControl/MugirlDefOf.cs (namespace Mugirl.Core)"
+  },
+  {
+   "file": "Source/Tests/MugirlRace.Validation/Controls/NegativeControl/DataViolations.cs",
+   "old": "pawn.RaceProps.body == Mugirl_DefOf.MugirlBody",
+   "new": "pawn.RaceProps.body == Core.MugirlDefOf.MugirlBody",
+   "reason": "the control reads the moved DefOf field"
+  },
+  {
+   "file": "Source/Tests/MugirlRace.Validation/Controls/expected-failures.txt",
+   "old": "B.architecture | mugirl-identity: Mugirl.Mugirl_DefOf::MugirlBody @ Mugirl.ControlLookups",
+   "new": "B.architecture | mugirl-identity: Mugirl.Core.MugirlDefOf::MugirlBody @ Mugirl.ControlLookups",
+   "reason": "architecture-rules.json names the moved field"
+  }
+ ]
+}

@@ -2,4 +2,5 @@
 <LanguageData>
     <!-- Milk {TargetA}. -->
     <Job_GatherMilk.reportString>给 {TargetA} 挤奶</Job_GatherMilk.reportString>
+    <Job_MugirlMilkingTargetWait.reportString>正在被挤奶。</Job_MugirlMilkingTargetWait.reportString>
 </LanguageData>

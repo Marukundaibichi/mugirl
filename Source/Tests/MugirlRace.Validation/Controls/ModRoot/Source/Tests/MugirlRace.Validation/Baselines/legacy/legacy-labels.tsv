@@ -1,0 +1,17 @@
+# legacy-labels.tsv: negative-control corpus for C.save-upgrade (each row exercises one rule; see Controls/expected-failures.txt).
+# columns: owner	label	scribeKind	valueType	lookMode	default	forceSave	tiers	eras	first	last
+Mugirl.Control.Upgrade.LabelOwner	drift	Values	System.Int32	Value	5	False	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.LabelOwner	drift2	Values	System.Int32	Value	4	False	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.LabelOwner	forced	Values	System.Int32	Value	1	True	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.LabelOwner	kept	Values	System.Int32	Value	0	False	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.LabelOwner	kindChanged	Deep	Mugirl.Control.Upgrade.LabelOwner	Deep	-	-	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.LabelOwner	oldName	Values	System.Int32	Value	0	False	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.LabelOwner	stillRead	Values	System.Int32	Value	0	False	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.OldOwner	legacyCount	Values	System.Int32	Value	0	False	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.OldOwner	legacyFlag	Values	System.Boolean	Value	False	False	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.OldOwner	scopeProbe	Values	System.Int32	Value	0	False	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.OldOwner	slots	Collections	System.Collections.Generic.List<Mugirl.Control.Upgrade.Slot>	Deep	-	-	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.Slot	oldSlotLabel	Values	System.String	Value	null	False	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.MergedBase	mergedProgress	Values	System.Int32	Value	0	False	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.PartlyLostBase	mergedProgress	Values	System.Int32	Value	0	False	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.DriftBase	mergedProgress	Values	System.Int32	Value	0	False	published	Mugirl	p.control	p.control

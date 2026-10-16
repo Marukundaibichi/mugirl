@@ -1,0 +1,12 @@
+def|ThingDef/Control_label	visible label is never identifier-normalized
+def|ThingDef/Control_description	visible description is never identifier-normalized
+def|ThingDef/Control_reportString	visible reportString is never identifier-normalized
+def|ThingDef/Control_letterLabel	visible letterLabel is never identifier-normalized
+def|ThingDef/Control_letterText	visible letterText is never identifier-normalized
+def|ThingDef/Control_title	visible title is never identifier-normalized
+def|ThingDef/Control_Whitespace	visible Whitespace is never identifier-normalized
+def-order|JobDef	actual filesystem enumeration order preserved
+language|English/Keyed/Control.Whitespace	language value whitespace preserved
+absent:def|ThingDef/Mugirl_ControlNew	def identity renamed but label unchanged
+absent:language|English/Keyed/Control.NewKey	Keyed key renamed with identical value
+absent:language|English/DefInjected/ThingDef/Mugirl_ControlNew.label	DefInjected key renamed with identical value

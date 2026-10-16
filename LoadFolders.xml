@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <loadFolders>
+    <!--
+        1.6 is frozen: 1.6/Assemblies/MugirlRace.dll is the last 1.6 build and is no longer maintained.
+        Do not edit any folder listed under v1.6.
+    -->
     <v1.6>
         <li>/</li>
         <li>1.6</li>
@@ -9,4 +13,17 @@
         <li IfModActive="VanillaExpanded.VCookE">Versions/1.6/Integrations/VCookE</li>
         <li IfModActive="MemeGoddess.SearchAndDestroy">Versions/1.6/Integrations/SearchAndDestroy</li>
     </v1.6>
+    <!--
+        1.7: the root ("/") contributes only the shared Textures and Sounds; everything version-specific lives in 1.7.
+        Optional DLC and third-party content lives in 1.7/Mods/<Name> and loads only when that mod is active.
+    -->
+    <v1.7>
+        <li>/</li>
+        <li>1.7</li>
+        <li IfModActive="Nals.FacialAnimation">1.7/Mods/FacialAnimation</li>
+        <li IfModActive="ludeon.rimworld.biotech">1.7/Mods/Biotech</li>
+        <li IfModActive="ludeon.rimworld.odyssey">1.7/Mods/Odyssey</li>
+        <li IfModActive="VanillaExpanded.VCookE">1.7/Mods/VCookE</li>
+        <li IfModActive="MemeGoddess.SearchAndDestroy">1.7/Mods/SearchAndDestroy</li>
+    </v1.7>
 </loadFolders>

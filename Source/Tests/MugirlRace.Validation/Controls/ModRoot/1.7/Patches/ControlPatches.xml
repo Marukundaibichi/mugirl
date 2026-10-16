@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- C.patches：XPath 匹配不到任何节点，value 中的类不存在。C.patch-governance：文件开头没有 PatchGovernance 注释。 -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/ThingDef[defName="NoSuchDef_Control"]/comps</xpath>
+    <value>
+      <li Class="Mugirl.NoSuchComp_ControlPatch" />
+    </value>
+  </Operation>
+</Patch>

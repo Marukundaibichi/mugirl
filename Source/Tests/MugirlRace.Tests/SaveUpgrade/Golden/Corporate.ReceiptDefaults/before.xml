@@ -1,0 +1,56 @@
+<savegame>
+  <meta>
+    <gameVersion>1.6.4871 rev591</gameVersion>
+    <modIds>
+      <li>ludeon.rimworld</li>
+      <li>har.mugirlrace</li>
+    </modIds>
+  </meta>
+  <game>
+    <components>
+      <li Class="Mugirl.CorporateNetwork">
+        <corporateOrders>
+          <li>
+            <quantity>3</quantity>
+            <deliveredQuantity>2</deliveredQuantity>
+            <paid>10</paid>
+            <savedLabel>旧标签</savedLabel>
+          </li>
+          <li>
+            <quantity>0</quantity>
+            <paid>100</paid>
+            <creditedTurnover>-1</creditedTurnover>
+          </li>
+        </corporateOrders>
+        <corporatePeopleOffers>
+          <li>
+            <id>4</id>
+            <price>4710</price>
+            <paid>True</paid>
+            <paidAmount>-1</paidAmount>
+            <priceVersion>0</priceVersion>
+            <pawn>Thing_Human45</pawn>
+          </li>
+          <li>
+            <id>5</id>
+            <price>3</price>
+            <priceVersion>1</priceVersion>
+          </li>
+        </corporatePeopleOffers>
+        <corporateMissions>
+          <li>
+            <kind>Distribution</kind>
+            <count>53</count>
+          </li>
+          <li>
+            <kind>CustomKind</kind>
+            <count>23</count>
+            <salesGoal>-7</salesGoal>
+          </li>
+        </corporateMissions>
+        <corporateSupportWeek>420000</corporateSupportWeek>
+      </li>
+    </components>
+    <offer Class="Mugirl.CorporatePersonOffer"><price>327</price><priceVersion>1</priceVersion></offer>
+  </game>
+</savegame>

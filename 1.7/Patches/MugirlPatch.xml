@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <!-- PatchGovernance:
+    Targets: 原版和可选 DLC 的戒律 comp、食物 def、建筑 comp、商人库存生成器和熔炼配方。
+    Scope: 1.7 根补丁；向原版/DLC 目标追加雪牛娘的心情、牵引、奴隶库存和束具熔炼集成。
+    Duplicate guard: 每项追加前用 PatchOperationConditional 检查目标中是否已有同一节点；干草已有任意 tasteThought 时不再追加，避免 1.7 加载器报告重复字段。
+    Failure: 缺少可选 Ideology 目标可以接受；必需原版目标缺失时 nomatch 中的 PatchOperationAdd 失败，游戏记录 Patch operation failed。
+    -->
+    <!-- Ideology 为可选 DLC；缺少时该 PreceptDef 不存在，必须静默跳过。 -->
+    <Operation Class="PatchOperationConditional">
+        <xpath>/Defs/PreceptDef[defName="NutrientPasteEating_Disgusting"]/comps/li[@Class="PreceptComp_SelfTookMemoryThought"][thought="Mugirl_AteNutrient"]</xpath>
+        <nomatch Class="PatchOperationConditional">
+            <xpath>/Defs/PreceptDef[defName="NutrientPasteEating_Disgusting"]/comps</xpath>
+            <match Class="PatchOperationAdd">
+                <xpath>/Defs/PreceptDef[defName="NutrientPasteEating_Disgusting"]/comps</xpath>
+                <value>
+                    <li Class="PreceptComp_SelfTookMemoryThought">
+                        <eventDef>AteNutrientPaste</eventDef>
+                        <thought>Mugirl_AteNutrient</thought>
+                    </li>
+                </value>
+            </match>
+        </nomatch>
+    </Operation>
+
+    <!-- tasteThought 是单值字段；其他 mod 已设置时保留其值，不再追加第二个节点。 -->
+    <Operation Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName="Hay"]/ingestible/tasteThought</xpath>
+        <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName="Hay"]/ingestible</xpath>
+            <value>
+                <tasteThought>Mugirl_AteHay</tasteThought>
+            </value>
+        </nomatch>
+    </Operation>
+
+    <Operation Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName="CaravanPackingSpot"]/comps/li[compClass="Mugirl.Features.Roping.CompUsable_RopeToHitch"]</xpath>
+        <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName="CaravanPackingSpot"]/comps</xpath>
+            <value>
+                <li Class="CompProperties_Usable">
+                    <compClass>Mugirl.Features.Roping.CompUsable_RopeToHitch</compClass>
+                    <useJob>Mugirl_RopeToHitch</useJob>
+                    <!-- 栓在建筑上的右键操作文本。 -->
+                    <useLabel>Rope to Building</useLabel>
+                </li>
+            </value>
+        </nomatch>
+    </Operation>
+
+    <!-- 给奴隶贸易船追加雪牛娘奴隶库存。 -->
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/TraderKindDef[defName="Orbital_PirateMerchant"]/stockGenerators/li[@Class="Mugirl.Features.Trade.StockGenerator_MugirlSlaves"]</xpath>
+        <nomatch Class="PatchOperationAdd">
+            <xpath>Defs/TraderKindDef[defName="Orbital_PirateMerchant"]/stockGenerators</xpath>
+            <value>
+                <li Class="Mugirl.Features.Trade.StockGenerator_MugirlSlaves">
+                    <!-- 生成奴隶的数量范围。 -->
+                    <slaveCountRange>0~6</slaveCountRange>
+                </li>
+            </value>
+        </nomatch>
+    </Operation>
+
+    <!-- 给海盗大篷车追加少量雪牛娘奴隶库存。 -->
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_PirateMerchant"]/stockGenerators/li[@Class="Mugirl.Features.Trade.StockGenerator_MugirlSlaves"]</xpath>
+        <nomatch Class="PatchOperationAdd">
+            <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_PirateMerchant"]/stockGenerators</xpath>
+            <value>
+                <li Class="Mugirl.Features.Trade.StockGenerator_MugirlSlaves">
+                    <!-- 生成奴隶的数量范围。 -->
+                    <slaveCountRange>0~2</slaveCountRange>
+                </li>
+            </value>
+        </nomatch>
+    </Operation>
+
+    <!-- 给外来者派系基地追加少量雪牛娘奴隶库存。 -->
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/TraderKindDef[defName="Base_Outlander_Standard"]/stockGenerators/li[@Class="Mugirl.Features.Trade.StockGenerator_MugirlSlaves"]</xpath>
+        <nomatch Class="PatchOperationAdd">
+            <xpath>Defs/TraderKindDef[defName="Base_Outlander_Standard"]/stockGenerators</xpath>
+            <value>
+                <li Class="Mugirl.Features.Trade.StockGenerator_MugirlSlaves">
+                    <!-- 生成奴隶的数量范围。 -->
+                    <slaveCountRange>0~2</slaveCountRange>
+                </li>
+            </value>
+        </nomatch>
+    </Operation>
+
+    <!-- 稀有品商队有 50% 概率携带一个洗脑头盔。 -->
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_Exotic"]/stockGenerators/li[thingDef="Mugirl_BrainwashHelmet"]</xpath>
+        <nomatch Class="PatchOperationAdd">
+            <xpath>Defs/TraderKindDef[defName="Caravan_Outlander_Exotic"]/stockGenerators</xpath>
+            <value>
+                <li Class="StockGenerator_SingleDef">
+                    <thingDef>Mugirl_BrainwashHelmet</thingDef>
+                    <countRange>0~1</countRange>
+                </li>
+            </value>
+        </nomatch>
+    </Operation>
+
+    <!-- 轨道稀有品商有 50% 概率携带一个洗脑头盔。 -->
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/TraderKindDef[defName="Orbital_Exotic"]/stockGenerators/li[thingDef="Mugirl_BrainwashHelmet"]</xpath>
+        <nomatch Class="PatchOperationAdd">
+            <xpath>Defs/TraderKindDef[defName="Orbital_Exotic"]/stockGenerators</xpath>
+            <value>
+                <li Class="StockGenerator_SingleDef">
+                    <thingDef>Mugirl_BrainwashHelmet</thingDef>
+                    <countRange>0~1</countRange>
+                </li>
+            </value>
+        </nomatch>
+    </Operation>
+
+    <!-- 让电熔炉可以处理束具回收配方。 -->
+    <Operation Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="ElectricSmelter"]/recipes/li[text()="Mugirl_SmeltBondageApparel"]</xpath>
+        <nomatch Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="ElectricSmelter"]/recipes</xpath>
+            <value>
+                <li>Mugirl_SmeltBondageApparel</li>
+            </value>
+        </nomatch>
+    </Operation>
+</Patch>

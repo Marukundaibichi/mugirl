@@ -1,0 +1,8 @@
+<Project>
+  <!-- Central package versions. The shipped mod assembly has no package dependencies; packages are analyzers and test tooling only. -->
+  <ItemGroup>
+    <PackageVersion Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="3.3.4" />
+    <PackageVersion Include="Mono.Cecil" Version="0.11.6" />
+    <PackageVersion Include="xunit.v3" Version="4.0.2" />
+  </ItemGroup>
+</Project>

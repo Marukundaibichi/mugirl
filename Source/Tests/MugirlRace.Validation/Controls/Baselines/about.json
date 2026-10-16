@@ -1,0 +1,8 @@
+{
+  // 负对照：真实 Mod 的期望值；控制 About.xml 的 packageId、supportedVersions、loadAfter、incompatibleWith 都不符合。
+  "packageId": "HAR.MugirlRace",
+  "supportedVersions": ["1.6", "1.7"],
+  "modDependencies": ["brrainz.harmony", "erdelf.humanoidalienraces"],
+  "loadAfter": ["brrainz.harmony"],
+  "incompatibleWith": ["Luca.MugirlFacialAnimation"]
+}

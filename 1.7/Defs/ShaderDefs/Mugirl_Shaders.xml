@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Mugirl Race 的原生着色器（RimWorld 1.7；ShaderDef 与 MaterialDef 是 1.7 新增的，所以只在 1.7/ 中）。
+    它们替代 1.6 从 1.6/Resources 手动加载的资源包着色器 Mugirl/ExtraOutline 与 Mugirl/LanceMotionBlur
+    （源码 docs/outline、docs/lance-motion-blur；1.6 DLL 仍读取旧资源包，不要删除）。GLSL 源码：1.7/Shaders/Mugirl。
+    C# 入口：Mugirl.Rendering.RenderingDefOf；离线检查：Source/Tests/MugirlRace.ShaderCheck。
+
+    约定：
+    - 着色器源文件按文件名在所有模组的 Shaders 目录间解析，ShaderDef 名也是全局的，所以都带 Mugirl_ 前缀（含 include 文件）。
+    - 渲染状态照搬 ShaderLab：Queue Transparent-100 = 2900（与原版 Cutout 相同），Cull Off = cullMode None，
+      ZWrite Off = depthWrite false，ZTest LEqual = depthTest true（Waylith 固定使用反向 Z 的 GreaterOrEqual）。
+    - Blend SrcAlpha OneMinusSrcAlpha 写成 Custom：Custom 的两个因子同时用于颜色与 alpha，与 ShaderLab 完全一致。
+      Alpha 模式的 alpha 通道是 One/OneMinusSrcAlpha，只影响烘焙进人物图集与肖像的 alpha（图集再用 Cutout 以 0.5 镂空）。
+    - flipTextureST 为 false：着色器的 UV 运算保持 Unity 约定，只在采样时翻转 V；参数里没有 *_ST 槽位。
+  -->
+
+  <!-- 额外描边：膨胀 Mugirl 人物每个轮廓图层的 alpha，输出黑色描边。地图延迟绘制与图集/肖像烘焙共用。 -->
+  <ShaderDef>
+    <defName>Mugirl_ExtraOutline</defName>
+    <shaderProgram>
+      <vertexShaderFileName>Mugirl/Mugirl_ExtraOutline.vert.glsl</vertexShaderFileName>
+      <fragmentShaderFileName>Mugirl/Mugirl_ExtraOutline.frag.glsl</fragmentShaderFileName>
+      <flipTextureST>false</flipTextureST>
+      <transparent>true</transparent>
+      <depthTest>true</depthTest>
+      <depthWrite>false</depthWrite>
+      <cullMode>None</cullMode>
+      <blendMode>Custom</blendMode>
+      <blendSrcFactor>SrcAlpha</blendSrcFactor>
+      <blendDstFactor>OneMinusSrcAlpha</blendDstFactor>
+      <renderQueue>2900</renderQueue>
+      <textureWrapOverrides>
+        <li>
+          <key>_MainTex</key>
+          <value>Clamp</value>
+        </li>
+      </textureWrapOverrides>
+    </shaderProgram>
+  </ShaderDef>
+
+  <!-- 骑枪冲锋运动模糊：沿本帧位移对人物轮廓图层做方向卷积。只在地图上延迟绘制。 -->
+  <ShaderDef>
+    <defName>Mugirl_LanceMotionBlur</defName>
+    <shaderProgram>
+      <vertexShaderFileName>Mugirl/Mugirl_LanceMotionBlur.vert.glsl</vertexShaderFileName>
+      <fragmentShaderFileName>Mugirl/Mugirl_LanceMotionBlur.frag.glsl</fragmentShaderFileName>
+      <flipTextureST>false</flipTextureST>
+      <transparent>true</transparent>
+      <depthTest>true</depthTest>
+      <depthWrite>false</depthWrite>
+      <cullMode>None</cullMode>
+      <blendMode>Custom</blendMode>
+      <blendSrcFactor>SrcAlpha</blendSrcFactor>
+      <blendDstFactor>OneMinusSrcAlpha</blendDstFactor>
+      <renderQueue>2900</renderQueue>
+      <textureWrapOverrides>
+        <li>
+          <key>_MainTex</key>
+          <value>Clamp</value>
+        </li>
+        <li>
+          <key>_MaskTex</key>
+          <value>Clamp</value>
+        </li>
+      </textureWrapOverrides>
+    </shaderProgram>
+  </ShaderDef>
+
+</Defs>

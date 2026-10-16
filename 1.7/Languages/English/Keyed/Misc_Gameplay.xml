@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <Mugirl.Text.FormatFailedLog>Mugirl text formatting failed: {ERROR}</Mugirl.Text.FormatFailedLog>
+    <Mugirl.Settings.Category>Mugirl mod control</Mugirl.Settings.Category>
+    <Mugirl.Bootstrap.HarmonyPatchFailed>Harmony patch skipped: {0}. {1}</Mugirl.Bootstrap.HarmonyPatchFailed>
+    <Mugirl.PatchRegistry.NullHarmony>Manual patches skipped because the Harmony instance is missing.</Mugirl.PatchRegistry.NullHarmony>
+    <Mugirl.PatchRegistry.PawnGeneratorGeneratePawn>PawnGenerator.GeneratePawn slave apparel lock postfix</Mugirl.PatchRegistry.PawnGeneratorGeneratePawn>
+    <Mugirl.PatchRegistry.MissingTarget>Manual patch target missing: {0}</Mugirl.PatchRegistry.MissingTarget>
+    <Mugirl.PatchRegistry.MissingPatchMethod>Manual patch method missing: {0}</Mugirl.PatchRegistry.MissingPatchMethod>
+    <Mugirl.PatchRegistry.PatchFailed>Manual patch failed: {0}. {1}</Mugirl.PatchRegistry.PatchFailed>
+    <Mugirl.GameUtility.WindowStackUnavailable>Tried to open a Mugirl window while the window stack was unavailable.</Mugirl.GameUtility.WindowStackUnavailable>
+    <Mugirl.GameUtility.LetterStackUnavailable>Tried to send a Mugirl letter while the game letter stack was unavailable.</Mugirl.GameUtility.LetterStackUnavailable>
+    <Mugirl.GameUtility.WorldPawnsUnavailable>Tried to move a generated Mugirl pawn through world storage while WorldPawns was unavailable.</Mugirl.GameUtility.WorldPawnsUnavailable>
+    <Mugirl.DropThingTooltip.TranspilerNotApplied>Gear drop tooltip patch was skipped because the expected vanilla IL pattern was not found.</Mugirl.DropThingTooltip.TranspilerNotApplied>
+    <Mugirl.RopingTick.BreakRopeWithRoperMissing>Roping tick fallback used BreakAllRopes because the vanilla BreakRopeWithRoper method was not found.</Mugirl.RopingTick.BreakRopeWithRoperMissing>
+    <Mugirl.Mount.DropAtFailed>Mounted rider {0} could not be dropped from {1}; the rider was passed to world storage as a fallback.</Mugirl.Mount.DropAtFailed>
+    <Mugirl.Restraints.MagneticShackles.ActivateLabel>Activate shackles</Mugirl.Restraints.MagneticShackles.ActivateLabel>
+    <Mugirl.Restraints.MagneticShackles.ActivateDesc>Activate the magnetic shackles, restraining the target.</Mugirl.Restraints.MagneticShackles.ActivateDesc>
+    <Mugirl.Restraints.MagneticShackles.DeactivateLabel>Release shackles</Mugirl.Restraints.MagneticShackles.DeactivateLabel>
+    <Mugirl.Restraints.MagneticShackles.DeactivateDesc>Release the magnetic shackles.</Mugirl.Restraints.MagneticShackles.DeactivateDesc>
+    <Mugirl.Restraints.MagneticShackles.LabelActive>Magnetic shackles (active)</Mugirl.Restraints.MagneticShackles.LabelActive>
+    <Mugirl.Restraints.MagneticShackles.LabelInactive>Magnetic shackles (inactive)</Mugirl.Restraints.MagneticShackles.LabelInactive>
+    <Mugirl.Restraints.MagneticShackles.MoteOn>Magnetic shackles activated!</Mugirl.Restraints.MagneticShackles.MoteOn>
+    <Mugirl.Restraints.MagneticShackles.MoteOff>Magnetic shackles released!</Mugirl.Restraints.MagneticShackles.MoteOff>
+    <Mugirl.Restraints.MagneticShackles.MessageOn>{0}'s magnetic shackles suddenly activated.</Mugirl.Restraints.MagneticShackles.MessageOn>
+    <Mugirl.Restraints.MagneticShackles.MessageOff>{0}'s magnetic shackles were released.</Mugirl.Restraints.MagneticShackles.MessageOff>
+    <Mugirl.Restraints.MagneticShackles.CooldownTicksLeft>Cooling down: {0}</Mugirl.Restraints.MagneticShackles.CooldownTicksLeft>
+    <Mugirl.Restraints.ShockCollar.PowerLabel>Power shock</Mugirl.Restraints.ShockCollar.PowerLabel>
+    <Mugirl.Restraints.ShockCollar.PowerDesc>Trigger one power shock.</Mugirl.Restraints.ShockCollar.PowerDesc>
+    <Mugirl.Restraints.ShockCollar.CommonLabel>Common shock</Mugirl.Restraints.ShockCollar.CommonLabel>
+    <Mugirl.Restraints.ShockCollar.CommonDesc>Trigger one common shock.</Mugirl.Restraints.ShockCollar.CommonDesc>
+    <Mugirl.Restraints.ShockCollar.PowerCooldownTicksLeft>Cooling down: {0}</Mugirl.Restraints.ShockCollar.PowerCooldownTicksLeft>
+    <Mugirl.Restraints.ShockCollar.CommonCooldownTicksLeft>Cooling down: {0}</Mugirl.Restraints.ShockCollar.CommonCooldownTicksLeft>
+    <Mugirl.Restraints.DevUnlock.Label>Dev: unlock {0}</Mugirl.Restraints.DevUnlock.Label>
+    <Mugirl.Restraints.DevUnlock.Desc>Dev mode: immediately remove the wear lock from {0} for debugging.</Mugirl.Restraints.DevUnlock.Desc>
+    <Mugirl.Restraints.DevUnlock.Message>Dev-unlocked {0}'s {1}.</Mugirl.Restraints.DevUnlock.Message>
+    <Mugirl.Restraints.BrainwashHelmet.ActivateLabel>Activate brainwashing</Mugirl.Restraints.BrainwashHelmet.ActivateLabel>
+    <Mugirl.Restraints.BrainwashHelmet.ActivateDesc>Activate the brainwashing helmet and brainwash the target.</Mugirl.Restraints.BrainwashHelmet.ActivateDesc>
+    <Mugirl.Restraints.BrainwashHelmet.ManualTriggerMessage>{0} activated the brainwashing device.</Mugirl.Restraints.BrainwashHelmet.ManualTriggerMessage>
+    <Mugirl.Restraints.BrainwashHelmet.IdeoConvertLabel>Ideology conversion</Mugirl.Restraints.BrainwashHelmet.IdeoConvertLabel>
+    <Mugirl.Restraints.BrainwashHelmet.IdeoConvertDesc>Change the wearer's ideology to the colony's primary ideology.</Mugirl.Restraints.BrainwashHelmet.IdeoConvertDesc>
+    <Mugirl.Restraints.BrainwashHelmet.IdeoConvertMessage>{0}'s ideology has been converted to the colony's primary ideology.</Mugirl.Restraints.BrainwashHelmet.IdeoConvertMessage>
+    <Mugirl.Restraints.TriggeredByHediff>This happened because of the brainwashing device.</Mugirl.Restraints.TriggeredByHediff>
+    <Mugirl.MilkingDevice.StoredMessage>{0}'s milking device stored one production charge ({1}/{2}).</Mugirl.MilkingDevice.StoredMessage>
+    <Mugirl.MilkingDevice.ReleaseMessage>{0} released the stored milk and produced {1} Mugirl milk.</Mugirl.MilkingDevice.ReleaseMessage>
+    <Mugirl.MilkingDevice.ReleaseLabel>Release stored milk</Mugirl.MilkingDevice.ReleaseLabel>
+    <Mugirl.MilkingDevice.ReleaseDesc>Release all Mugirl milk stored in this device onto the ground.</Mugirl.MilkingDevice.ReleaseDesc>
+    <Mugirl.MilkingDevice.InspectLabel>Stored milk</Mugirl.MilkingDevice.InspectLabel>
+    <Mugirl.MilkingDevice.InspectLabelWithCharges>Stored milk charges</Mugirl.MilkingDevice.InspectLabelWithCharges>
+    <Mugirl.MilkingDevice.Inspect>{0}: {1}/{2} ({3}x {4})</Mugirl.MilkingDevice.Inspect>
+    <Mugirl.MilkingDevice.NoChargeText>There is no stored milk to release.</Mugirl.MilkingDevice.NoChargeText>
+    <Mugirl.MilkingDevice.StoredMoteText>Stored milk +1</Mugirl.MilkingDevice.StoredMoteText>
+    <Mugirl.MilkingDevice.AutoReleaseEnabled>Auto milking: on</Mugirl.MilkingDevice.AutoReleaseEnabled>
+    <Mugirl.MilkingDevice.AutoReleaseDisabled>Auto milking: off</Mugirl.MilkingDevice.AutoReleaseDisabled>
+    <Mugirl.MilkingDevice.AutoReleaseDesc>When enabled, the milking device immediately releases milk when its wearer reaches full milk. When disabled, it only releases overflow after storage is already full and another full-milk event is received.</Mugirl.MilkingDevice.AutoReleaseDesc>
+    <Mugirl.MilkingDevice.PowerReleaseEnabled>Power release: on</Mugirl.MilkingDevice.PowerReleaseEnabled>
+    <Mugirl.MilkingDevice.PowerReleaseDisabled>Power release: off</Mugirl.MilkingDevice.PowerReleaseDisabled>
+    <Mugirl.MilkingDevice.DevFill.Label>Dev: fill milking progress</Mugirl.MilkingDevice.DevFill.Label>
+    <Mugirl.MilkingDevice.DevFill.Desc>Dev mode: immediately fill the current wearer's milk progress and trigger milking-device logic.</Mugirl.MilkingDevice.DevFill.Desc>
+    <Mugirl.MilkingDevice.DevFill.Success>Filled {0}'s milk progress in dev mode.</Mugirl.MilkingDevice.DevFill.Success>
+    <Mugirl.MilkingDevice.DevFill.Failed>{0}'s milk progress cannot be filled in dev mode right now.</Mugirl.MilkingDevice.DevFill.Failed>
+    <Mugirl.MilkingDevice.ReleaseThingMissing>Milking device could not resolve the release product Def.</Mugirl.MilkingDevice.ReleaseThingMissing>
+    <Mugirl.Settings.StructuralCrashEvent.Label>Enable opening crash storyline</Mugirl.Settings.StructuralCrashEvent.Label>
+    <Mugirl.Settings.StructuralCrashEvent.Desc>Controls the opening two-person pod crash and the courier storyline that follows. When disabled, a corporate representative visits independently to seek new customers. Random pod rescues and wandering joiners remain available.</Mugirl.Settings.StructuralCrashEvent.Desc>
+    <Mugirl.Settings.FastMilking.Label>Fast milking</Mugirl.Settings.FastMilking.Label>
+    <Mugirl.Settings.FastMilking.Desc>When enabled, self-milking and assisted milking work time for Mugirls is shortened to 1 second.</Mugirl.Settings.FastMilking.Desc>
+    <Mugirl.Settings.VanillaMilkGauge.Label>Use vanilla-style milk gauge</Mugirl.Settings.VanillaMilkGauge.Label>
+    <Mugirl.Settings.VanillaMilkGauge.Desc>When enabled, the selected Mugirl milk gauge uses a vanilla-style long rectangular bar instead of the custom texture gauge.</Mugirl.Settings.VanillaMilkGauge.Desc>
+    <Mugirl.Settings.MigrationEvent.Label>Enable Mugirl migration</Mugirl.Settings.MigrationEvent.Label>
+    <Mugirl.Settings.MigrationEvent.Desc>Controls whether the wild Mugirl migration event can trigger.</Mugirl.Settings.MigrationEvent.Desc>
+    <Mugirl.Settings.FusionInvestmentEvent.Label>Enable bovine fusion investment</Mugirl.Settings.FusionInvestmentEvent.Label>
+    <Mugirl.Settings.FusionInvestmentEvent.Desc>Controls whether the suspicious bovine fusion investor can visit.</Mugirl.Settings.FusionInvestmentEvent.Desc>
+    <Mugirl.Settings.FusionInvestmentEvent.DevDeliver>Dev: deliver bovine fusion reward now</Mugirl.Settings.FusionInvestmentEvent.DevDeliver>
+    <Mugirl.Settings.RunawayFarmQuest.Label>Enable runaway Mugirl ranch quest</Mugirl.Settings.RunawayFarmQuest.Label>
+    <Mugirl.Settings.RunawayFarmQuest.Desc>Controls whether the runaway Mugirl ranch quest can appear.</Mugirl.Settings.RunawayFarmQuest.Desc>
+    <Mugirl.Settings.HideBackWeapons.Label>Hide weapon wheel back weapons</Mugirl.Settings.HideBackWeapons.Label>
+    <Mugirl.Settings.HideBackWeapons.Desc>When enabled, the two weapons carried on the back are no longer rendered. Weapons in the autoloading system grooves are not affected.</Mugirl.Settings.HideBackWeapons.Desc>
+    <Mugirl.Settings.WeaponWheelDevLog.Label>Weapon wheel developer log</Mugirl.Settings.WeaponWheelDevLog.Label>
+    <Mugirl.Settings.WeaponWheelDevLog.Desc>When enabled, every Mugirl shot and every weapon wheel combat decision prints diagnostics to the debug log (verb type and owning mod, burst completion checks, full firepower eligibility, per-slot fireability, cycle abort reasons), plus a Harmony patch ownership report for the vanilla methods the wheel relies on. Use only for troubleshooting full-firepower conflicts with other mods; produces a lot of log output.</Mugirl.Settings.WeaponWheelDevLog.Desc>
+    <Mugirl.Settings.WeaponWheelDevLog.DumpPatches>Print Harmony patch report now</Mugirl.Settings.WeaponWheelDevLog.DumpPatches>
+    <Mugirl.Migration.LetterLabel>Mugirl migration</Mugirl.Migration.LetterLabel>
+    <Mugirl.Migration.LetterText>A small herd of wild Mugirls in bikinis wanders in from the map edge. They seem drawn by the plants here and will stay nearby for a while, constantly lowering their heads to graze, sometimes even chewing on trees. They are gentle; you can try to tame them, and when they have milk you can manually milk them. Once they are full, any Mugirls that are still wild will leave on their own. If you do not want them to keep eating plants, attack any one of them to drive them off; once one is hit, the whole herd will immediately flee the map.</Mugirl.Migration.LetterText>
+    <Mugirl.FusionInvestment.LetterLabel>Bovine fusion investment</Mugirl.FusionInvestment.LetterLabel>
+    <Mugirl.FusionInvestment.LetterText>A suspicious investor has walked in from the map edge. He claims that after long observation of the astonishing conversion rate of grazing Mugirls, he discovered a path toward "bovine fusion technology". Now he wants you to provide startup funding. It sounds deeply unreliable, but the look in his eyes is alarmingly serious. Send a colonist to talk to him and decide whether to invest.</Mugirl.FusionInvestment.LetterText>
+    <Mugirl.FusionInvestment.TalkOption>Talk to the bovine fusion investor</Mugirl.FusionInvestment.TalkOption>
+    <Mugirl.FusionInvestment.TalkCannotReach>cannot reach</Mugirl.FusionInvestment.TalkCannotReach>
+    <Mugirl.FusionInvestment.TalkOptionDisabled>{0} ({1})</Mugirl.FusionInvestment.TalkOptionDisabled>
+    <Mugirl.FusionInvestment.DialogTitle>Bovine fusion investment</Mugirl.FusionInvestment.DialogTitle>
+    <Mugirl.FusionInvestment.DialogText>The suspicious investor lowers his voice, speaking with the gravity of someone revealing a universal law.\n\n"I have seen the numbers. The rate at which Mugirls convert grass into milk is completely unreasonable. Give me startup capital, and I can push this phenomenon into the bovine fusion stage. Invest now, and when it works, you will have dairy products and experimental relocation slots waiting for you."</Mugirl.FusionInvestment.DialogText>
+    <Mugirl.FusionInvestment.OptionInvest>Invest {0} silver</Mugirl.FusionInvestment.OptionInvest>
+    <Mugirl.FusionInvestment.OptionNoMap>No valid investment map</Mugirl.FusionInvestment.OptionNoMap>
+    <Mugirl.FusionInvestment.OptionNoSilver>Requires {0} silver in map storage</Mugirl.FusionInvestment.OptionNoSilver>
+    <Mugirl.FusionInvestment.OptionReject>This sounds too absurd</Mugirl.FusionInvestment.OptionReject>
+    <Mugirl.FusionInvestment.OptionPostpone>Talk about this later</Mugirl.FusionInvestment.OptionPostpone>
+    <Mugirl.FusionInvestment.AlreadyResolved>This investor can no longer negotiate.</Mugirl.FusionInvestment.AlreadyResolved>
+    <Mugirl.FusionInvestment.MessageNoSilver>Not enough usable silver to invest {0}.</Mugirl.FusionInvestment.MessageNoSilver>
+    <Mugirl.FusionInvestment.MessageAccepted>You invested {0} silver in bovine fusion technology.</Mugirl.FusionInvestment.MessageAccepted>
+    <Mugirl.FusionInvestment.MessageRejected>You rejected the bovine fusion investment. The investor leaves with his charts.</Mugirl.FusionInvestment.MessageRejected>
+    <Mugirl.FusionInvestment.MessagePostponed>You set the bovine fusion investment aside for now. The investor mutters that the window of opportunity is valuable, but remains available to talk later.</Mugirl.FusionInvestment.MessagePostponed>
+    <Mugirl.FusionInvestment.DevDeliver.NoPending>There is no pending bovine fusion investment.</Mugirl.FusionInvestment.DevDeliver.NoPending>
+    <Mugirl.FusionInvestment.ResultLetterLabel>Bovine fusion was a huge success</Mugirl.FusionInvestment.ResultLetterLabel>
+    <Mugirl.FusionInvestment.ResultLetterText>The suspicious investor has sent back an enthusiastic letter. He claims the bovine fusion experiment has achieved a huge success. Nobody can understand the attached charts, but the Mugirl dairy products and relocated Mugirl slaves that arrived with the letter are quite real.</Mugirl.FusionInvestment.ResultLetterText>
+    <Mugirl.RunawayFarm.ArrivedLetterLabel>Runaway Mugirl ranch</Mugirl.RunawayFarm.ArrivedLetterLabel>
+    <Mugirl.RunawayFarm.ArrivedLetterText>You have arrived at the chaotic Mugirl ranch. The runaway Mugirls are tearing around nearby. Rope them and tie every one of them to any prepared hitch.</Mugirl.RunawayFarm.ArrivedLetterText>
+    <Mugirl.RunawayFarm.SuccessLetterLabel>The ranch is quiet again</Mugirl.RunawayFarm.SuccessLetterLabel>
+    <Mugirl.RunawayFarm.SuccessLetterText>Every runaway Mugirl has been tied back to a hitch. The rancher wipes away sweat and thanks you. Then you notice {PAWN_labelShort} staying close and refusing to leave your side. The rancher looks at her, then at you, and says she can join your group right here.</Mugirl.RunawayFarm.SuccessLetterText>
+    <Mugirl.RunawayFarm.Log.NoMap>Runaway Mugirl ranch quest aborted: no valid map target.</Mugirl.RunawayFarm.Log.NoMap>
+    <Mugirl.RunawayFarm.Log.NoTile>Runaway Mugirl ranch quest aborted: no valid world site tile.</Mugirl.RunawayFarm.Log.NoTile>
+    <Mugirl.Milk.Gauge.Label>Lactation</Mugirl.Milk.Gauge.Label>
+    <Mugirl.Milk.Gauge.Desc>Current milk fullness for this Mugirl. The red line marks the automatic milking threshold; colonists will automatically milk when it is reached.</Mugirl.Milk.Gauge.Desc>
+    <Mugirl.Milk.FullnessDisplay>Mugirl milk</Mugirl.Milk.FullnessDisplay>
+    <Mugirl.Milk.FullnessInspect>{0}: {1}</Mugirl.Milk.FullnessInspect>
+    <Mugirl.Milk.Gauge.Tooltip>{0}\n\nCurrent: {1}\nThreshold: {2}\nDrag the red line to adjust the automatic milking threshold\nEstimated milk per use: {3}\nLactation speed: {4}</Mugirl.Milk.Gauge.Tooltip>
+    <!-- Apply-all toggle on the merged milk gizmo's name bar. -->
+    <Mugirl.Milk.Gauge.ApplyAll.Label>Apply All</Mugirl.Milk.Gauge.ApplyAll.Label>
+    <!-- Hint for the apply-all toggle. -->
+    <Mugirl.Milk.Gauge.ApplyAll.Desc>When enabled, dragging the milk threshold applies to every selected Mugirl at once.</Mugirl.Milk.Gauge.ApplyAll.Desc>
+    <!-- Extra tooltip line when multiple Mugirls are selected. -->
+    <Mugirl.Milk.Gauge.MultiHint>Multi-selected: hover to switch the shown Mugirl on the name bar above; with "Apply All" on, the threshold applies to every selected Mugirl at once.</Mugirl.Milk.Gauge.MultiHint>
+    <Mugirl.Milk.ProductionRate>{0}% / {1}s</Mugirl.Milk.ProductionRate>
+    <Mugirl.Milk.DevFill.Label>Dev: fill milk</Mugirl.Milk.DevFill.Label>
+    <Mugirl.Milk.DevFill.Desc>Dev mode: immediately fill the selected Mugirl's milk amount to maximum.</Mugirl.Milk.DevFill.Desc>
+    <Mugirl.Milk.DevFill.Success>Filled {0}'s milk amount.</Mugirl.Milk.DevFill.Success>
+    <Mugirl.Milk.DevFill.Failed>{0}'s milk amount cannot be filled right now.</Mugirl.Milk.DevFill.Failed>
+    <Mugirl.Milk.FeedingDebug.Button>Dev: feeding pose</Mugirl.Milk.FeedingDebug.Button>
+    <Mugirl.Milk.FeedingDebug.ButtonDesc>Preview feeding on the map and adjust both pawns' offsets and angles.</Mugirl.Milk.FeedingDebug.ButtonDesc>
+    <Mugirl.Milk.FeedingDebug.Title>Feeding pose layout</Mugirl.Milk.FeedingDebug.Title>
+    <Mugirl.Milk.FeedingDebug.Choose>Choose a nearby recipient</Mugirl.Milk.FeedingDebug.Choose>
+    <Mugirl.Milk.FeedingDebug.NoRecipient>Place another humanlike pawn next to this Mugirl first.</Mugirl.Milk.FeedingDebug.NoRecipient>
+    <Mugirl.Milk.FeedingDebug.Hint>The game is paused. Drag this window aside to inspect the live preview. X mirrors when the recipient changes sides; Z is screen vertical. Changes affect feeding immediately.</Mugirl.Milk.FeedingDebug.Hint>
+    <Mugirl.Milk.FeedingDebug.SourceX>Milk source X: {0}</Mugirl.Milk.FeedingDebug.SourceX>
+    <Mugirl.Milk.FeedingDebug.SourceZ>Milk source Z: {0}</Mugirl.Milk.FeedingDebug.SourceZ>
+    <Mugirl.Milk.FeedingDebug.RecipientX>Recipient X: {0}</Mugirl.Milk.FeedingDebug.RecipientX>
+    <Mugirl.Milk.FeedingDebug.RecipientZ>Recipient Z: {0}</Mugirl.Milk.FeedingDebug.RecipientZ>
+    <Mugirl.Milk.FeedingDebug.SourceAngle>Milk source angle: {0}°</Mugirl.Milk.FeedingDebug.SourceAngle>
+    <Mugirl.Milk.FeedingDebug.RecipientAngle>Recipient angle: {0}°</Mugirl.Milk.FeedingDebug.RecipientAngle>
+    <Mugirl.Milk.FeedingDebug.Reset>Reset defaults</Mugirl.Milk.FeedingDebug.Reset>
+    <Mugirl.Milk.FeedingDebug.Jump>Focus pawn</Mugirl.Milk.FeedingDebug.Jump>
+    <Mugirl.Milk.FeedingDebug.Copy>Copy XML</Mugirl.Milk.FeedingDebug.Copy>
+    <Mugirl.Milk.FeedingDebug.Save>Save config</Mugirl.Milk.FeedingDebug.Save>
+    <Mugirl.Milk.FeedingDebug.Copied>XML copied.</Mugirl.Milk.FeedingDebug.Copied>
+    <Mugirl.Milk.FeedingDebug.Saved>Saved to {0}</Mugirl.Milk.FeedingDebug.Saved>
+    <Mugirl.Milk.FeedingDebug.Failed>Layout action failed: {0}</Mugirl.Milk.FeedingDebug.Failed>
+    <Mugirl.Milk.SprayText>Milk spray!</Mugirl.Milk.SprayText>
+    <Mugirl.Milk.FloatMenu.Gather>Milk ({0})</Mugirl.Milk.FloatMenu.Gather>
+    <Mugirl.Milk.FloatMenu.Drink>Drink milk ({0})</Mugirl.Milk.FloatMenu.Drink>
+    <Mugirl.Milk.FloatMenu.ChildDrink>Seek milk ({0})</Mugirl.Milk.FloatMenu.ChildDrink>
+    <Mugirl.Milk.FloatMenu.Feed>Feed milk ({0})</Mugirl.Milk.FloatMenu.Feed>
+    <Mugirl.Milk.FloatMenu.Disabled>{0}: {1}</Mugirl.Milk.FloatMenu.Disabled>
+    <Mugirl.Milk.FloatMenu.FeedJobMissing>Job_FeedMilkToDowned missing</Mugirl.Milk.FloatMenu.FeedJobMissing>
+    <Mugirl.Milk.FloatMenu.NotActive>Cannot produce milk</Mugirl.Milk.FloatMenu.NotActive>
+    <Mugirl.Milk.FloatMenu.NotEnoughMilk>Not enough milk</Mugirl.Milk.FloatMenu.NotEnoughMilk>
+    <Mugirl.Milk.FloatMenu.ManagedByDevice>Managed by milking device</Mugirl.Milk.FloatMenu.ManagedByDevice>
+    <Mugirl.Milk.GatherInactiveLog>Mugirl: {0} gathered body resources while inactive: {1}</Mugirl.Milk.GatherInactiveLog>
+    <Mugirl.Nurture.Completed>{PAWN_labelShort} has received complete Mugirl nurture.</Mugirl.Nurture.Completed>
+    <Mugirl.CrackBondageGear_TargetNotValid>The target is not decryptable. Decryption is not possible.</Mugirl.CrackBondageGear_TargetNotValid>
+    <Mugirl.CrackBondageGear_CrackAdvanced>Decrypting Advanced Restraint: {0}.</Mugirl.CrackBondageGear_CrackAdvanced>
+    <Mugirl.CrackBondageGear_CrackBrainwash>Decrypting Brainwashing Restraint: {0}.</Mugirl.CrackBondageGear_CrackBrainwash>
+    <Mugirl.CrackBondageGear_NoCrackableType>Unknown type, cannot be decrypted.</Mugirl.CrackBondageGear_NoCrackableType>
+    <Mugirl.SelfLabel>Self</Mugirl.SelfLabel>
+    <Mugirl.Reserved>Reserved</Mugirl.Reserved>
+    <Mugirl.NotWearingLockedApparel>Not wearing locked restraint.</Mugirl.NotWearingLockedApparel>
+    <Mugirl.AlreadyCracked>This device has been decrypted.</Mugirl.AlreadyCracked>
+    <Mugirl.InvalidTarget>Invalid Target.</Mugirl.InvalidTarget>
+    <Mugirl.SlaveApparelCannotBeRemoved>Mugirl Restraint cannot be removed. The restraint requires the corresponding key to unlock.</Mugirl.SlaveApparelCannotBeRemoved>
+    <Mugirl.BrainwashStart>The brainwashing device suddenly activated, {0} is being brainwashed.</Mugirl.BrainwashStart>
+    <Mugirl.BrainwashEnd>{0}'s brainwashing has ended.</Mugirl.BrainwashEnd>
+    <Mugirl.SuppressionIncrease>Suppression +{0}</Mugirl.SuppressionIncrease>
+    <Mugirl.SlaveApparelFullyUnlocked>{0}'s restraint has been completely unlocked.</Mugirl.SlaveApparelFullyUnlocked>
+    <Mugirl.Restraints.UnlockTargetMissingLog>Unlocking failed: target pawn or target apparel is missing.</Mugirl.Restraints.UnlockTargetMissingLog>
+    <Mugirl.Restraints.ForceUnlock.FloatMenu>Force open restraint ({0})</Mugirl.Restraints.ForceUnlock.FloatMenu>
+    <Mugirl.Restraints.ForceUnlock.StrengthTooLow>Strength too low: {0}/{1}. Required baseline: {2}</Mugirl.Restraints.ForceUnlock.StrengthTooLow>
+    <Mugirl.Restraints.ForceUnlock.RequirementRough>body size 1.0, manipulation 100%, melee 10</Mugirl.Restraints.ForceUnlock.RequirementRough>
+    <Mugirl.Restraints.ForceUnlock.RequirementFine>body size 1.0, manipulation 100%, melee 14</Mugirl.Restraints.ForceUnlock.RequirementFine>
+    <Mugirl.Restraints.ForceUnlock.RequirementUnsupported>unsupported restraint type</Mugirl.Restraints.ForceUnlock.RequirementUnsupported>
+    <Mugirl.Restraints.ForceUnlock.Success>{0} forced open {1}'s {2}.</Mugirl.Restraints.ForceUnlock.Success>
+    <Mugirl.Restraints.ForceUnlock.WoundMote>Wounded!</Mugirl.Restraints.ForceUnlock.WoundMote>
+    <Mugirl.HandsBlocked>Unable to free this pawn's self: hands bound.</Mugirl.HandsBlocked>
+    <Mugirl.SlaveApparelUnlockPartial>{0} unlocks {1}'s restraint. {2} more key(s) are required to completely unlock.</Mugirl.SlaveApparelUnlockPartial>
+    <Mugirl.WrongKeyType>Unable to unlock: Key type does not match {0}</Mugirl.WrongKeyType>
+    <Mugirl.NoPath>No Path</Mugirl.NoPath>
+    <Mugirl.CannotPrioritizeWorkTypeDisabled>Unable to work ({0} has been disabled)</Mugirl.CannotPrioritizeWorkTypeDisabled>
+    <Mugirl.SlaveApparelCracked>{0}'s restraint has been decrypted.</Mugirl.SlaveApparelCracked>
+    <Mugirl.SlaveApparel.StatusLabel>{0} ({1})</Mugirl.SlaveApparel.StatusLabel>
+    <Mugirl.CrackStatus>Decryption Status</Mugirl.CrackStatus>
+    <Mugirl.Cracked>Decrypted</Mugirl.Cracked>
+    <Mugirl.Uncracked>Not Decrypted</Mugirl.Uncracked>
+    <Mugirl.CrackStatusDesc>Whether this restraint has been decrypted.</Mugirl.CrackStatusDesc>
+    <Mugirl.RopeToHitch>Rope to Hitch</Mugirl.RopeToHitch>
+    <Mugirl.NoValidToRope>No valid object to be roped.</Mugirl.NoValidToRope>
+    <Mugirl.RopedByPawn>Roped by other pawn</Mugirl.RopedByPawn>
+    <Mugirl.RopedToHitchingPost>Roped to Hitching Post.</Mugirl.RopedToHitchingPost>
+    <Mugirl.RopedToSpot>Roped to A Certain Spot.</Mugirl.RopedToSpot>
+    <Mugirl.Rope.Target>Rope {0}</Mugirl.Rope.Target>
+    <Mugirl.Rope.SuccessChance>Success Rate</Mugirl.Rope.SuccessChance>
+    <Mugirl.Rope.TargetWithSuccessChance>{0} ({1} {2})</Mugirl.Rope.TargetWithSuccessChance>
+    <Mugirl.Unrope.Target>Unrope {0}</Mugirl.Unrope.Target>
+    <Mugirl.FloatMenu.OptionWithReason>{0} ({1})</Mugirl.FloatMenu.OptionWithReason>
+    <Mugirl.FloatMenu.ActionOnTarget>{0} on {1}</Mugirl.FloatMenu.ActionOnTarget>
+    <Mugirl.FloatMenu.ActionOnReserved>{0} on ({1})</Mugirl.FloatMenu.ActionOnReserved>
+    <Mugirl.DraftDisabledWhileRoped>The Mugirl is currently being roped by others and cannot be drafted.</Mugirl.DraftDisabledWhileRoped>
+    <Mugirl.Mount.Target>Mount {0}</Mugirl.Mount.Target>
+    <Mugirl.Mount.DismountRider>Dismount rider</Mugirl.Mount.DismountRider>
+    <Mugirl.Mount.DismountRiderDesc>Drop the current rider from this Mugirl.</Mugirl.Mount.DismountRiderDesc>
+    <Mugirl.Mount.SelectRider>Select rider</Mugirl.Mount.SelectRider>
+    <Mugirl.Mount.SelectRiderDesc>Select the pawn currently riding this Mugirl.</Mugirl.Mount.SelectRiderDesc>
+    <Mugirl.Mount.SelectCarrier>Select Mugirl</Mugirl.Mount.SelectCarrier>
+    <Mugirl.Mount.SelectCarrierDesc>Select the Mugirl carrying this rider.</Mugirl.Mount.SelectCarrierDesc>
+    <Mugirl.Mount.FireAtWill>Fire at will</Mugirl.Mount.FireAtWill>
+    <Mugirl.Mount.FireAtWillDesc>Allow the rider to act as an automatic ranged mount weapon.</Mugirl.Mount.FireAtWillDesc>
+    <Mugirl.Mount.HoldFire>Hold fire</Mugirl.Mount.HoldFire>
+    <Mugirl.Mount.HoldFireDesc>Prevent the rider from firing automatically.</Mugirl.Mount.HoldFireDesc>
+    <Mugirl.Mount.CannotMount>Cannot mount</Mugirl.Mount.CannotMount>
+    <Mugirl.Mount.LabelWithReason>{0}: {1}</Mugirl.Mount.LabelWithReason>
+    <Mugirl.Mount.MountedMessage>{0} mounted {1}.</Mugirl.Mount.MountedMessage>
+    <Mugirl.Mount.DismountedMessage>{0} dismounted from {1}.</Mugirl.Mount.DismountedMessage>
+    <Mugirl.Mount.AutoDismountMessage>{0} dismounted automatically: {1}.</Mugirl.Mount.AutoDismountMessage>
+    <Mugirl.Mount.NoDismountCell>No valid dismount cell near {0}.</Mugirl.Mount.NoDismountCell>
+    <Mugirl.Mount.InspectRider>Rider: {0}</Mugirl.Mount.InspectRider>
+    <Mugirl.Mount.ReasonInvalid>Invalid target</Mugirl.Mount.ReasonInvalid>
+    <Mugirl.Mount.ReasonAlreadyHasRider>Already has a rider</Mugirl.Mount.ReasonAlreadyHasRider>
+    <Mugirl.Mount.ReasonTargetNotMugirl>Target is not a Mugirl</Mugirl.Mount.ReasonTargetNotMugirl>
+    <Mugirl.Mount.ReasonTargetBadState>The Mugirl is in a bad state</Mugirl.Mount.ReasonTargetBadState>
+    <Mugirl.Mount.ReasonRiderBadState>The rider is in a bad state</Mugirl.Mount.ReasonRiderBadState>
+    <Mugirl.Mount.ReasonRiderNotHumanlike>The rider must be a humanlike pawn</Mugirl.Mount.ReasonRiderNotHumanlike>
+    <Mugirl.Mount.ReasonAlreadyMounted>Already mounted</Mugirl.Mount.ReasonAlreadyMounted>
+    <Mugirl.Mount.ReasonRoped>Roped pawns cannot mount</Mugirl.Mount.ReasonRoped>
+    <Mugirl.Mount.ReasonReserved>Reserved</Mugirl.Mount.ReasonReserved>
+    <Mugirl.Mount.ReasonNoPath>No path</Mugirl.Mount.ReasonNoPath>
+    <Mugirl.Mount.ReasonRiderHungry>hungry</Mugirl.Mount.ReasonRiderHungry>
+    <Mugirl.Mount.ReasonRiderTired>exhausted</Mugirl.Mount.ReasonRiderTired>
+    <Mugirl.Mount.ReasonRiderMedical>needs medical rest</Mugirl.Mount.ReasonRiderMedical>
+    <Mugirl.Mount.ReasonTurretHoldFire>Rider is holding fire</Mugirl.Mount.ReasonTurretHoldFire>
+    <Mugirl.Mount.ReasonNoRangedWeapon>Rider has no ranged weapon</Mugirl.Mount.ReasonNoRangedWeapon>
+    <Mugirl.CourierContactLetterLabel>Corporate Courier</Mugirl.CourierContactLetterLabel>
+    <Mugirl.CourierContactLetterText>A corporate courier limps in from the edge of the map, uniform scuffed with dirt. He keeps one hand hovering beside his weapon but never draws it. He looks exhausted - and afraid. You can send a colonist to negotiate with him.</Mugirl.CourierContactLetterText>
+    <Mugirl.CourierTalkOption>Negotiate with the corporate courier</Mugirl.CourierTalkOption>
+    <Mugirl.CourierTalkCannotReach>cannot reach</Mugirl.CourierTalkCannotReach>
+    <Mugirl.CourierTalkOptionDisabled>{0} ({1})</Mugirl.CourierTalkOptionDisabled>
+    <Mugirl.CourierAlreadyResolved>This courier can no longer negotiate.</Mugirl.CourierAlreadyResolved>
+    <Mugirl.CourierDialogTitle>Corporate Courier</Mugirl.CourierDialogTitle>
+    <Mugirl.CourierDialogText>The corporate courier stops a few paces away, one hand half-raised, eyes darting between you and the way he came. He tries to hold a professional posture, but the fingers resting on his holster keep trembling.\n\n\"Easy... everyone stay easy. The name's {COURIER} - just a courier, the kind with an employee number stitched into his sleeve.\" He licks his cracked lips. \"The ship broke up in orbit. The cargo scattered across the crash site. I've been walking since the crash, trying to find it before the system logs me as a runner...\"\n\nHe lets out a small, bitter laugh. \"Listen to me, pouring it all out. Here's the deal - the diary and the restraint keys I'm carrying are yours. Write the cargo off as 'lost in transit.' Let me walk, and nobody reports this upstairs. What do you say, {NEGOTIATOR}? Better for both of us.\"</Mugirl.CourierDialogText>
+    <Mugirl.CourierDialogLeaveItems>Accept the proposal</Mugirl.CourierDialogLeaveItems>
+    <Mugirl.CourierDialogFight>Fight now</Mugirl.CourierDialogFight>
+    <Mugirl.CourierItemsDroppedMessage>The courier drops the diary and restraint keys and hurries toward the map edge without looking back.</Mugirl.CourierItemsDroppedMessage>
+    <Mugirl.CourierFightMessage>The negotiation breaks down. The courier mutters a curse and draws his weapon. This fight will not affect your formal standing with the corporation.</Mugirl.CourierFightMessage>
+    <Mugirl.CourierFightReason>Negotiations broke down.</Mugirl.CourierFightReason>
+    <Mugirl.CourierRaid.Log.NoMap>CourierRaid quest aborted: no valid map target.</Mugirl.CourierRaid.Log.NoMap>
+    <Mugirl.CourierRaid.Log.NoFaction>CourierRaid quest aborted: hostile giant corporation faction not found.</Mugirl.CourierRaid.Log.NoFaction>
+    <Mugirl.CourierRaid.Log.NoSpawnCell>CourierRaid quest aborted: no valid spawn cell.</Mugirl.CourierRaid.Log.NoSpawnCell>
+    <Mugirl.CourierRaid.Log.MissingOpeningPawns>Courier could not find the opening crash pawns to count their restraint keys.</Mugirl.CourierRaid.Log.MissingOpeningPawns>
+    <Mugirl.CourierRaid.SpawnLog.NoMap>CourierRaid spawn aborted: map is null.</Mugirl.CourierRaid.SpawnLog.NoMap>
+    <Mugirl.CourierRaid.SpawnLog.NoFaction>CourierRaid spawn aborted: faction is null.</Mugirl.CourierRaid.SpawnLog.NoFaction>
+    <Mugirl.CourierRaid.SpawnLog.NoSpawnCell>CourierRaid spawn aborted: no valid spawn cell.</Mugirl.CourierRaid.SpawnLog.NoSpawnCell>
+    <Mugirl.CourierDiary.Title>Courier diary</Mugirl.CourierDiary.Title>
+    <Mugirl.CourierDiary.ReadOption>Read {0}</Mugirl.CourierDiary.ReadOption>
+    <Mugirl.CourierDiary.OptionDisabled>{0} ({1})</Mugirl.CourierDiary.OptionDisabled>
+    <Mugirl.CourierDiary.CannotReach>cannot reach</Mugirl.CourierDiary.CannotReach>
+    <Mugirl.CourierDiary.PageCounter>Page {0} / {1}</Mugirl.CourierDiary.PageCounter>
+    <Mugirl.CourierDiary.PreviousPage>Previous</Mugirl.CourierDiary.PreviousPage>
+    <Mugirl.CourierDiary.NextPage>Next</Mugirl.CourierDiary.NextPage>
+    <Mugirl.CourierDiary.Close>Close</Mugirl.CourierDiary.Close>
+    <Mugirl.CourierDiary.Page1>[Page One]\n\nWelcome to Courier Diary.\n\nThis diary records the experiences of a low-level courier during his time working for the mega corporation. It contains practical advice and survival lessons.</Mugirl.CourierDiary.Page1>
+    <Mugirl.CourierDiary.Page2>[Page Two]\n\nAbout the mega corporation:\n\nThe mega corporation is a vast corporate alliance with armed forces spread across many planets. They field distinctive OPIC and PMC weapon series.\n\nWhen facing a raid, pay attention to enemy equipment tiers. Enemies carrying PMC-prefix weapons are usually more dangerous.</Mugirl.CourierDiary.Page2>
+    <Mugirl.CourierDiary.Page3>[Page Three]\n\nAbout Mugirls:\n\nMugirls are products of genetic engineering. Their milk has exceptional nutritional value, and Mugirl dairy products can provide additional benefits.\n\nMugirl milk pudding improves mood, cheese can detoxify, and aged cheese and milk tablets can strengthen immunity.</Mugirl.CourierDiary.Page3>
+    <Mugirl.CourierDiary.Page4>[Page Four]\n\nAbout restraint keys:\n\nCrude restraint keys can be made at machining tables or smithies. Fine restraint keys require more advanced workstations.\n\nIf you find keys carried by a lucky courier, you can use them to unlock restraints on Mugirls.</Mugirl.CourierDiary.Page4>
+    <Mugirl.CourierDiary.Page5>[Page Five]\n\nSurvival advice:\n\n1. Develop Mugirl husbandry for a stable milk supply\n2. Build enough defenses against mega corporation raids\n3. Produce dairy foods to strengthen colonists\n4. Restraint keys can help recruit enslaved Mugirls\n\nGood luck surviving this brutal world.</Mugirl.CourierDiary.Page5>
+    <Mugirl.LetterLabelWandererJoins>Mugirl asks to join: {PAWN_nameDef}</Mugirl.LetterLabelWandererJoins>
+    <Mugirl.LetterWandererJoins>A Mugirl escapee named {PAWN_nameDef} has reached your colony and asks for shelter. {PAWN_pronoun} escaped from a slave caravan and still wears its worn restraints.\n\n{PAWN_pronoun} is willing to work for the colony. You can accept or reject {PAWN_objective}. If you do not answer within one day, {PAWN_pronoun} will look for shelter elsewhere.</Mugirl.LetterWandererJoins>
+    <Mugirl.LetterLabelOpeningPodCrash>Opening Mugirl pod crash</Mugirl.LetterLabelOpeningPodCrash>
+    <Mugirl.OpeningPodCrash_MultipleIntro>An escape pod has crashed nearby, with two Mugirl escapees crowded inside.</Mugirl.OpeningPodCrash_MultipleIntro>
+    <Mugirl.OpeningPodCrash>They fled a corporate slave transport ship and still wear its restraints. The journey has left them exhausted, and paralytic abasia prevents them from leaving on their own.\n\nBoth are adults with nowhere else to go. If rescued to safe beds, they are willing to join your colony and begin a new life here.</Mugirl.OpeningPodCrash>
+    <Mugirl.OpeningPodCrash_Child>Among them, {PAWN_nameDef} is a {AGE}-year-old child who has just escaped from a slave caravan and is completely alone.</Mugirl.OpeningPodCrash_Child>
+    <Mugirl.OpeningPodCrash_Factionless>Among them, {PAWN_pronoun} doesn't belong to any faction. You can choose to rescue {PAWN_objective}, hoping {PAWN_pronoun} will freely join your colony, or you can choose to capture {PAWN_objective} to recruit or enslave {PAWN_objective}.</Mugirl.OpeningPodCrash_Factionless>
+    <Mugirl.OpeningPodCrash_FactionlessMultiple>Neither belongs to any faction. You can choose to rescue them, hoping they will freely join your colony, or you can choose to capture them to recruit or enslave them.</Mugirl.OpeningPodCrash_FactionlessMultiple>
+    <Mugirl.OpeningPodCrash_Hostile>Among them, {PAWN_nameDef} comes from the hostile faction {PAWN_factionName}. You can capture {PAWN_objective} to recruit or enslave {PAWN_objective}.</Mugirl.OpeningPodCrash_Hostile>
+    <Mugirl.OpeningPodCrash_NonHostile>{PAWN_nameDef} comes from {PAWN_factionName}. If you rescue {PAWN_objective}, {PAWN_pronoun} will improve relations between your factions when {PAWN_pronoun} returns.\n\nYou can also capture {PAWN_objective} to recruit or enslave {PAWN_objective}, but this will anger {PAWN_possessive} faction.</Mugirl.OpeningPodCrash_NonHostile>
+    <Mugirl.OpeningPodCrash.Log.FactionlessGenerationFailed>Failed to generate a factionless opening pod pawn after {0} attempts. Check PawnKindDef or other pawn generation patches.</Mugirl.OpeningPodCrash.Log.FactionlessGenerationFailed>
+    <Mugirl.Newborn.Log.CorrectedBodyTypes>Corrected juvenile Mugirl body types: {0}.</Mugirl.Newborn.Log.CorrectedBodyTypes>
+    <Mugirl.FeralChild>feral child</Mugirl.FeralChild>
+    <Mugirl.Child>child</Mugirl.Child>
+    <Mugirl.Person>person</Mugirl.Person>
+    <Mugirl.LetterLabelRefugeePodCrash>Mugirl pod rescue</Mugirl.LetterLabelRefugeePodCrash>
+    <Mugirl.RefugeePodCrash>An escape pod has crashed nearby, carrying a Mugirl escapee named {PAWN_nameDef}.\n\n{PAWN_pronoun} fled a slave transport ship. Exhausted by the journey and still wearing restraints, {PAWN_objective} is downed and unable to move. You can send someone to help.</Mugirl.RefugeePodCrash>
+    <Mugirl.RefugeePodCrash_Child>{PAWN_nameDef} is a {AGE}-year-old child and is completely alone.</Mugirl.RefugeePodCrash_Child>
+    <Mugirl.RefugeePodCrash_Factionless>{PAWN_pronoun} belongs to no faction. If rescued, {PAWN_pronoun} may choose to join your colony. You can also capture {PAWN_objective} and try to recruit {PAWN_objective}.</Mugirl.RefugeePodCrash_Factionless>
+    <Mugirl.RefugeePodCrash_Hostile>{PAWN_nameDef} comes from the hostile faction {PAWN_factionName}. You can capture {PAWN_objective} to recruit or enslave {PAWN_objective}.</Mugirl.RefugeePodCrash_Hostile>
+    <Mugirl.RefugeePodCrash_NonHostile>{PAWN_nameDef} comes from {PAWN_factionName}. If you rescue {PAWN_objective}, {PAWN_pronoun} will improve relations between your factions when {PAWN_pronoun} returns.\n\nYou can also capture {PAWN_objective} to recruit or enslave {PAWN_objective}, but this will anger {PAWN_possessive} faction.</Mugirl.RefugeePodCrash_NonHostile>
+    <Mugirl.RefugeePodCrash.Log.DownedGenerationFallback>Refugee pod pawn could not be downed after {0} attempts; using a living fallback pawn.</Mugirl.RefugeePodCrash.Log.DownedGenerationFallback>
+    <Mugirl.RefugeePodCrash.Log.GenerationFailed>Refugee pod pawn generation failed after {0} attempts. Check PawnKindDef or other pawn generation patches.</Mugirl.RefugeePodCrash.Log.GenerationFailed>
+    <Mugirl.RefugeePodCrash.Log.MissingQuestContext>Refugee pod crash quest root ran without a valid quest context.</Mugirl.RefugeePodCrash.Log.MissingQuestContext>
+    <Mugirl.RefugeePodCrash.Log.MissingMap>Refugee pod crash quest could not resolve a usable target map.</Mugirl.RefugeePodCrash.Log.MissingMap>
+    <Mugirl.WeaponWheel.Tab>Weapon wheel</Mugirl.WeaponWheel.Tab>
+    <Mugirl.WeaponWheel.TabShort>Weapons</Mugirl.WeaponWheel.TabShort>
+    <Mugirl.WeaponWheel.HeaderSlots>{0} / {1}</Mugirl.WeaponWheel.HeaderSlots>
+    <Mugirl.WeaponWheel.Locked>Locked</Mugirl.WeaponWheel.Locked>
+    <Mugirl.WeaponWheel.LockedDesc>Complete the self-propelled autoloading research to unlock this wheel slot.</Mugirl.WeaponWheel.LockedDesc>
+    <Mugirl.WeaponWheel.DevUnlock>Unlock</Mugirl.WeaponWheel.DevUnlock>
+    <Mugirl.WeaponWheel.EmptySlotDesc>Click, then select a weapon on the map to load it into this wheel slot.</Mugirl.WeaponWheel.EmptySlotDesc>
+    <Mugirl.WeaponWheel.DropWeapon>Unequip {0}</Mugirl.WeaponWheel.DropWeapon>
+    <Mugirl.WeaponWheel.InvalidWeapon>The target is not an equippable primary weapon.</Mugirl.WeaponWheel.InvalidWeapon>
+    <Mugirl.WeaponWheel.SlotLocked>This wheel slot is locked.</Mugirl.WeaponWheel.SlotLocked>
+    <Mugirl.WeaponWheel.SlotOccupied>This wheel slot already contains a weapon.</Mugirl.WeaponWheel.SlotOccupied>
+    <Mugirl.WeaponWheel.Busy>The weapon wheel cannot be edited while firing, switching or reloading.</Mugirl.WeaponWheel.Busy>
+    <Mugirl.WeaponWheel.AlreadyStored>This weapon is already in the wheel.</Mugirl.WeaponWheel.AlreadyStored>
+    <Mugirl.WeaponWheel.CannotStore>This weapon cannot be stored in the wheel.</Mugirl.WeaponWheel.CannotStore>
+    <Mugirl.WeaponWheel.CannotSwap>These wheel slots cannot be swapped.</Mugirl.WeaponWheel.CannotSwap>
+    <Mugirl.WeaponWheel.CannotDrop>This weapon cannot be unequipped right now.</Mugirl.WeaponWheel.CannotDrop>
+    <Mugirl.WeaponWheel.StatusFull>Weapon wheel: Full firepower enabled</Mugirl.WeaponWheel.StatusFull>
+    <Mugirl.WeaponWheel.StatusSwordDance>Weapon wheel: Linked sword dance enabled</Mugirl.WeaponWheel.StatusSwordDance>
+    <Mugirl.WeaponWheel.StatusSwordDanceDesc>Each melee attack has a 33% chance to dash behind the enemy, stunning them, dealing impact damage and melee attack damage, then switching to the next melee weapon and increasing melee attack speed by 200% for 5 seconds.</Mugirl.WeaponWheel.StatusSwordDanceDesc>
+    <!-- Dev-only gizmo: opens the back weapon layout tuning window. -->
+    <Mugirl.WeaponWheel.BackLayoutDebug.Title>Back weapon layout debug</Mugirl.WeaponWheel.BackLayoutDebug.Title>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Weapon0>Wheel slot 1</Mugirl.WeaponWheel.BackLayoutDebug.Weapon0>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Weapon1>Wheel slot 2</Mugirl.WeaponWheel.BackLayoutDebug.Weapon1>
+    <Mugirl.WeaponWheel.BackLayoutDebug.OffsetX>Offset X: {0}</Mugirl.WeaponWheel.BackLayoutDebug.OffsetX>
+    <Mugirl.WeaponWheel.BackLayoutDebug.OffsetZ>Offset Z: {0}</Mugirl.WeaponWheel.BackLayoutDebug.OffsetZ>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Angle>Rotation: {0}°</Mugirl.WeaponWheel.BackLayoutDebug.Angle>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Layer>Layer: {0}</Mugirl.WeaponWheel.BackLayoutDebug.Layer>
+    <Mugirl.WeaponWheel.BackLayoutDebug.SouthAutoloadingLayer>South / autoloading system layer: {0}</Mugirl.WeaponWheel.BackLayoutDebug.SouthAutoloadingLayer>
+    <Mugirl.WeaponWheel.BackLayoutDebug.CopyXml>Copy XML</Mugirl.WeaponWheel.BackLayoutDebug.CopyXml>
+    <Mugirl.WeaponWheel.BackLayoutDebug.CopyCSharp>Copy C# defaults</Mugirl.WeaponWheel.BackLayoutDebug.CopyCSharp>
+    <Mugirl.WeaponWheel.BackLayoutDebug.WriteFile>Write config file</Mugirl.WeaponWheel.BackLayoutDebug.WriteFile>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Reset>Reset</Mugirl.WeaponWheel.BackLayoutDebug.Reset>
+    <Mugirl.WeaponWheel.BackLayoutDebug.OpenFolder>Open config folder</Mugirl.WeaponWheel.BackLayoutDebug.OpenFolder>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Hint>Changes apply to all Mugirl immediately. +/- steps: offset 0.005, angle 1°, layer 0.5. South-facing back weapons use a separate layer with an autoloading system. Reset only changes memory; save to apply on the next launch. Path: {0}</Mugirl.WeaponWheel.BackLayoutDebug.Hint>
+    <Mugirl.WeaponWheel.BackLayoutDebug.StatusCopied>Copied to clipboard.</Mugirl.WeaponWheel.BackLayoutDebug.StatusCopied>
+    <Mugirl.WeaponWheel.BackLayoutDebug.StatusWritten>Written: {0}</Mugirl.WeaponWheel.BackLayoutDebug.StatusWritten>
+    <Mugirl.WeaponWheel.BackLayoutDebug.StatusReset>Built-in defaults restored (memory only; the config file was not deleted).</Mugirl.WeaponWheel.BackLayoutDebug.StatusReset>
+    <Mugirl.Punisher.LetterLabel>Snow-bovine punisher</Mugirl.Punisher.LetterLabel>
+    <Mugirl.Punisher.LetterText>You have cruelly slaughtered innocent Mugirls! The god of the snow-bovines will punish you!</Mugirl.Punisher.LetterText>
+    <Mugirl.Punisher.Departed>The snow-bovine punisher has completed its punishment and departed.</Mugirl.Punisher.Departed>
+    <Mugirl.Throw.InvalidTarget>This target cannot be picked up.</Mugirl.Throw.InvalidTarget>
+    <Mugirl.Dunk.InvalidDestination>The dunk landing point must be within {0} cells of the target.</Mugirl.Dunk.InvalidDestination>
+    <Mugirl.Dunk.PickupReadout>Dribble {0}'s head into a meteor dunk.</Mugirl.Dunk.PickupReadout>
+    <Mugirl.Dunk.InvalidTarget>Choose a humanlike pawn for this prank.</Mugirl.Dunk.InvalidTarget>
+    <Mugirl.Dunk.NoHead>{0} has no head to use as a basketball.</Mugirl.Dunk.NoHead>
+    <Mugirl.Dunk.DevOnly>Only available in developer mode.</Mugirl.Dunk.DevOnly>
+    <Mugirl.Throw.IndestructibleTarget>{0} cannot be moved.</Mugirl.Throw.IndestructibleTarget>
+    <Mugirl.Throw.ConnectedTarget>{0} is connected to another structure and cannot be lifted.</Mugirl.Throw.ConnectedTarget>
+    <Mugirl.Throw.AlreadyHolding>Already holding something.</Mugirl.Throw.AlreadyHolding>
+    <Mugirl.Throw.TooHeavy>Too heavy: mass {0} kg, carrying capacity {1} kg.</Mugirl.Throw.TooHeavy>
+    <Mugirl.Throw.PickupReadout>Mass {0} kg / carrying capacity {1} kg</Mugirl.Throw.PickupReadout>
+    <Mugirl.Throw.OutOfRange>Out of throwing range (maximum {0} cells).</Mugirl.Throw.OutOfRange>
+    <Mugirl.Throw.AimReadout>Damage {0} / blast radius {1} / max range {2}</Mugirl.Throw.AimReadout>
+    <Mugirl.Throw.PlaceFailed>Could not safely place {0}: {1}</Mugirl.Throw.PlaceFailed>
+    <Mugirl.Throw.BusyHolding>{0} is holding an object to throw and cannot fire</Mugirl.Throw.BusyHolding>
+    <Mugirl.Settings.ExtraOutline.Label>Enable extra outlines</Mugirl.Settings.ExtraOutline.Label>
+    <Mugirl.Settings.ExtraOutline.Desc>Add one black outer silhouette around a Mugirl's body, hair and apparel. Weapons are not outlined. Disabled by default. Distant pawns retain the game's texture caching.</Mugirl.Settings.ExtraOutline.Desc>
+    <Mugirl.Settings.ExtraOutline.Width>Outline thickness: {0}x</Mugirl.Settings.ExtraOutline.Width>
+    <Mugirl.Outline.Unavailable>Could not load the extra-outline shader. Normal pawn rendering is preserved. Details: {0}</Mugirl.Outline.Unavailable>
+    <!-- Grazing food policy preset label: wild vanilla plants only, excluding sown crops. -->
+    <Mugirl.FoodPolicy.Grass.Label>Grass</Mugirl.FoodPolicy.Grass.Label>
+    <Mugirl.WeaponWheel.BackLayoutDebug.ChoosePawn>Choose preview pawn</Mugirl.WeaponWheel.BackLayoutDebug.ChoosePawn>
+    <Mugirl.WeaponWheel.BackLayoutDebug.NoPawn>No Mugirl available for preview. Prepare a standing Mugirl on a map first.</Mugirl.WeaponWheel.BackLayoutDebug.NoPawn>
+    <Mugirl.WeaponWheel.BackLayoutDebug.Zoom>Preview zoom: {0}</Mugirl.WeaponWheel.BackLayoutDebug.Zoom>
+    <Mugirl.WeaponWheel.BackLayoutDebug.PreviewHint>Back weapons always use wheel slots 1 and 2. Held or switching weapons are hidden without filling from later slots. Autoloading groove weapons remain visible for comparison.</Mugirl.WeaponWheel.BackLayoutDebug.PreviewHint>
+    <Mugirl.WeaponWheel.BackLayoutDebug.NumericHint>Enter a number to apply immediately, from {0} to {1}. Use a dot for decimals. Invalid or out-of-range input is underlined in red and leaves the value unchanged.</Mugirl.WeaponWheel.BackLayoutDebug.NumericHint>
+    <Mugirl.WeaponWheel.BackLayoutDebug.EmptyWeapon>No normal back weapon in this position. Load a spare weapon into the weapon wheel first.</Mugirl.WeaponWheel.BackLayoutDebug.EmptyWeapon>
+    <Mugirl.WeaponWheel.BackLayoutDebug.ResetPose>Reset this direction</Mugirl.WeaponWheel.BackLayoutDebug.ResetPose>
+    <Mugirl.WeaponWheel.BackLayoutDebug.StatusFailed>Operation failed: {0}</Mugirl.WeaponWheel.BackLayoutDebug.StatusFailed>
+    <Mugirl.WeaponWheel.BackLayoutDebug.FlipHorizontal>Flip horizontally</Mugirl.WeaponWheel.BackLayoutDebug.FlipHorizontal>
+    <Mugirl.WeaponWheel.BackLayoutDebug.FlipVertical>Flip vertically</Mugirl.WeaponWheel.BackLayoutDebug.FlipVertical>
+    <Mugirl.WeaponWheel.BackLayoutDebug.MirrorHint>Flip the current weapon texture left/right or top/bottom before rotation. Both options can be combined without changing position, size or render layer.</Mugirl.WeaponWheel.BackLayoutDebug.MirrorHint>
+</LanguageData>

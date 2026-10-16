@@ -1,0 +1,20 @@
+# C.forbidden-patterns：不得出现在 1.7 内容（1.7 与 1.7/Mods/* 的 xml/txt/glsl）与 Source/MugirlRace 源码中的旧名与笔误。
+# 格式：.NET 正则表达式<TAB>理由。来源：1.6 静态检查 Invoke-Phase6StaticValidation.ps1 的“Forbidden production patterns”。
+Apperal	typo of Apparel
+Heiffs	typo of Hediffs
+\bHai\b	typo of Hair
+Gloden	typo of Golden
+MechanoidWorkControlSettings	legacy name banned by the 1.6 static validation
+allArmorDefs	legacy name banned by the 1.6 static validation
+milking\(V1\)	legacy name banned by the 1.6 static validation
+south \.png	broken texture file name (space before the extension)
+EyeInHead _backpack	broken texture path (space in the name)
+Ldloc_S	banned by the 1.6 static validation: transpilers must not hard-code short local indices
+MugirlSkinApplied	legacy name banned by the 1.6 static validation
+\bAnalyzer\b	legacy name banned by the 1.6 static validation
+Mugirl_FactionUtility	legacy helper banned by the 1.6 static validation
+AdvancedSlaveApparel\s*\|\|[^\r\n]*BrainWashSlaveApparel	BrainWashSlaveApparel derives from AdvancedSlaveApparel: test the base type once
+EnsureBikiniOnly	legacy restraint behaviour banned by the 1.6 static validation
+WearBikiniOnly	legacy restraint behaviour banned by the 1.6 static validation
+UnlockEventBikini	legacy restraint behaviour banned by the 1.6 static validation
+Pawn_ApparelTracker_IsLocked_SlaveApparel_Patch	legacy patch banned by the 1.6 static validation (slave apparel uses the native IsLocked)

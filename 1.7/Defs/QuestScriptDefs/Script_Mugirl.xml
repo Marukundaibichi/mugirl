@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <QuestScriptDef>
+        <defName>Mugirl_SlaveOpeningPodCrash</defName>
+        <autoAccept>true</autoAccept>
+        <defaultCharity>true</defaultCharity>
+        <successHistoryEvent MayRequire="Ludeon.RimWorld.Ideology">CharityFulfilled_RefugeePodCrash</successHistoryEvent>
+        <failedOrExpiredHistoryEvent MayRequire="Ludeon.RimWorld.Ideology">CharityRefused_RefugeePodCrash</failedOrExpiredHistoryEvent>
+        <defaultHidden>true</defaultHidden>
+        <isRootSpecial>true</isRootSpecial>
+        <questNameRules>
+            <rulesStrings>
+                <li>questName-&gt;Opening Mugirl pod crash</li>
+            </rulesStrings>
+        </questNameRules>
+        <questDescriptionRules>
+            <rulesStrings>
+                <li>questDescription-&gt;Two Mugirl escapees have crash-landed near the colony. They are exhausted and need rescue. This begins the opening storyline.</li>
+            </rulesStrings>
+        </questDescriptionRules>
+        <everAcceptableInSpace>true</everAcceptableInSpace>
+        <root Class="Mugirl.Features.Incidents.QuestNode_Root_OpeningPodCrash" />
+    </QuestScriptDef>
+    <QuestScriptDef>
+        <defName>Mugirl_SlaveRefugeePodCrash</defName>
+        <autoAccept>true</autoAccept>
+        <defaultCharity>true</defaultCharity>
+        <successHistoryEvent MayRequire="Ludeon.RimWorld.Ideology">CharityFulfilled_RefugeePodCrash</successHistoryEvent>
+        <failedOrExpiredHistoryEvent MayRequire="Ludeon.RimWorld.Ideology">CharityRefused_RefugeePodCrash</failedOrExpiredHistoryEvent>
+        <defaultHidden>true</defaultHidden>
+        <isRootSpecial>true</isRootSpecial>
+        <questNameRules>
+            <rulesStrings>
+                <li>questName-&gt;Mugirl pod rescue</li>
+            </rulesStrings>
+        </questNameRules>
+        <questDescriptionRules>
+            <rulesStrings>
+                <li>questDescription-&gt;A Mugirl escapee has crash-landed near the colony. She is exhausted and unable to move. You can rescue her; she may choose to join after recovering.</li>
+            </rulesStrings>
+        </questDescriptionRules>
+        <everAcceptableInSpace>true</everAcceptableInSpace>
+        <root Class="Mugirl.Features.Incidents.QuestNode_Root_MugirlRefugeePodCrash" />
+    </QuestScriptDef>
+    <QuestScriptDef>
+        <defName>Mugirl_SlaveWandererJoins</defName>
+        <autoAccept>true</autoAccept>
+        <defaultHidden>true</defaultHidden>
+        <isRootSpecial>true</isRootSpecial>
+        <successHistoryEvent MayRequire="Ludeon.RimWorld.Ideology">CharityFulfilled_WandererJoins</successHistoryEvent>
+        <failedOrExpiredHistoryEvent MayRequire="Ludeon.RimWorld.Ideology">CharityRefused_WandererJoins</failedOrExpiredHistoryEvent>
+        <questNameRules>
+            <rulesStrings>
+                <li>questName-&gt;Wandering Mugirl asks to join</li>
+            </rulesStrings>
+        </questNameRules>
+        <questDescriptionRules>
+            <rulesStrings>
+                <li>questDescription-&gt;A Mugirl who escaped a slave caravan is asking for shelter. Accept or reject her request within one day.</li>
+            </rulesStrings>
+        </questDescriptionRules>
+        <root Class="Mugirl.Features.Incidents.QuestNode_Root_MugirlWandererJoin" />
+    </QuestScriptDef>
+</Defs>

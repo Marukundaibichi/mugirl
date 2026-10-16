@@ -1,0 +1,9 @@
+{
+  // 负对照：Rect 没人用（必须报为过期）；GUI.color 在白名单中，但在 Mugirl.Platform 之外使用。
+  "types": {
+    "UnityEngine.Rect": "stale on purpose: the control never uses Rect"
+  },
+  "members": {
+    "UnityEngine.GUI::get_color()": "control: whitelisted service member used outside Mugirl.Platform"
+  }
+}

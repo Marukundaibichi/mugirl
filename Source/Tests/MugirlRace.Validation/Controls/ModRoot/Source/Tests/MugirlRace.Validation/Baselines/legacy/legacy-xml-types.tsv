@@ -1,0 +1,2 @@
+# legacy-xml-types.tsv: negative-control corpus for C.save-upgrade (each row exercises one rule; see Controls/expected-failures.txt).
+# columns: type	usage	tiers	eras	first	last

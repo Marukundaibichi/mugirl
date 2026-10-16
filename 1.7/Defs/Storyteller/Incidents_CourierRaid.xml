@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <IncidentDef>
+    <defName>Mugirl_CourierRaid</defName>
+    <!-- 运货员接触 -->
+    <label>courier contact</label>
+    <targetTags>
+        <li>Map_PlayerHome</li>
+    </targetTags>
+    <workerClass>Mugirl.Features.Incidents.IncidentWorker_CourierContact</workerClass>
+    <letterDef>ThreatSmall</letterDef>
+    <category>ThreatSmall</category>
+    <baseChance>0</baseChance>
+    <pointsScaleable>true</pointsScaleable>
+    </IncidentDef>
+
+</Defs>

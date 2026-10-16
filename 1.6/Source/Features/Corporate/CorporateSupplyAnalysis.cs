@@ -115,7 +115,10 @@ namespace Mugirl
                 bool declaredValue = def.statBases?.Any(s => s.stat == StatDefOf.MarketValue && s.value > 0f) == true;
                 bool materialValue = def.MadeFromStuff || def.costList?.Any(c => c.count > 0) == true;
                 entry.missingValue = !declaredValue && !materialValue && !entry.natural && !entry.crafted;
-                entry.restricted = entry.missingValue || CorporatePricingCompatibility.HasOpaqueBehavior(def)
+                string opaqueReason = CorporatePricingCompatibility.OpaqueBehaviorReason(def);
+                if (opaqueReason != null && Prefs.DevMode)
+                    MugirlLog.DevMessage("Mugirl.CorporatePricing.RestrictionDiagnostic".Translate(def.defName, opaqueReason));
+                entry.restricted = entry.missingValue || opaqueReason != null
                     || def.comps?.Any(p => p.compClass != null &&
                         (typeof(CompSpawner).IsAssignableFrom(p.compClass)
                         || typeof(CompSpawnerItems).IsAssignableFrom(p.compClass)

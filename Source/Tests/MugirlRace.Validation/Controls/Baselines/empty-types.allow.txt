@@ -1,0 +1,2 @@
+# 负对照：一条不再匹配任何类型的条目（必须报为过期）。
+Mugirl.BrainWashSlaveApparel	stale on purpose: the control does not define it

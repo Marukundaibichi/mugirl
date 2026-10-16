@@ -123,11 +123,33 @@ namespace Mugirl
                 m.cost = Mathf.CeilToInt(m.ingredients.Sum(x => x.thingDef.BaseMarketValue * x.count));
                 if (m.cost < 1 || m.cost > MissionConfig.processingMaxDeposit) continue;
                 Thing sample = ThingMaker.MakeThing(m.product, m.stuff);
-                m.reward = Mathf.Max(MissionConfig.processingMinimumFee, Mathf.RoundToInt(sample.MarketValue * m.count * Rand.Range(MissionConfig.processingFeeMin, MissionConfig.processingFeeMax)));
-                sample.Destroy();
+                try
+                {
+                    // 使用配方实际工作量与材质修正；仅生成新报价时计算，不重算已签合同。
+                    m.reward = ProcessingReward(r, sample, m.batches,
+                        Rand.Range(MissionConfig.processingFeeMin, MissionConfig.processingFeeMax));
+                }
+                finally { DiscardUnspawnedProduct(sample); }
+                if (m.reward <= 0) continue;
                 return m;
             }
             return null;
+        }
+
+        internal static int ProcessingReward(RecipeDef recipe, Thing sample, int batches, float marketFactor)
+        {
+            float work = recipe.WorkAmountTotal(sample);
+            float marketValue = sample.MarketValue;
+            float hourlyFee = MissionConfig.processingFeePerWorkHour;
+            if (batches <= 0 || work < 0f || float.IsNaN(work) || float.IsInfinity(work)
+                || marketValue <= 0f || float.IsNaN(marketValue) || float.IsInfinity(marketValue)
+                || hourlyFee < 0f || float.IsNaN(hourlyFee) || float.IsInfinity(hourlyFee)
+                || marketFactor < 0f || float.IsNaN(marketFactor) || float.IsInfinity(marketFactor)) return 0;
+            double marketFee = Math.Round((double)marketValue * recipe.products[0].count * batches * marketFactor);
+            double workFee = Math.Ceiling((double)work * batches * hourlyFee / 2500d);
+            double reward = Math.Max(MissionConfig.processingMinimumFee, Math.Max(marketFee, workFee));
+            // 沿用金融金额边界，拒绝异常配方，不截断成一个看似正常的合同。
+            return reward > 100000000d ? 0 : (int)reward;
         }
 
         private CorporateMission BuildPurgeOffer(Map map)
@@ -319,16 +341,42 @@ namespace Mugirl
             return true;
         }
 
-        public bool SubmitMissionProducts(CorporateMission m, CorporateTradeContext context)
+        private List<Thing> MissionSubmissionCandidates(CorporateMission m, CorporateTradeContext context)
         {
             if (context == null || !context.IsValid || m == null || !missions.Contains(m)
-                || m.kind != CorporateMissionKind.Processing || m.state != CorporateMissionState.Active || Now >= m.deadline) return false;
-            int before = m.progress;
-            foreach (Thing t in context.AvailableContractThings.Where(t => t.def == m.product && (m.stuff == null || t.Stuff == m.stuff)
+                || m.kind != CorporateMissionKind.Processing || m.state != CorporateMissionState.Active || Now >= m.deadline)
+                return new List<Thing>();
+            return context.AvailableContractThings.Where(t => t.def == m.product && (m.stuff == null || t.Stuff == m.stuff)
                 && (!t.def.useHitPoints || t.HitPoints >= t.MaxHitPoints * 0.9f) && !t.IsNotFresh()
                 && (!(t is Apparel apparel) || !apparel.WornByCorpse)
-                && (!t.TryGetQuality(out QualityCategory quality) || quality >= QualityCategory.Normal)).ToList())
+                && MissionProductQuality(t) >= QualityCategory.Normal)
+                .OrderBy(MissionProductQuality).ThenBy(t => t.MarketValue).ToList();
+        }
+
+        private static QualityCategory MissionProductQuality(Thing thing) =>
+            thing.TryGetQuality(out QualityCategory quality) ? quality : QualityCategory.Normal;
+
+        public bool MissionSubmissionNeedsQualityConfirmation(CorporateMission m, CorporateTradeContext context)
+        {
+            int remaining = m == null ? 0 : m.count - m.progress;
+            foreach (Thing thing in MissionSubmissionCandidates(m, context))
             {
+                if (remaining <= 0) break;
+                if (MissionProductQuality(thing) > QualityCategory.Normal) return true;
+                remaining -= thing.stackCount;
+            }
+            return false;
+        }
+
+        public bool SubmitMissionProducts(CorporateMission m, CorporateTradeContext context, bool allowHigherQuality = false)
+        {
+            List<Thing> candidates = MissionSubmissionCandidates(m, context);
+            if (candidates.Count == 0) return false;
+            int before = m.progress;
+            foreach (Thing t in candidates)
+            {
+                // 默认调用也保护高品质库存；只有明确确认后的这次提交可以使用。
+                if (!allowHigherQuality && MissionProductQuality(t) > QualityCategory.Normal) continue;
                 int count = Mathf.Min(m.count - m.progress, t.stackCount);
                 if (count <= 0) break;
                 if (!context.TryTakeContractThing(t, count, out Thing taken)) continue;

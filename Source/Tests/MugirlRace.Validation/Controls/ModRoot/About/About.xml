@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- tools/Validate.ps1 -SelfTest 的负对照 Mod 目录。不是真正的 Mod：使用前复制到 %TEMP%。 -->
+<ModMetaData>
+  <name>Mugirl validation negative control</name>
+  <!-- A.about：与 Controls/Baselines/about.json 的 packageId 不同。 -->
+  <packageId>Mugirl.ValidationControl</packageId>
+  <!-- A.about：缺少 1.6。 -->
+  <supportedVersions>
+    <li>1.7</li>
+  </supportedVersions>
+  <modDependencies>
+    <li>
+      <packageId>brrainz.harmony</packageId>
+      <displayName>Harmony</displayName>
+      <steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=2009463077</steamWorkshopUrl>
+    </li>
+    <!-- 正对照：真实的 HAR 依赖，A.assembly-refs 按它核对 AlienRace 引用的版本。 -->
+    <li>
+      <packageId>erdelf.humanoidalienraces</packageId>
+      <displayName>Humanoid Alien Races</displayName>
+      <steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=839005762</steamWorkshopUrl>
+    </li>
+    <!-- A.dependencies：没有安装；A.about：没有下载地址。 -->
+    <li>
+      <packageId>Control.Missing.Dependency</packageId>
+    </li>
+  </modDependencies>
+</ModMetaData>

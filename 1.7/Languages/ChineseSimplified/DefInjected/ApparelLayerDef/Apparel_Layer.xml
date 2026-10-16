@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- fairy overlay -->
+    <Mugirl_FairyOverlay.label>仙子服叠层</Mugirl_FairyOverlay.label>
+    <!-- Hidden Ornament -->
+    <Mugirl_HiddenOrnament.label>隐藏外饰</Mugirl_HiddenOrnament.label>
+    <!-- Ornament -->
+    <Mugirl_Ornament.label>外饰</Mugirl_Ornament.label>
+    <!-- Stockings -->
+    <Mugirl_Stocking.label>丝袜</Mugirl_Stocking.label>
+    <Mugirl_SkinSticker.label>贴肤乳贴</Mugirl_SkinSticker.label>
+    <!-- Underwear -->
+    <Mugirl_Underwear.label>内衣</Mugirl_Underwear.label>
+</LanguageData>

@@ -1,0 +1,31 @@
+<savegame>
+  <meta>
+    <gameVersion>1.6.4871 rev591</gameVersion>
+    <modIds>
+      <li>ludeon.rimworld</li>
+      <li>har.mugirlrace</li>
+    </modIds>
+  </meta>
+  <game>
+    <components>
+      <li Class="Mugirl.MugirlStoryState">
+        <openingCrashStarted>True</openingCrashStarted>
+        <openingCrashCheckTimer>-1</openingCrashCheckTimer>
+        <openingCrashPawns>
+          <li>Thing_Mugirl1</li>
+          <li>null</li>
+        </openingCrashPawns>
+        <courierRaidTriggered>False</courierRaidTriggered>
+        <courierRaidTimer>299640</courierRaidTimer>
+        <courierRaidQuestStarted>True</courierRaidQuestStarted>
+        <fusionInvestmentAccepted>False</fusionInvestmentAccepted>
+        <fusionInvestmentPending>True</fusionInvestmentPending>
+        <fusionInvestmentAmount>1000</fusionInvestmentAmount>
+        <fusionInvestmentTimer>321</fusionInvestmentTimer>
+        <fusionInvestmentNextOfferTick>125</fusionInvestmentNextOfferTick>
+        <fusionInvestmentInvestorActive>True</fusionInvestmentInvestorActive>
+        <fusionInvestmentInvestor>null</fusionInvestmentInvestor>
+      </li>
+    </components>
+  </game>
+</savegame>

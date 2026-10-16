@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- C.content-contracts（wornApparel）：没有 developmentalStageFilter，穿戴贴图缺失。 -->
+<Defs>
+  <ThingDef>
+    <defName>Mugirl_Control_Worn</defName>
+    <label>control apparel</label>
+    <apparel>
+      <wornGraphicPath>Control/NoWorn</wornGraphicPath>
+    </apparel>
+  </ThingDef>
+</Defs>

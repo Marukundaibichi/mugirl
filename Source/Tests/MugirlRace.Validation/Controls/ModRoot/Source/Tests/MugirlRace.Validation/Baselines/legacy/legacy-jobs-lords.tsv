@@ -1,0 +1,5 @@
+# legacy-jobs-lords.tsv: negative-control corpus for C.save-upgrade (each row exercises one rule; see Controls/expected-failures.txt).
+# columns: family	type	abstract	tiers	eras	first	last
+JobDriver	Mugirl.Control.Upgrade.LegacyDriver	concrete	published	Mugirl	p.control	p.control
+JobDriver	Mugirl.Control.Upgrade.PreservedDriver	concrete	published	Mugirl	p.control	p.control
+JobDriver	Mugirl.Control.Upgrade.MissingPreservedDriver	concrete	published	Mugirl	p.control	p.control

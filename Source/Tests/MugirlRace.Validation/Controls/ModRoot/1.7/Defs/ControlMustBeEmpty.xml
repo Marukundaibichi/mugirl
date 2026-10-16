@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- C.content-contracts（emptyFiles）：契约要求这个文件没有 Def。 -->
+<Defs>
+  <ThingDef>
+    <defName>Mugirl_Control_NotEmpty</defName>
+    <label>not empty</label>
+  </ThingDef>
+</Defs>

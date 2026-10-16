@@ -94,7 +94,7 @@ namespace Mugirl
                         return "Mugirl.CQ.ProcessingDesc".Translate(recipe?.LabelCap ?? "?", batches,
                             product?.LabelCap ?? "?", count, cost, reward,
                             string.Join(", ", ingredients.Select(x => x.count + " × " + x.thingDef.LabelCap).ToArray()),
-                            stuff?.LabelCap ?? "Mugirl.CQ.AnyMaterial".Translate());
+                            stuff?.LabelCap ?? "Mugirl.CQ.AnyMaterial".Translate(), (long)cost + reward);
                     case CorporateMissionKind.Purge:
                         return "Mugirl.CQ.PurgeDesc".Translate(enemy?.Name ?? "?", Mathf.RoundToInt(threatPoints), reward);
                     case CorporateMissionKind.Investment:
@@ -188,6 +188,7 @@ namespace Mugirl
         public float processingFeeMin = 0.25f;
         public float processingFeeMax = 0.4f;
         public int processingMinimumFee = 150;
+        public float processingFeePerWorkHour = 20f;
         public int processingMaxDeposit = 20000;
         public int processingFailureGoodwill = -5;
         public int purgeDays = 10;

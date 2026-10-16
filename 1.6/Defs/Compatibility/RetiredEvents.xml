@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <!-- 只供旧档事件队列与历史记录解析引用，不参与随机选择，也不能再次执行。 -->
+    <IncidentDef>
+        <defName>Mugirl_WildManWandersIn</defName>
+        <label>retired Mugirl wander-in event</label>
+        <category>Misc</category>
+        <targetTags><li>Map_PlayerHome</li></targetTags>
+        <workerClass>Mugirl.IncidentWorker_RetiredMugirlEvent</workerClass>
+        <baseChance>0</baseChance>
+        <hidden>true</hidden>
+        <pointsScaleable>false</pointsScaleable>
+    </IncidentDef>
+</Defs>

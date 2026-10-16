@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <HediffDef>
+        <defName>Mugirl_LinkedSwordDance</defName>
+        <!-- 连携剑舞 -->
+        <label>linked sword dance</label>
+        <!-- 大幅增加近战攻击速度。 -->
+        <description>Greatly increases melee attack speed.</description>
+        <hediffClass>HediffWithComps</hediffClass>
+        <isBad>false</isBad>
+        <scenarioCanAdd>false</scenarioCanAdd>
+        <stages>
+            <li>
+                <statFactors>
+                    <MeleeCooldownFactor>0.3333333</MeleeCooldownFactor>
+                </statFactors>
+            </li>
+        </stages>
+        <comps>
+            <li Class="HediffCompProperties_Disappears">
+                <disappearsAfterTicks>300</disappearsAfterTicks>
+                <showRemainingTime>true</showRemainingTime>
+            </li>
+        </comps>
+    </HediffDef>
+</Defs>

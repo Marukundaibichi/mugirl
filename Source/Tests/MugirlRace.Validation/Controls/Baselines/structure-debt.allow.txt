@@ -1,0 +1,2 @@
+# Negative control: an entry that matches nothing (must be reported as stale).
+root: Mugirl.NoLongerInTheRootNamespace	control: stale on purpose

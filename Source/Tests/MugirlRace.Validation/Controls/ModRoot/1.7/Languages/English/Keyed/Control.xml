@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Control_A>Shared key</Control_A>
+  <Control_OnlyEnglish>Violation: no Chinese translation</Control_OnlyEnglish>
+  <Control_Placeholder>Violation: {0} hits {PAWN_labelShort}</Control_Placeholder>
+  <Control_Numbered>Violation: {0} pays {1}</Control_Numbered>
+</LanguageData>

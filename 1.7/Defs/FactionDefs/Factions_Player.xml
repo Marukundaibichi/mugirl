@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <FactionDef>
+        <defName>Mugirl_Colony</defName>
+        <!-- 雪牛娘殖民者 -->
+        <label>Mugirl Colonists</label>
+        <!-- （文案） -->
+        <description>A group of freedom-seeking Mugirls who have successfully escaped enslavement and gathered to establish their own colony. Though the environment is harsh and resources are scarce, they still strive to farm, fight, and support each other, carving out a new future.</description>
+        <isPlayer>true</isPlayer>
+        <basicMemberKind>Mugirl_Colony</basicMemberKind>
+        <!-- 殖民者 -->
+        <pawnSingular>Colonist</pawnSingular>
+        <!-- 殖民者们 -->
+        <pawnsPlural>Colonists</pawnsPlural>
+        <!-- 首领 -->
+        <leaderTitle>Leader</leaderTitle>
+        <techLevel>Industrial</techLevel>
+        <backstoryFilters>
+            <li>
+                <categories>
+                    <li>Mugirl_Colony</li>
+                    <li>Mugirl_Slave</li>
+                </categories>
+            </li>
+        </backstoryFilters>
+        <colorSpectrum>
+            <li>(1, 0.7, 0.7)</li>
+        </colorSpectrum>
+        <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
+        <factionNameMaker>NamerFactionOutlander</factionNameMaker>
+        <settlementNameMaker>NamerSettlementOutlander</settlementNameMaker>
+        <settlementTexturePath>World/Mugirl_Colony</settlementTexturePath>
+        <factionIconPath>World/Mugirl_Colony</factionIconPath>
+        <startingResearchTags>
+            <li>ClassicStart</li>
+        </startingResearchTags>
+        <startingTechprintsResearchTags>
+            <li>ClassicStart</li>
+            <li>ClassicStartTechprints</li>
+        </startingTechprintsResearchTags>
+        <apparelStuffFilter>
+            <thingDefs>
+                <li>Synthread</li>
+            </thingDefs>
+        </apparelStuffFilter>
+        <raidLootValueFromPointsCurve>
+            <points>
+                <li>(35, 15)</li>
+                <li>(100, 120)</li>
+                <li>(1000, 500)</li>
+                <li>(2000, 800)</li>
+                <li>(4000, 1000)</li>
+            </points>
+        </raidLootValueFromPointsCurve>
+        <allowedCultures>
+            <li>Astropolitan</li>
+        </allowedCultures>
+    </FactionDef>
+
+</Defs>

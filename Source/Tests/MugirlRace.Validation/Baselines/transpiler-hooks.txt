@@ -1,0 +1,4 @@
+# Calls into MugirlRace that each Transpiler inserts into its 1.7 target: PatchClass<TAB>Target<TAB>hook ×count.
+# Regenerate with --update-baselines after reviewing the transpiler against the new IL.
+Mugirl.Features.Corporate.Harmony_CompUniqueWeapon_InitializeTraits_CorporateSpecification	RimWorld.CompUniqueWeapon::InitializeTraits()	Mugirl.Features.Corporate.CorporateNetwork::ResolveProductSeed(System.Int32) ×1
+Mugirl.Features.Restraints.Harmony_ITab_Pawn_Gear_DrawThingRow	RimWorld.ITab_Pawn_Gear::DrawThingRow(System.Single&, System.Single, Verse.Thing, System.Boolean)	Mugirl.Features.Restraints.Harmony_ITab_Pawn_Gear_DrawThingRow::DropThingTooltip(Verse.Thing) ×1

@@ -1,0 +1,25 @@
+{
+  // B.base-calls：重写这些方法（被重写的基类实现不是 abstract 时）必须调用 base。按方法名匹配，适用于任何基类（游戏或 Mod 自己的中间类）。
+  // 1.6 只检查 Notify_Equipped/Notify_Unequipped；1.7 推广到存档与生命周期方法。基类实现目前为空时也要求调用：游戏更新可能给它加上状态，
+  // 漏掉 base 会静默丢存档字段或注册信息。
+  "methods": {
+    "ExposeData": "the base class saves its own state (Thought_Memory: def, age, other pawn; JobDriver: toil state; Thing: id, def, position); an empty base (GameComponent) may gain state in a game update.",
+    "PostExposeData": "comps and hediff comps chain their save data through the base implementation.",
+    "SpawnSetup": "Thing.SpawnSetup registers the thing with the map (lister, regions, map mesh); skipping it leaves a half-spawned object.",
+    "PostSpawnSetup": "the base comp spawn setup (graphics, cached state) must run.",
+    "DeSpawn": "Thing.DeSpawn unregisters the thing from the map; skipping it leaves stale references.",
+    "PostDeSpawn": "the base comp despawn cleanup must run.",
+    "Destroy": "Thing.Destroy marks the thing destroyed and despawns it; skipping it leaks the object.",
+    "PostDestroy": "the base comp destroy cleanup must run.",
+    "Notify_Equipped": "the base class tracks the wearer or equipper (1.6 lifecycle rule).",
+    "Notify_Unequipped": "the base class clears the wearer or equipper (1.6 lifecycle rule).",
+    "PostAdd": "Hediff/Gene PostAdd of the base class applies comps and stat caches.",
+    "PostRemoved": "Hediff PostRemoved of the base class notifies comps and dirties caches.",
+    "PostRemove": "Gene PostRemove of the base class reverts what PostAdd applied.",
+    "Notify_PawnDied": "the base class propagates the death notification to its comps.",
+    "FinalizeInit": "the base GameComponent/MapComponent initialization must run."
+  },
+  // 有意不调用 base 的重写："完整类型名::方法名": "理由"。
+  "exceptions": {
+  }
+}

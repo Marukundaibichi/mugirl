@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Defs>
+
+    <SoundDef>
+        <defName>Mugirl_EleShock_Sound</defName>
+        <context>MapOnly</context>
+        <subSounds>
+            <li>
+                <grains>
+                    <li Class="AudioGrain_Clip">
+                        <clipPath>MugirlEleShockSound</clipPath>
+                    </li>
+                </grains>
+                <volumeRange>20</volumeRange>
+                <distRange>10~38</distRange>
+            </li>
+        </subSounds>
+    </SoundDef>
+
+    <SoundDef>
+        <defName>Mugirl_PowerEleShock_Sound</defName>
+        <context>MapOnly</context>
+        <subSounds>
+            <li>
+                <grains>
+                    <li Class="AudioGrain_Clip">
+                        <clipPath>MugirlPowerEleShockSound</clipPath>
+                    </li>
+                </grains>
+                <volumeRange>15</volumeRange>
+                <distRange>20~45</distRange>
+            </li>
+        </subSounds>
+    </SoundDef>
+
+    <SoundDef>
+        <defName>Mugirl_MagneticShackles_Work</defName>
+        <context>MapOnly</context>
+        <subSounds>
+            <li>
+                <grains>
+                    <li Class="AudioGrain_Clip">
+                        <clipPath>MugirlMagneticShacklesWork</clipPath>
+                    </li>
+                </grains>
+                <volumeRange>500</volumeRange>
+                <distRange>20~45</distRange>
+            </li>
+        </subSounds>
+    </SoundDef>
+
+    <SoundDef>
+        <defName>Mugirl_Milking_Sound</defName>
+        <context>MapOnly</context>
+        <subSounds>
+            <li>
+                <grains>
+                    <li Class="AudioGrain_Clip">
+                        <clipPath>milking</clipPath>
+                    </li>
+                </grains>
+                <volumeRange>120</volumeRange>
+                <distRange>12~38</distRange>
+            </li>
+        </subSounds>
+    </SoundDef>
+
+    <SoundDef>
+        <defName>Mugirl_Milking_Power_Sound</defName>
+        <context>MapOnly</context>
+        <subSounds>
+            <li>
+                <grains>
+                    <li Class="AudioGrain_Clip">
+                        <clipPath>milking_V1</clipPath>
+                    </li>
+                </grains>
+                <volumeRange>120</volumeRange>
+                <distRange>12~38</distRange>
+            </li>
+        </subSounds>
+    </SoundDef>
+
+    <SoundDef>
+        <defName>Mugirl_Brainwashing_RingLong</defName>
+        <context>MapOnly</context>
+        <subSounds>
+            <li>
+                <grains>
+                    <li Class="AudioGrain_Clip">
+                        <clipPath>MugirlRingLong</clipPath>
+                    </li>
+                </grains>
+                <volumeRange>80</volumeRange>
+                <distRange>20~45</distRange>
+            </li>
+        </subSounds>
+    </SoundDef>
+
+    <SoundDef>
+        <defName>Mugirl_Brainwashing_RingShort</defName>
+        <context>MapOnly</context>
+        <subSounds>
+            <li>
+                <grains>
+                    <li Class="AudioGrain_Clip">
+                        <clipPath>MugirlRingShort</clipPath>
+                    </li>
+                </grains>
+                <volumeRange>80</volumeRange>
+                <distRange>20~45</distRange>
+            </li>
+        </subSounds>
+    </SoundDef>
+
+    <SoundDef>
+        <defName>Mugirl_Brainwashing_HeartBeat</defName>
+        <context>MapOnly</context>
+        <subSounds>
+            <li>
+                <grains>
+                    <li Class="AudioGrain_Clip">
+                        <clipPath>MugirlHeartBeat</clipPath>
+                    </li>
+                </grains>
+                <volumeRange>80</volumeRange>
+                <distRange>20~45</distRange>
+            </li>
+        </subSounds>
+    </SoundDef>
+
+    <SoundDef>
+        <defName>Mugirl_Brainwashing_First</defName>
+        <context>MapOnly</context>
+        <subSounds>
+            <li>
+                <grains>
+                    <li Class="AudioGrain_Clip">
+                        <clipPath>MugirlWashMentalFirst</clipPath>
+                    </li>
+                </grains>
+                <volumeRange>100</volumeRange>
+                <distRange>20~45</distRange>
+            </li>
+        </subSounds>
+    </SoundDef>
+
+    <SoundDef>
+        <defName>Mugirl_Brainwashing_Second</defName>
+        <context>MapOnly</context>
+        <subSounds>
+            <li>
+                <grains>
+                    <li Class="AudioGrain_Clip">
+                        <clipPath>MugirlWashMentalSecond</clipPath>
+                    </li>
+                </grains>
+                <volumeRange>100</volumeRange>
+                <distRange>20~45</distRange>
+            </li>
+        </subSounds>
+    </SoundDef>
+
+</Defs>

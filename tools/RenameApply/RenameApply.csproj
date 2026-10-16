@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Wave R rename-apply tool (see USAGE.md). Deterministic: same repo + same spec => same edits.
+
+    Roslyn: the tool binds against the C# compiler that ships with the active .NET SDK (Roslyn\bincore), i.e. exactly the compiler
+    the mod build uses (LangVersion 14 needs Roslyn 5.x; the NuGet cache only holds 4.14). Override with -p:RoslynDir=<dir>.
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <RoslynDir Condition="'$(RoslynDir)' == ''">$(NetCoreRoot)sdk\$(NETCoreSdkVersion)\Roslyn\bincore\</RoslynDir>
+    <!-- Keep the tool independent of any Directory.Build.props it might be copied under. -->
+    <ImportDirectoryBuildProps>false</ImportDirectoryBuildProps>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeAnalysis">
+      <HintPath>$(RoslynDir)Microsoft.CodeAnalysis.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp">
+      <HintPath>$(RoslynDir)Microsoft.CodeAnalysis.CSharp.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="frozen-names.json" CopyToOutputDirectory="PreserveNewest" />
+    <Compile Include="../../Source/Build/MugirlRace.MetadataOrder/MetadataOrderer.cs" Link="MetadataOrderer.cs" />
+    <Compile Include="../../Source/Build/MugirlRace.MetadataOrder/PortablePdbPreservation.cs" Link="PortablePdbPreservation.cs" />
+    <PackageReference Include="Mono.Cecil" Version="0.11.6" />
+  </ItemGroup>
+
+  <Target Name="CheckRoslynDir" BeforeTargets="ResolveAssemblyReferences">
+    <Error Condition="!Exists('$(RoslynDir)Microsoft.CodeAnalysis.CSharp.dll')" Text="Roslyn not found in '$(RoslynDir)'. Pass -p:RoslynDir=&lt;dir containing Microsoft.CodeAnalysis.CSharp.dll&gt;." />
+  </Target>
+</Project>

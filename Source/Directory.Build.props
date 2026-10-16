@@ -1,0 +1,94 @@
+<Project>
+  <!--
+    Shared build settings for every project under Source/: the RimWorld 1.7 mod assembly, its tests and its tools.
+    The frozen 1.6 project lives in 1.6/Source and is deliberately outside the reach of this file.
+
+    Paths are derived from this file's location (Mods/<mod>/Source), so the repository builds from any RimWorld
+    installation without edits. Override the inputs on the command line when needed (with or without a trailing slash):
+      dotnet build -p:RimWorldDir="D:\RimWorld" -p:WorkshopDir="D:\Steam\steamapps\workshop\content\294100"
+      dotnet build -p:HarmonyAssembliesDir="D:\Harmony\1.7\Assemblies"   (a 0Harmony.dll outside the Workshop folder)
+    GameDir, HarmonyDir and HarDir are derived from them and always end in a slash; do not pass those directly.
+
+    No build writes into the mod's load folders: every project outputs to its own bin/ folder. Only MugirlRace.csproj
+    copies its assembly into 1.7/Assemblies, and only when asked to (-p:DeployToMod=true).
+
+    The SDK is pinned by global.json next to this file. dotnet picks global.json from the current directory upwards, so a
+    build started outside Source/ may run on another SDK; MugirlCheckSdkPin below turns that into a build error.
+  -->
+  <PropertyGroup>
+    <ModDir>$([MSBuild]::NormalizeDirectory('$(MSBuildThisFileDirectory)', '..'))</ModDir>
+    <RimWorldDir Condition="'$(RimWorldDir)' == ''">$([MSBuild]::NormalizeDirectory('$(ModDir)', '..', '..'))</RimWorldDir>
+    <GameDir>$([MSBuild]::NormalizeDirectory('$(RimWorldDir)'))</GameDir>
+    <WorkshopDir Condition="'$(WorkshopDir)' == ''">$([MSBuild]::NormalizeDirectory('$(GameDir)', '..', '..', 'workshop', 'content', '294100'))</WorkshopDir>
+    <WorkshopDir>$([MSBuild]::NormalizeDirectory('$(WorkshopDir)'))</WorkshopDir>
+    <!-- Harmony 3 ships in the Harmony mod's 1.7 load folder. -->
+    <HarmonyAssembliesDir Condition="'$(HarmonyAssembliesDir)' == ''">$([MSBuild]::NormalizeDirectory('$(WorkshopDir)', '2009463077', '1.7', 'Assemblies'))</HarmonyAssembliesDir>
+    <HarmonyDir>$([MSBuild]::NormalizeDirectory('$(HarmonyAssembliesDir)'))</HarmonyDir>
+    <!-- 与 RimWorld 1.7 实际加载的 HAR 程序集一致，不再使用 1.6 构建作为编译契约。 -->
+    <HarDir>$([MSBuild]::NormalizeDirectory('$(WorkshopDir)', '839005762', '1.7', 'Assemblies'))</HarDir>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>14</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Deterministic>true</Deterministic>
+    <Features>strict</Features>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <Authors>PCR, 114, 梓磐谷客, 伊贝森, Marukun</Authors>
+    <Product>Mugirl Race</Product>
+    <Copyright>© Mugirl Race contributors</Copyright>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+
+  <!-- Game and Harmony assemblies are provided by RimWorld at runtime: reference them, never copy them. -->
+  <ItemGroup Label="RimWorld 1.7 references">
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(GameDir)Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <!-- UnityStubs only supplies the boundary types that appear in RimWorld's own API signatures (Vector3, Color, Rect, ...). -->
+    <Reference Include="UnityStubs">
+      <HintPath>$(GameDir)UnityStubs.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Waylith">
+      <HintPath>$(GameDir)Waylith.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(HarmonyDir)0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!--
+    SDK pin: sdk.version in global.json, applied with the same rule as its rollForward "latestFeature" and
+    allowPrerelease false (a release SDK with the same major.minor, the pinned feature band or a later one), so codegen
+    cannot drift between builds started from different folders. Only the "sdk" object is read; other sections of
+    global.json (the test runner) may carry their own "version".
+  -->
+  <PropertyGroup>
+    <_MugirlGlobalJsonSdkPattern>(?s)"sdk"\s*:\s*\{[^{}]*?"version"\s*:\s*"(\d+\.\d+\.\d+)"</_MugirlGlobalJsonSdkPattern>
+    <MugirlPinnedSdkVersion>$([System.Text.RegularExpressions.Regex]::Match($([System.IO.File]::ReadAllText('$(MSBuildThisFileDirectory)global.json')), '$(_MugirlGlobalJsonSdkPattern)').Groups.get_Item(1).Value)</MugirlPinnedSdkVersion>
+  </PropertyGroup>
+
+  <Target Name="MugirlCheckSdkPin" BeforeTargets="BeforeBuild" Condition="'$(DesignTimeBuild)' != 'true'">
+    <Error Condition="'$(MugirlPinnedSdkVersion)' == ''"
+           Text="Source/global.json must pin a release SDK as sdk.version (major.minor.patch)." />
+    <Error Condition="$(NETCoreSdkVersion.Contains('-'))"
+           Text="Source/global.json pins the release .NET SDK $(MugirlPinnedSdkVersion) (allowPrerelease false), but this build runs on the prerelease SDK $(NETCoreSdkVersion). Start dotnet from Source/ or a folder below it so that global.json applies, or install the pinned SDK." />
+    <PropertyGroup>
+      <_MugirlSdkVersion>$([System.Text.RegularExpressions.Regex]::Replace('$(NETCoreSdkVersion)', '\+.*$', ''))</_MugirlSdkVersion>
+      <_MugirlSdkMajorMinor>$([System.Version]::Parse('$(_MugirlSdkVersion)').ToString(2))</_MugirlSdkMajorMinor>
+      <_MugirlPinnedMajorMinor>$([System.Version]::Parse('$(MugirlPinnedSdkVersion)').ToString(2))</_MugirlPinnedMajorMinor>
+    </PropertyGroup>
+    <Error Condition="'$(_MugirlSdkMajorMinor)' != '$(_MugirlPinnedMajorMinor)' or $([MSBuild]::VersionLessThan('$(_MugirlSdkVersion)', '$(MugirlPinnedSdkVersion)'))"
+           Text="Source/global.json pins the .NET SDK to $(MugirlPinnedSdkVersion) (rollForward latestFeature), but this build runs on SDK $(NETCoreSdkVersion). Start dotnet from Source/ or a folder below it so that global.json applies, or install the pinned SDK." />
+  </Target>
+</Project>

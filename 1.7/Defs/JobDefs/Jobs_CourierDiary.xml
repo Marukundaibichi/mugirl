@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <JobDef>
+    <defName>Mugirl_ReadCourierDiary</defName>
+    <driverClass>Mugirl.Features.Incidents.JobDriver_ReadCourierDiary</driverClass>
+    <!-- 阅读 TargetA。 -->
+    <reportString>Read TargetA.</reportString>
+    </JobDef>
+
+    <JobDef>
+    <defName>Mugirl_TalkCourier</defName>
+    <driverClass>Mugirl.Features.Incidents.JobDriver_TalkToCourier</driverClass>
+    <!-- 与 TargetA 交涉。 -->
+    <reportString>Negotiate with TargetA.</reportString>
+    </JobDef>
+
+    <JobDef>
+    <defName>Mugirl_TalkFusionInvestor</defName>
+    <driverClass>Mugirl.Features.Incidents.JobDriver_TalkToFusionInvestor</driverClass>
+    <!-- 与 TargetA 谈投资。 -->
+    <reportString>Discuss investment with TargetA.</reportString>
+    </JobDef>
+
+</Defs>

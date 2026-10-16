@@ -1,0 +1,2 @@
+# Negative control: a group that no longer exists (reported as missing); the real groups are reported as added.
+Verse.Pawn::NoSuchTarget()	Prefix	01	Mugirl.NoSuchPatch::Prefix

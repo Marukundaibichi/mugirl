@@ -1,0 +1,60 @@
+{
+ "tree": "C:\\Users\\Fishiv\\AppData\\Local\\Temp\\mg17-root-rehearsal-v1",
+ "treeR2": "C:\\Users\\Fishiv\\AppData\\Local\\Temp\\mg17-root-rehearsal-v2",
+ "postR2": ".",
+ "rules": [
+  "L01 injective per kind (old unique, new unique, no chains/swaps; defs keyed by (root, name); R2 createTypes unique)",
+  "L02 no new name (type rows, R2 createTypes, defs) equal to a legacy-corpus name of ANOTHER entity (git history + specs)",
+  "L03 no new type short name (type rows, R2 createTypes) equal to a public engine/Unity/HAR/Harmony type short name (error;",
+  "Facial Animation/VEF: warning, not referenced by the mod; transitional rows: info, C32)",
+  "L04 forbidden / shadowing namespace segments (design 3.1 + C25 'Apparel' + any Verse/RimWorld type short name)",
+  "L05 no rename of a frozen public-API name: types (aliased XML classes need publicAlias), defNames and defNamePattern globs,",
+  "abstract Names, the Mod short name",
+  "L06 no rename/move/delete of a member of a PublicApi class, and no rename of a frozen XML field (alias bases included)",
+  "L07 Harmony binding untouched: no rename/move of Harmony-convention methods, of [HarmonyPrefix]/[HarmonyPostfix]/... methods,",
+  "of any member of a [HarmonyPatch] class, of overrides, or of a field that a patch reads through a ___field parameter",
+  "L08 no [TweakValue]/[DebugAction] member renamed or moved (attributes above or on the declaration line)",
+  "L09 ThingDef/RecipeDef rename targets do not end in a digit; ManeuverDef/ToolCapacityDef are not renamed (load IDs)",
+  "L10 every type rename that changes a short name used as a DefInjected handle lists those handles (definjectedHandles)",
+  "L11 transitional rows carry the machine-readable marker {\"waveS\", \"upgrade\"} (C23)",
+  "L12 nothing from the MooGirl era is composed (D3): no MooGirl/MuGirl old names",
+  "L13 naming: no \"Moo\" in new names; new defNames and abstract Names carry the Mugirl_ prefix (design 3.3) unless FA",
+  "L14 R is identity-preserving: no keyed renames, content moves, member moves/deletes, created types, splits; DefOf classes",
+  "keep their names in R (C02/C03: the DefOf split is R2)",
+  "L15 R2 member operations name existing members; every DefOf field goes to the DefOf of the feature that defines the def",
+  "(C04 owner rule; split targets: their feature) and a non-Mugirl def is declared by exactly its reading features",
+  "L16 (with --post-r2) every Source/ and 1.7/ file of the post-R2 tree has exactly one Wave S owner and",
+  "spec/final/ownership-postR2.json matches the recomputation"
+ ],
+ "counts": {
+  "types": 455,
+  "defs": 101,
+  "abstractNames": 9,
+  "createTypes": 20
+ },
+ "errors": 0,
+ "findings": [
+  {
+   "rule": "L03",
+   "severity": "info",
+   "message": "type Mugirl.JobGiver_WanderRoped -> Mugirl.Features.Roping.JobGiver_WanderRoped: short name equals Verse.AI.JobGiver_WanderRoped (Assembly-CSharp) (transitional, deleted in Wave S: accepted C32)",
+   "where": "R/restraints.json"
+  },
+  {
+   "rule": "L03",
+   "severity": "info",
+   "message": "type Mugirl.ThinkNode_ConditionalRoped -> Mugirl.Features.Roping.ThinkNode_ConditionalRoped: short name equals RimWorld.ThinkNode_ConditionalRoped (Assembly-CSharp) (transitional, deleted in Wave S: accepted C32)",
+   "where": "R/restraints.json"
+  },
+  {
+   "rule": "L15",
+   "severity": "info",
+   "message": "C04 placement checked for 151 DefOf fields"
+  },
+  {
+   "rule": "L16",
+   "severity": "info",
+   "message": "2410 post-R2 files, 0 without exactly one owner"
+  }
+ ]
+}

@@ -16,6 +16,7 @@
     <archotechOrderDays>20~35</archotechOrderDays>
     <specialOrderDays>30~60</specialOrderDays>
     <maxActiveOrders>5</maxActiveOrders>
+    <highValueOrderThreshold>1000</highValueOrderThreshold>
     <cancelWindowDays>1</cancelWindowDays>
     <cancelRefundFactor>0.8</cancelRefundFactor>
     <productDefs>

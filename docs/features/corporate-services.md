@@ -1,5 +1,7 @@
 # 巨企客户服务与职业服装
 
+当前维护版本为 1.7；2026-10-16 同步 R/R2/S 的源码导航与保存结构。下述服务数值、权益和玩家行为保持原样；完整 V 与发布尚未完成。维护与验证入口见[根开发手册](../../README.md)和[Corporate 实施记录](../records/refactor-1.7-corporate-2026-10-15.md)。
+
 ## 服务规则
 
 在巨企终端的“客户服务”页查看累计成交额、等级、周刷新时间及各项权益。总览也提供入口。
@@ -20,7 +22,7 @@
 
 人员交易按每名 Pawn 的稳定 ID 只累计第一笔非免费成交，金额为该笔实际收支：购买计实际付款（含手续费、运费及可能的殖民者加价），出售计实际到手款；巨企终端与巨企派系的原版交易共用去重记录。同一人之后再卖出或买回仍按报价付款、收款，但不会再次抬高客户等级。每周免费人员名额可用于奴隶或殖民者档，免除整笔款项且不占该人的首次计额机会。
 
-累计额和 `corporateCreditedPersonIds`（Pawn 的 `thingIDNumber`）保存在 `CorporateNetwork`，独立于最多 200 条的历史记录。原版交易在 `TradeDeal.TryExecute` 前捕获双向金额，仅在实际成功后累计；人员要先按 ID 去重。旧档缺少 ID 列表时按空列表载入，从更新后的成交开始累计，不推算历史人员交易；旧订单已交付部分不追溯计入。订单、累计额、人员 ID、周名额以及进行中的空投均支持存读档。
+累计额和已计额 Pawn 的 thingIDNumber 现在由 `CorporateClientAccount` 保存，独立于最多 200 条的历史记录；原 `CorporateNetwork` 仍负责业务时钟与 Vault 所有权。旧 `corporateCreditedPersonIds` 在 SaveUpgrade/Modules/Corporate 升级为账户中的 `creditedPawnIds`，保留原顺序与含义。原版交易仍在 `TradeDeal.TryExecute` 前捕获双向金额，仅在成功后累计；人员先按 ID 去重。缺失的历史 ID 不反推补算，旧订单已交付部分不追溯计入。订单、累计额、人员 ID、周名额和进行中的空投按原行为保存。
 
 周礼使用普通订单收据保管，临时交付失败可到订单页重领。人员报价及付款共用免费名额判定，两种购买身份都可使用；预留后即消耗名额，后续重试交付不再扣款；免费人员失效不会按原价生成退款。
 
@@ -44,10 +46,14 @@
 
 ## 验证
 
+当前 1.7 使用独立 Source 副本构建，运行 `tools/Validate.ps1 -WorkRoot <独立目录>` 和 `tools/Test-InGame.ps1`，存档改动另验证 control、P/X 夹具及二次读回。脚本使用现有 Steam 安装、运行锁、静音隐藏窗口与临时 savedatafolder，不复制游戏运行库、不改 owner 配置。旧支援 Lord 的图和触发计时通过升级层续接，不能把 reset/结束任务当作通过，详见[验证手册](../validation-runbook.md)。
+
+以下 238/228 等数字及专用驱动是首版 1.6 的历史验证，不代表本轮 1.7 验收，也不是当前启动指令。
+
 基础版本在全 DLC 隔离游戏通过 238 项检查，无 Ideology 环境通过 228 项检查。支援分档后另增加六级门槛、四人/八人实际生成、升级保留次数、第三次呼叫拒绝、计数存读档及新周恢复两次额度检查。
 
 `CorporateServicesRuntimeChecks.cs` 仅在 `EnableCorporateValidation=true` 的隔离版本编译，随现有巨企业务测试运行。覆盖等级边界、金额上限、双向成交、取消订单、防重复领取、免费人员、无 Ideology、无效落点/失去权限、实际空投与品质、服装、存档往返、落地职责、伤亡后继续作战和到期撤离。
 
 `CorporateVisualValidation.cs` 检查普通、1280×720 紧凑与 940 像素窄窗口；新增客户服务及其底部操作区截图。所有游戏测试使用独立游戏目录及独立存档路径。
 
-初始数值表集中在 `CorporateNetwork.Services.cs`；人员与支援装备集中在 `Defs/PawnKindDefs/CorporateServices.xml`，运货员配置位于 `PawnKinds_GiantCorp.xml`。支援小队的随队补给与空闲医疗在 `Source/Features/Corporate/CorporateSupportTending.cs`，对应搜敌 duty 位于 `Defs/Corporate/CorporateSupportDuty.xml`（结构与原版 `HuntEnemiesIndividual` 相同，仅在索敌后插入医疗节点）。
+当前源码导航：数值与业务入口在 `Source/MugirlRace/Features/Corporate/Services/CorporateNetwork.Services.cs`，持久状态在同目录 `CorporateClientAccount.cs`；补给和医疗辅助在 `CorporateSupportUtility.cs`，工作选择在 `JobGiver_CorporateSupportTend.cs`。人员与支援装备为 `1.7/Defs/PawnKindDefs/CorporateServices.xml`，运货员为 `PawnKinds_GiantCorp.xml`，搜敌 duty 为 `1.7/Defs/Corporate/CorporateSupportDuty.xml`。修改内容前仍按原设计核对数值、执行顺序与语言，不因结构拆分改变服务规则。

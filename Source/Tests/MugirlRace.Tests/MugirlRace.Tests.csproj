@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    不需要游戏会话的单元测试：Mugirl.Mathematics 与 Mugirl.Platform 中可离线运行的部分（数学语义、换算、作用域）。
+    补丁目标、JIT 绑定、Def 与 Unity 边界白名单由 MugirlRace.Validation 检查。
+
+    差分测试把结果与游戏自带的 UnityStubs、Verse（Assembly-CSharp）逐位比较，所以游戏程序集要复制到测试程序旁边
+       （Mod 工程中它们是 Private=false）。真实 Scribe 类型解析还需 HAR。运行方式：直接执行构建出的 MugirlRace.Tests.exe。本工程属于 MugirlRace.slnx；
+    构建它会一并构建被引用的 Mod 工程，输出都在各自的 bin/ 中，不写入 1.7/Assemblies。
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>MugirlRace.Tests</AssemblyName>
+    <RootNamespace>Mugirl.Tests</RootNamespace>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <!-- 测试类按 xunit 约定公开；测试方法名用下划线分隔场景。 -->
+    <NoWarn>$(NoWarn);CA1515;CA1707</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="xunit.v3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\MugirlRace\MugirlRace.csproj" />
+  </ItemGroup>
+
+  <!-- 真实 Scribe/GenTypes 会解析模组全部类型；测试目录提供 HAR，避免把依赖缺失当成无害日志。 -->
+  <ItemGroup>
+    <Reference Update="Assembly-CSharp;UnityStubs;Waylith;0Harmony" Private="true" />
+    <Reference Include="AlienRace">
+      <HintPath>$(HarDir)AlienRace.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

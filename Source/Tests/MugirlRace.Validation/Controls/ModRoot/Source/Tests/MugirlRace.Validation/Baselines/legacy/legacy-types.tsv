@@ -1,0 +1,26 @@
+# legacy-types.tsv: negative-control corpus for C.save-upgrade (each row exercises one rule; see Controls/expected-failures.txt).
+# columns: type	kind	saveRoot	modBase	gameBase	flags	tiers	eras	first	last
+Mugirl.Control.Upgrade.Accepted	class	Verse.GameComponent	-	Verse.GameComponent	public	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.ChainA	class	Verse.GameComponent	-	Verse.GameComponent	public	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.ChainB	class	Verse.GameComponent	-	Verse.GameComponent	public	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.ConsumedToo	class	Verse.GameComponent	-	Verse.GameComponent	public	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.ConsumedType	class	Verse.GameComponent	-	Verse.GameComponent	public	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.ControlState	enum	-	-	System.Enum	public,sealed	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.LabelOwner	class	Verse.IExposable	-	System.Object	public	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.LegacyOther	class	Verse.GameComponent	-	Verse.GameComponent	public	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.OldComponent	class	Verse.GameComponent	-	Verse.GameComponent	public	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.OldMode	enum	-	-	System.Enum	public,sealed	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.OldNoCtor	class	Verse.GameComponent	-	Verse.GameComponent	public	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.OldOwner	class	Verse.IExposable	-	System.Object	public	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.OldScenPart	class	RimWorld.ScenPart	-	RimWorld.ScenPart	public	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.Reuser	class	Verse.GameComponent	-	Verse.GameComponent	public	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.Slot	class	Verse.IExposable	-	System.Object	public	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.StaticHelper	class	-	-	System.Object	static,public	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.Vanished	class	Verse.GameComponent	-	Verse.GameComponent	public	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.MergedBase	class	-	-	Verse.IExposable	abstract,public	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.PartlyLostBase	class	-	-	Verse.IExposable	abstract,public	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.DriftBase	class	-	-	Verse.IExposable	abstract,public	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.MergedLeaf	class	Verse.IExposable	Mugirl.Control.Upgrade.MergedBase	System.Object	public	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.LostLeaf	class	Verse.IExposable	Mugirl.Control.Upgrade.PartlyLostBase	System.Object	public	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.DriftLeaf	class	Verse.IExposable	Mugirl.Control.Upgrade.DriftBase	System.Object	public	published	Mugirl	p.control	p.control
+Mugirl.Control.Upgrade.PreservedSibling	class	Verse.IExposable	Mugirl.Control.Upgrade.PartlyLostBase	System.Object	public	published	Mugirl	p.control	p.control

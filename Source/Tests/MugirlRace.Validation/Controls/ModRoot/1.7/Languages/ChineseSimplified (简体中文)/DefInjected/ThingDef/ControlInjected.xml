@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- C.language-files：指向不存在的 Def。 -->
+  <NoSuchDef_Control.label>不存在</NoSuchDef_Control.label>
+  <!-- C.language-files：同一文件中重复的键。 -->
+  <Mugirl_Control_Thing.label>重复一</Mugirl_Control_Thing.label>
+  <Mugirl_Control_Thing.label>重复二</Mugirl_Control_Thing.label>
+  <!-- C.language-files：只随 Royalty 存在的 Def，翻译却放在总会加载的目录里。 -->
+  <Throne.label>王座</Throne.label>
+  <!-- C.definjected-paths：不存在的字段、没有这个句柄的列表项、越界的下标。 -->
+  <Mugirl_Control_Thing.notAField>无此字段</Mugirl_Control_Thing.notAField>
+  <Mugirl_Control_Thing.comps.NoSuchHandle.label>无此句柄</Mugirl_Control_Thing.comps.NoSuchHandle.label>
+  <Mugirl_Control_Thing.comps.5.label>越界</Mugirl_Control_Thing.comps.5.label>
+</LanguageData>

@@ -1,0 +1,344 @@
+{
+ "module": "content",
+ "wave": "R2",
+ "xmlSplits": [],
+ "contentFileMoves": [],
+ "logicalContentOwnership": [
+  {
+   "source": "1.7/Defs/JobDefs/JobDefs.xml",
+   "module": "content",
+   "reason": "C09 / content-plan S2-1: one JobDef file per feature; JobDefs.xml is dissolved.",
+   "targets": [
+    {
+     "file": "1.7/Defs/JobDefs/JobDefs_Roping.xml",
+     "owner": "restraints",
+     "feature": "Features/Roping",
+     "defs": [
+      "Mugirl_Rope",
+      "Mugirl_Unrope",
+      "Mugirl_RopeToHitch",
+      "Mugirl_FollowRoper"
+     ]
+    },
+    {
+     "file": "1.7/Defs/JobDefs/JobDefs_Restraints.xml",
+     "owner": "restraints",
+     "feature": "Features/Restraints",
+     "defs": [
+      "GiveSlaveApparelGear",
+      "Mugirl_UnlockRestraint",
+      "Mugirl_ForceUnlockRestraint",
+      "Mugirl_CrackRestraint"
+     ]
+    },
+    {
+     "file": "1.7/Defs/JobDefs/JobDefs_Social.xml",
+     "owner": "incidents",
+     "feature": "Features/Social",
+     "defs": [
+      "Mugirl_Nuzzle"
+     ]
+    },
+    {
+     "file": "1.7/Defs/JobDefs/JobDefs_Milk.xml",
+     "owner": "milk",
+     "feature": "Features/Milk",
+     "defs": [
+      "Mugirl_ChildDrinkMilk",
+      "Mugirl_DrinkMilk",
+      "Mugirl_FeedMilk",
+      "Mugirl_MilkInteractionWait"
+     ]
+    }
+   ]
+  },
+  {
+   "source": "1.7/Defs/ThoughtDefs/Thoughts_Traits.xml",
+   "module": "incidents",
+   "reason": "C10 / incidents-plan S2-15: thoughts split by topic.",
+   "targets": [
+    {
+     "file": "1.7/Defs/ThoughtDefs/Thoughts_Mugirl.xml",
+     "owner": "incidents",
+     "feature": "Features/Social",
+     "defs": [
+      "Mugirl_SingleshotWeaponAversionUnhappy",
+      "Mugirl_AteHay",
+      "Mugirl_AteNutrient",
+      "Mugirl_Nuzzled"
+     ]
+    },
+    {
+     "file": "1.7/Defs/ThoughtDefs/Thoughts_Restraints.xml",
+     "owner": "restraints",
+     "feature": "Features/Restraints",
+     "defs": [
+      "Mugirl_BrainwashHappy",
+      "Mugirl_BrainWashing_End"
+     ]
+    },
+    {
+     "file": "1.7/Defs/ThoughtDefs/Thoughts_Roping.xml",
+     "owner": "restraints",
+     "feature": "Features/Roping",
+     "defs": [
+      "Mugirl_Roper",
+      "Mugirl_Roped"
+     ]
+    }
+   ]
+  },
+  {
+   "source": "1.7/Defs/SoundsDefs/Bondage_Sounds.xml",
+   "module": "milk",
+   "reason": "restraints-plan S4-6 / milk-plan S2-17: milking sounds belong to the milk feature.",
+   "targets": [
+    {
+     "file": "1.7/Defs/SoundsDefs/Milk_Sounds.xml",
+     "owner": "milk",
+     "feature": "Features/Milk",
+     "defs": [
+      "Mugirl_Milking_Sound",
+      "Mugirl_Milking_Power_Sound"
+     ]
+    }
+   ]
+  },
+  {
+   "source": "1.7/Defs/Apparel/Apparel_Bondage/BondageApparel_Spacer.xml",
+   "module": "milk",
+   "reason": "milk-plan S4-3: milking devices out of the restraint file.",
+   "targets": [
+    {
+     "file": "1.7/Defs/Apparel/Apparel_MilkingDevice.xml",
+     "owner": "milk",
+     "feature": "Features/Milk",
+     "defs": [
+      "Mugirl_MilkingDevice",
+      "Mugirl_MilkingDeviceHidden"
+     ]
+    }
+   ]
+  },
+  {
+   "source": "1.7/Defs/TraitDefs/TraitDefs.xml",
+   "module": "content",
+   "reason": "C04/C09: feature traits leave the race-wide trait file (Mugirl_SingleshotWeaponAversion stays: race trait).",
+   "targets": [
+    {
+     "file": "1.7/Defs/TraitDefs/TraitDefs_Corporate.xml",
+     "owner": "corporate",
+     "feature": "Features/Corporate",
+     "defs": [
+      "Mugirl_CorporateDiehard"
+     ]
+    },
+    {
+     "file": "1.7/Defs/TraitDefs/TraitDefs_Restraints.xml",
+     "owner": "restraints",
+     "feature": "Features/Restraints",
+     "defs": [
+      "Mugirl_BrainwashPeace",
+      "Mugirl_BrainwashObey"
+     ]
+    },
+    {
+     "file": "1.7/Defs/TraitDefs/TraitDefs_Milk.xml",
+     "owner": "milk",
+     "feature": "Features/Milk",
+     "defs": [
+      "Mugirl_NurturedByMugirl"
+     ]
+    }
+   ]
+  },
+  {
+   "source": "1.7/Defs/ThingDefs_Misc/Items_Filth.xml",
+   "module": "content",
+   "reason": "C04/C09: milk filth and the brainwash head effects belong to their features; the file is dissolved.",
+   "targets": [
+    {
+     "file": "1.7/Defs/ThingDefs_Misc/Milk_Filth.xml",
+     "owner": "milk",
+     "feature": "Features/Milk",
+     "defs": [
+      "MugirlMilkFilth",
+      "Mugirl_Filth_MilkStain",
+      "Mugirl_Filth_ShockFluid",
+      "Mugirl_MilkSpray"
+     ]
+    },
+    {
+     "file": "1.7/Defs/ThingDefs_Misc/Restraints_BrainwashEffects.xml",
+     "owner": "restraints",
+     "feature": "Features/Restraints",
+     "defs": [
+      "Mugirl_Mote_BrainwashEyes",
+      "Mugirl_Fleck_BrainwashEyes"
+     ]
+    }
+   ]
+  },
+  {
+   "source": "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Weapons_0920.xml",
+   "module": "combat",
+   "reason": "Date-named file: entries follow their Defs files.",
+   "targets": [
+    {
+     "file": "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/MeleeWeapons_Lances.xml",
+     "owner": "combat",
+     "defs": [
+      "Mugirl_NormanLance",
+      "Mugirl_HeavyKnightLance",
+      "Mugirl_SteamKnightLance"
+     ]
+    },
+    {
+     "file": "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/RangedWeapons_Autocannon.xml",
+     "owner": "combat",
+     "defs": [
+      "Mugirl_Bullet_AT23_Autocannon",
+      "Mugirl_AT23Autocannon"
+     ]
+    }
+   ]
+  },
+  {
+   "source": "1.7/Patches/MugirlPatch.xml",
+   "module": "content",
+   "reason": "C09 / content-plan S2-2: patch operations split by feature.",
+   "targets": [
+    {
+     "file": "1.7/Patches/FoodThoughts_PreceptAndHay_Patch.xml",
+     "owner": "incidents",
+     "header": "    <!-- PatchGovernance:\n    Targets: 原版 Ideology 戒律 NutrientPasteEating_Disgusting 的 comp 与原版干草 ThingDef。\n    Scope: 1.7 根补丁；为雪牛娘追加营养膏与干草的进食心情。\n    Duplicate guard: 追加前用 PatchOperationConditional 检查目标中是否已有同一节点；干草已有任意 tasteThought 时不再追加，避免 1.7 加载器报告重复字段。\n    Failure: 缺少可选 Ideology 目标可以接受；干草目标缺失时 nomatch 中的 PatchOperationAdd 失败，游戏记录 Patch operation failed。\n    -->\n",
+     "operations": [
+      1,
+      2
+     ],
+     "operationFingerprints": [
+      "/Defs/PreceptDef[defName=\"NutrientPasteEating_Disgusting\"]",
+      "/Defs/ThingDef[defName=\"Hay\"]"
+     ]
+    },
+    {
+     "file": "1.7/Patches/Roping_CaravanPackingSpot_Patch.xml",
+     "owner": "restraints",
+     "header": "    <!-- PatchGovernance:\n    Targets: 原版商队打包点 CaravanPackingSpot 的 comps。\n    Scope: 1.7 根补丁；追加把雪牛娘牵到建筑的可用 comp。\n    Duplicate guard: 已有同一 compClass 的 comp 时不重复追加。\n    Failure: 原版目标缺失时 nomatch 中的 PatchOperationAdd 失败，游戏记录 Patch operation failed。\n    -->\n",
+     "operations": [
+      3
+     ],
+     "operationFingerprints": [
+      "/Defs/ThingDef[defName=\"CaravanPackingSpot\"]"
+     ]
+    },
+    {
+     "file": "1.7/Patches/Slaves_TraderStock_Patch.xml",
+     "owner": "incidents",
+     "header": "    <!-- PatchGovernance:\n    Targets: 原版海盗轨道商、海盗商队与外来者基地的 TraderKindDef 库存生成器。\n    Scope: 1.7 根补丁；追加雪牛娘奴隶库存生成器。\n    Duplicate guard: 商人已有同类库存生成器时不重复追加。\n    Failure: 原版商人缺失时 nomatch 中的 PatchOperationAdd 失败，游戏记录 Patch operation failed。\n    -->\n",
+     "operations": [
+      4,
+      5,
+      6
+     ],
+     "operationFingerprints": [
+      "Defs/TraderKindDef[defName=\"Orbital_PirateMerchant\"]",
+      "Defs/TraderKindDef[defName=\"Caravan_Outlander_PirateMerchant\"]",
+      "Defs/TraderKindDef[defName=\"Base_Outlander_Standard\"]"
+     ]
+    },
+    {
+     "file": "1.7/Patches/Restraints_TraderStock_Patch.xml",
+     "owner": "restraints",
+     "header": "    <!-- PatchGovernance:\n    Targets: 原版异域商队与轨道异域商人的 TraderKindDef 库存生成器。\n    Scope: 1.7 根补丁；追加洗脑头盔库存。\n    Duplicate guard: 商人已有生成该 thingDef 的库存生成器时不重复追加。\n    Failure: 原版商人缺失时 nomatch 中的 PatchOperationAdd 失败，游戏记录 Patch operation failed。\n    -->\n",
+     "operations": [
+      7,
+      8
+     ],
+     "operationFingerprints": [
+      "Defs/TraderKindDef[defName=\"Caravan_Outlander_Exotic\"]",
+      "Defs/TraderKindDef[defName=\"Orbital_Exotic\"]"
+     ]
+    },
+    {
+     "file": "1.7/Patches/Restraints_ElectricSmelter_Patch.xml",
+     "owner": "restraints",
+     "header": "    <!-- PatchGovernance:\n    Targets: 原版电熔炉 ElectricSmelter 的配方列表。\n    Scope: 1.7 根补丁；追加束具熔炼配方。\n    Duplicate guard: 电熔炉已有该配方时不重复追加。\n    Failure: 原版目标缺失时 nomatch 中的 PatchOperationAdd 失败，游戏记录 Patch operation failed。\n    -->\n",
+     "operations": [
+      9
+     ],
+     "operationFingerprints": [
+      "Defs/ThingDef[defName=\"ElectricSmelter\"]"
+     ]
+    }
+   ]
+  }
+ ],
+ "preservedSharedFiles": [
+  {
+   "file": "1.7/Defs/Apparel/Apparel_0920.xml",
+   "owner": "content",
+   "reason": "OWNER behaviour parity: preserve loaded XML path and element order"
+  },
+  {
+   "file": "1.7/Defs/Apparel/Apparel_0926.xml",
+   "owner": "content",
+   "reason": "OWNER behaviour parity: preserve loaded XML path and element order"
+  },
+  {
+   "file": "1.7/Defs/Apparel/Apparel_Bondage/BondageApparel_Spacer.xml",
+   "owner": "content",
+   "reason": "OWNER behaviour parity: preserve loaded XML path and element order"
+  },
+  {
+   "file": "1.7/Defs/JobDefs/JobDefs.xml",
+   "owner": "content",
+   "reason": "OWNER behaviour parity: preserve loaded XML path and element order"
+  },
+  {
+   "file": "1.7/Defs/ResearchProjectDefs/ResearchProjects_0920.xml",
+   "owner": "content",
+   "reason": "OWNER behaviour parity: preserve loaded XML path and element order"
+  },
+  {
+   "file": "1.7/Defs/SoundsDefs/Bondage_Sounds.xml",
+   "owner": "content",
+   "reason": "OWNER behaviour parity: preserve loaded XML path and element order"
+  },
+  {
+   "file": "1.7/Defs/ThingDefs_Misc/Items_Filth.xml",
+   "owner": "content",
+   "reason": "OWNER behaviour parity: preserve loaded XML path and element order"
+  },
+  {
+   "file": "1.7/Defs/ThingDefs_Weapon/MeleeWeapons_0920.xml",
+   "owner": "content",
+   "reason": "OWNER behaviour parity: preserve loaded XML path and element order"
+  },
+  {
+   "file": "1.7/Defs/ThingDefs_Weapon/RangedWeapons_0920.xml",
+   "owner": "content",
+   "reason": "OWNER behaviour parity: preserve loaded XML path and element order"
+  },
+  {
+   "file": "1.7/Defs/ThoughtDefs/Thoughts_Traits.xml",
+   "owner": "content",
+   "reason": "OWNER behaviour parity: preserve loaded XML path and element order"
+  },
+  {
+   "file": "1.7/Defs/TraitDefs/TraitDefs.xml",
+   "owner": "content",
+   "reason": "OWNER behaviour parity: preserve loaded XML path and element order"
+  },
+  {
+   "file": "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Weapons_0920.xml",
+   "owner": "content",
+   "reason": "OWNER behaviour parity: preserve loaded XML path and element order"
+  },
+  {
+   "file": "1.7/Patches/MugirlPatch.xml",
+   "owner": "content",
+   "reason": "OWNER behaviour parity: preserve loaded XML path and element order"
+  }
+ ]
+}

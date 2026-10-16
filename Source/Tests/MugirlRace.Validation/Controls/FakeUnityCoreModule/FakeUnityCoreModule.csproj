@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    只供负对照使用（tools/Validate.ps1 -SelfTest）。冒充 1.6 时代的 UnityEngine.CoreModule 程序集，让控制 DLL 带上一个游戏会重定向到
+    UnityStubs 的引用，而那里没有这个 API。它是故意破坏的测试程序集，不是生产构建依赖或类型转发门面。
+  -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <AssemblyName>UnityEngine.CoreModule</AssemblyName>
+    <RootNamespace>UnityEngine</RootNamespace>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+</Project>

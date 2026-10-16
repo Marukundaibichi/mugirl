@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/Tests/">
+    <Project Path="Tests/MugirlRace.Tests/MugirlRace.Tests.csproj" />
+    <Project Path="Tests/MugirlRace.Validation/MugirlRace.Validation.csproj" />
+    <Project Path="Tests/MugirlRace.ShaderCheck/MugirlRace.ShaderCheck.csproj" />
+    <Project Path="Tests/MugirlRace.GameValidation/MugirlRace.GameValidation.csproj" />
+  </Folder>
+  <Project Path="MugirlRace/MugirlRace.csproj" />
+</Solution>

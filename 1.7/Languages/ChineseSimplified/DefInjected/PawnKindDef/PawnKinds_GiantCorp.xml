@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- Giant Corp Courier -->
+    <Mugirl_GiantCorp_Courier.label>巨企运货员</Mugirl_GiantCorp_Courier.label>
+    <!-- Giant Corp Elite -->
+    <Mugirl_GiantCorp_Elite.label>巨企精英</Mugirl_GiantCorp_Elite.label>
+    <!-- Giant Corp Mercenary -->
+    <Mugirl_GiantCorp_Grunt.label>巨企佣兵</Mugirl_GiantCorp_Grunt.label>
+    <!-- Mugirl Combatant -->
+    <Mugirl_GiantCorp_MugirlRaider.label>雪牛娘战斗员</Mugirl_GiantCorp_MugirlRaider.label>
+    <!-- Giant Corp Security Officer -->
+    <Mugirl_GiantCorp_OPCEnforcer.label>巨企安保员</Mugirl_GiantCorp_OPCEnforcer.label>
+    <!-- Giant Corp OPC Sapper -->
+    <Mugirl_GiantCorp_OPCSapper.label>巨企OPC爆破员</Mugirl_GiantCorp_OPCSapper.label>
+    <!-- Giant Corp PMC Recruit -->
+    <Mugirl_GiantCorp_PMCRecruit.label>巨企PMC新兵</Mugirl_GiantCorp_PMCRecruit.label>
+    <!-- Giant Corp Sapper -->
+    <Mugirl_GiantCorp_Sapper.label>巨企爆破员</Mugirl_GiantCorp_Sapper.label>
+    <!-- Giant Corp PMC Soldier -->
+    <Mugirl_GiantCorp_Soldier.label>巨企PMC士兵</Mugirl_GiantCorp_Soldier.label>
+</LanguageData>

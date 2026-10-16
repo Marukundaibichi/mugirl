@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- delicious pudding -->
+    <Mugirl_ConsumedPudding.stages.0.label>美味布丁</Mugirl_ConsumedPudding.stages.0.label>
+    <!-- Sweet, rich, and melts in the mouth. Delicious. -->
+    <Mugirl_ConsumedPudding.stages.0.description>甜甜的，香浓又入口即化，好吃</Mugirl_ConsumedPudding.stages.0.description>
+    <!-- fresh cheese -->
+    <Mugirl_ConsumedCheese.stages.0.label>新鲜奶酪</Mugirl_ConsumedCheese.stages.0.label>
+    <!-- Slightly chewy, melting into a rich liquid in the mouth as the milky fragrance gently coats the tongue. -->
+    <Mugirl_ConsumedCheese.stages.0.description>有点嚼劲，在嘴里慢慢融化成香浓的液态时，那股奶香会温柔的包裹舌头</Mugirl_ConsumedCheese.stages.0.description>
+    <!-- aged cheese -->
+    <Mugirl_ConsumedAgedCheese.stages.0.label>陈年奶酪</Mugirl_ConsumedAgedCheese.stages.0.label>
+    <!-- Harder than fresh cheese at first bite, then melting into a mellow sweetness that clings to the tongue without becoming cloying. -->
+    <Mugirl_ConsumedAgedCheese.stages.0.description>入口时嚼起来比起新鲜奶酪更硬一点，在口中融化时能尝到那股醇厚香甜的味道缠在舌头上，甜而不腻</Mugirl_ConsumedAgedCheese.stages.0.description>
+    <!-- rich milk flavor -->
+    <Mugirl_ConsumedRichMilkFlavor.stages.0.label>浓郁奶味</Mugirl_ConsumedRichMilkFlavor.stages.0.label>
+    <!-- The sweet, rich flavor of Mugirl milk lingers through the mouth. -->
+    <Mugirl_ConsumedRichMilkFlavor.stages.0.description>雪牛娘奶那甜甜的浓郁奶味在口腔内回荡</Mugirl_ConsumedRichMilkFlavor.stages.0.description>
+    <!-- tasty milk candy -->
+    <Mugirl_ConsumedMilkCandy.stages.0.label>好吃哒奶糖</Mugirl_ConsumedMilkCandy.stages.0.label>
+    <!-- Each chew sends sweet milk flavor across the teeth, growing sweeter and sweeter. -->
+    <Mugirl_ConsumedMilkCandy.stages.0.description>每嚼一下甜甜的奶味就会从齿尖流过，越嚼越甜</Mugirl_ConsumedMilkCandy.stages.0.description>
+</LanguageData>

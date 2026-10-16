@@ -1,0 +1,867 @@
+{
+ "module": "combat",
+ "wave": "R",
+ "ownedSourceFolders": [
+  "Source/MugirlRace/Features/Mounting/**",
+  "Source/MugirlRace/Features/Lances/**",
+  "Source/MugirlRace/Features/WeaponWheel/**",
+  "Source/MugirlRace/Features/Weapons/**",
+  "Source/MugirlRace/SaveUpgrade/Steps/Combat/**",
+  "Source/Tests/MugirlRace.Tests/Mounting/**",
+  "Source/Tests/MugirlRace.Tests/Lances/**",
+  "Source/Tests/MugirlRace.Tests/WeaponWheel/**",
+  "Source/Tests/MugirlRace.Tests/SaveUpgrade/Combat/**",
+  "Source/MugirlRace/PublicApi/MountedPawnUtility.cs"
+ ],
+ "ownedContentFiles": [
+  "1.7/Defs/JobDefs/JobDefs_Lances.xml",
+  "1.7/Defs/JobDefs/JobDefs_Mounting.xml",
+  "1.7/Defs/JobDefs/JobDefs_WeaponWheel.xml",
+  "1.7/Defs/ThingDefs_Misc/LanceCharge.xml",
+  "1.7/Defs/HediffDefs/Hediffs_Lances.xml",
+  "1.7/Defs/HediffDefs/Hediffs_WeaponWheel.xml",
+  "1.7/Defs/ResearchProjectDefs/ResearchProjects_WeaponWheel.xml",
+  "1.7/Defs/Apparel/Apparel_WeaponWheel.xml",
+  "1.7/Defs/ThingDefs_Weapon/MeleeWeapons_Lances.xml",
+  "1.7/Defs/ThingDefs_Weapon/RangedWeapons_Autocannon.xml",
+  "1.7/Defs/ThingDefs_Weapon/RangedWeapons.xml",
+  "1.7/Defs/ThingDefs_Weapon/RangedWeapons_GiantCorp.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/JobDef/JobDefs_Lances.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/JobDef/JobDefs_Mounting.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/JobDef/JobDefs_WeaponWheel.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_Lances.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_WeaponWheel.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ResearchProjectDef/ResearchProjects_WeaponWheel.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/Apparel_WeaponWheel.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/LanceCharge.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/MeleeWeapons_Lances.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/RangedWeapons_Autocannon.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/RangedWeapons.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/RangedWeapons_GiantCorp.xml",
+  "1.7/Mods/Biotech/Languages/ChineseSimplified/DefInjected/ThingDef/RangedWeapons_Biotech.xml",
+  "1.7/Languages/English/Keyed/Lances.xml",
+  "1.7/Languages/ChineseSimplified/Keyed/Lances.xml",
+  "1.7/Languages/English/Keyed/Weapons.xml",
+  "1.7/Languages/ChineseSimplified/Keyed/Weapons.xml",
+  "1.7/Languages/English/Keyed/WeaponWheel.xml",
+  "1.7/Languages/ChineseSimplified/Keyed/WeaponWheel.xml",
+  "1.7/Languages/English/Keyed/Mounting.xml",
+  "1.7/Languages/ChineseSimplified/Keyed/Mounting.xml"
+ ],
+ "types": [
+  {
+   "old": "Mugirl.CompAutoloadingSystem",
+   "new": "Mugirl.Features.WeaponWheel.CompAutoloadingSystem",
+   "oldFile": "Source/MugirlRace/Features/WeaponWheel/Core/CompAutoloadingSystem.cs",
+   "newFile": "Source/MugirlRace/Features/WeaponWheel/Core/CompAutoloadingSystem.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only; the file comment's claim of a DefInjected handle is false (no comps.CompAutoloadingSystem key in 1.7/Languages).",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.CompProperties_AutoloadingSystem",
+   "new": "Mugirl.Features.WeaponWheel.CompProperties_AutoloadingSystem",
+   "oldFile": "Source/MugirlRace/Features/WeaponWheel/Core/CompProperties_AutoloadingSystem.cs",
+   "newFile": "Source/MugirlRace/Features/WeaponWheel/Core/CompProperties_AutoloadingSystem.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "namespace only; own XML only (Apparel_WeaponWheel.xml:55).",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.CompProperties_MugirlMount",
+   "new": "Mugirl.Features.Mounting.CompProperties_Mount",
+   "oldFile": "Source/MugirlRace/Features/Mounting/Comp/CompProperties_MugirlMount.cs",
+   "newFile": "Source/MugirlRace/Features/Mounting/Comp/CompProperties_Mount.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "pairs with CompMount (3.2). PUBLIC ALIAS NEEDED (design 2): MRK.WhiteFluff 1.6/Defs/WhiteFluff_Race.xml:103 and har.mugirlrace.subspecies 1.6/Defs/AlienRaceDefs/Races.xml:321 use Class=\"Mugirl.CompProperties_MugirlMount\" (empty li, no fields). Own XML: 1.7/Defs/ThingDefs_Races/Mugirl_Race.xml:1054.",
+   "module": "combat",
+   "publicAlias": {
+    "file": "Source/MugirlRace/PublicApi/XmlAliases.cs",
+    "name": "Mugirl.CompProperties_MugirlMount",
+    "frozenXmlFields": []
+   }
+  },
+  {
+   "old": "Mugirl.CompProperties_WeaponWheel",
+   "new": "Mugirl.Features.WeaponWheel.CompProperties_WeaponWheel",
+   "oldFile": "Source/MugirlRace/Features/WeaponWheel/Core/CompProperties_WeaponWheel.cs",
+   "newFile": "Source/MugirlRace/Features/WeaponWheel/Core/CompProperties_WeaponWheel.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "namespace aligned with its comp (3.1); own XML only (Mugirl_Race.xml:1040), no dependent uses it -> no alias.",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Comp_MugirlMount",
+   "new": "Mugirl.Features.Mounting.CompMount",
+   "oldFile": "Source/MugirlRace/Features/Mounting/Comp/Comp_MugirlMount.cs",
+   "newFile": "Source/MugirlRace/Features/Mounting/Comp/CompMount.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "3.2 vanilla shape CompX, no redundant 'Mugirl'; root namespace -> feature (3.1). Comps are never type-named in saves (InitializeComps from def); no DefInjected handle uses this short name (grep 1.7/Languages). Other partial files in fileMoves.",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Features.Lances.Harmony_LanceCharge_BlurRecovery",
+   "new": "Mugirl.Features.Lances.Harmony_Pawn_DynamicDrawPhaseAt_LanceBlurRecovery",
+   "oldFile": "Source/MugirlRace/Features/Lances/Rendering/Harmony_LanceCharge_BlurRecovery.cs",
+   "newFile": "Source/MugirlRace/Features/Lances/Patches/Harmony_Pawn_DynamicDrawPhaseAt_LanceBlurRecovery.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "patch naming convention (3.2); a feature's patch classes live in its Patches/ folder.",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Features.WeaponWheel.Comp_WeaponWheel",
+   "new": "Mugirl.Features.WeaponWheel.CompWeaponWheel",
+   "oldFile": "Source/MugirlRace/Features/WeaponWheel/Core/Comp_WeaponWheel.cs",
+   "newFile": "Source/MugirlRace/Features/WeaponWheel/Core/CompWeaponWheel.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "3.2 vanilla shape CompX. Not type-named in saves; Scribe labels weaponWheel* untouched by this rename. Other partial files in fileMoves; Wave S splits the class into collaborators with this comp as facade. NOTE MRK.WhiteFluff Source/Validation/RuntimeChecks.cs:206 compares GetType().Name==\"Comp_WeaponWheel\" (their validation code only).",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Features.WeaponWheel.WeaponWheelWeaponPose",
+   "new": "Mugirl.Features.WeaponWheel.WeaponWheelWeaponPose",
+   "oldFile": "Source/MugirlRace/Features/WeaponWheel/Rendering/WeaponWheelAnimationCurves.cs",
+   "newFile": "Source/MugirlRace/Features/WeaponWheel/Rendering/WeaponWheelWeaponPose.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "module": "combat",
+   "reason": "One type per file (C27): identity extraction out of WeaponWheelAnimationCurves.cs."
+  },
+  {
+   "old": "Mugirl.FloatMenuProvider_MountMugirl",
+   "new": "Mugirl.Features.Mounting.FloatMenuOptionProvider_MountMugirl",
+   "oldFile": "Source/MugirlRace/Features/Mounting/UI/FloatMenuProvider_MountMugirl.cs",
+   "newFile": "Source/MugirlRace/Features/Mounting/UI/FloatMenuOptionProvider_MountMugirl.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "3.2 role shape FloatMenuOptionProvider_X (found by reflection over subclasses, never by name).",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Harmony_LanceGizmos",
+   "new": "Mugirl.Features.Lances.Harmony_Pawn_EquipmentTracker_GetGizmos_LanceCharge",
+   "oldFile": "Source/MugirlRace/Features/Lances/Charge/Harmony_LanceGizmos.cs",
+   "newFile": "Source/MugirlRace/Features/Lances/Patches/Harmony_Pawn_EquipmentTracker_GetGizmos_LanceCharge.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "design 3.2 patch naming Harmony_<TargetType>_<TargetMember>[_<Purpose>]; leaves root namespace (3.1); the only Lances type still in the root namespace.",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Harmony_MountRendering",
+   "new": "Mugirl.Features.Mounting.Harmony_Pawn_DynamicDrawPhaseAt_Rider",
+   "oldFile": "Source/MugirlRace/Features/Mounting/Patches/Harmony_MountRendering.cs",
+   "newFile": "Source/MugirlRace/Features/Mounting/Patches/Harmony_Pawn_DynamicDrawPhaseAt_Rider.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "design 3.2 patch naming Harmony_<TargetType>_<TargetMember>[_<Purpose>]; leaves root namespace (3.1); Lances and WeaponWheel also postfix this target (registration order stays Lances<Mounting<WeaponWheel; explicit priority added in Wave S).",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Harmony_MountedCombatController_EquipmentRemoved",
+   "new": "Mugirl.Features.Mounting.Harmony_Pawn_EquipmentTracker_Notify_EquipmentRemoved_MountedVerbs",
+   "oldFile": "Source/MugirlRace/Features/Mounting/Patches/Harmony_MountedCombatController_EquipmentRemoved.cs",
+   "newFile": "Source/MugirlRace/Features/Mounting/Patches/Harmony_Pawn_EquipmentTracker_Notify_EquipmentRemoved_MountedVerbs.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "design 3.2 patch naming Harmony_<TargetType>_<TargetMember>[_<Purpose>]; leaves root namespace (3.1); purpose suffix because WeaponWheel patches the same target.",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Harmony_MountedCombatController_StanceWarmupDraw",
+   "new": "Mugirl.Features.Mounting.Harmony_Stance_Warmup_StanceDraw_MountedVerbs",
+   "oldFile": "Source/MugirlRace/Features/Mounting/Patches/Harmony_MountedCombatController_StanceWarmupDraw.cs",
+   "newFile": "Source/MugirlRace/Features/Mounting/Patches/Harmony_Stance_Warmup_StanceDraw_MountedVerbs.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "design 3.2 patch naming Harmony_<TargetType>_<TargetMember>[_<Purpose>]; leaves root namespace (3.1)",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Harmony_MountedCombatController_WarmupTime",
+   "new": "Mugirl.Features.Mounting.Harmony_Verb_WarmupTime_MountedCast",
+   "oldFile": "Source/MugirlRace/Features/Mounting/Patches/Harmony_MountedCombatController_WarmupTime.cs",
+   "newFile": "Source/MugirlRace/Features/Mounting/Patches/Harmony_Verb_WarmupTime_MountedCast.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "design 3.2 patch naming Harmony_<TargetType>_<TargetMember>[_<Purpose>]; leaves root namespace (3.1); WeaponWheel patches the same getter.",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Harmony_MountedPawnGizmos",
+   "new": "Mugirl.Features.Mounting.Harmony_Pawn_GetGizmos_Rider",
+   "oldFile": "Source/MugirlRace/Features/Mounting/Patches/Harmony_MountedPawnGizmos.cs",
+   "newFile": "Source/MugirlRace/Features/Mounting/Patches/Harmony_Pawn_GetGizmos_Rider.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "design 3.2 patch naming Harmony_<TargetType>_<TargetMember>[_<Purpose>]; leaves root namespace (3.1)",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Harmony_MugirlRaceRestrictedWeapons",
+   "new": "Mugirl.Features.Weapons.Harmony_EquipmentUtility_CanEquip_MugirlOnly",
+   "oldFile": "Source/MugirlRace/Features/Weapons/Harmony_MugirlRaceRestrictedWeapons.cs",
+   "newFile": "Source/MugirlRace/Features/Weapons/Harmony_EquipmentUtility_CanEquip_MugirlOnly.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "design 3.2 patch naming Harmony_<TargetType>_<TargetMember>[_<Purpose>]; leaves root namespace (3.1)",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Harmony_WeaponWheel_AnimationDraw",
+   "new": "Mugirl.Features.WeaponWheel.Harmony_Pawn_DynamicDrawPhaseAt_WeaponWheelAnimation",
+   "oldFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_WeaponWheel_Rendering.cs",
+   "newFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_Pawn_DynamicDrawPhaseAt_WeaponWheelAnimation.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "design 3.2 patch naming Harmony_<TargetType>_<TargetMember>[_<Purpose>]; leaves root namespace (3.1); split out.",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Harmony_WeaponWheel_BurstCompleted",
+   "new": "Mugirl.Features.WeaponWheel.Harmony_Verb_TryCastNextBurstShot",
+   "oldFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_WeaponWheel_Verbs.cs",
+   "newFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_Verb_TryCastNextBurstShot.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "design 3.2 patch naming Harmony_<TargetType>_<TargetMember>[_<Purpose>]; leaves root namespace (3.1); split out of a 5-class file.",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Harmony_WeaponWheel_DrawEquipmentAiming",
+   "new": "Mugirl.Features.WeaponWheel.Harmony_PawnRenderUtility_DrawEquipmentAiming_WeaponWheel",
+   "oldFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_WeaponWheel_Rendering.cs",
+   "newFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_PawnRenderUtility_DrawEquipmentAiming_WeaponWheel.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "design 3.2 patch naming Harmony_<TargetType>_<TargetMember>[_<Purpose>]; leaves root namespace (3.1); Wave S moves its lance-flyer clause into a Lances patch (purpose suffix anticipates that).",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Harmony_WeaponWheel_DropAndForbidEverything",
+   "new": "Mugirl.Features.WeaponWheel.Harmony_Pawn_DropAndForbidEverything",
+   "oldFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_WeaponWheel_Equipment.cs",
+   "newFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_Pawn_DropAndForbidEverything.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "design 3.2 patch naming Harmony_<TargetType>_<TargetMember>[_<Purpose>]; leaves root namespace (3.1); split out.",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Harmony_WeaponWheel_EnemyLoadout",
+   "new": "Mugirl.Features.WeaponWheel.Harmony_PawnGenerator_GeneratePawn_WeaponWheelLoadout",
+   "oldFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_WeaponWheel_Generation.cs",
+   "newFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_PawnGenerator_GeneratePawn_WeaponWheelLoadout.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "design 3.2 patch naming Harmony_<TargetType>_<TargetMember>[_<Purpose>]; leaves root namespace (3.1); GeneratePawn is also postfixed by Corporate, LifeStages and Restraints.",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Harmony_WeaponWheel_EquipmentAdded",
+   "new": "Mugirl.Features.WeaponWheel.Harmony_Pawn_EquipmentTracker_Notify_EquipmentAdded_WeaponWheel",
+   "oldFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_WeaponWheel_Equipment.cs",
+   "newFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_Pawn_EquipmentTracker_Notify_EquipmentAdded_WeaponWheel.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "design 3.2 patch naming Harmony_<TargetType>_<TargetMember>[_<Purpose>]; leaves root namespace (3.1); split out of a 6-class file (3.1 one top-level type per file).",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Harmony_WeaponWheel_EquipmentPawnSpawned",
+   "new": "Mugirl.Features.WeaponWheel.Harmony_Pawn_EquipmentTracker_Notify_PawnSpawned",
+   "oldFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_WeaponWheel_Equipment.cs",
+   "newFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_Pawn_EquipmentTracker_Notify_PawnSpawned.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "design 3.2 patch naming Harmony_<TargetType>_<TargetMember>[_<Purpose>]; leaves root namespace (3.1); split out.",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Harmony_WeaponWheel_EquipmentRemoved",
+   "new": "Mugirl.Features.WeaponWheel.Harmony_Pawn_EquipmentTracker_Notify_EquipmentRemoved_WeaponWheel",
+   "oldFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_WeaponWheel_Equipment.cs",
+   "newFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_Pawn_EquipmentTracker_Notify_EquipmentRemoved_WeaponWheel.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "design 3.2 patch naming Harmony_<TargetType>_<TargetMember>[_<Purpose>]; leaves root namespace (3.1); split out; Mounting patches the same target.",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Harmony_WeaponWheel_GearMass",
+   "new": "Mugirl.Features.WeaponWheel.Harmony_MassUtility_GearMass",
+   "oldFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_WeaponWheel_Equipment.cs",
+   "newFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_MassUtility_GearMass.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "design 3.2 patch naming Harmony_<TargetType>_<TargetMember>[_<Purpose>]; leaves root namespace (3.1); split out.",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Harmony_WeaponWheel_GetChildHolders",
+   "new": "Mugirl.Features.WeaponWheel.Harmony_Pawn_GetChildHolders",
+   "oldFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_WeaponWheel_Equipment.cs",
+   "newFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_Pawn_GetChildHolders.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "design 3.2 patch naming Harmony_<TargetType>_<TargetMember>[_<Purpose>]; leaves root namespace (3.1); split out.",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Harmony_WeaponWheel_MaintainCombatFacing",
+   "new": "Mugirl.Features.WeaponWheel.Harmony_Pawn_RotationTracker_UpdateRotation",
+   "oldFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_WeaponWheel_Rendering.cs",
+   "newFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_Pawn_RotationTracker_UpdateRotation.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "design 3.2 patch naming Harmony_<TargetType>_<TargetMember>[_<Purpose>]; leaves root namespace (3.1); split out.",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Harmony_WeaponWheel_MeleeAttack",
+   "new": "Mugirl.Features.WeaponWheel.Harmony_Verb_MeleeAttack_TryCastShot",
+   "oldFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_WeaponWheel_Verbs.cs",
+   "newFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_Verb_MeleeAttack_TryCastShot.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "design 3.2 patch naming Harmony_<TargetType>_<TargetMember>[_<Purpose>]; leaves root namespace (3.1); split out.",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Harmony_WeaponWheel_SwordDanceDashDrawPosition",
+   "new": "Mugirl.Features.WeaponWheel.Harmony_Pawn_DrawPos_SwordDanceDash",
+   "oldFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_WeaponWheel_Rendering.cs",
+   "newFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_Pawn_DrawPos_SwordDanceDash.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "design 3.2 patch naming Harmony_<TargetType>_<TargetMember>[_<Purpose>]; leaves root namespace (3.1); split out of a 4-class file.",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Harmony_WeaponWheel_TryGetAttackVerb_Diagnostics",
+   "new": "Mugirl.Features.WeaponWheel.Harmony_Pawn_TryGetAttackVerb_ReserveWeaponGuard",
+   "oldFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_WeaponWheel_Verbs.cs",
+   "newFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_Pawn_TryGetAttackVerb_ReserveWeaponGuard.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "design 3.2 patch naming Harmony_<TargetType>_<TargetMember>[_<Purpose>]; leaves root namespace (3.1); old name was misleading: it rewrites __result (Harmony_WeaponWheel_Verbs.cs:107-117), it is not a diagnostic.",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Harmony_WeaponWheel_TryStartCastOn",
+   "new": "Mugirl.Features.WeaponWheel.Harmony_Verb_TryStartCastOn_WeaponWheel",
+   "oldFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_WeaponWheel_Verbs.cs",
+   "newFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_Verb_TryStartCastOn_WeaponWheel.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "design 3.2 patch naming Harmony_<TargetType>_<TargetMember>[_<Purpose>]; leaves root namespace (3.1); Abilities' Harmony_ThrowFiringLock_TryStartCastOn ([HarmonyPriority(Priority.High)]) patches the same target.",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.Harmony_WeaponWheel_WarmupTime",
+   "new": "Mugirl.Features.WeaponWheel.Harmony_Verb_WarmupTime_WheelChain",
+   "oldFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_WeaponWheel_Verbs.cs",
+   "newFile": "Source/MugirlRace/Features/WeaponWheel/Patches/Harmony_Verb_WarmupTime_WheelChain.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "design 3.2 patch naming Harmony_<TargetType>_<TargetMember>[_<Purpose>]; leaves root namespace (3.1); Mounting patches the same getter.",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.JobDriver_DismountMugirl",
+   "new": "Mugirl.Features.Mounting.JobDriver_DismountMugirl",
+   "oldFile": "Source/MugirlRace/Features/Mounting/Jobs/JobDriver_DismountMugirl.cs",
+   "newFile": "Source/MugirlRace/Features/Mounting/Jobs/JobDriver_DismountMugirl.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "namespace only. Saved as curDriver Class; driverClass JobDefs_Mounting.xml:13. Toil layout unchanged since d9b9bb9. Legacy also MooGirl.JobDriver_DismountMooGirl.",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.JobDriver_LoadWeaponWheel",
+   "new": "Mugirl.Features.WeaponWheel.JobDriver_LoadWeaponWheel",
+   "oldFile": "Source/MugirlRace/Features/WeaponWheel/AI/JobDriver_LoadWeaponWheel.cs",
+   "newFile": "Source/MugirlRace/Features/WeaponWheel/AI/JobDriver_LoadWeaponWheel.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "namespace only. Saved as curDriver Class; driverClass JobDefs_WeaponWheel.xml:5. Toil layout unchanged since 4e76859 (2 toils).",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.JobDriver_MountMugirl",
+   "new": "Mugirl.Features.Mounting.JobDriver_MountMugirl",
+   "oldFile": "Source/MugirlRace/Features/Mounting/Jobs/JobDriver_MountMugirl.cs",
+   "newFile": "Source/MugirlRace/Features/Mounting/Jobs/JobDriver_MountMugirl.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "namespace only; short name keeps 'Mugirl' (meaning: mount a Mugirl, design 3.2 example). Saved as curDriver Class; driverClass JobDefs_Mounting.xml:6. Toil layout unchanged since d9b9bb9 (3 toils). Legacy also MooGirl.JobDriver_MountMooGirl (<=0.4.4, hand MooGirl map).",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.MountEligibilityService",
+   "new": "Mugirl.Features.Mounting.MountEligibilityUtility",
+   "oldFile": "Source/MugirlRace/Features/Mounting/MountEligibilityService.cs",
+   "newFile": "Source/MugirlRace/Features/Mounting/MountEligibilityUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "stateless static predicates -> XUtility (3.2); 'Service' is not a vanilla role.",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.MountedAttackTargetSearcher",
+   "new": "Mugirl.Features.Mounting.MountedAttackTargetSearcher",
+   "oldFile": "Source/MugirlRace/Features/Mounting/Combat/MountedAttackTargetSearcher.cs",
+   "newFile": "Source/MugirlRace/Features/Mounting/Combat/MountedAttackTargetSearcher.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only (3.1).",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.MountedCombatController",
+   "new": "Mugirl.Features.Mounting.MountedCombatController",
+   "oldFile": "Source/MugirlRace/Features/Mounting/Combat/MountedCombatController.Lifecycle.cs",
+   "newFile": "Source/MugirlRace/Features/Mounting/Combat/MountedCombatController.Lifecycle.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only (partial in Combat/MountedCombatController.{Lifecycle,Targeting,Turret,VerbState,WeaponEligibility}.cs and Rendering/MountedCombatController.Rendering.cs, paths unchanged). Wave S splits it (combat-plan S2-4/S2-5). Nested private struct MountedMinRangeOverride unchanged.",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.MountedPawnMeleeSupport",
+   "new": "Mugirl.Features.Mounting.MountedMeleeSupport",
+   "oldFile": "Source/MugirlRace/Features/Mounting/Combat/MountedPawnMeleeSupport.cs",
+   "newFile": "Source/MugirlRace/Features/Mounting/Combat/MountedMeleeSupport.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "'Pawn' is noise (rider melee support); Compatibility/MeleeAnimation/MeleeAnimationPatches.cs:64 references it until core replaces that self-patch by MountingHooks (Wave S).",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.MountedVerbScope",
+   "new": "Mugirl.Features.Mounting.MountedVerbScope",
+   "oldFile": "Source/MugirlRace/Features/Mounting/Combat/MountedVerbScope.cs",
+   "newFile": "Source/MugirlRace/Features/Mounting/Combat/MountedVerbScope.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only (3.1).",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.MugirlRaceRestrictedExtension",
+   "new": "Mugirl.Features.Weapons.MugirlOnlyEquipmentExtension",
+   "oldFile": "Source/MugirlRace/Features/Weapons/MugirlRaceRestrictedExtension.cs",
+   "newFile": "Source/MugirlRace/Features/Weapons/MugirlOnlyEquipmentExtension.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "<X>Extension shape (3.2), 'MugirlOnly' carries meaning (3.2a). DefModExtension = def data, never saved. Own XML only: MeleeWeapons_0920.xml:34,51 and RangedWeapons_0920.xml:23 (no dependent) -> no alias. Wave S removes the field 'enabled' (no XML sets it).",
+   "module": "combat"
+  },
+  {
+   "old": "Mugirl.WeaponWheelHarmonyUtility",
+   "new": "Mugirl.Features.WeaponWheel.WeaponWheelLookup",
+   "oldFile": "Source/MugirlRace/Features/WeaponWheel/Patches/WeaponWheelHarmonyUtility.cs",
+   "newFile": "Source/MugirlRace/Features/WeaponWheel/Core/WeaponWheelLookup.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "it is a pawn->comp lookup (not a Harmony utility) and part of the API the Compatibility layer consumes (YayoCombat, MeleeAnimation).",
+   "module": "combat"
+  }
+ ],
+ "fileMoves": [
+  {
+   "old": "Source/MugirlRace/Features/Lances/LanceMotionBlur.cs",
+   "new": "Source/MugirlRace/Features/Lances/Rendering/LanceMotionBlur.cs",
+   "module": "combat"
+  },
+  {
+   "old": "Source/MugirlRace/Features/Mounting/Comp/Comp_MugirlMount.Gizmos.cs",
+   "new": "Source/MugirlRace/Features/Mounting/Comp/CompMount.Gizmos.cs",
+   "module": "combat"
+  },
+  {
+   "old": "Source/MugirlRace/Features/Mounting/Comp/Comp_MugirlMount.Lifecycle.cs",
+   "new": "Source/MugirlRace/Features/Mounting/Comp/CompMount.Lifecycle.cs",
+   "module": "combat"
+  },
+  {
+   "old": "Source/MugirlRace/Features/Mounting/Comp/Comp_MugirlMount.Mounting.cs",
+   "new": "Source/MugirlRace/Features/Mounting/Comp/CompMount.Mounting.cs",
+   "module": "combat"
+  },
+  {
+   "old": "Source/MugirlRace/Features/Mounting/Comp/Comp_MugirlMount.Storage.cs",
+   "new": "Source/MugirlRace/Features/Mounting/Comp/CompMount.Storage.cs",
+   "module": "combat"
+  },
+  {
+   "old": "Source/MugirlRace/Features/Mounting/Comp/Comp_MugirlMount.Ticking.cs",
+   "new": "Source/MugirlRace/Features/Mounting/Comp/CompMount.Ticking.cs",
+   "module": "combat"
+  },
+  {
+   "old": "Source/MugirlRace/Features/Mounting/MountedPawnUtility.cs",
+   "new": "Source/MugirlRace/PublicApi/MountedPawnUtility.cs",
+   "module": "combat",
+   "reason": "D5/decisions section 5: Mugirl.MountedPawnUtility is public API (used by dependents); its name stays, the file moves to PublicApi/ (root namespace allowed only there)."
+  },
+  {
+   "old": "Source/MugirlRace/Features/WeaponWheel/Combat/Comp_WeaponWheel.Combat.cs",
+   "new": "Source/MugirlRace/Features/WeaponWheel/Combat/CompWeaponWheel.Combat.cs",
+   "module": "combat"
+  },
+  {
+   "old": "Source/MugirlRace/Features/WeaponWheel/Core/Comp_WeaponWheel.Storage.cs",
+   "new": "Source/MugirlRace/Features/WeaponWheel/Core/CompWeaponWheel.Storage.cs",
+   "module": "combat"
+  },
+  {
+   "old": "Source/MugirlRace/Features/WeaponWheel/Rendering/Comp_WeaponWheel.Rendering.cs",
+   "new": "Source/MugirlRace/Features/WeaponWheel/Rendering/CompWeaponWheel.Rendering.cs",
+   "module": "combat"
+  },
+  {
+   "old": "Source/MugirlRace/Features/WeaponWheel/SwordDance/Comp_WeaponWheel.SwordDance.cs",
+   "new": "Source/MugirlRace/Features/WeaponWheel/SwordDance/CompWeaponWheel.SwordDance.cs",
+   "module": "combat"
+  }
+ ],
+ "defs": [
+  {
+   "defType": "JobDef",
+   "old": "Job_DismountMugirl",
+   "new": "Mugirl_Dismount",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "3.3 'Job_' type prefix instead of the mod prefix; saved in curJob/jobQueue/PawnFlyer jobQueue <def>. Only XML refs: own def + ChineseSimplified DefInjected; C# via the Mugirl_DefOf field of the same name (renamed with the defName). Predecessor Job_DismountMooGirl composes via the MooGirl map.",
+   "module": "combat"
+  },
+  {
+   "defType": "JobDef",
+   "old": "Job_LoadWeaponWheel",
+   "new": "Mugirl_LoadWeaponWheel",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "3.3 'Job_' type prefix instead of the mod prefix; saved in curJob/jobQueue/PawnFlyer jobQueue <def>. Only XML refs: own def + ChineseSimplified DefInjected; C# via the Mugirl_DefOf field of the same name (renamed with the defName).",
+   "module": "combat"
+  },
+  {
+   "defType": "JobDef",
+   "old": "Job_MountMugirl",
+   "new": "Mugirl_Mount",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "3.3 'Job_' type prefix instead of the mod prefix; saved in curJob/jobQueue/PawnFlyer jobQueue <def>. Only XML refs: own def + ChineseSimplified DefInjected; C# via the Mugirl_DefOf field of the same name (renamed with the defName). Predecessor Job_MountMooGirl (<=0.4.4) composes via the MooGirl map (spec/moogirl-defs.json).",
+   "module": "combat"
+  },
+  {
+   "defType": "JobDef",
+   "old": "Job_MugirlLanceLineCharge",
+   "new": "Mugirl_LanceLineCharge",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "3.3 'Job_' type prefix instead of the mod prefix; saved in curJob/jobQueue/PawnFlyer jobQueue <def>. Only XML refs: own def + ChineseSimplified DefInjected; C# via the Mugirl_DefOf field of the same name (renamed with the defName).",
+   "module": "combat"
+  },
+  {
+   "defType": "JobDef",
+   "old": "Job_MugirlLancePointCharge",
+   "new": "Mugirl_LancePointCharge",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "3.3 'Job_' type prefix instead of the mod prefix; saved in curJob/jobQueue/PawnFlyer jobQueue <def>. Only XML refs: own def + ChineseSimplified DefInjected; C# via the Mugirl_DefOf field of the same name (renamed with the defName). Also tested by JobDriver_LanceCharge.cs:13 (point vs line).",
+   "module": "combat"
+  },
+  {
+   "defType": "ThingDef",
+   "old": "Bullet_Mugirl_AR_Standard",
+   "new": "Mugirl_Bullet_AR_Standard",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "module": "combat",
+   "reason": "C26: def category after the Mugirl_ prefix (projectiles in flight are saved: upgrader def map + thing-ID rewrite)."
+  },
+  {
+   "defType": "ThingDef",
+   "old": "Bullet_Mugirl_AT23_Autocannon",
+   "new": "Mugirl_Bullet_AT23_Autocannon",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "module": "combat",
+   "reason": "C26: def category after the Mugirl_ prefix (projectiles in flight are saved: upgrader def map + thing-ID rewrite)."
+  },
+  {
+   "defType": "ThingDef",
+   "old": "Bullet_Mugirl_MP_Standard",
+   "new": "Mugirl_Bullet_MP_Standard",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "module": "combat",
+   "reason": "C26: def category after the Mugirl_ prefix (projectiles in flight are saved: upgrader def map + thing-ID rewrite)."
+  },
+  {
+   "defType": "ThingDef",
+   "old": "Bullet_Mugirl_Militia_Rifle",
+   "new": "Mugirl_Bullet_Militia_Rifle",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "module": "combat",
+   "reason": "C26: def category after the Mugirl_ prefix (projectiles in flight are saved: upgrader def map + thing-ID rewrite)."
+  },
+  {
+   "defType": "ThingDef",
+   "old": "Bullet_OPC_Assault_Rifle",
+   "new": "Mugirl_Bullet_OPC_AssaultRifle",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:669",
+    "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:719"
+   ],
+   "module": "combat",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "combat: projectile of a renamed weapon. Keeps the vanilla role prefix 'Bullet_' + the Mugirl-qualified weapon name, like the 4 existing Bullet_Mugirl_* projectiles (deliberate deviation from 3.3 'Mugirl_' first, see combat-plan S5-Q2). Real saves: allowedDefs only (S5,S7,S8,S11); in-flight projectiles and battle logs possible. | content: Projectile of a renamed weapon. Aligned with the combat spec: vanilla role prefix 'Bullet_' + the Mugirl-qualified weapon name, like the 4 existing Bullet_Mugirl_* projectiles (deliberate deviation from design 3.3, see content-plan.md S5-Q3). In-flight projectiles are saved Things. C26: def category after the Mugirl_ prefix (Mugirl_Bullet_*)."
+  },
+  {
+   "defType": "ThingDef",
+   "old": "Bullet_OPC_Defense_Rifle",
+   "new": "Mugirl_Bullet_OPC_DefenseRifle",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:477",
+    "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:539"
+   ],
+   "module": "combat",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "combat: projectile of a renamed weapon. Keeps the vanilla role prefix 'Bullet_' + the Mugirl-qualified weapon name, like the 4 existing Bullet_Mugirl_* projectiles (deliberate deviation from 3.3 'Mugirl_' first, see combat-plan S5-Q2). Real saves: allowedDefs only (S5,S7,S8,S11); in-flight projectiles and battle logs possible. | content: Projectile of a renamed weapon. Aligned with the combat spec: vanilla role prefix 'Bullet_' + the Mugirl-qualified weapon name, like the 4 existing Bullet_Mugirl_* projectiles (deliberate deviation from design 3.3, see content-plan.md S5-Q3). In-flight projectiles are saved Things. C26: def category after the Mugirl_ prefix (Mugirl_Bullet_*)."
+  },
+  {
+   "defType": "ThingDef",
+   "old": "Bullet_OPC_Tactical_Shotgun",
+   "new": "Mugirl_Bullet_OPC_TacticalShotgun",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:572",
+    "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:636"
+   ],
+   "module": "combat",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "combat: projectile of a renamed weapon. Keeps the vanilla role prefix 'Bullet_' + the Mugirl-qualified weapon name, like the 4 existing Bullet_Mugirl_* projectiles (deliberate deviation from 3.3 'Mugirl_' first, see combat-plan S5-Q2). Real saves: allowedDefs only (S5,S7,S8,S11); in-flight projectiles and battle logs possible. | content: Projectile of a renamed weapon. Aligned with the combat spec: vanilla role prefix 'Bullet_' + the Mugirl-qualified weapon name, like the 4 existing Bullet_Mugirl_* projectiles (deliberate deviation from design 3.3, see content-plan.md S5-Q3). In-flight projectiles are saved Things. C26: def category after the Mugirl_ prefix (Mugirl_Bullet_*)."
+  },
+  {
+   "defType": "ThingDef",
+   "old": "Bullet_OPC_Tranquilizer_Pistol",
+   "new": "Mugirl_Bullet_OPC_TranquilizerPistol",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:383",
+    "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:444"
+   ],
+   "module": "combat",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "combat: projectile of a renamed weapon. Keeps the vanilla role prefix 'Bullet_' + the Mugirl-qualified weapon name, like the 4 existing Bullet_Mugirl_* projectiles (deliberate deviation from 3.3 'Mugirl_' first, see combat-plan S5-Q2). Real saves: allowedDefs only (S5,S7,S8,S11); in-flight projectiles and battle logs possible. | content: Projectile of a renamed weapon. Aligned with the combat spec: vanilla role prefix 'Bullet_' + the Mugirl-qualified weapon name, like the 4 existing Bullet_Mugirl_* projectiles (deliberate deviation from design 3.3, see content-plan.md S5-Q3). In-flight projectiles are saved Things. C26: def category after the Mugirl_ prefix (Mugirl_Bullet_*)."
+  },
+  {
+   "defType": "ThingDef",
+   "old": "Bullet_PMC_Assault_Rifle",
+   "new": "Mugirl_Bullet_PMC_AssaultRifle",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:102",
+    "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:153"
+   ],
+   "module": "combat",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "combat: projectile of a renamed weapon. Keeps the vanilla role prefix 'Bullet_' + the Mugirl-qualified weapon name, like the 4 existing Bullet_Mugirl_* projectiles (deliberate deviation from 3.3 'Mugirl_' first, see combat-plan S5-Q2). Real saves: allowedDefs only (S5,S7,S8,S11); in-flight projectiles and battle logs possible. | content: Projectile of a renamed weapon. Aligned with the combat spec: vanilla role prefix 'Bullet_' + the Mugirl-qualified weapon name, like the 4 existing Bullet_Mugirl_* projectiles (deliberate deviation from design 3.3, see content-plan.md S5-Q3). In-flight projectiles are saved Things. C26: def category after the Mugirl_ prefix (Mugirl_Bullet_*)."
+  },
+  {
+   "defType": "ThingDef",
+   "old": "Bullet_PMC_Carbine",
+   "new": "Mugirl_Bullet_PMC_Carbine",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:5",
+    "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:60"
+   ],
+   "module": "combat",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "combat: projectile of a renamed weapon. Keeps the vanilla role prefix 'Bullet_' + the Mugirl-qualified weapon name, like the 4 existing Bullet_Mugirl_* projectiles (deliberate deviation from 3.3 'Mugirl_' first, see combat-plan S5-Q2). Real saves: allowedDefs only (S5,S7,S8,S11); in-flight projectiles and battle logs possible. | content: Projectile of a renamed weapon. Aligned with the combat spec: vanilla role prefix 'Bullet_' + the Mugirl-qualified weapon name, like the 4 existing Bullet_Mugirl_* projectiles (deliberate deviation from design 3.3, see content-plan.md S5-Q3). In-flight projectiles are saved Things. C26: def category after the Mugirl_ prefix (Mugirl_Bullet_*)."
+  },
+  {
+   "defType": "ThingDef",
+   "old": "Bullet_PMC_DMR",
+   "new": "Mugirl_Bullet_PMC_DMR",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:195",
+    "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:246"
+   ],
+   "module": "combat",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "combat: projectile of a renamed weapon. Keeps the vanilla role prefix 'Bullet_' + the Mugirl-qualified weapon name, like the 4 existing Bullet_Mugirl_* projectiles (deliberate deviation from 3.3 'Mugirl_' first, see combat-plan S5-Q2). Real saves: allowedDefs only (S5,S7,S8,S11); in-flight projectiles and battle logs possible. | content: Projectile of a renamed weapon. Aligned with the combat spec: vanilla role prefix 'Bullet_' + the Mugirl-qualified weapon name, like the 4 existing Bullet_Mugirl_* projectiles (deliberate deviation from design 3.3, see content-plan.md S5-Q3). In-flight projectiles are saved Things. C26: def category after the Mugirl_ prefix (Mugirl_Bullet_*)."
+  },
+  {
+   "defType": "ThingDef",
+   "old": "Bullet_PMC_LMG",
+   "new": "Mugirl_Bullet_PMC_LMG",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:287",
+    "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:342"
+   ],
+   "module": "combat",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "combat: projectile of a renamed weapon. Keeps the vanilla role prefix 'Bullet_' + the Mugirl-qualified weapon name, like the 4 existing Bullet_Mugirl_* projectiles (deliberate deviation from 3.3 'Mugirl_' first, see combat-plan S5-Q2). Real saves: allowedDefs only (S5,S7,S8,S11); in-flight projectiles and battle logs possible. | content: Projectile of a renamed weapon. Aligned with the combat spec: vanilla role prefix 'Bullet_' + the Mugirl-qualified weapon name, like the 4 existing Bullet_Mugirl_* projectiles (deliberate deviation from design 3.3, see content-plan.md S5-Q3). In-flight projectiles are saved Things. C26: def category after the Mugirl_ prefix (Mugirl_Bullet_*)."
+  },
+  {
+   "defType": "ThingDef",
+   "old": "OPC_Assault_Rifle",
+   "new": "Mugirl_OPC_AssaultRifle",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:685"
+   ],
+   "module": "combat",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "combat: 3.3 'PMC_'/'OPC_' without the mod prefix (not public: no reference in local mods or 2735 workshop mods, content.md B.5). Instances in real saves S4-S11 (def/id under things, allowedDefs, thingDef). ThingDef rename => ThingID rewrite (5.4) and implied RecipeDef Make_<old> -> Make_<new> (recipeMaker via BaseHumanMakeableGun, see notes). Remainder PascalCased while renaming. | content: PMC_/OPC_ prefix without the mod prefix (design 3.3); not public API (no dependent mod references it: understand/content.md C and a local+workshop scan). Series segment kept, words PascalCase. Implied Make_ recipe and ThingIDs follow (design 5.4). The texPath at 1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:691 contains the old name as a texture path and must NOT be rewritten."
+  },
+  {
+   "defType": "ThingDef",
+   "old": "OPC_Defense_Rifle",
+   "new": "Mugirl_OPC_DefenseRifle",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:495"
+   ],
+   "module": "combat",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "combat: 3.3 'PMC_'/'OPC_' without the mod prefix (not public: no reference in local mods or 2735 workshop mods, content.md B.5). Instances in real saves S4-S11 (def/id under things, allowedDefs, thingDef). ThingDef rename => ThingID rewrite (5.4) and implied RecipeDef Make_<old> -> Make_<new> (recipeMaker via BaseHumanMakeableGun, see notes). Remainder PascalCased while renaming. | content: PMC_/OPC_ prefix without the mod prefix (design 3.3); not public API (no dependent mod references it: understand/content.md C and a local+workshop scan). Series segment kept, words PascalCase. Implied Make_ recipe and ThingIDs follow (design 5.4). The texPath at 1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:501 contains the old name as a texture path and must NOT be rewritten."
+  },
+  {
+   "defType": "ThingDef",
+   "old": "OPC_Tactical_Shotgun",
+   "new": "Mugirl_OPC_TacticalShotgun",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:590"
+   ],
+   "module": "combat",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "combat: 3.3 'PMC_'/'OPC_' without the mod prefix (not public: no reference in local mods or 2735 workshop mods, content.md B.5). Instances in real saves S4-S11 (def/id under things, allowedDefs, thingDef). ThingDef rename => ThingID rewrite (5.4) and implied RecipeDef Make_<old> -> Make_<new> (recipeMaker via BaseHumanMakeableGun, see notes). Remainder PascalCased while renaming. | content: PMC_/OPC_ prefix without the mod prefix (design 3.3); not public API (no dependent mod references it: understand/content.md C and a local+workshop scan). Series segment kept, words PascalCase. Implied Make_ recipe and ThingIDs follow (design 5.4). The texPath at 1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:596 contains the old name as a texture path and must NOT be rewritten."
+  },
+  {
+   "defType": "ThingDef",
+   "old": "OPC_Tranquilizer_Pistol",
+   "new": "Mugirl_OPC_TranquilizerPistol",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:399"
+   ],
+   "module": "combat",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "combat: 3.3 'PMC_'/'OPC_' without the mod prefix (not public: no reference in local mods or 2735 workshop mods, content.md B.5). Instances in real saves S4-S11 (def/id under things, allowedDefs, thingDef). ThingDef rename => ThingID rewrite (5.4) and implied RecipeDef Make_<old> -> Make_<new> (recipeMaker via BaseHumanMakeableGun, see notes). Remainder PascalCased while renaming. | content: PMC_/OPC_ prefix without the mod prefix (design 3.3); not public API (no dependent mod references it: understand/content.md C and a local+workshop scan). Series segment kept, words PascalCase. Implied Make_ recipe and ThingIDs follow (design 5.4). The texPath at 1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:405 contains the old name as a texture path and must NOT be rewritten."
+  },
+  {
+   "defType": "ThingDef",
+   "old": "PMC_Assault_Rifle",
+   "new": "Mugirl_PMC_AssaultRifle",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:118"
+   ],
+   "module": "combat",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "combat: 3.3 'PMC_'/'OPC_' without the mod prefix (not public: no reference in local mods or 2735 workshop mods, content.md B.5). Instances in real saves S4-S11 (def/id under things, allowedDefs, thingDef). ThingDef rename => ThingID rewrite (5.4) and implied RecipeDef Make_<old> -> Make_<new> (recipeMaker via BaseHumanMakeableGun, see notes). Remainder PascalCased while renaming. | content: PMC_/OPC_ prefix without the mod prefix (design 3.3); not public API (no dependent mod references it: understand/content.md C and a local+workshop scan). Series segment kept, words PascalCase. Implied Make_ recipe and ThingIDs follow (design 5.4). The texPath at 1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:124 contains the old name as a texture path and must NOT be rewritten."
+  },
+  {
+   "defType": "ThingDef",
+   "old": "PMC_Carbine",
+   "new": "Mugirl_PMC_Carbine",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:21"
+   ],
+   "module": "combat",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "combat: 3.3 'PMC_'/'OPC_' without the mod prefix (not public: no reference in local mods or 2735 workshop mods, content.md B.5). Instances in real saves S4-S11 (def/id under things, allowedDefs, thingDef). ThingDef rename => ThingID rewrite (5.4) and implied RecipeDef Make_<old> -> Make_<new> (recipeMaker via BaseHumanMakeableGun, see notes). Remainder PascalCased while renaming. | content: PMC_/OPC_ prefix without the mod prefix (design 3.3); not public API (no dependent mod references it: understand/content.md C and a local+workshop scan). Series segment kept, words PascalCase. Implied Make_ recipe and ThingIDs follow (design 5.4). The texPath at 1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:27 contains the old name as a texture path and must NOT be rewritten."
+  },
+  {
+   "defType": "ThingDef",
+   "old": "PMC_DMR",
+   "new": "Mugirl_PMC_DMR",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:211"
+   ],
+   "module": "combat",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "combat: 3.3 'PMC_'/'OPC_' without the mod prefix (not public: no reference in local mods or 2735 workshop mods, content.md B.5). Instances in real saves S4-S11 (def/id under things, allowedDefs, thingDef). ThingDef rename => ThingID rewrite (5.4) and implied RecipeDef Make_<old> -> Make_<new> (recipeMaker via BaseHumanMakeableGun, see notes). Remainder PascalCased while renaming. | content: PMC_/OPC_ prefix without the mod prefix (design 3.3); not public API (no dependent mod references it: understand/content.md C and a local+workshop scan). Series segment kept, words PascalCase. Implied Make_ recipe and ThingIDs follow (design 5.4). The texPath at 1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:217 contains the old name as a texture path and must NOT be rewritten."
+  },
+  {
+   "defType": "ThingDef",
+   "old": "PMC_LMG",
+   "new": "Mugirl_PMC_LMG",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:304"
+   ],
+   "module": "combat",
+   "alsoListedBy": [
+    "content"
+   ],
+   "reason": "combat: 3.3 'PMC_'/'OPC_' without the mod prefix (not public: no reference in local mods or 2735 workshop mods, content.md B.5). Instances in real saves S4-S11 (def/id under things, allowedDefs, thingDef). ThingDef rename => ThingID rewrite (5.4) and implied RecipeDef Make_<old> -> Make_<new> (recipeMaker via BaseHumanMakeableGun, see notes). Remainder PascalCased while renaming. | content: PMC_/OPC_ prefix without the mod prefix (design 3.3); not public API (no dependent mod references it: understand/content.md C and a local+workshop scan). Series segment kept, words PascalCase. Implied Make_ recipe and ThingIDs follow (design 5.4). The texPath at 1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml:310 contains the old name as a texture path and must NOT be rewritten."
+  }
+ ]
+}

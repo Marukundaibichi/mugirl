@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- C.content-shadowing: the same relative path exists in the higher-priority load folder 1.7, so the game never loads this file. -->
+  <ThingDef>
+    <defName>Mugirl_Control_ShadowedLow</defName>
+    <label>shadowed</label>
+  </ThingDef>
+</Defs>

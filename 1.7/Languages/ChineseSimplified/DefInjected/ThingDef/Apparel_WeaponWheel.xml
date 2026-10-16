@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+    <!-- self-propelled autoloading system -->
+    <Mugirl_AutoloadingSystem.label>自驱装弹系统</Mugirl_AutoloadingSystem.label>
+    <!-- An advanced system preserved from the Mugirl homeworld. Loading ports at both ends rapidly service compatible firearms while the wearer shoots; some variants replace the ports with thrusters for powerful mobility. -->
+    <Mugirl_AutoloadingSystem.description>源自雪牛娘原本母星遗留的先进装备套装之一。左右两端各有一个装弹口，能够在使用者射击时迅速为其他枪械完成装填，兼容各种射击武器。部分型号中，这个支架也会被改造成喷射口，让使用者拥有强大的机动能力。</Mugirl_AutoloadingSystem.description>
+</LanguageData>

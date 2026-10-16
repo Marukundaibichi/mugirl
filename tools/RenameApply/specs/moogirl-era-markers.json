@@ -1,0 +1,1998 @@
+{
+ "_doc": "MooGirl-era markers (decisions.md section 5, D3 = MooGirl era not supported). A save carrying any of these is MooGirl-era: the DOM pass strips MooGirl-era component elements and MooGirl-era def references from Removable containers, leaves everything else to vanilla's missing-def handling and shows ONE main-thread notice. There is no MooGirl -> Mugirl name map. typePrefixes/defPatterns are the K1 manifest's moogirlEra block; types/defs are the exact names seen in git history (MooGirl 0.1.0-0.4.4) for the stripper and for validator coverage. Note: packageId HAR.MuGirlRace lower-cases to the current har.mugirlrace, so it does not identify the era.",
+ "generatedFrom": [
+  "spec/moogirl-types.json",
+  "spec/moogirl-defs.json",
+  "1.7 content (names still current are excluded)"
+ ],
+ "typePrefixes": [
+  "MooGirl.",
+  "MooGirlSkinFix."
+ ],
+ "defPatterns": [
+  "^MooGirl",
+  "^MuGirl"
+ ],
+ "types": [
+  {
+   "name": "MooGirl.AdultContentCleanupGameComponent",
+   "base": "Verse.GameComponent",
+   "component": true,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "163b43d"
+  },
+  {
+   "name": "MooGirl.AdvancedSlaveApparel",
+   "base": "RimWorld.Apparel",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.BrainWashSlaveApparel",
+   "base": "RimWorld.Apparel",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.GameComponent_BrainwashPerformance",
+   "base": "Verse.GameComponent",
+   "component": true,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.GameComponent_GhoulRenderingRefresh",
+   "base": "Verse.GameComponent",
+   "component": true,
+   "firstSeen": "d42b58f",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.JobDriver_Breastfeed",
+   "base": "Verse.AI.JobDriver",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.JobDriver_CastCharge",
+   "base": "Verse.AI.JobDriver",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.JobDriver_CrackBondageGear",
+   "base": "Verse.AI.JobDriver",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.JobDriver_DismountMooGirl",
+   "base": "Verse.AI.JobDriver",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.JobDriver_DrinkMilkFromMooGirl",
+   "base": "Verse.AI.JobDriver",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.JobDriver_FeedMilkToDowned",
+   "base": "Verse.AI.JobDriver",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.JobDriver_FollowRoper",
+   "base": "Verse.AI.JobDriver",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.JobDriver_GatherBodyResources",
+   "base": "Verse.AI.JobDriver",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.JobDriver_GatherMilk",
+   "base": "Verse.AI.JobDriver",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.JobDriver_MountMooGirl",
+   "base": "Verse.AI.JobDriver",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.JobDriver_Nuzzle",
+   "base": "Verse.AI.JobDriver",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.JobDriver_ReadCourierDiary",
+   "base": "Verse.AI.JobDriver",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.JobDriver_RemoveRopeMoo",
+   "base": "Verse.AI.JobDriver",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.JobDriver_RopeMoo",
+   "base": "Verse.AI.JobDriver",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.JobDriver_RopeToWallRopeHitch",
+   "base": "Verse.AI.JobDriver",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.JobDriver_TalkCourier",
+   "base": "Verse.AI.JobDriver",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.JobDriver_UnlockSlaveApparelGear",
+   "base": "Verse.AI.JobDriver",
+   "component": false,
+   "firstSeen": "649855a",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.JobDriver_UnlockSlaveApperalGear",
+   "base": "Verse.AI.JobDriver",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "c2b4a80"
+  },
+  {
+   "name": "MooGirl.JobDriver_UseItemOn",
+   "base": "RimWorld.JobDriver_UseItem",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.MapRopingIndex",
+   "base": "Verse.MapComponent",
+   "component": true,
+   "firstSeen": "e8495b8",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.MechanoidWorkControlSettings",
+   "base": "Verse.ModSettings",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "c2b4a80"
+  },
+  {
+   "name": "MooGirl.MooGirlMod",
+   "base": "Verse.Mod",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.MooGirlSettings",
+   "base": "Verse.ModSettings",
+   "component": false,
+   "firstSeen": "649855a",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.MooGirlStoryState",
+   "base": "Verse.GameComponent",
+   "component": true,
+   "firstSeen": "e8495b8",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.MooGirl_ConvertComp",
+   "base": "Verse.GameComponent",
+   "component": true,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "163b43d"
+  },
+  {
+   "name": "MooGirl.MooGirl_GameComp",
+   "base": "Verse.GameComponent",
+   "component": true,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "1113cd8"
+  },
+  {
+   "name": "MooGirl.MooGirl_XenotypeFix_GameComp",
+   "base": "Verse.GameComponent",
+   "component": true,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.QuestPart_CourierDemand",
+   "base": "RimWorld.QuestPart",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "649855a"
+  },
+  {
+   "name": "MooGirl.QuestPart_MooGirlRescueJoin",
+   "base": "RimWorld.QuestPart",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.QuestPart_SpawnCourier",
+   "base": "RimWorld.QuestPart",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.SlaveApparel",
+   "base": "RimWorld.Apparel",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.Thought_Hediff",
+   "base": "RimWorld.Thought_Memory",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirl.Thought_MooGirlOnly",
+   "base": "RimWorld.Thought_Memory",
+   "component": false,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "cb25751"
+  },
+  {
+   "name": "MooGirlSkinFix.GameComponent_MooGirlSkinOnce",
+   "base": "Verse.GameComponent",
+   "component": true,
+   "firstSeen": "d9b9bb9",
+   "lastSeen": "c2b4a80"
+  }
+ ],
+ "componentTypes": [
+  "MooGirl.AdultContentCleanupGameComponent",
+  "MooGirl.GameComponent_BrainwashPerformance",
+  "MooGirl.GameComponent_GhoulRenderingRefresh",
+  "MooGirl.MapRopingIndex",
+  "MooGirl.MooGirlStoryState",
+  "MooGirl.MooGirl_ConvertComp",
+  "MooGirl.MooGirl_GameComp",
+  "MooGirl.MooGirl_XenotypeFix_GameComp",
+  "MooGirlSkinFix.GameComponent_MooGirlSkinOnce"
+ ],
+ "defs": [
+  {
+   "root": "AbilityDef",
+   "name": "MooGirl_Charge"
+  },
+  {
+   "root": "AbilityDef",
+   "name": "MooGirl_Shout"
+  },
+  {
+   "root": "ApparelLayerDef",
+   "name": "MooGirl_Arm_bondage"
+  },
+  {
+   "root": "ApparelLayerDef",
+   "name": "MooGirl_Body_bondage"
+  },
+  {
+   "root": "ApparelLayerDef",
+   "name": "MooGirl_HiddenOrnament"
+  },
+  {
+   "root": "ApparelLayerDef",
+   "name": "MooGirl_Leg_bondage"
+  },
+  {
+   "root": "ApparelLayerDef",
+   "name": "MooGirl_Neck_bondage"
+  },
+  {
+   "root": "ApparelLayerDef",
+   "name": "MooGirl_Ornament"
+  },
+  {
+   "root": "ApparelLayerDef",
+   "name": "MooGirl_SpeciallyStocking"
+  },
+  {
+   "root": "ApparelLayerDef",
+   "name": "MooGirl_Stocking"
+  },
+  {
+   "root": "ApparelLayerDef",
+   "name": "MooGirl_Underwear"
+  },
+  {
+   "root": "ApparelLayerDef",
+   "name": "MooGirl_Underwear_bondage"
+  },
+  {
+   "root": "ApparelLayerDef",
+   "name": "MooGirl_Waist_bondage"
+  },
+  {
+   "root": "BackstoryDef",
+   "name": "MooGirl_Adult"
+  },
+  {
+   "root": "BackstoryDef",
+   "name": "MooGirl_CattleSlave"
+  },
+  {
+   "root": "BackstoryDef",
+   "name": "MooGirl_Child"
+  },
+  {
+   "root": "BackstoryDef",
+   "name": "MooGirl_ChildWorker"
+  },
+  {
+   "root": "BackstoryDef",
+   "name": "MooGirl_Colonist"
+  },
+  {
+   "root": "BackstoryDef",
+   "name": "MooGirl_ConstructionWorker"
+  },
+  {
+   "root": "BackstoryDef",
+   "name": "MooGirl_ExperimentalChild"
+  },
+  {
+   "root": "BackstoryDef",
+   "name": "MooGirl_FactoryWorker"
+  },
+  {
+   "root": "BackstoryDef",
+   "name": "MooGirl_FarmSlave"
+  },
+  {
+   "root": "BackstoryDef",
+   "name": "MooGirl_FarmWorker"
+  },
+  {
+   "root": "BackstoryDef",
+   "name": "MooGirl_GangMember"
+  },
+  {
+   "root": "BackstoryDef",
+   "name": "MooGirl_Gladiator"
+  },
+  {
+   "root": "BackstoryDef",
+   "name": "MooGirl_HouseServant"
+  },
+  {
+   "root": "BackstoryDef",
+   "name": "MooGirl_Housekeeper"
+  },
+  {
+   "root": "BackstoryDef",
+   "name": "MooGirl_Merchant"
+  },
+  {
+   "root": "BackstoryDef",
+   "name": "MooGirl_MineWorker"
+  },
+  {
+   "root": "BackstoryDef",
+   "name": "MooGirl_Newborn"
+  },
+  {
+   "root": "BackstoryDef",
+   "name": "MooGirl_NightclubStaff"
+  },
+  {
+   "root": "BackstoryDef",
+   "name": "MooGirl_UndergroundIdol"
+  },
+  {
+   "root": "BodyDef",
+   "name": "MooGirlBody"
+  },
+  {
+   "root": "BodyPartDef",
+   "name": "MooGirl_Horn"
+  },
+  {
+   "root": "BodyPartDef",
+   "name": "MooGirl_Tail"
+  },
+  {
+   "root": "BrowTypeDef",
+   "name": "MooGirl_BrowNormal"
+  },
+  {
+   "root": "BrowTypeDef",
+   "name": "MooGirl_BrowNormal1"
+  },
+  {
+   "root": "BrowTypeDef",
+   "name": "MooGirl_BrowNormal2"
+  },
+  {
+   "root": "BrowTypeDef",
+   "name": "MooGirl_BrowNormal3"
+  },
+  {
+   "root": "BrowTypeDef",
+   "name": "MooGirl_BrowNormal4"
+  },
+  {
+   "root": "BrowTypeDef",
+   "name": "MooGirl_BrowNormal5"
+  },
+  {
+   "root": "BrowTypeDef",
+   "name": "MooGirl_BrowNormal6"
+  },
+  {
+   "root": "BrowTypeDef",
+   "name": "MooGirl_BrowNormal7"
+  },
+  {
+   "root": "EmotionTypeDef",
+   "name": "MooGirl_EmotionNormal"
+  },
+  {
+   "root": "EmotionTypeDef",
+   "name": "MooGirl_EmotionNormal2"
+  },
+  {
+   "root": "EmotionTypeDef",
+   "name": "MooGirl_EmotionNormal3"
+  },
+  {
+   "root": "EmotionTypeDef",
+   "name": "MooGirl_EmotionNormal4"
+  },
+  {
+   "root": "EmotionTypeDef",
+   "name": "MooGirl_EmotionNormal5"
+  },
+  {
+   "root": "EmotionTypeDef",
+   "name": "MooGirl_EmotionNormal6"
+  },
+  {
+   "root": "EmotionTypeDef",
+   "name": "MooGirl_EmotionNormal7"
+  },
+  {
+   "root": "EyeballShapeDef",
+   "name": "MooGirl_heart"
+  },
+  {
+   "root": "EyeballTypeDef",
+   "name": "MooGirl_EyeNormal"
+  },
+  {
+   "root": "EyeballTypeDef",
+   "name": "MooGirl_EyeNormal1"
+  },
+  {
+   "root": "EyeballTypeDef",
+   "name": "MooGirl_EyeNormal2"
+  },
+  {
+   "root": "EyeballTypeDef",
+   "name": "MooGirl_EyeNormal3"
+  },
+  {
+   "root": "EyeballTypeDef",
+   "name": "MooGirl_EyeNormal4"
+  },
+  {
+   "root": "EyeballTypeDef",
+   "name": "MooGirl_EyeNormal5"
+  },
+  {
+   "root": "EyeballTypeDef",
+   "name": "MooGirl_EyeNormal6"
+  },
+  {
+   "root": "EyeballTypeDef",
+   "name": "MooGirl_EyeNormal7"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "AttackMelee_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "AttackStatic_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "DoBill_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "Goto_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "Ingest_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "LayDownDream_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "LayDown_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "Lovin2_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "LovinRepeat_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "Lovin_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "MilkInteraction_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "Mine_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "NLR-Blink_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "RemoveApparel_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "Research_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "SocialRelax_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "StandAndBeSociallyActive_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "Strip_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "WaitCombat_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "Wait_Downed_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "Wear_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "blink_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "environmentCold_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "environmentHot_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "eyeMoving2_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "eyeMoving_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "moodCheerful_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "moodGloomy_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "moodHopeless_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "normal_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "painExtreme_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "painHigh_MooGirl"
+  },
+  {
+   "root": "FactionDef",
+   "name": "MooGirl_Colony"
+  },
+  {
+   "root": "FactionDef",
+   "name": "MooGirl_GiantCorporations"
+  },
+  {
+   "root": "FactionDef",
+   "name": "MooGirl_GiantCorporations_Hostile"
+  },
+  {
+   "root": "FleckDef",
+   "name": "MooGirlWashMentalEyes"
+  },
+  {
+   "root": "FleckDef",
+   "name": "MooGirl_MilkSpray"
+  },
+  {
+   "root": "GeneDef",
+   "name": "MooGirl_Charge"
+  },
+  {
+   "root": "GeneDef",
+   "name": "MooGirl_NobelPrize"
+  },
+  {
+   "root": "GeneDef",
+   "name": "MooGirl_Shooting"
+  },
+  {
+   "root": "GeneDef",
+   "name": "MooGirl_Shout"
+  },
+  {
+   "root": "HairDef",
+   "name": "MooGirl_Base"
+  },
+  {
+   "root": "HairDef",
+   "name": "MooGirl_EyeCovering"
+  },
+  {
+   "root": "HairDef",
+   "name": "MooGirl_GloomHair6"
+  },
+  {
+   "root": "HairDef",
+   "name": "MooGirl_GloomHair7"
+  },
+  {
+   "root": "HairDef",
+   "name": "MooGirl_Hightail"
+  },
+  {
+   "root": "HairDef",
+   "name": "MooGirl_ShoulderLength"
+  },
+  {
+   "root": "HeadTypeDef",
+   "name": "MooGirl_Female_A"
+  },
+  {
+   "root": "HeadTypeDef",
+   "name": "MooGirl_Female_B"
+  },
+  {
+   "root": "HeadTypeDef",
+   "name": "MooGirl_Female_C"
+  },
+  {
+   "root": "HeadTypeDef",
+   "name": "MooGirl_Female_D"
+  },
+  {
+   "root": "HeadTypeDef",
+   "name": "MooGirl_Female_E"
+  },
+  {
+   "root": "HeadTypeDef",
+   "name": "MooGirl_Female_F"
+  },
+  {
+   "root": "HeadTypeDef",
+   "name": "MooGirl_HeadNormal"
+  },
+  {
+   "root": "HeadTypeDef",
+   "name": "MooGirl_HeadNormal1"
+  },
+  {
+   "root": "HeadTypeDef",
+   "name": "MooGirl_HeadNormal2"
+  },
+  {
+   "root": "HeadTypeDef",
+   "name": "MooGirl_HeadNormal3"
+  },
+  {
+   "root": "HeadTypeDef",
+   "name": "MooGirl_HeadNormal4"
+  },
+  {
+   "root": "HeadTypeDef",
+   "name": "MooGirl_HeadNormal5"
+  },
+  {
+   "root": "HeadTypeDef",
+   "name": "MooGirl_HeadNormal6"
+  },
+  {
+   "root": "HeadTypeDef",
+   "name": "MooGirl_HeadNormal7"
+  },
+  {
+   "root": "HediffDef",
+   "name": "Consumed_MooGirlMilk"
+  },
+  {
+   "root": "HediffDef",
+   "name": "Hediff_MooGirlAgedCheese"
+  },
+  {
+   "root": "HediffDef",
+   "name": "Hediff_MooGirlCowCake"
+  },
+  {
+   "root": "HediffDef",
+   "name": "Hediff_MooGirlMilkPowder"
+  },
+  {
+   "root": "HediffDef",
+   "name": "Hediff_MooGirlMilkTablet"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_Abasia"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_Armbinder"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_Blindfold"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_Boxbinder"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_BrainWashing_Level1"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_BrainWashing_Level2"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_BrainWashing_Level3"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_BrainWashing_Level4"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_BrainWashing_Level5"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_Breastfed"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_Charge"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_Earplugs"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_EleShock"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_FullHeadCovering"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_Gagstick"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_Gauntlet"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_Handcuffs"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_Lactation"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_Legbinder"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_MagneticShacklesBondage"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_MilkHealing"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_MotherlyNurture"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_NurtureAfterglow"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_PowerEleShock"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_PowerEleShock_NoMilk"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_Stockings"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_Straitjacket"
+  },
+  {
+   "root": "HediffDef",
+   "name": "MooGirl_Stun"
+  },
+  {
+   "root": "IncidentDef",
+   "name": "MooGirl_CourierRaid"
+  },
+  {
+   "root": "IncidentDef",
+   "name": "MooGirl_WildManWandersIn"
+  },
+  {
+   "root": "InteractionDef",
+   "name": "MooGirl_Nuzzle"
+  },
+  {
+   "root": "JobDef",
+   "name": "GiveSlaveApperalGear"
+  },
+  {
+   "root": "JobDef",
+   "name": "Job_DismountMooGirl"
+  },
+  {
+   "root": "JobDef",
+   "name": "Job_DrinkMilkFromMooGirl"
+  },
+  {
+   "root": "JobDef",
+   "name": "Job_MountMooGirl"
+  },
+  {
+   "root": "JobDef",
+   "name": "MooGirl_ReadCourierDiary"
+  },
+  {
+   "root": "JobDef",
+   "name": "MooGirl_TalkCourier"
+  },
+  {
+   "root": "JobDef",
+   "name": "UnlockSlaveApperal"
+  },
+  {
+   "root": "LidOptionShapeDef",
+   "name": "MooGirl_cry"
+  },
+  {
+   "root": "LidOptionTypeDef",
+   "name": "MooGirl_LidOptionNormal"
+  },
+  {
+   "root": "LidOptionTypeDef",
+   "name": "MooGirl_LidOptionNormal2"
+  },
+  {
+   "root": "LidOptionTypeDef",
+   "name": "MooGirl_LidOptionNormal3"
+  },
+  {
+   "root": "LidOptionTypeDef",
+   "name": "MooGirl_LidOptionNormal4"
+  },
+  {
+   "root": "LidOptionTypeDef",
+   "name": "MooGirl_LidOptionNormal5"
+  },
+  {
+   "root": "LidOptionTypeDef",
+   "name": "MooGirl_LidOptionNormal6"
+  },
+  {
+   "root": "LidOptionTypeDef",
+   "name": "MooGirl_LidOptionNormal7"
+  },
+  {
+   "root": "LidTypeDef",
+   "name": "MooGirl_LidNormal"
+  },
+  {
+   "root": "LidTypeDef",
+   "name": "MooGirl_LidNormal1"
+  },
+  {
+   "root": "LidTypeDef",
+   "name": "MooGirl_LidNormal2"
+  },
+  {
+   "root": "LidTypeDef",
+   "name": "MooGirl_LidNormal3"
+  },
+  {
+   "root": "LidTypeDef",
+   "name": "MooGirl_LidNormal4"
+  },
+  {
+   "root": "LidTypeDef",
+   "name": "MooGirl_LidNormal5"
+  },
+  {
+   "root": "LidTypeDef",
+   "name": "MooGirl_LidNormal6"
+  },
+  {
+   "root": "LidTypeDef",
+   "name": "MooGirl_LidNormal7"
+  },
+  {
+   "root": "LifeStageDef",
+   "name": "MooGirl_AdultLifeStage"
+  },
+  {
+   "root": "LifeStageDef",
+   "name": "MooGirl_HumanlikeBaby"
+  },
+  {
+   "root": "LifeStageDef",
+   "name": "MooGirl_PreTeenager"
+  },
+  {
+   "root": "LifeStageDef",
+   "name": "MooGirl_Teenager"
+  },
+  {
+   "root": "MentalStateDef",
+   "name": "MooGirl_BrainWashing"
+  },
+  {
+   "root": "MouthShapeDef",
+   "name": "MooGirl_lovin"
+  },
+  {
+   "root": "MouthTypeDef",
+   "name": "MooGirl_MouthNormal"
+  },
+  {
+   "root": "MouthTypeDef",
+   "name": "MooGirl_MouthNormal1"
+  },
+  {
+   "root": "MouthTypeDef",
+   "name": "MooGirl_MouthNormal2"
+  },
+  {
+   "root": "MouthTypeDef",
+   "name": "MooGirl_MouthNormal3"
+  },
+  {
+   "root": "MouthTypeDef",
+   "name": "MooGirl_MouthNormal4"
+  },
+  {
+   "root": "MouthTypeDef",
+   "name": "MooGirl_MouthNormal5"
+  },
+  {
+   "root": "MouthTypeDef",
+   "name": "MooGirl_MouthNormal6"
+  },
+  {
+   "root": "MouthTypeDef",
+   "name": "MooGirl_MouthNormal7"
+  },
+  {
+   "root": "PawnKindDef",
+   "name": "AI_GC_MooGirlRaider"
+  },
+  {
+   "root": "PawnKindDef",
+   "name": "MooGirl_Beginning_Slave"
+  },
+  {
+   "root": "PawnKindDef",
+   "name": "MooGirl_Colony"
+  },
+  {
+   "root": "PawnKindDef",
+   "name": "MooGirl_EscapeSpaceSlave"
+  },
+  {
+   "root": "PawnKindDef",
+   "name": "MooGirl_EscapeWanderSlave"
+  },
+  {
+   "root": "PawnKindDef",
+   "name": "MooGirl_EscapeWildSlave"
+  },
+  {
+   "root": "PawnKindDef",
+   "name": "MooGirl_PreEscapeWildSlave"
+  },
+  {
+   "root": "PawnKindDef",
+   "name": "MooGirl_Slave"
+  },
+  {
+   "root": "ProcessDef",
+   "name": "MooGirl_MooGirlMilkIntoCheese"
+  },
+  {
+   "root": "QuestScriptDef",
+   "name": "MooGirl_CourierRaid"
+  },
+  {
+   "root": "QuestScriptDef",
+   "name": "MooGirl_SlaveOpeningPodCrash"
+  },
+  {
+   "root": "QuestScriptDef",
+   "name": "MooGirl_SlaveRefugeePodCrash"
+  },
+  {
+   "root": "QuestScriptDef",
+   "name": "MooGirl_SlaveWandererJoins"
+  },
+  {
+   "root": "RaceSettings",
+   "name": "MooGirl_Settings"
+  },
+  {
+   "root": "RecipeDef",
+   "name": "MooGirl_MakeAgedCheese"
+  },
+  {
+   "root": "RecipeDef",
+   "name": "MooGirl_MakeBaotaSugar"
+  },
+  {
+   "root": "RecipeDef",
+   "name": "MooGirl_MakeCheese"
+  },
+  {
+   "root": "RecipeDef",
+   "name": "MooGirl_MakeCowCake"
+  },
+  {
+   "root": "RecipeDef",
+   "name": "MooGirl_MakeKey_Advance"
+  },
+  {
+   "root": "RecipeDef",
+   "name": "MooGirl_MakeKey_Industrial"
+  },
+  {
+   "root": "RecipeDef",
+   "name": "MooGirl_MakeKey_Medieval"
+  },
+  {
+   "root": "RecipeDef",
+   "name": "MooGirl_MakeKey_Spacer"
+  },
+  {
+   "root": "RecipeDef",
+   "name": "MooGirl_MakeMilkCandy"
+  },
+  {
+   "root": "RecipeDef",
+   "name": "MooGirl_MakeMilkCreamApple"
+  },
+  {
+   "root": "RecipeDef",
+   "name": "MooGirl_MakeMilkPowder"
+  },
+  {
+   "root": "RecipeDef",
+   "name": "MooGirl_MakeMilkPudding"
+  },
+  {
+   "root": "RecipeDef",
+   "name": "MooGirl_MakeMilkTablet"
+  },
+  {
+   "root": "RecipeDef",
+   "name": "MooGirl_SmeltBondageApparel"
+  },
+  {
+   "root": "RulePackDef",
+   "name": "MooGirl_NameUtility"
+  },
+  {
+   "root": "RulePackDef",
+   "name": "MooGirl_NamerPerson"
+  },
+  {
+   "root": "ScenarioDef",
+   "name": "MooGirl_ColonyStart"
+  },
+  {
+   "root": "SoundDef",
+   "name": "MooGirl_BrainWashing_First"
+  },
+  {
+   "root": "SoundDef",
+   "name": "MooGirl_BrainWashing_HeartBeat"
+  },
+  {
+   "root": "SoundDef",
+   "name": "MooGirl_BrainWashing_RingLong"
+  },
+  {
+   "root": "SoundDef",
+   "name": "MooGirl_BrainWashing_RingShort"
+  },
+  {
+   "root": "SoundDef",
+   "name": "MooGirl_BrainWashing_Second"
+  },
+  {
+   "root": "SoundDef",
+   "name": "MooGirl_EleShock_Sound"
+  },
+  {
+   "root": "SoundDef",
+   "name": "MooGirl_MagneticShackles_Work"
+  },
+  {
+   "root": "SoundDef",
+   "name": "MooGirl_Milking_Power_Sound"
+  },
+  {
+   "root": "SoundDef",
+   "name": "MooGirl_Milking_Sound"
+  },
+  {
+   "root": "SoundDef",
+   "name": "MooGirl_PowerEleShock_Sound"
+  },
+  {
+   "root": "StyleItemCategoryDef",
+   "name": "MooGirl_Hai"
+  },
+  {
+   "root": "StyleItemCategoryDef",
+   "name": "MooGirl_Hair"
+  },
+  {
+   "root": "ThingCategoryDef",
+   "name": "MooGirl_Apparel"
+  },
+  {
+   "root": "ThingCategoryDef",
+   "name": "MooGirl_Head"
+  },
+  {
+   "root": "ThingCategoryDef",
+   "name": "MooGirl_Middle"
+  },
+  {
+   "root": "ThingCategoryDef",
+   "name": "MooGirl_OnSkin"
+  },
+  {
+   "root": "ThingCategoryDef",
+   "name": "MooGirl_Shell"
+  },
+  {
+   "root": "ThingCategoryDef",
+   "name": "MooGirl_Slave"
+  },
+  {
+   "root": "ThingCategoryDef",
+   "name": "MooGirl_SlaveApparel"
+  },
+  {
+   "root": "ThingCategoryDef",
+   "name": "MooGirl_SlaveApperal"
+  },
+  {
+   "root": "ThingCategoryDef",
+   "name": "MooGirl_Stocking"
+  },
+  {
+   "root": "ThingCategoryDef",
+   "name": "MooGirl_Underwear"
+  },
+  {
+   "root": "ThingDef",
+   "name": "Bullet_MooGirl_AR_Standard"
+  },
+  {
+   "root": "ThingDef",
+   "name": "Bullet_MooGirl_MP_Standard"
+  },
+  {
+   "root": "ThingDef",
+   "name": "Bullet_MooGirl_Militia_Rifle"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirlMilkFilth"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirlWashMentalEyesInHead"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirlWaterFilth"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_AgedCheese"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Armbinder"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_ArmorHelmetRecon"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_BaotaSugar"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Bar"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Bikini"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Bikini_Stocking"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Blindfold"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Bodystocking"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Boxbinder"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_BrainwashHelmet"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_BunnyGirlHeaddress"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_BunnyGirlStocking"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_BunnyGirlTop"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Cheese"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Cheongsam"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_ChildCheongsam"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Coat"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Combatant_BulletproofVest"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Combatant_Clothes"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Combatant_Helmet"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Combatant_Underwear"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_CourierDiary"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_CowCake"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Earplugs"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Eroticpanties"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Gagstick"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Gambeson"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Handcuffs"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Hipwrappingskirt"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_ImmortalFairy"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_KnightHelmet"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_KnightlyOrnament"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_MagneticShackles"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Mask"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_MilitaryDress"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_MilitaryUniform"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Milk"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_MilkCandy"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_MilkCreamApple"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_MilkPowder"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_MilkPoweredGenerator"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_MilkPudding"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_MilkTablet"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_MilkingDevice"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_MilkingDeviceHidden"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_OL"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_PlateArmor"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_PowerArmor"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_PowerArmorHelmet"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_RA_Carrying_Equipment"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_RA_MechanicBackpack"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_RA_MechanicBackpack_B"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_RA_MechanicBackpack_C"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_RA_MechanicBackpack_D"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_RA_MechanicRecon"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_RA_PowerArmor"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_RA_Unionary"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_ReconArmor"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_ReverseBunnySticker"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_ReverseBunnySuit"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Shirt"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_ShockCollar"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_SlaveApparelKey_Advance"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_SlaveApparelKey_Industrial"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_SlaveApparelKey_Medieval"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_SlaveApparelKey_Spacer"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_SlaveApperalKey_Advance"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_SlaveApperalKey_Industrial"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_SlaveApperalKey_Medieval"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_SlaveApperalKey_Spacer"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Slaveboots"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Slavegauntlet"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Slaveshackles"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Slavestockings"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Spacesuit"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_SpacesuitHeadgear"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_SpeciallyStockings"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Straitjacket"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Sunglasses"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Suspenders"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Uniform"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Veil"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_WarriorCombatArmor"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_WarriorCombatHelmet"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_WeddingDress"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_WhitePanties"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MooGirl_Wool"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MuGirl_Gun_Defense_Rifle"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MuGirl_Gun_Flame_Thrower"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MuGirl_Gun_Machine_Pistol"
+  },
+  {
+   "root": "ThingDef",
+   "name": "MuGirl_Gun_Support_Assault_Rifle"
+  },
+  {
+   "root": "ThinkTreeDef",
+   "name": "HumanlikeConstant"
+  },
+  {
+   "root": "ThinkTreeDef",
+   "name": "MooGirlLike"
+  },
+  {
+   "root": "ThoughtDef",
+   "name": "Consumed_MooGirlAgedCheese"
+  },
+  {
+   "root": "ThoughtDef",
+   "name": "Consumed_MooGirlCheese"
+  },
+  {
+   "root": "ThoughtDef",
+   "name": "Consumed_MooGirlMilk"
+  },
+  {
+   "root": "ThoughtDef",
+   "name": "Consumed_MooGirlMilkCandy"
+  },
+  {
+   "root": "ThoughtDef",
+   "name": "Consumed_MooGirlPudding"
+  },
+  {
+   "root": "ThoughtDef",
+   "name": "Consumed_MooGirlRichMilkFlavor"
+  },
+  {
+   "root": "ThoughtDef",
+   "name": "MooGirl_AteHay"
+  },
+  {
+   "root": "ThoughtDef",
+   "name": "MooGirl_AteNutrient"
+  },
+  {
+   "root": "ThoughtDef",
+   "name": "MooGirl_BrainWashing_End"
+  },
+  {
+   "root": "ThoughtDef",
+   "name": "MooGirl_BrainwashHappy"
+  },
+  {
+   "root": "ThoughtDef",
+   "name": "MooGirl_DrankMilk"
+  },
+  {
+   "root": "ThoughtDef",
+   "name": "MooGirl_FedMilk"
+  },
+  {
+   "root": "ThoughtDef",
+   "name": "MooGirl_Nuzzled"
+  },
+  {
+   "root": "ThoughtDef",
+   "name": "MooGirl_Roped"
+  },
+  {
+   "root": "ThoughtDef",
+   "name": "MooGirl_Roper"
+  },
+  {
+   "root": "ThoughtDef",
+   "name": "MooGirl_SingleshotWeaponAversionUnhappy"
+  },
+  {
+   "root": "TraitDef",
+   "name": "MooGirl_BrainWashObey"
+  },
+  {
+   "root": "TraitDef",
+   "name": "MooGirl_BrainWashPeace"
+  },
+  {
+   "root": "TraitDef",
+   "name": "MooGirl_NurturedByMooGirl"
+  },
+  {
+   "root": "TraitDef",
+   "name": "MooGirl_SingleshotWeaponAversion"
+  },
+  {
+   "root": "XenotypeDef",
+   "name": "MooGirl_Xenotype"
+  }
+ ],
+ "defsNotMatchingPatterns": [
+  {
+   "root": "FaceAnimationDef",
+   "name": "AttackMelee_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "AttackStatic_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "DoBill_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "Goto_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "Ingest_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "LayDownDream_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "LayDown_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "Lovin2_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "LovinRepeat_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "Lovin_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "MilkInteraction_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "Mine_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "NLR-Blink_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "RemoveApparel_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "Research_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "SocialRelax_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "StandAndBeSociallyActive_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "Strip_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "WaitCombat_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "Wait_Downed_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "Wear_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "blink_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "environmentCold_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "environmentHot_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "eyeMoving2_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "eyeMoving_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "moodCheerful_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "moodGloomy_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "moodHopeless_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "normal_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "painExtreme_MooGirl"
+  },
+  {
+   "root": "FaceAnimationDef",
+   "name": "painHigh_MooGirl"
+  },
+  {
+   "root": "HediffDef",
+   "name": "Consumed_MooGirlMilk"
+  },
+  {
+   "root": "HediffDef",
+   "name": "Hediff_MooGirlAgedCheese"
+  },
+  {
+   "root": "HediffDef",
+   "name": "Hediff_MooGirlCowCake"
+  },
+  {
+   "root": "HediffDef",
+   "name": "Hediff_MooGirlMilkPowder"
+  },
+  {
+   "root": "HediffDef",
+   "name": "Hediff_MooGirlMilkTablet"
+  },
+  {
+   "root": "JobDef",
+   "name": "GiveSlaveApperalGear"
+  },
+  {
+   "root": "JobDef",
+   "name": "Job_DismountMooGirl"
+  },
+  {
+   "root": "JobDef",
+   "name": "Job_DrinkMilkFromMooGirl"
+  },
+  {
+   "root": "JobDef",
+   "name": "Job_MountMooGirl"
+  },
+  {
+   "root": "JobDef",
+   "name": "UnlockSlaveApperal"
+  },
+  {
+   "root": "PawnKindDef",
+   "name": "AI_GC_MooGirlRaider"
+  },
+  {
+   "root": "ThingDef",
+   "name": "Bullet_MooGirl_AR_Standard"
+  },
+  {
+   "root": "ThingDef",
+   "name": "Bullet_MooGirl_MP_Standard"
+  },
+  {
+   "root": "ThingDef",
+   "name": "Bullet_MooGirl_Militia_Rifle"
+  },
+  {
+   "root": "ThinkTreeDef",
+   "name": "HumanlikeConstant"
+  },
+  {
+   "root": "ThoughtDef",
+   "name": "Consumed_MooGirlAgedCheese"
+  },
+  {
+   "root": "ThoughtDef",
+   "name": "Consumed_MooGirlCheese"
+  },
+  {
+   "root": "ThoughtDef",
+   "name": "Consumed_MooGirlMilk"
+  },
+  {
+   "root": "ThoughtDef",
+   "name": "Consumed_MooGirlMilkCandy"
+  },
+  {
+   "root": "ThoughtDef",
+   "name": "Consumed_MooGirlPudding"
+  },
+  {
+   "root": "ThoughtDef",
+   "name": "Consumed_MooGirlRichMilkFlavor"
+  }
+ ],
+ "settingsFiles": {
+  "pattern": "Mod_*_MooGirlMod.xml",
+  "classPrefixes": [
+   "MooGirl."
+  ],
+  "migrated": false,
+  "note": "decisions.md section 2: MooGirl-era settings files are not migrated."
+ }
+}

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <RulePackDef>
+        <defName>Mugirl_NamerPerson</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>r_name->[Mugirl_Rev_Last] [Mugirl_Rev_First_Female]</li>
+            </rulesStrings>
+            <rulesFiles>
+                <li>Mugirl_Rev_First_Female->Names/Mugirl_First_Female</li>
+                <li>Mugirl_Rev_Last->Names/Mugirl_Last</li>
+            </rulesFiles>
+        </rulePack>
+    </RulePackDef>
+
+    <RulePackDef>
+        <defName>Mugirl_NameUtility</defName>
+        <include>
+            <li>Mugirl_NamerPerson</li>
+        </include>
+        <rulePack>
+            <rulesStrings>
+                <!-- r_name->[Mugirl_Rev_Last] [Mugirl_Rev_First_Female] -->
+                <li>r_name->[Mugirl_Rev_Last] [Mugirl_Rev_First_Female]</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+</Defs>

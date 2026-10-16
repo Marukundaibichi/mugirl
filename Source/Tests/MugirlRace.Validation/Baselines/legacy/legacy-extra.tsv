@@ -1,0 +1,2 @@
+# legacy-extra.tsv: names known only from evidence (no build or save in builds.tsv contains them). Hand-maintained.
+# columns: kind	name	context	evidence (kind as in legacy-observed.tsv; evidence = path or document that shows the name)

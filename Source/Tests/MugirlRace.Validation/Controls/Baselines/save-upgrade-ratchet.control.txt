@@ -1,0 +1,3 @@
+# Negative control: Accepted is undisposed but accepted (must not fail); LegacyOther is disposed (unchanged) and must be reported as stale.
+legacy-types.tsv|Mugirl.Control.Upgrade.Accepted|class|Verse.GameComponent|-|Verse.GameComponent|public
+legacy-types.tsv|Mugirl.Control.Upgrade.LegacyOther|class|Verse.GameComponent|-|Verse.GameComponent|public

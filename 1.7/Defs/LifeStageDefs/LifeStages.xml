@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <LifeStageDef ParentName="HumanlikeAdolescent">
+        <defName>Mugirl_HumanlikeBaby</defName>
+        <!-- 婴儿 -->
+        <label>baby</label>
+        <bodySizeFactor>0.11</bodySizeFactor>
+        <bodyWidth>0.95</bodyWidth>
+        <bodyDrawOffset>(0, 0, -0.03)</bodyDrawOffset>
+        <voxPitch>1.6</voxPitch>
+        <headSizeFactor>0.5</headSizeFactor>
+        <eyeSizeFactor>0.7</eyeSizeFactor>
+        <foodMaxFactor>0.625</foodMaxFactor> <!-- baseBodySize * bodySizeFactor * foodMaxFactor 约等于 0.15 最大饱食度。 -->
+        <hungerRateFactor>0.125</hungerRateFactor> <!-- 每天约消耗 2 倍最大饱食度。 -->
+        <healthScaleFactor>0.2</healthScaleFactor>
+        <marketValueFactor>0.5</marketValueFactor>
+        <meleeDamageFactor>0.5</meleeDamageFactor>
+        <developmentalStage>Baby</developmentalStage>
+        <fallAsleepMaxThresholdOverride>.60</fallAsleepMaxThresholdOverride>
+        <naturalWakeThresholdOverride>1.0</naturalWakeThresholdOverride>
+        <alwaysDowned>true</alwaysDowned>
+        <claimable>true</claimable>
+        <involuntarySleepIsNegativeEvent>false</involuntarySleepIsNegativeEvent> <!-- 婴儿会随机睡着，且不会因此产生负面事件。 -->
+        <thinkTreeMainOverride MayRequire="Ludeon.RimWorld.Biotech">HumanlikeBaby</thinkTreeMainOverride>
+        <thinkTreeConstantOverride MayRequire="Ludeon.RimWorld.Biotech">HumanlikeBabyConstant</thinkTreeConstantOverride>
+        <canDoRandomMentalBreaks>false</canDoRandomMentalBreaks> <!-- 婴儿用哭闹或咯咯笑替代随机精神崩溃。 -->
+        <canSleepWhileHeld>true</canSleepWhileHeld>
+        <canVoluntarilySleep>false</canVoluntarilySleep> <!-- 婴儿疲劳时通过随机睡眠处理。 -->
+        <canSleepWhenStarving>false</canSleepWhenStarving>
+        <canInitiateSocialInteraction>false</canInitiateSocialInteraction>
+        <!-- 心情代表一个人有多快乐或压力多大。心情低的婴儿更容易哭，心情高的婴儿更容易咯咯笑。 -->
+        <customMoodTipString>Mood represents how happy or stressed someone is. Babies with low mood are more likely to cry, while babies with a high mood are more likely to giggle.</customMoodTipString>
+        <silhouetteGraphicData>
+            <texPath>Things/Pawn/Humanlike/Silhouettes/Silhouette_HumanBaby</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>1</drawSize>
+        </silhouetteGraphicData>
+        <statFactors>
+            <MoveSpeed>0.2</MoveSpeed>
+        </statFactors>
+        <statOffsets>
+            <ComfyTemperatureMin>-46</ComfyTemperatureMin><!-- 映射后约为 -30C。 -->
+            <ComfyTemperatureMax>4</ComfyTemperatureMax><!-- 映射后约为 30C。 -->
+        </statOffsets>
+        <involuntarySleepMTBDaysFromRest>
+            <points>
+                <li>(.00, 0)</li>
+                <li>(.01, .01)</li>
+                <li>(.15, .166)</li>
+                <li>(.30, 1)</li>
+                <li>(.59, 10)</li>
+                <li>(.60, Infinity)</li>
+            </points>
+        </involuntarySleepMTBDaysFromRest>
+    </LifeStageDef>
+
+    <LifeStageDef ParentName="LifeStageHumanlikeChild">
+        <defName>Mugirl_PreTeenager</defName>
+        <!-- 未成年 -->
+        <label>Pre-Teen</label>
+        <headSizeFactor>0.8</headSizeFactor>
+        <bodySizeFactor>0.45</bodySizeFactor>
+        <bodyWidth>1.4</bodyWidth>
+        <bodyDrawOffset>(0, 0, -0.05)</bodyDrawOffset>
+        <healthScaleFactor>0.7</healthScaleFactor>
+        <foodMaxFactor>1.552</foodMaxFactor> <!-- bodySizeFactor * foodMaxFactor 得到 0.9 最大饱食度。 -->
+        <hungerRateFactor>0.9</hungerRateFactor>
+        <marketValueFactor>0.95</marketValueFactor>
+        <meleeDamageFactor>0.725</meleeDamageFactor>
+        <statFactors>
+            <MoveSpeed>0.85</MoveSpeed>
+        </statFactors>
+    </LifeStageDef>
+
+    <LifeStageDef ParentName="HumanlikeAdolescent">
+        <defName>Mugirl_Teenager</defName>
+        <!-- 青少年 -->
+        <label>Teenager</label>
+        <!-- 青少年的 -->
+        <adjective>teenage</adjective>
+        <developmentalStage>Child</developmentalStage>
+        <reproductive>true</reproductive>
+        <headSizeFactor>0.9</headSizeFactor>
+        <bodySizeFactor>0.7</bodySizeFactor>
+        <bodyWidth>1.2</bodyWidth>
+        <healthScaleFactor>0.90</healthScaleFactor>
+        <foodMaxFactor>1.25</foodMaxFactor> <!-- bodySizeFactor * foodMaxFactor 得到 1.0 最大饱食度。 -->
+        <meleeDamageFactor>0.75</meleeDamageFactor>
+        <equipmentDrawDistanceFactor>0.65</equipmentDrawDistanceFactor>
+        <sittingOffset>0.23</sittingOffset>
+        <silhouetteGraphicData>
+            <texPath>Things/Pawn/Humanlike/Silhouettes/Silhouette_HumanChild</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>1</drawSize>
+        </silhouetteGraphicData>
+        <statFactors>
+            <MoveSpeed>0.95</MoveSpeed>
+        </statFactors>
+    </LifeStageDef>
+</Defs>

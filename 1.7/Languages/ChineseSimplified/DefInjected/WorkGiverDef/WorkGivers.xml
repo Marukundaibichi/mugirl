@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- milk on her own -->
+    <Mugirl_GatherMilk.label>自己挤奶</Mugirl_GatherMilk.label>
+    <!-- milking -->
+    <Mugirl_GatherMilk.gerund>挤奶中</Mugirl_GatherMilk.gerund>
+    <!-- milk -->
+    <Mugirl_GatherMilk.verb>挤奶</Mugirl_GatherMilk.verb>
+</LanguageData>

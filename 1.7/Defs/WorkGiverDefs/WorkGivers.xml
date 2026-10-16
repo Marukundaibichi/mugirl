@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <WorkGiverDef>
+        <defName>Mugirl_GatherMilk</defName>
+        <!-- 自己挤奶 -->
+        <label>milk on her own</label>
+        <giverClass>Mugirl.Features.Milk.WorkGiver_GatherMilk</giverClass>
+        <workType>Handling</workType>
+        <!-- 挤奶 -->
+        <verb>milk</verb>
+        <!-- 挤奶中 -->
+        <gerund>milking</gerund>
+        <directOrderable>false</directOrderable>
+        <priorityInType>90</priorityInType>
+        <requiredCapacities>
+            <li>Manipulation</li>
+        </requiredCapacities>
+    </WorkGiverDef>
+
+    <JobDef>
+        <defName>Mugirl_GatherMilk</defName>
+        <driverClass>Mugirl.Features.Milk.JobDriver_GatherMilk</driverClass>
+        <!-- 给 TargetA 挤奶 -->
+        <reportString>Milk {TargetA}.</reportString>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
+
+    <JobDef>
+        <defName>Job_MugirlMilkingTargetWait</defName>
+        <carryThingAfterJob>true</carryThingAfterJob>
+        <driverClass>JobDriver_WaitMaintainPosture</driverClass>
+        <dropThingBeforeJob>false</dropThingBeforeJob>
+        <ifFlyingKeepFlying>true</ifFlyingKeepFlying>
+        <!-- 被挤奶中 -->
+        <reportString>being milked.</reportString>
+    </JobDef>
+</Defs>

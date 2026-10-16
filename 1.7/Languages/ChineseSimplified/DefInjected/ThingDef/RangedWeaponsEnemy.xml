@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- OPC assault rifle round -->
+    <Mugirl_Bullet_OPC_AssaultRifle.label>OPC 自动步枪弹</Mugirl_Bullet_OPC_AssaultRifle.label>
+    <!-- OPC defense rifle round -->
+    <Mugirl_Bullet_OPC_DefenseRifle.label>OPC 防卫步枪弹</Mugirl_Bullet_OPC_DefenseRifle.label>
+    <!-- OPC tactical shotgun blast -->
+    <Mugirl_Bullet_OPC_TacticalShotgun.label>OPC 防卫霰弹</Mugirl_Bullet_OPC_TacticalShotgun.label>
+    <!-- OPC tranquilizer round -->
+    <Mugirl_Bullet_OPC_TranquilizerPistol.label>OPC 麻醉弹</Mugirl_Bullet_OPC_TranquilizerPistol.label>
+    <!-- PMC assault rifle round -->
+    <Mugirl_Bullet_PMC_AssaultRifle.label>PMC 突击步枪弹</Mugirl_Bullet_PMC_AssaultRifle.label>
+    <!-- PMC carbine round -->
+    <Mugirl_Bullet_PMC_Carbine.label>PMC 卡宾枪弹</Mugirl_Bullet_PMC_Carbine.label>
+    <!-- PMC DMR round -->
+    <Mugirl_Bullet_PMC_DMR.label>PMC 射手步枪弹</Mugirl_Bullet_PMC_DMR.label>
+    <!-- PMC LMG round -->
+    <Mugirl_Bullet_PMC_LMG.label>PMC 轻机枪弹</Mugirl_Bullet_PMC_LMG.label>
+    <!-- The standard OPC automatic rifle, with a firepower profile biased toward stability and control. -->
+    <Mugirl_OPC_AssaultRifle.description>OPC 标准自动步枪，火力配置偏向稳定与可控。</Mugirl_OPC_AssaultRifle.description>
+    <!-- OPC Assault Rifle -->
+    <Mugirl_OPC_AssaultRifle.label>OPC自动步枪</Mugirl_OPC_AssaultRifle.label>
+    <!-- stock -->
+    <Mugirl_OPC_AssaultRifle.tools.0.label>枪托</Mugirl_OPC_AssaultRifle.tools.0.label>
+    <!-- barrel -->
+    <Mugirl_OPC_AssaultRifle.tools.1.label>枪管</Mugirl_OPC_AssaultRifle.tools.1.label>
+    <!-- OPC Assault Rifle -->
+    <Mugirl_OPC_AssaultRifle.verbs.Verb_Shoot.label>OPC自动步枪</Mugirl_OPC_AssaultRifle.verbs.Verb_Shoot.label>
+    <!-- An OPC security rifle focused on stopping power and positional defense. -->
+    <Mugirl_OPC_DefenseRifle.description>OPC 警戒步枪，偏重制止能力与阵地防御。</Mugirl_OPC_DefenseRifle.description>
+    <!-- OPC Defense Rifle -->
+    <Mugirl_OPC_DefenseRifle.label>OPC防卫步枪</Mugirl_OPC_DefenseRifle.label>
+    <!-- stock -->
+    <Mugirl_OPC_DefenseRifle.tools.0.label>枪托</Mugirl_OPC_DefenseRifle.tools.0.label>
+    <!-- barrel -->
+    <Mugirl_OPC_DefenseRifle.tools.1.label>枪管</Mugirl_OPC_DefenseRifle.tools.1.label>
+    <!-- OPC Defense Rifle -->
+    <Mugirl_OPC_DefenseRifle.verbs.Verb_Shoot.label>OPC防卫步枪</Mugirl_OPC_DefenseRifle.verbs.Verb_Shoot.label>
+    <!-- The OPC primary riot-control close-combat weapon, emphasizing immediate stopping effect at short range. -->
+    <Mugirl_OPC_TacticalShotgun.description>OPC 防暴近战主武器，强调短距瞬时制止效果。</Mugirl_OPC_TacticalShotgun.description>
+    <!-- OPC Tactical Shotgun -->
+    <Mugirl_OPC_TacticalShotgun.label>OPC防卫霰弹枪</Mugirl_OPC_TacticalShotgun.label>
+    <!-- stock -->
+    <Mugirl_OPC_TacticalShotgun.tools.0.label>枪托</Mugirl_OPC_TacticalShotgun.tools.0.label>
+    <!-- barrel -->
+    <Mugirl_OPC_TacticalShotgun.tools.1.label>枪管</Mugirl_OPC_TacticalShotgun.tools.1.label>
+    <!-- OPC Tactical Shotgun -->
+    <Mugirl_OPC_TacticalShotgun.verbs.Verb_Shoot.label>OPC防卫霰弹枪</Mugirl_OPC_TacticalShotgun.verbs.Verb_Shoot.label>
+    <!-- A low-lethality suppression pistol issued by the OPC, emphasizing control and close-range self-defense. -->
+    <Mugirl_OPC_TranquilizerPistol.description>OPC 配发的低致死压制手枪，强调控制与近距自卫。</Mugirl_OPC_TranquilizerPistol.description>
+    <!-- OPC Tranquilizer Pistol -->
+    <Mugirl_OPC_TranquilizerPistol.label>OPC麻醉手枪</Mugirl_OPC_TranquilizerPistol.label>
+    <!-- grip -->
+    <Mugirl_OPC_TranquilizerPistol.tools.0.label>握把</Mugirl_OPC_TranquilizerPistol.tools.0.label>
+    <!-- barrel -->
+    <Mugirl_OPC_TranquilizerPistol.tools.1.label>枪管</Mugirl_OPC_TranquilizerPistol.tools.1.label>
+    <!-- OPC Tranquilizer Pistol -->
+    <Mugirl_OPC_TranquilizerPistol.verbs.Verb_Shoot.label>OPC麻醉手枪</Mugirl_OPC_TranquilizerPistol.verbs.Verb_Shoot.label>
+    <!-- The standard PMC assault rifle, balancing firepower, mobility, and range. -->
+    <Mugirl_PMC_AssaultRifle.description>PMC 标准制式突击步枪，兼顾火力、机动与射程。</Mugirl_PMC_AssaultRifle.description>
+    <!-- PMC Assault Rifle -->
+    <Mugirl_PMC_AssaultRifle.label>PMC突击步枪</Mugirl_PMC_AssaultRifle.label>
+    <!-- stock -->
+    <Mugirl_PMC_AssaultRifle.tools.0.label>枪托</Mugirl_PMC_AssaultRifle.tools.0.label>
+    <!-- barrel -->
+    <Mugirl_PMC_AssaultRifle.tools.1.label>枪管</Mugirl_PMC_AssaultRifle.tools.1.label>
+    <!-- PMC Assault Rifle -->
+    <Mugirl_PMC_AssaultRifle.verbs.Verb_Shoot.label>PMC突击步枪</Mugirl_PMC_AssaultRifle.verbs.Verb_Shoot.label>
+    <!-- A compact carbine commonly used by PMC forces, emphasizing sustained suppression at close to medium range. -->
+    <Mugirl_PMC_Carbine.description>PMC 常用的紧凑型卡宾枪，强调中近距离持续压制能力。</Mugirl_PMC_Carbine.description>
+    <!-- PMC Carbine -->
+    <Mugirl_PMC_Carbine.label>PMC卡宾枪</Mugirl_PMC_Carbine.label>
+    <!-- grip -->
+    <Mugirl_PMC_Carbine.tools.0.label>握把</Mugirl_PMC_Carbine.tools.0.label>
+    <!-- barrel -->
+    <Mugirl_PMC_Carbine.tools.1.label>枪管</Mugirl_PMC_Carbine.tools.1.label>
+    <!-- PMC Carbine -->
+    <Mugirl_PMC_Carbine.verbs.Verb_Shoot.label>PMC卡宾枪</Mugirl_PMC_Carbine.verbs.Verb_Shoot.label>
+    <!-- A rifle for PMC squad designated marksmen, reinforced for medium- to long-range engagements. -->
+    <Mugirl_PMC_DMR.description>PMC 班组精确射手用步枪，针对中远距离交战强化。</Mugirl_PMC_DMR.description>
+    <!-- PMC Designated Marksman Rifle -->
+    <Mugirl_PMC_DMR.label>PMC射手步枪</Mugirl_PMC_DMR.label>
+    <!-- stock -->
+    <Mugirl_PMC_DMR.tools.0.label>枪托</Mugirl_PMC_DMR.tools.0.label>
+    <!-- barrel -->
+    <Mugirl_PMC_DMR.tools.1.label>枪管</Mugirl_PMC_DMR.tools.1.label>
+    <!-- PMC Designated Marksman Rifle -->
+    <Mugirl_PMC_DMR.verbs.Verb_Shoot.label>PMC射手步枪</Mugirl_PMC_DMR.verbs.Verb_Shoot.label>
+    <!-- The core of PMC suppressive firepower, suited for sustained suppression and area denial. -->
+    <Mugirl_PMC_LMG.description>PMC 压制火力核心，适合持续压制与区域封锁。</Mugirl_PMC_LMG.description>
+    <!-- PMC Light Machine Gun -->
+    <Mugirl_PMC_LMG.label>PMC轻机枪</Mugirl_PMC_LMG.label>
+    <!-- stock -->
+    <Mugirl_PMC_LMG.tools.0.label>枪托</Mugirl_PMC_LMG.tools.0.label>
+    <!-- barrel -->
+    <Mugirl_PMC_LMG.tools.1.label>枪管</Mugirl_PMC_LMG.tools.1.label>
+    <!-- PMC Light Machine Gun -->
+    <Mugirl_PMC_LMG.verbs.Verb_Shoot.label>PMC轻机枪</Mugirl_PMC_LMG.verbs.Verb_Shoot.label>
+</LanguageData>

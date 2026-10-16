@@ -1,0 +1,188 @@
+[
+ {
+  "old": "1.7/Defs/Misc/CorporateFinance.xml",
+  "new": "1.7/Defs/Corporate/CorporateFinance.xml",
+  "modules": [
+   "corporate"
+  ]
+ },
+ {
+  "old": "1.7/Defs/Misc/CorporatePeople.xml",
+  "new": "1.7/Defs/Corporate/CorporatePeople.xml",
+  "modules": [
+   "corporate"
+  ]
+ },
+ {
+  "old": "1.7/Defs/Misc/CorporateTradeSettings.xml",
+  "new": "1.7/Defs/Corporate/CorporateTrade.xml",
+  "modules": [
+   "corporate"
+  ]
+ },
+ {
+  "old": "1.7/Defs/QuestScriptDefs/CorporateQuests.xml",
+  "new": "1.7/Defs/Corporate/CorporateMissions.xml",
+  "modules": [
+   "corporate"
+  ]
+ },
+ {
+  "old": "1.7/Defs/QuestScriptDefs/CorporateFusionResearchSite.xml",
+  "new": "1.7/Defs/Corporate/CorporateFusionResearchSite.xml",
+  "modules": [
+   "corporate"
+  ]
+ },
+ {
+  "old": "1.7/Defs/PawnKindDefs/CorporateServices.xml",
+  "new": "1.7/Defs/PawnKindDefs/PawnKinds_CorporateStaff.xml",
+  "modules": [
+   "corporate"
+  ]
+ },
+ {
+  "old": "1.7/Defs/PawnKindDefs/CorporateShowcase.xml",
+  "new": "1.7/Defs/PawnKindDefs/PawnKinds_CorporateShowcase.xml",
+  "modules": [
+   "corporate"
+  ]
+ },
+ {
+  "old": "1.7/Defs/FactionDefs/Factions_Enemy.xml",
+  "new": "1.7/Defs/FactionDefs/Factions_GiantCorporation.xml",
+  "modules": [
+   "corporate"
+  ]
+ },
+ {
+  "old": "1.7/Languages/English/Keyed/CorporateQuests.xml",
+  "new": "1.7/Languages/English/Keyed/CorporateMissions.xml",
+  "modules": [
+   "corporate"
+  ]
+ },
+ {
+  "old": "1.7/Languages/ChineseSimplified/Keyed/CorporateQuests.xml",
+  "new": "1.7/Languages/ChineseSimplified/Keyed/CorporateMissions.xml",
+  "modules": [
+   "corporate"
+  ]
+ },
+ {
+  "old": "1.7/Languages/ChineseSimplified/DefInjected/QuestScriptDef/CorporateQuests.xml",
+  "new": "1.7/Languages/ChineseSimplified/DefInjected/QuestScriptDef/CorporateMissions.xml",
+  "modules": [
+   "corporate"
+  ]
+ },
+ {
+  "old": "1.7/Languages/ChineseSimplified/DefInjected/SitePartDef/CorporateQuests.xml",
+  "new": "1.7/Languages/ChineseSimplified/DefInjected/SitePartDef/CorporateMissions.xml",
+  "modules": [
+   "corporate"
+  ]
+ },
+ {
+  "old": "1.7/Languages/ChineseSimplified/DefInjected/PawnKindDef/CorporateServices.xml",
+  "new": "1.7/Languages/ChineseSimplified/DefInjected/PawnKindDef/PawnKinds_CorporateStaff.xml",
+  "modules": [
+   "corporate"
+  ]
+ },
+ {
+  "old": "1.7/Languages/ChineseSimplified/DefInjected/FactionDef/Factions_Enemy.xml",
+  "new": "1.7/Languages/ChineseSimplified/DefInjected/FactionDef/Factions_GiantCorporation.xml",
+  "modules": [
+   "corporate"
+  ]
+ },
+ {
+  "old": "1.7/Defs/QuestScriptDefs/Script_CourierRaid.xml",
+  "new": "1.7/Defs/QuestScriptDefs/Script_CourierContact.xml",
+  "modules": [
+   "incidents"
+  ]
+ },
+ {
+  "old": "1.7/Languages/ChineseSimplified/DefInjected/QuestScriptDef/Script_CourierRaid.xml",
+  "new": "1.7/Languages/ChineseSimplified/DefInjected/QuestScriptDef/Script_CourierContact.xml",
+  "modules": [
+   "incidents"
+  ]
+ },
+ {
+  "old": "1.7/Defs/JobDefs/Jobs_CourierDiary.xml",
+  "new": "1.7/Defs/JobDefs/JobDefs_Incidents.xml",
+  "modules": [
+   "incidents"
+  ]
+ },
+ {
+  "old": "1.7/Languages/ChineseSimplified/DefInjected/JobDef/Jobs_CourierDiary.xml",
+  "new": "1.7/Languages/ChineseSimplified/DefInjected/JobDef/JobDefs_Incidents.xml",
+  "modules": [
+   "incidents"
+  ]
+ },
+ {
+  "old": "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Mugirl_Punisher.xml",
+  "new": "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_Mugirl_Punisher.xml",
+  "modules": [
+   "incidents",
+   "content"
+  ]
+ },
+ {
+  "old": "1.7/Defs/HediffDefs/Items_Resource.xml",
+  "new": "1.7/Defs/HediffDefs/Hediffs_MilkVigor.xml",
+  "modules": [
+   "milk",
+   "content"
+  ]
+ },
+ {
+  "old": "1.7/Mods/Biotech/Defs/GoldenRaceBioTitle.xml",
+  "new": "1.7/Mods/Biotech/Defs/Xenotypes.xml",
+  "modules": [
+   "milk"
+  ]
+ },
+ {
+  "old": "1.7/Mods/Biotech/Languages/ChineseSimplified/DefInjected/JobDef/JobDefs_Biotech.xml",
+  "new": "1.7/Mods/Biotech/Languages/ChineseSimplified/DefInjected/JobDef/JobDefs.xml",
+  "modules": [
+   "milk",
+   "content"
+  ]
+ },
+ {
+  "old": "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Items_Resource.xml",
+  "new": "1.7/Languages/ChineseSimplified/DefInjected/HediffDef/Hediffs_MilkVigor.xml",
+  "modules": [
+   "milk",
+   "content"
+  ]
+ },
+ {
+  "old": "1.7/Mods/Biotech/Languages/ChineseSimplified/DefInjected/XenotypeDef/GoldenRaceBioTitle.xml",
+  "new": "1.7/Mods/Biotech/Languages/ChineseSimplified/DefInjected/XenotypeDef/Xenotypes.xml",
+  "modules": [
+   "milk"
+  ]
+ },
+ {
+  "old": "1.7/Defs/ThingDefs_Weapon/RangedWeaponsEnemy.xml",
+  "new": "1.7/Defs/ThingDefs_Weapon/RangedWeapons_GiantCorp.xml",
+  "modules": [
+   "combat"
+  ]
+ },
+ {
+  "old": "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/RangedWeaponsEnemy.xml",
+  "new": "1.7/Languages/ChineseSimplified/DefInjected/ThingDef/RangedWeapons_GiantCorp.xml",
+  "modules": [
+   "combat"
+  ]
+ }
+]

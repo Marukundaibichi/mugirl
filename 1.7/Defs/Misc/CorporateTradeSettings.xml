@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <Mugirl.Features.Corporate.CorporateTradeConfigDef>
+    <defName>Mugirl_CorporateTradeConfig</defName>
+    <weeklyStockCount>16</weeklyStockCount>
+    <rawProductPriceFactor>1.6</rawProductPriceFactor>
+    <productPriceFactor>1.3</productPriceFactor>
+    <stockPriceFactor>1.65</stockPriceFactor>
+    <orderPriceFactor>2.2</orderPriceFactor>
+    <rareOrderPriceFactor>3</rareOrderPriceFactor>
+    <archotechOrderPriceFactor>4.5</archotechOrderPriceFactor>
+    <unsourcedMinimumUnitPrice>500</unsourcedMinimumUnitPrice>
+    <redemptionPriceFactor>1.2</redemptionPriceFactor>
+    <orderDays>3~5</orderDays>
+    <rareOrderDays>12~20</rareOrderDays>
+    <archotechOrderDays>20~35</archotechOrderDays>
+    <specialOrderDays>30~60</specialOrderDays>
+    <maxActiveOrders>5</maxActiveOrders>
+    <highValueOrderThreshold>1000</highValueOrderThreshold>
+    <cancelWindowDays>1</cancelWindowDays>
+    <cancelRefundFactor>0.8</cancelRefundFactor>
+    <productDefs>
+      <li>Mugirl_MilkPudding</li><li>Mugirl_Cheese</li><li>Mugirl_AgedCheese</li>
+      <li>Mugirl_BaotaSugar</li><li>Mugirl_MilkCandy</li><li>Mugirl_CowCake</li>
+      <li>Mugirl_MilkPowder</li><li>Mugirl_MilkTablet</li><li>Mugirl_MilkCreamApple</li>
+    </productDefs>
+    <stapleDefs>
+      <li>Steel</li><li>WoodLog</li><li>Plasteel</li><li>Uranium</li><li>Gold</li>
+      <li>ComponentIndustrial</li><li>ComponentSpacer</li>
+      <li>MedicineIndustrial</li><li>MedicineHerbal</li><li>MedicineUltratech</li>
+      <li>Cloth</li><li>Synthread</li><li>DevilstrandCloth</li>
+      <li>RawPotatoes</li><li>RawRice</li><li>MealSurvivalPack</li><li>Chocolate</li>
+    </stapleDefs>
+  </Mugirl.Features.Corporate.CorporateTradeConfigDef>
+</Defs>

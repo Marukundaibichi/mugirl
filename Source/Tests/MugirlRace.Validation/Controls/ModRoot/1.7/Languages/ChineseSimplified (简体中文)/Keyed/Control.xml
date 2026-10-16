@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Control_A>共享键</Control_A>
+  <Control_Placeholder>违规：{0} 命中</Control_Placeholder>
+  <Control_Numbered>违规：{0} 付款</Control_Numbered>
+  <Control_Shadow>遮蔽测试</Control_Shadow>
+</LanguageData>

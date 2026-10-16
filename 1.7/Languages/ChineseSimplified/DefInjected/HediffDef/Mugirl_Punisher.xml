@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+    <!-- knockout -->
+    <Mugirl_PunisherKnockout.label>击昏</Mugirl_PunisherKnockout.label>
+    <!-- This unit has suffered a heavy blow and is temporarily unconscious. -->
+    <Mugirl_PunisherKnockout.description>该单位遭受了重击，暂时失去意识。</Mugirl_PunisherKnockout.description>
+</LanguageData>

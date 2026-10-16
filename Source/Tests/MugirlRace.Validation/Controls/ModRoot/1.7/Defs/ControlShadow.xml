@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- C.content-shadowing: this file hides Defs/ControlShadow.xml of the root load folder. -->
+  <ThingDef>
+    <defName>Mugirl_Control_ShadowedHigh</defName>
+    <label>shadowing</label>
+  </ThingDef>
+</Defs>

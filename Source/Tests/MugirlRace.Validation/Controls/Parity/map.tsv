@@ -1,0 +1,10 @@
+# --parity negative control: the rename map applied between A and B (kind<TAB>old<TAB>new).
+type	Mugirl.ParityControl.MappedOld	Mugirl.ParityControl.MappedNew
+type	Mugirl.ParityControl.Harmony_B_Second	Mugirl.ParityControl.Harmony_0_Second
+member	Mugirl.ParityControl.SavedThing.count	Mugirl.ParityControl.SavedThing.amount
+move	Mugirl.ParityControl.OldDefOf.Moved	Mugirl.ParityControl.NewDefOf.Moved
+move	Mugirl.ParityControl.OldDefOf.Retyped	Mugirl.ParityControl.NewDefOf.Retyped
+delete	Mugirl.ParityControl.OldDefOf.Deleted
+dissolve	Mugirl.ParityControl.OldDefOf
+dissolve	Mugirl.ParityControl.OldUtility
+move	Mugirl.ParityControl.OldUtility.Helper(System.Int32)	Mugirl.ParityControl.NewUtility.Helper(System.Int32)

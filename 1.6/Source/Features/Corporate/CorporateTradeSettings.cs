@@ -23,6 +23,7 @@ namespace Mugirl
         public IntRange archotechOrderDays = new IntRange(20, 35);
         public IntRange specialOrderDays = new IntRange(30, 60);
         public int maxActiveOrders = 5;
+        public int highValueOrderThreshold = 1000;
         public int cancelWindowDays = 1;
         public float cancelRefundFactor = 0.8f;
         public List<ThingDef> rareOrderDefs = new List<ThingDef>();

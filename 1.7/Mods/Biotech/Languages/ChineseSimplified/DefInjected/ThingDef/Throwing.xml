@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- held thrown object controller -->
+    <Mugirl_ThrowController.label>手持投掷物控制器</Mugirl_ThrowController.label>
+    <!-- dunk prop controller -->
+    <Mugirl_DunkProp.label>灌篮道具控制器</Mugirl_DunkProp.label>
+    <!-- detached head -->
+    <Mugirl_DunkHead.label>摘下的脑袋</Mugirl_DunkHead.label>
+    <!-- dunking Mugirl -->
+    <Mugirl_DunkFlyer.label>灌篮中的雪牛娘</Mugirl_DunkFlyer.label>
+</LanguageData>

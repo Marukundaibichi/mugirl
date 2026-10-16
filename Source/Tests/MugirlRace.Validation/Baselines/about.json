@@ -1,0 +1,9 @@
+{
+  // About/About.xml 的期望值（A.about）。packageId 被存档、依赖它的 Mod 与 Harmony 所有者报告引用，不能改。
+  // supportedVersions 必须同时列出冻结的 1.6 与 1.7；按迁移计划，1.7 在验证通过后才写进 About.xml，在此之前 A.about 报告缺失。
+  "packageId": "HAR.MugirlRace",
+  "supportedVersions": ["1.6", "1.7"],
+  "modDependencies": ["brrainz.harmony", "erdelf.humanoidalienraces"],
+  "loadAfter": ["brrainz.harmony", "Ludeon.RimWorld", "erdelf.HumanoidAlienRaces"],
+  "incompatibleWith": ["Luca.MugirlFacialAnimation"]
+}

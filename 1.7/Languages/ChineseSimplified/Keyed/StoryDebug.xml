@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Mugirl.StoryDebug.AlreadyTriggered>此事件已经触发或完成，无需提前触发</Mugirl.StoryDebug.AlreadyTriggered>
+  <Mugirl.StoryDebug.Triggered>事件已提前触发；若游戏暂停，请取消暂停以推进任务</Mugirl.StoryDebug.Triggered>
+  <Mugirl.StoryDebug.RequiresHomeMap>请在开发者模式下打开玩家殖民地地图</Mugirl.StoryDebug.RequiresHomeMap>
+  <Mugirl.StoryDebug.NoFaction>巨企派系不可用或已败亡，无法触发事件</Mugirl.StoryDebug.NoFaction>
+  <Mugirl.StoryDebug.Failed>事件未能生成，请检查入场位置及游戏日志</Mugirl.StoryDebug.Failed>
+</LanguageData>

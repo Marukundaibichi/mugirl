@@ -99,6 +99,35 @@ namespace Mugirl
             return OrderQuote(preview.def, preview.MarketValue, quantity, speed);
         }
 
+        internal int StandardOrderUnitPrice(ThingDef def, float marketValue)
+        {
+            if (def == null || marketValue <= 0f || float.IsNaN(marketValue) || float.IsInfinity(marketValue)) return 0;
+            OrderTerms(def, out float factor, out _);
+            // 数量分档依据未折扣、未加急的同规格单价，保留兑现价值保护。
+            return MoneyTotal(ProtectedUnitValue(def, marketValue, (decimal)factor, false));
+        }
+
+        public int MaxOrderQuantity(Thing preview) => preview == null || preview.Destroyed ? 0
+            : MaxOrderQuantity(preview.def, preview.MarketValue);
+
+        internal int MaxOrderQuantity(ThingDef def, float marketValue)
+        {
+            if (def == null) return 0;
+            if (def.stackLimit <= 1) return 10;
+            int standardPrice = StandardOrderUnitPrice(def, marketValue);
+            return standardPrice > 0 && standardPrice < TradeSettings.highValueOrderThreshold ? 2500 : 10;
+        }
+
+        public string OrderQuantityLimitReason(Thing preview)
+        {
+            int maximum = MaxOrderQuantity(preview);
+            if (preview.def.stackLimit <= 1)
+                return "Mugirl.CorporatePricing.QuantityLimitSingle".Translate(maximum);
+            return maximum == 10
+                ? "Mugirl.CorporatePricing.QuantityLimitHighValue".Translate(TradeSettings.highValueOrderThreshold.ToString("N0"), maximum)
+                : "Mugirl.CorporatePricing.QuantityLimitBulk".Translate(maximum);
+        }
+
         internal int OrderQuote(ThingDef def, float marketValue, int quantity, CorporateOrderSpeed speed = CorporateOrderSpeed.Standard)
         {
             if (def == null || marketValue <= 0f || quantity <= 0 || !ValidOrderSpeed(speed)) return 0;

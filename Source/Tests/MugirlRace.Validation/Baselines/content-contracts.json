@@ -1,0 +1,75 @@
+{
+  // C.content-contracts：Mugirl 的内容约定，移植自 1.6 的 Invoke-Phase6StaticValidation.ps1 与 Invoke-TextureAssetValidation.ps1，
+  // 路径改为 1.7 加载集（1.7、1.7/Mods/*、共享的根 Textures）。每条契约都写明理由；改约定时同步修改这里。
+
+  "thingDefNameNoTrailingDigit": "Mugirl content convention: a numeric suffix collides with the game's generated names and makes logs ambiguous.",
+
+  // 休眠的机械体功能：1.7 不加载这些文件；若重新出现，必须仍然没有任何 Def。
+  "emptyFiles": {
+    "1.7/Defs/Bodies/Mugirl_MechanoidBodies.xml": "deferred mechanoid feature stays dormant (no Def until its code is reintroduced and validated).",
+    "1.7/Defs/DamageDefs/Mugirl_MechanoidAttacks.xml": "deferred mechanoid feature stays dormant.",
+    "1.7/Defs/ThingDefs_Races/Mugirl_Mechanoids.xml": "deferred mechanoid feature stays dormant.",
+    "1.7/Defs/PawnKindDefs/Mugirl_Mechanoids.xml": "deferred mechanoid feature stays dormant."
+  },
+
+  "defValues": [
+    {
+      "def": "AbilityDef/Mugirl_Throw",
+      "path": "casterMustBeCapableOfViolence",
+      "equals": "true",
+      "reason": "throwing a pawn is an attack; pawns incapable of violence must not get it (1.6 rule)."
+    },
+    {
+      "def": "AlienRace.ThingDef_AlienRace/Mugirl",
+      "path": "alienRace/graphicPaths/swaddle",
+      "equals": "Mugirl/Bodies/SwaddledBaby/Swaddled_Child",
+      "reason": "HAR swaddle rendering is configured in race XML, not by a reflection patch (1.6 compatibility boundary rule)."
+    }
+  ],
+
+  "conditionalTextures": [
+    {
+      "prefix": "FA/",
+      "folder": "1.7/Mods/FacialAnimation",
+      "reason": "Facial Animation assets load only when Nals.FacialAnimation is active (LoadFolders IfModActive)."
+    }
+  ],
+
+  // FA 脸红采用 cover 叠层方案（2026-09-24 固化的基线）：28 张叠层必须存在。
+  "requiredFiles": {
+    "1.7/Mods/FacialAnimation/Textures/FA/Heads_Blank/{Normal,Normal2,Normal3,Normal4,Normal5,Normal6,Normal7}/Female/{blush,lovinblush}_cover_{east,south}.png": "FA blush renders through cover overlays (baseline 2026-09-24).",
+    // C# 默认贴图路径：XML 省略字段时使用，C.textures 只核对 XML 中写出的值（Baselines/dynamic-lookups.allow.txt 的理由引用这里）。
+    "Textures/Mugirl/Hair/Mugirl_LongCascadeBack_{south,east}.png": "defaults of CompProperties_LongCascadeBackHair.southPath/sidePath (the default back-hair entry).",
+    "Textures/UI/Mugirl_Charge.png": "default of CompProperties_MilkingDevice.releaseIconPath."
+  },
+
+  // 已废弃的方案不得回流；FA 贴图不得进入总会加载的根 Textures。
+  "forbiddenFiles": {
+    "1.7/Mods/FacialAnimation/Textures/FA/Heads_Blank/*/Female/{blush,lovinblush}_{north,east,south,west}.png": "legacy baked blush heads (0.6.4-0.6.5) must not return; blush uses cover overlays.",
+    "1.7/Mods/FacialAnimation/Textures/FA/Emotions/**/{blush,lovinblush}_*.png": "legacy emotion blush textures must not return; blush uses cover overlays.",
+    "Textures/FA": "FA textures belong only to the FacialAnimation conditional load folder."
+  },
+
+  "forbiddenPngSizes": [
+    {
+      "width": 555,
+      "height": 555,
+      "roots": ["Textures", "1.7"],
+      "except": ["1.7/Mods/FacialAnimation/Textures/FA/"],
+      "reason": "unoptimized 555x555 texture (optimize to 512x512); FA keeps its original 0.5.0 textures."
+    }
+  ],
+
+  // 9.20 服装资源契约：只限成人；身体层追加体型后缀，头部层不追加；useWornGraphicMask 只控制染色遮罩，不能省略体型后缀。
+  "wornApparel": [
+    {
+      "file": "1.7/Defs/Apparel/Apparel_0920.xml",
+      "developmentalStageFilter": "Adult",
+      "bodySuffix": "_Female",
+      "headParents": ["Mugirl_HeadBase", "Mugirl_ArmorHelmetBase"],
+      "headLayers": ["Overhead", "EyeCover"],
+      "directions": ["north", "east", "south"],
+      "extraDirections": { "Mugirl_HighCutSweater": ["west"] }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- Mugirl Apparel -->
+    <Mugirl_Apparel.label>雪牛娘服装</Mugirl_Apparel.label>
+    <!-- Mugirl Headgear -->
+    <Mugirl_Head.label>雪牛娘头饰</Mugirl_Head.label>
+    <!-- Mugirl Middle Apparel -->
+    <Mugirl_Middle.label>雪牛娘夹层</Mugirl_Middle.label>
+    <!-- Mugirl Skin Apparel -->
+    <Mugirl_OnSkin.label>雪牛娘贴身服装</Mugirl_OnSkin.label>
+    <!-- Mugirl Outer Apparel -->
+    <Mugirl_Shell.label>雪牛娘夹层</Mugirl_Shell.label>
+    <!-- Mugirl Slave Apparel -->
+    <Mugirl_SlaveApparel.label>雪牛娘奴隶服装</Mugirl_SlaveApparel.label>
+    <!-- Mugirl Stockings -->
+    <Mugirl_Stocking.label>雪牛娘丝袜</Mugirl_Stocking.label>
+    <!-- Mugirl Underwear -->
+    <Mugirl_Underwear.label>雪牛娘内衣</Mugirl_Underwear.label>
+</LanguageData>

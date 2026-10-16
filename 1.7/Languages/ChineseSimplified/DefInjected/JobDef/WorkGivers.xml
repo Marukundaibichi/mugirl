@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- Milk {TargetA}. -->
+    <Mugirl_GatherMilk.reportString>给 {TargetA} 挤奶</Mugirl_GatherMilk.reportString>
+    <Job_MugirlMilkingTargetWait.reportString>正在被挤奶。</Job_MugirlMilkingTargetWait.reportString>
+</LanguageData>

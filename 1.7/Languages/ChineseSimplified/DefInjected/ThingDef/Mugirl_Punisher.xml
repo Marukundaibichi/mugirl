@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+    <!-- snow-bovine punisher -->
+    <Mugirl_PunisherRace.label>雪牛惩戒者</Mugirl_PunisherRace.label>
+    <!-- A colossal armored enforcer that appears after Mugirls are slaughtered. -->
+    <Mugirl_PunisherRace.description>在雪牛娘遭到屠杀后现身的巨型装甲惩戒单位。</Mugirl_PunisherRace.description>
+    <!-- armored ram -->
+    <Mugirl_PunisherRace.tools.0.label>装甲冲撞</Mugirl_PunisherRace.tools.0.label>
+</LanguageData>

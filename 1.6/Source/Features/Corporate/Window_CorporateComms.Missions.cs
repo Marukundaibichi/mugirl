@@ -138,7 +138,12 @@ namespace Mugirl
                     if (mission.state == CorporateMissionState.Active && mission.kind == CorporateMissionKind.Processing)
                     {
                         if (CorporateUI.Button(CorporateMissionActionRect(ref x, ref row, view.width, 126f), "Mugirl.CQ.Submit".Translate(), context.IsValid, true, "missions/submit/" + mission.id))
-                            CorporateFeedback(network.SubmitMissionProducts(mission, context), "Mugirl.CQ.NoProducts".Translate());
+                        {
+                            if (network.MissionSubmissionNeedsQualityConfirmation(mission, context))
+                                Confirm("Mugirl.CQ.HighQualityConfirm".Translate(mission.Title, mission.reward),
+                                    () => CorporateFeedback(network.SubmitMissionProducts(mission, context, true), "Mugirl.CQ.NoProducts".Translate()));
+                            else CorporateFeedback(network.SubmitMissionProducts(mission, context), "Mugirl.CQ.NoProducts".Translate());
+                        }
                     }
                     if (mission.state == CorporateMissionState.Ready)
                     {

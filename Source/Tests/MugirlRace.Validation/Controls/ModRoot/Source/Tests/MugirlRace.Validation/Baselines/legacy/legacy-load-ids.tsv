@@ -1,0 +1,2 @@
+# legacy-load-ids.tsv: negative-control corpus for C.save-upgrade (each row exercises one rule; see Controls/expected-failures.txt).
+# columns: type	literals	tiers	eras	first	last

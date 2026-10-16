@@ -118,10 +118,10 @@
     <Mugirl.MilkingDevice.DevFill.Failed>{0} 当前无法开发者充满产奶进度。</Mugirl.MilkingDevice.DevFill.Failed>
     <!-- Milking device could not resolve the release product Def. -->
     <Mugirl.MilkingDevice.ReleaseThingMissing>榨乳器无法解析释放产物 Def。</Mugirl.MilkingDevice.ReleaseThingMissing>
-    <!-- Enable Mugirl crash event -->
-    <Mugirl.Settings.StructuralCrashEvent.Label>启用牛牛坠机事件</Mugirl.Settings.StructuralCrashEvent.Label>
-    <!-- Controls whether the Mugirl crash event can trigger. Disable this to prevent the event from firing. -->
-    <Mugirl.Settings.StructuralCrashEvent.Desc>控制是否启用牛牛坠机事件。取消勾选将禁用该事件的触发。</Mugirl.Settings.StructuralCrashEvent.Desc>
+    <!-- 开局坠机剧情开关 -->
+    <Mugirl.Settings.StructuralCrashEvent.Label>启用开局坠机剧情</Mugirl.Settings.StructuralCrashEvent.Label>
+    <!-- 此开关不控制民间随机救援和申请加入。 -->
+    <Mugirl.Settings.StructuralCrashEvent.Desc>控制开局的双人坠舱及后续运货员剧情。关闭后，巨企联络员会以拓展客户的身份独立来访。随机坠舱救援和流浪者申请加入不受此开关影响。</Mugirl.Settings.StructuralCrashEvent.Desc>
     <!-- Fast milking -->
     <Mugirl.Settings.FastMilking.Label>快速榨乳</Mugirl.Settings.FastMilking.Label>
     <!-- When enabled, self-milking and assisted milking work time for Mugirls is shortened to 1 second. -->
@@ -503,60 +503,31 @@
     <Mugirl.CourierDiary.Page4>【第四页】\n\n关于束具钥匙：\n\n粗糙束具钥匙可以在机械加工台或锻造台制作，精致束具钥匙需要更高级的工作台。\n\n如果你捡到了运气好的运货员携带的钥匙，可以用它们来解开雪牛娘身上的束具。</Mugirl.CourierDiary.Page4>
     <!-- [Page Five]\n\nSurvival advice:\n\n1. Develop Mugirl husbandry for a stable milk supply\n2. Build enough defenses against mega corporation raids\n3. Produce dairy foods to strengthen colonists\n4. Restraint keys can help recruit enslaved Mugirls\n\nGood luck surviving this brutal world. -->
     <Mugirl.CourierDiary.Page5>【第五页】\n\n生存建议：\n\n1. 发展雪牛娘养殖以获得稳定的奶源\n2. 积攒足够的防御力量应对巨型企业袭击\n3. 制作各种奶制品以增强殖民者的能力\n4. 束具钥匙可以用来招募雪牛娘奴隶\n\n祝你在这个残酷的世界中活下来！</Mugirl.CourierDiary.Page5>
-    <!-- Wanderer Joins: {PAWN_nameDef} -->
-    <Mugirl.LetterLabelWandererJoins>流浪者加入：{PAWN_nameDef}</Mugirl.LetterLabelWandererJoins>
-    <!-- A {PAWN_title} named {PAWN_nameDef} has arrived here, wishing to join the colony.\n\n[PAWN_pronoun] claims to have nowhere else to go and is willing to contribute. {PAWN_objective} won't leave voluntarily; you can choose to refuse {PAWN_objective} and send {PAWN_objective} away. However, your colonists will feel uneasy about turning away someone in need. -->
-    <Mugirl.LetterWandererJoins>一位名叫{PAWN_nameDef}的{PAWN_title}来到这里，想要加入殖民地。\n\n[PAWN_pronoun]声称没有地方可去，并且愿意做出贡献。{PAWN_objective}不会主动离开，你可以选择拒绝{PAWN_objective}，把{PAWN_objective}送走。然而，你的殖民者们会对送走一个需要帮助的人而感到不安。</Mugirl.LetterWandererJoins>
-    <!-- Transport Pod Crashed (Mugirl Slave) -->
-    <Mugirl.LetterLabelOpeningPodCrash>逃生舱坠毁（雪牛娘奴隶）</Mugirl.LetterLabelOpeningPodCrash>
-    <!-- Transport pods have crashed, carrying multiple escapees. -->
-    <Mugirl.OpeningPodCrash_MultipleIntro>逃生舱坠毁，里面载有多位逃亡者。</Mugirl.OpeningPodCrash_MultipleIntro>
-    <!-- Two transport pods have crash-landed nearby, each carrying an escaped Mugirl slave.\nThey just escaped from a mega corporation's slave transport ship- whether due to ship malfunction, attack, or some other means remains unknown. The escape has left them utterly exhausted, and the tightly bound slave restraints on their bodies silently record the pain and submission they endured under the mega corporation's tyranny. The impact has also left both of them severely injured.\n\nNow they have nowhere to go. If you choose to rescue them, they will join your colony. Will you give these two pitiful yet lovely escapees a chance at freedom and a new life? -->
-    <Mugirl.OpeningPodCrash>两个逃生舱在附近坠毁，每个逃生舱里面载有一名逃脱的雪牛娘奴隶。\n她俩刚刚从巨型企业的奴隶运输船中逃脱，究竟是飞船故障、遭遇攻击，还是她们以其他方式逃脱尚不得而知。逃亡的经历令她俩精疲力尽，紧密捆缚在她们身上的奴隶束具，无声记录着她们在巨型企业暴政下的痛苦与屈从。撞击也让她俩受了重伤。\n\n如今她俩无处可去，如果你选择营救她俩，她俩会加入你的殖民地，你愿意给这两位可爱又可怜的逃亡者一次自由与新生活的机会吗？</Mugirl.OpeningPodCrash>
-    <!-- Among them, {PAWN_nameDef} is a {AGE}-year-old child who has just escaped from a slave caravan and is completely alone. -->
+    <Mugirl.LetterLabelWandererJoins>雪牛娘申请加入：{PAWN_nameDef}</Mugirl.LetterLabelWandererJoins>
+    <Mugirl.LetterWandererJoins>一名叫作 {PAWN_nameDef} 的雪牛娘逃亡者来到殖民地附近，希望获得庇护。{PAWN_pronoun}从奴隶商队逃出，身上还留着破旧的束具。\n\n{PAWN_pronoun}愿意为殖民地出力。你可以接受{PAWN_objective}的加入请求，也可以拒绝；如果一天内没有答复，{PAWN_pronoun}会继续寻找落脚处。</Mugirl.LetterWandererJoins>
+    <Mugirl.LetterLabelOpeningPodCrash>开局雪牛娘坠舱</Mugirl.LetterLabelOpeningPodCrash>
+    <Mugirl.OpeningPodCrash_MultipleIntro>一个逃生舱在附近坠落，舱内挤着两名雪牛娘逃亡者。</Mugirl.OpeningPodCrash_MultipleIntro>
+    <Mugirl.OpeningPodCrash>她们刚从巨企的奴隶运输船上逃出，身上仍穿着束具。漫长的逃亡使她们精疲力尽，行动不能症又让她们无法自行离开。\n\n两人都已成年，如今无处可去。如果你将她们救到安全的床位，她们愿意加入殖民地，从这里开始新的生活。</Mugirl.OpeningPodCrash>
     <Mugirl.OpeningPodCrash_Child>其中{PAWN_nameDef}是个{AGE}岁的孩子，她刚刚逃离了奴隶商队的控制，孤身无依。</Mugirl.OpeningPodCrash_Child>
-    <!-- Among them, [PAWN_pronoun] doesn't belong to any faction. You can choose to rescue [PAWN_objective], hoping [PAWN_pronoun] will freely join your colony, or you can choose to capture [PAWN_objective] to recruit or enslave [PAWN_objective]. -->
     <Mugirl.OpeningPodCrash_Factionless>其中{PAWN_pronoun}不属于任何派系。你可以选择救援{PAWN_objective}，希望{PAWN_pronoun}自由加入你的殖民地，也可以选择俘虏{PAWN_objective}以招募或奴役她。</Mugirl.OpeningPodCrash_Factionless>
-    <!-- Neither belongs to any faction. You can choose to rescue them, hoping they will freely join your colony, or you can choose to capture them to recruit or enslave them. -->
     <Mugirl.OpeningPodCrash_FactionlessMultiple>她俩都不属于任何派系。你可以选择救援她俩，希望她们自由加入你的殖民地，也可以选择俘虏她们以招募或奴役。</Mugirl.OpeningPodCrash_FactionlessMultiple>
-    <!-- Among them, {PAWN_nameDef} comes from the hostile faction {PAWN_factionName}. You can capture [PAWN_objective] to recruit or enslave [PAWN_objective]. -->
     <Mugirl.OpeningPodCrash_Hostile>其中{PAWN_nameDef}来自敌对派系{PAWN_factionName}，你可以俘虏{PAWN_objective}来招募或奴役。</Mugirl.OpeningPodCrash_Hostile>
-    <!-- {PAWN_nameDef} comes from {PAWN_factionName}. If you rescue [PAWN_objective], [PAWN_pronoun] will improve relations between your factions when [PAWN_pronoun] returns.\n\nYou can also capture [PAWN_objective] to recruit or enslave [PAWN_objective], but this will anger [PAWN_possessive] faction. -->
     <Mugirl.OpeningPodCrash_NonHostile>{PAWN_nameDef}来自{PAWN_factionName}。如果你救援{PAWN_objective}，{PAWN_pronoun}回到派系后会改善双方关系。\n你也可以俘虏{PAWN_objective}来招募或奴役，但这会激怒{PAWN_possessive}派系。</Mugirl.OpeningPodCrash_NonHostile>
-    <!-- Failed to generate a factionless opening pod pawn after {0} attempts. Check PawnKindDef or other pawn generation patches. -->
     <Mugirl.OpeningPodCrash.Log.FactionlessGenerationFailed>尝试 {0} 次后仍无法生成无派系开局逃生舱 Pawn。请检查 PawnKindDef 或其它 Pawn 生成补丁。</Mugirl.OpeningPodCrash.Log.FactionlessGenerationFailed>
-    <!-- Corrected juvenile Mugirl body types: {0}. -->
     <Mugirl.Newborn.Log.CorrectedBodyTypes>已修正幼年 Mugirl 体型：{0}。</Mugirl.Newborn.Log.CorrectedBodyTypes>
-    <!-- feral child -->
     <Mugirl.FeralChild>野性儿童</Mugirl.FeralChild>
-    <!-- child -->
     <Mugirl.Child>儿童</Mugirl.Child>
-    <!-- person -->
     <Mugirl.Person>人</Mugirl.Person>
-    <!-- Transport Pod Crashed (Mugirl Slave) -->
-    <Mugirl.LetterLabelRefugeePodCrash>逃生舱坠毁（雪牛娘奴隶）</Mugirl.LetterLabelRefugeePodCrash>
-    <!-- An transport pod has crash-landed nearby, carrying a {PAWN_titleIndef} named {PAWN_nameDef}.\nShe just escaped from a mega corporation's slave transport ship - whether due to ship malfunction, attack, or some other means remains unknown. The escape has left her utterly exhausted, and the tightly bound slave restraints on her body silently record the pain and submission she endured under the mega corporation's tyranny. The impact has also left {PAWN_pronoun} severely injured.\n\nWill you give this escapee a chance at freedom and a new life? -->
-    <Mugirl.RefugeePodCrash>逃生舱在附近坠毁，里面载有名叫{PAWN_nameDef}的{PAWN_titleIndef}。\n她刚刚从巨型企业的奴隶运输船中逃脱，究竟是飞船故障、遭遇攻击，还是她以其他方式逃脱尚不得而知。逃亡经历令她精疲力尽，紧密捆缚在身上的奴隶束具，无声记录着她在巨型企业暴政下的痛苦与屈从。由于撞击{PAWN_pronoun}也受了重伤。\n\n你愿意给这位逃亡者一次自由与新生活的机会吗？</Mugirl.RefugeePodCrash>
-    <!-- {PAWN_nameDef} is a {AGE}-year-old child and is completely alone. -->
+    <Mugirl.LetterLabelRefugeePodCrash>雪牛娘坠舱救援</Mugirl.LetterLabelRefugeePodCrash>
+    <Mugirl.RefugeePodCrash>一个逃生舱坠落在附近，舱内是一名叫作 {PAWN_nameDef} 的雪牛娘逃亡者。\n\n{PAWN_pronoun}从奴隶运输船上逃出，漫长的逃亡让{PAWN_objective}精疲力尽，倒地无法行动，身上还留着束具。你可以派人前去救援。</Mugirl.RefugeePodCrash>
     <Mugirl.RefugeePodCrash_Child>{PAWN_nameDef}是个{AGE}岁的孩子，同样孤身无依。</Mugirl.RefugeePodCrash_Child>
-    <!-- [PAWN_pronoun] doesn't belong to any faction. You can choose to rescue [PAWN_objective], hoping [PAWN_pronoun] will freely join your colony, or you can choose to capture [PAWN_objective] to recruit or enslave [PAWN_objective]. -->
-    <Mugirl.RefugeePodCrash_Factionless>{PAWN_pronoun}不属于任何派系。你可以选择救援{PAWN_objective}，希望她加入你的殖民地，也可以选择俘虏{PAWN_objective}来招募或奴役。</Mugirl.RefugeePodCrash_Factionless>
-    <!-- {PAWN_nameDef} comes from the hostile faction {PAWN_factionName}. You can capture [PAWN_objective] to recruit or enslave [PAWN_objective]. -->
+    <Mugirl.RefugeePodCrash_Factionless>{PAWN_pronoun}不属于任何派系。营救后，{PAWN_pronoun}可能自愿加入殖民地；你也可以俘虏{PAWN_objective}，再尝试招募。</Mugirl.RefugeePodCrash_Factionless>
     <Mugirl.RefugeePodCrash_Hostile>{PAWN_nameDef}来自敌对派系{PAWN_factionName}，你可以俘虏{PAWN_objective}来招募或奴役。</Mugirl.RefugeePodCrash_Hostile>
-    <!-- {PAWN_nameDef} comes from {PAWN_factionName}. If you rescue [PAWN_objective], [PAWN_pronoun] will improve relations between your factions when [PAWN_pronoun] returns.\n\nYou can also capture [PAWN_objective] to recruit or enslave [PAWN_objective], but this will anger [PAWN_possessive] faction. -->
     <Mugirl.RefugeePodCrash_NonHostile>{PAWN_nameDef}来自{PAWN_factionName}。如果你救援{PAWN_objective}，{PAWN_pronoun}回到派系后会改善双方关系。\n\n你也可以俘虏{PAWN_objective}来招募或奴役，但这会激怒{PAWN_possessive}派系。</Mugirl.RefugeePodCrash_NonHostile>
-    <!-- Refugee pod pawn could not be downed after {0} attempts; using a living fallback pawn. -->
     <Mugirl.RefugeePodCrash.Log.DownedGenerationFallback>尝试 {0} 次后仍无法生成倒地逃生舱 Pawn；将使用一个存活的备用 Pawn。</Mugirl.RefugeePodCrash.Log.DownedGenerationFallback>
-    <!-- Refugee pod pawn generation failed after {0} attempts. Check PawnKindDef or other pawn generation patches. -->
     <Mugirl.RefugeePodCrash.Log.GenerationFailed>尝试 {0} 次后逃生舱 Pawn 生成失败。请检查 PawnKindDef 或其它 Pawn 生成补丁。</Mugirl.RefugeePodCrash.Log.GenerationFailed>
-    <!-- Refugee pod crash quest root ran without a valid quest context. -->
     <Mugirl.RefugeePodCrash.Log.MissingQuestContext>逃生舱坠毁任务根节点运行时缺少有效任务上下文。</Mugirl.RefugeePodCrash.Log.MissingQuestContext>
-    <!-- Refugee pod crash quest could not resolve a usable target map. -->
     <Mugirl.RefugeePodCrash.Log.MissingMap>逃生舱坠毁任务无法解析可用目标地图。</Mugirl.RefugeePodCrash.Log.MissingMap>
-    <!-- Wanderer Joins: {PAWN_nameDef} -->
-    <LetterLabelWandererJoins>流浪者加入：{PAWN_nameDef}</LetterLabelWandererJoins>
-    <!-- A {PAWN_title} named {PAWN_nameDef} has arrived here; she escaped from a slave caravan, with tattered restraints still bound to [PAWN_objective], telling of [PAWN_possessive] tragic past. With nowhere to go, she is willing to contribute to your colony. {PAWN_objective} won't leave voluntarily; you can choose to refuse [PAWN_objective] and send [PAWN_objective] away, but your colonists will feel uneasy about turning away someone in need.\n\nWill you give this pitiful yet resilient escapee a chance at freedom and a new life? -->
-    <LetterWandererJoins>一位名叫{PAWN_nameDef}的{PAWN_title}来到这里，她从奴隶商队逃脱，身上破旧的束具仍缠绕着她，诉说着悲惨的遭遇。她无处可去，愿意为你的殖民地贡献力量。{PAWN_objective}不会主动离开，你可以选择拒绝她，把她送走，但你的殖民者们会为送走一个需要帮助的人而感到不安。你是否愿意给这位可怜又坚强的逃亡者一次自由与新生活的机会？</LetterWandererJoins>
     <!-- Weapon wheel -->
     <Mugirl.WeaponWheel.Tab>武器轮盘</Mugirl.WeaponWheel.Tab>
     <!-- Weapons -->

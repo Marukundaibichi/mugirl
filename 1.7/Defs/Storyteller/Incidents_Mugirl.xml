@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <!-- 民间随机事件统一入口；开局坠舱由 MugirlStoryState 单独调度。 -->
+    <!-- 将已停用野人事件的 1.0 基础权重分配给救援 0.6 / 申请加入 0.4。 -->
+    <IncidentDef>
+        <defName>Mugirl_SlaveRefugeePodCrash</defName>
+        <label>Mugirl pod rescue</label>
+        <category>Misc</category>
+        <targetTags><li>Map_PlayerHome</li></targetTags>
+        <workerClass>RimWorld.IncidentWorker_GiveQuest</workerClass>
+        <questScriptDef>Mugirl_SlaveRefugeePodCrash</questScriptDef>
+        <baseChance>0.6</baseChance>
+        <populationEffect>IncreaseMedium</populationEffect>
+        <requireColonistsPresent>true</requireColonistsPresent>
+        <pointsScaleable>false</pointsScaleable>
+    </IncidentDef>
+
+    <IncidentDef>
+        <defName>Mugirl_SlaveWandererJoins</defName>
+        <label>wandering Mugirl asks to join</label>
+        <category>Misc</category>
+        <targetTags><li>Map_PlayerHome</li></targetTags>
+        <workerClass>RimWorld.IncidentWorker_GiveQuest</workerClass>
+        <questScriptDef>Mugirl_SlaveWandererJoins</questScriptDef>
+        <baseChance>0.4</baseChance>
+        <populationEffect>IncreaseEasy</populationEffect>
+        <requireColonistsPresent>false</requireColonistsPresent>
+        <pointsScaleable>false</pointsScaleable>
+    </IncidentDef>
+
+    <IncidentDef>
+        <defName>Mugirl_Migration</defName>
+        <label>Mugirl migration</label>
+        <category>Misc</category>
+        <targetTags><li>Map_PlayerHome</li></targetTags>
+        <workerClass>Mugirl.Features.Incidents.IncidentWorker_Migration</workerClass>
+        <baseChance>1.0</baseChance>
+        <populationEffect>IncreaseMedium</populationEffect>
+        <pointsScaleable>false</pointsScaleable>
+        <letterDef>PositiveEvent</letterDef>
+    </IncidentDef>
+
+    <IncidentDef>
+        <defName>Mugirl_FusionInvestment</defName>
+        <label>bovine fusion investment</label>
+        <category>Misc</category>
+        <targetTags><li>Map_PlayerHome</li></targetTags>
+        <workerClass>Mugirl.Features.Incidents.IncidentWorker_FusionInvestment</workerClass>
+        <baseChance>0.7</baseChance>
+        <pointsScaleable>false</pointsScaleable>
+        <letterDef>NeutralEvent</letterDef>
+    </IncidentDef>
+
+    <IncidentDef>
+        <defName>Mugirl_RunawayFarmQuest</defName>
+        <label>runaway Mugirl farm</label>
+        <category>GiveQuest</category>
+        <targetTags><li>Map_PlayerHome</li></targetTags>
+        <workerClass>Mugirl.Features.Incidents.IncidentWorker_RunawayFarmQuest</workerClass>
+        <questScriptDef>Mugirl_RunawayFarmQuest</questScriptDef>
+        <baseChance>0.8</baseChance>
+        <pointsScaleable>false</pointsScaleable>
+        <letterDef>NewQuest</letterDef>
+    </IncidentDef>
+</Defs>

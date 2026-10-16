@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Mugirl Race 原生着色器的材质（着色器见 1.7/Defs/ShaderDefs/Mugirl_Shaders.xml）。C# 入口：Mugirl.Rendering.RenderingDefOf。
+    MaterialDef.Material 是共享材质，从不修改：地图上的延迟绘制只读它，逐次参数放在原生属性块里。
+    描边的图集/肖像烘焙（GenDraw 的 DrawNow 分支不接受属性块）使用 CreateMaterialInstance 得到的私有副本，逐次写入参数。
+    每次绘制都会设置全部参数，这里不重复默认值。
+  -->
+
+  <!-- 额外描边。逐次参数：_MainTex _MugirlSrcScaleOffset _MugirlPaddingU _MugirlPaddingV _MugirlUvRect _MugirlUvRadius _MugirlOpacity。 -->
+  <MaterialDef>
+    <defName>Mugirl_ExtraOutline</defName>
+    <shader>Mugirl_ExtraOutline</shader>
+  </MaterialDef>
+
+  <!-- 骑枪运动模糊。逐次参数：_MainTex _MaskTex（有遮罩时） _Color _ColorTwo _MugirlSrcScaleOffset _MugirlUvRect _MugirlBlurUv
+       _MugirlTravel _MugirlPaddingU _MugirlPaddingV _MugirlHasMask _MugirlOpacity。 -->
+  <MaterialDef>
+    <defName>Mugirl_LanceMotionBlur</defName>
+    <shader>Mugirl_LanceMotionBlur</shader>
+  </MaterialDef>
+
+</Defs>

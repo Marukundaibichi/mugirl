@@ -1,0 +1,59 @@
+<savegame>
+  <meta>
+    <gameVersion>1.6.4871 rev591</gameVersion>
+    <modIds>
+      <li>ludeon.rimworld</li>
+      <li>har.mugirlrace</li>
+    </modIds>
+  </meta>
+  <game>
+    <maps>
+      <li>
+        <components>
+          <li Class="Mugirl.MapComponent_MugirlPunisher">
+            <punishers>
+              <li>Thing_Mugirl_PunisherRace5</li>
+              <li>null</li>
+              <li>Thing_Mugirl_PunisherRace6</li>
+            </punishers>
+            <punisherSpawnedAtTicks>
+              <li>900000</li>
+            </punisherSpawnedAtTicks>
+            <punisherLeavingFlags>
+              <li>True</li>
+              <li>False</li>
+              <li>True</li>
+              <li>False</li>
+            </punisherLeavingFlags>
+            <punisherHeldLoot>
+              <innerList>
+                <li Class="Thing">
+                  <def>Gold</def>
+                  <id>Gold23</id>
+                  <hitPoints>37</hitPoints>
+                </li>
+              </innerList>
+            </punisherHeldLoot>
+            <punisherLootBursts>
+              <li>
+                <startTick>7</startTick>
+                <arcs>
+                  <li>
+                    <thing>Thing_Gold23</thing>
+                    <launchHeight>0.3150001</launchHeight>
+                    <spin>-13.75</spin>
+                  </li>
+                </arcs>
+              </li>
+            </punisherLootBursts>
+          </li>
+          <li Class="Mugirl.MapComponent_MugirlPunisher">
+            <punishers />
+            <punisherSpawnedAtTicks />
+            <punisherLeavingFlags />
+          </li>
+        </components>
+      </li>
+    </maps>
+  </game>
+</savegame>

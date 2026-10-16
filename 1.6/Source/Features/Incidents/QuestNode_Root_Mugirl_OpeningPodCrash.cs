@@ -1,4 +1,4 @@
-﻿using Verse;
+using Verse;
 using RimWorld.QuestGen;
 using RimWorld;
 using System.Collections.Generic;
@@ -18,30 +18,9 @@ namespace Mugirl
 
         public override Pawn GeneratePawn()
         {
-            // 逃亡奴隶保持无派系；敌对巨企派系只用于袭击与索赔分支。
-            Faction faction = null;
-
-            // 生成请求固定为成年女性、可战斗、可招募；生成后再做少量可控重试。
-            PawnGenerationRequest request = new PawnGenerationRequest(
-                Mugirl_DefOf.Mugirl_Beginning_Slave,
-                faction,
-                PawnGenerationContext.NonPlayer,
-                -1,
-                forceGenerateNewPawn: true,
-                allowDead: false,
-                allowDowned: true,
-                canGeneratePawnRelations: false,
-                mustBeCapableOfViolence: true,
-                forceAddFreeWarmLayerIfNeeded: false,
-                allowGay: true,
-                allowPregnant: false,
-                forceRecruitable: true,
-                validatorPostGear: IsValidOpeningPodPawn,
-                fixedBiologicalAge: OpeningPodPawnAgeYears,
-                fixedChronologicalAge: OpeningPodPawnAgeYears,
-                fixedGender: Gender.Female,
-                developmentalStages: DevelopmentalStage.Adult
-            );
+            PawnGenerationRequest request = MugirlGeneratedPawnUtility.CreateFactionlessAdultRequest(
+                Mugirl_DefOf.Mugirl_Beginning_Slave, allowDowned: true,
+                fixedAge: OpeningPodPawnAgeYears, validator: IsValidOpeningPodPawn);
 
             Pawn pawn = GenerateFactionlessPawn(request);
             if (pawn == null)

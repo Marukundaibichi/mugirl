@@ -1,0 +1,37 @@
+<savegame>
+  <meta>
+    <gameVersion>1.6.4871 rev591</gameVersion>
+    <modIds>
+      <li>ludeon.rimworld</li>
+      <li>har.mugirlrace</li>
+    </modIds>
+  </meta>
+  <game>
+    <components>
+      <li Class="Mugirl.Features.Incidents.GameComponent_Storyline">
+        <opening>
+          <started>True</started>
+          <checkRemaining>-1</checkRemaining>
+          <pawns>
+            <li>Thing_Mugirl1</li>
+            <li>null</li>
+          </pawns>
+        </opening>
+        <courier>
+          <triggered>False</triggered>
+          <delayRemaining>299640</delayRemaining>
+          <questStarted>True</questStarted>
+        </courier>
+        <investment>
+          <accepted>False</accepted>
+          <pending>True</pending>
+          <amount>1000</amount>
+          <resultRemaining>321</resultRemaining>
+          <nextOfferTick>125</nextOfferTick>
+          <investorActive>True</investorActive>
+          <investor>null</investor>
+        </investment>
+      </li>
+    </components>
+  </game>
+</savegame>

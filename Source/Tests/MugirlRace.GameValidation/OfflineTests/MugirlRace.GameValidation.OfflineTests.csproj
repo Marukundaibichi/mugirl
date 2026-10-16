@@ -1,0 +1,90 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    游戏内验证框架中不需要游戏会话的部分的离线单元测试：存档名映射（K1）、owner 选择器、存档比较与解释、事实读取与翻译、日志记号、
+    旧版语料读取、当前构建的升级清单可被解析，以及存档夹具（DevData/Evidence/SaveFixtures 或环境变量 MUGIRL_FIXTURE_ROOT，
+    存在时）的事实可由归档重现。
+
+    测试的源文件链接自 ../Core（测试模组中只读 XML 与 JSON 的类），不另行复制；本工程放在测试模组目录内，测试模组的工程把 OfflineTests/** 排除在编译之外。
+    运行方式：直接执行构建出的 MugirlRace.GameValidation.OfflineTests.exe。输出只在本工程的 bin/ 中。
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>MugirlRace.GameValidation.OfflineTests</AssemblyName>
+    <RootNamespace>Mugirl.GameValidation.OfflineTests</RootNamespace>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <!-- 测试类按 xunit 约定公开；测试方法名用下划线分隔场景。 -->
+    <NoWarn>$(NoWarn);CA1515;CA1707</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="xunit.v3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- 当前构建的升级清单（K1）必须能被读取器解析：引用 Mod 工程（只输出到它自己的 bin/，不部署）。 -->
+    <ProjectReference Include="..\..\..\MugirlRace\MugirlRace.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- LogCapture 的回调签名使用 Microsoft.Extensions.Logging.LogLevel。 -->
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions">
+      <HintPath>$(GameDir)Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <!-- 链接的源文件引用游戏程序集中的类型（全局导入 Verse/RimWorld、Waylith 的日志流）：运行时要能加载它们。 -->
+    <Reference Update="Assembly-CSharp;UnityStubs;Waylith;0Harmony" Private="true" />
+  </ItemGroup>
+
+  <ItemGroup Label="Linked framework sources">
+    <Compile Include="../GlobalUsings.cs" Link="Linked/GlobalUsings.cs" />
+    <Compile Include="../Core/ArtifactJson.cs" Link="Linked/ArtifactJson.cs" />
+    <Compile Include="../Core/CanonicalSavePreview.cs" Link="Linked/CanonicalSavePreview.cs" />
+    <Compile Include="../Core/CurrentScribeRoots.cs" Link="Linked/CurrentScribeRoots.cs" />
+    <Compile Include="../Core/SaveReadTrace.cs" Link="Linked/SaveReadTrace.cs" />
+    <Compile Include="../Core/SaveActionParity.cs" Link="Linked/SaveActionParity.cs" />
+    <Compile Include="../Core/VanillaReadEvidence.cs" Link="Linked/VanillaReadEvidence.cs" />
+    <Compile Include="../Core/ReviewedEngine.cs" Link="Linked/ReviewedEngine.cs" />
+    <Compile Include="../Core/VanillaReadObservation.cs" Link="Linked/VanillaReadObservation.cs" />
+    <Compile Include="../Core/ThinkTreeSnapshot.cs" Link="Linked/ThinkTreeSnapshot.cs" />
+    <Compile Include="../Core/ReferenceResaveEvidence.cs" Link="Linked/ReferenceResaveEvidence.cs" />
+    <Compile Include="../Core/FrozenXmlAliasEvidence.cs" Link="Linked/FrozenXmlAliasEvidence.cs" />
+    <Compile Include="../Core/ObservationPatchEvidence.cs" Link="Linked/ObservationPatchEvidence.cs" />
+    <Compile Include="../Core/CurrentSerializationDefaults.cs" Link="Linked/CurrentSerializationDefaults.cs" />
+    <Compile Include="../Core/SerializationPawnDefaults.cs" Link="Linked/SerializationPawnDefaults.cs" />
+    <Compile Include="../Core/SerializationWheelDefaults.cs" Link="Linked/SerializationWheelDefaults.cs" />
+    <Compile Include="../Core/MissingComponentProjection.cs" Link="Linked/MissingComponentProjection.cs" />
+    <Compile Include="../Core/CorporatePriceObservation.cs" Link="Linked/CorporatePriceObservation.cs" />
+    <Compile Include="../Core/UnconsumedQualityObservation.cs" Link="Linked/UnconsumedQualityObservation.cs" />
+    <Compile Include="../Core/MainSaveDocument.cs" Link="Linked/MainSaveDocument.cs" />
+    <Compile Include="../Core/FixtureKind.cs" Link="Linked/FixtureKind.cs" />
+    <Compile Include="../Core/FixtureKinds.cs" Link="Linked/FixtureKinds.cs" />
+    <Compile Include="../Core/ISaveOwnerContext.cs" Link="Linked/ISaveOwnerContext.cs" />
+    <Compile Include="../Core/LegacyCorpus.cs" Link="Linked/LegacyCorpus.cs" />
+    <Compile Include="../Core/LogCapture.cs" Link="Linked/LogCapture.cs" />
+    <Compile Include="../Core/LogPolicy.cs" Link="Linked/LogPolicy.cs" />
+    <Compile Include="../Core/LogVerdict.cs" Link="Linked/LogVerdict.cs" />
+    <Compile Include="../Core/SaveApplyReport.cs" Link="Linked/SaveApplyReport.cs" />
+    <Compile Include="../Core/SaveDefRoots.cs" Link="Linked/SaveDefRoots.cs" />
+    <Compile Include="../Core/SaveDiff.cs" Link="Linked/SaveDiff.cs" />
+    <Compile Include="../Core/SaveDiffExplainer.cs" Link="Linked/SaveDiffExplainer.cs" />
+    <Compile Include="../Core/SaveDiffScope.cs" Link="Linked/SaveDiffScope.cs" />
+    <Compile Include="../Core/DuplicateForbiddableEvidence.cs" Link="Linked/DuplicateForbiddableEvidence.cs" />
+    <Compile Include="../Core/SaveDifference.cs" Link="Linked/SaveDifference.cs" />
+    <Compile Include="../Core/SaveFactQueries.cs" Link="Linked/SaveFactQueries.cs" />
+    <Compile Include="../Core/SaveFacts.cs" Link="Linked/SaveFacts.cs" />
+    <Compile Include="../Core/SaveLabelFate.cs" Link="Linked/SaveLabelFate.cs" />
+    <Compile Include="../Core/SaveLabelFateKind.cs" Link="Linked/SaveLabelFateKind.cs" />
+    <Compile Include="../Core/SaveLabelRow.cs" Link="Linked/SaveLabelRow.cs" />
+    <Compile Include="../Core/SaveNameMap.cs" Link="Linked/SaveNameMap.cs" />
+    <Compile Include="../Core/SaveOwnerCatalog.cs" Link="Linked/SaveOwnerCatalog.cs" />
+    <Compile Include="../Core/SaveOwnerSelector.cs" Link="Linked/SaveOwnerSelector.cs" />
+    <Compile Include="../Core/SaveUpgradeStepRow.cs" Link="Linked/SaveUpgradeStepRow.cs" />
+    <Compile Include="../Core/SaveXml.cs" Link="Linked/SaveXml.cs" />
+    <Compile Include="../Core/SaveEnvironment.cs" Link="Linked/SaveEnvironment.cs" />
+    <Compile Include="../Core/SaveValueSite.cs" Link="Linked/SaveValueSite.cs" />
+    <Compile Include="../Core/SuiteLogPolicy.cs" Link="Linked/SuiteLogPolicy.cs" />
+    <Compile Include="../Core/ValidationReport.cs" Link="Linked/ValidationReport.cs" />
+  </ItemGroup>
+</Project>

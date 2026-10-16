@@ -1,0 +1,4 @@
+# Expected LoadFolders.xml version lists: version<TAB>folders in file order, each with its IfModActive* conditions.
+# v1.6 is frozen. v1.7 loads the mod root only for the shared Textures and Sounds; optional content lives in 1.7/Mods/<Name>.
+1.6	/,1.6,1.6/FacialAnimation[IfModActive=Nals.FacialAnimation],Bio_1.6[IfModActive=ludeon.rimworld.biotech],Odyssey_1.6[IfModActive=ludeon.rimworld.odyssey],Versions/1.6/Integrations/VCookE[IfModActive=VanillaExpanded.VCookE],Versions/1.6/Integrations/SearchAndDestroy[IfModActive=MemeGoddess.SearchAndDestroy]
+1.7	/,1.7,1.7/Mods/FacialAnimation[IfModActive=Nals.FacialAnimation],1.7/Mods/Biotech[IfModActive=ludeon.rimworld.biotech],1.7/Mods/Odyssey[IfModActive=ludeon.rimworld.odyssey],1.7/Mods/VCookE[IfModActive=VanillaExpanded.VCookE],1.7/Mods/SearchAndDestroy[IfModActive=MemeGoddess.SearchAndDestroy]

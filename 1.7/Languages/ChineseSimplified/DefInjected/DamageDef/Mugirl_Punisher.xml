@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+    <!-- punishing blow -->
+    <Mugirl_PunisherBlow.label>惩戒重击</Mugirl_PunisherBlow.label>
+    <!-- {0} was accidentally crushed by a snow-bovine punisher. -->
+    <Mugirl_PunisherBlow.deathMessage>{0}意外被雪牛惩戒者碾碎了。</Mugirl_PunisherBlow.deathMessage>
+</LanguageData>

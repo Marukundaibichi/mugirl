@@ -1,0 +1,336 @@
+# BannedSymbols.txt — compile-time guard for the RimWorld 1.7 rule "no Unity compatibility layer".
+#
+# RimWorld 1.7 runs on the Waylith engine. UnityEngine.* types exist only as UnityStubs, a compatibility layer whose
+# behaviour differs from Unity in places (see docs/architecture/ADR-006-unity-boundary.md and the 1.7 migration guide). This build may use the
+# UnityEngine types that appear in RimWorld's own API signatures purely as data: construct them, read their fields,
+# pass them to the game. Every service and every piece of UnityStubs logic is banned below.
+#
+# The authoritative check is the post-build IL whitelist in Source/Tests/MugirlRace.Validation; this file reports
+# the same problems earlier, in the IDE. Suppress RS0030 only with a comment that states the reason.
+
+# --- Engine services -------------------------------------------------------------------------------------------------
+T:UnityEngine.Graphics;Unity rendering service: use Mugirl.Rendering.VfxDraw (Verse) or Mugirl.Platform.Rendering.NativeDraw
+T:UnityEngine.GL;Unity rendering service: use Mugirl.Rendering.VfxDraw
+T:UnityEngine.Rendering.CommandBuffer;Unity rendering service: use Mugirl.Rendering.VfxDraw
+T:UnityEngine.AssetBundle;1.7 ships native ShaderDefs and MaterialDefs instead of asset bundles
+T:UnityEngine.Resources;Load mod content through ContentFinder or Defs
+T:UnityEngine.Camera;Use Verse camera helpers (Find.CameraDriver, UI.MouseMapPosition, MapToUIPosition)
+T:UnityEngine.ComputeShader;Stub only in 1.7: use Waylith native compute through Mugirl.Platform
+P:UnityEngine.Event.current;Use Verse widgets, OriginalEventUtility.EventType or Mugirl.Platform.EngineInput
+M:UnityEngine.Shader.PropertyToID(System.String);Use ShaderPropertyIDs (vanilla) or Mugirl.Platform.Rendering.ShaderIds.Get
+M:UnityEngine.Shader.Find(System.String);Use ShaderDatabase, ShaderTypeDef or ShaderDef
+M:UnityEngine.Shader.GetGlobalVector(System.Int32);Use Mugirl.Platform.Rendering.NativeQuery
+M:UnityEngine.Shader.GetGlobalVector(System.String);Use Mugirl.Platform.Rendering.NativeQuery
+M:UnityEngine.Shader.GetGlobalFloat(System.Int32);Use Mugirl.Platform.Rendering.NativeQuery
+M:UnityEngine.Shader.GetGlobalFloat(System.String);Use Mugirl.Platform.Rendering.NativeQuery
+M:UnityEngine.Shader.SetGlobalVector(System.Int32,UnityEngine.Vector4);Mods must not write global engine state
+M:UnityEngine.Shader.SetGlobalVector(System.String,UnityEngine.Vector4);Mods must not write global engine state
+M:UnityEngine.Shader.SetGlobalFloat(System.Int32,System.Single);Mods must not write global engine state
+M:UnityEngine.Shader.SetGlobalFloat(System.String,System.Single);Mods must not write global engine state
+M:UnityEngine.Material.#ctor(UnityEngine.Shader);Use MaterialPool, MaterialDef.Material or SolidColorMaterials
+M:UnityEngine.Material.#ctor(UnityEngine.Material);Use MaterialPool, MaterialDef.Material or SolidColorMaterials
+M:UnityEngine.Material.SetFloat(System.Int32,System.Single);Shared materials are immutable: pass per-draw values through a MaterialPropertyBlock
+M:UnityEngine.Material.SetFloat(System.String,System.Single);Shared materials are immutable: pass per-draw values through a MaterialPropertyBlock
+M:UnityEngine.Material.SetColor(System.Int32,UnityEngine.Color);Shared materials are immutable: pass per-draw values through a MaterialPropertyBlock
+M:UnityEngine.Material.SetColor(System.String,UnityEngine.Color);Shared materials are immutable: pass per-draw values through a MaterialPropertyBlock
+M:UnityEngine.Material.SetVector(System.Int32,UnityEngine.Vector4);Shared materials are immutable: pass per-draw values through a MaterialPropertyBlock
+M:UnityEngine.Material.SetVector(System.String,UnityEngine.Vector4);Shared materials are immutable: pass per-draw values through a MaterialPropertyBlock
+M:UnityEngine.Material.SetTexture(System.Int32,UnityEngine.Texture);Shared materials are immutable: pass per-draw values through a MaterialPropertyBlock
+M:UnityEngine.Material.SetTexture(System.String,UnityEngine.Texture);Shared materials are immutable: pass per-draw values through a MaterialPropertyBlock
+M:UnityEngine.MaterialPropertyBlock.SetFloat(System.String,System.Single);Use the int overload with a cached property id
+M:UnityEngine.MaterialPropertyBlock.SetColor(System.String,UnityEngine.Color);Use the int overload with a cached property id
+M:UnityEngine.MaterialPropertyBlock.SetVector(System.String,UnityEngine.Vector4);Use the int overload with a cached property id
+M:UnityEngine.MaterialPropertyBlock.SetTexture(System.String,UnityEngine.Texture);Use the int overload with a cached property id
+M:UnityEngine.Mesh.#ctor;Build mod meshes with Mugirl.Platform.Rendering.ModMesh, or use MeshPool
+M:UnityEngine.Texture2D.#ctor(System.Int32,System.Int32);Ship textures as files and load them with ContentFinder
+M:UnityEngine.Texture2D.#ctor(System.Int32,System.Int32,UnityEngine.TextureFormat,System.Boolean);Ship textures as files and load them with ContentFinder
+M:UnityEngine.Texture2D.#ctor(System.Int32,System.Int32,UnityEngine.TextureFormat,System.Boolean,System.Boolean);Ship textures as files and load them with ContentFinder
+M:UnityEngine.Object.Destroy(UnityEngine.Object);Not supported in 1.7: pooled resources are owned by Verse
+M:UnityEngine.Object.DestroyImmediate(UnityEngine.Object);Not supported in 1.7: pooled resources are owned by Verse
+M:UnityEngine.Object.DestroyImmediate(UnityEngine.Object,System.Boolean);Not supported in 1.7: pooled resources are owned by Verse
+M:UnityEngine.Object.Instantiate``1(``0);Unity object cloning: build data with the mod's own types instead
+M:UnityEngine.Object.Instantiate``1(``0,UnityEngine.Transform);Unity object cloning: build data with the mod's own types instead
+M:UnityEngine.Object.Instantiate``1(``0,UnityEngine.Transform,System.Boolean);Unity object cloning: build data with the mod's own types instead
+M:UnityEngine.Object.Instantiate``1(``0,UnityEngine.Vector3,UnityEngine.Quaternion);Unity object cloning: build data with the mod's own types instead
+M:UnityEngine.Object.Instantiate``1(``0,UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Transform);Unity object cloning: build data with the mod's own types instead
+M:UnityEngine.Object.op_Equality(UnityEngine.Object,UnityEngine.Object);Unity lifecycle equality: use "is null" or ReferenceEquals for objects the mod owns
+M:UnityEngine.Object.op_Inequality(UnityEngine.Object,UnityEngine.Object);Unity lifecycle equality: use "is not null" or ReferenceEquals for objects the mod owns
+M:UnityEngine.Object.op_Implicit(UnityEngine.Object)~System.Boolean;Unity lifecycle truthiness: use "is not null"
+M:UnityEngine.Texture.op_Equality(UnityEngine.Texture,UnityEngine.Texture);UnityStubs-only lifecycle equality (checks disposal): use "is null" or ReferenceEquals
+M:UnityEngine.Texture.op_Inequality(UnityEngine.Texture,UnityEngine.Texture);UnityStubs-only lifecycle equality (checks disposal): use "is not null" or ReferenceEquals
+
+# --- BCL members that look like Unity math but behave differently (FMA, clamping, NaN, thresholds) --------------------
+M:System.Numerics.Vector3.Normalize(System.Numerics.Vector3);NaN for short vectors: use UnityVector.Normalized (Unity 1e-5 threshold)
+M:System.Numerics.Vector2.Normalize(System.Numerics.Vector2);NaN for short vectors: use UnityVector.Normalized (Unity 1e-5 threshold)
+M:System.Numerics.Vector3.Lerp(System.Numerics.Vector3,System.Numerics.Vector3,System.Single);Unclamped and FMA-dependent: use UnityVector.Lerp
+M:System.Numerics.Vector2.Lerp(System.Numerics.Vector2,System.Numerics.Vector2,System.Single);Unclamped and FMA-dependent: use UnityVector.Lerp
+M:System.Numerics.Vector3.Transform(System.Numerics.Vector3,System.Numerics.Quaternion);Use UnityQuaternion.Rotate or UnityVector.RotatedBy
+M:System.Numerics.Quaternion.op_Multiply(System.Numerics.Quaternion,System.Numerics.Quaternion);Use UnityQuaternion.Multiply
+M:System.Single.Lerp(System.Single,System.Single,System.Single);Unclamped and FMA-dependent: use UnityMathf.Lerp or LerpUnclamped
+M:System.Math.Clamp(System.Single,System.Single,System.Single);Throws when min > max: use UnityMathf.Clamp
+M:System.Math.Clamp(System.Int32,System.Int32,System.Int32);Throws when min > max: use UnityMathf.Clamp
+M:System.MathF.Max(System.Single,System.Single);IEEE NaN propagation: use UnityMathf.Max
+M:System.MathF.Min(System.Single,System.Single);IEEE NaN propagation: use UnityMathf.Min
+M:System.Math.Max(System.Single,System.Single);IEEE NaN propagation: use UnityMathf.Max
+M:System.Math.Min(System.Single,System.Single);IEEE NaN propagation: use UnityMathf.Min
+T:Waylith.Math.Mathf;Not Unity-compatible (SmoothStep is HLSL smoothstep, Clamp throws, RoundToInt saturates): use UnityMathf
+
+# --- UnityStubs math surface (generated from UnityStubs metadata; constructors and fields stay allowed) ---------------
+P:UnityEngine.Vector2.down;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector2.Item(System.Int32);UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector2.left;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector2.magnitude;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector2.negativeInfinity;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector2.normalized;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector2.one;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector2.positiveInfinity;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector2.right;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector2.sqrMagnitude;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector2.up;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector2.zero;UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.Angle(UnityEngine.Vector2,UnityEngine.Vector2);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.ClampMagnitude(UnityEngine.Vector2,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.Distance(UnityEngine.Vector2,UnityEngine.Vector2);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.Dot(UnityEngine.Vector2,UnityEngine.Vector2);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.Equals(UnityEngine.Vector2);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.Equals(System.Object);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.Lerp(UnityEngine.Vector2,UnityEngine.Vector2,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.LerpUnclamped(UnityEngine.Vector2,UnityEngine.Vector2,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.Max(UnityEngine.Vector2,UnityEngine.Vector2);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.Min(UnityEngine.Vector2,UnityEngine.Vector2);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.MoveTowards(UnityEngine.Vector2,UnityEngine.Vector2,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.Normalize;UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.op_Addition(UnityEngine.Vector2,UnityEngine.Vector2);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.op_Division(UnityEngine.Vector2,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.op_Division(UnityEngine.Vector2,UnityEngine.Vector2);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.op_Equality(UnityEngine.Vector2,UnityEngine.Vector2);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.op_Implicit(UnityEngine.Vector3)~UnityEngine.Vector2;UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.op_Implicit(UnityEngine.Vector2)~UnityEngine.Vector3;UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.op_Inequality(UnityEngine.Vector2,UnityEngine.Vector2);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.op_Multiply(UnityEngine.Vector2,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.op_Multiply(System.Single,UnityEngine.Vector2);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.op_Multiply(UnityEngine.Vector2,UnityEngine.Vector2);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.op_Subtraction(UnityEngine.Vector2,UnityEngine.Vector2);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.op_UnaryNegation(UnityEngine.Vector2);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.Perpendicular(UnityEngine.Vector2);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.Scale(UnityEngine.Vector2);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.Scale(UnityEngine.Vector2,UnityEngine.Vector2);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.Set(System.Single,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.SignedAngle(UnityEngine.Vector2,UnityEngine.Vector2);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.SmoothDamp(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2@,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.SmoothDamp(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2@,System.Single,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.SmoothDamp(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2@,System.Single,System.Single,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.SqrMagnitude(UnityEngine.Vector2);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector2.SqrMagnitude;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector3.back;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector3.down;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector3.forward;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector3.Item(System.Int32);UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector3.left;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector3.magnitude;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector3.negativeInfinity;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector3.normalized;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector3.one;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector3.positiveInfinity;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector3.right;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector3.sqrMagnitude;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector3.up;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector3.zero;UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.Angle(UnityEngine.Vector3,UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.ClampMagnitude(UnityEngine.Vector3,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.Cross(UnityEngine.Vector3,UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.Distance(UnityEngine.Vector3,UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.Dot(UnityEngine.Vector3,UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.Equals(UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.Equals(System.Object);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.Lerp(UnityEngine.Vector3,UnityEngine.Vector3,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.LerpUnclamped(UnityEngine.Vector3,UnityEngine.Vector3,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.Magnitude(UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.Max(UnityEngine.Vector3,UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.Min(UnityEngine.Vector3,UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.MoveTowards(UnityEngine.Vector3,UnityEngine.Vector3,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.Normalize;UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.Normalize(UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.op_Addition(UnityEngine.Vector3,UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.op_Division(UnityEngine.Vector3,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.op_Equality(UnityEngine.Vector3,UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.op_Inequality(UnityEngine.Vector3,UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.op_Multiply(System.Single,UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.op_Multiply(UnityEngine.Vector3,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.op_Subtraction(UnityEngine.Vector3,UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.op_UnaryNegation(UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.ProjectOnPlane(UnityEngine.Vector3,UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.Reflect(UnityEngine.Vector3,UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.RotateTowards(UnityEngine.Vector3,UnityEngine.Vector3,System.Single,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.Scale(UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.Scale(UnityEngine.Vector3,UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.Set(System.Single,System.Single,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.SignedAngle(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.Slerp(UnityEngine.Vector3,UnityEngine.Vector3,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.SlerpUnclamped(UnityEngine.Vector3,UnityEngine.Vector3,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.SmoothDamp(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3@,System.Single,System.Single,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector3.SqrMagnitude(UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector4.Item(System.Int32);UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector4.magnitude;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector4.normalized;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector4.one;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector4.sqrMagnitude;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Vector4.zero;UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector4.Distance(UnityEngine.Vector4,UnityEngine.Vector4);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector4.Dot(UnityEngine.Vector4,UnityEngine.Vector4);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector4.Equals(UnityEngine.Vector4);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector4.Equals(System.Object);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector4.Lerp(UnityEngine.Vector4,UnityEngine.Vector4,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector4.LerpUnclamped(UnityEngine.Vector4,UnityEngine.Vector4,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector4.Normalize;UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector4.op_Addition(UnityEngine.Vector4,UnityEngine.Vector4);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector4.op_Division(UnityEngine.Vector4,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector4.op_Division(UnityEngine.Vector4,UnityEngine.Vector4);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector4.op_Equality(UnityEngine.Vector4,UnityEngine.Vector4);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector4.op_Implicit(UnityEngine.Vector3)~UnityEngine.Vector4;UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector4.op_Implicit(UnityEngine.Vector4)~UnityEngine.Vector3;UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector4.op_Implicit(UnityEngine.Vector2)~UnityEngine.Vector4;UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector4.op_Implicit(UnityEngine.Vector4)~UnityEngine.Vector2;UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector4.op_Inequality(UnityEngine.Vector4,UnityEngine.Vector4);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector4.op_Multiply(System.Single,UnityEngine.Vector4);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector4.op_Multiply(UnityEngine.Vector4,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector4.op_Multiply(UnityEngine.Vector4,UnityEngine.Vector4);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector4.op_Subtraction(UnityEngine.Vector4,UnityEngine.Vector4);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector4.op_UnaryNegation(UnityEngine.Vector4);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Vector4.Scale(UnityEngine.Vector4);UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Quaternion.eulerAngles;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Quaternion.identity;UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Quaternion.Angle(UnityEngine.Quaternion,UnityEngine.Quaternion);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Quaternion.AngleAxis(System.Single,UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Quaternion.Dot(UnityEngine.Quaternion,UnityEngine.Quaternion);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Quaternion.Equals(UnityEngine.Quaternion);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Quaternion.Equals(System.Object);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Quaternion.Euler(UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Quaternion.Euler(System.Single,System.Single,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Quaternion.FromToRotation(UnityEngine.Vector3,UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Quaternion.Inverse(UnityEngine.Quaternion);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Quaternion.Lerp(UnityEngine.Quaternion,UnityEngine.Quaternion,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Quaternion.LookRotation(UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Quaternion.LookRotation(UnityEngine.Vector3,UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Quaternion.op_Equality(UnityEngine.Quaternion,UnityEngine.Quaternion);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Quaternion.op_Inequality(UnityEngine.Quaternion,UnityEngine.Quaternion);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Quaternion.op_Multiply(UnityEngine.Quaternion,UnityEngine.Quaternion);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Quaternion.op_Multiply(UnityEngine.Quaternion,UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Quaternion.Slerp(UnityEngine.Quaternion,UnityEngine.Quaternion,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Quaternion.SlerpUnclamped(UnityEngine.Quaternion,UnityEngine.Quaternion,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Quaternion.ToAngleAxis(System.Single@,UnityEngine.Vector3@);UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Matrix4x4.identity;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Matrix4x4.inverse;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Matrix4x4.isIdentity;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Matrix4x4.Item(System.Int32,System.Int32);UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Matrix4x4.Item(System.Int32);UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Matrix4x4.lossyScale;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Matrix4x4.rotation;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Matrix4x4.transpose;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Matrix4x4.zero;UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Matrix4x4.Equals(UnityEngine.Matrix4x4);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Matrix4x4.Equals(System.Object);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Matrix4x4.GetColumn(System.Int32);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Matrix4x4.GetPosition;UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Matrix4x4.GetRow(System.Int32);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Matrix4x4.Inverse(UnityEngine.Matrix4x4);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Matrix4x4.Multiply(UnityEngine.Matrix4x4@,UnityEngine.Matrix4x4@);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Matrix4x4.MultiplyPoint(UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Matrix4x4.MultiplyPoint3x4(UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Matrix4x4.MultiplyVector(UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Matrix4x4.op_Equality(UnityEngine.Matrix4x4,UnityEngine.Matrix4x4);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Matrix4x4.op_Inequality(UnityEngine.Matrix4x4,UnityEngine.Matrix4x4);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Matrix4x4.op_Multiply(UnityEngine.Matrix4x4,UnityEngine.Matrix4x4);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Matrix4x4.op_Multiply(UnityEngine.Matrix4x4,UnityEngine.Vector4);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Matrix4x4.Ortho(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Matrix4x4.Perspective(System.Single,System.Single,System.Single,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Matrix4x4.Rotate(UnityEngine.Quaternion);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Matrix4x4.Scale(UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Matrix4x4.SetColumn(System.Int32,UnityEngine.Vector4);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Matrix4x4.SetRow(System.Int32,UnityEngine.Vector4);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Matrix4x4.SetTRS(UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Matrix4x4.ToNumerics(UnityEngine.Matrix4x4);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Matrix4x4.Translate(UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Matrix4x4.TRS(UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Vector3);UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Color.black;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Color.blue;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Color.clear;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Color.cyan;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Color.gamma;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Color.gray;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Color.grayscale;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Color.green;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Color.grey;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Color.indianRed;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Color.Item(System.Int32);UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Color.limeGreen;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Color.linear;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Color.magenta;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Color.maxColorComponent;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Color.red;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Color.white;UnityStubs logic: use Mugirl.Mathematics
+P:UnityEngine.Color.yellow;UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Color.Equals(UnityEngine.Color);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Color.Equals(System.Object);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Color.HSVToRGB(System.Single,System.Single,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Color.HSVToRGB(System.Single,System.Single,System.Single,System.Boolean);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Color.Lerp(UnityEngine.Color,UnityEngine.Color,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Color.LerpUnclamped(UnityEngine.Color,UnityEngine.Color,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Color.op_Addition(UnityEngine.Color,UnityEngine.Color);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Color.op_Division(UnityEngine.Color,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Color.op_Equality(UnityEngine.Color,UnityEngine.Color);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Color.op_Implicit(UnityEngine.Color)~UnityEngine.Vector4;UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Color.op_Implicit(UnityEngine.Vector4)~UnityEngine.Color;UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Color.op_Inequality(UnityEngine.Color,UnityEngine.Color);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Color.op_Multiply(UnityEngine.Color,UnityEngine.Color);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Color.op_Multiply(UnityEngine.Color,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Color.op_Multiply(System.Single,UnityEngine.Color);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Color.op_Subtraction(UnityEngine.Color,UnityEngine.Color);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Color.RGBToHSV(UnityEngine.Color,System.Single@,System.Single@,System.Single@);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Color32.Equals(UnityEngine.Color32);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Color32.Lerp(UnityEngine.Color32,UnityEngine.Color32,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Color32.LerpUnclamped(UnityEngine.Color32,UnityEngine.Color32,System.Single);UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Color32.op_Implicit(UnityEngine.Color)~UnityEngine.Color32;UnityStubs logic: use Mugirl.Mathematics
+M:UnityEngine.Color32.op_Implicit(UnityEngine.Color32)~UnityEngine.Color;UnityStubs logic: use Mugirl.Mathematics
+T:UnityEngine.Mathf;Unity service: use Mugirl.Mathematics.UnityMathf
+T:UnityEngine.Random;Unity service: use Verse.Rand
+T:UnityEngine.Time;Unity service: use Mugirl.Platform.EngineClock, RealTime or ticks
+T:UnityEngine.Debug;Unity service: use Mugirl.Core.MugirlLog
+T:UnityEngine.GUI;Unity service: use Verse Widgets / GenUI
+T:UnityEngine.GUIUtility;Unity service: use Verse UI helpers
+T:UnityEngine.Input;Unity service: use Mugirl.Platform.EngineInput or KeyBindingDefs
+T:UnityEngine.Screen;Unity service: use Verse UI.screenWidth / UI.screenHeight
+T:UnityEngine.Application;Unity service: use Verse GenFilePaths / Prefs
+M:UnityEngine.Vector2.ToString;UnityStubs logic: format or hash the components yourself
+M:UnityEngine.Vector2.ToString(System.String);UnityStubs logic: format or hash the components yourself
+M:UnityEngine.Vector2.ToString(System.String,System.IFormatProvider);UnityStubs logic: format or hash the components yourself
+M:UnityEngine.Vector2.GetHashCode;UnityStubs logic: format or hash the components yourself
+M:UnityEngine.Vector3.ToString;UnityStubs logic: format or hash the components yourself
+M:UnityEngine.Vector3.ToString(System.String);UnityStubs logic: format or hash the components yourself
+M:UnityEngine.Vector3.ToString(System.String,System.IFormatProvider);UnityStubs logic: format or hash the components yourself
+M:UnityEngine.Vector3.GetHashCode;UnityStubs logic: format or hash the components yourself
+M:UnityEngine.Vector4.ToString;UnityStubs logic: format or hash the components yourself
+M:UnityEngine.Vector4.ToString(System.String);UnityStubs logic: format or hash the components yourself
+M:UnityEngine.Vector4.ToString(System.String,System.IFormatProvider);UnityStubs logic: format or hash the components yourself
+M:UnityEngine.Vector4.GetHashCode;UnityStubs logic: format or hash the components yourself
+M:UnityEngine.Quaternion.ToString;UnityStubs logic: format or hash the components yourself
+M:UnityEngine.Quaternion.ToString(System.String);UnityStubs logic: format or hash the components yourself
+M:UnityEngine.Quaternion.ToString(System.String,System.IFormatProvider);UnityStubs logic: format or hash the components yourself
+M:UnityEngine.Quaternion.GetHashCode;UnityStubs logic: format or hash the components yourself
+M:UnityEngine.Matrix4x4.ToString;UnityStubs logic: format or hash the components yourself
+M:UnityEngine.Matrix4x4.ToString(System.String,System.IFormatProvider);UnityStubs logic: format or hash the components yourself
+M:UnityEngine.Matrix4x4.GetHashCode;UnityStubs logic: format or hash the components yourself
+M:UnityEngine.Color.ToString;UnityStubs logic: format or hash the components yourself
+M:UnityEngine.Color.ToString(System.String);UnityStubs logic: format or hash the components yourself
+M:UnityEngine.Color.ToString(System.String,System.IFormatProvider);UnityStubs logic: format or hash the components yourself
+M:UnityEngine.Color.GetHashCode;UnityStubs logic: format or hash the components yourself
+M:UnityEngine.Color32.ToString;UnityStubs logic: format or hash the components yourself
+M:UnityEngine.Color32.ToString(System.String,System.IFormatProvider);UnityStubs logic: format or hash the components yourself
+
+# --- 日志：业务代码统一经 Mugirl.Core.MugirlLog 输出（前缀、限次键、线程安全）；只有 MugirlLog 内部带理由抑制 RS0030 ---
+M:Verse.Log.Message(System.String);use MugirlLog
+M:Verse.Log.Message(System.Object);use MugirlLog
+M:Verse.Log.Warning(System.String);use MugirlLog
+M:Verse.Log.WarningOnce(System.String,System.Int32);use MugirlLog
+M:Verse.Log.Error(System.String);use MugirlLog
+M:Verse.Log.ErrorOnce(System.String,System.Int32);use MugirlLog

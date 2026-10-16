@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    一致性比较（parity 模式）的负对照：A 是“改名前”的构建，B（../B）是“改名后”的构建，../map.tsv 是改名映射，../expected.txt 列出必须报告的差异。
+    两边的程序集名相同，同一份源码结构；只构建到 %TEMP%，不在 MugirlRace.slnx 中。
+  -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <AssemblyName>ParityControl</AssemblyName>
+    <RootNamespace>Mugirl.ParityControl</RootNamespace>
+    <IsPackable>false</IsPackable>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <AnalysisLevel>none</AnalysisLevel>
+    <EnforceCodeStyleInBuild>false</EnforceCodeStyleInBuild>
+    <Nullable>disable</Nullable>
+    <NoWarn>$(NoWarn);CS0169;CS0414;CS0649</NoWarn>
+  </PropertyGroup>
+</Project>

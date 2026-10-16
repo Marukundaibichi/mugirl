@@ -1,0 +1,2 @@
+# legacy-def-comps.tsv: negative-control corpus for C.save-upgrade (each row exercises one rule; see Controls/expected-failures.txt).
+# columns: root	defName	propsClass	compClass	via	tiers	eras	first	last

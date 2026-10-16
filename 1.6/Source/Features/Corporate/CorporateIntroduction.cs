@@ -39,6 +39,8 @@ namespace Mugirl
         private bool migrated;
         private bool pending;
         private bool completed;
+        // 旧档缺失时为 false；首次来访前若重新开启坠机，改回运货员前置路线。
+        private bool independentContact;
         private bool giftsPrepared;
         private bool independentAggression;
         private bool courierKilledByPlayer;
@@ -58,6 +60,7 @@ namespace Mugirl
         public CorporateIntroduction(Game game) { gifts = new ThingOwner<Thing>(this, false, LookMode.Deep); }
         public static CorporateIntroduction Current => MugirlGameUtility.GameComponent<CorporateIntroduction>();
         public bool Completed => completed;
+        internal bool IndependentContact => independentContact;
         public Pawn Representative => representative;
         public IThingHolder ParentHolder => null;
         private static CorporateIntroductionDef Config => CorporateIntroductionDefOf.Mugirl_CorporateIntroduction;
@@ -79,8 +82,13 @@ namespace Mugirl
             {
                 initialized = true;
                 migrated = true;
-                pending = true;
                 RecoverCourierHistory();
+                MugirlStoryState story = MugirlGameUtility.GameComponent<MugirlStoryState>();
+                // 中途加装也遵循出场顺序。只有旧运货员已经处理、离图或只剩历史标记时补来访。
+                pending = courierChoice != 0 || courierDied || (courier != null && !courier.Spawned)
+                    || (courier == null && story?.courierRaidTriggered == true);
+                if (pending) ScheduleRepresentativeVisit(contactTick >= 0 ? contactTick : CorporateNetwork.Now);
+                UpdateIndependentContact(CorporateNetwork.Now);
                 nextServiceTick = 0;
             }
         }
@@ -130,6 +138,7 @@ namespace Mugirl
                 if (gifts.Count > 0) TryDeliverGifts(ResolveMap());
                 return;
             }
+            UpdateIndependentContact(now);
             if (!pending && courier != null && (courier.Dead || !courier.Spawned))
             {
                 courierDied |= courier.Dead;
@@ -154,8 +163,41 @@ namespace Mugirl
         public void RememberCourier(Pawn pawn, Map map)
         {
             if (completed || pawn == null) return;
+            if (independentContact && representative == null)
+            {
+                pending = false;
+                representativeArrivalTick = -1;
+            }
+            independentContact = false;
             courier = pawn;
             preferredMap = map;
+        }
+
+        private bool CanArrangeIndependentContact()
+        {
+            MugirlStoryState story = MugirlGameUtility.GameComponent<MugirlStoryState>();
+            return MugirlMod.Settings?.enableStructuralCrashEvent == false
+                && story != null && !story.openingCrashStarted
+                && !story.courierRaidTriggered && !story.courierRaidQuestStarted
+                && courier == null && courierChoice == 0 && !courierDied && contactTick < 0;
+        }
+
+        private void UpdateIndependentContact(int now)
+        {
+            bool canArrange = CanArrangeIndependentContact();
+            // 代表已经来过时保留路线与重访状态；尚未入场则尊重玩家重新开启剧情的选择。
+            if (independentContact && representative == null && !canArrange)
+            {
+                independentContact = false;
+                pending = false;
+                representativeArrivalTick = -1;
+                UpdateQuestDescription();
+            }
+            if (pending || !canArrange || ResolveMap() == null) return;
+
+            independentContact = true;
+            pending = true;
+            ScheduleRepresentativeVisit(now);
         }
 
         public void NotifyCourierChoice(Pawn pawn, bool released)
@@ -239,6 +281,11 @@ namespace Mugirl
                 courierChoice = 1;
                 if (oldQuest.cleanupTick > 0) contactTick = oldQuest.cleanupTick;
             }
+            else if (oldQuest?.State == QuestState.EndedUnknownOutcome)
+            {
+                courierChoice = 2;
+                if (oldQuest.cleanupTick > 0) contactTick = oldQuest.cleanupTick;
+            }
             if (courier?.Dead == true) courierDied = true;
             // Unknown 也用于刚开始的交战，不能凭此恢复死亡责任。
         }
@@ -248,6 +295,7 @@ namespace Mugirl
             if (introductionQuest != null)
             {
                 RepairIntroductionQuestRoot();
+                UpdateQuestDescription();
                 return;
             }
             Slate slate = new Slate();
@@ -255,7 +303,15 @@ namespace Mugirl
             introductionQuest = QuestUtility.GenerateQuestAndMakeAvailable(
                 CorporateIntroductionDefOf.Mugirl_CorporateIntroductionQuest, slate);
             introductionQuest.name = "Mugirl.CorporateIntro.Title".Translate();
-            introductionQuest.description = "Mugirl.CorporateIntro.QuestDescription".Translate();
+            UpdateQuestDescription();
+        }
+
+        private void UpdateQuestDescription()
+        {
+            if (introductionQuest == null) return;
+            introductionQuest.description = (independentContact
+                ? "Mugirl.CorporateIntro.Independent.QuestDescription"
+                : "Mugirl.CorporateIntro.QuestDescription").Translate();
         }
 
         private void RepairIntroductionQuestRoot()
@@ -293,7 +349,8 @@ namespace Mugirl
             if (!CellFinder.TryFindRandomCellNear(center, map, 10, c => c.Standable(map) && !c.Fogged(map), out IntVec3 waitCell)) waitCell = entry;
             LordMaker.MakeNewLord(corporation, new LordJob_WaitForDurationThenExit(waitCell, Config.representativeStayTicks), map, Gen.YieldSingle(representative));
             MugirlGameUtility.Letters.ReceiveLetter("Mugirl.CorporateIntro.ArrivalTitle".Translate(),
-                "Mugirl.CorporateIntro.ArrivalText".Translate(representative.LabelShortCap), LetterDefOf.NeutralEvent, representative);
+                (independentContact ? "Mugirl.CorporateIntro.Independent.ArrivalText" : "Mugirl.CorporateIntro.ArrivalText")
+                    .Translate(representative.LabelShortCap), LetterDefOf.NeutralEvent, representative);
             MugirlGameUtility.TrySignalForceNormalSpeedShort();
         }
 
@@ -309,6 +366,12 @@ namespace Mugirl
         public void ShowDialog(Pawn negotiator, Pawn target)
         {
             if (!CanTalk(negotiator, target)) return;
+            DiaNode main = BuildIntroductionDialog(negotiator, target);
+            MugirlGameUtility.Windows.Add(new Dialog_NodeTree(main, delayInteractivity: true, title: "Mugirl.CorporateIntro.Title".Translate()));
+        }
+
+        internal DiaNode BuildIntroductionDialog(Pawn negotiator, Pawn target)
+        {
             string opening = "Mugirl.CorporateIntro.Opening";
             if (migrated)
             {
@@ -323,15 +386,26 @@ namespace Mugirl
             DiaNode main = new DiaNode(opening.Translate() + "\n\n" + reaction.Translate()
                 + "\n\n" + (hasMugirl ? "Mugirl.CorporateIntro.KeepMugirl" : "Mugirl.CorporateIntro.NoReclaim").Translate()
                 + "\n\n" + "Mugirl.CorporateIntro.Proposal".Translate());
-            AddQuestion(main, "Mugirl.CorporateIntro.Question.Courier", "Mugirl.CorporateIntro.Answer.Courier");
-            AddQuestion(main, "Mugirl.CorporateIntro.Question.Mugirl", "Mugirl.CorporateIntro.Answer.Mugirl");
+            if (independentContact)
+            {
+                main = new DiaNode("Mugirl.CorporateIntro.Independent.Opening".Translate()
+                    + "\n\n" + (hasMugirl ? "Mugirl.CorporateIntro.Independent.MugirlsPresent" : "Mugirl.CorporateIntro.Independent.NoMugirls").Translate()
+                    + "\n\n" + "Mugirl.CorporateIntro.Proposal".Translate());
+                AddQuestion(main, "Mugirl.CorporateIntro.Independent.Question.Visit", "Mugirl.CorporateIntro.Independent.Answer.Visit");
+                AddQuestion(main, "Mugirl.CorporateIntro.Independent.Question.Mugirl", "Mugirl.CorporateIntro.Independent.Answer.Mugirl");
+            }
+            else
+            {
+                AddQuestion(main, "Mugirl.CorporateIntro.Question.Courier", "Mugirl.CorporateIntro.Answer.Courier");
+                AddQuestion(main, "Mugirl.CorporateIntro.Question.Mugirl", "Mugirl.CorporateIntro.Answer.Mugirl");
+            }
             AddQuestion(main, "Mugirl.CorporateIntro.Question.Services", "Mugirl.CorporateIntro.Answer.Services");
             main.options.Add(new DiaOption("Mugirl.CorporateIntro.Accept".Translate())
             {
                 action = () => Complete(negotiator, target), resolveTree = true
             });
             main.options.Add(new DiaOption("Mugirl.CorporateIntro.Postpone".Translate()) { resolveTree = true });
-            MugirlGameUtility.Windows.Add(new Dialog_NodeTree(main, delayInteractivity: true, title: "Mugirl.CorporateIntro.Title".Translate()));
+            return main;
         }
 
         private static void AddQuestion(DiaNode main, string questionKey, string answerKey)
@@ -433,6 +507,7 @@ namespace Mugirl
             Scribe_Values.Look(ref migrated, "migrated", false);
             Scribe_Values.Look(ref pending, "pending", false);
             Scribe_Values.Look(ref completed, "completed", false);
+            Scribe_Values.Look(ref independentContact, "independentContact", false);
             Scribe_Values.Look(ref giftsPrepared, "giftsPrepared", false);
             Scribe_Values.Look(ref independentAggression, "independentAggression", false);
             Scribe_Values.Look(ref courierKilledByPlayer, "courierKilledByPlayer", false);
@@ -472,7 +547,9 @@ namespace Mugirl
                 string text = "Mugirl.CorporateIntro.QuestProgress".Translate();
                 int remaining = CorporateIntroduction.Current?.RemainingRepresentativeDelay ?? 0;
                 if (remaining > 0)
-                    text += "\n" + "Mugirl.CorporateIntro.QuestProgressWait".Translate(GenDate.ToStringTicksToPeriod(remaining));
+                    text += "\n" + (CorporateIntroduction.Current?.IndependentContact == true
+                        ? "Mugirl.CorporateIntro.Independent.QuestProgressWait"
+                        : "Mugirl.CorporateIntro.QuestProgressWait").Translate(GenDate.ToStringTicksToPeriod(remaining));
                 return text;
             }
         }

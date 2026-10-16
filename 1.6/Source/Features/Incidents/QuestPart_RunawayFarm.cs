@@ -392,24 +392,8 @@ namespace Mugirl
 
         private static Pawn GenerateRunaway(PlanetTile tile)
         {
-            PawnGenerationRequest request = new PawnGenerationRequest(
-                Mugirl_DefOf.Mugirl_WildMugirl,
-                null,
-                PawnGenerationContext.NonPlayer,
-                tile,
-                forceGenerateNewPawn: true,
-                allowDead: false,
-                allowDowned: false,
-                canGeneratePawnRelations: false,
-                mustBeCapableOfViolence: true,
-                forceAddFreeWarmLayerIfNeeded: false,
-                allowGay: true,
-                allowPregnant: false,
-                forceRecruitable: true,
-                dontGiveWeapon: true,
-                fixedGender: Gender.Female,
-                developmentalStages: DevelopmentalStage.Adult);
-            request.ForceNoIdeoGear = true;
+            PawnGenerationRequest request = MugirlGeneratedPawnUtility.CreateFactionlessAdultRequest(
+                Mugirl_DefOf.Mugirl_WildMugirl, tile, unarmed: true);
 
             Pawn pawn = PawnGenerator.GeneratePawn(request);
             if (pawn == null)

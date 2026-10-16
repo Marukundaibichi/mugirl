@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <PawnKindDef ParentName="Mugirl_BaseKind">
+        <defName>Mugirl_Colony</defName>
+        <!-- 雪牛娘殖民者 -->
+        <label>Mugirl Colonist</label>
+        <defaultFactionType>Mugirl_Colony</defaultFactionType>
+        <chemicalAddictionChance>0.06</chemicalAddictionChance>
+        <backstoryFilters>
+            <li>
+                <categories>
+                    <li>Mugirl_Colony</li>
+                </categories>
+            </li>
+        </backstoryFilters>
+        <apparelTags>
+            <li>Mugirl</li>
+            <li>Mugirl_OnSkin</li>
+            <li>Mugirl_Stocking</li>
+            <li>Mugirl_Underwear</li>
+        </apparelTags>
+        <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+        <apparelMoney>400~900</apparelMoney>
+        <initialWillRange>2~40</initialWillRange>
+        <initialResistanceRange>2~40</initialResistanceRange>
+    </PawnKindDef>
+
+</Defs>

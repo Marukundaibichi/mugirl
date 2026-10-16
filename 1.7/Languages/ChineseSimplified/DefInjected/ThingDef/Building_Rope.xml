@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- Rope to Building -->
+    <CaravanPackingSpot.comps.CompUsable_RopeToHitch.useLabel>栓到建筑上</CaravanPackingSpot.comps.CompUsable_RopeToHitch.useLabel>
+    <!-- Rope to Building -->
+    <Mugirl_WallRopeHitch.comps.CompUsable_RopeToHitch.useLabel>栓到建筑上</Mugirl_WallRopeHitch.comps.CompUsable_RopeToHitch.useLabel>
+    <!-- Wall-mounted iron rings can be used to safely secure Mugirls. They display an instinctive compliance when being led, a result of prolonged modification and domestication. -->
+    <Mugirl_WallRopeHitch.description>墙上的铁环，可用来将雪牛娘安全固定。她们在被牵引时会表现出一种本能的顺从，这是长期改造与驯化的结果。</Mugirl_WallRopeHitch.description>
+    <!-- Wall Rope Hitch -->
+    <Mugirl_WallRopeHitch.label>墙壁栓点</Mugirl_WallRopeHitch.label>
+</LanguageData>

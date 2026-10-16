@@ -1,0 +1,12 @@
+{
+ "module": "content",
+ "wave": "R2",
+ "keyedSplits": [],
+ "preservedSharedFiles": [
+  {
+   "file": "1.7/Languages/*/Keyed/Misc_Gameplay.xml",
+   "owner": "content",
+   "reason": "OWNER text parity: retain original shared translations"
+  }
+ ]
+}

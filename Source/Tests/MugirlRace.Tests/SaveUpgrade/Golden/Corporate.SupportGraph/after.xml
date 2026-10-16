@@ -1,0 +1,46 @@
+<savegame>
+  <meta>
+    <gameVersion>1.6.4871 rev591</gameVersion>
+    <modIds>
+      <li>ludeon.rimworld</li>
+      <li>har.mugirlrace</li>
+    </modIds>
+  </meta>
+  <game>
+    <maps>
+      <li>
+        <lordManager>
+          <lords>
+            <li>
+              <loadID>52</loadID>
+              <lordJob Class="Mugirl.Features.Corporate.LordJob_CorporateSupport">
+                <fallback>(3, 0, 5)</fallback>
+                <continuation Class="Mugirl.SaveUpgrade.CorporateSupportGraphCompletion" />
+              </lordJob>
+              <curLordToilIdx>2</curLordToilIdx>
+              <ticksInToil>91</ticksInToil>
+              <triggerData>
+                <keys>
+                  <li>2</li>
+                </keys>
+                <values>
+                  <li Class="Verse.AI.Group.TriggerData_TicksPassed">
+                    <ticksPassed>19999</ticksPassed>
+                  </li>
+                </values>
+              </triggerData>
+              <lordToilData>
+                <keys>
+                  <li>2</li>
+                </keys>
+                <values>
+                  <li IsNull="True" />
+                </values>
+              </lordToilData>
+            </li>
+          </lords>
+        </lordManager>
+      </li>
+    </maps>
+  </game>
+</savegame>

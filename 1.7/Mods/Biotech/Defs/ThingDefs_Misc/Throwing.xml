@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <ThingDef>
+        <defName>Mugirl_ThrowController</defName>
+        <label>held thrown object controller</label>
+        <thingClass>Mugirl.Features.Abilities.ThrowController</thingClass>
+        <category>Ethereal</category>
+        <drawerType>RealtimeOnly</drawerType>
+        <drawOffscreen>true</drawOffscreen>
+        <tickerType>Normal</tickerType>
+        <altitudeLayer>MoteOverhead</altitudeLayer>
+        <selectable>false</selectable>
+        <useHitPoints>false</useHitPoints>
+        <destroyable>true</destroyable>
+        <saveCompressible>false</saveCompressible>
+    </ThingDef>
+
+    <ThingDef>
+        <defName>Mugirl_DunkProp</defName>
+        <label>dunk prop controller</label>
+        <thingClass>Mugirl.Features.Abilities.DunkController</thingClass>
+        <category>Ethereal</category>
+        <drawerType>RealtimeOnly</drawerType>
+        <drawOffscreen>true</drawOffscreen>
+        <tickerType>Normal</tickerType>
+        <altitudeLayer>MoteOverhead</altitudeLayer>
+        <selectable>false</selectable>
+        <useHitPoints>false</useHitPoints>
+        <destroyable>true</destroyable>
+        <saveCompressible>false</saveCompressible>
+    </ThingDef>
+
+    <ThingDef>
+        <defName>Mugirl_DunkHead</defName>
+        <label>detached head</label>
+        <thingClass>Mugirl.Features.Abilities.DunkHead</thingClass>
+        <category>Item</category>
+        <stackLimit>1</stackLimit>
+        <drawerType>RealtimeOnly</drawerType>
+        <graphicData>
+            <texPath>Mugirl/Heads/Female/Mugirl_Female_A</texPath>
+            <graphicClass>Graphic_Multi</graphicClass>
+        </graphicData>
+        <useHitPoints>true</useHitPoints>
+        <statBases>
+            <MaxHitPoints>20</MaxHitPoints>
+            <Mass>2</Mass>
+        </statBases>
+    </ThingDef>
+
+    <ThingDef ParentName="PawnFlyerBase">
+        <defName>Mugirl_DunkFlyer</defName>
+        <label>dunking Mugirl</label>
+        <thingClass>Mugirl.Features.Abilities.PawnFlyer_Dunk</thingClass>
+        <pawnFlyer>
+            <flightDurationMin>0.82</flightDurationMin>
+            <flightSpeed>7</flightSpeed>
+            <workerClass>Mugirl.Features.Abilities.PawnFlyerWorker_Dunk</workerClass>
+            <heightFactor>3.4</heightFactor>
+        </pawnFlyer>
+    </ThingDef>
+
+    <FleckDef ParentName="FleckBase_Thrown">
+        <defName>Mugirl_DunkBloodSplash</defName>
+        <altitudeLayer>MoteOverhead</altitudeLayer>
+        <solidTime>0.5</solidTime>
+        <fadeOutTime>0.2</fadeOutTime>
+        <graphicData>
+            <texPath>Things/Mote/BloodSplash</texPath>
+            <shaderType>Mote</shaderType>
+        </graphicData>
+    </FleckDef>
+</Defs>

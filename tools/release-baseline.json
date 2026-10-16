@@ -1,0 +1,20 @@
+{
+  "note": "Release contract read by tools/New-ReleasePackage.ps1 and tools/Test-ReleasePackage.ps1. The frozen 1.6 DLL hash was recorded from the working tree on 2026-10-14, while 1.6/Assemblies/MugirlRace.dll was still uncommitted; change it only together with a deliberate re-freeze of the 1.6 build.",
+  "packageId": "HAR.MugirlRace",
+  "frozen16": {
+    "path": "1.6/Assemblies/MugirlRace.dll",
+    "size": 952832,
+    "sha256": "86A6C191B06EAED37F1C92C4E8CFB11E073C118D41FB59D99225733461B650DD",
+    "recorded": "2026-10-14"
+  },
+  "assemblies": {
+    "1.6/Assemblies": [ "MugirlRace.dll" ],
+    "1.7/Assemblies": [ "MugirlRace.dll", "MugirlRace.pdb" ]
+  },
+  "requiredAssemblies": [ "1.6/Assemblies/MugirlRace.dll", "1.7/Assemblies/MugirlRace.dll", "1.7/Assemblies/MugirlRace.pdb" ],
+  "contentFolders": [ "Assemblies", "Defs", "Patches", "Languages", "Textures", "Sounds", "Shaders", "AssetBundles" ],
+  "extraFolders": [ "1.6/Resources" ],
+  "aboutFiles": [ "About.xml", "Preview.png", "PublishedFileId.txt" ],
+  "excludedDirectories": [ "Source", "Tests", "tools", "docs", "DevData", "TMP", "SourceAssets", ".git", ".github", ".agents", ".vs", ".claude", ".codex", "bin", "obj", "TestResults", "__pycache__" ],
+  "excludedFiles": [ "*.cs", "*.csproj", "*.sln", "*.slnx", "*.props", "*.targets", "*.user", "*.suo", "*.binlog", "*.lscache", "*.pyc", "*.py", "*.ps1", "*.psm1", "*.sai2", "*.psd", "*.rar", "*.zip", "Assets.zip.*", "*.spv-cache", "*.tmp", "*.bak", "*.deps.json", "*.runtimeconfig.json", "Thumbs.db", "desktop.ini", "README.md", "AGENTS.md", ".editorconfig", ".gitignore", ".gitattributes" ]
+}

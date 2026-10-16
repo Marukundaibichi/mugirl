@@ -2,7 +2,15 @@
 
 在模组设置中开启“额外描边”，粗细范围为 0.25–3 倍，默认 1 倍；旧设置文件默认关闭。松开粗细滑块后刷新人物图集和头像缓存，暂停时也可刷新。设置字段为 `enableExtraOutline` / `extraOutlineWidth`，不改变存档人物数据。
 
-## 渲染方式
+## 当前 1.7 维护入口（2026-10-16）
+
+生产代码位于 `Source/MugirlRace/Features/Appearance/Outline`，入口为 `ExtraOutlineRenderer`、`Harmony_PawnRenderTree_Draw_ExtraOutline` 与 `AppearanceSettingsBinding`。设置常量位于 Core，功能通过 SettingsWindow.Changed 订阅；松开滑条与 WriteSettings 的原刷新时点不变。
+
+资源位于 `1.7/Shaders/Mugirl/Mugirl_ExtraOutline.*.glsl`，随 1.7 内容加载，不使用下文的 Unity AssetBundle 构建脚本。使用固定 .NET 10 SDK 从隔离副本的 Source 构建，再运行 `tools/Validate.ps1` 的 Shader 检查和隐藏静音的 Test-InGame 渲染套件，见[验证手册](../validation-runbook.md)。当前重构不改变文案、默认值或绘制行为；V 和发布尚未完成。
+
+以下保留 1.6 的渲染实现与历史证据。Unity 合批、AssetBundle、旧探针和当时的验收结论只对应其注明版本，不能替代当前 Waylith/GLSL 路径验证。
+
+## 1.6 渲染方式（历史）
 
 - 读取 `PawnRenderTree.Draw` 中已经筛选好的绘制请求及最终矩阵。身体、头发、种族附件和衣服的黑色膨胀轮廓统一放在所有身体层后方，由正常人物贴图遮盖内部交叠处。
 - 所有武器都不参与额外描边，包括手持武器、背挂武器、自动装填槽武器，以及武器轮盘切换、剑舞和瞄准交接动画中的武器。
@@ -12,13 +20,13 @@
 - 远处人物和头像通过原版 `DrawNow` 路径把描边烘进缓存；不关闭原版图集优化。`DrawNow` 不支持属性块，因此分别处理即时材质参数和延迟绘制属性块，并验证两条路径一致。
 - 跳过武器、隐身、雕像、伤口及特效材质；保留深度测试。兼容正常 XZ 四边形及镜像 UV。第三方完全替换人物绘制、使用非标准几何或自定义材质的路径需要另外接入。
 
-## 资源构建
+## 1.6 资源构建（已冻结）
 
 运行 `docs/tools/Build-OutlineAssets.ps1`，使用 Unity 2022.3.62f3。脚本在 `TMP` 中建立独立工程，输出到 `1.6/Resources/Outline`，不修改现有 Unity 工程。游戏通过平台路径加载专用着色器，普通玩家不需要安装 Unity。
 
 当前已构建 Windows（D3D11 / OpenGLCore / Vulkan）与 macOS（Metal）资源。当前编辑器未安装 Linux Build Support，所以没有生成 Linux 包；安装对应模块并再次运行脚本即可生成。缺少对应资源或 GPU 不支持着色器时保留正常绘制，仅限次记录描边不可用。
 
-## 验证
+## 1.6 验证记录（历史）
 
 2026-09-13 本次针对不均匀、断裂和多重描边的修正已完成 C# Release 编译及 Windows/macOS 着色器资源构建。依用户要求，本次未运行渲染测试或操作游戏；游戏内效果由用户手动验收。下述工具和既有 QA 图片不能视为本次修正已验收的证据。
 

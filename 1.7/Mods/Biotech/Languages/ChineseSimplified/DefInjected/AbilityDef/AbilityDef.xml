@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- Charge, charge, charge! I'll ram you down! -->
+    <Mugirl_Charge.description>冲冲冲！我要创死你！</Mugirl_Charge.description>
+    <!-- Mugirl Charge! -->
+    <Mugirl_Charge.label>雪牛冲锋！</Mugirl_Charge.label>
+    <!-- Charge! -->
+    <Mugirl_Charge.verbProperties.label>冲冲冲</Mugirl_Charge.verbProperties.label>
+    <!-- RUAAAAAAAAA! (an embarrassing cry) -->
+    <Mugirl_Shout.description>RUAAAAAAAAA！（丢人的叫声）</Mugirl_Shout.description>
+    <!-- Mugirl Shout! -->
+    <Mugirl_Shout.label>雪牛大叫！</Mugirl_Shout.label>
+    <!-- Grab whatever's at hand and hurl it at the enemy! This snow cow has strength to spare. -->
+    <Mugirl_Throw.description>举起手边的不管什么东西朝敌人扔过去！
+
+这雪牛有力气</Mugirl_Throw.description>
+    <!-- Mugirl Throw! -->
+    <Mugirl_Throw.label>雪牛投掷！</Mugirl_Throw.label>
+    <!-- Pick up! -->
+    <Mugirl_Throw.verbProperties.label>抓起来！</Mugirl_Throw.verbProperties.label>
+    <!-- I'll twist your head off and kick it around like a ball!
+
+You have seen what you should not have seen. (second paragraph rendered in red) -->
+    <Mugirl_Dunk.description>我要把你的头拧下来当球踢！
+
+&lt;color=#ff0000&gt;你看到了不该看到的东西&lt;/color&gt;</Mugirl_Dunk.description>
+    <!-- Mugirl Meteor Slam Dunk! -->
+    <Mugirl_Dunk.label>雪牛流星大灌篮！</Mugirl_Dunk.label>
+    <!-- Choose a head! -->
+    <Mugirl_Dunk.verbProperties.label>选个脑袋！</Mugirl_Dunk.verbProperties.label>
+</LanguageData>

@@ -37,11 +37,6 @@ namespace Mugirl
             return IsMigrationPawn(pawn) || IsRunawayFarmPawn(pawn);
         }
 
-        internal static bool CanUseTemporaryMilk(Pawn pawn)
-        {
-            return IsMigrationPawn(pawn);
-        }
-
         internal static void MarkMigrationPawn(Pawn pawn)
         {
             AddTag(pawn, MigrationTag);

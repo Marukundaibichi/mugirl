@@ -49,6 +49,12 @@
   <Mugirl.CorporateTradeBrowser.ConfirmCancellation>撤销订单 #{0}？巨企将按合同退还已付款的 {1}%。</Mugirl.CorporateTradeBrowser.ConfirmCancellation>
   <Mugirl.CorporatePricing.Restricted>该物品的特殊效果或资源产出无法可靠估价，暂不接受自动备货。已付款订单不受影响，仍可按合同领取。</Mugirl.CorporatePricing.Restricted>
   <Mugirl.CorporatePricing.RestrictedShort>暂不接受自动备货</Mugirl.CorporatePricing.RestrictedShort>
+  <Mugirl.CorporatePricing.RestrictionDiagnostic>物品 {0} 暂停自动供货，未识别的组件行为：{1}</Mugirl.CorporatePricing.RestrictionDiagnostic>
+  <Mugirl.CorporatePricing.QuantityLimitSingle>单件货物：每单最多 {0} 件。</Mugirl.CorporatePricing.QuantityLimitSingle>
+  <Mugirl.CorporatePricing.QuantityLimitHighValue>标准单价≥{0} 白银：每单最多 {1} 件。</Mugirl.CorporatePricing.QuantityLimitHighValue>
+  <Mugirl.CorporatePricing.QuantityLimitBulk>可堆叠物资：每单最多 {0} 份。</Mugirl.CorporatePricing.QuantityLimitBulk>
+  <Mugirl.CorporatePricing.QuantityLimitTerms>标准单价按当前材料与品质、折扣前且未加急的普通报价计算。会员折扣与加急不会改变限购档位。已付款订单保留原数量。</Mugirl.CorporatePricing.QuantityLimitTerms>
+  <Mugirl.CorporatePricing.QuantityLimitExceeded>该规格每单最多订购 {0} 份，未扣款。</Mugirl.CorporatePricing.QuantityLimitExceeded>
   <Mugirl.CorporatePricing.Redemption>按成品市值报价，包含可兑现产出的最低价保护。</Mugirl.CorporatePricing.Redemption>
   <Mugirl.CorporatePricing.Natural>按产物自身市值报价，不转嫁动物、尸体或整条生产流程的价值。</Mugirl.CorporatePricing.Natural>
   <Mugirl.CorporatePricing.Sourced>按成品市值报价；缺少常规来源，需要较长备货。</Mugirl.CorporatePricing.Sourced>

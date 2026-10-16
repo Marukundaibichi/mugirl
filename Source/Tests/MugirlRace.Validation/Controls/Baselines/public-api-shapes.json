@@ -1,0 +1,16 @@
+{
+  "bodyAddonPaths": [
+    "Control/Addon"
+  ],
+  "texturePaths": [
+    "Control/Absent"
+  ],
+  "defPatterns": {
+    "Control_*": [
+      {
+        "name": "Control_Missing",
+        "root": "ThingDef"
+      }
+    ]
+  }
+}

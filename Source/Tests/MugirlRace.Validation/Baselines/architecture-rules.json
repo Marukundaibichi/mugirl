@@ -1,0 +1,67 @@
+{
+  // B.architecture：每条规则限定游戏 API、字段或字符串字面量只能出现在哪里（按编译结果检查，与源码写法无关）。
+  //   members        "Owner::Name"，Owner 为完整类型名（泛型写 `1），Name 可以以 * 结尾作前缀匹配。
+  //   literals       ldstr 字面量（区分大小写）。
+  //   allowedTypes   允许出现的类型（含其嵌套类型与编译器生成的闭包）。
+  //   allowedSources 允许出现的源码目录，相对 Source/MugirlRace（需要 PDB）。
+  // 两项都为空表示任何地方都不允许。来源：根 README“代码与内容约束”与 1.6 的 Invoke-Phase6StaticValidation.ps1。
+  "rules": {
+    "verse-log": {
+      "reason": "Logging goes through MugirlLog (README); business code never calls Verse.Log directly.",
+      "members": ["Verse.Log::*"],
+      "allowedTypes": ["Mugirl.Core.MugirlLog"]
+    },
+    "tick-manager": {
+      "reason": "Find.TickManager is read only through MugirlTickUtility, which guards ProgramState and a missing TickManager.",
+      "members": ["Verse.Find::get_TickManager"],
+      "allowedTypes": ["Mugirl.Core.TickUtility"]
+    },
+    "find": {
+      "reason": "Find.* services exist only while a game is running; they are reached through the core helpers that check that. Exception: the save-upgrade runtime phases run inside Game.LoadGame (ProgramState is MapInitializing, so the IsPlaying helpers refuse) and the upgrade notices run from ExecuteWhenFinished; each call site guards a missing service itself.",
+      "members": ["Verse.Find::*"],
+      "allowedTypes": ["Mugirl.Core.GameUtility", "Mugirl.Core.SelectionUtility", "Mugirl.Core.TickUtility", "Mugirl.SaveUpgrade.InFlightJobPolicy", "Mugirl.SaveUpgrade.LordResetPolicy", "Mugirl.SaveUpgrade.SaveUpgradeNotices"]
+    },
+    "current-game": {
+      "reason": "Current.Game / Current.ProgramState are read only in the core helpers (IsPlaying, TryGetGameComponent). Exception: SaveUpgradeRuntime reads Current.Game inside Game.LoadGame, before ProgramState is Playing, to reach the hub component of the game being loaded.",
+      "members": ["Verse.Current::get_Game", "Verse.Current::get_ProgramState"],
+      "allowedTypes": ["Mugirl.Core.GameUtility", "Mugirl.Core.SelectionUtility", "Mugirl.Core.TickUtility", "Mugirl.SaveUpgrade.SaveUpgradeRuntime"]
+    },
+    "game-components": {
+      "reason": "GameComponents are created by the game from their constructor; the runtime list Game.components is never touched (use Game.GetComponent<T>).",
+      "members": ["Verse.Game::components"]
+    },
+    "harmony-patchall": {
+      "reason": "PatchAll has no isolation (the first failing class stops all later ones); HarmonyBootstrap patches class by class.",
+      "members": ["HarmonyLib.Harmony::PatchAll*", "HarmonyLib.Harmony::PatchCategory*"]
+    },
+    "defdatabase-getnamed": {
+      "reason": "Defs are referenced through DefOf classes (README); a run-time DefDatabase.GetNamed string lookup logs an error when the def is missing. Optional defs use GetNamedSilentFail with a fallback.",
+      "members": ["Verse.DefDatabase`1::GetNamed"]
+    },
+    "faction-ofplayer": {
+      "reason": "Faction.OfPlayer logs an error when there is no game or no player faction; use Faction.OfPlayerSilentFail (null-safe) as the 1.6 code did.",
+      "members": ["RimWorld.Faction::get_OfPlayer"]
+    },
+    "mugirl-identity": {
+      "reason": "Mugirl race and body recognition is centralized in MugirlIdentity (IsMugirlPawn, HasMugirlBody, ...).",
+      "members": ["Mugirl.Core.MugirlDefOf::MugirlBody"],
+      "literals": ["MugirlBody"],
+      "allowedTypes": ["Mugirl.Core.MugirlIdentity"]
+    },
+    "third-party-type-lookup": {
+      "reason": "Third-party reflection and probing stay in the Compatibility layer (ADR-003), which returns safe results when the mod is missing.",
+      "members": ["HarmonyLib.AccessTools::TypeByName", "HarmonyLib.AccessTools::AllTypes", "System.Type::GetType"],
+      "allowedSources": ["Compatibility/"]
+    },
+    "save-internals": {
+      "reason": "Save-loading internals (the raw XML node, BackCompatibility, ScribeExtractor, the meta header) are used only by the unified save upgrade layer; domain code never reads legacy save shapes (design §5, decisions §2).",
+      "members": ["Verse.ScribeLoader::curXmlParent", "Verse.ScribeLoader::InitLoading*", "Verse.BackCompatibility::*", "Verse.ScribeExtractor::*", "Verse.ScribeMetaHeaderUtility::*"],
+      "allowedSources": ["SaveUpgrade/"]
+    },
+    "external-breast-hediffs": {
+      "reason": "defNames of other mods' breast hediffs are kept in one optional-def cache (ADR-003); internal Mugirl hediffs use DefOf.",
+      "literals": ["HugeBreasts", "BionicBreasts", "SlimeBreasts", "GR_MuffaloMammaries", "Breasts", "HydraulicBreasts", "SmallBreasts", "LargeBreasts", "ArchotechBreasts", "FlatBreasts"],
+      "allowedTypes": ["Mugirl.Compatibility.ExternalHediffs.ExternalBreastHediffDefs"]
+    }
+  }
+}

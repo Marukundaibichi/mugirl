@@ -1,0 +1,63 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    游戏内验证用的临时测试模组（RimWorld 1.7）。从不随 Mod 发布，输出只在本工程的 bin/ 中，从不写入 Mod 的加载目录。
+
+    tools/Test-InGame.ps1 把 Source/ 复制到 %TEMP% 后构建本工程，再把 MugirlRace.GameValidation.dll 放进 Mods 下带标记文件的
+    临时文件夹，运行结束即删除。不带 -mugirlvalidate 启动参数、或临时存档目录中没有脚本写入的参数文件时，本程序集什么也不做。
+
+    引用被测 Mod 的方式（都是 Private=false，运行时由游戏加载被测构建的 MugirlRace.dll）：
+      - -p:MugirlRaceDll=<路径>：按路径引用将要在游戏中运行的那份 DLL，编译期与运行期一致（脚本的正式运行）；
+      - -p:MugirlPlumbingOnly=true：不引用 MugirlRace，也不编译 Suites/Mod/（引用 Mod 类型的套件）。脚本的 -Plumbing 运行与
+        临时旧构建运行（存档夹具制作）用它，所以 Mod 源码暂时编译不过时仍能调试脚本与框架，旧构建也不会与编译期引用冲突；
+      - 都不指定：ProjectReference 到 Source/MugirlRace（IDE、MugirlRace.slnx）。被引用工程只输出到它自己的 bin/，
+        部署进 1.7/Assemblies 需要显式的 -p:DeployToMod=true（K3），所以在任何位置构建都安全。
+  -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <AssemblyName>MugirlRace.GameValidation</AssemblyName>
+    <RootNamespace>Mugirl.GameValidation</RootNamespace>
+    <IsPackable>false</IsPackable>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <DebugType>portable</DebugType>
+    <!-- 被测 Mod 的传递引用不能复制进测试输出。 -->
+    <DisableTransitiveProjectReferences>true</DisableTransitiveProjectReferences>
+    <!--
+      CA1031：测试驱动必须捕获所有异常，单个步骤失败不能中断其余步骤，也不能让引擎主循环崩溃。
+      CA1303：报告文本面向开发者，不走本地化。
+    -->
+    <NoWarn>$(NoWarn);CA1031;CA1303</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Waylith.Logging.LogStream 的回调签名使用 Microsoft.Extensions.Logging.LogLevel。 -->
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions">
+      <HintPath>$(GameDir)Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- OfflineTests/ 是独立的离线单元测试工程（链接 Core/ 中只读 XML 与 JSON 的类），不编译进测试模组。 -->
+    <Compile Remove="OfflineTests/**" />
+    <None Remove="OfflineTests/**" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(MugirlPlumbingOnly)' == 'true'">
+    <Compile Remove="Suites/Mod/**" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(MugirlPlumbingOnly)' != 'true' and '$(MugirlRaceDll)' != ''">
+    <Reference Include="MugirlRace">
+      <HintPath>$(MugirlRaceDll)</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(MugirlPlumbingOnly)' != 'true' and '$(MugirlRaceDll)' == ''">
+    <ProjectReference Include="..\..\MugirlRace\MugirlRace.csproj" Private="false" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,37 @@
+<savegame>
+  <meta>
+    <gameVersion>1.6.4871 rev591</gameVersion>
+    <modIds>
+      <li>ludeon.rimworld</li>
+      <li>har.mugirlrace</li>
+    </modIds>
+  </meta>
+  <game>
+    <components>
+      <li Class="Mugirl.Features.Corporate.CorporateIntroduction">
+        <gifts>
+          <innerList />
+        </gifts>
+        <contact>
+          <attached>True</attached>
+          <retrofitted>True</retrofitted>
+          <visitPending>True</visitPending>
+          <accountOpened>True</accountOpened>
+          <usesIndependentContact>False</usesIndependentContact>
+          <giftBundlePrepared>True</giftBundlePrepared>
+          <independentlyAggressive>True</independentlyAggressive>
+          <playerKilledCourier>False</playerKilledCourier>
+          <courierDead>True</courierDead>
+          <courierOutcome>17</courierOutcome>
+          <lastContactTick>913</lastContactTick>
+          <serviceResumeTick>30001</serviceResumeTick>
+          <courierPawn>Thing_Human45</courierPawn>
+          <representativePawn>Thing_Human46</representativePawn>
+          <visitMap>Map_0</visitMap>
+          <quest>Quest_7</quest>
+          <visitDueTick>200000</visitDueTick>
+        </contact>
+      </li>
+    </components>
+  </game>
+</savegame>

@@ -1,0 +1,123 @@
+{
+ "module": "core",
+ "wave": "R2",
+ "createTypes": [
+  {
+   "fullName": "Mugirl.Core.PlayerFactionUtility",
+   "file": "Source/MugirlRace/Core/PlayerFactionUtility.cs",
+   "kind": "staticClass",
+   "accessibility": "internal",
+   "header": "玩家派系判断；没有游戏或玩家派系时安全返回（Faction.OfPlayerSilentFail）。",
+   "module": "core"
+  },
+  {
+   "fullName": "Mugirl.Core.PawnPredicates",
+   "file": "Source/MugirlRace/Core/PawnPredicates.cs",
+   "kind": "staticClass",
+   "accessibility": "internal",
+   "header": "跨功能共用的小人状态判断（类人、能力、清醒）。",
+   "module": "core"
+  },
+  {
+   "fullName": "Mugirl.Features.Mounting.MountUtility",
+   "file": "Source/MugirlRace/Features/Mounting/MountUtility.cs",
+   "kind": "staticClass",
+   "accessibility": "internal",
+   "header": "骑乘关系查询（坐骑组件、骑手所在坐骑、是否在骑乘）与骑乘绘制距离。",
+   "module": "combat"
+  },
+  {
+   "fullName": "Mugirl.Features.Incidents.EventPawnRequestUtility",
+   "file": "Source/MugirlRace/Features/Incidents/Shared/EventPawnRequestUtility.cs",
+   "kind": "staticClass",
+   "accessibility": "internal",
+   "header": "事件小人的生成请求（无派系成人、访客）与奴隶背景判断。",
+   "module": "incidents"
+  }
+ ],
+ "memberMoves": [
+  {
+   "to": "Mugirl.Core.PlayerFactionUtility",
+   "accessibility": "internal",
+   "order": "spec",
+   "members": [
+    "Mugirl.Features.Incidents.WildMugirlUtility.PlayerFaction",
+    "Mugirl.Features.Incidents.WildMugirlUtility.IsPlayerFaction",
+    "Mugirl.Features.Incidents.WildMugirlUtility.IsHostileToPlayer(RimWorld.Faction)",
+    "Mugirl.Features.Incidents.WildMugirlUtility.IsHostileToPlayer(Verse.Pawn)",
+    "Mugirl.Features.Incidents.WildMugirlUtility.TrySetPlayerFaction"
+   ],
+   "reason": "core-member-moves PlayerFactionUtility: player-faction helpers used by Corporate, Abilities, Incidents and Restraints live in Core."
+  },
+  {
+   "to": "Mugirl.Features.Mounting.CompMount@Source/MugirlRace/Features/Mounting/Comp/CompMount.Ticking.cs",
+   "accessibility": "private",
+   "members": [
+    "Mugirl.Core.TickUtility.Add",
+    "Mugirl.Core.TickUtility.ConsumeReady"
+   ],
+   "reason": "C06: the only caller is CompMount ticking; Core must not host one feature's counter contract."
+  },
+  {
+   "to": "Mugirl.Features.Incidents.EventPawnRequestUtility",
+   "accessibility": "internal",
+   "members": [
+    "Mugirl.Core.GeneratedPawnUtility.CreateFactionlessAdultRequest",
+    "Mugirl.Core.GeneratedPawnUtility.CreateVisitorRequest",
+    "Mugirl.Core.GeneratedPawnUtility.HasMugirlSlaveBackstories",
+    "Mugirl.Core.GeneratedPawnUtility.BackstoryHasCategory"
+   ],
+   "reason": "C19: event-only pawn builders leave the core-owned GeneratedPawnUtility (internal class: members internal)."
+  },
+  {
+   "to": "Mugirl.Features.Incidents.EventPawnRequestUtility",
+   "members": [
+    "Mugirl.Core.GeneratedPawnUtility.MugirlSlaveBackstoryCategory"
+   ],
+   "reason": "C19: the backstory category constant moves with its reader and stays private."
+  },
+  {
+   "to": "Mugirl.Core.PawnPredicates",
+   "accessibility": "internal",
+   "members": [
+    "Mugirl.MountedPawnUtility.IsHumanlike",
+    "Mugirl.MountedPawnUtility.HasCapacity",
+    "Mugirl.MountedPawnUtility.IsAwake"
+   ],
+   "reason": "C21: generic pawn predicates get a Core home (combat-plan S4.1)."
+  },
+  {
+   "to": "Mugirl.Features.Mounting.MountUtility",
+   "accessibility": "internal",
+   "members": [
+    "Mugirl.MountedPawnUtility.GetMountComp",
+    "Mugirl.MountedPawnUtility.GetMountForRider",
+    "Mugirl.MountedPawnUtility.IsMounted",
+    "Mugirl.MountedPawnUtility.EquipmentDrawDistanceFactor"
+   ],
+   "reason": "Decisions section 5: Mugirl.MountedPawnUtility keeps only the public extension point IsMugirl (PublicApi); mount queries move to the feature."
+  }
+ ],
+ "memberRenames": [
+  {
+   "member": "Mugirl.Core.MugirlSettings.enableStructuralCrashEvent",
+   "new": "enableOpeningStoryline",
+   "reason": "core-member-moves memberRenames: C# symbol renames whose readers are in incidents/corporate; the Scribe label strings stay (SettingsUpgrade in S)."
+  },
+  {
+   "member": "Mugirl.Core.MugirlSettings.enableMugirlMigrationEvent",
+   "new": "enableMigrationEvent",
+   "reason": "core-member-moves memberRenames: C# symbol renames whose readers are in incidents/corporate; the Scribe label strings stay (SettingsUpgrade in S)."
+  },
+  {
+   "member": "Mugirl.Core.MugirlSettings.enableMugirlFusionInvestmentEvent",
+   "new": "enableFusionInvestmentEvent",
+   "reason": "core-member-moves memberRenames: C# symbol renames whose readers are in incidents/corporate; the Scribe label strings stay (SettingsUpgrade in S)."
+  },
+  {
+   "member": "Mugirl.Core.MugirlSettings.enableRunawayMugirlFarmQuest",
+   "new": "enableRunawayFarmQuest",
+   "reason": "core-member-moves memberRenames: C# symbol renames whose readers are in incidents/corporate; the Scribe label strings stay (SettingsUpgrade in S)."
+  }
+ ]
+}

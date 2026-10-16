@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+    <Job_GatherMilk.reportString>Milk {TargetA}.</Job_GatherMilk.reportString>
+    <Job_MugirlMilkingTargetWait.reportString>being milked.</Job_MugirlMilkingTargetWait.reportString>
+</LanguageData>

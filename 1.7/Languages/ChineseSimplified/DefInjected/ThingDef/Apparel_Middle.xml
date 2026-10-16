@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- Mugirl Knightly Gambeson -->
+    <Mugirl_Gambeson.label>雪牛娘 骑士甲胄内衬</Mugirl_Gambeson.label>
+    <!-- A supple padded underlayer tailored with medieval craftsmanship, built from overlapping quilting that sits close to the body without losing its lightness. Made to fit Mugirl armour, it cushions impacts and stabilises the wearer beneath heavy plate, yet can also be worn alone as a light battle garment. Its stitched patterns seem to carry a gentle warmth, allowing elegance to endure even in the cold wind. -->
+    <Mugirl_Gambeson.description>中世纪裁缝手法缝制的柔韧内衬，以绵羽层层叠压，贴身却不失轻盈。为雪牛娘的甲胄量身定制，能在穿戴重甲时缓冲冲击、稳定体态，亦能单独作为轻装战衣穿着。绣纹隐隐散发暖意，使穿戴者在寒风中依旧保持从容优雅。</Mugirl_Gambeson.description>
+    <!-- Mugirl Shirt "Lumière Trompeuse Translucide" -->
+    <Mugirl_Shirt.label>雪牛娘 衬衫 「惑光半透」</Mugirl_Shirt.label>
+    <!-- A chiffon shirt with a soft lustre and fine striped detailing. Its poised, elegant cut makes it well suited for everyday wear or office settings while preserving a refined sense of fashion. -->
+    <Mugirl_Shirt.description>雪纺衬衫，带有轻微光泽和条纹设计，剪裁合理优雅，适合日常或办公穿着，凸显时尚感。</Mugirl_Shirt.description>
+</LanguageData>

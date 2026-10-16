@@ -49,6 +49,12 @@
   <Mugirl.CorporateTradeBrowser.ConfirmCancellation>Cancel order #{0}? The corporation will refund {1}% of the amount paid under the contract.</Mugirl.CorporateTradeBrowser.ConfirmCancellation>
   <Mugirl.CorporatePricing.Restricted>The special effects or resource output of this item cannot be valued reliably. Automatic procurement is unavailable. Existing paid orders can still be collected under their original terms.</Mugirl.CorporatePricing.Restricted>
   <Mugirl.CorporatePricing.RestrictedShort>Automatic procurement unavailable</Mugirl.CorporatePricing.RestrictedShort>
+  <Mugirl.CorporatePricing.RestrictionDiagnostic>Automatic supply restricted for {0}; unrecognized component behavior: {1}</Mugirl.CorporatePricing.RestrictionDiagnostic>
+  <Mugirl.CorporatePricing.QuantityLimitSingle>Nonstackable: up to {0} per order.</Mugirl.CorporatePricing.QuantityLimitSingle>
+  <Mugirl.CorporatePricing.QuantityLimitHighValue>Standard price ≥ {0} silver: up to {1} per order.</Mugirl.CorporatePricing.QuantityLimitHighValue>
+  <Mugirl.CorporatePricing.QuantityLimitBulk>Stackable supplies: up to {0} per order.</Mugirl.CorporatePricing.QuantityLimitBulk>
+  <Mugirl.CorporatePricing.QuantityLimitTerms>The standard unit price uses the selected material and quality, before client discounts and without expedited preparation. Discounts and preparation speed do not change the quantity tier. Existing paid orders keep their original quantities.</Mugirl.CorporatePricing.QuantityLimitTerms>
+  <Mugirl.CorporatePricing.QuantityLimitExceeded>This specification is limited to {0} per order. No silver was charged.</Mugirl.CorporatePricing.QuantityLimitExceeded>
   <Mugirl.CorporatePricing.Redemption>Market-value quote with a minimum price for redeemable outputs.</Mugirl.CorporatePricing.Redemption>
   <Mugirl.CorporatePricing.Natural>Priced at the product's own market value, without charging the value of its animal, corpse or entire production chain.</Mugirl.CorporatePricing.Natural>
   <Mugirl.CorporatePricing.Sourced>Priced at market value; limited regular sources require longer preparation.</Mugirl.CorporatePricing.Sourced>

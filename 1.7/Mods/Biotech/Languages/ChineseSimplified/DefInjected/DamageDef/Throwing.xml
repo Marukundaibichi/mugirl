@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- thrown impact -->
+    <Mugirl_ThrownImpact.label>投掷冲击</Mugirl_ThrownImpact.label>
+    <!-- {0} has been obliterated by a massive thrown object. -->
+    <Mugirl_ThrownImpact.deathMessage>{0}被一件投掷而来的巨物砸得粉碎。</Mugirl_ThrownImpact.deathMessage>
+</LanguageData>

@@ -1,0 +1,1 @@
+<savegame><meta><modIds><li>har.mugirlrace</li></modIds></meta><game><maps><li><things><thing Class="Pawn"><def>Human</def><id>Human10</id><verbTracker><verbs><li Class="Verb_MeleeAttackDamage"><loadID>Human10_fist_Punch</loadID><burstShotsLeft>1</burstShotsLeft></li></verbs></verbTracker></thing></things></li></maps></game></savegame>

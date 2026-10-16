@@ -1,0 +1,967 @@
+{
+ "module": "corporate",
+ "wave": "R",
+ "ownedSourceFolders": [
+  "Source/MugirlRace/Features/Corporate/**",
+  "Source/MugirlRace/SaveUpgrade/Steps/Corporate/**",
+  "Source/MugirlRace/SaveUpgrade/PostLoad/Corporate/**",
+  "Source/Tests/MugirlRace.Tests/Corporate/**"
+ ],
+ "ownedContentFiles": [
+  "1.7/Defs/Corporate/CorporateIntroduction.xml",
+  "1.7/Defs/Corporate/CorporateSupportDuty.xml",
+  "1.7/Defs/Corporate/CorporateFinance.xml",
+  "1.7/Defs/Corporate/CorporatePeople.xml",
+  "1.7/Defs/Corporate/CorporateTrade.xml",
+  "1.7/Defs/Corporate/CorporateMissions.xml",
+  "1.7/Defs/Corporate/CorporateFusionResearchSite.xml",
+  "1.7/Defs/PawnKindDefs/PawnKinds_CorporateStaff.xml",
+  "1.7/Defs/PawnKindDefs/PawnKinds_CorporateShowcase.xml",
+  "1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml",
+  "1.7/Defs/FactionDefs/Factions_GiantCorporation.xml",
+  "1.7/Languages/English/Keyed/CorporateFinance.xml",
+  "1.7/Languages/English/Keyed/CorporatePeople.xml",
+  "1.7/Languages/English/Keyed/CorporatePeopleCards.xml",
+  "1.7/Languages/English/Keyed/CorporateMissions.xml",
+  "1.7/Languages/English/Keyed/CorporateServices.xml",
+  "1.7/Languages/English/Keyed/CorporateTrade.xml",
+  "1.7/Languages/English/Keyed/CorporateTradeBrowser.xml",
+  "1.7/Languages/English/Keyed/CorporateUI.xml",
+  "1.7/Languages/ChineseSimplified/Keyed/CorporateFinance.xml",
+  "1.7/Languages/ChineseSimplified/Keyed/CorporatePeople.xml",
+  "1.7/Languages/ChineseSimplified/Keyed/CorporatePeopleCards.xml",
+  "1.7/Languages/ChineseSimplified/Keyed/CorporateMissions.xml",
+  "1.7/Languages/ChineseSimplified/Keyed/CorporateServices.xml",
+  "1.7/Languages/ChineseSimplified/Keyed/CorporateTrade.xml",
+  "1.7/Languages/ChineseSimplified/Keyed/CorporateTradeBrowser.xml",
+  "1.7/Languages/ChineseSimplified/Keyed/CorporateUI.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/FactionDef/Factions_GiantCorporation.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/JobDef/CorporateIntroduction.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/PawnKindDef/PawnKinds_CorporateStaff.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/PawnKindDef/PawnKinds_CorporateShowcase.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/PawnKindDef/PawnKinds_GiantCorp.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/QuestScriptDef/CorporateIntroduction.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/QuestScriptDef/CorporateMissions.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/SitePartDef/CorporateMissions.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/ThoughtDef/CorporatePeople.xml",
+  "1.7/Languages/ChineseSimplified/DefInjected/TraderKindDef/CorporatePeople.xml"
+ ],
+ "types": [
+  {
+   "old": "Mugirl.CorporateAnimatedWindow",
+   "new": "Mugirl.Features.Corporate.CorporateAnimatedWindow",
+   "oldFile": "Source/MugirlRace/Features/Corporate/UI/Dialogs/CorporateAnimatedWindow.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/UI/Dialogs/CorporateAnimatedWindow.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1)",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateChoiceWindow",
+   "new": "Mugirl.Features.Corporate.Dialog_CorporateChoice",
+   "oldFile": "Source/MugirlRace/Features/Corporate/UI/Dialogs/CorporateChoiceWindow.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/UI/Dialogs/Dialog_CorporateChoice.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "vanilla role shape Dialog_X for windows (design 3.2)",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateCommsAccess",
+   "new": "Mugirl.Features.Corporate.CorporateCommsAccess",
+   "oldFile": "Source/MugirlRace/Features/Corporate/UI/Entry/CorporateCommsAccess.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/UI/Entry/CorporateCommsAccess.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); nested ConsoleBlock keeps its short name",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateConfirmWindow",
+   "new": "Mugirl.Features.Corporate.Dialog_CorporateConfirm",
+   "oldFile": "Source/MugirlRace/Features/Corporate/UI/Dialogs/CorporateConfirmWindow.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/UI/Dialogs/Dialog_CorporateConfirm.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "vanilla role shape Dialog_X (design 3.2)",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateDebt_Goodwill_Patch",
+   "new": "Mugirl.Features.Corporate.Harmony_Faction_CanChangeGoodwillFor_CorporateDebt",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Finance/Harmony_CorporateDebt.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Finance/Harmony_Faction_CanChangeGoodwillFor_CorporateDebt.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "patch naming (design 3.2); file split",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateDebt_HostileTo_Patch",
+   "new": "Mugirl.Features.Corporate.Harmony_FactionUtility_HostileTo_CorporateDebt",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Finance/Harmony_CorporateDebt.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Finance/Harmony_FactionUtility_HostileTo_CorporateDebt.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "patch naming Harmony_<TargetType>_<TargetMember>_<Purpose> (design 3.2); file split",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateDebt_RelationKind_Patch",
+   "new": "Mugirl.Features.Corporate.Harmony_Faction_RelationKindWith_CorporateDebt",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Finance/Harmony_CorporateDebt.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Finance/Harmony_Faction_RelationKindWith_CorporateDebt.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "patch naming (design 3.2); file split",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateDiehardUtility",
+   "new": "Mugirl.Features.Corporate.CorporateDiehardUtility",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Services/CorporateDiehard.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Services/CorporateDiehardUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); file name = type name; file split",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateFinanceConfigDef",
+   "new": "Mugirl.Features.Corporate.CorporateFinanceConfigDef",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Finance/CorporateFinanceConfigDef.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Finance/CorporateFinanceConfigDef.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); Def element name in 1.7/Defs/Corporate/CorporateFinance.xml",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateFinanceDefOf",
+   "new": "Mugirl.CorporateFinanceDefOf",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Finance/CorporateFinanceConfigDef.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Finance/CorporateFinanceDefOf.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "module": "corporate",
+   "reason": "One type per file (C27): identity extraction out of CorporateFinanceConfigDef.cs. DefOf class: keeps its name until the R2 DefOf split dissolves it.",
+   "transitional": {
+    "waveS": "n/a (dissolved in R2)",
+    "upgrade": "none (not save-visible)"
+   }
+  },
+  {
+   "old": "Mugirl.CorporateIntroduction",
+   "new": "Mugirl.Features.Corporate.CorporateIntroduction",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Introduction/CorporateIntroduction.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Introduction/CorporateIntroduction.cs",
+   "saveVisible": true,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); GameComponent saved by Class (real saves S9-S11)",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateIntroductionDef",
+   "new": "Mugirl.Features.Corporate.CorporateIntroductionConfigDef",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Introduction/CorporateIntroductionDef.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Introduction/CorporateIntroductionConfigDef.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "config Defs are named <Domain>ConfigDef (Finance/People already are); avoids confusion with the CorporateIntroduction component and QuestScriptDef Mugirl_CorporateIntroductionQuest. Def element name in 1.7/Defs/Corporate/CorporateIntroduction.xml",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateIntroductionDefOf",
+   "new": "Mugirl.CorporateIntroductionDefOf",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Introduction/CorporateIntroductionDef.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Introduction/CorporateIntroductionDefOf.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "module": "corporate",
+   "reason": "One type per file (C27): identity extraction out of CorporateIntroductionDef.cs. DefOf class: keeps its name until the R2 DefOf split dissolves it.",
+   "transitional": {
+    "waveS": "n/a (dissolved in R2)",
+    "upgrade": "none (not save-visible)"
+   }
+  },
+  {
+   "old": "Mugirl.CorporateMission",
+   "new": "Mugirl.Features.Corporate.CorporateMission",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Missions/CorporateMission.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Missions/CorporateMission.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); inline IExposable today (no Class). Wave S makes it the abstract base of the per-kind subclasses whose names then appear in saves",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateMissionKind",
+   "new": "Mugirl.Features.Corporate.CorporateMissionKind",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Missions/CorporateMission.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Missions/CorporateMissionKind.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); enum saved by member name (member Native->Referral is a Wave S enum map, not part of this spec); file split",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateMissionState",
+   "new": "Mugirl.Features.Corporate.CorporateMissionState",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Missions/CorporateMission.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Missions/CorporateMissionState.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); enum saved by member name; file split",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateMotion",
+   "new": "Mugirl.Features.Corporate.CorporateMotion",
+   "oldFile": "Source/MugirlRace/Features/Corporate/UI/Kit/CorporateMotion.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/UI/Kit/CorporateMotion.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); nested ControlState/ScrollState keep their names",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateNetwork",
+   "new": "Mugirl.Features.Corporate.CorporateNetwork",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Network/CorporateNetwork.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Network/CorporateNetwork.cs",
+   "saveVisible": true,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); GameComponent saved by Class in game/components/li (real saves S9-S11). Partial parts move with it: Finance/CorporateNetwork.Finance.cs, Missions/CorporateNetwork.MissionSite.cs, Missions/CorporateNetwork.Quests.cs (renamed, see fileMoves), People/CorporateNetwork.People.cs, Pricing/CorporateNetwork.Pricing.cs, Services/CorporateNetwork.Services.cs, Trade/CorporateNetwork.Trade.cs",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateOrder",
+   "new": "Mugirl.Features.Corporate.CorporateOrder",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Trade/CorporateOrder.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Trade/CorporateOrder.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); inline IExposable",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateOrderSpeed",
+   "new": "Mugirl.Features.Corporate.CorporateOrderSpeed",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Pricing/CorporateNetwork.Pricing.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Trade/CorporateOrderSpeed.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); enum saved by member name on CorporateOrder; own file next to CorporateOrder",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateOrderState",
+   "new": "Mugirl.Features.Corporate.CorporateOrderState",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Trade/CorporateOrder.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Trade/CorporateOrderState.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); enum saved by member name; file split",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporatePeopleConfigDef",
+   "new": "Mugirl.Features.Corporate.CorporatePeopleConfigDef",
+   "oldFile": "Source/MugirlRace/Features/Corporate/People/CorporatePeopleConfigDef.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/People/CorporatePeopleConfigDef.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); Def element name in 1.7/Defs/Corporate/CorporatePeople.xml",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporatePeopleDefOf",
+   "new": "Mugirl.CorporatePeopleDefOf",
+   "oldFile": "Source/MugirlRace/Features/Corporate/People/CorporatePeopleConfigDef.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/People/CorporatePeopleDefOf.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "module": "corporate",
+   "reason": "One type per file (C27): identity extraction out of CorporatePeopleConfigDef.cs. DefOf class: keeps its name until the R2 DefOf split dissolves it.",
+   "transitional": {
+    "waveS": "n/a (dissolved in R2)",
+    "upgrade": "none (not save-visible)"
+   }
+  },
+  {
+   "old": "Mugirl.CorporatePersonOffer",
+   "new": "Mugirl.Features.Corporate.CorporatePersonOffer",
+   "oldFile": "Source/MugirlRace/Features/Corporate/People/CorporatePersonOffer.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/People/CorporatePersonOffer.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); inline IExposable (no Class)",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporatePersonQuote",
+   "new": "Mugirl.Features.Corporate.CorporatePersonQuote",
+   "oldFile": "Source/MugirlRace/Features/Corporate/People/CorporatePersonQuote.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/People/CorporatePersonQuote.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1)",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporatePersonTradeAmount",
+   "new": "Mugirl.Features.Corporate.CorporatePersonTradeAmount",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Services/Harmony_CorporateTradeTurnover.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Services/CorporatePersonTradeAmount.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); file split",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporatePersonnelTrader",
+   "new": "Mugirl.Features.Corporate.CorporatePersonnelTrader",
+   "oldFile": "Source/MugirlRace/Features/Corporate/People/CorporatePersonnelTrader.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/People/CorporatePersonnelTrader.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1)",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporatePricingCompatibility",
+   "new": "Mugirl.Features.Corporate.CorporateForeignBehavior",
+   "oldFile": "Source/MugirlRace/Compatibility/CorporatePricing/CorporatePricingCompatibility.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Pricing/CorporateForeignBehavior.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "not compatibility with another mod but the corporate supply rule for things whose class/comps come from other assemblies; only caller is Features/Corporate/Pricing/CorporateSupplyAnalysis.cs:231. Compatibility/ is reserved for Mugirl.Compatibility.<OtherMod> (design 3.1). Cross-scope: the core report (C2) proposes the same move",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateQuestConfigDef",
+   "new": "Mugirl.Features.Corporate.CorporateMissionConfigDef",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Missions/CorporateQuestConfigDef.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Missions/CorporateMissionConfigDef.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "terminology Mission (design 3.2); Def element name in 1.7/Defs/Corporate/CorporateMissions.xml",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateQuestDefOf",
+   "new": "Mugirl.CorporateQuestDefOf",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Missions/CorporateQuestConfigDef.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Missions/CorporateQuestDefOf.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "module": "corporate",
+   "reason": "One type per file (C27): identity extraction out of CorporateQuestConfigDef.cs. DefOf class: keeps its name until the R2 DefOf split dissolves it.",
+   "transitional": {
+    "waveS": "n/a (dissolved in R2)",
+    "upgrade": "none (not save-visible)"
+   }
+  },
+  {
+   "old": "Mugirl.CorporateQuestDefs",
+   "new": "Mugirl.Features.Corporate.CorporateMissionContent",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Missions/CorporateQuestConfigDef.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Missions/CorporateMissionContent.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "terminology Mission; it is the mission content roster (distribution products, referral quests, research guard kind); file split",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateQuestSiteDebugActions",
+   "new": "Mugirl.Features.Corporate.CorporateMissionDebugActions",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Missions/CorporateQuestSiteDebugActions.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Missions/CorporateMissionDebugActions.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "terminology Mission",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateRecord",
+   "new": "Mugirl.Features.Corporate.CorporateHistoryEntry",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Network/CorporateRecord.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Network/CorporateHistoryEntry.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "the row type of the terminal History page; inline IExposable (no Class in saves). Wave S replaces the stored Keyed key by CorporateHistoryKind",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateResearchChoice",
+   "new": "Mugirl.Features.Corporate.CorporateResearchChoice",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Missions/CorporateMission.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Missions/CorporateResearchChoice.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); enum saved by member name; file split",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateShowcaseApparel",
+   "new": "Mugirl.Features.Corporate.CorporateShowcaseApparel",
+   "oldFile": "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/People/CorporateShowcaseApparel.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1)",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateStock",
+   "new": "Mugirl.Features.Corporate.CorporateStockOffer",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Trade/CorporateStock.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Trade/CorporateStockOffer.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "one row of the weekly stock is an offer (the list is the stock); symmetric with CorporatePersonOffer; inline IExposable",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateSupplyAnalysis",
+   "new": "Mugirl.Features.Corporate.CorporateSupplyAnalysis",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Pricing/CorporateSupplyAnalysis.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Pricing/CorporateSupplyAnalysis.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1)",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateSupportUtility",
+   "new": "Mugirl.Features.Corporate.CorporateSupportUtility",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Services/CorporateSupportUtility.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Services/CorporateSupportUtility.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1)",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateTradeContext",
+   "new": "Mugirl.Features.Corporate.CorporateTradeContext",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Trade/CorporateTradeContext.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Trade/CorporateTradeContext.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); partial part Trade/CorporateTradeContext.Delivery.cs moves with it",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateTradeDefOf",
+   "new": "Mugirl.CorporateTradeDefOf",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Trade/CorporateTradeSettings.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Trade/CorporateTradeDefOf.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "module": "corporate",
+   "reason": "One type per file (C27): identity extraction out of CorporateTradeSettings.cs. DefOf class: keeps its name until the R2 DefOf split dissolves it.",
+   "transitional": {
+    "waveS": "n/a (dissolved in R2)",
+    "upgrade": "none (not save-visible)"
+   }
+  },
+  {
+   "old": "Mugirl.CorporateTradeSettingsDef",
+   "new": "Mugirl.Features.Corporate.CorporateTradeConfigDef",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Trade/CorporateTradeSettings.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Trade/CorporateTradeConfigDef.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "config Defs are named <Domain>ConfigDef; file name = type name; Def element name in 1.7/Defs/Corporate/CorporateTrade.xml",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateTurnoverCapture",
+   "new": "Mugirl.Features.Corporate.CorporateTurnoverCapture",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Services/Harmony_CorporateTradeTurnover.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Services/CorporateTurnoverCapture.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); file split",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateUI",
+   "new": "Mugirl.Features.Corporate.CorporateUI",
+   "oldFile": "Source/MugirlRace/Features/Corporate/UI/Kit/CorporateUI.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/UI/Kit/CorporateUI.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); partial parts UI/Kit/CorporateUI.Controls.cs, .Decor.cs, .Money.cs, .ScrollView.cs move with it",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.CorporateUniforms",
+   "new": "Mugirl.Features.Corporate.CorporateUniforms",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Services/CorporateUniforms.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Services/CorporateUniforms.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1)",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.Features.Incidents.GiantCorpRaidTierRules",
+   "new": "Mugirl.Features.Corporate.CorporateRaidTierRules",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Raids/GiantCorpRaidTierRules.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Raids/CorporateRaidTierRules.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "Features/Incidents/Raids moves to Corporate (design 3.1); Corporate* prefix like every other type of the feature",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.FloatMenuProvider_CorporateRepresentative",
+   "new": "Mugirl.Features.Corporate.FloatMenuOptionProvider_CorporateRepresentative",
+   "oldFile": "Source/MugirlRace/Features/Corporate/UI/Entry/FloatMenuProvider_CorporateRepresentative.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/UI/Entry/FloatMenuOptionProvider_CorporateRepresentative.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "vanilla role shape FloatMenuOptionProvider_X (design 3.2); instantiated by vanilla reflection, not by XML or saves",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.Harmony_CorporateCommsConsole",
+   "new": "Mugirl.Features.Corporate.Harmony_Building_CommsConsole_GetFloatMenuOptions_CorporateTerminal",
+   "oldFile": "Source/MugirlRace/Features/Corporate/UI/Entry/Harmony_CorporateCommsConsole.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/UI/Entry/Harmony_Building_CommsConsole_GetFloatMenuOptions_CorporateTerminal.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "patch naming (design 3.2)",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.Harmony_CorporateDiehard_FriendlyFireGoodwill",
+   "new": "Mugirl.Features.Corporate.Harmony_Faction_TryAffectGoodwillWith_CorporateDiehard",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Services/CorporateDiehard.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Services/Harmony_Faction_TryAffectGoodwillWith_CorporateDiehard.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "patch naming (design 3.2); file split",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.Harmony_CorporateDiehard_NoPanicFlee",
+   "new": "Mugirl.Features.Corporate.Harmony_MentalStateHandler_TryStartMentalState_CorporateDiehard",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Services/CorporateDiehard.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Services/Harmony_MentalStateHandler_TryStartMentalState_CorporateDiehard.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "patch naming (design 3.2); file split",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.Harmony_CorporateDistributionSale",
+   "new": "Mugirl.Features.Corporate.Harmony_Tradeable_ResolveTrade_CorporateDistribution",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Missions/Harmony_CorporateMissions.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Missions/Harmony_Tradeable_ResolveTrade_CorporateDistribution.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "patch naming (design 3.2); nested Sale keeps its short name; file split",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.Harmony_CorporateIntroductionDamage",
+   "new": "Mugirl.Features.Corporate.Harmony_Pawn_PreApplyDamage_CorporateIntroduction",
+   "oldFile": "Source/MugirlRace/Features/Corporate/UI/Entry/Harmony_CorporateIntroduction.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Introduction/Harmony_Pawn_PreApplyDamage_CorporateIntroduction.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "patch naming (design 3.2); it feeds the introduction domain, not the UI entry, so it moves to Introduction/; file split",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.Harmony_CorporateIntroductionKilled",
+   "new": "Mugirl.Features.Corporate.Harmony_Pawn_Kill_CorporateIntroduction",
+   "oldFile": "Source/MugirlRace/Features/Corporate/UI/Entry/Harmony_CorporateIntroduction.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Introduction/Harmony_Pawn_Kill_CorporateIntroduction.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "patch naming (design 3.2); moves to Introduction/; file split",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.Harmony_CorporateResearchAttacked",
+   "new": "Mugirl.Features.Corporate.Harmony_Thing_TakeDamage_CorporateResearchTargets",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Missions/Harmony_CorporateMissions.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Missions/Harmony_Thing_TakeDamage_CorporateResearchTargets.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "patch naming (design 3.2); file split",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.Harmony_CorporateResearchGizmos",
+   "new": "Mugirl.Features.Corporate.Harmony_Site_GetGizmos_CorporateResearchDialogue",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Missions/Harmony_CorporateMissions.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Missions/Harmony_Site_GetGizmos_CorporateResearchDialogue.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "patch naming (design 3.2); file split",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.Harmony_CorporateSettlementGizmos",
+   "new": "Mugirl.Features.Corporate.Harmony_Settlement_GetCaravanGizmos_CorporateTerminal",
+   "oldFile": "Source/MugirlRace/Features/Corporate/UI/Entry/Harmony_CorporateSettlementGizmos.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/UI/Entry/Harmony_Settlement_GetCaravanGizmos_CorporateTerminal.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "patch naming (design 3.2)",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.Harmony_CorporateTradeTurnover",
+   "new": "Mugirl.Features.Corporate.Harmony_TradeDeal_TryExecute_CorporateTurnover",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Services/Harmony_CorporateTradeTurnover.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Services/Harmony_TradeDeal_TryExecute_CorporateTurnover.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "patch naming (design 3.2)",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.Harmony_CorporateUniforms",
+   "new": "Mugirl.Features.Corporate.Harmony_PawnGenerator_GeneratePawn_CorporateUniforms",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Services/CorporateUniforms.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Services/Harmony_PawnGenerator_GeneratePawn_CorporateUniforms.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "patch naming (design 3.2); file split",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.Harmony_CorporateWeaponSpecification",
+   "new": "Mugirl.Features.Corporate.Harmony_CompUniqueWeapon_InitializeTraits_CorporateSpecification",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Pricing/Harmony_CorporateWeaponSpecification.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Pricing/Harmony_CompUniqueWeapon_InitializeTraits_CorporateSpecification.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "patch naming (design 3.2)",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.Harmony_GiantCorpRaidTiers",
+   "new": "Mugirl.Features.Corporate.Harmony_PawnGroupMaker_CanGenerateFrom_CorporateRaidTiers",
+   "oldFile": "Source/MugirlRace/Features/Incidents/Raids/Harmony_GiantCorpRaidTiers.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Raids/Harmony_PawnGroupMaker_CanGenerateFrom_CorporateRaidTiers.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "moves to Corporate (design 3.1); patch naming (design 3.2); its MugirlPatch module becomes Corporate",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.JobDriver_CorporateSupportTend",
+   "new": "Mugirl.Features.Corporate.JobDriver_CorporateSupportTend",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Services/JobDriver_CorporateSupportTend.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Services/JobDriver_CorporateSupportTend.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); saved as curDriver Class; driverClass of JobDef Mugirl_CorporateSupportTend (1.7/Defs/Corporate/CorporateSupportDuty.xml:5)",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.JobDriver_CorporateTalkRepresentative",
+   "new": "Mugirl.Features.Corporate.JobDriver_CorporateTalkRepresentative",
+   "oldFile": "Source/MugirlRace/Features/Corporate/UI/Entry/JobDriver_CorporateTalkRepresentative.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/UI/Entry/JobDriver_CorporateTalkRepresentative.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); saved as curDriver Class; driverClass of JobDef Mugirl_CorporateTalkRepresentative (CorporateIntroduction.xml:39)",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.JobDriver_CorporateUseComms",
+   "new": "Mugirl.Features.Corporate.JobDriver_CorporateUseComms",
+   "oldFile": "Source/MugirlRace/Features/Corporate/UI/Entry/JobDriver_CorporateUseComms.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/UI/Entry/JobDriver_CorporateUseComms.cs",
+   "saveVisible": true,
+   "xmlVisible": true,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); saved as curDriver Class; driverClass of JobDef Mugirl_CorporateUseComms (CorporateIntroduction.xml:34)",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.JobGiver_CorporateSupportTend",
+   "new": "Mugirl.Features.Corporate.JobGiver_CorporateSupportTend",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Services/JobGiver_CorporateSupportTend.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Services/JobGiver_CorporateSupportTend.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); ThinkNode Class in DutyDef Mugirl_CorporateSupportHunt (CorporateSupportDuty.xml:23)",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.LordJob_CorporateSupport",
+   "new": "Mugirl.Features.Corporate.LordJob_CorporateSupport",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Services/LordJob_CorporateSupport.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Services/LordJob_CorporateSupport.cs",
+   "saveVisible": true,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); saved as lordJob Class; an unmapped rename NREs in Lord.ExposeData_StateGraph",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.LordToil_CorporateSupportHunt",
+   "new": "Mugirl.Features.Corporate.LordToil_CorporateSupportHunt",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Services/LordToil_CorporateSupportHunt.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Services/LordToil_CorporateSupportHunt.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); toils are rebuilt by CreateGraph, never saved",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.QuestNode_Root_CorporateIntroduction",
+   "new": "Mugirl.Features.Corporate.QuestNode_Root_CorporateIntroduction",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Introduction/CorporateIntroductionQuest.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Introduction/QuestNode_Root_CorporateIntroduction.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); file split (one type per file); root Class of QuestScriptDef Mugirl_CorporateIntroductionQuest",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.QuestNode_Root_CorporateMission",
+   "new": "Mugirl.Features.Corporate.QuestNode_Root_CorporateMission",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Missions/CorporateMissionQuest.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Missions/QuestNode_Root_CorporateMission.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); vanilla-derived QuestNode keeps 'Quest' (design 3.2); file split",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.QuestPart_CorporateIntroduction",
+   "new": "Mugirl.Features.Corporate.QuestPart_CorporateIntroduction",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Introduction/CorporateIntroductionQuest.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Introduction/QuestPart_CorporateIntroduction.cs",
+   "saveVisible": true,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); QuestPart saved by Class in questManager/quests/li/parts/li (real save S10); file split",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.QuestPart_CorporateMission",
+   "new": "Mugirl.Features.Corporate.QuestPart_CorporateMission",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Missions/CorporateMissionQuest.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Missions/QuestPart_CorporateMission.cs",
+   "saveVisible": true,
+   "xmlVisible": false,
+   "reason": "namespace only: root namespace Mugirl is forbidden (design 3.1); QuestPart saved by Class; file split",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.SitePartWorker_Corporate",
+   "new": "Mugirl.Features.Corporate.SitePartWorker_CorporateMission",
+   "oldFile": "Source/MugirlRace/Features/Corporate/Missions/CorporateMissionQuest.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/Missions/SitePartWorker_CorporateMission.cs",
+   "saveVisible": false,
+   "xmlVisible": true,
+   "reason": "name too generic: it serves both corporate mission site parts (Mugirl_CorporatePurgeSite, Mugirl_CorporateResearchSite); SitePart workers are not saved; file split",
+   "module": "corporate"
+  },
+  {
+   "old": "Mugirl.Tests.Compatibility.CorporatePricingCompatibilityTests",
+   "new": "Mugirl.Tests.Corporate.CorporateForeignBehaviorTests",
+   "oldFile": "Source/Tests/MugirlRace.Tests/Compatibility/CorporatePricingCompatibilityTests.cs",
+   "newFile": "Source/Tests/MugirlRace.Tests/Corporate/CorporateForeignBehaviorTests.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "module": "corporate",
+   "reason": "C01/C28: the test class follows its subject (CorporateForeignBehavior)."
+  },
+  {
+   "old": "Mugirl.Tests.Incidents.GiantCorpRaidTierRulesTests",
+   "new": "Mugirl.Tests.Corporate.CorporateRaidTierRulesTests",
+   "oldFile": "Source/Tests/MugirlRace.Tests/Incidents/GiantCorpRaidTierRulesTests.cs",
+   "newFile": "Source/Tests/MugirlRace.Tests/Corporate/CorporateRaidTierRulesTests.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "module": "corporate",
+   "reason": "C28: class and namespace follow the moved file (corporate raid tiers)."
+  },
+  {
+   "old": "Mugirl.Window_CorporateComms",
+   "new": "Mugirl.Features.Corporate.Dialog_CorporateTerminal",
+   "oldFile": "Source/MugirlRace/Features/Corporate/UI/Terminal/Window_CorporateComms.cs",
+   "newFile": "Source/MugirlRace/Features/Corporate/UI/Terminal/Dialog_CorporateTerminal.cs",
+   "saveVisible": false,
+   "xmlVisible": false,
+   "reason": "vanilla role shape Dialog_X; the window is the corporate terminal whose pages are CorporateTerminalPage. Test reflection coupling (UiSmokeSuite.cs:66-83) must follow; nested PageLabels keeps its short name",
+   "module": "corporate"
+  }
+ ],
+ "fileMoves": [
+  {
+   "old": "Source/MugirlRace/Features/Corporate/Missions/CorporateNetwork.Quests.cs",
+   "new": "Source/MugirlRace/Features/Corporate/Missions/CorporateNetwork.Missions.cs",
+   "module": "corporate"
+  }
+ ],
+ "defs": [
+  {
+   "defType": "CorporateFinanceConfigDef",
+   "old": "Mugirl_CorporateFinance",
+   "new": "Mugirl_CorporateFinanceConfig",
+   "saveVisible": false,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "inconsistent config defNames (Mugirl_CorporateFinance / ..People / ..TradeSettings / ..QuestConfig / ..Introduction): one pattern Mugirl_Corporate<Domain>Config with Mission terminology; Mugirl_CorporateIntroduction is also confusable with the component and with QuestScriptDef Mugirl_CorporateIntroductionQuest. Config Defs are never saved. defType is the post-rename class (old XML element Mugirl.CorporateFinanceConfigDef); defined at 1.7/Defs/Misc/CorporateFinance.xml:4",
+   "module": "corporate"
+  },
+  {
+   "defType": "CorporateIntroductionDef",
+   "old": "Mugirl_CorporateIntroduction",
+   "new": "Mugirl_CorporateIntroductionConfig",
+   "saveVisible": false,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "inconsistent config defNames (Mugirl_CorporateFinance / ..People / ..TradeSettings / ..QuestConfig / ..Introduction): one pattern Mugirl_Corporate<Domain>Config with Mission terminology; Mugirl_CorporateIntroduction is also confusable with the component and with QuestScriptDef Mugirl_CorporateIntroductionQuest. Config Defs are never saved. defType is the post-rename class (old XML element Mugirl.CorporateIntroductionDef); defined at 1.7/Defs/Corporate/CorporateIntroduction.xml:12",
+   "module": "corporate"
+  },
+  {
+   "defType": "CorporatePeopleConfigDef",
+   "old": "Mugirl_CorporatePeople",
+   "new": "Mugirl_CorporatePeopleConfig",
+   "saveVisible": false,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "inconsistent config defNames (Mugirl_CorporateFinance / ..People / ..TradeSettings / ..QuestConfig / ..Introduction): one pattern Mugirl_Corporate<Domain>Config with Mission terminology; Mugirl_CorporateIntroduction is also confusable with the component and with QuestScriptDef Mugirl_CorporateIntroductionQuest. Config Defs are never saved. defType is the post-rename class (old XML element Mugirl.CorporatePeopleConfigDef); defined at 1.7/Defs/Misc/CorporatePeople.xml:4",
+   "module": "corporate"
+  },
+  {
+   "defType": "CorporateQuestConfigDef",
+   "old": "Mugirl_CorporateQuestConfig",
+   "new": "Mugirl_CorporateMissionConfig",
+   "saveVisible": false,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "inconsistent config defNames (Mugirl_CorporateFinance / ..People / ..TradeSettings / ..QuestConfig / ..Introduction): one pattern Mugirl_Corporate<Domain>Config with Mission terminology; Mugirl_CorporateIntroduction is also confusable with the component and with QuestScriptDef Mugirl_CorporateIntroductionQuest. Config Defs are never saved. defType is the post-rename class (old XML element Mugirl.CorporateQuestConfigDef); defined at 1.7/Defs/QuestScriptDefs/CorporateQuests.xml:5",
+   "module": "corporate"
+  },
+  {
+   "defType": "CorporateTradeSettingsDef",
+   "old": "Mugirl_CorporateTradeSettings",
+   "new": "Mugirl_CorporateTradeConfig",
+   "saveVisible": false,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "inconsistent config defNames (Mugirl_CorporateFinance / ..People / ..TradeSettings / ..QuestConfig / ..Introduction): one pattern Mugirl_Corporate<Domain>Config with Mission terminology; Mugirl_CorporateIntroduction is also confusable with the component and with QuestScriptDef Mugirl_CorporateIntroductionQuest. Config Defs are never saved. defType is the post-rename class (old XML element Mugirl.CorporateTradeSettingsDef); defined at 1.7/Defs/Misc/CorporateTradeSettings.xml:4",
+   "module": "corporate"
+  },
+  {
+   "defType": "FactionDef",
+   "old": "Mugirl_GiantCorporations_Hostile",
+   "new": "Mugirl_GiantCorporation",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "explicitRefs": [
+    "1.7/Defs/FactionDefs/Factions_Enemy.xml:5",
+    "1.7/Defs/PawnKindDefs/CorporateServices.xml:9",
+    "1.7/Defs/PawnKindDefs/CorporateServices.xml:31",
+    "1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:9",
+    "1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:45",
+    "1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:80",
+    "1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:120",
+    "1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:151",
+    "1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:185",
+    "1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:215",
+    "1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:252",
+    "1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:283",
+    "1.7/Languages/ChineseSimplified/DefInjected/FactionDef/Factions_Enemy.xml:4",
+    "1.7/Languages/ChineseSimplified/DefInjected/FactionDef/Factions_Enemy.xml:6",
+    "1.7/Languages/ChineseSimplified/DefInjected/FactionDef/Factions_Enemy.xml:8",
+    "1.7/Languages/ChineseSimplified/DefInjected/FactionDef/Factions_Enemy.xml:10",
+    "1.7/Languages/ChineseSimplified/DefInjected/FactionDef/Factions_Enemy.xml:12",
+    "1.7/Languages/ChineseSimplified/DefInjected/FactionDef/Factions_Enemy.xml:14",
+    "1.7/Languages/ChineseSimplified/DefInjected/FactionDef/Factions_Enemy.xml:16",
+    "Source/MugirlRace/DefOf/MugirlContentDefOf.cs:70"
+   ],
+   "reason": "misleading meaning (design 3.3): the faction is a trading partner with goodwill, not permanentEnemy; hostility is decided at runtime (debt overlay, goodwill). Saved in world/factionManager/allFactions/li/def and VEF ignoredFactions (real saves). The MooGirl-era MooGirl_GiantCorporations_Hostile must chain to the new name. Refs listed for convenience (name is not shared)",
+   "module": "corporate"
+  },
+  {
+   "defType": "PawnKindDef",
+   "old": "AI_GC_Courier",
+   "new": "Mugirl_GiantCorp_Courier",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "wrong prefix AI_GC_ (leftover of the 1.6 Defs/AiGenerated folder; design 3.3 lists AI_GC_* explicitly); singular role names as proposed in content.md B.5. Saved as Pawn.kindDef, HAR originalKindDef, tales (AI_GC_Courier and AI_GC_Elites occur in real saves). Defined at 1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:116",
+   "module": "corporate"
+  },
+  {
+   "defType": "PawnKindDef",
+   "old": "AI_GC_Elites",
+   "new": "Mugirl_GiantCorp_Elite",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "wrong prefix AI_GC_ (leftover of the 1.6 Defs/AiGenerated folder; design 3.3 lists AI_GC_* explicitly); singular role names as proposed in content.md B.5. Saved as Pawn.kindDef, HAR originalKindDef, tales (AI_GC_Courier and AI_GC_Elites occur in real saves). Defined at 1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:248",
+   "module": "corporate"
+  },
+  {
+   "defType": "PawnKindDef",
+   "old": "AI_GC_Grunts",
+   "new": "Mugirl_GiantCorp_Grunt",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "wrong prefix AI_GC_ (leftover of the 1.6 Defs/AiGenerated folder; design 3.3 lists AI_GC_* explicitly); singular role names as proposed in content.md B.5. Saved as Pawn.kindDef, HAR originalKindDef, tales (AI_GC_Courier and AI_GC_Elites occur in real saves). Defined at 1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:5",
+   "module": "corporate"
+  },
+  {
+   "defType": "PawnKindDef",
+   "old": "AI_GC_MugirlRaider",
+   "new": "Mugirl_GiantCorp_MugirlRaider",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "wrong prefix AI_GC_ (leftover of the 1.6 Defs/AiGenerated folder; design 3.3 lists AI_GC_* explicitly); singular role names as proposed in content.md B.5. Saved as Pawn.kindDef, HAR originalKindDef, tales (AI_GC_Courier and AI_GC_Elites occur in real saves). Defined at 1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:279",
+   "module": "corporate"
+  },
+  {
+   "defType": "PawnKindDef",
+   "old": "AI_GC_OPC_Enforcers",
+   "new": "Mugirl_GiantCorp_OPCEnforcer",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "wrong prefix AI_GC_ (leftover of the 1.6 Defs/AiGenerated folder; design 3.3 lists AI_GC_* explicitly); singular role names as proposed in content.md B.5. Saved as Pawn.kindDef, HAR originalKindDef, tales (AI_GC_Courier and AI_GC_Elites occur in real saves). Defined at 1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:41",
+   "module": "corporate"
+  },
+  {
+   "defType": "PawnKindDef",
+   "old": "AI_GC_OPC_Sapper",
+   "new": "Mugirl_GiantCorp_OPCSapper",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "wrong prefix AI_GC_ (leftover of the 1.6 Defs/AiGenerated folder; design 3.3 lists AI_GC_* explicitly); singular role names as proposed in content.md B.5. Saved as Pawn.kindDef, HAR originalKindDef, tales (AI_GC_Courier and AI_GC_Elites occur in real saves). Defined at 1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:76",
+   "module": "corporate"
+  },
+  {
+   "defType": "PawnKindDef",
+   "old": "AI_GC_PMC_Recruits",
+   "new": "Mugirl_GiantCorp_PMCRecruit",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "wrong prefix AI_GC_ (leftover of the 1.6 Defs/AiGenerated folder; design 3.3 lists AI_GC_* explicitly); singular role names as proposed in content.md B.5. Saved as Pawn.kindDef, HAR originalKindDef, tales (AI_GC_Courier and AI_GC_Elites occur in real saves). Defined at 1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:147",
+   "module": "corporate"
+  },
+  {
+   "defType": "PawnKindDef",
+   "old": "AI_GC_Sapper",
+   "new": "Mugirl_GiantCorp_Sapper",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "wrong prefix AI_GC_ (leftover of the 1.6 Defs/AiGenerated folder; design 3.3 lists AI_GC_* explicitly); singular role names as proposed in content.md B.5. Saved as Pawn.kindDef, HAR originalKindDef, tales (AI_GC_Courier and AI_GC_Elites occur in real saves). Defined at 1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:211",
+   "module": "corporate"
+  },
+  {
+   "defType": "PawnKindDef",
+   "old": "AI_GC_Soldiers",
+   "new": "Mugirl_GiantCorp_Soldier",
+   "saveVisible": true,
+   "sharedNameWithOtherDefTypes": false,
+   "reason": "wrong prefix AI_GC_ (leftover of the 1.6 Defs/AiGenerated folder; design 3.3 lists AI_GC_* explicitly); singular role names as proposed in content.md B.5. Saved as Pawn.kindDef, HAR originalKindDef, tales (AI_GC_Courier and AI_GC_Elites occur in real saves). Defined at 1.7/Defs/PawnKindDefs/PawnKinds_GiantCorp.xml:181",
+   "module": "corporate"
+  }
+ ]
+}

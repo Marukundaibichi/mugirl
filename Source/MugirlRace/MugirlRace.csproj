@@ -1,0 +1,62 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    MugirlRace.dll for RimWorld 1.7.
+
+    An ordinary build (IDE, dotnet build, the solution, test projects referencing this one) writes only to bin/<Configuration>/
+    next to this file and never touches the mod's load folders. RimWorld loads 1.7/Assemblies/MugirlRace.dll, which is
+    written only by the explicit deploy step, started in Source/ so that Source/global.json selects the pinned SDK:
+      dotnet build MugirlRace/MugirlRace.csproj -c Release -p:DeployToMod=true
+    It copies MugirlRace.dll and MugirlRace.pdb into $(MugirlDeployDir) (default: the mod's 1.7/Assemblies) after the build.
+    A build made in a copy of Source/ deploys into a real mod folder with -p:MugirlDeployDir=<mod>\1.7\Assemblies\.
+  -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <AssemblyName>MugirlRace</AssemblyName>
+    <RootNamespace>Mugirl</RootNamespace>
+    <!-- Keep the assembly identity stable: RimWorld logs and Harmony owner reports show it. -->
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.7.0.0</FileVersion>
+    <InformationalVersion>1.7.0</InformationalVersion>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <DebugType>portable</DebugType>
+    <Optimize Condition="'$(Configuration)' == 'Release'">true</Optimize>
+    <MugirlDeployDir Condition="'$(MugirlDeployDir)' == ''">$(ModDir)1.7\Assemblies\</MugirlDeployDir>
+  </PropertyGroup>
+
+  <ItemGroup Label="Optional and hard dependencies">
+    <!-- HAR 是必需依赖；编译引用与游戏实际加载的 1.7 程序集保持一致。 -->
+    <Reference Include="AlienRace">
+      <HintPath>$(HarDir)AlienRace.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Compile-time enforcement of the 1.7 rule "no Unity compatibility layer" (docs/architecture/ADR-006-unity-boundary.md). -->
+    <PackageReference Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" PrivateAssets="all" />
+    <AdditionalFiles Include="BannedSymbols.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="MugirlRace.Tests" />
+  </ItemGroup>
+
+  <!-- The only step that writes into a load folder. The PDB always travels with the DLL: a stale PDB is removed. -->
+  <Target Name="MugirlDeployToMod" AfterTargets="Build" Condition="'$(DeployToMod)' == 'true'">
+    <PropertyGroup>
+      <!-- A command-line -p:MugirlDeployDir cannot be normalised in place (global property); normalise a copy. -->
+      <_MugirlDeployDir>$([MSBuild]::EnsureTrailingSlash('$(MugirlDeployDir)'))</_MugirlDeployDir>
+      <_MugirlBuiltPdb>$(TargetDir)$(TargetName).pdb</_MugirlBuiltPdb>
+    </PropertyGroup>
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(_MugirlDeployDir)" Retries="3" RetryDelayMilliseconds="500" />
+    <Copy SourceFiles="$(_MugirlBuiltPdb)" DestinationFolder="$(_MugirlDeployDir)" Retries="3" RetryDelayMilliseconds="500" Condition="Exists('$(_MugirlBuiltPdb)')" />
+    <Delete Files="$(_MugirlDeployDir)$(TargetName).pdb" Condition="!Exists('$(_MugirlBuiltPdb)')" />
+    <Message Importance="high" Text="MugirlRace -> deployed $(TargetFileName) to $(_MugirlDeployDir)" />
+  </Target>
+  <Import Project="CompileOrder.props" Label="MugirlCompileOrder" />
+  <Import Project="../Build/MugirlRace.MetadataOrder/MetadataOrder.targets" Label="MugirlMetadataOrder" />
+</Project>

@@ -506,7 +506,7 @@ namespace Mugirl
 
         private void DrawOrders(Rect rect)
         {
-            float minimumHeight = rect.width - 18f >= 720f ? 670f : 880f;
+            float minimumHeight = rect.width - 18f >= 720f ? 718f : 928f;
             if (showExistingOrders || rect.height >= minimumHeight) { DrawOrdersBody(rect); return; }
             // 搜索栏与页签固定在滚动容器外；滚动只移动目录和订单详情，
             // 不让输入法组合串、候选位置和字段坐标随滚动裁剪变化。
@@ -633,13 +633,19 @@ namespace Mugirl
             if (CorporateUI.Button(new Rect(0f, 247f, w, 30f), SpeedLabel(orderSpeed), id: "orders/speed"))
                 ShowMenu(Enum.GetValues(typeof(CorporateOrderSpeed)).Cast<CorporateOrderSpeed>().Select(speed =>
                     new FloatMenuOption(SpeedLabel(speed), () => orderSpeed = speed)).ToList());
+            int maximum = network.MaxOrderQuantity(orderPreview);
+            if (orderQuantity > maximum)
+            { orderQuantity = maximum; orderQuantityText = orderQuantity.ToString(); }
             int standardCost = network.OrderQuote(orderPreview, orderQuantity);
             int cost = network.OrderQuote(orderPreview, orderQuantity, orderSpeed);
             CorporateUI.Label(new Rect(0f, 288f, w, 46f), "Mugirl.CorporatePricing.Breakdown".Translate(
                 CorporateUI.Money(standardCost), CorporateUI.Money(Math.Max(0, cost - standardCost))), GameFont.Tiny);
             y = rect.height - 169f;
+            Rect limitReason = new Rect(0f, y - 67f, w, 40f);
+            CorporateUI.Label(limitReason, network.OrderQuantityLimitReason(orderPreview), GameFont.Tiny, CorporateUI.Muted);
+            TooltipHandler.TipRegion(limitReason, "Mugirl.CorporatePricing.QuantityLimitTerms".Translate());
             CorporateUI.Label(new Rect(0f, y - 23f, w, 20f), BrowserText("Quantity"), GameFont.Tiny, CorporateUI.Muted);
-            CorporateQuantity(new Rect(0f, y, w, 32f), ref orderQuantity, ref orderQuantityText, CorporateNetwork.MaxOrderQuantity(orderDef), "orders/quantity");
+            CorporateQuantity(new Rect(0f, y, w, 32f), ref orderQuantity, ref orderQuantityText, maximum, "orders/quantity");
             // 数量控件可能在本次事件里改变数量，提交前同步重算。
             cost = network.OrderQuote(orderPreview, orderQuantity, orderSpeed);
             CorporateUI.Label(new Rect(0f, y + 39f, w * 0.25f, 28f), BrowserText("Total"), GameFont.Tiny, CorporateUI.Muted, TextAnchor.MiddleLeft);
@@ -846,7 +852,7 @@ namespace Mugirl
             }
             else
             {
-                float detailHeight = ordering ? 554f : 364f;
+                float detailHeight = ordering ? 602f : 364f;
                 listing = new Rect(rect.x, rect.y, rect.width, Mathf.Max(132f, rect.height - detailHeight - 14f));
                 detail = new Rect(rect.x, listing.yMax + 14f, rect.width, detailHeight);
             }

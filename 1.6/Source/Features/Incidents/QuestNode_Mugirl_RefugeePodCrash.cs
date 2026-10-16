@@ -1,4 +1,4 @@
-﻿using Verse;
+using Verse;
 using RimWorld.QuestGen;
 using RimWorld;
 
@@ -10,27 +10,8 @@ namespace Mugirl
 
         public override Pawn GeneratePawn()
         {
-            // 逃亡奴隶保持无派系；敌对巨企派系只用于袭击，避免救援任务变成战斗事件。
-            Faction faction = null;
-
-            // 救援逃生舱生成成年女性、可招募且无亲属关系的雪牛娘。
-            PawnGenerationRequest request = new PawnGenerationRequest(
-                Mugirl_DefOf.Mugirl_EscapeSpaceSlave,
-                faction,
-                PawnGenerationContext.NonPlayer,
-                -1,
-                forceGenerateNewPawn: true,
-                allowDead: false,
-                allowDowned: true,
-                canGeneratePawnRelations: false,
-                mustBeCapableOfViolence: true,
-                forceAddFreeWarmLayerIfNeeded: false,
-                allowGay: true,
-                allowPregnant: false,
-                forceRecruitable: true,
-                validatorPostGear: IsValidRefugeePodPawn,
-                fixedGender: Gender.Female,
-                developmentalStages: DevelopmentalStage.Adult);
+            PawnGenerationRequest request = MugirlGeneratedPawnUtility.CreateFactionlessAdultRequest(
+                Mugirl_DefOf.Mugirl_EscapeSpaceSlave, allowDowned: true, validator: IsValidRefugeePodPawn);
 
             Pawn pawn = GenerateDownedPawn(request);
             if (pawn == null)
@@ -41,7 +22,7 @@ namespace Mugirl
             MugirlApparelTagUtility.TryWearIdeoSuppressedKindApparel(pawn);
 
             // 任务系统需要世界 pawn 参与后续信号和清理。
-            MugirlGeneratedPawnUtility.TryPassToWorld(pawn);
+            MugirlGeneratedPawnUtility.TryPassToWorld(pawn, keepFactionless: true);
 
             return pawn;
         }
@@ -67,6 +48,8 @@ namespace Mugirl
                 }
 
                 // 原版 DamageUntilDowned 对高抗倒地种族存在累计伤势致死风险，改用无伤安全倒地。
+                // forceDowned 只抑制倒地即死，不代替失能条件；与开局共用可自然恢复的疲惫状态。
+                pawn.health.AddHediff(Mugirl_DefOf.Mugirl_Abasia);
                 MugirlPawnDowningUtility.DownRescuePawnSafely(pawn);
                 if (pawn.Downed && !pawn.Dead)
                 {

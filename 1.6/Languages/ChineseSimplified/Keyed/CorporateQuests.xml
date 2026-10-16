@@ -18,7 +18,8 @@
   <Mugirl.CQ.State.Abandoned>已放弃</Mugirl.CQ.State.Abandoned>
   <Mugirl.CQ.HighRisk>高风险</Mugirl.CQ.HighRisk>
   <Mugirl.CQ.AnyMaterial>不限</Mugirl.CQ.AnyMaterial>
-  <Mugirl.CQ.ProcessingDesc>加工单：{0} × {1} 批\n交货：{2} × {3} · 材质 {7} · 普通以上 · 耐久≥90%\n保证金 {4} · 加工费 {5} 白银 · 配料 {6}\n可分批验收；拒收变质及尸体污染品。逾期或弃单扣押保证金并降级合作信用。</Mugirl.CQ.ProcessingDesc>
+  <Mugirl.CQ.ProcessingDesc>加工单：{0} × {1} 批\n交货：{2} × {3} · 材质 {7} · 普通以上 · 耐久≥90%\n巨企提供原料：{6}；生产账单由你安排。\n签约暂扣保证金 {4} 白银，完成后全额返还。\n净加工费 {5} 白银；完成结算共 {8} 白银（含保证金）。\n可分批验收；优先提交最低合格品质，高品质不加价。拒收变质及尸体污染品。逾期或弃单扣留保证金、不支付加工费，并降低巨企好感。</Mugirl.CQ.ProcessingDesc>
+  <Mugirl.CQ.HighQualityConfirm>{0} 的本次交货将包含良好或更高品质的成品。整单加工费仍固定为 {1} 白银，高品质不会增加报酬。将优先提交最低合格品质；确认继续交货？</Mugirl.CQ.HighQualityConfirm>
   <Mugirl.CQ.PurgeDesc>行动对象：{0} · 武装评估 {1}\n酬金 {2} 白银。期限内消灭或俘获指定守军；逃脱视为违约。</Mugirl.CQ.PurgeDesc>
   <Mugirl.CQ.InvestmentDesc>认购 {0} 白银\n含本金回款：30% → 0.6倍 / 45% → 1.05倍 / 25% → 1.6倍\n到期结算，不予赎回。亏损不追加债务。</Mugirl.CQ.InvestmentDesc>
   <Mugirl.CQ.InvestmentHighDesc>高风险认购 {0} 白银\n含本金回款：45% → 0.2倍 / 35% → 1.2倍 / 20% → 2.6倍\n到期结算，不予赎回。亏损不追加债务。</Mugirl.CQ.InvestmentHighDesc>

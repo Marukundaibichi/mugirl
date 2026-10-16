@@ -1,0 +1,6072 @@
+{
+ "_doc": "Frozen-forever public API of Mugirl Race (decisions.md section 5, D5 = keep dependents working). 'entries' are frozen: no spec may rename them (spec linter L05/L06) and the validator reads this file as frozen-forever input; 'treatment' says how each stays available. 'validationOnly' lists names that only dependents' validation code uses: they are NOT frozen; their new names go to the owner (owner-migration-list.md). usedBy.file is '<path in the dependent>:<line>'; use = production | validation. Kinds: packageId, harmonyId, displayName, typeShortName, type, xmlClass (Class= value or Def element name), xmlField (field of an xmlClass, see owner), member, defName (defRoot = Def database root), defNamePattern, abstractName, tag (apparel/trade tag string), texturePath, scribeLabel, structure, harmonyParameter (parameter name a dependent's Harmony patch binds; also listed as harmonyBoundParameters on its member), xpathStructure (<defName>/<element path> a dependent's XPath patches), typeNameLiteral (validationOnly: a string compared with a type short name). usedBy lines of compiled assemblies are ':0'.",
+ "formatVersion": 1,
+ "generated": "2026-10-15",
+ "generator": "spec/final/_gen/scan_dependents.py + gen_public_api.py",
+ "scanned": [
+  {
+   "mod": "MRK.WhiteFluff",
+   "location": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+   "files": 110,
+   "validationPaths": [
+    "Source/Validation/",
+    "Tools/"
+   ]
+  },
+  {
+   "mod": "har.mugirlrace.subspecies",
+   "location": "Mods/MooGirl_Subspecies (local, 1.6)",
+   "files": 39,
+   "validationPaths": []
+  },
+  {
+   "mod": "KindSeal.LOL",
+   "location": "workshop 3555662938 (1.6+1.7)",
+   "files": 303,
+   "validationPaths": []
+  },
+  {
+   "mod": "Kindseal.UFPC",
+   "location": "workshop 3698316804 (1.6+1.7)",
+   "files": 124,
+   "validationPaths": []
+  },
+  {
+   "mod": "ZuoYao.RavenRace",
+   "location": "workshop 3781005562 (1.6)",
+   "files": 1705,
+   "validationPaths": []
+  },
+  {
+   "mod": "ZuoYao.RavenRace",
+   "location": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+   "files": 571,
+   "validationPaths": []
+  },
+  {
+   "mod": "Berserk.poisonless.milk",
+   "location": "workshop 3601148404 (1.6)",
+   "files": 2,
+   "validationPaths": []
+  }
+ ],
+ "entries": [
+  {
+   "kind": "abstractName",
+   "name": "MugirlPawn",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:4",
+     "use": "production"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:354",
+     "use": "production"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:515",
+     "use": "production"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "abstractName",
+   "name": "Mugirl_ApparelBase",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/Apparel/Apparel_Subspecies.xml:3",
+     "use": "production"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "abstractName",
+   "name": "Mugirl_BaseBackStory",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/BackStoryDefs/Backstories_Elder.xml:4",
+     "use": "production"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/BackStoryDefs/Backstories_Elder.xml:24",
+     "use": "production"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "abstractName",
+   "name": "Mugirl_BaseKind",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/PawnKindDefs/PawnKinds.xml:54",
+     "use": "production"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/PawnKindDefs/PawnKinds.xml:97",
+     "use": "production"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "abstractName",
+   "name": "Mugirl_BondageBase",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/HediffDefs/Hediffs_Bondage.xml:3",
+     "use": "production"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/HediffDefs/Hediffs_Bondage.xml:22",
+     "use": "production"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/HediffDefs/Hediffs_Bondage.xml:61",
+     "use": "production"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "abstractName",
+   "name": "Mugirl_HeadBase",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/Apparel/Apparel_Subspecies.xml:103",
+     "use": "production"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "abstractName",
+   "name": "Mugirl_OnSkinBase",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/Apparel/Apparel_Subspecies.xml:56",
+     "use": "production"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "abstractName",
+   "name": "Mugirl_SlaveApparel_Base",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Body.xml:4",
+     "use": "production"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Ears",
+   "frozen": true,
+   "frozenBy": "D7 / C30: shared with other mods' ear apparel",
+   "usedBy": [],
+   "treatment": "unchanged",
+   "defRoot": "BodyPartGroupDef"
+  },
+  {
+   "kind": "defName",
+   "name": "Job_Charge",
+   "defRoot": "JobDef",
+   "usedBy": [
+    {
+     "mod": "Kindseal.UFPC",
+     "where": "workshop 3698316804 (1.6+1.7)",
+     "file": "1.6/Defs/Ability/UFC_Abilities.xml:116",
+     "use": "production",
+     "note": "<jobDef>"
+    },
+    {
+     "mod": "Kindseal.UFPC",
+     "where": "workshop 3698316804 (1.6+1.7)",
+     "file": "1.7/Defs/Ability/UFC_Abilities.xml:116",
+     "use": "production",
+     "note": "<jobDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Combat.xml:22",
+     "use": "production",
+     "note": "<li>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Combat.xml:21",
+     "use": "production",
+     "note": "<li>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged",
+   "frozenBy": "D7: Kindseal.UFPC and Raven FA targetJobs"
+  },
+  {
+   "kind": "defName",
+   "name": "Job_MugirlMilkingTargetWait",
+   "defRoot": "JobDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_Milk_JobAnimations.xml:44",
+     "use": "production",
+     "note": "<li>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl",
+   "defRoot": "ThingDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/Assemblies/MRK.WhiteFluff.dll:0",
+     "use": "production",
+     "note": "string in a compiled assembly"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:265",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:299",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:316",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/RevisionChecks.cs:111",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Tools/Export-FacialAnimation.py:4",
+     "use": "validation",
+     "note": "script"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Tools/Export-FacialAnimation.py:90",
+     "use": "validation",
+     "note": "script"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Tools/Start-Validation.ps1:35",
+     "use": "validation",
+     "note": "script"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Tools/Sync-DocumentCopy.py:122",
+     "use": "validation",
+     "note": "script"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Assemblies/MugirlSub.dll:0",
+     "use": "production",
+     "note": "string in a compiled assembly"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Patches/BondageApparel.xml:5",
+     "use": "production",
+     "note": "xpath"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Patches/BondageApparel.xml:13",
+     "use": "production",
+     "note": "xpath"
+    },
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "1.6/Patches/Patch1.xml:177",
+     "use": "production",
+     "note": "xpath"
+    },
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "1.6/Patches/Patch1.xml:184",
+     "use": "production",
+     "note": "xpath"
+    },
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "1.7/Patches/Patch1.xml:177",
+     "use": "production",
+     "note": "xpath"
+    },
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "1.7/Patches/Patch1.xml:184",
+     "use": "production",
+     "note": "xpath"
+    },
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "Assets.zip:101796",
+     "use": "validation",
+     "note": "script"
+    },
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "Assets.zip:102324",
+     "use": "validation",
+     "note": "script"
+    },
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "Assets.zip:103016",
+     "use": "validation",
+     "note": "script"
+    },
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "Assets.zip:103741",
+     "use": "validation",
+     "note": "script"
+    },
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "Assets.zip:352868",
+     "use": "validation",
+     "note": "script"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "1.7/Assemblies/ZuoYao_RavenRace.dll:0",
+     "use": "production",
+     "note": "string in a compiled assembly"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "Assemblies/ZuoYao_RavenRace.dll:0",
+     "use": "production",
+     "note": "string in a compiled assembly"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "AlienRaces/Dragonian/Patches/DragonianComp.xml:13",
+     "use": "production",
+     "note": "<forbidBloodline>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "AlienRaces/Dragonian/Patches/DragonianComp.xml:23",
+     "use": "production",
+     "note": "<requireBloodline2>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "AlienRaces/MuGirl/Patches/MuGirlComp.xml:12",
+     "use": "production",
+     "note": "<requireBloodline>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "Defs/Features/Hybridization/Compat_MuGirl/Bloodline_MuGirl.xml:8",
+     "use": "production",
+     "note": "<raceDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "Patches/Patch_BloodlineParts.xml:274",
+     "use": "production",
+     "note": "<li>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "Patches/Patch_BloodlineParts.xml:437",
+     "use": "production",
+     "note": "<li>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "Patches/Patch_BloodlineParts.xml:450",
+     "use": "production",
+     "note": "<li>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "Assemblies/ZuoYao_RavenRace.dll:0",
+     "use": "production",
+     "note": "string in a compiled assembly"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "AlienRaces/Dragonian/Patches/DragonianComp.xml:13",
+     "use": "production",
+     "note": "<forbidBloodline>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "AlienRaces/Dragonian/Patches/DragonianComp.xml:23",
+     "use": "production",
+     "note": "<requireBloodline2>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "AlienRaces/MuGirl/Patches/MuGirlComp.xml:12",
+     "use": "production",
+     "note": "<requireBloodline>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "Defs/Features/Hybridization/Compat_MuGirl/Bloodline_MuGirl.xml:8",
+     "use": "production",
+     "note": "<raceDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "Patches/Patch_BloodlineParts.xml:274",
+     "use": "production",
+     "note": "<li>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "Patches/Patch_BloodlineParts.xml:368",
+     "use": "production",
+     "note": "<li>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "Patches/Patch_BloodlineParts.xml:381",
+     "use": "production",
+     "note": "<li>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged",
+   "frozenBy": "design 2 (race)"
+  },
+  {
+   "kind": "defName",
+   "name": "MugirlBody",
+   "defRoot": "BodyDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/Assemblies/MRK.WhiteFluff.dll:0",
+     "use": "production",
+     "note": "string in a compiled assembly"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Core/PatchOperation_CopyBody.cs:10",
+     "use": "production",
+     "note": "xpath in C# literal"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged",
+   "frozenBy": "design 2 (+ its body-part order: part indices are saved)"
+  },
+  {
+   "kind": "defName",
+   "name": "MugirlFaceSizeAndPositionDef",
+   "defRoot": "FacialAnimation.FaceAdjustmentDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:143",
+     "use": "validation",
+     "note": "C# string literal"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "MugirlLike",
+   "defRoot": "ThinkTreeDef",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6_Anomaly/Defs/Mutants/Mutants.xml:8",
+     "use": "production",
+     "note": "<thinkTree>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged",
+   "frozenBy": "D7 / design 2"
+  },
+  {
+   "kind": "defName",
+   "name": "MugirlMilkFilth",
+   "defRoot": "ThingDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/Assemblies/MRK.WhiteFluff.dll:0",
+     "use": "production",
+     "note": "string in a compiled assembly"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Milk/MilkJobs.cs:134",
+     "use": "production",
+     "note": "C# string literal"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_Body_bondage",
+   "defRoot": "ApparelLayerDef",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Body.xml:47",
+     "use": "production",
+     "note": "<li>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged",
+   "frozenBy": "design 2"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_BrowNormal",
+   "defRoot": "FacialAnimation.BrowTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_BrowNormal2",
+   "defRoot": "FacialAnimation.BrowTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_BrowNormal3",
+   "defRoot": "FacialAnimation.BrowTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_BrowNormal4",
+   "defRoot": "FacialAnimation.BrowTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_BrowNormal5",
+   "defRoot": "FacialAnimation.BrowTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_BrowNormal6",
+   "defRoot": "FacialAnimation.BrowTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_BrowNormal7",
+   "defRoot": "FacialAnimation.BrowTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_Charge",
+   "defRoot": "AbilityDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/Assemblies/MRK.WhiteFluff.dll:0",
+     "use": "production",
+     "note": "string in a compiled assembly"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/Defs/WhiteFluff_Xenotype.xml:17",
+     "use": "production",
+     "note": "<li>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Core/Combat.cs:42",
+     "use": "production",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Core/Identity.cs:15",
+     "use": "production",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:131",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "Common/Bio_1.6/Defs/Xenotypes.xml:20",
+     "use": "production",
+     "note": "<li>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "Common/Bio_1.6/Defs/Xenotypes.xml:43",
+     "use": "production",
+     "note": "<li>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "Common/Bio_1.6/Defs/Xenotypes.xml:68",
+     "use": "production",
+     "note": "<li>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "1.7/Assemblies/ZuoYao_RavenRace.dll:0",
+     "use": "production",
+     "note": "string in a compiled assembly"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "Assemblies/ZuoYao_RavenRace.dll:0",
+     "use": "production",
+     "note": "string in a compiled assembly"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "Assemblies/ZuoYao_RavenRace.dll:0",
+     "use": "production",
+     "note": "string in a compiled assembly"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged",
+   "frozenBy": "design 2 (Ability, Gene and Hediff share the name)"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_Colony",
+   "defRoot": "FactionDef",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/PawnKindDefs/PawnKinds.xml:13",
+     "use": "production",
+     "note": "<defaultFactionType>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/PawnKindDefs/PawnKinds.xml:58",
+     "use": "production",
+     "note": "<defaultFactionType>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/PawnKindDefs/PawnKinds.xml:63",
+     "use": "production",
+     "note": "<li>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/PawnKindDefs/PawnKinds.xml:101",
+     "use": "production",
+     "note": "<defaultFactionType>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/PawnKindDefs/PawnKinds.xml:106",
+     "use": "production",
+     "note": "<li>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged",
+   "frozenBy": "design 2"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_EmotionNormal",
+   "defRoot": "FacialAnimation.EmotionTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_EmotionNormal2",
+   "defRoot": "FacialAnimation.EmotionTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_EmotionNormal3",
+   "defRoot": "FacialAnimation.EmotionTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_EmotionNormal4",
+   "defRoot": "FacialAnimation.EmotionTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_EmotionNormal5",
+   "defRoot": "FacialAnimation.EmotionTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_EmotionNormal6",
+   "defRoot": "FacialAnimation.EmotionTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_EmotionNormal7",
+   "defRoot": "FacialAnimation.EmotionTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_EyeNormal",
+   "defRoot": "FacialAnimation.EyeballTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_EyeNormal2",
+   "defRoot": "FacialAnimation.EyeballTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_EyeNormal3",
+   "defRoot": "FacialAnimation.EyeballTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_EyeNormal4",
+   "defRoot": "FacialAnimation.EyeballTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_EyeNormal5",
+   "defRoot": "FacialAnimation.EyeballTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_EyeNormal6",
+   "defRoot": "FacialAnimation.EyeballTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_EyeNormal7",
+   "defRoot": "FacialAnimation.EyeballTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_Hair",
+   "defRoot": "StyleItemCategoryDef",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:701",
+     "use": "production",
+     "note": "<li>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/HairDefs/Hairs_Elder.xml:7",
+     "use": "production",
+     "note": "<category>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/HairDefs/Hairs_Pioneer.xml:7",
+     "use": "production",
+     "note": "<category>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/HairDefs/Hairs_Pioneer.xml:19",
+     "use": "production",
+     "note": "<category>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/HairDefs/Hairs_Pioneer.xml:31",
+     "use": "production",
+     "note": "<category>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/PawnKindDefs/PawnKinds.xml:112",
+     "use": "production",
+     "note": "<tag>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged",
+   "frozenBy": "design 2"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_Head",
+   "defRoot": "ThingCategoryDef",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ThingCategoryDefs/ThingCategories.xml:12",
+     "use": "production",
+     "note": "<parent>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_HeadNormal",
+   "defRoot": "FacialAnimation.HeadTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_HeadNormal2",
+   "defRoot": "FacialAnimation.HeadTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_HeadNormal3",
+   "defRoot": "FacialAnimation.HeadTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_HeadNormal4",
+   "defRoot": "FacialAnimation.HeadTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_HeadNormal5",
+   "defRoot": "FacialAnimation.HeadTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_HeadNormal6",
+   "defRoot": "FacialAnimation.HeadTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_HeadNormal7",
+   "defRoot": "FacialAnimation.HeadTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_Horn",
+   "defRoot": "BodyPartDef",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:176",
+     "use": "production",
+     "note": "<bodyPart>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:211",
+     "use": "production",
+     "note": "<bodyPart>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:427",
+     "use": "production",
+     "note": "<bodyPart>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:616",
+     "use": "production",
+     "note": "<bodyPart>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:648",
+     "use": "production",
+     "note": "<bodyPart>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged",
+   "frozenBy": "design 2"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_Lactation",
+   "defRoot": "HediffDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/Assemblies/MRK.WhiteFluff.dll:0",
+     "use": "production",
+     "note": "string in a compiled assembly"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Core/WhiteFluff.cs:13",
+     "use": "production",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Health/Regeneration.cs:25",
+     "use": "production",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/MilkChecks.cs:25",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/RuntimeChecks.cs:257",
+     "use": "validation",
+     "note": "C# string literal"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_LidNormal",
+   "defRoot": "FacialAnimation.LidTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_LidNormal2",
+   "defRoot": "FacialAnimation.LidTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_LidNormal3",
+   "defRoot": "FacialAnimation.LidTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_LidNormal4",
+   "defRoot": "FacialAnimation.LidTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_LidNormal5",
+   "defRoot": "FacialAnimation.LidTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_LidNormal6",
+   "defRoot": "FacialAnimation.LidTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_LidNormal7",
+   "defRoot": "FacialAnimation.LidTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_LidOptionNormal",
+   "defRoot": "FacialAnimation.LidOptionTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_LidOptionNormal2",
+   "defRoot": "FacialAnimation.LidOptionTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_LidOptionNormal3",
+   "defRoot": "FacialAnimation.LidOptionTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_LidOptionNormal4",
+   "defRoot": "FacialAnimation.LidOptionTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_LidOptionNormal5",
+   "defRoot": "FacialAnimation.LidOptionTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_LidOptionNormal6",
+   "defRoot": "FacialAnimation.LidOptionTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_LidOptionNormal7",
+   "defRoot": "FacialAnimation.LidOptionTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_Milk",
+   "defRoot": "ThingDef",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:324",
+     "use": "production",
+     "note": "<milkDef>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:488",
+     "use": "production",
+     "note": "<milkDef>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:741",
+     "use": "production",
+     "note": "<milkDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "1.7/Assemblies/ZuoYao_RavenRace.dll:0",
+     "use": "production",
+     "note": "string in a compiled assembly"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "Assemblies/ZuoYao_RavenRace.dll:0",
+     "use": "production",
+     "note": "string in a compiled assembly"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "AlienRaces/MuGirl/Patches/MuGirlComp.xml:8",
+     "use": "production",
+     "note": "<milkDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "AlienRaces/MuGirl/Patches/MuGirlComp.xml:8",
+     "use": "production",
+     "note": "<milkDef>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged",
+   "frozenBy": "design 2"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_MouthNormal",
+   "defRoot": "FacialAnimation.MouthTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_MouthNormal2",
+   "defRoot": "FacialAnimation.MouthTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_MouthNormal3",
+   "defRoot": "FacialAnimation.MouthTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_MouthNormal4",
+   "defRoot": "FacialAnimation.MouthTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_MouthNormal5",
+   "defRoot": "FacialAnimation.MouthTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_MouthNormal6",
+   "defRoot": "FacialAnimation.MouthTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_MouthNormal7",
+   "defRoot": "FacialAnimation.MouthTypeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "via pattern Mugirl_*Normal*"
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_NobelPrize",
+   "defRoot": "GeneDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/Assemblies/MRK.WhiteFluff.dll:0",
+     "use": "production",
+     "note": "string in a compiled assembly"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/Defs/WhiteFluff_Xenotype.xml:28",
+     "use": "production",
+     "note": "<li>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Core/Identity.cs:17",
+     "use": "production",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:142",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/Update0930Checks.cs:264",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/Update0930Checks.cs:307",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "Common/Bio_1.6/Defs/Xenotypes.xml:45",
+     "use": "production",
+     "note": "<li>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "Common/Bio_1.6/Defs/Xenotypes.xml:70",
+     "use": "production",
+     "note": "<li>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged",
+   "frozenBy": "design 2"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_OnSkin",
+   "defRoot": "ThingCategoryDef",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ThingCategoryDefs/ThingCategories.xml:6",
+     "use": "production",
+     "note": "<parent>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged",
+   "frozenBy": "design 2"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_Settings",
+   "defRoot": "AlienRace.RaceSettings",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Patches/StartingColonists.xml:4",
+     "use": "production",
+     "note": "xpath"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_Shell",
+   "defRoot": "ThingCategoryDef",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/Apparel/Apparel_Subspecies.xml:49",
+     "use": "production",
+     "note": "<li>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_Shout",
+   "defRoot": "AbilityDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/Assemblies/MRK.WhiteFluff.dll:0",
+     "use": "production",
+     "note": "string in a compiled assembly"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/Defs/WhiteFluff_Xenotype.xml:18",
+     "use": "production",
+     "note": "<li>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Core/Identity.cs:15",
+     "use": "production",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:131",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "Common/Bio_1.6/Defs/Xenotypes.xml:21",
+     "use": "production",
+     "note": "<li>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "Common/Bio_1.6/Defs/Xenotypes.xml:44",
+     "use": "production",
+     "note": "<li>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "Common/Bio_1.6/Defs/Xenotypes.xml:69",
+     "use": "production",
+     "note": "<li>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "Common/Bio_1.6/Patches/ZombieRoarAbility.xml:4",
+     "use": "production",
+     "note": "xpath"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged",
+   "frozenBy": "design 2"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_SlaveApparelKey_Medieval",
+   "defRoot": "ThingDef",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Body.xml:23",
+     "use": "production",
+     "note": "<ThingDef>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Body.xml:32",
+     "use": "production",
+     "note": "<keytype>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Body.xml:102",
+     "use": "production",
+     "note": "<keytype>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Hand.xml:65",
+     "use": "production",
+     "note": "<keytype>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Hand.xml:94",
+     "use": "production",
+     "note": "<keytype>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_Tail",
+   "defRoot": "BodyPartDef",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:270",
+     "use": "production",
+     "note": "<bodyPart>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:396",
+     "use": "production",
+     "note": "<bodyPart>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:584",
+     "use": "production",
+     "note": "<bodyPart>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged",
+   "frozenBy": "design 2"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_Wool",
+   "defRoot": "ThingDef",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:330",
+     "use": "production",
+     "note": "<thingToSpawn>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:494",
+     "use": "production",
+     "note": "<thingToSpawn>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:747",
+     "use": "production",
+     "note": "<thingToSpawn>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged",
+   "frozenBy": "design 2"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_cry",
+   "defRoot": "FacialAnimation.LidOptionShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/MoodAndPain.xml:43",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:430",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:439",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:449",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:458",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:190",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Tools/Export-FacialAnimation.py:135",
+     "use": "validation",
+     "note": "script"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_lovin",
+   "defRoot": "FacialAnimation.MouthShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/Lovin_JobAnimations.xml:137",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:193",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Tools/Export-FacialAnimation.py:112",
+     "use": "validation",
+     "note": "script"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "cold",
+   "defRoot": "FacialAnimation.HeadShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/MoodAndPain.xml:80",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:172",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:176",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:278",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:31",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:52",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Thoughts.xml:50",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Thoughts.xml:51",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Thoughts.xml:67",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/HeadShape_Raven.xml:11",
+     "use": "production",
+     "note": "<defName>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/LidOptionShape_Raven.xml:18",
+     "use": "production",
+     "note": "<defName>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/MouthShape_Raven.xml:54",
+     "use": "production",
+     "note": "<defName>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Thoughts.xml:50",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Thoughts.xml:51",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Thoughts.xml:67",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/HeadShape_Raven.xml:11",
+     "use": "production",
+     "note": "<defName>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/LidOptionShape_Raven.xml:18",
+     "use": "production",
+     "note": "<defName>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/MouthShape_Raven.xml:54",
+     "use": "production",
+     "note": "<defName>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "cold_tight1",
+   "defRoot": "FacialAnimation.MouthShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/MoodAndPain.xml:83",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:194",
+     "use": "validation",
+     "note": "C# string literal"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "gloomy",
+   "defRoot": "FacialAnimation.EmotionShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/MoodAndPain.xml:39",
+     "use": "production",
+     "note": "<emotionShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:429",
+     "use": "production",
+     "note": "<emotionShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:438",
+     "use": "production",
+     "note": "<emotionShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:448",
+     "use": "production",
+     "note": "<emotionShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:457",
+     "use": "production",
+     "note": "<emotionShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:207",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Constant/Mood.xml:53",
+     "use": "production",
+     "note": "<emotionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Raven_Job_RemoveSpiritEgg.xml:10",
+     "use": "production",
+     "note": "<emotionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/EggFilled.xml:10",
+     "use": "production",
+     "note": "<emotionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/EmotionShape_Raven.xml:9",
+     "use": "production",
+     "note": "<defName>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Constant/Mood.xml:53",
+     "use": "production",
+     "note": "<emotionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Raven_Job_RemoveSpiritEgg.xml:10",
+     "use": "production",
+     "note": "<emotionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/EggFilled.xml:10",
+     "use": "production",
+     "note": "<emotionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/EmotionShape_Raven.xml:9",
+     "use": "production",
+     "note": "<defName>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "half",
+   "defRoot": "FacialAnimation.LidShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/Constant.xml:69",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/Constant.xml:79",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/Lovin_JobAnimations.xml:110",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/Lovin_JobAnimations.xml:128",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/MoodAndPain.xml:41",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/MoodAndPain.xml:58",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/MoodAndPain.xml:65",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/MoodAndPain.xml:82",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:12",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:20",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:28",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:36",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:68",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:92",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:99",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:171",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:240",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:266",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:336",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:344",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:365",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:374",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:397",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:405",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:427",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:446",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:491",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_Milk_JobAnimations.xml:10",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_Milk_JobAnimations.xml:26",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:167",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:179",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:236",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:281",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Constant/Constant.xml:76",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Constant/Constant.xml:86",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Constant/Mood.xml:68",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Combat.xml:10",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Combat.xml:31",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Combat.xml:38",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Combat.xml:45",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Combat.xml:52",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Combat.xml:59",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Lovin.xml:20",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Lovin.xml:68",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Lovin.xml:78",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Raven_Job_ForceLovin.xml:19",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Raven_Job_ForceLovin.xml:67",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Raven_Job_ForceLovin.xml:77",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/WokrJob.xml:11",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/IncenseSmellAndAphrodisiacEffect.xml:11",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:19",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:67",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:77",
+     "use": "production",
+     "note": "<lidShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/LidShape_Raven.xml:13",
+     "use": "production",
+     "note": "<defName>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "heart",
+   "defRoot": "FacialAnimation.EmotionShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/Lovin_JobAnimations.xml:122",
+     "use": "production",
+     "note": "<eyeballShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/Lovin_JobAnimations.xml:133",
+     "use": "production",
+     "note": "<eyeballShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:191",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:207",
+     "use": "validation",
+     "note": "C# string literal"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "heavy_sweat",
+   "defRoot": "FacialAnimation.HeadShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/MoodAndPain.xml:112",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_Milk_JobAnimations.xml:28",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:176",
+     "use": "validation",
+     "note": "C# string literal"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "hot",
+   "defRoot": "FacialAnimation.HeadShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/MoodAndPain.xml:56",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:172",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:176",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:278",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:32",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:33",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:35",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:36",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:37",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:48",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:49",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:53",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:54",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:55",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:56",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:57",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:50",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:60",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:70",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:81",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:92",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:102",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Thoughts.xml:35",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/HeadShape_Raven.xml:6",
+     "use": "production",
+     "note": "<defName>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/LidOptionShape_Raven.xml:13",
+     "use": "production",
+     "note": "<defName>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Lovin.xml:51",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Lovin.xml:61",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Lovin.xml:71",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Lovin.xml:82",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Lovin.xml:93",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Lovin.xml:103",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Raven_Job_ForceLovin.xml:50",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Raven_Job_ForceLovin.xml:60",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Raven_Job_ForceLovin.xml:70",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Raven_Job_ForceLovin.xml:81",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Raven_Job_ForceLovin.xml:92",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Raven_Job_ForceLovin.xml:102",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:50",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:60",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:70",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:81",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:92",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:102",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Thoughts.xml:35",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/HeadShape_Raven.xml:6",
+     "use": "production",
+     "note": "<defName>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/LidOptionShape_Raven.xml:13",
+     "use": "production",
+     "note": "<defName>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "hot1",
+   "defRoot": "FacialAnimation.MouthShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/MoodAndPain.xml:59",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:194",
+     "use": "validation",
+     "note": "C# string literal"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "hot2",
+   "defRoot": "FacialAnimation.MouthShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/MoodAndPain.xml:66",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:194",
+     "use": "validation",
+     "note": "C# string literal"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "hot_heavy_sweat",
+   "defRoot": "FacialAnimation.HeadShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/MoodAndPain.xml:63",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:172",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:176",
+     "use": "validation",
+     "note": "C# string literal"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "lovinblush",
+   "defRoot": "FacialAnimation.HeadShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/Lovin_JobAnimations.xml:29",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/Lovin_JobAnimations.xml:40",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/Lovin_JobAnimations.xml:52",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/Lovin_JobAnimations.xml:64",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/Lovin_JobAnimations.xml:76",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/Lovin_JobAnimations.xml:88",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/Lovin_JobAnimations.xml:101",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/Lovin_JobAnimations.xml:109",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/Lovin_JobAnimations.xml:116",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/Lovin_JobAnimations.xml:127",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/Lovin_JobAnimations.xml:138",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:176",
+     "use": "validation",
+     "note": "C# string literal"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "milking1",
+   "defRoot": "FacialAnimation.MouthShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_Milk_JobAnimations.xml:11",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:195",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:237",
+     "use": "validation",
+     "note": "C# string literal"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "milking2",
+   "defRoot": "FacialAnimation.MouthShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_Milk_JobAnimations.xml:19",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:195",
+     "use": "validation",
+     "note": "C# string literal"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "milking3",
+   "defRoot": "FacialAnimation.MouthShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_Milk_JobAnimations.xml:27",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:195",
+     "use": "validation",
+     "note": "C# string literal"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "milking4",
+   "defRoot": "FacialAnimation.MouthShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_Milk_JobAnimations.xml:35",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:195",
+     "use": "validation",
+     "note": "C# string literal"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "pain1",
+   "defRoot": "FacialAnimation.MouthShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/MoodAndPain.xml:98",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:194",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:252",
+     "use": "validation",
+     "note": "C# string literal"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "pain3",
+   "defRoot": "FacialAnimation.MouthShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/MoodAndPain.xml:113",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:194",
+     "use": "validation",
+     "note": "C# string literal"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "puzzle",
+   "defRoot": "FacialAnimation.MouthShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:107",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:114",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:121",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:267",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:274",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:193",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/MouthShape_Raven.xml:29",
+     "use": "production",
+     "note": "<defName>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/MouthShape_Raven.xml:29",
+     "use": "production",
+     "note": "<defName>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "sad",
+   "defRoot": "FacialAnimation.MouthShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/MoodAndPain.xml:25",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/MoodAndPain.xml:42",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:55",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:62",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:69",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:76",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:478",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:485",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:492",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:499",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:506",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:190",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:193",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:235",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Constant/Mood.xml:82",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Constant/Pain.xml:11",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Raven_Job_RemoveSpiritEgg.xml:13",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/EggFilled.xml:13",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/MouthShape_Raven.xml:14",
+     "use": "production",
+     "note": "<defName>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Constant/Mood.xml:82",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Constant/Pain.xml:11",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Raven_Job_RemoveSpiritEgg.xml:13",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/EggFilled.xml:13",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/MouthShape_Raven.xml:14",
+     "use": "production",
+     "note": "<defName>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "smile",
+   "defRoot": "FacialAnimation.MouthShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/Lovin_JobAnimations.xml:100",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/MoodAndPain.xml:11",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:176",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:216",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:291",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:316",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:375",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:406",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:193",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Constant/Constant.xml:16",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Constant/Mood.xml:25",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Combat.xml:12",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Combat.xml:34",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Combat.xml:41",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Combat.xml:48",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Combat.xml:55",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Combat.xml:62",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Raven_Job_PlaceEggInCradle.xml:12",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:11",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:75",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Snuggle.xml:12",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/MouthShape_Raven.xml:9",
+     "use": "production",
+     "note": "<defName>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Constant/Mood.xml:25",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Raven_Job_PlaceEggInCradle.xml:12",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Snuggle.xml:12",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/MouthShape_Raven.xml:9",
+     "use": "production",
+     "note": "<defName>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "surprise",
+   "defRoot": "FacialAnimation.MouthShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/Lovin_JobAnimations.xml:126",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:193",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Wait_Downed.xml:24",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Wait_Downed.xml:33",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/MouthShape_Raven.xml:24",
+     "use": "production",
+     "note": "<defName>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Wait_Downed.xml:24",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Wait_Downed.xml:33",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/MouthShape_Raven.xml:24",
+     "use": "production",
+     "note": "<defName>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "sweat",
+   "defRoot": "FacialAnimation.HeadShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_Milk_JobAnimations.xml:12",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_Milk_JobAnimations.xml:20",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_Milk_JobAnimations.xml:36",
+     "use": "production",
+     "note": "<headShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:176",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:238",
+     "use": "validation",
+     "note": "C# string literal"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "tear",
+   "defRoot": "FacialAnimation.LidOptionShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/Lovin_JobAnimations.xml:140",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/MoodAndPain.xml:26",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:205",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Constant/Pain.xml:10",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/FleeAndCower.xml:11",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/LegoPainAndTendoncut.xml:11",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:27",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:28",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:30",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:31",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:32",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:33",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:35",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:36",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:37",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:48",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:49",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:50",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:51",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:52",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:53",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:54",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:55",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:56",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:57",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Raven_ExpressionExtensions.xml:58",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:51",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:61",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:71",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:82",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:93",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/LidOptionShape_Raven.xml:9",
+     "use": "production",
+     "note": "<defName>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Constant/Pain.xml:10",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/FleeAndCower.xml:11",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Lovin.xml:52",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Lovin.xml:62",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Lovin.xml:72",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Lovin.xml:83",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Lovin.xml:94",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Raven_Job_ForceLovin.xml:51",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Raven_Job_ForceLovin.xml:61",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Raven_Job_ForceLovin.xml:71",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Raven_Job_ForceLovin.xml:82",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/ForJobs/unmodified/Raven_Job_ForceLovin.xml:93",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/LegoPainAndTendoncut.xml:11",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:51",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:61",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:71",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:82",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/AnimationDefs/Raven/Thoughts/Recipient.xml:93",
+     "use": "production",
+     "note": "<lidOptionShapeDef>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/LidOptionShape_Raven.xml:9",
+     "use": "production",
+     "note": "<defName>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defName",
+   "name": "tight",
+   "defRoot": "FacialAnimation.MouthShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:13",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:21",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:29",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:37",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:170",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:241",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:337",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:428",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/FacialAnimation/Defs/Animations/WhiteFluff_JobAnimations.xml:447",
+     "use": "production",
+     "note": "<mouthShapeDef>"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:193",
+     "use": "validation",
+     "note": "C# string literal"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/MouthShape_Raven.xml:19",
+     "use": "production",
+     "note": "<defName>"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "RavenRaceFA/Defs/FaceShapeDefs/MouthShape_Raven.xml:19",
+     "use": "production",
+     "note": "<defName>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defNamePattern",
+   "name": "Mugirl_*Normal*",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:335",
+     "use": "validation",
+     "note": "composed in C#: Mugirl_BrowNormal, Mugirl_BrowNormal2, Mugirl_BrowNormal3, Mugirl_BrowNormal4, Mugirl_BrowNormal5, Mugirl_BrowNormal6, Mugirl_BrowNormal7, Mugirl_EmotionNormal, Mugirl_EmotionNormal2, Mugirl_EmotionNormal3, Mugirl_EmotionNormal4, Mugirl_EmotionNormal5 ..."
+    }
+   ],
+   "frozenBy": "owner decision (decisions.md section 5, D5): listed explicitly",
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "defNamePattern",
+   "name": "Mugirl_SlaveApparelKey_*",
+   "frozen": true,
+   "frozenBy": "design 2",
+   "usedBy": [],
+   "treatment": "unchanged",
+   "defRoot": "ThingDef"
+  },
+  {
+   "kind": "displayName",
+   "name": "Mugirl Race",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "About/About.xml:22",
+     "use": "production",
+     "note": "<displayName> (PatchOperationFindMod)"
+    },
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "1.6/Patches/Patch1.xml:171",
+     "use": "production",
+     "note": "<li> (PatchOperationFindMod)"
+    },
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "1.7/Patches/Patch1.xml:171",
+     "use": "production",
+     "note": "<li> (PatchOperationFindMod)"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged",
+   "frozenBy": "D7; KindSeal.LOL PatchOperationFindMod"
+  },
+  {
+   "kind": "harmonyId",
+   "name": "MugirlMod.Mod",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Milk/MilkJobs.cs:230",
+     "use": "production"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged",
+   "frozenBy": "design 2; WhiteFluff [HarmonyAfter]"
+  },
+  {
+   "kind": "harmonyParameter",
+   "name": "Mugirl.MountedPawnUtility.IsMugirl(pawn)",
+   "owner": "Mugirl.MountedPawnUtility.IsMugirl",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Core/Identity.cs:99",
+     "use": "production",
+     "note": "parameter name bound by a Harmony patch"
+    }
+   ],
+   "frozen": true,
+   "treatment": "parameter name of a Harmony-patched public method: dependents' Prefix/Postfix bind it by name, so it never changes"
+  },
+  {
+   "kind": "member",
+   "name": "Mugirl.MountedPawnUtility.IsMugirl",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Core/Identity.cs:99",
+     "use": "production"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:110",
+     "use": "validation"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/RuntimeChecks.cs:207",
+     "use": "validation"
+    }
+   ],
+   "frozen": true,
+   "treatment": "kept in Mugirl.MountedPawnUtility (PublicApi); Harmony-patchable extension point, public static, NoInlining",
+   "harmonyBoundParameters": [
+    "pawn"
+   ]
+  },
+  {
+   "kind": "packageId",
+   "name": "HAR.MugirlRace",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "About/About.xml:26",
+     "use": "production",
+     "note": "About.xml dependency"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "About/About.xml:35",
+     "use": "production",
+     "note": "About.xml dependency"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "About/About.xml:21",
+     "use": "production",
+     "note": "About.xml dependency"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "About/About.xml:32",
+     "use": "production",
+     "note": "About.xml dependency"
+    },
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "1.6/Defs/EventDefs/EventDef_KT_Pantsushop.xml:920",
+     "use": "production",
+     "note": "MayRequire attribute"
+    },
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "1.6/Defs/EventDefs/EventDef_KT_Pantsushop.xml:1309",
+     "use": "production",
+     "note": "MayRequire attribute"
+    },
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "1.6/Defs/ThingDefs_Items/KT_PowerArmor_Mugirl.xml:3",
+     "use": "production",
+     "note": "MayRequire attribute"
+    },
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "1.6/Defs/Trader/KT_Trader.xml:480",
+     "use": "production",
+     "note": "MayRequire attribute"
+    },
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "1.7/Defs/EventDefs/EventDef_KT_Pantsushop.xml:920",
+     "use": "production",
+     "note": "MayRequire attribute"
+    },
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "1.7/Defs/EventDefs/EventDef_KT_Pantsushop.xml:1309",
+     "use": "production",
+     "note": "MayRequire attribute"
+    },
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "1.7/Defs/ThingDefs_Items/KT_PowerArmor_Mugirl.xml:3",
+     "use": "production",
+     "note": "MayRequire attribute"
+    },
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "1.7/Defs/Trader/KT_Trader.xml:480",
+     "use": "production",
+     "note": "MayRequire attribute"
+    },
+    {
+     "mod": "Kindseal.UFPC",
+     "where": "workshop 3698316804 (1.6+1.7)",
+     "file": "1.6/Defs/Ability/UFC_Abilities.xml:90",
+     "use": "production",
+     "note": "MayRequire attribute"
+    },
+    {
+     "mod": "Kindseal.UFPC",
+     "where": "workshop 3698316804 (1.6+1.7)",
+     "file": "1.6/Defs/PawnKindDefs/UFC_PawnKinds_Mech.xml:699",
+     "use": "production",
+     "note": "MayRequire attribute"
+    },
+    {
+     "mod": "Kindseal.UFPC",
+     "where": "workshop 3698316804 (1.6+1.7)",
+     "file": "1.7/Defs/Ability/UFC_Abilities.xml:90",
+     "use": "production",
+     "note": "MayRequire attribute"
+    },
+    {
+     "mod": "Kindseal.UFPC",
+     "where": "workshop 3698316804 (1.6+1.7)",
+     "file": "1.7/Defs/PawnKindDefs/UFC_PawnKinds_Mech.xml:699",
+     "use": "production",
+     "note": "MayRequire attribute"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "Defs/Features/Hybridization/Compat_MuGirl/Bloodline_MuGirl.xml:3",
+     "use": "production",
+     "note": "MayRequire attribute"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "workshop 3781005562 (1.6)",
+     "file": "LoadFolders.xml:1",
+     "use": "production",
+     "note": "IfModActive attribute"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "Defs/Features/Hybridization/Compat_MuGirl/Bloodline_MuGirl.xml:3",
+     "use": "production",
+     "note": "MayRequire attribute"
+    },
+    {
+     "mod": "ZuoYao.RavenRace",
+     "where": "Mods/ZuoYao_RavenRace (local copy, 1.6)",
+     "file": "LoadFolders.xml:18",
+     "use": "production",
+     "note": "IfModActive attribute"
+    },
+    {
+     "mod": "Berserk.poisonless.milk",
+     "where": "workshop 3601148404 (1.6)",
+     "file": "About/About.xml:11",
+     "use": "production",
+     "note": "About.xml dependency"
+    },
+    {
+     "mod": "Berserk.poisonless.milk",
+     "where": "workshop 3601148404 (1.6)",
+     "file": "About/About.xml:17",
+     "use": "production",
+     "note": "About.xml dependency"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged",
+   "frozenBy": "design 2"
+  },
+  {
+   "kind": "scribeLabel",
+   "name": "mugirlSaveSchema",
+   "frozen": true,
+   "frozenBy": "design 5.1 / K1: save schema stamp label frozen forever",
+   "usedBy": [],
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "structure",
+   "name": "Mugirl race bodyAddons order (HAR addonVariants are saved by index; grow only at the end)",
+   "frozen": true,
+   "frozenBy": "design 2",
+   "usedBy": [],
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "structure",
+   "name": "texture paths under Textures/ (dependents reference Mugirl textures by path)",
+   "frozen": true,
+   "frozenBy": "design 2",
+   "usedBy": [],
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "tag",
+   "name": "Mugirl",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/Apparel/Apparel_Subspecies.xml:29",
+     "use": "production",
+     "note": "<tags><li>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/Apparel/Apparel_Subspecies.xml:83",
+     "use": "production",
+     "note": "<tags><li>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/PawnKindDefs/PawnKinds.xml:22",
+     "use": "production",
+     "note": "<apparelTags><li>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/PawnKindDefs/PawnKinds.xml:82",
+     "use": "production",
+     "note": "<apparelTags><li>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/PawnKindDefs/PawnKinds.xml:138",
+     "use": "production",
+     "note": "<apparelTags><li>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "tag",
+   "name": "Mugirl_Hair",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/HairDefs/Hairs_Elder.xml:10",
+     "use": "production",
+     "note": "<styleTags><li>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/HairDefs/Hairs_Pioneer.xml:10",
+     "use": "production",
+     "note": "<styleTags><li>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/HairDefs/Hairs_Pioneer.xml:22",
+     "use": "production",
+     "note": "<styleTags><li>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/HairDefs/Hairs_Pioneer.xml:34",
+     "use": "production",
+     "note": "<styleTags><li>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "tag",
+   "name": "Mugirl_Head",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/Apparel/Apparel_Subspecies.xml:126",
+     "use": "production",
+     "note": "<tags><li>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "tag",
+   "name": "Mugirl_OnSkin",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/Apparel/Apparel_Subspecies.xml:84",
+     "use": "production",
+     "note": "<tags><li>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/PawnKindDefs/PawnKinds.xml:83",
+     "use": "production",
+     "note": "<apparelTags><li>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/PawnKindDefs/PawnKinds.xml:139",
+     "use": "production",
+     "note": "<apparelTags><li>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "tag",
+   "name": "Mugirl_Shell",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/Apparel/Apparel_Subspecies.xml:30",
+     "use": "production",
+     "note": "<tags><li>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "tag",
+   "name": "Mugirl_Stocking",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/PawnKindDefs/PawnKinds.xml:84",
+     "use": "production",
+     "note": "<apparelTags><li>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/PawnKindDefs/PawnKinds.xml:140",
+     "use": "production",
+     "note": "<apparelTags><li>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "tag",
+   "name": "Mugirl_Underwear",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/PawnKindDefs/PawnKinds.xml:85",
+     "use": "production",
+     "note": "<apparelTags><li>"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/PawnKindDefs/PawnKinds.xml:141",
+     "use": "production",
+     "note": "<apparelTags><li>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "texturePath",
+   "name": "Mugirl/Horn/Left/LeftHorn",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:607",
+     "use": "production",
+     "note": "<path>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "texturePath",
+   "name": "Mugirl/Horn/Right/RightHorn",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:639",
+     "use": "production",
+     "note": "<path>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "texturePath",
+   "name": "Mugirl/Tail/Tail",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:266",
+     "use": "production",
+     "note": "<path>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "texturePath",
+   "name": "UI/Mugirl_Charge",
+   "usedBy": [
+    {
+     "mod": "Kindseal.UFPC",
+     "where": "workshop 3698316804 (1.6+1.7)",
+     "file": "1.6/Defs/Ability/UFC_Abilities.xml:96",
+     "use": "production",
+     "note": "<iconPath>"
+    },
+    {
+     "mod": "Kindseal.UFPC",
+     "where": "workshop 3698316804 (1.6+1.7)",
+     "file": "1.7/Defs/Ability/UFC_Abilities.xml:96",
+     "use": "production",
+     "note": "<iconPath>"
+    }
+   ],
+   "frozen": true,
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "type",
+   "name": "Mugirl.Core.GameComponent_Mugirl",
+   "frozen": true,
+   "frozenBy": "design 5.8 / K2: hub type name frozen forever (saved by class name)",
+   "usedBy": [],
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "type",
+   "name": "Mugirl.MountedPawnUtility",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/Assemblies/MRK.WhiteFluff.dll:0",
+     "use": "production",
+     "note": "type reference in a compiled assembly (namespace and name in metadata)"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Core/Identity.cs:99",
+     "use": "production"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:41",
+     "use": "validation"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:46",
+     "use": "validation"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:110",
+     "use": "validation"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/RuntimeChecks.cs:207",
+     "use": "validation"
+    }
+   ],
+   "frozen": true,
+   "treatment": "name kept; Source/MugirlRace/PublicApi/MountedPawnUtility.cs (combat; keeps only IsMugirl after R2: public static, Wave S adds [MethodImpl(NoInlining)] and makes it the decision point mounting code calls)"
+  },
+  {
+   "kind": "typeShortName",
+   "name": "MugirlMod",
+   "frozen": true,
+   "frozenBy": "design 2: settings file Mod_<folder>_MugirlMod.xml",
+   "usedBy": [],
+   "treatment": "unchanged"
+  },
+  {
+   "kind": "xmlClass",
+   "name": "Mugirl.CompProperties_MooMilkable",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:322",
+     "use": "production",
+     "note": "Class attribute"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:486",
+     "use": "production",
+     "note": "Class attribute"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:739",
+     "use": "production",
+     "note": "Class attribute"
+    }
+   ],
+   "frozen": true,
+   "treatment": "public alias subclass in Source/MugirlRace/PublicApi/XmlAliases.cs (D4); implementation Mugirl.Features.Milk.CompProperties_MilkProduction"
+  },
+  {
+   "kind": "xmlClass",
+   "name": "Mugirl.CompProperties_MugirlMount",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "1.6/Defs/WhiteFluff_Race.xml:103",
+     "use": "production",
+     "note": "Class attribute"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:321",
+     "use": "production",
+     "note": "Class attribute"
+    }
+   ],
+   "frozen": true,
+   "treatment": "public alias subclass in Source/MugirlRace/PublicApi/XmlAliases.cs (D4); implementation Mugirl.Features.Mounting.CompProperties_Mount"
+  },
+  {
+   "kind": "xmlClass",
+   "name": "Mugirl.SlaveApparelDef",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Body.xml:4",
+     "use": "production",
+     "note": "Def element name"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Body.xml:38",
+     "use": "production",
+     "note": "Def element name"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Body.xml:73",
+     "use": "production",
+     "note": "Def element name"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Hand.xml:6",
+     "use": "production",
+     "note": "Def element name"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Hand.xml:41",
+     "use": "production",
+     "note": "Def element name"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Hand.xml:70",
+     "use": "production",
+     "note": "Def element name"
+    }
+   ],
+   "frozen": true,
+   "treatment": "name kept; Source/MugirlRace/PublicApi/SlaveApparelDef.cs (restraints; Wave S turns it into the alias Def subclass that maps the legacy fields into RestraintExtension, D6)"
+  },
+  {
+   "kind": "xmlClass",
+   "name": "Mugirl.StockGenerator_Mugirl_Slaves",
+   "usedBy": [
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "1.6/Defs/Trader/KT_Trader.xml:480",
+     "use": "production",
+     "note": "Class attribute"
+    },
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "1.7/Defs/Trader/KT_Trader.xml:480",
+     "use": "production",
+     "note": "Class attribute"
+    }
+   ],
+   "frozen": true,
+   "treatment": "public alias subclass in Source/MugirlRace/PublicApi/XmlAliases.cs (D4); implementation Mugirl.Features.Trade.StockGenerator_MugirlSlaves"
+  },
+  {
+   "kind": "xmlField",
+   "name": "BoundBodyPartGroupDefs",
+   "owner": "Mugirl.SlaveApparelDef",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Body.xml:64",
+     "use": "production"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Hand.xml:32",
+     "use": "production"
+    }
+   ],
+   "frozen": true,
+   "treatment": "XML field name frozen on Mugirl.SlaveApparelDef (no field renames on PublicApi classes)"
+  },
+  {
+   "kind": "xmlField",
+   "name": "HediffTargetBodyPartDefs",
+   "owner": "Mugirl.SlaveApparelDef",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Body.xml:61",
+     "use": "production"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Hand.xml:29",
+     "use": "production"
+    }
+   ],
+   "frozen": true,
+   "treatment": "XML field name frozen on Mugirl.SlaveApparelDef (no field renames on PublicApi classes)"
+  },
+  {
+   "kind": "xmlField",
+   "name": "blocks_hands",
+   "owner": "Mugirl.SlaveApparelDef",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Body.xml:68",
+     "use": "production"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Hand.xml:28",
+     "use": "production"
+    }
+   ],
+   "frozen": true,
+   "treatment": "XML field name frozen on Mugirl.SlaveApparelDef (no field renames on PublicApi classes)"
+  },
+  {
+   "kind": "xmlField",
+   "name": "displayString",
+   "owner": "Mugirl.CompProperties_MooMilkable",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:323",
+     "use": "production"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:487",
+     "use": "production"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:740",
+     "use": "production"
+    }
+   ],
+   "frozen": true,
+   "treatment": "XML field name frozen on Mugirl.Features.Milk.CompProperties_MilkProduction (no field renames on PublicApi classes)"
+  },
+  {
+   "kind": "xmlField",
+   "name": "equipped_hediff",
+   "owner": "Mugirl.SlaveApparelDef",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Body.xml:60",
+     "use": "production"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Hand.xml:61",
+     "use": "production"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Hand.xml:90",
+     "use": "production"
+    }
+   ],
+   "frozen": true,
+   "treatment": "XML field name frozen on Mugirl.SlaveApparelDef (no field renames on PublicApi classes)"
+  },
+  {
+   "kind": "xmlField",
+   "name": "gives_bound_moodlet",
+   "owner": "Mugirl.SlaveApparelDef",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Body.xml:33",
+     "use": "production"
+    }
+   ],
+   "frozen": true,
+   "treatment": "XML field name frozen on Mugirl.SlaveApparelDef (no field renames on PublicApi classes)"
+  },
+  {
+   "kind": "xmlField",
+   "name": "keytype",
+   "owner": "Mugirl.SlaveApparelDef",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Body.xml:32",
+     "use": "production"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Body.xml:102",
+     "use": "production"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Hand.xml:65",
+     "use": "production"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Hand.xml:94",
+     "use": "production"
+    }
+   ],
+   "frozen": true,
+   "treatment": "XML field name frozen on Mugirl.SlaveApparelDef (no field renames on PublicApi classes)"
+  },
+  {
+   "kind": "xmlField",
+   "name": "milkAmount",
+   "owner": "Mugirl.CompProperties_MooMilkable",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:326",
+     "use": "production"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:490",
+     "use": "production"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:743",
+     "use": "production"
+    }
+   ],
+   "frozen": true,
+   "treatment": "XML field name frozen on Mugirl.Features.Milk.CompProperties_MilkProduction (no field renames on PublicApi classes)"
+  },
+  {
+   "kind": "xmlField",
+   "name": "milkDef",
+   "owner": "Mugirl.CompProperties_MooMilkable",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:324",
+     "use": "production"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:488",
+     "use": "production"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:741",
+     "use": "production"
+    }
+   ],
+   "frozen": true,
+   "treatment": "XML field name frozen on Mugirl.Features.Milk.CompProperties_MilkProduction (no field renames on PublicApi classes)"
+  },
+  {
+   "kind": "xmlField",
+   "name": "milkIntervalDays",
+   "owner": "Mugirl.CompProperties_MooMilkable",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:325",
+     "use": "production"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:489",
+     "use": "production"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/AlienRaceDefs/Races.xml:742",
+     "use": "production"
+    }
+   ],
+   "frozen": true,
+   "treatment": "XML field name frozen on Mugirl.Features.Milk.CompProperties_MilkProduction (no field renames on PublicApi classes)"
+  },
+  {
+   "kind": "xmlField",
+   "name": "needkeynumber",
+   "owner": "Mugirl.SlaveApparelDef",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Defs/ApparelDefs/Shibari_Body.xml:31",
+     "use": "production"
+    }
+   ],
+   "frozen": true,
+   "treatment": "XML field name frozen on Mugirl.SlaveApparelDef (no field renames on PublicApi classes)"
+  },
+  {
+   "kind": "xmlField",
+   "name": "slaveCountRange",
+   "owner": "Mugirl.StockGenerator_Mugirl_Slaves",
+   "usedBy": [
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "1.6/Defs/Trader/KT_Trader.xml:482",
+     "use": "production"
+    },
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "1.7/Defs/Trader/KT_Trader.xml:482",
+     "use": "production"
+    }
+   ],
+   "frozen": true,
+   "treatment": "XML field name frozen on Mugirl.Features.Trade.StockGenerator_MugirlSlaves (no field renames on PublicApi classes)"
+  },
+  {
+   "kind": "xpathStructure",
+   "name": "Mugirl/alienRace/raceRestriction/apparelList",
+   "defRoot": "ThingDef",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Patches/BondageApparel.xml:5",
+     "use": "production",
+     "note": "patched element path below the def (renaming or moving these fields breaks the patch)"
+    },
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Patches/BondageApparel.xml:13",
+     "use": "production",
+     "note": "patched element path below the def (renaming or moving these fields breaks the patch)"
+    },
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "1.6/Patches/Patch1.xml:177",
+     "use": "production",
+     "note": "patched element path below the def (renaming or moving these fields breaks the patch)"
+    },
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "1.7/Patches/Patch1.xml:177",
+     "use": "production",
+     "note": "patched element path below the def (renaming or moving these fields breaks the patch)"
+    }
+   ],
+   "frozen": true,
+   "treatment": "element path that dependents patch below this def: the elements on the path keep their names (XML structure frozen)"
+  },
+  {
+   "kind": "xpathStructure",
+   "name": "Mugirl/alienRace/raceRestriction/whiteApparelList",
+   "defRoot": "ThingDef",
+   "usedBy": [
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "1.6/Patches/Patch1.xml:184",
+     "use": "production",
+     "note": "patched element path below the def (renaming or moving these fields breaks the patch)"
+    },
+    {
+     "mod": "KindSeal.LOL",
+     "where": "workshop 3555662938 (1.6+1.7)",
+     "file": "1.7/Patches/Patch1.xml:184",
+     "use": "production",
+     "note": "patched element path below the def (renaming or moving these fields breaks the patch)"
+    }
+   ],
+   "frozen": true,
+   "treatment": "element path that dependents patch below this def: the elements on the path keep their names (XML structure frozen)"
+  },
+  {
+   "kind": "xpathStructure",
+   "name": "Mugirl_Settings/pawnKindSettings/startingColonists/li/pawnKindEntries",
+   "defRoot": "AlienRace.RaceSettings",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "1.6/Patches/StartingColonists.xml:4",
+     "use": "production",
+     "note": "patched element path below the def (renaming or moving these fields breaks the patch)"
+    }
+   ],
+   "frozen": true,
+   "treatment": "element path that dependents patch below this def: the elements on the path keep their names (XML structure frozen)"
+  },
+  {
+   "kind": "xpathStructure",
+   "name": "Mugirl_Shout/comps",
+   "defRoot": "AbilityDef",
+   "usedBy": [
+    {
+     "mod": "har.mugirlrace.subspecies",
+     "where": "Mods/MooGirl_Subspecies (local, 1.6)",
+     "file": "Common/Bio_1.6/Patches/ZombieRoarAbility.xml:4",
+     "use": "production",
+     "note": "patched element path below the def (renaming or moving these fields breaks the patch)"
+    }
+   ],
+   "frozen": true,
+   "treatment": "element path that dependents patch below this def: the elements on the path keep their names (XML structure frozen)"
+  }
+ ],
+ "validationOnly": [
+  {
+   "kind": "defName",
+   "name": "Mugirl_CorporateRepresentative",
+   "defRoot": "PawnKindDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/RevisionChecks.cs:16",
+     "use": "validation",
+     "note": "C# string literal"
+    }
+   ],
+   "frozen": false,
+   "newName": "Mugirl_CorporateRepresentative",
+   "changes": false
+  },
+  {
+   "kind": "defName",
+   "name": "Mugirl_CorporateSupport",
+   "defRoot": "PawnKindDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/RevisionChecks.cs:16",
+     "use": "validation",
+     "note": "C# string literal"
+    }
+   ],
+   "frozen": false,
+   "newName": "Mugirl_CorporateSupport",
+   "changes": false
+  },
+  {
+   "kind": "defName",
+   "name": "cold_tight2",
+   "defRoot": "FacialAnimation.MouthShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:194",
+     "use": "validation",
+     "note": "C# string literal"
+    }
+   ],
+   "frozen": false,
+   "newName": "cold_tight2",
+   "changes": false
+  },
+  {
+   "kind": "defName",
+   "name": "hungry1",
+   "defRoot": "FacialAnimation.MouthShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:194",
+     "use": "validation",
+     "note": "C# string literal"
+    }
+   ],
+   "frozen": false,
+   "newName": "hungry1",
+   "changes": false
+  },
+  {
+   "kind": "defName",
+   "name": "hungry2",
+   "defRoot": "FacialAnimation.MouthShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:194",
+     "use": "validation",
+     "note": "C# string literal"
+    }
+   ],
+   "frozen": false,
+   "newName": "hungry2",
+   "changes": false
+  },
+  {
+   "kind": "defName",
+   "name": "pain2",
+   "defRoot": "FacialAnimation.MouthShapeDef",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/FacialAnimationChecks.cs:194",
+     "use": "validation",
+     "note": "C# string literal"
+    }
+   ],
+   "frozen": false,
+   "newName": "pain2",
+   "changes": false
+  },
+  {
+   "kind": "member",
+   "name": "Mugirl.Comp_MugirlMount.CanMount",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:34",
+     "use": "validation",
+     "note": "member access through a local of type Comp_MugirlMount"
+    }
+   ],
+   "frozen": false,
+   "newName": "Mugirl.Features.Mounting.CompMount.CanMount",
+   "changes": true
+  },
+  {
+   "kind": "member",
+   "name": "Mugirl.Comp_MugirlMount.HasMountedPawn",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:46",
+     "use": "validation",
+     "note": "member access through a local of type Comp_MugirlMount"
+    }
+   ],
+   "frozen": false,
+   "newName": "Mugirl.Features.Mounting.CompMount.HasMountedPawn",
+   "changes": true,
+   "plannedWaveS": "combat-plan: HasMountedPawn -> HasRider in Wave S"
+  },
+  {
+   "kind": "member",
+   "name": "Mugirl.Comp_MugirlMount.MountedPawn",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:40",
+     "use": "validation",
+     "note": "member access through a local of type Comp_MugirlMount"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:50",
+     "use": "validation",
+     "note": "member access through a local of type Comp_MugirlMount"
+    }
+   ],
+   "frozen": false,
+   "newName": "Mugirl.Features.Mounting.CompMount.MountedPawn",
+   "changes": true,
+   "plannedWaveS": "combat-plan: MountedPawn -> Rider in Wave S"
+  },
+  {
+   "kind": "member",
+   "name": "Mugirl.Comp_MugirlMount.TryDismount",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:44",
+     "use": "validation",
+     "note": "member access through a local of type Comp_MugirlMount"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:50",
+     "use": "validation",
+     "note": "member access through a local of type Comp_MugirlMount"
+    }
+   ],
+   "frozen": false,
+   "newName": "Mugirl.Features.Mounting.CompMount.TryDismount",
+   "changes": true
+  },
+  {
+   "kind": "member",
+   "name": "Mugirl.Comp_MugirlMount.TryEmergencyDismountNear",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:51",
+     "use": "validation",
+     "note": "member access through a local of type Comp_MugirlMount"
+    }
+   ],
+   "frozen": false,
+   "newName": "Mugirl.Features.Mounting.CompMount.TryEmergencyDismountNear",
+   "changes": true
+  },
+  {
+   "kind": "member",
+   "name": "Mugirl.Comp_MugirlMount.TryMount",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:38",
+     "use": "validation",
+     "note": "member access through a local of type Comp_MugirlMount"
+    }
+   ],
+   "frozen": false,
+   "newName": "Mugirl.Features.Mounting.CompMount.TryMount",
+   "changes": true
+  },
+  {
+   "kind": "member",
+   "name": "Mugirl.Comp_MugirlMount.innerContainer",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:40",
+     "use": "validation",
+     "note": "member access through a local of type Comp_MugirlMount"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:53",
+     "use": "validation",
+     "note": "member access through a local of type Comp_MugirlMount"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:55",
+     "use": "validation",
+     "note": "member access through a local of type Comp_MugirlMount"
+    }
+   ],
+   "frozen": false,
+   "newName": "Mugirl.Features.Mounting.CompMount.innerContainer",
+   "changes": true
+  },
+  {
+   "kind": "member",
+   "name": "Mugirl.Harmony_MugirlGrazeIngest.Prefix",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:104",
+     "use": "validation"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:115",
+     "use": "validation"
+    }
+   ],
+   "frozen": false,
+   "newName": "Mugirl.Features.Grazing.Harmony_JobDriver_Ingest_PrepareToIngestToils_Graze.Prefix",
+   "changes": true
+  },
+  {
+   "kind": "member",
+   "name": "Mugirl.Harmony_MugirlGrazeIngest.TargetMethod",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:107",
+     "use": "validation"
+    }
+   ],
+   "frozen": false,
+   "newName": "Mugirl.Features.Grazing.Harmony_JobDriver_Ingest_PrepareToIngestToils_Graze.TargetMethod",
+   "changes": true
+  },
+  {
+   "kind": "member",
+   "name": "Mugirl.MountedPawnUtility.IsMounted",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:41",
+     "use": "validation"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:46",
+     "use": "validation"
+    }
+   ],
+   "frozen": false,
+   "newName": "Mugirl.Features.Mounting.MountUtility.IsMounted",
+   "changes": true
+  },
+  {
+   "kind": "type",
+   "name": "Mugirl.Comp_MugirlMount",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:23",
+     "use": "validation"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:41",
+     "use": "validation"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/RuntimeChecks.cs:207",
+     "use": "validation"
+    }
+   ],
+   "frozen": false,
+   "newName": "Mugirl.Features.Mounting.CompMount",
+   "changes": true
+  },
+  {
+   "kind": "type",
+   "name": "Mugirl.Harmony_MugirlGrazeIngest",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:104",
+     "use": "validation"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:107",
+     "use": "validation"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:109",
+     "use": "validation"
+    },
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/InheritanceChecks.cs:115",
+     "use": "validation"
+    }
+   ],
+   "frozen": false,
+   "newName": "Mugirl.Features.Grazing.Harmony_JobDriver_Ingest_PrepareToIngestToils_Graze",
+   "changes": true
+  },
+  {
+   "kind": "typeNameLiteral",
+   "name": "Mugirl.CompMooMilkable",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/RuntimeChecks.cs:206",
+     "use": "validation",
+     "note": "C# string literal \"CompMooMilkable\" compared with a type short name (GetType().Name)"
+    }
+   ],
+   "frozen": false,
+   "newName": "CompMilkProduction",
+   "changes": true
+  },
+  {
+   "kind": "typeNameLiteral",
+   "name": "Mugirl.Features.WeaponWheel.Comp_WeaponWheel",
+   "usedBy": [
+    {
+     "mod": "MRK.WhiteFluff",
+     "where": "Mods/乳牛娘 白绒物语 (local, 1.6)",
+     "file": "Source/Validation/RuntimeChecks.cs:206",
+     "use": "validation",
+     "note": "C# string literal \"Comp_WeaponWheel\" compared with a type short name (GetType().Name)"
+    }
+   ],
+   "frozen": false,
+   "newName": "CompWeaponWheel",
+   "changes": true
+  }
+ ]
+}

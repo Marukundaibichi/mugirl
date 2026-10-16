@@ -1,0 +1,10 @@
+<Defs>
+<ThingDef><defName>Control_label</defName><label>Mugirl_ControlNew</label></ThingDef>
+<ThingDef><defName>Control_description</defName><description>Mugirl_ControlNew</description></ThingDef>
+<ThingDef><defName>Control_reportString</defName><reportString>Mugirl_ControlNew</reportString></ThingDef>
+<ThingDef><defName>Control_letterLabel</defName><letterLabel>Mugirl_ControlNew</letterLabel></ThingDef>
+<ThingDef><defName>Control_letterText</defName><letterText>Mugirl_ControlNew</letterText></ThingDef>
+<ThingDef><defName>Control_title</defName><title>Mugirl_ControlNew</title></ThingDef>
+<ThingDef><defName>Control_Whitespace</defName><description>preserved text</description></ThingDef>
+<ThingDef><defName>Mugirl_ControlNew</defName><label>Unchanged visible label</label></ThingDef>
+</Defs>

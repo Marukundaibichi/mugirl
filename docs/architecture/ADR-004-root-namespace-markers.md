@@ -1,5 +1,7 @@
 # ADR-004: 根命名空间保留类型
 
+状态：Superseded by [ADR-009](ADR-009-naming-and-layout.md)（2026-10-15）。下文保留原文，仅作历史记录。新规则是：根命名空间 `Mugirl` 只允许 [ADR-008](ADR-008-public-api.md) 的公开 API 类型，并且只放在 `Source/MugirlRace/PublicApi/`；其余类型由 Wave R 移入 `Mugirl.<Area>[.<Feature>]`。原来保留根命名空间的理由（XML 类名、Scribe 类名、补丁元数据）已由统一存档升级层（[ADR-007](ADR-007-save-schema-upgrade.md)）、PublicApi 别名与 `[MugirlPatch]` 特性解决。
+
 ## Decision
 
 `Mugirl` 根命名空间继续作为历史兼容命名空间保留，但新增类型默认不再使用根命名空间。

@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    MugirlRace 1.7 构建的离线验证程序（tools/Validate.ps1 负责构建与运行）。
+
+    同一份构建分别在标准 .NET 10 与游戏自带运行时（Waylith CLR）上运行。Assembly-CSharp、UnityStubs、Waylith、0Harmony
+    只作编译期引用（Source/Directory.Build.props 中 Private=false），运行时从游戏加载它们的位置解析。被测 Mod 不作引用：
+    按路径加载；冻结的 1.6 DLL 只作为元数据读取。
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>MugirlRace.Validation</AssemblyName>
+    <RootNamespace>MugirlRace.Validation</RootNamespace>
+    <IsPackable>false</IsPackable>
+    <!-- 区域性比较须与游戏运行时一致（ICU），不能用 invariant 模式。 -->
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <!-- 负对照是独立工程，只由 tools/Validate.ps1 -SelfTest 构建。 -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);Controls/**</DefaultItemExcludes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mono.Cecil" />
+    <Compile Include="..\MugirlRace.GameValidation\Core\SaveOwnerSelector.cs" Link="Shared\SaveOwnerSelector.cs" />
+    <Compile Include="..\MugirlRace.GameValidation\Core\ISaveOwnerContext.cs" Link="Shared\ISaveOwnerContext.cs" />
+    <Compile Include="..\MugirlRace.GameValidation\Core\SaveXml.cs" Link="Shared\SaveXml.cs" />
+  </ItemGroup>
+
+  <!-- 运行时读取的默认路径；命令行均可覆盖（tools/Validate.ps1 总是显式传入）。 -->
+  <ItemGroup>
+    <AssemblyMetadata Include="Mugirl.ModDir" Value="$(ModDir)" />
+    <AssemblyMetadata Include="Mugirl.GameDir" Value="$(GameDir)" />
+    <AssemblyMetadata Include="Mugirl.HarmonyDir" Value="$(HarmonyDir)" />
+    <AssemblyMetadata Include="Mugirl.WorkshopDir" Value="$(WorkshopDir)" />
+    <AssemblyMetadata Include="Mugirl.BaselineDir" Value="$(MSBuildProjectDirectory)\Baselines" />
+  </ItemGroup>
+</Project>
