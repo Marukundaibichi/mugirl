@@ -44,6 +44,7 @@ internal static partial class SuiteCatalog
             ReferenceResaveSuite.Create(),
             MilkMigrationSuite.Create(),
             ThinkTreeMigrationSuite.Create(),
+            ThinkTreeWarningSuite.Create(),
             ModSuite(modSuites, StartupSuiteName),
             SpawnSuite.Create(),
             SaveLoadSuite.Create(),

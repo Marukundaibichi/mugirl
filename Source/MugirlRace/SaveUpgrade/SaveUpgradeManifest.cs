@@ -41,6 +41,7 @@ public static class SaveUpgradeManifest
             WritePolicies(writer, tables);
             WriteSettings(writer, tables);
             WriteStructure(writer, tables);
+            WriteRuntimeProtocols(writer);
             writer.WriteStartObject("moogirlEra");
             WriteStrings(writer, "typePrefixes", tables.MooGirlTypePrefixes);
             WriteStrings(writer, "defPatterns", tables.MooGirlDefPatterns.Select(pattern => pattern.Text));
@@ -67,6 +68,24 @@ public static class SaveUpgradeManifest
             writer.WriteEndObject();
         }
 
+        writer.WriteEndArray();
+    }
+
+    // 非 DOM 的 Scribe 协议也登记在清单；黄金夹具由实际 Job writer 读写，不伪装成 DOM 改名步骤。
+    private static void WriteRuntimeProtocols(Utf8JsonWriter writer)
+    {
+        writer.WriteStartArray("runtimeProtocols");
+        writer.WriteStartObject();
+        writer.WriteString("id", LegacyThinkTreeKeys.StepId);
+        writer.WriteString("owner", "Verse.AI.Job");
+        writer.WriteString("keyLabel", "lastJobGiverKey");
+        writer.WriteString("markerLabel", UnresolvedThinkTreeKeys.MarkerLabel);
+        writer.WriteBoolean("optional", true);
+        writer.WriteString("phase", "Scribe");
+        writer.WriteString("goldenFixture", "ScribeGolden/ThinkTreeSources");
+        writer.WriteString("reason", "Retain unresolved AI source identities without resetting tasks or blocking the save upgrade.");
+        writer.WriteNumber("schema", SaveSchema.Current);
+        writer.WriteEndObject();
         writer.WriteEndArray();
     }
 

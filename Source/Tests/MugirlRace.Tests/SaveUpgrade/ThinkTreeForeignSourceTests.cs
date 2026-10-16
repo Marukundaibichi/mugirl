@@ -1,4 +1,5 @@
 using System.IO;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -89,7 +90,7 @@ public sealed class ThinkTreeForeignSourceTests
     [InlineData("provenance")]
     [InlineData("current-key")]
     [InlineData("wrong-tree")]
-    public void UnknownOwnedUnprovenOrCollidingSourcesStillFail(string scenario)
+    public void UnknownOwnedUnprovenOrCollidingSourcesWarnAndRetainTheirOriginalKey(string scenario)
     {
         using var scope = new Scope();
         int key = Scope.Unknown;
@@ -102,9 +103,94 @@ public sealed class ThinkTreeForeignSourceTests
             typeof(ThinkNode).GetField("uniqueSaveKeyInt", BindingFlags.Instance | BindingFlags.NonPublic)!
                 .SetValue(scope.ForeignTree.thinkRoot, key);
         }
-        scope.Read(scope.ForeignXml(key));
+        Job job = scope.Read(scope.ForeignXml(key)).Foreign!;
+        Assert.False(scope.Session!.Report.Failed);
+        Assert.True(scope.Session.Verified);
+        Assert.Null(job.jobGiver);
+        Assert.Contains(scenario == "wrong-tree" ? "Reason=wrong-tree-or-writer" : "Reason=uncaptured-key",
+            Assert.Single(scope.Session.Report.Warnings).Message, StringComparison.Ordinal);
+        XmlDocument saved = scope.Write(job);
+        Assert.Equal(key.ToString(), saved.SelectSingleNode("//lastJobGiverKey")!.InnerText);
+        Assert.Equal("True", saved.SelectSingleNode("//" + UnresolvedThinkTreeKeys.MarkerLabel)!.InnerText);
+        Job reloaded = scope.Read(SaveXml.Game(saved), stamp: SaveSchema.Current).Foreign!;
+        Assert.True(scope.Session.Verified);
+        Assert.Null(reloaded.jobGiver);
+        Assert.Equal(SaveXml.Game(saved), SaveXml.Game(scope.Write(reloaded)));
+    }
+
+    [Theory]
+    [InlineData("True", -1)]
+    [InlineData("invalid", 123)]
+    [InlineData("<nested />", 123)]
+    [InlineData("True</mugirlUnresolvedThinkSource><mugirlUnresolvedThinkSource>True", 123)]
+    public void MalformedRetentionMarkersRemainStructuralFailures(string marker, int key)
+    {
+        using var scope = new Scope();
+        scope.Read(scope.ForeignXml(key).Replace("</foreign>", "<mugirlUnresolvedThinkSource>" + marker
+            + "</mugirlUnresolvedThinkSource></foreign>", StringComparison.Ordinal));
         Assert.True(scope.Session!.Report.Failed);
+        Assert.False(scope.Session.Verified);
         Assert.Equal("Framework.ThinkTreeKeys", scope.Session.Report.FailedStep);
+    }
+
+    [Fact]
+    public void CaptureFailureRetainsEverySourceWithoutFailingTheSchemaUpgrade()
+    {
+        using var scope = new Scope();
+        LegacyThinkTreeKeys.Capture(new ThinkNode_Priority(), 0, single: true, assignedCount: int.MaxValue);
+        Assert.NotNull(LegacyThinkTreeKeys.Problem);
+        var jobs = scope.Read(scope.ForeignXml() + scope.OwnXml());
+        Assert.True(scope.Session!.Verified);
+        Assert.Equal(2, scope.Session.Report.Warnings.Count);
+        Assert.All(scope.Session.Report.Warnings, warning => Assert.Contains("capture-unavailable", warning.Message, StringComparison.Ordinal));
+        Assert.Null(jobs.Foreign!.jobGiver);
+        Assert.Null(jobs.Own!.jobGiver);
+        XmlDocument saved = scope.Write(jobs.Foreign, jobs.Own);
+        Assert.Equal(Scope.Unknown.ToString(), saved.SelectSingleNode("//foreign/lastJobGiverKey")!.InnerText);
+        Assert.Equal(scope.OwnKey.ToString(), saved.SelectSingleNode("//owned/lastJobGiverKey")!.InnerText);
+    }
+
+    [Theory]
+    [InlineData("toilet", "Humanlike", "UseToilet", -1642323718, "wrong-tree-or-writer")]
+    [InlineData("rest", "MugirlLike", "LayDown", 566784108, "uncaptured-key")]
+    public void ReportedFailuresMatchScribeGoldensAndCannotVetoAValidSource(string name, string tree, string definition, int key, string reason)
+    {
+        using var scope = new Scope(tree, definition);
+        if (name == "toilet")
+        {
+            foreach (string field in new[] { "Ledger", "BeforeCorporateDuty", "FirstPublishedLayout", "CurrentLayout" })
+            {
+                object ledger = typeof(LegacyThinkTreeKeys).GetField(field, BindingFlags.Static | BindingFlags.NonPublic)!.GetValue(null)!;
+                var nodes = (Dictionary<int, ThinkNode>)ledger.GetType().GetField("nodes", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(ledger)!;
+                nodes[key] = scope.OwnNode; // 重现报告：账本有此键，实际 Humanlike 树没有该节点。
+            }
+        }
+        XmlDocument before = Golden("before.xml"), after = Golden("after.xml");
+        string input = "<foreign>" + before.SelectSingleNode("/savegame/game/" + name)!.InnerXml + "</foreign>";
+        var jobs = scope.Read(input + scope.OwnXml());
+        Assert.True(scope.Session!.Verified);
+        Assert.Same(scope.OwnNode, jobs.Own!.jobGiver);
+        Assert.Null(jobs.Foreign!.jobGiver);
+        Assert.Contains(reason, Assert.Single(scope.Session.Report.Warnings).Message, StringComparison.Ordinal);
+        XmlDocument written = scope.Write(jobs.Foreign, jobs.Own);
+        XmlNode expected = after.SelectSingleNode("/savegame/game/" + name)!;
+        foreach (XmlElement field in expected.ChildNodes.OfType<XmlElement>())
+        {
+            Assert.Equal(field.OuterXml, written.SelectSingleNode("/savegame/game/foreign/" + field.Name)!.OuterXml);
+        }
+        // 下一轮故意制造本树的同号节点；待解析标记必须阻止误绑定。
+        typeof(ThinkNode).GetField("uniqueSaveKeyInt", BindingFlags.Instance | BindingFlags.NonPublic)!.SetValue(scope.ForeignTree.thinkRoot, key);
+        Job reloaded = scope.Read(SaveXml.Game(written), stamp: SaveSchema.Current).Foreign!;
+        Assert.True(scope.Session.Verified);
+        Assert.Null(reloaded.jobGiver);
+        Assert.Equal(written.SelectSingleNode("//foreign")!.OuterXml, scope.Write(reloaded).SelectSingleNode("//foreign")!.OuterXml);
+    }
+
+    private static XmlDocument Golden(string name, [CallerFilePath] string sourceFile = "")
+    {
+        var document = new XmlDocument { XmlResolver = null };
+        document.Load(Path.Combine(Path.GetDirectoryName(sourceFile)!, "ScribeGolden", "ThinkTreeSources", name));
+        return document;
     }
 
     [Theory]
@@ -136,7 +222,7 @@ public sealed class ThinkTreeForeignSourceTests
         internal int OwnKey { get; }
         internal SaveUpgradeSession? Session { get; private set; }
 
-        internal Scope()
+        internal Scope(string foreignTreeName = "ForeignSource", string foreignJobName = "ForeignJob")
         {
             previousSession = active.GetValue(null);
             Directory.CreateDirectory(directory);
@@ -151,14 +237,14 @@ public sealed class ThinkTreeForeignSourceTests
             ModContentPack ours = Pack(typeof(LegacyThinkTreeKeys).Assembly), foreign = Pack(typeof(Job).Assembly);
             OwnTree = new ThinkTreeDef { defName = "Mugirl_TestSource", modContentPack = ours,
                 thinkRoot = new ThinkNode_Priority { subNodes = [OwnNode] } };
-            ForeignTree = new ThinkTreeDef { defName = "ForeignSource", modContentPack = foreign, thinkRoot = new ThinkNode_Priority() };
+            ForeignTree = new ThinkTreeDef { defName = foreignTreeName, modContentPack = foreign, thinkRoot = new ThinkNode_Priority() };
             OwnTree.ResolveReferences();
             ForeignTree.ResolveReferences();
             OwnKey = ((LegacyThinkTreeLedger)typeof(LegacyThinkTreeKeys).GetField("Ledger", BindingFlags.Static | BindingFlags.NonPublic)!
                 .GetValue(null)!).KeyFor(OwnNode);
             Assert.NotEqual(Unknown, OwnKey);
             Assert.NotEqual(Unknown, ForeignTree.thinkRoot.UniqueSaveKey);
-            ForeignJob = new JobDef { defName = "ForeignJob", modContentPack = foreign, driverClass = typeof(JobDriver) };
+            ForeignJob = new JobDef { defName = foreignJobName, modContentPack = foreign, driverClass = typeof(JobDriver) };
             DefDatabase<ThinkTreeDef>.Add(OwnTree);
             DefDatabase<ThinkTreeDef>.Add(ForeignTree);
             DefDatabase<JobDef>.Add(ForeignJob);
@@ -167,7 +253,7 @@ public sealed class ThinkTreeForeignSourceTests
         internal string ForeignXml(int key = Unknown) => "<foreign><def>ForeignJob</def><loadID>1</loadID><startTick>1234</startTick><expiryInterval>321</expiryInterval>"
             + "<jobGiverThinkTree>ForeignSource</jobGiverThinkTree><lastJobGiverKey>" + key + "</lastJobGiverKey></foreign>";
 
-        internal string OwnXml() => "<owned><def>ForeignJob</def><loadID>2</loadID><jobGiverThinkTree>Mugirl_TestSource</jobGiverThinkTree>"
+        internal string OwnXml() => "<owned><def>" + ForeignJob.defName + "</def><loadID>2</loadID><jobGiverThinkTree>Mugirl_TestSource</jobGiverThinkTree>"
             + "<lastJobGiverKey>" + OwnKey + "</lastJobGiverKey></owned>";
 
         internal (Job? Foreign, Job? Own) Read(string body, int? stamp = null, bool reverse = false, bool mainDocument = true, bool hasMugirl = true)

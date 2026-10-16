@@ -23,7 +23,7 @@
 
 `MugirlMod` 构造期依次执行 `SaveUpgradeBootstrap.Initialize(this)`、`GetSettings`、`HarmonyBootstrap.ApplyAtStartup`、`CombatCompatibilityBootstrap.Register()`。设置升级先于读取；安装检查通过加载长事件排到补丁应用之后。
 
-`SaveUpgradeInstallation.Verify` 用 `Harmony.GetPatchInfo` 检查必需钩子的 owner 为 `MugirlMod.Mod`。缺少必需入口或 ThinkTree 兼容账本建立失败时状态为 `Broken`，读入存档不能获得当前版本戳。可选的新游戏生命周期和删除 Def 静默处理入口缺失只报告降级。
+`SaveUpgradeInstallation.Verify` 用 `Harmony.GetPatchInfo` 检查必需钩子的 owner 为 `MugirlMod.Mod`。缺少必需入口或引擎协议未经核验时状态为 `Broken`，读入存档不能获得当前版本戳。已核验 writer 上的 ThinkTree 账本捕获失败只降级来源恢复，保留原键并警告。可选的新游戏生命周期和删除 Def 静默处理入口缺失只报告降级。
 
 ### 钩子（`SaveUpgrade/Hooks/`，每类一个文件）
 
@@ -57,11 +57,13 @@
 
 无法解析版本戳时在 `Framework.Detect` 失败。引用别名还要求实际 bank、LoadingVars 与主存档 XmlDocument 身份匹配；嵌套读取其他文件、没有会话、更新 schema 或失败后的会话不会继续套用别名。
 
-历史 ThinkTree 布局用五个已发布构建的实际树快照逐节点校准。早期发布缺少后加的巨企 Duty，原版键碰撞会影响其他树，不能仅凭最终节点路径或存档游戏版本猜键。`LegacyThinkJobReadSet` 收集本次实际读取的完整 Job 集合，在首次 PostLoadInit 冻结后求已捕获键的共同布局；不同布局允许留下候选，但每个受管键必须指向同一个当前节点。空交集、晚捕获、跨树键、歧义或最终 lookup 对象不符均失败，不改思考树，不消耗随机数。
+历史 ThinkTree 布局用五个已发布构建的实际树快照逐节点校准。早期发布缺少后加的巨企 Duty，原版键碰撞会影响其他树，不能仅凭最终节点路径或存档游戏版本猜键。`LegacyThinkJobReadSet` 收集本次实际读取的完整 Job 集合，在首次 PostLoadInit 冻结后求能够匹配实际树的来源共同布局；候选必须指向同一节点才能重新绑定。未知和跨树来源独立保留，不否决正常来源；空交集使相关来源整组保留，歧义或最终 lookup 对象不符也保留并警告。晚捕获、字段不符及真实读取异常仍是协议失败，不改思考树，不消耗随机数。
 
-2026-10-16 的玩家报告补充了一个限定边界：外部 ThinkTree 与外部 JobDef/driver 的键，如果在全部历史账本及实际当前树中都不存在，不参与雪牛娘布局判定，交由原版读取。缺少 Def 所属信息、雪牛娘定义/driver、已捕获但不在该树的键，以及只匹配当前节点却没有历史证明的键仍失败。这个外部未知键规则只在已核验 Job 写出协议的 4980 引擎启用；4979 及未知引擎不自动沿用新规则。
+2026-10-17 增加第四个候选 `CurrentLayout`：失败升级后的普通保存会保留旧 schema，却写当前节点键，因此 schema 0 不能排除当前布局。当前布局同样从完整的原版分配流捕获，使用未替换的当前类型名和树名种子；仅在保存的树名等于实际当前树名、捕获键等于该节点实际键时参与交集。它没有优先权，不作逐 Job 猜测回退；历史与当前候选指向不同节点时保持未解析。详见[重存档修复](../records/thinktree-key-migration-2026-10-16.md#升级失败后重存档的当前布局2026-10-17)。
 
-原版查找确实失败时，`UnresolvedThinkTreeKeys` 以 Job 弱引用保存原整数、实际树、Def 与 loadID。下次保存只在这些身份仍一致、来源仍为空且原版已省略 -1 标签时，补写原始 `lastJobGiverKey`；Clone 续接、Clear 清除，身份变化或已找到来源时不再使用旧记录。当前 schema 的主存档读回也保留这种外部原键；侧文档、未带本 Mod 的存档和更新 schema 不登记。没有增加存档标签，不伪造节点、不结束 Job，也不屏蔽原版的未知节点警告。保留原整数不代表已经恢复原节点，见[ThinkTree 修复记录](../records/thinktree-key-migration-2026-10-16.md)。
+2026-10-17 用户以[决策 §14](../refactor-1.7/decisions.md#14-ai-来源警告策略与部署授权2026-10-17)明确取消旧的所有权门槛：雪牛娘、外部及来源归属不明的 Job 都能保留无法证明的 AI 来源。未解析来源只产生兼容警告，不阻断整档升级；这不等于恢复了原来的 AI 节点。保留写出协议只在已核验的 4980 引擎启用，4979 及未知引擎不自动沿用。
+
+`UnresolvedThinkTreeKeys` 以 Job 弱引用保存原整数、实际树、Def 与 loadID。下次保存只在这些身份仍一致、来源仍为空且原版已省略 -1 标签时，补写原始 `lastJobGiverKey` 与可选 `mugirlUnresolvedThinkSource=True`。此标记让当前 schema 的重载也保留 null 来源，避免原整数恰好命中新节点后被误绑；Clone 续接、Clear 清除，身份变化或已有来源时清除旧记录。侧文档、未带本 Mod 的存档和更新 schema 不登记。标记是 schema 1 可选注记，K1 `runtimeProtocols` 登记真实 Scribe 黄金夹具，不设置虚假 DOM 改名步骤。不伪造节点、不结束 Job、不修改任务进度，也不屏蔽原版警告；角色后续 AI 判断仍可能重新安排任务。
 
 ### DOM 流水线（`UpgradePipeline`，主存档读取前）
 
@@ -120,8 +122,8 @@ DOM 的 Def 处理限定在真实对象定义、登记值上下文、明确删�
 
 | 契约 | 内容 |
 |---|---|
-| K1 `SaveUpgradeManifest.ToJson()` | manifestVersion=2；含逐行 schema、值/枚举位置、容器、历史组件关系、步骤和策略，供验证器与实机框架读取 |
-| K2 `SaveUpgradeDiagnostics.LastReportJson` | 会话、状态、动作数、耗时、失败步骤和备份路径 |
+| K1 `SaveUpgradeManifest.ToJson()` | manifestVersion=2；含逐行 schema、值/枚举位置、容器、历史组件关系、步骤、策略及可选 `runtimeProtocols`，供验证器与实机框架读取 |
+| K2 `SaveUpgradeDiagnostics.LastReportJson` | 会话、状态、动作数、耗时、失败步骤、具体 `error`、非阻断 `warnings` 和备份路径；成功时 error 为 null |
 | `SaveUpgradeOffline.Run` | 同一识别与 DOM 流程的只读离线入口；不替代实际 Scribe / Toil / Lord 续接验证 |
 | `ValidationReadTrace` | 仅带隔离验证开关与标记文件时启用；记录真实引用读取节点和路径，不作为正常游戏功能 |
 

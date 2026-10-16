@@ -53,7 +53,9 @@ internal static class SaveUpgradeInstallation
         Require(AccessTools.Method(typeof(ThinkTreeDef), nameof(ThinkTreeDef.TryGetThinkNodeWithSaveKey)), PatchKind.Prefix, typeof(Harmony_ThinkTreeDef_TryGetThinkNodeWithSaveKey), missing);
         Require(AccessTools.Method(typeof(ThinkTreeDef), nameof(ThinkTreeDef.TryGetThinkNodeWithSaveKey)), PatchKind.Postfix, typeof(Harmony_ThinkTreeDef_TryGetThinkNodeWithSaveKey), missing);
         Require(AccessTools.Method(typeof(ThinkTreeDef), nameof(ThinkTreeDef.TryGetThinkNodeWithSaveKey)), PatchKind.Finalizer, typeof(Harmony_ThinkTreeDef_TryGetThinkNodeWithSaveKey), missing);
-        if (LegacyThinkTreeKeys.Problem is { } thinkTreeProblem)
+        // 捕获布局失败只影响 AI 来源；已核验的 writer 仍能保留原键，不应禁用整个升级器。
+        if (LegacyThinkTreeKeys.Problem is { } thinkTreeProblem
+            && (!LegacyThinkTreeKeys.AlgorithmVerified || !UnresolvedThinkTreeKeys.ProtocolVerified))
         {
             missing.Add(thinkTreeProblem);
         }

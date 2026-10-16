@@ -111,7 +111,7 @@ internal static class SaveUpgradeRuntime
                 }
                 else if (game is not null && hub is not null && session.TryClaimCompletionNotice(verified))
                 {
-                    SaveUpgradeNotices.UpgradeCompleted(game, report.Backup!);
+                    SaveUpgradeNotices.UpgradeCompleted(game, report.Backup!, report.Warnings.Count);
                 }
 
                 addedToExistingGame = report.State == UpgradeState.NoMugirl;
@@ -282,6 +282,12 @@ internal static class SaveUpgradeRuntime
     private static void LogSummary(SaveUpgradeSession session)
     {
         UpgradeReport report = session.Report;
+        if (report.Warnings.Count > 0)
+        {
+            MugirlLog.Warning("Save upgrade compatibility warnings: " + report.Warnings.Count
+                + ". Unresolved AI sources were retained without resetting tasks. Full details are in the upgrade diagnostics.\n"
+                + string.Join("\n", report.Warnings.Take(8).Select(warning => warning.StepId + ": " + warning.Message)));
+        }
         if (session.IsLegacyRun)
         {
             MugirlLog.Message(report.Summary());

@@ -9,11 +9,15 @@ namespace Mugirl.SaveUpgrade;
 /// <summary>把明确由主存档读取的旧 Job 绑定到当前 ThinkNode；新档及其他 Scribe 文档不走旧键空间。</summary>
 internal static class LegacyThinkTreeKeys
 {
+    internal const string StepId = "Framework.ThinkTreeKeys";
+    private const int CurrentLayoutIndex = 3;
+    private const int LayoutCount = 4;
     // StaticCacheLifecycle: Def 级键空间，在原版 ThinkTreeKeyAssigner.Reset 同一时点清空。
     private static readonly LegacyThinkTreeLedger Ledger = new(LegacyShortName);
     private static readonly LegacyThinkTreeLedger BeforeCorporateDuty = new(LegacyShortName);
     private static readonly LegacyThinkTreeLedger FirstPublishedLayout = new(node => LegacyThinkLayouts.WasPawnKindCondition(node)
         ? "ThinkNode_ConditionalPawnKind" : LegacyShortName(node));
+    private static readonly LegacyThinkTreeLedger CurrentLayout = new(node => node.GetType().Name);
     private static string? captureError;
 
     // StaticCacheLifecycle: 读档会话是弱键，结束后不保留 Job 或整份存档 DOM。
@@ -40,6 +44,7 @@ internal static class LegacyThinkTreeKeys
         Ledger.Reset();
         BeforeCorporateDuty.Reset();
         FirstPublishedLayout.Reset();
+        CurrentLayout.Reset();
         LegacyThinkLayouts.Reset(resolvingTree);
         captureError = null;
     }
@@ -74,10 +79,14 @@ internal static class LegacyThinkTreeKeys
 
         try
         {
-            if (assignedCount is { } count && count != Ledger.AssignedCount)
+            if (assignedCount is { } count && (count != Ledger.AssignedCount || count != CurrentLayout.AssignedCount))
             {
                 throw new InvalidOperationException("The ThinkTree assignment stream began before capture or was changed by another patch.");
             }
+
+            // 升级失败后的正常保存仍写来源 schema，却会写当前 Job 节点键。
+            // 当前布局也必须从完整分配流证明；在任何历史树名种子替换之前独立捕获。
+            CurrentLayout.Capture(single ? [root] : root.ThisAndChildrenRecursive, seed);
 
             if (!single && resolvingTree is { } tree && ReferenceEquals(tree.thinkRoot, root)
                 && seed == GenText.StableStringHash(tree.defName))
@@ -138,7 +147,11 @@ internal static class LegacyThinkTreeKeys
             {
                 session.Report.Fail("Framework.ThinkTreeKeys", "The same Job was read from different saved ThinkTree sources.");
             }
-            else { read.Jobs[job] = currentNode!; }
+            else
+            {
+                read.Jobs[job] = currentNode!;
+                ReadRetainedMarker(session, read, job, currentNode!);
+            }
         }
         else if (mode == LoadSaveMode.PostLoadInit && ReadJobs.TryGetValue(session, out LegacyThinkJobReadSet? read)
             && read.Jobs.TryGetValue(job, out XmlNode? source) && IsInsideGame(source, session.Document!.Game))
@@ -168,11 +181,31 @@ internal static class LegacyThinkTreeKeys
         return false;
     }
 
+    private static void ReadRetainedMarker(SaveUpgradeSession session, LegacyThinkJobReadSet read, Job job, XmlNode source)
+    {
+        XmlElement[] markers = [.. source.ChildNodes.OfType<XmlElement>().Where(node => node.Name == UnresolvedThinkTreeKeys.MarkerLabel)];
+        read.RetainedSources.Remove(job);
+        if (markers.Length == 0) { return; }
+        if (markers.Length != 1 || DomEditor.HasElementChild(markers[0]) || !bool.TryParse(markers[0].InnerText, out bool retained))
+        {
+            session.Report.Fail(StepId, "The saved unresolved ThinkTree source marker is malformed.");
+            return;
+        }
+        if (!retained) { return; }
+        if (source["lastJobGiverKey"] is not { } saved
+            || !int.TryParse(saved.InnerText, NumberStyles.Integer, CultureInfo.InvariantCulture, out int key) || key == -1)
+        {
+            session.Report.Fail(StepId, "The saved unresolved ThinkTree source marker has no valid original key.");
+            return;
+        }
+        read.RetainedSources.Add(job);
+    }
+
     /// <summary>返回 false 表示已识别的旧 Job 无法安全解析；由调用方返回未找到，不猜一个当前节点。</summary>
     internal static bool PrepareLookup(ThinkTreeDef tree, ref int key, out LegacyThinkLookup? lookup)
     {
         lookup = null;
-        if (exposingLegacyJob is not { IsLegacyRun: true, Completed: false } session || key == -1)
+        if (exposingLegacyJob is not { Completed: false } session || exposingJob is not { } job || key == -1)
         {
             return true;
         }
@@ -188,11 +221,8 @@ internal static class LegacyThinkTreeKeys
             return false;
         }
 
-        if (Problem is { } problem)
-        {
-            session.Report.Fail("Framework.ThinkTreeKeys", problem);
-            return false;
-        }
+        bool retained = ReadJobs.TryGetValue(session, out LegacyThinkJobReadSet? read) && read.RetainedSources.Contains(job);
+        if (!session.IsLegacyRun && !retained) { return true; }
 
         XmlNode? source = exposingLegacyJobXml?["lastJobGiverKey"];
         if (source is null || !int.TryParse(source.InnerText, NumberStyles.Integer, CultureInfo.InvariantCulture, out int savedKey)
@@ -202,34 +232,46 @@ internal static class LegacyThinkTreeKeys
             return false;
         }
 
-        int profiles = SelectProfiles(session);
-        if (profiles == 0) { return false; }
-        if (ReadJobs.TryGetValue(session, out LegacyThinkJobReadSet? read) && read.NativeLookups.Contains(exposingJob!))
+        if (retained) { return Defer(session, job, tree, key, "retained-source"); }
+        if (!AlgorithmVerified)
         {
-            return true;
+            session.Report.Fail(StepId, Problem!);
+            return false;
         }
+        if (captureError is { } problem)
+        {
+            if (read is not null) { read.Profiles ??= 0; }
+            return Defer(session, job, tree, key, "capture-unavailable: " + problem);
+        }
+
+        int profiles = SelectProfiles(session);
+        if (session.Report.Failed) { return false; }
+        if (read is not null && read.DeferredSources.TryGetValue(job, out string? reason))
+        {
+            return Defer(session, job, tree, key, reason);
+        }
+        if (profiles == 0) { return false; }
         ThinkNode? expected = null;
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < LayoutCount; i++)
         {
             if ((profiles & (1 << i)) == 0 || !Layout(i).TryNode(key, out ThinkNode? candidate)
+                || !MatchesSavedLayout(i, candidate, tree, exposingLegacyJobXml!, key)
                 || !tree.thinkRoot.ThisAndChildrenRecursive.Any(node => ReferenceEquals(node, candidate)))
             {
                 continue;
             }
             if (expected is not null && !ReferenceEquals(expected, candidate))
             {
-                session.Report.Fail("Framework.ThinkTreeKeys", "Published ThinkTree layouts disagree on the node for legacy key " + key.ToString(CultureInfo.InvariantCulture) + ".");
-                return false;
+                return Defer(session, job, tree, key, "ambiguous-layouts");
             }
             expected = candidate;
         }
         if (expected is null || expected.UniqueSaveKey == -1)
         {
-            session.Report.Fail("Framework.ThinkTreeKeys", "No captured ThinkNode proves legacy key " + key.ToString(CultureInfo.InvariantCulture) + ".");
-            return false;
+            return Defer(session, job, tree, key, "unavailable-node");
         }
 
-        lookup = new LegacyThinkLookup(session, source, tree, expected, expected.UniqueSaveKey);
+        lookup = new LegacyThinkLookup(session, source, tree, expected, expected.UniqueSaveKey, job, savedKey);
         key = lookup.CanonicalKey;
         return true;
     }
@@ -239,8 +281,13 @@ internal static class LegacyThinkTreeKeys
         0 => Ledger,
         1 => BeforeCorporateDuty,
         2 => FirstPublishedLayout,
+        CurrentLayoutIndex => CurrentLayout,
         _ => throw new ArgumentOutOfRangeException(nameof(index)),
     };
+
+    // 当前 writer 只会写实际树名和实际节点键；旧树名搭配当前键不能证明来源。
+    private static bool MatchesSavedLayout(int index, ThinkNode node, ThinkTreeDef tree, XmlNode source, int key)
+        => index != CurrentLayoutIndex || (source["jobGiverThinkTree"]?.InnerText == tree.defName && node.UniqueSaveKey == key);
 
     private static int SelectProfiles(SaveUpgradeSession session)
     {
@@ -261,14 +308,12 @@ internal static class LegacyThinkTreeKeys
 
     private static int ComputeProfiles(SaveUpgradeSession session, LegacyThinkJobReadSet read)
     {
-        // Job.ExposeData 每次保存都从实际 jobGiver.UniqueSaveKey 写出整数；同一存档的来源
-        // 属于同一全局分配布局。FinalizeLoading 完成全部 LoadingVars/CrossRefs 后才开始
-        // PostLoadInit，故首次查询可以一次性求已捕获键的布局交集。
-        // 外部树中任何布局都未捕获的外部 Job 来源无法证明本 Mod 的年代，交回原版查找并保留未解析的原键。
-        // 不以 JobDef、游戏版本或缺失业务组件猜年代；也不扫描未被 Scribe 读取的 XML。
+        // 只由能够匹配真实树的来源约束布局；未知、错树与既有待解析来源各自保留，不能否决别的任务。
+        // 有效来源彼此冲突时也不选一个年代：整组保留原键并警告，不将猜测绑定成成功迁移。
         read.Profiles = 0; // 冻结来源集合；异常或晚到的 LoadingVars 不能悄悄重新选择。
-        int profiles = 7;
+        int profiles = (1 << LayoutCount) - 1;
         var members = new Dictionary<ThinkTreeDef, HashSet<ThinkNode>>(ReferenceEqualityComparer.Instance);
+        var constrained = new List<Job>();
         foreach ((Job job, XmlNode source) in read.Jobs)
         {
             XmlNode? saved = source["lastJobGiverKey"];
@@ -280,6 +325,7 @@ internal static class LegacyThinkTreeKeys
                 return 0;
             }
             if (key == -1) { continue; }
+            if (read.RetainedSources.Contains(job)) { continue; }
             if (job.jobGiverThinkTree is not { thinkRoot: { } root } tree)
             {
                 session.Report.Fail("Framework.ThinkTreeKeys", "A saved ThinkTree key has no actual loaded tree.");
@@ -291,30 +337,75 @@ internal static class LegacyThinkTreeKeys
                 members.Add(tree, nodes);
             }
             int available = 0;
-            bool captured = false;
-            for (int i = 0; i < 3; i++)
+            int captured = 0;
+            for (int i = 0; i < LayoutCount; i++)
             {
                 if (Layout(i).TryNode(key, out ThinkNode? candidate))
                 {
-                    captured = true;
-                    if (nodes.Contains(candidate)) { available |= 1 << i; }
+                    captured |= 1 << i;
+                    if (nodes.Contains(candidate) && MatchesSavedLayout(i, candidate, tree, source, key)) { available |= 1 << i; }
                 }
             }
-            if (!captured && !nodes.Any(node => node.UniqueSaveKey == key) && UnresolvedThinkTreeKeys.IsForeign(job, tree))
+            if (available == 0)
             {
-                read.NativeLookups.Add(job);
+                read.DeferredSources[job] = (captured == 0 ? "uncaptured-key" : "wrong-tree-or-writer")
+                    + "; captured=" + ProfileNames(captured) + "; nativeMatches="
+                    + nodes.Count(node => node.UniqueSaveKey == key).ToString(CultureInfo.InvariantCulture);
                 continue;
             }
+            constrained.Add(job);
             profiles &= available;
-            if (profiles == 0)
-            {
-                session.Report.Fail("Framework.ThinkTreeKeys", "No single captured ThinkTree layout proves all saved Job keys: tree "
-                    + tree.defName + ", key " + key.ToString(CultureInfo.InvariantCulture) + ", job " + job.def?.defName + ".");
-                return 0;
-            }
+        }
+        if (profiles == 0)
+        {
+            foreach (Job job in constrained) { read.DeferredSources[job] = "incompatible-layouts"; }
         }
         read.Profiles = profiles;
         return profiles;
+    }
+
+    /// <summary>仅保留来源，不碰 JobDef、目标、计数或 JobDriver。false 让原版发出缺失来源警告。</summary>
+    private static bool Defer(SaveUpgradeSession session, Job job, ThinkTreeDef tree, int key, string reason)
+    {
+        if (!UnresolvedThinkTreeKeys.ProtocolVerified)
+        {
+            session.Report.Fail(StepId, "The original ThinkTree key cannot be preserved on this unreviewed Job writer.");
+            return false;
+        }
+        if (!ReferenceEquals(job.jobGiverThinkTree, tree))
+        {
+            session.Report.Fail(StepId, "The Job changed its saved ThinkTree while its source was being read.");
+            return false;
+        }
+        UnresolvedThinkTreeKeys.Remember(job, tree, key);
+        LegacyThinkJobReadSet read = ReadJobs.GetValue(session, static _ => new LegacyThinkJobReadSet());
+        if (read.WarnedJobs.Add(job))
+        {
+            session.Report.Warn(StepId, "Unresolved AI source retained: tree " + tree.defName + ", key "
+                + key.ToString(CultureInfo.InvariantCulture) + ", job " + job.def?.defName + ", loadID "
+                + job.loadID.ToString(CultureInfo.InvariantCulture) + ". Reason=" + reason + ". Task state was not reset.");
+        }
+        return false;
+    }
+
+    private static string ProfileNames(int profiles) => profiles == 0 ? "none" : string.Join(",",
+        Enumerable.Range(0, LayoutCount).Where(index => (profiles & (1 << index)) != 0).Select(index => index switch
+        {
+            0 => "renamed", 1 => "before-duty", 2 => "first-published", CurrentLayoutIndex => "current",
+            _ => throw new ArgumentOutOfRangeException(nameof(index)),
+        }));
+
+    /// <summary>只说明环境差异，不用模组列表推断节点或放宽升级条件。</summary>
+    internal static string DescribeModDifference(IReadOnlyList<string> savedIds, IEnumerable<string> activeIds)
+    {
+        string[] saved = [.. savedIds.Select(id => id.Trim())];
+        string[] active = [.. activeIds.Select(id => id.Trim())];
+        var savedSet = new HashSet<string>(saved, StringComparer.OrdinalIgnoreCase);
+        var activeSet = new HashSet<string>(active, StringComparer.OrdinalIgnoreCase);
+        string[] added = [.. active.Where(id => !savedSet.Contains(id))];
+        string[] removed = [.. saved.Where(id => !activeSet.Contains(id))];
+        bool orderChanged = !saved.Where(activeSet.Contains).SequenceEqual(active.Where(savedSet.Contains), StringComparer.OrdinalIgnoreCase);
+        return FormattableString.Invariant($"Mod environment: saved={saved.Length}, active={active.Length}, added={added.Length} [{string.Join(",", added.Take(8))}], removed={removed.Length} [{string.Join(",", removed.Take(8))}], commonOrderChanged={orderChanged}. Differences may change keys; this does not prove a node mapping.");
     }
 
     internal static void CompleteLookup(ThinkTreeDef tree, LegacyThinkLookup? lookup, ref ThinkNode? node, ref bool found)
@@ -324,9 +415,12 @@ internal static class LegacyThinkTreeKeys
             || !ReferenceEquals(node, lookup.ExpectedNode) || node.UniqueSaveKey != lookup.CanonicalKey
             || !tree.thinkRoot.ThisAndChildrenRecursive.Any(candidate => ReferenceEquals(candidate, lookup.ExpectedNode)))
         {
-            lookup.Session.Report.Fail("Framework.ThinkTreeKeys", "The actual ThinkTree lookup did not return the captured node in its original tree.");
             node = null;
             found = false;
+            if (!lookup.Session.Report.Failed)
+            {
+                Defer(lookup.Session, lookup.Job, lookup.Tree, lookup.SavedKey, "lookup-mismatch");
+            }
             return;
         }
 
@@ -340,12 +434,11 @@ internal static class LegacyThinkTreeKeys
             || exposingLegacyJob is not { Completed: false } session || session.Report.Failed
             || exposingJob is not { } job || !ReferenceEquals(job.jobGiverThinkTree, tree)
             || exposingLegacyJobXml?["lastJobGiverKey"] is not { } source
-            || !int.TryParse(source.InnerText, NumberStyles.Integer, CultureInfo.InvariantCulture, out int saved) || saved != key
-            || !UnresolvedThinkTreeKeys.IsForeign(job, tree))
+            || !int.TryParse(source.InnerText, NumberStyles.Integer, CultureInfo.InvariantCulture, out int saved) || saved != key)
         {
             return;
         }
-        UnresolvedThinkTreeKeys.Remember(job, tree, key);
+        Defer(session, job, tree, key, "native-source-missing");
     }
 
     internal static void LookupFailed(LegacyThinkLookup? lookup, Exception? exception)

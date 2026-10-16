@@ -249,9 +249,11 @@ public sealed class PipelineTests
         using JsonDocument json = JsonDocument.Parse(session.Report.ToJson());
         JsonElement root = json.RootElement;
 
-        Assert.Equal(new[] { "session", "state", "failedStep", "steps", "totalMs", "backup" }, root.EnumerateObject().Select(p => p.Name));
+        Assert.Equal(new[] { "session", "state", "failedStep", "error", "warnings", "steps", "totalMs", "backup" }, root.EnumerateObject().Select(p => p.Name));
+        Assert.Empty(root.GetProperty("warnings").EnumerateArray());
         Assert.Equal("Upgraded", root.GetProperty("state").GetString());
         Assert.Equal(JsonValueKind.Null, root.GetProperty("failedStep").ValueKind);
+        Assert.Equal(JsonValueKind.Null, root.GetProperty("error").ValueKind);
         Assert.Equal("C:\\saves\\A.rws.mugirl-schema0.bak", root.GetProperty("backup").GetString());
         JsonElement step = root.GetProperty("steps")[1];
         Assert.Equal(new[] { "id", "phase", "actions", "ms" }, step.EnumerateObject().Select(p => p.Name));

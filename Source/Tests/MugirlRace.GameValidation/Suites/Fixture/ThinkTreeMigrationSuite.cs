@@ -25,8 +25,10 @@ internal static class ThinkTreeMigrationSuite
 
     private static IEnumerable<Wait> Run(ValidationContext ctx)
     {
-        string input = ctx.Options.SuiteOption(Name + ".source", "");
+        bool currentLayout = ctx.Options.SuiteOption(Name + ".currentLayout", "false") == "true";
+        string input = currentLayout ? ctx.ArtifactPath("current-layout-schema0.xml")! : ctx.Options.SuiteOption(Name + ".source", "");
         bool expectFailure = ctx.Options.SuiteOption(Name + ".expectFailure", "false") == "true";
+        if (currentLayout) { WriteCurrentLayoutSample(input); }
         byte[] hash = SHA256.HashData(File.ReadAllBytes(input));
         var source = new XmlDocument { XmlResolver = null };
         source.Load(input);
@@ -41,7 +43,7 @@ internal static class ThinkTreeMigrationSuite
             "playerInterruptedForced", "count", "maxNumMeleeAttacks", "maxNumStaticAttacks", "locomotionUrgency",
             "haulMode", "canBash", "canBashFences", "forceSleep", "restUntilHealed", "ignoreForbidden",
             "followRadius", "jobGiverThinkTree", "lastJobGiverKey"];
-        var expected = new List<(int Id, int Key, string Tree, bool NativeMissing)>();
+        var expected = new List<(int Id, int Key, string Tree, bool NativeMissing, ThinkNode? NativeNode)>();
         foreach (XmlElement job in original)
         {
             if (job.HasAttribute("Class")) { throw new InvalidOperationException("This replay expects base Job entries."); }
@@ -54,12 +56,12 @@ internal static class ThinkTreeMigrationSuite
             string treeName = job["jobGiverThinkTree"]!.InnerText;
             int key = int.Parse(job["lastJobGiverKey"]!.InnerText, CultureInfo.InvariantCulture);
             ThinkTreeDef tree = DefDatabase<ThinkTreeDef>.GetNamed(treeName);
-            bool missing = !tree.TryGetThinkNodeWithSaveKey(key, out _);
-            expected.Add((int.Parse(job["loadID"]!.InnerText, CultureInfo.InvariantCulture), key, treeName, missing));
+            bool missing = !tree.TryGetThinkNodeWithSaveKey(key, out ThinkNode? nativeNode);
+            expected.Add((int.Parse(job["loadID"]!.InnerText, CultureInfo.InvariantCulture), key, treeName, missing, nativeNode));
         }
-        string[] warnings = [.. expected.Where(item => item.NativeMissing).Select(item => "Could not find think node with key "
+        string[] warnings = [.. expected.Where((item, i) => item.NativeMissing || (expectFailure && currentLayout && i == 0)).Select(item => "Could not find think node with key "
             + item.Key.ToString(CultureInfo.InvariantCulture)).Distinct(StringComparer.Ordinal)];
-        // 只接受预先经原版查找证明缺失的确切键；生产警告仍然实际发出，并在下面按数量核对。
+        // 正向只接受原版已证明缺失的确切键；负对照另核对首次被错误拒绝的当前键，均保留并检查实际警告。
         ctx.ExpectLog(entry => entry.Level == LogLevel.Warning && warnings.Any(text => entry.Message.Trim() == text));
         int logStart = ctx.Logs.Count;
         Assembly assembly = ctx.RequireTarget().Assembly ?? throw new InvalidOperationException("MugirlRace is not loaded.");
@@ -76,12 +78,25 @@ internal static class ThinkTreeMigrationSuite
                 ctx.Report.Check(failedStep == "Framework.ThinkTreeKeys", "unfixed build reproduces the reported failure", () => firstReport);
                 ctx.Report.Check(hash.SequenceEqual(SHA256.HashData(File.ReadAllBytes(input))), "original input is unchanged", () => input);
                 LogCapture.DrainInto(ctx.Logs);
+                if (currentLayout)
+                {
+                    string rejected = "Could not find think node with key " + expected[0].Key.ToString(CultureInfo.InvariantCulture);
+                    ctx.Report.Check(expected.All(item => !item.NativeMissing)
+                        && ctx.Logs.Skip(logStart).Count(entry => entry.Level == LogLevel.Warning && entry.Message.Trim() == rejected) == 1,
+                        "unfixed upgrade rejects one source that native lookup can resolve", () => firstReport);
+                }
                 yield break;
             }
             if (!ctx.Report.Check(failedStep is null && report.RootElement.GetProperty("state").GetString() == "Upgraded",
-                "foreign missing sources do not fail the upgrade", () => firstReport)) { yield break; }
+                "proven sources do not fail the upgrade", () => firstReport)) { yield break; }
         }
         ctx.Report.Check(first.Count == expected.Count, "every sampled Job was read", () => $"expected {expected.Count}, actual {first.Count}");
+        if (currentLayout)
+        {
+            ctx.Report.Check(expected.All(item => !item.NativeMissing), "current layout keys exist in the actual tree", () => "a native source is missing");
+            ctx.Report.Check(first.Select((job, i) => ReferenceEquals(job.jobGiver, expected[i].NativeNode)).All(same => same),
+                "schema-0 reload preserves every actual current source", () => "a current node was rebound");
+        }
         string savedPath = ctx.ArtifactPath("think-saved.xml")!;
         Write(savedPath, first, sample["savegame"]!["meta"]!);
         CheckKeys(ctx, savedPath, expected);
@@ -117,7 +132,7 @@ internal static class ThinkTreeMigrationSuite
         }, new JsonSerializerOptions { WriteIndented = true }));
     }
 
-    private static void CheckKeys(ValidationContext ctx, string path, List<(int Id, int Key, string Tree, bool NativeMissing)> expected)
+    private static void CheckKeys(ValidationContext ctx, string path, List<(int Id, int Key, string Tree, bool NativeMissing, ThinkNode? NativeNode)> expected)
     {
         var document = new XmlDocument { XmlResolver = null };
         document.Load(path);
@@ -131,7 +146,23 @@ internal static class ThinkTreeMigrationSuite
         }
     }
 
-    private static void Write(string path, List<Job> jobs, XmlElement meta)
+    private static void WriteCurrentLayoutSample(string path)
+    {
+        ThinkTreeDef tree = DefDatabase<ThinkTreeDef>.GetNamed("MugirlLike");
+        // 真实 Job writer 写当前来源，同时保留失败升级后的 schema 0；不硬编码本机碰撞键。
+        List<Job> jobs = [.. tree.thinkRoot.ThisAndChildrenRecursive.OfType<RimWorld.JobGiver_GetRest>()
+            .Select((node, i) => new Job
+            {
+                def = RimWorld.JobDefOf.LayDown, loadID = i + 1, startTick = 1234 + i, expiryInterval = 321, count = 7,
+                jobGiverThinkTree = tree, jobGiver = node,
+            })];
+        if (jobs.Count == 0) { throw new InvalidOperationException("No current MugirlLike rest sources were found."); }
+        var meta = new XmlDocument { XmlResolver = null };
+        meta.LoadXml("<meta><modIds><li>har.mugirlrace</li></modIds></meta>");
+        Write(path, jobs, meta.DocumentElement!, schema: 0);
+    }
+
+    private static void Write(string path, List<Job> jobs, XmlElement meta, int schema = 1)
     {
         Scribe.saver.InitSaving(path, "savegame");
         Scribe.EnterNode("game");
@@ -147,9 +178,10 @@ internal static class ThinkTreeMigrationSuite
         var document = new XmlDocument { XmlResolver = null };
         document.Load(path);
         document.DocumentElement!.PrependChild(document.ImportNode(meta, true));
-        // 这里只给隔离的 Job 值夹具标记当前结构，以验证下次普通读取；不是给玩家完整存档盖成功戳。
+        // 这里只标记隔离的 Job 值夹具；schema 0 模拟失败后重存，schema 1 验证升级后的普通读取。
         XmlElement components = document.CreateElement("components");
-        components.InnerXml = "<li Class=\"Mugirl.Core.GameComponent_Mugirl\"><mugirlSaveSchema>1</mugirlSaveSchema></li>";
+        components.InnerXml = "<li Class=\"Mugirl.Core.GameComponent_Mugirl\"><mugirlSaveSchema>"
+            + schema.ToString(CultureInfo.InvariantCulture) + "</mugirlSaveSchema></li>";
         document.DocumentElement["game"]!.PrependChild(components);
         document.Save(path);
     }

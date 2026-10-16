@@ -45,6 +45,11 @@ public sealed class ThinkTreeHistoricalLayoutTests
             }
             Assert.Null(LegacyThinkTreeKeys.Problem);
             Assert.Equal(currentKeys.OrderBy(p => p.Key), current.ToDictionary(p => p.Key, p => p.Value.UniqueSaveKey).OrderBy(p => p.Key));
+            var currentLedger = (LegacyThinkTreeLedger)typeof(LegacyThinkTreeKeys).GetField("CurrentLayout", BindingFlags.NonPublic | BindingFlags.Static)!.GetValue(null)!;
+            foreach (ThinkNode node in current.Values)
+            {
+                Assert.Equal(node.UniqueSaveKey, currentLedger.KeyFor(node));
+            }
             string field = firstPublished ? "FirstPublishedLayout" : "BeforeCorporateDuty";
             var ledger = (LegacyThinkTreeLedger)typeof(LegacyThinkTreeKeys).GetField(field, BindingFlags.NonPublic | BindingFlags.Static)!.GetValue(null)!;
             foreach (((string tree, string path), int key) in oldKeys)

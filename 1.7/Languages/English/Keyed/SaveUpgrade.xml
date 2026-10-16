@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <Mugirl.SaveUpgrade.CompletedTitle>Mugirl save upgraded</Mugirl.SaveUpgrade.CompletedTitle>
+  <Mugirl.SaveUpgrade.SourceWarnings>{0} task AI sources could not be restored. Their original keys and saved task progress have been retained. Pawns may choose new tasks when their AI next evaluates what to do. Details are recorded in the log.</Mugirl.SaveUpgrade.SourceWarnings>
   <Mugirl.SaveUpgrade.CompletedBody>Your save has been automatically upgraded for the current version of Mugirl. The original save has been backed up.\n\nBackup file: {0}\n\nThe upgrade marker will be saved with your game. Loading that updated save will not send this notice again.</Mugirl.SaveUpgrade.CompletedBody>
   <Mugirl.SaveUpgrade.Failed>The Mugirl save upgrade failed at step {0}. Do not overwrite this save: keep playing only after reporting the problem, and send the log together with the .bak backup next to the save file.</Mugirl.SaveUpgrade.Failed>
   <Mugirl.SaveUpgrade.NewerSave>This save was written by a newer version of Mugirl (save schema {0}). Saving it with this version loses the newer data; update the mod before saving.</Mugirl.SaveUpgrade.NewerSave>

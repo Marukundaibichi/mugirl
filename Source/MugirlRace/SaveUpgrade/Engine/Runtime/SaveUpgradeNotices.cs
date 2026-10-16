@@ -15,8 +15,9 @@ internal static class SaveUpgradeNotices
     internal const string NotInstalledKey = "Mugirl.SaveUpgrade.NotInstalled";
     internal const string CompletedTitleKey = "Mugirl.SaveUpgrade.CompletedTitle";
     internal const string CompletedBodyKey = "Mugirl.SaveUpgrade.CompletedBody";
+    internal const string SourceWarningsKey = "Mugirl.SaveUpgrade.SourceWarnings";
 
-    internal static void UpgradeCompleted(Game game, string backupPath)
+    internal static void UpgradeCompleted(Game game, string backupPath, int warningCount = 0)
     {
         LongEventHandler.ExecuteWhenFinished(() =>
         {
@@ -25,6 +26,12 @@ internal static class SaveUpgradeNotices
             string title = Translate(CompletedTitleKey, "Mugirl save upgraded");
             string text = Translate(CompletedBodyKey,
                 "Your save has been automatically upgraded for the current version of Mugirl. The original save has been backed up.\n\nBackup file: {0}\n\nThe upgrade marker will be saved with your game. Loading that updated save will not send this notice again.", backupPath);
+            if (warningCount > 0)
+            {
+                text += "\n\n" + Translate(SourceWarningsKey,
+                    "{0} task AI sources could not be restored. Their original keys and saved task progress have been retained. Pawns may choose new tasks when their AI next evaluates what to do. Details are recorded in the log.",
+                    warningCount.ToString(CultureInfo.InvariantCulture));
+            }
             game.letterStack.ReceiveLetter(title, text, LetterDefOf.PositiveEvent);
         });
     }

@@ -67,6 +67,7 @@ public sealed class ThinkTreeSnapshotTests
             Assert.Equal(11, result["Ledger"][node]);
             Assert.Equal(22, result["BeforeCorporateDuty"][node]);
             Assert.Equal(33, result["FirstPublishedLayout"][node]);
+            Assert.Equal(44, result["CurrentLayout"][node]);
             Assert.Equal(expected, Rand.Int);
             result["Ledger"][node] = 44;
             Assert.Equal(11, ThinkTreeSnapshot.ReadProfiles(typeof(Profiles), errors)["Ledger"][node]);
@@ -95,10 +96,11 @@ public sealed class ThinkTreeSnapshotTests
         private static readonly LedgerData Ledger = new(new Dictionary<ThinkNode, int>(ReferenceEqualityComparer.Instance));
         private static readonly LedgerData BeforeCorporateDuty = new(new Dictionary<ThinkNode, int>(ReferenceEqualityComparer.Instance));
         private static readonly LedgerData FirstPublishedLayout = new(new Dictionary<ThinkNode, int>(ReferenceEqualityComparer.Instance));
+        private static readonly LedgerData CurrentLayout = new(new Dictionary<ThinkNode, int>(ReferenceEqualityComparer.Instance));
         public static void Set(ThinkNode node)
         {
-            Ledger.Values.Clear(); BeforeCorporateDuty.Values.Clear(); FirstPublishedLayout.Values.Clear();
-            Ledger.Values.Add(node, 11); BeforeCorporateDuty.Values.Add(node, 22); FirstPublishedLayout.Values.Add(node, 33);
+            Ledger.Values.Clear(); BeforeCorporateDuty.Values.Clear(); FirstPublishedLayout.Values.Clear(); CurrentLayout.Values.Clear();
+            Ledger.Values.Add(node, 11); BeforeCorporateDuty.Values.Add(node, 22); FirstPublishedLayout.Values.Add(node, 33); CurrentLayout.Values.Add(node, 44);
         }
     }
 

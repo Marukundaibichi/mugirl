@@ -10,6 +10,7 @@ namespace Mugirl.SaveUpgrade;
 internal sealed class UpgradeReport(int session)
 {
     private readonly List<StepReport> steps = [];
+    private readonly List<UpgradeWarning> warnings = [];
 
     /// <summary>本进程内的读档序号。</summary>
     internal int Session { get; } = session;
@@ -32,12 +33,15 @@ internal sealed class UpgradeReport(int session)
     internal string? GameVersion { get; set; }
 
     internal IReadOnlyList<StepReport> Steps => steps;
+    internal IReadOnlyList<UpgradeWarning> Warnings => warnings;
 
     internal long TotalMilliseconds => steps.Sum(step => step.Milliseconds);
 
     internal int TotalActions => steps.Sum(step => step.Actions);
 
     internal bool Failed => State == UpgradeState.Failed;
+
+    internal void Warn(string stepId, string message) => warnings.Add(new UpgradeWarning(stepId, message));
 
     internal void Add(StepReport step)
     {
@@ -58,7 +62,7 @@ internal sealed class UpgradeReport(int session)
         Error = error;
     }
 
-    /// <summary>诊断 JSON：<c>{"session","state","failedStep","steps":[{"id","phase","actions","ms"}],"totalMs","backup"}</c>。</summary>
+    /// <summary>诊断 JSON：状态、错误、非阻断警告、各阶段动作及备份位置。</summary>
     internal string ToJson()
     {
         using var stream = new MemoryStream();
@@ -68,6 +72,16 @@ internal sealed class UpgradeReport(int session)
             writer.WriteNumber("session", Session);
             writer.WriteString("state", State.ToString());
             writer.WriteString("failedStep", FailedStep);
+            writer.WriteString("error", Error);
+            writer.WriteStartArray("warnings");
+            foreach (UpgradeWarning warning in warnings)
+            {
+                writer.WriteStartObject();
+                writer.WriteString("id", warning.StepId);
+                writer.WriteString("message", warning.Message);
+                writer.WriteEndObject();
+            }
+            writer.WriteEndArray();
             writer.WriteStartArray("steps");
             foreach (StepReport step in steps)
             {
@@ -112,6 +126,10 @@ internal sealed class UpgradeReport(int session)
         if (FailedStep is not null)
         {
             builder.Append(", failed at ").Append(FailedStep);
+        }
+        if (warnings.Count > 0)
+        {
+            builder.Append(", ").Append(warnings.Count.ToString(CultureInfo.InvariantCulture)).Append(" compatibility warning(s)");
         }
 
         return builder.Append('.').ToString();

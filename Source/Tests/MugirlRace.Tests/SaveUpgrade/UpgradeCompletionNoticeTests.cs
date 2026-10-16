@@ -8,10 +8,13 @@ namespace Mugirl.Tests.SaveUpgrade;
 [Collection("Reference aliases")]
 public sealed class UpgradeCompletionNoticeTests
 {
-    [Fact]
-    public void CompletedBackedUpUpgradeClaimsOneNoticeAndTheSavedStampSuppressesTheNextLoad()
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void CompletedBackedUpUpgradeClaimsOneNoticeAndTheSavedStampSuppressesTheNextLoad(bool hasWarning)
     {
         SaveUpgradeSession session = Legacy();
+        if (hasWarning) { session.Report.Warn("Framework.ThinkTreeKeys", "Unresolved source retained"); }
         Assert.False(session.TryClaimCompletionNotice(stampVerified: true));
         session.MarkPhase(UpgradePhase.A);
         session.MarkPhase(UpgradePhase.B);

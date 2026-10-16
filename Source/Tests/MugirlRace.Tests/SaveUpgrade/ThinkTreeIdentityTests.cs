@@ -56,9 +56,10 @@ public sealed class ThinkTreeIdentityTests
     }
 
     [Theory]
-    [InlineData(false)]
-    [InlineData(true)]
-    public void RealJobReadRequiresAProvenOldKeyBeforeTheNextSaveWritesTheCanonicalKey(bool unknownKey)
+    [InlineData(false, false)]
+    [InlineData(true, false)]
+    [InlineData(false, true)]
+    public void RealJobReadRequiresAProvenLayoutBeforeTheNextSaveWritesTheCanonicalKey(bool unknownKey, bool currentLayout)
     {
         using var errors = new ScribeErrorCapture();
         var harmony = new Harmony("Mugirl.Tests.ThinkTreeIdentities");
@@ -85,10 +86,11 @@ public sealed class ThinkTreeIdentityTests
             Assert.Null(LegacyThinkTreeKeys.Problem);
             int canonical = current.thinkRoot.subNodes[0].UniqueSaveKey;
             Assert.NotEqual(oldKey, canonical);
-            if (unknownKey) { oldKey = canonical; }
+            if (unknownKey || currentLayout) { oldKey = canonical; }
             DefDatabase<ThinkTreeDef>.Add(current);
             string input = Path.Combine(directory, "input.xml");
-            SaveXml.Save("<job><jobGiverThinkTree>MugirlPunisher</jobGiverThinkTree><lastJobGiverKey>" + oldKey + "</lastJobGiverKey></job>").Save(input);
+            string treeName = currentLayout ? current.defName : old.defName;
+            SaveXml.Save("<job><jobGiverThinkTree>" + treeName + "</jobGiverThinkTree><lastJobGiverKey>" + oldKey + "</lastJobGiverKey></job>").Save(input);
             Scribe.loader.InitLoading(input);
             XmlDocument document = Scribe.loader.curXmlParent.OwnerDocument!;
             SaveUpgradeSession session = SaveUpgradeSession.Start(919, document, input);
@@ -107,13 +109,13 @@ public sealed class ThinkTreeIdentityTests
             if (unknownKey)
             {
                 Assert.Null(job.jobGiver);
-                Assert.True(session.Report.Failed);
-                Assert.Equal("Framework.ThinkTreeKeys", session.Report.FailedStep);
+                Assert.False(session.Report.Failed);
+                Assert.Single(session.Report.Warnings);
                 Assert.DoesNotContain(Events(session), e => e.GetProperty("kind").GetString() == "ThinkKey");
                 session.MarkPhase(UpgradePhase.A);
                 session.MarkPhase(UpgradePhase.B);
                 session.Complete();
-                Assert.False(session.Verified);
+                Assert.True(session.Verified);
                 return;
             }
             Assert.Same(current.thinkRoot.subNodes[0], job.jobGiver);
@@ -122,12 +124,20 @@ public sealed class ThinkTreeIdentityTests
             {
                 Assert.Empty(trace.RootElement.GetProperty("errors").EnumerateArray());
                 JsonElement[] events = [.. trace.RootElement.GetProperty("events").EnumerateArray()];
-                Assert.Equal(2, events.Length);
-                Assert.Equal("DefReference", events[0].GetProperty("kind").GetString());
-                Assert.Equal("ThinkKey", events[1].GetProperty("kind").GetString());
-                Assert.Equal("/savegame[1]/game[1]/job[1]/lastJobGiverKey[1]", events[1].GetProperty("path").GetString());
-                Assert.Equal(canonical.ToString(System.Globalization.CultureInfo.InvariantCulture), events[1].GetProperty("newValue").GetString());
+                if (currentLayout) { Assert.Empty(events); }
+                else
+                {
+                    Assert.Equal(2, events.Length);
+                    Assert.Equal("DefReference", events[0].GetProperty("kind").GetString());
+                    Assert.Equal("ThinkKey", events[1].GetProperty("kind").GetString());
+                    Assert.Equal("/savegame[1]/game[1]/job[1]/lastJobGiverKey[1]", events[1].GetProperty("path").GetString());
+                    Assert.Equal(canonical.ToString(System.Globalization.CultureInfo.InvariantCulture), events[1].GetProperty("newValue").GetString());
+                }
             }
+            session.MarkPhase(UpgradePhase.A);
+            session.MarkPhase(UpgradePhase.B);
+            session.Complete();
+            Assert.True(session.Verified);
             string saved = Path.Combine(directory, "saved.xml");
             Scribe.saver.InitSaving(saved, "savegame");
             Scribe_Deep.Look(ref job, "job");
@@ -235,7 +245,7 @@ public sealed class ThinkTreeIdentityTests
         Assert.True(scope.Tree.TryGetThinkNodeWithSaveKey(key, out _));
         Assert.False(LegacyThinkTreeKeys.PrepareLookup(scope.Tree, ref key, out LegacyThinkLookup? lookup));
         Assert.Null(lookup);
-        AssertFailedWithoutTrace(scope.Session);
+        AssertDeferredWithoutTrace(scope.Session);
     }
 
     [Theory]
@@ -244,7 +254,7 @@ public sealed class ThinkTreeIdentityTests
     [InlineData("other-tree")]
     [InlineData("foreign-node-in-tree-result")]
     [InlineData("changed-key")]
-    public void UnprovenResultsFailWithoutAReadTraceOrSchemaStamp(string fault)
+    public void UnprovenResultsWarnWithoutBindingOrClaimingAReadTrace(string fault)
     {
         using var scope = new LookupScope();
         int key = scope.OldKey;
@@ -263,7 +273,7 @@ public sealed class ThinkTreeIdentityTests
         LegacyThinkTreeKeys.CompleteLookup(actualTree, lookup, ref result, ref found);
         Assert.False(found);
         Assert.Null(result);
-        AssertFailedWithoutTrace(scope.Session);
+        AssertDeferredWithoutTrace(scope.Session);
     }
 
     [Fact]
@@ -275,7 +285,7 @@ public sealed class ThinkTreeIdentityTests
         int key = scope.OldKey;
         Assert.False(LegacyThinkTreeKeys.PrepareLookup(wrongTree, ref key, out LegacyThinkLookup? lookup));
         Assert.Null(lookup);
-        AssertFailedWithoutTrace(scope.Session);
+        AssertDeferredWithoutTrace(scope.Session);
     }
 
     [Fact]
@@ -399,8 +409,8 @@ public sealed class ThinkTreeIdentityTests
         Assert.False(LegacyThinkTreeKeys.PrepareLookup(scope.Tree, ref key, out LegacyThinkLookup? lookup));
         Assert.Null(lookup);
         Assert.Equal(scope.OldKey, key);
-        Assert.Contains("layouts disagree", scope.Session.Report.Error, StringComparison.Ordinal);
-        AssertFailedWithoutTrace(scope.Session);
+        Assert.Contains("ambiguous-layouts", Assert.Single(scope.Session.Report.Warnings).Message, StringComparison.Ordinal);
+        AssertDeferredWithoutTrace(scope.Session);
     }
 
     [Fact]
@@ -434,6 +444,17 @@ public sealed class ThinkTreeIdentityTests
         session.MarkPhase(UpgradePhase.B);
         session.Complete();
         Assert.False(session.Verified);
+    }
+
+    private static void AssertDeferredWithoutTrace(SaveUpgradeSession session)
+    {
+        Assert.False(session.Report.Failed, session.Report.Error);
+        Assert.Single(session.Report.Warnings);
+        Assert.Empty(Events(session));
+        session.MarkPhase(UpgradePhase.A);
+        session.MarkPhase(UpgradePhase.B);
+        session.Complete();
+        Assert.True(session.Verified);
     }
 
     private sealed class LookupScope : IDisposable

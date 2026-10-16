@@ -106,9 +106,11 @@ internal static class ThinkTreeSnapshot
     {
         var result = new Dictionary<string, Dictionary<ThinkNode, int>>(StringComparer.Ordinal);
         if (owner is null) { return result; }
-        foreach (string name in new[] { "Ledger", "BeforeCorporateDuty", "FirstPublishedLayout" })
+        foreach (string name in new[] { "Ledger", "BeforeCorporateDuty", "FirstPublishedLayout", "CurrentLayout" })
         {
             FieldInfo? field = owner.GetField(name, BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
+            // 仍能捕获尚未加入当前布局的历史被测构建；存在时按同一严格形状读取。
+            if (field is null && name == "CurrentLayout") { continue; }
             object? ledger = field?.GetValue(null);
             FieldInfo? assignments = ledger?.GetType().GetField("currentAssignments", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
             if (field is null || ledger?.GetType() != field.FieldType || assignments?.FieldType != typeof(Dictionary<ThinkNode, int>)

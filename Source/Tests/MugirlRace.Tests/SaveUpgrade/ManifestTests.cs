@@ -10,7 +10,7 @@ public sealed class ManifestTests
     private static readonly string[] TopLevel =
     [
         "manifestVersion", "schema", "stampLabel", "stampType", "types", "defs", "labels", "enums", "enumSites", "valueContexts", "values", "defaults", "steps",
-        "jobPolicies", "lordPolicies", "settings", "removableContainers", "parallelGroups", "legacyComps", "moogirlEra",
+        "jobPolicies", "lordPolicies", "settings", "removableContainers", "parallelGroups", "legacyComps", "runtimeProtocols", "moogirlEra",
     ];
 
     [Fact]
@@ -35,6 +35,11 @@ public sealed class ManifestTests
         Assert.Equal(SaveSchema.SettingsCurrent, settings.GetProperty("schema").GetInt32());
         Assert.Contains("MooGirl.", root.GetProperty("moogirlEra").GetProperty("typePrefixes").EnumerateArray().Select(e => e.GetString()));
         Assert.Contains("MooGirl*", root.GetProperty("moogirlEra").GetProperty("defPatterns").EnumerateArray().Select(e => e.GetString()));
+        JsonElement protocol = Assert.Single(root.GetProperty("runtimeProtocols").EnumerateArray());
+        Assert.Equal(LegacyThinkTreeKeys.StepId, protocol.GetProperty("id").GetString());
+        Assert.Equal(UnresolvedThinkTreeKeys.MarkerLabel, protocol.GetProperty("markerLabel").GetString());
+        Assert.True(protocol.GetProperty("optional").GetBoolean());
+        Assert.Equal("ScribeGolden/ThinkTreeSources", protocol.GetProperty("goldenFixture").GetString());
     }
 
     [Fact]

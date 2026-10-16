@@ -2,15 +2,18 @@
 
 **下次开发从本文件开始。** 本文件是唯一的开发手册，统一维护开发流程、构建与验证命令、目录用途、功能导航和历史索引；[AGENTS.md](AGENTS.md) 只保存 AI 必须遵守的规则。子目录不设 README 或 AGENTS 入口，专题正文都在 `docs/`。
 
-## 当前状态（2026-10-16）
+## 当前状态（2026-10-17）
 
+- **1017 发布准备：提交已部署的 AI 来源警告修复并制作本地包。** 沿用本轮实机验证的 DLL/PDB，来源、检查和交付信息见[1017 发布记录](docs/records/release-1017-2026-10-17.md)。
+- **AI 来源警告策略已修复并正式部署。** 按[决策 §14](docs/refactor-1.7/decisions.md#14-ai-来源警告策略与部署授权2026-10-17)，无法确认的来源保留原键与任务进度，只记警告，不再阻断整档升级。可选待解析标记防止 schema 1 重载误绑同号节点；已证明的来源正常迁移。`Player (4).log` 的跨树 `UseToilet/-1642323718` 和未捕获 `LayDown/566784108` 均有旧版失败、新版通过的实机对照。详情见[本轮修复与测试](docs/records/thinktree-key-migration-2026-10-16.md#ai-来源改为警告与进度保留2026-10-17)。
+- **1016.3 原发布包没有包含本轮修复。** 它仍包含此前的当前布局修复及严格拒绝策略，保留原样；本轮只编译、部署、测试，没有重新打包。历史交付见[1016.3 发布记录](docs/records/release-1016.3-2026-10-17.md)。玩家备份中三条休息来源已通过抽取 Scribe 的升级、重载与原键保留；原节点并未恢复，完整 270 模组环境未重建，不能声称实际验证了卫生模组驱动或完整玩家世界。
 - **1016.2 已本地打包，包含正式部署的 ThinkTreeKeys 外部未知任务键兼容修复。** 原版无法解析的外部来源不再一律否决雪牛娘迁移，原整数保留到后续保存；已识别键的布局、所有权和歧义检查仍生效。详情见[ThinkTreeKeys 修复与部署记录](docs/records/thinktree-key-migration-2026-10-16.md)。已有的 1016.1 发布包保留原样。
-- **迁移专项与 14 个历史兼容会话通过，但扩展控制组未全绿。** 两轮当前版本控制组均发现重叠污渍读回差异，第二轮另触发缺眼角色穿束具的既有报错；失败原样保留，未放宽比较或改动无关玩法。用户在获知这些结果后要求更新 Git 并打包 1016.2；本次按该要求交付当前修复，完整验收状态仍为未通过。详见 [1016.2 发布记录](docs/records/release-1016.2-2026-10-16.md)。
+- **1016.2 的扩展控制组未全绿。** 前次两轮控制组均发现重叠污渍读回差异，第二轮另触发缺眼角色穿束具的既有报错；失败原样保留，未放宽比较或改动无关玩法。用户获知后要求更新 Git 并打包 1016.2，按该次要求交付；本轮正式部署未重跑这些控制组，不能据此宣称完整发布验收已通过。详见 [1016.2 发布记录](docs/records/release-1016.2-2026-10-16.md)。
 - **1016.1 旧档同名奶量兼容修复已部署并通过发布验收。** `Milk.ProductionLabels` 分离雪牛娘与其他产奶组件的旧 `milkFullness`，保留各自数值；所提供完整存档通过离线迁移及幂等检查，16 对奶量通过隔离游戏中的双组件存读档。原理见[同名奶量迁移修复记录](docs/records/milk-label-migration-2026-10-16.md)，本轮结果见[1016.1 记录](docs/records/release-1016.1-2026-10-16.md)。
 - 只维护 RimWorld 1.7。1.6 构建及其目录已冻结（[ADR-005](docs/architecture/ADR-005-version-layout.md)）。
 - **1.7 迁移、R/R2/S 重构、V 验收已完成，1016 已适配 1.7.4980。** 按[追加要求](docs/refactor-1.7/decisions.md#8-1016-发布的追加要求2026-10-16)，旧档成功升级后发一封信说明自动升级和备份位置；保存 schema 1 后再次载入不重复发送。其他玩法、数值及旧文案保持原契约；升级层集中处理旧数据。详情见[1016 记录](docs/records/release-1016-2026-10-16.md)，重构历史见[完成记录](docs/records/refactor-1.7-resume-2026-10-15.md#最终验收与交付)。
-- 当前显式部署的 `1.7/Assemblies/MugirlRace.dll` SHA-256 为 `6B3145754F1833FF93F4E1B62C083586A84E17B664D82E1F04B9AF644480D406`。1055 项常规单测及 Shader 检查通过，正常与 strict 检查在两个运行时各 45 项通过；本次任务来源专项 123/0/0、默认游戏套件 79/0/4、启动冒烟通过，详细结果在 [ThinkTreeKeys 部署证据](DevData/Evidence/ThinkTreeDeploy-20261016-224126/)。历史发布结果分别保留在 [1016.1 验收汇总](DevData/Evidence/Release-1016.1-20261016-191228/acceptance-summary.json)和 [1016 验收汇总](DevData/Evidence/Release-1016-20261016-141053/acceptance-summary.json)。
-- [1016.2 本地发布包](DevData/Releases/雪牛娘1016.2.zip)包含 2953 个发布文件和外置清单，共 2954 个 ZIP 文件均已核对路径、大小和 SHA-256，DLL/PDB 配对通过；[校验文件](DevData/Releases/雪牛娘1016.2.zip.sha256)与[发布记录](docs/records/release-1016.2-2026-10-16.md)一并保留。冻结 1.6 的 1323 个文件和 v1.6 加载列表均未改动；[1016.1 原包](DevData/Releases/雪牛娘1016.1.zip)及[1016 原包](DevData/Releases/雪牛娘1016.zip)继续保留。
+- 当前显式部署的 `1.7/Assemblies/MugirlRace.dll` SHA-256 为 `0878D1C129E5D72EE5B3ADD4C8A194B45CFAE2BE65492BF66FDFA0AE6A2E44BF`。本轮常规单测 1070 项通过（另 2 项显式未运行），框架自测 410 项通过，Shader 与两运行时各 45 项 strict 检查通过。两种日志条件、玩家三条来源及默认游戏回归合计 517/0/5，另有当前布局专项 704/0/0、外部来源专项 123/0/0。完整结果及边界见[本轮证据](DevData/Evidence/ThinkTreeWarnings-20261017/)和[修复记录](docs/records/thinktree-key-migration-2026-10-16.md#ai-来源改为警告与进度保留2026-10-17)。此前结果保留在[1016.3 部署证据](DevData/Evidence/ThinkTreeCurrentDeploy-20261017/)、[1016.2 前次部署证据](DevData/Evidence/ThinkTreeDeploy-20261016-224126/)、[1016.1 验收汇总](DevData/Evidence/Release-1016.1-20261016-191228/acceptance-summary.json)和[1016 验收汇总](DevData/Evidence/Release-1016-20261016-141053/acceptance-summary.json)。
+- [1016.3 本地发布包](DevData/Releases/雪牛娘1016.3.zip)包含 2953 个发布文件和外置清单，共 2954 个 ZIP 文件均已核对路径、大小和 SHA-256，DLL/PDB 配对通过；另有[校验文件](DevData/Releases/雪牛娘1016.3.zip.sha256)与[发布记录](docs/records/release-1016.3-2026-10-17.md)。清单如实记录未提交改动，没有额外提交 Git 或上传创意工坊。冻结 1.6 的 1323 个文件和 v1.6 加载列表均未改动；[1016.2 原包](DevData/Releases/雪牛娘1016.2.zip)、[1016.1 原包](DevData/Releases/雪牛娘1016.1.zip)及[1016 原包](DevData/Releases/雪牛娘1016.zip)继续保留。
 - 游戏是 **1.7.4980 rev60**，编译依赖为实际 HAR 1.7。4979/4980 的读取协议已成对核对，未知引擎仍拒绝沿用未验证的旧档协议。4979 阶段的 E57–E62、E64–E69、E71–E72 保留在[迁移知识库](../1.7迁移文档/资料来源与核验记录.md)，本轮证据在 1016 记录中。
 
 后续开发先读本手册及[完成记录](docs/records/refactor-1.7-resume-2026-10-15.md#最终验收与交付)。[原交接记录](docs/records/refactor-1.7-handoff-2026-10-15.md)和[波次计划](docs/refactor-1.7/plan.md)用于追溯，不能对当前树重放历史改名；[约束性决策](docs/refactor-1.7/decisions.md)继续生效。

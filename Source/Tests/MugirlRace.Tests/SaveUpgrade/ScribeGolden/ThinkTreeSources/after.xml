@@ -1,0 +1,4 @@
+<savegame><meta><modIds><li>har.mugirlrace</li></modIds></meta><game>
+  <toilet><def>UseToilet</def><loadID>1</loadID><startTick>1234</startTick><expiryInterval>321</expiryInterval><count>7</count><targetA>(4, 0, 7)</targetA><targetB>(8, 0, 9)</targetB><jobGiverThinkTree>Humanlike</jobGiverThinkTree><lastJobGiverKey>-1642323718</lastJobGiverKey><mugirlUnresolvedThinkSource>True</mugirlUnresolvedThinkSource></toilet>
+  <rest><def>LayDown</def><loadID>1</loadID><startTick>2345</startTick><expiryInterval>432</expiryInterval><count>8</count><targetA>(6, 0, 7)</targetA><forceSleep>True</forceSleep><jobGiverThinkTree>MugirlLike</jobGiverThinkTree><lastJobGiverKey>566784108</lastJobGiverKey><mugirlUnresolvedThinkSource>True</mugirlUnresolvedThinkSource></rest>
+</game></savegame>
