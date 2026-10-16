@@ -7,7 +7,7 @@
 - 只维护 RimWorld 1.7。1.6 构建及其目录已冻结（[ADR-005](docs/architecture/ADR-005-version-layout.md)）。
 - **1.7 迁移、R/R2/S 重构、V 验收已完成，1016 已适配 1.7.4980。** 按[追加要求](docs/refactor-1.7/decisions.md#8-1016-发布的追加要求2026-10-16)，旧档成功升级后发一封信说明自动升级和备份位置；保存 schema 1 后再次载入不重复发送。其他玩法、数值及旧文案保持原契约；升级层集中处理旧数据。详情见[1016 记录](docs/records/release-1016-2026-10-16.md)，重构历史见[完成记录](docs/records/refactor-1.7-resume-2026-10-15.md#最终验收与交付)。
 - 当前显式部署的 `1.7/Assemblies/MugirlRace.dll` SHA-256 为 `D3680A50E7B8C9AA972B74247A1CB2B2D9D383F824F4DC5A666A235C8583493E`。1020 项常规单测、410 项验证工具测试通过；1 项显式性能测试本轮未运行。正常与 strict 检查在两个运行时各 45 项通过。五个历史版本、公开别名、设置和控制组的 17 个必需会话合计 710 成功、0 失败、22 项按设计跳过，控制组运行 30000 tick；会话来源见[本轮验收汇总](DevData/Evidence/Release-1016-20261016-141053/acceptance-summary.json)。
-- 1016 的 2953 个发布文件与 DLL/PDB 配对预检通过。冻结 1.6 的 1323 个文件和 v1.6 加载列表均未改动；发布包与 Git 交付信息见[1016 记录](docs/records/release-1016-2026-10-16.md)。
+- [1016 本地发布包](DevData/Releases/雪牛娘1016.zip)已逐文件核对 2953 个发布文件、外置清单及 DLL/PDB 配对；[SHA-256 校验文件](DevData/Releases/雪牛娘1016.zip.sha256)一并保留。冻结 1.6 的 1323 个文件和 v1.6 加载列表均未改动；详情见[1016 记录](docs/records/release-1016-2026-10-16.md)。
 - 游戏是 **1.7.4980 rev60**，编译依赖为实际 HAR 1.7。4979/4980 的读取协议已成对核对，未知引擎仍拒绝沿用未验证的旧档协议。4979 阶段的 E57–E62、E64–E69、E71–E72 保留在[迁移知识库](../1.7迁移文档/资料来源与核验记录.md)，本轮证据在 1016 记录中。
 
 后续开发先读本手册及[完成记录](docs/records/refactor-1.7-resume-2026-10-15.md#最终验收与交付)。[原交接记录](docs/records/refactor-1.7-handoff-2026-10-15.md)和[波次计划](docs/refactor-1.7/plan.md)用于追溯，不能对当前树重放历史改名；[约束性决策](docs/refactor-1.7/decisions.md)继续生效。
