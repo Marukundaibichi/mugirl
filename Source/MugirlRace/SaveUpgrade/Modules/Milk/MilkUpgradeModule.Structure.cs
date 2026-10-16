@@ -9,11 +9,11 @@ internal sealed partial class MilkUpgradeModule
     static partial void RegisterStructure(UpgradeModuleBuilder module)
     {
         OwnerSelector production = OwnerSelector.ThingComp(typeof(CompMilkProduction));
-        Rename(module, production, "milkFullness", "mugirlMilkFullness");
-        Rename(module, production, "milkFullness_MilkThreshold", "mugirlMilkThreshold");
-        Rename(module, production, "milkFullness_fullNotified", "mugirlMilkFullNotified");
-        Rename(module, production, "milkFullness_lastFullNotifyTick", "mugirlMilkLastFullNotifyTick");
-        Rename(module, production, "milkFullness_pendingResourceTicks", "mugirlMilkPendingTicks");
+        foreach (var field in MilkProductionLabelsStep.Fields)
+        {
+            module.ConsumeLabel(production, field.Old, MilkProductionLabelsStep.StepId, "Identify the legacy production block before separating shared milk labels; preserve other components' values.");
+        }
+        module.Step(new MilkProductionLabelsStep());
         module.ConsumeLabel(production, MilkResourceAccrualStep.OldLabel, MilkResourceAccrualStep.StepId, "Keep deferred first-active-update semantics.");
         module.Step(new MilkResourceAccrualStep());
         module.RenameType("Mugirl.Features.Xenotype.GameComponent_XenotypeRepair", typeof(GameComponent_MilkUpgrade), "Preserve the intermediate renamed schedule when no final schema was written.");

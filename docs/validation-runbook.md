@@ -109,6 +109,7 @@ pwsh tools/Validate.ps1 -UpdateBaselines -WorkRoot ...              # 重写生�
 - **parity**（Wave R 闸门）：`--parity <A.dll> <B.dll> --map <RenameApply 报告或 TSV> [--content-a <模组根> --content-b <模组根>] [--parity-accept <tsv>] [--report <json>]`。它经过改名映射比较两个构建的 IL 和内容，未解释的差异必须为零。基线 A 是 `DevData/Backups/PreR-1.7-20261015/` 中的 Wave A 结束构建。
 - **parity 负对照**：`Controls/Parity/{A,B}` 是两个对照工程，配合 `--map Controls/Parity/map.tsv --expect Controls/Parity/expected.txt` 使用。`Validate.ps1 -SelfTest` 目前**不运行** parity 对照和提取器对照（`Controls/Legacy`），这两组对照需要手动运行，或者给 `-SelfTest` 补上。
 - **--save-corpus `<目录>`**：只读地读取目录下所有 `*.rws` 与 `*.rws.gz`，对每个存档运行升级器的离线入口两次，要求得到已知的非失败状态、第二次没有动作、每个存档不超过 2000 ms。
+- **同名奶量报告的专项复验**：显式单测 `SuppliedSavePreservesEveryMilkValueAndRoundtripsBothReaders` 从环境变量 `MUGIRL_MILK_SAVE` 读取测试副本；可用 `MUGIRL_MILK_EVIDENCE` 指定 JSON 证据目录。它运行完整 DOM 升级，核对每份外部奶量节点和值、重复升级零动作，并通过真实 Scribe 对两个组件分别读写；输入文件哈希必须不变。
 - **--extract-legacy-schema**：由 `tools/Export-LegacySchema.ps1` 调用。语料对同一提取器版本只追加；提取器版本改变后用 `-Rewrite` 重写，并审阅差异。
 
 ### 基线维护
@@ -153,6 +154,7 @@ pwsh tools/Test-InGame.ps1 -Fixture all                      # 旧档夹具升�
 ```
 
 - 测试模组 `Source/Tests/MugirlRace.GameValidation` 在 `%TEMP%` 的源码副本中构建，再以带标记的临时模组 `Mods/__MugirlRace_GameValidation_<随机>` 加载。套件在 `Suites/` 下，例如 `startup`、`spawn`、`saveload`、`render`、`plumbing`、`fixture-gate`、`sweep`、`upgrade`；`-Suite default` 和 `all` 是预设组合。
+- `-Suite milk-migration -SuiteOption "milk-migration.source=<测试副本路径>"` 专门复验同一 Pawn 的两份旧奶量：只读迁移完整 XML，然后将这些值装入隔离测试 Pawn 的雪牛娘组件与原版 `CompMilkable`，实际保存并载入游戏，逐位比较两份 float。该套件不在 default/all 中，使用任何错误均失败的日志策略；它不等于玩家完整模组组合或第三方组件 DLL 的实机验证。也可由既有 `-TargetModDir` 加载带标记、独立 packageId 的候选测试模组，保持正式 DLL 不变。
 - `-Config` 可选 AllDlc、CoreOnly、NoRoyalty、NoIdeology、NoBiotech、NoAnomaly、NoOdyssey。无 DLC 组合通过临时 `ModsConfig.xml` 实现，因为 `-mod=` 总会启用全部 DLC。
 - 结果在 `TMP/InGameValidation/<时间戳>/`，包括 `summary.json`、报告、标准输出、截图和截图分析。退出码：0 通过；1 游戏运行了但有失败；2 构建或环境错误。
 - 基线：重构前的 DLL 在 Wave 0 为 65 ok / 1 failed / 14 skipped（`DevData/Evidence/Baseline-PreRefactor-20261015/ingame-default.txt`）。那次失败是测试本身的缺陷，A5 已修复；修复后的 default 运行为 78 ok / 0 failed / 14 skipped（A5 报告）。
@@ -169,6 +171,7 @@ pwsh tools/Test-InGame.ps1 -Fixture all                      # 旧档夹具升�
   - 第 2 次在新进程中读入重存档，验证存读档往返时升级器保持不动。
 
   `all` 等于清单标为 feasible 的全部夹具加 control。`-Fixture` 时默认语言为 ChineseSimplified。其他相关参数：`-TargetModDir`（改测 `Mods` 下的临时旧构建）、`-TokenSet`、`-LegacyCorpusDir`、`-SuiteOption key=value`、`-CollectSaves`。
+- `offline-report.json` 必须由本轮被测 DLL 生成，步骤名称和每步动作数均参与实机核对。先复制夹具目录并记录 `.rws.gz` 与清单的哈希，再以当前 DLL 执行 `--save-corpus <副本> --assume-active all --artifacts <本轮报告目录>`，把对应报告放入副本的 `offline-report.json`，通过 `-FixtureRoot` 使用该副本。不要覆盖历史夹具的原报告，不根据实机差异手写期望计数。
 - 制作 P 夹具：
 
   ```powershell

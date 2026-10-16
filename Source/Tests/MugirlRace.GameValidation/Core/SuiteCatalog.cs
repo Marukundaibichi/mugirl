@@ -42,6 +42,7 @@ internal static partial class SuiteCatalog
             PlumbingSuite.Create(),
             FixtureGateSuite.Create(),
             ReferenceResaveSuite.Create(),
+            MilkMigrationSuite.Create(),
             ModSuite(modSuites, StartupSuiteName),
             SpawnSuite.Create(),
             SaveLoadSuite.Create(),

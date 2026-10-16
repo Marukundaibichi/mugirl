@@ -4,7 +4,7 @@
 
 1.6 时代的 `docs/tools/New-WorkshopPackage.ps1` 已随 1.6 冻结，不再用于发布。1.7 使用 `tools/New-ReleasePackage.ps1` 和 `tools/Test-ReleasePackage.ps1`。
 
-**1016 构建已完成 1.7.4980 适配、单次升级信件验证及本地打包。** 当前 DLL 为 `D3680A50E7B8C9AA972B74247A1CB2B2D9D383F824F4DC5A666A235C8583493E`，2953 个发布文件与 ZIP 逐哈希一致。实机矩阵保留原诊断失败，最终会话来源和发布信息见[1016 记录](records/release-1016-2026-10-16.md)。原 4979 重构验收留在[完成记录](records/refactor-1.7-resume-2026-10-15.md#最终验收与交付)。未上传创意工坊；上传仍需 owner 明确授权。后续发布按下列流程重新验证。
+**1016.1 已部署同名奶量迁移修复并完成发布验收。** 当前 DLL 为 `0B9364FFDF3DB3C6821C6E68EF347ECDB6D87948E8090F6BD195526D37904B7C`。实机矩阵保留原诊断失败，最终会话来源和发布信息见[1016.1 记录](records/release-1016.1-2026-10-16.md)。1016 的 4980 适配与升级信件验收见[1016 记录](records/release-1016-2026-10-16.md)，原 4979 重构验收留在[完成记录](records/refactor-1.7-resume-2026-10-15.md#最终验收与交付)。未上传创意工坊；上传仍需 owner 明确授权。后续发布按下列流程重新验证。
 
 About声明1.6与1.7。初始1.6基线的1323个文件最终逐哈希核对无改动、无缺失、无新增，v1.6加载列表相同。开发树中的旧NewbornBackstoryProbe按冻结规则保留，但发布白名单排除了它；对应警告不是发布包携带了探针。
 
@@ -16,7 +16,7 @@ About声明1.6与1.7。初始1.6基线的1323个文件最终逐哈希核对无�
    - `A.about`：About.xml 实际声明支持的版本，身份和依赖不变；
    - `C.public-api`：完整 151 项冻结契约未变；
    - `C.save-upgrade`：上述脚本默认执行 ratchet；还须对刚生成的验证器显式运行 `--save-upgrade strict --assume-active all --report <报告路径>`。标准运行器在 `<WorkRoot>/mg17-validation/bin/MugirlRace.Validation/release/MugirlRace.Validation.exe`，游戏运行器在 `<WorkRoot>/mg17-clr/MugirlRace.Validation.exe`；分别留存 strict 报告，两者都要通过。`--assume-active all` 与默认 Validate 的条件内容范围一致；漏掉它会排除 FA 等条件目录，不能据此判断这些目录中的冻结 Def 已退役。详见[验证器模式](validation-runbook.md#csave-upgraderatchet-与-strict)。
-4. 运行 `pwsh tools/SmokeTest.ps1 -QuickTest -DevMode` 和 `pwsh tools/Test-InGame.ps1 -Suite default`，再运行 `pwsh tools/Test-InGame.ps1 -Fixture all`。全部通过运行锁串行、静音且隐藏窗口；控制组和旧档均验证二次读回，比较不能豁免整个 consumed owner、claimed Job 或所有 null/default。
+4. 运行 `pwsh tools/SmokeTest.ps1 -QuickTest -DevMode` 和 `pwsh tools/Test-InGame.ps1 -Suite default`。将历史夹具复制到本轮独立目录，用当前候选 DLL 的 `--save-corpus` 重新生成离线报告，核对夹具本体哈希不变后，只更新副本中的 `offline-report.json`；再运行 `pwsh tools/Test-InGame.ps1 -Fixture all -FixtureRoot <本轮副本>`。步骤归属或计数变化后不能沿用旧 DLL 的报告，也不能从实机结果反推期望。全部通过运行锁串行、静音且隐藏窗口；控制组和旧档均验证二次读回，比较不能豁免整个 consumed owner、claimed Job 或所有 null/default。
 5. 按[验证手册](validation-runbook.md)核对界面、动画、在途工作及可选兼容。文案、数值、RNG 次序和调度相位必须守恒；Lance 等无法判别的历史状态须有明确保档失败，不能通过统一结束工作凑出绿色结果。
 6. 检查 `About/About.xml`、`LoadFolders.xml` 和 `1.7/Mods/<名称>` 条件目录。`LoadFolders.xml` 的 `v1.6` 列表与冻结的 1.6 目录不能改动。
 7. 确认中英翻译 key 对齐，玩家可见文本不缺 key（`C.keyed`、`C.language-files`、`C.translation-keys`）。
