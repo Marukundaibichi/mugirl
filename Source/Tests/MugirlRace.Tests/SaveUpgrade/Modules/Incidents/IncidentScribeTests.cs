@@ -162,22 +162,6 @@ public sealed class IncidentScribeTests
     }
 
     [Fact]
-    public void RegistrationCompactionPreservesTheOriginalPrefixScheduleAssignment()
-    {
-        Pawn first = MakePawn(1), last = MakePawn(2);
-        var state = new MigrationState
-        {
-            members = [new MigrationMember(first, 100), new MigrationMember { pawn = null, grazeAtTick = 200 }, new MigrationMember(last, 300)],
-        };
-        state.CompactForRegistration();
-        Assert.Equal(2, state.members.Count);
-        Assert.Same(first, state.members[0].pawn);
-        Assert.Same(last, state.members[1].pawn);
-        Assert.Equal(100, state.members[0].grazeAtTick);
-        Assert.Equal(200, state.members[1].grazeAtTick);
-    }
-
-    [Fact]
     public void PartialScheduleCompletionPersistsItsCursorBeforeRetrying()
     {
         using var scope = new ScribeScope();

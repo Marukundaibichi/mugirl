@@ -28,9 +28,14 @@ internal static class Harmony_ThinkTreeDef_TryGetThinkNodeWithSaveKey
     }
 
     [HarmonyPriority(Priority.Last)]
-    internal static Exception? Finalizer(Exception? __exception, LegacyThinkLookup? __state)
+    internal static Exception? Finalizer(Exception? __exception, LegacyThinkLookup? __state, ref ThinkNode? outNode, ref bool __result)
     {
-        LegacyThinkTreeKeys.LookupFailed(__state, __exception);
+        if (LegacyThinkTreeKeys.LookupFailed(__state, __exception))
+        {
+            outNode = null;
+            __result = false;
+            return null;
+        }
         return __exception;
     }
 }

@@ -92,20 +92,9 @@ public partial class ThrowController : Thing, IThingHolderTickable, IThingHolder
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
         base.SpawnSetup(map, respawningAfterLoad);
-        ThrowControllerRegistry.NotifySpawned();
         if (state == ThrowState.Flying)
         {
             flightPresentation.Reset(ticksFlying);
-        }
-    }
-
-    public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
-    {
-        bool wasSpawned = Spawned;
-        base.DeSpawn(mode);
-        if (wasSpawned && !Spawned)
-        {
-            ThrowControllerRegistry.NotifyDespawned();
         }
     }
 

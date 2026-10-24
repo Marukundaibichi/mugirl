@@ -16,12 +16,14 @@
 
 用户随后要求更新 Git 并打包 1017，按[决策 §15](refactor-1.7/decisions.md#15-1017-git-同步与本地发布2026-10-17)提交同步并交付当前已测试的修复；来源及打包复核见[1017 发布记录](records/release-1017-2026-10-17.md)。已披露的旧控制组问题与完整玩家环境边界仍保留，不借此宣称全部发布矩阵通过。
 
+2026-10-25 按[决策 §18](refactor-1.7/decisions.md#18-觅食性能修复的部署与-git-同步2026-10-25)部署当前源码，正式 DLL 为 `C3ED6AA47454470F4EC61C2DDCAE114BA6ACEB97A2330C16FE4904003507DF5A`。这次部署包含觅食性能修复，以及此前未部署的巨企供货与代码质量改动；随后同步 Git。本轮没有打包或上传。部署后的检查结果见[觅食植物扫描性能调查](records/performance-food-search-2026-10-25.md#部署与提交2026-10-25)。
+
 About声明1.6与1.7。初始1.6基线的1323个文件最终逐哈希核对无改动、无缺失、无新增，v1.6加载列表相同。开发树中的旧NewbornBackstoryProbe按冻结规则保留，但发布白名单排除了它；对应警告不是发布包携带了探针。
 
 ## 发布前
 
 1. 确认工作区没有无关改动。重构期间工作区本来就有大量未提交改动（owner 决定不提交），这种情况下要在清单中用 `-AllowDirty` 记录，并核对整树归档。
-2. 在独立源码副本的 `Source/` 中构建候选，并通过 `-p:DeployToMod=true -p:MugirlDeployDir=<实际模组>/1.7/Assemblies` 显式部署，或使用 `Test-InGame.ps1 -BuildMod -Deploy`。保留 CompileOrder / TypeOrder 构建输入；最终 DLL/PDB 必须经过同一元数据顺序步骤。普通构建不写 `1.7/Assemblies`。
+2. 在独立源码副本的 `Source/` 中构建候选，并通过 `-p:DeployToMod=true -p:MugirlDeployDir=<实际模组>/1.7/Assemblies` 显式部署，或使用 `Test-InGame.ps1 -BuildMod -Deploy`。普通构建不写 `1.7/Assemblies`。
 3. 运行完整离线验证 `pwsh tools/Validate.ps1 -Shipped -WorkRoot <独立目录>`，确认两个运行时一致且全部通过，其中包括：
    - `A.about`：About.xml 实际声明支持的版本，身份和依赖不变；
    - `C.public-api`：完整 151 项冻结契约未变；
@@ -45,7 +47,7 @@ pwsh tools/Test-ReleasePackage.ps1                # 独立复核最新的暂存�
 
 - 工作区有未提交改动（除非使用 `-AllowDirty`）；
 - 冻结的 1.6 DLL 与 `tools/release-baseline.json` 不符；
-- 必需 DLL 或 PDB 缺失；`1.7/Assemblies/MugirlRace.dll` 比生产构建输入旧（包括 TypeOrder、SDK 固定文件及分析器配置，除非使用 `-SkipBuildCheck`），或 PDB 不属于它；`-SkipBuildCheck` 不能跳过必需文件检查；
+- 必需 DLL 或 PDB 缺失；`1.7/Assemblies/MugirlRace.dll` 比生产构建输入旧（包括 SDK 固定文件及分析器配置，除非使用 `-SkipBuildCheck`），或 PDB 不属于它；`-SkipBuildCheck` 不能跳过必需文件检查；
 - 目标位于模组目录或游戏的 Mods 目录中。
 
 发布文件清单由 `LoadFolders.xml` 推导，两个脚本共用规则。暂存目录旁会写出 `HAR.MugirlRace.manifest.json`（每个文件的大小与 SHA-256、游戏版本、SDK 版本、git 提交）和 SteamCMD 使用的 `workshop_item.vdf`。

@@ -96,15 +96,21 @@ public sealed class MilkUpgradeTests
         Assert.False(XenotypeRepairTiming.ShouldRun(ref remaining, false, true));
     }
 
-    [Fact]
-    public void ReleaseScheduleListsAndFractionalBirthTickArePreservedVerbatim()
+    [Theory]
+    [InlineData("Mugirl_MilkingDevice")]
+    [InlineData("Mugirl_MilkingDeviceHidden")]
+    public void ReleaseEffectStateIsDroppedAndFractionalBirthTickIsPreservedVerbatim(string deviceDef)
     {
-        XmlDocument document = Upgrade("<maps><li><things><thing><def>Mugirl_MilkingDevice</def><id>Mugirl_MilkingDevice4</id><storedCharges>9</storedCharges><storedMilkAmount>113</storedMilkAmount><effectTicksRemaining>17</effectTicksRemaining><effectAge>13</effectAge><nextSoundTicks><li>-1</li><li>14</li></nextSoundTicks><nextFleckTicks><li>15</li></nextFleckTicks><nextTextTicks><li>29</li></nextTextTicks></thing><thing Class=\"Pawn\"><def>Mugirl</def><hediffSet><hediffs><li><def>Mugirl_Lactation</def><lastBirthTick>16777218</lastBirthTick></li><li><def>Consumed_MugirlMilk</def><flagAmIThinking>True</flagAmIThinking><checkingCounter>11</checkingCounter></li></hediffs></hediffSet></thing></things></li></maps>");
-        Assert.Equal("<li>-1</li><li>14</li>", document.SelectSingleNode("//mugirlReleaseNextSoundTicks")!.InnerXml);
-        Assert.Equal("17", document.SelectSingleNode("//mugirlReleaseEffectTicksRemaining")!.InnerText);
-        Assert.Equal("13", document.SelectSingleNode("//mugirlReleaseAge")!.InnerText);
+        const string ReleaseState = "<effectTicksRemaining>17</effectTicksRemaining><effectAge>13</effectAge><nextSoundTicks><li>-1</li><li>14</li></nextSoundTicks><nextFleckTicks><li>15</li></nextFleckTicks><nextTextTicks><li>29</li></nextTextTicks>";
+        XmlDocument document = Upgrade("<maps><li><things><thing><def>" + deviceDef + "</def><id>" + deviceDef + "4</id><storedCharges>9</storedCharges><storedMilkAmount>113</storedMilkAmount>" + ReleaseState + "</thing><thing><def>OtherApparel</def><id>OtherApparel5</id>" + ReleaseState + "</thing><thing Class=\"Pawn\"><def>Mugirl</def><hediffSet><hediffs><li><def>Mugirl_Lactation</def><lastBirthTick>16777218</lastBirthTick></li><li><def>Consumed_MugirlMilk</def><flagAmIThinking>True</flagAmIThinking><checkingCounter>11</checkingCounter></li></hediffs></hediffSet></thing></things></li></maps>");
+        XmlElement device = (XmlElement)document.SelectSingleNode("//thing[def='" + deviceDef + "']")!;
+        Assert.Equal("<def>" + deviceDef + "</def><id>" + deviceDef + "4</id><mugirlDeviceStoredCharges>9</mugirlDeviceStoredCharges><mugirlDeviceStoredMilkAmount>113</mugirlDeviceStoredMilkAmount>", device.InnerXml);
+        Assert.Equal("<def>OtherApparel</def><id>OtherApparel5</id>" + ReleaseState, document.SelectSingleNode("//thing[def='OtherApparel']")!.InnerXml);
         Assert.Equal("16777218", document.SelectSingleNode("//mugirlLactationLastBirthTick")!.InnerText);
         Assert.Equal("11", document.SelectSingleNode("//mugirlThoughtCheckTicks")!.InnerText);
+        string once = document.OuterXml;
+        Assert.False(SaveXml.Upgrade(document, UpgradeTables.Default).Report.Failed);
+        Assert.Equal(once, document.OuterXml);
     }
 
     [Theory]

@@ -7,7 +7,6 @@ internal sealed partial class MilkUpgradeModule : ISaveUpgradeModule
 {
     public void Register(UpgradeModuleBuilder module)
     {
-        module.RenameType("Mugirl.CompMilkingDeviceReleaseEffect", typeof(global::Mugirl.Features.Milk.CompMilkingDeviceReleaseEffect), "Wave R rename");
         module.RenameType("Mugirl.CompMooMilkable", typeof(global::Mugirl.Features.Milk.CompMilkProduction), "Wave R rename");
         module.RenameType("Mugirl.Comp_MilkingDevice", typeof(global::Mugirl.Features.Milk.CompMilkingDevice), "Wave R rename");
         module.RenameType("Mugirl.Features.Appearance.CompMugirlBodyAccessory", typeof(global::Mugirl.Features.Appearance.CompBodyAccessory), "Wave R rename");

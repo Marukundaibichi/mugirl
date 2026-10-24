@@ -213,8 +213,8 @@ internal sealed class LoadIdRemapper
     private enum DictionaryReadKind { Unknown, List, Dictionary }
 
     /// <summary>
-    /// Cold-path proof for the verified 1.7.4979/4980 readers. An unknown build, wrapper or unavailable call site fails closed.
-    /// The caller's IL distinguishes an ordinary list from a dictionary whose frame was inlined; labels alone never do.
+    /// 实际方法签名和调用点共同证明读取边界，不依赖构建编号。未知包装器或不可用调用点不能猜成字典。
+    /// 调用者的 IL 区分普通列表与被内联的字典，仅凭标签不能决定成对删除。
     /// </summary>
     private static class DictionaryReadEvidence
     {
@@ -224,7 +224,7 @@ internal sealed class LoadIdRemapper
 
         internal static DictionaryReadKind Current()
         {
-            if (!ReviewedSaveEngine.IsReviewed(EngineModule.ModuleVersionId))
+            if (!ReviewedSaveEngine.ReadersAvailable)
             {
                 return DictionaryReadKind.Unknown;
             }
@@ -266,7 +266,7 @@ internal sealed class LoadIdRemapper
         private static bool IsBankMethod(MethodBase? method, int token, Type[] parameters)
         {
             if (method is not MethodInfo info || info.Module != EngineModule
-                || ReviewedSaveEngine.CanonicalReaderToken(EngineModule.ModuleVersionId, info.MetadataToken) != token
+                || ReviewedSaveEngine.CanonicalReaderToken(info) != token
                 || info.DeclaringType != typeof(LoadIDsWantedBank) || info.IsStatic || info.ReturnType != typeof(void))
             {
                 return false;
@@ -308,7 +308,7 @@ internal sealed class LoadIdRemapper
                 return DictionaryReadKind.Unknown;
             }
 
-            int token = ReviewedSaveEngine.CanonicalReaderToken(EngineModule.ModuleVersionId, info.MetadataToken);
+            int token = ReviewedSaveEngine.CanonicalReaderToken(info);
             bool dictionary = token is 0x06002720 or 0x06002722;
             if (dictionary && generic.Length == 2 && collection.GetGenericTypeDefinition() == typeof(Dictionary<,>)
                 && parameters.Length == (token == 0x06002720 ? 4 : 9)

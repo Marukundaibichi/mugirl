@@ -14,12 +14,19 @@ internal static class LanceMotionBlur
 
     private const int NoMap = -1;
 
+    private const int NoRecoveryWindow = int.MinValue;
+
     // StaticCacheLifecycle: 固定的原版字段访问器，进程内不变。
     private static readonly AccessTools.FieldRef<PawnRenderTree, List<PawnGraphicDrawRequest>> Requests =
         AccessTools.FieldRefAccess<PawnRenderTree, List<PawnGraphicDrawRequest>>("drawRequests");
 
-    // StaticCacheLifecycle: 落地视觉状态弱关联 Pawn，收回结束或换图即删除；只记地图 id，不持有地图；不写入存档、不影响玩法。
+    // StaticCacheLifecycle: 落地视觉状态弱关联 Pawn，收回结束或换图后在下次绘制时删除，全局收回窗口结束时一并清空；
+    // 只记地图 id，不持有地图；不写入存档、不影响玩法。
     private static readonly ConditionalWeakTable<Pawn, Recovery> recoveries = new();
+
+    // StaticCacheLifecycle: 进程级，已登记收回中最晚的结束 tick；只在主线程的落地与绘制阶段读写。当前 tick 到达它时
+    // 每条记录都已过期，由 AnyRecoveryActive 清空弱表并复位。读档后 tick 变小时窗口只会多开一段（照常逐人物查表），无需随读档清理。
+    private static int recoveryWindowEndTick = NoRecoveryWindow;
 
     /// <summary>落地时记录本帧位移，开始收回拖尾。</summary>
     internal static void BeginRecovery(Pawn? pawn, UVector3 travel) => BeginRecovery(pawn, travel.ToNumerics());
@@ -33,6 +40,34 @@ internal static class LanceMotionBlur
         }
 
         recoveries.AddOrUpdate(pawn, new Recovery(MapIdOf(pawn), tick, travel));
+        recoveryWindowEndTick = Math.Max(recoveryWindowEndTick, tick + RecoveryTicks);
+    }
+
+    /// <summary>
+    /// 绘制补丁的全局快速门：没有仍可能在收回的拖尾时返回 false，补丁不必逐人物查弱表。
+    /// 当前 tick 到达窗口结束时，每条记录的 <see cref="RecoveryScale"/> 都只会返回 0，在此一次清空。
+    /// </summary>
+    internal static bool AnyRecoveryActive()
+    {
+        if (recoveryWindowEndTick == NoRecoveryWindow)
+        {
+            return false;
+        }
+
+        // 不在游戏中时 RecoveryScale 一律返回 0。
+        if (!TickUtility.TryGetCurrentGameTick(out int tick))
+        {
+            return false;
+        }
+
+        if (tick < recoveryWindowEndTick)
+        {
+            return true;
+        }
+
+        recoveries.Clear();
+        recoveryWindowEndTick = NoRecoveryWindow;
+        return false;
     }
 
     /// <summary>收回进度：1 为刚落地，0 为已结束（结束或换图时删除状态）。</summary>

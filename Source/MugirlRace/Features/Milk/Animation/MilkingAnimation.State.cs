@@ -40,7 +40,6 @@ public static partial class MilkingAnimation
     }
 
     // 在剧情状态原有重置时点清空动画状态，并结束奶量 Gizmo 的弹窗会话。
-    [GameLifecycleHook(GameLifecycleEvent.TransientStateReset, Order = 400)]
     public static void ResetTransientState()
     {
         foreach (MilkingVisualState state in states.Values)

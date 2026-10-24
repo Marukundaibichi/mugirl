@@ -16,7 +16,8 @@ internal static class UnconsumedQualityObservation
 {
     // 包含回调、所有嵌套helper、构造器和主DOM绑定，保留EH信息；Full/Offline两种实际程序集已校准同一摘要。
     // 修改观察算法后须独立复核并更新，不能在运行时自动接受当前方法体。
-    private const string ReviewedObserverContract = "2BFBF9DFF503C3A64474C54EC0E03935E719EB63C2FB17BDA569B5964935D3A1";
+    private const string ReviewedObserverContract = "A7D5B0C7E59BE4C694E26EB01B5BFE081D1495916154FC5BCB2BEC884362814F";
+    private const string NativeApparelContract = "16A29F33383FE424DB1791C16D33EE78AF7D3677ED63E5CB6FD94C75CD1DB5A6";
     private static readonly Guid EngineMvid = ReviewedEngine.Mvid;
     private static readonly HashSet<string> Defs = new(StringComparer.Ordinal)
     {
@@ -165,13 +166,13 @@ internal static class UnconsumedQualityObservation
     private static BackCompatibilityConverter[] VerifyNativeApparelNoOp(Frame frame)
     {
         const string version = "1.7.4979 rev109";
-        Require(EngineMvid == new Guid("8e962ecc-7ac7-42d2-8f3b-1b16cd24d2cd")
+        Require(NativeApparelContractFingerprint() == NativeApparelContract
             && frame.Entry is { Owner: { } owner } && owner.GetType() == typeof(Apparel)
             && document?.DocumentElement?["meta"]?["gameVersion"]?.InnerText == version
             && ScribeMetaHeaderUtility.loadedGameVersion == version
             && ScribeMetaHeaderUtility.loadedGameVersionMajor == 1 && ScribeMetaHeaderUtility.loadedGameVersionMinor == 7
             && ScribeMetaHeaderUtility.loadedGameVersionBuild == 4979,
-            "The native converter branch is not the reviewed 4979-to-4980 Apparel case.");
+            "The native converter branch does not match the reviewed Apparel read contract.");
         Require(ConversionChain.GetValue(null) is List<BackCompatibilityConverter> chain && chain.Count == NativeConverterTypes.Length,
             "The native converter roster changed.");
         BackCompatibilityConverter[] snapshot = [.. (List<BackCompatibilityConverter>)ConversionChain.GetValue(null)!];
@@ -194,6 +195,20 @@ internal static class UnconsumedQualityObservation
         RequireUnpatched(AccessTools.Method(typeof(BackCompatibilityConverter_Universal), "ApplyLampColor"), "native lamp initializer");
         frame.Entry!.NativeSourceVersion = version;
         return snapshot;
+    }
+
+    // 校验器只为这条精确服装读取链证明无转换；引擎其余代码的构建变化不影响证明，也不影响生产迁移。
+    internal static string NativeApparelContractFingerprint()
+    {
+        MethodInfo[] methods =
+        [
+            AccessTools.Method(typeof(BackCompatibilityConverter), nameof(BackCompatibilityConverter.AppliesToLoadedGameVersion)),
+            .. NativeConverterTypes.Select(type => AccessTools.Method(type, nameof(BackCompatibilityConverter.AppliesToVersion))),
+            AccessTools.Method(typeof(BackCompatibilityConverter_Universal), nameof(BackCompatibilityConverter.PostExposeData)),
+            AccessTools.Method(typeof(BackCompatibilityConverter_Universal), "SaveLampColor"),
+            AccessTools.Method(typeof(BackCompatibilityConverter_Universal), "ApplyLampColor"),
+        ];
+        return Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(string.Join('\n', methods.Select(ObservationPatchEvidence.SerializationFingerprint)))));
     }
 
     private static void AfterApparel(Frame? __state, bool __runOriginal)
@@ -389,7 +404,7 @@ internal static class UnconsumedQualityObservation
         {
             bool skipped = (bool?)raw?["converterSkipped"] == true && raw?["nativeSourceVersion"] is null;
             bool nativeNoOp = (bool?)raw?["converterSkipped"] == false && (string?)raw?["nativeSourceVersion"] == "1.7.4979 rev109"
-                && EngineMvid == new Guid("8e962ecc-7ac7-42d2-8f3b-1b16cd24d2cd")
+                && NativeApparelContractFingerprint() == NativeApparelContract
                 && expected.Root?.Element("meta")?.Element("gameVersion")?.Value == (string?)raw?["nativeSourceVersion"];
             Require((string?)raw?["ownerType"] == typeof(Apparel).FullName && (skipped || nativeNoOp) && (string?)raw?["oldValue"] == "Normal"
                 && Defs.Contains((string?)raw?["def"] ?? string.Empty), "Unknown quality evidence owner.");

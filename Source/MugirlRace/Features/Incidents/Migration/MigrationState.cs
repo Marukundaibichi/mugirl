@@ -28,25 +28,6 @@ internal sealed class MigrationState : IExposable
         return -1;
     }
 
-    // 新批次登记按保留 Pawn 的顺序复用已有计划的前缀；不重新抽取剩余成员的日程。
-    internal void CompactForRegistration()
-    {
-        int kept = 0;
-        for (int i = 0; i < members.Count; i++)
-        {
-            Pawn? pawn = members[i].pawn;
-            if (pawn != null && !pawn.Destroyed)
-            {
-                members[kept++].pawn = pawn;
-            }
-        }
-
-        if (kept < members.Count)
-        {
-            members.RemoveRange(kept, members.Count - kept);
-        }
-    }
-
     internal void NormalizeCollections()
     {
         members ??= [];

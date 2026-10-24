@@ -26,17 +26,13 @@ public class MapComponent_Migration : MapComponent
     {
     }
 
+    // 只由 IncidentWorker_Migration 在没有进行中的迁徙（成员表为空）时调用；pawns 是本次新生成、互不相同的非空 Pawn。
     public void RegisterMigration(List<Pawn> pawns, IntVec3 exit, int stayTicks)
     {
-        State.CompactForRegistration();
         int currentTick = TickUtility.CurrentGameTickOrFallback(0);
         for (int i = 0; i < pawns.Count; i++)
         {
-            Pawn pawn = pawns[i];
-            if (pawn != null && !State.Contains(pawn))
-            {
-                State.members.Add(new MigrationMember(pawn, currentTick + Rand.RangeInclusive(FirstGrazeMinDelayTicks, ForcedGrazeIntervalTicks)));
-            }
+            State.members.Add(new MigrationMember(pawns[i], currentTick + Rand.RangeInclusive(FirstGrazeMinDelayTicks, ForcedGrazeIntervalTicks)));
         }
 
         State.exit = exit;

@@ -19,8 +19,8 @@ public class HediffCompProperties_AddTrait : HediffCompProperties
 
     public class PawnTypeTraitEntry
     {
-        // colonist / slave / prisoner / free / hostile，见 RestraintPawnTypeParser。
-        public string? pawnType;
+        // XML 写 RestraintPawnType 的成员名，如 Colonist、Slave。
+        public RestraintPawnType pawnType;
         public TraitDef? trait;
     }
 }

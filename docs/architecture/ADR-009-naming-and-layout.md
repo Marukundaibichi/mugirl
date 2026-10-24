@@ -141,7 +141,7 @@
 
 ### 代码
 
-- 每局瞬时状态用 `[GameLifecycleHook(GameLifecycleEvent.X, Order = ...)]` 登记。必须保持原调用时点与顺序；当前有效 reset 在 Storyline.FinalizeInit 原位置发出 TransientStateReset，顺序为 log100、milk400、mount500、render600。不能因抽取事件而移动到另一个组件的 FinalizeInit，也不新增未经证明的 reset。
+- 每局瞬时状态的清理写在 `Mugirl.Features.GameLifecycle` 中，按固定顺序显式调用（2026-10-22 起取代反射扫描的 `[GameLifecycleHook]` 注册表）。读档开始与新游戏生成前清理牵引待系登记；Storyline.FinalizeInit 原位置调用 `ResetTransientState`，依次清空日志限次键、挤奶动画、骑乘 verb 登记与延后渲染刷新。不能把清理移动到另一个组件的 FinalizeInit，也不新增未经证明的清理。
 - Core 不依赖 Features：设置常量放在 Core，由功能读取。
 - Compatibility 不对 Mugirl 自己的方法打 Harmony 补丁（[ADR-003](ADR-003-compatibility-scope.md)）。
 - 日志只经 `MugirlLog`。运行时不调用 `DefDatabase.GetNamed*`，除非列在验证器的动态查找允许清单中。静态缓存带 `StaticCacheLifecycle:` 注释。
@@ -174,6 +174,6 @@ ADR-004 允许以下类型留在根命名空间：XML 直接引用的类型、�
 ## Consequences
 
 - 已执行 R/R2 的规格和报告用于追溯，不能在新的树上盲目重放。后续重命名应重新产生适用于当前树的规格并 lint。
-- `CompileOrder.props` 维护既有源码顺序，新源码自动追加；`TypeOrder.txt` 和 `Source/Build/MugirlRace.MetadataOrder` 在构建时保持既有类型的元数据相对顺序。普通 build 与显式 deploy 都使用最终 DLL/PDB，不能跳过此步骤或只凭文件排列声称反射顺序未变。工具不进入生产模组加载目录。
+- 2026-10-22 起移除 `CompileOrder.props`、`TypeOrder.txt` 与构建后元数据重排工具，编译与类型顺序采用 SDK 默认顺序（[决策 §17](../refactor-1.7/decisions.md#17-代码质量优化授权2026-10-22)）。影响只限新开局中本模组游戏/地图组件的创建与 tick 先后，各组件之间没有顺序依赖；已有存档沿用存档中的组件顺序。代码不得依赖类型枚举顺序。
 - R/R2 的原根命名空间债务已清理。新增问题须修实现，不能为了通过检查扩大允许清单。
 - 改名在存档与 XML 中可见的名字时，要同时登记升级行（ADR-007），并确认它不在公开 API 清单中（ADR-008）。

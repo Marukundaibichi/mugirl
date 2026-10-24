@@ -12,8 +12,8 @@ namespace Mugirl.SaveUpgrade;
 /// </summary>
 /// <remarks>
 /// 必需钩子（读档前缀/后缀/终结器、阶段 A、阶段 B、Def 改名后缀）缺失时，旧档会不经升级读入，第一次保存就会被错误地标成当前版本：
-/// 弹出启动错误，并让游戏组件不再为读入的存档写当前版本戳。备份文件名入口同样必需；可选钩子（新游戏生命周期、已删除 Def 的静默处理）
-/// 缺失只降低体验，记录警告。
+/// 弹出启动错误，并让游戏组件不再为读入的存档写当前版本戳。备份文件名入口同样必需；AI 布局捕获单独降级为原键保留，
+/// 不影响独立的领域数据迁移。新游戏生命周期与已删除 Def 的静默处理缺失也只记录警告。
 /// </remarks>
 internal static class SaveUpgradeInstallation
 {
@@ -26,6 +26,7 @@ internal static class SaveUpgradeInstallation
     internal static void Verify()
     {
         List<string> missing = [];
+        List<string> captureMissing = [];
         MethodBase? loadGame = AccessTools.Method(typeof(Game), nameof(Game.LoadGame));
         Require(loadGame, PatchKind.Prefix, typeof(Harmony_Game_LoadGame), missing);
         Require(loadGame, PatchKind.Postfix, typeof(Harmony_Game_LoadGame), missing);
@@ -37,14 +38,16 @@ internal static class SaveUpgradeInstallation
         Require(AccessTools.Method(typeof(LoadIDsWantedBank), nameof(LoadIDsWantedBank.RegisterLoadIDReadFromXml), [typeof(string), typeof(Type), typeof(string), typeof(IExposable)]), PatchKind.Prefix, typeof(Harmony_LoadIDsWantedBank_RegisterLoadIDReadFromXml), missing);
         Require(AccessTools.Method(typeof(LoadIDsWantedBank), nameof(LoadIDsWantedBank.RegisterLoadIDListReadFromXml), [typeof(List<string>), typeof(string), typeof(IExposable)]), PatchKind.Prefix, typeof(Harmony_LoadIDsWantedBank_RegisterLoadIDListReadFromXml), missing);
         Require(AccessTools.Method(typeof(Verb), nameof(Verb.ExposeData)), PatchKind.Postfix, typeof(Harmony_Verb_ExposeData_LoadId), missing);
-        Require(AccessTools.Method(typeof(ThinkTreeKeyAssigner), nameof(ThinkTreeKeyAssigner.Reset)), PatchKind.Postfix, typeof(Harmony_ThinkTreeKeyAssigner_Reset), missing);
-        Require(AccessTools.Method(typeof(ThinkTreeKeyAssigner), nameof(ThinkTreeKeyAssigner.AssignKeys)), PatchKind.Prefix, typeof(Harmony_ThinkTreeKeyAssigner_AssignKeys), missing);
-        Require(AccessTools.Method(typeof(ThinkTreeKeyAssigner), nameof(ThinkTreeKeyAssigner.AssignSingleKey)), PatchKind.Prefix, typeof(Harmony_ThinkTreeKeyAssigner_AssignSingleKey), missing);
-        Require(AccessTools.Method(typeof(ThinkNode), nameof(ThinkNode.DeepCopy), [typeof(bool)]), PatchKind.Prefix, typeof(Harmony_ThinkNode_DeepCopy_LegacyLayout), missing);
-        Require(AccessTools.Method(typeof(ThinkNode), nameof(ThinkNode.DeepCopy), [typeof(bool)]), PatchKind.Postfix, typeof(Harmony_ThinkNode_DeepCopy_LegacyLayout), missing);
-        Require(AccessTools.Method(typeof(ThinkNode), nameof(ThinkNode.DeepCopy), [typeof(bool)]), PatchKind.Finalizer, typeof(Harmony_ThinkNode_DeepCopy_LegacyLayout), missing);
-        Require(AccessTools.Method(typeof(ThinkTreeDef), nameof(ThinkTreeDef.ResolveReferences)), PatchKind.Prefix, typeof(Harmony_ThinkTreeDef_ResolveReferences), missing);
-        Require(AccessTools.Method(typeof(ThinkTreeDef), nameof(ThinkTreeDef.ResolveReferences)), PatchKind.Finalizer, typeof(Harmony_ThinkTreeDef_ResolveReferences), missing);
+        Require(AccessTools.Method(typeof(ThinkTreeKeyAssigner), nameof(ThinkTreeKeyAssigner.Reset)), PatchKind.Postfix, typeof(Harmony_ThinkTreeKeyAssigner_Reset), captureMissing);
+        Require(AccessTools.Method(typeof(ThinkTreeKeyAssigner), nameof(ThinkTreeKeyAssigner.AssignKeys)), PatchKind.Prefix, typeof(Harmony_ThinkTreeKeyAssigner_AssignKeys), captureMissing);
+        Require(AccessTools.Method(typeof(ThinkTreeKeyAssigner), nameof(ThinkTreeKeyAssigner.AssignKeys)), PatchKind.Postfix, typeof(Harmony_ThinkTreeKeyAssigner_AssignKeys), captureMissing);
+        Require(AccessTools.Method(typeof(ThinkTreeKeyAssigner), nameof(ThinkTreeKeyAssigner.AssignSingleKey)), PatchKind.Prefix, typeof(Harmony_ThinkTreeKeyAssigner_AssignSingleKey), captureMissing);
+        Require(AccessTools.Method(typeof(ThinkTreeKeyAssigner), nameof(ThinkTreeKeyAssigner.AssignSingleKey)), PatchKind.Postfix, typeof(Harmony_ThinkTreeKeyAssigner_AssignSingleKey), captureMissing);
+        Require(AccessTools.Method(typeof(ThinkNode), nameof(ThinkNode.DeepCopy), [typeof(bool)]), PatchKind.Prefix, typeof(Harmony_ThinkNode_DeepCopy_LegacyLayout), captureMissing);
+        Require(AccessTools.Method(typeof(ThinkNode), nameof(ThinkNode.DeepCopy), [typeof(bool)]), PatchKind.Postfix, typeof(Harmony_ThinkNode_DeepCopy_LegacyLayout), captureMissing);
+        Require(AccessTools.Method(typeof(ThinkNode), nameof(ThinkNode.DeepCopy), [typeof(bool)]), PatchKind.Finalizer, typeof(Harmony_ThinkNode_DeepCopy_LegacyLayout), captureMissing);
+        Require(AccessTools.Method(typeof(ThinkTreeDef), nameof(ThinkTreeDef.ResolveReferences)), PatchKind.Prefix, typeof(Harmony_ThinkTreeDef_ResolveReferences), captureMissing);
+        Require(AccessTools.Method(typeof(ThinkTreeDef), nameof(ThinkTreeDef.ResolveReferences)), PatchKind.Finalizer, typeof(Harmony_ThinkTreeDef_ResolveReferences), captureMissing);
         Require(AccessTools.Method(typeof(Job), nameof(Job.ExposeData)), PatchKind.Prefix, typeof(Harmony_Job_ExposeData_ThinkTreeIdentity), missing);
         Require(AccessTools.Method(typeof(Job), nameof(Job.ExposeData)), PatchKind.Postfix, typeof(Harmony_Job_ExposeData_ThinkTreeIdentity), missing);
         Require(AccessTools.Method(typeof(Job), nameof(Job.ExposeData)), PatchKind.Finalizer, typeof(Harmony_Job_ExposeData_ThinkTreeIdentity), missing);
@@ -53,11 +56,11 @@ internal static class SaveUpgradeInstallation
         Require(AccessTools.Method(typeof(ThinkTreeDef), nameof(ThinkTreeDef.TryGetThinkNodeWithSaveKey)), PatchKind.Prefix, typeof(Harmony_ThinkTreeDef_TryGetThinkNodeWithSaveKey), missing);
         Require(AccessTools.Method(typeof(ThinkTreeDef), nameof(ThinkTreeDef.TryGetThinkNodeWithSaveKey)), PatchKind.Postfix, typeof(Harmony_ThinkTreeDef_TryGetThinkNodeWithSaveKey), missing);
         Require(AccessTools.Method(typeof(ThinkTreeDef), nameof(ThinkTreeDef.TryGetThinkNodeWithSaveKey)), PatchKind.Finalizer, typeof(Harmony_ThinkTreeDef_TryGetThinkNodeWithSaveKey), missing);
-        // 捕获布局失败只影响 AI 来源；已核验的 writer 仍能保留原键，不应禁用整个升级器。
-        if (LegacyThinkTreeKeys.Problem is { } thinkTreeProblem
-            && (!LegacyThinkTreeKeys.AlgorithmVerified || !UnresolvedThinkTreeKeys.ProtocolVerified))
+        string? captureProblem = captureMissing.Count == 0 ? null : "Missing AI source capture hooks: " + string.Join(", ", captureMissing);
+        LegacyThinkTreeKeys.SetCaptureHookProblem(captureProblem);
+        if (captureProblem is not null)
         {
-            missing.Add(thinkTreeProblem);
+            MugirlLog.Warning(captureProblem + ". Original source keys will be retained; other save upgrades remain available.");
         }
 
         List<string> degraded = [];

@@ -248,7 +248,9 @@ internal sealed class WeaponWheelCombat
     }
 
     internal bool IsCombatDisabledByMount() => IsCombatDisabledByMount(WeaponWheelCombat.CurrentTick);
-    private bool IsCombatDisabledByMount(int currentTick)
+
+    // 每 tick 只判定一次：本 tick 第一次查询（通常是 CompTick）的结果沿用到同一 tick 的补丁、界面与绘制。
+    internal bool IsCombatDisabledByMount(int currentTick)
     {
         if (mountStateCacheTick == currentTick)
         {
@@ -346,10 +348,14 @@ internal sealed class WeaponWheelCombat
     internal static int CurrentTick => TickUtility.CurrentGameTickOrFallback(0);
     internal WeaponWheelCombatState RestingState => wasWeaponOpenlyHeld ? WeaponWheelCombatState.Ready : WeaponWheelCombatState.Holstered;
 
+    // 空闲：已收枪或已备枪，没有轮射，也没有记录来源任务。此时 TickCombatState 不会中止、推进动画或冷却，不改任何状态。
+    internal bool IsIdle => (combatState is WeaponWheelCombatState.Holstered or WeaponWheelCombatState.Ready) && !cycleActive && combatSourceJob == null;
+
     private static bool IsTransitionState(WeaponWheelCombatState state) => state is WeaponWheelCombatState.EquippingPrimary or WeaponWheelCombatState.Switching or WeaponWheelCombatState.SwordDanceSwitching;
-    internal void TickMountedState(int currentTick)
+
+    // disabled 与 openlyHeld 由 CompTick 在本 tick 各求一次；openlyHeld 是原版 CarryWeaponOpenly 的结果，骑乘降级时不求、为 false。
+    internal void TickMountedState(bool disabled, bool openlyHeld)
     {
-        bool disabled = IsCombatDisabledByMount(currentTick);
         if (disabled && !wasMountedDisabled)
         {
             AbortCombatAndRestorePrimary(true);
@@ -357,20 +363,19 @@ internal sealed class WeaponWheelCombat
         }
         else if (!disabled && wasMountedDisabled)
         {
-            combatState = PawnRenderUtility.CarryWeaponOpenly(owner.Pawn) ? WeaponWheelCombatState.Ready : WeaponWheelCombatState.Holstered;
+            combatState = openlyHeld ? WeaponWheelCombatState.Ready : WeaponWheelCombatState.Holstered;
         }
 
         wasMountedDisabled = disabled;
     }
 
-    internal void TickWeaponOpenState(int currentTick)
+    internal void TickWeaponOpenState(bool mountDisabled, bool openlyHeld)
     {
-        if (IsCombatDisabledByMount(currentTick))
+        if (mountDisabled)
         {
             return;
         }
 
-        bool openlyHeld = PawnRenderUtility.CarryWeaponOpenly(owner.Pawn);
         if (openlyHeld && !wasWeaponOpenlyHeld)
         {
             wasWeaponOpenlyHeld = true;

@@ -22,34 +22,6 @@ public class HediffCompProperties_BrainwashPerformance : HediffCompProperties
         compClass = typeof(HediffComp_BrainwashPerformance);
     }
 
-    public override void ResolveReferences(HediffDef parent)
-    {
-        base.ResolveReferences(parent);
-        ClampTextColors();
-    }
-
-    // XML 文字颜色写成 (239, 70, 274) 时，ParseHelper 按 0–255 换算得 b≈1.07，超出 [0,1]。
-    // 1.6 由 Unity 的 LDR 输出截断到 1；Waylith 对 >1 的 GUI 颜色如何显示未经核实，因此加载时截断，结果与 1.6 一致。
-    private void ClampTextColors()
-    {
-        if (texts == null)
-        {
-            return;
-        }
-
-        for (int i = 0; i < texts.Count; i++)
-        {
-            TextWithParams? text = texts[i];
-            if (text == null)
-            {
-                continue;
-            }
-
-            Color c = text.color;
-            text.color = new Color(UnityMathf.Clamp01(c.r), UnityMathf.Clamp01(c.g), UnityMathf.Clamp01(c.b), UnityMathf.Clamp01(c.a));
-        }
-    }
-
     // 可循环播放的声音片段配置。
     public class SoundWithParams
     {

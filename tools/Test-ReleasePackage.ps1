@@ -279,7 +279,7 @@ try {
             $dllTime = (Get-Item -LiteralPath $dll17).LastWriteTimeUtc
             # 与 New-ReleasePackage 的生产输入一致；验证仍只告警，不改变包内容或构建。
             $newer = Get-ChildItem -LiteralPath (Join-Path $ModRoot 'Source') -Recurse -File -Force `
-                -Include '*.cs', '*.csproj', '*.props', '*.targets', 'BannedSymbols.txt', 'TypeOrder.txt', 'global.json', '.editorconfig' -ErrorAction SilentlyContinue |
+                -Include '*.cs', '*.csproj', '*.props', '*.targets', 'BannedSymbols.txt', 'global.json', '.editorconfig' -ErrorAction SilentlyContinue |
                 Where-Object { $_.FullName -notmatch '[\\/](obj|bin|Tests)[\\/]' -and $_.LastWriteTimeUtc -gt $dllTime } | Select-Object -First 1
             if ($newer) { $warnings.Add("the packaged 1.7 DLL is older than $(ConvertTo-RelativePath $ModRoot $newer.FullName)") }
         }

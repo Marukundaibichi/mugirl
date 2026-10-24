@@ -115,12 +115,28 @@ public sealed partial class CompWeaponWheel : ThingComp, IThingHolder
         }
 
         storage.TickReserveVerbs();
-        combat.TickMountedState(currentTick);
-        combat.TickWeaponOpenState(currentTick);
-        swordDance.TickSwordDanceDashAnimation(currentTick);
-        swordDance.TickPendingSwordDanceCompletion();
-        combat.TickCombatState(currentTick);
-        renderCache.RefreshBackWeaponVisibility();
+        // 骑乘判定与原版持械判定（CarryWeaponOpenly）每 tick 各求一次，供坐骑切换、亮枪状态与背负显示共用。
+        // 骑乘降级时亮枪状态不推进，不必判定持械；未骑乘时坐骑切换只改轮盘自身字段，不影响原版判定读取的搬运、征召、Job、Duty、Lord 与组件。
+        bool mountDisabled = combat.IsCombatDisabledByMount(currentTick);
+        bool openlyHeld = !mountDisabled && PawnRenderUtility.CarryWeaponOpenly(pawn);
+        combat.TickMountedState(mountDisabled, openlyHeld);
+        combat.TickWeaponOpenState(mountDisabled, openlyHeld);
+        bool? knownOpenlyHeld = null;
+        if (combat.IsIdle && swordDance.IsIdle)
+        {
+            // 空闲时冲刺、剑舞结算与战斗推进都无事可做，持械判定的输入在本 tick 内也没有再变，背负显示直接沿用；
+            // 骑乘降级时没有判定，仍由背负显示按需现算。
+            knownOpenlyHeld = mountDisabled ? null : openlyHeld;
+        }
+        else
+        {
+            swordDance.TickSwordDanceDashAnimation(currentTick);
+            swordDance.TickPendingSwordDanceCompletion();
+            // 战斗推进可能换枪、改姿态或结束任务，背负显示随后重新判定持械。
+            combat.TickCombatState(currentTick);
+        }
+
+        renderCache.RefreshBackWeaponVisibility(knownOpenlyHeld);
     }
 
     public override void PostDestroy(DestroyMode mode, Map previousMap)

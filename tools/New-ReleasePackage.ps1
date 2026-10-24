@@ -124,10 +124,10 @@ try {
     }
     if (-not $SkipBuildCheck) {
         $dllTime = (Get-Item -LiteralPath $dll17).LastWriteTimeUtc
-        # 主工程、Facade 与元数据重排工具的源码/项目/导入均影响产物；TypeOrder 是工具实际读取的文本输入。
+        # 主工程的源码、项目与导入影响产物。
         # global.json 固定 SDK，.editorconfig 控制生产分析器。Tests、bin、obj 的同名输入仍不参与此检查。
         $newer = Get-ChildItem -LiteralPath (Join-Path $ModRoot 'Source') -Recurse -File -Force `
-            -Include '*.cs', '*.csproj', '*.props', '*.targets', 'BannedSymbols.txt', 'TypeOrder.txt', 'global.json', '.editorconfig' |
+            -Include '*.cs', '*.csproj', '*.props', '*.targets', 'BannedSymbols.txt', 'global.json', '.editorconfig' |
             Where-Object { $_.FullName -notmatch '[\\/](obj|bin|Tests)[\\/]' -and $_.LastWriteTimeUtc -gt $dllTime } | Select-Object -First 1
         if ($newer) { Stop-Environment "1.7/Assemblies/MugirlRace.dll is older than $($newer.FullName); rebuild and deploy ($DeployCommand), or pass -SkipBuildCheck" }
     }

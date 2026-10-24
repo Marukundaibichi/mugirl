@@ -10,12 +10,12 @@ internal static class UnresolvedThinkTreeKeys
     // StaticCacheLifecycle: 弱键只跟随实际读入的 Job；池回收时移除，复制时显式续接，不持有存档 DOM。
     private static readonly ConditionalWeakTable<Job, SavedKey> Keys = new();
 
-    internal static bool ProtocolVerified => ReviewedSaveEngine.CanPreserveUnresolvedThinkKeys(typeof(Job).Assembly.ManifestModule.ModuleVersionId);
+    internal static bool ProtocolVerified => JobSourceWriteProtocol.Supported;
 
-    internal static void Remember(Job job, ThinkTreeDef tree, int key)
+    internal static void Remember(Job job, ThinkTreeDef? tree, int key, string? treeName = null)
     {
         Keys.Remove(job);
-        Keys.Add(job, new SavedKey(key, tree, job.def, job.loadID));
+        Keys.Add(job, new SavedKey(key, tree, treeName ?? tree?.defName, job.def, job.loadID));
     }
 
     internal static void Save(Job job, ref int jobGiverKey)
@@ -33,13 +33,18 @@ internal static class UnresolvedThinkTreeKeys
         jobGiverKey = key;
         bool unresolved = true;
         Scribe_Values.Look(ref unresolved, MarkerLabel, false);
+        // Scribe_Defs 对空 Def 省略标签；缺失树的原始名字也必须随来源保留，不能写成另一个有效树。
+        if (job.jobGiverThinkTree is null && saved.TreeName is { Length: > 0 } originalName && originalName != "null")
+        {
+            Scribe_Values.Look(ref originalName, "jobGiverThinkTree", "null");
+        }
     }
 
     internal static void Copied(Job original, Job copy)
     {
         if (TryKey(original, out SavedKey? saved) && saved.Matches(copy))
         {
-            Remember(copy, saved.Tree, saved.Key);
+            Remember(copy, saved.Tree, saved.Key, saved.TreeName);
         }
     }
 
@@ -53,7 +58,7 @@ internal static class UnresolvedThinkTreeKeys
         return false;
     }
 
-    private sealed record SavedKey(int Key, ThinkTreeDef Tree, JobDef? Definition, int LoadId)
+    private sealed record SavedKey(int Key, ThinkTreeDef? Tree, string? TreeName, JobDef? Definition, int LoadId)
     {
         internal bool Matches(Job job) => job.jobGiver is null && ReferenceEquals(job.jobGiverThinkTree, Tree)
             && ReferenceEquals(job.def, Definition) && job.loadID == LoadId;

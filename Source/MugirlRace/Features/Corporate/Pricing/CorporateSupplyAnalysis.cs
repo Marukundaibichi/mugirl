@@ -233,12 +233,7 @@ internal sealed class CorporateSupplyAnalysis
                 MugirlLog.DevMessage("Mugirl.CorporatePricing.RestrictionDiagnostic".Translate(def.defName, opaqueReason));
             }
 
-            entry.restricted = entry.missingValue || opaqueReason != null
-                || def.comps?.Any(p => p.compClass != null &&
-                    (typeof(CompSpawner).IsAssignableFrom(p.compClass)
-                    || typeof(CompSpawnerItems).IsAssignableFrom(p.compClass)
-                    || typeof(CompHatcher).IsAssignableFrom(p.compClass)
-                    || typeof(CompUseEffect_GiveQuest).IsAssignableFrom(p.compClass))) == true;
+            entry.restricted = entry.missingValue || opaqueReason != null;
         }
     }
 

@@ -2,6 +2,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Xml;
+using Mugirl.Features;
 
 namespace Mugirl.SaveUpgrade;
 
@@ -28,7 +29,7 @@ internal static class SaveUpgradeRuntime
     {
         string? fileName = Interlocked.Exchange(ref pendingFileName, null);
         SaveUpgradeDiagnostics.Publish(null);
-        GameLifecycle.Raise(GameLifecycleEvent.BeforeLoad);
+        GameLifecycle.BeforeLoad();
         try
         {
             Start(fileName);
@@ -79,13 +80,10 @@ internal static class SaveUpgradeRuntime
     }
 
     /// <summary>
-    /// <c>Game.LoadGame</c> 后缀（阶段 C，在全部 <c>GameComponent.LoadedGame</c> 之后）：运行模块步骤，确定结果，交给游戏组件并记录摘要，
-    /// 然后发出生命周期的 <see cref="GameLifecycleEvent.LoadedGame"/>（与 <see cref="GameLifecycleEvent.AddedToExistingGame"/>），
-    /// 处理器看到的是本次读档的诊断。
+    /// <c>Game.LoadGame</c> 后缀（阶段 C，在全部 <c>GameComponent.LoadedGame</c> 之后）：运行模块步骤，确定结果，交给游戏组件并记录摘要。
     /// </summary>
     internal static void CompleteLoad()
     {
-        bool addedToExistingGame = false;
         if (ActiveSession is { Completed: false } session)
         {
             RunPhase(session, UpgradePhase.C);
@@ -113,19 +111,11 @@ internal static class SaveUpgradeRuntime
                 {
                     SaveUpgradeNotices.UpgradeCompleted(game, report.Backup!, report.Warnings.Count);
                 }
-
-                addedToExistingGame = report.State == UpgradeState.NoMugirl;
             }
             catch (Exception exception)
             {
                 MugirlLog.Exception("Save upgrade could not complete the load.", exception);
             }
-        }
-
-        GameLifecycle.Raise(GameLifecycleEvent.LoadedGame);
-        if (addedToExistingGame)
-        {
-            GameLifecycle.Raise(GameLifecycleEvent.AddedToExistingGame);
         }
     }
 
@@ -259,8 +249,8 @@ internal static class SaveUpgradeRuntime
         }
 
         session.FailureNotified = true;
-        MugirlLog.Error("Save upgrade failed at " + stepId + ". Do not overwrite this save.\n" + error);
-        SaveUpgradeNotices.UpgradeFailed(stepId);
+        MugirlLog.Error("Save compatibility step could not finish: " + stepId + ". Keep the original save and backup.\n" + error);
+        SaveUpgradeNotices.UpgradeFailed(stepId, error);
     }
 
     // 读档在建立会话之前就无法继续：仍然发布一份失败报告，诊断不会停留在上一次读档。

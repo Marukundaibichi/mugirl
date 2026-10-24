@@ -4,7 +4,7 @@ using UpgradeSchema = Mugirl.SaveUpgrade.SaveSchema;
 namespace Mugirl.Core;
 
 /// <summary>
-/// 本 Mod 的游戏级中心组件：写存档结构版本戳，保存最近一次升级记录，并把原版的游戏组件回调转发为 <see cref="GameLifecycle"/> 事件。
+/// 本 Mod 的游戏级中心组件：写存档结构版本戳，保存最近一次升级记录。
 /// 类名与版本戳标签写入存档，永久不改。
 /// </summary>
 /// <remarks>
@@ -15,7 +15,6 @@ namespace Mugirl.Core;
 /// <para>
 /// 原版每次读档构造游戏组件 2–3 次（两次 <c>new Game()</c> 的 FillComponents，加上存档中的实例），构造函数必须没有副作用。
 /// 加入旧存档时组件由 FillComponents 创建，本次读档不会调用 <see cref="ExposeData"/>，所以字段默认值表示“未知”而不是“当前”。
-/// 读档的 <see cref="GameLifecycleEvent.LoadedGame"/> 由存档升级的阶段 C 发出（在本组件收到升级结果之后），不在这里转发。
 /// </para>
 /// </remarks>
 public sealed class GameComponent_Mugirl : GameComponent
@@ -69,17 +68,10 @@ public sealed class GameComponent_Mugirl : GameComponent
         Scribe_Deep.Look(ref lastUpgrade, "lastUpgrade");
     }
 
-    public override void FinalizeInit()
-    {
-        base.FinalizeInit();
-        GameLifecycle.Raise(GameLifecycleEvent.FinalizeInit);
-    }
-
     public override void StartedNewGame()
     {
         sourceSchema = UpgradeSchema.NewGame;
         schemaVerified = true;
-        GameLifecycle.Raise(GameLifecycleEvent.StartedNewGame);
     }
 
     /// <summary>读档升级会话结束（阶段 C）时写入结果。</summary>

@@ -40,7 +40,7 @@ public class GameComponent_Storyline : GameComponent
     {
         base.FinalizeInit();
         ResetStoryServiceSchedule();
-        GameLifecycle.Raise(GameLifecycleEvent.TransientStateReset);
+        GameLifecycle.ResetTransientState();
         NormalizeJuvenileGraphics();
     }
 

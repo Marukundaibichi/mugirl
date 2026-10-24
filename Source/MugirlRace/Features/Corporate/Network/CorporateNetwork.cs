@@ -111,16 +111,22 @@ public partial class CorporateNetwork : GameComponent, IThingHolder
     public override void LoadedGame()
     {
         nextServiceTick = 0;
-        PrepareOrderCatalog();
+        // 只有已开户的存档才会马上用到订购目录与供货分析，在读档长事件中预建；未开户时留到首次使用再建，
+        // 两者都是只依赖 Def 的进程级惰性缓存，何时构建不影响结果。
+        if (Unlocked)
+        {
+            PrepareOrderCatalog();
+        }
+
         // 样品和人员报价按固定顺序刷新，此时 Pawn 与市值已完成初始化。
         RefreshStockSamples();
         RefreshPeopleOffers();
     }
 
+    // 新开局尚未开户，不预建订购目录与供货分析。
     public override void StartedNewGame()
     {
         nextServiceTick = 0;
-        PrepareOrderCatalog();
     }
 
     public override void ExposeData()

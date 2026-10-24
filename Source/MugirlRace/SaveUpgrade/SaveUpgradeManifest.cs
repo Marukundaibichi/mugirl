@@ -79,6 +79,7 @@ public static class SaveUpgradeManifest
         writer.WriteString("id", LegacyThinkTreeKeys.StepId);
         writer.WriteString("owner", "Verse.AI.Job");
         writer.WriteString("keyLabel", "lastJobGiverKey");
+        writer.WriteString("treeLabel", "jobGiverThinkTree");
         writer.WriteString("markerLabel", UnresolvedThinkTreeKeys.MarkerLabel);
         writer.WriteBoolean("optional", true);
         writer.WriteString("phase", "Scribe");

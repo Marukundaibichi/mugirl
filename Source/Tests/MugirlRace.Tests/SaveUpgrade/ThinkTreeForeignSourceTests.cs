@@ -16,11 +16,90 @@ namespace Mugirl.Tests.SaveUpgrade;
 public sealed class ThinkTreeForeignSourceTests
 {
     [Fact]
-    public void PreservingUnknownKeysRequiresTheReviewedJobWriter()
+    public void PreservingUnknownKeysUsesTheActualWriterContractInsteadOfBuildIds()
     {
-        Assert.True(ReviewedSaveEngine.CanPreserveUnresolvedThinkKeys(new Guid("8e962ecc-7ac7-42d2-8f3b-1b16cd24d2cd")));
-        Assert.False(ReviewedSaveEngine.CanPreserveUnresolvedThinkKeys(new Guid("425a5939-54d7-432a-8f44-e3076b25fce9")));
-        Assert.False(ReviewedSaveEngine.CanPreserveUnresolvedThinkKeys(Guid.Empty));
+        Assert.True(UnresolvedThinkTreeKeys.ProtocolVerified);
+    }
+
+    [Theory]
+    [InlineData("omitted")]
+    [InlineData("null")]
+    [InlineData("empty-root")]
+    public void MissingTreesRetainKeysAndProgressWithoutVetoingOtherJobs(string scenario)
+    {
+        using var scope = new Scope();
+        string input = scope.ForeignXml();
+        if (scenario == "empty-root") { scope.ForeignTree.thinkRoot = null; }
+        else { input = input.Replace("<jobGiverThinkTree>ForeignSource</jobGiverThinkTree>",
+            scenario == "null" ? "<jobGiverThinkTree>null</jobGiverThinkTree>" : "", StringComparison.Ordinal); }
+        var jobs = scope.Read(input + scope.OwnXml());
+        Assert.True(scope.Session!.Verified);
+        Assert.Null(jobs.Foreign!.jobGiver);
+        Assert.Same(scope.OwnNode, jobs.Own!.jobGiver);
+        Assert.Contains("missing-tree", Assert.Single(scope.Session.Report.Warnings).Message, StringComparison.Ordinal);
+        XmlDocument saved = scope.Write(jobs.Foreign, jobs.Own);
+        Assert.Equal(Scope.Unknown.ToString(), saved.SelectSingleNode("//foreign/lastJobGiverKey")!.InnerText);
+        Assert.Equal("1234", saved.SelectSingleNode("//foreign/startTick")!.InnerText);
+        Assert.Equal("321", saved.SelectSingleNode("//foreign/expiryInterval")!.InnerText);
+        Assert.Equal("True", saved.SelectSingleNode("//foreign/mugirlUnresolvedThinkSource")!.InnerText);
+        var reloaded = scope.Read(SaveXml.Game(saved), stamp: SaveSchema.Current);
+        Assert.True(scope.Session.Verified);
+        Assert.Null(reloaded.Foreign!.jobGiver);
+        Assert.Equal(SaveXml.Game(saved), SaveXml.Game(scope.Write(reloaded.Foreign, reloaded.Own)));
+        Assert.Equal(Scope.Unknown.ToString(), scope.Write(reloaded.Foreign.Clone()).SelectSingleNode("//lastJobGiverKey")!.InnerText);
+        reloaded.Foreign.Clear();
+        Assert.Null(scope.Write(reloaded.Foreign).SelectSingleNode("//lastJobGiverKey"));
+    }
+
+    [Fact]
+    public void ChangedAssignmentAlgorithmFallsBackToRetainingSources()
+    {
+        using var scope = new Scope();
+        typeof(ThinkNode).GetField("uniqueSaveKeyInt", BindingFlags.Instance | BindingFlags.NonPublic)!.SetValue(scope.OwnNode, 123456789);
+        LegacyThinkTreeKeys.VerifyCapture(scope.OwnNode, single: true);
+        Assert.Contains("differs", LegacyThinkTreeKeys.Problem, StringComparison.Ordinal);
+        var jobs = scope.Read(scope.ForeignXml() + scope.OwnXml());
+        Assert.True(scope.Session!.Verified);
+        Assert.Equal(2, scope.Session.Report.Warnings.Count);
+        XmlDocument saved = scope.Write(jobs.Foreign!, jobs.Own);
+        Assert.Equal(scope.OwnKey.ToString(), saved.SelectSingleNode("//owned/lastJobGiverKey")!.InnerText);
+    }
+
+    [Fact]
+    public void MissingNamedTreeKeepsItsNameAndKeyAcrossReload()
+    {
+        const string Missing = "RemovedForeignSource";
+        using var scope = new Scope();
+        string input = "<foreign>" + Golden("before.xml").SelectSingleNode("/savegame/game/missingTree")!.InnerXml + "</foreign>";
+        Job job = scope.Read(input + scope.OwnXml(), missingTree: Missing).Foreign!;
+        Assert.True(scope.Session!.Verified);
+        Assert.Null(job.jobGiverThinkTree);
+        XmlDocument saved = scope.Write(job);
+        foreach (XmlElement field in Golden("after.xml").SelectSingleNode("/savegame/game/missingTree")!.ChildNodes.OfType<XmlElement>())
+        { Assert.Equal(field.OuterXml, saved.SelectSingleNode("//foreign/" + field.Name)!.OuterXml); }
+        Assert.Single(saved.SelectNodes("//foreign/jobGiverThinkTree")!.Cast<XmlNode>());
+        Job reloaded = scope.Read(SaveXml.Game(saved), stamp: SaveSchema.Current, missingTree: Missing).Foreign!;
+        Assert.True(scope.Session.Verified);
+        Assert.Equal(SaveXml.Game(saved), SaveXml.Game(scope.Write(reloaded)));
+    }
+
+    [Fact]
+    public void MissingCaptureHooksDoNotDisableTheIndependentKeyRetentionProtocol()
+    {
+        using var scope = new Scope();
+        try
+        {
+            LegacyThinkTreeKeys.SetCaptureHookProblem("capture callback unavailable");
+            LegacyThinkTreeKeys.Reset(); // Def 重建不能把仍缺失的挂钩误报为已恢复。
+            var jobs = scope.Read(scope.ForeignXml() + scope.OwnXml());
+            Assert.True(scope.Session!.Verified);
+            Assert.Equal(2, scope.Session.Report.Warnings.Count);
+            Assert.Null(jobs.Foreign!.jobGiver);
+            Assert.Null(jobs.Own!.jobGiver);
+            XmlDocument saved = scope.Write(jobs.Foreign, jobs.Own);
+            Assert.Equal(scope.OwnKey.ToString(), saved.SelectSingleNode("//owned/lastJobGiverKey")!.InnerText);
+        }
+        finally { LegacyThinkTreeKeys.SetCaptureHookProblem(null); }
     }
 
     [Theory]
@@ -256,7 +335,8 @@ public sealed class ThinkTreeForeignSourceTests
         internal string OwnXml() => "<owned><def>" + ForeignJob.defName + "</def><loadID>2</loadID><jobGiverThinkTree>Mugirl_TestSource</jobGiverThinkTree>"
             + "<lastJobGiverKey>" + OwnKey + "</lastJobGiverKey></owned>";
 
-        internal (Job? Foreign, Job? Own) Read(string body, int? stamp = null, bool reverse = false, bool mainDocument = true, bool hasMugirl = true)
+        internal (Job? Foreign, Job? Own) Read(string body, int? stamp = null, bool reverse = false, bool mainDocument = true, bool hasMugirl = true,
+            string? missingTree = null)
         {
             string input = Path.Combine(directory, "input.xml");
             SaveXml.Save(body, stamp, mugirl: hasMugirl).Save(input);
@@ -278,7 +358,12 @@ public sealed class ThinkTreeForeignSourceTests
             Scribe.loader.crossRefs.ResolveAllCrossReferences();
             Scribe.loader.initer.DoAllPostLoadInits();
             Scribe.ForceStop();
-            Assert.Empty(errors.Messages);
+            if (missingTree is null) { Assert.Empty(errors.Messages); }
+            else
+            {
+                Assert.Equal("Could not load reference to Verse.ThinkTreeDef named " + missingTree, Assert.Single(errors.Messages));
+                errors.Messages.Clear();
+            }
             Session.MarkPhase(UpgradePhase.A);
             Session.MarkPhase(UpgradePhase.B);
             Session.Complete();

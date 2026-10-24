@@ -2,8 +2,28 @@
 
 **下次开发从本文件开始。** 本文件是唯一的开发手册，统一维护开发流程、构建与验证命令、目录用途、功能导航和历史索引；[AGENTS.md](AGENTS.md) 只保存 AI 必须遵守的规则。子目录不设 README 或 AGENTS 入口，专题正文都在 `docs/`。
 
-## 当前状态（2026-10-17）
+## 当前状态（2026-10-25）
 
+- **觅食全图扫描植物造成的卡顿已修正，并于 10-25 正式部署、同步 Git。** 按[决策 §18](docs/refactor-1.7/decisions.md#18-觅食性能修复的部署与-git-同步2026-10-25)：
+  - 雪牛娘食性含植物，原版人形觅食会对全图每株植物先评分再校验。植物多的地图上一次觅食 20–30 ms，没饭时每次思考都会重扫。
+  - 现在植物必然被原版拒收时（未到紧急饥饿）只搜索非植物食物，选中的食物与原版相同。紧急饥饿、濒死与野生状态下的吃草搜索不变。
+  - 用新增的游戏内套件 `perf` 和内置分析器实测：同局对照中饥饿雪牛娘的 `BestFoodSourceOnMap` 由 13–31 ms 降到 0.02–0.1 ms（完整的 `JobGiver_GetFood` 决策不超过 0.2 ms）；插桩下最慢的雪牛娘 tick 由约 100 ms 降到 5 ms。
+  - 这次部署的是当前完整源码，同时带上此前未部署的巨企供货修复（10-19）与代码质量优化（10-22）。部署后的检查见下面的“当前显式部署”。
+  - 详情、测量方法与边界见[觅食植物扫描性能调查](docs/records/performance-food-search-2026-10-25.md)。
+
+- **2026-10-22 代码质量审查与优化已于 10-25 随觅食修复正式部署。** 按[决策 §17](docs/refactor-1.7/decisions.md#17-代码质量优化授权2026-10-22)：
+  - 修复了两个缺陷：骑乘期间骑手的逐 tick 状态不推进，挤奶释放音效重复播放。
+  - 未开户时不再在加载期构建巨企目录，武器轮盘空闲 tick 去重。
+  - 移除了构建期类型排序工具、反射生命周期注册表和若干死代码。
+  - 离线验证两个运行时各 45/45、strict 与 5 个夹具通过。部署后的自动实机检查见下面的“当前显式部署”；记录中 Q1、Q2、Q5 的手动实机项仍未逐项核对。
+  - 审查结论、暂缓项与验证范围见[代码质量审查与优化](docs/records/code-quality-optimization-2026-10-22.md)。
+
+- **开发目录已清理，体积由约 26.93 GB 降至 4.93 GB。** 1076 份大型历史验证文件已逐文件压缩并解压校验，472 个构建输出已校验归档后移除；模组源码、素材、正式 DLL/PDB 及未提交修复保持原样。原始证据可按下方清理约定恢复，详情见[历史验证资料压缩](docs/records/workspace-cleanup-2026-09-21.md#2026-10-20-历史验证资料压缩)。
+
+- **物资订单的通用组件误禁已在源码修正并通过隔离实机验证。** 旧版复现了全目录 668 种物品全部禁购、单物品注入则仅该物品禁购；修复版 689 种可供物品在三种组件注入场景下均无新增禁购，20 项交易与合同检查通过。供货判定现只因明确产出入口触发相应限制，通用存档/记账组件不再导致禁购。价格、限购和已付款合同规则保持。已于 10-25 随觅食修复部署，`corporate-supply` 在正式 DLL 上为 20/0/0。验证范围与边界见[供货兼容重审](docs/records/corporate-supply-compatibility-2026-10-19.md)。
+
+- **1017 在游戏 4981 上的版本拦截已确诊，升级层已按实际接口重审并部署修复。** `Player (5).log` 证实旧构建因 MVID 白名单失效；现不再按每日构建编号禁用迁移，可选 AI 布局捕获单独降级，缺树等来源问题保留原键和进度并警告。真实未完成步骤的提示包含原因和构建身份。具体证据、全量玩家来源重放及验证边界见[日更兼容重审](docs/records/thinktree-key-migration-2026-10-16.md#4981-日更后重新审视兼容边界2026-10-17)。**下述原 1017 ZIP 仍是旧构建，不包含本轮修复。**
+- 本轮使用[雪牛娘1017-兼容修复.zip](DevData/Releases/雪牛娘1017-兼容修复.zip)，[校验文件](DevData/Releases/雪牛娘1017-兼容修复.zip.sha256)与逐文件核验已完成；来源清单如实标记未提交修复，尚未更新远程 Git 或上传创意工坊，详情见[兼容修复包记录](docs/records/thinktree-key-migration-2026-10-16.md#本地兼容修复包)。
 - **1017 已本地打包，包含已部署的 AI 来源警告修复。** 来源提交 `7c96f9c`，清单记录干净工作区；沿用本轮实机验证的 DLL/PDB，来源、检查和交付信息见[1017 发布记录](docs/records/release-1017-2026-10-17.md)。
 - **AI 来源警告策略已修复并正式部署。** 按[决策 §14](docs/refactor-1.7/decisions.md#14-ai-来源警告策略与部署授权2026-10-17)，无法确认的来源保留原键与任务进度，只记警告，不再阻断整档升级。可选待解析标记防止 schema 1 重载误绑同号节点；已证明的来源正常迁移。`Player (4).log` 的跨树 `UseToilet/-1642323718` 和未捕获 `LayDown/566784108` 均有旧版失败、新版通过的实机对照。详情见[本轮修复与测试](docs/records/thinktree-key-migration-2026-10-16.md#ai-来源改为警告与进度保留2026-10-17)。
 - **1016.3 原发布包保留，新的警告策略修复从 1017 交付。** 历史交付见[1016.3 发布记录](docs/records/release-1016.3-2026-10-17.md)。玩家备份中三条休息来源已通过抽取 Scribe 的升级、重载与原键保留；原节点并未恢复，完整 270 模组环境未重建，不能声称实际验证了卫生模组驱动或完整玩家世界。
@@ -12,9 +32,14 @@
 - **1016.1 旧档同名奶量兼容修复已部署并通过发布验收。** `Milk.ProductionLabels` 分离雪牛娘与其他产奶组件的旧 `milkFullness`，保留各自数值；所提供完整存档通过离线迁移及幂等检查，16 对奶量通过隔离游戏中的双组件存读档。原理见[同名奶量迁移修复记录](docs/records/milk-label-migration-2026-10-16.md)，本轮结果见[1016.1 记录](docs/records/release-1016.1-2026-10-16.md)。
 - 只维护 RimWorld 1.7。1.6 构建及其目录已冻结（[ADR-005](docs/architecture/ADR-005-version-layout.md)）。
 - **1.7 迁移、R/R2/S 重构、V 验收已完成，1016 已适配 1.7.4980。** 按[追加要求](docs/refactor-1.7/decisions.md#8-1016-发布的追加要求2026-10-16)，旧档成功升级后发一封信说明自动升级和备份位置；保存 schema 1 后再次载入不重复发送。其他玩法、数值及旧文案保持原契约；升级层集中处理旧数据。详情见[1016 记录](docs/records/release-1016-2026-10-16.md)，重构历史见[完成记录](docs/records/refactor-1.7-resume-2026-10-15.md#最终验收与交付)。
-- 当前显式部署的 `1.7/Assemblies/MugirlRace.dll` SHA-256 为 `0878D1C129E5D72EE5B3ADD4C8A194B45CFAE2BE65492BF66FDFA0AE6A2E44BF`。本轮常规单测 1070 项通过（另 2 项显式未运行），框架自测 410 项通过，Shader 与两运行时各 45 项 strict 检查通过。两种日志条件、玩家三条来源及默认游戏回归合计 517/0/5，另有当前布局专项 704/0/0、外部来源专项 123/0/0。完整结果及边界见[本轮证据](DevData/Evidence/ThinkTreeWarnings-20261017/)和[修复记录](docs/records/thinktree-key-migration-2026-10-16.md#ai-来源改为警告与进度保留2026-10-17)。此前结果保留在[1016.3 部署证据](DevData/Evidence/ThinkTreeCurrentDeploy-20261017/)、[1016.2 前次部署证据](DevData/Evidence/ThinkTreeDeploy-20261016-224126/)、[1016.1 验收汇总](DevData/Evidence/Release-1016.1-20261016-191228/acceptance-summary.json)和[1016 验收汇总](DevData/Evidence/Release-1016-20261016-141053/acceptance-summary.json)。
+- 当前显式部署的 `1.7/Assemblies/MugirlRace.dll` SHA-256 为 `C3ED6AA47454470F4EC61C2DDCAE114BA6ACEB97A2330C16FE4904003507DF5A`（2026-10-25）。部署后的检查：
+  - `-Shipped` 两个运行时各 45/45，strict 存档升级通过，单测 1090 项无失败；
+  - 默认实机 79/0/4，启动冒烟通过，`perf` 与 `corporate-supply`（20/0/0）通过；
+  - 旧档夹具 562/0/19，与 10-16 相同；控制组 147/2/3，2 个失败是既有的缺眼角色穿束具报错。
+
+  详见[部署与提交](docs/records/performance-food-search-2026-10-25.md#部署与提交2026-10-25)。上一构建 `1BD2FC9424693F39836E43440EBD039EEC95BF92B610F2B6569901B4A2BC4EE6` 的记录如下：常规单测 1086 项通过（另 2 项显式未运行），框架自测 410 项通过，正式 DLL 两运行时各 45 项 strict 检查通过。玩家完整 XML 离线迁移及幂等通过，106 条来源、缺树/任务进度专项和默认游戏回归合计 1335/0/5。一次新世界生成人物失败的 1332/4/5 记录仍保留，未声称已修复；完整玩家环境本机缺少 126 个模组，不能将来源重放当作完整世界复现。详情见[本轮证据](DevData/Evidence/ThinkTreeReaudit-20261017/)和[重审记录](docs/records/thinktree-key-migration-2026-10-16.md#4981-日更后重新审视兼容边界2026-10-17)。上一构建证据保留在[来源警告修复](DevData/Evidence/ThinkTreeWarnings-20261017/)。
 - [1017 本地发布包](DevData/Releases/雪牛娘1017.zip)包含 2953 个发布文件和外置清单，共 2954 个 ZIP 文件均已核对路径、大小和 SHA-256，DLL/PDB 配对通过；另有[校验文件](DevData/Releases/雪牛娘1017.zip.sha256)与[发布记录](docs/records/release-1017-2026-10-17.md)。修复与记录已提交 Git，未上传创意工坊。冻结 1.6 的 1323 个文件和 v1.6 加载列表均未改动；[1016.3 原包](DevData/Releases/雪牛娘1016.3.zip)、[1016.2 原包](DevData/Releases/雪牛娘1016.2.zip)、[1016.1 原包](DevData/Releases/雪牛娘1016.1.zip)及[1016 原包](DevData/Releases/雪牛娘1016.zip)继续保留。
-- 游戏是 **1.7.4980 rev60**，编译依赖为实际 HAR 1.7。4979/4980 的读取协议已成对核对，未知引擎仍拒绝沿用未验证的旧档协议。4979 阶段的 E57–E62、E64–E69、E71–E72 保留在[迁移知识库](../1.7迁移文档/资料来源与核验记录.md)，本轮证据在 1016 记录中。
+- 游戏是 **1.7.4985 rev1269**（10-25 部署与实机验证所用），编译依赖为实际 HAR 1.7。生产升级按当前接口、字段写出约定及实际数据条件工作；构建编号用于诊断，不设按每日 MVID 放行的白名单。历史 4979/4980 核验与 E57–E62、E64–E69、E71–E72 保留在[迁移知识库](../1.7迁移文档/资料来源与核验记录.md)。
 
 后续开发先读本手册及[完成记录](docs/records/refactor-1.7-resume-2026-10-15.md#最终验收与交付)。[原交接记录](docs/records/refactor-1.7-handoff-2026-10-15.md)和[波次计划](docs/refactor-1.7/plan.md)用于追溯，不能对当前树重放历史改名；[约束性决策](docs/refactor-1.7/decisions.md)继续生效。
 
@@ -39,7 +64,7 @@
 - 工程设置在 `Source/Directory.Build.props`：目标 `net10.0`、C# 14、nullable，警告即错误。构建依赖本机的 RimWorld 1.7、Harmony 3（创意工坊 2009463077 的 `1.7/Assemblies`）和 HAR。路径可以用 `-p:RimWorldDir=`、`-p:WorkshopDir=`、`-p:HarmonyAssembliesDir=` 覆盖。
 - HAR 编译引用使用实际加载的 `839005762/1.7/Assemblies/AlienRace.dll`。它已直接引用 UnityStubs，因此旧 HAR 所需的 UnityEngine.CoreModule 编译门面已移除；生产程序集仍不得依赖 `UnityEngine*`，游戏边界类型的使用范围由 ADR-006 约束。
 - SDK 固定为 10.0.401（`Source/global.json`，`rollForward latestFeature`，不接受预览版）。`global.json` 只在 dotnet 从 `Source/` 启动时生效。在其他目录启动、SDK 又不符时，`MugirlCheckSdkPin` 会报错，所以构建命令都在 `Source/` 中运行。
-- `Source/MugirlRace/CompileOrder.props` 与 `TypeOrder.txt` 是正式构建输入，`Source/Build/MugirlRace.MetadataOrder` 保持已核验的类型枚举顺序并同步 PDB。新类型自动追加；不要按字母重排既有条目或绕过此构建步骤，否则会改变反射、组件初始化或随机调用顺序。普通构建与部署使用同一处理后的 DLL/PDB。
+- 编译与类型顺序就是普通 SDK 工程的默认顺序，构建后不再重排元数据（[决策 §17](docs/refactor-1.7/decisions.md#17-代码质量优化授权2026-10-22)）。不要依赖类型枚举顺序；需要固定顺序的地方（补丁优先级、生命周期清理、升级模块）都显式排序。
 - 构建与部署策略（K3）：普通构建只输出到 `Source/MugirlRace/bin/<配置>/`，从不写 `1.7/Assemblies`；部署必须显式进行。
 
   ```powershell
@@ -95,7 +120,7 @@ pwsh tools/Test-Docs.ps1
 | 任务 | 代码入口 | 阅读材料 |
 | --- | --- | --- |
 | 启动、日志、设置、补丁注册 | `Core`（`MugirlMod`、`HarmonyBootstrap`、`MugirlPatchAttribute`、`MugirlLog`、`MugirlSettings`、`MugirlDefOf`），各功能自己的 DefOf | [启动修复记录](docs/records/bootstrap-startup-2026-09-21.md)、[core 计划](docs/refactor-1.7/module-plans/core-plan.md)、下方代码约束 |
-| 存档升级与每局生命周期 | `SaveUpgrade`、`Core/GameComponent_Mugirl.cs`、`Core/GameLifecycle*.cs` | [ADR-007](docs/architecture/ADR-007-save-schema-upgrade.md)、[决策 §2/§5](docs/refactor-1.7/decisions.md)、[A1 报告](docs/refactor-1.7/wave-a/a1-report.md)、[真实存档清单](docs/refactor-1.7/inventory/real-saves.md) |
+| 存档升级与每局生命周期 | `SaveUpgrade`、`Core/GameComponent_Mugirl.cs`、`Features/GameLifecycle.cs` | [ADR-007](docs/architecture/ADR-007-save-schema-upgrade.md)、[决策 §2/§5](docs/refactor-1.7/decisions.md)、[A1 报告](docs/refactor-1.7/wave-a/a1-report.md)、[真实存档清单](docs/refactor-1.7/inventory/real-saves.md) |
 | 平台封装、渲染与着色器 | `Platform`（Waylith 封装）、`Rendering`、`Mathematics`；界面在各功能的 `UI` 子目录或 Core 设置入口；`1.7/Shaders`、`1.7/Defs/ShaderDefs`、`1.7/Defs/MaterialDefs` | [ADR-006](docs/architecture/ADR-006-unity-boundary.md)、[描边](docs/features/outline-guide.md)、[骑枪运动模糊](docs/features/lance-charge.md) |
 | 新增服装、装备、Hediff、Job 或事件 | 对应的 `Features` 模块 | [内容更新指南](docs/content-update-guide.md)、[7.15.3 服装设计](docs/features/apparel-7.15.3-design.md)、[content 计划](docs/refactor-1.7/module-plans/content-plan.md) |
 | 开局坠舱、民间随机事件与未招募互动 | `Features/Incidents`、`Features/Milk` | [事件入口与生成规则](docs/content-update-guide.md#雪牛娘事件入口与生成规则)、[10.04 整合记录](docs/records/event-normalization-2026-10-04.md)、[incidents 计划](docs/refactor-1.7/module-plans/incidents-plan.md) |
@@ -130,7 +155,7 @@ pwsh tools/Test-Docs.ps1
   - Scribe 标签为小驼峰，引入时与字段名相同，之后冻结。
   - 补丁类为 `Harmony_<TargetType>_<TargetMember>`；`[MugirlPatch]` 的模块参数为封闭枚举 `PatchModule`。
 - Def 引用走功能自己的 `DefOf`，运行期不散落 `DefDatabase.GetNamed` 字符串查找。确需动态查找时，写进验证器的 `dynamic-lookups.allow.txt` 并说明理由。
-- 静态缓存写 `StaticCacheLifecycle:` 注释，说明生命周期和清理点。每局状态在新建、读档或初始化路径清理。代码通过 `[GameLifecycleHook]` 注册到 `GameComponent_Mugirl` 的生命周期。GameComponent/MapComponent 的构造函数不得有副作用（`B.component-ctors`）；已审阅的既有行为例外必须有明确的保留理由。
+- 静态缓存写 `StaticCacheLifecycle:` 注释，说明生命周期和清理点。每局状态在新建、读档或初始化路径清理：清理函数在 `Features/GameLifecycle.cs` 中按固定顺序显式调用。GameComponent/MapComponent 的构造函数不得有副作用（`B.component-ctors`）；已审阅的既有行为例外必须有明确的保留理由。
 - 每个 Harmony 补丁类带 `[MugirlPatch(module, risk, failureBehavior)]`，由 `HarmonyBootstrap` 注册。只有 `SaveUpgrade/Hooks` 可以补丁存档加载内部（`B.save-confinement`）。Compatibility 代码不补丁 Mugirl 自己的方法，而是使用功能提供的扩展点。
 - 第三方反射和探测集中在 `Compatibility`（[ADR-003](docs/architecture/ADR-003-compatibility-scope.md)）。可选依赖缺失时返回安全结果，不能在 tick 或渲染中持续抛异常。
 - 1.7 不使用 UnityStubs 和 `Waylith.UnityCompat` 提供的功能，Waylith 只在 `Mugirl.Platform` 中引用（[ADR-006](docs/architecture/ADR-006-unity-boundary.md)）。
@@ -226,6 +251,14 @@ pwsh tools/Test-Docs.ps1
 3. 发布展开副本只在与对应 ZIP 的数量、相对路径、大小、SHA256 都一致后才删除，ZIP 继续保留。构建缓存和隔离 Unity `Library` 先保留独有文件再清理。
 4. 核对正式文件与游戏资源路径未变，更新文档中的证据位置。2026-09-21 的搬移清单位于 `DevData/Evidence/MaintenanceCleanup-20260921/moves.json`，普通贴图合并清单为同目录的 `texture-layout.json`。
 
+历史验证的大型 JSON、测试存档等原始数据可以压缩为同目录的 `.gz` 文件；删除未压缩副本前必须完整解压并核对 SHA256。原路径、原内容哈希和压缩文件哈希登记在 `DevData/Evidence/compression-manifest.jsonl`，小型报告、源码、发布 ZIP 及 `SaveFixtures` 保持原路径。阅读旧记录或重放需要这些原始文件时，用 [Restore-CompressedEvidence.ps1](tools/Restore-CompressedEvidence.ps1) 恢复一个文件，例如：
+
+```powershell
+pwsh tools/Restore-CompressedEvidence.ps1 -Path 'DevData/Evidence/CorporateSupply-20261019/game-fixed/20261019-232829/artifacts/think-trees.json'
+```
+
+恢复会核对压缩文件与原内容的哈希，已有同路径文件不一致时拒绝覆盖，`.gz` 原件继续保留。具体清理结果见[工作区整理记录](docs/records/workspace-cleanup-2026-09-21.md#2026-10-20-历史验证资料压缩)。
+
 测试脚本只删除自己建立、带标记文件的临时目录，例如 `Mods/__MugirlRace_GameValidation_*` 和 `Mods/__MugirlLegacy_*`。中断后如有残留，按上面的规则核实后再清理。
 
 **测试方式（2026-09-29 起）：** 旧的独立游戏副本已清理，RimSort 外置测试目录规避规则已撤销。默认使用构建、静态检查和现有的 Steam 游戏安装；不再为每轮验证复制游戏启动程序、运行库或创建游戏资源目录联接。复制游戏的旧启动脚本已停用，历史事故与迁移清单仅用于追溯。
@@ -236,6 +269,8 @@ pwsh tools/Test-Docs.ps1
 
 | 日期 | 记录 |
 | --- | --- |
+| 2026-10-25 | [雪牛娘觅食植物扫描性能调查](docs/records/performance-food-search-2026-10-25.md) |
+| 2026-10-22 | [代码质量审查与优化](docs/records/code-quality-optimization-2026-10-22.md) |
 | 2026-10-16 | [1016 发布与 1.7.4980 兼容](docs/records/release-1016-2026-10-16.md) |
 | 2026-10-15 | [1.7 重构阶段性交接（Wave 0、Wave A、集成）](docs/records/refactor-1.7-handoff-2026-10-15.md) |
 | 2026-10-11 | [近战供货、加工报酬、高价限购与作业中文修复](docs/records/bug-report-fixes-2026-10-11.md) |

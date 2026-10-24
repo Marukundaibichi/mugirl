@@ -45,11 +45,13 @@ internal sealed partial class MilkUpgradeModule
         Rename(module, OwnerSelector.ThingComp(typeof(CompMilkingDevice)), "storedMilkAmount", "mugirlDeviceStoredMilkAmount");
         Rename(module, OwnerSelector.ThingComp(typeof(CompMilkingDevice)), "autoReleaseEnabled", "mugirlDeviceAutoReleaseEnabled");
         Rename(module, OwnerSelector.ThingComp(typeof(CompMilkingDevice)), "powerReleaseEnabled", "mugirlDevicePowerReleaseEnabled");
-        Rename(module, OwnerSelector.ThingComp(typeof(CompMilkingDeviceReleaseEffect)), "effectTicksRemaining", "mugirlReleaseEffectTicksRemaining");
-        Rename(module, OwnerSelector.ThingComp(typeof(CompMilkingDeviceReleaseEffect)), "effectAge", "mugirlReleaseAge");
-        Rename(module, OwnerSelector.ThingComp(typeof(CompMilkingDeviceReleaseEffect)), "nextSoundTicks", "mugirlReleaseNextSoundTicks");
-        Rename(module, OwnerSelector.ThingComp(typeof(CompMilkingDeviceReleaseEffect)), "nextFleckTicks", "mugirlReleaseNextFleckTicks");
-        Rename(module, OwnerSelector.ThingComp(typeof(CompMilkingDeviceReleaseEffect)), "nextTextTicks", "mugirlReleaseNextTextTicks");
+        // 当前构建已无此组件类型：按旧 Def→组件关系中的旧类名选中两件榨乳器。
+        OwnerSelector releaseEffect = OwnerSelector.ThingComp("Mugirl.CompMilkingDeviceReleaseEffect");
+        foreach (string label in new[] { "effectTicksRemaining", "effectAge", "nextSoundTicks", "nextFleckTicks", "nextTextTicks" })
+        {
+            module.DropLabel(releaseEffect, label, "释放音效组件已删除，其 30 tick 瞬态状态不再保存");
+        }
+
         Rename(module, OwnerSelector.HediffComp(typeof(HediffComp_Lactation)), "lastBirthTick", "mugirlLactationLastBirthTick");
         Rename(module, OwnerSelector.HediffComp(typeof(HediffComp_WhileHavingThoughts)), "flagAmIThinking", "mugirlThoughtActive");
         Rename(module, OwnerSelector.HediffComp(typeof(HediffComp_WhileHavingThoughts)), "checkingCounter", "mugirlThoughtCheckTicks");

@@ -25,7 +25,7 @@ public class HediffComp_AddTrait : HediffComp_DelayedTrigger
             {
                 HediffCompProperties_AddTrait.PawnTypeTraitEntry? entry = compProps.pawnTypeTraitEntries[i];
                 if (entry?.trait != null
-                    && MatchesPawnType(pawn, RestraintPawnTypeParser.Parse(entry.pawnType))
+                    && MatchesPawnType(pawn, entry.pawnType)
                     && TryGainTrait(pawn, entry.trait))
                 {
                     return true;

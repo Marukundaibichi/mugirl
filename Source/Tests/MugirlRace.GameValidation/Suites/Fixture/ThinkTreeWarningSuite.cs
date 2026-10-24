@@ -47,7 +47,7 @@ internal static class ThinkTreeWarningSuite
         {
             ctx.Report.Check(!human.TryGetThinkNodeWithSaveKey(ToiletKey, out _) && !mugirl.TryGetThinkNodeWithSaveKey(RestKey, out _),
                 "both reported keys are absent from their actual trees", () => "native key collision in fixture environment");
-            foreach (string scenario in negative ? new[] { "toilet", "rest" } : new[] { "toilet", "rest", "mixed", "mixed-reverse" })
+            foreach (string scenario in negative ? new[] { "toilet", "rest" } : new[] { "toilet", "rest", "mixed", "mixed-reverse", "missing-tree" })
             {
                 string input = ctx.ArtifactPath(scenario + "-input.xml")!;
                 WriteInput(input, scenario, normal.UniqueSaveKey);
@@ -125,7 +125,12 @@ internal static class ThinkTreeWarningSuite
             "<canMoveOrCrawl>True</canMoveOrCrawl><hasSavedValues>True</hasSavedValues><asleep>True</asleep>");
         string normal = Tracker(9003, "LayDown", "MugirlLike", normalKey, typeof(JobDriver_LayDown).Name,
             "<canMoveOrCrawl>True</canMoveOrCrawl><hasSavedValues>True</hasSavedValues>");
-        string rows = scenario switch { "toilet" => toilet, "rest" => rest, "mixed" => toilet + rest, _ => rest + toilet };
+        string rows = scenario switch
+        {
+            "toilet" => toilet, "rest" => rest, "mixed" => toilet + rest,
+            "missing-tree" => toilet.Replace("<jobGiverThinkTree>Humanlike</jobGiverThinkTree>", "", StringComparison.Ordinal),
+            _ => rest + toilet,
+        };
         var xml = new XmlDocument { XmlResolver = null };
         xml.LoadXml("<savegame><meta><modIds><li>har.mugirlrace</li></modIds></meta><game><trackers>" + rows + normal + "</trackers></game></savegame>");
         xml.Save(path);

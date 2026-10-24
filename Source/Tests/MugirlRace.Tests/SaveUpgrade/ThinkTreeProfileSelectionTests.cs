@@ -111,11 +111,16 @@ public sealed class ThinkTreeProfileSelectionTests
                 Assert.False(session.Report.Failed, session.Report.Error);
                 if (scenario == "late")
                 {
-                    LegacyThinkJobScope scope = LegacyThinkTreeKeys.EnterJob(new Job(), session,
+                    var late = new Job { jobGiverThinkTree = tree };
+                    LegacyThinkJobScope scope = LegacyThinkTreeKeys.EnterJob(late, session,
                         LoadSaveMode.LoadingVars, document.DocumentElement!["game"]!["first"]);
                     LegacyThinkTreeKeys.LeaveJob(scope);
-                    Assert.True(session.Report.Failed);
-                    Assert.Contains("after the saved ThinkTree layout", session.Report.Error, StringComparison.Ordinal);
+                    scope = LegacyThinkTreeKeys.EnterJob(late, session, LoadSaveMode.PostLoadInit, null);
+                    int key = firstSavedKey;
+                    Assert.False(LegacyThinkTreeKeys.PrepareLookup(tree, ref key, out _));
+                    LegacyThinkTreeKeys.LeaveJob(scope);
+                    Assert.False(session.Report.Failed);
+                    Assert.Contains("late-source", Assert.Single(session.Report.Warnings).Message, StringComparison.Ordinal);
                 }
                 else
                 {
@@ -132,7 +137,7 @@ public sealed class ThinkTreeProfileSelectionTests
             session.MarkPhase(UpgradePhase.A);
             session.MarkPhase(UpgradePhase.B);
             session.Complete();
-            Assert.Equal(scenario != "late", session.Verified);
+            Assert.True(session.Verified);
         }
         finally
         {

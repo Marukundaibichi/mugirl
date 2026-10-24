@@ -43,10 +43,6 @@ public class CompProperties_MilkingDevice : CompProperties
 
     public bool spawnFilthInFacingDirection;
 
-    // 强力释放专用污物：1.7/Defs 的两件榨乳器都把 powerFilthDefName 写为空，表示强力释放沿用普通污物。
-    // 字段保留供 XML 加载（删除会让现有 XML 报错），运行时不读取。
-    public string powerFilthDefName = "Mugirl_Filth_ShockFluid";
-
     public IntRange powerFilthCountRange = new(1, 1);
 
     public List<SoundDef>? releaseSounds;

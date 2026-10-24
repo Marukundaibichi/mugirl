@@ -28,12 +28,14 @@ internal static class ThinkTreeMigrationSuite
         bool currentLayout = ctx.Options.SuiteOption(Name + ".currentLayout", "false") == "true";
         string input = currentLayout ? ctx.ArtifactPath("current-layout-schema0.xml")! : ctx.Options.SuiteOption(Name + ".source", "");
         bool expectFailure = ctx.Options.SuiteOption(Name + ".expectFailure", "false") == "true";
+        bool allowMissingDefs = ctx.Options.SuiteOption(Name + ".allowMissingDefs", "false") == "true";
         if (currentLayout) { WriteCurrentLayoutSample(input); }
         byte[] hash = SHA256.HashData(File.ReadAllBytes(input));
         var source = new XmlDocument { XmlResolver = null };
         source.Load(input);
         XmlElement[] original = source.SelectNodes("//*[lastJobGiverKey]")!.Cast<XmlElement>().ToArray();
         if (!ctx.Report.Check(original.Length > 0, "supplied save has Job sources", () => input)) { yield break; }
+        using var placeholders = new MissingJobDefinitions(original, allowMissingDefs);
 
         var sample = new XmlDocument { XmlResolver = null };
         sample.LoadXml("<savegame><game><jobs /></game></savegame>");
@@ -44,6 +46,7 @@ internal static class ThinkTreeMigrationSuite
             "haulMode", "canBash", "canBashFences", "forceSleep", "restUntilHealed", "ignoreForbidden",
             "followRadius", "jobGiverThinkTree", "lastJobGiverKey"];
         var expected = new List<(int Id, int Key, string Tree, bool NativeMissing, ThinkNode? NativeNode)>();
+        var missingTrees = new HashSet<string>(StringComparer.Ordinal);
         foreach (XmlElement job in original)
         {
             if (job.HasAttribute("Class")) { throw new InvalidOperationException("This replay expects base Job entries."); }
@@ -55,14 +58,19 @@ internal static class ThinkTreeMigrationSuite
             jobsNode.AppendChild(row);
             string treeName = job["jobGiverThinkTree"]!.InnerText;
             int key = int.Parse(job["lastJobGiverKey"]!.InnerText, CultureInfo.InvariantCulture);
-            ThinkTreeDef tree = DefDatabase<ThinkTreeDef>.GetNamed(treeName);
-            bool missing = !tree.TryGetThinkNodeWithSaveKey(key, out ThinkNode? nativeNode);
+            ThinkTreeDef? tree = allowMissingDefs ? DefDatabase<ThinkTreeDef>.GetNamedSilentFail(treeName) : DefDatabase<ThinkTreeDef>.GetNamed(treeName);
+            ThinkNode? nativeNode = null;
+            bool missing = tree is null || !tree.TryGetThinkNodeWithSaveKey(key, out nativeNode);
+            if (tree is null) { missingTrees.Add(treeName); }
             expected.Add((int.Parse(job["loadID"]!.InnerText, CultureInfo.InvariantCulture), key, treeName, missing, nativeNode));
         }
-        string[] warnings = [.. expected.Where((item, i) => item.NativeMissing || (expectFailure && currentLayout && i == 0)).Select(item => "Could not find think node with key "
+        string[] warnings = [.. expected.Where((item, i) => (allowMissingDefs || item.NativeMissing) && !missingTrees.Contains(item.Tree) || (expectFailure && currentLayout && i == 0)).Select(item => "Could not find think node with key "
             + item.Key.ToString(CultureInfo.InvariantCulture)).Distinct(StringComparer.Ordinal)];
         // 正向只接受原版已证明缺失的确切键；负对照另核对首次被错误拒绝的当前键，均保留并检查实际警告。
         ctx.ExpectLog(entry => entry.Level == LogLevel.Warning && warnings.Any(text => entry.Message.Trim() == text));
+        // 此模式只重放 Job 值；缺失的第三方树保持真正的 null，原版的确切 Def 缺失日志必须逐条计数。
+        string[] missingDefErrors = [.. missingTrees.Select(tree => "Could not load reference to Verse.ThinkTreeDef named " + tree)];
+        ctx.ExpectLog(entry => entry.Level == LogLevel.Error && missingDefErrors.Contains(entry.Message.Trim(), StringComparer.Ordinal));
         int logStart = ctx.Logs.Count;
         Assembly assembly = ctx.RequireTarget().Assembly ?? throw new InvalidOperationException("MugirlRace is not loaded.");
         var api = new ReplayApi(assembly);
@@ -99,7 +107,7 @@ internal static class ThinkTreeMigrationSuite
         }
         string savedPath = ctx.ArtifactPath("think-saved.xml")!;
         Write(savedPath, first, sample["savegame"]!["meta"]!);
-        CheckKeys(ctx, savedPath, expected);
+        CheckKeys(ctx, savedPath, expected, allowMissingDefs ? first : null);
         List<Job> second = api.Read(savedPath, out string secondReport);
         File.WriteAllText(ctx.ArtifactPath("think-second-report.json")!, secondReport);
         using (JsonDocument report = JsonDocument.Parse(secondReport))
@@ -117,22 +125,49 @@ internal static class ThinkTreeMigrationSuite
         }
         string secondPath = ctx.ArtifactPath("think-resaved.xml")!;
         Write(secondPath, second, sample["savegame"]!["meta"]!);
-        CheckKeys(ctx, secondPath, expected);
+        CheckKeys(ctx, secondPath, expected, allowMissingDefs ? first : null);
         ctx.Report.Check(File.ReadAllText(savedPath) == File.ReadAllText(secondPath), "the repeated save is stable", () => "serialized Job data changed");
         LogCapture.DrainInto(ctx.Logs);
         int actualWarnings = ctx.Logs.Skip(logStart).Count(entry => entry.Level == LogLevel.Warning && warnings.Contains(entry.Message.Trim(), StringComparer.Ordinal));
-        ctx.Report.Check(actualWarnings == expected.Count(item => item.NativeMissing) * 2, "native missing-key warnings remain visible", () => "actual " + actualWarnings);
+        int expectedWarnings = allowMissingDefs ? first.Count(job => job.jobGiver is null && job.jobGiverThinkTree is not null)
+            : expected.Count(item => item.NativeMissing && !missingTrees.Contains(item.Tree));
+        ctx.Report.Check(actualWarnings == expectedWarnings * 2, "native missing-key warnings remain visible", () => "actual " + actualWarnings);
+        int actualMissingDefs = ctx.Logs.Skip(logStart).Count(entry => entry.Level == LogLevel.Error && missingDefErrors.Contains(entry.Message.Trim(), StringComparer.Ordinal));
+        ctx.Report.Check(actualMissingDefs == expected.Count(item => missingTrees.Contains(item.Tree)) * 2,
+            "unavailable third-party trees remain explicitly recorded", () => "actual " + actualMissingDefs);
         ctx.Report.Check(hash.SequenceEqual(SHA256.HashData(File.ReadAllBytes(input))), "original input is unchanged", () => input);
         File.WriteAllText(ctx.ArtifactPath("think-replay-summary.json")!, JsonSerializer.Serialize(new
         {
             sourceSha256 = Convert.ToHexString(hash),
             modSha256 = Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(assembly.Location))),
             jobs = expected.Count, nativeMissing = expected.Count(item => item.NativeMissing), actualWarnings,
+            valueOnlyJobDefinitions = placeholders.Names, missingTrees = missingTrees.ToArray(), actualMissingDefs,
             sources = expected.Select(item => new { item.Id, item.Tree, item.Key, item.NativeMissing }),
         }, new JsonSerializerOptions { WriteIndented = true }));
     }
 
-    private static void CheckKeys(ValidationContext ctx, string path, List<(int Id, int Key, string Tree, bool NativeMissing, ThinkNode? NativeNode)> expected)
+    // 缺少实际第三方驱动时，只提供按名字解析 Job.def 的值载体；没有伪造任务树或模拟其玩法。
+    private sealed class MissingJobDefinitions : IDisposable
+    {
+        private readonly JobDef[] previous;
+        internal string[] Names { get; }
+        internal MissingJobDefinitions(XmlElement[] jobs, bool enabled)
+        {
+            previous = [.. DefDatabase<JobDef>.AllDefsListForReading];
+            Names = enabled ? [.. jobs.Select(job => job["def"]!.InnerText).Distinct(StringComparer.Ordinal)
+                .Where(name => DefDatabase<JobDef>.GetNamedSilentFail(name) is null)] : [];
+            foreach (string name in Names) { DefDatabase<JobDef>.Add(new JobDef { defName = name, driverClass = typeof(JobDriver) }); }
+        }
+        public void Dispose()
+        {
+            if (Names.Length == 0) { return; }
+            DefDatabase<JobDef>.Clear();
+            foreach (JobDef definition in previous) { DefDatabase<JobDef>.Add(definition); }
+        }
+    }
+
+    private static void CheckKeys(ValidationContext ctx, string path, List<(int Id, int Key, string Tree, bool NativeMissing, ThinkNode? NativeNode)> expected,
+        IReadOnlyList<Job>? resolved = null)
     {
         var document = new XmlDocument { XmlResolver = null };
         document.Load(path);
@@ -140,9 +175,17 @@ internal static class ThinkTreeMigrationSuite
         for (int i = 0; i < expected.Count; i++)
         {
             var row = expected[i];
-            ctx.Report.Check(actual[i]["lastJobGiverKey"]?.InnerText == row.Key.ToString(CultureInfo.InvariantCulture)
+            int key = resolved?[i].jobGiver?.UniqueSaveKey ?? row.Key;
+            ctx.Report.Check(actual[i]["lastJobGiverKey"]?.InnerText == key.ToString(CultureInfo.InvariantCulture)
                 && actual[i].SelectNodes("lastJobGiverKey")!.Count == 1,
-                "Job " + row.Id + " keeps exactly one original key", () => actual[i].OuterXml);
+                "Job " + row.Id + " keeps its original unresolved key or proven current source", () => actual[i].OuterXml);
+            if (resolved is not null)
+            {
+                ctx.Report.Check((actual[i]["mugirlUnresolvedThinkSource"]?.InnerText == "True") == (resolved[i].jobGiver is null),
+                    "Job " + row.Id + " carries the precise unresolved-source marker", () => actual[i].OuterXml);
+                ctx.Report.Check(actual[i]["jobGiverThinkTree"]?.InnerText == row.Tree,
+                    "Job " + row.Id + " retains its original tree name even when unavailable", () => actual[i].OuterXml);
+            }
         }
     }
 

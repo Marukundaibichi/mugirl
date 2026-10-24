@@ -1,16 +1,33 @@
 namespace Mugirl.Features.Mounting;
 
-// 骑乘期间的 tick：骑手不在地图上，原版不会 tick ThingComp 容器中的 Pawn，所以由载具代为推进。
+// 骑乘期间的 tick：骑手放在本组件的 ThingOwner 中，不属于载具的 Pawn.GetChildHolders，原版不会推进它，所以由载具代为推进。
 public sealed partial class CompMount
 {
+    // RiderTickDriver.Tick 遍历骑手子容器用的临时列表；每个载具一份，不进存档。
+    private readonly List<IThingHolder> riderHolders = [];
+
     public override void CompTick()
     {
         base.CompTick();
-        // 原版每 tick 推进一次装备 verb（Pawn.Tick → VerbsTick）。骑乘远程 verb 也必须逐 tick 推进：
-        // 在 CompTickInterval 中按 delta 连续推进时，镜头外的载具会在同一 tick 打出多发连射。
-        if (mugirlMountRiders.Count > 0 && Props is not null)
+        Pawn? rider = MountedPawn;
+        CompProperties_Mount? mountProps = Props;
+        if (rider is null || mountProps is null)
+        {
+            return;
+        }
+
+        // 骑乘远程 verb 必须逐 tick 推进（原版 Pawn.Tick 的频率）：在 CompTickInterval 中按 delta 连续推进时，
+        // 镜头外的载具会在同一 tick 打出多发连射。推进骑手时它随骑手的装备推进，否则单独推进。
+        if (!mountProps.tickPhysiology)
         {
             MountedCombatController.VerbTick(this);
+            return;
+        }
+
+        RiderTickDriver.Tick(this, rider, riderHolders);
+        if (rider.Dead)
+        {
+            TryDismount(sendMessage: false);
         }
     }
 

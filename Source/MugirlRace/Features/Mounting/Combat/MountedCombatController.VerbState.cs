@@ -10,7 +10,6 @@ public static partial class MountedCombatController
     private static readonly Dictionary<Verb, Thing?> OriginalCasters = new();
 
     // 还原登记过的原施放者并清空瞬态索引；不调用 Verb.Reset，保留正在进行的连射状态。
-    [GameLifecycleHook(GameLifecycleEvent.TransientStateReset, Order = 500)]
     public static void ResetTransientState()
     {
         foreach (KeyValuePair<Verb, Thing?> entry in OriginalCasters)

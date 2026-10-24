@@ -202,7 +202,6 @@ public sealed class CompMilkingDevice : ThingComp
         MilkOutputUtility.SpawnStacksNear(thingDef, releasedMilkAmount, wearer.Position, map);
         SpawnReleaseFilth(wearer, map, deviceProps);
         PlayReleaseSounds(wearer, map, mugirlDevicePowerReleaseEnabled ? deviceProps.powerReleaseSounds : deviceProps.releaseSounds);
-        parent.TryGetComp<CompMilkingDeviceReleaseEffect>()?.Trigger();
 
         if (mugirlDevicePowerReleaseEnabled)
         {

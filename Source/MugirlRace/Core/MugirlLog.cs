@@ -114,7 +114,6 @@ internal static class MugirlLog
         }
     }
 
-    [GameLifecycleHook(GameLifecycleEvent.TransientStateReset, Order = 100)]
     internal static void ResetOnceWarnings() => onceKeys.Clear();
 
     /// <summary>

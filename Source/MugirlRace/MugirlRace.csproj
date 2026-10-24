@@ -57,6 +57,4 @@
     <Delete Files="$(_MugirlDeployDir)$(TargetName).pdb" Condition="!Exists('$(_MugirlBuiltPdb)')" />
     <Message Importance="high" Text="MugirlRace -> deployed $(TargetFileName) to $(_MugirlDeployDir)" />
   </Target>
-  <Import Project="CompileOrder.props" Label="MugirlCompileOrder" />
-  <Import Project="../Build/MugirlRace.MetadataOrder/MetadataOrder.targets" Label="MugirlMetadataOrder" />
 </Project>

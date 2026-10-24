@@ -46,6 +46,9 @@ internal sealed class WeaponWheelSwordDance
     private readonly List<ThingWithComps?> swordDanceRotatedWeapons = [];
     internal bool IsDashHoldingWeapon => pendingSwordDanceStrikeDelayed && !pendingSwordDanceStrikeResolved && swordDanceDashStartTick >= 0;
 
+    // 没有冲刺动画，也没有待结算的剑舞：TickSwordDanceDashAnimation 与 TickPendingSwordDanceCompletion 都无事可做。
+    internal bool IsIdle => swordDanceDashStartTick < 0 && pendingSwordDanceVerb == null;
+
     internal bool IsSwordDanceEligible()
     {
         owner.storage.EnsureCollections();

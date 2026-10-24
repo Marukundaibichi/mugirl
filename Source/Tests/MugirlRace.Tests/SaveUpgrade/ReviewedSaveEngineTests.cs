@@ -10,20 +10,18 @@ namespace Mugirl.Tests.SaveUpgrade;
 public sealed class ReviewedSaveEngineTests
 {
     [Fact]
-    public void UnreviewedEngineAndUnrelatedMethodsCannotAuthorizeAReader()
+    public void UnrelatedMethodsCannotAuthorizeAReader()
     {
-        Guid unknown = new("00000000-0000-0000-0000-000000004980");
-        Assert.False(ReviewedSaveEngine.IsReviewed(unknown));
-        Assert.Equal(0, ReviewedSaveEngine.CanonicalReaderToken(unknown, 0x06002721));
-        Assert.Equal(0, ReviewedSaveEngine.CanonicalReaderToken(typeof(Scribe_Collections).Module.ModuleVersionId,
-            typeof(Scribe_Collections).GetMethod("BuildDictionary", BindingFlags.Static | BindingFlags.NonPublic)!.MetadataToken));
+        Assert.Equal(0, ReviewedSaveEngine.CanonicalReaderToken(
+            typeof(Scribe_Collections).GetMethod("BuildDictionary", BindingFlags.Static | BindingFlags.NonPublic)!));
+        // 其他模块中恰好同号的方法不能借用引擎的契约。
+        Assert.Equal(0, ReviewedSaveEngine.CanonicalReaderToken(typeof(ReviewedSaveEngineTests).GetMethod(nameof(UnrelatedMethodsCannotAuthorizeAReader))!));
     }
 
     [Fact]
     public void ActualDictionaryAndListOverloadsBindToTheirReviewedContracts()
     {
-        Module module = typeof(Scribe_Collections).Module;
-        Assert.True(ReviewedSaveEngine.IsReviewed(module.ModuleVersionId));
+        Assert.True(ReviewedSaveEngine.ReadersAvailable);
         MethodInfo[] methods = [.. typeof(Scribe_Collections).GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
             .Where(m => m.Name == "Look" && m.GetParameters()[0].ParameterType.IsByRef)];
         foreach (MethodInfo method in methods)
@@ -34,12 +32,12 @@ public sealed class ReviewedSaveEngineTests
             int expected = collection == typeof(Dictionary<,>) ? (parameters.Length == 4 ? 0x06002720 : 0x06002722)
                 : parameters[1].ParameterType == typeof(bool) ? 0x0600271F
                 : parameters[2].ParameterType == typeof(bool) ? 0x0600271C : 0x0600271D;
-            Assert.Equal(expected, ReviewedSaveEngine.CanonicalReaderToken(module.ModuleVersionId, method.MetadataToken));
+            Assert.Equal(expected, ReviewedSaveEngine.CanonicalReaderToken(method));
         }
         MethodInfo bank = typeof(LoadIDsWantedBank).GetMethod("RegisterLoadIDListReadFromXml",
             [typeof(List<string>), typeof(string), typeof(IExposable)])!;
-        Assert.Equal(0x060026DD, ReviewedSaveEngine.CanonicalReaderToken(module.ModuleVersionId, bank.MetadataToken));
+        Assert.Equal(0x060026DD, ReviewedSaveEngine.CanonicalReaderToken(bank));
         bank = typeof(LoadIDsWantedBank).GetMethod("RegisterLoadIDListReadFromXml", [typeof(List<string>), typeof(string)])!;
-        Assert.Equal(0x060026DE, ReviewedSaveEngine.CanonicalReaderToken(module.ModuleVersionId, bank.MetadataToken));
+        Assert.Equal(0x060026DE, ReviewedSaveEngine.CanonicalReaderToken(bank));
     }
 }

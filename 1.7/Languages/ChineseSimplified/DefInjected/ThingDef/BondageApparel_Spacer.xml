@@ -20,10 +20,6 @@
     <Mugirl_MagneticShackles.comps.CompMagneticShackles.deactivateLabel>解除镣铐</Mugirl_MagneticShackles.comps.CompMagneticShackles.deactivateLabel>
     <!-- Release the magnetic shackles. -->
     <Mugirl_MagneticShackles.comps.CompMagneticShackles.deactivateDesc>解除磁力镣铐。</Mugirl_MagneticShackles.comps.CompMagneticShackles.deactivateDesc>
-    <!-- Magnetic shackles (active) -->
-    <Mugirl_MagneticShackles.comps.CompMagneticShackles.labelWhenActive>磁力镣铐（激活）</Mugirl_MagneticShackles.comps.CompMagneticShackles.labelWhenActive>
-    <!-- Magnetic shackles (inactive) -->
-    <Mugirl_MagneticShackles.comps.CompMagneticShackles.labelWhenInactive>磁力镣铐（未激活）</Mugirl_MagneticShackles.comps.CompMagneticShackles.labelWhenInactive>
     <!-- Magnetic shackles activated! -->
     <Mugirl_MagneticShackles.comps.CompMagneticShackles.moteTextOn>磁力手铐启动!</Mugirl_MagneticShackles.comps.CompMagneticShackles.moteTextOn>
     <!-- Magnetic shackles released! -->

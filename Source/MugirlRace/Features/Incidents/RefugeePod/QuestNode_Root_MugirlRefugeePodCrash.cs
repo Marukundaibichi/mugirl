@@ -4,6 +4,7 @@ using RimWorld.QuestGen;
 namespace Mugirl.Features.Incidents;
 
 // 单个逃亡太空奴隶坠舱：照搬原版 QuestNode_Root_WandererJoin.RunInt 的信号结构（1.7 已核对），只替换生成对象和信件。
+// 不改用基类 RunInt：缺少地图或 Pawn 生成失败时这里放弃本任务，基类会抛出空引用或用空 Pawn 建立空投与信号。
 public class QuestNode_Root_MugirlRefugeePodCrash : QuestNode_Root_RefugeePodCrash
 {
     private const int MaxDownedGenerationAttempts = 10;
@@ -118,13 +119,13 @@ public class QuestNode_Root_MugirlRefugeePodCrash : QuestNode_Root_RefugeePodCra
             quest.AcceptanceRequirementNotSpace(map.Parent);
         }
 
+        // GeneratePawn 只返回 null，或已通过 IsValidRefugeePodPawn 且存活、未销毁的 Pawn；校验之后的倒地、补穿服装和转入世界不改变这些条件。
         Pawn? pawn = GeneratePawn();
-        if (pawn == null || pawn.Destroyed || pawn.Dead || !IsValidRefugeePodPawn(pawn))
+        if (pawn == null)
         {
             MugirlLog.WarningOnce(
                 "RefugeePodCrashPawnGenerationFailed",
                 "Mugirl.RefugeePodCrash.Log.GenerationFailed".Translate(MaxDownedGenerationAttempts).ToString());
-            GeneratedPawnUtility.Discard(pawn);
             return;
         }
 

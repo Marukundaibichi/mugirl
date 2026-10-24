@@ -23,7 +23,9 @@
 
 `MugirlMod` 构造期依次执行 `SaveUpgradeBootstrap.Initialize(this)`、`GetSettings`、`HarmonyBootstrap.ApplyAtStartup`、`CombatCompatibilityBootstrap.Register()`。设置升级先于读取；安装检查通过加载长事件排到补丁应用之后。
 
-`SaveUpgradeInstallation.Verify` 用 `Harmony.GetPatchInfo` 检查必需钩子的 owner 为 `MugirlMod.Mod`。缺少必需入口或引擎协议未经核验时状态为 `Broken`，读入存档不能获得当前版本戳。已核验 writer 上的 ThinkTree 账本捕获失败只降级来源恢复，保留原键并警告。可选的新游戏生命周期和删除 Def 静默处理入口缺失只报告降级。
+`SaveUpgradeInstallation.Verify` 用 `Harmony.GetPatchInfo` 检查必需钩子的 owner 为 `MugirlMod.Mod`。缺少实际必需的读写入口时状态为 `Broken`，读入存档不能获得当前版本戳。ThinkTree 的分配/复制/解析捕获钩子单独检查；缺失只停用来源映射，独立的 Job 原键保留与领域迁移仍运行。捕获缺失状态不随 Def Reset 清除。可选的新游戏生命周期和删除 Def 静默处理入口缺失也只报告降级。
+
+按[决策 §16](../refactor-1.7/decisions.md#16-重审日更兼容与失败边界2026-10-17)，生产代码不使用已知引擎 MVID 白名单。七个 Scribe 列表/字典入口按实际声明类型、方法名、返回值、泛型与完整参数形状绑定；旧 token 只作内部契约 ID，真实 token 从当前方法取得。来源补写只核验 `Job.ExposeData` 的相应字段以 -1、非强制方式写出，不对整个方法或整个程序集做版本指纹门控。真实分配回调结束后逐节点比较当前影子键与原版结果；不同则降级保留，不猜节点，也不因游戏构建编号变化使全部升级不可用。
 
 ### 钩子（`SaveUpgrade/Hooks/`，每类一个文件）
 
@@ -38,7 +40,7 @@
 | `LoadIDsWantedBank.RegisterLoadIDReadFromXml` / `RegisterLoadIDListReadFromXml` Prefix | 在真实 Scribe 引用登记边界重映射身份 |
 | `Verb.ExposeData` Postfix | 保持已保存 Verb 身份与 Thing 改名一致，保留 burst 等状态 |
 | `ThinkTreeKeyAssigner`、`ThinkNode.DeepCopy(bool)`、`ThinkTreeDef` 与 `Job.ExposeData` 的身份钩子 | 记录原版展开/复制的真实节点关系，建立历史布局账本，在本次旧档 Job 读取范围解析旧思考节点键，不删除 lastJobGiverKey |
-| `Game.InitNewGame` Prefix | 发出 `BeforeNewGame` 生命周期事件 |
+| `Game.InitNewGame` Prefix | 新游戏生成前调用 `GameLifecycle.BeforeNewGame` 清理每局状态 |
 
 存档类型改名由 DOM 完成；没有全局 `GenTypes` 别名补丁。外部 XML 公开类由 PublicApi 保留。新增侧文档根类型（ScenPart、Precept 等）的改名时，必须单独证明它的读取入口，不能假定主存档 DOM 覆盖所有文件。
 
@@ -48,7 +50,7 @@
 
 | 状态 | 处理 |
 |---|---|
-| `NoMugirl` | 模组新加入已有存档；不改旧数据，完成后发出 AddedToExistingGame |
+| `NoMugirl` | 模组新加入已有存档；不改旧数据 |
 | `NotLegacy` | 当前 schema；不重复升级 |
 | `Upgraded` | 旧版本的适用步骤全部完成 |
 | `MooGirlEra` | 检测到明确旧时代证据，执行限定清理后提示 |
@@ -57,13 +59,15 @@
 
 无法解析版本戳时在 `Framework.Detect` 失败。引用别名还要求实际 bank、LoadingVars 与主存档 XmlDocument 身份匹配；嵌套读取其他文件、没有会话、更新 schema 或失败后的会话不会继续套用别名。
 
-历史 ThinkTree 布局用五个已发布构建的实际树快照逐节点校准。早期发布缺少后加的巨企 Duty，原版键碰撞会影响其他树，不能仅凭最终节点路径或存档游戏版本猜键。`LegacyThinkJobReadSet` 收集本次实际读取的完整 Job 集合，在首次 PostLoadInit 冻结后求能够匹配实际树的来源共同布局；候选必须指向同一节点才能重新绑定。未知和跨树来源独立保留，不否决正常来源；空交集使相关来源整组保留，歧义或最终 lookup 对象不符也保留并警告。晚捕获、字段不符及真实读取异常仍是协议失败，不改思考树，不消耗随机数。
+历史 ThinkTree 布局用五个已发布构建的实际树快照逐节点校准。早期发布缺少后加的巨企 Duty，原版键碰撞会影响其他树，不能仅凭最终节点路径或存档游戏版本猜键。`LegacyThinkJobReadSet` 收集本次实际读取的完整 Job 集合，在首次 PostLoadInit 冻结后求能够匹配实际树的来源共同布局；候选必须指向同一节点才能重新绑定。未知和跨树来源独立保留，不否决正常来源；空交集使相关来源整组保留，歧义或最终 lookup 对象不符也保留并警告。晚到/重复来源、合法整数查询被改写及受管来源查找异常也独立降级；损坏标签/整数与不匹配的对象读取上下文仍不能冒充成功。不改思考树，不消耗随机数。
 
 2026-10-17 增加第四个候选 `CurrentLayout`：失败升级后的普通保存会保留旧 schema，却写当前节点键，因此 schema 0 不能排除当前布局。当前布局同样从完整的原版分配流捕获，使用未替换的当前类型名和树名种子；仅在保存的树名等于实际当前树名、捕获键等于该节点实际键时参与交集。它没有优先权，不作逐 Job 猜测回退；历史与当前候选指向不同节点时保持未解析。详见[重存档修复](../records/thinktree-key-migration-2026-10-16.md#升级失败后重存档的当前布局2026-10-17)。
 
-2026-10-17 用户以[决策 §14](../refactor-1.7/decisions.md#14-ai-来源警告策略与部署授权2026-10-17)明确取消旧的所有权门槛：雪牛娘、外部及来源归属不明的 Job 都能保留无法证明的 AI 来源。未解析来源只产生兼容警告，不阻断整档升级；这不等于恢复了原来的 AI 节点。保留写出协议只在已核验的 4980 引擎启用，4979 及未知引擎不自动沿用。
+2026-10-17 用户以[决策 §14](../refactor-1.7/decisions.md#14-ai-来源警告策略与部署授权2026-10-17)明确取消旧的所有权门槛：雪牛娘、外部及来源归属不明的 Job 都能保留无法证明的 AI 来源。未解析来源只产生兼容警告，不阻断整档升级；这不等于恢复了原来的 AI 节点。§16 进一步取消构建白名单，使用当前写出接口的局部契约判定。
 
 `UnresolvedThinkTreeKeys` 以 Job 弱引用保存原整数、实际树、Def 与 loadID。下次保存只在这些身份仍一致、来源仍为空且原版已省略 -1 标签时，补写原始 `lastJobGiverKey` 与可选 `mugirlUnresolvedThinkSource=True`。此标记让当前 schema 的重载也保留 null 来源，避免原整数恰好命中新节点后被误绑；Clone 续接、Clear 清除，身份变化或已有来源时清除旧记录。侧文档、未带本 Mod 的存档和更新 schema 不登记。标记是 schema 1 可选注记，K1 `runtimeProtocols` 登记真实 Scribe 黄金夹具，不设置虚假 DOM 改名步骤。不伪造节点、不结束 Job、不修改任务进度，也不屏蔽原版警告；角色后续 AI 判断仍可能重新安排任务。
+
+真实树缺失时也保存原始树名；原版 `Scribe_Defs` 对空 Def 省略标签，补写不会制造重复字段。PostLoadInit 只在本次实际 Job 的来源查询期间暂用 -1 跳过空树访问，finalizer 还原原整数，Job 其他初始化与驱动继续运行；没有提供虚假节点或树。真正未完成的步骤在弹窗显示首行原因和构建短标识，完整错误仍写诊断 JSON/日志。启动日志记录实际 mod/engine MVID 和程序集路径，便于核对玩家运行的构建。
 
 ### DOM 流水线（`UpgradePipeline`，主存档读取前）
 
@@ -88,7 +92,7 @@ DOM 的 Def 处理限定在真实对象定义、登记值上下文、明确删�
 
 - 阶段 A：引用解析与 PostLoadInit 完成后。
 - 阶段 B：Game.FinalizeInit 前。`InFlightJobSelection` 只选显式 `EndInFlight` 行；没有版本戳本身不触发结束任务。已证明同构的任务登记 Preserve，变化的布局由 Claim 步骤维护原状态。
-- 阶段 C：全部 GameComponent.LoadedGame 之后，完成会话并把诊断交给中心组件，再发出 LoadedGame / AddedToExistingGame。
+- 阶段 C：全部 GameComponent.LoadedGame 之后，完成会话并把诊断交给中心组件。
 
 当前模块不把所有旧工作统一结束。骑枪旧两 Toil 步行流程用 SaveUpgrade 内的等布局续接驱动，保持 cur/next/want/ticks、目标和冷却，不重放 initAction。未开始且 count=-1、Thing 目标时无法区分旧步行与新起飞，明确失败；精确 count=1 或直线冲锋的有效纯地格目标有独立证据。详见[战斗实施记录](../records/refactor-1.7-combat-2026-10-15.md)。物品工作同样按保存状态证明阶段；真歧义不重置、不结束。Corporate 支援 Lord 保留图状态与触发计时。
 

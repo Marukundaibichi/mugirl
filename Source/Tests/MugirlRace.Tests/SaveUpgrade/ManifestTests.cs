@@ -38,6 +38,7 @@ public sealed class ManifestTests
         JsonElement protocol = Assert.Single(root.GetProperty("runtimeProtocols").EnumerateArray());
         Assert.Equal(LegacyThinkTreeKeys.StepId, protocol.GetProperty("id").GetString());
         Assert.Equal(UnresolvedThinkTreeKeys.MarkerLabel, protocol.GetProperty("markerLabel").GetString());
+        Assert.Equal("jobGiverThinkTree", protocol.GetProperty("treeLabel").GetString());
         Assert.True(protocol.GetProperty("optional").GetBoolean());
         Assert.Equal("ScribeGolden/ThinkTreeSources", protocol.GetProperty("goldenFixture").GetString());
     }

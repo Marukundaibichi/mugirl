@@ -3,7 +3,7 @@ namespace Mugirl.Features.Xenotype;
 // 雪牛娘异种初始化：出生规则与一次性安全扫描共用同一套基因操作，保留玩家植入的异种与自定义异种。
 internal static class XenotypeUtility
 {
-    internal static void ForceFemaleMugirlXenotypeIfNeeded(Pawn? child, Pawn? geneticMother = null, Pawn? father = null, Thing? birtherThing = null)
+    internal static void ForceFemaleMugirlXenotypeIfNeeded(Pawn? child, Thing? birtherThing)
     {
         if (!ModsConfig.BiotechActive || child is null || child.gender != Gender.Female || child.genes is null)
         {
@@ -11,7 +11,7 @@ internal static class XenotypeUtility
         }
 
         XenotypeDef? targetXenotype = MugirlXenotypeDefOf.Mugirl_Xenotype;
-        if (targetXenotype is null || !IsMugirlRelatedBirth(child, geneticMother, father, birtherThing))
+        if (targetXenotype is null || !IsMugirlRelatedBirth(child, birtherThing))
         {
             return;
         }
@@ -49,9 +49,9 @@ internal static class XenotypeUtility
         ApplyXenotypeAndMissingEndogenes(pawn, targetXenotype, forceNonHybrid: false);
     }
 
-    private static bool IsMugirlRelatedBirth(Pawn child, Pawn? geneticMother, Pawn? father, Thing? birtherThing)
+    private static bool IsMugirlRelatedBirth(Pawn child, Thing? birtherThing)
     {
-        if (IsMugirlPawn(child) || IsMugirlPawn(geneticMother) || IsMugirlPawn(father) || IsMugirlPawn(birtherThing as Pawn))
+        if (IsMugirlPawn(child) || IsMugirlPawn(birtherThing as Pawn))
         {
             return true;
         }

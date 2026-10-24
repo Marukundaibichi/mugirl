@@ -13,10 +13,6 @@ public class HediffCompProperties_ElectricShock : HediffCompProperties
     public float hostileStunDuration = 4f;
     public float jitterMagnitude = 0.3f;
 
-    // XML 仍写这两个循环参数；1.6 只递减计数而不产生任何效果，1.7 不再计数。保留字段以免 XML 报未知字段。
-    public int effectCycleInterval = 200;
-    public int maxCycles = 1;
-
     public HediffCompProperties_ElectricShock()
     {
         compClass = typeof(HediffComp_ElectricShock);

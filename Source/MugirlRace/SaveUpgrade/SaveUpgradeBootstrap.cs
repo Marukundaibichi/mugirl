@@ -21,6 +21,10 @@ public static class SaveUpgradeBootstrap
             return;
         }
 
+        MugirlLog.Message("Save compatibility runtime: modMvid=" + typeof(SaveUpgradeBootstrap).Assembly.ManifestModule.ModuleVersionId
+            + ", engineMvid=" + typeof(Game).Assembly.ManifestModule.ModuleVersionId
+            + ", modPath=" + typeof(SaveUpgradeBootstrap).Assembly.Location + ". Interface contracts determine compatibility; build IDs are diagnostic only.");
+
         if (!UpgradeTables.TryGetDefault(out UpgradeTables? tables, out Exception? error))
         {
             MugirlLog.Exception("Save upgrade tables are invalid; settings and saves from older versions will not be upgraded.", error);

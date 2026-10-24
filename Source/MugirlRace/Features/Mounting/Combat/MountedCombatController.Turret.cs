@@ -6,20 +6,46 @@ public static partial class MountedCombatController
 {
     private const int DefaultTurretTickInterval = 60;
 
-    // 由 CompMount.CompTick 每 tick 调用一次，与原版 Pawn.Tick → VerbsTick 的频率一致。
+    // 载具不推进骑手时（CompProperties_Mount.tickPhysiology 关闭）由 CompMount.CompTick 每 tick 调用一次，
+    // 与原版 Pawn.Tick → VerbsTick 的频率一致；推进骑手时这个 verb 随骑手的装备推进（RiderTickDriver.Tick）。
     internal static void VerbTick(CompMount comp)
     {
-        if (GetPrimaryRangedVerb(comp) is not { } verb)
+        using VerbTickScope scope = BeginVerbTick(comp);
+        scope.Verb?.VerbTick();
+    }
+
+    // 推进骑乘远程 verb 的代码包在这个作用域中：作用域内 verb 以载具为施放者，连射的射线与射程按载具计算；
+    // 结束时先撤销该 verb 给载具设置的 busy 姿态，再还原施放者。没有可用的骑乘远程 verb 时作用域不做任何事。
+    internal static VerbTickScope BeginVerbTick(CompMount comp)
+    {
+        return GetPrimaryRangedVerb(comp) is { } verb ? new VerbTickScope(comp, verb) : default;
+    }
+
+    internal readonly struct VerbTickScope : IDisposable
+    {
+        private readonly Pawn? carrier;
+        private readonly Stance? originalStance;
+        private readonly MountedVerbScope casterScope;
+
+        internal VerbTickScope(CompMount comp, Verb verb)
         {
-            return;
+            Verb = verb;
+            carrier = comp.MooPawn;
+            originalStance = carrier?.stances?.curStance;
+            casterScope = MountedCasterScope(comp, verb);
         }
 
-        Pawn? carrier = comp.MooPawn;
-        Stance? originalStance = carrier?.stances?.curStance;
-        using (MountedCasterScope(comp, verb))
+        internal Verb? Verb { get; }
+
+        public void Dispose()
         {
-            verb.VerbTick();
-            RestoreCarrierStanceIfMountedVerbChangedIt(carrier, verb, originalStance);
+            if (Verb is null)
+            {
+                return;
+            }
+
+            RestoreCarrierStanceIfMountedVerbChangedIt(carrier, Verb, originalStance);
+            casterScope.Dispose();
         }
     }
 

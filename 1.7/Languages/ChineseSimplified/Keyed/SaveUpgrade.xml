@@ -3,7 +3,7 @@
   <Mugirl.SaveUpgrade.CompletedTitle>雪牛娘存档已升级</Mugirl.SaveUpgrade.CompletedTitle>
   <Mugirl.SaveUpgrade.SourceWarnings>有 {0} 个任务的 AI 来源无法恢复，已保留原编号和存档中的任务进度。角色在后续 AI 判断时可能重新选择任务。详情已记录在日志中。</Mugirl.SaveUpgrade.SourceWarnings>
   <Mugirl.SaveUpgrade.CompletedBody>此存档已自动升级为新版雪牛娘存档，旧档已备份。\n\n备份文件：{0}\n\n升级标记会随游戏存档保存。再次载入保存后的新档时，不会重复发送此提示。</Mugirl.SaveUpgrade.CompletedBody>
-  <Mugirl.SaveUpgrade.Failed>雪牛娘存档升级在步骤 {0} 失败。请不要覆盖这个存档：先报告问题再继续游玩，并把日志和存档旁的 .bak 备份一起发给作者。</Mugirl.SaveUpgrade.Failed>
+  <Mugirl.SaveUpgrade.Failed>雪牛娘有一项存档兼容处理未能完成。\n步骤：{0}\n原因：{1}\n\n请暂时不要覆盖原档，保留本次日志和已有的 .bak 备份供核查。\n诊断构建：{2}</Mugirl.SaveUpgrade.Failed>
   <Mugirl.SaveUpgrade.NewerSave>这个存档由更新版本的雪牛娘写入（存档版本 {0}）。用当前版本保存会丢失新版本的数据，请先更新模组再保存。</Mugirl.SaveUpgrade.NewerSave>
   <Mugirl.SaveUpgrade.MooGirlEra>这个存档含有 MooGirl 时代（0.4.4 及更早）的模组内容，已不再支持。这部分内容在读档时已丢弃，其余内容均已保留。</Mugirl.SaveUpgrade.MooGirlEra>
   <Mugirl.SaveUpgrade.NotInstalled>雪牛娘未能安装存档升级挂点（{0}）。本次运行中读取旧版雪牛娘存档并不安全，请检查日志中的 Harmony 冲突。</Mugirl.SaveUpgrade.NotInstalled>

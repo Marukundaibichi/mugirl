@@ -158,6 +158,17 @@ pwsh tools/Test-InGame.ps1 -Fixture all                      # 旧档夹具升�
 - `-Suite think-migration -SuiteOption "think-migration.source=<测试副本路径>"` 抽取存档中所有带 `lastJobGiverKey` 的 Job 来源与值字段，重放真实 Scribe 的 LoadingVars、CrossRefs、PostLoadInit、保存和当前 schema 再读。它先用实际树确认哪些键原版也找不到，只接受这些确切警告并核对数量；验证原编号唯一保留、计数与对象身份、再次保存稳定及输入哈希不变。`think-migration.expectFailure=true` 是旧构建负对照，必须复现 `Framework.ThinkTreeKeys` 失败。夹具不加载原世界或目标引用，不能冒充玩家完整模组环境验证；读取阶段按 `FinalizeLoading` 协议清空 XML 游标后再做引用解析。
 - `-Suite think-migration -SuiteOption "think-migration.currentLayout=true"` 用当前 `MugirlLike` 树的真实休息节点和原版 Job writer 生成 schema 0 值夹具，模拟失败升级后继续游玩并重存；不需要提供源文件。随后验证这些来源经过升级、schema 1 重读及重复保存仍绑定同一节点。与 `think-migration.expectFailure=true` 合用时，只额外允许并核对首次被旧升级器错误拒绝的那个当前键的单条警告；正向验证没有这项豁免。
 - `-Suite think-warnings` 合成日志中的 `Humanlike/UseToilet/-1642323718` 跨树键和 `MugirlLike/LayDown/566784108` 未捕获键，分别及混合顺序读取。使用真实 `Pawn_JobTracker`、原版 `JobDriver_LayDown` 与外部进度探针，逐字段核对任务目标、计数、Toil 阶段、剩余时间、原键及待解析标记；真实中心组件写 schema 1，重载不重复升级，探针继续三个 tick 且不重放初始化。只替换这两个键的测试账本条目，结束还原；未安装卫生模组，不能声称实际测试了其 UseToilet 驱动。`think-warnings.expectFailure=true` 用于 1016.3 负对照，必须分别复现两种原因。传入 `think-migration.source` 时使用绝对路径，游戏工作目录不是模组目录。
+- `think-warnings` 也覆盖缺失任务树的真实 Job/driver 往返。`think-migration.allowMissingDefs=true` 可重放玩家存档的全部来源值：缺失 JobDef 仅建按名解析的值载体，缺失 ThinkTree 保持 null；报告列明载体和缺树名单，逐条核对原版缺失 Def 日志的准确次数，以及原键、原树名、待解析标记和重复保存。这个模式不是完整玩家世界或第三方驱动玩法验证，不能把精确预期的缺失依赖日志豁免扩大到其他错误。
+- 实机观察器通过已审阅的接口描述绑定 38 个原版方法，不按 MVID/token 偏移猜测入口。未消费品质叶子的跨版本例外仍只限精确的历史输入与服装对象，并校验 13 个原版转换入口的语义指纹、实际转换链、补丁与完整读写阶段；这项只读验证证明不进入生产游戏逻辑。
+- `-Suite perf` 是性能测量，只按名运行，不在 default/all 中；只用原版 API，`-TargetModDir` 的候选构建也能运行。它在 quicktest 地图上生成雪牛娘与人类殖民者、触发一次迁徙，依次：
+  - 按 `JobGiver_GetFood` 的参数给觅食搜索计时，并与 Harmony 反向补丁得到的未补丁原版 `FoodUtility.BestFoodSourceOnMap` 比较选中的食物。这是套件唯一的通过/失败判定，耗时只报告；
+  - 按种族与阵营统计地图上 Pawn 顶层 `Thing.DoTick` 的耗时与尖峰 tick，口径同 Dubs Performance Analyzer 的“物体 Tick / Tick Def”；
+  - 开启游戏内置帧分析器（Waylith `FrameProfiler`）对 MugirlRace 与原版 Verse/RimWorld 插桩。游戏保持暂停，每帧单步一个 tick，导出各种族 DoTick 之下调用路径的耗时、调用次数、分配和最慢的 tick。
+
+  结果写入 `artifacts/perf.json`。参数见 `Suites/PerfSuite.cs` 开头，例如 `-SuiteOption perf.plants=15000` 把地图植物补种到至少 15000 株。注意：
+  - 原版 `ProfilerBlock` 在发布版是空实现，内置分析器只有插桩后才能看到原版调用路径；
+  - 高速运行时一帧含多个 tick，全量插桩会超出事件缓冲而丢帧，所以套件改为单步；
+  - 插桩阶段的绝对耗时偏高，只用于比较构成。用法与结论见[觅食植物扫描性能调查](records/performance-food-search-2026-10-25.md)。
 - `-Config` 可选 AllDlc、CoreOnly、NoRoyalty、NoIdeology、NoBiotech、NoAnomaly、NoOdyssey。无 DLC 组合通过临时 `ModsConfig.xml` 实现，因为 `-mod=` 总会启用全部 DLC。
 - 结果在 `TMP/InGameValidation/<时间戳>/`，包括 `summary.json`、报告、标准输出、截图和截图分析。退出码：0 通过；1 游戏运行了但有失败；2 构建或环境错误。
 - 基线：重构前的 DLL 在 Wave 0 为 65 ok / 1 failed / 14 skipped（`DevData/Evidence/Baseline-PreRefactor-20261015/ingame-default.txt`）。那次失败是测试本身的缺陷，A5 已修复；修复后的 default 运行为 78 ok / 0 failed / 14 skipped（A5 报告）。

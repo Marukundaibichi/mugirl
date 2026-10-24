@@ -111,11 +111,6 @@
                 <!-- 解除磁力镣铐。 -->
                 <deactivateDesc>Release the magnetic shackles.</deactivateDesc>
                 <deactivateIconPath>UI/MagneticShackleUnLock</deactivateIconPath>
-                <!-- 动态名字显示 -->
-                <!-- 磁力镣铐（激活） -->
-                <labelWhenActive>Magnetic shackles (active)</labelWhenActive>
-                <!-- 磁力镣铐（未激活） -->
-                <labelWhenInactive>Magnetic shackles (inactive)</labelWhenInactive>
                 <!-- 提示与特效 -->
                 <!-- 磁力手铐启动! -->
                 <moteTextOn>Magnetic shackles activated!</moteTextOn>
@@ -196,17 +191,6 @@
         </apparel>
         <comps>
             <li Class="Mugirl.Features.Restraints.CompProperties_AdultContentControl" />
-            <li Class="Mugirl.Features.Milk.CompProperties_MilkingDeviceReleaseEffect">
-                <durationTicks>30</durationTicks>
-                <sounds>
-                    <li>
-                        <sound>Mugirl_Milking_Sound</sound>
-                        <startTick>0</startTick>
-                        <loopInterval>30</loopInterval>
-                        <endTick>0</endTick>
-                    </li>
-                </sounds>
-            </li>
             <li Class="Mugirl.Features.Milk.CompProperties_MilkingDevice">
                 <maxCharges>3</maxCharges>
                 <!-- 释放储乳 -->
@@ -231,10 +215,11 @@
                 <releaseSounds>
                     <li>Mugirl_Milking_Sound</li>
                 </releaseSounds>
+                <!-- 强力释放同时播放强力音效与普通释放音效 -->
                 <powerReleaseSounds>
                     <li>Mugirl_Milking_Power_Sound</li>
+                    <li>Mugirl_Milking_Sound</li>
                 </powerReleaseSounds>
-                <powerFilthDefName></powerFilthDefName>
             </li>
         </comps>
     </ThingDef>
@@ -307,17 +292,6 @@
             <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
         </apparel>
         <comps>
-            <li Class="Mugirl.Features.Milk.CompProperties_MilkingDeviceReleaseEffect">
-                <durationTicks>30</durationTicks>
-                <sounds>
-                    <li>
-                        <sound>Mugirl_Milking_Sound</sound>
-                        <startTick>0</startTick>
-                        <loopInterval>30</loopInterval>
-                        <endTick>0</endTick>
-                    </li>
-                </sounds>
-            </li>
             <li Class="Mugirl.Features.Milk.CompProperties_MilkingDevice">
                 <maxCharges>3</maxCharges>
                 <!-- 释放储乳 -->
@@ -342,10 +316,11 @@
                 <releaseSounds>
                     <li>Mugirl_Milking_Sound</li>
                 </releaseSounds>
+                <!-- 强力释放同时播放强力音效与普通释放音效 -->
                 <powerReleaseSounds>
                     <li>Mugirl_Milking_Power_Sound</li>
+                    <li>Mugirl_Milking_Sound</li>
                 </powerReleaseSounds>
-                <powerFilthDefName></powerFilthDefName>
             </li>
         </comps>
     </ThingDef>

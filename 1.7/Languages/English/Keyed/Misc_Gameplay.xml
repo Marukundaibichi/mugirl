@@ -18,8 +18,6 @@
     <Mugirl.Restraints.MagneticShackles.ActivateDesc>Activate the magnetic shackles, restraining the target.</Mugirl.Restraints.MagneticShackles.ActivateDesc>
     <Mugirl.Restraints.MagneticShackles.DeactivateLabel>Release shackles</Mugirl.Restraints.MagneticShackles.DeactivateLabel>
     <Mugirl.Restraints.MagneticShackles.DeactivateDesc>Release the magnetic shackles.</Mugirl.Restraints.MagneticShackles.DeactivateDesc>
-    <Mugirl.Restraints.MagneticShackles.LabelActive>Magnetic shackles (active)</Mugirl.Restraints.MagneticShackles.LabelActive>
-    <Mugirl.Restraints.MagneticShackles.LabelInactive>Magnetic shackles (inactive)</Mugirl.Restraints.MagneticShackles.LabelInactive>
     <Mugirl.Restraints.MagneticShackles.MoteOn>Magnetic shackles activated!</Mugirl.Restraints.MagneticShackles.MoteOn>
     <Mugirl.Restraints.MagneticShackles.MoteOff>Magnetic shackles released!</Mugirl.Restraints.MagneticShackles.MoteOff>
     <Mugirl.Restraints.MagneticShackles.MessageOn>{0}'s magnetic shackles suddenly activated.</Mugirl.Restraints.MagneticShackles.MessageOn>

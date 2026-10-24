@@ -289,7 +289,7 @@ public sealed class ThinkTreeIdentityTests
     }
 
     [Fact]
-    public void ExceptionMarksTheSessionFailedAndNestedJobScopeAlwaysRestoresTheOuterReader()
+    public void SourceLookupExceptionWarnsAndNestedJobScopeRestoresTheOuterReader()
     {
         using var scope = new LookupScope();
         LegacyThinkJobScope previous = LegacyThinkTreeKeys.EnterJob(new Job(), scope.Session, LoadSaveMode.PostLoadInit, null);
@@ -306,8 +306,12 @@ public sealed class ThinkTreeIdentityTests
         Assert.True(LegacyThinkTreeKeys.PrepareLookup(scope.Tree, ref key, out LegacyThinkLookup? lookup));
         Assert.NotNull(lookup);
         var error = new InvalidOperationException("lookup failed");
-        Assert.Same(error, Harmony_ThinkTreeDef_TryGetThinkNodeWithSaveKey.Finalizer(error, lookup));
-        AssertFailedWithoutTrace(scope.Session);
+        ThinkNode? result = scope.Node;
+        bool found = true;
+        Assert.Null(Harmony_ThinkTreeDef_TryGetThinkNodeWithSaveKey.Finalizer(error, lookup, ref result, ref found));
+        Assert.Null(result);
+        Assert.False(found);
+        AssertDeferredWithoutTrace(scope.Session);
     }
 
     [Fact]
@@ -328,14 +332,14 @@ public sealed class ThinkTreeIdentityTests
     }
 
     [Fact]
-    public void ALookupThatDoesNotMatchItsActualSavedFieldFailsInsteadOfProducingAFalseTrace()
+    public void AChangedLookupRetainsItsSavedFieldInsteadOfProducingAFalseTrace()
     {
         using var scope = new LookupScope();
         int key = scope.OldKey;
         scope.Source["lastJobGiverKey"]!.InnerText = "17";
         Assert.False(LegacyThinkTreeKeys.PrepareLookup(scope.Tree, ref key, out LegacyThinkLookup? lookup));
         Assert.Null(lookup);
-        AssertFailedWithoutTrace(scope.Session);
+        AssertDeferredWithoutTrace(scope.Session);
     }
 
     [Fact]
@@ -414,15 +418,15 @@ public sealed class ThinkTreeIdentityTests
     }
 
     [Fact]
-    public void AnExceptionWhileReadingTheActualTreeCannotLeaveTheUpgradeSuccessful()
+    public void AnUnreadableSourceTreeWarnsWithoutBlockingTheUpgrade()
     {
         using var scope = new LookupScope();
         scope.Node.subNodes.Add(null!);
         int key = scope.OldKey;
         Assert.False(LegacyThinkTreeKeys.PrepareLookup(scope.Tree, ref key, out LegacyThinkLookup? lookup));
         Assert.Null(lookup);
-        Assert.Contains("Could not verify", scope.Session.Report.Error, StringComparison.Ordinal);
-        AssertFailedWithoutTrace(scope.Session);
+        Assert.Contains("layout-unavailable", Assert.Single(scope.Session.Report.Warnings).Message, StringComparison.Ordinal);
+        AssertDeferredWithoutTrace(scope.Session);
     }
 
     private static JsonElement[] Events(SaveUpgradeSession session)

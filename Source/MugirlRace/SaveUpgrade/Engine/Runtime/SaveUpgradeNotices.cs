@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Linq;
 using Mugirl.Core;
 
 namespace Mugirl.SaveUpgrade;
@@ -36,10 +37,16 @@ internal static class SaveUpgradeNotices
         });
     }
 
-    internal static void UpgradeFailed(string stepId) => Show(
+    internal static void UpgradeFailed(string stepId, string reason) => Show(
         FailedKey,
-        "The Mugirl save upgrade failed at step {0}. Do not overwrite this save: keep playing only after reporting the problem, and send the log together with the .bak backup next to the save file.",
-        stepId);
+        "A Mugirl save compatibility step could not finish.\nStep: {0}\nReason: {1}\n\nKeep the original save, this log and any existing .bak backup for investigation before overwriting the original.\nDiagnostic build: {2}",
+        stepId, NoticeReason(reason), typeof(SaveUpgradeNotices).Assembly.ManifestModule.ModuleVersionId.ToString("N")[..8]);
+
+    internal static string NoticeReason(string reason)
+    {
+        string firstLine = reason.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries).FirstOrDefault() ?? reason;
+        return firstLine.Length <= 320 ? firstLine : firstLine[..320] + "…";
+    }
 
     internal static void NewerSave(int schema) => Show(
         NewerKey,

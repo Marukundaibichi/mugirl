@@ -154,14 +154,9 @@ internal static class ThrowUtility
         return FindController(pawn, includeFlying: true);
     }
 
+    // 开火锁在每次 Verb 施放时调用：ThingsOfDef 是一次按 Def 的字典查找，地图上没有控制器时返回空列表。
     private static ThrowController? FindController(Pawn? pawn, bool includeFlying)
     {
-        // 开火锁在每次 Verb 施放时调用：没有任何控制器生成过时不查询地图。
-        if (!ThrowControllerRegistry.AnySpawned)
-        {
-            return null;
-        }
-
         Map? map = pawn?.MapHeld;
         ThingDef? controllerDef = AbilitiesDefOf.Mugirl_ThrowController;
         if (map is null || controllerDef is null)

@@ -1,9 +1,8 @@
-using System.Collections.Generic;
 using Mugirl.Features.Milk;
 
 namespace Mugirl.Tests.Milk;
 
-/// <summary>婴儿吸奶、哺育加成与榨乳器释放排程的纯规则。</summary>
+/// <summary>婴儿吸奶与哺育加成的纯规则。</summary>
 public sealed class MilkFeedingRulesTests
 {
     [Fact]
@@ -90,36 +89,4 @@ public sealed class MilkFeedingRulesTests
             Bits.Equal(original + xp, original + shifted);
         }
     }
-
-    [Fact]
-    public void ReleaseSchedule_MarksNullEntriesFinished()
-    {
-        var entries = new List<Step?> { new(5), null, new(-3) };
-        List<int> ticks = MilkReleaseSchedule.Build(entries, static step => step.StartTick);
-        Assert.Equal(new[] { 5, MilkReleaseSchedule.Finished, 0 }, ticks);
-        Assert.Empty(MilkReleaseSchedule.Build<Step>(null, static step => step.StartTick));
-    }
-
-    [Theory]
-    [InlineData(0, 0, 0, 0, true)]
-    [InlineData(5, 0, 0, 0, false)]
-    [InlineData(5, 10, 0, 60, false)]
-    [InlineData(10, 10, 0, 60, true)]
-    [InlineData(61, 10, 0, 60, false)]
-    [InlineData(0, MilkReleaseSchedule.Finished, 0, 60, false)]
-    [InlineData(3, 3, 5, 2, false)]
-    [InlineData(5, 5, 5, 2, true)]
-    public void ShouldFireLooping_RespectsWindowAndNextTick(int age, int nextTick, int startTick, int endTick, bool expected)
-    {
-        Assert.Equal(expected, MilkReleaseSchedule.ShouldFireLooping(age, nextTick, startTick, endTick));
-    }
-
-    [Fact]
-    public void NextLoopTick_UsesAtLeastOneTick()
-    {
-        Assert.Equal(40, MilkReleaseSchedule.NextLoopTick(10, 30));
-        Assert.Equal(11, MilkReleaseSchedule.NextLoopTick(10, 0));
-    }
-
-    private sealed record Step(int StartTick);
 }

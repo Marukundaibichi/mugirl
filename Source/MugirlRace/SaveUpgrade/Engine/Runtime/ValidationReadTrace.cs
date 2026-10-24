@@ -60,7 +60,7 @@ internal sealed class ValidationReadTrace
         // ScribeExtractor 的三个 TargetInfo 读取器先进入标量，再用虚拟 /thing 登记它。
         // 该虚拟路径并不是一个 XML 子元素；这里只接受引擎已核实的类型与真实标量。
         if (source is null && relative == "thing" && targetType == typeof(Thing)
-            && ReviewedSaveEngine.IsReviewed(typeof(ScribeExtractor).Module.ModuleVersionId)
+            && ReviewedSaveEngine.ReadersAvailable
             && !DomEditor.HasElementChild(element))
         {
             source = element;

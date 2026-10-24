@@ -17,22 +17,23 @@ internal static class WeaponWheelAnimationRenderer
             return;
         }
 
-        float distanceFactor = pawn.ageTracker?.CurLifeStage?.equipmentDrawDistanceFactor ?? 1f;
-        Vector3 pawnDrawPosition = WeaponWheelHooks.Current.BodyPosition(pawn);
+        // 身体位置要经过 Pawn.DrawPos（含本模组与其他模组的后缀）或兼容层回调，确认有武器要画之后才取。
         if (!comp.TryGetAnimationSnapshot(out WeaponWheelAnimationSnapshot snapshot))
         {
             if (comp.TryGetSwordDanceDashHeldWeapon(out ThingWithComps? dashWeapon, out float dashAimAngle))
             {
-                DrawHeldWeapon(dashWeapon, pawnDrawPosition, dashAimAngle, distanceFactor);
+                DrawHeldWeapon(pawn, dashWeapon, dashAimAngle);
                 return;
             }
             if (comp.TryGetAimHandoff(out ThingWithComps? handoffWeapon, out float handoffAngle))
             {
-                DrawHeldWeapon(handoffWeapon, pawnDrawPosition, handoffAngle, distanceFactor);
+                DrawHeldWeapon(pawn, handoffWeapon, handoffAngle);
             }
             return;
         }
 
+        float distanceFactor = DistanceFactor(pawn);
+        Vector3 pawnDrawPosition = WeaponWheelHooks.Current.BodyPosition(pawn);
         ThingWithComps? incoming = snapshot.IncomingWeapon;
         ThingWithComps? outgoing = snapshot.OutgoingWeapon;
         Vector3 holdPosition = WeaponWheelAnimationCurves.HeldPosition(
@@ -67,12 +68,16 @@ internal static class WeaponWheelAnimationRenderer
         DrawWeapon(incoming, incomingPose, matchVanillaAiming: true);
     }
 
-    private static void DrawHeldWeapon(ThingWithComps weapon, Vector3 pawnDrawPosition, float aimAngle, float distanceFactor)
+    private static void DrawHeldWeapon(Pawn pawn, ThingWithComps weapon, float aimAngle)
     {
+        float distanceFactor = DistanceFactor(pawn);
+        Vector3 pawnDrawPosition = WeaponWheelHooks.Current.BodyPosition(pawn);
         Vector3 position = WeaponWheelAnimationCurves.HeldPosition(
             pawnDrawPosition, aimAngle, weapon.def.equippedDistanceOffset, distanceFactor);
         DrawWeapon(weapon, new WeaponWheelWeaponPose(position, aimAngle, 1f, 1f), matchVanillaAiming: true);
     }
+
+    private static float DistanceFactor(Pawn pawn) => pawn.ageTracker?.CurLifeStage?.equipmentDrawDistanceFactor ?? 1f;
 
     private static void DrawWeapon(ThingWithComps weapon, in WeaponWheelWeaponPose pose, bool matchVanillaAiming)
     {

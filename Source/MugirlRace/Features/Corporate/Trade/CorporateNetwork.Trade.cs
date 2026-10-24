@@ -19,7 +19,8 @@ public partial class CorporateNetwork
     public CorporateTradeConfigDef TradeSettings => CorporateDefOf.Mugirl_CorporateTradeConfig;
     public IReadOnlyList<ThingDef> OrderCatalog => OrderCatalogCache.Value;
 
-    // 在读档/开局长事件中预建目录与来源索引，避免首次打开终端时同步扫描大型模组列表。
+    // 读档已开户的存档时，在长事件中预建目录与来源索引，避免首次打开终端时同步扫描大型模组列表。
+    // 其余情况由首次使用（开户后的每周刷新、终端页面）触发同一惰性缓存。
     private static void PrepareOrderCatalog()
     {
         _ = OrderCatalogCache.Value;

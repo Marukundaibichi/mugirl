@@ -36,10 +36,6 @@
     <Mugirl.Restraints.MagneticShackles.DeactivateLabel>解除镣铐</Mugirl.Restraints.MagneticShackles.DeactivateLabel>
     <!-- Release the magnetic shackles. -->
     <Mugirl.Restraints.MagneticShackles.DeactivateDesc>解除磁力镣铐。</Mugirl.Restraints.MagneticShackles.DeactivateDesc>
-    <!-- Magnetic shackles (active) -->
-    <Mugirl.Restraints.MagneticShackles.LabelActive>磁力镣铐（激活）</Mugirl.Restraints.MagneticShackles.LabelActive>
-    <!-- Magnetic shackles (inactive) -->
-    <Mugirl.Restraints.MagneticShackles.LabelInactive>磁力镣铐（未激活）</Mugirl.Restraints.MagneticShackles.LabelInactive>
     <!-- Magnetic shackles activated! -->
     <Mugirl.Restraints.MagneticShackles.MoteOn>磁力手铐启动!</Mugirl.Restraints.MagneticShackles.MoteOn>
     <!-- Magnetic shackles released! -->

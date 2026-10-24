@@ -20,10 +20,6 @@ public class CompProperties_MagneticShackles : CompProperties
     public string deactivateDesc = "Mugirl.Restraints.MagneticShackles.DeactivateDesc";
     public string deactivateIconPath = "UI/Commands/DesirePower";
 
-    // XML 仍写这两个字段，但 1.6 起没有读取方；保留以免 XML 报未知字段。
-    public string labelWhenActive = "Mugirl.Restraints.MagneticShackles.LabelActive";
-    public string labelWhenInactive = "Mugirl.Restraints.MagneticShackles.LabelInactive";
-
     public string moteTextOn = "Mugirl.Restraints.MagneticShackles.MoteOn";
     public string moteTextOff = "Mugirl.Restraints.MagneticShackles.MoteOff";
     public string messageOn = "Mugirl.Restraints.MagneticShackles.MessageOn";

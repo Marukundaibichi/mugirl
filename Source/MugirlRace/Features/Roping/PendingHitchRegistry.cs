@@ -44,8 +44,6 @@ internal static class PendingHitchRegistry
         return false;
     }
 
-    [GameLifecycleHook(GameLifecycleEvent.BeforeLoad, Order = 500)]
-    [GameLifecycleHook(GameLifecycleEvent.BeforeNewGame, Order = 500)]
     internal static void Reset()
     {
         Pending.Clear();

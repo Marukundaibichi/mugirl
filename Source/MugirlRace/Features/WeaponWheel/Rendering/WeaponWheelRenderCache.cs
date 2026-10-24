@@ -26,6 +26,12 @@ internal sealed class WeaponWheelRenderCache
 
     internal bool IsBackWeaponVisible(int displayIndex)
     {
+        return IsBackWeaponVisible(displayIndex, null);
+    }
+
+    // openlyHeld：调用方在本 tick 已求得、且之后没有可能改变的原版 CarryWeaponOpenly 结果；为 null 时按需现算（渲染线程走这条）。
+    private bool IsBackWeaponVisible(int displayIndex, bool? openlyHeld)
+    {
         ThingWithComps? weapon = GetBackWeapon(displayIndex);
         if (weapon == null || weapon == owner.combat.animationOutgoingWeapon || weapon == owner.combat.animationIncomingWeapon)
         {
@@ -54,13 +60,13 @@ internal sealed class WeaponWheelRenderCache
             return true;
         }
 
-        return !(pawn.stances?.curStance is Stance_Busy busy && !busy.neverAimWeapon && busy.focusTarg.IsValid) && !PawnRenderUtility.CarryWeaponOpenly(pawn);
+        return !(pawn.stances?.curStance is Stance_Busy busy && !busy.neverAimWeapon && busy.focusTarg.IsValid) && !(openlyHeld ?? PawnRenderUtility.CarryWeaponOpenly(pawn));
     }
 
-    internal void RefreshBackWeaponVisibility()
+    internal void RefreshBackWeaponVisibility(bool? openlyHeld)
     {
         // 只比较两个固定槽位；Job/瞄准变化不一定改变 PawnDrawParms，需显式刷新绘制请求。
-        int mask = (IsBackWeaponVisible(0) ? 1 : 0) | (IsBackWeaponVisible(1) ? 2 : 0);
+        int mask = (IsBackWeaponVisible(0, openlyHeld) ? 1 : 0) | (IsBackWeaponVisible(1, openlyHeld) ? 2 : 0);
         if (mask == backWeaponVisibilityMask)
         {
             return;
