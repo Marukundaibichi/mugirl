@@ -54,7 +54,6 @@
         </researchPrerequisites>
         <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
         <comps>
-            <li Class="CompProperties_Flickable" />
             <li Class="CompProperties_Usable">
                 <compClass>Mugirl.Features.Roping.CompUsable_RopeToHitch</compClass>
                 <useJob>Mugirl_RopeToHitch</useJob>

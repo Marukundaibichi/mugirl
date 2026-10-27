@@ -141,7 +141,7 @@ pwsh tools/Validate.ps1 -UpdateBaselines -WorkRoot ...              # 重写生�
 pwsh tools/SmokeTest.ps1 -QuickTest -DevMode
 ```
 
-脚本先启动只含依赖（Harmony、HAR）的基线，再启动依赖加 `HAR.MugirlRace`。它只看 “Running with command line mod list” 之后的 ERROR/WARN 行，求“候选有、基线没有”的行。`-Headless` 下不渲染、不编译 Shader，画面相关的检查由 `Test-InGame.ps1` 负责。退出码：0 通过；1 雪牛娘新增了 ERROR/WARN；2 启动失败或环境错误。
+脚本先启动只含依赖（Harmony、HAR）的基线，再启动依赖加 `HAR.MugirlRace`。两侧均写本次临时 `ModsConfig.xml`，以加载工坊依赖；4990 的 `-mod=` 仅接受本地 Mods。它比较游戏版本行之后的 ERROR/WARN 行，包含两侧相同的已安装模组元数据警告，求“候选有、基线没有”的行。进程必须正常退出，`-QuickTest` 还逐项核对实际新游戏日志中的模组列表。`-Headless` 下不渲染、不编译 Shader，画面相关的检查由 `Test-InGame.ps1` 负责。退出码：0 通过；1 雪牛娘新增了 ERROR/WARN；2 启动失败或环境错误。
 
 ## 游戏内套件（Test-InGame.ps1）
 
@@ -169,7 +169,7 @@ pwsh tools/Test-InGame.ps1 -Fixture all                      # 旧档夹具升�
   - 原版 `ProfilerBlock` 在发布版是空实现，内置分析器只有插桩后才能看到原版调用路径；
   - 高速运行时一帧含多个 tick，全量插桩会超出事件缓冲而丢帧，所以套件改为单步；
   - 插桩阶段的绝对耗时偏高，只用于比较构成。用法与结论见[觅食植物扫描性能调查](records/performance-food-search-2026-10-25.md)。
-- `-Config` 可选 AllDlc、CoreOnly、NoRoyalty、NoIdeology、NoBiotech、NoAnomaly、NoOdyssey。无 DLC 组合通过临时 `ModsConfig.xml` 实现，因为 `-mod=` 总会启用全部 DLC。
+- `-Config` 可选 AllDlc、CoreOnly、NoRoyalty、NoIdeology、NoBiotech、NoAnomaly、NoOdyssey。全部组合通过临时 `ModsConfig.xml` 实现，以免 4990 的 `-mod=` 忽略工坊依赖；不会修改玩家的正常模组配置。
 - 结果在 `TMP/InGameValidation/<时间戳>/`，包括 `summary.json`、报告、标准输出、截图和截图分析。退出码：0 通过；1 游戏运行了但有失败；2 构建或环境错误。
 - 基线：重构前的 DLL 在 Wave 0 为 65 ok / 1 failed / 14 skipped（`DevData/Evidence/Baseline-PreRefactor-20261015/ingame-default.txt`）。那次失败是测试本身的缺陷，A5 已修复；修复后的 default 运行为 78 ok / 0 failed / 14 skipped（A5 报告）。
 
@@ -263,7 +263,8 @@ Mugirl 相关异常：无/有，摘要：
 - 骑乘：骑乘、下骑、骑乘近战、装备绘制。
 - 雪牛投掷（Biotech）：
   - 重量上限：等于 `CarryingCapacity` 的目标可以举起，超过的被拒绝；整堆物品按整堆重量判定。
-  - 建筑重量：分别尝试孤立的墙体/山体，以及占用格或四边邻格连接墙、家具、墙灯或地下电缆的 `Building` 目标。所有未显式定义 `Mass` 的 `Building` 至少按完整最大耐久度 × 10 计算，同时保留占地面积、建造材料造成的更高重量。`Mineable` 即使有较小的显式 `Mass`，也不能低于完整最大耐久度 × 10。
+  - 建筑连接：运行 `tools/Test-InGame.ps1 -Suite throw-connections`（默认测正式 DLL；未部署候选须使用带标记的 `-TargetModDir`）。验证桌椅相邻、家具靠墙/覆盖隐藏电缆、普通设备接电均不因连接拒绝；墙/山体相连、围栏及门端点、沙袋、电缆相连仍拒绝。斜角、隔一空格、墙与电缆不相容的连接类别不拒绝。`-SuiteOption throw-connections.mode=baseline` 专用于旧构建对照，不能用于修复验收。
+  - 建筑重量：连接检查放行后仍须满足重量限制。所有未显式定义 `Mass` 的 `Building` 至少按完整最大耐久度 × 10 计算，同时保留占地面积、建造材料造成的更高重量。`Mineable` 即使有较小的显式 `Mass`，也不能低于完整最大耐久度 × 10。
   - 参考值：原版墙体基础耐久 300，对应 3000 kg，具体材质按实际最大耐久计算；花岗岩山体 9000 kg。550 kg 搬运上限都应被拒绝，提升到足够高后才允许举起；打残目标不能降低门槛。显式有 `Mass` 的花岗岩岩块 `ChunkGranite` 仍按原规则判定。
   - 流程：举起、瞄准落点、命中、放下、中断，以及存读档后，目标不丢失、不复制。
 - 投掷飞行视觉：

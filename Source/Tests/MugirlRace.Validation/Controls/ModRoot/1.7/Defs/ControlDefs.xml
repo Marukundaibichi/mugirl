@@ -58,6 +58,16 @@
     </graphicData>
   </ThingDef>
 
+  <!-- C.textures：原版资源包的 .dds 与 .dds.split 必须解析为同一个资源路径。 -->
+  <ThingDef>
+    <defName>Mugirl_Control_BaseTexture</defName>
+    <label>base texture</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+  </ThingDef>
+
   <!-- C.sounds：缺失的音频。 -->
   <SoundDef>
     <defName>Mugirl_Control_Sound</defName>

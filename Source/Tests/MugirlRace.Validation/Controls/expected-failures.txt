@@ -147,6 +147,7 @@ C.job-reports | Mugirl_Control_Job.reportString	JobDef reportString without a Ch
 C.textures | texture 'Control/NoSuchTexture'	missing texture (code literal)
 C.textures | ThingDef[Mugirl_Control_Thing]: texture 'Control/NoSuchTexture'	missing texture (graphicData)
 C.textures | ThingDef[Mugirl_Control_CaseTexture]: texture 'Control/casetexture' | ignoring case	mod texture that matches only case-insensitively
+absent: C.textures | ThingDef[Mugirl_Control_BaseTexture]	base-game texture resolves from either .dds or .dds.split
 C.sounds | SoundDef[Mugirl_Control_Sound]: clipPath 'Control/NoSuchSound'	missing sound clip
 C.shaders | ShaderTypeDef[Mugirl_Control_ShaderType]	shaderPath whose last segment names no ShaderDef
 C.shaders | ShaderDef[ControlUnprefixedShader] | prefix	ShaderDef without the mod prefix

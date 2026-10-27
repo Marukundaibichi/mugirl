@@ -12,8 +12,8 @@
          脚本从不构建进 1.7/Assemblies；只有 -BuildMod -Deploy 时由 Mod 工程自己的部署步骤（-p:DeployToMod=true，K3）写入那里。
       3. 在 <游戏>/Mods 中建立带标记文件的临时测试模组 __MugirlRace_GameValidation_<随机>，结束时（finally）删除。
          只删除带标记的真实目录，遇到目录链接（Junction/符号链接）就停止，不跟随。
-      4. 每次启动（boot）使用 %TEMP% 中的临时存档目录：Config/Prefs.xml（开发者模式、静音、后台运行、读档不暂停）、可选的
-         Config/ModsConfig.xml（-mod= 总会启用全部 DLC，无 DLC 组合必须用 ModsConfig.xml）和测试参数文件 mugirl-gamevalidation.json。
+      4. 每次启动（boot）使用 %TEMP% 中的临时存档目录：Config/Prefs.xml（开发者模式、静音、后台运行、读档不暂停）、
+         Config/ModsConfig.xml（全部配置均通过临时模组列表加载工坊依赖）和测试参数文件 mugirl-gamevalidation.json。
       5. 启动 RimWorld.exe -NoWindow（或 -Headless）-NoFileLog -NoCrashDialog [-quicktest] -mugirlvalidate -savedatafolder=<临时目录>，
          标准输出重定向到文件；超时只结束本脚本启动的进程。
       6. 把报告、标准输出、配置、截图与套件结果（artifacts/）复制到 TMP/InGameValidation/<时间戳>/，分析渲染截图，写 summary.json。
@@ -83,7 +83,7 @@
     与 -BuildMod 一起：由 Mod 工程的部署步骤把构建出的 DLL 与 PDB 写进 1.7/Assemblies（K3）。不给出时脚本不会写入 1.7/Assemblies。
 
 .PARAMETER Config
-    DLC 组合。AllDlc 用 -mod=；其余写 Config/ModsConfig.xml（-mod= 会启用全部 DLC）。-Fixture 时默认取夹具清单中的组合。
+    DLC 组合。全部写临时 Config/ModsConfig.xml；-Fixture 时默认取夹具清单中的组合。
 
 .PARAMETER Language
     游戏语言（Prefs.xml 的 langFolderName）。默认 English；-Fixture 时默认 ChineseSimplified。
@@ -528,22 +528,21 @@ function Invoke-Boot($Boot) {
 
     $bootMods = @($Mods | Select-Object -SkipLast 1) + @($Boot.ExtraMods) + @($Mods | Select-Object -Last 1)
     $modsConfig = Join-Path $configDir 'ModsConfig.xml'
-    if ($Boot.Config -ne 'AllDlc') {
-        # -mod= 总会启用全部 DLC（ModsConfig.ApplyCommandLineModList），所以 DLC 组合改用 ModsConfig.xml，不传 -mod=。
-        $installed = @(Get-InstalledExpansions)
-        $disabled = switch ($Boot.Config) {
-            'CoreOnly' { $installed }
-            'NoRoyalty' { @('ludeon.rimworld.royalty') }
-            'NoIdeology' { @('ludeon.rimworld.ideology') }
-            'NoBiotech' { @('ludeon.rimworld.biotech') }
-            'NoAnomaly' { @('ludeon.rimworld.anomaly') }
-            'NoOdyssey' { @('ludeon.rimworld.odyssey') }
-        }
-        $enabled = @($installed | Where-Object { $disabled -notcontains $_ })
-        $active = @('brrainz.harmony', 'ludeon.rimworld') + $enabled + @($bootMods | Select-Object -Skip 1 | ForEach-Object { $_.ToLowerInvariant() })
-        $activeXml = ($active | ForEach-Object { "    <li>$(ConvertTo-XmlText $_)</li>" }) -join "`n"
-        $knownXml = ($installed | ForEach-Object { "    <li>$(ConvertTo-XmlText $_)</li>" }) -join "`n"
-        Write-Utf8 $modsConfig @"
+    # 4990 的 -mod= 只接受本地 Mods，工坊中的 Harmony/HAR 会被忽略；全部组合统一写临时配置。
+    $installed = @(Get-InstalledExpansions)
+    $disabled = @(switch ($Boot.Config) {
+        'CoreOnly' { $installed }
+        'NoRoyalty' { @('ludeon.rimworld.royalty') }
+        'NoIdeology' { @('ludeon.rimworld.ideology') }
+        'NoBiotech' { @('ludeon.rimworld.biotech') }
+        'NoAnomaly' { @('ludeon.rimworld.anomaly') }
+        'NoOdyssey' { @('ludeon.rimworld.odyssey') }
+    })
+    $enabled = @($installed | Where-Object { $disabled -notcontains $_ })
+    $active = @('brrainz.harmony', 'ludeon.rimworld') + $enabled + @($bootMods | Select-Object -Skip 1 | ForEach-Object { $_.ToLowerInvariant() })
+    $activeXml = ($active | ForEach-Object { "    <li>$(ConvertTo-XmlText $_)</li>" }) -join "`n"
+    $knownXml = ($installed | ForEach-Object { "    <li>$(ConvertTo-XmlText $_)</li>" }) -join "`n"
+    Write-Utf8 $modsConfig @"
 <?xml version="1.0" encoding="utf-8"?>
 <ModsConfigData>
   <version>$(ConvertTo-XmlText $gameVersion)</version>
@@ -555,10 +554,6 @@ $knownXml
   </knownExpansions>
 </ModsConfigData>
 "@
-    }
-    elseif (Test-Path -LiteralPath $modsConfig) {
-        Remove-Item -LiteralPath $modsConfig -Force
-    }
 
     $artifacts = Join-Path $Work "artifacts-$($Boot.Name)"
     $report = Join-Path $Work "report-$($Boot.Name).txt"
@@ -602,7 +597,6 @@ $knownXml
     $arguments = @($(if ($Headless) { '-Headless' } else { '-NoWindow' }), '-NoFileLog', '-NoCrashDialog')
     if ($Boot.Entry -eq 'quicktest') { $arguments += '-quicktest' }
     $arguments += @('-mugirlvalidate', "-savedatafolder=$saveData")
-    if ($Boot.Config -eq 'AllDlc') { $arguments += "-mod=$($bootMods -join ';')" }
     $argumentLine = ($arguments | ForEach-Object { if ($_ -match '\s') { '"' + $_ + '"' } else { $_ } }) -join ' '
     Write-Host ''
     Write-Host "==== boot $($Boot.Name): entry $($Boot.Entry), suites $($Boot.Suites -join ','), config $($Boot.Config)" -ForegroundColor Cyan

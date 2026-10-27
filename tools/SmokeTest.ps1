@@ -7,10 +7,10 @@
     按黑科拓展 tools/SmokeTest.ps1 的做法（证据 E48，迁移与性能验证清单“无界面启动冒烟测试”）：
 
       1. 基线：Harmony 与 Humanoid Alien Races；
-         候选：同样的依赖加 HAR.MugirlRace（开发目录中的副本；同 packageId 的创意工坊副本被 RimWorld 加上 _steam 后缀，-mod= 先匹配本地副本）。
+         候选：同样的依赖加 HAR.MugirlRace（开发目录中的副本；模组列表写入本次临时 ModsConfig.xml）。
       2. 每次启动用 %TEMP% 下一个新的临时存档目录（-savedatafolder），玩家的设置、模组列表与存档不受影响；
          -NoFileLog 让玩家的 Player.log 保持不变。参数：-Headless -QuitAfterBoot -NoCrashDialog -DisableLogStackTraces -NoFileLog。
-      3. 只看 “Running with command line mod list” 之后的 ERROR/WARN 行（之前是所有已安装模组的 About.xml 元数据警告），
+      3. 比较游戏版本行之后的 ERROR/WARN 行（包括两侧相同的已安装模组元数据警告），
          去掉宿主固定底噪与消息为空的 WARN，把十六进制地址与数字归一后，求“候选有、基线没有”的行。
 
     -Headless 不创建帧渲染器、不编译 Shader、不绘制（E48）；画面、界面与 Shader 由 tools/Test-InGame.ps1 检查。
@@ -83,7 +83,7 @@ Set-StrictMode -Version Latest
 
 $ModPackageId = 'HAR.MugirlRace'
 $WorkMarker = '.mugirl-smoketest-work'
-$ModListMarker = 'Running with command line mod list'
+$BootMarker = 'RimWorld \d+\.'
 $NewGameMarker = 'Initializing new game with mods'
 
 # 宿主与原版的固定底噪（E48）以及无界面渲染器的提示；与任何模组无关。
@@ -149,8 +149,36 @@ function Invoke-Boot([string] $Name, [string[]] $Mods) {
     [System.IO.File]::WriteAllText((Join-Path $configDir.FullName 'Prefs.xml'),
         "<?xml version=`"1.0`" encoding=`"utf-8`"?>`n<PrefsData>`n  <devMode>$DevMode</devMode>`n  <volumeMaster>0</volumeMaster>`n  <volumeGame>0</volumeGame>`n  <volumeMusic>0</volumeMusic>`n  <volumeAmbient>0</volumeAmbient>`n  <volumeUI>0</volumeUI>`n</PrefsData>`n", [System.Text.UTF8Encoding]::new($false))
 
+    # 4990 的 -mod= 拒绝工坊依赖；只在本次临时存档目录中明确指定加载列表。
+    $expansionOrder = @('ludeon.rimworld.royalty', 'ludeon.rimworld.ideology', 'ludeon.rimworld.biotech', 'ludeon.rimworld.anomaly', 'ludeon.rimworld.odyssey')
+    $installed = @(foreach ($folder in Get-ChildItem -LiteralPath (Join-Path $GameDir 'Data') -Directory) {
+        $aboutPath = Join-Path $folder.FullName 'About/About.xml'
+        if (Test-Path -LiteralPath $aboutPath) {
+            $id = ([xml](Get-Content -LiteralPath $aboutPath -Raw -Encoding utf8)).ModMetaData.packageId
+            if ($id -and $id -ne 'ludeon.rimworld') { $id.ToLowerInvariant() }
+        }
+    })
+    $expansions = @($expansionOrder | Where-Object { $installed -contains $_ }) + @($installed | Where-Object { $expansionOrder -notcontains $_ })
+    $active = @($Mods | Where-Object { $_ -ieq 'brrainz.harmony' }) + @('ludeon.rimworld') + $expansions + @($Mods | Where-Object { $_ -ine 'brrainz.harmony' })
+    $activeXml = ($active | Select-Object -Unique | ForEach-Object { '    <li>' + [Security.SecurityElement]::Escape($_.ToLowerInvariant()) + '</li>' }) -join "`n"
+    $knownXml = ($expansions | ForEach-Object { '    <li>' + [Security.SecurityElement]::Escape($_) + '</li>' }) -join "`n"
+    $gameVersion = [Security.SecurityElement]::Escape((Get-Content -LiteralPath (Join-Path $GameDir 'Version.txt') -TotalCount 1).Trim())
+    $modsConfigPath = Join-Path $configDir.FullName 'ModsConfig.xml'
+    [IO.File]::WriteAllText($modsConfigPath, @"
+<?xml version="1.0" encoding="utf-8"?>
+<ModsConfigData>
+  <version>$gameVersion</version>
+  <activeMods>
+$activeXml
+  </activeMods>
+  <knownExpansions>
+$knownXml
+  </knownExpansions>
+</ModsConfigData>
+"@, [Text.UTF8Encoding]::new($false))
+
     $log = Join-Path $OutDir "$Name.log"
-    $arguments = @('-Headless', '-QuitAfterBoot', '-NoCrashDialog', '-NoFileLog', "-savedatafolder=$saveDir", "-mod=$($Mods -join ';')")
+    $arguments = @('-Headless', '-QuitAfterBoot', '-NoCrashDialog', '-NoFileLog', "-savedatafolder=$saveDir")
     if (-not $LogStackTraces) { $arguments += '-DisableLogStackTraces' }
     if ($QuickTest) { $arguments += '-quicktest' }
     $argumentLine = ($arguments | ForEach-Object { if ($_ -match '\s') { '"' + $_ + '"' } else { $_ } }) -join ' '
@@ -170,19 +198,22 @@ function Invoke-Boot([string] $Name, [string[]] $Mods) {
         if (-not $process.HasExited) { $process.Kill($true) }
     }
     Write-Host ("[$Name] finished after {0:N0} s (exit code {1})" -f $clock.Elapsed.TotalSeconds, $process.ExitCode)
+    Copy-Item -LiteralPath $modsConfigPath -Destination (Join-Path $OutDir "$Name.ModsConfig.xml")
+    if ($process.ExitCode -ne 0) { Stop-Environment "[$Name] RimWorld exited with code $($process.ExitCode); see $log" }
 
     $lines = @(Get-Content -LiteralPath $log -Encoding utf8)
-    $modList = $lines | Where-Object { $_ -match "INFO $ModListMarker" } | Select-Object -First 1
-    if (-not $modList) { Stop-Environment "[$Name] the log never reached mod loading; see $log" }
+    if (-not ($lines | Where-Object { $_ -match "INFO $BootMarker" })) { Stop-Environment "[$Name] the log never reached game startup; see $log" }
     if ($QuickTest -and -not ($lines | Where-Object { $_ -match "INFO $NewGameMarker" })) { Stop-Environment "[$Name] the quick-test game never started; see $log" }
+    $loadedConfig = [xml](Get-Content -LiteralPath $modsConfigPath -Raw -Encoding utf8)
     foreach ($mod in $Mods) {
-        if ($lines | Where-Object { $_ -match "-mod: no installed mod matches '$([regex]::Escape($mod))'" }) { Stop-Environment "[$Name] $mod is not installed" }
+        if (@($loadedConfig.ModsConfigData.activeMods.li) -notcontains $mod) { Stop-Environment "[$Name] $mod was removed from the active mod list" }
+        if ($QuickTest -and -not ($lines | Where-Object { $_ -match "^\s+-\s+$([regex]::Escape($mod))\s*$" })) { Stop-Environment "[$Name] $mod is absent from the new game's actual mod list" }
     }
 
     $messages = [System.Collections.Generic.List[string]]::new()
     $started = $false
     foreach ($line in $lines) {
-        if (-not $started) { $started = $line -match "^\S+\s+INFO $ModListMarker"; continue }
+        if (-not $started) { $started = $line -match "^\S+\s+INFO $BootMarker"; continue }
         if ($line -notmatch '^\S+\s+(ERROR|WARN)(?:\s+(.*))?$') { continue }
         $level = $Matches[1]
         $text = "$($Matches[2])".Trim()
@@ -222,7 +253,7 @@ try {
 
     $baseline = Invoke-Boot 'baseline' $Dependencies
     Write-Host ''
-    Write-Host "Baseline (dependencies only): $($baseline.Count) error/warning line(s) after the mod list."
+    Write-Host "Baseline (dependencies only): $($baseline.Count) error/warning line(s) after game startup."
     foreach ($message in $baseline | Select-Object -Unique) { Write-Host "  [deps] $message" -ForegroundColor DarkGray }
 
     if ($BaselineOnly) {

@@ -46,6 +46,7 @@ internal static partial class SuiteCatalog
             ThinkTreeMigrationSuite.Create(),
             ThinkTreeWarningSuite.Create(),
             CorporateSupplySuite.Create(),
+            ThrowConnectionsSuite.Create(),
             ModSuite(modSuites, StartupSuiteName),
             SpawnSuite.Create(),
             SaveLoadSuite.Create(),

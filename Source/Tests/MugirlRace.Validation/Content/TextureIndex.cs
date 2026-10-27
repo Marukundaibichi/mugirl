@@ -117,6 +117,12 @@ internal sealed class TextureIndex
             }
 
             string path = name[prefix.Length..];
+            // ContentPack.IsTextureEntry 同时接受 .dds 和 .dds.split；后者是打包形式，不属于资源名。
+            if (path.EndsWith(".dds.split", StringComparison.Ordinal))
+            {
+                path = path[..^".split".Length];
+            }
+
             while (TextureExtensions.Contains(Path.GetExtension(path), StringComparer.OrdinalIgnoreCase))
             {
                 path = path[..^Path.GetExtension(path).Length];

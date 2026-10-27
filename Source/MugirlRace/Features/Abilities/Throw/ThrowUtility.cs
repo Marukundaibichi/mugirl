@@ -77,7 +77,7 @@ internal static class ThrowUtility
             return false;
         }
 
-        if (category == ThingCategory.Building && IsConnectedBuilding(target))
+        if (category == ThingCategory.Building && ThrowBuildingConnections.IsConnected(target))
         {
             reason = "Mugirl.Throw.ConnectedTarget".Translate(target.LabelCap).ToString();
             return false;
@@ -98,49 +98,6 @@ internal static class ThrowUtility
         }
 
         return true;
-    }
-
-    private static bool IsConnectedBuilding(Thing target)
-    {
-        Map map = target.Map;
-        CellRect occupied = GenAdj.OccupiedRect(target);
-        foreach (IntVec3 cell in occupied.Cells)
-        {
-            if (HasOtherBuildingAt(target, cell, map))
-            {
-                return true;
-            }
-        }
-
-        foreach (IntVec3 cell in occupied.AdjacentCellsCardinal)
-        {
-            if (HasOtherBuildingAt(target, cell, map))
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private static bool HasOtherBuildingAt(Thing target, IntVec3 cell, Map map)
-    {
-        if (!cell.InBounds(map))
-        {
-            return false;
-        }
-
-        List<Thing> neighbours = map.thingGrid.ThingsListAtFast(cell);
-        for (int i = 0; i < neighbours.Count; i++)
-        {
-            Thing other = neighbours[i];
-            if (other != target && other.Spawned && other.def.category == ThingCategory.Building)
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     internal static ThrowController? FindHeldController(Pawn? pawn)

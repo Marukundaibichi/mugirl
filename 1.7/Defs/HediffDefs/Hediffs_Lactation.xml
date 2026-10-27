@@ -4,6 +4,7 @@
     <HediffDef>
         <defName>Mugirl_Lactation</defName>
         <hediffClass>HediffWithComps</hediffClass>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
         <!-- 哺乳期 -->
         <label>lactating</label>
         <!-- 雪牛娘处于泌乳状态，可以哺育幼崽。乳汁分泌速度受营养状况影响。 -->
